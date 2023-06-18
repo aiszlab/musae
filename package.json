@@ -1,0 +1,21 @@
+{
+  "name": "musae",
+  "version": "0.0.1-beta.1",
+  "description": "musae-ui",
+  "author": "tutu@fantufantu.com",
+  "license": "MIT",
+  "scripts": {
+    "build": "parcel build 'components/*/*/'"
+  },
+  "dependencies": {
+    "@radix-ui/react-avatar": "^1.0.3",
+    "clsx": "^1.2.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.12",
+    "@types/react-dom": "^18.2.5",
+    "parcel": "^2.9.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}
