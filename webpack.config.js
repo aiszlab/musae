@@ -4,7 +4,7 @@ import { fileURLToPath } from "url";
 
 const __filename = fileURLToPath(import.meta.url);
 
-export default {
+const configuration = {
   optimization: {
     minimize: false,
   },
@@ -45,3 +45,5 @@ export default {
     outputModule: true,
   },
 };
+
+export default configuration;
