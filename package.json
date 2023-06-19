@@ -4,9 +4,9 @@
   "description": "musae-ui",
   "author": "tutu@fantufantu.com",
   "license": "MIT",
-  "scripts": {
-    "build": "parcel build 'components/*/*/'"
-  },
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {},
   "dependencies": {
     "@radix-ui/react-avatar": "^1.0.3",
     "clsx": "^1.2.1"
@@ -14,7 +14,6 @@
   "devDependencies": {
     "@types/react": "^18.2.12",
     "@types/react-dom": "^18.2.5",
-    "parcel": "^2.9.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   }
