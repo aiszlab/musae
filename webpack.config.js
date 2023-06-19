@@ -5,16 +5,20 @@ import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 
 export default {
+  optimization: {
+    minimize: false,
+  },
+
   mode: "production",
 
   // 入口文件
-  entry: "./components/avatar",
+  entry: "./components",
 
   // 输出文件
   output: {
     path: resolve(dirname(__filename), "dist"),
-    filename: "[name].js",
     module: true,
+    clean: true,
     library: {
       type: "module",
     },
