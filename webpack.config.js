@@ -1,4 +1,5 @@
 import webpackNodeExternals from "webpack-node-externals";
+import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
 import { resolve, dirname } from "path";
 import { fileURLToPath } from "url";
 
@@ -6,7 +7,7 @@ const __filename = fileURLToPath(import.meta.url);
 
 const configuration = {
   optimization: {
-    minimize: false,
+    minimize: true,
   },
 
   mode: "production",
@@ -28,7 +29,8 @@ const configuration = {
   module: {
     rules: [
       {
-        test: /\.(ts|tsx)$/,
+        test: /\.ts(x?)$/,
+        exclude: /node_modules/,
         use: ["babel-loader"],
       },
     ],
@@ -36,10 +38,18 @@ const configuration = {
 
   // 文件后缀
   resolve: {
-    extensions: [".ts", ".tsx"],
+    extensions: [".ts", ".tsx", ".js", ".jsx"],
   },
 
   externals: [webpackNodeExternals()],
+
+  plugins: [
+    new ForkTsCheckerWebpackPlugin({
+      typescript: {
+        mode: "write-dts",
+      },
+    }),
+  ],
 
   experiments: {
     outputModule: true,

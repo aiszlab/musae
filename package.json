@@ -8,7 +8,7 @@
   "types": "./typings",
   "type": "module",
   "scripts": {
-    "build": "tsc && webpack",
+    "build": "webpack",
     "clean:build": "rm -rf dist && rm -rf typings"
   },
   "dependencies": {
@@ -23,6 +23,7 @@
     "@types/react": "^18.2.12",
     "@types/react-dom": "^18.2.5",
     "babel-loader": "^9.1.2",
+    "fork-ts-checker-webpack-plugin": "^8.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "typescript": "^5.1.3",
