@@ -1,6 +1,6 @@
 import { Fallback } from "@radix-ui/react-avatar";
 import clsx from "clsx";
-import { ComponentPropsWithoutRef, ElementRef, forwardRef } from "react";
+import React, { ComponentPropsWithoutRef, ElementRef, forwardRef } from "react";
 
 const AvatarFallback = forwardRef<ElementRef<typeof Fallback>, ComponentPropsWithoutRef<typeof Fallback>>(
   ({ className, ...props }, ref) => (

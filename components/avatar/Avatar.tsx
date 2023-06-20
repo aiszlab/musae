@@ -1,6 +1,6 @@
 import { Root } from "@radix-ui/react-avatar";
 import clsx from "clsx";
-import { ComponentPropsWithoutRef, ElementRef, forwardRef } from "react";
+import React, { ComponentPropsWithoutRef, ElementRef, forwardRef } from "react";
 
 const Avatar = forwardRef<ElementRef<typeof Root>, ComponentPropsWithoutRef<typeof Root>>(
   ({ className, ...props }, ref) => (

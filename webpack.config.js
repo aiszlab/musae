@@ -1,7 +1,7 @@
-import webpackNodeExternals from "webpack-node-externals";
 import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
 import { resolve, dirname } from "path";
 import { fileURLToPath } from "url";
+import pkg from "./package.json" assert { type: "json" };
 
 const __filename = fileURLToPath(import.meta.url);
 
@@ -47,7 +47,7 @@ const configuration = {
     extensions: [".ts", ".tsx", ".js", ".jsx"],
   },
 
-  externals: [webpackNodeExternals()],
+  externals: [...Object.keys(pkg.dependencies), ...Object.keys(pkg.peerDependencies)],
 
   plugins: [
     new ForkTsCheckerWebpackPlugin({

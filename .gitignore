@@ -2,5 +2,5 @@
 *node_modules
 
 # build output
-# dist
-# typings
+dist
+typings
