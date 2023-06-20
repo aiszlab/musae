@@ -5,15 +5,16 @@ import { fileURLToPath } from "url";
 
 const __filename = fileURLToPath(import.meta.url);
 
+/** @type {import("webpack").Configuration} */
 const configuration = {
   optimization: {
-    minimize: true,
+    minimize: false,
   },
 
   mode: "production",
 
   // 入口文件
-  entry: "./components",
+  entry: "./components/index.ts",
 
   // 输出文件
   output: {
@@ -32,6 +33,11 @@ const configuration = {
         test: /\.ts(x?)$/,
         exclude: /node_modules/,
         use: ["babel-loader"],
+      },
+      {
+        test: /\.css$/,
+        exclude: /node_modules/,
+        use: ["style-loader", "css-loader", "postcss-loader"],
       },
     ],
   },
