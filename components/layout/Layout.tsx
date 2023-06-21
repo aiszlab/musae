@@ -1,7 +1,13 @@
 import React, { forwardRef } from "react";
+import { Props } from "./";
+import _Layout from "./_Layout";
 
-const Layout = forwardRef(() => {
-  return <div></div>;
+/**
+ * @author murukal
+ * @description 布局组件
+ */
+const Layout = forwardRef<null, Props>((props, ref) => {
+  return <_Layout {...props} ref={ref} />;
 });
 
 export default Layout;
