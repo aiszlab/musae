@@ -1,11 +1,13 @@
-import { Image } from "@radix-ui/react-avatar";
 import clsx from "clsx";
-import React, { ComponentPropsWithoutRef, ElementRef, forwardRef } from "react";
+import React, { DetailedHTMLProps } from "react";
 
-const AvatarImage = forwardRef<ElementRef<typeof Image>, ComponentPropsWithoutRef<typeof Image>>(
-  ({ className, ...props }, ref) => (
-    <Image ref={ref} className={clsx("aspect-square h-full w-full", className)} {...props} />
-  )
-);
+const AvatarImage = ({
+  className,
+  ...props
+}: DetailedHTMLProps<React.ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>) => {
+  return (
+    <img className={clsx("w-full h-full text-center object-cover text-transparent indent-96", className)} {...props} />
+  );
+};
 
 export default AvatarImage;

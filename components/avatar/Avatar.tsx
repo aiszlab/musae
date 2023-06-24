@@ -1,15 +1,24 @@
-import { Root } from "@radix-ui/react-avatar";
+import { useImageLoader } from "@aiszlab/relax";
 import clsx from "clsx";
-import React, { ComponentPropsWithoutRef, ElementRef, forwardRef } from "react";
+import React, { useMemo } from "react";
 
-const Avatar = forwardRef<ElementRef<typeof Root>, ComponentPropsWithoutRef<typeof Root>>(
-  ({ className, ...props }, ref) => (
-    <Root
-      ref={ref}
-      className={clsx("relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full", className)}
-      {...props}
-    />
-  )
-);
+interface Props {
+  src: string;
+  alt: string;
+}
+
+const Avatar = (props: Props) => {
+  const status = useImageLoader({
+    src: props.src,
+  });
+
+  const childRenderer = useMemo(() => {
+    if (status === "none") {
+      return props.alt;
+    }
+  }, [props.alt]);
+
+  return <div className={clsx("relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full")}>{childRenderer}</div>;
+};
 
 export default Avatar;
