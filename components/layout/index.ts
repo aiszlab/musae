@@ -8,4 +8,4 @@ export interface Props {
   children?: ReactNode;
 }
 
-export default Layout;
+export { Layout };
