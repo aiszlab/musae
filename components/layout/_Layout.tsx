@@ -1,4 +1,4 @@
-import React, { forwardRef, useMemo } from "react";
+import React, { ReactElement, cloneElement, forwardRef, useMemo } from "react";
 import { Props } from "./";
 import clsx from "clsx";
 
@@ -45,7 +45,7 @@ const _Layout = forwardRef<null, _Props>((props, ref) => {
 
   // 递归创建布局
   return (
-    <div className="flex flex-row">
+    <div className="flex flex-row h-full">
       {/* 侧边布局 */}
       <div className="w-72">{props.sider}</div>
 
