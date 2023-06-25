@@ -3,15 +3,15 @@ import "./main.css";
 /**
  * @description export types
  */
-import type { Props as LayoutProps } from "./layout";
-import type { Props as MenuProps } from "./menu";
+import { Props as LayoutProps } from "./layout/index";
+import { Props as MenuProps } from "./menu/index";
 
 export { LayoutProps, MenuProps };
 
 /**
  * @description export components
  */
-export { Avatar, AvatarFallback, AvatarImage } from "./avatar";
-export { Layout } from "./layout";
-export { Menu } from "./menu";
-export { Loading } from "./loading";
+export { Avatar, AvatarFallback, AvatarImage } from "./avatar/index";
+export { Layout } from "./layout/index";
+export { Menu } from "./menu/index";
+export { Loading } from "./loading/index";
