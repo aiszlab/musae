@@ -13,8 +13,10 @@ const configuration = {
   input: "./components/index.ts",
 
   output: {
-    dir: "dist",
     format: "es",
+    dir: "./dist",
+    preserveModules: true,
+    preserveModulesRoot: "./components",
   },
 
   plugins: [
@@ -27,8 +29,6 @@ const configuration = {
       presets: ["@babel/preset-env", "@babel/preset-react", "@babel/preset-typescript"],
     }),
     postcss({
-      autoModules: true,
-      modules: true,
       plugins: [nesting(), tailwindcss(), autoprefixer()],
     }),
   ],
