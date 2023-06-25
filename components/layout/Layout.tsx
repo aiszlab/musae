@@ -1,5 +1,5 @@
 import React, { forwardRef } from "react";
-import { Props } from "./";
+import { Props } from ".";
 import _Layout from "./_Layout";
 
 /**
