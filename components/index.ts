@@ -1,5 +1,3 @@
-import "./main.css";
-
 /**
  * @description export types
  */
