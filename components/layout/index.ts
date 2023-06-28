@@ -1,11 +1,11 @@
 import { ReactNode } from "react";
 import Layout from "./Layout";
 
-export interface Props {
+interface Props {
   sider?: ReactNode;
   header?: ReactNode;
   footer?: ReactNode;
   children?: ReactNode;
 }
 
-export { Layout };
+export { Props, Layout };

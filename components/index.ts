@@ -3,8 +3,8 @@ import "./main.css";
 /**
  * @description export types
  */
-import { Props as LayoutProps } from "./layout";
-import { Props as MenuProps } from "./menu";
+import type { Props as LayoutProps } from "./layout";
+import type { Props as MenuProps } from "./menu";
 
 export { LayoutProps, MenuProps };
 
