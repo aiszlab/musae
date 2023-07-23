@@ -1,29 +1,29 @@
-.loading {
+.musae-loading {
   width: 6em;
   height: 6em;
+}
 
-  .runner {
-    animation: loadingCircleA 2s linear infinite;
-  }
+.musae-loading .runner {
+  animation: loadingCircleA 2s linear infinite;
+}
 
-  .circle-a {
-    stroke: #f42f25;
-  }
+.musae-loading .circle-a {
+  stroke: #f42f25;
+}
 
-  .circle-b {
-    animation-name: loadingCircleB;
-    stroke: #f49725;
-  }
+.musae-loading .circle-b {
+  animation-name: loadingCircleB;
+  stroke: #f49725;
+}
 
-  .circle-c {
-    animation-name: loadingCircleC;
-    stroke: #255ff4;
-  }
+.musae-loading .circle-c {
+  animation-name: loadingCircleC;
+  stroke: #255ff4;
+}
 
-  .circle-d {
-    animation-name: loadingCircleD;
-    stroke: #f42582;
-  }
+.musae-loading .circle-d {
+  animation-name: loadingCircleD;
+  stroke: #f42582;
 }
 
 /* Animations */

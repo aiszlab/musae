@@ -1,12 +1,6 @@
 import babel from "@rollup/plugin-babel";
 import resolve from "@rollup/plugin-node-resolve";
-import postcss from "rollup-plugin-postcss";
 import typescript from "@rollup/plugin-typescript";
-
-import tailwindcss from "tailwindcss";
-import nesting from "tailwindcss/nesting/index.js";
-import autoprefixer from "autoprefixer";
-import pkg from "./package.json" assert { type: "json" };
 
 /** @type {import("rollup").RollupOptions} */
 const configuration = {
@@ -20,20 +14,17 @@ const configuration = {
   },
 
   plugins: [
-    typescript(),
     resolve({
       extensions: [".ts", ".tsx", ".js", ".jsx"],
     }),
+    typescript(),
     babel({
       babelHelpers: "bundled",
       presets: ["@babel/preset-env", "@babel/preset-react", "@babel/preset-typescript"],
     }),
-    postcss({
-      plugins: [nesting(), tailwindcss(), autoprefixer()],
-    }),
   ],
 
-  external: [...Object.keys(pkg.dependencies), ...Object.keys(pkg.peerDependencies)],
+  external: [/node_modules/, /.css/],
 };
 
 export default configuration;

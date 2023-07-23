@@ -1,12 +1,12 @@
 import React from "react";
-import styles from "./index.module.css";
+import "./style.css" assert { type: "css" };
 import clsx from "clsx";
 
 const Loading = () => {
   return (
-    <svg className={styles.loading} width="240" height="240" viewBox="0 0 240 240">
+    <svg className="musae-loading" width="240" height="240" viewBox="0 0 240 240">
       <circle
-        className={clsx([styles.runner, styles["circle-a"]])}
+        className={clsx(["runner", "circle-a"])}
         cx="120"
         cy="120"
         r="105"
@@ -18,7 +18,7 @@ const Loading = () => {
         strokeLinecap="round"
       />
       <circle
-        className={clsx([styles.runner, styles["circle-b"]])}
+        className={clsx(["runner", "circle-b"])}
         cx="120"
         cy="120"
         r="35"
@@ -30,7 +30,7 @@ const Loading = () => {
         strokeLinecap="round"
       />
       <circle
-        className={clsx([styles.runner, styles["circle-c"]])}
+        className={clsx(["runner", "circle-c"])}
         cx="85"
         cy="120"
         r="70"
@@ -41,7 +41,7 @@ const Loading = () => {
         strokeLinecap="round"
       />
       <circle
-        className={clsx([styles.runner, styles["circle-d"]])}
+        className={clsx(["runner", "circle-d"])}
         cx="155"
         cy="120"
         r="70"
