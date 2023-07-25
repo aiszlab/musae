@@ -1,5 +1,5 @@
 import React from "react";
-import "./style.css" assert { type: "css" };
+import "../../styles/loading.css";
 import clsx from "clsx";
 
 const Loading = () => {

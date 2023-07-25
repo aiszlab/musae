@@ -1,6 +1,7 @@
 import babel from "@rollup/plugin-babel";
 import resolve from "@rollup/plugin-node-resolve";
 import typescript from "@rollup/plugin-typescript";
+import pkg from "./package.json" assert { type: "json" };
 
 /** @type {import("rollup").RollupOptions} */
 const configuration = {
@@ -24,7 +25,10 @@ const configuration = {
     }),
   ],
 
-  external: [/node_modules/, /.css/],
+  external: [...Object.keys(pkg.dependencies), ...Object.keys(pkg.peerDependencies), /.css/],
+
+  makeAbsoluteExternalsRelative: false,
+  strictDeprecations: true,
 };
 
 export default configuration;

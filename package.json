@@ -35,7 +35,8 @@
   },
   "files": [
     "dist/",
-    "typings/"
+    "typings/",
+    "styles/"
   ],
   "publishConfig": {
     "access": "public",
