@@ -1,25 +1,21 @@
-import React, { ChangeEventHandler, FC, useCallback, useState } from "react";
+import React, { FC, ReactNode } from "react";
 
 interface Props {
-  value?: string;
-  onChange?: (value: string) => void | Promise<void>;
-  type: "outlined";
+  /* placeholder for input */
+  placeholder?: string;
+
+  /* variant for input, display different style */
+  variant?: "outlined" | "filled" | "standard";
+
+  /* prefix node */
+  prefix?: ReactNode;
+
+  /* suffix node */
+  suffix?: ReactNode;
 }
 
 const Input: FC<Props> = (props) => {
-  const [value, setValue] = useState(props.value);
-
-  /**
-   * @description input change event
-   */
-  const onChange = useCallback<ChangeEventHandler<HTMLInputElement>>(
-    (event) => {
-      const target = event.target.value;
-    },
-    [props.onChange]
-  );
-
-  return <input type="text" value={value} onChange={onChange} />;
+  return <input type="text" placeholder={props.placeholder} />;
 };
 
 export default Input;

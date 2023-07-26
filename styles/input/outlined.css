@@ -6,7 +6,7 @@
   border-color: #79747e;
 
   /* 布局 */
-  width: 210px;
+  max-width: 210px;
   height: 56px;
   padding-top: 4px;
   padding-bottom: 4px;
