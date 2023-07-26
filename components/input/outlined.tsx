@@ -1,7 +1,7 @@
 import React from "react";
 
-const outlined = () => {
+const Outlined = () => {
   return <input type="text" />;
 };
 
-export default outlined;
+export default Outlined;
