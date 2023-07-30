@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useMemo, forwardRef, type InputHTMLAttributes, type DetailedHTMLProps } from "react";
 import { useStyles } from "./hooks";
 import "../../styles/input.css";
