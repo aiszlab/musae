@@ -9,9 +9,10 @@
   /* layout */
   box-sizing: border-box;
   height: 56px;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 16px;
+}
+
+.musae-input {
+  padding: 4px 0 4px 16px;
 }
 
 .musae-input-wrapper {
@@ -20,24 +21,37 @@
   align-items: center;
 }
 
-input.musae-input {
-  outline: none;
-}
-
-.musae-input-wrapper > input {
+.musae-input-wrapper > .musae-input {
   outline: none;
   border: 0;
+  height: auto;
 }
 
 .musae-input-wrapper::before {
   content: attr(aria-label);
-  padding-left: 4px;
-  padding-right: 4px;
+  position: absolute;
+  padding: 0 4px 0 4px;
   background-color: #fff;
   line-height: 16px;
   font-size: 14px;
   color: #49454f;
-  transform: translateX(-8px) translateY(-28px);
+  transform: translateX(8px) translateY(-28px);
+}
+
+/* prefix */
+
+.musae-input-prefix,
+.musae-input-suffix {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.musae-input-prefix + .musae-input {
+  padding-left: 0;
 }
 
 /* style change after focused */

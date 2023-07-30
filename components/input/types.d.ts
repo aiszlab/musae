@@ -20,4 +20,10 @@ export interface Props {
 
   /* input type */
   type: "password" | "text";
+
+  /* prefix */
+  prefix: ReactNode;
+
+  /* suffix */
+  suffix: ReactNode;
 }

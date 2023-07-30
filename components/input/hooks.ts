@@ -5,7 +5,7 @@ import clsx from "clsx";
 /**
  * @description class name for input
  */
-export const useClassNames = ([variant, isFocused, hasWrapper]: [
+export const useStyles = ([variant, isFocused, hasWrapper]: [
   variant: Variant,
   isFocused: boolean,
   hasWrapper: boolean
