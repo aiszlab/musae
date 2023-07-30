@@ -8,6 +8,7 @@
   "typings": "./dist",
   "type": "module",
   "scripts": {
+    "dev": "rollup -c -w",
     "build": "rollup -c",
     "clean:build": "rm -rf dist && rm -rf typings",
     "prepatch": "npm run clean:build && npm run build && npm version prepatch && npm publish"

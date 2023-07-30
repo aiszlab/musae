@@ -1,3 +1,3 @@
-import Outlined from "./outlined";
+import Input from "./input";
 
-export { Outlined };
+export { Input };

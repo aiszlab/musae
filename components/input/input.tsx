@@ -1,21 +1,47 @@
-import React, { FC, ReactNode } from "react";
+import React, { useMemo, forwardRef, type InputHTMLAttributes, type DetailedHTMLProps } from "react";
+import { useClassNames } from "./hooks";
+import "../../styles/input.css";
+import type { Props, Variant } from "./types";
+import { useBoolean } from "@aiszlab/relax";
 
-interface Props {
-  /* placeholder for input */
-  placeholder?: string;
+/**
+ * @author murukal
+ * @description input component
+ */
+const Input = forwardRef<HTMLInputElement, Props>((props, ref) => {
+  // should input be wrapped
+  const hasWrapper = useMemo(() => {
+    return !!props.label;
+  }, [props.label]);
 
-  /* variant for input, display different style */
-  variant?: "outlined" | "filled" | "standard";
+  const { isOn: isFocused, turnOn: focus, turnOff: blur } = useBoolean();
+  const variant = useMemo<Variant>(() => props.variant || "outlined", [props.variant]);
+  const { input: inputClassName, wrapper: wrapperClassName } = useClassNames([variant, isFocused, hasWrapper]);
 
-  /* prefix node */
-  prefix?: ReactNode;
+  const inputProps = useMemo<
+    Pick<
+      DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>,
+      "onFocus" | "onBlur" | "type" | "ref"
+    >
+  >(() => {
+    return {
+      onFocus: focus,
+      onBlur: blur,
+      type: props.type || "text",
+      ref: ref,
+    };
+  }, [focus, blur, props.type, ref]);
 
-  /* suffix node */
-  suffix?: ReactNode;
-}
+  // for some props, this component must wrapped by div
+  if (hasWrapper) {
+    return (
+      <div className={wrapperClassName} aria-label={props.label}>
+        <input {...inputProps} />
+      </div>
+    );
+  }
 
-const Input: FC<Props> = (props) => {
-  return <input type="text" placeholder={props.placeholder} />;
-};
+  return <input className={inputClassName} {...inputProps} />;
+});
 
 export default Input;
