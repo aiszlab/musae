@@ -1,9 +1,7 @@
-"use client";
-
 import React, { useMemo, forwardRef, type InputHTMLAttributes, type DetailedHTMLProps } from "react";
 import { useStyles } from "./hooks";
 import "../../styles/input.css";
-import type { Props, Variant } from "./types";
+import type { Props, UsedInputProps, Variant } from "./types";
 import { useBoolean } from "@aiszlab/relax";
 
 /**
@@ -18,14 +16,9 @@ const Input = forwardRef<HTMLInputElement, Props>((props, ref) => {
 
   const { isOn: isFocused, turnOn: focus, turnOff: blur } = useBoolean();
   const variant = useMemo<Variant>(() => props.variant || "outlined", [props.variant]);
-  const { input: inputClassName, wrapper: wrapperClassName } = useStyles([variant, isFocused, hasWrapper]);
+  const { inputClassName, wrapperClassName } = useStyles([variant, isFocused, hasWrapper]);
 
-  const inputProps = useMemo<
-    Pick<
-      DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>,
-      "onFocus" | "onBlur" | "type" | "ref" | "className"
-    >
-  >(() => {
+  const inputProps = useMemo<UsedInputProps>(() => {
     return {
       onFocus: focus,
       onBlur: blur,

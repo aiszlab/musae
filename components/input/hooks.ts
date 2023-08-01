@@ -11,7 +11,7 @@ export const useStyles = ([variant, isFocused, hasWrapper]: [
   hasWrapper: boolean
 ]) => {
   /// input
-  const input = useMemo(() => {
+  const inputClassName = useMemo(() => {
     return clsx({
       ["musae-input"]: true,
       ["musae-input-focused"]: !hasWrapper && isFocused,
@@ -19,7 +19,7 @@ export const useStyles = ([variant, isFocused, hasWrapper]: [
   }, [isFocused, hasWrapper]);
 
   /// wrapper
-  const wrapper = useMemo(() => {
+  const wrapperClassName = useMemo(() => {
     return clsx({
       ["musae-input-wrapper"]: true,
       ["musae-input-wrapper-focused"]: isFocused,
@@ -27,7 +27,7 @@ export const useStyles = ([variant, isFocused, hasWrapper]: [
   }, [isFocused]);
 
   return {
-    input,
-    wrapper,
+    inputClassName,
+    wrapperClassName,
   };
 };

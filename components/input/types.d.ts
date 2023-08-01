@@ -2,6 +2,9 @@ import type { ReactNode } from "react";
 
 export type Variant = "outlined" | "filled" | "standard";
 
+/**
+ * @description component props
+ */
 export interface Props {
   /* label for input */
   label?: string;
@@ -27,3 +30,11 @@ export interface Props {
   /* suffix */
   suffix: ReactNode;
 }
+
+/**
+ * @description used input props
+ */
+export type UsedInputProps = Pick<
+  DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>,
+  "onFocus" | "onBlur" | "type" | "ref" | "className"
+>;
