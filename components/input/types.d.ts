@@ -1,5 +1,8 @@
-import type { ReactNode } from "react";
+import type { DetailedHTMLProps, InputHTMLAttributes, ReactNode } from "react";
 
+/**
+ * @description Variant
+ */
 export type Variant = "outlined" | "filled" | "standard";
 
 /**
@@ -29,6 +32,17 @@ export interface Props {
 
   /* suffix */
   suffix: ReactNode;
+}
+
+/**
+ * @description label props
+ */
+export interface LabelProps {
+  /* focused */
+  isFocused: boolean;
+
+  /* if input has placeholder */
+  hasPlaceholder: boolean;
 }
 
 /**

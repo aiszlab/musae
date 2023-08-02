@@ -13,6 +13,7 @@
 
 .musae-input {
   padding: 4px 0 4px 16px;
+  background-color: transparent;
 }
 
 .musae-input-wrapper {
@@ -25,17 +26,6 @@
   outline: none;
   border: 0;
   height: auto;
-}
-
-.musae-input-wrapper::before {
-  content: attr(aria-label);
-  position: absolute;
-  padding: 0 4px 0 4px;
-  background-color: #fff;
-  line-height: 16px;
-  font-size: 14px;
-  color: #49454f;
-  transform: translateX(8px) translateY(-28px);
 }
 
 /* addon */
@@ -60,8 +50,4 @@
 .musae-input-wrapper-focused {
   border-color: #6750a4;
   border-width: 2px;
-}
-
-.musae-input-wrapper-focused::before {
-  color: #6750a4;
 }

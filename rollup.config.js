@@ -28,7 +28,6 @@ const configuration = {
   external: [...Object.keys(pkg.dependencies), ...Object.keys(pkg.peerDependencies), /.css/],
 
   makeAbsoluteExternalsRelative: false,
-  strictDeprecations: true,
 };
 
 export default configuration;
