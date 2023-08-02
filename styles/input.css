@@ -51,3 +51,7 @@
   border-color: #6750a4;
   border-width: 2px;
 }
+
+.musae-input-wrapper-focused {
+  clip-path: polygon(0 0, 20px 0, 20px 2px, 40px 2px, 40px 0, 100% 0, 100% 100%, 0 100%);
+}

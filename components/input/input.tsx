@@ -45,7 +45,7 @@ const Input = forwardRef<HTMLInputElement, Props>((props, ref) => {
         {/* label */}
         {!!props.label && (
           <Label hasPlaceholder isFocused={isFocused} className="musae-input-label">
-            &nbsp;{props.label}&nbsp;
+            {props.label}
           </Label>
         )}
 
