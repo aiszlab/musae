@@ -14,7 +14,8 @@ export const useStyles = ([variant, isFocused, hasWrapper]: [
   const inputClassName = useMemo(() => {
     return clsx({
       ["musae-input"]: true,
-      ["musae-input-focused"]: !hasWrapper && isFocused,
+      ["musae-input-outline"]: !hasWrapper,
+      ["musae-input-outline-focused"]: !hasWrapper && isFocused,
     });
   }, [isFocused, hasWrapper]);
 
@@ -22,7 +23,8 @@ export const useStyles = ([variant, isFocused, hasWrapper]: [
   const wrapperClassName = useMemo(() => {
     return clsx({
       ["musae-input-wrapper"]: true,
-      ["musae-input-wrapper-focused"]: isFocused,
+      ["musae-input-outline"]: true,
+      ["musae-input-outline-focused"]: isFocused,
     });
   }, [isFocused]);
 

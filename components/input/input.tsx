@@ -1,7 +1,7 @@
-import React, { useMemo, forwardRef } from "react";
+import React, { useMemo, forwardRef, useRef, useImperativeHandle } from "react";
 import { useStyles } from "./hooks";
 import "../../styles/input.css";
-import type { Props, UsedInputProps, Variant } from "./types";
+import type { InputRef, Props, UsedInputProps, Variant } from "./types";
 import { useBoolean } from "@aiszlab/relax";
 import Label from "./label";
 
@@ -9,7 +9,17 @@ import Label from "./label";
  * @author murukal
  * @description input component
  */
-const Input = forwardRef<HTMLInputElement, Props>((props, ref) => {
+const Input = forwardRef<InputRef, Props>((props, ref) => {
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useImperativeHandle(
+    ref,
+    () => ({
+      focus: inputRef.current?.focus,
+    }),
+    []
+  );
+
   /// should input be wrapped
   const hasWrapper = useMemo(() => {
     return !!props.label || !!props.prefix || !!props.suffix;
@@ -30,10 +40,10 @@ const Input = forwardRef<HTMLInputElement, Props>((props, ref) => {
       onFocus: focus,
       onBlur: blur,
       type: props.type || "text",
-      ref: ref,
+      ref: inputRef,
       className: inputClassName,
     };
-  }, [focus, blur, props.type, ref, inputClassName]);
+  }, [focus, blur, props.type, inputRef, inputClassName]);
 
   /// for some props, this component must wrapped by div
   if (hasWrapper) {

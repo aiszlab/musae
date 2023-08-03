@@ -32,6 +32,12 @@ export interface Props {
 
   /* suffix */
   suffix: ReactNode;
+
+  /* value */
+  value?: string;
+
+  /* change handler */
+  onChange?: VoidFunction;
 }
 
 /**
@@ -52,3 +58,11 @@ export type UsedInputProps = Pick<
   DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>,
   "onFocus" | "onBlur" | "type" | "ref" | "className"
 >;
+
+/**
+ * @description input ref
+ */
+export interface InputRef {
+  /* focus */
+  focus?: HTMLInputElement["focus"];
+}

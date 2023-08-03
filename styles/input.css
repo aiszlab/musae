@@ -1,29 +1,17 @@
-.musae-input,
-.musae-input-wrapper {
-  /* border */
-  border-radius: 4px;
-  border-width: 1px;
-  border-style: solid;
-  border-color: #79747e;
-
-  /* layout */
-  box-sizing: border-box;
-  height: 56px;
-}
+/* anywhere */
 
 .musae-input {
   padding: 4px 0 4px 16px;
   background-color: transparent;
+  outline: none;
 }
 
 .musae-input-wrapper {
   display: flex;
-  flex-direction: row;
   align-items: center;
 }
 
 .musae-input-wrapper > .musae-input {
-  outline: none;
   border: 0;
   height: auto;
 }
@@ -35,7 +23,6 @@
   width: 48px;
   height: 48px;
   display: flex;
-  flex-direction: row;
   justify-content: center;
   align-items: center;
 }
@@ -44,14 +31,30 @@
   padding-left: 0;
 }
 
-/* style change after focused */
-
-.musae-input-focused,
-.musae-input-wrapper-focused {
-  border-color: #6750a4;
-  border-width: 2px;
+.musae-input-outline {
+  height: 56px;
+  position: relative;
 }
 
-.musae-input-wrapper-focused {
-  clip-path: polygon(0 0, 20px 0, 20px 2px, 40px 2px, 40px 0, 100% 0, 100% 100%, 0 100%);
+.musae-input-outline::after {
+  content: "";
+
+  /* border */
+  border-radius: 4px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #79747e;
+
+  /* layout */
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+/* style change after focused */
+
+.musae-input-outline-focused::after {
+  border-color: #6750a4;
+  border-width: 2px;
+  clip-path: polygon(0 0, 10px 0, 10px 2px, 20px 2px, 20px 0, 100% 0, 100% 100%, 0 100%);
 }
