@@ -1,4 +1,4 @@
-import type { DetailedHTMLProps, InputHTMLAttributes, ReactNode } from "react";
+import type { DetailedHTMLProps, InputHTMLAttributes, ReactNode, RefObject } from "react";
 
 /**
  * @description Variant
@@ -49,6 +49,9 @@ export interface LabelProps {
 
   /* if input has placeholder */
   hasPlaceholder: boolean;
+
+  /* input ref */
+  input: RefObject<HTMLInputElement>;
 }
 
 /**
