@@ -1,0 +1,10 @@
+.musae-input {
+  padding: 4px 0 4px 16px;
+  background-color: transparent;
+  outline: none;
+  border: 0;
+}
+
+.musae-input-prefix + .musae-input {
+  padding-left: 0;
+}
