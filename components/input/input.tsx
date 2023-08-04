@@ -1,52 +1,76 @@
-"use client";
-
-import React, { useMemo, forwardRef, type InputHTMLAttributes, type DetailedHTMLProps } from "react";
+import React, { useMemo, forwardRef, useRef, useImperativeHandle, useEffect } from "react";
 import { useStyles } from "./hooks";
-import "../../styles/input.css";
-import type { Props, Variant } from "./types";
+import "../../styles/input/index.css";
+import type { InputRef, Props, UsedInputProps, Variant } from "./types";
 import { useBoolean } from "@aiszlab/relax";
+import Label from "./label";
+import Wrapper from "./wrapper";
 
 /**
  * @author murukal
  * @description input component
  */
-const Input = forwardRef<HTMLInputElement, Props>((props, ref) => {
-  // should input be wrapped
-  const hasWrapper = useMemo(() => {
-    return !!props.label || !!props.prefix || !!props.suffix;
-  }, [props.label, props.prefix, props.suffix]);
+const Input = forwardRef<InputRef, Props>((props, ref) => {
+  const inputRef = useRef<HTMLInputElement>(null);
 
+  const { isOn: isNotEmpty, turnOn, turnOff } = useBoolean();
+
+  useEffect(() => {
+    if (!!inputRef.current?.value) {
+      turnOn();
+    } else {
+      turnOff();
+    }
+  }, [!!inputRef.current?.value]);
+
+  useImperativeHandle(
+    ref,
+    () => ({
+      focus: inputRef.current?.focus,
+    }),
+    []
+  );
+
+  /// is focused
   const { isOn: isFocused, turnOn: focus, turnOff: blur } = useBoolean();
-  const variant = useMemo<Variant>(() => props.variant || "outlined", [props.variant]);
-  const { input: inputClassName, wrapper: wrapperClassName } = useStyles([variant, isFocused, hasWrapper]);
 
-  const inputProps = useMemo<
-    Pick<
-      DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>,
-      "onFocus" | "onBlur" | "type" | "ref" | "className"
-    >
-  >(() => {
+  /// variant
+  const variant = useMemo<Variant>(() => props.variant || "outlined", [props.variant]);
+
+  /// style
+  const { wrapperClassName } = useStyles([variant, isFocused]);
+
+  /// used input props
+  const inputProps = useMemo<UsedInputProps>(() => {
     return {
       onFocus: focus,
       onBlur: blur,
       type: props.type || "text",
-      ref: ref,
-      className: inputClassName,
+      ref: inputRef,
+      className: "musae-input",
     };
-  }, [focus, blur, props.type, ref]);
+  }, [focus, blur, props.type, inputRef]);
 
-  // for some props, this component must wrapped by div
-  if (hasWrapper) {
-    return (
-      <div className={wrapperClassName} aria-label={props.label}>
-        {!!props.prefix && <span className="musae-input-prefix">{props.prefix}</span>}
-        <input {...inputProps} />
-        {!!props.suffix && <span className="musae-input-suffix">{props.suffix}</span>}
-      </div>
-    );
-  }
+  /// render
+  return (
+    <Wrapper className={wrapperClassName} isFocused={isFocused} hasLabel={!!props.label} isNotEmpty={isNotEmpty}>
+      {/* prefix */}
+      {!!props.prefix && <span className="musae-input-prefix">{props.prefix}</span>}
 
-  return <input {...inputProps} />;
+      {/* label */}
+      {!!props.label && (
+        <Label hasPlaceholder isFocused={isFocused} className="musae-input-label" isNotEmpty={isNotEmpty}>
+          {props.label}
+        </Label>
+      )}
+
+      {/* input */}
+      <input {...inputProps} />
+
+      {/* suffix */}
+      {!!props.suffix && <span className="musae-input-suffix">{props.suffix}</span>}
+    </Wrapper>
+  );
 });
 
 export default Input;
