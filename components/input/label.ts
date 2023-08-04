@@ -1,19 +1,8 @@
 import styled from "@emotion/styled";
 import type { LabelProps } from "./types";
-import { useEffect, useMemo } from "react";
-import { useBoolean } from "@aiszlab/relax";
 
 const Label = styled.label<LabelProps>((props) => {
-  const { isFocused, hasPlaceholder } = props;
-  const { isOn: isNotEmpty, turnOn, turnOff } = useBoolean();
-
-  useEffect(() => {
-    if (!!props.input.current?.value) {
-      turnOn();
-    } else {
-      turnOff();
-    }
-  }, [!!props.input.current?.value]);
+  const { isFocused, isNotEmpty } = props;
 
   return {
     position: "absolute",

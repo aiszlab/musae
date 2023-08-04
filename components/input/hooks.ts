@@ -10,10 +10,8 @@ export const useStyles = ([variant, isFocused]: [variant: Variant, isFocused: bo
   const wrapperClassName = useMemo(() => {
     return clsx({
       ["musae-input-wrapper"]: true,
-      ["musae-input-outlined"]: true,
-      ["musae-input-outlined-focused"]: isFocused,
     });
-  }, [isFocused]);
+  }, []);
 
   return {
     wrapperClassName,

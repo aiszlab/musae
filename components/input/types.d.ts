@@ -51,7 +51,7 @@ export interface LabelProps {
   hasPlaceholder: boolean;
 
   /* input ref */
-  input: RefObject<HTMLInputElement>;
+  isNotEmpty: boolean;
 }
 
 /**
@@ -68,4 +68,21 @@ export type UsedInputProps = Pick<
 export interface InputRef {
   /* focus */
   focus?: HTMLInputElement["focus"];
+}
+
+/**
+ * @description wrapper props
+ */
+export interface WrapperProps {
+  /* variant for input, display different style */
+  variant?: Variant;
+
+  /* if there is label */
+  hasLabel: boolean;
+
+  /* if there is value for input */
+  isNotEmpty: boolean;
+
+  /* focused */
+  isFocused: boolean;
 }
