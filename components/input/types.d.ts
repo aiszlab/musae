@@ -38,6 +38,12 @@ export interface Props {
 
   /* change handler */
   onChange?: VoidFunction;
+
+  /* focus handler */
+  onFocus?: UsedInputProps["onFocus"];
+
+  /* blur handler */
+  onBlur?: UsedInputProps["onBlur"];
 }
 
 /**
@@ -68,6 +74,12 @@ export type UsedInputProps = Pick<
 export interface InputRef {
   /* focus */
   focus?: HTMLInputElement["focus"];
+
+  /* input ref */
+  inputRef: HTMLInputElement | null;
+
+  /* wrapper ref */
+  wrapperRef: HTMLDivElement | null;
 }
 
 /**

@@ -12,6 +12,7 @@ import Wrapper from "./wrapper";
  */
 const Input = forwardRef<InputRef, Props>((props, ref) => {
   const inputRef = useRef<HTMLInputElement>(null);
+  const wrapperRef = useRef<HTMLDivElement>(null);
 
   const { isOn: isNotEmpty, turnOn, turnOff } = useBoolean();
 
@@ -23,13 +24,11 @@ const Input = forwardRef<InputRef, Props>((props, ref) => {
     }
   }, [!!inputRef.current?.value]);
 
-  useImperativeHandle(
-    ref,
-    () => ({
-      focus: inputRef.current?.focus,
-    }),
-    []
-  );
+  useImperativeHandle(ref, () => ({
+    focus: inputRef.current?.focus,
+    inputRef: inputRef.current,
+    wrapperRef: wrapperRef.current,
+  }));
 
   /// is focused
   const { isOn: isFocused, turnOn: focus, turnOff: blur } = useBoolean();
@@ -43,17 +42,29 @@ const Input = forwardRef<InputRef, Props>((props, ref) => {
   /// used input props
   const inputProps = useMemo<UsedInputProps>(() => {
     return {
-      onFocus: focus,
-      onBlur: blur,
+      onFocus: (event) => {
+        focus();
+        props.onFocus?.(event);
+      },
+      onBlur: (event) => {
+        blur();
+        props.onBlur?.(event);
+      },
       type: props.type || "text",
       ref: inputRef,
       className: "musae-input",
     };
-  }, [focus, blur, props.type, inputRef]);
+  }, [focus, blur, props.type, inputRef, props.onFocus, props.onBlur]);
 
   /// render
   return (
-    <Wrapper className={wrapperClassName} isFocused={isFocused} hasLabel={!!props.label} isNotEmpty={isNotEmpty}>
+    <Wrapper
+      ref={wrapperRef}
+      className={wrapperClassName}
+      isFocused={isFocused}
+      hasLabel={!!props.label}
+      isNotEmpty={isNotEmpty}
+    >
       {/* prefix */}
       {!!props.prefix && <span className="musae-input-prefix">{props.prefix}</span>}
 
@@ -65,7 +76,7 @@ const Input = forwardRef<InputRef, Props>((props, ref) => {
       )}
 
       {/* input */}
-      <input {...inputProps} />
+      <input {...inputProps} aria-controls="11111" role="combobox" />
 
       {/* suffix */}
       {!!props.suffix && <span className="musae-input-suffix">{props.suffix}</span>}

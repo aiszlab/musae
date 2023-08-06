@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import type { WrapperProps } from "./types";
 
-const Wrapper = styled.label<WrapperProps>((props) => {
+const Wrapper = styled.div<WrapperProps>((props) => {
   const { isFocused, hasLabel, isNotEmpty } = props;
 
   return {
