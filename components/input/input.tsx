@@ -1,10 +1,10 @@
 import React, { useMemo, forwardRef, useRef, useImperativeHandle, useEffect } from "react";
 import { useStyles } from "./hooks";
-import "../../styles/input/index.css";
-import type { InputRef, Props, UsedInputProps, Variant } from "./types";
+import type { InputRef, Props, StyledInputProps, UsedInputProps, Variant } from "./types";
 import { useBoolean } from "@aiszlab/relax";
 import Label from "./label";
 import Wrapper from "./wrapper";
+import StyledInput from "./styled-input";
 
 /**
  * @author murukal
@@ -25,9 +25,8 @@ const Input = forwardRef<InputRef, Props>((props, ref) => {
   }, [!!inputRef.current?.value]);
 
   useImperativeHandle(ref, () => ({
-    focus: inputRef.current?.focus,
-    inputRef: inputRef.current,
-    wrapperRef: wrapperRef.current,
+    input: inputRef.current,
+    wrapper: wrapperRef.current,
   }));
 
   /// is focused
@@ -54,7 +53,7 @@ const Input = forwardRef<InputRef, Props>((props, ref) => {
       ref: inputRef,
       className: "musae-input",
     };
-  }, [focus, blur, props.type, inputRef, props.onFocus, props.onBlur]);
+  }, [focus, blur, props.type, props.onFocus, props.onBlur]);
 
   /// render
   return (
@@ -66,7 +65,7 @@ const Input = forwardRef<InputRef, Props>((props, ref) => {
       isNotEmpty={isNotEmpty}
     >
       {/* prefix */}
-      {!!props.prefix && <span className="musae-input-prefix">{props.prefix}</span>}
+      {props.prefix}
 
       {/* label */}
       {!!props.label && (
@@ -76,10 +75,10 @@ const Input = forwardRef<InputRef, Props>((props, ref) => {
       )}
 
       {/* input */}
-      <input {...inputProps} aria-controls="11111" role="combobox" />
+      <StyledInput hasPrefix={!!props.prefix} {...inputProps} />
 
       {/* suffix */}
-      {!!props.suffix && <span className="musae-input-suffix">{props.suffix}</span>}
+      {props.suffix}
     </Wrapper>
   );
 });

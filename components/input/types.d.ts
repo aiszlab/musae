@@ -72,14 +72,11 @@ export type UsedInputProps = Pick<
  * @description input ref
  */
 export interface InputRef {
-  /* focus */
-  focus?: HTMLInputElement["focus"];
-
   /* input ref */
-  inputRef: HTMLInputElement | null;
+  input: HTMLInputElement | null;
 
   /* wrapper ref */
-  wrapperRef: HTMLDivElement | null;
+  wrapper: HTMLDivElement | null;
 }
 
 /**
@@ -97,4 +94,12 @@ export interface WrapperProps {
 
   /* focused */
   isFocused: boolean;
+}
+
+/**
+ * @description styled input props
+ */
+export interface StyledInputProps {
+  /* if there is prefix */
+  hasPrefix: boolean;
 }
