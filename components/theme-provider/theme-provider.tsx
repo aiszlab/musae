@@ -5,11 +5,27 @@ import deepmerge from "deepmerge";
 
 /**
  * @author murukal
- * @description default theme
+ * @description Preset Theme
  */
-const DEFAULT_THEME: Props["theme"] = {
+export const PRESET_THEME: Props["theme"] = {
   colors: {
     primary: "#6750a4",
+  },
+  typography: {
+    body: {
+      small: {
+        fontSize: 12,
+        fontStyle: "normal",
+        fontWeight: 400,
+        lineHeight: "16px",
+      },
+      large: {
+        fontSize: 16,
+        fontStyle: "normal",
+        fontWeight: 400,
+        lineHeight: "24px",
+      },
+    },
   },
 };
 
@@ -18,7 +34,7 @@ const DEFAULT_THEME: Props["theme"] = {
  * @description create theme
  */
 export const createTheme = (theme: Props["theme"]) => {
-  deepmerge<Props["theme"]>(DEFAULT_THEME, theme);
+  deepmerge<Props["theme"]>(PRESET_THEME, theme);
 };
 
 /**

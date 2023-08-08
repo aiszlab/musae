@@ -1,4 +1,6 @@
-import { ReactNode } from "react";
+import { CSSProperties, ReactNode } from "react";
+
+type Typography = Pick<CSSProperties, "fontSize" | "fontStyle" | "fontWeight" | "lineHeight" | "letterSpacing">;
 
 /**
  * @description theme declaration
@@ -6,6 +8,13 @@ import { ReactNode } from "react";
 interface Theme {
   colors?: {
     primary?: string;
+  };
+
+  typography?: {
+    body?: {
+      small?: Typography;
+      large?: Typography;
+    };
   };
 }
 

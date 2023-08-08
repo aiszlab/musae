@@ -1,24 +1,22 @@
 import styled from "@emotion/styled";
 import type { LabelProps } from "./types";
+import { useThemeWithPreset } from "../theme-provider/hooks";
 
-const Label = styled.label<LabelProps>((props) => {
-  const { isFocused, isNotEmpty } = props;
+const Label = styled.legend<LabelProps>(({ isFocused, theme }) => {
+  const themeWithPreset = useThemeWithPreset(theme);
 
   return {
-    position: "absolute",
-    display: "block",
-    flexDirection: "column",
-    padding: 2,
-    zIndex: 3,
+    // typography
+    ...themeWithPreset.typography?.body?.small!,
 
-    transition: "transform 200ms cubic-bezier(0, 0, 0.2, 1) 0ms",
-    ...(isFocused || isNotEmpty
-      ? {
-          transform: "translate(8px, -28px) scale(0.75)",
-        }
-      : {
-          transform: "translate(8px) scale(1)",
-        }),
+    // layout
+    paddingInlineStart: 4,
+    paddingInlineEnd: 4,
+
+    // if input is focused
+    ...(isFocused && {
+      color: themeWithPreset.colors?.primary,
+    }),
   };
 });
 

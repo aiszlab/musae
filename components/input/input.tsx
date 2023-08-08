@@ -1,6 +1,6 @@
 import React, { useMemo, forwardRef, useRef, useImperativeHandle, useEffect } from "react";
 import { useStyles } from "./hooks";
-import type { InputRef, Props, StyledInputProps, UsedInputProps, Variant } from "./types";
+import type { InputRef, Props, UsedInputProps, Variant } from "./types";
 import { useBoolean } from "@aiszlab/relax";
 import Label from "./label";
 import Wrapper from "./wrapper";
@@ -12,17 +12,17 @@ import StyledInput from "./styled-input";
  */
 const Input = forwardRef<InputRef, Props>((props, ref) => {
   const inputRef = useRef<HTMLInputElement>(null);
-  const wrapperRef = useRef<HTMLDivElement>(null);
+  const wrapperRef = useRef<HTMLFieldSetElement>(null);
 
-  const { isOn: isNotEmpty, turnOn, turnOff } = useBoolean();
+  // const { isOn: isNotEmpty, turnOn, turnOff } = useBoolean();
 
-  useEffect(() => {
-    if (!!inputRef.current?.value) {
-      turnOn();
-    } else {
-      turnOff();
-    }
-  }, [!!inputRef.current?.value]);
+  // useEffect(() => {
+  //   if (!!inputRef.current?.value) {
+  //     turnOn();
+  //   } else {
+  //     turnOff();
+  //   }
+  // }, [!!inputRef.current?.value]);
 
   useImperativeHandle(ref, () => ({
     input: inputRef.current,
@@ -57,25 +57,19 @@ const Input = forwardRef<InputRef, Props>((props, ref) => {
 
   /// render
   return (
-    <Wrapper
-      ref={wrapperRef}
-      className={wrapperClassName}
-      isFocused={isFocused}
-      hasLabel={!!props.label}
-      isNotEmpty={isNotEmpty}
-    >
+    <Wrapper ref={wrapperRef} className={wrapperClassName} isFocused={isFocused}>
       {/* prefix */}
       {props.prefix}
 
       {/* label */}
       {!!props.label && (
-        <Label hasPlaceholder isFocused={isFocused} className="musae-input-label" isNotEmpty={isNotEmpty}>
+        <Label isFocused={isFocused} className="musae-input-label">
           {props.label}
         </Label>
       )}
 
       {/* input */}
-      <StyledInput hasPrefix={!!props.prefix} {...inputProps} />
+      <StyledInput {...inputProps} />
 
       {/* suffix */}
       {props.suffix}

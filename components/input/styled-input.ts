@@ -1,15 +1,12 @@
 import styled from "@emotion/styled";
-import type { StyledInputProps } from "./types";
 
-const StyledInput = styled.input<StyledInputProps>(({ hasPrefix }) => {
+const StyledInput = styled.input(() => {
   return {
-    paddingTop: 4,
-    paddingBottom: 4,
-    paddingLeft: hasPrefix ? 0 : 16,
-    paddingRight: 0,
+    padding: 0,
     backgroundColor: "transparent",
     outline: "none",
     border: "none",
+    height: "auto",
   };
 });
 

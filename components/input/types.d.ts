@@ -52,12 +52,6 @@ export interface Props {
 export interface LabelProps {
   /* focused */
   isFocused: boolean;
-
-  /* if input has placeholder */
-  hasPlaceholder: boolean;
-
-  /* input ref */
-  isNotEmpty: boolean;
 }
 
 /**
@@ -76,30 +70,13 @@ export interface InputRef {
   input: HTMLInputElement | null;
 
   /* wrapper ref */
-  wrapper: HTMLDivElement | null;
+  wrapper: HTMLFieldSetElement | null;
 }
 
 /**
  * @description wrapper props
  */
 export interface WrapperProps {
-  /* variant for input, display different style */
-  variant?: Variant;
-
-  /* if there is label */
-  hasLabel: boolean;
-
-  /* if there is value for input */
-  isNotEmpty: boolean;
-
   /* focused */
   isFocused: boolean;
-}
-
-/**
- * @description styled input props
- */
-export interface StyledInputProps {
-  /* if there is prefix */
-  hasPrefix: boolean;
 }
