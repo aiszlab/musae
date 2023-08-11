@@ -1,4 +1,4 @@
-import React, { FC, forwardRef, useEffect, useRef } from "react";
+import React, { FC, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import { Props } from "./types";
 import { createPopper } from "@popperjs/core";
