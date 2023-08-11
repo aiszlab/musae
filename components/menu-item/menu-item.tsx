@@ -1,5 +1,5 @@
 import React from "react";
-import { Props } from ".";
+import { Props } from "./types";
 import clsx from "clsx";
 
 const MenuItem = (props: Props) => {

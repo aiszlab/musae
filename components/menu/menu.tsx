@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import { Props } from "./index";
-import MenuItem from "../menu-item/MenuItem";
+import { MenuItem } from "../menu-item";
 
 /**
  * @author murukal

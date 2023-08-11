@@ -1,7 +1,3 @@
-import { ReactNode } from "react";
+import MenuItem from "./menu-item";
 
-export interface Props {
-  children: ReactNode;
-  divder?: boolean;
-  className?: string;
-}
+export { MenuItem };
