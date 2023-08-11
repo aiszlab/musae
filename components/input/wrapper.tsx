@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import type { WrapperProps } from "./types";
-import { useThemeWithPreset } from "../theme-provider/hooks";
+import { useThemeWithPreset } from "../theme/hooks";
 
 const Wrapper = styled.fieldset<WrapperProps>(({ theme, isFocused }) => {
   const themeWithPreset = useThemeWithPreset(theme);

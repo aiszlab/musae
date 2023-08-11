@@ -1,6 +1,6 @@
 import { CSSProperties, ReactNode } from "react";
 
-type Typography = Pick<CSSProperties, "fontSize" | "fontStyle" | "fontWeight" | "lineHeight" | "letterSpacing">;
+type Typography = Pick<CSSProperties, "fontSize" | "fontWeight" | "lineHeight" | "letterSpacing">;
 
 /**
  * @description theme declaration

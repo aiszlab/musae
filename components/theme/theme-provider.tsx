@@ -1,4 +1,4 @@
-import { ThemeProvider as EmotionThemeProvider } from "@emotion/react";
+import { ThemeProvider as EmotionThemeProvider, ThemeContext } from "@emotion/react";
 import React from "react";
 import type { Props } from "./types";
 import deepmerge from "deepmerge";
@@ -15,13 +15,11 @@ export const PRESET_THEME: Props["theme"] = {
     body: {
       small: {
         fontSize: 12,
-        fontStyle: "normal",
         fontWeight: 400,
         lineHeight: "16px",
       },
       large: {
         fontSize: 16,
-        fontStyle: "normal",
         fontWeight: 400,
         lineHeight: "24px",
       },

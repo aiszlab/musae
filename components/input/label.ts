@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import type { LabelProps } from "./types";
-import { useThemeWithPreset } from "../theme-provider/hooks";
+import { useThemeWithPreset } from "../theme/hooks";
 
 const Label = styled.legend<LabelProps>(({ isFocused, theme }) => {
   const themeWithPreset = useThemeWithPreset(theme);
