@@ -46,5 +46,5 @@ export const useTheme = () => {
   const isThemeEmpty = useMemo(() => Object.keys(theme).length === 0, [theme]);
 
   // when is empty, we always think there are not any theme. use presets!!!
-  return useMemo(() => (isThemeEmpty ? presets : theme), [isThemeEmpty]);
+  return useMemo(() => (isThemeEmpty ? presets : theme), [theme, isThemeEmpty]);
 };
