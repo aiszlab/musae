@@ -12,6 +12,7 @@ const Wrapper = styled.div(() => {
     flexDirection: "column",
     alignItems: "center",
     width: "100vw",
+    pointerEvents: "none",
   };
 });
 

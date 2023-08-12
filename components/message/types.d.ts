@@ -1,21 +1,30 @@
 /**
  * @author murukal
- * @description messager
+ *
+ * @description
+ * messager
  */
-export interface Messager {}
+export interface Messager {
+  error: UnderlyingSinkCloseCallback;
+}
 
 /**
  * @author murukal
- * @description props for message
+ *
+ * @description
+ * props for message
  */
 export interface Props {
+  key: string;
   type: "error" | "success" | "warning";
   duration: number;
 }
 
 /**
  * @author murukal
- * @description message ref
+ *
+ * @description
+ * message ref
  */
 export interface MessageRef {
   add: (props: Props) => void;

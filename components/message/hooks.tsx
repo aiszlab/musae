@@ -1,6 +1,6 @@
 import React, { ReactPortal, useCallback, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import Message from "./message";
+import Holder from "./holder";
 import { MessageRef } from "./types";
 
 /**
@@ -14,11 +14,12 @@ export const useMessage = () => {
   const error = useCallback(() => {
     if (ref.current) {
       return ref.current.add({
+        key: crypto.randomUUID(),
         type: "error",
         duration: 200,
       });
     }
-    setHolder(createPortal(<Message ref={ref} />, document.body));
+    setHolder(createPortal(<Holder ref={ref} />, document.body));
   }, []);
 
   return [

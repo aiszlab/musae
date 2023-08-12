@@ -2,6 +2,8 @@ import { CSSProperties, ReactNode } from "react";
 
 type Typography = Pick<CSSProperties, "fontSize" | "fontWeight" | "lineHeight" | "letterSpacing">;
 
+type Elevation = Pick<CSSProperties, "boxShadow">;
+
 /**
  * @author murukal
  *
@@ -19,6 +21,8 @@ export interface Theme {
       large?: Typography;
     };
   };
+
+  elevations?: [Elevation, Elevation, Elevation, Elevation, Elevation, Elevation];
 }
 
 /**
