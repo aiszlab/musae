@@ -3,9 +3,12 @@ import { CSSProperties, ReactNode } from "react";
 type Typography = Pick<CSSProperties, "fontSize" | "fontWeight" | "lineHeight" | "letterSpacing">;
 
 /**
- * @description theme declaration
+ * @author murukal
+ *
+ * @description
+ * declaration for theme
  */
-interface Theme {
+export interface Theme {
   colors?: {
     primary?: string;
   };
@@ -19,7 +22,10 @@ interface Theme {
 }
 
 /**
- * @description theme provider
+ * @author murukal
+ *
+ * @description
+ * theme provider
  */
 export interface Props {
   /* children */
