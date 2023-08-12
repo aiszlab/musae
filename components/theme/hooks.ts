@@ -9,7 +9,7 @@ import { useTheme as useEmotionTheme } from "@emotion/react";
  * we set some presets theme
  * let ui components display well
  */
-const presets: Theme = {
+export const presets: Theme = {
   colors: {
     primary: "#6750a4",
   },
