@@ -3,7 +3,7 @@ import type { WrapperProps } from "./types";
 import { useTheme } from "../theme/hooks";
 
 const Wrapper = styled.fieldset<WrapperProps>(({ isFocused }) => {
-  const themeWithPreset = useTheme();
+  const theme = useTheme();
 
   return {
     textAlign: "start",
@@ -21,7 +21,7 @@ const Wrapper = styled.fieldset<WrapperProps>(({ isFocused }) => {
 
     // if input is focused, change the border
     ...(isFocused && {
-      borderColor: themeWithPreset.colors?.primary,
+      borderColor: theme.colors?.primary,
       borderWidth: 2,
     }),
   };
