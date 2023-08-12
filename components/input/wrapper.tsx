@@ -1,9 +1,9 @@
 import styled from "@emotion/styled";
 import type { WrapperProps } from "./types";
-import { useThemeWithPreset } from "../theme/hooks";
+import { useTheme } from "../theme/hooks";
 
-const Wrapper = styled.fieldset<WrapperProps>(({ theme, isFocused }) => {
-  const themeWithPreset = useThemeWithPreset(theme);
+const Wrapper = styled.fieldset<WrapperProps>(({ isFocused }) => {
+  const themeWithPreset = useTheme();
 
   return {
     textAlign: "start",
