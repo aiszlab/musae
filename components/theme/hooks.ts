@@ -13,6 +13,7 @@ export const presets: Theme = {
   colors: {
     primary: "#6750a4",
   },
+
   typography: {
     body: {
       small: {
@@ -24,6 +25,13 @@ export const presets: Theme = {
         fontSize: 16,
         fontWeight: 400,
         lineHeight: "24px",
+      },
+    },
+    label: {
+      large: {
+        fontSize: 14,
+        fontWeight: 500,
+        lineHeight: "20px",
       },
     },
   },

@@ -20,6 +20,11 @@ export interface Theme {
       small?: Typography;
       large?: Typography;
     };
+
+    label?: {
+      small?: Typography;
+      large?: Typography;
+    };
   };
 
   elevations?: [Elevation, Elevation, Elevation, Elevation, Elevation, Elevation];
