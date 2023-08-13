@@ -5,13 +5,15 @@ import clsx from "clsx";
 /**
  * @description class name for input
  */
-export const useStyles = ([variant, isFocused]: [variant: Variant, isFocused: boolean]) => {
+export const useStyles = ([variant, isFocused, className]: [
+  variant: Variant,
+  isFocused: boolean,
+  className?: string
+]) => {
   /// wrapper
   const wrapperClassName = useMemo(() => {
-    return clsx({
-      ["musae-input-wrapper"]: true,
-    });
-  }, []);
+    return clsx(["musae-input-wrapper", className]);
+  }, [className]);
 
   return {
     wrapperClassName,

@@ -36,6 +36,9 @@ export interface Props {
   /* value */
   value?: string;
 
+  /* class name */
+  className?: string;
+
   /* change handler */
   onChange?: VoidFunction;
 

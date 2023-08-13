@@ -36,7 +36,7 @@ const Input = forwardRef<InputRef, Props>((props, ref) => {
   const variant = useMemo<Variant>(() => props.variant || "outlined", [props.variant]);
 
   /// style
-  const { wrapperClassName } = useStyles([variant, isFocused]);
+  const { wrapperClassName } = useStyles([variant, isFocused, props.className]);
 
   /// used input props
   const inputProps = useMemo<UsedInputProps>(() => {
