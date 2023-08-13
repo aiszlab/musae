@@ -1,5 +1,5 @@
-import React, { forwardRef, useImperativeHandle, useState } from "react";
-import Wrapper from "./wrapper";
+import React, { forwardRef, useCallback, useImperativeHandle, useState } from "react";
+import { HolderWrapper } from "./wrappers";
 import { MessageRef, Props } from "./types";
 import Message from "./message";
 
@@ -12,16 +12,22 @@ const Holder = forwardRef<MessageRef>((props, ref) => {
     },
   }));
 
+  /// remove message
+  const hidden = useCallback(
+    (id: string) => setMessages((messages) => messages.filter((message) => message.id !== id)),
+    []
+  );
+
   if (messages.length === 0) {
     return null;
   }
 
   return (
-    <Wrapper>
+    <HolderWrapper>
       {messages.map((item) => (
-        <Message key={item.key}>{item.type}</Message>
+        <Message onHidden={hidden} key={item.id} {...item} />
       ))}
-    </Wrapper>
+    </HolderWrapper>
   );
 });
 

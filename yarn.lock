@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@aiszlab/relax@^1.0.9-0":
-  version "1.0.9-0"
-  resolved "https://registry.yarnpkg.com/@aiszlab/relax/-/relax-1.0.9-0.tgz#67690ea8e5a78e1c184e28862984af09f3610dd5"
-  integrity sha512-y71GLIKGiV+8gouCopZY9kFroSRtx/h5df4s4FMRZEhOcXQDUmCLwUxs9SgZwtHxgOkVUNav4XCs7n/RYBeh6g==
+"@aiszlab/relax@^1.0.11":
+  version "1.0.11"
+  resolved "https://registry.yarnpkg.com/@aiszlab/relax/-/relax-1.0.11.tgz#6560b0048a6c8a61e7ca58e9d9a8106b519dde69"
+  integrity sha512-IiTKpv7PuOOI8c1VbHcmozBMXmebIghbobpuXdqyTgCZYG8QcPJ7ybJMej4wpOBicc6/rdm5kSBYQrnRIKMXCw==
   dependencies:
     rxjs "^7.8.1"
 

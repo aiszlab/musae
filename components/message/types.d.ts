@@ -1,3 +1,5 @@
+import { Attributes } from "react";
+
 /**
  * @author murukal
  *
@@ -15,9 +17,12 @@ export interface Messager {
  * props for message
  */
 export interface Props {
-  key: string;
+  id: string;
   type: "error" | "success" | "warning";
   duration: number;
+
+  /// callbacks
+  onHidden?: (key: string) => void;
 }
 
 /**

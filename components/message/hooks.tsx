@@ -9,17 +9,17 @@ import { MessageRef } from "./types";
  */
 export const useMessage = () => {
   const ref = useRef<MessageRef>(null);
-  const [holder, setHolder] = useState<ReactPortal | null>(null);
+
+  const [holder] = useState<ReactPortal>(() => {
+    return createPortal(<Holder ref={ref} />, document.body);
+  });
 
   const error = useCallback(() => {
-    if (ref.current) {
-      return ref.current.add({
-        key: crypto.randomUUID(),
-        type: "error",
-        duration: 200,
-      });
-    }
-    setHolder(createPortal(<Holder ref={ref} />, document.body));
+    return ref.current?.add({
+      id: crypto.randomUUID(),
+      type: "error",
+      duration: 3000,
+    });
   }, []);
 
   return [
