@@ -4,7 +4,7 @@ import { Props } from "./types";
 import { createPopper } from "@popperjs/core";
 import Wrapper from "./wrapper";
 
-const Popper: FC<Props> = ({ children, isVisible, trigger }) => {
+const Popper = ({ children, isVisible, trigger }: Props) => {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {

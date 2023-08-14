@@ -9,7 +9,7 @@ import React, { FC } from "react";
  * @description
  * button
  */
-const Button: FC<Props> = ({ children, onClick }) => {
+const Button = ({ children, onClick }: Props) => {
   return (
     <Wrapper onClick={onClick}>
       <Span>{children}</Span>

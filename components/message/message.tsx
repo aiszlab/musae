@@ -3,7 +3,7 @@ import React, { type FC } from "react";
 import type { Props } from "./types";
 import { useTimeout } from "@aiszlab/relax";
 
-const Message: FC<Props> = ({ duration, type, onHidden, id }) => {
+const Message = ({ duration, type, onHidden, id }: Props) => {
   useTimeout(
     () => {
       onHidden?.(id);

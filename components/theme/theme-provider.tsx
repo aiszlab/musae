@@ -11,7 +11,7 @@ import { presets } from "./hooks";
  * theme provider
  * if user provider theme, we will merge it with presets theme
  */
-const ThemeProvider: FC<Props> = (props) => {
+const ThemeProvider = (props: Props) => {
   // merge with presets
   const theme = useMemo(() => deepmerge(props.theme, presets), [props.theme]);
 
