@@ -1,3 +1,3 @@
-import Loading from "./Loading";
+import Loading from "./l-loading";
 
 export { Loading };
