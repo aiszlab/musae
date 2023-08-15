@@ -1,19 +1,16 @@
-import React, { useState } from "react";
+import React, { useCallback } from "react";
 import type { Props } from "./types";
 import Wrapper from "./wrapper";
+import { useControlledState } from "@aiszlab/relax";
 
 const Switch = ({ value }: Props) => {
-  /// TODO in develop, use controlled state
-  const [isSelected, setIsSelected] = useState<boolean>();
+  const [isSelected, setIsSelected] = useControlledState(value);
 
-  return (
-    <Wrapper
-      aria-selected={isSelected}
-      onClick={() => {
-        setIsSelected((isSelected) => !isSelected);
-      }}
-    />
-  );
+  const toggle = useCallback(() => {
+    setIsSelected((isSelected) => !isSelected);
+  }, [setIsSelected]);
+
+  return <Wrapper aria-selected={isSelected} onClick={toggle} />;
 };
 
 export default Switch;
