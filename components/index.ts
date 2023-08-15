@@ -9,6 +9,7 @@ export { Input } from "./input";
 export { Select } from "./select";
 export { Button } from "./button";
 export { Switch } from "./switch";
+export { Radio } from "./radio";
 
 /**
  * @description

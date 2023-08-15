@@ -12,9 +12,9 @@ const Wrapper = styled.div(() => {
     borderStyle: "solid",
     borderColor: "gray",
     backgroundColor: "transparent",
-    transition: "all 200ms",
+    transition: "all .2s",
 
-    ":before": {
+    "::before": {
       content: "''",
       display: "block",
       margin: "0.1rem",
@@ -22,14 +22,14 @@ const Wrapper = styled.div(() => {
       width: "0.8rem",
       borderRadius: 999,
       backgroundColor: "black",
-      transition: "all 200ms",
+      transition: "all .2s",
     },
 
-    "&[aria-selected='true']": {
+    "&[aria-selected=true]": {
       borderColor: theme.colors?.primary,
       backgroundColor: theme.colors?.primary,
 
-      ":before": {
+      "::before": {
         translate: "100%",
         backgroundColor: "white",
       },
