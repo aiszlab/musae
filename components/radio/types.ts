@@ -24,3 +24,14 @@ export interface GroupRenderProps {
   /* value */
   value?: string;
 }
+
+/**
+ * @author murukal
+ *
+ * @description
+ * radio render props
+ */
+export interface RadioRenderProps {
+  /* value */
+  value: string;
+}

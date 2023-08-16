@@ -10,12 +10,23 @@ const Wrapper = styled.input(() => {
 
     "::after": {
       content: "''",
+      visibility: "visible",
       display: "block",
       height: "1rem",
       width: "1rem",
-      borderWidth: ".1rem",
-      borderColor: theme.colors?.primary,
       boxSizing: "border-box",
+      borderWidth: "0.1rem",
+      borderStyle: "solid",
+      borderColor: "gray",
+      borderRadius: 999,
+      transition: "all 200ms",
+    },
+
+    "&[aria-selected=true]": {
+      "::after": {
+        borderWidth: "0.3rem",
+        borderColor: theme.colors?.primary,
+      },
     },
   };
 });
