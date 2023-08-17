@@ -1,27 +1,35 @@
-import React, { useRef } from "react";
+import React, { ChangeEventHandler, useCallback, useContext, useMemo } from "react";
 import Wrapper from "./wrapper";
 import { useControlledState } from "@aiszlab/relax";
+import { CheckboxRenderProps } from "./types";
+import Context from "./context";
 
-const Checkbox = () => {
-  const ref = useRef<HTMLInputElement>(null);
+const Checkbox = (props: CheckboxRenderProps) => {
+  const contextValue = useContext(Context);
 
-  const [isChecked, setIsChecked] = useControlledState(false);
+  const controlledIsChecked = useMemo(() => {
+    if (props.isChecked !== void 0) {
+      return props.isChecked;
+    }
 
-  return <Wrapper type="checkbox" checked={isChecked} />;
+    if (contextValue?.value === void 0) {
+      return void 0;
+    }
 
-  //   return (
-  //     <div
-  //       className="checkbox"
-  //       style={{
-  //         width: 16,
-  //         height: 16,
-  //       }}
-  //     >
-  //       <svg viewBox="0 0 18 18">
-  //         <polyline points="1 9 7 14 15 4" />
-  //       </svg>
-  //     </div>
-  //   );
+    return contextValue.value === props.value;
+  }, [props.isChecked, props.value, contextValue?.value]);
+
+  const [isChecked, setIsChecked] = useControlledState(controlledIsChecked);
+
+  /// change handler
+  const change = useCallback<ChangeEventHandler<HTMLInputElement>>(
+    (event) => {
+      setIsChecked(event.target.checked);
+    },
+    [setIsChecked]
+  );
+
+  return <Wrapper type="checkbox" checked={!!isChecked} aria-checked={!!isChecked} onChange={change} />;
 };
 
 export default Checkbox;

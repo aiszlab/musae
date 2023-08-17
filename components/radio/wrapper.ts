@@ -7,6 +7,8 @@ const Wrapper = styled.input(() => {
   return {
     visibility: "hidden",
     margin: 0,
+    height: "1rem",
+    width: "1rem",
 
     "::after": {
       content: "''",
@@ -22,7 +24,7 @@ const Wrapper = styled.input(() => {
       transition: "all 200ms",
     },
 
-    "&[aria-selected=true]": {
+    "&[aria-checked=true]": {
       "::after": {
         borderWidth: "0.3rem",
         borderColor: theme.colors?.primary,

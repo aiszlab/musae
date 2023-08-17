@@ -6,14 +6,15 @@ import { RadioRenderProps } from "./types";
 const Radio = ({ value }: RadioRenderProps) => {
   const contextValue = useContext(Context);
 
-  const isSelected = useMemo(() => contextValue?.value === value, [value, contextValue?.value]);
+  const isChecked = useMemo(() => contextValue?.value === value, [value, contextValue?.value]);
 
-  /// click handler for radio
-  const onClick = useCallback(() => {
+  /// change handler for radio
+  const change = useCallback(() => {
+    if (isChecked) return;
     contextValue?.onChange(value);
-  }, [contextValue?.onChange, value]);
+  }, [contextValue?.onChange, value, isChecked]);
 
-  return <Wrapper type="radio" aria-selected={isSelected} onClick={onClick} />;
+  return <Wrapper type="radio" aria-checked={isChecked} checked={isChecked} onChange={change} />;
 };
 
 export default Radio;
