@@ -1,7 +1,7 @@
-import { Props } from "./types";
+import type { Props } from "./types";
 import Wrapper from "./wrapper";
 import Span from "./span";
-import React, { FC } from "react";
+import React from "react";
 
 /**
  * @author murukal
@@ -9,9 +9,9 @@ import React, { FC } from "react";
  * @description
  * button
  */
-const Button = ({ children, onClick }: Props) => {
+const Button = ({ children, className, onClick }: Props) => {
   return (
-    <Wrapper onClick={onClick}>
+    <Wrapper onClick={onClick} className={className}>
       <Span>{children}</Span>
     </Wrapper>
   );

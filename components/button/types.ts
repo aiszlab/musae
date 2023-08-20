@@ -4,10 +4,15 @@ import type { MouseEventHandler, ReactNode } from "react";
  * @author murukal
  *
  * @description
- * button props
+ * button render props
  */
 export interface Props {
-  children: ReactNode;
+  /* class name */
+  className?: string;
 
+  /* children */
+  children?: ReactNode;
+
+  /* click handler */
   onClick?: MouseEventHandler<HTMLButtonElement>;
 }
