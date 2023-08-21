@@ -1,19 +1,22 @@
 import React, { useMemo } from "react";
-import { Props } from "./index";
-import { MenuItem } from "../menu-item";
+import Item from "./item";
+import type { MenuRenderProps } from "./types";
 
 /**
  * @author murukal
+ *
+ * @description
+ * menu component
  */
-const Menu = (props: Props) => {
+const Menu = (props: MenuRenderProps) => {
   /// 菜单条目渲染结果
   const items = useMemo(() => {
     return props.items.map((item) => {
-      return <MenuItem {...item} />;
+      return <Item {...item} />;
     });
   }, [props.items]);
 
-  return <ul className="list-none m-0 p-0">{items}</ul>;
+  return <ul>{items}</ul>;
 };
 
 export default Menu;

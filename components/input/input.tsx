@@ -14,16 +14,6 @@ const Input = forwardRef<InputRef, Props>((props, ref) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const wrapperRef = useRef<HTMLFieldSetElement>(null);
 
-  // const { isOn: isNotEmpty, turnOn, turnOff } = useBoolean();
-
-  // useEffect(() => {
-  //   if (!!inputRef.current?.value) {
-  //     turnOn();
-  //   } else {
-  //     turnOff();
-  //   }
-  // }, [!!inputRef.current?.value]);
-
   useImperativeHandle(ref, () => ({
     input: inputRef.current,
     wrapper: wrapperRef.current,
