@@ -9,7 +9,7 @@ import Item from "./item";
  * @description
  * menu group
  */
-const Group = ({ items, level }: MenuGroupRenderProps) => {
+const Group = ({ items, level, isCollapsed }: MenuGroupRenderProps) => {
   /// 菜单条目渲染结果
   const children = useMemo(() => {
     return items.map(({ key, ...itemProps }) => {
@@ -17,7 +17,7 @@ const Group = ({ items, level }: MenuGroupRenderProps) => {
     });
   }, [items, level]);
 
-  return <StyledMenuGroup>{children}</StyledMenuGroup>;
+  return <StyledMenuGroup isCollapsed={isCollapsed}>{children}</StyledMenuGroup>;
 };
 
 export default Group;

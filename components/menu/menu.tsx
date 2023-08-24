@@ -9,7 +9,7 @@ import Group from "./group";
  * menu component
  */
 const Menu = (props: MenuProps) => {
-  return <Group level={0} {...props} />;
+  return <Group level={0} {...props} isCollapsed={false} />;
 };
 
 export default Menu;

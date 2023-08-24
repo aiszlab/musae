@@ -1,4 +1,4 @@
-import type { Key } from "react";
+import type { Key, ReactNode } from "react";
 
 export interface WithLevel {
   /* level */
@@ -28,6 +28,12 @@ export interface MenuItemProps {
 
   /* title */
   label?: string;
+
+  /* prefix node */
+  prefix?: ReactNode;
+
+  /* children */
+  children?: MenuItemProps[];
 }
 
 /**
@@ -36,7 +42,7 @@ export interface MenuItemProps {
  * @description
  * menu group render props
  */
-export type MenuGroupRenderProps = MenuProps & WithLevel;
+export type MenuGroupRenderProps = MenuProps & WithLevel & { isCollapsed: boolean };
 
 /**
  * @author murukal
