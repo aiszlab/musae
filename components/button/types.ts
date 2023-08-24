@@ -6,7 +6,7 @@ import type { MouseEventHandler, ReactNode } from "react";
  * @description
  * button render props
  */
-export interface Props {
+export interface ButtonProps {
   /* class name */
   className?: string;
 

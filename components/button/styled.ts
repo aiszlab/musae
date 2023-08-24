@@ -1,12 +1,7 @@
 import styled from "@emotion/styled";
 import { useTheme } from "../theme/hooks";
 
-/**
- * @author murukal
- *
- * @description
- */
-const Wrapper = styled.button(() => {
+export const Wrapper = styled.button(() => {
   const theme = useTheme();
 
   return {
@@ -16,5 +11,3 @@ const Wrapper = styled.button(() => {
     border: "none",
   };
 });
-
-export default Wrapper;

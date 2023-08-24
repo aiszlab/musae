@@ -8,7 +8,7 @@ export type Variant = "outlined" | "filled" | "standard";
 /**
  * @description component props
  */
-export interface Props {
+export interface InputProps {
   /* label for input */
   label?: string;
 

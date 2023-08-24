@@ -2,9 +2,11 @@ import type { ReactNode } from "react";
 
 /**
  * @author murukal
- * @description popper props
+ *
+ * @description
+ * popper props
  */
-export interface Props {
+export interface PopperProps {
   /* children */
   children: ReactNode;
 
@@ -17,7 +19,9 @@ export interface Props {
 
 /**
  * @author murukal
- * @description wrapper props
+ *
+ * @description
+ * wrapper props
  */
 export interface WrapperProps {
   /* if popper is visible */

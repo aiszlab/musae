@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
-import { CircleRenderProps } from "./types";
+import { CircleProps } from "./types";
 
-const Circle = styled.circle((props: CircleRenderProps) => {
+const Circle = styled.circle((props: CircleProps) => {
   return {
     animationName: props.animationName,
     animationDuration: "2s",

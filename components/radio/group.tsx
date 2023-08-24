@@ -1,9 +1,9 @@
 import React, { useCallback, useMemo } from "react";
 import Context from "./context";
-import { ContextValue, GroupRenderProps } from "./types";
+import { ContextValue, RadioGroupProps } from "./types";
 import { useControlledState } from "@aiszlab/relax";
 
-const Group = (props: GroupRenderProps) => {
+const Group = (props: RadioGroupProps) => {
   /// controlled value
   const [selectedValue, setSelectedValue] = useControlledState(props.value);
 

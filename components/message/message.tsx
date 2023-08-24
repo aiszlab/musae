@@ -1,9 +1,9 @@
-import { MessageWrapper } from "./wrappers";
+import { MessageWrapper } from "./styled";
 import React, { type FC } from "react";
-import type { Props } from "./types";
+import type { MessageProps } from "./types";
 import { useTimeout } from "@aiszlab/relax";
 
-const Message = ({ duration, type, onHidden, id }: Props) => {
+const Message = ({ duration, type, onHidden, id }: MessageProps) => {
   useTimeout(
     () => {
       onHidden?.(id);

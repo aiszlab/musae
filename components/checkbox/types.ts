@@ -15,9 +15,9 @@ export interface ContextValue {
  * @author murukal
  *
  * @description
- * group render props
+ * checkbox group props
  */
-export interface GroupRenderProps {
+export interface CheckboxGroupProps {
   /* children */
   children: ReactNode;
 }
@@ -26,9 +26,9 @@ export interface GroupRenderProps {
  * @author murukal
  *
  * @description
- * checkbox render props
+ * checkbox props
  */
-export interface CheckboxRenderProps {
+export interface CheckboxProps {
   /* if is checked */
   isChecked?: boolean;
 

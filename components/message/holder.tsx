@@ -1,10 +1,10 @@
 import React, { forwardRef, useCallback, useImperativeHandle, useState } from "react";
-import { HolderWrapper } from "./wrappers";
-import { MessageRef, Props } from "./types";
+import { HolderWrapper } from "./styled";
+import { MessageRef, MessageProps } from "./types";
 import Message from "./message";
 
 const Holder = forwardRef<MessageRef>((props, ref) => {
-  const [messages, setMessages] = useState<Props[]>([]);
+  const [messages, setMessages] = useState<MessageProps[]>([]);
 
   useImperativeHandle(ref, () => ({
     add: (props) => {

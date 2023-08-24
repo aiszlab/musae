@@ -1,8 +1,8 @@
 import Context from "./context";
-import { GroupRenderProps } from "./types";
+import { type CheckboxGroupProps } from "./types";
 import React from "react";
 
-const Group = (props: GroupRenderProps) => {
+const Group = (props: CheckboxGroupProps) => {
   return <Context.Provider value={null}>{props.children}</Context.Provider>;
 };
 

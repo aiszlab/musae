@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { useTheme } from "../theme/hooks";
 
-const Wrapper = styled.input(() => {
+export const Wrapper = styled.input(() => {
   const theme = useTheme();
 
   return {
@@ -48,5 +48,3 @@ const Wrapper = styled.input(() => {
     },
   };
 });
-
-export default Wrapper;

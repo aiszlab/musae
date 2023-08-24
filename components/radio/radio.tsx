@@ -1,9 +1,9 @@
 import React, { useCallback, useContext, useMemo } from "react";
-import Wrapper from "./wrapper";
+import { Wrapper } from "./styled";
 import Context from "./context";
-import { RadioRenderProps } from "./types";
+import { RadioProps } from "./types";
 
-const Radio = ({ value }: RadioRenderProps) => {
+const Radio = ({ value }: RadioProps) => {
   const contextValue = useContext(Context);
 
   const isChecked = useMemo(() => contextValue?.value === value, [value, contextValue?.value]);

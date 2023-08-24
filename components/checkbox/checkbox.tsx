@@ -1,10 +1,10 @@
 import React, { ChangeEventHandler, useCallback, useContext, useMemo } from "react";
-import Wrapper from "./wrapper";
+import { Wrapper } from "./styled";
 import { useControlledState } from "@aiszlab/relax";
-import { CheckboxRenderProps } from "./types";
+import { CheckboxProps } from "./types";
 import Context from "./context";
 
-const Checkbox = (props: CheckboxRenderProps) => {
+const Checkbox = (props: CheckboxProps) => {
   const contextValue = useContext(Context);
 
   const controlledIsChecked = useMemo(() => {

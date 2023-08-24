@@ -15,9 +15,9 @@ export interface ContextValue {
  * @author murukal
  *
  * @description
- * group render props
+ * radio group props
  */
-export interface GroupRenderProps {
+export interface RadioGroupProps {
   /* children */
   children: ReactNode;
 
@@ -29,9 +29,9 @@ export interface GroupRenderProps {
  * @author murukal
  *
  * @description
- * radio render props
+ * radio props
  */
-export interface RadioRenderProps {
+export interface RadioProps {
   /* value */
   value: string;
 }

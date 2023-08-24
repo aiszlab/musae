@@ -2,8 +2,8 @@
  * @author murukal
  *
  * @description
- * circle render props
+ * circle props
  */
-export interface CircleRenderProps {
+export interface CircleProps {
   animationName: string;
 }

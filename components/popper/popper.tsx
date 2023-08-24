@@ -1,10 +1,10 @@
-import React, { FC, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
-import { Props } from "./types";
+import { type PopperProps } from "./types";
 import { createPopper } from "@popperjs/core";
-import Wrapper from "./wrapper";
+import { Wrapper } from "./styled";
 
-const Popper = ({ children, isVisible, trigger }: Props) => {
+const Popper = ({ children, isVisible, trigger }: PopperProps) => {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {

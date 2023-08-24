@@ -1,16 +1,15 @@
-import React, { useMemo, forwardRef, useRef, useImperativeHandle, useEffect } from "react";
+import React, { useMemo, forwardRef, useRef, useImperativeHandle } from "react";
 import { useStyles } from "./hooks";
-import type { InputRef, Props, UsedInputProps, Variant } from "./types";
+import type { InputRef, InputProps, UsedInputProps, Variant } from "./types";
 import { useBoolean } from "@aiszlab/relax";
 import Label from "./label";
-import Wrapper from "./wrapper";
-import StyledInput from "./styled-input";
+import { Wrapper, StyledInput } from "./styled";
 
 /**
  * @author murukal
  * @description input component
  */
-const Input = forwardRef<InputRef, Props>((props, ref) => {
+const Input = forwardRef<InputRef, InputProps>((props, ref) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const wrapperRef = useRef<HTMLFieldSetElement>(null);
 

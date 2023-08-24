@@ -1,7 +1,7 @@
 import React from "react";
 import { keyframes } from "@emotion/react";
 import Circle from "./circle";
-import Wrapper from "./wrapper";
+import { Wrapper } from "./styled";
 
 const large = keyframes`
   from,

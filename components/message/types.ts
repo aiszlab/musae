@@ -1,5 +1,3 @@
-import { Attributes } from "react";
-
 /**
  * @author murukal
  *
@@ -14,9 +12,9 @@ export interface Messager {
  * @author murukal
  *
  * @description
- * props for message
+ * message props
  */
-export interface Props {
+export interface MessageProps {
   id: string;
   type: "error" | "success" | "warning";
   duration: number;
@@ -32,5 +30,5 @@ export interface Props {
  * message ref
  */
 export interface MessageRef {
-  add: (props: Props) => void;
+  add: (props: MessageProps) => void;
 }
