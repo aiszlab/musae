@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 import type { Props } from "./types";
-import Wrapper from "./wrapper";
+import { Wrapper } from "./styled";
 import { useControlledState } from "@aiszlab/relax";
 
 const Switch = ({ value }: Props) => {
