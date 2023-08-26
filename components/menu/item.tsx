@@ -1,11 +1,12 @@
-import React, { useCallback, useMemo } from "react";
+import React, { useCallback, useContext, useMemo } from "react";
 import type { MenuItemRenderProps } from "./types";
 import { StyledMenuItemCollapser, StyledMenuItemPrefix, StyledMenuItemWrapper } from "./styled";
 import { useBoolean } from "@aiszlab/relax";
 import Group from "./group";
 import { useAnimate } from "framer-motion";
+import MenuContext from "./context";
 
-const Item = ({ level, label, children, prefix }: MenuItemRenderProps) => {
+const Item = ({ level = 0, label, children, prefix, id }: MenuItemRenderProps) => {
   /// has children
   const hasChildren = useMemo(() => !!children?.length, [children]);
 
@@ -20,13 +21,25 @@ const Item = ({ level, label, children, prefix }: MenuItemRenderProps) => {
     return <StyledMenuItemCollapser>{isCollapsed ? "展开" : "收起"}</StyledMenuItemCollapser>;
   }, [hasChildren, isCollapsed]);
 
+  const context = useContext(MenuContext);
+
   const onCollapserToggle = useCallback(() => {
+    // if this item do not has children, mean this is a menu item
+    // when click it, handler the change event, pass key
+    if (!hasChildren) {
+      return context?.onClick?.(id);
+    }
+
+    // when item has children, mean this is menu group
+    // when click it, handler collapser
+    if (!scope.current) return;
+
     animate(scope.current, {
       height: isCollapsed ? "auto" : 0,
     });
 
     toggle();
-  }, [toggle, isCollapsed, animate]);
+  }, [toggle, isCollapsed, animate, id, context?.onClick, hasChildren]);
 
   return (
     <li>

@@ -9,19 +9,15 @@ import Item from "./item";
  * @description
  * menu group
  */
-const Group = forwardRef<HTMLUListElement, MenuGroupRenderProps>(({ items, level, isCollapsed }, ref) => {
+const Group = forwardRef<HTMLUListElement, MenuGroupRenderProps>(({ items, level = 0, isCollapsed = false }, ref) => {
   /// 菜单条目渲染结果
   const children = useMemo(() => {
     return items.map(({ key, ...itemProps }) => {
-      return <Item key={key} level={level} {...itemProps} />;
+      return <Item key={key} level={level} {...itemProps} id={key} />;
     });
   }, [items, level]);
 
-  return (
-    <StyledMenuGroup ref={ref} isCollapsed={isCollapsed}>
-      {children}
-    </StyledMenuGroup>
-  );
+  return <StyledMenuGroup ref={ref}>{children}</StyledMenuGroup>;
 });
 
 export default Group;

@@ -1,6 +1,7 @@
-import React from "react";
-import type { MenuProps } from "./types";
+import React, { useMemo } from "react";
+import type { ContextValue, MenuProps } from "./types";
 import Group from "./group";
+import MenuContext from "./context";
 
 /**
  * @author murukal
@@ -8,8 +9,19 @@ import Group from "./group";
  * @description
  * menu component
  */
-const Menu = (props: MenuProps) => {
-  return <Group level={0} {...props} isCollapsed={false} />;
+const Menu = ({ items, onClick }: MenuProps) => {
+  const contextValue = useMemo<ContextValue>(
+    () => ({
+      onClick,
+    }),
+    [onClick]
+  );
+
+  return (
+    <MenuContext.Provider value={contextValue}>
+      <Group items={items} />
+    </MenuContext.Provider>
+  );
 };
 
 export default Menu;

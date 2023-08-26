@@ -9,7 +9,7 @@ import { keyframes } from "@emotion/react";
  * @description
  * styled menu item wrapper
  */
-export const StyledMenuItemWrapper = styled.div(({ level }: WithLevel) => {
+export const StyledMenuItemWrapper = styled.div(({ level = 0 }: WithLevel) => {
   return {
     display: "flex",
     alignItems: "center",
@@ -61,12 +61,10 @@ export const StyledMenuItemCollapser = styled.span(() => {
  * @description
  * styled menu group
  */
-export const StyledMenuGroup = styled.ul(({ isCollapsed }: { isCollapsed: boolean }) => {
-  return {
-    margin: 0,
-    listStyleType: "none",
-    padding: 0,
-    width: 240,
-    overflow: "hidden",
-  };
+export const StyledMenuGroup = styled.ul({
+  margin: 0,
+  listStyleType: "none",
+  padding: 0,
+  width: 240,
+  overflow: "hidden",
 });

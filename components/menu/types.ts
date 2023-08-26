@@ -1,8 +1,18 @@
 import type { Key, ReactNode } from "react";
 
+/**
+ * @author murukal
+ *
+ * @description
+ * context value
+ */
+export interface ContextValue {
+  onClick?: (key: string) => void | Promise<void>;
+}
+
 export interface WithLevel {
   /* level */
-  level: number;
+  level?: number;
 }
 
 /**
@@ -14,6 +24,9 @@ export interface WithLevel {
 export interface MenuProps {
   /* items */
   items: MenuItemProps[];
+
+  /* on click */
+  onClick?: ContextValue["onClick"];
 }
 
 /**
@@ -24,7 +37,7 @@ export interface MenuProps {
  */
 export interface MenuItemProps {
   /* key */
-  key: Key;
+  key: string;
 
   /* title */
   label?: string;
@@ -42,7 +55,7 @@ export interface MenuItemProps {
  * @description
  * menu group render props
  */
-export type MenuGroupRenderProps = MenuProps & WithLevel & { isCollapsed: boolean };
+export type MenuGroupRenderProps = MenuProps & WithLevel & { isCollapsed?: boolean };
 
 /**
  * @author murukal
@@ -50,4 +63,7 @@ export type MenuGroupRenderProps = MenuProps & WithLevel & { isCollapsed: boolea
  * @description
  * menu item render props
  */
-export type MenuItemRenderProps = Omit<MenuItemProps, "key"> & WithLevel;
+export type MenuItemRenderProps = Omit<MenuItemProps, "key"> &
+  WithLevel & {
+    id: string;
+  };
