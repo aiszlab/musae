@@ -1,4 +1,4 @@
-import React, { FC, useMemo } from "react";
+import React, { useMemo } from "react";
 import { ThemeProvider as EmotionThemeProvider } from "@emotion/react";
 import type { Props } from "./types";
 import deepmerge from "deepmerge";

@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import { WithLevel } from "./types";
 import { useTheme } from "../theme/hooks";
+import { keyframes } from "@emotion/react";
 
 /**
  * @author murukal
@@ -66,5 +67,6 @@ export const StyledMenuGroup = styled.ul(({ isCollapsed }: { isCollapsed: boolea
     listStyleType: "none",
     padding: 0,
     width: 240,
+    overflow: "hidden",
   };
 });

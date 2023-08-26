@@ -10,7 +10,8 @@
     "dev": "rollup -c -w",
     "build": "rollup -c",
     "clean:build": "rm -rf dist && rm -rf typings",
-    "pub": "npm run clean:build && npm run build && npm publish"
+    "pub": "npm run clean:build && npm run build && npm publish",
+    "relink": "yarn unlink && yarn link"
   },
   "dependencies": {
     "@aiszlab/relax": "^1.0.14",
@@ -18,7 +19,8 @@
     "@emotion/styled": "^11.11.0",
     "@popperjs/core": "^2.11.8",
     "clsx": "^1.2.1",
-    "deepmerge": "^4.3.1"
+    "deepmerge": "^4.3.1",
+    "framer-motion": "^10.16.1"
   },
   "devDependencies": {
     "@babel/core": "^7.22.5",

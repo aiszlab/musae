@@ -1,15 +1,18 @@
-import React, { useMemo } from "react";
+import React, { useCallback, useMemo } from "react";
 import type { MenuItemRenderProps } from "./types";
 import { StyledMenuItemCollapser, StyledMenuItemPrefix, StyledMenuItemWrapper } from "./styled";
 import { useBoolean } from "@aiszlab/relax";
 import Group from "./group";
+import { useAnimate } from "framer-motion";
 
 const Item = ({ level, label, children, prefix }: MenuItemRenderProps) => {
   /// has children
   const hasChildren = useMemo(() => !!children?.length, [children]);
 
+  const [scope, animate] = useAnimate<HTMLUListElement>();
+
   /// if is collapsed
-  const { isOn: isCollapsed, toggle: switchIsCollapsed } = useBoolean(false);
+  const { isOn: isCollapsed, toggle } = useBoolean(false);
 
   /// if there are children, render trailing arrow
   const collapser = useMemo(() => {
@@ -17,9 +20,17 @@ const Item = ({ level, label, children, prefix }: MenuItemRenderProps) => {
     return <StyledMenuItemCollapser>{isCollapsed ? "展开" : "收起"}</StyledMenuItemCollapser>;
   }, [hasChildren, isCollapsed]);
 
+  const onCollapserToggle = useCallback(() => {
+    animate(scope.current, {
+      height: isCollapsed ? "auto" : 0,
+    });
+
+    toggle();
+  }, [toggle, isCollapsed, animate]);
+
   return (
     <li>
-      <StyledMenuItemWrapper level={level} onClick={switchIsCollapsed}>
+      <StyledMenuItemWrapper level={level} onClick={onCollapserToggle}>
         {/* prefix */}
         {!!prefix && <StyledMenuItemPrefix>{prefix}</StyledMenuItemPrefix>}
 
@@ -31,7 +42,7 @@ const Item = ({ level, label, children, prefix }: MenuItemRenderProps) => {
       </StyledMenuItemWrapper>
 
       {/* if there are children menu items, display them */}
-      {hasChildren && <Group items={children!} level={level + 1} isCollapsed={isCollapsed} />}
+      {hasChildren && <Group ref={scope} items={children!} level={level + 1} isCollapsed={isCollapsed} />}
     </li>
   );
 };

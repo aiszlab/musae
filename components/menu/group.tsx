@@ -1,5 +1,5 @@
 import { StyledMenuGroup } from "./styled";
-import React, { useMemo } from "react";
+import React, { forwardRef, useMemo } from "react";
 import { type MenuGroupRenderProps } from "./types";
 import Item from "./item";
 
@@ -9,7 +9,7 @@ import Item from "./item";
  * @description
  * menu group
  */
-const Group = ({ items, level, isCollapsed }: MenuGroupRenderProps) => {
+const Group = forwardRef<HTMLUListElement, MenuGroupRenderProps>(({ items, level, isCollapsed }, ref) => {
   /// 菜单条目渲染结果
   const children = useMemo(() => {
     return items.map(({ key, ...itemProps }) => {
@@ -17,7 +17,11 @@ const Group = ({ items, level, isCollapsed }: MenuGroupRenderProps) => {
     });
   }, [items, level]);
 
-  return <StyledMenuGroup isCollapsed={isCollapsed}>{children}</StyledMenuGroup>;
-};
+  return (
+    <StyledMenuGroup ref={ref} isCollapsed={isCollapsed}>
+      {children}
+    </StyledMenuGroup>
+  );
+});
 
 export default Group;
