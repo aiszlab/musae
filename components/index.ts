@@ -17,3 +17,9 @@ export { Checkbox } from "./checkbox";
  * hooks
  */
 export { useMessage } from "./message";
+
+/**
+ * @description
+ * declarations
+ */
+export type { MenuItemProps } from "./menu";

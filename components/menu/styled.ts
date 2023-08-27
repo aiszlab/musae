@@ -65,6 +65,5 @@ export const StyledMenuGroup = styled.ul({
   margin: 0,
   listStyleType: "none",
   padding: 0,
-  width: 240,
   overflow: "hidden",
 });

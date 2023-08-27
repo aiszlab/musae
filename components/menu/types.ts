@@ -55,7 +55,7 @@ export interface MenuItemProps {
  * @description
  * menu group render props
  */
-export type MenuGroupRenderProps = MenuProps & WithLevel & { isCollapsed?: boolean };
+export type MenuGroupRenderProps = MenuProps & WithLevel;
 
 /**
  * @author murukal
