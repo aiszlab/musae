@@ -1,7 +1,5 @@
 import styled from "@emotion/styled";
-import { WithLevel } from "./types";
-import { useTheme } from "../theme/hooks";
-import { keyframes } from "@emotion/react";
+import type { WithLevel } from "./types";
 
 /**
  * @author murukal
@@ -22,9 +20,9 @@ export const StyledMenuItemWrapper = styled.div(({ level = 0 }: WithLevel) => {
     borderRadius: 8,
     transition: "background-color 300ms",
 
-    ":hover": {
-      backgroundColor: "#f5f7fa",
-    },
+    // ":hover": {
+    //   backgroundColor: "#f5f7fa",
+    // },
   };
 });
 
@@ -46,12 +44,11 @@ export const StyledMenuItemPrefix = styled.span(() => {
  * @description
  * styled menu collapser
  */
-export const StyledMenuItemCollapser = styled.span(() => {
-  const theme = useTheme();
-
+export const StyledMenuItemCollapser = styled.span(({ isCollapsed }: { isCollapsed: boolean }) => {
   return {
     marginLeft: "auto",
-    ...theme.typography?.body?.small,
+    transform: `rotate(90deg) ${isCollapsed ? "rotateY(180deg)" : "rotateY(0)"}`,
+    transition: "transform 200ms",
   };
 });
 

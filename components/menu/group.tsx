@@ -6,6 +6,7 @@ import { StyledMenuItemCollapser, StyledMenuItemPrefix, StyledMenuItemWrapper } 
 import { useBoolean } from "@aiszlab/relax";
 import { useAnimate } from "framer-motion";
 import MenuContext from "./context";
+import NavigateBefore from "../icons/navigate-before";
 
 /**
  * @author murukal
@@ -17,6 +18,7 @@ const Item = ({ level = 0, label, children, prefix, id }: MenuItemRenderProps) =
   /// has children
   const hasChildren = useMemo(() => !!children?.length, [children]);
 
+  const context = useContext(MenuContext);
   const [scope, animate] = useAnimate<HTMLUListElement>();
 
   /// if is collapsed
@@ -25,10 +27,13 @@ const Item = ({ level = 0, label, children, prefix, id }: MenuItemRenderProps) =
   /// if there are children, render trailing arrow
   const collapser = useMemo(() => {
     if (!hasChildren) return null;
-    return <StyledMenuItemCollapser>{isCollapsed ? "展开" : "收起"}</StyledMenuItemCollapser>;
-  }, [hasChildren, isCollapsed]);
 
-  const context = useContext(MenuContext);
+    return (
+      <StyledMenuItemCollapser isCollapsed={isCollapsed}>
+        <NavigateBefore size={16} />
+      </StyledMenuItemCollapser>
+    );
+  }, [hasChildren, isCollapsed]);
 
   const onCollapserToggle = useCallback(() => {
     // if this item do not has children, mean this is a menu item
