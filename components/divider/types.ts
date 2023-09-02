@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 
 export interface DividerProps {
-  children: ReactNode;
+  children?: ReactNode;
 }
 
 export interface DividerRenderProps {
