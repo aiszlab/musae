@@ -11,6 +11,8 @@ export { Button } from "./button";
 export { Switch } from "./switch";
 export { Radio, RadioGroup } from "./radio";
 export { Checkbox } from "./checkbox";
+export { Row } from "./row";
+export { Divider } from "./divider";
 
 /**
  * @description
