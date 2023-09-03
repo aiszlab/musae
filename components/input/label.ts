@@ -1,13 +1,13 @@
 import styled from "@emotion/styled";
 import type { LabelProps } from "./types";
-import { useTheme } from "../theme/hooks";
+import { useValidTheme } from "../theme/hooks";
 
-const Label = styled.legend<LabelProps>(({ isFocused }) => {
-  const theme = useTheme();
+const Label = styled.legend<LabelProps>(({ isFocused, theme }) => {
+  const validTheme = useValidTheme(theme);
 
   return {
     // typography
-    ...theme.typography?.body?.small!,
+    ...validTheme.typography?.body?.small!,
 
     // layout
     paddingInlineStart: 4,
@@ -15,7 +15,7 @@ const Label = styled.legend<LabelProps>(({ isFocused }) => {
 
     // if input is focused
     ...(isFocused && {
-      color: theme.colors?.primary,
+      color: validTheme.colors?.primary,
     }),
   };
 });

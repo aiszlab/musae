@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { useTheme } from "../theme/hooks";
+import { useValidTheme } from "../theme/hooks";
 
 /**
  * @author murukal
@@ -25,8 +25,8 @@ const HolderWrapper = styled.div(() => {
  * @description
  * wrapper of message
  */
-const MessageWrapper = styled.div(() => {
-  const theme = useTheme();
+const MessageWrapper = styled.div(({ theme }) => {
+  const validTheme = useValidTheme(theme);
 
   return {
     marginTop: 8,
@@ -34,7 +34,7 @@ const MessageWrapper = styled.div(() => {
     padding: "8px 12px",
     borderRadius: 6,
     backgroundColor: "#ffffff",
-    ...theme.elevations?.[1],
+    ...validTheme.elevations?.[1],
   };
 });
 

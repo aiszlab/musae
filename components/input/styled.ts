@@ -1,9 +1,9 @@
 import styled from "@emotion/styled";
 import type { WrapperProps } from "./types";
-import { useTheme } from "../theme/hooks";
+import { useValidTheme } from "../theme/hooks";
 
-export const Wrapper = styled.fieldset<WrapperProps>(({ isFocused }) => {
-  const theme = useTheme();
+export const Wrapper = styled.fieldset<WrapperProps>(({ isFocused, theme }) => {
+  const validTheme = useValidTheme(theme);
 
   return {
     textAlign: "start",
@@ -21,7 +21,7 @@ export const Wrapper = styled.fieldset<WrapperProps>(({ isFocused }) => {
 
     // if input is focused, change the border
     ...(isFocused && {
-      borderColor: theme.colors?.primary,
+      borderColor: validTheme.colors?.primary,
       borderWidth: 2,
     }),
   };

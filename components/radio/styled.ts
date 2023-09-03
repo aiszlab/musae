@@ -1,8 +1,8 @@
 import styled from "@emotion/styled";
-import { useTheme } from "../theme/hooks";
+import { useValidTheme } from "../theme/hooks";
 
-export const Wrapper = styled.input(() => {
-  const theme = useTheme();
+export const Wrapper = styled.input(({ theme }) => {
+  const validTheme = useValidTheme(theme);
 
   return {
     visibility: "hidden",
@@ -27,7 +27,7 @@ export const Wrapper = styled.input(() => {
     "&[aria-checked=true]": {
       "::after": {
         borderWidth: "0.3rem",
-        borderColor: theme.colors?.primary,
+        borderColor: validTheme.colors?.primary,
       },
     },
   };

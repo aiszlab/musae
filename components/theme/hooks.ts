@@ -163,7 +163,7 @@ export const useValidTheme = (usedTheme: Theme) =>
  * but the default value can not be changed
  * set the preset theme for musae ui component
  */
-export const useTheme = (usedTheme: Theme) => {
+export const useTheme = () => {
   // emotion theme
   const theme = useEmotionTheme();
   // valid theme
