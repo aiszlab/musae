@@ -11,7 +11,6 @@ const configuration = {
     format: "es",
     dir: "./dist",
     preserveModules: true,
-    preserveModulesRoot: "./components",
   },
 
   plugins: [
@@ -26,8 +25,6 @@ const configuration = {
   ],
 
   external: [...Object.keys(pkg.dependencies), ...Object.keys(pkg.peerDependencies), /.css/],
-
-  makeAbsoluteExternalsRelative: false,
 };
 
 export default configuration;

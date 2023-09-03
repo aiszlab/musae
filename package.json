@@ -1,10 +1,10 @@
 {
   "name": "musae",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "description": "musae-ui",
   "author": "tutu@fantufantu.com",
   "license": "MIT",
-  "main": "./dist/index.js",
+  "main": "./dist/components/index.js",
   "type": "module",
   "scripts": {
     "dev": "rollup -c -w",
