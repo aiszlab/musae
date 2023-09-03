@@ -25,7 +25,7 @@ export interface InputProps {
   suffix?: ReactNode;
 
   /* input type */
-  type: "password" | "text";
+  type?: "password" | "text";
 
   /* value */
   value?: string;
