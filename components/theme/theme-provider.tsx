@@ -2,7 +2,7 @@ import React, { useMemo } from "react";
 import { ThemeProvider as EmotionThemeProvider } from "@emotion/react";
 import type { Props } from "./types";
 import deepmerge from "deepmerge";
-import { presets } from "./hooks";
+import { DEFAULT_THEME } from "./hooks";
 
 /**
  * @author murukal
@@ -13,7 +13,7 @@ import { presets } from "./hooks";
  */
 const ThemeProvider = (props: Props) => {
   // merge with presets
-  const theme = useMemo(() => deepmerge(props.theme, presets), [props.theme]);
+  const theme = useMemo(() => deepmerge(props.theme, DEFAULT_THEME), [props.theme]);
 
   // provider
   return <EmotionThemeProvider theme={theme}>{props.children}</EmotionThemeProvider>;
