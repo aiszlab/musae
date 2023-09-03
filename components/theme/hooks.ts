@@ -1,6 +1,7 @@
 import { useMemo } from "react";
 import type { Palettes, Theme } from "./types";
 import { useTheme as useEmotionTheme } from "@emotion/react";
+import { isEmpty } from "../../utils/object";
 
 const palettes: Palettes = {
   primary: {
@@ -87,7 +88,7 @@ const palettes: Palettes = {
  * we set some presets theme
  * let ui components display well
  */
-export const presets: Theme = {
+export const DEFAULT_THEME: Theme = {
   colors: {
     primary: palettes.primary[40],
     secondary: palettes.secondary[40],
@@ -145,18 +146,26 @@ export const presets: Theme = {
  * @author murukal
  *
  * @description
+ * use valid theme for components
+ */
+export const useValidTheme = (usedTheme: Theme) =>
+  useMemo<Theme>(() => {
+    if (isEmpty(usedTheme)) return DEFAULT_THEME;
+    return usedTheme;
+  }, [usedTheme]);
+
+/**
+ * @author murukal
+ *
+ * @description
  * hook wrapper for emotion theme hook
  * because emotion theme has the default value
  * but the default value can not be changed
  * set the preset theme for musae ui component
  */
-export const useTheme = () => {
+export const useTheme = (usedTheme: Theme) => {
   // emotion theme
   const theme = useEmotionTheme();
-
-  // if theme is empty
-  const isThemeEmpty = useMemo(() => Object.keys(theme).length === 0, [theme]);
-
-  // when is empty, we always think there are not any theme. use presets!!!
-  return useMemo<Theme>(() => (isThemeEmpty ? presets : theme), [theme, isThemeEmpty]);
+  // valid theme
+  return useValidTheme(theme);
 };

@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { useTheme } from "../theme/hooks";
+import { useValidTheme } from "../theme/hooks";
 
 /**
  * @author murukal
@@ -7,8 +7,8 @@ import { useTheme } from "../theme/hooks";
  * @description
  * content
  */
-const Span = styled.span(() => {
-  const theme = useTheme();
+const Span = styled.span(({ theme }) => {
+  const validTheme = useValidTheme(theme);
 
   return {
     marginLeft: 8,
@@ -16,7 +16,7 @@ const Span = styled.span(() => {
     color: "#fff",
 
     /// typography
-    ...theme.typography?.label?.large,
+    ...validTheme.typography?.label?.large,
   };
 });
 
