@@ -1,4 +1,4 @@
-import type { Key, ReactNode } from "react";
+import type { ReactNode } from "react";
 
 /**
  * @author murukal
