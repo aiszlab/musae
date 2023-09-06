@@ -7,7 +7,11 @@ import type { ReactNode } from "react";
  * context value
  */
 export interface ContextValue {
+  /* click event */
   onClick?: (key: string) => void | Promise<void>;
+
+  /* selected keys */
+  selectedKeys: string[];
 }
 
 export interface WithLevel {

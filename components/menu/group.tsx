@@ -21,6 +21,8 @@ const Item = ({ level = 0, label, children, prefix, id }: MenuItemRenderProps) =
   const context = useContext(MenuContext);
   const [scope, animate] = useAnimate<HTMLUListElement>();
 
+  /// if is selected
+  const isSelected = useMemo(() => !!context?.selectedKeys.includes(id), [context?.selectedKeys]);
   /// if is collapsed
   const { isOn: isCollapsed, toggle } = useBoolean(false);
 
@@ -55,7 +57,7 @@ const Item = ({ level = 0, label, children, prefix, id }: MenuItemRenderProps) =
 
   return (
     <li>
-      <StyledMenuItemWrapper level={level} onClick={onCollapserToggle}>
+      <StyledMenuItemWrapper level={level} isSelected={isSelected} onClick={onCollapserToggle}>
         {/* prefix */}
         {!!prefix && <StyledMenuItemPrefix>{prefix}</StyledMenuItemPrefix>}
 

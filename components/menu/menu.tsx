@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import type { ContextValue, MenuProps } from "./types";
 import Group from "./group";
 import MenuContext from "./context";
@@ -9,17 +9,24 @@ import MenuContext from "./context";
  * @description
  * menu component
  */
-const Menu = ({ items, onClick }: MenuProps) => {
+const Menu = (props: MenuProps) => {
+  const [selectedKeys, setSelectedKeys] = useState<ContextValue["selectedKeys"]>([]);
+
+  /// context value
   const contextValue = useMemo<ContextValue>(
     () => ({
-      onClick,
+      onClick: (key) => {
+        setSelectedKeys([key]);
+        props.onClick?.(key);
+      },
+      selectedKeys: [],
     }),
-    [onClick]
+    [props.onClick, selectedKeys]
   );
 
   return (
     <MenuContext.Provider value={contextValue}>
-      <Group items={items} />
+      <Group items={props.items} />
     </MenuContext.Provider>
   );
 };

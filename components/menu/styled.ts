@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import type { WithLevel } from "./types";
+import { useValidTheme } from "../theme/hooks";
 
 /**
  * @author murukal
@@ -7,7 +8,13 @@ import type { WithLevel } from "./types";
  * @description
  * styled menu item wrapper
  */
-export const StyledMenuItemWrapper = styled.div(({ level = 0 }: WithLevel) => {
+export const StyledMenuItemWrapper = styled.div<
+  WithLevel & {
+    isSelected: boolean;
+  }
+>((props) => {
+  const theme = useValidTheme(props.theme);
+
   return {
     display: "flex",
     alignItems: "center",
@@ -16,13 +23,18 @@ export const StyledMenuItemWrapper = styled.div(({ level = 0 }: WithLevel) => {
     paddingTop: 8,
     paddingBottom: 8,
     paddingRight: 12,
-    paddingLeft: 12 + level * 24,
+    paddingLeft: 12 + (props.level ?? 0) * 24,
     borderRadius: 8,
-    transition: "background-color 300ms",
+    transition: "all 300ms",
 
-    // ":hover": {
-    //   backgroundColor: "#f5f7fa",
-    // },
+    ...(props.isSelected && {
+      backgroundColor: theme.palettes?.primary[90],
+      color: theme.palettes?.primary[40],
+    }),
+
+    ":hover": {
+      backgroundColor: theme.palettes?.neutral[90],
+    },
   };
 });
 
