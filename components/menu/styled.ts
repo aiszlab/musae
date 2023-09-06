@@ -33,7 +33,7 @@ export const StyledMenuItemWrapper = styled.div<
     }),
 
     ":hover": {
-      backgroundColor: theme.palettes?.neutral[90],
+      backgroundColor: theme.palettes?.neutral[80],
     },
   };
 });
