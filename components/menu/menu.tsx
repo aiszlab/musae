@@ -19,7 +19,7 @@ const Menu = (props: MenuProps) => {
         setSelectedKeys([key]);
         props.onClick?.(key);
       },
-      selectedKeys: [],
+      selectedKeys,
     }),
     [props.onClick, selectedKeys]
   );

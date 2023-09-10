@@ -46,7 +46,7 @@ export interface InputProps {
 /**
  * @description label props
  */
-export interface LabelProps {
+export interface LabelRenderProps {
   /* focused */
   isFocused: boolean;
 }

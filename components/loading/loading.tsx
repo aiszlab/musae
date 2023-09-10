@@ -1,7 +1,7 @@
 import React from "react";
 import { keyframes } from "@emotion/react";
 import Circle from "./circle";
-import { Wrapper } from "./styled";
+import { StyledWrapper } from "./styled";
 
 const large = keyframes`
   from,
@@ -192,12 +192,12 @@ const right = keyframes`
 
 const Loading = () => {
   return (
-    <Wrapper width="240" height="240" viewBox="0 0 240 240">
+    <StyledWrapper width="240" height="240" viewBox="0 0 240 240">
       <Circle animationName={large} cx="120" cy="120" r="105" stroke="#f42f25" />
       <Circle animationName={small} cx="120" cy="120" r="35" stroke="#f49725" />
       <Circle animationName={left} cx="85" cy="120" r="70" stroke="#255ff4" />
       <Circle animationName={right} cx="155" cy="120" r="70" stroke="#f42582" />
-    </Wrapper>
+    </StyledWrapper>
   );
 };
 

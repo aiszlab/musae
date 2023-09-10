@@ -1,8 +1,8 @@
 import styled from "@emotion/styled";
-import type { WrapperProps } from "./types";
+import type { LabelRenderProps, WrapperProps } from "./types";
 import { useValidTheme } from "../theme/hooks";
 
-export const Wrapper = styled.fieldset<WrapperProps>(({ isFocused, theme }) => {
+export const StyledWrapper = styled.fieldset<WrapperProps>(({ isFocused, theme }) => {
   const validTheme = useValidTheme(theme);
 
   return {
@@ -29,10 +29,28 @@ export const Wrapper = styled.fieldset<WrapperProps>(({ isFocused, theme }) => {
 
 export const StyledInput = styled.input(() => {
   return {
-    padding: 0,
+    padding: "0 0.75rem",
     backgroundColor: "transparent",
     outline: "none",
     border: "none",
     height: "auto",
+  };
+});
+
+export const StyledLabel = styled.legend<LabelRenderProps>(({ isFocused, theme }) => {
+  const validTheme = useValidTheme(theme);
+
+  return {
+    // typography
+    ...validTheme.typography?.body?.small!,
+
+    // layout
+    paddingInlineStart: 4,
+    paddingInlineEnd: 4,
+
+    // if input is focused
+    ...(isFocused && {
+      color: validTheme.colors?.primary,
+    }),
   };
 });

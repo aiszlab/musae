@@ -2,8 +2,7 @@ import React, { useMemo, forwardRef, useRef, useImperativeHandle } from "react";
 import { useStyles } from "./hooks";
 import type { InputRef, InputProps, UsedInputProps, Variant } from "./types";
 import { useBoolean } from "@aiszlab/relax";
-import Label from "./label";
-import { Wrapper, StyledInput } from "./styled";
+import { StyledWrapper, StyledInput, StyledLabel } from "./styled";
 
 /**
  * @author murukal
@@ -25,7 +24,7 @@ const Input = forwardRef<InputRef, InputProps>((props, ref) => {
   const variant = useMemo<Variant>(() => props.variant || "outlined", [props.variant]);
 
   /// style
-  const { wrapperClassName } = useStyles([variant, isFocused, props.className]);
+  const { wrapperClassName } = useStyles([props.className]);
 
   /// used input props
   const inputProps = useMemo<UsedInputProps>(() => {
@@ -46,15 +45,15 @@ const Input = forwardRef<InputRef, InputProps>((props, ref) => {
 
   /// render
   return (
-    <Wrapper ref={wrapperRef} className={wrapperClassName} isFocused={isFocused}>
+    <StyledWrapper ref={wrapperRef} className={wrapperClassName} isFocused={isFocused}>
       {/* prefix */}
       {props.prefix}
 
       {/* label */}
       {!!props.label && (
-        <Label isFocused={isFocused} className="musae-input-label">
+        <StyledLabel isFocused={isFocused} className="musae-input-label">
           {props.label}
-        </Label>
+        </StyledLabel>
       )}
 
       {/* input */}
@@ -62,7 +61,7 @@ const Input = forwardRef<InputRef, InputProps>((props, ref) => {
 
       {/* suffix */}
       {props.suffix}
-    </Wrapper>
+    </StyledWrapper>
   );
 });
 
