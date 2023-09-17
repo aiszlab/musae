@@ -3,7 +3,7 @@ import { useValidTheme } from "../theme/hooks";
 
 export const Wrapper = styled.input(({ theme }) => {
   const validTheme = useValidTheme(theme);
-  const primaryColor = validTheme.colors?.primary;
+  const primaryColor = validTheme.palettes?.primary[40];
 
   return {
     margin: 0,

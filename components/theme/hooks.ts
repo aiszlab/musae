@@ -89,13 +89,6 @@ const palettes: Palettes = {
  * let ui components display well
  */
 export const DEFAULT_THEME: Theme = {
-  colors: {
-    primary: palettes.primary[40],
-    secondary: palettes.secondary[40],
-    tertiary: palettes.tertiary[40],
-    error: palettes.error[40],
-  },
-
   typography: {
     body: {
       small: {

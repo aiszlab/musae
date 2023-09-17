@@ -1,7 +1,6 @@
-import type { ButtonProps } from "./types";
-import { Wrapper } from "./styled";
-import Span from "./span";
-import React from "react";
+import type { ButtonProps, Variant } from "./types";
+import { Wrapper, Span } from "./styled";
+import React, { useMemo } from "react";
 
 /**
  * @author murukal
@@ -9,9 +8,13 @@ import React from "react";
  * @description
  * button
  */
-const Button = ({ children, className, onClick }: ButtonProps) => {
+const Button = ({ children, className, onClick, ...props }: ButtonProps) => {
+  /// get which variant is using
+  /// variant determin style
+  const variant = useMemo<Variant>(() => props.variant || "filled", [props.variant]);
+
   return (
-    <Wrapper onClick={onClick} className={className}>
+    <Wrapper onClick={onClick} className={className} variant={variant}>
       <Span>{children}</Span>
     </Wrapper>
   );

@@ -27,7 +27,7 @@ export const Wrapper = styled.input(({ theme }) => {
     "&[aria-checked=true]": {
       "::after": {
         borderWidth: "0.3rem",
-        borderColor: validTheme.colors?.primary,
+        borderColor: validTheme.palettes?.primary[40],
       },
     },
   };

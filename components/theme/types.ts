@@ -11,10 +11,6 @@ type Elevation = Pick<CSSProperties, "boxShadow">;
  * declaration for theme
  */
 export interface Theme {
-  colors?: {
-    [key in ColorProperty]?: string;
-  };
-
   typography?: {
     body?: {
       small?: Typography;
