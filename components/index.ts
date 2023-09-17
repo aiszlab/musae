@@ -12,6 +12,7 @@ export { Switch } from "./switch";
 export { Radio, RadioGroup } from "./radio";
 export { Checkbox } from "./checkbox";
 export { Row } from "./row";
+export { Col } from "./col";
 export { Divider } from "./divider";
 
 /**

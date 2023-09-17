@@ -1,5 +1,5 @@
 import type { ButtonProps, Variant } from "./types";
-import { Wrapper, Span } from "./styled";
+import { StyledWrapper, StyledSpan } from "./styled";
 import React, { useMemo } from "react";
 
 /**
@@ -14,9 +14,9 @@ const Button = ({ children, className, onClick, ...props }: ButtonProps) => {
   const variant = useMemo<Variant>(() => props.variant || "filled", [props.variant]);
 
   return (
-    <Wrapper onClick={onClick} className={className} variant={variant}>
-      <Span>{children}</Span>
-    </Wrapper>
+    <StyledWrapper onClick={onClick} className={className} variant={variant}>
+      <StyledSpan>{children}</StyledSpan>
+    </StyledWrapper>
   );
 };
 

@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { useValidTheme } from "../theme/hooks";
 import type { ButtonRenderProps } from "./types";
 
-export const Wrapper = styled.button<ButtonRenderProps>(({ theme, variant }) => {
+export const StyledWrapper = styled.button<ButtonRenderProps>(({ theme, variant }) => {
   const validTheme = useValidTheme(theme);
 
   return {
@@ -57,7 +57,7 @@ export const Wrapper = styled.button<ButtonRenderProps>(({ theme, variant }) => 
  * @description
  * content
  */
-export const Span = styled.span(({ theme }) => {
+export const StyledSpan = styled.span(({ theme }) => {
   const validTheme = useValidTheme(theme);
 
   return {
