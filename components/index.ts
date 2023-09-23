@@ -14,12 +14,14 @@ export { Checkbox } from "./checkbox";
 export { Row } from "./row";
 export { Col } from "./col";
 export { Divider } from "./divider";
+export { ThemeProvider } from "./theme";
 
 /**
  * @description
  * hooks
  */
 export { useMessage } from "./message";
+export { useTheme } from "./theme";
 
 /**
  * @description
