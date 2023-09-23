@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { RowRenderProps } from "./types";
+import type { RowRenderProps } from "./types";
 
 export const StyledWrapper = styled.div<RowRenderProps>(({ gutters }) => {
   return {
