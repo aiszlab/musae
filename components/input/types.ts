@@ -1,12 +1,14 @@
-import type { DetailedHTMLProps, InputHTMLAttributes, ReactNode, RefObject } from "react";
+import type { DetailedHTMLProps, InputHTMLAttributes, ReactNode } from "react";
 
 /**
- * @description Variant
+ * @description
+ * Variant
  */
 export type Variant = "outlined" | "filled" | "standard";
 
 /**
- * @description component props
+ * @description
+ * component props
  */
 export interface InputProps {
   /* label for input */
@@ -44,7 +46,8 @@ export interface InputProps {
 }
 
 /**
- * @description label props
+ * @description
+ * label props
  */
 export interface LabelRenderProps {
   /* focused */
@@ -52,7 +55,8 @@ export interface LabelRenderProps {
 }
 
 /**
- * @description used input props
+ * @description
+ * used input props
  */
 export type UsedInputProps = Pick<
   DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>,
@@ -60,7 +64,8 @@ export type UsedInputProps = Pick<
 >;
 
 /**
- * @description input ref
+ * @description
+ * input ref
  */
 export interface InputRef {
   /* input ref */
@@ -71,7 +76,8 @@ export interface InputRef {
 }
 
 /**
- * @description wrapper props
+ * @description
+ * wrapper props
  */
 export interface WrapperProps {
   /* focused */
