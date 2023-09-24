@@ -15,11 +15,11 @@ export interface ButtonProps {
   /* variant */
   variant?: Variant;
 
-  /* children */
-  children?: ReactNode;
-
   /* click handler */
   onClick?: MouseEventHandler<HTMLButtonElement>;
+
+  /* children */
+  children?: ReactNode;
 }
 
 /**

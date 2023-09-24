@@ -35,6 +35,7 @@ export const StyledInput = styled.input(() => {
     outline: "none",
     border: "none",
     height: "auto",
+    flex: 1,
   };
 });
 
