@@ -18,6 +18,7 @@ export const StyledWrapper = styled.fieldset<WrapperProps>(({ isFocused, theme }
     borderStyle: "solid",
     borderRadius: 4,
     boxSizing: "border-box",
+    transition: "all 100ms",
 
     // if input is focused, change the border
     ...(isFocused && {
