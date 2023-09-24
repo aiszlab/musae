@@ -10,7 +10,11 @@ const Row = (props: RowProps) => {
     return [props.gutter, 0];
   }, [props.gutter]);
 
-  return <StyledWrapper gutters={gutters}>{props.children}</StyledWrapper>;
+  return (
+    <StyledWrapper gutters={gutters} justify={props.justify} align={props.align}>
+      {props.children}
+    </StyledWrapper>
+  );
 };
 
 export default Row;
