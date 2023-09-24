@@ -103,6 +103,11 @@ export const DEFAULT_THEME: Theme = {
       },
     },
     label: {
+      small: {
+        fontSize: 11,
+        fontWeight: 500,
+        lineHeight: "16px",
+      },
       large: {
         fontSize: 14,
         fontWeight: 500,
@@ -141,10 +146,10 @@ export const DEFAULT_THEME: Theme = {
  * @description
  * use valid theme for components
  */
-export const useValidTheme = (usedTheme: Theme) =>
+export const useValidTheme = (usedTheme: Partial<Theme>) =>
   useMemo<Theme>(() => {
     if (isEmpty(usedTheme)) return DEFAULT_THEME;
-    return usedTheme;
+    return usedTheme as Theme;
   }, [usedTheme]);
 
 /**
