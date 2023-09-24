@@ -48,6 +48,13 @@ export const StyledWrapper = styled.button<ButtonRenderProps>(({ theme, variant 
         color: validTheme.palettes?.secondary[10],
       },
     }),
+
+    // text variant style
+    ...(variant === "text" && {
+      span: {
+        color: validTheme.palettes?.primary[40],
+      },
+    }),
   };
 });
 
