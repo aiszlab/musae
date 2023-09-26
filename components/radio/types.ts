@@ -32,6 +32,9 @@ export interface RadioGroupProps {
  * radio props
  */
 export interface RadioProps {
-  /* value */
+  /* value for current radio */
   value: string;
+
+  /* controller radio is checked */
+  isChecked?: boolean;
 }

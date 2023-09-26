@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { useValidTheme } from "../theme/hooks";
 
-export const Wrapper = styled.input(({ theme }) => {
+export const StyledWrapper = styled.input(({ theme }) => {
   const validTheme = useValidTheme(theme);
 
   return {
