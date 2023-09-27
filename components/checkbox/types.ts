@@ -7,7 +7,7 @@ import { ReactNode } from "react";
  * context value
  */
 export interface ContextValue {
-  value?: string;
+  value?: Map<string, boolean>;
   onChange: (value: string) => void;
 }
 
@@ -34,4 +34,15 @@ export interface CheckboxProps {
 
   /* value */
   value?: string;
+}
+
+/**
+ * @author murukal
+ *
+ * @description
+ * typed Checkbox, with group property
+ */
+export interface TypedCheckbox {
+  (props: CheckboxProps): JSX.Element;
+  Group: (props: CheckboxGroupProps) => JSX.Element;
 }

@@ -1,3 +1,6 @@
-import Checkbox from "./checkbox";
+import _Checkbox from "./checkbox";
+import Group from "./group";
 
-export { Checkbox };
+export const Checkbox = Object.assign(_Checkbox, {
+  Group,
+});

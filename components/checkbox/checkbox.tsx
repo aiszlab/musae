@@ -1,35 +1,41 @@
-import React, { ChangeEventHandler, useCallback, useContext, useMemo } from "react";
-import { Wrapper } from "./styled";
+import React, { ChangeEventHandler, useCallback, useContext, useId, useMemo } from "react";
+import { StyledWrapper } from "./styled";
 import { useControlledState } from "@aiszlab/relax";
-import { CheckboxProps } from "./types";
 import Context from "./context";
+import type { CheckboxProps } from "./types";
 
 const Checkbox = (props: CheckboxProps) => {
   const contextValue = useContext(Context);
+  const id = useId();
 
-  const controlledIsChecked = useMemo(() => {
-    if (props.isChecked !== void 0) {
-      return props.isChecked;
+  /// use controlled state
+  const [_isChecked, _setIsChecked] = useControlledState(!!props.isChecked);
+
+  /// check current checkbox is checked
+  /// if there is context value, use context value
+  /// else use controlled state
+  const isChecked = useMemo<boolean>(() => {
+    if (contextValue) {
+      return !!contextValue.value?.get(props.value || id);
     }
-
-    if (contextValue?.value === void 0) {
-      return void 0;
-    }
-
-    return contextValue.value === props.value;
-  }, [props.isChecked, props.value, contextValue?.value]);
-
-  const [isChecked, setIsChecked] = useControlledState(controlledIsChecked);
+    return _isChecked;
+  }, [contextValue?.value]);
 
   /// change handler
+  /// if there is context value, just notify context
+  /// else change the controlled state
   const change = useCallback<ChangeEventHandler<HTMLInputElement>>(
     (event) => {
-      setIsChecked(event.target.checked);
+      if (contextValue) {
+        contextValue.onChange(props.value || id);
+        return;
+      }
+      _setIsChecked(event.target.checked);
     },
-    [setIsChecked]
+    [_setIsChecked, contextValue?.onChange]
   );
 
-  return <Wrapper type="checkbox" checked={!!isChecked} aria-checked={!!isChecked} onChange={change} />;
+  return <StyledWrapper type="checkbox" checked={!!isChecked} aria-checked={!!isChecked} onChange={change} />;
 };
 
 export default Checkbox;
