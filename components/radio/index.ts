@@ -1,4 +1,7 @@
-import Radio from "./radio";
+import _Radio from "./radio";
 import RadioGroup from "./group";
+import type { TypedRadio } from "./types";
 
-export { Radio, RadioGroup };
+export const Radio: TypedRadio = Object.assign(_Radio, {
+  Group: RadioGroup,
+});

@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import type { ReactNode, JSX } from "react";
 
 /**
  * @author murukal
@@ -37,4 +37,15 @@ export interface RadioProps {
 
   /* controller radio is checked */
   isChecked?: boolean;
+}
+
+/**
+ * @author murukal
+ *
+ * @description
+ * typed Radio, with group property
+ */
+export interface TypedRadio {
+  (props: RadioProps): JSX.Element;
+  Group: (props: RadioGroupProps) => JSX.Element;
 }
