@@ -21,3 +21,13 @@ export interface RowRenderProps extends Pick<RowProps, "justify" | "align"> {
   /* gutters */
   gutters: Gutters;
 }
+
+export interface ColProps {
+  /* span */
+  span?: number;
+
+  /* children */
+  children: ReactNode;
+}
+
+export type ColRenderProps = Required<Pick<ColProps, "span">>;

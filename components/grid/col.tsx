@@ -1,12 +1,12 @@
 import React, { useMemo } from "react";
-import { StyledWrapper } from "./styled";
+import { StyledColWrapper } from "./styled";
 import type { ColProps } from "./types";
 
 const Col = (props: ColProps) => {
   /// span
   const span = useMemo(() => props.span ?? 8, [props.span]);
 
-  return <StyledWrapper span={span}>{props.children}</StyledWrapper>;
+  return <StyledColWrapper span={span}>{props.children}</StyledColWrapper>;
 };
 
 export default Col;

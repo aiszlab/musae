@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import type { RowProps, RowRenderProps } from "./types";
-import { StyledWrapper } from "./styled";
+import { StyledRowWrapper } from "./styled";
 
 const Row = (props: RowProps) => {
   /// col and row gap in grid
@@ -11,9 +11,9 @@ const Row = (props: RowProps) => {
   }, [props.gutter]);
 
   return (
-    <StyledWrapper gutters={gutters} justify={props.justify} align={props.align}>
+    <StyledRowWrapper gutters={gutters} justify={props.justify} align={props.align}>
       {props.children}
-    </StyledWrapper>
+    </StyledRowWrapper>
   );
 };
 

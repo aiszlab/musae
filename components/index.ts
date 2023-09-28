@@ -11,8 +11,7 @@ export { Button } from "./button";
 export { Switch } from "./switch";
 export { Radio } from "./radio";
 export { Checkbox } from "./checkbox";
-export { Row } from "./row";
-export { Col } from "./col";
+export { Grid } from "./grid";
 export { Divider } from "./divider";
 export { ThemeProvider } from "./theme";
 
