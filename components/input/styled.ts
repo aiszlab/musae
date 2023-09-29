@@ -13,7 +13,7 @@ export const StyledWrapper = styled.fieldset<WrapperProps>(({ isFocused, theme }
     paddingBottom: 0,
     display: "flex",
     alignItems: "center",
-    borderColor: validTheme.palettes?.neutral[50],
+    borderColor: validTheme.palettes.neutral[50],
     borderWidth: 1,
     borderStyle: "solid",
     borderRadius: 4,
@@ -22,7 +22,7 @@ export const StyledWrapper = styled.fieldset<WrapperProps>(({ isFocused, theme }
 
     // if input is focused, change the border
     ...(isFocused && {
-      borderColor: validTheme.palettes?.primary[40],
+      borderColor: validTheme.palettes.primary[40],
       borderWidth: 2,
     }),
   };
@@ -52,7 +52,7 @@ export const StyledLabel = styled.legend<LabelRenderProps>(({ isFocused, theme }
 
     // if input is focused
     ...(isFocused && {
-      color: validTheme.palettes?.primary[40],
+      color: validTheme.palettes.primary[40],
     }),
   };
 });

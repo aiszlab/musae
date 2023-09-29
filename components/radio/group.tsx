@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo } from "react";
 import Context from "./context";
-import { ContextValue, RadioGroupProps } from "./types";
+import { ContextValue, RadioGroupProps, Value } from "./types";
 import { useControlledState } from "@aiszlab/relax";
 
 const Group = (props: RadioGroupProps) => {
@@ -8,8 +8,8 @@ const Group = (props: RadioGroupProps) => {
   const [selectedValue, setSelectedValue] = useControlledState(props.value);
 
   /// value change handler
-  const change = useCallback(
-    (value: string) => {
+  const change = useCallback<ContextValue["onChange"]>(
+    (value) => {
       setSelectedValue(value);
     },
     [setSelectedValue]

@@ -1,5 +1,5 @@
 import React, { useCallback, useContext, useMemo } from "react";
-import { StyledWrapper } from "./styled";
+import { StyledInput, StyledWrapper } from "./styled";
 import Context from "./context";
 import { RadioProps } from "./types";
 import { useControlledState } from "@aiszlab/relax";
@@ -16,7 +16,7 @@ const Radio = (props: RadioProps) => {
     if (contextValue) {
       return props.value === contextValue.value;
     }
-    return _isChecked;
+    return !!_isChecked;
   }, [props.value, contextValue?.value, _isChecked]);
 
   /// change handler for radio
@@ -33,7 +33,12 @@ const Radio = (props: RadioProps) => {
     _setIsChecked(true);
   }, [isChecked, contextValue?.onChange, props.value]);
 
-  return <StyledWrapper type="radio" aria-checked={isChecked} checked={isChecked} onChange={change} />;
+  return (
+    <StyledWrapper className="musae-radio-wrapper">
+      <StyledInput type="radio" aria-checked={isChecked} checked={isChecked} onChange={change} />
+      {props.children}
+    </StyledWrapper>
+  );
 };
 
 export default Radio;

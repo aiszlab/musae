@@ -26,8 +26,8 @@ export const Wrapper = styled.div(({ theme }) => {
     },
 
     "&[aria-selected=true]": {
-      borderColor: validTheme.palettes?.primary[40],
-      backgroundColor: validTheme.palettes?.primary[40],
+      borderColor: validTheme.palettes.primary[40],
+      backgroundColor: validTheme.palettes.primary[40],
 
       "::before": {
         translate: "100%",

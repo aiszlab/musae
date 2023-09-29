@@ -1,5 +1,7 @@
 import type { ReactNode, JSX } from "react";
 
+export type Value = string | number | undefined;
+
 /**
  * @author murukal
  *
@@ -7,8 +9,11 @@ import type { ReactNode, JSX } from "react";
  * context value
  */
 export interface ContextValue {
-  value?: string;
-  onChange: (value: string) => void;
+  /* context value */
+  value: Value;
+
+  /* change handler */
+  onChange: (value: Value) => void;
 }
 
 /**
@@ -22,7 +27,7 @@ export interface RadioGroupProps {
   children: ReactNode;
 
   /* value */
-  value?: string;
+  value?: Value;
 }
 
 /**
@@ -33,10 +38,13 @@ export interface RadioGroupProps {
  */
 export interface RadioProps {
   /* value for current radio */
-  value: string;
+  value?: Value;
 
   /* controller radio is checked */
   isChecked?: boolean;
+
+  /* children */
+  children?: ReactNode;
 }
 
 /**
@@ -46,6 +54,9 @@ export interface RadioProps {
  * typed Radio, with group property
  */
 export interface TypedRadio {
+  /* component self */
   (props: RadioProps): JSX.Element;
+
+  /* group */
   Group: (props: RadioGroupProps) => JSX.Element;
 }

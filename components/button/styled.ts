@@ -11,11 +11,11 @@ export const StyledWrapper = styled.button<ButtonRenderProps>(({ theme, variant 
 
     // filled variant style
     ...(variant === "filled" && {
-      backgroundColor: validTheme.palettes?.primary[40],
+      backgroundColor: validTheme.palettes.primary[40],
       border: "none",
 
       span: {
-        color: validTheme.palettes?.primary[100],
+        color: validTheme.palettes.primary[100],
       },
     }),
 
@@ -23,36 +23,36 @@ export const StyledWrapper = styled.button<ButtonRenderProps>(({ theme, variant 
     ...(variant === "outlined" && {
       borderWidth: 1,
       borderStyle: "solid",
-      borderColor: validTheme.palettes?.neutral[50],
+      borderColor: validTheme.palettes.neutral[50],
 
       span: {
-        color: validTheme.palettes?.primary[40],
+        color: validTheme.palettes.primary[40],
       },
     }),
 
     // elevated variant style
     ...(variant === "elevated" && {
-      backgroundColor: validTheme.palettes?.neutral[95],
+      backgroundColor: validTheme.palettes.neutral[95],
       boxShadow: validTheme.elevations?.[1].boxShadow,
 
       span: {
-        color: validTheme.palettes?.primary[40],
+        color: validTheme.palettes.primary[40],
       },
     }),
 
     // tonal variant style
     ...(variant === "tonal" && {
-      backgroundColor: validTheme.palettes?.secondary[90],
+      backgroundColor: validTheme.palettes.secondary[90],
 
       span: {
-        color: validTheme.palettes?.secondary[10],
+        color: validTheme.palettes.secondary[10],
       },
     }),
 
     // text variant style
     ...(variant === "text" && {
       span: {
-        color: validTheme.palettes?.primary[40],
+        color: validTheme.palettes.primary[40],
       },
     }),
   };

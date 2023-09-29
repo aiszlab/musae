@@ -28,12 +28,12 @@ export const StyledMenuItemWrapper = styled.div<
     transition: "all 300ms",
 
     ...(props.isSelected && {
-      backgroundColor: theme.palettes?.primary[90],
-      color: theme.palettes?.primary[40],
+      backgroundColor: theme.palettes.primary[90],
+      color: theme.palettes.primary[40],
     }),
 
     ":hover": {
-      backgroundColor: theme.palettes?.neutral[90],
+      backgroundColor: theme.palettes.neutral[90],
     },
   };
 });
