@@ -6,7 +6,12 @@ import { useControlledState } from "@aiszlab/relax";
 
 const Radio = (props: RadioProps) => {
   const contextValue = useContext(Context);
-  const [_isChecked, _setIsChecked] = useControlledState(props.isChecked);
+  const [_isChecked, _setIsChecked] = useControlledState(props.checked);
+
+  const isDisabled = useMemo(
+    () => contextValue?.isDisabled ?? props.disabled ?? false,
+    [contextValue?.isDisabled, props.disabled]
+  );
 
   /// check current radio is checked
   /// if current radio is in provider, use provider context value first
@@ -31,11 +36,11 @@ const Radio = (props: RadioProps) => {
     }
     // change self state
     _setIsChecked(true);
-  }, [isChecked, contextValue?.onChange, props.value]);
+  }, [isChecked, contextValue?.onChange, props.value, isDisabled]);
 
   return (
-    <StyledWrapper className="musae-radio-wrapper">
-      <StyledInput type="radio" aria-checked={isChecked} checked={isChecked} onChange={change} />
+    <StyledWrapper className="musae-radio-wrapper" disabled={isDisabled}>
+      <StyledInput type="radio" aria-checked={isChecked} checked={isChecked} onChange={change} disabled={isDisabled} />
       {props.children}
     </StyledWrapper>
   );

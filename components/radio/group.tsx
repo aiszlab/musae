@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo } from "react";
 import Context from "./context";
-import { ContextValue, RadioGroupProps, Value } from "./types";
+import { ContextValue, RadioGroupProps } from "./types";
 import { useControlledState } from "@aiszlab/relax";
 
 const Group = (props: RadioGroupProps) => {
@@ -20,8 +20,9 @@ const Group = (props: RadioGroupProps) => {
     () => ({
       value: selectedValue,
       onChange: change,
+      isDisabled: !!props.disabled,
     }),
-    [selectedValue, change]
+    [selectedValue, change, props.disabled]
   );
 
   return <Context.Provider value={contextValue}>{props.children}</Context.Provider>;

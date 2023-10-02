@@ -46,8 +46,7 @@ const Item = ({ level = 0, label, children, prefix, id }: MenuItemRenderProps) =
 
     // when item has children, mean this is menu group
     // when click it, handler collapser
-    if (!scope.current) return;
-
+    // if (!scope.current) return;
     animate(scope.current, {
       height: isCollapsed ? "auto" : 0,
     });

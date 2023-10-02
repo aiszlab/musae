@@ -2,8 +2,9 @@ import styled from "@emotion/styled";
 import { useValidTheme } from "../theme/hooks";
 import type { ButtonRenderProps } from "./types";
 
-export const StyledWrapper = styled.button<ButtonRenderProps>(({ theme, variant }) => {
+export const StyledWrapper = styled.button<ButtonRenderProps>(({ theme, variant, color }) => {
   const validTheme = useValidTheme(theme);
+  const _primaryColor = validTheme.palettes[color][40];
 
   return {
     borderRadius: 999,
@@ -11,7 +12,7 @@ export const StyledWrapper = styled.button<ButtonRenderProps>(({ theme, variant 
 
     // filled variant style
     ...(variant === "filled" && {
-      backgroundColor: validTheme.palettes.primary[40],
+      backgroundColor: _primaryColor,
       border: "none",
 
       span: {
@@ -26,33 +27,14 @@ export const StyledWrapper = styled.button<ButtonRenderProps>(({ theme, variant 
       borderColor: validTheme.palettes.neutral[50],
 
       span: {
-        color: validTheme.palettes.primary[40],
-      },
-    }),
-
-    // elevated variant style
-    ...(variant === "elevated" && {
-      backgroundColor: validTheme.palettes.neutral[95],
-      boxShadow: validTheme.elevations?.[1].boxShadow,
-
-      span: {
-        color: validTheme.palettes.primary[40],
-      },
-    }),
-
-    // tonal variant style
-    ...(variant === "tonal" && {
-      backgroundColor: validTheme.palettes.secondary[90],
-
-      span: {
-        color: validTheme.palettes.secondary[10],
+        color: _primaryColor,
       },
     }),
 
     // text variant style
     ...(variant === "text" && {
       span: {
-        color: validTheme.palettes.primary[40],
+        color: _primaryColor,
       },
     }),
   };

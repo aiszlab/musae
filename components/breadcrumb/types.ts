@@ -12,6 +12,12 @@ export interface BreadcrumbProps {
    * breadcrumb items
    */
   items: BreadcrumbItemProps[];
+
+  /**
+   * @description
+   * separator
+   */
+  separator?: ReactNode;
 }
 
 /**

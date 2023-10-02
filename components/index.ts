@@ -13,7 +13,10 @@ export { Radio } from "./radio";
 export { Checkbox } from "./checkbox";
 export { Grid } from "./grid";
 export { Divider } from "./divider";
+export { Breadcrumb } from "./breadcrumb";
+export { Tabs } from "./tabs";
 export { ThemeProvider } from "./theme";
+export { ConfigProvider } from "./config";
 
 /**
  * @description

@@ -1,5 +1,5 @@
 import { MessageWrapper } from "./styled";
-import React, { type FC } from "react";
+import React from "react";
 import type { MessageProps } from "./types";
 import { useTimeout } from "@aiszlab/relax";
 

@@ -9,7 +9,7 @@ const Checkbox = (props: CheckboxProps) => {
   const id = useId();
 
   /// use controlled state
-  const [_isChecked, _setIsChecked] = useControlledState(!!props.isChecked);
+  const [_isChecked, _setIsChecked] = useControlledState(!!props.checked);
 
   /// check current checkbox is checked
   /// if there is context value, use context value

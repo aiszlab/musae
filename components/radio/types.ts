@@ -14,6 +14,29 @@ export interface ContextValue {
 
   /* change handler */
   onChange: (value: Value) => void;
+
+  /* disabled */
+  isDisabled: boolean;
+}
+
+/**
+ * @author murukal
+ *
+ * @description
+ * radio props
+ */
+export interface RadioProps {
+  /* value for current radio */
+  value?: Value;
+
+  /* controller radio is checked */
+  checked?: boolean;
+
+  /* children */
+  children?: ReactNode;
+
+  /* disabled */
+  disabled?: boolean;
 }
 
 /**
@@ -28,23 +51,9 @@ export interface RadioGroupProps {
 
   /* value */
   value?: Value;
-}
 
-/**
- * @author murukal
- *
- * @description
- * radio props
- */
-export interface RadioProps {
-  /* value for current radio */
-  value?: Value;
-
-  /* controller radio is checked */
-  isChecked?: boolean;
-
-  /* children */
-  children?: ReactNode;
+  /* disabled */
+  disabled?: boolean;
 }
 
 /**
@@ -59,4 +68,15 @@ export interface TypedRadio {
 
   /* group */
   Group: (props: RadioGroupProps) => JSX.Element;
+}
+
+/**
+ * @author murukal
+ *
+ * @description
+ * render props
+ */
+export interface RadioRenderProps {
+  /* disabled */
+  disabled: boolean;
 }

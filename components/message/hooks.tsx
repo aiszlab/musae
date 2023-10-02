@@ -1,17 +1,22 @@
-import React, { ReactPortal, useCallback, useRef, useState } from "react";
+import React, { type ReactPortal, useCallback, useRef, useContext } from "react";
 import { createPortal } from "react-dom";
 import Holder from "./holder";
 import { MessageRef } from "./types";
+import { useOnceState } from "@aiszlab/relax";
+import ConfigContext from "../config/context";
 
 /**
  * @author murukal
- * @description hook for message
+ *
+ * @description
+ * hook for message
  */
-export const useMessage = () => {
+export const useMessage = (): [any, ReactPortal] => {
   const ref = useRef<MessageRef>(null);
+  const configuredMessageHolder = useContext(ConfigContext)?.messageHolder;
 
-  const [holder] = useState<ReactPortal>(() => {
-    return createPortal(<Holder ref={ref} />, document.body);
+  const holder = useOnceState<ReactPortal>(() => {
+    return configuredMessageHolder || createPortal(<Holder ref={ref} />, document.body);
   });
 
   const error = useCallback(() => {

@@ -30,7 +30,7 @@ export interface CheckboxGroupProps {
  */
 export interface CheckboxProps {
   /* if is checked */
-  isChecked?: boolean;
+  checked?: boolean;
 
   /* value */
   value?: string;
