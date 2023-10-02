@@ -3,9 +3,9 @@
 
 
 "@aiszlab/relax@^1.0.14":
-  version "1.0.14"
-  resolved "https://registry.npmjs.org/@aiszlab/relax/-/relax-1.0.14.tgz#509ce70ca39e332e49b06e88eed29d692629ea5c"
-  integrity sha512-Rti0K9Jg2KbsskLVZMhKZSIAyERQfnZZpD4Y+8yX1eWZzQPr4qEJa5RQDCRDqlJs8u8OYeHUHWPjQNMPRCmqzQ==
+  version "1.0.17"
+  resolved "https://registry.yarnpkg.com/@aiszlab/relax/-/relax-1.0.17.tgz#0076f6e8158b31203b8a74c32eb448b192c66345"
+  integrity sha512-nm+sWfxGotK7M32vh4uN+Bhp74VDcYjVS34UeYAk32yaWm+t/QCHbb11wz2pTD8KSNExBeprDEg8iYzQ1Gvpyg==
   dependencies:
     rxjs "^7.8.1"
 
