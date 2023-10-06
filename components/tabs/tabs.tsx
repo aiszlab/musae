@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useRef } from "react";
-import { _StyledTabs, _StyledIndicator } from "./styled";
+import { StyledTabs, StyledIndicator } from "./styled";
 import { useControlledState } from "@aiszlab/relax";
 import { useAnimate } from "framer-motion";
 import type { ContextValue, TabsProps } from "./types";
@@ -49,12 +49,12 @@ const Tabs = (props: TabsProps) => {
   /// render tabs
   return (
     <_Provider value={contextValue}>
-      <_StyledTabs role="tablist">
+      <StyledTabs role="tablist">
         {props.items.map((tabItem) => {
           return <Item key={tabItem.key} value={tabItem.key} label={tabItem.label} onClick={onItemClick} />;
         })}
-        <_StyledIndicator ref={indicatorScope} />
-      </_StyledTabs>
+        <StyledIndicator ref={indicatorScope} />
+      </StyledTabs>
     </_Provider>
   );
 };

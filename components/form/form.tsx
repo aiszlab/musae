@@ -1,18 +1,33 @@
-import React, { useMemo } from "react";
-import Context from "./context";
-import { ContextValue, FormProps } from "./types";
+import React, { ForwardedRef, forwardRef, useEffect, useMemo } from "react";
+import { FormProps, Form } from "./types";
+import { useForm, type FieldValues, FormProvider } from "react-hook-form";
+import { Input } from "../input";
 
-const _Provider = Context.Provider;
+const Form = forwardRef(<T extends FieldValues = FieldValues>(props: FormProps<T>, ref: ForwardedRef<Form>) => {
+  /// use react hook form
+  const methods = useForm<T>();
 
-const Form = <T,>(props: FormProps<T>) => {
-  const contextValue = useMemo<ContextValue<T>>(() => {
-    return {
-      values: "1" as unknown as T,
-      onChange: () => {},
-    };
-  }, []);
+  const _submit = useMemo(() => {
+    return methods.handleSubmit((values) => {
+      props.onSubmit?.(values);
+    });
+  }, [props.onSubmit, methods.handleSubmit]);
 
-  return <_Provider value={contextValue}></_Provider>;
-};
+  useEffect(() => {
+    const subscription = methods.watch((values, { type }) => {
+      type === "change" && props.onChange?.(values);
+    });
+
+    return subscription.unsubscribe;
+  }, [props.onChange, methods.watch]);
+
+  return (
+    <FormProvider {...methods}>
+      <form onSubmit={_submit} onChange={(e) => {}}>
+        {props.children}
+      </form>
+    </FormProvider>
+  );
+});
 
 export default Form;

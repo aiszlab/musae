@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { useValidTheme } from "../theme/hooks";
 
-export const _StyledTabs = styled.div(({ theme }) => {
+export const StyledTabs = styled.div(({ theme }) => {
   const _theme = useValidTheme(theme);
 
   return {
@@ -12,7 +12,7 @@ export const _StyledTabs = styled.div(({ theme }) => {
   };
 });
 
-export const _StyledIndicator = styled.div(({ theme }) => {
+export const StyledIndicator = styled.div(({ theme }) => {
   const _theme = useValidTheme(theme);
 
   return {

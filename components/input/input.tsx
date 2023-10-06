@@ -1,6 +1,6 @@
-import React, { useMemo, forwardRef, useRef, useImperativeHandle } from "react";
+import React, { useMemo, forwardRef, useRef, useImperativeHandle, useCallback, FocusEventHandler } from "react";
 import { useStyles } from "./hooks";
-import type { InputRef, InputProps, UsedInputProps, Variant } from "./types";
+import type { InputProps, Variant } from "./types";
 import { useBoolean } from "@aiszlab/relax";
 import { StyledWrapper, StyledInput, StyledLabel } from "./styled";
 
@@ -8,56 +8,64 @@ import { StyledWrapper, StyledInput, StyledLabel } from "./styled";
  * @author murukal
  * @description input component
  */
-const Input = forwardRef<InputRef, InputProps>((props, ref) => {
-  const inputRef = useRef<HTMLInputElement>(null);
-  const wrapperRef = useRef<HTMLFieldSetElement>(null);
+const Input = forwardRef<Partial<HTMLInputElement>, InputProps>((props, ref) => {
+  const _ref = useRef<HTMLInputElement>(null);
 
-  useImperativeHandle(ref, () => ({
-    input: inputRef.current,
-    wrapper: wrapperRef.current,
-  }));
+  useImperativeHandle(ref, () => {
+    return {
+      value: _ref.current!.value,
+      name: _ref.current!.name,
+      blur: _ref.current!.blur,
+    } as Partial<HTMLInputElement>;
+  });
 
   /// is focused
-  const { isOn: isFocused, turnOn: focus, turnOff: blur } = useBoolean();
-
+  const { isOn: isFocused, turnOn: _focus, turnOff: _blur } = useBoolean();
   /// variant
   const variant = useMemo<Variant>(() => props.variant || "outlined", [props.variant]);
-
   /// style
   const { wrapperClassName } = useStyles([props.className]);
 
-  /// used input props
-  const inputProps = useMemo<UsedInputProps>(() => {
-    return {
-      onFocus: (event) => {
-        focus();
-        props.onFocus?.(event);
-      },
-      onBlur: (event) => {
-        blur();
-        props.onBlur?.(event);
-      },
-      type: props.type || "text",
-      ref: inputRef,
-      className: "musae-input",
-    };
-  }, [focus, blur, props.type, props.onFocus, props.onBlur]);
+  const focus = useCallback<FocusEventHandler<HTMLInputElement>>(
+    (e) => {
+      _focus();
+      props.onFocus?.(e);
+    },
+    [props.onFocus]
+  );
 
-  /// render
+  const blur = useCallback<FocusEventHandler<HTMLInputElement>>(
+    (e) => {
+      _blur();
+      props.onBlur?.(e);
+    },
+    [props.onBlur]
+  );
+
   return (
-    <StyledWrapper ref={wrapperRef} className={wrapperClassName} isFocused={isFocused}>
+    <StyledWrapper className={wrapperClassName} focused={isFocused} invalid={!!props.invalid}>
       {/* prefix */}
       {props.prefix}
 
       {/* label */}
       {!!props.label && (
-        <StyledLabel isFocused={isFocused} className="musae-input-label">
+        <StyledLabel focused={isFocused} className="musae-input-label">
           {props.label}
         </StyledLabel>
       )}
 
       {/* input */}
-      <StyledInput {...inputProps} />
+      <StyledInput
+        name={props.name}
+        value={props.value}
+        className="musae-input"
+        type={props.type}
+        ref={_ref}
+        aria-invalid={props.invalid}
+        onFocus={focus}
+        onBlur={blur}
+        onChange={props.onChange}
+      />
 
       {/* suffix */}
       {props.suffix}

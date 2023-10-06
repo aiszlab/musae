@@ -1,4 +1,4 @@
-import type { DetailedHTMLProps, InputHTMLAttributes, ReactNode } from "react";
+import type { AriaAttributes, DOMAttributes, DetailedHTMLProps, InputHTMLAttributes, ReactNode } from "react";
 
 /**
  * @description
@@ -10,7 +10,8 @@ export type Variant = "outlined" | "filled" | "standard";
  * @description
  * component props
  */
-export interface InputProps {
+export interface InputProps
+  extends Pick<InputHTMLAttributes<HTMLInputElement>, "onFocus" | "onBlur" | "onChange" | "name" | 'value'> {
   /* label for input */
   label?: string;
 
@@ -35,14 +36,11 @@ export interface InputProps {
   /* class name */
   className?: string;
 
-  /* change handler */
-  onChange?: VoidFunction;
-
-  /* focus handler */
-  onFocus?: UsedInputProps["onFocus"];
-
-  /* blur handler */
-  onBlur?: UsedInputProps["onBlur"];
+  /**
+   * @description
+   * invalid
+   */
+  invalid?: boolean;
 }
 
 /**
@@ -51,35 +49,20 @@ export interface InputProps {
  */
 export interface LabelRenderProps {
   /* focused */
-  isFocused: boolean;
-}
-
-/**
- * @description
- * used input props
- */
-export type UsedInputProps = Pick<
-  DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>,
-  "onFocus" | "onBlur" | "type" | "ref" | "className"
->;
-
-/**
- * @description
- * input ref
- */
-export interface InputRef {
-  /* input ref */
-  input: HTMLInputElement | null;
-
-  /* wrapper ref */
-  wrapper: HTMLFieldSetElement | null;
+  focused: boolean;
 }
 
 /**
  * @description
  * wrapper props
  */
-export interface WrapperProps {
+export interface WrapperRenderProps {
   /* focused */
-  isFocused: boolean;
+  focused: boolean;
+
+  /**
+   * @description
+   * invalid
+   */
+  invalid: boolean;
 }

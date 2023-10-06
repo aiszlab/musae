@@ -1,8 +1,8 @@
 import styled from "@emotion/styled";
-import type { LabelRenderProps, WrapperProps } from "./types";
+import type { LabelRenderProps, WrapperRenderProps } from "./types";
 import { useValidTheme } from "../theme/hooks";
 
-export const StyledWrapper = styled.fieldset<WrapperProps>(({ isFocused, theme }) => {
+export const StyledWrapper = styled.fieldset<WrapperRenderProps>(({ focused, invalid, theme }) => {
   const validTheme = useValidTheme(theme);
 
   return {
@@ -21,8 +21,14 @@ export const StyledWrapper = styled.fieldset<WrapperProps>(({ isFocused, theme }
     transition: "all 100ms",
 
     // if input is focused, change the border
-    ...(isFocused && {
+    ...(focused && {
       borderColor: validTheme.palettes.primary[40],
+      borderWidth: 2,
+    }),
+
+    // if is invalid, display as error
+    ...(invalid && {
+      borderColor: validTheme.palettes.error[40],
       borderWidth: 2,
     }),
   };
@@ -39,7 +45,7 @@ export const StyledInput = styled.input(() => {
   };
 });
 
-export const StyledLabel = styled.legend<LabelRenderProps>(({ isFocused, theme }) => {
+export const StyledLabel = styled.legend<LabelRenderProps>(({ focused, theme }) => {
   const validTheme = useValidTheme(theme);
 
   return {
@@ -51,7 +57,7 @@ export const StyledLabel = styled.legend<LabelRenderProps>(({ isFocused, theme }
     paddingInlineEnd: 4,
 
     // if input is focused
-    ...(isFocused && {
+    ...(focused && {
       color: validTheme.palettes.primary[40],
     }),
   };
