@@ -2,7 +2,8 @@ import { useMemo } from "react";
 import clsx from "clsx";
 
 /**
- * @description class name for input
+ * @description
+ * class name for input
  */
 export const useStyles = ([className]: [className?: string]) => {
   /// wrapper

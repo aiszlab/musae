@@ -29,7 +29,6 @@ export const StyledWrapper = styled.fieldset<WrapperRenderProps>(({ focused, inv
     // if is invalid, display as error
     ...(invalid && {
       borderColor: validTheme.palettes.error[40],
-      borderWidth: 2,
     }),
   };
 });
