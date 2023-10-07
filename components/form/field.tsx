@@ -11,14 +11,14 @@ import { FieldRenderProps } from "../../types/element";
  */
 const Field = (props: RequiredIn<FormItemProps, "name">) => {
   const {
-    field,
+    field: { onBlur, onChange, name, value },
     fieldState: { invalid, error },
   } = useController({
     name: props.name,
   });
 
   const children = useMemo(() => {
-    const _isValidElement = !isValidElement<FieldRenderProps>(props.children);
+    const _isValidElement = isValidElement<FieldRenderProps>(props.children);
     if (!_isValidElement) return props.children;
     const _child = props.children as ReactElement<FieldRenderProps>;
 
@@ -26,21 +26,22 @@ const Field = (props: RequiredIn<FormItemProps, "name">) => {
     const handlers: Pick<FieldRenderProps, "onChange" | "onBlur"> = {
       onChange: (...args) => {
         _child.props.onChange?.(...args);
-        field.onChange(...args);
+        onChange(...args);
       },
       onBlur: (...args) => {
         _child.props.onBlur?.(...args);
-        field.onBlur();
+        onBlur();
       },
     };
 
     /// registe react hook form
     return cloneElement(props.children as ReactElement<FieldRenderProps>, {
-      ...field,
+      name,
+      value,
       ...handlers,
       invalid,
     });
-  }, [props.children, field, invalid]);
+  }, [props.children, onChange, onBlur, invalid, name]);
 
   return (
     <div>

@@ -1,7 +1,6 @@
 import React, { ForwardedRef, forwardRef, useEffect, useMemo } from "react";
 import { FormProps, Form } from "./types";
 import { useForm, type FieldValues, FormProvider } from "react-hook-form";
-import { Input } from "../input";
 
 const Form = forwardRef(<T extends FieldValues = FieldValues>(props: FormProps<T>, ref: ForwardedRef<Form>) => {
   /// use react hook form
@@ -23,9 +22,7 @@ const Form = forwardRef(<T extends FieldValues = FieldValues>(props: FormProps<T
 
   return (
     <FormProvider {...methods}>
-      <form onSubmit={_submit} onChange={(e) => {}}>
-        {props.children}
-      </form>
+      <form onSubmit={_submit}>{props.children}</form>
     </FormProvider>
   );
 });

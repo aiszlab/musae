@@ -80,5 +80,5 @@ export interface FormItemProps {
  */
 export interface TypedForm<T extends FieldValues = FieldValues> extends ExoticComponent<FormProps<T>> {
   /* group */
-  Item: (props: FormItemProps) => JSX.Element;
+  Item: (props: FormItemProps) => ReactNode;
 }

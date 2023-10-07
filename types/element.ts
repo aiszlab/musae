@@ -15,6 +15,12 @@ export interface FieldRenderProps<T = unknown> {
 
   /**
    * @description
+   * value
+   */
+  value: unknown;
+
+  /**
+   * @description
    * invalid
    */
   invalid?: boolean;
