@@ -72,3 +72,9 @@ export interface WrapperRenderProps {
    */
   invalid: boolean;
 }
+
+/**
+ * @description
+ * input ref
+ */
+export type InputRef = HTMLInputElement | null;

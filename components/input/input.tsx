@@ -8,7 +8,7 @@ import React, {
   ChangeEventHandler,
 } from "react";
 import { useStyles } from "./hooks";
-import type { InputProps, Variant } from "./types";
+import type { InputProps, InputRef, Variant } from "./types";
 import { useBoolean } from "@aiszlab/relax";
 import { StyledWrapper, StyledInput, StyledLabel } from "./styled";
 
@@ -16,15 +16,11 @@ import { StyledWrapper, StyledInput, StyledLabel } from "./styled";
  * @author murukal
  * @description input component
  */
-const Input = forwardRef<Partial<HTMLInputElement>, InputProps>((props, ref) => {
+const Input = forwardRef<InputRef, InputProps>((props, ref) => {
   const _ref = useRef<HTMLInputElement>(null);
 
-  useImperativeHandle(ref, () => {
-    return {
-      value: _ref.current!.value,
-      name: _ref.current!.name,
-      blur: _ref.current!.blur,
-    } as Partial<HTMLInputElement>;
+  useImperativeHandle<InputRef, InputRef>(ref, () => {
+    return _ref.current;
   });
 
   /// is focused
