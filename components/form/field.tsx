@@ -41,7 +41,7 @@ const Field = (props: RequiredIn<FormItemProps, "name">) => {
       ...handlers,
       invalid,
     });
-  }, [props.children, onChange, onBlur, invalid, name]);
+  }, [props.children, onChange, onBlur, invalid, name, value]);
 
   return (
     <div>

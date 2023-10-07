@@ -9,7 +9,7 @@ import React, {
 } from "react";
 import { useStyles } from "./hooks";
 import type { InputProps, InputRef, Variant } from "./types";
-import { useBoolean } from "@aiszlab/relax";
+import { useBoolean, useControlledState } from "@aiszlab/relax";
 import { StyledWrapper, StyledInput, StyledLabel } from "./styled";
 
 /**
@@ -23,6 +23,10 @@ const Input = forwardRef<InputRef, InputProps>((props, ref) => {
     return _ref.current;
   });
 
+  /// controlled value
+  const [_value, _setValue] = useControlledState(props.value, {
+    defaultState: "",
+  });
   /// is focused
   const { isOn: isFocused, turnOn: _focus, turnOff: _blur } = useBoolean();
   /// variant
@@ -69,7 +73,7 @@ const Input = forwardRef<InputRef, InputProps>((props, ref) => {
       {/* input */}
       <StyledInput
         name={props.name}
-        value={props.value}
+        value={_value}
         className="musae-input"
         type={props.type}
         ref={_ref}
