@@ -1,4 +1,12 @@
-import React, { useMemo, forwardRef, useRef, useImperativeHandle, useCallback, FocusEventHandler } from "react";
+import React, {
+  useMemo,
+  forwardRef,
+  useRef,
+  useImperativeHandle,
+  useCallback,
+  FocusEventHandler,
+  ChangeEventHandler,
+} from "react";
 import { useStyles } from "./hooks";
 import type { InputProps, Variant } from "./types";
 import { useBoolean } from "@aiszlab/relax";
@@ -42,6 +50,14 @@ const Input = forwardRef<Partial<HTMLInputElement>, InputProps>((props, ref) => 
     [props.onBlur]
   );
 
+  /// change handler
+  const change = useCallback<ChangeEventHandler<HTMLInputElement>>(
+    (e) => {
+      props.onChange?.(e.target.value);
+    },
+    [props.onChange]
+  );
+
   return (
     <StyledWrapper className={wrapperClassName} focused={isFocused} invalid={!!props.invalid}>
       {/* prefix */}
@@ -64,7 +80,7 @@ const Input = forwardRef<Partial<HTMLInputElement>, InputProps>((props, ref) => 
         aria-invalid={props.invalid}
         onFocus={focus}
         onBlur={blur}
-        onChange={props.onChange}
+        onChange={change}
       />
 
       {/* suffix */}
