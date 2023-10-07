@@ -3,6 +3,7 @@ import type { BreadcrumbProps } from "./types";
 import { StyledNav, StyledSeparator } from "./styled";
 
 const _SEPARATOR = "/";
+const _ROLE = "separator";
 
 const Breadcrumb = (props: BreadcrumbProps) => {
   /// render the children
@@ -24,7 +25,7 @@ const Breadcrumb = (props: BreadcrumbProps) => {
           )}
         </li>,
         !_isLastElement && (
-          <StyledSeparator key={`separator${_index}`} role="separator">
+          <StyledSeparator key={`${_ROLE}${_index}`} role={_ROLE}>
             {_separator}
           </StyledSeparator>
         ),

@@ -3,10 +3,10 @@ import type { FocusEventHandler, FormEventHandler, RefCallback } from "react";
 /**
  * @author murukal
  * @description
- * form item need pass some props
+ * field need pass some props
  * use this props as common
  */
-export interface RegistedElementProps<T = unknown> {
+export interface FieldRenderProps<T = unknown> {
   /**
    * @description
    * name
@@ -29,11 +29,11 @@ export interface RegistedElementProps<T = unknown> {
    * @description
    * change handler
    */
-  onChange: FormEventHandler<T>;
+  onChange: (...args: unknown[]) => void;
 
   /**
    * @description
    * blur handler
    */
-  onBlur: FocusEventHandler<T>;
+  onBlur: (...args: unknown[]) => void;
 }
