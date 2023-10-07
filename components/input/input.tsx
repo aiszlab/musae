@@ -53,6 +53,7 @@ const Input = forwardRef<InputRef, InputProps>((props, ref) => {
   /// change handler
   const change = useCallback<ChangeEventHandler<HTMLInputElement>>(
     (e) => {
+      _setValue(e.target.value);
       props.onChange?.(e.target.value);
     },
     [props.onChange]

@@ -15,6 +15,9 @@ const Field = (props: RequiredIn<FormItemProps, "name">) => {
     fieldState: { invalid, error },
   } = useController({
     name: props.name,
+    rules: {
+      required: props.required,
+    },
   });
 
   const children = useMemo(() => {

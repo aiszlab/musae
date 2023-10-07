@@ -4,7 +4,9 @@ import { useForm, type FieldValues, FormProvider } from "react-hook-form";
 
 const Form = forwardRef(<T extends FieldValues = FieldValues>(props: FormProps<T>, ref: ForwardedRef<Form>) => {
   /// use react hook form
-  const methods = useForm<T>();
+  const methods = useForm<T>({
+    mode: "all",
+  });
 
   const _submit = useMemo(() => {
     return methods.handleSubmit((values) => {
