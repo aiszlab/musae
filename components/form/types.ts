@@ -1,17 +1,46 @@
 import type { ExoticComponent, ReactNode } from "react";
-import type { DeepPartial, FieldValues } from "react-hook-form";
+import type {
+  DeepPartial,
+  FieldError,
+  FieldErrors,
+  FieldPath,
+  FieldValues,
+  UseFormGetValues,
+  UseFormTrigger,
+} from "react-hook-form";
 
 /**
  * @author murukal
  * @description
  * form ref
  */
-export interface Form {
+export interface FormRef<T extends FieldValues> {
   /**
    * @description
    * validate
+   * api design: for simple, just return boolean, it will not be rejected
+   * if consumer want get errors, pls use api: getFieldsError after trigger validate
    */
-  validate: () => Promise<boolean>;
+  validate: UseFormTrigger<T>;
+
+  /**
+   * @description
+   * get fields error
+   * after trigger validate, fields may have error, pls use this api to get error message
+   */
+  getFieldsError: (namePaths?: FieldPath<T>[]) => FieldErrors<T> | null;
+
+  /**
+   * @description
+   * get single field value
+   */
+  getFieldError: (namePath: FieldPath<T>) => FieldError | undefined;
+
+  /**
+   * @description
+   * get single field error
+   */
+  getValues: UseFormGetValues<T>;
 }
 
 /**
