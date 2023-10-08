@@ -1,8 +1,12 @@
-import React, { isValidElement, useMemo, cloneElement, ReactElement } from "react";
-import { FormItemProps } from "./types";
+import React, { isValidElement, useMemo, cloneElement, ReactElement, ReactNode, useContext } from "react";
+import { ContextValue, FormItemProps } from "./types";
 import { RequiredIn } from "../../types/lib";
 import { useController } from "react-hook-form";
 import { FieldRenderProps } from "../../types/element";
+import Context from "./context";
+import { Grid } from "../grid";
+
+const { Row, Col } = Grid;
 
 /**
  * @description
@@ -48,9 +52,31 @@ const Field = (props: RequiredIn<FormItemProps, "name">) => {
 
   return (
     <div>
-      {children}
-      {!!error?.message && <span>{error.message}</span>}
+      <_Grid label={props.label}>{children}</_Grid>
+      {/* {!!error?.message && <span>{error.message}</span>} */}
     </div>
+  );
+};
+
+/**
+ * @description
+ * item grid
+ */
+export const _Grid = (props: {
+  children: ReactNode;
+  label?: string;
+  labelCol?: ContextValue["labelCol"];
+  wrapperCol?: ContextValue["wrapperCol"];
+}) => {
+  const contextValue = useContext(Context);
+  const labelCol = props.labelCol ?? contextValue.labelCol;
+  const wrapperCol = props.wrapperCol ?? contextValue.wrapperCol;
+
+  return (
+    <Row gutter={[0, 8]}>
+      {!!labelCol && props.label && <Col span={labelCol}>{props.label}</Col>}
+      <Col span={wrapperCol}>{props.children}</Col>
+    </Row>
   );
 };
 

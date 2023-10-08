@@ -74,6 +74,18 @@ export interface FormProps<T> {
    * form submit handler
    */
   onSubmit?: (values: T) => void;
+
+  /**
+   * @description
+   * label col
+   */
+  labelCol?: ContextValue["labelCol"];
+
+  /**
+   * @description
+   * wrapper col
+   */
+  wrapperCol?: ContextValue["wrapperCol"];
 }
 
 /**
@@ -82,7 +94,7 @@ export interface FormProps<T> {
  *
  * form item props
  */
-export interface FormItemProps {
+export interface FormItemProps extends Pick<FormProps<unknown>, "labelCol" | "wrapperCol"> {
   /**
    * @description
    * name
@@ -100,6 +112,12 @@ export interface FormItemProps {
    * required
    */
   required?: boolean;
+
+  /**
+   * @description
+   * label
+   */
+  label?: string;
 }
 
 /**
@@ -110,4 +128,23 @@ export interface FormItemProps {
 export interface TypedForm<T extends FieldValues = FieldValues> extends ExoticComponent<FormProps<T>> {
   /* group */
   Item: (props: FormItemProps) => ReactNode;
+}
+
+/**
+ * @author murukal
+ * @description
+ * form context
+ */
+export interface ContextValue {
+  /**
+   * @description
+   * labelCol
+   */
+  labelCol: number;
+
+  /**
+   * @description
+   * wrapperCol
+   */
+  wrapperCol: number;
 }

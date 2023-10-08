@@ -1,12 +1,13 @@
 import React, { useMemo } from "react";
 import type { RowProps, RowRenderProps } from "./types";
 import { StyledRowWrapper } from "./styled";
+import { isArray } from "../../utils/array";
 
 const Row = (props: RowProps) => {
   /// col and row gap in grid
   const gutters = useMemo<RowRenderProps["gutters"]>(() => {
     if (!props.gutter) return [0, 0];
-    if (Array.isArray(props.gutter)) return props.gutter;
+    if (isArray(props.gutter)) return props.gutter;
     return [props.gutter, 0];
   }, [props.gutter]);
 

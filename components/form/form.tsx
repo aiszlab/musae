@@ -1,7 +1,8 @@
 import React, { ForwardedRef, forwardRef, useEffect, useImperativeHandle, useMemo } from "react";
-import { FormProps, FormRef } from "./types";
+import { ContextValue, FormProps, FormRef } from "./types";
 import { useForm, type FieldValues, FormProvider, FieldErrors, FieldPath } from "react-hook-form";
 import { isVoid } from "../../utils/undefined";
+import Context, { DEFAULT_CONTEXT_VALUE } from "./context";
 
 const Form = forwardRef(<T extends FieldValues = FieldValues>(props: FormProps<T>, ref: ForwardedRef<FormRef<T>>) => {
   /// use react hook form
@@ -47,10 +48,24 @@ const Form = forwardRef(<T extends FieldValues = FieldValues>(props: FormProps<T
     return subscription.unsubscribe;
   }, [props.onChange, methods.watch]);
 
+  /// context value
+  const contextValue = useMemo<ContextValue>(() => {
+    return Object.assign({}, DEFAULT_CONTEXT_VALUE, {
+      ...(!!props.labelCol && {
+        labelCol: props.labelCol,
+      }),
+      ...(!!props.wrapperCol && {
+        wrapperCol: props.wrapperCol,
+      }),
+    });
+  }, []);
+
   return (
-    <FormProvider {...methods}>
-      <form onSubmit={_submit}>{props.children}</form>
-    </FormProvider>
+    <Context.Provider value={contextValue}>
+      <FormProvider {...methods}>
+        <form onSubmit={_submit}>{props.children}</form>
+      </FormProvider>
+    </Context.Provider>
   );
 });
 

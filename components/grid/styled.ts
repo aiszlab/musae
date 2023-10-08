@@ -6,7 +6,7 @@ export const StyledRowWrapper = styled.div<RowRenderProps>(({ gutters, justify, 
     display: "grid",
     gridTemplateColumns: "repeat(24, minmax(0, 1fr))",
     columnGap: gutters[0],
-    rowGap: gutters[0],
+    rowGap: gutters[1],
     justifyItems: justify,
     alignItems: align,
   };
