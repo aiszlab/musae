@@ -5,20 +5,40 @@ import { useValidTheme } from "../theme/hooks";
  * @description
  * styled help wrapper
  */
-export const StyledHelpWrapper = styled.div({
-  display: "flex",
-  flexDirection: "column",
+export const StyledSupportingText = styled.div(({ theme }) => {
+  const _theme = useValidTheme(theme);
+
+  return {
+    display: "flex",
+    flexDirection: "column",
+
+    span: {
+      ..._theme.typography.body.small,
+      padding: "4px 16px 0 16px",
+    },
+
+    ".musae-form-item-explain-error": {
+      color: _theme.palettes.error[40],
+    },
+  };
 });
 
 /**
  * @description
- * styled error wrapper
+ * styled label
  */
-export const StyledErrorWrapper = styled.span(({ theme }) => {
+export const StyledLabel = styled.span(({ theme }) => {
   const _theme = useValidTheme(theme);
 
   return {
-    color: _theme.palettes.error[40],
-    ..._theme.typography.body.small,
+    ..._theme.typography.label.small,
   };
+});
+
+/**
+ * @description
+ * styled form
+ */
+export const StyledForm = styled.form({
+  width: "100%",
 });

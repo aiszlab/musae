@@ -3,6 +3,7 @@ import { ContextValue, FormProps, FormRef } from "./types";
 import { useForm, type FieldValues, FormProvider, FieldErrors, FieldPath } from "react-hook-form";
 import { isVoid } from "../../utils/undefined";
 import Context, { DEFAULT_CONTEXT_VALUE } from "./context";
+import { StyledForm } from "./styled";
 
 const Form = forwardRef(<T extends FieldValues = FieldValues>(props: FormProps<T>, ref: ForwardedRef<FormRef<T>>) => {
   /// use react hook form
@@ -63,7 +64,7 @@ const Form = forwardRef(<T extends FieldValues = FieldValues>(props: FormProps<T
   return (
     <Context.Provider value={contextValue}>
       <FormProvider {...methods}>
-        <form onSubmit={_submit}>{props.children}</form>
+        <StyledForm onSubmit={_submit}>{props.children}</StyledForm>
       </FormProvider>
     </Context.Provider>
   );

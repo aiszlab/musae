@@ -6,8 +6,9 @@ export const StyledWrapper = styled.fieldset<WrapperRenderProps>(({ focused, inv
   const _theme = useValidTheme(theme);
 
   return {
+    height: 36,
+    width: "100%",
     textAlign: "start",
-    height: 56,
     margin: 0,
     paddingTop: 0,
     paddingBottom: 0,
@@ -44,12 +45,16 @@ export const StyledInput = styled.input(() => {
   };
 });
 
+/**
+ * @description
+ * styled label
+ */
 export const StyledLabel = styled.legend<LabelRenderProps>(({ focused, theme }) => {
   const _theme = useValidTheme(theme);
 
   return {
     // typography
-    ..._theme.typography?.body?.small!,
+    ..._theme.typography.body.small,
 
     // layout
     paddingInlineStart: 4,

@@ -12,7 +12,7 @@ const Select = <Value extends string | number>(props: SelectProps<Value>) => {
 
   const menuItems = useMenuItems([props.options]);
 
-  const _open = () => {};
+  console.log("isVisible====", isVisible);
 
   return (
     <>
@@ -20,6 +20,7 @@ const Select = <Value extends string | number>(props: SelectProps<Value>) => {
 
       <Popper trigger={ref.current} isVisible={isVisible}>
         <Menu items={menuItems} />
+        <div>12321321</div>
       </Popper>
     </>
   );

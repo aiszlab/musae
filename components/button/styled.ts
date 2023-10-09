@@ -54,6 +54,6 @@ export const StyledSpan = styled.span(({ theme }) => {
     marginRight: 8,
 
     /// typography
-    ..._theme.typography?.label?.large,
+    ..._theme.typography.label.large,
   };
 });

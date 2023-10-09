@@ -12,7 +12,7 @@ const Row = (props: RowProps) => {
   }, [props.gutter]);
 
   return (
-    <StyledRowWrapper gutters={gutters} justify={props.justify} align={props.align}>
+    <StyledRowWrapper gutters={gutters} justify={props.justify} align={props.align} className="musae-row">
       {props.children}
     </StyledRowWrapper>
   );

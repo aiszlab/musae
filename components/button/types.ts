@@ -10,7 +10,7 @@ export type Color = "primary" | "secondary" | "neutral";
  * @description
  * button render props
  */
-export interface ButtonProps extends Pick<HTMLButtonElement, "type"> {
+export interface ButtonProps extends Partial<Pick<HTMLButtonElement, "type">> {
   /* class name */
   className?: string;
 

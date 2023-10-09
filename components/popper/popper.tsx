@@ -13,7 +13,7 @@ const Popper = ({ children, isVisible, trigger }: PopperProps) => {
     if (!ref.current) return void 0;
 
     const popper = createPopper(trigger, ref.current, {
-      placement: "bottom",
+      placement: "bottom-start",
     });
 
     return () => {

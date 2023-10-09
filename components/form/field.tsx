@@ -5,7 +5,7 @@ import { useController } from "react-hook-form";
 import { FieldRenderProps } from "../../types/element";
 import Context from "./context";
 import { Grid } from "../grid";
-import { StyledErrorWrapper, StyledHelpWrapper } from "./styled";
+import { StyledLabel, StyledSupportingText } from "./styled";
 
 const { Row, Col } = Grid;
 
@@ -21,7 +21,10 @@ const Field = (props: RequiredIn<FormItemProps, "name">) => {
   } = useController({
     name: props.name,
     rules: {
-      required: props.required,
+      required: {
+        value: !!props.required,
+        message: `${props.name} is required`,
+      },
     },
   });
 
@@ -52,12 +55,13 @@ const Field = (props: RequiredIn<FormItemProps, "name">) => {
   }, [props.children, onChange, onBlur, invalid, name, value]);
 
   return (
-    <div>
+    <div className="musae-form-item">
       <_Grid label={props.label}>
         <div>{children}</div>
-        <StyledHelpWrapper>
-          {!!error?.message && <StyledErrorWrapper>{error?.message}</StyledErrorWrapper>}
-        </StyledHelpWrapper>
+
+        <StyledSupportingText>
+          {!!error?.message && <span className="musae-form-item-explain-error">{error?.message}</span>}
+        </StyledSupportingText>
       </_Grid>
     </div>
   );
@@ -79,7 +83,14 @@ export const _Grid = (props: {
 
   return (
     <Row gutter={[0, 8]}>
-      {!!labelCol && props.label && <Col span={labelCol}>{props.label}</Col>}
+      {/* label */}
+      {!!labelCol && props.label && (
+        <Col span={labelCol}>
+          <StyledLabel>{props.label}</StyledLabel>
+        </Col>
+      )}
+
+      {/* input */}
       <Col span={wrapperCol}>{props.children}</Col>
     </Row>
   );
