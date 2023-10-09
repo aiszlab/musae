@@ -16,7 +16,7 @@ export const StyledWrapper = styled.label<RadioRenderProps>(({ disabled }) => {
 });
 
 export const StyledInput = styled.input<RadioRenderProps>(({ theme, disabled }) => {
-  const validTheme = useValidTheme(theme);
+  const _theme = useValidTheme(theme);
 
   return {
     visibility: "hidden",
@@ -37,7 +37,7 @@ export const StyledInput = styled.input<RadioRenderProps>(({ theme, disabled }) 
       boxSizing: "border-box",
       borderWidth: 1,
       borderStyle: "solid",
-      borderColor: validTheme.palettes.neutral[50],
+      borderColor: _theme.palettes.neutral[50],
       borderRadius: 999,
       transition: "all 200ms",
     },
@@ -45,7 +45,7 @@ export const StyledInput = styled.input<RadioRenderProps>(({ theme, disabled }) 
     "&[aria-checked=true]": {
       "::after": {
         ...(!disabled && {
-          borderColor: validTheme.palettes.primary[50],
+          borderColor: _theme.palettes.primary[50],
           borderWidth: "0.3rem",
         }),
       },
@@ -57,7 +57,7 @@ export const StyledInput = styled.input<RadioRenderProps>(({ theme, disabled }) 
           visibility: "visible",
           height: "0.5rem",
           width: "0.5rem",
-          backgroundColor: validTheme.palettes.primary[30],
+          backgroundColor: _theme.palettes.primary[30],
           borderRadius: 999,
         },
       }),

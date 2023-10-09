@@ -3,8 +3,8 @@ import { useValidTheme } from "../theme/hooks";
 import type { ButtonRenderProps } from "./types";
 
 export const StyledWrapper = styled.button<ButtonRenderProps>(({ theme, variant, color }) => {
-  const validTheme = useValidTheme(theme);
-  const _primaryColor = validTheme.palettes[color][40];
+  const _theme = useValidTheme(theme);
+  const _primaryColor = _theme.palettes[color][40];
 
   return {
     borderRadius: 999,
@@ -16,7 +16,7 @@ export const StyledWrapper = styled.button<ButtonRenderProps>(({ theme, variant,
       border: "none",
 
       span: {
-        color: validTheme.palettes.primary[100],
+        color: _theme.palettes.primary[100],
       },
     }),
 
@@ -24,7 +24,7 @@ export const StyledWrapper = styled.button<ButtonRenderProps>(({ theme, variant,
     ...(variant === "outlined" && {
       borderWidth: 1,
       borderStyle: "solid",
-      borderColor: validTheme.palettes.neutral[50],
+      borderColor: _theme.palettes.neutral[50],
 
       span: {
         color: _primaryColor,
@@ -47,13 +47,13 @@ export const StyledWrapper = styled.button<ButtonRenderProps>(({ theme, variant,
  * content
  */
 export const StyledSpan = styled.span(({ theme }) => {
-  const validTheme = useValidTheme(theme);
+  const _theme = useValidTheme(theme);
 
   return {
     marginLeft: 8,
     marginRight: 8,
 
     /// typography
-    ...validTheme.typography?.label?.large,
+    ..._theme.typography?.label?.large,
   };
 });

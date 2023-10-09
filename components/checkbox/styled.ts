@@ -2,8 +2,8 @@ import styled from "@emotion/styled";
 import { useValidTheme } from "../theme/hooks";
 
 export const StyledWrapper = styled.input(({ theme }) => {
-  const validTheme = useValidTheme(theme);
-  const primaryColor = validTheme.palettes.primary[40];
+  const _theme = useValidTheme(theme);
+  const primaryColor = _theme.palettes.primary[40];
 
   return {
     margin: 0,

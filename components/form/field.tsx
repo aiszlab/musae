@@ -5,6 +5,7 @@ import { useController } from "react-hook-form";
 import { FieldRenderProps } from "../../types/element";
 import Context from "./context";
 import { Grid } from "../grid";
+import { StyledErrorWrapper, StyledHelpWrapper } from "./styled";
 
 const { Row, Col } = Grid;
 
@@ -52,8 +53,12 @@ const Field = (props: RequiredIn<FormItemProps, "name">) => {
 
   return (
     <div>
-      <_Grid label={props.label}>{children}</_Grid>
-      {/* {!!error?.message && <span>{error.message}</span>} */}
+      <_Grid label={props.label}>
+        <div>{children}</div>
+        <StyledHelpWrapper>
+          {!!error?.message && <StyledErrorWrapper>{error?.message}</StyledErrorWrapper>}
+        </StyledHelpWrapper>
+      </_Grid>
     </div>
   );
 };

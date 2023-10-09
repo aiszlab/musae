@@ -3,7 +3,7 @@ import type { LabelRenderProps, WrapperRenderProps } from "./types";
 import { useValidTheme } from "../theme/hooks";
 
 export const StyledWrapper = styled.fieldset<WrapperRenderProps>(({ focused, invalid, theme }) => {
-  const validTheme = useValidTheme(theme);
+  const _theme = useValidTheme(theme);
 
   return {
     textAlign: "start",
@@ -13,7 +13,7 @@ export const StyledWrapper = styled.fieldset<WrapperRenderProps>(({ focused, inv
     paddingBottom: 0,
     display: "flex",
     alignItems: "center",
-    borderColor: validTheme.palettes.neutral[50],
+    borderColor: _theme.palettes.neutral[50],
     borderWidth: 1,
     borderStyle: "solid",
     borderRadius: 4,
@@ -22,13 +22,13 @@ export const StyledWrapper = styled.fieldset<WrapperRenderProps>(({ focused, inv
 
     // if input is focused, change the border
     ...(focused && {
-      borderColor: validTheme.palettes.primary[40],
+      borderColor: _theme.palettes.primary[40],
       borderWidth: 2,
     }),
 
     // if is invalid, display as error
     ...(invalid && {
-      borderColor: validTheme.palettes.error[40],
+      borderColor: _theme.palettes.error[40],
     }),
   };
 });
@@ -45,11 +45,11 @@ export const StyledInput = styled.input(() => {
 });
 
 export const StyledLabel = styled.legend<LabelRenderProps>(({ focused, theme }) => {
-  const validTheme = useValidTheme(theme);
+  const _theme = useValidTheme(theme);
 
   return {
     // typography
-    ...validTheme.typography?.body?.small!,
+    ..._theme.typography?.body?.small!,
 
     // layout
     paddingInlineStart: 4,
@@ -57,7 +57,7 @@ export const StyledLabel = styled.legend<LabelRenderProps>(({ focused, theme }) 
 
     // if input is focused
     ...(focused && {
-      color: validTheme.palettes.primary[40],
+      color: _theme.palettes.primary[40],
     }),
   };
 });

@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { useValidTheme } from "../theme/hooks";
 
 export const Wrapper = styled.div(({ theme }) => {
-  const validTheme = useValidTheme(theme);
+  const _theme = useValidTheme(theme);
 
   return {
     width: "1.8rem",
@@ -26,8 +26,8 @@ export const Wrapper = styled.div(({ theme }) => {
     },
 
     "&[aria-selected=true]": {
-      borderColor: validTheme.palettes.primary[40],
-      backgroundColor: validTheme.palettes.primary[40],
+      borderColor: _theme.palettes.primary[40],
+      backgroundColor: _theme.palettes.primary[40],
 
       "::before": {
         translate: "100%",
