@@ -6,6 +6,7 @@ import { FieldRenderProps } from "../../types/element";
 import Context from "./context";
 import { Grid } from "../grid";
 import { StyledLabel, StyledSupportingText } from "./styled";
+import { isRefable } from "@aiszlab/relax";
 
 const { Row, Col } = Grid;
 
@@ -16,7 +17,7 @@ const { Row, Col } = Grid;
  */
 const Field = (props: RequiredIn<FormItemProps, "name">) => {
   const {
-    field: { onBlur, onChange, name, value },
+    field: { onBlur, onChange, name, value, ref },
     fieldState: { invalid, error },
   } = useController({
     name: props.name,
@@ -51,6 +52,9 @@ const Field = (props: RequiredIn<FormItemProps, "name">) => {
       value,
       ...handlers,
       invalid,
+      ...(isRefable(props.children) && {
+        ref,
+      }),
     });
   }, [props.children, onChange, onBlur, invalid, name, value]);
 

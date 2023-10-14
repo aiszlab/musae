@@ -2,11 +2,12 @@
 # yarn lockfile v1
 
 
-"@aiszlab/relax@1.0.19":
-  version "1.0.19"
-  resolved "https://registry.npmjs.org/@aiszlab/relax/-/relax-1.0.19.tgz#f864f955da722431b9d24fd14286e4ee5a22390d"
-  integrity sha512-rW/bo/IwnbH0UATie1TvI6Dw1JZwyOjo4SzKWbzebNU3wybCEbk+0QL7gWxstpYRkLNYqQDVZya4+qgnFGGa6g==
+"@aiszlab/relax@^1.0.22":
+  version "1.0.22"
+  resolved "https://registry.npmjs.org/@aiszlab/relax/-/relax-1.0.22.tgz#df53fa7e36237f5cf34dc7294e441fd7f94b43da"
+  integrity sha512-+6foPuYlZZsWHwcVCFBqL/y+/52Gl7WIXOXf296FS1yx+/Y/eTty5jt1LXeDSuJr4RxgEEc6RUAKr8nqLDvGdw==
   dependencies:
+    react-is "^18.2.0"
     rxjs "^7.8.1"
 
 "@ampproject/remapping@^2.2.0":
@@ -1611,6 +1612,11 @@ react-is@^16.7.0:
   version "16.13.1"
   resolved "https://registry.npmjs.org/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
+
+react-is@^18.2.0:
+  version "18.2.0"
+  resolved "https://registry.npmjs.org/react-is/-/react-is-18.2.0.tgz#199431eeaaa2e09f86427efbb4f1473edb47609b"
+  integrity sha512-xWGDIW6x921xtzPkhiULtthJHoJvBbF3q26fzloPCK0hsvxtPVelvftw3zjbHWSkR2km9Z+4uxbDDK/6Zw9B8w==
 
 regenerate-unicode-properties@^10.1.0:
   version "10.1.1"
