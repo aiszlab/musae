@@ -7,14 +7,31 @@ import type { ReactNode } from "react";
  * popper props
  */
 export interface PopperProps {
-  /* children */
+  /**
+   * @description
+   * children
+   */
   children: ReactNode;
 
-  /* if popper is visible */
+  /**
+   * @description
+   * if popper is visible
+   */
   isVisible: boolean;
 
-  /* trigger */
-  trigger?: Element | null;
+  /**
+   * @description
+   * trigger
+   */
+  trigger?: {
+    getBoundingClientRect: () => DOMRect;
+  } | null;
+
+  /**
+   * @description
+   * class name
+   */
+  className?: string;
 }
 
 /**
@@ -23,7 +40,10 @@ export interface PopperProps {
  * @description
  * wrapper props
  */
-export interface WrapperProps {
-  /* if popper is visible */
+export interface PopperRenderProps {
+  /**
+   * @description
+   * if popper is visible
+   */
   isVisible: boolean;
 }

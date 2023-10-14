@@ -6,7 +6,7 @@ import React, {
   FocusEventHandler,
   ChangeEventHandler,
 } from "react";
-import { useStyles } from "./hooks";
+import { useClassNames, useStyles } from "./hooks";
 import type { InputProps, InputRef } from "./types";
 import { useBoolean, useControlledState } from "@aiszlab/relax";
 import { StyledWrapper, StyledInput, StyledLabel } from "./styled";
@@ -18,10 +18,11 @@ import { StyledWrapper, StyledInput, StyledLabel } from "./styled";
 const Input = forwardRef<InputRef, InputProps>((props, ref) => {
   const _input = useRef<HTMLInputElement>(null);
   const _wrapper = useRef<HTMLFieldSetElement>(null);
+  const classNames = useClassNames();
 
   useImperativeHandle<InputRef, InputRef>(ref, () => {
     return {
-      focus: _input.current!.focus,
+      focus: _input.current?.focus,
       getBoundingClientRect: () => _wrapper.current!.getBoundingClientRect(),
     };
   });
@@ -67,7 +68,7 @@ const Input = forwardRef<InputRef, InputProps>((props, ref) => {
 
       {/* label */}
       {!!props.label && (
-        <StyledLabel focused={isFocused} className="musae-input-label">
+        <StyledLabel focused={isFocused} className={classNames.inputLabel}>
           {props.label}
         </StyledLabel>
       )}
@@ -76,13 +77,14 @@ const Input = forwardRef<InputRef, InputProps>((props, ref) => {
       <StyledInput
         name={props.name}
         value={_value}
-        className="musae-input"
+        className={classNames.input}
         type={props.type}
         ref={_input}
         aria-invalid={props.invalid}
         onFocus={focus}
         onBlur={blur}
         onChange={change}
+        readOnly
       />
 
       {/* suffix */}

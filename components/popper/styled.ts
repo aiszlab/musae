@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
-import type { WrapperProps } from "./types";
+import type { PopperRenderProps } from "./types";
 
-export const Wrapper = styled.div<WrapperProps>(({ isVisible }) => {
+export const Wrapper = styled.div<PopperRenderProps>(({ isVisible }) => {
   return {
     display: !isVisible ? "none" : void 0,
   };

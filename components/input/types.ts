@@ -11,29 +11,53 @@ export type Variant = "outlined" | "filled" | "standard";
  * component props
  */
 export interface InputProps
-  extends Pick<InputHTMLAttributes<HTMLInputElement>, "onFocus" | "onBlur" | "name" | "value"> {
-  /* label for input */
+  extends Pick<InputHTMLAttributes<HTMLInputElement>, "onFocus" | "onBlur" | "name" | "value" | "readOnly"> {
+  /**
+   * @description
+   * label for input
+   */
   label?: string;
 
-  /* placeholder for input */
+  /**
+   * @description
+   * placeholder for input
+   */
   placeholder?: string;
 
-  /* variant for input, display different style */
+  /**
+   * @description
+   * variant for input, display different style
+   */
   variant?: Variant;
 
-  /* prefix node */
+  /**
+   * @description
+   * prefix node
+   */
   prefix?: ReactNode;
 
-  /* suffix node */
+  /**
+   * @description
+   * suffix node
+   */
   suffix?: ReactNode;
 
-  /* input type */
+  /**
+   * @description
+   * input type
+   */
   type?: "text" | "password";
 
-  /* value */
+  /**
+   * @description
+   * value
+   */
   value?: string;
 
-  /* class name */
+  /**
+   * @description
+   * class name
+   */
   className?: string;
 
   /**
@@ -82,7 +106,7 @@ export interface InputRef {
    * @description
    * focus
    */
-  focus: HTMLInputElement["focus"];
+  focus?: HTMLInputElement["focus"];
 
   /**
    * @description

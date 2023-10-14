@@ -4,13 +4,13 @@ import { type PopperProps } from "./types";
 import { createPopper } from "@popperjs/core";
 import { Wrapper } from "./styled";
 
-const Popper = ({ children, isVisible, trigger }: PopperProps) => {
+const Popper = ({ children, isVisible, trigger, className }: PopperProps) => {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!isVisible) return void 0;
-    if (!trigger) return void 0;
-    if (!ref.current) return void 0;
+    if (!isVisible) return;
+    if (!trigger) return;
+    if (!ref.current) return;
 
     const popper = createPopper(trigger, ref.current, {
       placement: "bottom-start",
@@ -27,7 +27,7 @@ const Popper = ({ children, isVisible, trigger }: PopperProps) => {
   }
 
   return createPortal(
-    <Wrapper ref={ref} isVisible={isVisible}>
+    <Wrapper ref={ref} isVisible={isVisible} className={className}>
       {children}
     </Wrapper>,
     document.body

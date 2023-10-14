@@ -13,6 +13,21 @@ export interface Option<T extends string | number> {
  * select props
  */
 export interface SelectProps<Value extends string | number> {
-  /* options */
+  /**
+   * @description
+   * options
+   */
   options: Option<Value>[];
+}
+
+/**
+ * @description
+ * dropdown wrapper render props
+ */
+export interface DropdownWrapperRenderProps {
+  /**
+   * @description
+   * width
+   */
+  width?: number;
 }

@@ -7,6 +7,8 @@ enum ClassName {
   Wrapper = "input-wrapper",
   FocusedWrapper = "input-wrapper-focused",
   InvalidWrapper = "input-wrapper-invalid",
+  Input = "input",
+  InputLabel = "input-label",
 }
 
 /**
@@ -16,16 +18,16 @@ enum ClassName {
 export const useClassNames = () => {
   const { prefix } = useContext(Context);
 
-  const classNames = useMemo(
+  return useMemo(
     () => ({
       wrapper: withPrefix(prefix, ClassName.Wrapper),
       focusedWrapper: withPrefix(prefix, ClassName.FocusedWrapper),
       invalidWrapper: withPrefix(prefix, ClassName.InvalidWrapper),
+      input: withPrefix(prefix, ClassName.Input),
+      inputLabel: withPrefix(prefix, ClassName.InputLabel),
     }),
     [prefix]
   );
-
-  return classNames;
 };
 
 /**
