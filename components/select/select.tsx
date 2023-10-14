@@ -12,11 +12,9 @@ const Select = <Value extends string | number>(props: SelectProps<Value>) => {
 
   const menuItems = useMenuItems([props.options]);
 
-  console.log("isVisible====", isVisible);
-
   return (
     <>
-      <Input ref={ref} type="text" onFocus={open} onBlur={close} />
+      <Input ref={ref} onFocus={open} onBlur={close} />
 
       <Popper trigger={ref.current} isVisible={isVisible}>
         <Menu items={menuItems} />

@@ -77,4 +77,16 @@ export interface WrapperRenderProps {
  * @description
  * input ref
  */
-export type InputRef = HTMLInputElement | null;
+export interface InputRef {
+  /**
+   * @description
+   * focus
+   */
+  focus: HTMLInputElement["focus"];
+
+  /**
+   * @description
+   * getBoundingClientRect
+   */
+  getBoundingClientRect: HTMLFieldSetElement["getBoundingClientRect"];
+}

@@ -1,5 +1,4 @@
 import React, {
-  useMemo,
   forwardRef,
   useRef,
   useImperativeHandle,
@@ -8,7 +7,7 @@ import React, {
   ChangeEventHandler,
 } from "react";
 import { useStyles } from "./hooks";
-import type { InputProps, InputRef, Variant } from "./types";
+import type { InputProps, InputRef } from "./types";
 import { useBoolean, useControlledState } from "@aiszlab/relax";
 import { StyledWrapper, StyledInput, StyledLabel } from "./styled";
 
@@ -17,10 +16,14 @@ import { StyledWrapper, StyledInput, StyledLabel } from "./styled";
  * @description input component
  */
 const Input = forwardRef<InputRef, InputProps>((props, ref) => {
-  const _ref = useRef<HTMLInputElement>(null);
+  const _input = useRef<HTMLInputElement>(null);
+  const _wrapper = useRef<HTMLFieldSetElement>(null);
 
   useImperativeHandle<InputRef, InputRef>(ref, () => {
-    return _ref.current;
+    return {
+      focus: _input.current!.focus,
+      getBoundingClientRect: () => _wrapper.current!.getBoundingClientRect(),
+    };
   });
 
   /// controlled value
@@ -29,10 +32,8 @@ const Input = forwardRef<InputRef, InputProps>((props, ref) => {
   });
   /// is focused
   const { isOn: isFocused, turnOn: _focus, turnOff: _blur } = useBoolean();
-  /// variant
-  const variant = useMemo<Variant>(() => props.variant || "outlined", [props.variant]);
   /// style
-  const { wrapperClassName } = useStyles([props.className]);
+  const { wrapperClassName } = useStyles([props.className, isFocused, props.invalid]);
 
   const focus = useCallback<FocusEventHandler<HTMLInputElement>>(
     (e) => {
@@ -60,7 +61,7 @@ const Input = forwardRef<InputRef, InputProps>((props, ref) => {
   );
 
   return (
-    <StyledWrapper className={wrapperClassName} focused={isFocused} invalid={!!props.invalid}>
+    <StyledWrapper ref={_wrapper} className={wrapperClassName} focused={isFocused} invalid={!!props.invalid}>
       {/* prefix */}
       {props.prefix}
 
@@ -77,7 +78,7 @@ const Input = forwardRef<InputRef, InputProps>((props, ref) => {
         value={_value}
         className="musae-input"
         type={props.type}
-        ref={_ref}
+        ref={_input}
         aria-invalid={props.invalid}
         onFocus={focus}
         onBlur={blur}

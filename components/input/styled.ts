@@ -1,13 +1,15 @@
 import styled from "@emotion/styled";
 import type { LabelRenderProps, WrapperRenderProps } from "./types";
 import { useValidTheme } from "../theme/hooks";
+import { useClassNames } from "./hooks";
 
 export const StyledWrapper = styled.fieldset<WrapperRenderProps>(({ focused, invalid, theme }) => {
   const _theme = useValidTheme(theme);
+  const classNames = useClassNames();
 
   return {
     height: 36,
-    width: "100%",
+    width: 200,
     textAlign: "start",
     margin: 0,
     paddingTop: 0,
@@ -19,18 +21,17 @@ export const StyledWrapper = styled.fieldset<WrapperRenderProps>(({ focused, inv
     borderStyle: "solid",
     borderRadius: 4,
     boxSizing: "border-box",
-    transition: "all 100ms",
 
     // if input is focused, change the border
-    ...(focused && {
+    [`&.${classNames.focusedWrapper}`]: {
       borderColor: _theme.palettes.primary[40],
       borderWidth: 2,
-    }),
+    },
 
     // if is invalid, display as error
-    ...(invalid && {
+    [`&.${classNames.invalidWrapper}`]: {
       borderColor: _theme.palettes.error[40],
-    }),
+    },
   };
 });
 

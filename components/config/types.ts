@@ -6,8 +6,17 @@ import { ReactNode, ReactPortal } from "react";
  * config context value
  */
 export interface ContextValue {
-  /* message holder */
-  messageHolder: ReactPortal;
+  /**
+   * @description
+   * message holder
+   */
+  messageHolder: ReactPortal | null;
+
+  /**
+   * @description
+   * prefix
+   */
+  prefix: string;
 }
 
 /**
@@ -16,6 +25,15 @@ export interface ContextValue {
  * config props
  */
 export interface ConfigProps {
-  /* children */
+  /**
+   * @description
+   * children
+   */
   children?: ReactNode;
+
+  /**
+   * @description
+   * prefix
+   */
+  prefix?: string;
 }
