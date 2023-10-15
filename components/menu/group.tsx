@@ -1,6 +1,6 @@
 import { StyledMenuGroup } from "./styled";
 import { type MenuGroupRenderProps } from "./types";
-import React, { useCallback, useContext, useMemo, forwardRef } from "react";
+import React, { useCallback, useContext, useMemo, forwardRef, type MouseEvent } from "react";
 import type { MenuItemRenderProps } from "./types";
 import { StyledMenuItemCollapser, StyledMenuItemPrefix, StyledMenuItemWrapper } from "./styled";
 import { useBoolean } from "@aiszlab/relax";
@@ -37,26 +37,31 @@ const Item = ({ level = 0, label, children, prefix, id }: MenuItemRenderProps) =
     );
   }, [hasChildren, isCollapsed]);
 
-  const onCollapserToggle = useCallback(() => {
-    // if this item do not has children, mean this is a menu item
-    // when click it, handler the change event, pass key
-    if (!hasChildren) {
-      return context?.onClick?.(id);
-    }
+  const onToggle = useCallback(
+    (e: MouseEvent<HTMLDivElement>) => {
+      e.stopPropagation();
 
-    // when item has children, mean this is menu group
-    // when click it, handler collapser
-    // if (!scope.current) return;
-    animate(scope.current, {
-      height: isCollapsed ? "auto" : 0,
-    });
+      // if this item do not has children, mean this is a menu item
+      // when click it, handler the change event, pass key
+      if (!hasChildren) {
+        return context?.onClick?.(id);
+      }
 
-    toggle();
-  }, [toggle, isCollapsed, animate, id, context?.onClick, hasChildren]);
+      // when item has children, mean this is menu group
+      // when click it, handler collapser
+      // if (!scope.current) return;
+      animate(scope.current, {
+        height: isCollapsed ? "auto" : 0,
+      });
+
+      toggle();
+    },
+    [toggle, isCollapsed, animate, id, context?.onClick, hasChildren]
+  );
 
   return (
     <li>
-      <StyledMenuItemWrapper level={level} isSelected={isSelected} onClick={onCollapserToggle}>
+      <StyledMenuItemWrapper level={level} isSelected={isSelected} onClick={onToggle}>
         {/* prefix */}
         {!!prefix && <StyledMenuItemPrefix>{prefix}</StyledMenuItemPrefix>}
 

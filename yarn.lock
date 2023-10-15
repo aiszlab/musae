@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@aiszlab/relax@^1.0.22":
-  version "1.0.22"
-  resolved "https://registry.npmjs.org/@aiszlab/relax/-/relax-1.0.22.tgz#df53fa7e36237f5cf34dc7294e441fd7f94b43da"
-  integrity sha512-+6foPuYlZZsWHwcVCFBqL/y+/52Gl7WIXOXf296FS1yx+/Y/eTty5jt1LXeDSuJr4RxgEEc6RUAKr8nqLDvGdw==
+"@aiszlab/relax@^1.0.23":
+  version "1.0.23"
+  resolved "https://registry.npmjs.org/@aiszlab/relax/-/relax-1.0.23.tgz#ccdac34413bfea9d02485ec6664636d95e7929d0"
+  integrity sha512-udVeD286iKI7IJekrZDYW3LV3PE60bawkS6zDmvvQ+2nGN/8b8F+5ocAa/H3sN7heq7ZxJVxFBC6aF4UTJsY+Q==
   dependencies:
     react-is "^18.2.0"
     rxjs "^7.8.1"

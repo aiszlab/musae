@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import type { DOMAttributes, ReactNode } from "react";
 
 /**
  * @author murukal
@@ -32,6 +32,12 @@ export interface PopperProps {
    * class name
    */
   className?: string;
+
+  /**
+   * @description
+   * click handler
+   */
+  onClick?: DOMAttributes<HTMLDivElement>["onClick"];
 }
 
 /**

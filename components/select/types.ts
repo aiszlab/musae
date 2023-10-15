@@ -1,4 +1,6 @@
-export interface Option<T extends string | number> {
+export type ValueOf = string | number;
+
+export interface Option<T extends ValueOf> {
   /* value */
   value: T;
 
@@ -12,12 +14,24 @@ export interface Option<T extends string | number> {
  * @description
  * select props
  */
-export interface SelectProps<Value extends string | number> {
+export interface SelectProps<Value extends ValueOf> {
   /**
    * @description
    * options
    */
-  options: Option<Value>[];
+  options?: Option<Value>[];
+
+  /**
+   * @description
+   * complex
+   */
+  complex?: boolean;
+
+  /**
+   * @description
+   * value
+   */
+  value?: Value | Option<Value> | null;
 }
 
 /**

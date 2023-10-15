@@ -4,7 +4,7 @@ import { type PopperProps } from "./types";
 import { createPopper } from "@popperjs/core";
 import { Wrapper } from "./styled";
 
-const Popper = ({ children, isVisible, trigger, className }: PopperProps) => {
+const Popper = ({ children, isVisible, trigger, className, onClick }: PopperProps) => {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -27,7 +27,7 @@ const Popper = ({ children, isVisible, trigger, className }: PopperProps) => {
   }
 
   return createPortal(
-    <Wrapper ref={ref} isVisible={isVisible} className={className}>
+    <Wrapper ref={ref} isVisible={isVisible} className={className} onClick={onClick}>
       {children}
     </Wrapper>,
     document.body

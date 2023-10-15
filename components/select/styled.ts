@@ -34,5 +34,6 @@ export const StyledDropdownWrapper = styled.div<DropdownWrapperRenderProps>(({ t
     maxHeight: 300,
     minWidth: width,
     overflow: "auto",
+    padding: 4,
   };
 });

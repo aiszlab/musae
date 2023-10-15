@@ -9,7 +9,7 @@ export const StyledWrapper = styled.fieldset<WrapperRenderProps>(({ focused, inv
 
   return {
     height: 36,
-    minWidth: "0%",
+    minWidth: 0,
     width: 240,
     textAlign: "start",
     margin: 0,

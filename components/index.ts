@@ -18,6 +18,7 @@ export { Tabs } from "./tabs";
 export { ThemeProvider } from "./theme";
 export { ConfigProvider } from "./config";
 export { Form } from "./form";
+export { Empty } from "./empty";
 
 /**
  * @description

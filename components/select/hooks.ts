@@ -1,8 +1,12 @@
 import { useContext, useMemo } from "react";
-import { MenuItemProps } from "../menu/types";
-import type { SelectProps } from "./types";
 import Context from "../config/context";
 import { withPrefix } from "../../utils/class-name";
+import { Empty } from "../empty";
+import React from "react";
+import { Menu } from "../menu";
+import type { MenuItemProps } from "../menu/types";
+import type { SelectProps, ValueOf } from "./types";
+import { isVoid } from "@aiszlab/relax";
 
 enum ClassName {
   Dropdown = "select-dropdown",
@@ -12,10 +16,23 @@ enum ClassName {
  * @author murukal
  *
  * @description
- * options => menu items
+ * options
  */
-export const useMenuItems = <Value extends string | number>([options]: [options: SelectProps<Value>["options"]]) => {
-  return [] as MenuItemProps[];
+export const useOptions = <Value extends ValueOf>([options]: [options: SelectProps<Value>["options"]]) => {
+  const [menuItems, valueWithLabel] = useMemo(() => {
+    return (options || []).reduce<[MenuItemProps[], Map<ValueOf, string>]>(
+      (prev, current) => {
+        prev[0].push({
+          key: current.value.toString(),
+          label: current.label,
+        });
+        return prev;
+      },
+      [[], new Map()]
+    );
+  }, [options]);
+
+  return { menuItems, valueWithLabel };
 };
 
 /**
@@ -31,4 +48,43 @@ export const useClassNames = () => {
     }),
     [prefix]
   );
+};
+
+/**
+ * @description
+ * children
+ */
+export const useChildren = <Value extends ValueOf>([options, value]: [
+  options: SelectProps<Value>["options"],
+  value: SelectProps<Value>["value"]
+]) => {
+  /// resolve props options
+  const [menuItems, valueWithLabel] = useMemo(() => {
+    return (options || []).reduce<[MenuItemProps[], Map<ValueOf, string | undefined>]>(
+      (prev, current) => {
+        prev[0].push({
+          key: current.value.toString(),
+          label: current.label,
+        });
+        prev[1].set(current.value, current.label);
+        return prev;
+      },
+      [[], new Map()]
+    );
+  }, [options]);
+
+  const selected = useMemo(() => {
+    if (isVoid(value)) {
+      return void 0;
+    }
+    if (typeof value === "object") {
+      return value.label;
+    }
+    return valueWithLabel.get(value);
+  }, [valueWithLabel, value]);
+
+  return {
+    menuItems,
+    selected,
+  };
 };

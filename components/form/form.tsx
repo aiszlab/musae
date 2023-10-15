@@ -1,7 +1,7 @@
 import React, { ForwardedRef, forwardRef, useEffect, useImperativeHandle, useMemo } from "react";
 import { ContextValue, FormProps, FormRef } from "./types";
 import { useForm, type FieldValues, FormProvider, FieldErrors, FieldPath } from "react-hook-form";
-import { isVoid } from "../../utils/undefined";
+import { isUndefined } from "@aiszlab/relax";
 import Context, { DEFAULT_CONTEXT_VALUE } from "./context";
 import { StyledForm } from "./styled";
 
@@ -13,7 +13,7 @@ const Form = forwardRef(<T extends FieldValues = FieldValues>(props: FormProps<T
 
   useImperativeHandle(ref, () => {
     const getFieldsError: FormRef<T>["getFieldsError"] = (namePaths) => {
-      if (isVoid(namePaths)) {
+      if (isUndefined(namePaths)) {
         return methods.formState.errors;
       }
 
