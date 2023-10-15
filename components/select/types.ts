@@ -1,8 +1,8 @@
-export type ValueOf = string | number;
+import type { Key } from "react";
 
-export interface Option<T extends ValueOf> {
+export interface Option {
   /* value */
-  value: T;
+  value: Key;
 
   /* label */
   label?: string;
@@ -14,12 +14,12 @@ export interface Option<T extends ValueOf> {
  * @description
  * select props
  */
-export interface SelectProps<Value extends ValueOf> {
+export interface SelectProps {
   /**
    * @description
    * options
    */
-  options?: Option<Value>[];
+  options?: Option[];
 
   /**
    * @description
@@ -31,7 +31,7 @@ export interface SelectProps<Value extends ValueOf> {
    * @description
    * value
    */
-  value?: Value | Option<Value> | null;
+  value?: Key | Option | null;
 }
 
 /**

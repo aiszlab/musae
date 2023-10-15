@@ -1,12 +1,5 @@
-import React, {
-  forwardRef,
-  useRef,
-  useImperativeHandle,
-  useCallback,
-  FocusEventHandler,
-  ChangeEventHandler,
-} from "react";
-import { useClassNames, useStyles } from "./hooks";
+import React, { forwardRef, useRef, useImperativeHandle } from "react";
+import { useClassNames, useEvents, useStyles } from "./hooks";
 import type { InputProps, InputRef } from "./types";
 import { useBoolean, useControlledState } from "@aiszlab/relax";
 import { StyledWrapper, StyledInput, StyledLabel } from "./styled";
@@ -36,30 +29,11 @@ const Input = forwardRef<InputRef, InputProps>((props, ref) => {
   /// style
   const { wrapperClassName } = useStyles([props.className, isFocused, props.invalid]);
 
-  const focus = useCallback<FocusEventHandler<HTMLInputElement>>(
-    (e) => {
-      _focus();
-      props.onFocus?.(e);
-    },
-    [props.onFocus]
-  );
-
-  const blur = useCallback<FocusEventHandler<HTMLInputElement>>(
-    (e) => {
-      _blur();
-      props.onBlur?.(e);
-    },
-    [props.onBlur]
-  );
-
-  /// change handler
-  const change = useCallback<ChangeEventHandler<HTMLInputElement>>(
-    (e) => {
-      _setValue(e.target.value);
-      props.onChange?.(e.target.value);
-    },
-    [props.onChange]
-  );
+  /// events
+  const { focus, blur, change, click } = useEvents([
+    [_focus, _blur, _setValue],
+    [props.onFocus, props.onBlur, props.onChange, props.onClick],
+  ]);
 
   return (
     <StyledWrapper ref={_wrapper} className={wrapperClassName} focused={isFocused} invalid={!!props.invalid}>
@@ -85,6 +59,7 @@ const Input = forwardRef<InputRef, InputProps>((props, ref) => {
         onBlur={blur}
         onChange={change}
         readOnly
+        onClick={click}
       />
 
       {/* suffix */}

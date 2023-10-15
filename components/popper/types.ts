@@ -37,7 +37,7 @@ export interface PopperProps {
    * @description
    * click handler
    */
-  onClick?: DOMAttributes<HTMLDivElement>["onClick"];
+  onMouseDown?: DOMAttributes<HTMLDivElement>["onMouseDown"];
 }
 
 /**

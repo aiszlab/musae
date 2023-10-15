@@ -1,11 +1,8 @@
-import { useContext, useMemo } from "react";
+import { type Key, useContext, useMemo } from "react";
 import Context from "../config/context";
 import { withPrefix } from "../../utils/class-name";
-import { Empty } from "../empty";
-import React from "react";
-import { Menu } from "../menu";
 import type { MenuItemProps } from "../menu/types";
-import type { SelectProps, ValueOf } from "./types";
+import type { SelectProps } from "./types";
 import { isVoid } from "@aiszlab/relax";
 
 enum ClassName {
@@ -18,9 +15,9 @@ enum ClassName {
  * @description
  * options
  */
-export const useOptions = <Value extends ValueOf>([options]: [options: SelectProps<Value>["options"]]) => {
+export const useOptions = ([options]: [options: SelectProps["options"]]) => {
   const [menuItems, valueWithLabel] = useMemo(() => {
-    return (options || []).reduce<[MenuItemProps[], Map<ValueOf, string>]>(
+    return (options || []).reduce<[MenuItemProps[], Map<Key, string>]>(
       (prev, current) => {
         prev[0].push({
           key: current.value.toString(),
@@ -54,13 +51,10 @@ export const useClassNames = () => {
  * @description
  * children
  */
-export const useChildren = <Value extends ValueOf>([options, value]: [
-  options: SelectProps<Value>["options"],
-  value: SelectProps<Value>["value"]
-]) => {
+export const useChildren = ([options, value]: [options: SelectProps["options"], value: SelectProps["value"]]) => {
   /// resolve props options
   const [menuItems, valueWithLabel] = useMemo(() => {
-    return (options || []).reduce<[MenuItemProps[], Map<ValueOf, string | undefined>]>(
+    return (options || []).reduce<[MenuItemProps[], Map<Key, string | undefined>]>(
       (prev, current) => {
         prev[0].push({
           key: current.value.toString(),

@@ -1,7 +1,17 @@
-import { useContext, useMemo } from "react";
+import {
+  type ChangeEventHandler,
+  type Dispatch,
+  type FocusEventHandler,
+  type MouseEventHandler,
+  type SetStateAction,
+  useCallback,
+  useContext,
+  useMemo,
+} from "react";
 import clsx from "clsx";
 import Context from "../config/context";
 import { withPrefix } from "../../utils/class-name";
+import type { InputProps } from "./types";
 
 enum ClassName {
   Wrapper = "input-wrapper",
@@ -55,5 +65,54 @@ export const useStyles = ([className, isFocused, isInvalid]: [
 
   return {
     wrapperClassName,
+  };
+};
+
+/**
+ * @description
+ * use events for input
+ */
+export const useEvents = ([[_focus, _blur, _change], [onFocus, onBlur, onChange, onClick]]: [
+  [_focus: () => void, _blur: () => void, _change: Dispatch<SetStateAction<string | undefined>>],
+  [InputProps["onFocus"], InputProps["onBlur"], InputProps["onChange"], InputProps["onClick"]]
+]) => {
+  const focus = useCallback<FocusEventHandler<HTMLInputElement>>(
+    (e) => {
+      _focus();
+      onFocus?.(e);
+    },
+    [_focus, onFocus]
+  );
+
+  const blur = useCallback<FocusEventHandler<HTMLInputElement>>(
+    (e) => {
+      _blur();
+      onBlur?.(e);
+    },
+    [_blur, onBlur]
+  );
+
+  /// change handler
+  const change = useCallback<ChangeEventHandler<HTMLInputElement>>(
+    (e) => {
+      _change(e.target.value);
+      onChange?.(e.target.value);
+    },
+    [_change, onChange]
+  );
+
+  /// click handler
+  const click = useCallback<MouseEventHandler<HTMLInputElement>>(
+    (e) => {
+      onClick?.(e);
+    },
+    [onClick]
+  );
+
+  return {
+    focus,
+    blur,
+    change,
+    click,
   };
 };

@@ -11,7 +11,10 @@ export type Variant = "outlined" | "filled" | "standard";
  * component props
  */
 export interface InputProps
-  extends Pick<InputHTMLAttributes<HTMLInputElement>, "onFocus" | "onBlur" | "name" | "value" | "readOnly"> {
+  extends Pick<
+    InputHTMLAttributes<HTMLInputElement>,
+    "onFocus" | "onBlur" | "name" | "value" | "readOnly" | "onClick"
+  > {
   /**
    * @description
    * label for input
