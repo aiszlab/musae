@@ -1,13 +1,13 @@
 import React, { type MouseEvent, useCallback, useMemo, useRef, Key } from "react";
 import { Popper } from "../popper";
-import { useBoolean, useControlledState } from "@aiszlab/relax";
+import { useBoolean } from "@aiszlab/relax";
 import { Input } from "../input";
 import { useClassNames, useOptions, useValue } from "./hooks";
 import { StyledSelector, StyledDropdownWrapper } from "./styled";
 import { Empty } from "../empty";
 import { Menu } from "../menu";
 import Context from "../input/context";
-import type { Mode, SelectProps } from "./types";
+import type { SelectProps } from "./types";
 import type { InputRef } from "../input/types";
 import Chip from "../chip/chip";
 
@@ -24,12 +24,13 @@ const Select = ({ mode, options, ...props }: SelectProps) => {
 
   const onDropdownClick = useCallback((e: MouseEvent<HTMLDivElement>) => e.preventDefault(), []);
 
+  /// rendered dropdown menu
   const menu = useMemo(() => {
     if (!menuItems.length) {
       return <Empty />;
     }
-    return <Menu items={menuItems} onClick={onChange} />;
-  }, [menuItems, onChange]);
+    return <Menu items={menuItems} onClick={onChange} selectedKeys={[...value.keys()]} />;
+  }, [menuItems, onChange, value]);
 
   /// context for input
   const inputContextValue = useMemo(() => {

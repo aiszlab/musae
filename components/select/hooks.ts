@@ -74,19 +74,21 @@ export const useValue = ([value, mode, valueWithLabel, close]: [
 
   const onChange = useCallback(
     (key: Key) => {
-      close();
-
       /// if this select is single mode
       /// use new map for controlled value
+      /// close dropdown after click
       if (!mode) {
-        return setValues(new Map([[key, valueWithLabel.get(key)!]]));
+        close();
+        setValues(new Map([[key, valueWithLabel.get(key)!]]));
+        return;
       }
 
       /// in multiple mode
       /// click menu item twice mean cancel it
       if (values.has(key)) {
         values.delete(key);
-        return setValues(new Map(values.entries()));
+        setValues(new Map(values.entries()));
+        return;
       }
 
       /// add this selected value

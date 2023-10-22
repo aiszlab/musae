@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import type { Key, ReactNode } from "react";
 
 /**
  * @author murukal
@@ -7,11 +7,17 @@ import type { ReactNode } from "react";
  * context value
  */
 export interface ContextValue {
-  /* click event */
-  onClick?: (key: string) => void | Promise<void>;
+  /**
+   * @description
+   * click event
+   */
+  onClick?: (key: Key) => void | Promise<void>;
 
-  /* selected keys */
-  selectedKeys: string[];
+  /**
+   * @description
+   * selected keys
+   */
+  selectedKeys: Key[];
 }
 
 export interface WithLevel {
@@ -26,11 +32,23 @@ export interface WithLevel {
  * menu props
  */
 export interface MenuProps {
-  /* items */
+  /**
+   * @description
+   * items
+   */
   items: MenuItemProps[];
 
-  /* on click */
+  /**
+   * @description
+   * click handler
+   */
   onClick?: ContextValue["onClick"];
+
+  /**
+   * @description
+   * selected keys
+   */
+  selectedKeys?: Key[];
 }
 
 /**
@@ -40,16 +58,28 @@ export interface MenuProps {
  * menu item props
  */
 export interface MenuItemProps {
-  /* key */
-  key: string;
+  /**
+   * @description
+   * key
+   */
+  key: Key;
 
-  /* title */
+  /**
+   * @description
+   * title
+   */
   label?: string;
 
-  /* prefix node */
+  /**
+   * @description
+   * prefix node
+   */
   prefix?: ReactNode;
 
-  /* children */
+  /**
+   * @description
+   * children
+   */
   children?: MenuItemProps[];
 }
 
@@ -69,5 +99,5 @@ export type MenuGroupRenderProps = MenuProps & WithLevel;
  */
 export type MenuItemRenderProps = Omit<MenuItemProps, "key"> &
   WithLevel & {
-    id: string;
+    id: Key;
   };

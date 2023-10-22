@@ -2,6 +2,7 @@ import React, { useMemo, useState } from "react";
 import type { ContextValue, MenuProps } from "./types";
 import Group from "./group";
 import MenuContext from "./context";
+import { useControlledState } from "@aiszlab/relax";
 
 /**
  * @author murukal
@@ -9,19 +10,19 @@ import MenuContext from "./context";
  * @description
  * menu component
  */
-const Menu = (props: MenuProps) => {
-  const [selectedKeys, setSelectedKeys] = useState<ContextValue["selectedKeys"]>([]);
+const Menu = ({ onClick, ...props }: MenuProps) => {
+  const [selectedKeys, setSelectedKeys] = useControlledState(props.selectedKeys);
 
   /// context value
   const contextValue = useMemo<ContextValue>(
     () => ({
       onClick: (key) => {
         setSelectedKeys([key]);
-        props.onClick?.(key);
+        onClick?.(key);
       },
-      selectedKeys,
+      selectedKeys: selectedKeys ?? [],
     }),
-    [props.onClick, selectedKeys]
+    [onClick, selectedKeys]
   );
 
   return (
