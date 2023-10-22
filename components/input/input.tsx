@@ -1,8 +1,9 @@
-import React, { forwardRef, useRef, useImperativeHandle } from "react";
+import React, { forwardRef, useRef, useImperativeHandle, useContext } from "react";
 import { useClassNames, useEvents, useStyles } from "./hooks";
 import type { InputProps, InputRef } from "./types";
 import { useBoolean, useControlledState } from "@aiszlab/relax";
-import { StyledWrapper, StyledInput, StyledLabel } from "./styled";
+import { StyledWrapper, StyledInput, StyledLabel, StyledAddition } from "./styled";
+import Context from "./context";
 
 /**
  * @author murukal
@@ -12,6 +13,7 @@ const Input = forwardRef<InputRef, InputProps>((props, ref) => {
   const _input = useRef<HTMLInputElement>(null);
   const _wrapper = useRef<HTMLFieldSetElement>(null);
   const classNames = useClassNames();
+  const contextValue = useContext(Context);
 
   useImperativeHandle<InputRef, InputRef>(ref, () => {
     return {
@@ -35,11 +37,24 @@ const Input = forwardRef<InputRef, InputProps>((props, ref) => {
     [props.onFocus, props.onBlur, props.onChange, props.onClick],
   ]);
 
+  const input = (
+    <StyledInput
+      name={props.name}
+      value={_value}
+      className={classNames.input}
+      type={props.type}
+      ref={_input}
+      aria-invalid={props.invalid}
+      onFocus={focus}
+      onBlur={blur}
+      onChange={change}
+      readOnly
+      onClick={click}
+    />
+  );
+
   return (
     <StyledWrapper ref={_wrapper} className={wrapperClassName} focused={isFocused} invalid={!!props.invalid}>
-      {/* prefix */}
-      {props.prefix}
-
       {/* label */}
       {!!props.label && (
         <StyledLabel focused={isFocused} className={classNames.inputLabel}>
@@ -47,20 +62,18 @@ const Input = forwardRef<InputRef, InputProps>((props, ref) => {
         </StyledLabel>
       )}
 
+      {/* prefix */}
+      {props.prefix}
+
       {/* input */}
-      <StyledInput
-        name={props.name}
-        value={_value}
-        className={classNames.input}
-        type={props.type}
-        ref={_input}
-        aria-invalid={props.invalid}
-        onFocus={focus}
-        onBlur={blur}
-        onChange={change}
-        readOnly
-        onClick={click}
-      />
+      {contextValue.inputed ? (
+        <StyledAddition>
+          {contextValue.inputed}
+          {input}
+        </StyledAddition>
+      ) : (
+        input
+      )}
 
       {/* suffix */}
       {props.suffix}

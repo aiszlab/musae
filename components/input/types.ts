@@ -117,3 +117,15 @@ export interface InputRef {
    */
   getBoundingClientRect: HTMLFieldSetElement["getBoundingClientRect"];
 }
+
+/**
+ * @description
+ * context value
+ */
+export interface ContextValue {
+  /**
+   * @description
+   * inputed
+   */
+  inputed?: ReactNode;
+}

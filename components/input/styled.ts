@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import type { LabelRenderProps, WrapperRenderProps } from "./types";
 import { useValidTheme } from "../theme/hooks";
 import { useClassNames } from "./hooks";
+import { flip } from "@popperjs/core";
 
 export const StyledWrapper = styled.fieldset<WrapperRenderProps>(({ focused, invalid, theme }) => {
   const _theme = useValidTheme(theme);
@@ -38,8 +39,9 @@ export const StyledWrapper = styled.fieldset<WrapperRenderProps>(({ focused, inv
 
 export const StyledInput = styled.input(() => {
   return {
-    padding: "0 0.75rem",
+    paddingInline: 12,
     backgroundColor: "transparent",
+    minWidth: 0,
     outline: "none",
     border: "none",
     height: "auto",
@@ -67,4 +69,15 @@ export const StyledLabel = styled.legend<LabelRenderProps>(({ focused, theme }) 
       color: _theme.palettes.primary[40],
     }),
   };
+});
+
+/**
+ * @description
+ * styled addition
+ */
+export const StyledAddition = styled.span({
+  paddingInlineStart: 12,
+  display: "flex",
+  flexDirection: "row",
+  flexWrap: "wrap",
 });

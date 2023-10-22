@@ -8,6 +8,12 @@ export interface Option {
   label?: string;
 }
 
+export type Mode = "multiple";
+
+export type Value = Key | Option;
+
+export type ValueOrValues = Value[] | Value;
+
 /**
  * @author murukal
  *
@@ -31,7 +37,13 @@ export interface SelectProps {
    * @description
    * value
    */
-  value?: Key | Option | null;
+  value?: ValueOrValues;
+
+  /**
+   * @description
+   * mode
+   */
+  mode?: Mode;
 }
 
 /**

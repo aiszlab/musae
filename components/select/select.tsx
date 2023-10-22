@@ -1,41 +1,57 @@
-import React, { type MouseEvent, useCallback, useMemo, useRef } from "react";
+import React, { type MouseEvent, useCallback, useMemo, useRef, Key } from "react";
 import { Popper } from "../popper";
 import { useBoolean, useControlledState } from "@aiszlab/relax";
 import { Input } from "../input";
-import { useClassNames, useChildren } from "./hooks";
+import { useClassNames, useOptions, useValue } from "./hooks";
 import { StyledSelector, StyledDropdownWrapper } from "./styled";
 import { Empty } from "../empty";
 import { Menu } from "../menu";
-import type { SelectProps } from "./types";
+import Context from "../input/context";
+import type { Mode, SelectProps } from "./types";
 import type { InputRef } from "../input/types";
+import Chip from "../chip/chip";
 
-const Select = (props: SelectProps) => {
+const _Provider = Context.Provider;
+
+const Select = ({ mode, options, ...props }: SelectProps) => {
   const ref = useRef<InputRef>(null);
   const dropdownWidth = ref.current?.getBoundingClientRect().width;
-
-  const [value, setValue] = useControlledState(props.value);
   const { isOn: isVisible, toggle, turnOff: close } = useBoolean();
   const classNames = useClassNames();
-  const { menuItems, selected } = useChildren([props.options, value]);
+
+  const { menuItems, valueWithLabel } = useOptions([options]);
+  const { value, onChange } = useValue([props.value, mode, valueWithLabel, close]);
 
   const onDropdownClick = useCallback((e: MouseEvent<HTMLDivElement>) => e.preventDefault(), []);
-  const onMenuClick = useCallback((key: string) => {
-    // change value
-    setValue(key);
-    // after item selected, close dropdown
-    close();
-  }, []);
 
   const menu = useMemo(() => {
     if (!menuItems.length) {
       return <Empty />;
     }
-    return <Menu items={menuItems} onClick={onMenuClick} />;
-  }, [menuItems, onMenuClick]);
+    return <Menu items={menuItems} onClick={onChange} />;
+  }, [menuItems, onChange]);
+
+  /// context for input
+  const inputContextValue = useMemo(() => {
+    const inputed =
+      mode === "multiple"
+        ? [...value.entries()].map(([_value, label]) => (
+            <Chip size="small" key={_value}>
+              {label}
+            </Chip>
+          ))
+        : [...value.values()].join(",");
+
+    return {
+      inputed,
+    };
+  }, [value, mode]);
 
   return (
     <StyledSelector>
-      <Input ref={ref} onClick={toggle} readOnly onBlur={close} value={selected} />
+      <_Provider value={inputContextValue}>
+        <Input ref={ref} onClick={toggle} readOnly onBlur={close} />
+      </_Provider>
 
       <Popper
         trigger={ref.current}

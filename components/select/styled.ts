@@ -1,21 +1,18 @@
 import styled from "@emotion/styled";
 import { useValidTheme } from "../theme/hooks";
-import { useClassNames } from "./hooks";
+import { useClassNames as useChipClassNames } from "../chip/hooks";
 import type { DropdownWrapperRenderProps } from "./types";
 
 /**
  * @description
  * selector
  */
-export const StyledSelector = styled.div(({ theme }) => {
-  const _theme = useValidTheme(theme);
-  const classNames = useClassNames();
+export const StyledSelector = styled.div(() => {
+  const chipClassNames = useChipClassNames();
 
   return {
-    [`.${classNames.dropdown}`]: {
-      width: 10,
-      height: 20,
-      backgroundColor: "red",
+    [`.${chipClassNames.chip}:not(:last-of-type)`]: {
+      marginRight: 4,
     },
   };
 });
