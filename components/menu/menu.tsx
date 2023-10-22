@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo } from "react";
 import type { ContextValue, MenuProps } from "./types";
 import Group from "./group";
 import MenuContext from "./context";
