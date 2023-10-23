@@ -9,4 +9,4 @@ const Divider = (props: DividerProps) => {
   return <StyledWrapper hasChildren={hasChildren}>{props.children}</StyledWrapper>;
 };
 
-export default Divider;
+export default Divider; 

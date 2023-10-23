@@ -4,10 +4,23 @@ import type { DividerRenderProps } from "./types";
 export const StyledWrapper = styled.div<DividerRenderProps>(({ hasChildren }) => {
   if (!hasChildren) {
     return {
-      margin: "1rem 0",
-      borderBlockStart: "1px solid rgba(5, 5, 5, 0.06)",
+      marginBlock: 16,
+      borderTop: "1px solid rgba(5, 5, 5, 0.06)",
     };
   }
 
-  return {};
+  return {
+    display: "flex",
+    flexDirection: "row",
+
+    ":before": {
+      width: "50%",
+      content: "''",
+    },
+
+    ":after": {
+      width: "50%",
+      content: "''",
+    },
+  };
 });
