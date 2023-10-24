@@ -1,12 +1,17 @@
-import { useMemo } from "react";
 import { StyledWrapper } from "./styled";
 import { DividerProps } from "./types";
 import React from "react";
+import { useClassNames, useOffset } from "./hooks";
 
-const Divider = (props: DividerProps) => {
-  const hasChildren = useMemo(() => !!props.children, [props.children]);
+const Divider = ({ align, children }: DividerProps) => {
+  const classNames = useClassNames();
+  const offset = useOffset([align]);
 
-  return <StyledWrapper hasChildren={hasChildren}>{props.children}</StyledWrapper>;
+  return (
+    <StyledWrapper className={classNames.divider} hasChildren={!!children} offset={offset}>
+      {!!children && <span className={classNames.content}>{children}</span>}
+    </StyledWrapper>
+  );
 };
 
 export default Divider;

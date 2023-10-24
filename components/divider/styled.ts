@@ -1,26 +1,49 @@
-import styled from "@emotion/styled";
+import styled, { type CSSObject } from "@emotion/styled";
 import type { DividerRenderProps } from "./types";
+import { useClassNames } from "./hooks";
+import { useValidTheme } from "../theme/hooks";
 
-export const StyledWrapper = styled.div<DividerRenderProps>(({ hasChildren }) => {
+export const StyledWrapper = styled.div<DividerRenderProps>(({ hasChildren, offset, ...props }) => {
+  const classNames = useClassNames();
+  const theme = useValidTheme(props.theme);
+
+  const layoutStyle: CSSObject = {
+    width: "100%",
+  };
+  const dividerStyle: CSSObject = {
+    height: 1,
+    backgroundColor: "#cac4d0",
+  };
+
   if (!hasChildren) {
     return {
-      marginBlock: 16,
-      borderTop: "1px solid rgba(5, 5, 5, 0.06)",
+      ...layoutStyle,
+      ...dividerStyle,
     };
   }
 
   return {
+    ...layoutStyle,
     display: "flex",
     flexDirection: "row",
+    alignItems: "center",
 
-    ":before": {
-      width: "50%",
+    "::before": {
+      ...dividerStyle,
+      width: `${offset}%`,
       content: "''",
     },
 
-    ":after": {
-      width: "50%",
+    "::after": {
+      ...dividerStyle,
+      width: `${100 - offset}%`,
       content: "''",
+    },
+
+    [`.${classNames.content}`]: {
+      marginInline: 8,
+      whiteSpace: "nowrap",
+      ...theme.typography.body.small,
     },
   };
 });
