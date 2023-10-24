@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import type { RowProps, RowRenderProps } from "./types";
 import { StyledRowWrapper } from "./styled";
-import { isArray } from "../../utils/array";
+import { isArray } from "@aiszlab/relax";
 
 const Row = (props: RowProps) => {
   /// col and row gap in grid

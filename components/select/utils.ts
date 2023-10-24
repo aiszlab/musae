@@ -1,5 +1,4 @@
-import { isVoid } from "@aiszlab/relax";
-import { isArray } from "../../utils/array";
+import { isVoid, isArray } from "@aiszlab/relax";
 import type { Value, ValueOrValues } from "./types";
 
 /**
