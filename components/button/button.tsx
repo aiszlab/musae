@@ -8,23 +8,18 @@ import React, { forwardRef, useMemo } from "react";
  * @description
  * button
  */
-const Button = forwardRef<HTMLButtonElement, ButtonProps>(({ children, className, onClick, style, ...props }, ref) => {
-  /// get which variant is using
-  /// variant determin style
-  const variant = useMemo<Variant>(() => props.variant || "filled", [props.variant]);
+const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ children, className, onClick, style, color = "primary", ...props }, ref) => {
+    /// get which variant is using
+    /// variant determin style
+    const variant = useMemo<Variant>(() => props.variant || "filled", [props.variant]);
 
-  return (
-    <StyledWrapper
-      onClick={onClick}
-      className={className}
-      variant={variant}
-      style={style}
-      color={props.color || "primary"}
-      ref={ref}
-    >
-      <StyledSpan>{children}</StyledSpan>
-    </StyledWrapper>
-  );
-});
+    return (
+      <StyledWrapper onClick={onClick} className={className} variant={variant} style={style} color={color} ref={ref}>
+        <StyledSpan>{children}</StyledSpan>
+      </StyledWrapper>
+    );
+  }
+);
 
 export default Button;

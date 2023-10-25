@@ -52,6 +52,7 @@ export const StyledSpan = styled.span(({ theme }) => {
   return {
     marginLeft: 8,
     marginRight: 8,
+    whiteSpace: "nowrap",
 
     /// typography
     ..._theme.typography.label.large,

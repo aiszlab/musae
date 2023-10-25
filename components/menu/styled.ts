@@ -32,6 +32,8 @@ export const StyledMenuItemWrapper = styled.div<
       color: theme.palettes.primary[40],
     }),
 
+    ...theme.typography.label.large,
+
     ":hover": {
       backgroundColor: theme.palettes.neutral[90],
     },
