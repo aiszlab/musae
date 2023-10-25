@@ -22,7 +22,7 @@ const Menu = ({ onClick, ...props }: MenuProps) => {
       },
       selectedKeys: selectedKeys ?? [],
     }),
-    [onClick, selectedKeys]
+    [onClick, selectedKeys, setSelectedKeys]
   );
 
   return (

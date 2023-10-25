@@ -22,7 +22,7 @@ const Item = ({ level = 0, label, children, prefix, id }: MenuItemRenderProps) =
   const [scope, animate] = useAnimate<HTMLUListElement>();
 
   /// if is selected
-  const isSelected = useMemo(() => !!context?.selectedKeys.includes(id), [context?.selectedKeys]);
+  const isSelected = useMemo(() => !!context?.selectedKeys.includes(id), [context?.selectedKeys, id]);
   /// if is collapsed
   const { isOn: isCollapsed, toggle } = useBoolean(false);
 
@@ -56,7 +56,7 @@ const Item = ({ level = 0, label, children, prefix, id }: MenuItemRenderProps) =
 
       toggle();
     },
-    [toggle, isCollapsed, animate, id, context?.onClick, hasChildren]
+    [hasChildren, animate, scope, isCollapsed, toggle, context, id]
   );
 
   return (
