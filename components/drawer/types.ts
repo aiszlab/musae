@@ -10,4 +10,16 @@ export interface DrawerProps {
    * children
    */
   children?: ReactNode;
+
+  /**
+   * @description
+   * is open
+   */
+  isOpened: boolean;
+
+  /**
+   * @description
+   * close handler
+   */
+  onClose?: VoidFunction;
 }
