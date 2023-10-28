@@ -3,6 +3,7 @@ import { createPortal } from "react-dom";
 import { type PopperProps } from "./types";
 import { createPopper } from "@popperjs/core";
 import { Wrapper } from "./styled";
+import { Portal } from "../portal";
 
 const Popper = ({ children, isVisible, trigger, className, onMouseDown }: PopperProps) => {
   const ref = useRef<HTMLDivElement>(null);
@@ -21,16 +22,12 @@ const Popper = ({ children, isVisible, trigger, className, onMouseDown }: Popper
     };
   }, [isVisible, trigger]);
 
-  /// destory after hide
-  if (!isVisible) {
-    return null;
-  }
-
-  return createPortal(
-    <Wrapper ref={ref} isVisible={isVisible} className={className} onMouseDown={onMouseDown}>
-      {children}
-    </Wrapper>,
-    document.body
+  return (
+    <Portal isRender={isVisible}>
+      <Wrapper ref={ref} isVisible={isVisible} className={className} onMouseDown={onMouseDown}>
+        {children}
+      </Wrapper>
+    </Portal>
   );
 };
 
