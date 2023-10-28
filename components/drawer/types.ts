@@ -22,4 +22,16 @@ export interface DrawerProps {
    * close handler
    */
   onClose?: VoidFunction;
+
+  /**
+   * @description
+   * title
+   */
+  title?: ReactNode;
 }
+
+/**
+ * @description
+ * popup
+ */
+export interface PopupProps extends DrawerProps {}

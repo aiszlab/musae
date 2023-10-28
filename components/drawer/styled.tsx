@@ -1,5 +1,7 @@
 import styled from "@emotion/styled";
 import { useValidTheme } from "../theme/hooks";
+import { useClassNames } from "./hooks";
+import { withDot } from "../../utils/class-name";
 
 /**
  * @description
@@ -21,6 +23,7 @@ export const StyledMask = styled.div({
   inset: 0,
   pointerEvents: "auto",
   zIndex: 1000,
+  opacity: 0,
   backgroundColor: "rgba(0, 0, 0, 0.45)",
 });
 
@@ -30,6 +33,7 @@ export const StyledMask = styled.div({
  */
 export const StyledPanel = styled.div((props) => {
   const theme = useValidTheme(props.theme);
+  const classNames = useClassNames();
 
   return {
     width: 400,
@@ -40,6 +44,22 @@ export const StyledPanel = styled.div((props) => {
     position: "absolute",
     zIndex: 1000,
     transform: "translateX(100%)",
+    pointerEvents: "auto",
     willChange: "transform",
+
+    display: "flex",
+    flexDirection: "column",
+
+    [withDot(classNames.header)]: {
+      display: "flex",
+      paddingInline: 16,
+      paddingBlock: 24,
+      ...theme.typography.body.large,
+    },
+
+    [withDot(classNames.body)]: {
+      padding: 24,
+      flex: 1,
+    },
   };
 });

@@ -1,5 +1,4 @@
 import React, { useEffect, useRef } from "react";
-import { createPortal } from "react-dom";
 import { type PopperProps } from "./types";
 import { createPopper } from "@popperjs/core";
 import { Wrapper } from "./styled";
@@ -23,7 +22,7 @@ const Popper = ({ children, isVisible, trigger, className, onMouseDown }: Popper
   }, [isVisible, trigger]);
 
   return (
-    <Portal isRender={isVisible}>
+    <Portal isVisible={isVisible}>
       <Wrapper ref={ref} isVisible={isVisible} className={className} onMouseDown={onMouseDown}>
         {children}
       </Wrapper>

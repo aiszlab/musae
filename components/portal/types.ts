@@ -19,7 +19,7 @@ export interface PortalProps {
 
   /**
    * @description
-   * mounted
+   * visible
    */
-  isRender?: boolean;
+  isVisible?: boolean;
 }

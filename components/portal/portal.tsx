@@ -2,19 +2,18 @@ import { createPortal } from "react-dom";
 import type { PortalProps } from "./types";
 import { useEffect, useState } from "react";
 
-const Portal = ({ children, isRender = false, destroyable = false }: PortalProps) => {
-  const [isRenderable, setIsRenderable] = useState(false);
+const Portal = ({ children, isVisible = false, destroyable = false }: PortalProps) => {
+  const [shouldRender, setShouldRender] = useState(false);
 
   /// if render once, and is not destroyable
   /// anyway render
   useEffect(() => {
-    if (destroyable || isRender) {
-      setIsRenderable(isRender);
+    if (destroyable || isVisible) {
+      setShouldRender(isVisible);
     }
-  }, [destroyable, isRender]);
+  }, [destroyable, isVisible]);
 
-  if (!isRenderable) return null;
-
+  if (!shouldRender) return null;
   return createPortal(children, document.body);
 };
 
