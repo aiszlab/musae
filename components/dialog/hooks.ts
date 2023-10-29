@@ -3,7 +3,7 @@ import Context from "../config/context";
 import { withPrefix } from "../../utils/class-name";
 
 enum ClassName {
-  Drawer = "drawer",
+  Dialog = "dialog",
   Mask = "drawer-mask",
   Panel = "drawer-panel",
   Header = "drawer-header",
@@ -19,7 +19,7 @@ export const useClassNames = () => {
 
   return useMemo(
     () => ({
-      drawer: withPrefix(prefix, ClassName.Drawer),
+      dialog: withPrefix(prefix, ClassName.Dialog),
       mask: withPrefix(prefix, ClassName.Mask),
       panel: withPrefix(prefix, ClassName.Panel),
       header: withPrefix(prefix, ClassName.Header),
