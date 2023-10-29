@@ -8,7 +8,7 @@ import { withDot } from "../../utils/class-name";
 const Popup = ({ isOpened, onClose, placement = "right", ...props }: PopupProps) => {
   const [scope, animate] = useAnimate<HTMLDivElement>();
   const classNames = useClassNames();
-  const placements = usePlacements([placement]);
+  const [placements] = usePlacements([placement]);
 
   useEffect(() => {
     if (!scope.current) return;

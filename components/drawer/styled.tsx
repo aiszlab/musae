@@ -35,22 +35,28 @@ export const StyledMask = styled.div({
 export const StyledPanel = styled.div<PanelRenderProps>(({ placement, ...props }) => {
   const theme = useValidTheme(props.theme);
   const classNames = useClassNames();
-  const [initialPlacement] = usePlacements([placement]);
+  const [[initialPlacement], position] = usePlacements([placement]);
 
   return {
-    width: 400,
     backgroundColor: theme.palettes.primary[100],
-    top: 0,
-    bottom: 0,
-    right: 0,
     position: "absolute",
     zIndex: 1000,
-    transform: initialPlacement,
     pointerEvents: "auto",
     willChange: "transform",
-
     display: "flex",
     flexDirection: "column",
+
+    // layout
+    ...position,
+    transform: initialPlacement,
+
+    // rect
+    ...(["top", "bottom"].includes(placement) && {
+      height: 400,
+    }),
+    ...(["left", "right"].includes(placement) && {
+      width: 400,
+    }),
 
     [withDot(classNames.header)]: {
       display: "flex",
