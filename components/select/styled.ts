@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import { useValidTheme } from "../theme/hooks";
 import { useClassNames as useChipClassNames } from "../chip/hooks";
 import type { DropdownWrapperRenderProps } from "./types";
+import { withDot } from "../../utils/class-name";
 
 /**
  * @description
@@ -11,7 +12,7 @@ export const StyledSelector = styled.div(() => {
   const chipClassNames = useChipClassNames();
 
   return {
-    [`.${chipClassNames.chip}:not(:last-of-type)`]: {
+    [`${withDot(chipClassNames.chip)}:not(:last-of-type)`]: {
       marginRight: 4,
     },
   };

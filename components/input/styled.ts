@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import type { LabelRenderProps, WrapperRenderProps } from "./types";
 import { useValidTheme } from "../theme/hooks";
 import { useClassNames } from "./hooks";
-import { flip } from "@popperjs/core";
+import { withDot } from "../../utils/class-name";
 
 export const StyledWrapper = styled.fieldset<WrapperRenderProps>(({ focused, invalid, theme }) => {
   const _theme = useValidTheme(theme);
@@ -25,13 +25,13 @@ export const StyledWrapper = styled.fieldset<WrapperRenderProps>(({ focused, inv
     boxSizing: "border-box",
 
     // if input is focused, change the border
-    [`&.${classNames.focusedWrapper}`]: {
+    [`&${withDot(classNames.focusedWrapper)}`]: {
       borderColor: _theme.palettes.primary[40],
       borderWidth: 2,
     },
 
     // if is invalid, display as error
-    [`&.${classNames.invalidWrapper}`]: {
+    [`&${withDot(classNames.invalidWrapper)}`]: {
       borderColor: _theme.palettes.error[40],
     },
   };

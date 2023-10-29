@@ -2,6 +2,7 @@ import styled, { type CSSObject } from "@emotion/styled";
 import type { DividerRenderProps } from "./types";
 import { useClassNames } from "./hooks";
 import { useValidTheme } from "../theme/hooks";
+import { withDot } from "../../utils/class-name";
 
 export const StyledWrapper = styled.div<DividerRenderProps>(({ hasChildren, offset, ...props }) => {
   const classNames = useClassNames();
@@ -40,7 +41,7 @@ export const StyledWrapper = styled.div<DividerRenderProps>(({ hasChildren, offs
       content: "''",
     },
 
-    [`.${classNames.content}`]: {
+    [withDot(classNames.content)]: {
       marginInline: 8,
       whiteSpace: "nowrap",
       ...theme.typography.body.small,

@@ -1,6 +1,7 @@
 import { createPortal } from "react-dom";
 import type { PortalProps } from "./types";
 import { useEffect, useState } from "react";
+import { isDomUsable, useScrollLocker } from "@aiszlab/relax";
 
 const Portal = ({ children, isVisible = false, destroyable = false }: PortalProps) => {
   const [shouldRender, setShouldRender] = useState(false);
@@ -13,7 +14,10 @@ const Portal = ({ children, isVisible = false, destroyable = false }: PortalProp
     }
   }, [destroyable, isVisible]);
 
+  useScrollLocker(isDomUsable() && shouldRender);
+
   if (!shouldRender) return null;
+
   return createPortal(children, document.body);
 };
 

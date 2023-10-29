@@ -1,14 +1,15 @@
 import styled from "@emotion/styled";
 import { useClassNames } from "./hooks";
 import { useValidTheme } from "../theme/hooks";
+import { withDot } from "../../utils/class-name";
 
 /**
  * @description
  * wrapper
  */
-export const StyledWrapper = styled.div(({ theme }) => {
+export const StyledWrapper = styled.div((props) => {
   const classNames = useClassNames();
-  const _theme = useValidTheme(theme);
+  const theme = useValidTheme(props.theme);
 
   return {
     display: "flex",
@@ -17,9 +18,9 @@ export const StyledWrapper = styled.div(({ theme }) => {
     marginBlock: 32,
     marginInline: 8,
 
-    [`.${classNames.description}`]: {
+    [withDot(classNames.description)]: {
       marginTop: 8,
-      ..._theme.typography.body.small,
+      ...theme.typography.body.small,
     },
   };
 });
