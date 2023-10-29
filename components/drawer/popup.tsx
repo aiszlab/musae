@@ -2,12 +2,13 @@ import React, { useEffect } from "react";
 import { StyledMask, StyledPanel, StyledWrapper } from "./styled";
 import { useAnimate } from "framer-motion";
 import type { PopupProps } from "./types";
-import { useClassNames } from "./hooks";
+import { useClassNames, usePlacements } from "./hooks";
 import { withDot } from "../../utils/class-name";
 
-const Popup = ({ isOpened, onClose, ...props }: PopupProps) => {
+const Popup = ({ isOpened, onClose, placement = "right", ...props }: PopupProps) => {
   const [scope, animate] = useAnimate<HTMLDivElement>();
   const classNames = useClassNames();
+  const placements = usePlacements([placement]);
 
   useEffect(() => {
     if (!scope.current) return;
@@ -15,11 +16,11 @@ const Popup = ({ isOpened, onClose, ...props }: PopupProps) => {
     (async () => {
       if (isOpened) {
         await animate(scope.current, { display: "block" }, { duration: 0 });
-        animate(withDot(classNames.panel), { transform: "translateX(0%)" });
+        animate(withDot(classNames.panel), { transform: placements.at(1) });
         animate(withDot(classNames.mask), { opacity: 1 });
       } else {
         await Promise.all([
-          animate(withDot(classNames.panel), { transform: "translateX(100%)" }),
+          animate(withDot(classNames.panel), { transform: placements.at(0) }),
           animate(withDot(classNames.mask), { opacity: 0 }),
         ]);
         animate(scope.current, { display: "none" }, { duration: 0 });
@@ -27,7 +28,7 @@ const Popup = ({ isOpened, onClose, ...props }: PopupProps) => {
     })();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isOpened]);
+  }, [isOpened, ...placements]);
 
   return (
     <StyledWrapper ref={scope} className={classNames.drawer}>
@@ -35,7 +36,7 @@ const Popup = ({ isOpened, onClose, ...props }: PopupProps) => {
       <StyledMask className={classNames.mask} onClick={onClose} />
 
       {/* panel */}
-      <StyledPanel className={classNames.panel}>
+      <StyledPanel className={classNames.panel} placement={placement}>
         <div className={classNames.header}></div>
         <div className={classNames.body}>{props.children}</div>
       </StyledPanel>

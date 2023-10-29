@@ -1,5 +1,7 @@
 import { ReactNode } from "react";
 
+export type Placement = "right" | "left" | "top" | "bottom";
+
 /**
  * @description
  * drawer props
@@ -28,6 +30,12 @@ export interface DrawerProps {
    * title
    */
   title?: ReactNode;
+
+  /**
+   * @description
+   * placement
+   */
+  placement?: Placement;
 }
 
 /**
@@ -35,3 +43,9 @@ export interface DrawerProps {
  * popup
  */
 export interface PopupProps extends DrawerProps {}
+
+/**
+ * @description
+ * panel
+ */
+export interface PanelRenderProps extends Required<Pick<DrawerProps, "placement">> {}

@@ -1,6 +1,7 @@
 import { useContext, useMemo } from "react";
 import Context from "../config/context";
 import { withPrefix } from "../../utils/class-name";
+import type { Placement } from "./types";
 
 enum ClassName {
   Drawer = "drawer",
@@ -9,6 +10,13 @@ enum ClassName {
   Header = "drawer-header",
   Body = "drawer-body",
 }
+
+const PLACEMENT = new Map<Placement, [initialPlacement: string, animatedPlacement: string]>([
+  ["right", ["translateX(100%)", "translateX(0%)"]],
+  ["left", ["translateX(-100%)", "translateX(0%)"]],
+  ["bottom", ["translateY(100%)", "translateY(0%)"]],
+  ["top", ["translateY(-100%)", "translateY(0%)"]],
+]);
 
 /**
  * @description
@@ -27,4 +35,14 @@ export const useClassNames = () => {
     }),
     [prefix]
   );
+};
+
+/**
+ * @description
+ * placement
+ */
+export const usePlacements = ([placement]: [placement: Placement]) => {
+  return useMemo(() => {
+    return PLACEMENT.get(placement) || PLACEMENT.get("right")!;
+  }, [placement]);
 };

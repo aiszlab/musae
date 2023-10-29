@@ -1,7 +1,8 @@
 import styled from "@emotion/styled";
 import { useValidTheme } from "../theme/hooks";
-import { useClassNames } from "./hooks";
+import { useClassNames, usePlacements } from "./hooks";
 import { withDot } from "../../utils/class-name";
+import type { PanelRenderProps } from "./types";
 
 /**
  * @description
@@ -31,9 +32,10 @@ export const StyledMask = styled.div({
  * @description
  * panel
  */
-export const StyledPanel = styled.div((props) => {
+export const StyledPanel = styled.div<PanelRenderProps>(({ placement, ...props }) => {
   const theme = useValidTheme(props.theme);
   const classNames = useClassNames();
+  const [initialPlacement] = usePlacements([placement]);
 
   return {
     width: 400,
@@ -43,7 +45,7 @@ export const StyledPanel = styled.div((props) => {
     right: 0,
     position: "absolute",
     zIndex: 1000,
-    transform: "translateX(100%)",
+    transform: initialPlacement,
     pointerEvents: "auto",
     willChange: "transform",
 
