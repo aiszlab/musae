@@ -8,6 +8,7 @@ enum ClassName {
   Panel = "drawer-panel",
   Header = "drawer-header",
   Body = "drawer-body",
+  Footer = "footer",
 }
 
 /**
@@ -24,6 +25,7 @@ export const useClassNames = () => {
       panel: withPrefix(prefix, ClassName.Panel),
       header: withPrefix(prefix, ClassName.Header),
       body: withPrefix(prefix, ClassName.Body),
+      footer: withPrefix(prefix, ClassName.Footer),
     }),
     [prefix]
   );

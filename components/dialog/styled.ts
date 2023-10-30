@@ -1,4 +1,6 @@
 import styled from "@emotion/styled";
+import { withDot } from "../../utils/class-name";
+import { useClassNames } from "./hooks";
 
 /**
  * @description
@@ -33,10 +35,18 @@ export const StyledMask = styled.div({
  * popup
  */
 export const StyledPanel = styled.div(() => {
+  const classNames = useClassNames();
+
   return {
     pointerEvents: "auto",
     backgroundColor: "white",
     width: 200,
     height: 200,
+
+    [withDot(classNames.footer)]: {
+      display: "flex",
+      flexDirection: "row",
+      justifyContent: "flex-end",
+    },
   };
 });
