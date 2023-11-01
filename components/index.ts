@@ -20,6 +20,7 @@ export { ConfigProvider } from "./config";
 export { Form } from "./form";
 export { Empty } from "./empty";
 export { Drawer } from "./drawer";
+export { Dialog } from "./dialog";
 
 /**
  * @description

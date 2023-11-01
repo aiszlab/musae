@@ -19,9 +19,21 @@ export interface DialogProps {
 
   /**
    * @description
-   * close handler
+   * footer
    */
-  onClose?: VoidFunction;
+  footer?: ReactNode;
+
+  /**
+   * @description
+   * on confirm
+   */
+  onConfirm?: VoidFunction;
+
+  /**
+   * @description
+   * on cancel
+   */
+  onCancel?: VoidFunction;
 }
 
 /**

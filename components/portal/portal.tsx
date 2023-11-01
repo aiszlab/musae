@@ -14,7 +14,7 @@ const Portal = ({ children, isVisible = false, destroyable = false }: PortalProp
     }
   }, [destroyable, isVisible]);
 
-  useScrollLocker(isDomUsable() && shouldRender);
+  useScrollLocker(isDomUsable() && isVisible);
 
   if (!shouldRender) return null;
 

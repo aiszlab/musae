@@ -1,6 +1,9 @@
-import { useContext, useMemo } from "react";
+import React, { useContext, useMemo } from "react";
 import Context from "../config/context";
 import { withPrefix } from "../../utils/class-name";
+import { PopupProps } from "./types";
+import { Space } from "../space";
+import { Button } from "../button";
 
 enum ClassName {
   Dialog = "dialog",
@@ -29,4 +32,27 @@ export const useClassNames = () => {
     }),
     [prefix]
   );
+};
+
+/**
+ * @description
+ * footer
+ */
+export const useFooter = ([footer, onConfirm, onCancel]: [
+  footer: PopupProps["footer"],
+  onConfirm: PopupProps["onConfirm"],
+  onCancel: PopupProps["onCancel"]
+]) => {
+  return useMemo(() => {
+    return (
+      footer ?? (
+        <Space>
+          <Button onClick={onCancel} color="secondary" variant="outlined">
+            取消
+          </Button>
+          <Button onClick={onConfirm}>确认</Button>
+        </Space>
+      )
+    );
+  }, [footer, onConfirm, onCancel]);
 };

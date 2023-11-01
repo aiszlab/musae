@@ -26,7 +26,7 @@ export const StyledMask = styled.div({
   inset: 0,
   pointerEvents: "auto",
   zIndex: 1000,
-  opacity: 0,
+  opacity: 1,
   backgroundColor: "rgba(0, 0, 0, 0.45)",
 });
 
@@ -38,12 +38,23 @@ export const StyledPanel = styled.div(() => {
   const classNames = useClassNames();
 
   return {
+    display: "flex",
+    flexDirection: "column",
+
+    borderRadius: 8,
     pointerEvents: "auto",
     backgroundColor: "white",
-    width: 200,
-    height: 200,
+    width: 480,
+    height: 320,
+    zIndex: 1000,
+
+    [withDot(classNames.body)]: {
+      padding: 20,
+      flex: 1,
+    },
 
     [withDot(classNames.footer)]: {
+      padding: 12,
       display: "flex",
       flexDirection: "row",
       justifyContent: "flex-end",
