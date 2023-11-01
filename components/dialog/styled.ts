@@ -41,16 +41,25 @@ export const StyledPanel = styled.div(() => {
     display: "flex",
     flexDirection: "column",
 
+    // rect
+    minWidth: 480,
+    maxWidth: 960,
+    minHeight: 320,
+    maxHeight: "calc(100% - 64px)",
+
+    // space
+    margin: 32,
+
     borderRadius: 8,
     pointerEvents: "auto",
     backgroundColor: "white",
-    width: 480,
-    height: 320,
     zIndex: 1000,
 
     [withDot(classNames.body)]: {
       padding: 20,
       flex: 1,
+      wordBreak: "break-word",
+      overflow: "auto",
     },
 
     [withDot(classNames.footer)]: {
