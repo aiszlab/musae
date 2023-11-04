@@ -17,7 +17,7 @@ const Popup = ({ isOpened, onClose, placement = "right", ...props }: PopupProps)
       if (isOpened) {
         await animate(scope.current, { display: "block" }, { duration: 0 });
         animate(withDot(classNames.panel), { transform: placements.at(1) });
-        animate(withDot(classNames.mask), { opacity: 1 });
+        animate(withDot(classNames.mask), { opacity: 0.8 });
       } else {
         await Promise.all([
           animate(withDot(classNames.panel), { transform: placements.at(0) }),

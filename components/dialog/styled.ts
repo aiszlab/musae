@@ -27,7 +27,6 @@ export const StyledPopup = styled.div((props) => {
       inset: 0,
       pointerEvents: "auto",
       zIndex: 1000,
-
       backgroundColor: theme.colorRole.surfaceDim,
 
       // initial style
