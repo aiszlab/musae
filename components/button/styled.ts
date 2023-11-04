@@ -2,9 +2,8 @@ import styled from "@emotion/styled";
 import { useValidTheme } from "../theme/hooks";
 import type { ButtonRenderProps } from "./types";
 
-export const StyledWrapper = styled.button<ButtonRenderProps>(({ theme, variant, color }) => {
-  const _theme = useValidTheme(theme);
-  const _primaryColor = _theme.palettes[color][40];
+export const StyledWrapper = styled.button<ButtonRenderProps>(({ variant, color, ...props }) => {
+  const theme = useValidTheme(props.theme);
 
   return {
     borderRadius: 999,
@@ -12,11 +11,11 @@ export const StyledWrapper = styled.button<ButtonRenderProps>(({ theme, variant,
 
     // filled variant style
     ...(variant === "filled" && {
-      backgroundColor: _primaryColor,
+      backgroundColor: theme.colorRole.primary,
       border: "none",
 
       span: {
-        color: _theme.palettes.primary[100],
+        color: theme.colorRole.onPrimary,
       },
     }),
 
@@ -24,17 +23,17 @@ export const StyledWrapper = styled.button<ButtonRenderProps>(({ theme, variant,
     ...(variant === "outlined" && {
       borderWidth: 1,
       borderStyle: "solid",
-      borderColor: _theme.palettes.neutral[50],
+      borderColor: theme.colorRole.outline,
 
       span: {
-        color: _primaryColor,
+        color: theme.colorRole.primary,
       },
     }),
 
     // text variant style
     ...(variant === "text" && {
       span: {
-        color: _primaryColor,
+        color: theme.colorRole.primary,
       },
     }),
   };
@@ -46,8 +45,8 @@ export const StyledWrapper = styled.button<ButtonRenderProps>(({ theme, variant,
  * @description
  * content
  */
-export const StyledSpan = styled.span(({ theme }) => {
-  const _theme = useValidTheme(theme);
+export const StyledSpan = styled.span((props) => {
+  const theme = useValidTheme(props.theme);
 
   return {
     marginLeft: 8,
@@ -55,6 +54,6 @@ export const StyledSpan = styled.span(({ theme }) => {
     whiteSpace: "nowrap",
 
     /// typography
-    ..._theme.typography.label.large,
+    ...theme.typography.label.large,
   };
 });

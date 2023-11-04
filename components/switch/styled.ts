@@ -26,12 +26,12 @@ export const Wrapper = styled.div((props) => {
     },
 
     "&[aria-selected=true]": {
-      borderColor: theme.palettes.primary[40],
-      backgroundColor: theme.palettes.primary[40],
+      borderColor: theme.colorRole.primary,
+      backgroundColor: theme.colorRole.primary,
 
       "::before": {
         translate: "100%",
-        backgroundColor: "white",
+        backgroundColor: theme.colorRole.surfaceContainerLowest,
       },
     },
   };

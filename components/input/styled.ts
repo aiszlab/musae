@@ -4,8 +4,8 @@ import { useValidTheme } from "../theme/hooks";
 import { useClassNames } from "./hooks";
 import { withDot } from "../../utils/class-name";
 
-export const StyledWrapper = styled.fieldset<WrapperRenderProps>(({ focused, invalid, theme }) => {
-  const _theme = useValidTheme(theme);
+export const StyledWrapper = styled.fieldset<WrapperRenderProps>((props) => {
+  const theme = useValidTheme(props.theme);
   const classNames = useClassNames();
 
   return {
@@ -18,7 +18,7 @@ export const StyledWrapper = styled.fieldset<WrapperRenderProps>(({ focused, inv
     paddingBottom: 0,
     display: "flex",
     alignItems: "center",
-    borderColor: _theme.palettes.neutral[50],
+    borderColor: theme.colorRole.outline,
     borderWidth: 1,
     borderStyle: "solid",
     borderRadius: 4,
@@ -26,13 +26,13 @@ export const StyledWrapper = styled.fieldset<WrapperRenderProps>(({ focused, inv
 
     // if input is focused, change the border
     [`&${withDot(classNames.focusedWrapper)}`]: {
-      borderColor: _theme.palettes.primary[40],
+      borderColor: theme.colorRole.primary,
       borderWidth: 2,
     },
 
     // if is invalid, display as error
     [`&${withDot(classNames.invalidWrapper)}`]: {
-      borderColor: _theme.palettes.error[40],
+      borderColor: theme.colorRole.error,
     },
   };
 });
@@ -53,12 +53,12 @@ export const StyledInput = styled.input(() => {
  * @description
  * styled label
  */
-export const StyledLabel = styled.legend<LabelRenderProps>(({ focused, theme }) => {
-  const _theme = useValidTheme(theme);
+export const StyledLabel = styled.legend<LabelRenderProps>(({ focused, ...props }) => {
+  const theme = useValidTheme(props.theme);
 
   return {
     // typography
-    ..._theme.typography.body.small,
+    ...theme.typography.body.small,
 
     // layout
     paddingInlineStart: 4,
@@ -66,7 +66,7 @@ export const StyledLabel = styled.legend<LabelRenderProps>(({ focused, theme }) 
 
     // if input is focused
     ...(focused && {
-      color: _theme.palettes.primary[40],
+      color: theme.colorRole.primary,
     }),
   };
 });

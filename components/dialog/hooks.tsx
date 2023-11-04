@@ -47,10 +47,12 @@ export const useFooter = ([footer, onConfirm, onCancel]: [
     return (
       footer ?? (
         <Space>
-          <Button onClick={onCancel} color="secondary" variant="outlined">
+          <Button onClick={onCancel} color="secondary" variant="text">
             取消
           </Button>
-          <Button onClick={onConfirm}>确认</Button>
+          <Button onClick={onConfirm} variant="text">
+            确认
+          </Button>
         </Space>
       )
     );

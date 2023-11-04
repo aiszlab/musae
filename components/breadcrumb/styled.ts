@@ -1,14 +1,14 @@
 import styled from "@emotion/styled";
 import { useValidTheme } from "../theme/hooks";
 
-export const StyledNav = styled.nav(({ theme }) => {
-  const _theme = useValidTheme(theme);
+export const StyledNav = styled.nav((props) => {
+  const theme = useValidTheme(props.theme);
 
   return {
-    color: _theme.palettes.neutral[30],
+    color: theme.colorRole.onSurfaceVariant,
 
     // typography
-    ..._theme.typography.label.large,
+    ...theme.typography.label.large,
 
     ol: {
       listStyle: "none",
@@ -21,14 +21,16 @@ export const StyledNav = styled.nav(({ theme }) => {
           transition: "all 200ms",
           borderRadius: 4,
 
+          // when hover, use deeper color
           ":hover": {
-            color: _theme.palettes.neutral[10],
-            backgroundColor: _theme.palettes.neutral[95],
+            color: theme.colorRole.onSurface,
+            backgroundColor: theme.colorRole.surface,
           },
         },
 
+        // the last li, use deeper color
         ":last-of-type": {
-          color: _theme.palettes.neutral[10],
+          color: theme.colorRole.onSurface,
         },
       },
     },

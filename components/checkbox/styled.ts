@@ -1,9 +1,8 @@
 import styled from "@emotion/styled";
 import { useValidTheme } from "../theme/hooks";
 
-export const StyledWrapper = styled.input(({ theme }) => {
-  const _theme = useValidTheme(theme);
-  const primaryColor = _theme.palettes.primary[40];
+export const StyledWrapper = styled.input((props) => {
+  const theme = useValidTheme(props.theme);
 
   return {
     margin: 0,
@@ -27,8 +26,8 @@ export const StyledWrapper = styled.input(({ theme }) => {
 
     "&[aria-checked=true]": {
       "::before": {
-        backgroundColor: primaryColor,
-        borderColor: primaryColor,
+        backgroundColor: theme.colorRole.primary,
+        borderColor: theme.colorRole.primary,
       },
 
       "::after": {

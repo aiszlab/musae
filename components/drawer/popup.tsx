@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { StyledMask, StyledPanel, StyledWrapper } from "./styled";
+import { StyledPopup } from "./styled";
 import { useAnimate } from "framer-motion";
 import type { PopupProps } from "./types";
 import { useClassNames, usePlacements } from "./hooks";
@@ -31,16 +31,16 @@ const Popup = ({ isOpened, onClose, placement = "right", ...props }: PopupProps)
   }, [isOpened, ...placements]);
 
   return (
-    <StyledWrapper ref={scope} className={classNames.drawer}>
+    <StyledPopup ref={scope} className={classNames.drawer} placement={placement}>
       {/* mask */}
-      <StyledMask className={classNames.mask} onClick={onClose} />
+      <div className={classNames.mask} onClick={onClose} />
 
       {/* panel */}
-      <StyledPanel className={classNames.panel} placement={placement}>
+      <div className={classNames.panel}>
         <div className={classNames.header}></div>
         <div className={classNames.body}>{props.children}</div>
-      </StyledPanel>
-    </StyledWrapper>
+      </div>
+    </StyledPopup>
   );
 };
 

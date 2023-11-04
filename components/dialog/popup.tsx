@@ -1,24 +1,47 @@
-import React from "react";
+import React, { useEffect } from "react";
 import type { PopupProps } from "./types";
-import { StyledWrapper, StyledMask, StyledPanel } from "./styled";
+import { StyledPopup } from "./styled";
 import { useClassNames, useFooter } from "./hooks";
+import { useAnimate } from "framer-motion";
+import { withDot } from "../../utils/class-name";
 
-const Popup = ({ onCancel, ...props }: PopupProps) => {
+const Popup = ({ onCancel, isOpened, ...props }: PopupProps) => {
   const classNames = useClassNames();
   const footer = useFooter([props.footer, props.onConfirm, onCancel]);
+  const [scope, animate] = useAnimate<HTMLDivElement>();
+
+  useEffect(() => {
+    if (!scope.current) return;
+
+    (async () => {
+      if (isOpened) {
+        await animate(scope.current, { display: "flex" }, { duration: 0 });
+        animate(withDot(classNames.panel), { opacity: 1 });
+        animate(withDot(classNames.mask), { opacity: 1 });
+      } else {
+        await Promise.all([
+          animate(withDot(classNames.panel), { opacity: 0 }),
+          animate(withDot(classNames.mask), { opacity: 0 }),
+        ]);
+        animate(scope.current, { display: "none" }, { duration: 0 });
+      }
+    })();
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isOpened]);
 
   return (
-    <StyledWrapper>
+    <StyledPopup ref={scope}>
       {/* mask */}
-      <StyledMask className={classNames.mask} onClick={onCancel} />
+      <div className={classNames.mask} onClick={onCancel} />
 
       {/* panel */}
-      <StyledPanel className={classNames.panel}>
+      <div className={classNames.panel}>
         <div className={classNames.header}></div>
         <div className={classNames.body}>{props.children}</div>
         <div className={classNames.footer}>{footer}</div>
-      </StyledPanel>
-    </StyledWrapper>
+      </div>
+    </StyledPopup>
   );
 };
 

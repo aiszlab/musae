@@ -13,7 +13,7 @@ export const StyledWrapper = styled.div<DividerRenderProps>(({ hasChildren, offs
   };
   const dividerStyle: CSSObject = {
     height: 1,
-    backgroundColor: "#cac4d0",
+    backgroundColor: theme.colorRole.outlineVariant,
   };
 
   if (!hasChildren) {

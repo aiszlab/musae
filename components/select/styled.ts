@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { useValidTheme } from "../theme/hooks";
-import { useClassNames as useChipClassNames } from "../chip/hooks";
+import { useClassNames } from "../chip/hooks";
 import type { DropdownWrapperRenderProps } from "./types";
 import { withDot } from "../../utils/class-name";
 
@@ -9,10 +9,10 @@ import { withDot } from "../../utils/class-name";
  * selector
  */
 export const StyledSelector = styled.div(() => {
-  const chipClassNames = useChipClassNames();
+  const classNames = useClassNames();
 
   return {
-    [`${withDot(chipClassNames.chip)}:not(:last-of-type)`]: {
+    [`${withDot(classNames.chip)}:not(:last-of-type)`]: {
       marginRight: 4,
     },
   };
@@ -22,13 +22,13 @@ export const StyledSelector = styled.div(() => {
  * @description
  * dropdown wrapper
  */
-export const StyledDropdownWrapper = styled.div<DropdownWrapperRenderProps>(({ theme, width }) => {
-  const _theme = useValidTheme(theme);
+export const StyledDropdownWrapper = styled.div<DropdownWrapperRenderProps>(({ width, ...props }) => {
+  const theme = useValidTheme(props.theme);
 
   return {
     marginTop: 4,
     borderRadius: 8,
-    backgroundColor: _theme.palettes.neutral[95],
+    backgroundColor: theme.colorRole.surface,
     maxHeight: 300,
     minWidth: width,
     overflow: "auto",

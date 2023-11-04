@@ -25,8 +25,8 @@ const HolderWrapper = styled.div(() => {
  * @description
  * wrapper of message
  */
-const MessageWrapper = styled.div(({ theme }) => {
-  const _theme = useValidTheme(theme);
+const MessageWrapper = styled.div((props) => {
+  const theme = useValidTheme(props.theme);
 
   return {
     marginTop: 8,
@@ -34,7 +34,7 @@ const MessageWrapper = styled.div(({ theme }) => {
     padding: "8px 12px",
     borderRadius: 6,
     backgroundColor: "#ffffff",
-    ..._theme.elevations[1],
+    ...theme.elevations[1],
   };
 });
 

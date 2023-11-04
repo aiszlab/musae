@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import type { Palettes, Theme } from "./types";
+import { type Palettes, type Theme, _Theme, ColorRole } from "./types";
 import { useTheme as useEmotionTheme } from "@emotion/react";
 import { isEmpty } from "@aiszlab/relax";
 
@@ -23,7 +23,7 @@ const palettes: Palettes = {
     "0": "#000",
     "10": "#1D192B",
     "20": "#332D41",
-    "30": "#4F378B",
+    "30": "#4A4458",
     "40": "#625B71",
     "50": "#7A7289",
     "60": "#958DA5",
@@ -79,6 +79,21 @@ const palettes: Palettes = {
     "99": "#FFFBFE",
     "100": "#FFF",
   },
+  neutralVariant: {
+    "0": "#000",
+    "10": "#1D1A22",
+    "20": "#322F37",
+    "30": "#49454F",
+    "40": "#605D66",
+    "50": "#79747E",
+    "60": "#938F99",
+    "70": "#AEA9B4",
+    "80": "#CAC4D0",
+    "90": "#E7E0EC",
+    "95": "#F5EEFA",
+    "99": "#FFFBFE",
+    "100": "#FFF",
+  },
 };
 
 /**
@@ -90,11 +105,24 @@ const palettes: Palettes = {
  */
 export const DEFAULT_THEME: Theme = {
   typography: {
+    headline: {
+      small: {
+        fontSize: 24,
+        fontWeight: 400,
+        lineHeight: "32px",
+      },
+    },
+
     body: {
       small: {
         fontSize: 12,
         fontWeight: 400,
         lineHeight: "16px",
+      },
+      medium: {
+        fontSize: 14,
+        fontWeight: 400,
+        lineHeight: "20px",
       },
       large: {
         fontSize: 16,
@@ -102,6 +130,7 @@ export const DEFAULT_THEME: Theme = {
         lineHeight: "24px",
       },
     },
+
     label: {
       small: {
         fontSize: 11,
@@ -137,6 +166,7 @@ export const DEFAULT_THEME: Theme = {
     },
   ],
 
+  /// color
   palettes,
 };
 
@@ -146,11 +176,17 @@ export const DEFAULT_THEME: Theme = {
  * @description
  * use valid theme for components
  */
-export const useValidTheme = (usedTheme: Partial<Theme>) =>
-  useMemo<Theme>(() => {
-    if (isEmpty(usedTheme)) return DEFAULT_THEME;
-    return usedTheme as Theme;
+export const useValidTheme = (usedTheme: Partial<Theme>) => {
+  return useMemo<_Theme>(() => {
+    // empty theme, use default
+    const _theme = isEmpty(usedTheme) ? DEFAULT_THEME : (usedTheme as Theme);
+    // add color role
+    return {
+      ..._theme,
+      colorRole: new ColorRole(_theme.palettes),
+    };
   }, [usedTheme]);
+};
 
 /**
  * @author murukal
