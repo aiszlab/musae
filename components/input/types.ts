@@ -1,4 +1,4 @@
-import type { AriaAttributes, DOMAttributes, DetailedHTMLProps, InputHTMLAttributes, ReactNode } from "react";
+import type { InputHTMLAttributes, ReactNode } from "react";
 
 /**
  * @description
