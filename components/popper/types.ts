@@ -41,12 +41,18 @@ export interface PopperProps {
 }
 
 /**
+ * @description
+ * popup props
+ */
+export interface PopupProps extends PopperProps {}
+
+/**
  * @author murukal
  *
  * @description
  * wrapper props
  */
-export interface PopperRenderProps {
+export interface PopupRenderProps {
   /**
    * @description
    * if popper is visible

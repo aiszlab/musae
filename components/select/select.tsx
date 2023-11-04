@@ -1,4 +1,4 @@
-import React, { type MouseEvent, useCallback, useMemo, useRef, Key } from "react";
+import React, { type MouseEvent, useCallback, useMemo, useRef } from "react";
 import { Popper } from "../popper";
 import { useBoolean } from "@aiszlab/relax";
 import { Input } from "../input";
@@ -11,7 +11,7 @@ import type { SelectProps } from "./types";
 import type { InputRef } from "../input/types";
 import Chip from "../chip/chip";
 
-const _Provider = Context.Provider;
+const Provider = Context.Provider;
 
 const Select = ({ mode, options, ...props }: SelectProps) => {
   const ref = useRef<InputRef>(null);
@@ -50,9 +50,9 @@ const Select = ({ mode, options, ...props }: SelectProps) => {
 
   return (
     <StyledSelector>
-      <_Provider value={inputContextValue}>
+      <Provider value={inputContextValue}>
         <Input ref={ref} onClick={toggle} readOnly onBlur={close} />
-      </_Provider>
+      </Provider>
 
       <Popper
         trigger={ref.current}

@@ -22,4 +22,10 @@ export interface PortalProps {
    * visible
    */
   isVisible?: boolean;
+
+  /**
+   * @description
+   * lockable
+   */
+  lockable?: boolean;
 }
