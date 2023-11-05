@@ -1,6 +1,5 @@
-import { createContext } from "react";
+import React, { createContext } from "react";
 import type { ContextValue } from "./types";
-import React from "react";
 import { Menu } from "../menu";
 import { useReadableOptions, useValue } from "./hooks";
 
