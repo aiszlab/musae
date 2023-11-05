@@ -50,7 +50,7 @@ export const StyledPopup = styled.div((props) => {
 
       borderRadius: 8,
       pointerEvents: "auto",
-      backgroundColor: "white",
+      backgroundColor: theme.colorRole.surfaceContainerLowest,
       zIndex: 1000,
 
       // initial style

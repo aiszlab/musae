@@ -40,7 +40,7 @@ export const StyledWrapper = styled.input((props) => {
         height: "0.5rem",
         borderWidth: "0.1rem",
         borderStyle: "solid",
-        borderColor: "white",
+        borderColor: theme.colorRole.onPrimary,
         borderTop: 0,
         borderLeft: 0,
         transform: "translate(200%, -150%) rotate(45deg)",
