@@ -1,4 +1,4 @@
-import type { FocusEventHandler, FormEventHandler, RefCallback } from "react";
+import type { RefCallback } from "react";
 
 /**
  * @author murukal

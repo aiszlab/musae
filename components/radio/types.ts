@@ -1,6 +1,7 @@
 import type { ReactNode, JSX } from "react";
+import type { Partialable } from "../../types/lib";
 
-export type Value = string | number | undefined;
+export type Value = Partialable<string | number>;
 
 /**
  * @author murukal

@@ -11,8 +11,6 @@ const Popup = ({ onCancel, isOpened, ...props }: PopupProps) => {
   const [scope, animate] = useAnimate<HTMLDivElement>();
 
   useEffect(() => {
-    if (!scope.current) return;
-
     (async () => {
       if (isOpened) {
         await animate(scope.current, { display: "flex" }, { duration: 0 });
@@ -26,7 +24,6 @@ const Popup = ({ onCancel, isOpened, ...props }: PopupProps) => {
         animate(scope.current, { display: "none" }, { duration: 0 });
       }
     })();
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpened]);
 

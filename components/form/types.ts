@@ -8,6 +8,7 @@ import type {
   UseFormGetValues,
   UseFormTrigger,
 } from "react-hook-form";
+import type { Nullable, Partialable } from "../../types/lib";
 
 /**
  * @author murukal
@@ -28,13 +29,13 @@ export interface FormRef<T extends FieldValues> {
    * get fields error
    * after trigger validate, fields may have error, pls use this api to get error message
    */
-  getFieldsError: (namePaths?: FieldPath<T>[]) => FieldErrors<T> | null;
+  getFieldsError: (namePaths?: FieldPath<T>[]) => Nullable<FieldErrors<T>>;
 
   /**
    * @description
    * get single field value
    */
-  getFieldError: (namePath: FieldPath<T>) => FieldError | undefined;
+  getFieldError: (namePath: FieldPath<T>) => Partialable<FieldError>;
 
   /**
    * @description

@@ -1,7 +1,7 @@
 import React from "react";
 import { type PopperProps } from "./types";
 import { Portal } from "../portal";
-import Popup from "./popup";
+import Popup from "./dropdown";
 
 const Popper = (props: PopperProps) => {
   return (

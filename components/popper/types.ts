@@ -45,17 +45,3 @@ export interface PopperProps {
  * popup props
  */
 export interface PopupProps extends PopperProps {}
-
-/**
- * @author murukal
- *
- * @description
- * wrapper props
- */
-export interface PopupRenderProps {
-  /**
-   * @description
-   * if popper is visible
-   */
-  isVisible: boolean;
-}

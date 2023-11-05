@@ -11,8 +11,6 @@ const Popup = ({ isOpened, onClose, placement = "right", ...props }: PopupProps)
   const [placements] = usePlacements([placement]);
 
   useEffect(() => {
-    if (!scope.current) return;
-
     (async () => {
       if (isOpened) {
         await animate(scope.current, { display: "block" }, { duration: 0 });
@@ -26,7 +24,6 @@ const Popup = ({ isOpened, onClose, placement = "right", ...props }: PopupProps)
         animate(scope.current, { display: "none" }, { duration: 0 });
       }
     })();
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpened, ...placements]);
 

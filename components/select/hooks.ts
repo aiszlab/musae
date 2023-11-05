@@ -5,6 +5,7 @@ import type { MenuItemProps } from "../menu/types";
 import type { SelectProps } from "./types";
 import { useControlledState } from "@aiszlab/relax";
 import { toKey, toValues } from "./utils";
+import { Partialable } from "../../types/lib";
 
 enum ClassName {
   Dropdown = "select-dropdown",
@@ -33,7 +34,7 @@ export const useClassNames = () => {
  */
 export const useOptions = ([options]: [options: SelectProps["options"]]) => {
   const [menuItems, valueWithLabel] = useMemo(() => {
-    return (options || []).reduce<[MenuItemProps[], Map<Key, string | undefined>]>(
+    return (options || []).reduce<[MenuItemProps[], Map<Key, Partialable<string>>]>(
       (prev, current) => {
         prev[0].push({
           key: current.value.toString(),
@@ -56,7 +57,7 @@ export const useOptions = ([options]: [options: SelectProps["options"]]) => {
 export const useValue = ([value, mode, valueWithLabel, close]: [
   value: SelectProps["value"],
   mode: SelectProps["mode"],
-  valueWithLabel: Map<Key, string | undefined>,
+  valueWithLabel: Map<Key, Partialable<string>>,
   close: VoidFunction
 ]) => {
   /// convert prop value into a map
@@ -67,6 +68,7 @@ export const useValue = ([value, mode, valueWithLabel, close]: [
         const key = toKey(_value);
         return prev.set(key, valueWithLabel.get(key));
       }, new Map()),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [value]
   );
 
@@ -94,6 +96,7 @@ export const useValue = ([value, mode, valueWithLabel, close]: [
       /// add this selected value
       setValues(new Map(values.set(key, valueWithLabel.get(key)!).entries()));
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [values, valueWithLabel, close]
   );
 

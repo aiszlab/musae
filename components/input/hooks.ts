@@ -12,6 +12,7 @@ import clsx from "clsx";
 import Context from "../config/context";
 import { withPrefix } from "../../utils/class-name";
 import type { InputProps } from "./types";
+import type { Partialable } from "../../types/lib";
 
 enum ClassName {
   Wrapper = "input-wrapper",
@@ -45,9 +46,9 @@ export const useClassNames = () => {
  * class name for input
  */
 export const useStyles = ([className, isFocused, isInvalid]: [
-  className: string | undefined,
+  className: Partialable<string>,
   isFocused: boolean,
-  isInvalid: boolean | undefined
+  isInvalid: Partialable<boolean>
 ]) => {
   const classNames = useClassNames();
 
@@ -61,6 +62,7 @@ export const useStyles = ([className, isFocused, isInvalid]: [
         [classNames.invalidWrapper]: isInvalid,
       },
     ]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [className, isFocused, isInvalid, ...Object.values(classNames)]);
 
   return {
@@ -73,7 +75,7 @@ export const useStyles = ([className, isFocused, isInvalid]: [
  * use events for input
  */
 export const useEvents = ([[_focus, _blur, _change], [onFocus, onBlur, onChange, onClick]]: [
-  [_focus: () => void, _blur: () => void, _change: Dispatch<SetStateAction<string | undefined>>],
+  [_focus: () => void, _blur: () => void, _change: Dispatch<SetStateAction<Partialable<string>>>],
   [InputProps["onFocus"], InputProps["onBlur"], InputProps["onChange"], InputProps["onClick"]]
 ]) => {
   const focus = useCallback<FocusEventHandler<HTMLInputElement>>(

@@ -2,6 +2,7 @@ import { useContext, useMemo } from "react";
 import Context from "../config/context";
 import { withPrefix } from "../../utils/class-name";
 import { Align } from "./types";
+import type { Partialable } from "../../types/lib";
 
 enum ClassName {
   Divider = "divider",
@@ -34,7 +35,7 @@ export const useClassNames = () => {
  * @description
  * offset for children
  */
-export const useOffset = ([align]: [align: Align | undefined]) => {
+export const useOffset = ([align]: [align: Partialable<Align>]) => {
   return useMemo(() => {
     return OFFSET.get(align ?? "center") ?? 50;
   }, [align]);
