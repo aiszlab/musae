@@ -7,6 +7,7 @@ export { Menu } from "./menu";
 export { Loading } from "./loading";
 export { Input } from "./input";
 export { Select } from "./select";
+export { Cascader } from "./cascader";
 export { Button } from "./button";
 export { Switch } from "./switch";
 export { Radio } from "./radio";

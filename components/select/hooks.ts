@@ -1,11 +1,11 @@
 import { type Key, useContext, useMemo, useCallback } from "react";
 import Context from "../config/context";
 import { withPrefix } from "../../utils/class-name";
-import type { MenuItemProps } from "../menu/types";
-import type { SelectProps } from "./types";
+import type { ReadableOptions, SelectProps, ToAddition } from "./types";
 import { useControlledState } from "@aiszlab/relax";
-import { toKey, toValues } from "./utils";
-import { Partialable } from "../../types/lib";
+import { readOptions, toKey, toValues } from "./utils";
+import type { Option } from "../../types/option";
+import { MenuItemProps } from "..";
 
 enum ClassName {
   Dropdown = "select-dropdown",
@@ -27,37 +27,13 @@ export const useClassNames = () => {
 };
 
 /**
- * @author murukal
- *
- * @description
- * options
- */
-export const useOptions = ([options]: [options: SelectProps["options"]]) => {
-  const [menuItems, valueWithLabel] = useMemo(() => {
-    return (options || []).reduce<[MenuItemProps[], Map<Key, Partialable<string>>]>(
-      (prev, current) => {
-        prev[0].push({
-          key: current.value.toString(),
-          label: current.label,
-        });
-        prev[1].set(current.value, current.label);
-        return prev;
-      },
-      [[], new Map()]
-    );
-  }, [options]);
-
-  return { menuItems, valueWithLabel };
-};
-
-/**
  * @description
  * use value
  */
-export const useValue = ([value, mode, valueWithLabel, close]: [
+export const useValue = ([value, mode, readableOptions, close]: [
   value: SelectProps["value"],
   mode: SelectProps["mode"],
-  valueWithLabel: Map<Key, Partialable<string>>,
+  readableOptions: ReadableOptions,
   close: VoidFunction
 ]) => {
   /// convert prop value into a map
@@ -66,10 +42,9 @@ export const useValue = ([value, mode, valueWithLabel, close]: [
     () =>
       toValues(value).reduce((prev, _value) => {
         const key = toKey(_value);
-        return prev.set(key, valueWithLabel.get(key));
+        return prev.set(key, readableOptions.get(key) ?? (_value as Option).label);
       }, new Map()),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [value]
+    [value, readableOptions]
   );
 
   const [values, setValues] = useControlledState(_values);
@@ -81,7 +56,7 @@ export const useValue = ([value, mode, valueWithLabel, close]: [
       /// close dropdown after click
       if (!mode) {
         close();
-        setValues(new Map([[key, valueWithLabel.get(key)!]]));
+        setValues(new Map([[key, readableOptions.get(key)?.label!]]));
         return;
       }
 
@@ -94,14 +69,46 @@ export const useValue = ([value, mode, valueWithLabel, close]: [
       }
 
       /// add this selected value
-      setValues(new Map(values.set(key, valueWithLabel.get(key)!).entries()));
+      setValues(new Map(values.set(key, readableOptions.get(key)?.label!).entries()));
     },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [values, valueWithLabel, close]
+    [mode, values, setValues, readableOptions, close]
   );
 
   return {
     value: values,
     onChange,
   };
+};
+
+/**
+ * @description
+ * readable options
+ */
+export const useReadableOptions = <T>([options, toAddition]: [
+  options: SelectProps["options"],
+  toAddition: ToAddition<T>
+]) => {
+  return useMemo(() => {
+    const [additions, readableOptions] = readOptions(options || [], {
+      isTiled: true,
+      toAddition,
+    });
+    return {
+      additions,
+      readableOptions,
+    };
+  }, [options, toAddition]);
+};
+
+/**
+ * @description
+ * to addition
+ */
+export const useToAddition = () => {
+  return useCallback<ToAddition<Pick<MenuItemProps, "key" | "label">>>((option) => {
+    return {
+      key: option.value,
+      label: option.label,
+    };
+  }, []);
 };

@@ -1,10 +1,10 @@
 import { createContext } from "react";
-import { ContextValue } from "./types";
+import type { ContextValue } from "./types";
 
 /**
  * @description
  * context
  */
-const context = createContext<ContextValue>({});
+const Context = createContext<ContextValue>({});
 
-export default context;
+export default Context;

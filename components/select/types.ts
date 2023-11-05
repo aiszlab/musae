@@ -1,12 +1,5 @@
-import type { Key } from "react";
-
-export interface Option {
-  /* value */
-  value: Key;
-
-  /* label */
-  label?: string;
-}
+import type { Key, ReactNode } from "react";
+import type { Option } from "../../types/option";
 
 export type Mode = "multiple";
 
@@ -57,3 +50,52 @@ export interface DropdownWrapperRenderProps {
    */
   width?: number;
 }
+
+/**
+ * @description
+ * context value
+ */
+export interface ContextValue {
+  /**
+   * @description
+   * selector hooks
+   */
+  useSelector: (
+    props: Pick<SelectProps, "value" | "options" | "mode"> & {
+      close: VoidFunction;
+    }
+  ) => {
+    options: ReactNode;
+    value: Map<Key, string>;
+  };
+}
+
+/**
+ * @description
+ * has children
+ */
+export type HasChildren<T> = Pick<T, Exclude<keyof T, "children">> & {
+  /**
+   * @description
+   * only children
+   */
+  children?: HasChildren<T>[];
+};
+
+/**
+ * @description
+ * to addition
+ */
+export type ToAddition<T> = (option: Omit<Option, "children">) => T;
+
+/**
+ * @description
+ * readable options
+ */
+export type ReadableOptions = Map<
+  Key,
+  {
+    label?: string;
+    children?: ReadableOptions;
+  }
+>;

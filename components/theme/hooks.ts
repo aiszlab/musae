@@ -1,7 +1,8 @@
 import { useMemo } from "react";
-import { type Palettes, type Theme, _Theme, ColorRole } from "./types";
+import { type Palettes, type Theme, _Theme } from "./types";
 import { useTheme as useEmotionTheme } from "@emotion/react";
 import { isEmpty } from "@aiszlab/relax";
+import { ColorRole } from "./color-role";
 
 const palettes: Palettes = {
   primary: {
