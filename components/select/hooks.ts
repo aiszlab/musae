@@ -1,11 +1,10 @@
 import { type Key, useContext, useMemo, useCallback } from "react";
 import Context from "../config/context";
 import { withPrefix } from "../../utils/class-name";
-import type { ReadableOptions, SelectProps, ToAddition } from "./types";
+import type { ReadableOptions, SelectProps, ToMenuItem } from "./types";
 import { useControlledState } from "@aiszlab/relax";
 import { readOptions, toKey, toValues } from "./utils";
 import type { Option } from "../../types/option";
-import { MenuItemProps } from "..";
 
 enum ClassName {
   Dropdown = "select-dropdown",
@@ -56,7 +55,7 @@ export const useValue = ([value, mode, readableOptions, close]: [
       /// close dropdown after click
       if (!mode) {
         close();
-        setValues(new Map([[key, readableOptions.get(key)?.label!]]));
+        setValues(new Map([[key, readableOptions.get(key)!]]));
         return;
       }
 
@@ -69,7 +68,7 @@ export const useValue = ([value, mode, readableOptions, close]: [
       }
 
       /// add this selected value
-      setValues(new Map(values.set(key, readableOptions.get(key)?.label!).entries()));
+      setValues(new Map(values.set(key, readableOptions.get(key)!).entries()));
     },
     [mode, values, setValues, readableOptions, close]
   );
@@ -84,31 +83,19 @@ export const useValue = ([value, mode, readableOptions, close]: [
  * @description
  * readable options
  */
-export const useReadableOptions = <T>([options, toAddition]: [
-  options: SelectProps["options"],
-  toAddition: ToAddition<T>
-]) => {
-  return useMemo(() => {
-    const [additions, readableOptions] = readOptions(options || [], {
-      isTiled: true,
-      toAddition,
-    });
-    return {
-      additions,
-      readableOptions,
-    };
-  }, [options, toAddition]);
-};
-
-/**
- * @description
- * to addition
- */
-export const useToAddition = () => {
-  return useCallback<ToAddition<Pick<MenuItemProps, "key" | "label">>>((option) => {
+export const useReadableOptions = ([options]: [options: SelectProps["options"]]) => {
+  const toMenuItems = useCallback<ToMenuItem>((option) => {
     return {
       key: option.value,
       label: option.label,
     };
   }, []);
+
+  return useMemo(() => {
+    const [menuItems, readableOptions] = readOptions(options || [], toMenuItems);
+    return {
+      menuItems,
+      readableOptions,
+    };
+  }, [options, toMenuItems]);
 };

@@ -1,5 +1,6 @@
 import type { Key, ReactNode } from "react";
 import type { Option } from "../../types/option";
+import type { MenuItemProps } from "..";
 
 export type Mode = "multiple";
 
@@ -72,30 +73,12 @@ export interface ContextValue {
 
 /**
  * @description
- * has children
- */
-export type HasChildren<T> = Pick<T, Exclude<keyof T, "children">> & {
-  /**
-   * @description
-   * only children
-   */
-  children?: HasChildren<T>[];
-};
-
-/**
- * @description
- * to addition
- */
-export type ToAddition<T> = (option: Omit<Option, "children">) => T;
-
-/**
- * @description
  * readable options
  */
-export type ReadableOptions = Map<
-  Key,
-  {
-    label?: string;
-    children?: ReadableOptions;
-  }
->;
+export type ReadableOptions = Map<Key, string>;
+
+/**
+ * @description
+ * to menu items
+ */
+export type ToMenuItem = (option: Option) => Pick<MenuItemProps, "key" | "label">;

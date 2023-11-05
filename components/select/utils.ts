@@ -1,6 +1,7 @@
 import { isVoid, isArray } from "@aiszlab/relax";
-import type { HasChildren, ReadableOptions, ToAddition, Value, ValueOrValues } from "./types";
+import type { ReadableOptions, ToMenuItem, Value, ValueOrValues } from "./types";
 import type { Option } from "../../types/option";
+import type { MenuItemProps } from "../menu";
 
 /**
  * @description
@@ -27,41 +28,24 @@ export const toKey = (value: Value) => {
 
 /**
  * @description
- * deep read
+ * deep read options
  */
-export const readOptions = <T>(
-  options: Option[],
-  {
-    toAddition,
-    isTiled,
-  }: {
-    toAddition: ToAddition<T>;
-    isTiled: boolean;
-  }
-) => {
-  return options.reduce<[HasChildren<T>[], ReadableOptions]>(
+export const readOptions = (options: Option[], toMenuItem: ToMenuItem) => {
+  return options.reduce<[MenuItemProps[], ReadableOptions]>(
     (prev, option) => {
       // has child, read deeply
-      const [_additions, _readableOptions] = option.children
-        ? readOptions(option.children, {
-            toAddition,
-            isTiled,
-          })
-        : [];
+      const [_additions, _readableOptions] = option.children ? readOptions(option.children, toMenuItem) : [];
 
       // convert with children
       prev[0].push({
-        ...toAddition(option),
+        ...toMenuItem(option),
         children: _additions,
       });
 
-      if (isTiled && _readableOptions) {
+      if (_readableOptions) {
         prev[1] = new Map([...prev[1].entries(), ..._readableOptions.entries()]);
       } else {
-        prev[1].set(option.value, {
-          label: option.label,
-          children: _readableOptions,
-        });
+        prev[1].set(option.value, option.label ?? option.value.toString());
       }
 
       return prev;
