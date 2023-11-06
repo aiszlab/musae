@@ -1,7 +1,9 @@
 import type { Key } from "react";
 import type { Option } from "../../types/option";
 
-type Value = Key | Option;
+type Value = Key[] | Option[];
+
+type ValueOrValues = Key[][] | Option[][] | Value;
 
 export type Mode = "multiple";
 
@@ -14,7 +16,7 @@ export interface CascaderProps {
    * @description
    * value
    */
-  value?: Value[];
+  value?: ValueOrValues;
 
   /**
    * @description

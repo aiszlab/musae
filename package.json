@@ -14,7 +14,7 @@
     "relink": "yarn unlink && yarn link"
   },
   "dependencies": {
-    "@aiszlab/relax": "^1.0.28",
+    "@aiszlab/relax": "^1.0.29",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@popperjs/core": "^2.11.8",

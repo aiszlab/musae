@@ -28,6 +28,20 @@ export const toKey = (value: Value) => {
 
 /**
  * @description
+ * convert to option
+ */
+export const toOption = (value: Value): Omit<Option, "children"> => {
+  if (typeof value === "object") {
+    return value;
+  }
+  return {
+    value,
+    label: value.toString(),
+  };
+};
+
+/**
+ * @description
  * deep read options
  */
 export const readOptions = (options: Option[], toMenuItem: ToMenuItem) => {

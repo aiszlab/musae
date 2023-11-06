@@ -3,8 +3,7 @@ import Context from "../config/context";
 import { withPrefix } from "../../utils/class-name";
 import type { ReadableOptions, SelectProps, ToMenuItem } from "./types";
 import { useControlledState } from "@aiszlab/relax";
-import { readOptions, toKey, toValues } from "./utils";
-import type { Option } from "../../types/option";
+import { readOptions, toKey, toOption, toValues } from "./utils";
 
 enum ClassName {
   Dropdown = "select-dropdown",
@@ -29,10 +28,10 @@ export const useClassNames = () => {
  * @description
  * use value
  */
-export const useValue = ([value, mode, readableOptions, close]: [
+export const useValue = ([value, readableOptions, mode, close]: [
   value: SelectProps["value"],
-  mode: SelectProps["mode"],
   readableOptions: ReadableOptions,
+  mode: SelectProps["mode"],
   close: VoidFunction
 ]) => {
   /// convert prop value into a map
@@ -41,7 +40,7 @@ export const useValue = ([value, mode, readableOptions, close]: [
     () =>
       toValues(value).reduce((prev, _value) => {
         const key = toKey(_value);
-        return prev.set(key, readableOptions.get(key) ?? (_value as Option).label);
+        return prev.set(key, readableOptions.get(key) ?? toOption(_value).value);
       }, new Map()),
     [value, readableOptions]
   );

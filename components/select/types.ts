@@ -6,7 +6,7 @@ export type Mode = "multiple";
 
 export type Value = Key | Option;
 
-export type ValueOrValues = Value[] | Value;
+export type ValueOrValues = Key[] | Option[] | Value;
 
 /**
  * @author murukal

@@ -1,5 +1,6 @@
 import { createElement, useMemo } from "react";
 import type { ContextValue } from "../select/types";
+import { CascaderProps } from "./types";
 
 /**
  * @description
@@ -17,3 +18,9 @@ export const useSelectContextValue = () => {
     };
   }, []);
 };
+
+/**
+ * @description
+ * cascader value
+ */
+export const useValue = ([value]: [value: CascaderProps["value"]]) => {};

@@ -9,7 +9,7 @@ const Context = createContext<ContextValue>({
     const { menuItems, readableOptions } = useReadableOptions([options]);
 
     /// value
-    const { value, onChange } = useValue([props.value, mode, readableOptions, close]);
+    const { value, onChange } = useValue([props.value, readableOptions, mode, close]);
 
     return {
       value: value,
