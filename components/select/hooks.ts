@@ -40,7 +40,7 @@ export const useValue = ([value, readableOptions, mode, close]: [
     () =>
       toValues(value).reduce((prev, _value) => {
         const key = toKey(_value);
-        return prev.set(key, readableOptions.get(key) ?? toOption(_value).value);
+        return prev.set(key, readableOptions.get(key) ?? toOption(_value).label);
       }, new Map()),
     [value, readableOptions]
   );
