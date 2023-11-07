@@ -28,33 +28,32 @@ export const useClassNames = () => {
  * @description
  * use value
  */
-export const useValue = ([value, readableOptions, mode, close]: [
+export const useValue = ([valueInProps, readableOptions, mode, close]: [
   value: SelectProps["value"],
   readableOptions: ReadableOptions,
   mode: SelectProps["mode"],
   close: VoidFunction
 ]) => {
+  const [_value, setValue] = useControlledState(valueInProps);
+
   /// convert prop value into a map
   /// in this component, only use map for controlled state
-  const _values = useMemo<Map<Key, string>>(
+  const values = useMemo<Map<Key, string>>(
     () =>
-      toValues(value).reduce((prev, _value) => {
+      toValues(_value).reduce((prev, _value) => {
         const key = toKey(_value);
         return prev.set(key, readableOptions.get(key) ?? toOption(_value).label);
       }, new Map()),
-    [value, readableOptions]
+    [_value, readableOptions]
   );
-
-  const [values, setValues] = useControlledState(_values);
 
   const onChange = useCallback(
     (key: Key) => {
-      /// if this select is single mode
-      /// use new map for controlled value
+      /// if this select is single mode, just use key value
       /// close dropdown after click
       if (!mode) {
         close();
-        setValues(new Map([[key, readableOptions.get(key)!]]));
+        setValue(key);
         return;
       }
 
@@ -62,14 +61,14 @@ export const useValue = ([value, readableOptions, mode, close]: [
       /// click menu item twice mean cancel it
       if (values.has(key)) {
         values.delete(key);
-        setValues(new Map(values.entries()));
+        setValue([...values.keys()]);
         return;
       }
 
       /// add this selected value
-      setValues(new Map(values.set(key, readableOptions.get(key)!).entries()));
+      setValue([...values.set(key, readableOptions.get(key)!).keys()]);
     },
-    [mode, values, setValues, readableOptions, close]
+    [mode, values, setValue, readableOptions, close]
   );
 
   return {
