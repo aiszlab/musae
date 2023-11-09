@@ -1,11 +1,23 @@
 import type { Key } from "react";
 import type { Option } from "../../types/option";
 
-type Value = Key[] | Option[];
+export type KeyOrOption = Key | Option;
 
-type ValueOrValues = Key[][] | Option[][] | Value;
+export type Value = KeyOrOption[];
+
+export type ValueOrValues = Value[] | Value;
 
 export type Mode = "multiple";
+
+export type Optionable = Pick<Option, "label" | "value">;
+
+export type ReverseIds = Map<
+  Key,
+  {
+    id?: number;
+    children?: ReverseIds;
+  }
+>;
 
 /**
  * @description

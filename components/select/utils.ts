@@ -8,10 +8,11 @@ import type { MenuItemProps } from "../menu";
  * convert to value array
  */
 export const toValues = (valueOrValues?: ValueOrValues) => {
+  // empty
   if (isVoid(valueOrValues)) return [];
-  if (isArray(valueOrValues)) {
-    return valueOrValues;
-  }
+  // already array
+  if (isArray(valueOrValues)) return valueOrValues;
+  // convert to array
   return [valueOrValues];
 };
 
@@ -30,7 +31,7 @@ export const toKey = (value: Value) => {
  * @description
  * convert to option
  */
-export const toOption = (value: Value): Omit<Option, "children"> => {
+export const toOption = (value: Value): Pick<Option, "value" | "label"> => {
   if (typeof value === "object") {
     return value;
   }
