@@ -1,9 +1,8 @@
 import React, { ReactNode, useCallback, useMemo, useRef } from "react";
-import { Chooser } from "../chooser";
+import { Chooser, type ChooserRef } from "../chooser";
 import { Chip } from "../chip";
 import { useOptions, useValue } from "./hooks";
 import { Menu } from "../menu";
-import { ChooserRef } from "../chooser/types";
 import type { CascaderProps } from "./types";
 
 const Cascader = ({ mode, ...props }: CascaderProps) => {

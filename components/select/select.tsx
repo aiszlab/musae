@@ -1,9 +1,8 @@
 import React, { useMemo, type ReactNode, useRef, useCallback } from "react";
 import { Chip } from "../chip";
-import { Chooser, useClassNames as useChooserClassNames } from "../chooser";
+import { Chooser, useClassNames as useChooserClassNames, ChooserRef } from "../chooser";
 import { Menu } from "../menu";
 import { useOptions, useValue } from "./hooks";
-import type { ChooserRef } from "../chooser/types";
 import type { SelectProps } from "./types";
 
 const Select = ({ mode, ...props }: SelectProps) => {
