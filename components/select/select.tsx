@@ -20,7 +20,19 @@ const Select = ({ mode, ...props }: SelectProps) => {
 
   const onDropdownClick = useCallback((e: MouseEvent<HTMLDivElement>) => e.preventDefault(), []);
 
-  const { useSelector } = useContext(SelectContext);
+  /// options
+  // const { menuItems, readableOptions } = useOptions([options]);
+
+  /// value
+  // const { value, onChange } = useValue([props.value, readableOptions, mode, close]);
+
+  // return {
+  //   value: value,
+  //   options: <Menu items={menuItems} onClick={onChange} selectedKeys={[...value.values()]} />,
+  // };
+
+  const { options, selections } = useContext(SelectContext);
+
   const { value, options } = useSelector({
     value: props.value,
     options: props.options,

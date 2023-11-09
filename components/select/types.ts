@@ -42,33 +42,20 @@ export interface SelectProps {
 
 /**
  * @description
- * dropdown wrapper render props
- */
-export interface DropdownWrapperRenderProps {
-  /**
-   * @description
-   * width
-   */
-  width?: number;
-}
-
-/**
- * @description
  * context value
  */
 export interface ContextValue {
   /**
    * @description
-   * selector hooks
+   * selections
    */
-  useSelector: (
-    props: Pick<SelectProps, "value" | "options" | "mode"> & {
-      close: VoidFunction;
-    }
-  ) => {
-    options: ReactNode;
-    value: Map<Key, string>;
-  };
+  selections: ReactNode;
+
+  /**
+   * @description
+   * options
+   */
+  options: ReactNode;
 }
 
 /**

@@ -19,6 +19,8 @@ export type ReverseIds = Map<
   }
 >;
 
+export type ReadablePaths = Map<number, Optionable[]>;
+
 /**
  * @description
  * cascader props
@@ -41,6 +43,12 @@ export interface CascaderProps {
    * mode
    */
   mode?: Mode;
+
+  /**
+   * @description
+   * complex
+   */
+  complex?: boolean;
 }
 
 /**
@@ -76,5 +84,5 @@ export interface ReadBy {
    * @description
    * paths
    */
-  paths?: Key[];
+  paths?: Optionable[];
 }

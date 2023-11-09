@@ -1,5 +1,13 @@
-import type { Key } from "react";
-import type { KeyOrOption, Optionable, ReadBy, ReadableOptions, ReverseIds, Value, ValueOrValues } from "./types";
+import type {
+  KeyOrOption,
+  Optionable,
+  ReadBy,
+  ReadableOptions,
+  ReadablePaths,
+  ReverseIds,
+  Value,
+  ValueOrValues,
+} from "./types";
 import type { Partialable } from "../../types/lib";
 import { isArray, isVoid } from "@aiszlab/relax";
 
@@ -8,13 +16,20 @@ import { isArray, isVoid } from "@aiszlab/relax";
  * read options
  */
 export const readOptions = ({ options = [], from = 1, paths = [] }: ReadBy) => {
-  return options.reduce<[ReadableOptions, Map<number, Key[]>, ReverseIds, number]>(
+  return options.reduce<[ReadableOptions, ReadablePaths, ReverseIds, number]>(
     (prev, option) => {
       const [collected, uniqueIds, reverseIds, next] = prev;
-      const _paths = [...paths, option.value];
+
+      const _paths: Optionable[] = [
+        ...paths,
+        {
+          value: option.value,
+          label: option.label,
+        },
+      ];
 
       // has child, read deeply
-      const [_readableOptions, _uniqueKeys, _reverseIds, _next] = option.children
+      const [_readableOptions, _idsWithPaths, _reverseIds, _next] = option.children
         ? readOptions({
             options: option.children,
             from: next,
@@ -29,7 +44,7 @@ export const readOptions = ({ options = [], from = 1, paths = [] }: ReadBy) => {
       });
 
       // sum unique keys into one map
-      prev[1] = (_uniqueKeys ? new Map([...uniqueIds.entries(), ..._uniqueKeys.entries()]) : uniqueIds).set(
+      prev[1] = (_idsWithPaths ? new Map([...uniqueIds.entries(), ..._idsWithPaths.entries()]) : uniqueIds).set(
         next,
         _paths
       );
@@ -37,20 +52,20 @@ export const readOptions = ({ options = [], from = 1, paths = [] }: ReadBy) => {
       const _id = _next + 1;
 
       // path with key
-      _paths.reduce((prev, key, index) => {
+      _paths.reduce((prev, { value }, index) => {
         // leaf node, record id and children
         if (index === _paths.length - 1) {
-          return prev.set(key, {
+          return prev.set(value, {
             id: _id,
             children: _reverseIds,
           });
         }
         // logged
-        if (prev.has(key)) {
-          return (prev.get(key)!.children ??= new Map() as ReverseIds);
+        if (prev.has(value)) {
+          return (prev.get(value)!.children ??= new Map());
         }
         // add current tree node
-        return prev.set(key, { children: new Map() }).get(key)!.children!;
+        return prev.set(value, { children: new Map() }).get(value)!.children!;
       }, reverseIds);
 
       // for unique key, plus 1

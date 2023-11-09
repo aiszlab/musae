@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo, useState } from "react";
 import type { ContextValue } from "../select/types";
-import type { CascaderProps, Optionable, ReadableOptions, ReverseIds } from "./types";
+import type { CascaderProps, Optionable, ReadableOptions, ReadablePaths, ReverseIds } from "./types";
 import type { Partialable } from "../../types/lib";
 import { useControlledState } from "@aiszlab/relax";
 import { Menu, MenuItemProps } from "../menu";
@@ -27,10 +27,13 @@ export const useSelectContextValue = () => {
  * @description
  * cascader value
  */
-export const useValue = ([valueInProps, readableOptions, reverseIds]: [
-  value: CascaderProps["value"],
+export const useValue = ([valueInProps, readableOptions, readablePaths, reverseIds, mode, close]: [
+  CascaderProps["value"],
   ReadableOptions,
-  ReverseIds
+  ReadablePaths,
+  ReverseIds,
+  CascaderProps["mode"],
+  close: VoidFunction
 ]) => {
   const [_value, setValue] = useControlledState(valueInProps);
 
@@ -51,10 +54,34 @@ export const useValue = ([valueInProps, readableOptions, reverseIds]: [
   }, [_value, readableOptions, reverseIds]);
 
   /// change handler
-  const onChange = useCallback(() => {
-    /// single mode
-    setValue([]);
-  }, [setValue]);
+  const onChange = useCallback(
+    (id: number) => {
+      const _paths = readablePaths.get(id)!;
+      const _value = _paths.map((optionable) => optionable.value);
+
+      /// if this select is single mode, just use key value
+      /// close dropdown after click
+      if (!mode) {
+        close();
+        setValue(_paths.map((optionable) => optionable.value));
+        return;
+      }
+
+      /// in multiple mode
+      /// click menu item twice mean cancel it
+      if (values.has(id)) {
+        values.delete(id);
+        setValue([...values.values()].map((optionables) => optionables.map((optionable) => optionable.value)));
+        return;
+      }
+
+      /// add this selected value
+      setValue(
+        [...values.values()].map((optionables) => optionables.map((optionable) => optionable.value)).concat([_value])
+      );
+    },
+    [readablePaths, mode, values, setValue, close]
+  );
 
   return {
     values,
@@ -67,16 +94,24 @@ export const useValue = ([valueInProps, readableOptions, reverseIds]: [
  * options
  */
 export const useOptions = ([options]: [options: CascaderProps["options"]]) => {
-  const [menusItems, setMenusItems] = useState<MenuItemProps[][]>([]);
+  const [readableOptions, readablePaths, reverseIds] = useMemo(
+    () =>
+      readOptions({
+        options,
+      }),
+    [options]
+  );
 
-  const readableOptions = useMemo(() => {
-    return readOptions({
-      options,
-    });
-  }, [options]);
-
-  console.log("readableOptions=====", readableOptions);
-  console.log("setMenusItems=======", setMenusItems);
+  const [menusItems] = useState<MenuItemProps[][]>(() => {
+    return [
+      [...readablePaths.entries()].map(([id, paths]) => {
+        return {
+          key: id,
+          label: paths.toReversed().at(0)?.label,
+        };
+      }),
+    ];
+  });
 
   /// click parent menu item, render more menu
   const onClick = () => {};
@@ -84,5 +119,8 @@ export const useOptions = ([options]: [options: CascaderProps["options"]]) => {
   return {
     menusItems,
     onClick,
+    readableOptions,
+    readablePaths,
+    reverseIds,
   };
 };
