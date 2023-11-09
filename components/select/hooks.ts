@@ -79,9 +79,9 @@ export const useValue = ([valueInProps, readableOptions, mode, close]: [
 
 /**
  * @description
- * readable options
+ * options
  */
-export const useReadableOptions = ([options]: [options: SelectProps["options"]]) => {
+export const useOptions = ([options]: [options: SelectProps["options"]]) => {
   const toMenuItems = useCallback<ToMenuItem>((option) => {
     return {
       key: option.value,

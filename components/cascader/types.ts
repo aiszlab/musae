@@ -30,3 +30,39 @@ export interface CascaderProps {
    */
   mode?: Mode;
 }
+
+/**
+ * @description
+ * readable options
+ */
+export type ReadableOptions = Map<
+  Key,
+  {
+    label: string;
+    children?: ReadableOptions;
+  }
+>;
+
+/**
+ * @description
+ * read by
+ */
+export interface ReadBy {
+  /**
+   * @description
+   * options
+   */
+  options?: Option[];
+
+  /**
+   * @description
+   * from
+   */
+  from?: number;
+
+  /**
+   * @description
+   * paths
+   */
+  paths?: Key[];
+}
