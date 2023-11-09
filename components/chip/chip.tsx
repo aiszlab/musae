@@ -1,13 +1,14 @@
 import React from "react";
-import type { ChipProps } from "./types";
 import { StyledSpan } from "./styled";
 import { useClassNames } from "./hooks";
+import clsx from "clsx";
+import type { ChipProps } from "./types";
 
-const Chip = ({ children, size = "large" }: ChipProps) => {
+const Chip = ({ children, size = "large", ...props }: ChipProps) => {
   const classNames = useClassNames();
 
   return (
-    <StyledSpan size={size} className={classNames.chip}>
+    <StyledSpan size={size} className={clsx([classNames.chip, props.className])}>
       {children}
     </StyledSpan>
   );

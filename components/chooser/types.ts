@@ -29,3 +29,15 @@ export interface OptionsRenderProps {
    */
   width?: number;
 }
+
+/**
+ * @description
+ * chooser ref
+ */
+export interface ChooserRef {
+  /**
+   * @description
+   * close
+   */
+  close: () => void;
+}

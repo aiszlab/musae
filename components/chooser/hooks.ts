@@ -4,6 +4,7 @@ import { withPrefix } from "../../utils/class-name";
 
 enum ClassName {
   Chooser = "chooser",
+  ChosenItem = "chooser-chosen-item",
   Dropdown = "chooser-dropdown",
 }
 
@@ -17,6 +18,7 @@ export const useClassNames = () => {
   return useMemo(
     () => ({
       chooser: withPrefix(prefix, ClassName.Chooser),
+      chosenItem: withPrefix(prefix, ClassName.ChosenItem),
       dropdown: withPrefix(prefix, ClassName.Dropdown),
     }),
     [prefix]

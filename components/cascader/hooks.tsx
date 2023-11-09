@@ -1,27 +1,9 @@
-import React, { useCallback, useMemo, useState } from "react";
-import type { ContextValue } from "../select/types";
+import { useCallback, useMemo, useState } from "react";
 import type { CascaderProps, Optionable, ReadableOptions, ReadablePaths, ReverseIds } from "./types";
 import type { Partialable } from "../../types/lib";
 import { useControlledState } from "@aiszlab/relax";
-import { Menu, MenuItemProps } from "../menu";
+import { type MenuItemProps } from "../menu";
 import { readOptions, toOptions, toValues } from "./utils";
-
-/**
- * @description
- * context
- */
-export const useSelectContextValue = () => {
-  return useMemo<ContextValue>(() => {
-    return {
-      useSelector: () => {
-        return {
-          options: <Menu items={[]}></Menu>,
-          value: new Map(),
-        };
-      },
-    };
-  }, []);
-};
 
 /**
  * @description

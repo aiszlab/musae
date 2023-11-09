@@ -1,18 +1,18 @@
-import React, { type MouseEvent, useCallback, useRef, useMemo } from "react";
+import React, { type MouseEvent, useCallback, useRef, useMemo, forwardRef, useImperativeHandle } from "react";
 import { Popper } from "../popper";
 import { useBoolean } from "@aiszlab/relax";
 import { Input } from "../input";
 import { useClassNames } from "./hooks";
-import { StyledOptions } from "./styled";
+import { StyledChooser, StyledOptions } from "./styled";
 import InputContext from "../input/context";
-import type { ChooserProps } from "./types";
+import type { ChooserProps, ChooserRef } from "./types";
 import type { ContextValue, InputRef } from "../input/types";
 
 const InputProvider = InputContext.Provider;
 
-const Chooser = ({ selections, options }: ChooserProps) => {
-  const ref = useRef<InputRef>(null);
-  const dropdownWidth = ref.current?.getBoundingClientRect().width;
+const Chooser = forwardRef<ChooserRef, ChooserProps>(({ selections, options }, ref) => {
+  const inputRef = useRef<InputRef>(null);
+  const dropdownWidth = inputRef.current?.getBoundingClientRect().width;
   const { isOn: isVisible, toggle, turnOff: close } = useBoolean();
   const classNames = useClassNames();
 
@@ -24,14 +24,22 @@ const Chooser = ({ selections, options }: ChooserProps) => {
     };
   }, [selections]);
 
+  useImperativeHandle(
+    ref,
+    () => ({
+      close,
+    }),
+    [close]
+  );
+
   return (
-    <div>
+    <StyledChooser>
       <InputProvider value={inputContextValue}>
-        <Input ref={ref} onClick={toggle} readOnly onBlur={close} />
+        <Input ref={inputRef} onClick={toggle} readOnly onBlur={close} />
       </InputProvider>
 
       <Popper
-        trigger={ref.current}
+        trigger={inputRef.current}
         isVisible={isVisible}
         className={classNames.dropdown}
         // click on popper, keep select focused
@@ -39,8 +47,8 @@ const Chooser = ({ selections, options }: ChooserProps) => {
       >
         <StyledOptions width={dropdownWidth}>{options}</StyledOptions>
       </Popper>
-    </div>
+    </StyledChooser>
   );
-};
+});
 
 export default Chooser;

@@ -1,4 +1,4 @@
-import type { Key, ReactNode } from "react";
+import type { Key } from "react";
 import type { Option } from "../../types/option";
 import type { MenuItemProps } from "..";
 
@@ -38,24 +38,6 @@ export interface SelectProps {
    * mode
    */
   mode?: Mode;
-}
-
-/**
- * @description
- * context value
- */
-export interface ContextValue {
-  /**
-   * @description
-   * selections
-   */
-  selections: ReactNode;
-
-  /**
-   * @description
-   * options
-   */
-  options: ReactNode;
 }
 
 /**

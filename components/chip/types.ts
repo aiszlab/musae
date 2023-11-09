@@ -18,6 +18,12 @@ export interface ChipProps {
    * size
    */
   size?: Size;
+
+  /**
+   * @description
+   * class name
+   */
+  className?: string;
 }
 
 /**
