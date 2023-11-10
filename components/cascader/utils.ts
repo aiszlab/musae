@@ -19,9 +19,9 @@ import type { MenuItemProps } from "../menu";
 export const readOptions = ({ options = [], from = 1, paths = [] }: ReadBy) => {
   return options.reduce<[ReadableOptions, ReadablePaths, number]>(
     (prev, option) => {
-      const [collected, uniqueIds, next] = prev;
+      const [collectedOptions, collectedPaths, next] = prev;
 
-      const _paths: Optionable[] = [
+      const currentPaths: Optionable[] = [
         ...paths,
         {
           value: option.value,
@@ -29,29 +29,27 @@ export const readOptions = ({ options = [], from = 1, paths = [] }: ReadBy) => {
         },
       ];
 
-      // has child, read deeply
-      const [_readableOptions, _idsWithPaths, _next] = option.children
-        ? readOptions({
-            options: option.children,
-            from: next,
-            paths: _paths,
-          })
-        : [void 0, void 0, from];
+      // read deeply
+      const [children, readPaths, readId] = readOptions({
+        options: option.children,
+        from: next,
+        paths: currentPaths,
+      });
 
       // plus 1, for unique key
-      const _id = _next + 1;
+      const currentId = readId + 1;
       // for option map, set new value
-      collected.set(option.value, {
-        id: _id,
+      collectedOptions.set(option.value, {
+        id: currentId,
         label: option.label ?? option.value.toString(),
-        children: _readableOptions,
+        children: children.size === 0 ? void 0 : children,
       });
       // sum unique keys into one map
-      prev[1] = (_idsWithPaths ? new Map([...uniqueIds.entries(), ..._idsWithPaths.entries()]) : uniqueIds).set(
-        next,
-        _paths
-      );
-      prev[2] = _id;
+      prev[1] = (
+        readPaths.size === 0 ? collectedPaths : new Map([...collectedPaths.entries(), ...readPaths.entries()])
+      ).set(currentId, currentPaths);
+      // record the latest id
+      prev[2] = currentId;
 
       return prev;
     },
@@ -129,3 +127,17 @@ export const toMenuItem = (option: ReadableOption): MenuItemProps => {
     label: option.label,
   };
 };
+
+/**
+ * @description
+ * convert option or key to key
+ */
+const toKey = (option: Optionable) => {
+  return option.value;
+};
+
+/**
+ * @description
+ * convert options or keys to keys
+ */
+export const toKeys = (options: Optionable[]) => options.map(toKey);

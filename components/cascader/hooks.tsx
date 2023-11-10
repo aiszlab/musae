@@ -1,7 +1,7 @@
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useMemo, useState, type Dispatch, type SetStateAction } from "react";
 import { useControlledState } from "@aiszlab/relax";
+import { readOptions, toKeys, toMenuItem, toOptions, toValues } from "./utils";
 import { type MenuItemProps } from "../menu";
-import { readOptions, toMenuItem, toOptions, toValues } from "./utils";
 import type { CascaderProps, Optionable, ReadableOptions, ReadablePaths } from "./types";
 import type { Partialable } from "../../types/lib";
 
@@ -9,12 +9,13 @@ import type { Partialable } from "../../types/lib";
  * @description
  * cascader value
  */
-export const useValue = ([valueInProps, readableOptions, readablePaths, mode, close]: [
+export const useValue = ([valueInProps, readableOptions, readablePaths, mode, close, setAdditionalMenusItems]: [
   CascaderProps["value"],
   ReadableOptions,
   ReadablePaths,
   CascaderProps["mode"],
-  close: VoidFunction
+  close: VoidFunction,
+  Dispatch<SetStateAction<MenuItemProps[][]>>
 ]) => {
   const [_value, setValue] = useControlledState(valueInProps);
 
@@ -40,31 +41,43 @@ export const useValue = ([valueInProps, readableOptions, readablePaths, mode, cl
   /// change handler
   const onChange = useCallback(
     (id: number) => {
+      // on menu click, when menu has children, add submenu
+      // when menu has no children, just change value and close dropdown
       const _paths = readablePaths.get(id)!;
-      const _value = _paths.map((optionable) => optionable.value);
+      const _values = _paths.map((optionable) => optionable.value);
+
+      const [hasChildren, menusItems] = _values.reduce<[boolean, MenuItemProps[][], Partialable<ReadableOptions>]>(
+        (prev, key) => {
+          const _option = prev[2]?.get(key);
+          // check has children
+          prev[0] = !!_option?.children;
+          // add submenus
+          _option?.children && prev[1].push([..._option.children.values()].map((option) => toMenuItem(option)));
+          // pass children
+          prev[2] = _option?.children;
+          return prev;
+        },
+        [false, [], readableOptions]
+      );
+
+      // display submenus
+      setAdditionalMenusItems(menusItems);
 
       /// if this select is single mode, just use key value
       /// close dropdown after click
       if (!mode) {
-        close();
-        setValue(_paths.map((optionable) => optionable.value));
+        setValue(_values);
+        !hasChildren && close();
         return;
       }
 
       /// in multiple mode
       /// click menu item twice mean cancel it
-      if (values.has(id)) {
-        values.delete(id);
-        setValue([...values.values()].map((optionables) => optionables.map((optionable) => optionable.value)));
-        return;
-      }
-
-      /// add this selected value
-      setValue(
-        [...values.values()].map((optionables) => optionables.map((optionable) => optionable.value)).concat([_value])
-      );
+      /// else add current values
+      const isRemoved = values.has(id) && values.delete(id);
+      setValue([...[...values.values()].map(toKeys), ...(isRemoved ? [] : [_values])]);
     },
-    [readablePaths, mode, values, setValue, close]
+    [readablePaths, readableOptions, mode, values, setValue, setAdditionalMenusItems, close]
   );
 
   return {

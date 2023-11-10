@@ -1,4 +1,4 @@
 import Menu from "./menu";
-import { type MenuItemProps } from "./types";
+import type { MenuProps, MenuItemProps } from "./types";
 
-export { Menu, type MenuItemProps };
+export { Menu, type MenuItemProps, type MenuProps };
