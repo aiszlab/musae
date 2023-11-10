@@ -2,23 +2,24 @@ import type {
   KeyOrOption,
   Optionable,
   ReadBy,
+  ReadableOption,
   ReadableOptions,
   ReadablePaths,
-  ReverseIds,
   Value,
   ValueOrValues,
 } from "./types";
-import type { Partialable } from "../../types/lib";
 import { isArray, isVoid } from "@aiszlab/relax";
+import type { Partialable } from "../../types/lib";
+import type { MenuItemProps } from "../menu";
 
 /**
  * @description
  * read options
  */
 export const readOptions = ({ options = [], from = 1, paths = [] }: ReadBy) => {
-  return options.reduce<[ReadableOptions, ReadablePaths, ReverseIds, number]>(
+  return options.reduce<[ReadableOptions, ReadablePaths, number]>(
     (prev, option) => {
-      const [collected, uniqueIds, reverseIds, next] = prev;
+      const [collected, uniqueIds, next] = prev;
 
       const _paths: Optionable[] = [
         ...paths,
@@ -29,51 +30,32 @@ export const readOptions = ({ options = [], from = 1, paths = [] }: ReadBy) => {
       ];
 
       // has child, read deeply
-      const [_readableOptions, _idsWithPaths, _reverseIds, _next] = option.children
+      const [_readableOptions, _idsWithPaths, _next] = option.children
         ? readOptions({
             options: option.children,
             from: next,
             paths: _paths,
           })
-        : [void 0, void 0, void 0, from];
+        : [void 0, void 0, from];
 
+      // plus 1, for unique key
+      const _id = _next + 1;
       // for option map, set new value
       collected.set(option.value, {
+        id: _id,
         label: option.label ?? option.value.toString(),
         children: _readableOptions,
       });
-
       // sum unique keys into one map
       prev[1] = (_idsWithPaths ? new Map([...uniqueIds.entries(), ..._idsWithPaths.entries()]) : uniqueIds).set(
         next,
         _paths
       );
-
-      const _id = _next + 1;
-
-      // path with key
-      _paths.reduce((prev, { value }, index) => {
-        // leaf node, record id and children
-        if (index === _paths.length - 1) {
-          return prev.set(value, {
-            id: _id,
-            children: _reverseIds,
-          });
-        }
-        // logged
-        if (prev.has(value)) {
-          return (prev.get(value)!.children ??= new Map());
-        }
-        // add current tree node
-        return prev.set(value, { children: new Map() }).get(value)!.children!;
-      }, reverseIds);
-
-      // for unique key, plus 1
-      prev[3] = _id;
+      prev[2] = _id;
 
       return prev;
     },
-    [new Map(), new Map(), new Map(), from]
+    [new Map(), new Map(), from]
   );
 };
 
@@ -135,4 +117,15 @@ export const toOptions = (keysOrOptions: Value, readableOptions: ReadableOptions
     },
     [[], readableOptions]
   );
+};
+
+/**
+ * @description
+ * convert readable option to menu item
+ */
+export const toMenuItem = (option: ReadableOption): MenuItemProps => {
+  return {
+    key: option.id,
+    label: option.label,
+  };
 };

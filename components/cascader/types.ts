@@ -11,13 +11,13 @@ export type Mode = "multiple";
 
 export type Optionable = Pick<Option, "label" | "value">;
 
-export type ReverseIds = Map<
-  Key,
-  {
-    id?: number;
-    children?: ReverseIds;
-  }
->;
+export type ReadableOption = {
+  id: number;
+  label: string;
+  children?: ReadableOptions;
+};
+
+export type ReadableOptions = Map<Key, ReadableOption>;
 
 export type ReadablePaths = Map<number, Optionable[]>;
 
@@ -50,18 +50,6 @@ export interface CascaderProps {
    */
   complex?: boolean;
 }
-
-/**
- * @description
- * readable options
- */
-export type ReadableOptions = Map<
-  Key,
-  {
-    label: string;
-    children?: ReadableOptions;
-  }
->;
 
 /**
  * @description
