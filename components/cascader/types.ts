@@ -1,4 +1,4 @@
-import type { Key } from "react";
+import type { Key, ReactNode } from "react";
 import type { Option } from "../../types/option";
 
 export type KeyOrOption = Key | Option;
@@ -49,6 +49,12 @@ export interface CascaderProps {
    * complex
    */
   complex?: boolean;
+
+  /**
+   * @description
+   * separator
+   */
+  separator?: ReactNode;
 }
 
 /**
