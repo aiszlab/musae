@@ -49,26 +49,21 @@ export const useValue = ([valueInProps, readableOptions, mode, close]: [
 
   const onChange = useCallback(
     (key: Key) => {
-      /// if this select is single mode, just use key value
-      /// close dropdown after click
+      // if this select is single mode, just use key value
+      // close dropdown after click
       if (!mode) {
         close();
         setValue(key);
         return;
       }
 
-      /// in multiple mode
-      /// click menu item twice mean cancel it
-      if (values.has(key)) {
-        values.delete(key);
-        setValue([...values.keys()]);
-        return;
-      }
-
-      /// add this selected value
-      setValue([...values.set(key, readableOptions.get(key)!).keys()]);
+      // in multiple mode
+      // click menu item twice mean cancel it
+      // else add current values
+      const isRemoved = values.has(key) && values.delete(key);
+      setValue([...values.keys(), ...(isRemoved ? [] : [key])]);
     },
-    [mode, values, setValue, readableOptions, close]
+    [mode, values, setValue, close]
   );
 
   return {

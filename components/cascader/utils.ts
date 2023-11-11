@@ -9,8 +9,8 @@ import type {
   ValueOrValues,
 } from "./types";
 import { isArray, isVoid } from "@aiszlab/relax";
-import type { Partialable } from "../../types/lib";
 import type { MenuItemProps } from "../menu";
+import type { Option } from "../../types/option";
 
 /**
  * @description
@@ -25,7 +25,7 @@ export const readOptions = ({ options = [], from = 1, paths = [] }: ReadBy) => {
         ...paths,
         {
           value: option.value,
-          label: option.label,
+          label: toLabel(option),
         },
       ];
 
@@ -41,7 +41,7 @@ export const readOptions = ({ options = [], from = 1, paths = [] }: ReadBy) => {
       // for option map, set new value
       collectedOptions.set(option.value, {
         id: currentId,
-        label: option.label ?? option.value.toString(),
+        label: toLabel(option),
         children: children.size === 0 ? void 0 : children,
       });
       // sum unique keys into one map
@@ -80,45 +80,6 @@ export const toValues = (value?: ValueOrValues): Exclude<ValueOrValues, Value> =
 
 /**
  * @description
- * convert to option
- */
-const toOption = (keyOrOption: KeyOrOption, readableOptions: ReadableOptions): Optionable => {
-  if (typeof keyOrOption === "object") {
-    return {
-      value: keyOrOption.value,
-      label: readableOptions.get(keyOrOption.value)?.label ?? keyOrOption.label ?? keyOrOption.value.toString(),
-    };
-  }
-
-  return {
-    value: keyOrOption,
-    label: readableOptions.get(keyOrOption)?.label ?? keyOrOption.toString(),
-  };
-};
-
-/**
- * @description
- * convert to options
- */
-export const toOptions = (keysOrOptions: Value, readableOptions: ReadableOptions) => {
-  return keysOrOptions.reduce<[Optionable[], Partialable<ReadableOptions>]>(
-    (prev, keyOrOption) => {
-      // value to option
-      const option = toOption(keyOrOption, readableOptions);
-      // option whick one is hit
-      const hitOption = readableOptions.get(option.value);
-      // push
-      prev[0].push(option);
-      prev[1] = hitOption?.children;
-
-      return prev;
-    },
-    [[], readableOptions]
-  );
-};
-
-/**
- * @description
  * convert readable option to menu item
  */
 export const toMenuItem = (option: ReadableOption): MenuItemProps => {
@@ -132,8 +93,11 @@ export const toMenuItem = (option: ReadableOption): MenuItemProps => {
  * @description
  * convert option or key to key
  */
-const toKey = (option: Optionable) => {
-  return option.value;
+export const toKey = (keyOrOption: KeyOrOption) => {
+  if (typeof keyOrOption === "object") {
+    return keyOrOption.value;
+  }
+  return keyOrOption;
 };
 
 /**
@@ -141,3 +105,9 @@ const toKey = (option: Optionable) => {
  * convert options or keys to keys
  */
 export const toKeys = (options: Optionable[]) => options.map(toKey);
+
+/**
+ * @description
+ * convert to label
+ */
+const toLabel = (option: Option) => option.label ?? option.value.toString();

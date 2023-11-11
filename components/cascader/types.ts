@@ -9,7 +9,7 @@ export type ValueOrValues = Value[] | Value;
 
 export type Mode = "multiple";
 
-export type Optionable = Pick<Option, "label" | "value">;
+export type Optionable = Required<Pick<Option, "label" | "value">>;
 
 export type ReadableOption = {
   id: number;

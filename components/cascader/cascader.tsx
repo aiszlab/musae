@@ -30,8 +30,13 @@ const Cascader = ({ mode, ...props }: CascaderProps) => {
         </Chip>
       ));
     }
+    console.log("values====", values);
+
     // default display value
-    return [...values.values()].join(" / ");
+    return [...values.values()]
+      .at(0)
+      ?.map(({ label }) => label)
+      .join(" / ");
   }, [values, mode]);
 
   /// options render
