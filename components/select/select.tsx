@@ -2,12 +2,13 @@ import React, { useMemo, type ReactNode, useRef, useCallback } from "react";
 import { Chip } from "../chip";
 import { Picker, type PickerRef } from "../picker";
 import { Menu } from "../menu";
-import { useOptions, useValue } from "./hooks";
+import { useClassNames, useOptions, useValue } from "./hooks";
 import type { SelectProps } from "./types";
 
 const Select = ({ mode, ...props }: SelectProps) => {
   const ref = useRef<PickerRef>(null);
   const close = useCallback(() => ref.current?.close(), [ref]);
+  const classNames = useClassNames();
 
   /// options
   const { menuItems, readableOptions } = useOptions([props.options]);
@@ -34,7 +35,7 @@ const Select = ({ mode, ...props }: SelectProps) => {
     return <Menu items={menuItems} onClick={onChange} selectedKeys={[...value.values()]} />;
   }, [menuItems, onChange, value]);
 
-  return <Picker ref={ref} selections={inputed} options={menu} />;
+  return <Picker ref={ref} selections={inputed} options={menu} className={classNames.select} />;
 };
 
 export default Select;

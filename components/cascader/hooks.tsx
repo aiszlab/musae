@@ -1,9 +1,30 @@
-import { useCallback, useMemo, useState, type Dispatch, type SetStateAction } from "react";
+import { useCallback, useMemo, useState, type Dispatch, type SetStateAction, useContext } from "react";
 import { useControlledState } from "@aiszlab/relax";
 import { readOptions, toKey, toKeys, toMenuItem, toValues } from "./utils";
 import { type MenuItemProps } from "../menu";
 import type { CascaderProps, Optionable, ReadableOptions, ReadablePaths } from "./types";
 import type { Partialable } from "../../types/lib";
+import Context from "../config/context";
+import { withPrefix } from "../../utils/class-name";
+
+enum ClassName {
+  Cascader = "cascader",
+}
+
+/**
+ * @description
+ * class names
+ */
+export const useClassNames = () => {
+  const { prefix } = useContext(Context);
+
+  return useMemo(
+    () => ({
+      cascader: withPrefix(prefix, ClassName.Cascader),
+    }),
+    [prefix]
+  );
+};
 
 /**
  * @description

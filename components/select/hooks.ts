@@ -6,7 +6,7 @@ import { useControlledState } from "@aiszlab/relax";
 import { readOptions, toKey, toOption, toValues } from "./utils";
 
 enum ClassName {
-  Dropdown = "select-dropdown",
+  Select = "select",
 }
 
 /**
@@ -18,7 +18,7 @@ export const useClassNames = () => {
 
   return useMemo(
     () => ({
-      dropdown: withPrefix(prefix, ClassName.Dropdown),
+      select: withPrefix(prefix, ClassName.Select),
     }),
     [prefix]
   );

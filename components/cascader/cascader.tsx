@@ -1,13 +1,14 @@
 import React, { useCallback, useMemo, useRef, type ReactNode } from "react";
 import { Picker, type PickerRef } from "../picker";
 import { Chip } from "../chip";
-import { useOptions, useValue } from "./hooks";
+import { useClassNames, useOptions, useValue } from "./hooks";
 import { Menu, type MenuProps } from "../menu";
 import type { CascaderProps } from "./types";
 
 const Cascader = ({ mode, separator = "/", ...props }: CascaderProps) => {
   const ref = useRef<PickerRef>(null);
   const close = useCallback(() => ref.current?.close(), []);
+  const classNames = useClassNames();
 
   const { readableOptions, readablePaths, additionalMenusItems, presetedMenuItems, setAdditionalMenusItems } =
     useOptions([props.options]);
@@ -45,7 +46,7 @@ const Cascader = ({ mode, separator = "/", ...props }: CascaderProps) => {
     });
   }, [additionalMenusItems, onChange, presetedMenuItems]);
 
-  return <Picker ref={ref} selections={inputed} options={menus} />;
+  return <Picker ref={ref} selections={inputed} options={menus} className={classNames.cascader} />;
 };
 
 export default Cascader;
