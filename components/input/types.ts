@@ -81,21 +81,6 @@ export interface LabelRenderProps {
 
 /**
  * @description
- * wrapper props
- */
-export interface WrapperRenderProps {
-  /* focused */
-  focused: boolean;
-
-  /**
-   * @description
-   * invalid
-   */
-  invalid: boolean;
-}
-
-/**
- * @description
  * input ref
  */
 export interface InputRef {

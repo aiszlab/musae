@@ -1,5 +1,5 @@
 import React, { forwardRef, useRef, useImperativeHandle, useContext } from "react";
-import { useClassNames, useEvents, useStyles } from "./hooks";
+import { useClassNames, useInputEvents, useStyles, useWrapperEvents } from "./hooks";
 import type { InputProps, InputRef } from "./types";
 import { useBoolean, useControlledState } from "@aiszlab/relax";
 import { StyledWrapper } from "./styled";
@@ -36,10 +36,11 @@ const Input = forwardRef<InputRef, InputProps>((props, ref) => {
   const { wrapperClassName } = useStyles([props.className, isFocused, props.invalid]);
 
   /// events
-  const { focus, blur, change, click } = useEvents([
+  const inputEvents = useInputEvents([
     [_focus, _blur, _setValue],
     [props.onFocus, props.onBlur, props.onChange, props.onClick],
   ]);
+  const wrapperEvents = useWrapperEvents([_input]);
 
   const input = (
     <input
@@ -49,16 +50,23 @@ const Input = forwardRef<InputRef, InputProps>((props, ref) => {
       type={props.type}
       ref={_input}
       aria-invalid={props.invalid}
-      onFocus={focus}
-      onBlur={blur}
-      onChange={change}
-      // readOnly
-      onClick={click}
+      readOnly={props.readOnly}
+      onChange={inputEvents.change}
+      onClick={inputEvents.click}
+      onFocus={inputEvents.focus}
+      onBlur={inputEvents.blur}
     />
   );
 
   return (
-    <StyledWrapper ref={_wrapper} className={wrapperClassName} focused={isFocused} invalid={!!props.invalid}>
+    <StyledWrapper
+      ref={_wrapper}
+      className={wrapperClassName}
+      tabIndex={-1}
+      onFocus={wrapperEvents.focus}
+      onBlur={wrapperEvents.blur}
+      onClick={wrapperEvents.click}
+    >
       {/* prefix */}
       {props.prefix}
 

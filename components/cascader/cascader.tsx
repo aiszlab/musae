@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo, useRef, type ReactNode } from "react";
-import { Chooser, useClassNames as useChooserClassNames, type ChooserRef } from "../chooser";
+import { Chooser, type ChooserRef } from "../chooser";
 import { Chip } from "../chip";
 import { useOptions, useValue } from "./hooks";
 import { Menu, type MenuProps } from "../menu";
@@ -8,7 +8,6 @@ import type { CascaderProps } from "./types";
 const Cascader = ({ mode, separator = "/", ...props }: CascaderProps) => {
   const ref = useRef<ChooserRef>(null);
   const close = useCallback(() => ref.current?.close(), []);
-  const chooserClassNames = useChooserClassNames();
 
   const { readableOptions, readablePaths, additionalMenusItems, presetedMenuItems, setAdditionalMenusItems } =
     useOptions([props.options]);
@@ -26,7 +25,7 @@ const Cascader = ({ mode, separator = "/", ...props }: CascaderProps) => {
     // multiple value
     if (mode === "multiple") {
       return [...values.entries()].map(([_value, optionables]) => (
-        <Chip size="small" key={_value} className={chooserClassNames.chosenItem}>
+        <Chip size="small" key={_value}>
           {optionables.reverse().at(0)?.label}
         </Chip>
       ));
@@ -37,7 +36,7 @@ const Cascader = ({ mode, separator = "/", ...props }: CascaderProps) => {
       .at(0)
       ?.map(({ label }) => label)
       .join(` ${separator} `);
-  }, [mode, values, separator, chooserClassNames.chosenItem]);
+  }, [mode, values, separator]);
 
   /// options render
   const menus = useMemo(() => {

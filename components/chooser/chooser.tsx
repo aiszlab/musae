@@ -11,7 +11,7 @@ import { Popper } from "../popper";
 import { useBoolean } from "@aiszlab/relax";
 import { Input } from "../input";
 import { useClassNames } from "./hooks";
-import { StyledChooser, StyledOptions } from "./styled";
+import { StyledOptions } from "./styled";
 import InputContext from "../input/context";
 import type { ChooserProps, ChooserRef } from "./types";
 import type { ContextValue, InputRef } from "../input/types";
@@ -48,7 +48,7 @@ const Chooser = forwardRef<ChooserRef, ChooserProps>(({ selections, options }, r
   }, [selections]);
 
   return (
-    <StyledChooser>
+    <div>
       <InputProvider value={inputContextValue}>
         <Input ref={inputRef} onClick={toggle} readOnly onBlur={close} />
       </InputProvider>
@@ -63,7 +63,7 @@ const Chooser = forwardRef<ChooserRef, ChooserProps>(({ selections, options }, r
       >
         <StyledOptions width={dropdownWidth}>{options}</StyledOptions>
       </Popper>
-    </StyledChooser>
+    </div>
   );
 });
 

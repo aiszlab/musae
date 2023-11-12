@@ -1,6 +1,6 @@
 import React, { useMemo, type ReactNode, useRef, useCallback } from "react";
 import { Chip } from "../chip";
-import { Chooser, useClassNames as useChooserClassNames, ChooserRef } from "../chooser";
+import { Chooser, type ChooserRef } from "../chooser";
 import { Menu } from "../menu";
 import { useOptions, useValue } from "./hooks";
 import type { SelectProps } from "./types";
@@ -8,7 +8,6 @@ import type { SelectProps } from "./types";
 const Select = ({ mode, ...props }: SelectProps) => {
   const ref = useRef<ChooserRef>(null);
   const close = useCallback(() => ref.current?.close(), [ref]);
-  const chooserClassNames = useChooserClassNames();
 
   /// options
   const { menuItems, readableOptions } = useOptions([props.options]);
@@ -21,14 +20,14 @@ const Select = ({ mode, ...props }: SelectProps) => {
     // multiple value
     if (mode === "multiple") {
       return [...value.entries()].map(([_value, label]) => (
-        <Chip className={chooserClassNames.chosenItem} size="small" key={_value}>
+        <Chip size="small" key={_value}>
           {label}
         </Chip>
       ));
     }
     // default display value
     return [...value.values()].join(",");
-  }, [value, mode, chooserClassNames.chosenItem]);
+  }, [value, mode]);
 
   /// options render
   const menu = useMemo(() => {

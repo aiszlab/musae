@@ -7,6 +7,7 @@ import {
   useCallback,
   useContext,
   useMemo,
+  RefObject,
 } from "react";
 import clsx from "clsx";
 import Context from "../config/context";
@@ -74,7 +75,7 @@ export const useStyles = ([className, isFocused, isInvalid]: [
  * @description
  * use events for input
  */
-export const useEvents = ([[_focus, _blur, _change], [onFocus, onBlur, onChange, onClick]]: [
+export const useInputEvents = ([[_focus, _blur, _change], [onFocus, onBlur, onChange, onClick]]: [
   [_focus: () => void, _blur: () => void, _change: Dispatch<SetStateAction<Partialable<string>>>],
   [InputProps["onFocus"], InputProps["onBlur"], InputProps["onChange"], InputProps["onClick"]]
 ]) => {
@@ -82,6 +83,7 @@ export const useEvents = ([[_focus, _blur, _change], [onFocus, onBlur, onChange,
     (e) => {
       _focus();
       onFocus?.(e);
+      e.stopPropagation();
     },
     [_focus, onFocus]
   );
@@ -90,6 +92,7 @@ export const useEvents = ([[_focus, _blur, _change], [onFocus, onBlur, onChange,
     (e) => {
       _blur();
       onBlur?.(e);
+      e.stopPropagation();
     },
     [_blur, onBlur]
   );
@@ -107,6 +110,7 @@ export const useEvents = ([[_focus, _blur, _change], [onFocus, onBlur, onChange,
   const click = useCallback<MouseEventHandler<HTMLInputElement>>(
     (e) => {
       onClick?.(e);
+      e.stopPropagation();
     },
     [onClick]
   );
@@ -115,6 +119,36 @@ export const useEvents = ([[_focus, _blur, _change], [onFocus, onBlur, onChange,
     focus,
     blur,
     change,
+    click,
+  };
+};
+
+/**
+ * @description
+ * wrapper events
+ */
+export const useWrapperEvents = ([inputRef]: [RefObject<HTMLInputElement>]) => {
+  /// focus
+  const focus = useCallback(() => {
+    inputRef.current?.focus();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  /// blur
+  const blur = useCallback(() => {
+    inputRef.current?.blur();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  /// click
+  const click = useCallback(() => {
+    inputRef.current?.click();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  return {
+    focus,
+    blur,
     click,
   };
 };

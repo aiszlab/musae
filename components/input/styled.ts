@@ -1,34 +1,39 @@
 import styled from "@emotion/styled";
-import type { WrapperRenderProps } from "./types";
 import { useValidTheme } from "../theme/hooks";
 import { useClassNames } from "./hooks";
 import { withDot } from "../../utils/class-name";
 
-export const StyledWrapper = styled.div<WrapperRenderProps>((props) => {
+export const StyledWrapper = styled.div((props) => {
   const theme = useValidTheme(props.theme);
   const classNames = useClassNames();
-  const inputSelector = withDot(classNames.input);
 
   return {
-    minHeight: 36,
-    minWidth: 0,
-    width: 240,
-    textAlign: "start",
-    margin: 0,
-    paddingTop: 0,
-    paddingBottom: 0,
-    display: "flex",
-    alignItems: "center",
-    borderColor: theme.colorRole.outline,
-    borderWidth: 1,
-    borderStyle: "solid",
-    borderRadius: 4,
-    boxSizing: "border-box",
+    [`&${withDot(classNames.wrapper)}`]: {
+      minHeight: 36,
+      minWidth: 0,
+      width: 240,
+      display: "flex",
+      alignItems: "center",
+      boxSizing: "border-box",
+      cursor: "text",
 
-    // ...theme.typography.body.small,
+      // border
+      borderColor: theme.colorRole.outline,
+      borderWidth: 1,
+      borderStyle: "solid",
+      borderRadius: 4,
+
+      // layout
+      margin: 0,
+      paddingBlock: 4,
+      paddingInline: 12,
+
+      ...theme.typography.body.small,
+    },
 
     // if input is focused, change the border
     [`&${withDot(classNames.focusedWrapper)}`]: {
+      borderWidth: 2,
       borderColor: theme.colorRole.primary,
     },
 
@@ -38,18 +43,13 @@ export const StyledWrapper = styled.div<WrapperRenderProps>((props) => {
     },
 
     [withDot(classNames.selection)]: {
-      paddingInlineStart: 12,
       display: "flex",
       flexDirection: "row",
       flexWrap: "wrap",
-
-      [inputSelector]: {
-        paddingInline: 0,
-      },
+      columnGap: 4,
     },
 
-    [inputSelector]: {
-      paddingInline: 12,
+    [withDot(classNames.input)]: {
       backgroundColor: "transparent",
       minWidth: 0,
       outline: "none",
