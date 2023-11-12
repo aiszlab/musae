@@ -10,21 +10,22 @@ import React, {
 import { Popper } from "../popper";
 import { useBoolean } from "@aiszlab/relax";
 import { Input } from "../input";
-import { useClassNames } from "./hooks";
+import { useClassNames, useStyles } from "./hooks";
 import { StyledOptions } from "./styled";
 import InputContext from "../input/context";
-import type { ChooserProps, ChooserRef } from "./types";
+import type { PickerProps, PickerRef } from "./types";
 import type { ContextValue, InputRef } from "../input/types";
 import type { PopperRef } from "../popper/types";
 
 const InputProvider = InputContext.Provider;
 
-const Chooser = forwardRef<ChooserRef, ChooserProps>(({ selections, options }, ref) => {
+const Picker = forwardRef<PickerRef, PickerProps>(({ selections, options, className }, ref) => {
   const inputRef = useRef<InputRef>(null);
   const dropdownWidth = inputRef.current?.getBoundingClientRect().width;
   const { isOn: isVisible, toggle, turnOff: close } = useBoolean();
   const classNames = useClassNames();
   const popper = useRef<PopperRef>(null);
+  const styles = useStyles(classNames, { picker: className });
 
   const onDropdownClick = useCallback((e: MouseEvent<HTMLDivElement>) => e.preventDefault(), []);
 
@@ -48,7 +49,7 @@ const Chooser = forwardRef<ChooserRef, ChooserProps>(({ selections, options }, r
   }, [selections]);
 
   return (
-    <div>
+    <div className={styles.picker}>
       <InputProvider value={inputContextValue}>
         <Input ref={inputRef} onClick={toggle} readOnly onBlur={close} />
       </InputProvider>
@@ -67,4 +68,4 @@ const Chooser = forwardRef<ChooserRef, ChooserProps>(({ selections, options }, r
   );
 });
 
-export default Chooser;
+export default Picker;

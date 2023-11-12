@@ -2,9 +2,9 @@ import type { ReactNode } from "react";
 
 /**
  * @description
- * chooser props
+ * picker props
  */
-export interface ChooserProps {
+export interface PickerProps {
   /**
    * @description
    * selection
@@ -16,6 +16,12 @@ export interface ChooserProps {
    * options
    */
   options: ReactNode;
+
+  /**
+   * @description
+   * class name
+   */
+  className?: string
 }
 
 /**
@@ -32,9 +38,9 @@ export interface OptionsRenderProps {
 
 /**
  * @description
- * chooser ref
+ * picker ref
  */
-export interface ChooserRef {
+export interface PickerRef {
   /**
    * @description
    * close
