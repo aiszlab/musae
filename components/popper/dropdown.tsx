@@ -1,23 +1,35 @@
-import React, { useEffect } from "react";
-import type { PopupProps } from "./types";
-import { createPopper } from "@popperjs/core";
+import React, { forwardRef, useEffect, useImperativeHandle, useRef } from "react";
+import type { PopperRef, PopperProps } from "./types";
+import { Instance, createPopper } from "@popperjs/core";
 import { useAnimate } from "framer-motion";
 import { useClassNames, useStyles } from "./hooks";
 
-const Dropdown = ({ isVisible, trigger, children, onMouseDown, ...props }: PopupProps) => {
+const Dropdown = forwardRef<PopperRef, PopperProps>(({ isVisible, trigger, children, onMouseDown, ...props }, ref) => {
   const [scope, animate] = useAnimate<HTMLDivElement>();
   const classNames = useClassNames([props.className]);
   const styles = useStyles();
 
+  const popper = useRef<Instance | null>(null);
+
+  useImperativeHandle(
+    ref,
+    () => ({
+      update: () => {
+        popper.current?.update();
+      },
+    }),
+    []
+  );
+
   useEffect(() => {
     if (!trigger) return;
 
-    const popper = createPopper(trigger, scope.current, {
+    popper.current = createPopper(trigger, scope.current, {
       placement: "bottom-start",
     });
 
     return () => {
-      popper.destroy();
+      popper.current?.destroy();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -40,6 +52,6 @@ const Dropdown = ({ isVisible, trigger, children, onMouseDown, ...props }: Popup
       {children}
     </div>
   );
-};
+});
 
 export default Dropdown;

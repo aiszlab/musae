@@ -15,11 +15,11 @@ import type { InputProps } from "./types";
 import type { Partialable } from "../../types/lib";
 
 enum ClassName {
+  Input = "input",
   Wrapper = "input-wrapper",
   FocusedWrapper = "input-wrapper-focused",
   InvalidWrapper = "input-wrapper-invalid",
-  Input = "input",
-  InputLabel = "input-label",
+  Selection = "input-selection",
 }
 
 /**
@@ -35,7 +35,7 @@ export const useClassNames = () => {
       focusedWrapper: withPrefix(prefix, ClassName.FocusedWrapper),
       invalidWrapper: withPrefix(prefix, ClassName.InvalidWrapper),
       input: withPrefix(prefix, ClassName.Input),
-      inputLabel: withPrefix(prefix, ClassName.InputLabel),
+      selection: withPrefix(prefix, ClassName.Selection),
     }),
     [prefix]
   );

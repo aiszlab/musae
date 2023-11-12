@@ -17,12 +17,6 @@ export interface InputProps
   > {
   /**
    * @description
-   * label for input
-   */
-  label?: string;
-
-  /**
-   * @description
    * placeholder for input
    */
   placeholder?: string;
@@ -125,7 +119,7 @@ export interface InputRef {
 export interface ContextValue {
   /**
    * @description
-   * inputed
+   * selection
    */
-  inputed?: ReactNode;
+  selection?: ReactNode;
 }

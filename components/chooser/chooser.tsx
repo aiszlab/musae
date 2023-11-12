@@ -1,4 +1,12 @@
-import React, { type MouseEvent, useCallback, useRef, useMemo, forwardRef, useImperativeHandle } from "react";
+import React, {
+  type MouseEvent,
+  useCallback,
+  useRef,
+  useMemo,
+  forwardRef,
+  useImperativeHandle,
+  useEffect,
+} from "react";
 import { Popper } from "../popper";
 import { useBoolean } from "@aiszlab/relax";
 import { Input } from "../input";
@@ -7,6 +15,7 @@ import { StyledChooser, StyledOptions } from "./styled";
 import InputContext from "../input/context";
 import type { ChooserProps, ChooserRef } from "./types";
 import type { ContextValue, InputRef } from "../input/types";
+import type { PopperRef } from "../popper/types";
 
 const InputProvider = InputContext.Provider;
 
@@ -15,12 +24,13 @@ const Chooser = forwardRef<ChooserRef, ChooserProps>(({ selections, options }, r
   const dropdownWidth = inputRef.current?.getBoundingClientRect().width;
   const { isOn: isVisible, toggle, turnOff: close } = useBoolean();
   const classNames = useClassNames();
+  const popper = useRef<PopperRef>(null);
 
   const onDropdownClick = useCallback((e: MouseEvent<HTMLDivElement>) => e.preventDefault(), []);
 
   const inputContextValue = useMemo<ContextValue>(() => {
     return {
-      inputed: selections,
+      selection: selections,
     };
   }, [selections]);
 
@@ -31,6 +41,11 @@ const Chooser = forwardRef<ChooserRef, ChooserProps>(({ selections, options }, r
     }),
     [close]
   );
+
+  // for selection change, force render for next tick
+  useEffect(() => {
+    popper.current?.update?.();
+  }, [selections]);
 
   return (
     <StyledChooser>
@@ -44,6 +59,7 @@ const Chooser = forwardRef<ChooserRef, ChooserProps>(({ selections, options }, r
         className={classNames.dropdown}
         // click on popper, keep select focused
         onMouseDown={onDropdownClick}
+        ref={popper}
       >
         <StyledOptions width={dropdownWidth}>{options}</StyledOptions>
       </Popper>

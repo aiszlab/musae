@@ -42,6 +42,12 @@ export interface PopperProps {
 
 /**
  * @description
- * popup props
+ * popper ref
  */
-export interface PopupProps extends PopperProps {}
+export interface PopperRef {
+  /**
+   * @description
+   * update
+   */
+  update?: VoidFunction;
+}

@@ -1,15 +1,16 @@
 import styled from "@emotion/styled";
-import type { LabelRenderProps, WrapperRenderProps } from "./types";
+import type { WrapperRenderProps } from "./types";
 import { useValidTheme } from "../theme/hooks";
 import { useClassNames } from "./hooks";
 import { withDot } from "../../utils/class-name";
 
-export const StyledWrapper = styled.fieldset<WrapperRenderProps>((props) => {
+export const StyledWrapper = styled.div<WrapperRenderProps>((props) => {
   const theme = useValidTheme(props.theme);
   const classNames = useClassNames();
+  const inputSelector = withDot(classNames.input);
 
   return {
-    height: 36,
+    minHeight: 36,
     minWidth: 0,
     width: 240,
     textAlign: "start",
@@ -24,60 +25,37 @@ export const StyledWrapper = styled.fieldset<WrapperRenderProps>((props) => {
     borderRadius: 4,
     boxSizing: "border-box",
 
+    // ...theme.typography.body.small,
+
     // if input is focused, change the border
     [`&${withDot(classNames.focusedWrapper)}`]: {
       borderColor: theme.colorRole.primary,
-      borderWidth: 2,
     },
 
     // if is invalid, display as error
     [`&${withDot(classNames.invalidWrapper)}`]: {
       borderColor: theme.colorRole.error,
     },
+
+    [withDot(classNames.selection)]: {
+      paddingInlineStart: 12,
+      display: "flex",
+      flexDirection: "row",
+      flexWrap: "wrap",
+
+      [inputSelector]: {
+        paddingInline: 0,
+      },
+    },
+
+    [inputSelector]: {
+      paddingInline: 12,
+      backgroundColor: "transparent",
+      minWidth: 0,
+      outline: "none",
+      border: "none",
+      height: "auto",
+      flex: 1,
+    },
   };
-});
-
-export const StyledInput = styled.input(() => {
-  return {
-    paddingInline: 12,
-    backgroundColor: "transparent",
-    minWidth: 0,
-    outline: "none",
-    border: "none",
-    height: "auto",
-    flex: 1,
-  };
-});
-
-/**
- * @description
- * styled label
- */
-export const StyledLabel = styled.legend<LabelRenderProps>(({ focused, ...props }) => {
-  const theme = useValidTheme(props.theme);
-
-  return {
-    // typography
-    ...theme.typography.body.small,
-
-    // layout
-    paddingInlineStart: 4,
-    paddingInlineEnd: 4,
-
-    // if input is focused
-    ...(focused && {
-      color: theme.colorRole.primary,
-    }),
-  };
-});
-
-/**
- * @description
- * styled addition
- */
-export const StyledAddition = styled.span({
-  paddingInlineStart: 12,
-  display: "flex",
-  flexDirection: "row",
-  flexWrap: "wrap",
 });
