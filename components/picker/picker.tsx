@@ -1,39 +1,21 @@
-import React, {
-  type MouseEvent,
-  useCallback,
-  useRef,
-  useMemo,
-  forwardRef,
-  useImperativeHandle,
-  useEffect,
-} from "react";
+import React, { type MouseEvent, useCallback, useRef, forwardRef, useImperativeHandle, useEffect } from "react";
 import { Popper } from "../popper";
 import { useBoolean } from "@aiszlab/relax";
-import { Input } from "../input";
-import { useClassNames, useStyles } from "./hooks";
-import { StyledOptions } from "./styled";
-import InputContext from "../input/context";
+import { useClassNames, useEvents, useStyles } from "./hooks";
+import { StyledOptions, StyledPicker } from "./styled";
 import type { PickerProps, PickerRef } from "./types";
-import type { ContextValue, InputRef } from "../input/types";
 import type { PopperRef } from "../popper/types";
 
-const InputProvider = InputContext.Provider;
-
 const Picker = forwardRef<PickerRef, PickerProps>(({ selections, options, className }, ref) => {
-  const inputRef = useRef<InputRef>(null);
-  const dropdownWidth = inputRef.current?.getBoundingClientRect().width;
-  const { isOn: isVisible, toggle, turnOff: close } = useBoolean();
+  const trigger = useRef<HTMLDivElement>(null);
+  const dropdownWidth = trigger.current?.getBoundingClientRect().width;
+  const { isOn: isVisible, turnOff: close, toggle } = useBoolean();
+  const { isOn: isFocused, turnOn: _focus, turnOff: _blur } = useBoolean();
   const classNames = useClassNames();
   const popper = useRef<PopperRef>(null);
   const styles = useStyles(classNames, { picker: className });
 
   const onDropdownClick = useCallback((e: MouseEvent<HTMLDivElement>) => e.preventDefault(), []);
-
-  const inputContextValue = useMemo<ContextValue>(() => {
-    return {
-      selection: selections,
-    };
-  }, [selections]);
 
   useImperativeHandle(
     ref,
@@ -48,14 +30,24 @@ const Picker = forwardRef<PickerRef, PickerProps>(({ selections, options, classN
     popper.current?.update?.();
   }, [selections]);
 
+  /// events
+  const { blur, click } = useEvents([[_blur], [close, toggle]]);
+
   return (
-    <div className={styles.picker}>
-      <InputProvider value={inputContextValue}>
-        <Input ref={inputRef} onClick={toggle} readOnly onBlur={close} />
-      </InputProvider>
+    <>
+      <StyledPicker
+        className={styles.picker}
+        ref={trigger}
+        tabIndex={-1}
+        onFocus={_focus}
+        onBlur={blur}
+        onClick={click}
+      >
+        {selections}
+      </StyledPicker>
 
       <Popper
-        trigger={inputRef.current}
+        trigger={trigger.current}
         isVisible={isVisible}
         className={classNames.dropdown}
         // click on popper, keep select focused
@@ -64,7 +56,7 @@ const Picker = forwardRef<PickerRef, PickerProps>(({ selections, options, classN
       >
         <StyledOptions width={dropdownWidth}>{options}</StyledOptions>
       </Popper>
-    </div>
+    </>
   );
 });
 

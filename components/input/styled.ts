@@ -42,14 +42,7 @@ export const StyledWrapper = styled.div((props) => {
       borderColor: theme.colorRole.error,
     },
 
-    [withDot(classNames.selection)]: {
-      display: "flex",
-      flexDirection: "row",
-      flexWrap: "wrap",
-      columnGap: 4,
-    },
-
-    [withDot(classNames.input)]: {
+    [`&${withDot(classNames.input)}`]: {
       backgroundColor: "transparent",
       minWidth: 0,
       outline: "none",

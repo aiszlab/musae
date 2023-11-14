@@ -51,23 +51,22 @@ export const useStyles = ([className, isFocused, isInvalid]: [
   isFocused: boolean,
   isInvalid: Partialable<boolean>
 ]) => {
-  const classNames = useClassNames();
+  const { wrapper: _wrapper, focusedWrapper, invalidWrapper } = useClassNames();
 
-  /// wrapper
-  const wrapperClassName = useMemo(() => {
+  /// wrapper class name
+  const wrapper = useMemo(() => {
     return clsx([
-      classNames.wrapper,
+      _wrapper,
       className,
       {
-        [classNames.focusedWrapper]: isFocused,
-        [classNames.invalidWrapper]: isInvalid,
+        [focusedWrapper]: isFocused,
+        [invalidWrapper]: isInvalid,
       },
     ]);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [className, isFocused, isInvalid, ...Object.values(classNames)]);
+  }, [className, isFocused, isInvalid, _wrapper, focusedWrapper, invalidWrapper]);
 
   return {
-    wrapperClassName,
+    wrapper,
   };
 };
 

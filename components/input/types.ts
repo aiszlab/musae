@@ -89,12 +89,6 @@ export interface InputRef {
    * focus
    */
   focus?: HTMLInputElement["focus"];
-
-  /**
-   * @description
-   * getBoundingClientRect
-   */
-  getBoundingClientRect: HTMLFieldSetElement["getBoundingClientRect"];
 }
 
 /**
