@@ -13,7 +13,7 @@ const Picker = forwardRef<PickerRef, PickerProps>(({ selections, options, classN
   const { isOn: isFocused, turnOn: _focus, turnOff: _blur } = useBoolean();
   const classNames = useClassNames();
   const popper = useRef<PopperRef>(null);
-  const styles = useStyles(classNames, { picker: className });
+  const styles = useStyles(classNames, { picker: className, isFocused });
 
   const onDropdownClick = useCallback((e: MouseEvent<HTMLDivElement>) => e.preventDefault(), []);
 
