@@ -11,36 +11,9 @@ import {
 } from "react";
 import clsx from "clsx";
 import Context from "../config/context";
-import { withPrefix } from "../../utils/class-name";
 import type { InputProps } from "./types";
 import type { Partialable } from "../../types/lib";
-
-enum ClassName {
-  Input = "input",
-  Wrapper = "input-wrapper",
-  FocusedWrapper = "input-wrapper-focused",
-  InvalidWrapper = "input-wrapper-invalid",
-  Selection = "input-selection",
-}
-
-/**
- * @description
- * class name with prefix
- */
-export const useClassNames = () => {
-  const { prefix } = useContext(Context);
-
-  return useMemo(
-    () => ({
-      wrapper: withPrefix(prefix, ClassName.Wrapper),
-      focusedWrapper: withPrefix(prefix, ClassName.FocusedWrapper),
-      invalidWrapper: withPrefix(prefix, ClassName.InvalidWrapper),
-      input: withPrefix(prefix, ClassName.Input),
-      selection: withPrefix(prefix, ClassName.Selection),
-    }),
-    [prefix]
-  );
-};
+import { ComponentToken, InputClassToken } from "../../utils/class-name";
 
 /**
  * @description
@@ -51,19 +24,19 @@ export const useStyles = ([className, isFocused, isInvalid]: [
   isFocused: boolean,
   isInvalid: Partialable<boolean>
 ]) => {
-  const { wrapper: _wrapper, focusedWrapper, invalidWrapper } = useClassNames();
+  const classNames = useContext(Context).classNames[ComponentToken.Input];
 
   /// wrapper class name
   const wrapper = useMemo(() => {
     return clsx([
-      _wrapper,
+      classNames[InputClassToken.Wrapper],
       className,
       {
-        [focusedWrapper]: isFocused,
-        [invalidWrapper]: isInvalid,
+        [classNames[InputClassToken.Focused]]: isFocused,
+        [classNames[InputClassToken.Invalid]]: isInvalid,
       },
     ]);
-  }, [className, isFocused, isInvalid, _wrapper, focusedWrapper, invalidWrapper]);
+  }, [className, classNames, isFocused, isInvalid]);
 
   return {
     wrapper,

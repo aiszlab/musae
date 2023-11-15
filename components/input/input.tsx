@@ -1,8 +1,10 @@
-import React, { forwardRef, useRef, useImperativeHandle } from "react";
-import { useClassNames, useInputEvents, useStyles, useWrapperEvents } from "./hooks";
+import React, { forwardRef, useRef, useImperativeHandle, useContext } from "react";
+import { useInputEvents, useStyles, useWrapperEvents } from "./hooks";
 import type { InputProps, InputRef } from "./types";
 import { useBoolean, useControlledState } from "@aiszlab/relax";
 import { StyledWrapper } from "./styled";
+import Context from "../config/context";
+import { ComponentToken, InputClassToken } from "../../utils/class-name";
 
 /**
  * @author murukal
@@ -11,7 +13,7 @@ import { StyledWrapper } from "./styled";
 const Input = forwardRef<InputRef, InputProps>((props, ref) => {
   const _input = useRef<HTMLInputElement>(null);
   const _wrapper = useRef<HTMLDivElement>(null);
-  const classNames = useClassNames();
+  const classNames = useContext(Context).classNames[ComponentToken.Input];
 
   useImperativeHandle<InputRef, InputRef>(
     ref,
@@ -55,7 +57,7 @@ const Input = forwardRef<InputRef, InputProps>((props, ref) => {
       <input
         name={props.name}
         value={_value}
-        className={classNames.input}
+        className={classNames[InputClassToken.Input]}
         type={props.type}
         ref={_input}
         aria-invalid={props.invalid}

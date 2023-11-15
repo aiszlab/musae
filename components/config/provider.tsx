@@ -1,24 +1,27 @@
+import React, { useMemo } from "react";
 import Context from "./context";
-import type { ConfigProps } from "./types";
 import { useMessage } from "../message/hooks";
-import React from "react";
-import { PREFIX_MUSAE } from "../../utils/class-name";
-
-const _Provider = Context.Provider;
+import type { ConfigProps } from "./types";
+import { CLASS_NAMES, DEFAULT_CLASS_NAMES, addPrefix } from "../../utils/class-name";
 
 const ConfigProvider = (props: ConfigProps) => {
   const [, messageHolder] = useMessage();
 
+  const classNames = useMemo(() => {
+    if (!props.prefix) return DEFAULT_CLASS_NAMES;
+    return addPrefix(CLASS_NAMES, props.prefix);
+  }, [props.prefix]);
+
   return (
-    <_Provider
+    <Context.Provider
       value={{
         messageHolder,
-        prefix: props.prefix || PREFIX_MUSAE,
+        classNames,
       }}
     >
       {props.children}
       {messageHolder}
-    </_Provider>
+    </Context.Provider>
   );
 };
 

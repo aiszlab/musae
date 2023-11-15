@@ -1,54 +1,27 @@
 import { FocusEventHandler, MouseEventHandler, useCallback, useContext, useMemo } from "react";
 import Context from "../config/context";
-import { withPrefix } from "../../utils/class-name";
 import clsx from "clsx";
-import { Partialable } from "../../types/lib";
-
-enum ClassName {
-  Picker = "picker",
-  Focused = "focused",
-  Invalid = "invalid",
-  Dropdown = "picker-dropdown",
-}
-
-/**
- * @description
- * class names
- */
-export const useClassNames = () => {
-  const { prefix } = useContext(Context);
-
-  return useMemo(
-    () => ({
-      picker: withPrefix(prefix, ClassName.Picker),
-      focused: withPrefix(prefix, ClassName.Focused),
-      invalid: withPrefix(prefix, ClassName.Invalid),
-      dropdown: withPrefix(prefix, ClassName.Dropdown),
-    }),
-    [prefix]
-  );
-};
+import { ComponentToken, PickerClassToken } from "../../utils/class-name";
+import type { PickerProps } from "./types";
 
 /**
  * @description
  * style
  */
-export const useStyles = (
-  classNames: {
-    picker: string;
-  },
-  {
-    picker,
-  }: {
-    picker: Partialable<string>;
-    isFocused: boolean;
-  }
-) => {
+export const useStyles = ([className, isFocused]: [PickerProps["className"], boolean]) => {
+  const classNames = useContext(Context).classNames[ComponentToken.Picker];
+
   return useMemo(
     () => ({
-      picker: clsx([classNames.picker, picker]),
+      picker: clsx([
+        classNames[PickerClassToken.Picker],
+        className,
+        {
+          [classNames[PickerClassToken.Focused]]: isFocused,
+        },
+      ]),
     }),
-    [classNames.picker, picker]
+    [classNames, className, isFocused]
   );
 };
 

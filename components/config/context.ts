@@ -1,10 +1,10 @@
 import { createContext } from "react";
+import { DEFAULT_CLASS_NAMES } from "../../utils/class-name";
 import type { ContextValue } from "./types";
-import { PREFIX_MUSAE } from "../../utils/class-name";
 
 const Context = createContext<ContextValue>({
   messageHolder: null,
-  prefix: PREFIX_MUSAE,
+  classNames: DEFAULT_CLASS_NAMES,
 });
 
 export default Context;

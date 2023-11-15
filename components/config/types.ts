@@ -1,4 +1,5 @@
 import { ReactNode, ReactPortal } from "react";
+import { type CLASS_NAMES } from "../../utils/class-name";
 
 /**
  * @description
@@ -14,9 +15,9 @@ export interface ContextValue {
 
   /**
    * @description
-   * prefix
+   * class names
    */
-  prefix: string;
+  classNames: typeof CLASS_NAMES;
 }
 
 /**
