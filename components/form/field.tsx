@@ -7,6 +7,8 @@ import Context from "./context";
 import { Grid } from "../grid";
 import { StyledLabel, StyledSupportingText } from "./styled";
 import { isRefable } from "@aiszlab/relax";
+import { Context as ConfigContext } from "../config";
+import { ComponentToken, FormClassToken } from "../../utils/class-name";
 
 const { Row, Col } = Grid;
 
@@ -16,6 +18,7 @@ const { Row, Col } = Grid;
  * if there is name prop, it will render
  */
 const Field = (props: RequiredIn<FormItemProps, "name">) => {
+  const classNames = useContext(ConfigContext).classNames[ComponentToken.Form];
   const {
     field: { onBlur, onChange, name, value, ref },
     fieldState: { invalid, error },
@@ -56,17 +59,17 @@ const Field = (props: RequiredIn<FormItemProps, "name">) => {
         ref,
       }),
     });
-  }, [props.children, onChange, onBlur, invalid, name, value]);
+  }, [props.children, name, value, invalid, ref, onChange, onBlur]);
 
   return (
-    <div className="musae-form-item">
-      <_Grid label={props.label}>
+    <div className={classNames[FormClassToken.Item]}>
+      <Gridded label={props.label}>
         <div>{children}</div>
 
         <StyledSupportingText>
           {!!error?.message && <span className="musae-form-item-explain-error">{error?.message}</span>}
         </StyledSupportingText>
-      </_Grid>
+      </Gridded>
     </div>
   );
 };
@@ -75,7 +78,7 @@ const Field = (props: RequiredIn<FormItemProps, "name">) => {
  * @description
  * item grid
  */
-export const _Grid = (props: {
+export const Gridded = (props: {
   children: ReactNode;
   label?: string;
   labelCol?: ContextValue["labelCol"];

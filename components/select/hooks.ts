@@ -1,28 +1,7 @@
-import { type Key, useContext, useMemo, useCallback } from "react";
-import Context from "../config/context";
-import { withPrefix } from "../../utils/class-name";
+import { type Key, useMemo, useCallback } from "react";
 import type { ReadableOptions, SelectProps, ToMenuItem } from "./types";
 import { useControlledState } from "@aiszlab/relax";
 import { readOptions, toKey, toOption, toValues } from "./utils";
-
-enum ClassName {
-  Select = "select",
-}
-
-/**
- * @description
- * class names
- */
-export const useClassNames = () => {
-  const { prefix } = useContext(Context);
-
-  return useMemo(
-    () => ({
-      select: withPrefix(prefix, ClassName.Select),
-    }),
-    [prefix]
-  );
-};
 
 /**
  * @description

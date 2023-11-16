@@ -27,6 +27,9 @@ export const withDot = (className: string) => `${Token.Dot}${className}`;
 export enum ComponentToken {
   Picker,
   Input,
+  Select,
+  Popper,
+  Form,
 }
 
 /**
@@ -45,6 +48,16 @@ export enum InputClassToken {
   Focused,
   Invalid,
 }
+export enum SelectClassToken {
+  Select,
+}
+export enum PopperClassToken {
+  Dropdown,
+}
+export enum FormClassToken {
+  Item,
+  ItemExplainError,
+}
 
 /**
  * @description
@@ -62,6 +75,16 @@ export const CLASS_NAMES = {
     [InputClassToken.Wrapper]: "input-wrapper",
     [InputClassToken.Focused]: "input-wrapper-focused",
     [InputClassToken.Invalid]: "input-wrapper-invalid",
+  },
+  [ComponentToken.Select]: {
+    [SelectClassToken.Select]: "select",
+  },
+  [ComponentToken.Popper]: {
+    [PopperClassToken.Dropdown]: "dropdown",
+  },
+  [ComponentToken.Form]: {
+    [FormClassToken.Item]: "form-item",
+    [FormClassToken.ItemExplainError]: "form-item-explain-error",
   },
 };
 

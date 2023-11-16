@@ -1,13 +1,15 @@
-import React, { forwardRef, useEffect, useImperativeHandle, useRef } from "react";
+import React, { forwardRef, useContext, useEffect, useImperativeHandle, useRef } from "react";
 import type { PopperRef, PopperProps } from "./types";
 import { Instance, createPopper } from "@popperjs/core";
 import { useAnimate } from "framer-motion";
-import { useClassNames, useStyles } from "./hooks";
+import { useStyles } from "./hooks";
+import Context from "../config/context";
+import { ComponentToken, PopperClassToken } from "../../utils/class-name";
 
 const Dropdown = forwardRef<PopperRef, PopperProps>(({ isVisible, trigger, children, onMouseDown, ...props }, ref) => {
   const [scope, animate] = useAnimate<HTMLDivElement>();
-  const classNames = useClassNames([props.className]);
   const styles = useStyles();
+  const classNames = useContext(Context).classNames[ComponentToken.Popper];
 
   const popper = useRef<Instance | null>(null);
 
@@ -48,7 +50,12 @@ const Dropdown = forwardRef<PopperRef, PopperProps>(({ isVisible, trigger, child
   }, [isVisible]);
 
   return (
-    <div ref={scope} className={classNames.dropdown} onMouseDown={onMouseDown} style={styles.dropdown}>
+    <div
+      ref={scope}
+      className={classNames[PopperClassToken.Dropdown]}
+      onMouseDown={onMouseDown}
+      style={styles[PopperClassToken.Dropdown]}
+    >
       {children}
     </div>
   );

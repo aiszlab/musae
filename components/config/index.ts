@@ -1,3 +1,4 @@
 import ConfigProvider from "./provider";
+import Context from "./context";
 
-export { ConfigProvider };
+export { ConfigProvider, Context };

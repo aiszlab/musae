@@ -1,6 +1,6 @@
 import { FormItemProps } from "./types";
 import React from "react";
-import Field, { _Grid } from "./field";
+import Field, { Gridded } from "./field";
 
 /**
  * @description
@@ -9,9 +9,9 @@ import Field, { _Grid } from "./field";
 const Item = (props: FormItemProps) => {
   if (!props.name) {
     return (
-      <_Grid label={props.label} labelCol={props.labelCol} wrapperCol={props.wrapperCol}>
+      <Gridded label={props.label} labelCol={props.labelCol} wrapperCol={props.wrapperCol}>
         {props.children}
-      </_Grid>
+      </Gridded>
     );
   }
 
