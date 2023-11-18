@@ -67,7 +67,7 @@ const Field = (props: RequiredIn<FormItemProps, "name">) => {
         <div>{children}</div>
 
         <StyledSupportingText>
-          {!!error?.message && <span className="musae-form-item-explain-error">{error?.message}</span>}
+          {!!error?.message && <span className={classNames[FormClassToken.ItemExplainError]}>{error?.message}</span>}
         </StyledSupportingText>
       </Gridded>
     </div>

@@ -30,6 +30,8 @@ export enum ComponentToken {
   Select,
   Popper,
   Form,
+  Grid,
+  Radio,
 }
 
 /**
@@ -58,6 +60,12 @@ export enum FormClassToken {
   Item,
   ItemExplainError,
 }
+export enum GridClassToken {
+  Row,
+}
+export enum RadioClassToken {
+  Wrapper,
+}
 
 /**
  * @description
@@ -85,6 +93,12 @@ export const CLASS_NAMES = {
   [ComponentToken.Form]: {
     [FormClassToken.Item]: "form-item",
     [FormClassToken.ItemExplainError]: "form-item-explain-error",
+  },
+  [ComponentToken.Grid]: {
+    [GridClassToken.Row]: "row",
+  },
+  [ComponentToken.Radio]: {
+    [RadioClassToken.Wrapper]: "radio-wrapper",
   },
 };
 
