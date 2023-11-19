@@ -1,15 +1,16 @@
 import styled from "@emotion/styled";
-import { useClassNames } from "./hooks";
 import { useValidTheme } from "../theme/hooks";
-import { withDot } from "../../utils/class-name";
+import { ComponentToken, EmptyClassToken, withDot } from "../../utils/class-name";
+import { useContext } from "react";
+import { Context } from "../config";
 
 /**
  * @description
  * wrapper
  */
 export const StyledWrapper = styled.div((props) => {
-  const classNames = useClassNames();
   const theme = useValidTheme(props.theme);
+  const classNames = useContext(Context).classNames[ComponentToken.Empty];
 
   return {
     display: "flex",
@@ -18,7 +19,7 @@ export const StyledWrapper = styled.div((props) => {
     marginBlock: 32,
     marginInline: 8,
 
-    [withDot(classNames.description)]: {
+    [withDot(classNames[EmptyClassToken.Description])]: {
       marginTop: 8,
       ...theme.typography.body.small,
     },

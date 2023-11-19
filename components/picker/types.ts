@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { Partialable } from "../../types/lib";
 
 /**
  * @description
@@ -21,7 +22,13 @@ export interface PickerProps {
    * @description
    * class name
    */
-  className?: string
+  className?: string;
+
+  /**
+   * @description
+   * popup width
+   */
+  popupWidth?: "match" | number | false;
 }
 
 /**
@@ -33,7 +40,7 @@ export interface OptionsRenderProps {
    * @description
    * width
    */
-  width?: number;
+  widthGetter: () => Partialable<number>;
 }
 
 /**

@@ -32,6 +32,13 @@ export enum ComponentToken {
   Form,
   Grid,
   Radio,
+  Empty,
+  Button,
+  Drawer,
+  Divider,
+  Chip,
+  Cascader,
+  Dialog,
 }
 
 /**
@@ -66,6 +73,37 @@ export enum GridClassToken {
 export enum RadioClassToken {
   Wrapper,
 }
+export enum EmptyClassToken {
+  Description,
+}
+export enum ButtonClassToken {
+  Button,
+}
+export enum DrawerClassToken {
+  Drawer,
+  Mask,
+  Panel,
+  Header,
+  Body,
+}
+export enum DividerClassToken {
+  Divider,
+  Content,
+}
+export enum ChipClassToken {
+  Chip,
+}
+export enum CascaderClassToken {
+  Cascader,
+}
+export enum DialogClassToken {
+  Dialog,
+  Mask,
+  Panel,
+  Header,
+  Body,
+  Footer,
+}
 
 /**
  * @description
@@ -95,10 +133,41 @@ export const CLASS_NAMES = {
     [FormClassToken.ItemExplainError]: "form-item-explain-error",
   },
   [ComponentToken.Grid]: {
-    [GridClassToken.Row]: "row",
+    [GridClassToken.Row]: "grid-row",
   },
   [ComponentToken.Radio]: {
     [RadioClassToken.Wrapper]: "radio-wrapper",
+  },
+  [ComponentToken.Empty]: {
+    [EmptyClassToken.Description]: "empty-description",
+  },
+  [ComponentToken.Button]: {
+    [ButtonClassToken.Button]: "button",
+  },
+  [ComponentToken.Drawer]: {
+    [DrawerClassToken.Drawer]: "drawer",
+    [DrawerClassToken.Mask]: "drawer-mask",
+    [DrawerClassToken.Panel]: "drawer-panel",
+    [DrawerClassToken.Header]: "drawer-header",
+    [DrawerClassToken.Body]: "drawer-body",
+  },
+  [ComponentToken.Divider]: {
+    [DividerClassToken.Divider]: "divider",
+    [DividerClassToken.Content]: "divider-content",
+  },
+  [ComponentToken.Chip]: {
+    [ChipClassToken.Chip]: "chip",
+  },
+  [ComponentToken.Cascader]: {
+    [CascaderClassToken.Cascader]: "cascader",
+  },
+  [ComponentToken.Dialog]: {
+    [DialogClassToken.Dialog]: "dialog",
+    [DialogClassToken.Mask]: "dialog-mask",
+    [DialogClassToken.Panel]: "dialog-panel",
+    [DialogClassToken.Header]: "dialog-header",
+    [DialogClassToken.Body]: "dialog-body",
+    [DialogClassToken.Footer]: "dialog-footer",
   },
 };
 

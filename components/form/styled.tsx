@@ -1,7 +1,8 @@
 import styled from "@emotion/styled";
 import { useValidTheme } from "../theme/hooks";
-import { useClassNames } from "./hooks";
-import { withDot } from "../../utils/class-name";
+import { ComponentToken, FormClassToken, withDot } from "../../utils/class-name";
+import { useContext } from "react";
+import { Context } from "../config";
 
 /**
  * @description
@@ -9,7 +10,7 @@ import { withDot } from "../../utils/class-name";
  */
 export const StyledSupportingText = styled.div((props) => {
   const theme = useValidTheme(props.theme);
-  const classNames = useClassNames();
+  const classNames = useContext(Context).classNames[ComponentToken.Form];
 
   return {
     display: "flex",
@@ -20,7 +21,7 @@ export const StyledSupportingText = styled.div((props) => {
       padding: "4px 16px 0 16px",
     },
 
-    [withDot(classNames.itemExplainError)]: {
+    [withDot(classNames[FormClassToken.ItemExplainError])]: {
       color: theme.colorRole.error,
     },
   };

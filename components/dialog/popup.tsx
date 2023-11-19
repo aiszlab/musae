@@ -1,12 +1,13 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import type { PopupProps } from "./types";
 import { StyledPopup } from "./styled";
-import { useClassNames, useFooter } from "./hooks";
+import { useFooter } from "./hooks";
 import { useAnimate } from "framer-motion";
-import { withDot } from "../../utils/class-name";
+import { ComponentToken, DialogClassToken, withDot } from "../../utils/class-name";
+import { Context } from "../config";
 
 const Popup = ({ onCancel, isOpened, ...props }: PopupProps) => {
-  const classNames = useClassNames();
+  const classNames = useContext(Context).classNames[ComponentToken.Dialog];
   const footer = useFooter([props.footer, props.onConfirm, onCancel]);
   const [scope, animate] = useAnimate<HTMLDivElement>();
 
@@ -14,12 +15,12 @@ const Popup = ({ onCancel, isOpened, ...props }: PopupProps) => {
     (async () => {
       if (isOpened) {
         await animate(scope.current, { display: "flex" }, { duration: 0 });
-        animate(withDot(classNames.panel), { opacity: 1 });
-        animate(withDot(classNames.mask), { opacity: 0.8 });
+        animate(withDot(classNames[DialogClassToken.Panel]), { opacity: 1 });
+        animate(withDot(classNames[DialogClassToken.Mask]), { opacity: 0.8 });
       } else {
         await Promise.all([
-          animate(withDot(classNames.panel), { opacity: 0 }),
-          animate(withDot(classNames.mask), { opacity: 0 }),
+          animate(withDot(classNames[DialogClassToken.Panel]), { opacity: 0 }),
+          animate(withDot(classNames[DialogClassToken.Mask]), { opacity: 0 }),
         ]);
         animate(scope.current, { display: "none" }, { duration: 0 });
       }
@@ -30,13 +31,13 @@ const Popup = ({ onCancel, isOpened, ...props }: PopupProps) => {
   return (
     <StyledPopup ref={scope}>
       {/* mask */}
-      <div className={classNames.mask} onClick={onCancel} />
+      <div className={classNames[DialogClassToken.Mask]} onClick={onCancel} />
 
       {/* panel */}
-      <div className={classNames.panel}>
-        <div className={classNames.header}></div>
-        <div className={classNames.body}>{props.children}</div>
-        <div className={classNames.footer}>{footer}</div>
+      <div className={classNames[DialogClassToken.Panel]}>
+        <div className={classNames[DialogClassToken.Header]}></div>
+        <div className={classNames[DialogClassToken.Body]}>{props.children}</div>
+        <div className={classNames[DialogClassToken.Footer]}>{footer}</div>
       </div>
     </StyledPopup>
   );

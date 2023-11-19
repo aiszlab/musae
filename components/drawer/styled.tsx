@@ -1,8 +1,10 @@
 import styled from "@emotion/styled";
 import { useValidTheme } from "../theme/hooks";
-import { useClassNames, usePlacements } from "./hooks";
-import { withDot } from "../../utils/class-name";
+import { usePlacements } from "./hooks";
+import { ComponentToken, DrawerClassToken, withDot } from "../../utils/class-name";
 import type { PopupRenderProps } from "./types";
+import { useContext } from "react";
+import { Context } from "../config";
 
 /**
  * @description
@@ -10,7 +12,7 @@ import type { PopupRenderProps } from "./types";
  */
 export const StyledPopup = styled.div<PopupRenderProps>(({ placement, ...props }) => {
   const theme = useValidTheme(props.theme);
-  const classNames = useClassNames();
+  const classNames = useContext(Context).classNames[ComponentToken.Drawer];
   const [[initialPlacement], position] = usePlacements([placement]);
 
   return {
@@ -20,7 +22,7 @@ export const StyledPopup = styled.div<PopupRenderProps>(({ placement, ...props }
     zIndex: 1000,
 
     /// mask
-    [withDot(classNames.mask)]: {
+    [withDot(classNames[DrawerClassToken.Mask])]: {
       position: "absolute",
       inset: 0,
       pointerEvents: "auto",
@@ -30,7 +32,7 @@ export const StyledPopup = styled.div<PopupRenderProps>(({ placement, ...props }
     },
 
     /// panel
-    [withDot(classNames.panel)]: {
+    [withDot(classNames[DrawerClassToken.Panel])]: {
       backgroundColor: theme.palettes.primary[100],
       position: "absolute",
       zIndex: 1000,
@@ -51,14 +53,14 @@ export const StyledPopup = styled.div<PopupRenderProps>(({ placement, ...props }
         width: 400,
       }),
 
-      [withDot(classNames.header)]: {
+      [withDot(classNames[DrawerClassToken.Header])]: {
         display: "flex",
         paddingInline: 16,
         paddingBlock: 24,
         ...theme.typography.body.large,
       },
 
-      [withDot(classNames.body)]: {
+      [withDot(classNames[DrawerClassToken.Body])]: {
         padding: 24,
         flex: 1,
       },

@@ -1,14 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import { StyledSpan } from "./styled";
-import { useClassNames } from "./hooks";
 import clsx from "clsx";
 import type { ChipProps } from "./types";
+import { Context } from "../config";
+import { ChipClassToken, ComponentToken } from "../../utils/class-name";
 
 const Chip = ({ children, size = "large", ...props }: ChipProps) => {
-  const classNames = useClassNames();
+  const classNames = useContext(Context).classNames[ComponentToken.Chip];
 
   return (
-    <StyledSpan size={size} className={clsx([classNames.chip, props.className])}>
+    <StyledSpan size={size} className={clsx([classNames[ChipClassToken.Chip], props.className])}>
       {children}
     </StyledSpan>
   );

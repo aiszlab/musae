@@ -50,16 +50,20 @@ export const StyledPicker = styled.div((props) => {
  * @description
  * dropdown wrapper
  */
-export const StyledOptions = styled.div<OptionsRenderProps>(({ width, ...props }) => {
+export const StyledOptions = styled.div<OptionsRenderProps>(({ widthGetter, ...props }) => {
   const theme = useValidTheme(props.theme);
+  const width = widthGetter();
 
   return {
     marginTop: 4,
     borderRadius: 8,
     backgroundColor: theme.colorRole.surface,
     maxHeight: 300,
-    minWidth: width,
     overflow: "auto",
     padding: 4,
+
+    ...(width && {
+      minWidth: width,
+    }),
   };
 });

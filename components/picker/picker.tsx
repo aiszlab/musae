@@ -16,9 +16,8 @@ import type { PopperRef } from "../popper/types";
 import Context from "../config/context";
 import { ComponentToken, PickerClassToken } from "../../utils/class-name";
 
-const Picker = forwardRef<PickerRef, PickerProps>(({ selections, options, className }, ref) => {
+const Picker = forwardRef<PickerRef, PickerProps>(({ selections, options, className, popupWidth = "match" }, ref) => {
   const trigger = useRef<HTMLDivElement>(null);
-  const dropdownWidth = trigger.current?.getBoundingClientRect().width;
   const { isOn: isVisible, turnOff: close, toggle } = useBoolean();
   const { isOn: isFocused, turnOn: _focus, turnOff: _blur } = useBoolean();
   const classNames = useContext(Context).classNames[ComponentToken.Picker];
@@ -26,6 +25,11 @@ const Picker = forwardRef<PickerRef, PickerProps>(({ selections, options, classN
   const styles = useStyles([className, isFocused]);
 
   const onDropdownClick = useCallback((e: MouseEvent<HTMLDivElement>) => e.preventDefault(), []);
+  const dropdownWidthGetter = useCallback(() => {
+    if (!popupWidth) return void 0;
+    if (!trigger.current) return void 0;
+    return Math.max(trigger.current.getBoundingClientRect().width, popupWidth === "match" ? 0 : popupWidth);
+  }, [popupWidth]);
 
   useImperativeHandle(
     ref,
@@ -64,7 +68,7 @@ const Picker = forwardRef<PickerRef, PickerProps>(({ selections, options, classN
         onMouseDown={onDropdownClick}
         ref={popper}
       >
-        <StyledOptions width={dropdownWidth}>{options}</StyledOptions>
+        <StyledOptions widthGetter={dropdownWidthGetter}>{options}</StyledOptions>
       </Popper>
     </>
   );

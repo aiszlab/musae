@@ -1,13 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { StyledWrapper } from "./styled";
-import { useClassNames } from "./hooks";
+import { Context } from "../config";
+import { ComponentToken, EmptyClassToken } from "../../utils/class-name";
 
 /**
  * @description
  * empty component
  */
 const Empty = () => {
-  const classNames = useClassNames();
+  const classNames = useContext(Context).classNames[ComponentToken.Empty];
 
   return (
     <StyledWrapper>
@@ -24,7 +25,7 @@ const Empty = () => {
         </g>
       </svg>
 
-      <div className={classNames.description}>暂无数据</div>
+      <div className={classNames[EmptyClassToken.Description]}>暂无数据</div>
     </StyledWrapper>
   );
 };

@@ -1,14 +1,15 @@
 import styled from "@emotion/styled";
-import { withDot } from "../../utils/class-name";
-import { useClassNames } from "./hooks";
+import { ComponentToken, DialogClassToken, withDot } from "../../utils/class-name";
 import { useValidTheme } from "../theme/hooks";
+import { useContext } from "react";
+import { Context } from "../config";
 
 /**
  * @description
  * wrapper
  */
 export const StyledPopup = styled.div((props) => {
-  const classNames = useClassNames();
+  const classNames = useContext(Context).classNames[ComponentToken.Dialog];
   const theme = useValidTheme(props.theme);
 
   return {
@@ -22,7 +23,7 @@ export const StyledPopup = styled.div((props) => {
     alignItems: "center",
 
     /// mask
-    [withDot(classNames.mask)]: {
+    [withDot(classNames[DialogClassToken.Mask])]: {
       position: "absolute",
       inset: 0,
       pointerEvents: "auto",
@@ -34,7 +35,7 @@ export const StyledPopup = styled.div((props) => {
     },
 
     /// panel
-    [withDot(classNames.panel)]: {
+    [withDot(classNames[DialogClassToken.Panel])]: {
       display: "flex",
       flexDirection: "column",
       gap: 16,
@@ -56,12 +57,12 @@ export const StyledPopup = styled.div((props) => {
       // initial style
       opacity: 0,
 
-      [withDot(classNames.header)]: {
+      [withDot(classNames[DialogClassToken.Header])]: {
         // typography
         ...theme.typography.headline.small,
       },
 
-      [withDot(classNames.body)]: {
+      [withDot(classNames[DialogClassToken.Body])]: {
         paddingInline: 24,
         flex: 1,
         wordBreak: "break-word",
@@ -71,7 +72,7 @@ export const StyledPopup = styled.div((props) => {
         ...theme.typography.body.medium,
       },
 
-      [withDot(classNames.footer)]: {
+      [withDot(classNames[DialogClassToken.Footer])]: {
         paddingInline: 24,
         paddingBottom: 24,
         display: "flex",

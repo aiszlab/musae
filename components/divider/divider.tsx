@@ -1,15 +1,17 @@
 import { StyledWrapper } from "./styled";
 import { DividerProps } from "./types";
-import React from "react";
-import { useClassNames, useOffset } from "./hooks";
+import React, { useContext } from "react";
+import { useOffset } from "./hooks";
+import { Context } from "../config";
+import { ComponentToken, DividerClassToken } from "../../utils/class-name";
 
 const Divider = ({ align, children }: DividerProps) => {
-  const classNames = useClassNames();
+  const classNames = useContext(Context).classNames[ComponentToken.Divider];
   const offset = useOffset([align]);
 
   return (
-    <StyledWrapper className={classNames.divider} hasChildren={!!children} offset={offset}>
-      {!!children && <span className={classNames.content}>{children}</span>}
+    <StyledWrapper className={classNames[DividerClassToken.Divider]} hasChildren={!!children} offset={offset}>
+      {!!children && <span className={classNames[DividerClassToken.Content]}>{children}</span>}
     </StyledWrapper>
   );
 };

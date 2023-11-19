@@ -1,11 +1,12 @@
 import styled, { type CSSObject } from "@emotion/styled";
 import type { DividerRenderProps } from "./types";
-import { useClassNames } from "./hooks";
 import { useValidTheme } from "../theme/hooks";
-import { withDot } from "../../utils/class-name";
+import { ComponentToken, DividerClassToken, withDot } from "../../utils/class-name";
+import { useContext } from "react";
+import { Context } from "../config";
 
 export const StyledWrapper = styled.div<DividerRenderProps>(({ hasChildren, offset, ...props }) => {
-  const classNames = useClassNames();
+  const classNames = useContext(Context).classNames[ComponentToken.Divider];
   const theme = useValidTheme(props.theme);
 
   const layoutStyle: CSSObject = {
@@ -41,7 +42,7 @@ export const StyledWrapper = styled.div<DividerRenderProps>(({ hasChildren, offs
       content: "''",
     },
 
-    [withDot(classNames.content)]: {
+    [withDot(classNames[DividerClassToken.Content])]: {
       marginInline: 8,
       whiteSpace: "nowrap",
       ...theme.typography.body.small,
