@@ -6,6 +6,7 @@ import { Menu, type MenuProps } from "../menu";
 import type { CascaderProps } from "./types";
 import { Context } from "../config";
 import { CascaderClassToken, ComponentToken } from "../../utils/class-name";
+import { StyledOptions } from "./styled";
 
 const Cascader = ({ mode, separator = "/", ...props }: CascaderProps) => {
   const ref = useRef<PickerRef>(null);
@@ -43,12 +44,24 @@ const Cascader = ({ mode, separator = "/", ...props }: CascaderProps) => {
 
   /// options render
   const menus = useMemo(() => {
-    return [presetedMenuItems, ...additionalMenusItems].map((menuItems, index) => {
-      return <Menu items={menuItems} key={index} onClick={onChange as MenuProps["onClick"]} />;
-    });
-  }, [additionalMenusItems, onChange, presetedMenuItems]);
+    return (
+      <StyledOptions className={classNames[CascaderClassToken.Options]}>
+        {[presetedMenuItems, ...additionalMenusItems].map((menuItems, index) => {
+          return <Menu items={menuItems} key={index} onClick={onChange as MenuProps["onClick"]} />;
+        })}
+      </StyledOptions>
+    );
+  }, [additionalMenusItems, classNames, onChange, presetedMenuItems]);
 
-  return <Picker ref={ref} selections={inputed} options={menus} className={classNames[CascaderClassToken.Cascader]} />;
+  return (
+    <Picker
+      ref={ref}
+      picked={inputed}
+      pickable={menus}
+      className={classNames[CascaderClassToken.Cascader]}
+      popupWidth={false}
+    />
+  );
 };
 
 export default Cascader;

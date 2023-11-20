@@ -16,7 +16,7 @@ import type { PopperRef } from "../popper/types";
 import Context from "../config/context";
 import { ComponentToken, PickerClassToken } from "../../utils/class-name";
 
-const Picker = forwardRef<PickerRef, PickerProps>(({ selections, options, className, popupWidth = "match" }, ref) => {
+const Picker = forwardRef<PickerRef, PickerProps>(({ pickable, picked, className, popupWidth = "match" }, ref) => {
   const trigger = useRef<HTMLDivElement>(null);
   const { isOn: isVisible, turnOff: close, toggle } = useBoolean();
   const { isOn: isFocused, turnOn: _focus, turnOff: _blur } = useBoolean();
@@ -42,7 +42,7 @@ const Picker = forwardRef<PickerRef, PickerProps>(({ selections, options, classN
   // for selection change, force render for next tick
   useEffect(() => {
     popper.current?.update?.();
-  }, [selections]);
+  }, [picked]);
 
   /// events
   const { blur, click } = useEvents([[_blur], [close, toggle]]);
@@ -57,7 +57,7 @@ const Picker = forwardRef<PickerRef, PickerProps>(({ selections, options, classN
         onBlur={blur}
         onClick={click}
       >
-        {selections}
+        {picked}
       </StyledPicker>
 
       <Popper
@@ -68,7 +68,7 @@ const Picker = forwardRef<PickerRef, PickerProps>(({ selections, options, classN
         onMouseDown={onDropdownClick}
         ref={popper}
       >
-        <StyledOptions widthGetter={dropdownWidthGetter}>{options}</StyledOptions>
+        <StyledOptions widthGetter={dropdownWidthGetter}>{pickable}</StyledOptions>
       </Popper>
     </>
   );

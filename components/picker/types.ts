@@ -8,15 +8,15 @@ import { Partialable } from "../../types/lib";
 export interface PickerProps {
   /**
    * @description
-   * selection
+   * picked
    */
-  selections: ReactNode;
+  picked: ReactNode;
 
   /**
    * @description
-   * options
+   * pickable
    */
-  options: ReactNode;
+  pickable: ReactNode;
 
   /**
    * @description

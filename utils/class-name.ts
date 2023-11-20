@@ -22,6 +22,12 @@ export const withDot = (className: string) => `${Token.Dot}${className}`;
 
 /**
  * @description
+ * with self
+ */
+export const withSelf = (className: string) => `&${withDot(className)}`;
+
+/**
+ * @description
  * class role
  */
 export enum ComponentToken {
@@ -39,6 +45,7 @@ export enum ComponentToken {
   Chip,
   Cascader,
   Dialog,
+  Calendar,
 }
 
 /**
@@ -95,6 +102,7 @@ export enum ChipClassToken {
 }
 export enum CascaderClassToken {
   Cascader,
+  Options,
 }
 export enum DialogClassToken {
   Dialog,
@@ -103,6 +111,10 @@ export enum DialogClassToken {
   Header,
   Body,
   Footer,
+}
+export enum CalendarClassToken {
+  HeaderCell,
+  DateCell,
 }
 
 /**
@@ -160,6 +172,7 @@ export const CLASS_NAMES = {
   },
   [ComponentToken.Cascader]: {
     [CascaderClassToken.Cascader]: "cascader",
+    [CascaderClassToken.Options]: "cascader-options",
   },
   [ComponentToken.Dialog]: {
     [DialogClassToken.Dialog]: "dialog",
@@ -168,6 +181,10 @@ export const CLASS_NAMES = {
     [DialogClassToken.Header]: "dialog-header",
     [DialogClassToken.Body]: "dialog-body",
     [DialogClassToken.Footer]: "dialog-footer",
+  },
+  [ComponentToken.Calendar]: {
+    [CalendarClassToken.HeaderCell]: "calendar-header-cell",
+    [CalendarClassToken.DateCell]: "calendar-date-cell",
   },
 };
 

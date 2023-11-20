@@ -37,7 +37,7 @@ const Select = ({ mode, ...props }: SelectProps) => {
     return <Menu items={menuItems} onClick={onChange} selectedKeys={[...value.values()]} />;
   }, [menuItems, onChange, value]);
 
-  return <Picker ref={ref} selections={inputed} options={menu} className={classNames[SelectClassToken.Select]} />;
+  return <Picker ref={ref} picked={inputed} pickable={menu} className={classNames[SelectClassToken.Select]} />;
 };
 
 export default Select;

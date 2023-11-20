@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { useValidTheme } from "../theme/hooks";
-import { ComponentToken, InputClassToken, withDot } from "../../utils/class-name";
+import { ComponentToken, InputClassToken, withSelf } from "../../utils/class-name";
 import { useContext } from "react";
 import Context from "../config/context";
 
@@ -9,7 +9,7 @@ export const StyledWrapper = styled.div((props) => {
   const classNames = useContext(Context).classNames[ComponentToken.Input];
 
   return {
-    [`&${withDot(classNames[InputClassToken.Wrapper])}`]: {
+    [withSelf(classNames[InputClassToken.Wrapper])]: {
       minHeight: 36,
       minWidth: 0,
       width: 240,
@@ -33,17 +33,17 @@ export const StyledWrapper = styled.div((props) => {
     },
 
     // if input is focused, change the border
-    [`&${withDot(classNames[InputClassToken.Focused])}`]: {
+    [withSelf(classNames[InputClassToken.Focused])]: {
       borderWidth: 2,
       borderColor: theme.colorRole.primary,
     },
 
     // if is invalid, display as error
-    [`&${withDot(classNames[InputClassToken.Invalid])}`]: {
+    [withSelf(classNames[InputClassToken.Invalid])]: {
       borderColor: theme.colorRole.error,
     },
 
-    [`&${withDot(classNames[InputClassToken.Input])}`]: {
+    [withSelf(classNames[InputClassToken.Input])]: {
       backgroundColor: "transparent",
       minWidth: 0,
       outline: "none",

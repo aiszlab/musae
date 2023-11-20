@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { useValidTheme } from "../theme/hooks";
 import type { OptionsRenderProps } from "./types";
-import { ComponentToken, PickerClassToken, withDot } from "../../utils/class-name";
+import { ComponentToken, PickerClassToken, withSelf } from "../../utils/class-name";
 import { useContext } from "react";
 import Context from "../config/context";
 
@@ -10,7 +10,7 @@ export const StyledPicker = styled.div((props) => {
   const theme = useValidTheme(props.theme);
 
   return {
-    [`&${withDot(classNames[PickerClassToken.Picker])}`]: {
+    [withSelf(classNames[PickerClassToken.Picker])]: {
       minHeight: 36,
       minWidth: 0,
       width: 240,
@@ -34,13 +34,13 @@ export const StyledPicker = styled.div((props) => {
     },
 
     // if input is focused, change the border
-    [`&${withDot(classNames[PickerClassToken.Focused])}`]: {
+    [withSelf(classNames[PickerClassToken.Focused])]: {
       borderWidth: 2,
       borderColor: theme.colorRole.primary,
     },
 
     // if is invalid, display as error
-    [`&${withDot(classNames[PickerClassToken.Invalid])}`]: {
+    [withSelf(classNames[PickerClassToken.Invalid])]: {
       borderColor: theme.colorRole.error,
     },
   };
