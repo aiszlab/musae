@@ -115,6 +115,8 @@ export enum DialogClassToken {
 export enum CalendarClassToken {
   HeaderCell,
   DateCell,
+  DateCellSelected,
+  DateCellRelated,
 }
 
 /**
@@ -185,6 +187,8 @@ export const CLASS_NAMES = {
   [ComponentToken.Calendar]: {
     [CalendarClassToken.HeaderCell]: "calendar-header-cell",
     [CalendarClassToken.DateCell]: "calendar-date-cell",
+    [CalendarClassToken.DateCellSelected]: "calendar-date-cell-selected",
+    [CalendarClassToken.DateCellRelated]: "calendar-date-cell-related",
   },
 };
 

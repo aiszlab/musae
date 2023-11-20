@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import dayjs from "dayjs";
-import { useDateCells } from "./hooks";
+import { useDateCells, useTimespan } from "./hooks";
 import { Context } from "../config";
 import { CalendarClassToken, ComponentToken } from "../../utils/class-name";
 import { StyledCalendar } from "./styled";
@@ -8,7 +8,8 @@ import { CalendarProps } from "./types";
 
 const Calendar = (props: CalendarProps) => {
   const classNames = useContext(Context).classNames[ComponentToken.Calendar];
-  const dateCells = useDateCells();
+  const timespan = useTimespan([props.value]);
+  const dateCells = useDateCells([timespan]);
 
   return (
     <StyledCalendar>
