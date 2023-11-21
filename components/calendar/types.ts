@@ -21,7 +21,7 @@ export interface CalendarProps {
 
   /**
    * @description
-   * default point at
+   * focused at
    */
-  defaultPointAt?: Dayjs;
+  focusedAt?: Dayjs;
 }

@@ -1,8 +1,8 @@
-import dayjs from "dayjs";
+import dayjs, { Dayjs } from "dayjs";
 import React, { ReactNode, useContext, useMemo } from "react";
 import { Context } from "../config";
 import { CalendarClassToken, ComponentToken } from "../../utils/class-name";
-import { isArray } from "@aiszlab/relax";
+import { isArray, useControlledState } from "@aiszlab/relax";
 import { Timespan } from "../../utils/timespan";
 import clsx from "clsx";
 import type { CalendarProps } from "./types";
@@ -27,13 +27,12 @@ export const useHeadCells = () => {
  * @description
  * dates
  */
-export const useDateCells = ([timespan, defaultPointAt]: [Timespan, CalendarProps["defaultPointAt"]]) => {
+export const useDateCells = ([timespan, focusedAt]: [Timespan, Dayjs]) => {
   const classNames = useContext(Context).classNames[ComponentToken.Calendar];
 
   return useMemo(() => {
-    const pointAt = dayjs(defaultPointAt ?? timespan.from);
-    const from = pointAt.startOf("month").startOf("week");
-    const to = pointAt.endOf("month").endOf("week");
+    const from = focusedAt.startOf("month").startOf("week");
+    const to = focusedAt.endOf("month").endOf("week");
     const gap = to.diff(from, "d") + 1;
 
     const dateCells = [...new Array(gap).keys()].reduce<ReactNode[][]>(
@@ -68,7 +67,7 @@ export const useDateCells = ([timespan, defaultPointAt]: [Timespan, CalendarProp
     return dateCells.map((cells, index) => {
       return <tr key={index}>{cells}</tr>;
     });
-  }, [classNames, defaultPointAt, timespan]);
+  }, [classNames, focusedAt, timespan]);
 };
 
 /**
@@ -80,4 +79,42 @@ export const useTimespan = ([value]: [CalendarProps["value"]]) => {
     const [from, to] = isArray(value) ? value : [value, value];
     return new Timespan({ from, to });
   }, [value]);
+};
+
+/**
+ * @description
+ * point at
+ */
+export const usePointAt = ([focusedAtInProps]: [CalendarProps["focusedAt"]]) => {
+  const [focusedAt, setFocusedAt] = useControlledState(focusedAtInProps!, {
+    defaultState: dayjs(),
+  });
+
+  /// next year
+  const toNextYear = () => {
+    setFocusedAt(dayjs().add(1, "y"));
+  };
+
+  /// prev year
+  const toPrevYear = () => {
+    setFocusedAt(dayjs().subtract(1, "y"));
+  };
+
+  /// next month
+  const toNextMonth = () => {
+    setFocusedAt(dayjs().add(1, "M"));
+  };
+
+  /// prev month
+  const toPrevMonth = () => {
+    setFocusedAt(dayjs().subtract(1, "M"));
+  };
+
+  return {
+    focusedAt,
+    toNextYear,
+    toPrevYear,
+    toNextMonth,
+    toPrevMonth,
+  };
 };
