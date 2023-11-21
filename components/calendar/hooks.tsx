@@ -2,27 +2,43 @@ import dayjs from "dayjs";
 import React, { ReactNode, useContext, useMemo } from "react";
 import { Context } from "../config";
 import { CalendarClassToken, ComponentToken } from "../../utils/class-name";
-import { CalendarProps } from "./types";
 import { isArray } from "@aiszlab/relax";
 import { Timespan } from "../../utils/timespan";
 import clsx from "clsx";
+import type { CalendarProps } from "./types";
+
+/**
+ * @description
+ * head cells
+ */
+export const useHeadCells = () => {
+  const classNames = useContext(Context).classNames[ComponentToken.Calendar];
+
+  return useMemo(() => {
+    return dayjs.Ls[dayjs.locale()].weekdays?.map((weekday, index) => (
+      <th className={classNames[CalendarClassToken.HeadCell]} key={index}>
+        {weekday.charAt(0)}
+      </th>
+    ));
+  }, [classNames]);
+};
 
 /**
  * @description
  * dates
  */
-export const useDateCells = ([timespan]: [Timespan]) => {
+export const useDateCells = ([timespan, defaultPointAt]: [Timespan, CalendarProps["defaultPointAt"]]) => {
   const classNames = useContext(Context).classNames[ComponentToken.Calendar];
 
   return useMemo(() => {
-    const from = dayjs().startOf("d").startOf("month").startOf("week");
-    const to = dayjs().startOf("d").endOf("month").endOf("week");
-
+    const pointAt = dayjs(defaultPointAt ?? timespan.from);
+    const from = pointAt.startOf("month").startOf("week");
+    const to = pointAt.endOf("month").endOf("week");
     const gap = to.diff(from, "d") + 1;
 
-    return [...new Array(gap).keys()].reduce<ReactNode[][]>(
+    const dateCells = [...new Array(gap).keys()].reduce<ReactNode[][]>(
       (prev, _, index) => {
-        if (prev[prev.length - 1].length === 7) {
+        if (prev.at(prev.length - 1)!.length === 7) {
           prev.push([]);
         }
 
@@ -32,7 +48,7 @@ export const useDateCells = ([timespan]: [Timespan]) => {
         const isSelected = timespan.isFrom(currentAt) || timespan.isTo(currentAt);
         const isRelated = timespan.isBetween(currentAt);
 
-        prev[prev.length - 1].push(
+        prev.at(prev.length - 1)!.push(
           <td
             title={formatted}
             key={formatted}
@@ -48,7 +64,11 @@ export const useDateCells = ([timespan]: [Timespan]) => {
       },
       [[]]
     );
-  }, [classNames, timespan]);
+
+    return dateCells.map((cells, index) => {
+      return <tr key={index}>{cells}</tr>;
+    });
+  }, [classNames, defaultPointAt, timespan]);
 };
 
 /**

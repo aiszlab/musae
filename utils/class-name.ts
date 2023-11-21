@@ -113,7 +113,7 @@ export enum DialogClassToken {
   Footer,
 }
 export enum CalendarClassToken {
-  HeaderCell,
+  HeadCell,
   DateCell,
   DateCellSelected,
   DateCellRelated,
@@ -185,7 +185,7 @@ export const CLASS_NAMES = {
     [DialogClassToken.Footer]: "dialog-footer",
   },
   [ComponentToken.Calendar]: {
-    [CalendarClassToken.HeaderCell]: "calendar-header-cell",
+    [CalendarClassToken.HeadCell]: "calendar-head-cell",
     [CalendarClassToken.DateCell]: "calendar-date-cell",
     [CalendarClassToken.DateCellSelected]: "calendar-date-cell-selected",
     [CalendarClassToken.DateCellRelated]: "calendar-date-cell-related",

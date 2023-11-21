@@ -30,7 +30,7 @@ const Cascader = ({ mode, separator = "/", ...props }: CascaderProps) => {
     if (mode === "multiple") {
       return [...values.entries()].map(([_value, optionables]) => (
         <Chip size="small" key={_value}>
-          {optionables.reverse().at(0)?.label}
+          {optionables.at(optionables.length - 1)?.label}
         </Chip>
       ));
     }
