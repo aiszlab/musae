@@ -9,7 +9,12 @@ export const StyledCalendar = styled.div((props) => {
   const theme = useValidTheme(props.theme);
 
   return {
-    [withDot(classNames[CalendarClassToken.HeaderCell])]: {
+    [withDot(classNames[CalendarClassToken.Header])]: {
+      display: "flex",
+      justifyContent: "space-between",
+    },
+
+    [withDot(classNames[CalendarClassToken.HeadCell])]: {
       height: 48,
       width: 48,
       textAlign: "center",

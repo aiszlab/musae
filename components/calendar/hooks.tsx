@@ -85,7 +85,7 @@ export const useTimespan = ([value]: [CalendarProps["value"]]) => {
  * @description
  * point at
  */
-export const usePointAt = ([focusedAtInProps]: [CalendarProps["focusedAt"]]) => {
+export const useFocusedAt = ([focusedAtInProps]: [CalendarProps["focusedAt"]]) => {
   const [focusedAt, setFocusedAt] = useControlledState(focusedAtInProps!, {
     defaultState: dayjs(),
   });
