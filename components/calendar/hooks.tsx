@@ -1,5 +1,5 @@
 import dayjs, { Dayjs } from "dayjs";
-import React, { ReactNode, useContext, useMemo } from "react";
+import React, { ReactNode, useCallback, useContext, useMemo } from "react";
 import { Context } from "../config";
 import { CalendarClassToken, ComponentToken } from "../../utils/class-name";
 import { isArray, useControlledState } from "@aiszlab/relax";
@@ -91,24 +91,24 @@ export const useFocusedAt = ([focusedAtInProps]: [CalendarProps["focusedAt"]]) =
   });
 
   /// next year
-  const toNextYear = () => {
-    setFocusedAt(dayjs().add(1, "y"));
-  };
+  const toNextYear = useCallback(() => {
+    setFocusedAt((_focusedAt) => _focusedAt.add(1, "year"));
+  }, [setFocusedAt]);
 
   /// prev year
-  const toPrevYear = () => {
-    setFocusedAt(dayjs().subtract(1, "y"));
-  };
+  const toPrevYear = useCallback(() => {
+    setFocusedAt((_focusedAt) => _focusedAt.subtract(1, "year"));
+  }, [setFocusedAt]);
 
   /// next month
-  const toNextMonth = () => {
-    setFocusedAt(dayjs().add(1, "M"));
-  };
+  const toNextMonth = useCallback(() => {
+    setFocusedAt((_focusedAt) => _focusedAt.add(1, "month"));
+  }, [setFocusedAt]);
 
   /// prev month
-  const toPrevMonth = () => {
-    setFocusedAt(dayjs().subtract(1, "M"));
-  };
+  const toPrevMonth = useCallback(() => {
+    setFocusedAt((_focusedAt) => _focusedAt.subtract(1, "month"));
+  }, [setFocusedAt]);
 
   return {
     focusedAt,
