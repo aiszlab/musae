@@ -1,4 +1,5 @@
 import ConfigProvider from "./provider";
 import Context from "./context";
+import { useClassNames } from "./hooks";
 
-export { ConfigProvider, Context };
+export { ConfigProvider, Context, useClassNames };

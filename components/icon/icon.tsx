@@ -3,9 +3,12 @@ import { AsProps, IconProps } from "./types";
 import { StyledIcon } from "./styled";
 import { isFunction } from "@aiszlab/relax";
 import { useTheme } from "../theme";
+import { useClassNames } from "../config";
+import { ComponentToken, IconClassToken } from "../../utils/class-name";
 
 const Icon = ({ as, color, size, onClick }: IconProps) => {
   const theme = useTheme();
+  const classNames = useClassNames(ComponentToken.Icon);
   const asProps = useMemo<AsProps>(() => {
     return {
       color: color ?? theme.colorRole.primary,
@@ -20,7 +23,11 @@ const Icon = ({ as, color, size, onClick }: IconProps) => {
     return as;
   }, [asProps, as]);
 
-  return <StyledIcon onClick={onClick}>{children}</StyledIcon>;
+  return (
+    <StyledIcon onClick={onClick} className={classNames[IconClassToken.Icon]}>
+      {children}
+    </StyledIcon>
+  );
 };
 
 export default Icon;
