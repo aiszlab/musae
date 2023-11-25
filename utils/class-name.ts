@@ -1,3 +1,5 @@
+import { ClassNames } from "../components/config/types";
+
 /**
  * @description
  * token
@@ -115,6 +117,7 @@ export enum DialogClassToken {
 }
 export enum CalendarClassToken {
   Header,
+  Heading,
   HeadCell,
   DateCell,
   DateCellSelected,
@@ -191,6 +194,7 @@ export const CLASS_NAMES = {
   },
   [ComponentToken.Calendar]: {
     [CalendarClassToken.Header]: "calendar-header",
+    [CalendarClassToken.Heading]: "calendar-heading",
     [CalendarClassToken.HeadCell]: "calendar-head-cell",
     [CalendarClassToken.DateCell]: "calendar-date-cell",
     [CalendarClassToken.DateCellSelected]: "calendar-date-cell-selected",
@@ -205,12 +209,12 @@ export const CLASS_NAMES = {
  * @description
  * add prefix
  */
-export const addPrefix = (classNames: typeof CLASS_NAMES, prefix: string) => {
+export const addPrefix = (classNames: ClassNames, prefix: string) => {
   return {
     ...Object.values(classNames).map((_classNames) => ({
       ...Object.values(_classNames).map((className) => withPrefix(className, prefix)),
     })),
-  } as unknown as typeof CLASS_NAMES;
+  } as unknown as ClassNames;
 };
 
 /**

@@ -6,6 +6,6 @@ import { ComponentToken } from "../../utils/class-name";
  * @description
  * the component class names
  */
-export const useClassNames = (token: ComponentToken) => {
+export const useClassNames = <T extends ComponentToken>(token: T) => {
   return useContext(Context).classNames[token];
 };

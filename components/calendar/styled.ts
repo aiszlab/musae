@@ -1,17 +1,28 @@
 import styled from "@emotion/styled";
-import { useContext } from "react";
-import { Context } from "../config";
+import { useClassNames } from "../config";
 import { CalendarClassToken, ComponentToken, withDot } from "../../utils/class-name";
 import { useValidTheme } from "../theme/hooks";
 
 export const StyledCalendar = styled.div((props) => {
-  const classNames = useContext(Context).classNames[ComponentToken.Calendar];
+  // const classNames = useContext(Context).classNames[ComponentToken.Calendar];
+  const classNames = useClassNames(ComponentToken.Calendar);
   const theme = useValidTheme(props.theme);
 
   return {
     [withDot(classNames[CalendarClassToken.Header])]: {
       display: "flex",
-      justifyContent: "space-between",
+      alignItems: "center",
+      columnGap: 4,
+      paddingInline: 12,
+
+      // typography
+      ...theme.typography.body.large,
+
+      [withDot(classNames[CalendarClassToken.Heading])]: {
+        flex: 1,
+        display: "flex",
+        justifyContent: "center",
+      },
     },
 
     [withDot(classNames[CalendarClassToken.HeadCell])]: {
