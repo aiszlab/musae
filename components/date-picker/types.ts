@@ -1,4 +1,4 @@
-import type { CalendarProps } from "../calendar";
+import { Dayjs } from "dayjs";
 
 /**
  * @description
@@ -9,5 +9,11 @@ export interface DatePickerProps {
    * @description
    * value
    */
-  value: CalendarProps["value"];
+  value?: Dayjs;
+
+  /**
+   * @description
+   * change handler
+   */
+  onChange?: (value: Dayjs) => void;
 }

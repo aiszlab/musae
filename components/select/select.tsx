@@ -19,7 +19,7 @@ const Select = ({ mode, ...props }: SelectProps) => {
   const { value, onChange } = useValue([props.value, readableOptions, mode, close]);
 
   /// inputde value
-  const inputed = useMemo<ReactNode>(() => {
+  const picked = useMemo<ReactNode>(() => {
     // multiple value
     if (mode === "multiple") {
       return [...value.entries()].map(([_value, label]) => (
@@ -37,7 +37,7 @@ const Select = ({ mode, ...props }: SelectProps) => {
     return <Menu items={menuItems} onClick={onChange} selectedKeys={[...value.values()]} />;
   }, [menuItems, onChange, value]);
 
-  return <Picker ref={ref} picked={inputed} pickable={menu} className={classNames[SelectClassToken.Select]} />;
+  return <Picker ref={ref} picked={picked} pickable={menu} className={classNames[SelectClassToken.Select]} />;
 };
 
 export default Select;
