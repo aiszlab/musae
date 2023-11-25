@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { useValidTheme } from "../theme/hooks";
+import { useValidTheme } from "../theme";
 import type { OptionsRenderProps } from "./types";
 import { ComponentToken, PickerClassToken, withSelf } from "../../utils/class-name";
 import { useContext } from "react";

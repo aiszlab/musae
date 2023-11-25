@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { ComponentToken, DialogClassToken, withDot } from "../../utils/class-name";
-import { useValidTheme } from "../theme/hooks";
+import { useValidTheme } from "../theme";
 import { useContext } from "react";
 import { Context } from "../config";
 

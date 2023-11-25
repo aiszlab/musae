@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import type { WithLevel } from "./types";
-import { useValidTheme } from "../theme/hooks";
+import { useValidTheme } from "../theme";
 
 /**
  * @author murukal

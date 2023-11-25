@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { useValidTheme } from "../theme/hooks";
+import { useValidTheme } from "../theme";
 
 export const StyledNav = styled.nav((props) => {
   const theme = useValidTheme(props.theme);

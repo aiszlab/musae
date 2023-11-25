@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { useValidTheme } from "../theme/hooks";
+import { useValidTheme } from "../theme";
 import { ComponentToken, InputClassToken, withSelf } from "../../utils/class-name";
 import { useContext } from "react";
 import Context from "../config/context";

@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { useValidTheme } from "../theme/hooks";
+import { useValidTheme } from "../theme";
 import type { RadioRenderProps } from "./types";
 
 export const StyledWrapper = styled.label<RadioRenderProps>(({ disabled }) => {

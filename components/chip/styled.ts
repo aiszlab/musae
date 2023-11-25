@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { useValidTheme } from "../theme/hooks";
+import { useValidTheme } from "../theme";
 import type { ChipRenderProps } from "./types";
 
 const PADDING_X = new Map<ChipRenderProps["size"], number>([["small", 8]]);

@@ -1,6 +1,6 @@
 import styled, { type CSSObject } from "@emotion/styled";
 import type { DividerRenderProps } from "./types";
-import { useValidTheme } from "../theme/hooks";
+import { useValidTheme } from "../theme";
 import { ComponentToken, DividerClassToken, withDot } from "../../utils/class-name";
 import { useContext } from "react";
 import { Context } from "../config";

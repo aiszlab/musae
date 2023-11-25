@@ -31,21 +31,24 @@ export const useDateCells = ([timespan, focusedAt]: [Timespan, Dayjs]) => {
   const classNames = useContext(Context).classNames[ComponentToken.Calendar];
 
   return useMemo(() => {
-    const from = focusedAt.startOf("month").startOf("week");
-    const to = focusedAt.endOf("month").endOf("week");
+    const start = focusedAt.startOf("month");
+    const from = start.startOf("week");
+
+    const end = focusedAt.endOf("month");
+    const to = end.endOf("week");
+
     const gap = to.diff(from, "d") + 1;
 
     const dateCells = [...new Array(gap).keys()].reduce<ReactNode[][]>(
       (prev, _, index) => {
-        if (prev.at(prev.length - 1)!.length === 7) {
-          prev.push([]);
-        }
+        if (prev.at(prev.length - 1)!.length === 7) prev.push([]);
 
         const currentAt = from.add(index, "d");
         const formatted = currentAt.format("YYYY-MM-DD");
 
         const isSelected = timespan.isFrom(currentAt) || timespan.isTo(currentAt);
         const isRelated = timespan.isBetween(currentAt);
+        const isDisabled = currentAt.isBefore(start, "d") || currentAt.isAfter(end, "d");
 
         prev.at(prev.length - 1)!.push(
           <td
@@ -55,6 +58,7 @@ export const useDateCells = ([timespan, focusedAt]: [Timespan, Dayjs]) => {
               [classNames[CalendarClassToken.DateCellSelected]]: isSelected,
               [classNames[CalendarClassToken.DateCellRelated]]: isRelated,
             })}
+            aria-hidden={isDisabled}
           >
             {currentAt.date()}
           </td>

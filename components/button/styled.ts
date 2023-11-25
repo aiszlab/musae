@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { useValidTheme } from "../theme/hooks";
+import { useValidTheme } from "../theme";
 import type { ButtonRenderProps } from "./types";
 
 export const StyledWrapper = styled.button<ButtonRenderProps>(({ variant, color, ...props }) => {

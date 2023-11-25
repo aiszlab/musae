@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { useValidTheme } from "../theme/hooks";
+import { useValidTheme } from "../theme";
 import { usePlacements } from "./hooks";
 import { ComponentToken, DrawerClassToken, withDot } from "../../utils/class-name";
 import type { PopupRenderProps } from "./types";

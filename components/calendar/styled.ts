@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { useClassNames } from "../config";
 import { CalendarClassToken, ComponentToken, withDot } from "../../utils/class-name";
-import { useValidTheme } from "../theme/hooks";
+import { useValidTheme } from "../theme";
 
 export const StyledCalendar = styled.div((props) => {
   // const classNames = useContext(Context).classNames[ComponentToken.Calendar];
@@ -43,6 +43,10 @@ export const StyledCalendar = styled.div((props) => {
 
       // typography
       ...theme.typography.body.large,
+
+      "&[aria-hidden=true]": {
+        visibility: "hidden",
+      },
     },
   };
 });
