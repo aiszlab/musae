@@ -1,6 +1,6 @@
-import { CSSProperties, FC, ReactNode, ReactPortal } from "react";
+import { CSSProperties, FC, MouseEventHandler, ReactNode, ReactPortal } from "react";
 
-export type AsProps = Required<Omit<IconProps, "as">>;
+export type AsProps = Required<Omit<IconProps, "as" | "onClick">>;
 
 /**
  * @description
@@ -24,4 +24,10 @@ export interface IconProps {
    * color
    */
   color?: CSSProperties["fill"];
+
+  /**
+   * @description
+   * click handler
+   */
+  onClick?: MouseEventHandler<HTMLSpanElement>;
 }

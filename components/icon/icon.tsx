@@ -4,7 +4,7 @@ import { StyledIcon } from "./styled";
 import { isFunction } from "@aiszlab/relax";
 import { useTheme } from "..";
 
-const Icon = ({ as, color, size }: IconProps) => {
+const Icon = ({ as, color, size, onClick }: IconProps) => {
   const theme = useTheme();
   const asProps = useMemo<AsProps>(() => {
     return {
@@ -20,7 +20,7 @@ const Icon = ({ as, color, size }: IconProps) => {
     return as;
   }, [asProps, as]);
 
-  return <StyledIcon>{children}</StyledIcon>;
+  return <StyledIcon onClick={onClick}>{children}</StyledIcon>;
 };
 
 export default Icon;
