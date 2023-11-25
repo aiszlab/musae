@@ -2,7 +2,7 @@ import React, { ReactNode, createElement, useMemo } from "react";
 import { AsProps, IconProps } from "./types";
 import { StyledIcon } from "./styled";
 import { isFunction } from "@aiszlab/relax";
-import { useTheme } from "..";
+import { useTheme } from "../theme";
 
 const Icon = ({ as, color, size, onClick }: IconProps) => {
   const theme = useTheme();

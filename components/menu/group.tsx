@@ -6,7 +6,7 @@ import { StyledMenuItemCollapser, StyledMenuItemPrefix, StyledMenuItemWrapper } 
 import { useBoolean } from "@aiszlab/relax";
 import { useAnimate } from "framer-motion";
 import MenuContext from "./context";
-import NavigateBefore from "../icons/navigate-before";
+import { KeyboardArrowUp } from "../icon";
 
 /**
  * @author murukal
@@ -32,7 +32,7 @@ const Item = ({ level = 0, label, children, prefix, id }: MenuItemRenderProps) =
 
     return (
       <StyledMenuItemCollapser isCollapsed={isCollapsed}>
-        <NavigateBefore size={16} />
+        <KeyboardArrowUp size={16} />
       </StyledMenuItemCollapser>
     );
   }, [hasChildren, isCollapsed]);
