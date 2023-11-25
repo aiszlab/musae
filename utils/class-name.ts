@@ -46,6 +46,7 @@ export enum ComponentToken {
   Cascader,
   Dialog,
   Calendar,
+  Icon,
 }
 
 /**
@@ -119,6 +120,9 @@ export enum CalendarClassToken {
   DateCellSelected,
   DateCellRelated,
 }
+export enum IconClassToken {
+  Icon,
+}
 
 /**
  * @description
@@ -191,6 +195,9 @@ export const CLASS_NAMES = {
     [CalendarClassToken.DateCell]: "calendar-date-cell",
     [CalendarClassToken.DateCellSelected]: "calendar-date-cell-selected",
     [CalendarClassToken.DateCellRelated]: "calendar-date-cell-related",
+  },
+  [ComponentToken.Icon]: {
+    [IconClassToken.Icon]: "icon",
   },
 };
 
