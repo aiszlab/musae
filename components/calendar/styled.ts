@@ -12,7 +12,7 @@ export const StyledCalendar = styled.div((props) => {
     [withDot(classNames[CalendarClassToken.Header])]: {
       display: "flex",
       alignItems: "center",
-      columnGap: 4,
+      columnGap: 8,
       paddingInline: 12,
 
       // typography
@@ -73,6 +73,7 @@ export const StyledCalendar = styled.div((props) => {
         borderRadius: 999,
         zIndex: 2,
         position: "relative",
+        cursor: "pointer",
       },
 
       [withSelf(classNames[CalendarClassToken.DateCellInRange])]: {

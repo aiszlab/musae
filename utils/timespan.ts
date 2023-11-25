@@ -31,6 +31,6 @@ export class Timespan {
   }
 
   get isRange() {
-    return !this.#from?.isSame(this.#to);
+    return this.#to && this.#from && !this.#to.isSame(this.#from);
   }
 }

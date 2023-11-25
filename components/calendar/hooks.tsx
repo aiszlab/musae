@@ -27,7 +27,7 @@ export const useHeadCells = () => {
  * @description
  * dates
  */
-export const useDateCells = ([timespan, focusedAt]: [Timespan, Dayjs]) => {
+export const useDateCells = ([timespan, focusedAt, click]: [Timespan, Dayjs, Required<CalendarProps>["onClick"]]) => {
   const classNames = useContext(Context).classNames[ComponentToken.Calendar];
 
   return useMemo(() => {
@@ -65,7 +65,14 @@ export const useDateCells = ([timespan, focusedAt]: [Timespan, Dayjs]) => {
             })}
             aria-hidden={isDisabled}
           >
-            <div className={classNames[CalendarClassToken.Date]}>{currentAt.date()}</div>
+            <div
+              className={classNames[CalendarClassToken.Date]}
+              onClick={() => {
+                click(currentAt);
+              }}
+            >
+              {currentAt.date()}
+            </div>
           </td>
         );
         return prev;
@@ -76,18 +83,32 @@ export const useDateCells = ([timespan, focusedAt]: [Timespan, Dayjs]) => {
     return dateCells.map((cells, index) => {
       return <tr key={index}>{cells}</tr>;
     });
-  }, [classNames, focusedAt, timespan]);
+  }, [classNames, focusedAt, timespan, click]);
 };
 
 /**
  * @description
  * time span
  */
-export const useTimespan = ([value]: [CalendarProps["value"]]) => {
-  return useMemo(() => {
+export const useValue = ([value, _click]: [CalendarProps["value"], CalendarProps["onClick"]]) => {
+  /// change handler
+  const onClick = useCallback(
+    (_value: Dayjs) => {
+      _click?.(_value);
+    },
+    [_click]
+  );
+
+  /// time span
+  const timespan = useMemo(() => {
     const [from, to] = isArray(value) ? value : [value, void 0];
     return new Timespan({ from, to });
   }, [value]);
+
+  return {
+    timespan,
+    onClick,
+  };
 };
 
 /**

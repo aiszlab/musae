@@ -1,7 +1,5 @@
 import { Dayjs } from "dayjs";
 
-type Mode = "single" | "range";
-
 /**
  * @description
  * calendar props
@@ -15,13 +13,13 @@ export interface CalendarProps {
 
   /**
    * @description
-   * mode
-   */
-  mode?: Mode;
-
-  /**
-   * @description
    * focused at
    */
   focusedAt?: Dayjs;
+
+  /**
+   * @description
+   * click date handler
+   */
+  onClick?: (value: Dayjs) => void;
 }

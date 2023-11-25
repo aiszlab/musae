@@ -58,7 +58,6 @@ export const StyledOptions = styled.div<OptionsRenderProps>(({ widthGetter, ...p
     marginTop: 4,
     borderRadius: 8,
     backgroundColor: theme.colorRole.surface,
-    maxHeight: 300,
     overflow: "auto",
     padding: 4,
 

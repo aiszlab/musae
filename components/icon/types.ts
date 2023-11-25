@@ -31,3 +31,15 @@ export interface IconProps {
    */
   onClick?: MouseEventHandler<HTMLSpanElement>;
 }
+
+/**
+ * @description
+ * icon render props
+ */
+export interface IconRenderProps {
+  /**
+   * @description
+   * is clickable
+   */
+  isClickable: boolean;
+}

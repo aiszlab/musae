@@ -24,7 +24,7 @@ const Icon = ({ as, color, size, onClick }: IconProps) => {
   }, [asProps, as]);
 
   return (
-    <StyledIcon onClick={onClick} className={classNames[IconClassToken.Icon]}>
+    <StyledIcon onClick={onClick} className={classNames[IconClassToken.Icon]} isClickable={!!onClick}>
       {children}
     </StyledIcon>
   );
