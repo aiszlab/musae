@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { useDateCells, useHeadCells, useFocusedAt, useTimespan } from "./hooks";
 import { StyledCalendar } from "./styled";
 import type { CalendarProps } from "./types";
-import { KeyboardDoubleArrowLeft, KeyboardDoubleArrowRight } from "../icon";
+import { KeyboardDoubleArrowLeft, KeyboardDoubleArrowRight, KeyboardArrowLeft, KeyboardArrowRight } from "../icon";
 import { Context } from "../config";
 import { CalendarClassToken, ComponentToken } from "../../utils/class-name";
 
@@ -17,19 +17,15 @@ const Calendar = ({ mode = "single", ...props }: CalendarProps) => {
     <StyledCalendar>
       <header className={classNames[CalendarClassToken.Header]}>
         <div>
-          <span onClick={toPrevYear}>
-            <KeyboardDoubleArrowLeft />
-          </span>
-          <span onClick={toPrevMonth}>{"<"}</span>
+          <KeyboardDoubleArrowLeft onClick={toPrevYear} />
+          <KeyboardArrowLeft onClick={toPrevMonth} />
         </div>
 
         <span>{focusedAt.format("YYYY-MM")}</span>
 
         <div>
-          <span onClick={toNextMonth}>{">"}</span>
-          <span onClick={toNextYear}>
-            <KeyboardDoubleArrowRight />
-          </span>
+          <KeyboardArrowRight onClick={toNextMonth} />
+          <KeyboardDoubleArrowRight onClick={toNextYear} />
         </div>
       </header>
       <table>
