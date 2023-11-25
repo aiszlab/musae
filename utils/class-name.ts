@@ -121,7 +121,10 @@ export enum CalendarClassToken {
   HeadCell,
   DateCell,
   DateCellSelected,
-  DateCellRelated,
+  DateCellInRange,
+  DateCellRangeFrom,
+  DateCellRangeTo,
+  Date,
 }
 export enum IconClassToken {
   Icon,
@@ -198,7 +201,10 @@ export const CLASS_NAMES = {
     [CalendarClassToken.HeadCell]: "calendar-head-cell",
     [CalendarClassToken.DateCell]: "calendar-date-cell",
     [CalendarClassToken.DateCellSelected]: "calendar-date-cell-selected",
-    [CalendarClassToken.DateCellRelated]: "calendar-date-cell-related",
+    [CalendarClassToken.DateCellInRange]: "calendar-date-in-range",
+    [CalendarClassToken.DateCellRangeFrom]: "calendar-date-range-from",
+    [CalendarClassToken.DateCellRangeTo]: "calendar-date-range-to",
+    [CalendarClassToken.Date]: "calendar-date",
   },
   [ComponentToken.Icon]: {
     [IconClassToken.Icon]: "icon",

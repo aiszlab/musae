@@ -27,6 +27,10 @@ export class Timespan {
   }
 
   isBetween(now: Dayjs) {
-    return !!this.#from?.isBefore(now, "day") && !!this.#to?.isAfter(now, "day");
+    return !!this.#to?.isAfter(now, "day") && !!this.#from?.isBefore(now, "day");
+  }
+
+  get isRange() {
+    return !this.#from?.isSame(this.#to);
   }
 }

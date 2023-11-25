@@ -46,8 +46,9 @@ export const useDateCells = ([timespan, focusedAt]: [Timespan, Dayjs]) => {
         const currentAt = from.add(index, "d");
         const formatted = currentAt.format("YYYY-MM-DD");
 
-        const isSelected = timespan.isFrom(currentAt) || timespan.isTo(currentAt);
-        const isRelated = timespan.isBetween(currentAt);
+        const isFrom = timespan.isFrom(currentAt);
+        const isTo = timespan.isTo(currentAt);
+        const isBetween = timespan.isBetween(currentAt);
         const isDisabled = currentAt.isBefore(start, "d") || currentAt.isAfter(end, "d");
 
         prev.at(prev.length - 1)!.push(
@@ -55,12 +56,16 @@ export const useDateCells = ([timespan, focusedAt]: [Timespan, Dayjs]) => {
             title={formatted}
             key={formatted}
             className={clsx(classNames[CalendarClassToken.DateCell], {
-              [classNames[CalendarClassToken.DateCellSelected]]: isSelected,
-              [classNames[CalendarClassToken.DateCellRelated]]: isRelated,
+              [classNames[CalendarClassToken.DateCellSelected]]: isFrom || isTo,
+              ...(timespan.isRange && {
+                [classNames[CalendarClassToken.DateCellInRange]]: isBetween,
+                [classNames[CalendarClassToken.DateCellRangeFrom]]: isFrom,
+                [classNames[CalendarClassToken.DateCellRangeTo]]: isTo,
+              }),
             })}
             aria-hidden={isDisabled}
           >
-            {currentAt.date()}
+            <div className={classNames[CalendarClassToken.Date]}>{currentAt.date()}</div>
           </td>
         );
         return prev;
@@ -80,7 +85,7 @@ export const useDateCells = ([timespan, focusedAt]: [Timespan, Dayjs]) => {
  */
 export const useTimespan = ([value]: [CalendarProps["value"]]) => {
   return useMemo(() => {
-    const [from, to] = isArray(value) ? value : [value, value];
+    const [from, to] = isArray(value) ? value : [value, void 0];
     return new Timespan({ from, to });
   }, [value]);
 };
