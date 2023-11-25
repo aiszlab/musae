@@ -1,5 +1,5 @@
 import { FC, createElement } from "react";
-import { AsProps } from "./types";
+import { AsProps, IconProps } from "./types";
 import Icon from "./icon";
 
 /**
@@ -7,7 +7,7 @@ import Icon from "./icon";
  * with icon
  */
 export const withIcon = (as: FC<AsProps>) => {
-  return (props: Partial<AsProps>) => {
+  return (props: Omit<IconProps, "as">) => {
     return createElement(Icon, {
       ...props,
       as,
