@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { useDateCells, useHeadCells, useFocusedAt, useTimespan } from "./hooks";
 import { StyledCalendar } from "./styled";
 import type { CalendarProps } from "./types";
-import { KeyboardDoubleArrowLeft, KeyboardDoubleArrowRight } from "../icons";
+import { KeyboardDoubleArrowLeft, KeyboardDoubleArrowRight } from "../icon";
 import { Context } from "../config";
 import { CalendarClassToken, ComponentToken } from "../../utils/class-name";
 
@@ -12,8 +12,6 @@ const Calendar = ({ mode = "single", ...props }: CalendarProps) => {
   const dateCells = useDateCells([timespan, focusedAt]);
   const headCells = useHeadCells();
   const classNames = useContext(Context).classNames[ComponentToken.Calendar];
-
-  // 测试
 
   return (
     <StyledCalendar>

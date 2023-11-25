@@ -1,6 +1,6 @@
 import { CSSProperties, FC, ReactNode, ReactPortal } from "react";
 
-export interface AsProps {}
+export type AsProps = Required<Omit<IconProps, "as">>;
 
 /**
  * @description
