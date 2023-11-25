@@ -16,7 +16,7 @@ export const StyledCalendar = styled.div((props) => {
       paddingInline: 12,
 
       // typography
-      ...theme.typography.body.large,
+      ...theme.typography.label.medium,
 
       [withDot(classNames[CalendarClassToken.Heading])]: {
         flex: 1,
