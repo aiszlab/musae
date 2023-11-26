@@ -49,6 +49,12 @@ export interface MenuProps {
    * selected keys
    */
   selectedKeys?: Key[];
+
+  /**
+   * @description
+   * class name
+   */
+  className?: string;
 }
 
 /**

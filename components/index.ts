@@ -27,6 +27,7 @@ export { Calendar } from "./calendar";
 export { DatePicker } from "./date-picker";
 export { DateRangePicker } from "./date-range-picker";
 export { Icon } from "./icon";
+export { Clock } from "./clock";
 
 /**
  * @description

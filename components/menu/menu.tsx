@@ -3,6 +3,9 @@ import type { ContextValue, MenuProps } from "./types";
 import Group from "./group";
 import MenuContext from "./context";
 import { useControlledState } from "@aiszlab/relax";
+import { useClassNames } from "../config";
+import { ComponentToken, MenuClassToken } from "../../utils/class-name";
+import clsx from "clsx";
 
 /**
  * @author murukal
@@ -10,8 +13,9 @@ import { useControlledState } from "@aiszlab/relax";
  * @description
  * menu component
  */
-const Menu = ({ onClick, ...props }: MenuProps) => {
+const Menu = ({ onClick, className, ...props }: MenuProps) => {
   const [selectedKeys, setSelectedKeys] = useControlledState(props.selectedKeys);
+  const classNames = useClassNames(ComponentToken.Menu);
 
   /// context value
   const contextValue = useMemo<ContextValue>(
@@ -27,7 +31,7 @@ const Menu = ({ onClick, ...props }: MenuProps) => {
 
   return (
     <MenuContext.Provider value={contextValue}>
-      <Group items={props.items} />
+      <Group className={clsx(classNames[MenuClassToken.Menu], className)} items={props.items} />
     </MenuContext.Provider>
   );
 };

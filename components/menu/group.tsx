@@ -84,7 +84,7 @@ const Item = ({ level = 0, label, children, prefix, id }: MenuItemRenderProps) =
  * @description
  * menu group
  */
-const Group = forwardRef<HTMLUListElement, MenuGroupRenderProps>(({ items, level = 0 }, ref) => {
+const Group = forwardRef<HTMLUListElement, MenuGroupRenderProps>(({ items, level = 0, className }, ref) => {
   /// 菜单条目渲染结果
   const children = useMemo(() => {
     return items.map(({ key, ...itemProps }) => {
@@ -92,7 +92,11 @@ const Group = forwardRef<HTMLUListElement, MenuGroupRenderProps>(({ items, level
     });
   }, [items, level]);
 
-  return <StyledMenuGroup ref={ref}>{children}</StyledMenuGroup>;
+  return (
+    <StyledMenuGroup className={className} ref={ref}>
+      {children}
+    </StyledMenuGroup>
+  );
 });
 
 export default Group;

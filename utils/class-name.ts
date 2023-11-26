@@ -51,6 +51,8 @@ export enum ComponentToken {
   Icon,
   DatePicker,
   DateRangePicker,
+  Clock,
+  Menu,
 }
 
 /**
@@ -139,6 +141,13 @@ export enum DateRangePickerClassToken {
   Input,
   Separator,
 }
+export enum ClockClassToken {
+  Clock,
+  Column,
+}
+export enum MenuClassToken {
+  Menu,
+}
 
 /**
  * @description
@@ -226,6 +235,13 @@ export const CLASS_NAMES = {
     [DateRangePickerClassToken.Picker]: "date-range-picker",
     [DateRangePickerClassToken.Input]: "date-range-picker-input",
     [DateRangePickerClassToken.Separator]: "date-range-picker-separator",
+  },
+  [ComponentToken.Clock]: {
+    [ClockClassToken.Clock]: "clock",
+    [ClockClassToken.Column]: "clock-column",
+  },
+  [ComponentToken.Menu]: {
+    [MenuClassToken.Menu]: "menu",
   },
 };
 
