@@ -49,6 +49,8 @@ export enum ComponentToken {
   Dialog,
   Calendar,
   Icon,
+  DatePicker,
+  DateRangePicker,
 }
 
 /**
@@ -129,6 +131,14 @@ export enum CalendarClassToken {
 export enum IconClassToken {
   Icon,
 }
+export enum DatePickerClassToken {
+  Input,
+}
+export enum DateRangePickerClassToken {
+  Picker,
+  Input,
+  Separator,
+}
 
 /**
  * @description
@@ -208,6 +218,14 @@ export const CLASS_NAMES = {
   },
   [ComponentToken.Icon]: {
     [IconClassToken.Icon]: "icon",
+  },
+  [ComponentToken.DatePicker]: {
+    [DatePickerClassToken.Input]: "date-picker-input",
+  },
+  [ComponentToken.DateRangePicker]: {
+    [DateRangePickerClassToken.Picker]: "date-range-picker",
+    [DateRangePickerClassToken.Input]: "date-range-picker-input",
+    [DateRangePickerClassToken.Separator]: "date-range-picker-separator",
   },
 };
 

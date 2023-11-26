@@ -5,6 +5,7 @@ import KeyboardArrowLeft from "./icons/keyboard-arrow-left";
 import KeyboardArrowRight from "./icons/keyboard-arrow-right";
 import KeyboardArrowUp from "./icons/keyboard-arrow-up";
 import KeyboardArrowDown from "./icons/keyboard-arrow-down";
+import SwapHoriz from "./icons/swap-horiz";
 
 /**
  * @description
@@ -23,4 +24,5 @@ export {
   KeyboardArrowRight,
   KeyboardArrowUp,
   KeyboardArrowDown,
+  SwapHoriz,
 };

@@ -1,4 +1,5 @@
 import { Dayjs } from "dayjs";
+import { Partialable } from "../../types/lib";
 
 /**
  * @description
@@ -9,7 +10,7 @@ export interface CalendarProps {
    * @description
    * value
    */
-  value?: Dayjs | [Dayjs, Dayjs];
+  value?: Dayjs | [Partialable<Dayjs>, Partialable<Dayjs>];
 
   /**
    * @description

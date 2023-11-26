@@ -5,8 +5,9 @@ import { isFunction } from "@aiszlab/relax";
 import { useTheme } from "../theme";
 import { useClassNames } from "../config";
 import { ComponentToken, IconClassToken } from "../../utils/class-name";
+import clsx from "clsx";
 
-const Icon = ({ as, color, size, onClick }: IconProps) => {
+const Icon = ({ as, color, size, onClick, className }: IconProps) => {
   const theme = useTheme();
   const classNames = useClassNames(ComponentToken.Icon);
   const asProps = useMemo<AsProps>(() => {
@@ -24,7 +25,7 @@ const Icon = ({ as, color, size, onClick }: IconProps) => {
   }, [asProps, as]);
 
   return (
-    <StyledIcon onClick={onClick} className={classNames[IconClassToken.Icon]} isClickable={!!onClick}>
+    <StyledIcon onClick={onClick} className={clsx(classNames[IconClassToken.Icon], className)} isClickable={!!onClick}>
       {children}
     </StyledIcon>
   );
