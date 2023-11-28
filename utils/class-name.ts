@@ -53,6 +53,7 @@ export enum ComponentToken {
   DateRangePicker,
   Clock,
   Menu,
+  Checkbox,
 }
 
 /**
@@ -148,6 +149,9 @@ export enum ClockClassToken {
 export enum MenuClassToken {
   Menu,
 }
+export enum CheckboxClassToken {
+  Checkbox,
+}
 
 /**
  * @description
@@ -242,6 +246,9 @@ export const CLASS_NAMES = {
   },
   [ComponentToken.Menu]: {
     [MenuClassToken.Menu]: "menu",
+  },
+  [ComponentToken.Checkbox]: {
+    [CheckboxClassToken.Checkbox]: "checkbox",
   },
 };
 
