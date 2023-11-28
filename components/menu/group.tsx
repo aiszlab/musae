@@ -64,7 +64,7 @@ const Item = ({ level = 0, label, children, prefix, id }: MenuItemRenderProps) =
   );
 
   return (
-    <li>
+    <li className={classNames[MenuClassToken.GroupItem]}>
       <StyledMenuItem
         level={level}
         isSelected={isSelected}

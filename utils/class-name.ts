@@ -150,6 +150,7 @@ export enum MenuClassToken {
   Menu,
   Group,
   Collapser,
+  GroupItem,
   Item,
   ItemPrefix,
 }
@@ -252,6 +253,7 @@ export const CLASS_NAMES = {
     [MenuClassToken.Menu]: "menu",
     [MenuClassToken.Group]: "menu-group",
     [MenuClassToken.Collapser]: "menu-collapser",
+    [MenuClassToken.GroupItem]: "menu-group-item",
     [MenuClassToken.Item]: "menu-item",
     [MenuClassToken.ItemPrefix]: "menu-item-prefix",
   },
