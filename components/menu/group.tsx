@@ -1,12 +1,15 @@
 import { StyledMenuGroup } from "./styled";
-import { type MenuGroupRenderProps } from "./types";
+import type { MenuGroupRenderProps } from "./types";
 import React, { useCallback, useContext, useMemo, forwardRef, type MouseEvent } from "react";
 import type { MenuItemRenderProps } from "./types";
-import { StyledMenuItemCollapser, StyledMenuItemPrefix, StyledMenuItemWrapper } from "./styled";
+import { StyledCollapser, StyledMenuItemPrefix, StyledMenuItem } from "./styled";
 import { useBoolean } from "@aiszlab/relax";
 import { useAnimate } from "framer-motion";
 import MenuContext from "./context";
 import { KeyboardArrowUp } from "../icon";
+import { useClassNames } from "../config";
+import { ComponentToken, MenuClassToken } from "../../utils/class-name";
+import clsx from "clsx";
 
 /**
  * @author murukal
@@ -17,6 +20,7 @@ import { KeyboardArrowUp } from "../icon";
 const Item = ({ level = 0, label, children, prefix, id }: MenuItemRenderProps) => {
   /// has children
   const hasChildren = useMemo(() => !!children?.length, [children]);
+  const classNames = useClassNames(ComponentToken.Menu);
 
   const context = useContext(MenuContext);
   const [scope, animate] = useAnimate<HTMLUListElement>();
@@ -31,11 +35,11 @@ const Item = ({ level = 0, label, children, prefix, id }: MenuItemRenderProps) =
     if (!hasChildren) return null;
 
     return (
-      <StyledMenuItemCollapser isCollapsed={isCollapsed}>
+      <StyledCollapser isCollapsed={isCollapsed} className={classNames[MenuClassToken.Collapser]}>
         <KeyboardArrowUp size={16} />
-      </StyledMenuItemCollapser>
+      </StyledCollapser>
     );
-  }, [hasChildren, isCollapsed]);
+  }, [hasChildren, isCollapsed, classNames]);
 
   const onToggle = useCallback(
     (e: MouseEvent<HTMLDivElement>) => {
@@ -61,16 +65,23 @@ const Item = ({ level = 0, label, children, prefix, id }: MenuItemRenderProps) =
 
   return (
     <li>
-      <StyledMenuItemWrapper level={level} isSelected={isSelected} onClick={onToggle}>
+      <StyledMenuItem
+        level={level}
+        isSelected={isSelected}
+        onClick={onToggle}
+        className={classNames[MenuClassToken.Item]}
+      >
         {/* prefix */}
-        {!!prefix && <StyledMenuItemPrefix>{prefix}</StyledMenuItemPrefix>}
+        {!!prefix && (
+          <StyledMenuItemPrefix className={classNames[MenuClassToken.ItemPrefix]}>{prefix}</StyledMenuItemPrefix>
+        )}
 
         {/* content */}
         {label}
 
         {/* collapser */}
         {collapser}
-      </StyledMenuItemWrapper>
+      </StyledMenuItem>
 
       {/* if there are children menu items, display them */}
       {hasChildren && <Group ref={scope} items={children!} level={level + 1} />}
@@ -85,6 +96,8 @@ const Item = ({ level = 0, label, children, prefix, id }: MenuItemRenderProps) =
  * menu group
  */
 const Group = forwardRef<HTMLUListElement, MenuGroupRenderProps>(({ items, level = 0, className }, ref) => {
+  const classNames = useClassNames(ComponentToken.Menu);
+
   /// 菜单条目渲染结果
   const children = useMemo(() => {
     return items.map(({ key, ...itemProps }) => {
@@ -93,7 +106,7 @@ const Group = forwardRef<HTMLUListElement, MenuGroupRenderProps>(({ items, level
   }, [items, level]);
 
   return (
-    <StyledMenuGroup className={className} ref={ref}>
+    <StyledMenuGroup className={clsx(classNames[MenuClassToken.Group], className)} ref={ref}>
       {children}
     </StyledMenuGroup>
   );

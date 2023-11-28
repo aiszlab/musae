@@ -148,6 +148,10 @@ export enum ClockClassToken {
 }
 export enum MenuClassToken {
   Menu,
+  Group,
+  Collapser,
+  Item,
+  ItemPrefix,
 }
 export enum CheckboxClassToken {
   Checkbox,
@@ -246,6 +250,10 @@ export const CLASS_NAMES = {
   },
   [ComponentToken.Menu]: {
     [MenuClassToken.Menu]: "menu",
+    [MenuClassToken.Group]: "menu-group",
+    [MenuClassToken.Collapser]: "menu-collapser",
+    [MenuClassToken.Item]: "menu-item",
+    [MenuClassToken.ItemPrefix]: "menu-item-prefix",
   },
   [ComponentToken.Checkbox]: {
     [CheckboxClassToken.Checkbox]: "checkbox",

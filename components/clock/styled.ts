@@ -8,10 +8,11 @@ export const StyledWrapper = styled.div(() => {
   return {
     [withSelf(classNames[ClockClassToken.Clock])]: {
       display: "flex",
+      maxHeight: 200,
 
       [withDot(classNames[ClockClassToken.Column])]: {
-        maxHeight: 200,
-        overflow: "auto",
+        overflowY: "hidden",
+        overflowX: "hidden",
       },
     },
   };
