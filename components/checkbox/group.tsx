@@ -3,23 +3,23 @@ import React, { useCallback, useMemo, useState } from "react";
 import type { ContextValue, CheckboxGroupProps } from "./types";
 
 const Group = (props: CheckboxGroupProps) => {
-  const [valueWithIsChecked, setValueWithIsChecked] = useState(new Map<string, boolean>());
+  const [valueWithChecked, setValueWithChecked] = useState(new Map<string, boolean>());
 
   /// change handler
   const change = useCallback<ContextValue["onChange"]>(
     (value) => {
-      setValueWithIsChecked((prev) => new Map(prev).set(value, !!prev.get(value)));
+      setValueWithChecked((prev) => new Map(prev).set(value, !!prev.get(value)));
     },
-    [setValueWithIsChecked]
+    [setValueWithChecked]
   );
 
   /// context value
   const _contextValue = useMemo<ContextValue>(() => {
     return {
-      value: valueWithIsChecked,
+      value: valueWithChecked,
       onChange: change,
     };
-  }, [valueWithIsChecked, change]);
+  }, [valueWithChecked, change]);
 
   return <Context.Provider value={_contextValue}>{props.children}</Context.Provider>;
 };
