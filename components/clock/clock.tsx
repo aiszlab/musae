@@ -20,9 +20,9 @@ const Clock = () => {
         <Menu
           key={key}
           className={classNames[ClockClassToken.Column]}
-          items={[...Array(value).keys()].map((hour) => ({
-            key: hour,
-            label: hour.toString(),
+          items={[...Array(value).keys()].map((step) => ({
+            key: step,
+            label: step.toString(),
           }))}
         />
       );
