@@ -13,6 +13,10 @@ export const StyledWrapper = styled.div(() => {
       [withDot(classNames[ClockClassToken.Column])]: {
         overflowY: "hidden",
         overflowX: "hidden",
+
+        ":hover": {
+          overflowY: "auto",
+        },
       },
     },
   };

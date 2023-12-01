@@ -1,5 +1,5 @@
-import React, { useMemo } from "react";
-import type { ContextValue, MenuProps } from "./types";
+import React, { forwardRef, useImperativeHandle, useMemo, useRef } from "react";
+import type { ContextValue, MenuProps, MenuRef } from "./types";
 import Group from "./group";
 import MenuContext from "./context";
 import { useControlledState } from "@aiszlab/relax";
@@ -13,9 +13,22 @@ import clsx from "clsx";
  * @description
  * menu component
  */
-const Menu = ({ onClick, className, ...props }: MenuProps) => {
+const Menu = forwardRef<MenuRef, MenuProps>(({ onClick, className, ...props }, ref) => {
   const [selectedKeys, setSelectedKeys] = useControlledState(props.selectedKeys);
   const classNames = useClassNames(ComponentToken.Menu);
+  const groupRef = useRef<HTMLUListElement>(null);
+
+  useImperativeHandle(
+    ref,
+    () => ({
+      scrollTo: () => {
+        groupRef.current?.scrollTo({
+          top: 40,
+        });
+      },
+    }),
+    []
+  );
 
   /// context value
   const contextValue = useMemo<ContextValue>(
@@ -31,9 +44,9 @@ const Menu = ({ onClick, className, ...props }: MenuProps) => {
 
   return (
     <MenuContext.Provider value={contextValue}>
-      <Group className={clsx(classNames[MenuClassToken.Menu], className)} items={props.items} />
+      <Group className={clsx(classNames[MenuClassToken.Menu], className)} items={props.items} ref={groupRef} />
     </MenuContext.Provider>
   );
-};
+});
 
 export default Menu;

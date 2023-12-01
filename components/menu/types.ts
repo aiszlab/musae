@@ -107,3 +107,15 @@ export type MenuItemRenderProps = Omit<MenuItemProps, "key"> &
   WithLevel & {
     id: Key;
   };
+
+/**
+ * @description
+ * menu ref
+ */
+export interface MenuRef {
+  /**
+   * @description
+   * scroll to
+   */
+  scrollTo: (key: Key) => void;
+}
