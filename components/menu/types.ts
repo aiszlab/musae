@@ -1,4 +1,5 @@
 import type { Key, ReactNode } from "react";
+import type { useScrollable } from "@aiszlab/relax";
 
 /**
  * @author murukal
@@ -112,10 +113,28 @@ export type MenuItemRenderProps = Omit<MenuItemProps, "key"> &
  * @description
  * menu ref
  */
+export interface GroupRef {
+  /**
+   * @description
+   * group to
+   */
+  scrollTo: ReturnType<typeof useScrollable>["scrollTo"];
+
+  /**
+   * @description
+   * toggle
+   */
+  toggle: (isCollapsed: boolean) => void;
+}
+
+/**
+ * @description
+ * menu ref
+ */
 export interface MenuRef {
   /**
    * @description
-   * scroll to
+   * group to
    */
-  scrollTo: (key: Key) => void;
+  scrollTo: GroupRef["scrollTo"];
 }

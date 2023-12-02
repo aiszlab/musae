@@ -1,5 +1,5 @@
 import React, { forwardRef, useImperativeHandle, useMemo, useRef } from "react";
-import type { ContextValue, MenuProps, MenuRef } from "./types";
+import type { ContextValue, GroupRef, MenuProps, MenuRef } from "./types";
 import Group from "./group";
 import MenuContext from "./context";
 import { useControlledState } from "@aiszlab/relax";
@@ -16,15 +16,13 @@ import clsx from "clsx";
 const Menu = forwardRef<MenuRef, MenuProps>(({ onClick, className, ...props }, ref) => {
   const [selectedKeys, setSelectedKeys] = useControlledState(props.selectedKeys);
   const classNames = useClassNames(ComponentToken.Menu);
-  const groupRef = useRef<HTMLUListElement>(null);
+  const groupRef = useRef<GroupRef>(null);
 
   useImperativeHandle(
     ref,
     () => ({
-      scrollTo: () => {
-        groupRef.current?.scrollTo({
-          top: 40,
-        });
+      scrollTo: (...args) => {
+        groupRef.current?.scrollTo(...args);
       },
     }),
     []

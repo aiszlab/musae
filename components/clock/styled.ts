@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { useClassNames } from "../config";
 import { ClockClassToken, ComponentToken, withDot, withSelf } from "../../utils/class-name";
 
-export const StyledWrapper = styled.div(() => {
+export const StyledClock = styled.div(() => {
   const classNames = useClassNames(ComponentToken.Clock);
 
   return {

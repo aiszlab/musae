@@ -1,4 +1,4 @@
-export enum TimeType {
+export enum TimeUnit {
   Hour = "hour",
   Minute = "minute",
   Second = "second",
@@ -6,10 +6,18 @@ export enum TimeType {
 
 /**
  * @description
- * time type
+ * column props
  */
-export type Time = {
-  [TimeType.Hour]: number;
-  [TimeType.Minute]: number;
-  [TimeType.Second]: number;
-};
+export interface ColumnProps {
+  /**
+   * @description
+   * value
+   */
+  value: number;
+
+  /**
+   * @description
+   * unit
+   */
+  unit: TimeUnit;
+}
