@@ -50,6 +50,7 @@ export enum ComponentToken {
   Calendar,
   Icon,
   DatePicker,
+  TimePicker,
   DateRangePicker,
   Clock,
   Menu,
@@ -135,7 +136,14 @@ export enum IconClassToken {
   Icon,
 }
 export enum DatePickerClassToken {
+  Picker,
   Input,
+}
+export enum TimePickerClassToken {
+  Picker,
+  Input,
+  Panel,
+  PanelFooter,
 }
 export enum DateRangePickerClassToken {
   Picker,
@@ -238,7 +246,14 @@ export const CLASS_NAMES = {
     [IconClassToken.Icon]: "icon",
   },
   [ComponentToken.DatePicker]: {
+    [DatePickerClassToken.Picker]: "date-picker",
     [DatePickerClassToken.Input]: "date-picker-input",
+  },
+  [ComponentToken.TimePicker]: {
+    [TimePickerClassToken.Picker]: "time-picker",
+    [TimePickerClassToken.Input]: "time-picker-input",
+    [TimePickerClassToken.Panel]: "time-picker-panel",
+    [TimePickerClassToken.PanelFooter]: "time-picker-panel-footer",
   },
   [ComponentToken.DateRangePicker]: {
     [DateRangePickerClassToken.Picker]: "date-range-picker",

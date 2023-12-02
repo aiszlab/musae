@@ -1,4 +1,24 @@
-import type { RefCallback } from "react";
+import type { CSSProperties, RefCallback } from "react";
+
+/**
+ * @author
+ * @description
+ * component always has foundation props
+ * like class name, style
+ */
+export interface ComponentProps {
+  /**
+   * @description
+   * class name
+   */
+  className?: string;
+
+  /**
+   * @description
+   * style
+   */
+  style?: CSSProperties;
+}
 
 /**
  * @author murukal

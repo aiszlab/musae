@@ -13,7 +13,7 @@ import clsx from "clsx";
  * @description
  * menu component
  */
-const Menu = forwardRef<MenuRef, MenuProps>(({ onClick, className, ...props }, ref) => {
+const Menu = forwardRef<MenuRef, MenuProps>(({ onClick, className, style, ...props }, ref) => {
   const [selectedKeys, setSelectedKeys] = useControlledState(props.selectedKeys);
   const classNames = useClassNames(ComponentToken.Menu);
   const groupRef = useRef<GroupRef>(null);
@@ -42,7 +42,12 @@ const Menu = forwardRef<MenuRef, MenuProps>(({ onClick, className, ...props }, r
 
   return (
     <MenuContext.Provider value={contextValue}>
-      <Group className={clsx(classNames[MenuClassToken.Menu], className)} items={props.items} ref={groupRef} />
+      <Group
+        className={clsx(classNames[MenuClassToken.Menu], className)}
+        items={props.items}
+        ref={groupRef}
+        style={style}
+      />
     </MenuContext.Provider>
   );
 });

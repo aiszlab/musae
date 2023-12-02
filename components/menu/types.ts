@@ -1,5 +1,6 @@
 import type { Key, ReactNode } from "react";
 import type { useScrollable } from "@aiszlab/relax";
+import { ComponentProps } from "../../types/element";
 
 /**
  * @author murukal
@@ -32,7 +33,7 @@ export interface WithLevel {
  * @description
  * menu props
  */
-export interface MenuProps {
+export interface MenuProps extends ComponentProps {
   /**
    * @description
    * items
@@ -50,12 +51,6 @@ export interface MenuProps {
    * selected keys
    */
   selectedKeys?: Key[];
-
-  /**
-   * @description
-   * class name
-   */
-  className?: string;
 }
 
 /**

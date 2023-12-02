@@ -24,7 +24,13 @@ const DatePicker = (props: DatePickerProps) => {
   }, [value, classNames]);
 
   return (
-    <Picker ref={ref} pickable={<Calendar value={value} onClick={onChange} />} picked={picked} popupWidth={false} />
+    <Picker
+      ref={ref}
+      className={classNames[DatePickerClassToken.Picker]}
+      pickable={<Calendar value={value} onClick={onChange} />}
+      picked={picked}
+      popupWidth={false}
+    />
   );
 };
 

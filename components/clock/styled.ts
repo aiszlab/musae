@@ -1,21 +1,53 @@
 import styled from "@emotion/styled";
-import { useClassNames } from "../config";
-import { ClockClassToken, ComponentToken, withDot, withSelf } from "../../utils/class-name";
+import { Context } from "../config";
+import { ClockClassToken, ComponentToken, MenuClassToken, withDot, withSelf } from "../../utils/class-name";
+import { useContext } from "react";
+import { useValidTheme } from "../theme";
 
-export const StyledClock = styled.div(() => {
-  const classNames = useClassNames(ComponentToken.Clock);
+export const StyledClock = styled.div((props) => {
+  const theme = useValidTheme(props.theme);
+  const configuration = useContext(Context);
+  const clockClassNames = configuration.classNames[ComponentToken.Clock];
+  const menuClassNames = configuration.classNames[ComponentToken.Menu];
 
   return {
-    [withSelf(classNames[ClockClassToken.Clock])]: {
+    [withSelf(clockClassNames[ClockClassToken.Clock])]: {
       display: "flex",
       maxHeight: 200,
 
-      [withDot(classNames[ClockClassToken.Column])]: {
+      [withDot(clockClassNames[ClockClassToken.Column])]: {
         overflowY: "hidden",
         overflowX: "hidden",
+        width: 56,
+        marginBlock: 4,
+
+        "::-webkit-scrollbar": {
+          width: 8,
+          backgroundColor: "transparent",
+        },
+
+        "::-webkit-scrollbar-thumb": {
+          borderRadius: 4,
+          backgroundColor: theme.colorRole.secondary,
+        },
+
+        "&:not(:first-of-type)": {
+          borderLeft: `1px solid ${theme.colorRole.outlineVariant}`,
+        },
 
         ":hover": {
           overflowY: "auto",
+        },
+
+        [withDot(menuClassNames[MenuClassToken.GroupItem])]: {
+          marginInline: 4,
+          width: 48,
+
+          [withDot(menuClassNames[MenuClassToken.Item])]: {
+            paddingLeft: 14,
+            display: "flex",
+            justifyContent: "center",
+          },
         },
       },
     },

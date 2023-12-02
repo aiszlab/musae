@@ -59,7 +59,6 @@ export const StyledOptions = styled.div<OptionsRenderProps>(({ widthGetter, ...p
     borderRadius: 8,
     backgroundColor: theme.colorRole.surface,
     overflow: "auto",
-    padding: 4,
 
     ...(width && {
       minWidth: width,

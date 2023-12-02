@@ -96,7 +96,7 @@ const Item = forwardRef<HTMLLIElement, MenuItemRenderProps>(({ level = 0, label,
  * @description
  * menu group
  */
-const Group = forwardRef<GroupRef, MenuGroupRenderProps>(({ items, level = 0, className }, ref) => {
+const Group = forwardRef<GroupRef, MenuGroupRenderProps>(({ items, level = 0, className, style }, ref) => {
   const classNames = useClassNames(ComponentToken.Menu);
   const [scope, animate] = useAnimate<HTMLUListElement>();
   const { groupRef: _groupRef, itemRefs, scrollTo } = useScrollable();
@@ -130,12 +130,13 @@ const Group = forwardRef<GroupRef, MenuGroupRenderProps>(({ items, level = 0, cl
           height: isCollapsed ? "auto" : 0,
         });
       },
+      getBoundingClientRect: () => _groupRef.current?.getBoundingClientRect(),
     }),
-    [animate, scope, scrollTo]
+    [animate, scope, scrollTo, _groupRef]
   );
 
   return (
-    <StyledMenuGroup className={clsx(classNames[MenuClassToken.Group], className)} ref={groupRef}>
+    <StyledMenuGroup style={style} className={clsx(classNames[MenuClassToken.Group], className)} ref={groupRef}>
       {children}
     </StyledMenuGroup>
   );
