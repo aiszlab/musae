@@ -12,8 +12,12 @@ const Panel = () => {
     <StyledPanel className={classNames[TimePickerClassToken.Panel]}>
       <Clock />
       <div className={classNames[TimePickerClassToken.PanelFooter]}>
-        <Button variant="text">此刻</Button>
-        <Button variant="filled">确定</Button>
+        <Button variant="text" size="small">
+          此刻
+        </Button>
+        <Button variant="filled" size="small">
+          确定
+        </Button>
       </div>
     </StyledPanel>
   );

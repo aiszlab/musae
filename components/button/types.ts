@@ -1,8 +1,11 @@
-import type { CSSProperties, MouseEventHandler, ReactNode } from "react";
+import type { MouseEventHandler, ReactNode } from "react";
+import { ComponentProps } from "../../types/element";
 
 export type Variant = "filled" | "outlined" | "text";
 
 export type Color = "primary" | "secondary" | "neutral";
+
+type Size = "small" | "medium";
 
 /**
  * @author murukal
@@ -10,10 +13,7 @@ export type Color = "primary" | "secondary" | "neutral";
  * @description
  * button render props
  */
-export interface ButtonProps extends Partial<Pick<HTMLButtonElement, "type">> {
-  /* class name */
-  className?: string;
-
+export interface ButtonProps extends Partial<Pick<HTMLButtonElement, "type">>, ComponentProps {
   /**
    * @description
    * variant
@@ -27,18 +27,27 @@ export interface ButtonProps extends Partial<Pick<HTMLButtonElement, "type">> {
    */
   color?: Color;
 
-  /* click handler */
+  /**
+   * @description
+   * click handler
+   */
   onClick?: MouseEventHandler<HTMLButtonElement>;
 
-  /* children */
+  /**
+   * @description
+   * children
+   */
   children?: ReactNode;
 
-  /* css style */
-  style?: CSSProperties;
+  /**
+   * @description
+   * size
+   */
+  size?: Size;
 }
 
 /**
  * @description
  * button render props
  */
-export type ButtonRenderProps = Required<Pick<ButtonProps, "variant" | "color">>;
+export type ButtonRenderProps = Required<Pick<ButtonProps, "variant" | "color" | "size">>;

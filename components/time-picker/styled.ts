@@ -27,6 +27,7 @@ export const StyledPanel = styled.div((props) => {
         alignItems: "center",
         paddingBlock: 4,
         paddingInline: 12,
+        minHeight: 40,
       },
     },
   };

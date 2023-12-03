@@ -94,6 +94,7 @@ export const StyledMenuGroup = styled.ul(() => {
       listStyleType: "none",
       padding: 0,
       overflow: "hidden",
+      position: "relative",
     },
   };
 });

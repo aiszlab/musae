@@ -10,6 +10,9 @@ export const StyledClock = styled.div((props) => {
   const clockClassNames = configuration.classNames[ComponentToken.Clock];
   const menuClassNames = configuration.classNames[ComponentToken.Menu];
 
+  const itemSize = 48;
+  const itemGap = 4;
+
   return {
     [withSelf(clockClassNames[ClockClassToken.Clock])]: {
       display: "flex",
@@ -18,7 +21,7 @@ export const StyledClock = styled.div((props) => {
       [withDot(clockClassNames[ClockClassToken.Column])]: {
         overflowY: "hidden",
         overflowX: "hidden",
-        width: 56,
+        width: itemSize + itemGap * 2,
         marginBlock: 4,
 
         "::-webkit-scrollbar": {
@@ -40,8 +43,8 @@ export const StyledClock = styled.div((props) => {
         },
 
         [withDot(menuClassNames[MenuClassToken.GroupItem])]: {
-          marginInline: 4,
-          width: 48,
+          marginInline: itemGap,
+          width: itemSize,
 
           [withDot(menuClassNames[MenuClassToken.Item])]: {
             paddingLeft: 14,
