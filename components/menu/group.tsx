@@ -99,7 +99,7 @@ const Item = forwardRef<HTMLLIElement, MenuItemRenderProps>(({ level = 0, label,
 const Group = forwardRef<GroupRef, MenuGroupRenderProps>(({ items, level = 0, className, style }, ref) => {
   const classNames = useClassNames(ComponentToken.Menu);
   const [scope, animate] = useAnimate<HTMLUListElement>();
-  const { groupRef: _groupRef, itemRefs, scrollTo } = useScrollable();
+  const { groupRef: _groupRef, itemRefs, scrollTo, to } = useScrollable();
   const groupRef = useRefs(scope, _groupRef);
 
   /// 菜单条目渲染结果
@@ -122,7 +122,10 @@ const Group = forwardRef<GroupRef, MenuGroupRenderProps>(({ items, level = 0, cl
   useImperativeHandle(
     ref,
     () => ({
-      scrollTo,
+      scrollTo: (key, duration) => {
+        // handler group scroll
+        scrollTo(to(key), duration);
+      },
       toggle: (isCollapsed) => {
         // is current is collapsed, then expand
         // else collapse
@@ -130,9 +133,8 @@ const Group = forwardRef<GroupRef, MenuGroupRenderProps>(({ items, level = 0, cl
           height: isCollapsed ? "auto" : 0,
         });
       },
-      getBoundingClientRect: () => _groupRef.current?.getBoundingClientRect(),
     }),
-    [animate, scope, scrollTo, _groupRef]
+    [animate, scope, scrollTo, to]
   );
 
   return (

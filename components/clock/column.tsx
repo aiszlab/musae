@@ -1,32 +1,29 @@
-import React, { Key, useCallback, useEffect, useRef } from "react";
+import React, { Key, forwardRef, useCallback, useImperativeHandle, useRef } from "react";
 import { useTimeUnit } from "./hooks";
 import { ColumnProps } from "./types";
 import { Menu, MenuRef } from "../menu";
 import { useClassNames } from "../config";
 import { ClockClassToken, ComponentToken } from "../../utils/class-name";
-import { useControlledState } from "@aiszlab/relax";
 
-const Column = ({ unit, ...props }: ColumnProps) => {
+const Column = forwardRef<{}, ColumnProps>(({ unit, value = 0, onChange }, ref) => {
   const timeUnit = useTimeUnit(unit);
   const classNames = useClassNames(ComponentToken.Clock);
-  const [value, setValue] = useControlledState(props.value!);
-  const ref = useRef<MenuRef>(null);
+  const menuRef = useRef<MenuRef>(null);
 
   const onClick = useCallback(
     (key: Key) => {
-      setValue(key as number);
+      onChange?.(key as number);
+      menuRef.current?.scrollTo(key, 100);
     },
-    [setValue]
+    [onChange]
   );
 
-  useEffect(() => {
-    ref.current?.scrollTo(value, 100);
-  }, [value]);
+  useImperativeHandle(ref, () => ({}), []);
 
   return (
     <Menu
       selectedKeys={[value]}
-      ref={ref}
+      ref={menuRef}
       className={classNames[ClockClassToken.Column]}
       items={[...Array(timeUnit).keys()].map((step) => ({
         key: step,
@@ -35,6 +32,6 @@ const Column = ({ unit, ...props }: ColumnProps) => {
       onClick={onClick}
     />
   );
-};
+});
 
 export default Column;

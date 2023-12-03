@@ -1,5 +1,6 @@
 import type { Dayjs } from "dayjs";
 import type { ComponentProps } from "../../types/element";
+import { ClockProps } from "../clock/types";
 
 /**
  * @description
@@ -12,3 +13,5 @@ export interface TimePickerProps extends ComponentProps {
    */
   value?: Dayjs;
 }
+
+export type PanelProps = Pick<ClockProps, "value">;

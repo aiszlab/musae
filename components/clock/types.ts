@@ -4,6 +4,26 @@ export enum TimeUnit {
   Second = "second",
 }
 
+type Value = [number, number, number];
+
+/**
+ * @description
+ * clock props
+ */
+export interface ClockProps {
+  /**
+   * @description
+   * value
+   */
+  value?: Value;
+
+  /**
+   * @description
+   * change handler
+   */
+  onChange?: (value: Value) => void;
+}
+
 /**
  * @description
  * column props
@@ -20,4 +40,10 @@ export interface ColumnProps {
    * unit
    */
   unit: TimeUnit;
+
+  /**
+   * @description
+   * change handler
+   */
+  onChange?: (value: number) => void;
 }

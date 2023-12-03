@@ -4,13 +4,15 @@ import { StyledPanel } from "./styled";
 import { useClassNames } from "../config";
 import { ComponentToken, TimePickerClassToken } from "../../utils/class-name";
 import { Button } from "../button";
+import { PanelProps } from "./types";
 
-const Panel = () => {
+const Panel = ({ value }: PanelProps) => {
   const classNames = useClassNames(ComponentToken.TimePicker);
 
   return (
     <StyledPanel className={classNames[TimePickerClassToken.Panel]}>
-      <Clock />
+      <Clock value={value} />
+
       <div className={classNames[TimePickerClassToken.PanelFooter]}>
         <Button variant="text" size="small">
           此刻

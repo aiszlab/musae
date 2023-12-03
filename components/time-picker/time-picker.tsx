@@ -6,25 +6,21 @@ import { useClassNames } from "../config";
 import { ComponentToken, TimePickerClassToken } from "../../utils/class-name";
 import { StyledInput } from "./styled";
 import Panel from "./panel";
+import { useValue } from "./hooks";
 
-const TimePicker = ({ className, value, ...props }: TimePickerProps) => {
+const TimePicker = ({ className, ...props }: TimePickerProps) => {
   const classNames = useClassNames(ComponentToken.TimePicker);
+  const { value, clockValue, onChange } = useValue([props.value]);
 
   /// picked date
   const picked = useMemo(() => {
-    return (
-      <StyledInput
-        className={classNames[TimePickerClassToken.Input]}
-        value={value?.format("YYYY-MM-DD") ?? ""}
-        readOnly
-      />
-    );
+    return <StyledInput className={classNames[TimePickerClassToken.Input]} value={value.format("HH:mm:ss")} readOnly />;
   }, [value, classNames]);
 
   return (
     <Picker
       className={clsx(classNames[TimePickerClassToken.Picker], className)}
-      pickable={<Panel />}
+      pickable={<Panel value={clockValue} />}
       picked={picked}
       popupWidth={false}
     />

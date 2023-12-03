@@ -1,5 +1,4 @@
 import type { Key, ReactNode } from "react";
-import type { useScrollable } from "@aiszlab/relax";
 import { ComponentProps } from "../../types/element";
 
 /**
@@ -113,7 +112,7 @@ export interface GroupRef {
    * @description
    * group to
    */
-  scrollTo: ReturnType<typeof useScrollable>["scrollTo"];
+  scrollTo: (key: Key, duration?: number) => void;
 
   /**
    * @description
