@@ -1,7 +1,7 @@
 import { useControlledState } from "@aiszlab/relax";
 import { TimePickerProps } from "./types";
 import dayjs from "dayjs";
-import { useCallback, useMemo } from "react";
+import { useCallback } from "react";
 import { ClockProps } from "../clock/types";
 
 /**
@@ -10,12 +10,6 @@ import { ClockProps } from "../clock/types";
  */
 export const useValue = ([valueInProps]: [TimePickerProps["value"]]) => {
   const [value, setValue] = useControlledState(valueInProps!, { defaultState: dayjs() });
-
-  const clockValue = useMemo<Required<ClockProps>["value"]>(() => {
-    return [value.hour(), value.minute(), value.second()];
-  }, [value]);
-
-  console.log("value====", value);
 
   const onChange = useCallback<Required<ClockProps>["onChange"]>(
     (value) => {
@@ -26,7 +20,6 @@ export const useValue = ([valueInProps]: [TimePickerProps["value"]]) => {
 
   return {
     value,
-    clockValue,
     onChange,
   };
 };

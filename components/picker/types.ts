@@ -54,3 +54,7 @@ export interface PickerRef {
    */
   close: () => void;
 }
+
+export interface ContextValue {
+  isVisible: boolean;
+}

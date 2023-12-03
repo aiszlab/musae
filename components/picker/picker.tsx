@@ -1,26 +1,19 @@
-import React, {
-  type MouseEvent,
-  useCallback,
-  useRef,
-  forwardRef,
-  useImperativeHandle,
-  useEffect,
-  useContext,
-} from "react";
+import React, { type MouseEvent, useCallback, useRef, forwardRef, useImperativeHandle, useEffect } from "react";
 import { Popper } from "../popper";
 import { useBoolean } from "@aiszlab/relax";
 import { useEvents, useStyles } from "./hooks";
 import { StyledOptions, StyledPicker } from "./styled";
 import type { PickerProps, PickerRef } from "./types";
 import type { PopperRef } from "../popper/types";
-import Context from "../config/context";
 import { ComponentToken, PickerClassToken } from "../../utils/class-name";
+import Context from "./context";
+import { useClassNames } from "../config";
 
 const Picker = forwardRef<PickerRef, PickerProps>(({ pickable, picked, className, popupWidth = "match" }, ref) => {
   const trigger = useRef<HTMLDivElement>(null);
   const { isOn: isVisible, turnOff: close, toggle } = useBoolean();
   const { isOn: isFocused, turnOn: _focus, turnOff: _blur } = useBoolean();
-  const classNames = useContext(Context).classNames[ComponentToken.Picker];
+  const classNames = useClassNames(ComponentToken.Picker);
   const popper = useRef<PopperRef>(null);
   const styles = useStyles([className, isFocused]);
 
@@ -68,7 +61,15 @@ const Picker = forwardRef<PickerRef, PickerProps>(({ pickable, picked, className
         onMouseDown={onDropdownClick}
         ref={popper}
       >
-        <StyledOptions widthGetter={dropdownWidthGetter}>{pickable}</StyledOptions>
+        <StyledOptions widthGetter={dropdownWidthGetter}>
+          <Context.Provider
+            value={{
+              isVisible,
+            }}
+          >
+            {pickable}
+          </Context.Provider>
+        </StyledOptions>
       </Popper>
     </>
   );

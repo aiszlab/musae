@@ -10,7 +10,7 @@ import { useValue } from "./hooks";
 
 const TimePicker = ({ className, ...props }: TimePickerProps) => {
   const classNames = useClassNames(ComponentToken.TimePicker);
-  const { value, clockValue, onChange } = useValue([props.value]);
+  const { value, onChange } = useValue([props.value]);
 
   /// picked date
   const picked = useMemo(() => {
@@ -20,7 +20,7 @@ const TimePicker = ({ className, ...props }: TimePickerProps) => {
   return (
     <Picker
       className={clsx(classNames[TimePickerClassToken.Picker], className)}
-      pickable={<Panel value={clockValue} />}
+      pickable={<Panel value={value} />}
       picked={picked}
       popupWidth={false}
     />

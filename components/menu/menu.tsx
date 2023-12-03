@@ -1,7 +1,7 @@
 import React, { forwardRef, useImperativeHandle, useMemo, useRef } from "react";
 import type { ContextValue, GroupRef, MenuProps, MenuRef } from "./types";
 import Group from "./group";
-import MenuContext from "./context";
+import Context from "./context";
 import { useControlledState } from "@aiszlab/relax";
 import { useClassNames } from "../config";
 import { ComponentToken, MenuClassToken } from "../../utils/class-name";
@@ -41,14 +41,14 @@ const Menu = forwardRef<MenuRef, MenuProps>(({ onClick, className, style, ...pro
   );
 
   return (
-    <MenuContext.Provider value={contextValue}>
+    <Context.Provider value={contextValue}>
       <Group
         className={clsx(classNames[MenuClassToken.Menu], className)}
         items={props.items}
         ref={groupRef}
         style={style}
       />
-    </MenuContext.Provider>
+    </Context.Provider>
   );
 });
 

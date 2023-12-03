@@ -13,7 +13,7 @@ import type { MenuItemRenderProps } from "./types";
 import { StyledCollapser, StyledMenuItemPrefix, StyledMenuItem } from "./styled";
 import { useBoolean, useRefs, useScrollable } from "@aiszlab/relax";
 import { useAnimate } from "framer-motion";
-import MenuContext from "./context";
+import Context from "./context";
 import { KeyboardArrowUp } from "../icon";
 import { useClassNames } from "../config";
 import { ComponentToken, MenuClassToken } from "../../utils/class-name";
@@ -30,7 +30,7 @@ const Item = forwardRef<HTMLLIElement, MenuItemRenderProps>(({ level = 0, label,
   /// has children
   const hasChildren = useMemo(() => !!children?.length, [children]);
   const classNames = useClassNames(ComponentToken.Menu);
-  const context = useContext(MenuContext);
+  const context = useContext(Context);
 
   /// if is selected
   const isSelected = useMemo(() => !!context?.selectedKeys.includes(id), [context?.selectedKeys, id]);

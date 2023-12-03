@@ -1,11 +1,12 @@
-import React, { Key, forwardRef, useCallback, useImperativeHandle, useRef } from "react";
+import React, { Key, forwardRef, useCallback, useEffect, useImperativeHandle, useMemo, useRef } from "react";
 import { useTimeUnit } from "./hooks";
 import { ColumnProps } from "./types";
 import { Menu, MenuRef } from "../menu";
 import { useClassNames } from "../config";
 import { ClockClassToken, ComponentToken } from "../../utils/class-name";
+import { isVoid } from "@aiszlab/relax";
 
-const Column = forwardRef<{}, ColumnProps>(({ unit, value = 0, onChange }, ref) => {
+const Column = forwardRef<{}, ColumnProps>(({ unit, value, onChange }, ref) => {
   const timeUnit = useTimeUnit(unit);
   const classNames = useClassNames(ComponentToken.Clock);
   const menuRef = useRef<MenuRef>(null);
@@ -20,9 +21,19 @@ const Column = forwardRef<{}, ColumnProps>(({ unit, value = 0, onChange }, ref) 
 
   useImperativeHandle(ref, () => ({}), []);
 
+  useEffect(() => {
+    if (isVoid(value)) return;
+    menuRef.current?.scrollTo(value || 0, 100);
+  }, [value]);
+
+  const selectedKeys = useMemo(() => {
+    if (isVoid(value)) return void 0;
+    return [value];
+  }, [value]);
+
   return (
     <Menu
-      selectedKeys={[value]}
+      selectedKeys={selectedKeys}
       ref={menuRef}
       className={classNames[ClockClassToken.Column]}
       items={[...Array(timeUnit).keys()].map((step) => ({

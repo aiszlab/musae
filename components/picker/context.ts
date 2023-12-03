@@ -5,8 +5,10 @@ import { type ContextValue } from "./types";
  * @author murukal
  *
  * @description
- * menu context for all menu group or menu item
+ * context
  */
-const Context = createContext<ContextValue | null>(null);
+const Context = createContext<ContextValue>({
+  isVisible: false,
+});
 
 export default Context;
