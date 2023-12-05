@@ -44,6 +44,12 @@ export interface ButtonProps extends Partial<Pick<HTMLButtonElement, "type">>, C
    * size
    */
   size?: Size;
+
+  /**
+   * @description
+   * disabled
+   */
+  disabled?: boolean;
 }
 
 /**

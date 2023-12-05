@@ -11,6 +11,12 @@ export interface TimePickerProps extends ComponentProps {
    * value
    */
   value?: Dayjs;
+
+  /**
+   * @description
+   * change handler
+   */
+  onChange?: (value: Dayjs) => void;
 }
 
-export type PanelProps = Pick<TimePickerProps, "value">;
+export type PanelProps = Pick<TimePickerProps, "value" | "onChange">;

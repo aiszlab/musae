@@ -1,5 +1,5 @@
-import React, { useMemo } from "react";
-import { Picker } from "../picker";
+import React, { useMemo, useRef } from "react";
+import { Picker, type PickerRef } from "../picker";
 import { TimePickerProps } from "./types";
 import clsx from "clsx";
 import { useClassNames } from "../config";
@@ -10,6 +10,7 @@ import { useValue } from "./hooks";
 
 const TimePicker = ({ className, ...props }: TimePickerProps) => {
   const classNames = useClassNames(ComponentToken.TimePicker);
+  const ref = useRef<PickerRef>(null);
   const { value, onChange } = useValue([props.value]);
 
   /// picked date
@@ -19,8 +20,9 @@ const TimePicker = ({ className, ...props }: TimePickerProps) => {
 
   return (
     <Picker
+      ref={ref}
       className={clsx(classNames[TimePickerClassToken.Picker], className)}
-      pickable={<Panel value={value} />}
+      pickable={<Panel value={value} onChange={onChange} />}
       picked={picked}
       popupWidth={false}
     />
