@@ -11,7 +11,7 @@ import { useValue } from "./hooks";
 const TimePicker = ({ className, ...props }: TimePickerProps) => {
   const classNames = useClassNames(ComponentToken.TimePicker);
   const ref = useRef<PickerRef>(null);
-  const { value, onChange } = useValue([props.value]);
+  const { value, onChange } = useValue([props.value, ref]);
 
   /// picked date
   const picked = useMemo(() => {

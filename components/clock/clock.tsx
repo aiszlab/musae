@@ -20,7 +20,7 @@ const Clock = ({ value, onChange }: ClockProps) => {
             value={value?.[index]}
             ref={(item) => (itemRefs.current[index] = item)}
             onChange={(_value) => {
-              onChange?.([...{ ...[0, 0, 0], ...value, [index]: _value }] as Required<ClockProps>["value"]);
+              onChange?.(Object.values({ ...[0, 0, 0], ...value, [index]: _value }) as Required<ClockProps>["value"]);
             }}
           />
         );
