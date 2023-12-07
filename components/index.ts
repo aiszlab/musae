@@ -29,6 +29,7 @@ export { TimePicker } from "./time-picker";
 export { DateRangePicker } from "./date-range-picker";
 export { Icon } from "./icon";
 export { Clock } from "./clock";
+export { Tree } from "./tree";
 
 /**
  * @description
