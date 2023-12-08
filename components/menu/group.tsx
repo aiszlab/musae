@@ -99,8 +99,8 @@ const Item = forwardRef<HTMLLIElement, MenuItemRenderProps>(({ level = 0, label,
 const Group = forwardRef<GroupRef, MenuGroupRenderProps>(({ items, level = 0, className, style }, ref) => {
   const classNames = useClassNames(ComponentToken.Menu);
   const [scope, animate] = useAnimate<HTMLUListElement>();
-  const { groupRef: _groupRef, itemRefs, scrollTo, to } = useScrollable({ direction: "vertical" });
-  const groupRef = useRefs(scope, _groupRef);
+  const { triggerRef, targetRefs, scrollTo, to } = useScrollable({ direction: "vertical" });
+  const groupRef = useRefs(scope, triggerRef);
 
   /// 菜单条目渲染结果
   const children = useMemo(() => {
@@ -111,13 +111,13 @@ const Group = forwardRef<GroupRef, MenuGroupRenderProps>(({ items, level = 0, cl
           level={level}
           id={key}
           ref={(item) => {
-            itemRefs.current.set(key, item);
+            targetRefs.current.set(key, item);
           }}
           {...itemProps}
         />
       );
     });
-  }, [items, level, itemRefs]);
+  }, [items, level, targetRefs]);
 
   useImperativeHandle(
     ref,
