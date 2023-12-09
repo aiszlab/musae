@@ -35,7 +35,7 @@ const Menu = forwardRef<MenuRef, MenuProps>(({ onClick, className, style, ...pro
         setSelectedKeys([key]);
         onClick?.(key);
       },
-      selectedKeys: selectedKeys ?? [],
+      selectedKeys: new Map(selectedKeys?.map((key) => [key, true])),
     }),
     [onClick, selectedKeys, setSelectedKeys]
   );

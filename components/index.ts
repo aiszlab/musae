@@ -43,3 +43,4 @@ export { useTheme } from "./theme";
  * declarations
  */
 export type { MenuItemProps } from "./menu";
+export type { TreeProps } from "./tree";

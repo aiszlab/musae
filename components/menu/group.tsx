@@ -1,23 +1,14 @@
 import { StyledMenuGroup } from "./styled";
 import type { GroupRef, MenuGroupRenderProps } from "./types";
-import React, {
-  useCallback,
-  useContext,
-  useMemo,
-  forwardRef,
-  type MouseEvent,
-  useImperativeHandle,
-  useRef,
-} from "react";
+import React, { useCallback, useMemo, forwardRef, type MouseEvent, useImperativeHandle, useRef } from "react";
 import type { MenuItemRenderProps } from "./types";
-import { StyledCollapser, StyledMenuItemPrefix, StyledMenuItem } from "./styled";
+import { StyledMenuItem } from "./styled";
 import { useBoolean, useRefs, useScrollable } from "@aiszlab/relax";
 import { useAnimate } from "framer-motion";
-import Context from "./context";
-import { KeyboardArrowUp } from "../icon";
 import { useClassNames } from "../config";
 import { ComponentToken, MenuClassToken } from "../../utils/class-name";
 import clsx from "clsx";
+import { useChildren, useMenu, useMenuConfig } from "./hooks";
 
 /**
  * @author murukal
@@ -26,27 +17,19 @@ import clsx from "clsx";
  * menu item
  */
 const Item = forwardRef<HTMLLIElement, MenuItemRenderProps>(({ level = 0, label, children, prefix, id }, ref) => {
+  /// context
+  const { selectedKeys, onClick } = useMenu();
+  const config = useMenuConfig();
+
   const groupRef = useRef<GroupRef>(null);
   /// has children
   const hasChildren = useMemo(() => !!children?.length, [children]);
   const classNames = useClassNames(ComponentToken.Menu);
-  const context = useContext(Context);
 
   /// if is selected
-  const isSelected = useMemo(() => !!context?.selectedKeys.includes(id), [context?.selectedKeys, id]);
+  const isSelected = useMemo(() => !!selectedKeys?.get(id), [selectedKeys, id]);
   /// if is collapsed
   const { isOn: isCollapsed, toggle } = useBoolean(false);
-
-  /// if there are children, render trailing arrow
-  const collapser = useMemo(() => {
-    if (!hasChildren) return null;
-
-    return (
-      <StyledCollapser isCollapsed={isCollapsed} className={classNames[MenuClassToken.Collapser]}>
-        <KeyboardArrowUp size={16} />
-      </StyledCollapser>
-    );
-  }, [hasChildren, isCollapsed, classNames]);
 
   const onToggle = useCallback(
     (e: MouseEvent<HTMLDivElement>) => {
@@ -55,14 +38,25 @@ const Item = forwardRef<HTMLLIElement, MenuItemRenderProps>(({ level = 0, label,
       // if this item do not has children, mean this is a menu item
       // when click it, handler the change event, pass key
       if (!hasChildren) {
-        return context?.onClick?.(id);
+        return onClick?.(id);
       }
 
       groupRef.current?.toggle(isCollapsed);
       toggle();
     },
-    [hasChildren, isCollapsed, toggle, context, id]
+    [hasChildren, isCollapsed, toggle, onClick, id]
   );
+
+  const _children = useChildren({
+    hasChildren,
+    isCollapsed,
+    collapserClassName: classNames[MenuClassToken.Collapser],
+    label,
+    prefix,
+    prefixClassName: classNames[MenuClassToken.ItemPrefix],
+    contentClassName: classNames[MenuClassToken.ItemContent],
+    orders: config.orders,
+  });
 
   return (
     <li className={classNames[MenuClassToken.GroupItem]} ref={ref}>
@@ -72,16 +66,7 @@ const Item = forwardRef<HTMLLIElement, MenuItemRenderProps>(({ level = 0, label,
         onClick={onToggle}
         className={classNames[MenuClassToken.Item]}
       >
-        {/* prefix */}
-        {!!prefix && (
-          <StyledMenuItemPrefix className={classNames[MenuClassToken.ItemPrefix]}>{prefix}</StyledMenuItemPrefix>
-        )}
-
-        {/* content */}
-        {label}
-
-        {/* collapser */}
-        {collapser}
+        {_children}
       </StyledMenuItem>
 
       {/* if there are children menu items, display them */}

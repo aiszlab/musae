@@ -1,6 +1,12 @@
 import type { Key, ReactNode } from "react";
 import { ComponentProps } from "../../types/element";
 
+export enum Order {
+  Prefix = "prefix",
+  Child = "child",
+  Collapser = "collapser",
+}
+
 /**
  * @author murukal
  *
@@ -18,7 +24,19 @@ export interface ContextValue {
    * @description
    * selected keys
    */
-  selectedKeys: Key[];
+  selectedKeys?: Map<Key, true>;
+}
+
+/**
+ * @description
+ * configuration context
+ */
+export interface ConfigContextValue {
+  /**
+   * @description
+   * orders
+   */
+  orders: Order[];
 }
 
 export interface WithLevel {
@@ -67,9 +85,9 @@ export interface MenuItemProps {
 
   /**
    * @description
-   * title
+   * label
    */
-  label?: string;
+  label?: ReactNode;
 
   /**
    * @description

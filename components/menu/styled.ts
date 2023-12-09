@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import type { WithLevel } from "./types";
 import { useValidTheme } from "../theme";
 import { useClassNames } from "../config";
-import { ComponentToken, MenuClassToken, withSelf } from "../../utils/class-name";
+import { ComponentToken, MenuClassToken, withDot, withSelf } from "../../utils/class-name";
 
 /**
  * @author murukal
@@ -41,6 +41,10 @@ export const StyledMenuItem = styled.div<
       ":hover": {
         backgroundColor: theme.colorRole.surfaceContainer,
       },
+
+      [`& ${withDot(classNames[MenuClassToken.Collapser])}:last-child`]: {
+        marginLeft: "auto",
+      },
     },
   };
 });
@@ -72,8 +76,10 @@ export const StyledCollapser = styled.span<{ isCollapsed: boolean }>(({ isCollap
 
   return {
     [withSelf(classNames[MenuClassToken.Collapser])]: {
-      marginLeft: "auto",
-      transform: `rotate(90deg) ${isCollapsed ? "rotateY(180deg)" : "rotateY(0)"}`,
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      transform: isCollapsed ? "rotateX(180deg)" : "rotateX(0)",
       transition: "transform 200ms",
     },
   };

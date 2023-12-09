@@ -7,15 +7,15 @@ import { Key, ReactNode } from "react";
 type Node = {
   /**
    * @description
-   * title
-   */
-  title: ReactNode;
-
-  /**
-   * @description
    * key
    */
   key: Key;
+
+  /**
+   * @description
+   * label
+   */
+  label: ReactNode;
 
   /**
    * @description

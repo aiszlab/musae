@@ -1,4 +1,4 @@
-import { useImageLoader } from "@aiszlab/relax";
+// import { useImageLoader } from "@aiszlab/relax";
 import clsx from "clsx";
 import React, { useMemo } from "react";
 import Image from "./image";
@@ -9,9 +9,9 @@ interface Props {
 }
 
 const Avatar = (props: Props) => {
-  const status = useImageLoader({
-    src: props.src,
-  });
+  // const status = useImageLoader({
+  //   src: props.src,
+  // });
 
   const child = useMemo(() => {
     // if (status === "none") {
@@ -19,7 +19,7 @@ const Avatar = (props: Props) => {
     // }
 
     return <Image src={props.src} />;
-  }, [props.alt, status, props.src]);
+  }, [props.alt, props.src]);
 
   return <div className={clsx("relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full")}>{child}</div>;
 };
