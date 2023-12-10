@@ -1,15 +1,21 @@
 import React from "react";
 import { TreeProps } from "./types";
-import { Menu, ConfigContext } from "../menu";
-import { useMenuConfigContextValue } from "./hooks";
+import List from "./list";
+import Context from "./context";
+import { useToggleable } from "@aiszlab/relax";
 
 const Tree = (props: TreeProps) => {
-  const menuConfigContextValue = useMenuConfigContextValue();
+  const { toggledKeys: selectedKeys, toggle: select } = useToggleable();
 
   return (
-    <ConfigContext.Provider value={menuConfigContextValue}>
-      <Menu items={props.nodes || []} />
-    </ConfigContext.Provider>
+    <Context.Provider
+      value={{
+        selectedKeys,
+        select,
+      }}
+    >
+      <List {...props} level={0} />
+    </Context.Provider>
   );
 };
 

@@ -55,6 +55,7 @@ export enum ComponentToken {
   Clock,
   Menu,
   Checkbox,
+  Tree,
 }
 
 /**
@@ -166,6 +167,12 @@ export enum MenuClassToken {
 export enum CheckboxClassToken {
   Checkbox,
 }
+export enum TreeClassToken {
+  List,
+  Holder,
+  Node,
+  Title,
+}
 
 /**
  * @description
@@ -276,6 +283,12 @@ export const CLASS_NAMES = {
   },
   [ComponentToken.Checkbox]: {
     [CheckboxClassToken.Checkbox]: "checkbox",
+  },
+  [ComponentToken.Tree]: {
+    [TreeClassToken.List]: "tree-list",
+    [TreeClassToken.Holder]: "tree-holder",
+    [TreeClassToken.Node]: "tree-node",
+    [TreeClassToken.Title]: "tree-node-title",
   },
 };
 

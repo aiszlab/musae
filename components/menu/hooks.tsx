@@ -1,8 +1,7 @@
-import React, { Fragment, ReactNode, useContext, useMemo } from "react";
-import Context, { ConfigContext } from "./context";
+import React, { Key, ReactNode, useContext, useMemo } from "react";
+import Context from "./context";
 import { StyledCollapser, StyledMenuItemPrefix } from "./styled";
 import { KeyboardArrowUp } from "../icon";
-import { Order } from "./types";
 
 /**
  * @description
@@ -12,24 +11,19 @@ export const useMenu = () => useContext(Context);
 
 /**
  * @description
- * use menu config
- */
-export const useMenuConfig = () => useContext(ConfigContext);
-
-/**
- * @description
  * use children
  */
 export const useChildren = ({
+  id,
   hasChildren,
   isCollapsed,
   collapserClassName,
   label,
-  prefix: _prefix,
+  prefix: prefixInProps,
   prefixClassName,
   contentClassName,
-  orders,
 }: {
+  id: Key;
   hasChildren: boolean;
   isCollapsed: boolean;
   collapserClassName: string;
@@ -37,14 +31,13 @@ export const useChildren = ({
   prefix: ReactNode;
   prefixClassName: string;
   contentClassName: string;
-  orders: Order[];
-}): ReactNode => {
+}) => {
   /// if there are children, render trailing arrow
   const collapser = useMemo(() => {
     if (!hasChildren) return null;
 
     return (
-      <StyledCollapser isCollapsed={isCollapsed} className={collapserClassName} key={Order.Collapser}>
+      <StyledCollapser isCollapsed={isCollapsed} className={collapserClassName}>
         <KeyboardArrowUp size={16} />
       </StyledCollapser>
     );
@@ -52,34 +45,21 @@ export const useChildren = ({
 
   /// prefix
   const prefix = useMemo(() => {
-    if (!_prefix) return null;
+    if (!prefixInProps) return null;
 
-    <StyledMenuItemPrefix className={prefixClassName} key={Order.Prefix}>
-      {_prefix}
-    </StyledMenuItemPrefix>;
-  }, [_prefix, prefixClassName]);
+    return <StyledMenuItemPrefix className={prefixClassName}>{prefixInProps}</StyledMenuItemPrefix>;
+  }, [prefixInProps, prefixClassName]);
 
   /// child
   const child = useMemo(() => {
     if (!label) return null;
 
-    return (
-      <span className={contentClassName} key={Order.Child}>
-        {label}
-      </span>
-    );
+    return <span className={contentClassName}>{label}</span>;
   }, [label, contentClassName]);
 
-  const children = useMemo(
-    () => ({
-      collapser,
-      prefix,
-      child,
-    }),
-    [collapser, prefix, child]
-  );
-
-  return useMemo(() => {
-    return orders.map((order) => children[order]).filter((child) => !!child);
-  }, [children, orders]);
+  return {
+    collapser,
+    prefix,
+    child,
+  };
 };

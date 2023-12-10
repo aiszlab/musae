@@ -1,79 +1,12 @@
 import { StyledMenuGroup } from "./styled";
-import type { GroupRef, MenuGroupRenderProps } from "./types";
-import React, { useCallback, useMemo, forwardRef, type MouseEvent, useImperativeHandle, useRef } from "react";
-import type { MenuItemRenderProps } from "./types";
-import { StyledMenuItem } from "./styled";
-import { useBoolean, useRefs, useScrollable } from "@aiszlab/relax";
+import type { GroupRef, MenuGroupProps } from "./types";
+import React, { useMemo, forwardRef, useImperativeHandle, createRef } from "react";
+import { useRefs, useScrollable } from "@aiszlab/relax";
 import { useAnimate } from "framer-motion";
 import { useClassNames } from "../config";
 import { ComponentToken, MenuClassToken } from "../../utils/class-name";
 import clsx from "clsx";
-import { useChildren, useMenu, useMenuConfig } from "./hooks";
-
-/**
- * @author murukal
- *
- * @description
- * menu item
- */
-const Item = forwardRef<HTMLLIElement, MenuItemRenderProps>(({ level = 0, label, children, prefix, id }, ref) => {
-  /// context
-  const { selectedKeys, onClick } = useMenu();
-  const config = useMenuConfig();
-
-  const groupRef = useRef<GroupRef>(null);
-  /// has children
-  const hasChildren = useMemo(() => !!children?.length, [children]);
-  const classNames = useClassNames(ComponentToken.Menu);
-
-  /// if is selected
-  const isSelected = useMemo(() => !!selectedKeys?.get(id), [selectedKeys, id]);
-  /// if is collapsed
-  const { isOn: isCollapsed, toggle } = useBoolean(false);
-
-  const onToggle = useCallback(
-    (e: MouseEvent<HTMLDivElement>) => {
-      e.stopPropagation();
-
-      // if this item do not has children, mean this is a menu item
-      // when click it, handler the change event, pass key
-      if (!hasChildren) {
-        return onClick?.(id);
-      }
-
-      groupRef.current?.toggle(isCollapsed);
-      toggle();
-    },
-    [hasChildren, isCollapsed, toggle, onClick, id]
-  );
-
-  const _children = useChildren({
-    hasChildren,
-    isCollapsed,
-    collapserClassName: classNames[MenuClassToken.Collapser],
-    label,
-    prefix,
-    prefixClassName: classNames[MenuClassToken.ItemPrefix],
-    contentClassName: classNames[MenuClassToken.ItemContent],
-    orders: config.orders,
-  });
-
-  return (
-    <li className={classNames[MenuClassToken.GroupItem]} ref={ref}>
-      <StyledMenuItem
-        level={level}
-        isSelected={isSelected}
-        onClick={onToggle}
-        className={classNames[MenuClassToken.Item]}
-      >
-        {_children}
-      </StyledMenuItem>
-
-      {/* if there are children menu items, display them */}
-      {hasChildren && <Group ref={groupRef} items={children!} level={level + 1} />}
-    </li>
-  );
-});
+import Item from "./item";
 
 /**
  * @author murukal
@@ -81,28 +14,29 @@ const Item = forwardRef<HTMLLIElement, MenuItemRenderProps>(({ level = 0, label,
  * @description
  * menu group
  */
-const Group = forwardRef<GroupRef, MenuGroupRenderProps>(({ items, level = 0, className, style }, ref) => {
+const Group = forwardRef<GroupRef, MenuGroupProps>(({ items, level, className, style }, ref) => {
   const classNames = useClassNames(ComponentToken.Menu);
   const [scope, animate] = useAnimate<HTMLUListElement>();
-  const { targetRef, triggerRefs, scrollTo, to } = useScrollable({ direction: "vertical" });
+  const { targetRef, scrollTo, to, setTrigger } = useScrollable({ direction: "vertical" });
   const groupRef = useRefs(scope, targetRef);
 
   /// 菜单条目渲染结果
   const children = useMemo(() => {
-    return items.map(({ key, ...itemProps }) => {
+    return items.map(({ key, children: _children = [], ...itemProps }) => {
+      const hasChildren = _children.length > 0;
+      const itemGroupRef = createRef<GroupRef>();
+      const triggerSetter = (item: HTMLLIElement) => {
+        setTrigger(key, item);
+      };
+
       return (
-        <Item
-          key={key}
-          level={level}
-          id={key}
-          ref={(item) => {
-            triggerRefs.current.set(key, item);
-          }}
-          {...itemProps}
-        />
+        <Item {...itemProps} key={key} level={level} id={key} ref={triggerSetter} groupRef={itemGroupRef}>
+          {/* if there are children menu items, display them */}
+          {hasChildren && <Group ref={itemGroupRef} items={_children} level={level + 1} />}
+        </Item>
       );
     });
-  }, [items, level, triggerRefs]);
+  }, [items, level, setTrigger]);
 
   useImperativeHandle(
     ref,

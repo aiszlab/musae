@@ -1,11 +1,6 @@
-import type { Key, ReactNode } from "react";
-import { ComponentProps } from "../../types/element";
-
-export enum Order {
-  Prefix = "prefix",
-  Child = "child",
-  Collapser = "collapser",
-}
+import type { Key, ReactNode, RefObject } from "react";
+import type { ComponentProps, WithId } from "../../types/element";
+import type { WithLevel } from "../../types/element";
 
 /**
  * @author murukal
@@ -28,23 +23,6 @@ export interface ContextValue {
 }
 
 /**
- * @description
- * configuration context
- */
-export interface ConfigContextValue {
-  /**
-   * @description
-   * orders
-   */
-  orders: Order[];
-}
-
-export interface WithLevel {
-  /* level */
-  level?: number;
-}
-
-/**
  * @author murukal
  *
  * @description
@@ -55,7 +33,7 @@ export interface MenuProps extends ComponentProps {
    * @description
    * items
    */
-  items: MenuItemProps[];
+  items: MenuItem[];
 
   /**
    * @description
@@ -74,9 +52,9 @@ export interface MenuProps extends ComponentProps {
  * @author murukal
  *
  * @description
- * menu item props
+ * menu item
  */
-export interface MenuItemProps {
+export interface MenuItem {
   /**
    * @description
    * key
@@ -99,7 +77,7 @@ export interface MenuItemProps {
    * @description
    * children
    */
-  children?: MenuItemProps[];
+  children?: MenuItem[];
 }
 
 /**
@@ -108,7 +86,7 @@ export interface MenuItemProps {
  * @description
  * menu group render props
  */
-export type MenuGroupRenderProps = MenuProps & WithLevel;
+export type MenuGroupProps = WithLevel<MenuProps>;
 
 /**
  * @author murukal
@@ -116,10 +94,19 @@ export type MenuGroupRenderProps = MenuProps & WithLevel;
  * @description
  * menu item render props
  */
-export type MenuItemRenderProps = Omit<MenuItemProps, "key"> &
-  WithLevel & {
-    id: Key;
-  };
+export type MenuItemProps = WithLevel<WithId<Omit<MenuItem, "key" | "children">>> & {
+  /**
+   * @description
+   * children
+   */
+  children: ReactNode;
+
+  /**
+   * @description
+   * related group ref
+   */
+  groupRef: RefObject<GroupRef>;
+};
 
 /**
  * @description

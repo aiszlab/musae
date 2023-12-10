@@ -1,8 +1,8 @@
 import styled from "@emotion/styled";
-import type { WithLevel } from "./types";
 import { useValidTheme } from "../theme";
 import { useClassNames } from "../config";
 import { ComponentToken, MenuClassToken, withDot, withSelf } from "../../utils/class-name";
+import type { WithLevel } from "../../types/element";
 
 /**
  * @author murukal
@@ -11,9 +11,9 @@ import { ComponentToken, MenuClassToken, withDot, withSelf } from "../../utils/c
  * styled menu item wrapper
  */
 export const StyledMenuItem = styled.div<
-  WithLevel & {
+  WithLevel<{
     isSelected: boolean;
-  }
+  }>
 >((props) => {
   const theme = useValidTheme(props.theme);
   const classNames = useClassNames(ComponentToken.Menu);
@@ -60,7 +60,10 @@ export const StyledMenuItemPrefix = styled.span(() => {
 
   return {
     [withSelf(classNames[MenuClassToken.ItemPrefix])]: {
-      marginRight: "0.5rem",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      marginRight: 4,
     },
   };
 });

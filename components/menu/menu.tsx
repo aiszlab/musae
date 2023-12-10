@@ -47,6 +47,7 @@ const Menu = forwardRef<MenuRef, MenuProps>(({ onClick, className, style, ...pro
         items={props.items}
         ref={groupRef}
         style={style}
+        level={0}
       />
     </Context.Provider>
   );

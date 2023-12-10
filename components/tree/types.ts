@@ -1,10 +1,11 @@
-import { Key, ReactNode } from "react";
+import type { Key, ReactNode } from "react";
+import type { WithId, WithLevel } from "../../types/element";
 
 /**
  * @description
- * node
+ * tree node
  */
-type Node = {
+type TreeNode = {
   /**
    * @description
    * key
@@ -13,15 +14,15 @@ type Node = {
 
   /**
    * @description
-   * label
+   * title
    */
-  label: ReactNode;
+  title: ReactNode;
 
   /**
    * @description
    * children
    */
-  children?: Node[];
+  children?: TreeNode[];
 };
 
 /**
@@ -33,5 +34,45 @@ export type TreeProps = {
    * @description
    * nodes
    */
-  nodes?: Node[];
+  nodes: TreeNode[];
+};
+
+/**
+ * @description
+ * tree list props
+ */
+export type TreeListProps = WithLevel<TreeProps>;
+
+/**
+ * @description
+ * tree node props
+ */
+export type TreeNodeProps = WithLevel<WithId<Omit<TreeNode, "children">>> & {
+  children: ReactNode;
+};
+
+/**
+ * @description
+ * tree node render props
+ */
+export type TreeNodeRenderProps = WithLevel<{
+  isSelected: boolean;
+}>;
+
+/**
+ * @description
+ * context value
+ */
+export type ContextValue = {
+  /**
+   * @description
+   * selected keys
+   */
+  selectedKeys: Map<Key, true>;
+
+  /**
+   * @description
+   * select
+   */
+  select?: (key: Key) => void;
 };
