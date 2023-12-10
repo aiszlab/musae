@@ -1,7 +1,7 @@
 import { isVoid, isArray } from "@aiszlab/relax";
 import type { ReadableOptions, ToMenuItem, Value, ValueOrValues } from "./types";
 import type { Option } from "../../types/option";
-import type { MenuItemProps } from "../menu";
+import type { MenuItem } from "../menu";
 
 /**
  * @description
@@ -46,7 +46,7 @@ export const toOption = (value: Value): Pick<Option, "value" | "label"> => {
  * deep read options
  */
 export const readOptions = (options: Option[], toMenuItem: ToMenuItem) => {
-  return options.reduce<[MenuItemProps[], ReadableOptions]>(
+  return options.reduce<[MenuItem[], ReadableOptions]>(
     (prev, option) => {
       // has child, read deeply
       const [_additions, _readableOptions] = option.children ? readOptions(option.children, toMenuItem) : [];

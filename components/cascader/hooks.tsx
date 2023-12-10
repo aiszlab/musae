@@ -1,7 +1,7 @@
 import { useCallback, useMemo, useState, type Dispatch, type SetStateAction } from "react";
 import { useControlledState } from "@aiszlab/relax";
 import { readOptions, toKey, toKeys, toMenuItem, toValues } from "./utils";
-import { type MenuItemProps } from "../menu";
+import { type MenuItem } from "../menu";
 import type { CascaderProps, Optionable, ReadableOptions, ReadablePaths } from "./types";
 import type { Partialable } from "../../types/lib";
 
@@ -15,7 +15,7 @@ export const useValue = ([valueInProps, readableOptions, readablePaths, mode, cl
   ReadablePaths,
   CascaderProps["mode"],
   close: VoidFunction,
-  Dispatch<SetStateAction<MenuItemProps[][]>>
+  Dispatch<SetStateAction<MenuItem[][]>>
 ]) => {
   const [_value, setValue] = useControlledState(valueInProps);
 
@@ -54,7 +54,7 @@ export const useValue = ([valueInProps, readableOptions, readablePaths, mode, cl
       const _paths = readablePaths.get(id)!;
       const _values = _paths.map((optionable) => optionable.value);
 
-      const [hasChildren, menusItems] = _values.reduce<[boolean, MenuItemProps[][], Partialable<ReadableOptions>]>(
+      const [hasChildren, menusItems] = _values.reduce<[boolean, MenuItem[][], Partialable<ReadableOptions>]>(
         (prev, key) => {
           const _option = prev[2]?.get(key);
           // check has children
@@ -113,7 +113,7 @@ export const useOptions = ([options]: [options: CascaderProps["options"]]) => {
     return [...readableOptions.values()].map((option) => toMenuItem(option));
   }, [readableOptions]);
 
-  const [additionalMenusItems, setAdditionalMenusItems] = useState<MenuItemProps[][]>([]);
+  const [additionalMenusItems, setAdditionalMenusItems] = useState<MenuItem[][]>([]);
 
   return {
     presetedMenuItems,

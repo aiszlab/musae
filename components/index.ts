@@ -42,5 +42,5 @@ export { useTheme } from "./theme";
  * @description
  * declarations
  */
-export type { MenuItemProps } from "./menu";
+export type { MenuItem } from "./menu";
 export type { TreeProps } from "./tree";

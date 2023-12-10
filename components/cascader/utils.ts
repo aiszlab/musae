@@ -9,7 +9,7 @@ import type {
   ValueOrValues,
 } from "./types";
 import { isArray, isVoid } from "@aiszlab/relax";
-import type { MenuItemProps } from "../menu";
+import type { MenuItem } from "../menu";
 import type { Option } from "../../types/option";
 
 /**
@@ -82,7 +82,7 @@ export const toValues = (value?: ValueOrValues): Exclude<ValueOrValues, Value> =
  * @description
  * convert readable option to menu item
  */
-export const toMenuItem = (option: ReadableOption): MenuItemProps => {
+export const toMenuItem = (option: ReadableOption): MenuItem => {
   return {
     key: option.id,
     label: option.label,

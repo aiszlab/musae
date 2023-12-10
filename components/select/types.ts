@@ -1,6 +1,6 @@
 import type { Key } from "react";
 import type { Option } from "../../types/option";
-import type { MenuItemProps } from "..";
+import type { MenuItem } from "../menu";
 
 export type Mode = "multiple";
 
@@ -50,4 +50,4 @@ export type ReadableOptions = Map<Key, string>;
  * @description
  * to menu items
  */
-export type ToMenuItem = (option: Option) => Pick<MenuItemProps, "key" | "label">;
+export type ToMenuItem = (option: Option) => Pick<MenuItem, "key" | "label">;
