@@ -56,6 +56,7 @@ export enum ComponentToken {
   Menu,
   Checkbox,
   Tree,
+  Gallery,
 }
 
 /**
@@ -174,6 +175,10 @@ export enum TreeClassToken {
   Title,
   Expander,
   Checkbox,
+}
+export enum GalleryClassToken {
+  Gallery,
+  GalleryCode,
 }
 
 /**
@@ -294,6 +299,7 @@ export const CLASS_NAMES = {
     [TreeClassToken.Expander]: "tree-node-expander",
     [TreeClassToken.Checkbox]: "tree-node-checkbox",
   },
+  [ComponentToken.Gallery]: {},
 };
 
 /**
