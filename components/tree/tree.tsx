@@ -5,9 +5,9 @@ import Context from "./context";
 import { useToggleable } from "@aiszlab/relax";
 import { useExpandedKeys } from "./hooks";
 
-const Tree = (props: TreeProps) => {
+const Tree = ({ expandedKeys: _expandedKeys, onExpand, ...props }: TreeProps) => {
   const { toggledKeys: checkedKeys, toggle: check } = useToggleable(props.nodes);
-  const { expand, expandedKeys } = useExpandedKeys([void 0]);
+  const { expand, expandedKeys } = useExpandedKeys([_expandedKeys, onExpand]);
 
   return (
     <Context.Provider

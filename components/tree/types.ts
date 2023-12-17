@@ -37,13 +37,25 @@ export type TreeProps = {
    * nodes
    */
   nodes: TreeNode[];
+
+  /**
+   * @description
+   * expanded keys
+   */
+  expandedKeys?: Key[];
+
+  /**
+   * @description
+   * expand handler
+   */
+  onExpand?: (keys: Key[]) => void;
 };
 
 /**
  * @description
  * tree list props
  */
-export type TreeListProps = WithLevel<TreeProps>;
+export type TreeListProps = WithLevel<Pick<TreeProps, "nodes">>;
 
 /**
  * @description

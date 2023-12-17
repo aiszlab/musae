@@ -1,25 +1,29 @@
-import { useControlledState, type Partialable } from "@aiszlab/relax";
-import { useMemo, type Key, useCallback } from "react";
-import type { ExpandHandler } from "./types";
+import { useControlledState } from "@aiszlab/relax";
+import { useMemo, useCallback } from "react";
+import type { ExpandHandler, TreeProps } from "./types";
 
 /**
  * @description
  * expanded keys
  */
-export const useExpandedKeys = ([expandedKeys]: [Partialable<Key[]>]) => {
+export const useExpandedKeys = ([expandedKeys, onExpand]: [TreeProps["expandedKeys"], TreeProps["onExpand"]]) => {
   const [_expandedKeys, _setExpandedKeys] = useControlledState(expandedKeys);
 
   const readableExpandedKeys = useMemo(() => new Set(_expandedKeys), [_expandedKeys]);
 
   const expand = useCallback<ExpandHandler>(
     (key) => {
-      _setExpandedKeys((prev) => {
-        const expanded = new Set(prev);
-        expanded.has(key) ? expanded.delete(key) : expanded.add(key);
-        return Array.from(expanded);
-      });
+      // deal expanding key
+      const readableExpandingKeys = new Set(_expandedKeys);
+      readableExpandingKeys.has(key) ? readableExpandingKeys.delete(key) : readableExpandingKeys.add(key);
+      const expandingKeys = Array.from(readableExpandingKeys);
+
+      // change inner state
+      // emit change handler
+      _setExpandedKeys(expandingKeys);
+      onExpand?.(expandingKeys);
     },
-    [_setExpandedKeys]
+    [_expandedKeys, _setExpandedKeys, onExpand]
   );
 
   return {
