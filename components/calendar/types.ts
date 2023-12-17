@@ -1,5 +1,5 @@
 import { Dayjs } from "dayjs";
-import { Partialable } from "../../types/lib";
+import { Partialable } from "@aiszlab/relax";
 
 /**
  * @description

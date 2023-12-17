@@ -1,5 +1,7 @@
-import type { Key, ReactNode } from "react";
+import type { Key, ReactNode, RefObject } from "react";
 import type { WithId, WithLevel } from "../../types/element";
+
+export type ExpandHandler = (key: Key) => void;
 
 /**
  * @description
@@ -48,7 +50,17 @@ export type TreeListProps = WithLevel<TreeProps>;
  * tree node props
  */
 export type TreeNodeProps = WithLevel<WithId<Omit<TreeNode, "children">>> & {
+  /**
+   * @description
+   * children
+   */
   children: ReactNode;
+
+  /**
+   * @description
+   * list ref
+   */
+  listRef: RefObject<ListRef>;
 };
 
 /**
@@ -56,7 +68,23 @@ export type TreeNodeProps = WithLevel<WithId<Omit<TreeNode, "children">>> & {
  * tree node render props
  */
 export type TreeNodeRenderProps = WithLevel<{
+  /**
+   * @description
+   * is selected
+   */
   isSelected: boolean;
+
+  /**
+   * @description
+   * is expanded
+   */
+  isExpanded: boolean;
+
+  /**
+   * @description
+   * default expanded
+   */
+  isDefaultExpanded: boolean;
 }>;
 
 /**
@@ -66,13 +94,37 @@ export type TreeNodeRenderProps = WithLevel<{
 export type ContextValue = {
   /**
    * @description
-   * selected keys
+   * checked keys
    */
-  selectedKeys: Map<Key, true>;
+  checkedKeys: Set<Key>;
 
   /**
    * @description
-   * select
+   * check
    */
-  select?: (key: Key) => void;
+  check?: (key: Key) => void;
+
+  /**
+   * @description
+   * expandedKeys
+   */
+  expandedKeys: Set<Key>;
+
+  /**
+   * @description
+   * expand
+   */
+  expand?: ExpandHandler;
+};
+
+/**
+ * @description
+ * menu ref
+ */
+export type ListRef = {
+  /**
+   * @description
+   * expand
+   */
+  expand: (isExpanded: boolean) => void;
 };

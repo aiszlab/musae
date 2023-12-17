@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import { ComponentProps } from "../../types/element";
 
 /**
  * @author murukal
@@ -28,11 +29,17 @@ export interface CheckboxGroupProps {
  * @description
  * checkbox props
  */
-export interface CheckboxProps {
-  /* if is checked */
+export interface CheckboxProps extends ComponentProps {
+  /**
+   * @description
+   * if is checked
+   */
   checked?: boolean;
 
-  /* value */
+  /**
+   * @description
+   * value
+   */
   value?: string;
 }
 

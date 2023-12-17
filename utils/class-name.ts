@@ -172,6 +172,8 @@ export enum TreeClassToken {
   Holder,
   Node,
   Title,
+  Expander,
+  Checkbox,
 }
 
 /**
@@ -289,6 +291,8 @@ export const CLASS_NAMES = {
     [TreeClassToken.Holder]: "tree-holder",
     [TreeClassToken.Node]: "tree-node",
     [TreeClassToken.Title]: "tree-node-title",
+    [TreeClassToken.Expander]: "tree-node-expander",
+    [TreeClassToken.Checkbox]: "tree-node-checkbox",
   },
 };
 

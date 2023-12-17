@@ -1,12 +1,11 @@
 import React, { isValidElement, useMemo, cloneElement, ReactElement, ReactNode, useContext } from "react";
 import { ContextValue, FormItemProps } from "./types";
-import { RequiredIn } from "../../types/lib";
 import { useController } from "react-hook-form";
 import { FieldRenderProps } from "../../types/element";
 import Context from "./context";
 import { Grid } from "../grid";
 import { StyledLabel, StyledSupportingText } from "./styled";
-import { isRefable } from "@aiszlab/relax";
+import { RequiredIn, isRefable } from "@aiszlab/relax";
 import { Context as ConfigContext } from "../config";
 import { ComponentToken, FormClassToken } from "../../utils/class-name";
 

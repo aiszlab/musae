@@ -2,7 +2,7 @@ import React, { type ReactPortal, useCallback, useRef, useContext } from "react"
 import { createPortal } from "react-dom";
 import Holder from "./holder";
 import { MessageRef } from "./types";
-import { useOnceState } from "@aiszlab/relax";
+import { useDefault } from "@aiszlab/relax";
 import ConfigContext from "../config/context";
 
 /**
@@ -15,7 +15,7 @@ export const useMessage = (): [any, ReactPortal] => {
   const ref = useRef<MessageRef>(null);
   const configuredMessageHolder = useContext(ConfigContext)?.messageHolder;
 
-  const holder = useOnceState<ReactPortal>(() => {
+  const holder = useDefault<ReactPortal>(() => {
     return configuredMessageHolder || createPortal(<Holder ref={ref} />, document.body);
   });
 

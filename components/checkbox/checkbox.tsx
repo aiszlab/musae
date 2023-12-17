@@ -5,8 +5,9 @@ import Context from "./context";
 import type { CheckboxProps } from "./types";
 import { useClassNames } from "../config";
 import { CheckboxClassToken, ComponentToken } from "../../utils/class-name";
+import clsx from "clsx";
 
-const Checkbox = ({ value, ...props }: CheckboxProps) => {
+const Checkbox = ({ value, className, style, ...props }: CheckboxProps) => {
   const contextValue = useContext(Context);
   const id = useId();
   const classNames = useClassNames(ComponentToken.Checkbox);
@@ -35,11 +36,12 @@ const Checkbox = ({ value, ...props }: CheckboxProps) => {
 
   return (
     <StyledCheckbox
+      style={style}
       type="checkbox"
       checked={isChecked}
       aria-checked={isChecked}
       onChange={change}
-      className={classNames[CheckboxClassToken.Checkbox]}
+      className={clsx(className, classNames[CheckboxClassToken.Checkbox])}
     />
   );
 };

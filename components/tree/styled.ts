@@ -24,7 +24,7 @@ export const StyledTreeList = styled.ul(() => {
  * @description
  * styled tree node
  */
-export const StyledTreeNode = styled.div<TreeNodeRenderProps>((props) => {
+export const StyledTreeNode = styled.div<TreeNodeRenderProps>(({ level, isExpanded, isDefaultExpanded, ...props }) => {
   const classNames = useClassNames(ComponentToken.Tree);
   const theme = useValidTheme(props.theme);
 
@@ -33,7 +33,27 @@ export const StyledTreeNode = styled.div<TreeNodeRenderProps>((props) => {
       display: "flex",
       alignItems: "center",
       paddingBlock: 8,
-      paddingLeft: 12 + (props.level ?? 0) * 24,
+      paddingLeft: 12 + (level ?? 0) * 24,
+
+      [withDot(classNames[TreeClassToken.Expander])]: {
+        width: 24,
+        height: 24,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        cursor: "pointer",
+
+        svg: {
+          transition: "transform 300ms",
+          ...(isExpanded && {
+            transform: "rotate(90deg)",
+          }),
+        },
+      },
+
+      [withDot(classNames[TreeClassToken.Checkbox])]: {
+        marginRight: 4,
+      },
 
       [withDot(classNames[TreeClassToken.Title])]: {
         paddingInline: 4,
@@ -49,6 +69,11 @@ export const StyledTreeNode = styled.div<TreeNodeRenderProps>((props) => {
         ":hover": {
           backgroundColor: theme.colorRole.surfaceContainer,
         },
+      },
+
+      [`& + ${withDot(classNames[TreeClassToken.List])}`]: {
+        height: isDefaultExpanded ? "auto" : 0,
+        overflow: "hidden",
       },
     },
   };

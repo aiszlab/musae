@@ -3,15 +3,19 @@ import { TreeProps } from "./types";
 import List from "./list";
 import Context from "./context";
 import { useToggleable } from "@aiszlab/relax";
+import { useExpandedKeys } from "./hooks";
 
 const Tree = (props: TreeProps) => {
-  const { toggledKeys: selectedKeys, toggle: select } = useToggleable();
+  const { toggledKeys: checkedKeys, toggle: check } = useToggleable(props.nodes);
+  const { expand, expandedKeys } = useExpandedKeys([void 0]);
 
   return (
     <Context.Provider
       value={{
-        selectedKeys,
-        select,
+        checkedKeys,
+        check,
+        expandedKeys,
+        expand,
       }}
     >
       <List {...props} level={0} />

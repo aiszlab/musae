@@ -1,8 +1,9 @@
-import { createContext } from "react";
+import { Key, createContext } from "react";
 import { ContextValue } from "./types";
 
 const Context = createContext<ContextValue>({
-  selectedKeys: new Map(),
+  checkedKeys: new Set<Key>(),
+  expandedKeys: new Set<Key>(),
 });
 
 export default Context;

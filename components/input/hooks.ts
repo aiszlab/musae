@@ -12,7 +12,7 @@ import {
 import clsx from "clsx";
 import Context from "../config/context";
 import type { InputProps } from "./types";
-import type { Partialable } from "../../types/lib";
+import type { Partialable } from "@aiszlab/relax";
 import { ComponentToken, InputClassToken } from "../../utils/class-name";
 
 /**

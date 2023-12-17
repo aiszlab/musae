@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { Partialable } from "../../types/lib";
+import { Partialable } from "@aiszlab/relax";
 
 /**
  * @description

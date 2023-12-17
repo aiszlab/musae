@@ -4,7 +4,7 @@ import { ClockClassToken, ComponentToken } from "../../utils/class-name";
 import { StyledClock } from "./styled";
 import { ClockProps, TimeUnit } from "./types";
 import Column from "./column";
-import { Nullable } from "../../types/lib";
+import { Nullable } from "@aiszlab/relax";
 
 const Clock = ({ value, onChange }: ClockProps) => {
   const classNames = useClassNames(ComponentToken.Clock);

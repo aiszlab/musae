@@ -3,7 +3,7 @@ import { useControlledState } from "@aiszlab/relax";
 import { readOptions, toKey, toKeys, toMenuItem, toValues } from "./utils";
 import { type MenuItem } from "../menu";
 import type { CascaderProps, Optionable, ReadableOptions, ReadablePaths } from "./types";
-import type { Partialable } from "../../types/lib";
+import type { Partialable } from "@aiszlab/relax";
 
 /**
  * @description

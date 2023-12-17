@@ -2,7 +2,7 @@ import { useControlledState } from "@aiszlab/relax";
 import { DateRangePickerProps } from "./types";
 import { RefObject, useCallback } from "react";
 import { Dayjs } from "dayjs";
-import { Partialable } from "../../types/lib";
+import { Partialable } from "@aiszlab/relax";
 import { PickerRef } from "../picker";
 
 /**

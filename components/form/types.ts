@@ -8,7 +8,7 @@ import type {
   UseFormGetValues,
   UseFormTrigger,
 } from "react-hook-form";
-import type { Nullable, Partialable } from "../../types/lib";
+import type { Nullable, Partialable } from "@aiszlab/relax";
 
 /**
  * @author murukal

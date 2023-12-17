@@ -1,5 +1,5 @@
 import type { ReactNode, JSX } from "react";
-import type { Partialable } from "../../types/lib";
+import type { Partialable } from "@aiszlab/relax";
 
 export type Value = Partialable<string | number>;
 
