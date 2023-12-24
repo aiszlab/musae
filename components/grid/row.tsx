@@ -1,29 +1,27 @@
-import React, { useContext, useMemo } from "react";
-import type { RowProps, RowRenderProps } from "./types";
-import { StyledRowWrapper } from "./styled";
+import React, { useMemo } from "react";
+import type { Gutters, RowProps } from "./types";
 import { isArray } from "@aiszlab/relax";
-import { Context } from "../config";
+import { useClassNames } from "../config";
 import { ComponentToken, GridClassToken } from "../../utils/class-name";
+import clsx from "clsx";
+import { useRowStyle } from "./hooks";
 
-const Row = (props: RowProps) => {
+const Row = ({ align, children, gutter, justify, className, ...props }: RowProps) => {
   /// col and row gap in grid
-  const gutters = useMemo<RowRenderProps["gutters"]>(() => {
-    if (!props.gutter) return [0, 0];
-    if (isArray(props.gutter)) return props.gutter;
-    return [props.gutter, 0];
-  }, [props.gutter]);
+  const gutters = useMemo<Gutters>(() => {
+    if (!gutter) return [0, 0];
+    if (isArray(gutter)) return gutter;
+    return [gutter, 0];
+  }, [gutter]);
 
-  const classNames = useContext(Context).classNames[ComponentToken.Grid];
+  const classNames = useClassNames(ComponentToken.Grid);
+
+  const style = useRowStyle([gutters, justify, align, props.style]);
 
   return (
-    <StyledRowWrapper
-      gutters={gutters}
-      justify={props.justify}
-      align={props.align}
-      className={classNames[GridClassToken.Row]}
-    >
-      {props.children}
-    </StyledRowWrapper>
+    <div style={style} className={clsx([classNames[GridClassToken.Row], className])}>
+      {children}
+    </div>
   );
 };
 

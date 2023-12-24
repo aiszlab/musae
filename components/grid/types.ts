@@ -1,11 +1,12 @@
 import type { CSSProperties, ReactNode } from "react";
+import type { ComponentProps } from "../../types/element";
 
-type Gutters = [colGutter: number, rowGutter: number];
+export type Gutters = [colGutter: number, rowGutter: number];
 type Gutter = number | Gutters;
 
-export interface RowProps {
+export interface RowProps extends ComponentProps {
   /* children */
-  children: ReactNode;
+  children?: ReactNode;
 
   /* gutter */
   gutter?: Gutter;
@@ -17,17 +18,10 @@ export interface RowProps {
   align?: CSSProperties["alignItems"];
 }
 
-export interface RowRenderProps extends Pick<RowProps, "justify" | "align"> {
-  /* gutters */
-  gutters: Gutters;
-}
-
-export interface ColProps {
+export interface ColProps extends ComponentProps {
   /* span */
   span?: number;
 
   /* children */
-  children: ReactNode;
+  children?: ReactNode;
 }
-
-export type ColRenderProps = Required<Pick<ColProps, "span">>;

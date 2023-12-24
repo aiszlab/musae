@@ -1,12 +1,19 @@
-import React, { useMemo } from "react";
-import { StyledColWrapper } from "./styled";
+import React from "react";
 import type { ColProps } from "./types";
+import { useColStyle } from "./hooks";
+import { useClassNames } from "../config";
+import { ComponentToken, GridClassToken } from "../../utils/class-name";
+import clsx from "clsx";
 
-const Col = (props: ColProps) => {
-  /// span
-  const span = useMemo(() => props.span ?? 8, [props.span]);
+const Col = ({ children, className, span, ...props }: ColProps) => {
+  const style = useColStyle([span, props.style]);
+  const classNames = useClassNames(ComponentToken.Grid);
 
-  return <StyledColWrapper span={span}>{props.children}</StyledColWrapper>;
+  return (
+    <div style={style} className={clsx(classNames[GridClassToken.Col], className)}>
+      {children}
+    </div>
+  );
 };
 
 export default Col;

@@ -1,11 +1,7 @@
-import { useMemo } from "react";
+import { type CSSProperties, useMemo } from "react";
 import type { Placement } from "./types";
-import type { CSSObject } from "@emotion/react";
 
-const PLACEMENT = new Map<
-  Placement,
-  [[initialPlacement: string, animatedPlacement: string], Pick<CSSObject, "top" | "right" | "bottom" | "left">]
->([
+const PLACEMENT = new Map<Placement, [[initialPlacement: string, animatedPlacement: string], CSSProperties]>([
   [
     "right",
     [

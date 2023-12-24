@@ -56,7 +56,6 @@ export enum ComponentToken {
   Menu,
   Checkbox,
   Tree,
-  Gallery,
 }
 
 /**
@@ -87,6 +86,7 @@ export enum FormClassToken {
 }
 export enum GridClassToken {
   Row,
+  Col,
 }
 export enum RadioClassToken {
   Wrapper,
@@ -176,10 +176,6 @@ export enum TreeClassToken {
   Expander,
   Checkbox,
 }
-export enum GalleryClassToken {
-  Gallery,
-  GalleryCode,
-}
 
 /**
  * @description
@@ -210,6 +206,7 @@ export const CLASS_NAMES = {
   },
   [ComponentToken.Grid]: {
     [GridClassToken.Row]: "grid-row",
+    [GridClassToken.Col]: "grid-col",
   },
   [ComponentToken.Radio]: {
     [RadioClassToken.Wrapper]: "radio-wrapper",
@@ -299,7 +296,6 @@ export const CLASS_NAMES = {
     [TreeClassToken.Expander]: "tree-node-expander",
     [TreeClassToken.Checkbox]: "tree-node-checkbox",
   },
-  [ComponentToken.Gallery]: {},
 };
 
 /**

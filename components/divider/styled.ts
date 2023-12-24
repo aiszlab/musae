@@ -1,18 +1,18 @@
-import styled, { type CSSObject } from "@emotion/styled";
+import styled from "@emotion/styled";
 import type { DividerRenderProps } from "./types";
 import { useValidTheme } from "../theme";
 import { ComponentToken, DividerClassToken, withDot } from "../../utils/class-name";
-import { useContext } from "react";
+import { type CSSProperties, useContext } from "react";
 import { Context } from "../config";
 
-export const StyledWrapper = styled.div<DividerRenderProps>(({ hasChildren, offset, ...props }) => {
+export const StyledDivider = styled.div<DividerRenderProps>(({ hasChildren, offset, ...props }) => {
   const classNames = useContext(Context).classNames[ComponentToken.Divider];
   const theme = useValidTheme(props.theme);
 
-  const layoutStyle: CSSObject = {
+  const layoutStyle: CSSProperties = {
     width: "100%",
   };
-  const dividerStyle: CSSObject = {
+  const dividerStyle: CSSProperties = {
     height: 1,
     backgroundColor: theme.colorRole.outlineVariant,
   };

@@ -46,7 +46,7 @@ export const StyledButton = styled.button<ButtonRenderProps>(({ variant, color, 
         // typography
         ...theme.typography.label[size],
         // color
-        color: variant === "text" ? theme.colorRole.primary : theme.colorRole.onPrimary,
+        color: variant === "text" || variant === "outlined" ? theme.colorRole.primary : theme.colorRole.onPrimary,
       },
     },
   };
