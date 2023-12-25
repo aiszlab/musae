@@ -19,7 +19,7 @@ export interface ContextValue {
    * @description
    * selected keys
    */
-  selectedKeys?: Map<Key, true>;
+  selectedKeys: Set<Key>;
 }
 
 /**

@@ -19,7 +19,7 @@ const Item = forwardRef<HTMLLIElement, MenuItemProps>(({ level, label, children,
   const hasChildren = useMemo(() => !!children, [children]);
   const classNames = useClassNames(ComponentToken.Menu);
   /// if is selected
-  const isSelected = useMemo(() => !!selectedKeys?.get(id), [selectedKeys, id]);
+  const isSelected = useMemo(() => selectedKeys.has(id), [selectedKeys, id]);
   /// if is collapsed
   const { isOn: isCollapsed, toggle } = useBoolean(false);
 

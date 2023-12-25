@@ -7,6 +7,8 @@ import { type ContextValue } from "./types";
  * @description
  * menu context for all menu group or menu item
  */
-const Context = createContext<ContextValue>({});
+const Context = createContext<ContextValue>({
+  selectedKeys: new Set(),
+});
 
 export default Context;
