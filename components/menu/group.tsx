@@ -1,6 +1,6 @@
 import { StyledMenuGroup } from "./styled";
 import type { GroupRef, MenuGroupProps } from "./types";
-import React, { useMemo, forwardRef, useImperativeHandle, createRef } from "react";
+import React, { useMemo, forwardRef, useImperativeHandle, createRef, Key } from "react";
 import { useRefs, useScrollable, isUndefined } from "@aiszlab/relax";
 import { useAnimate } from "framer-motion";
 import { useClassNames } from "../config";
@@ -55,9 +55,7 @@ const Group = forwardRef<GroupRef, MenuGroupProps>(({ items, level, className, s
       // handler group scroll
       scrollTo(to(key), duration);
     },
-    toggle: async () => {
-      if (!belongTo) return;
-
+    toggle: async (key: Key) => {
       if (isExpanded) {
         await animate(scope.current, {
           height: 0,
