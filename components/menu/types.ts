@@ -13,13 +13,31 @@ export interface ContextValue {
    * @description
    * click event
    */
-  onClick?: (key: Key) => void | Promise<void>;
+  onClick: (key: Key) => void | Promise<void>;
+
+  /**
+   * @description
+   * expand handler
+   */
+  onExpand: (key: Key) => void | Promise<void>;
+
+  /**
+   * @description
+   * collapse handler
+   */
+  onCollapse: (key: Key) => void | Promise<void>;
 
   /**
    * @description
    * selected keys
    */
   selectedKeys: Set<Key>;
+
+  /**
+   * @description
+   * expanded keys
+   */
+  expandedKeys: Set<Key>;
 }
 
 /**
@@ -46,6 +64,12 @@ export interface MenuProps extends ComponentProps {
    * selected keys
    */
   selectedKeys?: Key[];
+
+  /**
+   * @description
+   * expanded keys
+   */
+  expandedKeys?: Key[];
 }
 
 /**
@@ -86,7 +110,13 @@ export interface MenuItem {
  * @description
  * menu group render props
  */
-export type MenuGroupProps = WithLevel<MenuProps>;
+export type MenuGroupProps = WithLevel<MenuProps> & {
+  /**
+   * @description
+   * belong to
+   */
+  belongTo?: Key;
+};
 
 /**
  * @author murukal
@@ -112,28 +142,10 @@ export type MenuItemProps = WithLevel<WithId<Omit<MenuItem, "key" | "children">>
  * @description
  * menu ref
  */
-export interface GroupRef {
-  /**
-   * @description
-   * group to
-   */
-  scrollTo: (key: Key, duration?: number) => void;
-
-  /**
-   * @description
-   * toggle
-   */
-  toggle: (isCollapsed: boolean) => void;
-}
-
-/**
- * @description
- * menu ref
- */
 export interface MenuRef {
   /**
    * @description
    * group to
    */
-  scrollTo: GroupRef["scrollTo"];
+  scrollTo: (key: Key, duration?: number) => void;
 }

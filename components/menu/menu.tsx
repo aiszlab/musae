@@ -15,6 +15,7 @@ import clsx from "clsx";
  */
 const Menu = forwardRef<MenuRef, MenuProps>(({ onClick, className, style, ...props }, ref) => {
   const [selectedKeys, setSelectedKeys] = useControlledState(props.selectedKeys);
+  const [expandedKeys, setExpandedKeys] = useControlledState(props.expandedKeys);
   const classNames = useClassNames(ComponentToken.Menu);
   const groupRef = useRef<GroupRef>(null);
 
@@ -35,20 +36,26 @@ const Menu = forwardRef<MenuRef, MenuProps>(({ onClick, className, style, ...pro
         setSelectedKeys([key]);
         onClick?.(key);
       },
+      onExpand: (key) => {
+        setExpandedKeys((_expandedKeys) => Array.from(new Set(_expandedKeys).add(key)));
+      },
+      onCollapse: (key) => {
+        setExpandedKeys((_expandedKeys) => {
+          const collapsed = new Set(_expandedKeys);
+          collapsed.delete(key);
+          return Array.from(collapsed);
+        });
+      },
       selectedKeys: new Set(selectedKeys),
+      expandedKeys: new Set(expandedKeys),
     }),
-    [onClick, selectedKeys, setSelectedKeys]
+    [selectedKeys, expandedKeys, setSelectedKeys, onClick, setExpandedKeys]
   );
 
   return (
     <Context.Provider value={contextValue}>
-      <Group
-        className={clsx(classNames[MenuClassToken.Menu], className)}
-        items={props.items}
-        ref={groupRef}
-        style={style}
-        level={0}
-      />
+      <ul className={clsx(classNames[MenuClassToken.Menu], className)}>{props.items.map(() => {})}</ul>
+      <Group className={} items={props.items} ref={groupRef} style={style} level={0} />
     </Context.Provider>
   );
 });

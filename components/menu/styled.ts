@@ -74,7 +74,7 @@ export const StyledMenuItemPrefix = styled.span(() => {
  * @description
  * styled collapser
  */
-export const StyledCollapser = styled.span<{ isCollapsed: boolean }>(({ isCollapsed }) => {
+export const StyledCollapser = styled.span<{ isExpanded: boolean }>(({ isExpanded }) => {
   const classNames = useClassNames(ComponentToken.Menu);
 
   return {
@@ -82,7 +82,7 @@ export const StyledCollapser = styled.span<{ isCollapsed: boolean }>(({ isCollap
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
-      transform: isCollapsed ? "rotateX(180deg)" : "rotateX(0)",
+      transform: isExpanded ? "rotateX(0)" : "rotateX(180deg)",
       transition: "transform 200ms",
     },
   };
@@ -100,10 +100,16 @@ export const StyledMenuGroup = styled.ul(() => {
   return {
     [withSelf(classNames[MenuClassToken.Group])]: {
       margin: 0,
-      listStyleType: "none",
+      listStyle: "none",
       padding: 0,
-      overflow: "hidden",
-      position: "relative",
+
+      [`> ${withDot(classNames[MenuClassToken.GroupItem])}`]: {
+        marginBlock: 2,
+      },
+
+      [`&${withDot(classNames[MenuClassToken.GroupHidden])}`]: {
+        display: "none",
+      },
     },
   };
 });

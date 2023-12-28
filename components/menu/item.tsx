@@ -1,7 +1,6 @@
-import React, { MouseEvent, forwardRef, useCallback, useMemo } from "react";
+import React, { MouseEvent, forwardRef, useCallback } from "react";
 import { MenuItemProps } from "./types";
 import { useChildren, useMenu } from "./hooks";
-import { useBoolean } from "@aiszlab/relax";
 import { useClassNames } from "../config";
 import { ComponentToken, MenuClassToken } from "../../utils/class-name";
 import { StyledMenuItem } from "./styled";
@@ -14,14 +13,14 @@ import { StyledMenuItem } from "./styled";
  */
 const Item = forwardRef<HTMLLIElement, MenuItemProps>(({ level, label, children, prefix, id, groupRef }, ref) => {
   /// context
-  const { selectedKeys, onClick } = useMenu();
-  /// has children
-  const hasChildren = useMemo(() => !!children, [children]);
+  const { selectedKeys, onClick, expandedKeys } = useMenu();
   const classNames = useClassNames(ComponentToken.Menu);
+
+  /// has children
+  const hasChildren = !!children;
   /// if is selected
-  const isSelected = useMemo(() => selectedKeys.has(id), [selectedKeys, id]);
-  /// if is collapsed
-  const { isOn: isCollapsed, toggle } = useBoolean(false);
+  const isSelected = selectedKeys.has(id);
+  const isExpanded = expandedKeys.has(id);
 
   const onToggle = useCallback(
     (e: MouseEvent<HTMLDivElement>) => {
@@ -33,16 +32,15 @@ const Item = forwardRef<HTMLLIElement, MenuItemProps>(({ level, label, children,
         return onClick?.(id);
       }
 
-      groupRef.current?.toggle(isCollapsed);
-      toggle();
+      groupRef.current?.toggle();
     },
-    [hasChildren, groupRef, isCollapsed, toggle, onClick, id]
+    [hasChildren, groupRef, onClick, id]
   );
 
   const _children = useChildren({
     id,
     hasChildren,
-    isCollapsed,
+    isExpanded,
     collapserClassName: classNames[MenuClassToken.Collapser],
     label,
     prefix,

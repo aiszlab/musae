@@ -16,7 +16,7 @@ export const useMenu = () => useContext(Context);
 export const useChildren = ({
   id,
   hasChildren,
-  isCollapsed,
+  isExpanded,
   collapserClassName,
   label,
   prefix: prefixInProps,
@@ -25,7 +25,7 @@ export const useChildren = ({
 }: {
   id: Key;
   hasChildren: boolean;
-  isCollapsed: boolean;
+  isExpanded: boolean;
   collapserClassName: string;
   label: ReactNode;
   prefix: ReactNode;
@@ -37,11 +37,11 @@ export const useChildren = ({
     if (!hasChildren) return null;
 
     return (
-      <StyledCollapser isCollapsed={isCollapsed} className={collapserClassName}>
+      <StyledCollapser isExpanded={isExpanded} className={collapserClassName}>
         <KeyboardArrowUp size={16} />
       </StyledCollapser>
     );
-  }, [hasChildren, isCollapsed, collapserClassName]);
+  }, [hasChildren, isExpanded, collapserClassName]);
 
   /// prefix
   const prefix = useMemo(() => {
