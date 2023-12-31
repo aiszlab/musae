@@ -17,7 +17,7 @@ const List = forwardRef<ListRef, TreeListProps>(({ level, nodes }, ref) => {
       const nodeListRef = createRef<ListRef>();
 
       return (
-        <Node {...nodeProps} key={key} id={key} level={level} listRef={nodeListRef}>
+        <Node {...nodeProps} key={key} _key={key} level={level} listRef={nodeListRef}>
           {hasChildren && <List level={level + 1} nodes={_children} ref={nodeListRef} />}
         </Node>
       );

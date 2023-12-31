@@ -8,24 +8,24 @@ import { Checkbox } from "../checkbox";
 import { KeyboardArrowRight } from "../icon";
 import { useDefault } from "@aiszlab/relax";
 
-const Node = ({ id, children, listRef, ...props }: TreeNodeProps) => {
+const Node = ({ _key, children, listRef, ...props }: TreeNodeProps) => {
   const classNames = useClassNames(ComponentToken.Tree);
   const { checkedKeys, check: _check, expandedKeys, expand: _expand } = useContext(Context);
-  const isChecked = useMemo(() => checkedKeys.has(id), [id, checkedKeys]);
-  const isExpanded = useMemo(() => expandedKeys.has(id), [id, expandedKeys]);
+  const isChecked = checkedKeys.has(_key);
+  const isExpanded = expandedKeys.has(_key);
 
   const _default = useDefault({
     isExpanded,
   });
 
-  const check = useCallback(() => {
-    _check?.(id);
-  }, [id, _check]);
+  const check = () => {
+    _check?.(_key);
+  };
 
   const expand = useCallback(() => {
     listRef.current?.expand(!isExpanded);
-    _expand?.(id);
-  }, [_expand, id, isExpanded, listRef]);
+    _expand?.(_key);
+  }, [_expand, _key, isExpanded, listRef]);
 
   const expander = useMemo(() => {
     return (

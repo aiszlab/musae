@@ -53,45 +53,6 @@ export const StyledMenuItem = styled.div<
  * @author murukal
  *
  * @description
- * styled menu item prefix
- */
-export const StyledMenuItemPrefix = styled.span(() => {
-  const classNames = useClassNames(ComponentToken.Menu);
-
-  return {
-    [withSelf(classNames[MenuClassToken.ItemPrefix])]: {
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-      marginRight: 4,
-    },
-  };
-});
-
-/**
- * @author murukal
- *
- * @description
- * styled collapser
- */
-export const StyledCollapser = styled.span<{ isExpanded: boolean }>(({ isExpanded }) => {
-  const classNames = useClassNames(ComponentToken.Menu);
-
-  return {
-    [withSelf(classNames[MenuClassToken.Collapser])]: {
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      transform: isExpanded ? "rotateX(0)" : "rotateX(180deg)",
-      transition: "transform 200ms",
-    },
-  };
-});
-
-/**
- * @author murukal
- *
- * @description
  * styled menu group
  */
 export const StyledMenuGroup = styled.ul(() => {
@@ -103,7 +64,7 @@ export const StyledMenuGroup = styled.ul(() => {
       listStyle: "none",
       padding: 0,
 
-      [`> ${withDot(classNames[MenuClassToken.GroupItem])}`]: {
+      [`> li`]: {
         marginBlock: 2,
       },
 

@@ -1,5 +1,5 @@
 import type { Key, ReactNode, RefObject } from "react";
-import type { WithId, WithLevel } from "../../types/element";
+import type { WithLevel } from "../../types/element";
 
 export type ExpandHandler = (key: Key) => void;
 
@@ -61,7 +61,7 @@ export type TreeListProps = WithLevel<Pick<TreeProps, "nodes">>;
  * @description
  * tree node props
  */
-export type TreeNodeProps = WithLevel<WithId<Omit<TreeNode, "children">>> & {
+export type TreeNodeProps = WithLevel<Omit<TreeNode, "children">> & {
   /**
    * @description
    * children
@@ -73,6 +73,12 @@ export type TreeNodeProps = WithLevel<WithId<Omit<TreeNode, "children">>> & {
    * list ref
    */
   listRef: RefObject<ListRef>;
+
+  /**
+   * @description
+   * _key
+   */
+  _key: Key;
 };
 
 /**

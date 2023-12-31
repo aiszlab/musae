@@ -1,4 +1,4 @@
-import type { CSSProperties, RefCallback, Key } from "react";
+import type { CSSProperties, RefCallback } from "react";
 
 /**
  * @author
@@ -63,14 +63,6 @@ export interface FieldRenderProps<T = unknown> {
    */
   onBlur: (...args: unknown[]) => void;
 }
-
-/**
- * @description
- * with id
- */
-export type WithId<T, I = Key> = T & {
-  id: I;
-};
 
 /**
  * @description

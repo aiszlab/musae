@@ -1,5 +1,5 @@
-import type { Key, ReactNode, RefObject } from "react";
-import type { ComponentProps, WithId } from "../../types/element";
+import type { Key, ReactNode } from "react";
+import type { ComponentProps } from "../../types/element";
 import type { WithLevel } from "../../types/element";
 
 /**
@@ -13,19 +13,19 @@ export interface ContextValue {
    * @description
    * click event
    */
-  onClick: (key: Key) => void | Promise<void>;
+  click: (key: Key) => void | Promise<void>;
 
   /**
    * @description
-   * expand handler
+   * toggle handler
    */
-  onExpand: (key: Key) => void | Promise<void>;
+  toggle: (key: Key) => void | Promise<void>;
 
   /**
    * @description
-   * collapse handler
+   * collect
    */
-  onCollapse: (key: Key) => void | Promise<void>;
+  collect: (key: Key) => void;
 
   /**
    * @description
@@ -57,7 +57,7 @@ export interface MenuProps extends ComponentProps {
    * @description
    * click handler
    */
-  onClick?: ContextValue["onClick"];
+  onClick?: ContextValue["click"];
 
   /**
    * @description
@@ -108,35 +108,42 @@ export interface MenuItem {
  * @author murukal
  *
  * @description
- * menu group render props
+ * menu item render props
  */
-export type MenuGroupProps = WithLevel<MenuProps> & {
-  /**
-   * @description
-   * belong to
-   */
-  belongTo?: Key;
-};
+export type MenuItemProps = WithLevel<Omit<MenuItem, "key" | "children">> &
+  ComponentProps & {
+    /**
+     * @description
+     * _key
+     */
+    _key: Key;
+
+    /**
+     * @description
+     * suffix
+     */
+    suffix?: ReactNode;
+
+    /**
+     * @description
+     * click handler
+     */
+    onClick: ContextValue["click"];
+
+    /**
+     * @description
+     * children
+     */
+    children?: ReactNode;
+  };
 
 /**
  * @author murukal
  *
  * @description
- * menu item render props
+ * menu group props
  */
-export type MenuItemProps = WithLevel<WithId<Omit<MenuItem, "key" | "children">>> & {
-  /**
-   * @description
-   * children
-   */
-  children: ReactNode;
-
-  /**
-   * @description
-   * related group ref
-   */
-  groupRef: RefObject<GroupRef>;
-};
+export type MenuGroupProps = Omit<MenuItemProps, "suffix" | "onClick" | "children"> & Pick<MenuProps, "items">;
 
 /**
  * @description
@@ -149,3 +156,8 @@ export interface MenuRef {
    */
   scrollTo: (key: Key, duration?: number) => void;
 }
+
+/**
+ * @description
+ * group ref
+ */

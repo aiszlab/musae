@@ -1,11 +1,12 @@
-import React, { forwardRef, useImperativeHandle, useMemo, useRef } from "react";
-import type { ContextValue, GroupRef, MenuProps, MenuRef } from "./types";
+import React, { forwardRef, useImperativeHandle, useRef } from "react";
+import type { MenuProps, MenuRef } from "./types";
 import Group from "./group";
 import Context from "./context";
-import { useControlledState } from "@aiszlab/relax";
+import { useRefs, useScrollable } from "@aiszlab/relax";
 import { useClassNames } from "../config";
 import { ComponentToken, MenuClassToken } from "../../utils/class-name";
-import clsx from "clsx";
+import Item from "./item";
+import { useContextValue } from "./hooks";
 
 /**
  * @author murukal
@@ -14,48 +15,54 @@ import clsx from "clsx";
  * menu component
  */
 const Menu = forwardRef<MenuRef, MenuProps>(({ onClick, className, style, ...props }, ref) => {
-  const [selectedKeys, setSelectedKeys] = useControlledState(props.selectedKeys);
-  const [expandedKeys, setExpandedKeys] = useControlledState(props.expandedKeys);
   const classNames = useClassNames(ComponentToken.Menu);
-  const groupRef = useRef<GroupRef>(null);
 
-  useImperativeHandle(
-    ref,
-    () => ({
-      scrollTo: (...args) => {
-        groupRef.current?.scrollTo(...args);
-      },
-    }),
-    []
-  );
+  const _menuRef = useRef<HTMLUListElement>(null);
+  const { targetRef, scrollTo, to } = useScrollable({ direction: "vertical" });
+  const menuRef = useRefs(targetRef, _menuRef);
 
   /// context value
-  const contextValue = useMemo<ContextValue>(
-    () => ({
-      onClick: (key) => {
-        setSelectedKeys([key]);
-        onClick?.(key);
-      },
-      onExpand: (key) => {
-        setExpandedKeys((_expandedKeys) => Array.from(new Set(_expandedKeys).add(key)));
-      },
-      onCollapse: (key) => {
-        setExpandedKeys((_expandedKeys) => {
-          const collapsed = new Set(_expandedKeys);
-          collapsed.delete(key);
-          return Array.from(collapsed);
-        });
-      },
-      selectedKeys: new Set(selectedKeys),
-      expandedKeys: new Set(expandedKeys),
-    }),
-    [selectedKeys, expandedKeys, setSelectedKeys, onClick, setExpandedKeys]
-  );
+  const contextValue = useContextValue({
+    selectedKeys: props.selectedKeys,
+    expandedKeys: props.expandedKeys,
+    onClick,
+  });
+
+  useImperativeHandle(ref, () => ({
+    scrollTo: (key, duration) => {
+      scrollTo(to(key), duration);
+    },
+  }));
 
   return (
     <Context.Provider value={contextValue}>
-      <ul className={clsx(classNames[MenuClassToken.Menu], className)}>{props.items.map(() => {})}</ul>
-      <Group className={} items={props.items} ref={groupRef} style={style} level={0} />
+      <ul ref={menuRef} className={classNames[MenuClassToken.Menu]}>
+        {props.items.map((item) => {
+          if (item.children) {
+            return (
+              <Group
+                key={item.key}
+                _key={item.key}
+                level={0}
+                label={item.label}
+                prefix={item.prefix}
+                items={item.children}
+              />
+            );
+          }
+
+          return (
+            <Item
+              key={item.key}
+              _key={item.key}
+              level={0}
+              label={item.label}
+              prefix={item.prefix}
+              onClick={contextValue.click}
+            />
+          );
+        })}
+      </ul>
     </Context.Provider>
   );
 });

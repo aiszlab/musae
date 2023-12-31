@@ -1,65 +1,147 @@
-import React, { Key, ReactNode, useContext, useMemo } from "react";
+import React, { Key, ReactNode, useCallback, useContext, useMemo } from "react";
 import Context from "./context";
-import { StyledCollapser, StyledMenuItemPrefix } from "./styled";
 import { KeyboardArrowUp } from "../icon";
+import type { ContextValue, MenuProps } from "./types";
+import { useControlledState } from "@aiszlab/relax";
 
 /**
  * @description
  * use menu context
  */
-export const useMenu = () => useContext(Context);
+export const useMenuContext = () => useContext(Context);
 
 /**
  * @description
  * use children
  */
-export const useChildren = ({
-  id,
-  hasChildren,
-  isExpanded,
-  collapserClassName,
+export const useItemChildren = ({
+  prefix,
   label,
-  prefix: prefixInProps,
-  prefixClassName,
-  contentClassName,
+  suffix,
 }: {
-  id: Key;
-  hasChildren: boolean;
-  isExpanded: boolean;
-  collapserClassName: string;
-  label: ReactNode;
   prefix: ReactNode;
-  prefixClassName: string;
-  contentClassName: string;
+  label: ReactNode;
+  suffix: ReactNode;
 }) => {
-  /// if there are children, render trailing arrow
-  const collapser = useMemo(() => {
-    if (!hasChildren) return null;
-
-    return (
-      <StyledCollapser isExpanded={isExpanded} className={collapserClassName}>
-        <KeyboardArrowUp size={16} />
-      </StyledCollapser>
-    );
-  }, [hasChildren, isExpanded, collapserClassName]);
-
   /// prefix
-  const prefix = useMemo(() => {
-    if (!prefixInProps) return null;
-
-    return <StyledMenuItemPrefix className={prefixClassName}>{prefixInProps}</StyledMenuItemPrefix>;
-  }, [prefixInProps, prefixClassName]);
+  const _prefix = useMemo(
+    () =>
+      prefix && (
+        <span style={{ display: "flex", justifyContent: "center", alignItems: "center", marginRight: 4 }}>
+          {prefix}
+        </span>
+      ),
+    [prefix]
+  );
 
   /// child
-  const child = useMemo(() => {
-    if (!label) return null;
+  const _label = useMemo(() => label && <span>{label}</span>, [label]);
 
-    return <span className={contentClassName}>{label}</span>;
-  }, [label, contentClassName]);
+  /// suffix
+  const _suffix = useMemo(
+    () =>
+      suffix && (
+        <span
+          style={{
+            marginLeft: "auto",
+          }}
+        >
+          {suffix}
+        </span>
+      ),
+    [suffix]
+  );
 
   return {
-    collapser,
-    prefix,
-    child,
+    suffix: _suffix,
+    prefix: _prefix,
+    label: _label,
   };
+};
+
+/**
+ * @description
+ * use menu group children
+ */
+export const useGroupChildren = ({ isExpanded }: { isExpanded: boolean }) => {
+  /// if there are children, render trailing arrow
+  const collapser = useMemo(
+    () => (
+      <span
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          transform: isExpanded ? "rotateX(0)" : "rotateX(180deg)",
+          transition: "transform 200ms",
+        }}
+      >
+        <KeyboardArrowUp size={16} />
+      </span>
+    ),
+    [isExpanded]
+  );
+
+  return { collapser };
+};
+
+/**
+ * @description
+ * context value
+ */
+export const useContextValue = ({
+  onClick,
+  ...props
+}: {
+  selectedKeys?: Key[];
+  expandedKeys?: Key[];
+  onClick: MenuProps["onClick"];
+}) => {
+  const [_selectedKeys, _setSelectedKeys] = useControlledState(props.selectedKeys!, {
+    defaultState: [],
+  });
+  const [_expandedKeys, _setExpandedKeys] = useControlledState(props.expandedKeys!, {
+    defaultState: [],
+  });
+
+  const selectedKeys = useMemo(() => new Set(_selectedKeys), [_selectedKeys]);
+  const expandedKeys = useMemo(() => new Set(_expandedKeys), [_expandedKeys]);
+
+  /// click handler
+  const click = useCallback(
+    async (key: Key) => {
+      console.log("key======", key);
+
+      _setSelectedKeys([key]);
+      await onClick?.(key);
+    },
+    [onClick, _setSelectedKeys]
+  );
+
+  /// toggle expand
+  const toggle = useCallback(
+    (key: Key) => {
+      const isExpanded = expandedKeys.has(key);
+      _setExpandedKeys((prev) => {
+        const expanded = new Set(prev);
+        isExpanded ? expanded.delete(key) : expanded.add(key);
+        return Array.from(expanded);
+      });
+    },
+    [expandedKeys, _setExpandedKeys]
+  );
+
+  /// collect item
+  const collect = useCallback(() => {}, []);
+
+  return useMemo<ContextValue>(
+    () => ({
+      selectedKeys,
+      expandedKeys,
+      click,
+      toggle,
+      collect,
+    }),
+    [selectedKeys, expandedKeys, click, toggle, collect]
+  );
 };

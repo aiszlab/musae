@@ -10,9 +10,9 @@ import { type ContextValue } from "./types";
 const Context = createContext<ContextValue>({
   selectedKeys: new Set(),
   expandedKeys: new Set(),
-  onClick: () => {},
-  onCollapse: () => {},
-  onExpand: () => {},
+  click: () => {},
+  toggle: () => {},
+  collect: () => {},
 });
 
 export default Context;

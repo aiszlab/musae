@@ -42,7 +42,7 @@ export const StyledClock = styled.div((props) => {
           overflowY: "auto",
         },
 
-        [withDot(menuClassNames[MenuClassToken.GroupItem])]: {
+        li: {
           marginInline: itemGap,
           width: itemSize,
 

@@ -161,10 +161,7 @@ export enum MenuClassToken {
   Group,
   GroupHidden,
   Collapser,
-  GroupItem,
   Item,
-  ItemPrefix,
-  ItemContent,
 }
 export enum CheckboxClassToken {
   Checkbox,
@@ -282,10 +279,7 @@ export const CLASS_NAMES = {
     [MenuClassToken.Group]: "menu-group",
     [MenuClassToken.GroupHidden]: "menu-group-hidden",
     [MenuClassToken.Collapser]: "menu-collapser",
-    [MenuClassToken.GroupItem]: "menu-group-item",
     [MenuClassToken.Item]: "menu-item",
-    [MenuClassToken.ItemPrefix]: "menu-item-prefix",
-    [MenuClassToken.ItemContent]: "menu-item-content",
   },
   [ComponentToken.Checkbox]: {
     [CheckboxClassToken.Checkbox]: "checkbox",
