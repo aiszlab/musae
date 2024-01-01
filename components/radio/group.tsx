@@ -5,24 +5,24 @@ import { useControlledState } from "@aiszlab/relax";
 
 const Group = (props: RadioGroupProps) => {
   /// controlled value
-  const [selectedValue, setSelectedValue] = useControlledState(props.value);
+  const [value, setValue] = useControlledState(props.value);
 
   /// value change handler
-  const change = useCallback<ContextValue["onChange"]>(
+  const change = useCallback<ContextValue["change"]>(
     (value) => {
-      setSelectedValue(value);
+      setValue(value);
     },
-    [setSelectedValue]
+    [setValue]
   );
 
   /// context value
   const contextValue = useMemo<ContextValue>(
     () => ({
-      value: selectedValue,
-      onChange: change,
+      value,
+      change,
       isDisabled: !!props.disabled,
     }),
-    [selectedValue, change, props.disabled]
+    [value, change, props.disabled]
   );
 
   return <Context.Provider value={contextValue}>{props.children}</Context.Provider>;

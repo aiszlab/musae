@@ -1,7 +1,4 @@
-import type { ReactNode, JSX } from "react";
-import type { Partialable } from "@aiszlab/relax";
-
-export type Value = Partialable<string | number>;
+import type { ReactNode, JSX, Key } from "react";
 
 /**
  * @author murukal
@@ -10,13 +7,22 @@ export type Value = Partialable<string | number>;
  * context value
  */
 export interface ContextValue {
-  /* context value */
-  value: Value;
+  /**
+   * @description
+   * checked value in context
+   */
+  value?: Key;
 
-  /* change handler */
-  onChange: (value: Value) => void;
+  /**
+   * @description
+   * change handler
+   */
+  change: (value: Key) => void;
 
-  /* disabled */
+  /**
+   * @description
+   * disabled in context
+   */
   isDisabled: boolean;
 }
 
@@ -27,16 +33,28 @@ export interface ContextValue {
  * radio props
  */
 export interface RadioProps {
-  /* value for current radio */
-  value?: Value;
+  /**
+   * @description
+   * value for current radio
+   */
+  value: Key;
 
-  /* controller radio is checked */
+  /**
+   * @description
+   * controller radio is checked
+   */
   checked?: boolean;
 
-  /* children */
+  /**
+   * @description
+   * children
+   */
   children?: ReactNode;
 
-  /* disabled */
+  /**
+   * @description
+   * disabled
+   */
   disabled?: boolean;
 }
 
@@ -47,13 +65,22 @@ export interface RadioProps {
  * radio group props
  */
 export interface RadioGroupProps {
-  /* children */
+  /**
+   * @description
+   * children
+   */
   children: ReactNode;
 
-  /* value */
-  value?: Value;
+  /**
+   * @description
+   * value
+   */
+  value?: Key;
 
-  /* disabled */
+  /**
+   * @description
+   * disabled
+   */
   disabled?: boolean;
 }
 
@@ -64,10 +91,16 @@ export interface RadioGroupProps {
  * typed Radio, with group property
  */
 export interface TypedRadio {
-  /* component self */
+  /**
+   * @description
+   * component self
+   */
   (props: RadioProps): JSX.Element;
 
-  /* group */
+  /**
+   * @description
+   * group
+   */
   Group: (props: RadioGroupProps) => JSX.Element;
 }
 
@@ -78,6 +111,9 @@ export interface TypedRadio {
  * render props
  */
 export interface RadioRenderProps {
-  /* disabled */
+  /**
+   * @description
+   * disabled
+   */
   disabled: boolean;
 }

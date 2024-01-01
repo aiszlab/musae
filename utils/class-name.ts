@@ -89,7 +89,7 @@ export enum GridClassToken {
   Col,
 }
 export enum RadioClassToken {
-  Wrapper,
+  Radio,
 }
 export enum EmptyClassToken {
   Description,
@@ -207,7 +207,7 @@ export const CLASS_NAMES = {
     [GridClassToken.Col]: "grid-col",
   },
   [ComponentToken.Radio]: {
-    [RadioClassToken.Wrapper]: "radio-wrapper",
+    [RadioClassToken.Radio]: "radio",
   },
   [ComponentToken.Empty]: {
     [EmptyClassToken.Description]: "empty-description",
