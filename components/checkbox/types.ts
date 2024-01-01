@@ -8,8 +8,17 @@ import { ComponentProps } from "../../types/element";
  * context value
  */
 export interface ContextValue {
-  value?: Map<string, boolean>;
-  onChange: (value: string) => void;
+  /**
+   * @description
+   * checked values
+   */
+  value: Set<string>;
+
+  /**
+   * @description
+   * change handler
+   */
+  change: (value: string) => void;
 }
 
 /**

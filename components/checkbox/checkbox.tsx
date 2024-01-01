@@ -18,17 +18,17 @@ const Checkbox = ({ value, className, style, children, ...props }: CheckboxProps
   /// check current checkbox is checked
   /// if there is context value, use context value
   /// else use controlled state
-  const isChecked = useMemo<boolean>(() => {
-    if (!contextValue) return _isChecked;
-    return !!contextValue.value?.get(value);
-  }, [_isChecked, contextValue, value]);
+  const isChecked = useMemo<boolean>(
+    () => (contextValue ? contextValue.value.has(value) : _isChecked),
+    [_isChecked, contextValue, value]
+  );
 
   /// change handler
   /// if there is context value, just notify context
   /// else change the controlled state
   const change = useCallback<ChangeEventHandler<HTMLInputElement>>(
     (event) => {
-      contextValue?.onChange(value);
+      contextValue?.change(value);
       _setIsChecked(event.target.checked);
     },
     [_setIsChecked, contextValue, value]
