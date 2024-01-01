@@ -34,7 +34,7 @@ export interface CheckboxGroupProps {
    * @example
    * ["A"]
    */
-  value: Key[];
+  value?: Key[];
 
   /**
    * @description
