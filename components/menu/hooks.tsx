@@ -91,17 +91,17 @@ export const useGroupChildren = ({ isExpanded }: { isExpanded: boolean }) => {
  */
 export const useContextValue = ({
   onClick,
+  setTrigger,
   ...props
 }: {
-  selectedKeys?: Key[];
-  expandedKeys?: Key[];
   onClick: MenuProps["onClick"];
-}) => {
+  setTrigger: ContextValue["collect"];
+} & Pick<MenuProps, "defaultExpandedKeys" | "defaultSelectedKeys" | "expandedKeys" | "selectedKeys">) => {
   const [_selectedKeys, _setSelectedKeys] = useControlledState(props.selectedKeys!, {
-    defaultState: [],
+    defaultState: props.defaultSelectedKeys ?? [],
   });
   const [_expandedKeys, _setExpandedKeys] = useControlledState(props.expandedKeys!, {
-    defaultState: [],
+    defaultState: props.defaultExpandedKeys ?? [],
   });
 
   const selectedKeys = useMemo(() => new Set(_selectedKeys), [_selectedKeys]);
@@ -110,8 +110,6 @@ export const useContextValue = ({
   /// click handler
   const click = useCallback(
     async (key: Key) => {
-      console.log("key======", key);
-
       _setSelectedKeys([key]);
       await onClick?.(key);
     },
@@ -132,7 +130,13 @@ export const useContextValue = ({
   );
 
   /// collect item
-  const collect = useCallback(() => {}, []);
+  const collect = useCallback<ContextValue["collect"]>(
+    (key, item) => {
+      if (!item) return;
+      setTrigger(key, item);
+    },
+    [setTrigger]
+  );
 
   return useMemo<ContextValue>(
     () => ({

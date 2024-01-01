@@ -7,6 +7,7 @@ import { useClassNames } from "../config";
 import { ComponentToken, MenuClassToken } from "../../utils/class-name";
 import Item from "./item";
 import { useContextValue } from "./hooks";
+import clsx from "clsx";
 
 /**
  * @author murukal
@@ -18,14 +19,17 @@ const Menu = forwardRef<MenuRef, MenuProps>(({ onClick, className, style, ...pro
   const classNames = useClassNames(ComponentToken.Menu);
 
   const _menuRef = useRef<HTMLUListElement>(null);
-  const { targetRef, scrollTo, to } = useScrollable({ direction: "vertical" });
+  const { targetRef, scrollTo, to, setTrigger } = useScrollable({ direction: "vertical" });
   const menuRef = useRefs(targetRef, _menuRef);
 
   /// context value
   const contextValue = useContextValue({
     selectedKeys: props.selectedKeys,
     expandedKeys: props.expandedKeys,
+    defaultSelectedKeys: props.defaultSelectedKeys,
+    defaultExpandedKeys: props.defaultExpandedKeys,
     onClick,
+    setTrigger,
   });
 
   useImperativeHandle(ref, () => ({
@@ -36,7 +40,15 @@ const Menu = forwardRef<MenuRef, MenuProps>(({ onClick, className, style, ...pro
 
   return (
     <Context.Provider value={contextValue}>
-      <ul ref={menuRef} className={classNames[MenuClassToken.Menu]}>
+      <ul
+        ref={menuRef}
+        className={clsx(classNames[MenuClassToken.Menu], className)}
+        style={{
+          /// add position reason: when read li offsetTop, if parent is not relative, then it will read wrong value
+          /// https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetTop
+          position: "relative",
+        }}
+      >
         {props.items.map((item) => {
           if (item.children) {
             return (
@@ -59,6 +71,9 @@ const Menu = forwardRef<MenuRef, MenuProps>(({ onClick, className, style, ...pro
               label={item.label}
               prefix={item.prefix}
               onClick={contextValue.click}
+              ref={(_ref) => {
+                contextValue.collect(item.key, _ref!);
+              }}
             />
           );
         })}

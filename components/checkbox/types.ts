@@ -40,7 +40,13 @@ export interface CheckboxProps extends ComponentProps {
    * @description
    * value
    */
-  value?: string;
+  value: string;
+
+  /**
+   * @description
+   * children
+   */
+  children?: ReactNode;
 }
 
 /**

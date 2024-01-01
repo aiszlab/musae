@@ -46,7 +46,7 @@ const Node = ({ _key, children, listRef, ...props }: TreeNodeProps) => {
       >
         {expander}
 
-        <Checkbox className={classNames[TreeClassToken.Checkbox]} checked={isChecked} />
+        <Checkbox className={classNames[TreeClassToken.Checkbox]} checked={isChecked} value="" />
 
         <span className={classNames[TreeClassToken.Title]} onClick={check}>
           {props.title}

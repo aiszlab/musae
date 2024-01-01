@@ -16,7 +16,7 @@ import { useEvent, useThrottleCallback } from "@aiszlab/relax";
  * menu group
  */
 const Group = ({ items, level = 0, className, _key, ...itemProps }: MenuGroupProps) => {
-  const { expandedKeys, click, toggle } = useMenuContext();
+  const { expandedKeys, click, toggle, collect } = useMenuContext();
   const classNames = useClassNames(ComponentToken.Menu);
   const [scope, animate] = useAnimate<HTMLUListElement>();
 
@@ -52,7 +52,17 @@ const Group = ({ items, level = 0, className, _key, ...itemProps }: MenuGroupPro
   );
 
   return (
-    <Item _key={_key} level={level} key={_key} suffix={collapser} {...itemProps} onClick={_toggle}>
+    <Item
+      _key={_key}
+      level={level}
+      key={_key}
+      suffix={collapser}
+      {...itemProps}
+      onClick={_toggle}
+      ref={(_ref) => {
+        collect(_key, _ref!);
+      }}
+    >
       <StyledMenuGroup
         className={clsx(classNames[MenuClassToken.Group], className, {
           [classNames[MenuClassToken.GroupHidden]]: !isExpanded,
@@ -81,6 +91,9 @@ const Group = ({ items, level = 0, className, _key, ...itemProps }: MenuGroupPro
               label={item.label}
               prefix={item.prefix}
               onClick={click}
+              ref={(_ref) => {
+                collect(item.key, _ref!);
+              }}
             />
           );
         })}

@@ -25,7 +25,7 @@ export interface ContextValue {
    * @description
    * collect
    */
-  collect: (key: Key) => void;
+  collect: (key: Key, item: HTMLLIElement) => void;
 
   /**
    * @description
@@ -67,9 +67,21 @@ export interface MenuProps extends ComponentProps {
 
   /**
    * @description
+   * default selected keys
+   */
+  defaultSelectedKeys?: Key[];
+
+  /**
+   * @description
    * expanded keys
    */
   expandedKeys?: Key[];
+
+  /**
+   * @description
+   * default expanded keys
+   */
+  defaultExpandedKeys?: Key[];
 }
 
 /**
