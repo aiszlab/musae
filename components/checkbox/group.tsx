@@ -1,22 +1,29 @@
 import Context from "./context";
-import React, { useCallback, useMemo, useState } from "react";
+import React, { useCallback, useMemo } from "react";
 import type { ContextValue, CheckboxGroupProps } from "./types";
+import { useControlledState } from "@aiszlab/relax";
 
 const Group = (props: CheckboxGroupProps) => {
-  const [value, setValue] = useState(new Set<string>());
+  const [_value, _setValue] = useControlledState(props.value!, {
+    defaultState: [],
+  });
+  const value = useMemo(() => new Set(_value), [_value]);
 
   /// change handler
-  const change = useCallback<ContextValue["change"]>((value) => {
-    setValue((prev) => {
-      const next = new Set(prev);
-      if (next.has(value)) {
-        next.delete(value);
-      } else {
-        next.add(value);
-      }
-      return next;
-    });
-  }, []);
+  const change = useCallback<ContextValue["change"]>(
+    (value) => {
+      _setValue((prev) => {
+        const next = new Set(prev);
+        if (next.has(value)) {
+          next.delete(value);
+        } else {
+          next.add(value);
+        }
+        return Array.from(next);
+      });
+    },
+    [_setValue]
+  );
 
   /// context value
   const _contextValue = useMemo<ContextValue>(() => {

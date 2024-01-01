@@ -1,5 +1,5 @@
-import { ReactNode } from "react";
-import { ComponentProps } from "../../types/element";
+import type { Key, ReactNode } from "react";
+import type { ComponentProps } from "../../types/element";
 
 /**
  * @author murukal
@@ -12,13 +12,13 @@ export interface ContextValue {
    * @description
    * checked values
    */
-  value: Set<string>;
+  value: Set<Key>;
 
   /**
    * @description
    * change handler
    */
-  change: (value: string) => void;
+  change: (value: Key) => void;
 }
 
 /**
@@ -28,7 +28,20 @@ export interface ContextValue {
  * checkbox group props
  */
 export interface CheckboxGroupProps {
-  /* children */
+  /**
+   * @description
+   * checked values
+   * @example
+   * ["A"]
+   */
+  value: Key[];
+
+  /**
+   * @description
+   * children
+   * @example
+   * <Checkbox value="A" />
+   */
   children: ReactNode;
 }
 
@@ -49,7 +62,7 @@ export interface CheckboxProps extends ComponentProps {
    * @description
    * value
    */
-  value: string;
+  value: Key;
 
   /**
    * @description
