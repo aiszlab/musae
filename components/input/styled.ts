@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { useValidTheme } from "../theme";
-import { ComponentToken, InputClassToken, withSelf } from "../../utils/class-name";
+import { ComponentToken, InputClassToken } from "../../utils/class-name";
 import { useContext } from "react";
 import Context from "../config/context";
 
@@ -9,7 +9,7 @@ export const StyledWrapper = styled.div((props) => {
   const classNames = useContext(Context).classNames[ComponentToken.Input];
 
   return {
-    [withSelf(classNames[InputClassToken.Wrapper])]: {
+    [`:where(&).${classNames[InputClassToken.Wrapper]}`]: {
       minHeight: 36,
       minWidth: 0,
       width: 240,
@@ -30,26 +30,24 @@ export const StyledWrapper = styled.div((props) => {
       paddingInline: 12,
 
       ...theme.typography.body.small,
-    },
 
-    // if input is focused, change the border
-    [withSelf(classNames[InputClassToken.Focused])]: {
-      borderWidth: 2,
-      borderColor: theme.colorRole.primary,
-    },
+      [`& > .${classNames[InputClassToken.Input]}`]: {
+        backgroundColor: "transparent",
+        minWidth: 0,
+        outline: "none",
+        border: "none",
+        height: "auto",
+        flex: 1,
+      },
 
-    // if is invalid, display as error
-    [withSelf(classNames[InputClassToken.Invalid])]: {
-      borderColor: theme.colorRole.error,
-    },
+      [`&.${classNames[InputClassToken.Focused]}`]: {
+        borderWidth: 2,
+        borderColor: theme.colorRole.primary,
+      },
 
-    [withSelf(classNames[InputClassToken.Input])]: {
-      backgroundColor: "transparent",
-      minWidth: 0,
-      outline: "none",
-      border: "none",
-      height: "auto",
-      flex: 1,
+      [`&.${classNames[InputClassToken.Invalid]}`]: {
+        borderColor: theme.colorRole.error,
+      },
     },
   };
 });
