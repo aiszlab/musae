@@ -7,6 +7,9 @@ import KeyboardArrowUp from "./icons/keyboard-arrow-up";
 import KeyboardArrowDown from "./icons/keyboard-arrow-down";
 import SwapHoriz from "./icons/swap-horiz";
 
+import Visibility from "./icons/action/visibility";
+import VisibilityOff from "./icons/action/visibility-off";
+
 /**
  * @description
  * icon component
@@ -25,4 +28,6 @@ export {
   KeyboardArrowUp,
   KeyboardArrowDown,
   SwapHoriz,
+  Visibility,
+  VisibilityOff,
 };
