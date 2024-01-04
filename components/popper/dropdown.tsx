@@ -5,8 +5,9 @@ import { useAnimate } from "framer-motion";
 import { useStyles } from "./hooks";
 import Context from "../config/context";
 import { ComponentToken, PopperClassToken } from "../../utils/class-name";
+import { useMounted } from "@aiszlab/relax";
 
-const Dropdown = forwardRef<PopperRef, PopperProps>(({ isVisible, trigger, children, onMouseDown, ...props }, ref) => {
+const Dropdown = forwardRef<PopperRef, PopperProps>(({ isVisible, trigger, children, onMouseDown }, ref) => {
   const [scope, animate] = useAnimate<HTMLDivElement>();
   const styles = useStyles();
   const classNames = useContext(Context).classNames[ComponentToken.Popper];
@@ -23,27 +24,32 @@ const Dropdown = forwardRef<PopperRef, PopperProps>(({ isVisible, trigger, child
     []
   );
 
-  useEffect(() => {
+  useMounted(() => {
     if (!trigger) return;
 
     popper.current = createPopper(trigger, scope.current, {
       placement: "bottom-start",
+      modifiers: [
+        {
+          name: "flip",
+        },
+      ],
     });
 
     return () => {
       popper.current?.destroy();
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  });
 
   useEffect(() => {
     (async () => {
       if (isVisible) {
-        await animate(scope.current, { display: "unset" }, { duration: 0 });
+        popper.current?.update();
+        scope.current.attributeStyleMap.delete("display");
         await animate(scope.current, { opacity: 1 }, { duration: 0.1 });
       } else {
         await animate(scope.current, { opacity: 0 }, { duration: 0.1 });
-        await animate(scope.current, { display: "none" });
+        scope.current.attributeStyleMap.set("display", "none");
       }
     })();
     // eslint-disable-next-line react-hooks/exhaustive-deps
