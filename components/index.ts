@@ -30,6 +30,8 @@ export { DateRangePicker } from "./date-range-picker";
 export { Icon } from "./icon";
 export { Clock } from "./clock";
 export { Tree } from "./tree";
+export { Table } from "./table";
+export { Layout } from "./layout";
 
 /**
  * @description

@@ -6,7 +6,7 @@ import { ComponentToken, GridClassToken } from "../../utils/class-name";
 import clsx from "clsx";
 import { useRowStyle } from "./hooks";
 
-const Row = ({ align, children, gutter, justify, className, ...props }: RowProps) => {
+const Row = ({ align, children, gutter, justify, className, as: As = "div", ...props }: RowProps) => {
   /// col and row gap in grid
   const gutters = useMemo<Gutters>(() => {
     if (!gutter) return [0, 0];
@@ -19,9 +19,9 @@ const Row = ({ align, children, gutter, justify, className, ...props }: RowProps
   const style = useRowStyle([gutters, justify, align, props.style]);
 
   return (
-    <div style={style} className={clsx([classNames[GridClassToken.Row], className])}>
+    <As style={style} className={clsx([classNames[GridClassToken.Row], className])}>
       {children}
-    </div>
+    </As>
   );
 };
 

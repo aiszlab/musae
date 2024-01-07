@@ -5,23 +5,53 @@ export type Gutters = [colGutter: number, rowGutter: number];
 type Gutter = number | Gutters;
 
 export interface RowProps extends ComponentProps {
-  /* children */
+  /**
+   * @description
+   * children
+   */
   children?: ReactNode;
 
-  /* gutter */
+  /**
+   * @description
+   * gutter
+   */
   gutter?: Gutter;
 
-  /* justify */
+  /**
+   * @description
+   * justify
+   */
   justify?: CSSProperties["justifyItems"];
 
-  /* align */
+  /**
+   * @description
+   * align
+   */
   align?: CSSProperties["alignItems"];
+
+  /**
+   * @description
+   * as
+   */
+  as?: "div" | "main";
 }
 
 export interface ColProps extends ComponentProps {
-  /* span */
+  /**
+   * @description
+   * span
+   */
   span?: number;
 
-  /* children */
+  /**
+   * @description
+   * children
+   */
   children?: ReactNode;
+
+  /**
+   * @description
+   * as
+   */
+  as?: "div" | "aside";
 }

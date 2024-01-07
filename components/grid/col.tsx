@@ -5,14 +5,14 @@ import { useClassNames } from "../config";
 import { ComponentToken, GridClassToken } from "../../utils/class-name";
 import clsx from "clsx";
 
-const Col = ({ children, className, span, ...props }: ColProps) => {
+const Col = ({ children, className, span, as: As = "div", ...props }: ColProps) => {
   const style = useColStyle([span, props.style]);
   const classNames = useClassNames(ComponentToken.Grid);
 
   return (
-    <div style={style} className={clsx(classNames[GridClassToken.Col], className)}>
+    <As style={style} className={clsx(classNames[GridClassToken.Col], className)}>
       {children}
-    </div>
+    </As>
   );
 };
 
