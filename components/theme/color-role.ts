@@ -107,6 +107,9 @@ export class ColorRole {
   get surface() {
     return "#FEF7FF";
   }
+  get onSurface() {
+    return this.#palettes.neutral[10];
+  }
   get surfaceDim() {
     return "#DED8E1";
   }
@@ -125,9 +128,7 @@ export class ColorRole {
   get surfaceContainerHighest() {
     return this.#palettes.neutral[90];
   }
-  get onSurface() {
-    return this.#palettes.neutral[10];
-  }
+
   get onSurfaceVariant() {
     return this.#palettes.neutralVariant[30];
   }

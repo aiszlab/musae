@@ -16,7 +16,7 @@ export interface Props {
   children: ReactNode;
 
   /* theme */
-  theme: Theme;
+  theme?: Theme;
 }
 
 type ColorReference = {
