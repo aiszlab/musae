@@ -6,10 +6,15 @@ import Header from "./header";
 import Context from "./context";
 import Body from "./body";
 import { makeStyles } from "@griffel/react";
+import { COLOR_TOKENS } from "../theme/hooks";
+import { Token } from "../theme/token";
 
 const useClasses = makeStyles({
   table: {
     width: "400px",
+  },
+  header: {
+    backgroundColor: COLOR_TOKENS[Token.ColorSurface],
   },
 });
 
@@ -27,7 +32,7 @@ const Table = <T,>({ ...props }: TableProps<T>) => {
   return (
     <Context.Provider value={contextValue}>
       <table className={classes.table}>
-        <Header<T> />
+        <Header<T> className={classes.header} />
         <Body<T> />
 
         {/* <tfoot>

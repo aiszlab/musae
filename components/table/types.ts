@@ -1,5 +1,6 @@
 import { ColumnDef, ColumnHelper } from "@tanstack/react-table";
 import { Table } from "@tanstack/react-table";
+import { ComponentProps } from "../../types/element";
 
 /**
  * @description
@@ -38,3 +39,9 @@ export type ContextValue<T> = {
    */
   table?: Table<T>;
 };
+
+/**
+ * @description
+ * header props
+ */
+export type HeaderProps = ComponentProps & {};

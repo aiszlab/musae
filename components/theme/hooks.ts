@@ -173,6 +173,71 @@ export const THEME: Readonly<Theme> = {
 };
 
 /**
+ * @description
+ * to color tokens
+ */
+const toColorTokens = (theme: Theme) => {
+  return {
+    [Token.ColorPrimary]: theme.palettes.primary[40],
+    [Token.ColorOnPrimary]: theme.palettes.primary[100],
+    [Token.ColorPrimaryContainer]: theme.palettes.primary[90],
+    [Token.ColorOnPrimaryContainer]: theme.palettes.primary[10],
+    [Token.ColorPrimaryFixed]: theme.palettes.primary[90],
+    [Token.ColorPrimaryFixedDim]: theme.palettes.primary[80],
+    [Token.ColorOnPrimaryFixed]: theme.palettes.primary[10],
+    [Token.ColorOnPrimaryFixedVariant]: theme.palettes.primary[30],
+
+    [Token.ColorSecondary]: theme.palettes.secondary[40],
+    [Token.ColorOnSecondary]: theme.palettes.secondary[100],
+    [Token.ColorSecondaryContainer]: theme.palettes.secondary[90],
+    [Token.ColorOnSecondaryContainer]: theme.palettes.secondary[10],
+    [Token.ColorSecondaryFixed]: theme.palettes.secondary[90],
+    [Token.ColorSecondaryFixedDim]: theme.palettes.secondary[80],
+    [Token.ColorOnSecondaryFixed]: theme.palettes.secondary[10],
+    [Token.ColorOnSecondaryFixedVariant]: theme.palettes.secondary[30],
+
+    [Token.ColorTertiary]: theme.palettes.tertiary[40],
+    [Token.ColorOnTertiary]: theme.palettes.tertiary[100],
+    [Token.ColorTertiaryContainer]: theme.palettes.tertiary[90],
+    [Token.ColorOnTertiaryContainer]: theme.palettes.tertiary[10],
+    [Token.ColorTertiaryFixed]: theme.palettes.tertiary[90],
+    [Token.ColorTertiaryFixedDim]: theme.palettes.tertiary[80],
+    [Token.ColorOnTertiaryFixed]: theme.palettes.tertiary[10],
+    [Token.ColorOnTertiaryFixedVariant]: theme.palettes.tertiary[30],
+
+    [Token.ColorError]: theme.palettes.error[40],
+    [Token.ColorOnError]: theme.palettes.error[100],
+    [Token.ColorErrorContainer]: theme.palettes.error[90],
+    [Token.ColorOnErrorContainer]: theme.palettes.error[10],
+
+    [Token.ColorSurface]: "#FEF7FF",
+    [Token.ColorOnSurface]: theme.palettes.neutral[10],
+    [Token.ColorSurfaceDim]: "#DED8E1",
+    [Token.ColorSurfaceContainer]: "#F3EDF7",
+    [Token.ColorSurfaceContainerLow]: theme.palettes.primary[100],
+    [Token.ColorSurfaceContainerLowest]: theme.palettes.neutral[100],
+    [Token.ColorSurfaceContainerHigh]: "#ECE6F0",
+    [Token.ColorSurfaceContainerHighest]: theme.palettes.neutral[90],
+    [Token.ColorOnSurfaceVariant]: theme.palettes.neutralVariant[30],
+    [Token.ColorInverseSurface]: theme.palettes.neutral[20],
+    [Token.ColorInverseOnSurface]: theme.palettes.neutral[95],
+    [Token.ColorInversePrimary]: theme.palettes.primary[80],
+
+    [Token.ColorOutline]: theme.palettes.neutralVariant[50],
+    [Token.ColorOutlineVariant]: theme.palettes.neutralVariant[80],
+
+    [Token.ColorShadow]: theme.palettes.neutral[0],
+    [Token.ColorScrim]: theme.palettes.neutral[0],
+  };
+};
+
+/**
+ * @description
+ * default color tokens
+ */
+export const COLOR_TOKENS = toColorTokens(THEME);
+
+/**
  * @author murukal
  *
  * @description
@@ -215,58 +280,7 @@ export const useTheme = () => {
  */
 export const useStyleVariables = ({ theme }: { theme: Theme }) => {
   const style = useMemo<Record<Token, string>>(() => {
-    return {
-      [Token.ColorPrimary]: theme.palettes.primary[40],
-      [Token.ColorOnPrimary]: theme.palettes.primary[100],
-      [Token.ColorPrimaryContainer]: theme.palettes.primary[90],
-      [Token.ColorOnPrimaryContainer]: theme.palettes.primary[10],
-      [Token.ColorPrimaryFixed]: theme.palettes.primary[90],
-      [Token.ColorPrimaryFixedDim]: theme.palettes.primary[80],
-      [Token.ColorOnPrimaryFixed]: theme.palettes.primary[10],
-      [Token.ColorOnPrimaryFixedVariant]: theme.palettes.primary[30],
-
-      [Token.ColorSecondary]: theme.palettes.secondary[40],
-      [Token.ColorOnSecondary]: theme.palettes.secondary[100],
-      [Token.ColorSecondaryContainer]: theme.palettes.secondary[90],
-      [Token.ColorOnSecondaryContainer]: theme.palettes.secondary[10],
-      [Token.ColorSecondaryFixed]: theme.palettes.secondary[90],
-      [Token.ColorSecondaryFixedDim]: theme.palettes.secondary[80],
-      [Token.ColorOnSecondaryFixed]: theme.palettes.secondary[10],
-      [Token.ColorOnSecondaryFixedVariant]: theme.palettes.secondary[30],
-
-      [Token.ColorTertiary]: theme.palettes.tertiary[40],
-      [Token.ColorOnTertiary]: theme.palettes.tertiary[100],
-      [Token.ColorTertiaryContainer]: theme.palettes.tertiary[90],
-      [Token.ColorOnTertiaryContainer]: theme.palettes.tertiary[10],
-      [Token.ColorTertiaryFixed]: theme.palettes.tertiary[90],
-      [Token.ColorTertiaryFixedDim]: theme.palettes.tertiary[80],
-      [Token.ColorOnTertiaryFixed]: theme.palettes.tertiary[10],
-      [Token.ColorOnTertiaryFixedVariant]: theme.palettes.tertiary[30],
-
-      [Token.ColorError]: theme.palettes.error[40],
-      [Token.ColorOnError]: theme.palettes.error[100],
-      [Token.ColorErrorContainer]: theme.palettes.error[90],
-      [Token.ColorOnErrorContainer]: theme.palettes.error[10],
-
-      [Token.ColorSurface]: "#FEF7FF",
-      [Token.ColorOnSurface]: theme.palettes.neutral[10],
-      [Token.ColorSurfaceDim]: "#DED8E1",
-      [Token.ColorSurfaceContainer]: "#F3EDF7",
-      [Token.ColorSurfaceContainerLow]: theme.palettes.primary[100],
-      [Token.ColorSurfaceContainerLowest]: theme.palettes.neutral[100],
-      [Token.ColorSurfaceContainerHigh]: "#ECE6F0",
-      [Token.ColorSurfaceContainerHighest]: theme.palettes.neutral[90],
-      [Token.ColorOnSurfaceVariant]: theme.palettes.neutralVariant[30],
-      [Token.ColorInverseSurface]: theme.palettes.neutral[20],
-      [Token.ColorInverseOnSurface]: theme.palettes.neutral[95],
-      [Token.ColorInversePrimary]: theme.palettes.primary[80],
-
-      [Token.ColorOutline]: theme.palettes.neutralVariant[50],
-      [Token.ColorOutlineVariant]: theme.palettes.neutralVariant[80],
-
-      [Token.ColorShadow]: theme.palettes.neutral[0],
-      [Token.ColorScrim]: theme.palettes.neutral[0],
-    };
+    return toColorTokens(theme);
   }, [theme]);
 
   return style as CSSProperties;
