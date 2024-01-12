@@ -32,6 +32,7 @@ export { Clock } from "./clock";
 export { Tree } from "./tree";
 export { Table } from "./table";
 export { Layout } from "./layout";
+export { ssr } from "./ssr";
 
 /**
  * @description
