@@ -25,11 +25,31 @@ const TO_CLIENT = new Set(
     .map((path) => `components/${path}/${path}`)
     .concat([
       "components/config/provider",
+      "components/config/hooks",
       "components/theme/provider",
+      "components/theme/hooks",
       "components/grid/row",
       "components/grid/col",
       "components/form/form",
       "components/form/item",
+      "components/form/form",
+      "components/checkbox/checkbox",
+      "components/checkbox/group",
+      "components/menu/menu",
+      // "components/menu/group",
+      // "components/menu/item",
+      "components/message/message",
+      "components/message/hooks",
+      "components/radio/radio",
+      "components/radio/group",
+      "components/select/select",
+      "components/table/table",
+      "components/tabs/tabs",
+      "components/time-picker/time-picker",
+      "components/tree/tree",
+      "components/switch/switch",
+
+      "components/layout/layout",
     ])
 );
 
