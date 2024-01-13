@@ -8,13 +8,12 @@ import Body from "./body";
 import { makeStyles } from "@griffel/react";
 import { COLOR_TOKENS } from "../theme/hooks";
 import { Token } from "../theme/token";
+import * as stylex from "@stylexjs/stylex";
 
-const useClasses = makeStyles({
+const styles = stylex.create({
   table: {
     width: "400px",
-  },
-  header: {
-    backgroundColor: COLOR_TOKENS[Token.ColorSurface],
+    backgroundColor: "red",
   },
 });
 
@@ -26,13 +25,12 @@ const Table = <T,>({ ...props }: TableProps<T>) => {
     getCoreRowModel: getCoreRowModel(),
   });
 
-  const classes = useClasses();
   const contextValue = useContextValue({ table });
 
   return (
     <Context.Provider value={contextValue}>
-      <table className={classes.table}>
-        <Header<T> className={classes.header} />
+      <table {...stylex.props(styles.table)}>
+        <Header<T> />
         <Body<T> />
 
         {/* <tfoot>

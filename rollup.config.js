@@ -1,7 +1,13 @@
 import babel from "@rollup/plugin-babel";
 import resolve from "@rollup/plugin-node-resolve";
 import typescript from "@rollup/plugin-typescript";
+import stylexPlugin from "@stylexjs/rollup-plugin";
+import commonjs from "@rollup/plugin-commonjs";
+
 import pkg from "./package.json" assert { type: "json" };
+
+import { fileURLToPath } from "url";
+import { dirname } from "path";
 
 /** @type {import("rollup").RollupOptions} */
 const configuration = {
@@ -19,6 +25,7 @@ const configuration = {
   },
 
   plugins: [
+    commonjs(),
     resolve({
       extensions: [".ts", ".tsx", ".js", ".jsx"],
     }),
@@ -26,6 +33,23 @@ const configuration = {
     babel({
       babelHelpers: "bundled",
       presets: ["@babel/preset-env", "@babel/preset-react", "@babel/preset-typescript"],
+    }),
+    stylexPlugin({
+      // Required. File path for the generated CSS file.
+      fileName: "stylex.css",
+      // default: false
+      dev: false,
+      // prefix for all generated classNames
+      classNamePrefix: "x",
+      runtimeInjection: true,
+      // Required for CSS variable support
+      unstable_moduleResolution: {
+        // type: 'commonJS' | 'haste'
+        // default: 'commonJS'
+        type: "commonJS",
+        // The absolute path to the root directory of your project
+        rootDir: dirname(fileURLToPath(import.meta.url)),
+      },
     }),
   ],
 
