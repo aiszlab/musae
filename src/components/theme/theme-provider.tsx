@@ -3,8 +3,6 @@ import { ThemeProvider as EmotionThemeProvider } from "@emotion/react";
 import type { Props } from "./types";
 import deepmerge from "deepmerge";
 import { THEME, useStyleVariables } from "./hooks";
-import { createDOMRenderer, RendererProvider } from "@griffel/react";
-import { Renderer } from "../../utils/ssr";
 
 /**
  * @author murukal
@@ -21,10 +19,7 @@ const ThemeProvider = (props: Props) => {
   // provider
   return (
     <EmotionThemeProvider theme={theme}>
-      <RendererProvider renderer={new Renderer().styler ?? createDOMRenderer()}>
-        {/* @ts-ignore */}
-        <div style={style}>{props.children}</div>
-      </RendererProvider>
+      <div style={style}>{props.children}</div>
     </EmotionThemeProvider>
   );
 };
