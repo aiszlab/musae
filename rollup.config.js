@@ -16,6 +16,11 @@ const configuration = {
   output: {
     format: "es",
     dir: "./dist",
+    banner: (chunk) => {
+      if (chunk.isEntry) {
+        return 'import "./stylex.css";';
+      }
+    },
     preserveModules: true,
     preserveModulesRoot: "src",
   },
@@ -40,8 +45,7 @@ const configuration = {
       // default: false
       dev: false,
       // prefix for all generated classNames
-      classNamePrefix: "x",
-      runtimeInjection: true,
+      classNamePrefix: "musae-",
       // Required for CSS variable support
       unstable_moduleResolution: {
         // type: 'commonJS' | 'haste'

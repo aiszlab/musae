@@ -2,31 +2,27 @@ import React from "react";
 import { useTable } from "./hooks";
 import { flexRender } from "@tanstack/react-table";
 import { HeaderProps } from "./types";
-import { makeStyles, shorthands } from "@griffel/react";
-import { COLOR_TOKENS } from "../theme/hooks";
-import { Token } from "../theme/token";
 
-const useClasses = makeStyles({
-  cell: {
-    position: "relative",
-    ...shorthands.padding("16px"),
+// const useClasses = makeStyles({
+//   cell: {
+//     position: "relative",
+//     ...shorthands.padding("16px"),
 
-    ":not(:last-child)::before": {
-      content: "''",
-      height: "50%",
-      position: "absolute",
-      width: "1px",
-      backgroundColor: COLOR_TOKENS[Token.ColorOutline],
-      insetInlineEnd: 0,
-      top: "50%",
-      transform: "translateY(-50%)",
-    },
-  },
-});
+//     ":not(:last-child)::before": {
+//       content: "''",
+//       height: "50%",
+//       position: "absolute",
+//       width: "1px",
+//       backgroundColor: COLOR_TOKENS[Token.ColorOutline],
+//       insetInlineEnd: 0,
+//       top: "50%",
+//       transform: "translateY(-50%)",
+//     },
+//   },
+// });
 
 const Header = <T,>(props: HeaderProps) => {
   const { table } = useTable<T>();
-  const classes = useClasses();
 
   if (!table) return null;
 
@@ -35,7 +31,7 @@ const Header = <T,>(props: HeaderProps) => {
       {table.getHeaderGroups().map((headerGroup) => (
         <tr key={headerGroup.id}>
           {headerGroup.headers.map((header) => (
-            <th key={header.id} className={classes.cell}>
+            <th key={header.id}>
               {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
             </th>
           ))}

@@ -5,15 +5,15 @@ import type { TableProps } from "./types";
 import Header from "./header";
 import Context from "./context";
 import Body from "./body";
-import { makeStyles } from "@griffel/react";
-import { COLOR_TOKENS } from "../theme/hooks";
-import { Token } from "../theme/token";
 import * as stylex from "@stylexjs/stylex";
 
 const styles = stylex.create({
   table: {
     width: "400px",
     backgroundColor: "red",
+  },
+  thead: {
+    backgroundColor: "blue",
   },
 });
 

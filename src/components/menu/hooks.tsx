@@ -1,6 +1,5 @@
-import React, { Key, ReactNode, useCallback, useContext, useMemo } from "react";
+import React, { type Key, type ReactNode, useCallback, useContext, useMemo } from "react";
 import Context from "./context";
-import { KeyboardArrowUp } from "../icon";
 import type { ContextValue, MenuProps } from "./types";
 import { useControlledState } from "@aiszlab/relax";
 
@@ -57,32 +56,6 @@ export const useItemChildren = ({
     prefix: _prefix,
     label: _label,
   };
-};
-
-/**
- * @description
- * use menu group children
- */
-export const useGroupChildren = ({ isExpanded }: { isExpanded: boolean }) => {
-  /// if there are children, render trailing arrow
-  const collapser = useMemo(
-    () => (
-      <span
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          transform: isExpanded ? "rotateX(0)" : "rotateX(180deg)",
-          transition: "transform 200ms",
-        }}
-      >
-        <KeyboardArrowUp size={16} />
-      </span>
-    ),
-    [isExpanded]
-  );
-
-  return { collapser };
 };
 
 /**

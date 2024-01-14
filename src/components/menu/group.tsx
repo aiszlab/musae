@@ -5,9 +5,38 @@ import { useClassNames } from "../config";
 import { ComponentToken, MenuClassToken } from "../../utils/class-name";
 import clsx from "clsx";
 import Item from "./item";
-import { useGroupChildren, useMenuContext } from "./hooks";
-import { StyledMenuGroup } from "./styled";
+import { useMenuContext } from "./hooks";
 import { useEvent, useThrottleCallback } from "@aiszlab/relax";
+import stylex from "@stylexjs/stylex";
+import { spacing } from "../theme/tokens.stylex";
+import { KeyboardArrowUp } from "../icon";
+
+const styles = stylex.create({
+  group: {
+    margin: spacing.none,
+    padding: spacing.none,
+    listStyle: "none",
+  },
+
+  item: {
+    marginBlock: spacing.xsmall,
+  },
+
+  hidden: {
+    display: "none",
+  },
+
+  collapser: (isExpanded: boolean) => ({
+    ":last-child": {
+      marginLeft: "auto",
+    },
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    transform: isExpanded ? "rotateX(0)" : "rotateX(180deg)",
+    transition: "transform 200ms",
+  }),
+});
 
 /**
  * @author murukal
@@ -19,9 +48,7 @@ const Group = ({ items, level = 0, className, _key, ...itemProps }: MenuGroupPro
   const { expandedKeys, click, toggle, collect } = useMenuContext();
   const classNames = useClassNames(ComponentToken.Menu);
   const [scope, animate] = useAnimate<HTMLUListElement>();
-
   const isExpanded = expandedKeys.has(_key);
-  const { collapser } = useGroupChildren({ isExpanded });
 
   const { next: _toggle } = useThrottleCallback(
     useEvent(async () => {
@@ -51,22 +78,32 @@ const Group = ({ items, level = 0, className, _key, ...itemProps }: MenuGroupPro
     }
   );
 
+  const styled = stylex.props(styles.group, !isExpanded && styles.hidden);
+
   return (
     <Item
       _key={_key}
       level={level}
       key={_key}
-      suffix={collapser}
+      suffix={
+        <span {...stylex.props(styles.collapser(isExpanded))}>
+          <KeyboardArrowUp size={16} />
+        </span>
+      }
       {...itemProps}
       onClick={_toggle}
       ref={(_ref) => {
         collect(_key, _ref!);
       }}
     >
-      <StyledMenuGroup
-        className={clsx(classNames[MenuClassToken.Group], className, {
+      <ul
+        className={clsx(styled.className, classNames[MenuClassToken.Group], className, {
           [classNames[MenuClassToken.GroupHidden]]: !isExpanded,
         })}
+        style={{
+          ...styled.style,
+          ...itemProps.style,
+        }}
         ref={scope}
       >
         {items.map((item) => {
@@ -94,10 +131,11 @@ const Group = ({ items, level = 0, className, _key, ...itemProps }: MenuGroupPro
               ref={(_ref) => {
                 collect(item.key, _ref!);
               }}
+              {...stylex.props(styles.item)}
             />
           );
         })}
-      </StyledMenuGroup>
+      </ul>
     </Item>
   );
 };
