@@ -6,13 +6,14 @@ import { useTheme } from "../theme";
 import { useClassNames } from "../config";
 import { ComponentToken, IconClassToken } from "../../utils/class-name";
 import clsx from "clsx";
+import { ColorToken } from "../../utils/colors";
 
 const Icon = ({ as, color, size, onClick, className }: IconProps) => {
   const theme = useTheme();
   const classNames = useClassNames(ComponentToken.Icon);
   const asProps = useMemo<AsProps>(() => {
     return {
-      color: color ?? theme.colorRole.primary,
+      color: color ?? theme.colors[ColorToken.Primary],
       size: size ?? 20,
     };
   }, [color, size, theme]);

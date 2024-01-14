@@ -1,10 +1,20 @@
 import React, { createRef, forwardRef, useImperativeHandle, useMemo } from "react";
 import type { ListRef, TreeListProps } from "./types";
-import { StyledTreeList } from "./styled";
 import Node from "./node";
 import { useAnimate } from "framer-motion";
 import { useClassNames } from "../config";
 import { ComponentToken, TreeClassToken } from "../../utils/class-name";
+import { stylex } from "@stylexjs/stylex";
+import { spacing } from "../theme/tokens.stylex";
+import clsx from "clsx";
+
+const styles = stylex.create({
+  list: {
+    margin: spacing.none,
+    padding: spacing.none,
+    listStyleType: "none",
+  },
+});
 
 const List = forwardRef<ListRef, TreeListProps>(({ level, nodes }, ref) => {
   const [scope, animate] = useAnimate<HTMLUListElement>();
@@ -38,10 +48,12 @@ const List = forwardRef<ListRef, TreeListProps>(({ level, nodes }, ref) => {
     [animate, scope]
   );
 
+  const styled = stylex.props(styles.list);
+
   return (
-    <StyledTreeList className={classNames[TreeClassToken.List]} ref={scope}>
+    <ul className={clsx(classNames[TreeClassToken.List], styled.className)} style={styled.style} ref={scope}>
       {children}
-    </StyledTreeList>
+    </ul>
   );
 });
 
