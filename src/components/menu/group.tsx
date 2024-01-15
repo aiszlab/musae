@@ -19,7 +19,7 @@ const styles = stylex.create({
   },
 
   item: {
-    marginBlock: spacing.xsmall,
+    marginBlock: spacing.xxsmall,
   },
 
   hidden: {

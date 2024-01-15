@@ -28,7 +28,7 @@ const styles = stylex.create({
     hoveredColor: Required<CSSProperties>["color"]
   ) => ({
     paddingBlock: spacing.none,
-    paddingInline: spacing.xsmall,
+    paddingInline: spacing.xxsmall,
     transition: "all 200ms",
     borderRadius: 4,
     backgroundColor: {

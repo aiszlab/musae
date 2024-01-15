@@ -28,7 +28,7 @@ const styles = stylex.create({
 
     // layout
     margin: spacing.none,
-    paddingBlock: spacing.xsmall,
+    paddingBlock: spacing.xxsmall,
     paddingInline: spacing.medium,
   }),
 

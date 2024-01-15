@@ -36,7 +36,7 @@ const styles = stylex.create({
     hoveredBackgroundColor: Required<CSSProperties>["backgroundColor"],
     color: Required<CSSProperties>["color"]
   ) => ({
-    paddingInline: spacing.xsmall,
+    paddingInline: spacing.xxsmall,
     borderRadius: 4,
     backgroundColor: {
       default: isSelected ? backgroundColor : null,
@@ -46,7 +46,7 @@ const styles = stylex.create({
   }),
 
   checkbox: {
-    marginRight: spacing.xsmall,
+    marginRight: spacing.xxsmall,
   },
 });
 
