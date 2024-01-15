@@ -4,9 +4,16 @@ import { TimePickerProps } from "./types";
 import clsx from "clsx";
 import { useClassNames } from "../config";
 import { ComponentToken, TimePickerClassToken } from "../../utils/class-name";
-import { StyledInput } from "./styled";
 import Panel from "./panel";
 import { useValue } from "./hooks";
+import stylex from "@stylexjs/stylex";
+
+const styles = stylex.create({
+  input: {
+    outline: "none",
+    width: "100%",
+  },
+});
 
 const TimePicker = ({ className, ...props }: TimePickerProps) => {
   const classNames = useClassNames(ComponentToken.TimePicker);
@@ -15,7 +22,15 @@ const TimePicker = ({ className, ...props }: TimePickerProps) => {
 
   /// picked date
   const picked = useMemo(() => {
-    return <StyledInput className={classNames[TimePickerClassToken.Input]} value={value.format("HH:mm:ss")} readOnly />;
+    const { className, style } = stylex.props(styles.input);
+    return (
+      <input
+        className={clsx(classNames[TimePickerClassToken.Input], className)}
+        style={style}
+        value={value.format("HH:mm:ss")}
+        readOnly
+      />
+    );
   }, [value, classNames]);
 
   return (

@@ -1,6 +1,5 @@
-import React, { useCallback, useContext, useEffect, useState } from "react";
+import React, { CSSProperties, useCallback, useContext, useEffect, useState } from "react";
 import { Clock } from "../clock";
-import { StyledPanel } from "./styled";
 import { useClassNames } from "../config";
 import { ComponentToken, TimePickerClassToken } from "../../utils/class-name";
 import { Button } from "../button";
@@ -8,11 +7,30 @@ import { PanelProps } from "./types";
 import Context from "../picker/context";
 import { ClockProps } from "../clock/types";
 import dayjs from "dayjs";
+import stylex from "@stylexjs/stylex";
+import { useTheme } from "../theme";
+import { ColorToken } from "../../utils/colors";
+import clsx from "clsx";
+
+const styles = stylex.create({
+  panel: (borderTopColor: Required<CSSProperties>["borderTopColor"]) => ({
+    borderWidth: "1px",
+    borderStyle: "solid",
+    borderTopColor,
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    paddingBlock: 4,
+    paddingInline: 12,
+    minHeight: 40,
+  }),
+});
 
 const Panel = (props: PanelProps) => {
   const classNames = useClassNames(ComponentToken.TimePicker);
   const { isVisible } = useContext(Context);
   const [value, setValue] = useState<ClockProps["value"]>();
+  const theme = useTheme();
 
   useEffect(() => {
     if (!isVisible || !props.value) {
@@ -36,8 +54,10 @@ const Panel = (props: PanelProps) => {
     setValue([currentAt.hour(), currentAt.minute(), currentAt.second()]);
   }, []);
 
+  const styled = stylex.props(styles.panel(theme.colors[ColorToken.OutlineVariant]));
+
   return (
-    <StyledPanel className={classNames[TimePickerClassToken.Panel]}>
+    <div className={clsx(classNames[TimePickerClassToken.Panel], styled.className)} style={styled.style}>
       <Clock value={value} onChange={change} />
 
       <div className={classNames[TimePickerClassToken.PanelFooter]}>
@@ -48,7 +68,7 @@ const Panel = (props: PanelProps) => {
           确定
         </Button>
       </div>
-    </StyledPanel>
+    </div>
   );
 };
 
