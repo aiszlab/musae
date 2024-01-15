@@ -7,7 +7,7 @@ import clsx from "clsx";
 import Item from "./item";
 import { useMenuContext } from "./hooks";
 import { useEvent, useThrottleCallback } from "@aiszlab/relax";
-import stylex from "@stylexjs/stylex";
+import { stylex } from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
 import { KeyboardArrowUp } from "../icon";
 

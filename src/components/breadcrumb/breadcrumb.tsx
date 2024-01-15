@@ -1,6 +1,6 @@
 import React, { CSSProperties, isValidElement } from "react";
 import type { BreadcrumbProps } from "./types";
-import stylex from "@stylexjs/stylex";
+import { stylex } from "@stylexjs/stylex";
 import { LABEL } from "../theme/theme";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";

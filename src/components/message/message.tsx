@@ -1,7 +1,7 @@
 import React from "react";
 import { useTimeout } from "@aiszlab/relax";
 import type { MessageProps } from "./types";
-import stylex from "@stylexjs/stylex";
+import { stylex } from "@stylexjs/stylex";
 import { elevations } from "../theme/tokens.stylex";
 
 const styles = stylex.create({

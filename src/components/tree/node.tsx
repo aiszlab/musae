@@ -5,7 +5,7 @@ import { ComponentToken, TreeClassToken } from "../../utils/class-name";
 import Context from "./context";
 import { Checkbox } from "../checkbox";
 import { KeyboardArrowRight } from "../icon";
-import stylex from "@stylexjs/stylex";
+import { stylex } from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
 import clsx from "clsx";
 import { useTheme } from "../theme";

@@ -3,17 +3,21 @@ import { Button } from "../button";
 import type { TabItemProps } from "./types";
 import Context from "./context";
 
-const Item = (props: TabItemProps) => {
+const Item = ({ value, onClick, ...props }: TabItemProps) => {
   const contextValue = useContext(Context);
 
-  const isActive = useMemo(() => contextValue?.activeKey === props.value, [contextValue?.activeKey, props.value]);
-  const setItem = useCallback((itemRef: HTMLButtonElement | null) => {
-    contextValue?.setItem(props.value, itemRef);
-  }, []);
+  const isActive = useMemo(() => contextValue?.activeKey === value, [contextValue?.activeKey, value]);
+
+  const setItem = useCallback(
+    (itemRef: HTMLButtonElement | null) => {
+      contextValue?.setItem(value, itemRef);
+    },
+    [contextValue, value]
+  );
 
   const click = useCallback(() => {
-    props.onClick(props.value);
-  }, [props.value]);
+    onClick(value);
+  }, [onClick, value]);
 
   return (
     <Button variant="text" color={isActive ? "primary" : "neutral"} ref={setItem} onClick={click}>

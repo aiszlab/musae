@@ -1,7 +1,7 @@
 import React, { forwardRef, useCallback, useImperativeHandle, useState } from "react";
 import { MessageRef, MessageProps } from "./types";
 import Message from "./message";
-import stylex from "@stylexjs/stylex";
+import { stylex } from "@stylexjs/stylex";
 
 const styles = stylex.create({
   holder: {
