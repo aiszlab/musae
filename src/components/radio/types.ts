@@ -1,4 +1,5 @@
 import type { ReactNode, JSX, Key } from "react";
+import { ComponentProps } from "../../types/element";
 
 /**
  * @author murukal
@@ -32,7 +33,7 @@ export interface ContextValue {
  * @description
  * radio props
  */
-export interface RadioProps {
+export interface RadioProps extends ComponentProps {
   /**
    * @description
    * value for current radio
