@@ -1,6 +1,5 @@
 import React from "react";
 import { useDateCells, useHeadCells, useFocusedAt, useValue } from "./hooks";
-import { StyledCalendar } from "./styled";
 import type { CalendarProps } from "./types";
 import { KeyboardDoubleArrowLeft, KeyboardDoubleArrowRight, KeyboardArrowLeft, KeyboardArrowRight } from "../icon";
 import { useClassNames } from "../config";
@@ -38,7 +37,7 @@ const Calendar = (props: CalendarProps) => {
   };
 
   return (
-    <StyledCalendar>
+    <div>
       <header
         className={clsx(classNames[CalendarClassToken.Header], styled.header.className)}
         style={styled.header.style}
@@ -62,7 +61,7 @@ const Calendar = (props: CalendarProps) => {
         </thead>
         <tbody>{dateCells}</tbody>
       </table>
-    </StyledCalendar>
+    </div>
   );
 };
 

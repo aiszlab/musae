@@ -1,5 +1,5 @@
 import dayjs, { Dayjs } from "dayjs";
-import React, { ReactNode, useCallback, useMemo } from "react";
+import React, { CSSProperties, ReactNode, useCallback, useMemo } from "react";
 import { useClassNames } from "../config";
 import { CalendarClassToken, ComponentToken } from "../../utils/class-name";
 import { isArray, useControlledState } from "@aiszlab/relax";
@@ -9,6 +9,8 @@ import type { CalendarProps } from "./types";
 import { stylex } from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { BODY } from "../theme/theme";
+import { useTheme } from "../theme";
+import { ColorToken } from "../../utils/colors";
 
 const styles = stylex.create({
   cell: {
@@ -21,13 +23,60 @@ const styles = stylex.create({
     textAlign: "center",
   },
 
-  date: {
+  date: (backgroundColor: CSSProperties["backgroundColor"]) => ({
     position: "relative",
-  },
+
+    "::before": {
+      content: "''",
+      position: "absolute",
+      backgroundColor,
+      zIndex: 1,
+      height: sizes.large,
+    },
+  }),
 
   hidden: {
     visibility: "hidden",
   },
+
+  inRange: {
+    "::before": {
+      insetInlineStart: 0,
+      insetInlineEnd: 0,
+    },
+  },
+
+  rangeFrom: {
+    "::before": {
+      insetInlineStart: "50%",
+      insetInlineEnd: 0,
+    },
+  },
+
+  rangeTo: {
+    "::before": {
+      insetInlineStart: 0,
+      insetInlineEnd: "50%",
+    },
+  },
+
+  value: {
+    margin: "auto",
+    width: sizes.large,
+    height: sizes.large,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: Infinity,
+    zIndex: 2,
+    position: "relative",
+    cursor: "pointer",
+  },
+
+  selectedValue: (backgroundColor: CSSProperties["backgroundColor"], color: CSSProperties["color"]) => ({
+    backgroundColor,
+    color,
+  }),
 });
 
 /**
@@ -54,10 +103,9 @@ export const useHeadCells = () => {
  */
 export const useDateCells = ([timespan, focusedAt, click]: [Timespan, Dayjs, Required<CalendarProps>["onClick"]]) => {
   const classNames = useClassNames(ComponentToken.Calendar);
+  const theme = useTheme();
 
   return useMemo(() => {
-    const styled = stylex.props(styles.cell, styles.date, BODY.large);
-
     const start = focusedAt.startOf("month");
     const from = start.startOf("week");
     const end = focusedAt.endOf("month");
@@ -75,24 +123,45 @@ export const useDateCells = ([timespan, focusedAt, click]: [Timespan, Dayjs, Req
         const isTo = timespan.isTo(currentAt);
         const isBetween = timespan.isBetween(currentAt);
         const isDisabled = currentAt.isBefore(start, "d") || currentAt.isAfter(end, "d");
+        const isSelected = isFrom || isTo;
+
+        const styled = {
+          cell: stylex.props(
+            styles.cell,
+            styles.date(theme.colors[ColorToken.SecondaryContainer]),
+            BODY.large,
+            isDisabled && styles.hidden,
+            isBetween && [styles.inRange, isFrom && styles.rangeFrom, isTo && styles.rangeTo]
+          ),
+          date: stylex.props(
+            styles.value,
+            isSelected && styles.selectedValue(theme.colors[ColorToken.Primary], theme.colors[ColorToken.OnPrimary])
+          ),
+        };
 
         prev.at(prev.length - 1)!.push(
           <td
             title={formatted}
             key={formatted}
-            className={clsx(classNames[CalendarClassToken.DateCell], {
-              [classNames[CalendarClassToken.DateCellSelected]]: isFrom || isTo,
-              ...(timespan.isRange && {
-                [classNames[CalendarClassToken.DateCellInRange]]: isBetween,
-                [classNames[CalendarClassToken.DateCellRangeFrom]]: isFrom,
-                [classNames[CalendarClassToken.DateCellRangeTo]]: isTo,
-              }),
-            })}
-            aria-selected={isFrom || isTo}
+            className={clsx(
+              classNames[CalendarClassToken.DateCell],
+              {
+                [classNames[CalendarClassToken.DateCellSelected]]: isSelected,
+                ...(timespan.isRange && {
+                  [classNames[CalendarClassToken.DateCellInRange]]: isBetween,
+                  [classNames[CalendarClassToken.DateCellRangeFrom]]: isFrom,
+                  [classNames[CalendarClassToken.DateCellRangeTo]]: isTo,
+                }),
+              },
+              styled.cell.className
+            )}
+            style={styled.cell.style}
+            aria-selected={isSelected}
             aria-hidden={isDisabled}
           >
             <div
-              className={classNames[CalendarClassToken.Date]}
+              className={clsx(classNames[CalendarClassToken.Date], styled.date.className)}
+              style={styled.date.style}
               onClick={() => {
                 click(currentAt);
               }}
@@ -110,7 +179,7 @@ export const useDateCells = ([timespan, focusedAt, click]: [Timespan, Dayjs, Req
     return dateCells.map((cells, index) => {
       return <tr key={index}>{cells}</tr>;
     });
-  }, [classNames, focusedAt, timespan, click]);
+  }, [focusedAt, timespan, theme.colors, classNames, click]);
 };
 
 /**
