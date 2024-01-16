@@ -9,41 +9,7 @@ export const StyledCalendar = styled.div((props) => {
   const sizes: [number, number] = [48, 40];
 
   return {
-    [withDot(classNames[CalendarClassToken.Header])]: {
-      display: "flex",
-      alignItems: "center",
-      columnGap: 8,
-      paddingInline: 12,
-
-      // typography
-      ...theme.typography.label.medium,
-
-      [withDot(classNames[CalendarClassToken.Heading])]: {
-        flex: 1,
-        display: "flex",
-        justifyContent: "center",
-      },
-    },
-
-    [withDot(classNames[CalendarClassToken.HeadCell])]: {
-      height: sizes[0],
-      width: sizes[0],
-      textAlign: "center",
-      padding: 0,
-
-      // typography
-      ...theme.typography.body.large,
-    },
-
     [withDot(classNames[CalendarClassToken.DateCell])]: {
-      height: sizes[0],
-      width: sizes[0],
-      padding: 0,
-      position: "relative",
-
-      // typography
-      ...theme.typography.body.large,
-
       "&[aria-hidden=true]": {
         visibility: "hidden",
       },

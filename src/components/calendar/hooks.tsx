@@ -6,6 +6,29 @@ import { isArray, useControlledState } from "@aiszlab/relax";
 import { Timespan } from "../../utils/timespan";
 import clsx from "clsx";
 import type { CalendarProps } from "./types";
+import { stylex } from "@stylexjs/stylex";
+import { sizes, spacing } from "../theme/tokens.stylex";
+import { BODY } from "../theme/theme";
+
+const styles = stylex.create({
+  cell: {
+    height: sizes.xlarge,
+    width: sizes.xlarge,
+    padding: spacing.none,
+  },
+
+  header: {
+    textAlign: "center",
+  },
+
+  date: {
+    position: "relative",
+  },
+
+  hidden: {
+    visibility: "hidden",
+  },
+});
 
 /**
  * @description
@@ -15,8 +38,10 @@ export const useHeadCells = () => {
   const classNames = useClassNames(ComponentToken.Calendar);
 
   return useMemo(() => {
+    const styled = stylex.props(styles.cell, styles.header, BODY.large);
+
     return dayjs.Ls[dayjs.locale()].weekdays?.map((weekday, index) => (
-      <th className={classNames[CalendarClassToken.HeadCell]} key={index}>
+      <th key={index} className={clsx(classNames[CalendarClassToken.HeadCell], styled.className)} style={styled.style}>
         {weekday.charAt(0)}
       </th>
     ));
@@ -31,15 +56,15 @@ export const useDateCells = ([timespan, focusedAt, click]: [Timespan, Dayjs, Req
   const classNames = useClassNames(ComponentToken.Calendar);
 
   return useMemo(() => {
+    const styled = stylex.props(styles.cell, styles.date, BODY.large);
+
     const start = focusedAt.startOf("month");
     const from = start.startOf("week");
-
     const end = focusedAt.endOf("month");
     const to = end.endOf("week");
-
     const gap = to.diff(from, "d") + 1;
 
-    const dateCells = [...new Array(gap).keys()].reduce<ReactNode[][]>(
+    const dateCells = Array.from(new Array(gap).keys()).reduce<ReactNode[][]>(
       (prev, _, index) => {
         if (prev.at(prev.length - 1)!.length === 7) prev.push([]);
 
@@ -63,6 +88,7 @@ export const useDateCells = ([timespan, focusedAt, click]: [Timespan, Dayjs, Req
                 [classNames[CalendarClassToken.DateCellRangeTo]]: isTo,
               }),
             })}
+            aria-selected={isFrom || isTo}
             aria-hidden={isDisabled}
           >
             <div
@@ -75,6 +101,7 @@ export const useDateCells = ([timespan, focusedAt, click]: [Timespan, Dayjs, Req
             </div>
           </td>
         );
+
         return prev;
       },
       [[]]
