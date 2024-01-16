@@ -1,13 +1,21 @@
+import { ComponentProps } from "../../types/element";
+
 /**
  * @author murukal
  *
  * @description
  * switch props
  */
-export interface Props {
-  /* value */
+export interface SwitchProps extends ComponentProps {
+  /**
+   * @description
+   * value
+   */
   value?: boolean;
 
-  /* handler after change */
+  /**
+   * @description
+   * handler after change
+   */
   onChange?: (value: boolean) => void | PromiseLike<void>;
 }
