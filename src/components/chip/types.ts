@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { ComponentProps } from "../../types/element";
 
 type Size = "small" | "large";
 
@@ -6,7 +7,7 @@ type Size = "small" | "large";
  * @description
  * chip props
  */
-export interface ChipProps {
+export interface ChipProps extends ComponentProps {
   /**
    * @description
    * children
@@ -18,12 +19,6 @@ export interface ChipProps {
    * size
    */
   size?: Size;
-
-  /**
-   * @description
-   * class name
-   */
-  className?: string;
 }
 
 /**
