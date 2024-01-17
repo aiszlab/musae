@@ -43,9 +43,3 @@ export interface DrawerProps {
  * popup
  */
 export interface PopupProps extends DrawerProps {}
-
-/**
- * @description
- * panel
- */
-export interface PopupRenderProps extends Required<Pick<DrawerProps, "placement">> {}

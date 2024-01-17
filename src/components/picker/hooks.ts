@@ -1,34 +1,5 @@
-import { FocusEventHandler, MouseEventHandler, useCallback, useContext, useMemo } from "react";
-import Context from "../config/context";
-import clsx from "clsx";
-import { ComponentToken, PickerClassToken } from "../../utils/class-name";
-import type { PickerProps } from "./types";
+import { FocusEventHandler, MouseEventHandler, useCallback } from "react";
 
-/**
- * @description
- * style
- */
-export const useStyles = ([className, isFocused]: [PickerProps["className"], boolean]) => {
-  const classNames = useContext(Context).classNames[ComponentToken.Picker];
-
-  return useMemo(
-    () => ({
-      picker: clsx([
-        classNames[PickerClassToken.Picker],
-        className,
-        {
-          [classNames[PickerClassToken.Focused]]: isFocused,
-        },
-      ]),
-    }),
-    [classNames, className, isFocused]
-  );
-};
-
-/**
- * @description
- * picker events
- */
 /**
  * @description
  * use events for input

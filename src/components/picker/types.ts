@@ -1,5 +1,4 @@
 import type { ReactNode } from "react";
-import { Partialable } from "@aiszlab/relax";
 
 /**
  * @description
@@ -29,18 +28,6 @@ export interface PickerProps {
    * popup width
    */
   popupWidth?: "match" | number | false;
-}
-
-/**
- * @description
- * options render props
- */
-export interface OptionsRenderProps {
-  /**
-   * @description
-   * width
-   */
-  widthGetter: () => Partialable<number>;
 }
 
 /**

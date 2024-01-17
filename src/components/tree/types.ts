@@ -83,30 +83,6 @@ export type TreeNodeProps = WithLevel<Omit<TreeNode, "children">> & {
 
 /**
  * @description
- * tree node render props
- */
-export type TreeNodeRenderProps = WithLevel<{
-  /**
-   * @description
-   * is selected
-   */
-  isSelected: boolean;
-
-  /**
-   * @description
-   * is expanded
-   */
-  isExpanded: boolean;
-
-  /**
-   * @description
-   * default expanded
-   */
-  isDefaultExpanded: boolean;
-}>;
-
-/**
- * @description
  * context value
  */
 export type ContextValue = {

@@ -19,21 +19,3 @@ export interface DividerProps {
    */
   align?: Align;
 }
-
-/**
- * @description
- * divider render props
- */
-export interface DividerRenderProps {
-  /**
-   * @description
-   * if there is child
-   */
-  hasChildren: boolean;
-
-  /**
-   * @description
-   * offset
-   */
-  offset: number;
-}

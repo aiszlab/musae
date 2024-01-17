@@ -104,17 +104,3 @@ export interface TypedRadio {
    */
   Group: (props: RadioGroupProps) => JSX.Element;
 }
-
-/**
- * @author murukal
- *
- * @description
- * render props
- */
-export interface RadioRenderProps {
-  /**
-   * @description
-   * disabled
-   */
-  disabled: boolean;
-}

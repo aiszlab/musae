@@ -20,9 +20,3 @@ export interface ChipProps extends ComponentProps {
    */
   size?: Size;
 }
-
-/**
- * @description
- * chip render props
- */
-export interface ChipRenderProps extends Required<Pick<ChipProps, "size">> {}

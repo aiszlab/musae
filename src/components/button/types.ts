@@ -51,9 +51,3 @@ export interface ButtonProps extends Partial<Pick<HTMLButtonElement, "type">>, C
    */
   disabled?: boolean;
 }
-
-/**
- * @description
- * button render props
- */
-export type ButtonRenderProps = Required<Pick<ButtonProps, "variant" | "color" | "size">>;
