@@ -1,15 +1,45 @@
-import React, { isValidElement, useMemo, cloneElement, ReactElement, ReactNode, useContext } from "react";
+import React, {
+  isValidElement,
+  useMemo,
+  cloneElement,
+  ReactElement,
+  ReactNode,
+  useContext,
+  CSSProperties,
+} from "react";
 import { ContextValue, FormItemProps } from "./types";
 import { useController } from "react-hook-form";
 import { FieldRenderProps } from "../../types/element";
 import Context from "./context";
 import { Grid } from "../grid";
-import { StyledLabel, StyledSupportingText } from "./styled";
 import { RequiredIn, isRefable } from "@aiszlab/relax";
 import { useClassNames } from "../config";
 import { ComponentToken, FormClassToken } from "../../utils/class-name";
+import { stylex } from "@stylexjs/stylex";
+import { LABEL } from "../theme/theme";
+import clsx from "clsx";
+import { spacing } from "../theme/tokens.stylex";
+import { useTheme } from "../theme";
+import { ColorToken } from "../../utils/colors";
 
 const { Row, Col } = Grid;
+
+const styles = stylex.create({
+  supportingText: {
+    display: "flex",
+    flexDirection: "column",
+  },
+
+  explain: {
+    paddingInline: spacing.large,
+    paddingTop: spacing.xxsmall,
+    paddingBottom: spacing.none,
+  },
+
+  error: (color: CSSProperties["color"]) => ({
+    color,
+  }),
+});
 
 /**
  * @description
@@ -30,6 +60,7 @@ const Field = (props: RequiredIn<FormItemProps, "name">) => {
       },
     },
   });
+  const theme = useTheme();
 
   const children = useMemo(() => {
     const _isValidElement = isValidElement<FieldRenderProps>(props.children);
@@ -60,14 +91,29 @@ const Field = (props: RequiredIn<FormItemProps, "name">) => {
     });
   }, [props.children, name, value, invalid, ref, onChange, onBlur]);
 
+  const styled = {
+    supportingText: stylex.props(styles.supportingText),
+    explain: stylex.props(styles.explain, !!error?.message && styles.error(theme.colors[ColorToken.Error])),
+  };
+
   return (
-    <div className={classNames[FormClassToken.Item]}>
+    <div
+      className={clsx(styled.supportingText.className, classNames[FormClassToken.Item])}
+      style={styled.supportingText.style}
+    >
       <Gridded label={props.label}>
         <div>{children}</div>
 
-        <StyledSupportingText>
-          {!!error?.message && <span className={classNames[FormClassToken.ItemExplainError]}>{error?.message}</span>}
-        </StyledSupportingText>
+        <div>
+          {!!error?.message && (
+            <span
+              className={clsx(styled.explain.className, classNames[FormClassToken.ItemExplainError])}
+              style={styled.explain.style}
+            >
+              {error?.message}
+            </span>
+          )}
+        </div>
       </Gridded>
     </div>
   );
@@ -92,7 +138,7 @@ export const Gridded = (props: {
       {/* label */}
       {!!labelCol && props.label && (
         <Col span={labelCol}>
-          <StyledLabel>{props.label}</StyledLabel>
+          <span {...stylex.props(LABEL.small)}>{props.label}</span>
         </Col>
       )}
 
