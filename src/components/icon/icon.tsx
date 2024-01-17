@@ -1,12 +1,24 @@
 import React, { type ReactNode, createElement, useMemo } from "react";
 import { AsProps, IconProps } from "./types";
-import { StyledIcon } from "./styled";
 import { isFunction } from "@aiszlab/relax";
 import { useTheme } from "../theme";
 import { useClassNames } from "../config";
 import { ComponentToken, IconClassToken } from "../../utils/class-name";
 import clsx from "clsx";
 import { ColorToken } from "../../utils/colors";
+import { stylex } from "@stylexjs/stylex";
+
+const styles = stylex.create({
+  icon: {
+    display: "inline-flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+
+  clickable: {
+    cursor: "pointer",
+  },
+});
 
 const Icon = ({ as, color, size, onClick, className }: IconProps) => {
   const theme = useTheme();
@@ -25,10 +37,16 @@ const Icon = ({ as, color, size, onClick, className }: IconProps) => {
     return as;
   }, [asProps, as]);
 
+  const styled = stylex.props(styles.icon, !!onClick && styles.clickable);
+
   return (
-    <StyledIcon onClick={onClick} className={clsx(classNames[IconClassToken.Icon], className)} isClickable={!!onClick}>
+    <span
+      onClick={onClick}
+      className={clsx(styled.className, classNames[IconClassToken.Icon], className)}
+      style={styled.style}
+    >
       {children}
-    </StyledIcon>
+    </span>
   );
 };
 
