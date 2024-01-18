@@ -1,7 +1,24 @@
 import React from "react";
-import { StyledWrapper } from "./styled";
 import { useClassNames } from "../config";
 import { ComponentToken, EmptyClassToken } from "../../utils/class-name";
+import { stylex } from "@stylexjs/stylex";
+import { spacing } from "../theme/tokens.stylex";
+import clsx from "clsx";
+import { BODY } from "../theme/theme";
+
+const styles = stylex.create({
+  empty: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    marginBlock: spacing.xxlarge,
+    marginInline: spacing.small,
+  },
+
+  label: {
+    marginTop: spacing.small,
+  },
+});
 
 /**
  * @description
@@ -10,8 +27,13 @@ import { ComponentToken, EmptyClassToken } from "../../utils/class-name";
 const Empty = () => {
   const classNames = useClassNames(ComponentToken.Empty);
 
+  const styled = {
+    empty: stylex.props(styles.empty),
+    label: stylex.props(BODY.small, styles.label),
+  };
+
   return (
-    <StyledWrapper>
+    <div className={styled.empty.className} style={styled.empty.style}>
       <svg width="64" height="41" viewBox="0 0 64 41" xmlns="http://www.w3.org/2000/svg">
         <g transform="translate(0 1)" fill="none" fillRule="evenodd">
           <ellipse fill="#f5f5f5" cx="32" cy="33" rx="32" ry="7" />
@@ -25,8 +47,10 @@ const Empty = () => {
         </g>
       </svg>
 
-      <div className={classNames[EmptyClassToken.Description]}>暂无数据</div>
-    </StyledWrapper>
+      <div className={clsx(styled.label.className, classNames[EmptyClassToken.Description])} style={styled.label.style}>
+        暂无数据
+      </div>
+    </div>
   );
 };
 

@@ -2,7 +2,7 @@ import React, { ForwardedRef, forwardRef, useEffect, useImperativeHandle, useMem
 import { ContextValue, FormProps, FormRef } from "./types";
 import { useForm, type FieldValues, FormProvider, FieldErrors, FieldPath } from "react-hook-form";
 import { isUndefined } from "@aiszlab/relax";
-import Context, { DEFAULT_CONTEXT_VALUE } from "./context";
+import Context, { CONTEXT_VALUE } from "./context";
 import { stylex } from "@stylexjs/stylex";
 
 const styles = stylex.create({
@@ -63,14 +63,15 @@ const Form = forwardRef(
 
     /// context value
     const contextValue = useMemo<ContextValue>(() => {
-      return Object.assign({}, DEFAULT_CONTEXT_VALUE, {
+      return {
+        ...CONTEXT_VALUE,
         ...(!!labelCol && {
           labelCol,
         }),
         ...(!!wrapperCol && {
           wrapperCol,
         }),
-      });
+      };
     }, [labelCol, wrapperCol]);
 
     return (
