@@ -1,17 +1,27 @@
 import React, { useRef } from "react";
 import { useClassNames } from "../config";
 import { ClockClassToken, ComponentToken } from "../../utils/class-name";
-import { StyledClock } from "./styled";
 import { ClockProps, TimeUnit } from "./types";
 import Column from "./column";
 import { Nullable } from "@aiszlab/relax";
+import { stylex } from "@stylexjs/stylex";
+import clsx from "clsx";
+
+const styles = stylex.create({
+  clock: {
+    display: "flex",
+    maxHeight: 200,
+  },
+});
 
 const Clock = ({ value, onChange }: ClockProps) => {
   const classNames = useClassNames(ComponentToken.Clock);
   const itemRefs = useRef<Nullable<{}>[]>([null, null, null]);
 
+  const styled = stylex.props(styles.clock);
+
   return (
-    <StyledClock className={classNames[ClockClassToken.Clock]}>
+    <div className={clsx(styled.className, classNames[ClockClassToken.Clock])} style={styled.style}>
       {[TimeUnit.Hour, TimeUnit.Minute, TimeUnit.Second].map((unit, index) => {
         return (
           <Column
@@ -25,7 +35,7 @@ const Clock = ({ value, onChange }: ClockProps) => {
           />
         );
       })}
-    </StyledClock>
+    </div>
   );
 };
 

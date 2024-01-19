@@ -14,32 +14,9 @@ export const StyledClock = styled.div((props) => {
 
   return {
     [withSelf(clockClassNames[ClockClassToken.Clock])]: {
-      display: "flex",
-      maxHeight: 200,
-
       [withDot(clockClassNames[ClockClassToken.Column])]: {
-        overflowY: "hidden",
-        overflowX: "hidden",
-        width: itemSize + itemGap * 2,
-        marginBlock: 4,
+        
 
-        "::-webkit-scrollbar": {
-          width: 8,
-          backgroundColor: "transparent",
-        },
-
-        "::-webkit-scrollbar-thumb": {
-          borderRadius: 4,
-          backgroundColor: theme.colorRole.secondary,
-        },
-
-        "&:not(:first-of-type)": {
-          borderLeft: `1px solid ${theme.colorRole.outlineVariant}`,
-        },
-
-        ":hover": {
-          overflowY: "auto",
-        },
 
         li: {
           marginInline: itemGap,
