@@ -3,14 +3,14 @@ import React, { CSSProperties, forwardRef } from "react";
 import { useClassNames } from "../config";
 import { ButtonClassToken, ComponentToken } from "../../utils/class-name";
 import clsx from "clsx";
-import { stylex } from "@stylexjs/stylex";
-import { spacing } from "../theme/tokens.stylex";
+import * as stylex from "@stylexjs/stylex";
+import { sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
 
 const styles = stylex.create({
   button: {
-    borderRadius: Infinity,
+    borderRadius: sizes.infinity,
     display: "flex",
     alignItems: "center",
   },

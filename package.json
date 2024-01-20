@@ -15,10 +15,7 @@
   },
   "dependencies": {
     "@aiszlab/relax": "1.2.15",
-    "@emotion/react": "^11.11.1",
-    "@emotion/styled": "^11.11.0",
     "@popperjs/core": "^2.11.8",
-    "@stylexjs/stylex": "^0.4.1",
     "@tanstack/react-table": "^8.11.3",
     "clsx": "^1.2.1",
     "dayjs": "^1.11.10",
@@ -36,6 +33,7 @@
     "@rollup/plugin-node-resolve": "^15.1.0",
     "@rollup/plugin-typescript": "^11.1.1",
     "@stylexjs/rollup-plugin": "^0.4.1",
+    "@stylexjs/stylex": "^0.4.1",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "eslint": "^8.56.0",

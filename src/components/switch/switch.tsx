@@ -1,8 +1,8 @@
 import React, { CSSProperties, useCallback } from "react";
 import type { SwitchProps } from "./types";
 import { useControlledState } from "@aiszlab/relax";
-import { stylex } from "@stylexjs/stylex";
-import { spacing } from "../theme/tokens.stylex";
+import * as stylex from "@stylexjs/stylex";
+import { sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
 import clsx from "clsx";
@@ -25,9 +25,9 @@ const styles = stylex.create({
       margin: spacing.xxxsmall,
       height: "12px",
       width: "12px",
-      borderRadius: Infinity,
+      borderRadius: sizes.infinity,
       backgroundColor: "black",
-      transition: "all .2s",
+      transition: "all 200ms",
     },
   }),
 

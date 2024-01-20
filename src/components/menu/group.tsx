@@ -1,5 +1,5 @@
-import React from "react";
-import type { MenuGroupProps } from "./types";
+import React, { Key } from "react";
+import type { MenuGroupProps, MenuItemProps } from "./types";
 import { useAnimate } from "framer-motion";
 import { useClassNames } from "../config";
 import { ComponentToken, MenuClassToken } from "../../utils/class-name";
@@ -7,7 +7,7 @@ import clsx from "clsx";
 import Item from "./item";
 import { useMenuContext } from "./hooks";
 import { useEvent, useThrottleCallback } from "@aiszlab/relax";
-import { stylex } from "@stylexjs/stylex";
+import * as stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
 import { KeyboardArrowUp } from "../icon";
 
@@ -107,31 +107,28 @@ const Group = ({ items, level = 0, className, _key, ...itemProps }: MenuGroupPro
         ref={scope}
       >
         {items.map((item) => {
+          const _props: Pick<MenuItemProps, Extract<keyof MenuItemProps, keyof MenuGroupProps>> & {
+            key: Key;
+          } = {
+            key: item.key,
+            _key: item.key,
+            level: level + 1,
+            label: item.label,
+            prefix: item.prefix,
+          };
+
           if (item.children) {
-            return (
-              <Group
-                key={item.key}
-                _key={item.key}
-                level={level + 1}
-                label={item.label}
-                prefix={item.prefix}
-                items={item.children}
-              />
-            );
+            return <Group {..._props} items={item.children} />;
           }
 
           return (
             <Item
-              key={item.key}
-              _key={item.key}
-              level={level + 1}
-              label={item.label}
-              prefix={item.prefix}
+              {..._props}
+              {...stylex.props(styles.item)}
               onClick={click}
               ref={(_ref) => {
                 collect(item.key, _ref!);
               }}
-              {...stylex.props(styles.item)}
             />
           );
         })}

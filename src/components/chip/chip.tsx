@@ -3,7 +3,7 @@ import clsx from "clsx";
 import type { ChipProps } from "./types";
 import { useClassNames } from "../config";
 import { ChipClassToken, ComponentToken } from "../../utils/class-name";
-import { stylex } from "@stylexjs/stylex";
+import * as stylex from "@stylexjs/stylex";
 import { useTheme } from "../theme";
 import { LABEL } from "../theme/theme";
 import { ColorToken } from "../../utils/colors";

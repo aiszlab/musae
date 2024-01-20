@@ -4,7 +4,7 @@ import { useAnimate } from "framer-motion";
 import type { ContextValue, TabsProps } from "./types";
 import Context from "./context";
 import Item from "./item";
-import { stylex } from "@stylexjs/stylex";
+import * as stylex from "@stylexjs/stylex";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
 

@@ -3,7 +3,7 @@ import React, { CSSProperties } from "react";
 import { useOffset } from "./hooks";
 import { useClassNames } from "../config";
 import { ComponentToken, DividerClassToken } from "../../utils/class-name";
-import { stylex } from "@stylexjs/stylex";
+import * as stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";

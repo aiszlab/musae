@@ -15,7 +15,7 @@ import { Grid } from "../grid";
 import { RequiredIn, isRefable } from "@aiszlab/relax";
 import { useClassNames } from "../config";
 import { ComponentToken, FormClassToken } from "../../utils/class-name";
-import { stylex } from "@stylexjs/stylex";
+import * as stylex from "@stylexjs/stylex";
 import { LABEL } from "../theme/theme";
 import clsx from "clsx";
 import { spacing } from "../theme/tokens.stylex";

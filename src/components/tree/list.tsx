@@ -4,7 +4,7 @@ import Node from "./node";
 import { useAnimate } from "framer-motion";
 import { useClassNames } from "../config";
 import { ComponentToken, TreeClassToken } from "../../utils/class-name";
-import { stylex } from "@stylexjs/stylex";
+import * as stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
 import clsx from "clsx";
 

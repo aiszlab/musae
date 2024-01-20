@@ -1,7 +1,6 @@
 // import { useImageLoader } from "@aiszlab/relax";
 import clsx from "clsx";
 import React, { useMemo } from "react";
-import Image from "./image";
 
 interface Props {
   src: string;
@@ -18,7 +17,7 @@ const Avatar = (props: Props) => {
     //   return props.alt;
     // }
 
-    return <Image src={props.src} />;
+    return <img src={props.src} />;
   }, [props.alt, props.src]);
 
   return <div className={clsx("relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full")}>{child}</div>;

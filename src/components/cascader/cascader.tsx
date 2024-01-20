@@ -6,7 +6,16 @@ import { Menu, type MenuProps } from "../menu";
 import type { CascaderProps } from "./types";
 import { useClassNames } from "../config";
 import { CascaderClassToken, ComponentToken } from "../../utils/class-name";
-import { StyledOptions } from "./styled";
+import * as stylex from "@stylexjs/stylex";
+import { spacing } from "../theme/tokens.stylex";
+import clsx from "clsx";
+
+const styles = stylex.create({
+  options: {
+    display: "flex",
+    columnGap: spacing.xxsmall,
+  },
+});
 
 const Cascader = ({ mode, separator = "/", ...props }: CascaderProps) => {
   const ref = useRef<PickerRef>(null);
@@ -44,12 +53,14 @@ const Cascader = ({ mode, separator = "/", ...props }: CascaderProps) => {
 
   /// options render
   const menus = useMemo(() => {
+    const styled = stylex.props(styles.options);
+
     return (
-      <StyledOptions className={classNames[CascaderClassToken.Options]}>
+      <div className={clsx(styled.className, classNames[CascaderClassToken.Options])} style={styled.style}>
         {[presetedMenuItems, ...additionalMenusItems].map((menuItems, index) => {
           return <Menu items={menuItems} key={index} onClick={onChange as MenuProps["onClick"]} />;
         })}
-      </StyledOptions>
+      </div>
     );
   }, [additionalMenusItems, classNames, onChange, presetedMenuItems]);
 

@@ -6,7 +6,7 @@ import { useClassNames } from "../config";
 import { ComponentToken, TimePickerClassToken } from "../../utils/class-name";
 import Panel from "./panel";
 import { useValue } from "./hooks";
-import { stylex } from "@stylexjs/stylex";
+import * as stylex from "@stylexjs/stylex";
 
 const styles = stylex.create({
   input: {

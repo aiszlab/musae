@@ -14,14 +14,14 @@ import { Menu, MenuRef } from "../menu";
 import { useClassNames } from "../config";
 import { ClockClassToken, ComponentToken } from "../../utils/class-name";
 import { isVoid } from "@aiszlab/relax";
-import { stylex } from "@stylexjs/stylex";
+import * as stylex from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
 import clsx from "clsx";
 
 const styles = stylex.create({
-  column: (scrollbarThumbColor: CSSProperties["backgroundColor"], dividerColor: CSSProperties["borderLeftColor"]) => ({
+  menu: (scrollbarThumbColor: CSSProperties["backgroundColor"], dividerColor: CSSProperties["borderLeftColor"]) => ({
     overflowY: {
       default: "hidden",
       ":hover": "auto",
@@ -46,6 +46,11 @@ const styles = stylex.create({
       borderLeftColor: dividerColor,
     },
   }),
+
+  item: {
+    marginInline: spacing.xxsmall,
+    width: sizes.xlarge,
+  },
 });
 
 const Column = forwardRef<{}, ColumnProps>(({ unit, value, onChange }, ref) => {
@@ -74,19 +79,22 @@ const Column = forwardRef<{}, ColumnProps>(({ unit, value, onChange }, ref) => {
     return [value];
   }, [value]);
 
-  const styled = stylex.props(
-    styles.column(theme.colors[ColorToken.Secondary], theme.colors[ColorToken.OutlineVariant])
-  );
+  const styled = {
+    menu: stylex.props(styles.menu(theme.colors[ColorToken.Secondary], theme.colors[ColorToken.OutlineVariant])),
+    item: stylex.props(styles.item),
+  };
 
   return (
     <Menu
       selectedKeys={selectedKeys}
       ref={menuRef}
-      className={clsx(styled.className, classNames[ClockClassToken.Column])}
-      style={styled.style}
+      className={clsx(styled.menu.className, classNames[ClockClassToken.Column])}
+      style={styled.menu.style}
       items={Array.from(Array(timeUnit).keys()).map((step) => ({
         key: step,
         label: step.toString().padStart(2, "0"),
+        className: styled.item.className,
+        style: styled.item.style,
       }))}
       onClick={onClick}
     />

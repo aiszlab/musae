@@ -90,7 +90,7 @@ export interface MenuProps extends ComponentProps {
  * @description
  * menu item
  */
-export interface MenuItem {
+export interface MenuItem extends ComponentProps {
   /**
    * @description
    * key

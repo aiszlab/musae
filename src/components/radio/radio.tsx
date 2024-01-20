@@ -4,10 +4,10 @@ import { RadioProps } from "./types";
 import { useControlledState } from "@aiszlab/relax";
 import { useClassNames } from "../config";
 import { ComponentToken, RadioClassToken } from "../../utils/class-name";
-import { stylex } from "@stylexjs/stylex";
+import * as stylex from "@stylexjs/stylex";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
-import { spacing } from "../theme/tokens.stylex";
+import { sizes, spacing } from "../theme/tokens.stylex";
 import { BODY } from "../theme/theme";
 import clsx from "clsx";
 
@@ -41,7 +41,7 @@ const styles = stylex.create({
       borderWidth: "1px",
       borderStyle: "solid",
       borderColor,
-      borderRadius: Infinity,
+      borderRadius: sizes.infinity,
       transition: "all 200ms",
     },
   }),
@@ -61,7 +61,7 @@ const styles = stylex.create({
       height: "8px",
       width: "8px",
       backgroundColor: backgroundColor,
-      borderRadius: Infinity,
+      borderRadius: sizes.infinity,
     },
   }),
 

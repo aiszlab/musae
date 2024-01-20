@@ -1,18 +1,20 @@
-import React from "react";
+import React, { CSSProperties } from "react";
 import { useTimeout } from "@aiszlab/relax";
 import type { MessageProps } from "./types";
-import { stylex } from "@stylexjs/stylex";
-import { elevations } from "../theme/tokens.stylex";
+import * as stylex from "@stylexjs/stylex";
+import { elevations, spacing } from "../theme/tokens.stylex";
+import { useTheme } from "../theme";
+import { ColorToken } from "../../utils/colors";
 
 const styles = stylex.create({
-  message: {
-    marginTop: 8,
-    marginBottom: 8,
-    padding: "8px 12px",
+  message: (backgroundColor: CSSProperties["backgroundColor"]) => ({
+    marginBlock: spacing.small,
+    paddingBlock: spacing.small,
+    paddingInline: spacing.medium,
     borderRadius: 6,
-    backgroundColor: "#ffffff",
+    backgroundColor,
     boxShadow: elevations.xsmall,
-  },
+  }),
 });
 
 const Message = ({ duration, type, onHidden, id }: MessageProps) => {
@@ -24,8 +26,9 @@ const Message = ({ duration, type, onHidden, id }: MessageProps) => {
       duration,
     }
   );
+  const theme = useTheme();
 
-  return <div {...stylex.props(styles.message)}>{type}</div>;
+  return <div {...stylex.props(styles.message(theme.colors[ColorToken.OnPrimary]))}>{type}</div>;
 };
 
 export default Message;

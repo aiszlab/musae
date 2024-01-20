@@ -7,7 +7,7 @@ import { PanelProps } from "./types";
 import Context from "../picker/context";
 import { ClockProps } from "../clock/types";
 import dayjs from "dayjs";
-import { stylex } from "@stylexjs/stylex";
+import * as stylex from "@stylexjs/stylex";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
 import clsx from "clsx";

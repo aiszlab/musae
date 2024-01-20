@@ -4,7 +4,7 @@ import type { InputProps, InputRef } from "./types";
 import { useBoolean, useControlledState } from "@aiszlab/relax";
 import Context from "../config/context";
 import { ComponentToken, InputClassToken } from "../../utils/class-name";
-import { stylex } from "@stylexjs/stylex";
+import * as stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";

@@ -1,5 +1,5 @@
-import React, { forwardRef, useImperativeHandle, useRef } from "react";
-import type { MenuProps, MenuRef } from "./types";
+import React, { Key, forwardRef, useImperativeHandle, useRef } from "react";
+import type { MenuGroupProps, MenuItemProps, MenuProps, MenuRef } from "./types";
 import Group from "./group";
 import Context from "./context";
 import { useRefs, useScrollable } from "@aiszlab/relax";
@@ -50,26 +50,23 @@ const Menu = forwardRef<MenuRef, MenuProps>(({ onClick, className, style, ...pro
         }}
       >
         {props.items.map((item) => {
+          const _props: Pick<MenuItemProps, Extract<keyof MenuItemProps, keyof MenuGroupProps>> & {
+            key: Key;
+          } = {
+            key: item.key,
+            _key: item.key,
+            level: 0,
+            label: item.label,
+            prefix: item.prefix,
+          };
+
           if (item.children) {
-            return (
-              <Group
-                key={item.key}
-                _key={item.key}
-                level={0}
-                label={item.label}
-                prefix={item.prefix}
-                items={item.children}
-              />
-            );
+            return <Group {..._props} items={item.children} />;
           }
 
           return (
             <Item
-              key={item.key}
-              _key={item.key}
-              level={0}
-              label={item.label}
-              prefix={item.prefix}
+              {..._props}
               onClick={contextValue.click}
               ref={(_ref) => {
                 contextValue.collect(item.key, _ref!);

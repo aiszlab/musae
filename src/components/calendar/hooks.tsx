@@ -6,7 +6,7 @@ import { isArray, useControlledState } from "@aiszlab/relax";
 import { Timespan } from "../../utils/timespan";
 import clsx from "clsx";
 import type { CalendarProps } from "./types";
-import { stylex } from "@stylexjs/stylex";
+import * as stylex from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { BODY } from "../theme/theme";
 import { useTheme } from "../theme";
@@ -67,7 +67,7 @@ const styles = stylex.create({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    borderRadius: Infinity,
+    borderRadius: sizes.infinity,
     zIndex: 2,
     position: "relative",
     cursor: "pointer",

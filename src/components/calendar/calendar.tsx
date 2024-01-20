@@ -4,7 +4,7 @@ import type { CalendarProps } from "./types";
 import { KeyboardDoubleArrowLeft, KeyboardDoubleArrowRight, KeyboardArrowLeft, KeyboardArrowRight } from "../icon";
 import { useClassNames } from "../config";
 import { CalendarClassToken, ComponentToken } from "../../utils/class-name";
-import { stylex } from "@stylexjs/stylex";
+import * as stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
 import { LABEL } from "../theme/theme";
 import clsx from "clsx";

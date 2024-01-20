@@ -1,7 +1,7 @@
 import { HeaderProps, Token } from "./types";
 import React, { CSSProperties } from "react";
 import { useTheme } from "../theme";
-import { stylex } from "@stylexjs/stylex";
+import * as stylex from "@stylexjs/stylex";
 import { ColorToken } from "../../utils/colors";
 
 const styles = stylex.create({

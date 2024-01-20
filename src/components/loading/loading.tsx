@@ -1,203 +1,211 @@
 import React from "react";
-import { keyframes } from "@emotion/react";
-import Circle from "./circle";
-import { StyledWrapper } from "./styled";
+// import Circle from "./circle";
+import * as stylex from "@stylexjs/stylex";
 
-const large = keyframes`
-  from,
-  4% {
-    stroke-dasharray: 0 660;
-    stroke-width: 20;
-    stroke-dashoffset: -330;
-  }
+const styles = stylex.create({
+  // svg
+  loading: {
+    width: "6rem",
+    height: "6rem",
+  },
+});
 
-  12% {
-    stroke-dasharray: 60 600;
-    stroke-width: 30;
-    stroke-dashoffset: -335;
-  }
+// const large = keyframes`
+//   from,
+//   4% {
+//     stroke-dasharray: 0 660;
+//     stroke-width: 20;
+//     stroke-dashoffset: -330;
+//   }
 
-  32% {
-    stroke-dasharray: 60 600;
-    stroke-width: 30;
-    stroke-dashoffset: -595;
-  }
+//   12% {
+//     stroke-dasharray: 60 600;
+//     stroke-width: 30;
+//     stroke-dashoffset: -335;
+//   }
 
-  40%,
-  54% {
-    stroke-dasharray: 0 660;
-    stroke-width: 20;
-    stroke-dashoffset: -660;
-  }
+//   32% {
+//     stroke-dasharray: 60 600;
+//     stroke-width: 30;
+//     stroke-dashoffset: -595;
+//   }
 
-  62% {
-    stroke-dasharray: 60 600;
-    stroke-width: 30;
-    stroke-dashoffset: -665;
-  }
+//   40%,
+//   54% {
+//     stroke-dasharray: 0 660;
+//     stroke-width: 20;
+//     stroke-dashoffset: -660;
+//   }
 
-  82% {
-    stroke-dasharray: 60 600;
-    stroke-width: 30;
-    stroke-dashoffset: -925;
-  }
+//   62% {
+//     stroke-dasharray: 60 600;
+//     stroke-width: 30;
+//     stroke-dashoffset: -665;
+//   }
 
-  90%,
-  to {
-    stroke-dasharray: 0 660;
-    stroke-width: 20;
-    stroke-dashoffset: -990;
-  }
-`;
+//   82% {
+//     stroke-dasharray: 60 600;
+//     stroke-width: 30;
+//     stroke-dashoffset: -925;
+//   }
 
-const small = keyframes`
-  from,
-  12% {
-    stroke-dasharray: 0 220;
-    stroke-width: 20;
-    stroke-dashoffset: -110;
-  }
+//   90%,
+//   to {
+//     stroke-dasharray: 0 660;
+//     stroke-width: 20;
+//     stroke-dashoffset: -990;
+//   }
+// `;
 
-  20% {
-    stroke-dasharray: 20 200;
-    stroke-width: 30;
-    stroke-dashoffset: -115;
-  }
+// const small = keyframes`
+//   from,
+//   12% {
+//     stroke-dasharray: 0 220;
+//     stroke-width: 20;
+//     stroke-dashoffset: -110;
+//   }
 
-  40% {
-    stroke-dasharray: 20 200;
-    stroke-width: 30;
-    stroke-dashoffset: -195;
-  }
+//   20% {
+//     stroke-dasharray: 20 200;
+//     stroke-width: 30;
+//     stroke-dashoffset: -115;
+//   }
 
-  48%,
-  62% {
-    stroke-dasharray: 0 220;
-    stroke-width: 20;
-    stroke-dashoffset: -220;
-  }
+//   40% {
+//     stroke-dasharray: 20 200;
+//     stroke-width: 30;
+//     stroke-dashoffset: -195;
+//   }
 
-  70% {
-    stroke-dasharray: 20 200;
-    stroke-width: 30;
-    stroke-dashoffset: -225;
-  }
+//   48%,
+//   62% {
+//     stroke-dasharray: 0 220;
+//     stroke-width: 20;
+//     stroke-dashoffset: -220;
+//   }
 
-  90% {
-    stroke-dasharray: 20 200;
-    stroke-width: 30;
-    stroke-dashoffset: -305;
-  }
+//   70% {
+//     stroke-dasharray: 20 200;
+//     stroke-width: 30;
+//     stroke-dashoffset: -225;
+//   }
 
-  98%,
-  to {
-    stroke-dasharray: 0 220;
-    stroke-width: 20;
-    stroke-dashoffset: -330;
-  }
-`;
+//   90% {
+//     stroke-dasharray: 20 200;
+//     stroke-width: 30;
+//     stroke-dashoffset: -305;
+//   }
 
-const left = keyframes`
-  from {
-    stroke-dasharray: 0 440;
-    stroke-width: 20;
-    stroke-dashoffset: 0;
-  }
+//   98%,
+//   to {
+//     stroke-dasharray: 0 220;
+//     stroke-width: 20;
+//     stroke-dashoffset: -330;
+//   }
+// `;
 
-  8% {
-    stroke-dasharray: 40 400;
-    stroke-width: 30;
-    stroke-dashoffset: -5;
-  }
+// const left = keyframes`
+//   from {
+//     stroke-dasharray: 0 440;
+//     stroke-width: 20;
+//     stroke-dashoffset: 0;
+//   }
 
-  28% {
-    stroke-dasharray: 40 400;
-    stroke-width: 30;
-    stroke-dashoffset: -175;
-  }
+//   8% {
+//     stroke-dasharray: 40 400;
+//     stroke-width: 30;
+//     stroke-dashoffset: -5;
+//   }
 
-  36%,
-  58% {
-    stroke-dasharray: 0 440;
-    stroke-width: 20;
-    stroke-dashoffset: -220;
-  }
+//   28% {
+//     stroke-dasharray: 40 400;
+//     stroke-width: 30;
+//     stroke-dashoffset: -175;
+//   }
 
-  66% {
-    stroke-dasharray: 40 400;
-    stroke-width: 30;
-    stroke-dashoffset: -225;
-  }
+//   36%,
+//   58% {
+//     stroke-dasharray: 0 440;
+//     stroke-width: 20;
+//     stroke-dashoffset: -220;
+//   }
 
-  86% {
-    stroke-dasharray: 40 400;
-    stroke-width: 30;
-    stroke-dashoffset: -395;
-  }
+//   66% {
+//     stroke-dasharray: 40 400;
+//     stroke-width: 30;
+//     stroke-dashoffset: -225;
+//   }
 
-  94%,
-  to {
-    stroke-dasharray: 0 440;
-    stroke-width: 20;
-    stroke-dashoffset: -440;
-  }
-`;
+//   86% {
+//     stroke-dasharray: 40 400;
+//     stroke-width: 30;
+//     stroke-dashoffset: -395;
+//   }
 
-const right = keyframes`
-  from,
-  8% {
-    stroke-dasharray: 0 440;
-    stroke-width: 20;
-    stroke-dashoffset: 0;
-  }
+//   94%,
+//   to {
+//     stroke-dasharray: 0 440;
+//     stroke-width: 20;
+//     stroke-dashoffset: -440;
+//   }
+// `;
 
-  16% {
-    stroke-dasharray: 40 400;
-    stroke-width: 30;
-    stroke-dashoffset: -5;
-  }
+// const right = keyframes`
+//   from,
+//   8% {
+//     stroke-dasharray: 0 440;
+//     stroke-width: 20;
+//     stroke-dashoffset: 0;
+//   }
 
-  36% {
-    stroke-dasharray: 40 400;
-    stroke-width: 30;
-    stroke-dashoffset: -175;
-  }
+//   16% {
+//     stroke-dasharray: 40 400;
+//     stroke-width: 30;
+//     stroke-dashoffset: -5;
+//   }
 
-  44%,
-  50% {
-    stroke-dasharray: 0 440;
-    stroke-width: 20;
-    stroke-dashoffset: -220;
-  }
+//   36% {
+//     stroke-dasharray: 40 400;
+//     stroke-width: 30;
+//     stroke-dashoffset: -175;
+//   }
 
-  58% {
-    stroke-dasharray: 40 400;
-    stroke-width: 30;
-    stroke-dashoffset: -225;
-  }
+//   44%,
+//   50% {
+//     stroke-dasharray: 0 440;
+//     stroke-width: 20;
+//     stroke-dashoffset: -220;
+//   }
 
-  78% {
-    stroke-dasharray: 40 400;
-    stroke-width: 30;
-    stroke-dashoffset: -395;
-  }
+//   58% {
+//     stroke-dasharray: 40 400;
+//     stroke-width: 30;
+//     stroke-dashoffset: -225;
+//   }
 
-  86%,
-  to {
-    stroke-dasharray: 0 440;
-    stroke-width: 20;
-    stroke-dashoffset: -440;
-  }
-`;
+//   78% {
+//     stroke-dasharray: 40 400;
+//     stroke-width: 30;
+//     stroke-dashoffset: -395;
+//   }
+
+//   86%,
+//   to {
+//     stroke-dasharray: 0 440;
+//     stroke-width: 20;
+//     stroke-dashoffset: -440;
+//   }
+// `;
 
 const Loading = () => {
   return (
-    <StyledWrapper width="240" height="240" viewBox="0 0 240 240">
-      <Circle animationName={large} cx="120" cy="120" r="105" stroke="#f42f25" />
-      <Circle animationName={small} cx="120" cy="120" r="35" stroke="#f49725" />
-      <Circle animationName={left} cx="85" cy="120" r="70" stroke="#255ff4" />
-      <Circle animationName={right} cx="155" cy="120" r="70" stroke="#f42582" />
-    </StyledWrapper>
+    // <StyledWrapper width="240" height="240" viewBox="0 0 240 240">
+    //   <Circle animationName={large} cx="120" cy="120" r="105" stroke="#f42f25" />
+    //   <Circle animationName={small} cx="120" cy="120" r="35" stroke="#f49725" />
+    //   <Circle animationName={left} cx="85" cy="120" r="70" stroke="#255ff4" />
+    //   <Circle animationName={right} cx="155" cy="120" r="70" stroke="#f42582" />
+    // </StyledWrapper>
+    <div></div>
   );
 };
 

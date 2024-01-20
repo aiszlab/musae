@@ -3,7 +3,7 @@ import { ContextValue, FormProps, FormRef } from "./types";
 import { useForm, type FieldValues, FormProvider, FieldErrors, FieldPath } from "react-hook-form";
 import { isUndefined } from "@aiszlab/relax";
 import Context, { CONTEXT_VALUE } from "./context";
-import { stylex } from "@stylexjs/stylex";
+import * as stylex from "@stylexjs/stylex";
 
 const styles = stylex.create({
   form: {

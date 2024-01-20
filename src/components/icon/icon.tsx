@@ -6,7 +6,7 @@ import { useClassNames } from "../config";
 import { ComponentToken, IconClassToken } from "../../utils/class-name";
 import clsx from "clsx";
 import { ColorToken } from "../../utils/colors";
-import { stylex } from "@stylexjs/stylex";
+import * as stylex from "@stylexjs/stylex";
 
 const styles = stylex.create({
   icon: {
