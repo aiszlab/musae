@@ -106,7 +106,7 @@ export enum DrawerClassToken {
 }
 export enum DividerClassToken {
   Divider,
-  Content,
+  Label,
 }
 export enum ChipClassToken {
   Chip,
@@ -224,7 +224,7 @@ export const CLASS_NAMES = {
   },
   [ComponentToken.Divider]: {
     [DividerClassToken.Divider]: "divider",
-    [DividerClassToken.Content]: "divider-content",
+    [DividerClassToken.Label]: "divider-label",
   },
   [ComponentToken.Chip]: {
     [ChipClassToken.Chip]: "chip",

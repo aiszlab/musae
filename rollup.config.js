@@ -40,18 +40,10 @@ const configuration = {
       presets: ["@babel/preset-env", "@babel/preset-react", "@babel/preset-typescript"],
     }),
     stylexPlugin({
-      // Required. File path for the generated CSS file.
       fileName: "stylex.css",
-      // default: false
-      dev: false,
-      // prefix for all generated classNames
       classNamePrefix: "musae-",
-      // Required for CSS variable support
       unstable_moduleResolution: {
-        // type: 'commonJS' | 'haste'
-        // default: 'commonJS'
         type: "commonJS",
-        // The absolute path to the root directory of your project
         rootDir: dirname(fileURLToPath(import.meta.url)),
       },
     }),

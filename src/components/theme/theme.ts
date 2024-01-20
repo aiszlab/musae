@@ -1,10 +1,10 @@
-import { create } from "@stylexjs/stylex";
+import * as stylex from "@stylexjs/stylex";
 
 /**
  * @description
  * typography - headline
  */
-export const HEADLINE = create({
+export const HEADLINE = stylex.create({
   small: {
     fontSize: 24,
     fontWeight: 400,
@@ -16,7 +16,7 @@ export const HEADLINE = create({
  * @description
  * typography - body
  */
-export const BODY = create({
+export const BODY = stylex.create({
   small: {
     fontSize: 12,
     fontWeight: 400,
@@ -38,7 +38,7 @@ export const BODY = create({
  * @description
  * typography - label
  */
-export const LABEL = create({
+export const LABEL = stylex.create({
   small: {
     fontSize: 11,
     fontWeight: 500,

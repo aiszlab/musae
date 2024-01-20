@@ -27,16 +27,16 @@ export const useChildren = ([children]: [ReactNode]) => {
   return useMemo(() => {
     return _children.reduce<GroupedChildren>(
       (prev, current) => {
-        if (isValidElement(current)) {
-          if (current.type === Header) {
-            prev[ChildToken.Header] = current;
-          } else if (current.type === Sider) {
-            prev[ChildToken.Sider] = current;
-          } else if (current.type === Footer) {
-            prev[ChildToken.Footer] = current;
-          } else {
-            prev[ChildToken.Main].push(current);
-          }
+        // invalid element, just ignore
+        if (!isValidElement(current)) return prev;
+
+        // valid element, check which type
+        if (current.type === Header) {
+          prev[ChildToken.Header] = current;
+        } else if (current.type === Sider) {
+          prev[ChildToken.Sider] = current;
+        } else if (current.type === Footer) {
+          prev[ChildToken.Footer] = current;
         } else {
           prev[ChildToken.Main].push(current);
         }

@@ -78,7 +78,7 @@ export type LayoutProps = {
  * @description
  * main props
  */
-export type MainProps = {
+export type MainProps = ComponentProps & {
   /**
    * @description
    * children

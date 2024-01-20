@@ -40,7 +40,7 @@ const styles = stylex.create({
     backgroundColor,
   }),
 
-  content: {
+  label: {
     marginInline: spacing.small,
     whiteSpace: "nowrap",
   },
@@ -58,16 +58,13 @@ const Divider = ({ align, children }: DividerProps) => {
         ? styles.withChildren(theme.colors[ColorToken.OutlineVariant], offset)
         : styles.outline(theme.colors[ColorToken.OutlineVariant])
     ),
-    content: stylex.props(BODY.small, styles.content),
+    label: stylex.props(BODY.small, styles.label),
   };
 
   return (
     <div className={clsx(styled.divider.className, classNames[DividerClassToken.Divider])} style={styled.divider.style}>
       {!!children && (
-        <span
-          className={(clsx(styled.content.className), classNames[DividerClassToken.Content])}
-          style={styled.content.style}
-        >
+        <span className={clsx(styled.label.className, classNames[DividerClassToken.Label])} style={styled.label.style}>
           {children}
         </span>
       )}
