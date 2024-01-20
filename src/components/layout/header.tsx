@@ -1,20 +1,21 @@
-import { HeaderProps, Token } from "./types";
+import { HeaderProps } from "./types";
 import React, { CSSProperties } from "react";
 import { useTheme } from "../theme";
 import * as stylex from "@stylexjs/stylex";
 import { ColorToken } from "../../utils/colors";
+import { sizes, spacing } from "../theme/tokens.stylex";
 
 const styles = stylex.create({
   header: (backgroundColor: Required<CSSProperties>["backgroundColor"]) => ({
-    height: Token.HeaderHeight,
+    height: sizes.xxlarge,
+    paddingInline: spacing.xxlarge,
+    marginBottom: spacing.xxlarge,
     position: "sticky",
     top: 0,
-    paddingInline: 40,
     zIndex: 10,
     display: "flex",
     alignItems: "center",
     backgroundColor,
-    marginBottom: Token.RowGap,
   }),
 });
 

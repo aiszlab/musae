@@ -31,6 +31,7 @@ const styles = stylex.create({
     alignItems: "center",
     boxSizing: "border-box",
     cursor: "text",
+    gap: spacing.xxsmall,
 
     // border
     borderColor,
@@ -55,90 +56,94 @@ const styles = stylex.create({
 
   options: (backgroundColor: CSSProperties["backgroundColor"], minWidth: CSSProperties["minWidth"]) => ({
     marginBlock: spacing.xxsmall,
-    padding: spacing.xxsmall,
-    borderRadius: "8px",
+    borderRadius: spacing.small,
     backgroundColor,
     overflow: "auto",
     minWidth,
   }),
 });
 
-const Picker = forwardRef<PickerRef, PickerProps>(({ pickable, picked, className, popupWidth = "match" }, ref) => {
-  const trigger = useRef<HTMLDivElement>(null);
-  const { isOn: isVisible, turnOff: close, toggle } = useBoolean();
-  const { isOn: isFocused, turnOn: _focus, turnOff: _blur } = useBoolean();
-  const classNames = useClassNames(ComponentToken.Picker);
-  const popper = useRef<PopperRef>(null);
-  const theme = useTheme();
+const Picker = forwardRef<PickerRef, PickerProps>(
+  ({ pickable, picked, className, popupWidth = "match", ...props }, ref) => {
+    const trigger = useRef<HTMLDivElement>(null);
+    const { isOn: isVisible, turnOff: close, toggle } = useBoolean();
+    const { isOn: isFocused, turnOn: _focus, turnOff: _blur } = useBoolean();
+    const classNames = useClassNames(ComponentToken.Picker);
+    const popper = useRef<PopperRef>(null);
+    const theme = useTheme();
 
-  const onDropdownClick = useCallback((e: MouseEvent<HTMLDivElement>) => e.preventDefault(), []);
-  const dropdownWidthGetter = useCallback(() => {
-    if (!popupWidth) return void 0;
-    if (!trigger.current) return void 0;
-    return Math.max(trigger.current.getBoundingClientRect().width, popupWidth === "match" ? 0 : popupWidth);
-  }, [popupWidth]);
+    const onDropdownClick = useCallback((e: MouseEvent<HTMLDivElement>) => e.preventDefault(), []);
+    const dropdownWidthGetter = useCallback(() => {
+      if (!popupWidth) return void 0;
+      if (!trigger.current) return void 0;
+      return Math.max(trigger.current.getBoundingClientRect().width, popupWidth === "match" ? 0 : popupWidth);
+    }, [popupWidth]);
 
-  useImperativeHandle(
-    ref,
-    () => ({
-      close,
-    }),
-    [close]
-  );
+    useImperativeHandle(
+      ref,
+      () => ({
+        close,
+      }),
+      [close]
+    );
 
-  // for selection change, force render for next tick
-  useEffect(() => {
-    popper.current?.update?.();
-  }, [picked]);
+    // for selection change, force render for next tick
+    useEffect(() => {
+      popper.current?.update?.();
+    }, [picked]);
 
-  /// events
-  const { blur, click } = useEvents([[_blur], [close, toggle]]);
+    /// events
+    const { blur, click } = useEvents([[_blur], [close, toggle]]);
 
-  const styled = {
-    picker: stylex.props(
-      BODY.small,
-      styles.picker(theme.colors[ColorToken.Outline]),
-      isFocused && styles.focused(theme.colors[ColorToken.Primary])
-    ),
-    options: stylex.props(styles.options(theme.colors[ColorToken.Surface], dropdownWidthGetter())),
-  };
+    const styled = {
+      picker: stylex.props(
+        BODY.small,
+        styles.picker(theme.colors[ColorToken.Outline]),
+        isFocused && styles.focused(theme.colors[ColorToken.Primary])
+      ),
+      options: stylex.props(styles.options(theme.colors[ColorToken.Surface], dropdownWidthGetter())),
+    };
 
-  return (
-    <>
-      <div
-        className={clsx(classNames[PickerClassToken.Picker], className, styled.picker.className, {
-          [classNames[PickerClassToken.Focused]]: isFocused,
-        })}
-        style={styled.picker.style}
-        ref={trigger}
-        tabIndex={-1}
-        onFocus={_focus}
-        onBlur={blur}
-        onClick={click}
-      >
-        {picked}
-      </div>
-
-      <Popper
-        trigger={trigger.current}
-        isVisible={isVisible}
-        className={classNames[PickerClassToken.Dropdown]}
-        // click on popper, keep select focused
-        onMouseDown={onDropdownClick}
-        ref={popper}
-      >
-        <div {...styled.options}>
-          <Context.Provider
-            value={{
-              isVisible,
-            }}
-          >
-            {pickable}
-          </Context.Provider>
+    return (
+      <>
+        <div
+          className={clsx(classNames[PickerClassToken.Picker], className, styled.picker.className, {
+            [classNames[PickerClassToken.Focused]]: isFocused,
+          })}
+          style={{
+            ...styled.picker.style,
+            ...props.style,
+          }}
+          ref={trigger}
+          tabIndex={-1}
+          onFocus={_focus}
+          onBlur={blur}
+          onClick={click}
+        >
+          {picked}
         </div>
-      </Popper>
-    </>
-  );
-});
+
+        <Popper
+          trigger={trigger.current}
+          isVisible={isVisible}
+          className={classNames[PickerClassToken.Dropdown]}
+          // click on popper, keep select focused
+          onMouseDown={onDropdownClick}
+          ref={popper}
+        >
+          <div {...styled.options}>
+            <Context.Provider
+              value={{
+                isVisible,
+              }}
+            >
+              {pickable}
+            </Context.Provider>
+          </div>
+        </Popper>
+      </>
+    );
+  }
+);
 
 export default Picker;

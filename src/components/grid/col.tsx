@@ -1,16 +1,29 @@
 import React from "react";
 import type { ColProps } from "./types";
-import { useColStyle } from "./hooks";
 import { useClassNames } from "../config";
 import { ComponentToken, GridClassToken } from "../../utils/class-name";
 import clsx from "clsx";
+import * as stylex from "@stylexjs/stylex";
 
-const Col = ({ children, className, span, as: As = "div", ...props }: ColProps) => {
-  const style = useColStyle([span, props.style]);
+const styles = stylex.create({
+  col: (props: { span: number }) => ({
+    gridColumnStart: "auto",
+    gridColumnEnd: `span ${props.span}`,
+  }),
+});
+
+const Col = ({ children, className, span = 8, as: As = "div", ...props }: ColProps) => {
+  const styled = stylex.props(styles.col({ span }));
   const classNames = useClassNames(ComponentToken.Grid);
 
   return (
-    <As style={style} className={clsx(classNames[GridClassToken.Col], className)}>
+    <As
+      className={clsx(styled.className, classNames[GridClassToken.Col], className)}
+      style={{
+        ...styled.style,
+        ...props.style,
+      }}
+    >
       {children}
     </As>
   );

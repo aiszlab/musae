@@ -73,25 +73,22 @@ const Breadcrumb = (props: BreadcrumbProps) => {
           const _isLastElement = _index + 1 === props.items.length;
           const _isReactElement = isValidElement(_item.label);
 
-          return (
-            <>
-              <li key={_index}>
-                {_isReactElement ? (
-                  _item.label
-                ) : _item.href ? (
-                  <a href={_item.href}>{_item.label}</a>
-                ) : (
-                  <span>{_item.label}</span>
-                )}
-              </li>
-
-              {!_isLastElement && (
-                <li {...styled.separator} key={`${_ROLE}${_index}`} role={_ROLE}>
-                  {props.separator ?? _SEPARATOR}
-                </li>
+          return [
+            <li key={_index}>
+              {_isReactElement ? (
+                _item.label
+              ) : _item.href ? (
+                <a href={_item.href}>{_item.label}</a>
+              ) : (
+                <span>{_item.label}</span>
               )}
-            </>
-          );
+            </li>,
+            !_isLastElement && (
+              <li {...styled.separator} key={`${_ROLE}${_index}`} role={_ROLE}>
+                {props.separator ?? _SEPARATOR}
+              </li>
+            ),
+          ];
         })}
       </ol>
     </nav>

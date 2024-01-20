@@ -1,10 +1,11 @@
 import type { Key } from "react";
 import type { Option } from "../../types/option";
 import type { MenuItem } from "../menu";
+import type { ComponentProps } from "../../types/element";
 
 export type Mode = "multiple";
 
-export type Value = Key | Option;
+export type Value = Key | Pick<Option, "value" | "label">;
 
 export type ValueOrValues = Value[] | Value;
 
@@ -14,7 +15,7 @@ export type ValueOrValues = Value[] | Value;
  * @description
  * select props
  */
-export interface SelectProps {
+export interface SelectProps extends ComponentProps {
   /**
    * @description
    * options

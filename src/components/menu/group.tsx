@@ -18,10 +18,6 @@ const styles = stylex.create({
     listStyle: "none",
   },
 
-  item: {
-    marginBlock: spacing.xxsmall,
-  },
-
   hidden: {
     display: "none",
   },
@@ -115,6 +111,8 @@ const Group = ({ items, level = 0, className, _key, ...itemProps }: MenuGroupPro
             level: level + 1,
             label: item.label,
             prefix: item.prefix,
+            className: item.className,
+            style: item.style,
           };
 
           if (item.children) {
@@ -124,7 +122,6 @@ const Group = ({ items, level = 0, className, _key, ...itemProps }: MenuGroupPro
           return (
             <Item
               {..._props}
-              {...stylex.props(styles.item)}
               onClick={click}
               ref={(_ref) => {
                 collect(item.key, _ref!);

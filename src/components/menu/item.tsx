@@ -24,7 +24,8 @@ const styles = stylex.create({
     paddingTop: spacing.small,
     paddingBottom: spacing.small,
     paddingRight: spacing.medium,
-    paddingLeft: 12 + (level ?? 0) * 24,
+    paddingLeft: 12 + level * 24,
+    margin: spacing.xxsmall,
 
     borderRadius: 8,
     transition: "all 300ms",

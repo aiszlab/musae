@@ -1,16 +1,23 @@
-import type { ReactNode } from "react";
+import type { Dispatch, ReactNode, SetStateAction } from "react";
 import { ComponentProps } from "../../types/element";
-
-export enum Token {
-  HeaderHeight = 64,
-  RowGap = 40,
-}
 
 /**
  * @description
  * context value type for shell
  */
-export type ContextValue = {};
+export type ContextValue = {
+  /**
+   * @description
+   * main class name setter
+   */
+  setMainClassName: Dispatch<SetStateAction<ComponentProps["className"]>>;
+
+  /**
+   * @description
+   * main style setter
+   */
+  setMainStyle: Dispatch<SetStateAction<ComponentProps["style"]>>;
+};
 
 /**
  * @description

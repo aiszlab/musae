@@ -1,10 +1,11 @@
 import type { ReactNode } from "react";
+import { ComponentProps } from "../../types/element";
 
 /**
  * @description
  * picker props
  */
-export interface PickerProps {
+export interface PickerProps extends ComponentProps {
   /**
    * @description
    * picked
@@ -16,12 +17,6 @@ export interface PickerProps {
    * pickable
    */
   pickable: ReactNode;
-
-  /**
-   * @description
-   * class name
-   */
-  className?: string;
 
   /**
    * @description

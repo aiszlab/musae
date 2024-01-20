@@ -17,7 +17,6 @@ import clsx from "clsx";
  */
 const Menu = forwardRef<MenuRef, MenuProps>(({ onClick, className, style, ...props }, ref) => {
   const classNames = useClassNames(ComponentToken.Menu);
-
   const _menuRef = useRef<HTMLUListElement>(null);
   const { targetRef, scrollTo, to, setTrigger } = useScrollable({ direction: "vertical" });
   const menuRef = useRefs(targetRef, _menuRef);
@@ -58,6 +57,8 @@ const Menu = forwardRef<MenuRef, MenuProps>(({ onClick, className, style, ...pro
             level: 0,
             label: item.label,
             prefix: item.prefix,
+            className: item.className,
+            style: item.style,
           };
 
           if (item.children) {
