@@ -7,8 +7,8 @@ import { ColorToken } from "../../utils/colors";
 import { spacing } from "../theme/tokens.stylex";
 
 const styles = stylex.create({
-  breadcrumb: (color: Required<CSSProperties>["color"]) => ({
-    color,
+  breadcrumb: (props: { color: CSSProperties["color"] }) => ({
+    color: props.color,
   }),
 
   navigations: {
@@ -17,27 +17,27 @@ const styles = stylex.create({
     flexWrap: "wrap",
   },
 
-  navigation: (color: Required<CSSProperties>["color"]) => ({
+  navigation: (props: { color: CSSProperties["color"] }) => ({
     ":last-of-type": {
-      color,
+      color: props.color,
     },
   }),
 
-  link: (
-    hoveredBackgroundColor: Required<CSSProperties>["backgroundColor"],
-    hoveredColor: Required<CSSProperties>["color"]
-  ) => ({
+  link: (props: {
+    hoveredBackgroundColor: CSSProperties["backgroundColor"];
+    hoveredColor: CSSProperties["color"];
+  }) => ({
     paddingBlock: spacing.none,
     paddingInline: spacing.xxsmall,
     transition: "all 200ms",
     borderRadius: 4,
     backgroundColor: {
       default: null,
-      ":hover": hoveredBackgroundColor,
+      ":hover": props.hoveredBackgroundColor,
     },
     color: {
       default: null,
-      ":hover": hoveredColor,
+      ":hover": props.hoveredColor,
     },
   }),
 
@@ -59,16 +59,31 @@ const Breadcrumb = (props: BreadcrumbProps) => {
   }
 
   const styled = {
-    breadcrumb: stylex.props(LABEL.large, styles.breadcrumb(theme.colors[ColorToken.OnSurfaceVariant])),
-    navigation: stylex.props(styles.navigation(theme.colors[ColorToken.OnSurface])),
-    link: stylex.props(styles.link(theme.colors[ColorToken.Surface], theme.colors[ColorToken.OnSurface])),
+    breadcrumb: stylex.props(
+      LABEL.large,
+      styles.breadcrumb({
+        color: theme.colors[ColorToken.OnSurfaceVariant],
+      })
+    ),
+    navigations: stylex.props(styles.navigations),
+    navigation: stylex.props(
+      styles.navigation({
+        color: theme.colors[ColorToken.OnSurface],
+      })
+    ),
+    link: stylex.props(
+      styles.link({
+        hoveredBackgroundColor: theme.colors[ColorToken.Surface],
+        hoveredColor: theme.colors[ColorToken.OnSurface],
+      })
+    ),
     separator: stylex.props(styles.separator),
   };
 
   /// render the breadcrumb
   return (
     <nav {...styled.breadcrumb}>
-      <ol>
+      <ol {...styled.navigations}>
         {props.items.map((_item, _index) => {
           const _isLastElement = _index + 1 === props.items.length;
           const _isReactElement = isValidElement(_item.label);
