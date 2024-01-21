@@ -56,6 +56,7 @@ export enum ComponentToken {
   Menu,
   Checkbox,
   Tree,
+  Tabs,
 }
 
 /**
@@ -174,6 +175,11 @@ export enum TreeClassToken {
   Expander,
   Checkbox,
 }
+export enum TabsClassToken {
+  Tabs,
+  Item,
+  Indicator,
+}
 
 /**
  * @description
@@ -291,6 +297,11 @@ export const CLASS_NAMES = {
     [TreeClassToken.Title]: "tree-node-title",
     [TreeClassToken.Expander]: "tree-node-expander",
     [TreeClassToken.Checkbox]: "tree-node-checkbox",
+  },
+  [ComponentToken.Tabs]: {
+    [TabsClassToken.Tabs]: "tabs",
+    [TabsClassToken.Item]: "tabs-item",
+    [TabsClassToken.Indicator]: "tabs-indicator",
   },
 };
 

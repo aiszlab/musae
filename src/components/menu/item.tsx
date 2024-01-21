@@ -4,7 +4,7 @@ import { useItemChildren, useMenuContext } from "./hooks";
 import { useClassNames } from "../config";
 import { ComponentToken, MenuClassToken } from "../../utils/class-name";
 import * as stylex from "@stylexjs/stylex";
-import { spacing } from "../theme/tokens.stylex";
+import { sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
 import clsx from "clsx";
@@ -14,25 +14,31 @@ type BackgroundColor = Required<CSSProperties>["backgroundColor"];
 type Color = Required<CSSProperties>["color"];
 
 const styles = stylex.create({
-  normal: (level: number, hoveredBackgroundColor: BackgroundColor) => ({
+  menuItem: {
+    marginInline: spacing.xxsmall,
+    marginBottom: spacing.xxsmall,
+    ":first-of-type": {
+      marginTop: spacing.xxsmall,
+    },
+  },
+
+  normal: (props: { level: number; hoveredBackgroundColor: BackgroundColor }) => ({
     display: "flex",
     alignItems: "center",
-    minHeight: 24,
+    minHeight: sizes.small,
     cursor: "pointer",
 
     // spacing
     paddingTop: spacing.small,
     paddingBottom: spacing.small,
     paddingRight: spacing.medium,
-    paddingLeft: 12 + level * 24,
-    margin: spacing.xxsmall,
-
+    paddingLeft: 12 + props.level * 24,
     borderRadius: 8,
     transition: "all 300ms",
 
     backgroundColor: {
       default: null,
-      ":hover": hoveredBackgroundColor,
+      ":hover": props.hoveredBackgroundColor,
     },
   }),
 
@@ -65,17 +71,23 @@ const Item = forwardRef<HTMLLIElement, MenuItemProps>(
       suffix,
     });
 
-    const styled = stylex.props(
-      styles.normal(level, theme.colors[ColorToken.SurfaceContainer]),
-      isSelected && styles.selected(theme.colors[ColorToken.SurfaceContainer], theme.colors[ColorToken.Primary]),
-      LABEL.large
-    );
+    const styled = {
+      menuItem: stylex.props(styles.menuItem),
+      item: stylex.props(
+        styles.normal({
+          level,
+          hoveredBackgroundColor: theme.colors[ColorToken.SurfaceContainer],
+        }),
+        isSelected && styles.selected(theme.colors[ColorToken.SurfaceContainer], theme.colors[ColorToken.Primary]),
+        LABEL.large
+      ),
+    };
 
     return (
-      <li role="menuitem" ref={ref}>
+      <li role="menuitem" ref={ref} {...styled.menuItem}>
         <div
-          style={styled.style}
-          className={clsx(className, styled.className, classNames[MenuClassToken.Item])}
+          style={styled.item.style}
+          className={clsx(classNames[MenuClassToken.Item], styled.item.className, className)}
           onClick={click}
         >
           {_children.prefix}

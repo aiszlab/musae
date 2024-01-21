@@ -6,7 +6,7 @@ import { useClassNames } from "../config";
 import { CheckboxClassToken, ComponentToken } from "../../utils/class-name";
 import clsx from "clsx";
 import * as stylex from "@stylexjs/stylex";
-import { spacing } from "../theme/tokens.stylex";
+import { sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
 import { LABEL } from "../theme/theme";
@@ -18,7 +18,7 @@ const styles = stylex.create({
     cursor: "pointer",
   },
 
-  trigger: (borderColor: CSSProperties["borderColor"]) => ({
+  trigger: (props: { borderColor: CSSProperties["borderColor"] }) => ({
     margin: spacing.none,
     visibility: "hidden",
     cursor: "inherit",
@@ -30,21 +30,24 @@ const styles = stylex.create({
       visibility: "visible",
       display: "block",
       boxSizing: "border-box",
-      width: "1rem",
-      height: "1rem",
-      borderRadius: "0.2rem",
+      width: sizes.xsmall,
+      height: sizes.xsmall,
+      borderRadius: spacing.xxsmall,
       transition: "all 200ms",
 
-      borderWidth: "0.1rem",
+      borderWidth: "1px",
       borderStyle: "solid",
-      borderColor: borderColor,
+      borderColor: props.borderColor,
     },
   }),
 
-  checked: (backgroundColor: string, color: CSSProperties["borderColor"]) => ({
+  checked: (props: {
+    backgroundColor: CSSProperties["backgroundColor"];
+    triggerColor: CSSProperties["borderColor"];
+  }) => ({
     "::before": {
-      backgroundColor,
-      borderColor: backgroundColor,
+      backgroundColor: props.backgroundColor,
+      borderColor: props.backgroundColor,
     },
 
     "::after": {
@@ -55,13 +58,13 @@ const styles = stylex.create({
       display: "block",
       width: spacing.xxsmall,
       height: spacing.small,
-      transform: "translate(200%, -150%) rotate(45deg)",
+      transform: "translate(150%, -150%) rotate(45deg)",
 
       borderWidth: spacing.xxxsmall,
-      borderTop: 0,
-      borderLeft: 0,
+      borderTopWidth: sizes.none,
+      borderLeftWidth: sizes.none,
       borderStyle: "solid",
-      borderColor: color,
+      borderColor: props.triggerColor,
     },
   }),
 
@@ -101,8 +104,14 @@ const Checkbox = ({ value, className, style, children, ...props }: CheckboxProps
   const styled = {
     checkbox: stylex.props(styles.checkbox),
     trigger: stylex.props(
-      styles.trigger(theme.colors[ColorToken.Outline]),
-      isChecked && styles.checked(theme.colors[ColorToken.Primary], theme.colors[ColorToken.OnPrimary])
+      styles.trigger({
+        borderColor: theme.colors[ColorToken.Outline],
+      }),
+      isChecked &&
+        styles.checked({
+          backgroundColor: theme.colors[ColorToken.Primary],
+          triggerColor: theme.colors[ColorToken.OnPrimary],
+        })
     ),
     label: stylex.props(LABEL.small, styles.label),
   };

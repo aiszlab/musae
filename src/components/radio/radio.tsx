@@ -22,10 +22,10 @@ const styles = stylex.create({
     cursor: "not-allowed",
   },
 
-  trigger: (borderColor: CSSProperties["borderColor"]) => ({
+  trigger: (props: { borderColor: CSSProperties["borderColor"] }) => ({
     visibility: "hidden",
-    height: "16px",
-    width: "16px",
+    height: sizes.xsmall,
+    width: sizes.xsmall,
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
@@ -40,27 +40,27 @@ const styles = stylex.create({
       boxSizing: "border-box",
       borderWidth: "1px",
       borderStyle: "solid",
-      borderColor,
+      borderColor: props.borderColor,
       borderRadius: sizes.infinity,
       transition: "all 200ms",
     },
   }),
 
-  checkedtTrigger: (borderColor: CSSProperties["borderColor"]) => ({
+  checkedTrigger: (props: { borderColor: CSSProperties["borderColor"] }) => ({
     "::after": {
-      borderColor,
+      borderColor: props.borderColor,
       borderWidth: "4px",
     },
   }),
 
-  disabledCheckedTrigger: (backgroundColor: CSSProperties["backgroundColor"]) => ({
+  disabledCheckedTrigger: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
     "::before": {
       content: "''",
       position: "absolute",
       visibility: "visible",
-      height: "8px",
-      width: "8px",
-      backgroundColor: backgroundColor,
+      height: sizes.xxsmall,
+      width: sizes.xxsmall,
+      backgroundColor: props.backgroundColor,
       borderRadius: sizes.infinity,
     },
   }),
@@ -110,11 +110,17 @@ const Radio = ({ children, value, ...props }: RadioProps) => {
   const styled = {
     radio: stylex.props(styles.radio, isDisabled && styles.disabled),
     trigger: stylex.props(
-      styles.trigger(theme.colors[ColorToken.Outline]),
+      styles.trigger({
+        borderColor: theme.colors[ColorToken.Outline],
+      }),
       isChecked &&
         (isDisabled
-          ? styles.checkedtTrigger(theme.colors[ColorToken.Primary])
-          : styles.disabledCheckedTrigger(theme.colors[ColorToken.InversePrimary]))
+          ? styles.disabledCheckedTrigger({
+              backgroundColor: theme.colors[ColorToken.InversePrimary],
+            })
+          : styles.checkedTrigger({
+              borderColor: theme.colors[ColorToken.Primary],
+            }))
     ),
     label: stylex.props(BODY.medium, styles.label),
   };

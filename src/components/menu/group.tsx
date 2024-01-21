@@ -16,6 +16,7 @@ const styles = stylex.create({
     margin: spacing.none,
     padding: spacing.none,
     listStyle: "none",
+    overflow: "auto",
   },
 
   hidden: {
@@ -93,7 +94,7 @@ const Group = ({ items, level = 0, className, _key, ...itemProps }: MenuGroupPro
       }}
     >
       <ul
-        className={clsx(styled.className, classNames[MenuClassToken.Group], className, {
+        className={clsx(classNames[MenuClassToken.Group], className, styled.className, {
           [classNames[MenuClassToken.GroupHidden]]: !isExpanded,
         })}
         style={{

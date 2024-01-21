@@ -1,12 +1,14 @@
-import React, { useCallback, useContext, useMemo } from "react";
+import React, { useCallback, useContext } from "react";
 import { Button } from "../button";
 import type { TabItemProps } from "./types";
 import Context from "./context";
+import { useClassNames } from "../config";
+import { ComponentToken, TabsClassToken } from "../../utils/class-name";
 
 const Item = ({ value, onClick, ...props }: TabItemProps) => {
   const contextValue = useContext(Context);
-
-  const isActive = useMemo(() => contextValue?.activeKey === value, [contextValue?.activeKey, value]);
+  const isActive = contextValue?.activeKey === value;
+  const classNames = useClassNames(ComponentToken.Tabs);
 
   const setItem = useCallback(
     (itemRef: HTMLButtonElement | null) => {
@@ -20,7 +22,13 @@ const Item = ({ value, onClick, ...props }: TabItemProps) => {
   }, [onClick, value]);
 
   return (
-    <Button variant="text" color={isActive ? "primary" : "neutral"} ref={setItem} onClick={click}>
+    <Button
+      variant="text"
+      color={isActive ? "primary" : "neutral"}
+      ref={setItem}
+      onClick={click}
+      className={classNames[TabsClassToken.Item]}
+    >
       {props.label}
     </Button>
   );
