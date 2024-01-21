@@ -1,6 +1,6 @@
 {
   "name": "musae",
-  "version": "0.1.20-beta.1",
+  "version": "0.1.20",
   "description": "musae-ui",
   "author": "tutu@fantufantu.com",
   "license": "MIT",
@@ -10,7 +10,7 @@
     "dev": "rollup -c -w",
     "build": "rollup -c",
     "clean:build": "rm -rf dist && rm -rf typings",
-    "pub": "npm run clean:build && npm run build && npm publish",
+    "prepublish": "npm run clean:build && npm run build",
     "relink": "yarn unlink && yarn link"
   },
   "dependencies": {
