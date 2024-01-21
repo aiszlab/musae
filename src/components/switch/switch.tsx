@@ -8,14 +8,13 @@ import { ColorToken } from "../../utils/colors";
 import clsx from "clsx";
 
 const styles = stylex.create({
-  chip: (borderColor: CSSProperties["borderColor"]) => ({
-    width: "28px",
-    height: "16px",
-    borderRadius: "16px",
-
+  chip: (props: { borderColor: CSSProperties["borderColor"] }) => ({
+    width: sizes.large,
+    height: 20,
+    borderRadius: sizes.xsmall,
     borderWidth: "2px",
     borderStyle: "solid",
-    borderColor,
+    borderColor: props.borderColor,
     backgroundColor: "transparent",
     transition: "all 200ms",
 
@@ -31,17 +30,16 @@ const styles = stylex.create({
     },
   }),
 
-  selected: (
-    borderColor: CSSProperties["borderColor"],
-    backgroundColor: CSSProperties["backgroundColor"],
-    thumbBackgroundColor: CSSProperties["backgroundColor"]
-  ) => ({
-    borderColor,
-    backgroundColor,
+  selected: (props: {
+    backgroundColor: CSSProperties["backgroundColor"];
+    thumbColor: CSSProperties["backgroundColor"];
+  }) => ({
+    borderColor: props.backgroundColor,
+    backgroundColor: props.backgroundColor,
 
     "::before": {
-      translate: "100%",
-      backgroundColor: thumbBackgroundColor,
+      translate: "20px",
+      backgroundColor: props.thumbColor,
     },
   }),
 });
@@ -55,13 +53,14 @@ const Switch = ({ value, ...props }: SwitchProps) => {
   }, [setIsSelected]);
 
   const styled = stylex.props(
-    styles.chip(theme.colors[ColorToken.Outline]),
+    styles.chip({
+      borderColor: theme.colors[ColorToken.Outline],
+    }),
     isSelected &&
-      styles.selected(
-        theme.colors[ColorToken.Primary],
-        theme.colors[ColorToken.Primary],
-        theme.colors[ColorToken.SurfaceContainerLowest]
-      )
+      styles.selected({
+        backgroundColor: theme.colors[ColorToken.Primary],
+        thumbColor: theme.colors[ColorToken.SurfaceContainerLow],
+      })
   );
 
   return (

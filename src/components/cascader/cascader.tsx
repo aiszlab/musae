@@ -7,13 +7,11 @@ import type { CascaderProps } from "./types";
 import { useClassNames } from "../config";
 import { CascaderClassToken, ComponentToken } from "../../utils/class-name";
 import * as stylex from "@stylexjs/stylex";
-import { spacing } from "../theme/tokens.stylex";
 import clsx from "clsx";
 
 const styles = stylex.create({
   options: {
     display: "flex",
-    columnGap: spacing.xxsmall,
   },
 });
 
@@ -56,7 +54,7 @@ const Cascader = ({ mode, separator = "/", ...props }: CascaderProps) => {
     const styled = stylex.props(styles.options);
 
     return (
-      <div className={clsx(styled.className, classNames[CascaderClassToken.Options])} style={styled.style}>
+      <div className={clsx(classNames[CascaderClassToken.Options], styled.className)} style={styled.style}>
         {[presetedMenuItems, ...additionalMenusItems].map((menuItems, index) => {
           return <Menu items={menuItems} key={index} onClick={onChange as MenuProps["onClick"]} />;
         })}

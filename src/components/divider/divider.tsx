@@ -11,54 +11,93 @@ import { BODY } from "../theme/theme";
 import clsx from "clsx";
 
 const styles = stylex.create({
-  divider: {
+  horizontal: {
     width: "100%",
   },
 
-  withChildren: (backgroundColor: CSSProperties["backgroundColor"], offset: number) => ({
+  vertical: {
+    height: "100%",
+  },
+
+  horizontalLabeled: (props: { backgroundColor: CSSProperties["backgroundColor"]; offset: number }) => ({
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
 
     "::before": {
       height: 1,
-      backgroundColor,
-      width: `${offset}%`,
+      width: `${props.offset}%`,
+      backgroundColor: props.backgroundColor,
       content: "''",
     },
 
     "::after": {
       height: 1,
-      backgroundColor,
-      width: `${100 - offset}%`,
+      width: `${100 - props.offset}%`,
+      backgroundColor: props.backgroundColor,
       content: "''",
     },
   }),
 
-  outline: (backgroundColor: CSSProperties["backgroundColor"]) => ({
-    height: 1,
-    backgroundColor,
+  verticalLabeled: (props: { backgroundColor: CSSProperties["backgroundColor"]; offset: number }) => ({
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+
+    "::before": {
+      width: 1,
+      height: `${props.offset}%`,
+      backgroundColor: props.backgroundColor,
+      content: "''",
+    },
+
+    "::after": {
+      width: 1,
+      height: `${100 - props.offset}%`,
+      backgroundColor: props.backgroundColor,
+      content: "''",
+    },
   }),
 
-  label: {
+  horizontalUnlabeled: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
+    height: 1,
+    backgroundColor: props.backgroundColor,
+  }),
+
+  verticalUnlabeled: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
+    width: 1,
+    backgroundColor: props.backgroundColor,
+  }),
+
+  horizontalLabel: {
     marginInline: spacing.small,
+    whiteSpace: "nowrap",
+  },
+
+  verticalLabel: {
+    marginBlock: spacing.small,
     whiteSpace: "nowrap",
   },
 });
 
-const Divider = ({ align, children }: DividerProps) => {
+const Divider = ({ align, children, type = "horizontal" }: DividerProps) => {
   const classNames = useClassNames(ComponentToken.Divider);
   const offset = useOffset([align]);
   const theme = useTheme();
 
   const styled = {
     divider: stylex.props(
-      styles.divider,
+      styles[type],
       !!children
-        ? styles.withChildren(theme.colors[ColorToken.OutlineVariant], offset)
-        : styles.outline(theme.colors[ColorToken.OutlineVariant])
+        ? styles[type === "horizontal" ? "horizontalLabeled" : "verticalLabeled"]({
+            backgroundColor: theme.colors[ColorToken.OutlineVariant],
+            offset,
+          })
+        : styles[type === "horizontal" ? "horizontalUnlabeled" : "verticalUnlabeled"]({
+            backgroundColor: theme.colors[ColorToken.OutlineVariant],
+          })
     ),
-    label: stylex.props(BODY.small, styles.label),
+    label: stylex.props(BODY.small, styles[type === "horizontal" ? "horizontalLabel" : "verticalLabel"]),
   };
 
   return (
