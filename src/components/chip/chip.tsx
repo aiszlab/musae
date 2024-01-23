@@ -10,9 +10,9 @@ import { ColorToken } from "../../utils/colors";
 import { spacing } from "../theme/tokens.stylex";
 
 const styles = stylex.create({
-  chip: (backgroundColor: CSSProperties["backgroundColor"], color: CSSProperties["color"]) => ({
-    backgroundColor,
-    color,
+  chip: (props: { backgroundColor: CSSProperties["backgroundColor"]; color: CSSProperties["color"] }) => ({
+    backgroundColor: props.backgroundColor,
+    color: props.color,
   }),
 
   small: {
@@ -34,7 +34,10 @@ const Chip = ({ children, size = "large", ...props }: ChipProps) => {
 
   const styled = stylex.props(
     LABEL.large,
-    styles.chip(theme.colors[ColorToken.PrimaryContainer], theme.colors[ColorToken.OnPrimaryContainer]),
+    styles.chip({
+      backgroundColor: theme.colors[ColorToken.PrimaryContainer],
+      color: theme.colors[ColorToken.OnPrimaryContainer],
+    }),
     styles[size]
   );
 
