@@ -1,6 +1,7 @@
-import { ColumnDef, ColumnHelper } from "@tanstack/react-table";
-import { Table } from "@tanstack/react-table";
-import { ComponentProps } from "../../types/element";
+import type { ColumnDef, ColumnHelper } from "@tanstack/react-table";
+import type { Table } from "@tanstack/react-table";
+import type { ComponentProps } from "../../types/element";
+import type { Styles } from "../../types/stylex";
 
 /**
  * @description
@@ -38,10 +39,26 @@ export type ContextValue<T> = {
    * table
    */
   table?: Table<T>;
+
+  /**
+   * @description
+   * if current table is bordered
+   */
+  bordered: boolean;
 };
 
 /**
  * @description
  * header props
  */
-export type HeaderProps = ComponentProps & {};
+export type HeaderProps = ComponentProps & {
+  styles: Styles;
+};
+
+/**
+ * @description
+ * body props
+ */
+export type BodyProps = ComponentProps & {
+  styles: Styles;
+};

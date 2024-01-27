@@ -6,35 +6,36 @@ import * as stylex from "@stylexjs/stylex";
 import { sizes } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import clsx from "clsx";
+import { ColorToken } from "../../utils/colors";
+import { LABEL } from "../theme/theme";
 
 const styles = stylex.create({
-  cell: (props: { outlineColor: CSSProperties["borderColor"] }) => ({
-    borderWidth: sizes.smallest,
-    borderStyle: "solid",
-    borderColor: props.outlineColor,
+  cell: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
+    backgroundColor: props.backgroundColor,
+    textAlign: "start",
+    position: "relative",
   }),
+
+  unbordered: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
+    ":not(:last-of-type)::after": {
+      content: '""',
+      position: "absolute",
+      top: "50%",
+      width: sizes.smallest,
+      height: sizes.small,
+      backgroundColor: props.backgroundColor,
+      transform: "translateY(-50%)",
+      insetInlineEnd: 0,
+    },
+  }),
+
+  bordered: {
+    borderWidth: sizes.smallest,
+  },
 });
 
-// const useClasses = makeStyles({
-//   cell: {
-//     position: "relative",
-//     ...shorthands.padding("16px"),
-
-//     ":not(:last-child)::before": {
-//       content: "''",
-//       height: "50%",
-//       position: "absolute",
-//       width: "1px",
-//       backgroundColor: COLOR_TOKENS[Token.ColorOutline],
-//       insetInlineEnd: 0,
-//       top: "50%",
-//       transform: "translateY(-50%)",
-//     },
-//   },
-// });
-
 const Header = <T,>(props: HeaderProps) => {
-  const { table } = useTable<T>();
+  const { table, bordered } = useTable<T>();
   const theme = useTheme();
 
   if (!table) return null;
@@ -42,8 +43,15 @@ const Header = <T,>(props: HeaderProps) => {
   const headerGroups = table.getHeaderGroups();
   const styled = stylex.props(
     styles.cell({
-      outlineColor: theme.colors.outline,
-    })
+      backgroundColor: theme.colors[ColorToken.Surface],
+    }),
+    LABEL.small,
+    bordered
+      ? styles.bordered
+      : styles.unbordered({
+          backgroundColor: theme.colors[ColorToken.OutlineVariant],
+        }),
+    props.styles
   );
 
   return (
