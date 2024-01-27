@@ -3,13 +3,6 @@ import { ContextValue, FormProps, FormRef } from "./types";
 import { useForm, type FieldValues, FormProvider, FieldErrors, FieldPath } from "react-hook-form";
 import { isUndefined } from "@aiszlab/relax";
 import Context, { CONTEXT_VALUE } from "./context";
-import * as stylex from "@stylexjs/stylex";
-
-const styles = stylex.create({
-  form: {
-    width: "100%",
-  },
-});
 
 const Form = forwardRef(
   <T extends FieldValues = FieldValues>(
@@ -77,9 +70,7 @@ const Form = forwardRef(
     return (
       <Context.Provider value={contextValue}>
         <FormProvider {...methods}>
-          <form {...stylex.props(styles.form)} onSubmit={_submit}>
-            {children}
-          </form>
+          <form onSubmit={_submit}>{children}</form>
         </FormProvider>
       </Context.Provider>
     );
