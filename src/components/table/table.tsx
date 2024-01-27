@@ -10,10 +10,6 @@ import * as stylex from "@stylexjs/stylex";
 const styles = stylex.create({
   table: {
     width: "400px",
-    backgroundColor: "red",
-  },
-  thead: {
-    backgroundColor: "blue",
   },
 });
 

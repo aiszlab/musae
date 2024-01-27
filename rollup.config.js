@@ -9,6 +9,8 @@ import pkg from "./package.json" assert { type: "json" };
 import { fileURLToPath } from "url";
 import { dirname } from "path";
 
+const CSS_ASSET_FILENAME = "stylex.css";
+
 /** @type {import("rollup").RollupOptions} */
 const configuration = {
   input: "./src/index.ts",
@@ -18,7 +20,15 @@ const configuration = {
     dir: "./dist",
     banner: (chunk) => {
       if (chunk.isEntry) {
-        return 'import "./stylex.css";';
+        // configuration readme: https://rollupjs.org/configuration-options/#output-banner-output-footer
+        // update imports, importedBindings
+        // add css to entry chunk
+        chunk.imports.push(CSS_ASSET_FILENAME);
+        Object.assign(chunk.importedBindings, {
+          [CSS_ASSET_FILENAME]: [],
+        });
+
+        return `import "./${CSS_ASSET_FILENAME}";`;
       }
     },
     preserveModules: true,

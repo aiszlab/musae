@@ -32,7 +32,7 @@
     "@rollup/plugin-commonjs": "^25.0.7",
     "@rollup/plugin-node-resolve": "^15.1.0",
     "@rollup/plugin-typescript": "^11.1.1",
-    "@stylexjs/rollup-plugin": "^0.4.1",
+    "@stylexjs/rollup-plugin": "^0.5.1",
     "@stylexjs/stylex": "^0.4.1",
     "@types/react": "^18",
     "@types/react-dom": "^18",
