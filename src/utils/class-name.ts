@@ -97,6 +97,7 @@ export enum EmptyClassToken {
 }
 export enum ButtonClassToken {
   Button,
+  Prefix,
 }
 export enum DrawerClassToken {
   Drawer,
@@ -220,6 +221,7 @@ export const CLASS_NAMES = {
   },
   [ComponentToken.Button]: {
     [ButtonClassToken.Button]: "button",
+    [ButtonClassToken.Prefix]: "button-prefix",
   },
   [ComponentToken.Drawer]: {
     [DrawerClassToken.Drawer]: "drawer",

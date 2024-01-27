@@ -50,4 +50,12 @@ export interface ButtonProps extends Partial<Pick<HTMLButtonElement, "type">>, C
    * disabled
    */
   disabled?: boolean;
+
+  /**
+   * @description
+   * prefix react node
+   * @template
+   * icon or prefix signal
+   */
+  prefix?: ReactNode;
 }

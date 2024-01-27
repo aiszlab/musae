@@ -8,6 +8,7 @@ import * as stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
 import { LABEL } from "../theme/theme";
 import clsx from "clsx";
+import { Button } from "../button";
 
 const styles = stylex.create({
   header: {
@@ -21,6 +22,10 @@ const styles = stylex.create({
     flex: 1,
     display: "flex",
     justifyContent: "center",
+  },
+
+  trigger: {
+    padding: spacing.none,
   },
 });
 
@@ -42,8 +47,8 @@ const Calendar = (props: CalendarProps) => {
         className={clsx(classNames[CalendarClassToken.Header], styled.header.className)}
         style={styled.header.style}
       >
-        <KeyboardDoubleArrowLeft onClick={toPrevYear} />
-        <KeyboardArrowLeft onClick={toPrevMonth} />
+        <Button variant="text" prefix={<KeyboardDoubleArrowLeft />} onClick={toPrevYear} size="small" />
+        <Button variant="text" prefix={<KeyboardArrowLeft />} onClick={toPrevMonth} size="small" />
 
         <span
           className={clsx(classNames[CalendarClassToken.Heading], styled.heading.className)}
@@ -52,9 +57,10 @@ const Calendar = (props: CalendarProps) => {
           {focusedAt.format("YYYY-MM")}
         </span>
 
-        <KeyboardArrowRight onClick={toNextMonth} />
-        <KeyboardDoubleArrowRight onClick={toNextYear} />
+        <Button variant="text" prefix={<KeyboardArrowRight />} onClick={toNextMonth} size="small" />
+        <Button variant="text" prefix={<KeyboardDoubleArrowRight />} onClick={toNextYear} size="small" />
       </header>
+
       <table>
         <thead>
           <tr>{headCells}</tr>

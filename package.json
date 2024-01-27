@@ -9,12 +9,11 @@
   "scripts": {
     "dev": "rollup -c -w",
     "build": "rollup -c",
-    "clean:build": "rm -rf dist && rm -rf typings",
-    "prepublish": "npm run clean:build && npm run build",
+    "prepublish": "rm -rf dist && npm run build",
     "relink": "yarn unlink && yarn link"
   },
   "dependencies": {
-    "@aiszlab/relax": "1.2.15",
+    "@aiszlab/relax": "1.2.16",
     "@popperjs/core": "^2.11.8",
     "@tanstack/react-table": "^8.11.3",
     "clsx": "^1.2.1",

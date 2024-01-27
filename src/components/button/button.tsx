@@ -25,22 +25,30 @@ const styles = stylex.create({
     paddingInline: spacing.xlarge,
   },
 
-  filled: (backgroundColor: CSSProperties["backgroundColor"]) => ({
-    backgroundColor,
+  filled: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
+    backgroundColor: props.backgroundColor,
     border: "none",
   }),
 
-  outlined: (outline: CSSProperties["borderColor"]) => ({
-    borderWidth: "1px",
+  outlined: (props: { outlineColor: CSSProperties["borderColor"] }) => ({
+    borderWidth: sizes.smallest,
     borderStyle: "solid",
-    borderColor: outline,
+    borderColor: props.outlineColor,
   }),
 
-  content: (color: CSSProperties["color"]) => ({
+  body: (props: { color: CSSProperties["color"] }) => ({
     marginInline: spacing.small,
     whiteSpace: "nowrap",
-    color,
+    color: props.color,
   }),
+
+  prefix: {
+    display: "inline-flex",
+
+    ":not(:last-child)": {
+      marginLeft: spacing.small,
+    },
+  },
 });
 
 /**
@@ -55,26 +63,34 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     const theme = useTheme();
 
     const _variants = {
-      filled: () => styles.filled(theme.colors[ColorToken.Primary]),
-      outlined: () => styles.filled(theme.colors[ColorToken.Outline]),
+      filled: () =>
+        styles.filled({
+          backgroundColor: theme.colors[ColorToken.Primary],
+        }),
+      outlined: () =>
+        styles.outlined({
+          outlineColor: theme.colors[ColorToken.Outline],
+        }),
       text: () => void 0,
     };
 
     const styled = {
       button: stylex.props(styles.button, _variants[variant](), styles[size]),
-      content: stylex.props(
-        styles.content(
-          variant === "text" || variant === "outlined"
-            ? theme.colors[ColorToken.Primary]
-            : theme.colors[ColorToken.OnPrimary]
-        )
+      body: stylex.props(
+        styles.body({
+          color:
+            variant === "text" || variant === "outlined"
+              ? theme.colors[ColorToken.Primary]
+              : theme.colors[ColorToken.OnPrimary],
+        })
       ),
+      prefix: stylex.props(styles.prefix),
     };
 
     return (
       <button
         onClick={onClick}
-        className={clsx(className, classNames[ButtonClassToken.Button], styled.button.className)}
+        className={clsx(classNames[ButtonClassToken.Button], className, styled.button.className)}
         style={{
           ...styled.button.style,
           ...style,
@@ -82,7 +98,16 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         color={color}
         ref={ref}
       >
-        <span {...styled.content}>{children}</span>
+        {props.prefix && (
+          <span
+            className={clsx(classNames[ButtonClassToken.Prefix], styled.prefix.className)}
+            style={styled.prefix.style}
+          >
+            {props.prefix}
+          </span>
+        )}
+
+        {children && <span {...styled.body}>{children}</span>}
       </button>
     );
   }
