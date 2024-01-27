@@ -20,8 +20,8 @@ const styles = stylex.create({
     marginBottom: `calc(${spacing.xlarge} * -1)`,
   },
 
-  error: (color: CSSProperties["color"]) => ({
-    color,
+  error: (props: { color: CSSProperties["color"] }) => ({
+    color: props.color,
   }),
 });
 
@@ -82,7 +82,11 @@ const Field = ({ required, ...props }: RequiredIn<FormItemProps, "name" | "requi
   const _error = useMemo(() => {
     if (!invalid) return null;
 
-    const { className, style } = stylex.props(styles.error(theme.colors[ColorToken.Error]));
+    const { className, style } = stylex.props(
+      styles.error({
+        color: theme.colors[ColorToken.Error],
+      })
+    );
 
     return (
       <span className={clsx(classNames[FormClassToken.ItemExplainError], className)} style={style}>
