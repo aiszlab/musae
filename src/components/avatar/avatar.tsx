@@ -1,10 +1,18 @@
-import React from "react";
+import React, { CSSProperties, useContext } from "react";
 import type { AvatarProps } from "./types";
 import * as stylex from "@stylexjs/stylex";
-import { sizes } from "../theme/tokens.stylex";
+import { sizes, spacing } from "../theme/tokens.stylex";
+import { Context } from "./context";
+import { useTheme } from "../theme";
+import { ColorToken } from "../../utils/colors";
 
 const styles = stylex.create({
-  avatar: {},
+  avatar: {
+    borderWidth: sizes.smallest,
+    borderStyle: "solid",
+    borderColor: "transparent",
+    boxSizing: "border-box",
+  },
 
   image: {
     width: sizes.full,
@@ -12,6 +20,11 @@ const styles = stylex.create({
     objectFit: "cover",
     borderRadius: "inherit",
   },
+
+  overlapping: (props: { outlineColor: CSSProperties["borderColor"] }) => ({
+    marginLeft: `calc(${spacing.small} * -1)`,
+    borderColor: props.outlineColor,
+  }),
 
   circle: {
     borderRadius: sizes.infinity,
@@ -37,9 +50,23 @@ const styles = stylex.create({
   },
 });
 
-const Avatar = ({ src, alt, size = "medium", shape = "circle" }: AvatarProps) => {
+const Avatar = ({ src, alt, ...props }: AvatarProps) => {
+  const theme = useTheme();
+  const group = useContext(Context);
+  const isInGroup = !!group;
+  const size = group?.size ?? props.size ?? "medium";
+  const shape = group?.shape ?? props.shape ?? "circle";
+
   const styled = {
-    avatar: stylex.props(styles.avatar, styles[size], styles[shape]),
+    avatar: stylex.props(
+      styles.avatar,
+      styles[size],
+      styles[shape],
+      isInGroup &&
+        styles.overlapping({
+          outlineColor: theme.colors[ColorToken.OnPrimary],
+        })
+    ),
     image: stylex.props(styles.image),
   };
 

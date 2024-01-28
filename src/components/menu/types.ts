@@ -168,8 +168,3 @@ export interface MenuRef {
    */
   scrollTo: (key: Key, duration?: number) => void;
 }
-
-/**
- * @description
- * group ref
- */
