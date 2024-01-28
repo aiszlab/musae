@@ -45,5 +45,5 @@ export { useTheme } from "./components/theme";
  * declarations
  */
 export type { Option } from "./types/option";
-export type { MenuItem } from "./components/menu";
+export type { MenuItem, MenuRef } from "./components/menu";
 export type { TreeProps } from "./components/tree";

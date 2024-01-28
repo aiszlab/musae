@@ -1,211 +1,329 @@
 import React from "react";
-// import Circle from "./circle";
 import * as stylex from "@stylexjs/stylex";
+import { LoadingProps } from "./types";
+import { sizes } from "../theme/tokens.stylex";
 
-const styles = stylex.create({
-  // svg
-  loading: {
-    width: "6rem",
-    height: "6rem",
+const top = stylex.keyframes({
+  from: {
+    strokeDasharray: "0 660",
+    strokeWidth: 20,
+    strokeDashoffset: "-330",
+  },
+
+  "4%": {
+    strokeDasharray: "0 660",
+    strokeWidth: 20,
+    strokeDashoffset: "-330",
+  },
+
+  "12%": {
+    strokeDasharray: "60 600",
+    strokeWidth: 30,
+    strokeDashoffset: "-335",
+  },
+
+  "32%": {
+    strokeDasharray: "60 600",
+    strokeWidth: 30,
+    strokeDashoffset: "-595",
+  },
+
+  "40%": {
+    strokeDasharray: "0 660",
+    strokeWidth: 20,
+    strokeDashoffset: "-660",
+  },
+
+  "54%": {
+    strokeDasharray: "0 660",
+    strokeWidth: 20,
+    strokeDashoffset: "-660",
+  },
+
+  "62%": {
+    strokeDasharray: "60 600",
+    strokeWidth: 30,
+    strokeDashoffset: "-665",
+  },
+
+  "82%": {
+    strokeDasharray: "60 600",
+    strokeWidth: 30,
+    strokeDashoffset: "-925",
+  },
+
+  "90%": {
+    strokeDasharray: "0 660",
+    strokeWidth: 20,
+    strokeDashoffset: "-990",
+  },
+
+  to: {
+    strokeDasharray: "0 660",
+    strokeWidth: 20,
+    strokeDashoffset: "-990",
   },
 });
 
-// const large = keyframes`
-//   from,
-//   4% {
-//     stroke-dasharray: 0 660;
-//     stroke-width: 20;
-//     stroke-dashoffset: -330;
-//   }
+const bottom = stylex.keyframes({
+  from: {
+    strokeDasharray: "0 220",
+    strokeWidth: 20,
+    strokeDashoffset: "-110",
+  },
 
-//   12% {
-//     stroke-dasharray: 60 600;
-//     stroke-width: 30;
-//     stroke-dashoffset: -335;
-//   }
+  "12%": {
+    strokeDasharray: "0 220",
+    strokeWidth: 20,
+    strokeDashoffset: "-110",
+  },
 
-//   32% {
-//     stroke-dasharray: 60 600;
-//     stroke-width: 30;
-//     stroke-dashoffset: -595;
-//   }
+  "20%": {
+    strokeDasharray: "20 200",
+    strokeWidth: 30,
+    strokeDashoffset: "-115",
+  },
 
-//   40%,
-//   54% {
-//     stroke-dasharray: 0 660;
-//     stroke-width: 20;
-//     stroke-dashoffset: -660;
-//   }
+  "40%": {
+    strokeDasharray: "20 200",
+    strokeWidth: 30,
+    strokeDashoffset: "-195",
+  },
 
-//   62% {
-//     stroke-dasharray: 60 600;
-//     stroke-width: 30;
-//     stroke-dashoffset: -665;
-//   }
+  "48%": {
+    strokeDasharray: "0 220",
+    strokeWidth: 20,
+    strokeDashoffset: "-220",
+  },
 
-//   82% {
-//     stroke-dasharray: 60 600;
-//     stroke-width: 30;
-//     stroke-dashoffset: -925;
-//   }
+  "62%": {
+    strokeDasharray: "0 220",
+    strokeWidth: 20,
+    strokeDashoffset: "-220",
+  },
 
-//   90%,
-//   to {
-//     stroke-dasharray: 0 660;
-//     stroke-width: 20;
-//     stroke-dashoffset: -990;
-//   }
-// `;
+  "70%": {
+    strokeDasharray: "20 200",
+    strokeWidth: 30,
+    strokeDashoffset: "-225",
+  },
 
-// const small = keyframes`
-//   from,
-//   12% {
-//     stroke-dasharray: 0 220;
-//     stroke-width: 20;
-//     stroke-dashoffset: -110;
-//   }
+  "90%": {
+    strokeDasharray: "20 200",
+    strokeWidth: 30,
+    strokeDashoffset: "-305",
+  },
 
-//   20% {
-//     stroke-dasharray: 20 200;
-//     stroke-width: 30;
-//     stroke-dashoffset: -115;
-//   }
+  "98%": {
+    strokeDasharray: "0 220",
+    strokeWidth: 20,
+    strokeDashoffset: "-330",
+  },
 
-//   40% {
-//     stroke-dasharray: 20 200;
-//     stroke-width: 30;
-//     stroke-dashoffset: -195;
-//   }
+  to: {
+    strokeDasharray: "0 220",
+    strokeWidth: 20,
+    strokeDashoffset: "-330",
+  },
+});
 
-//   48%,
-//   62% {
-//     stroke-dasharray: 0 220;
-//     stroke-width: 20;
-//     stroke-dashoffset: -220;
-//   }
+const left = stylex.keyframes({
+  from: {
+    strokeDasharray: "0 440",
+    strokeWidth: 20,
+    strokeDashoffset: "0",
+  },
 
-//   70% {
-//     stroke-dasharray: 20 200;
-//     stroke-width: 30;
-//     stroke-dashoffset: -225;
-//   }
+  "8%": {
+    strokeDasharray: "40 400",
+    strokeWidth: 30,
+    strokeDashoffset: "-5",
+  },
 
-//   90% {
-//     stroke-dasharray: 20 200;
-//     stroke-width: 30;
-//     stroke-dashoffset: -305;
-//   }
+  "28%": {
+    strokeDasharray: "40 400",
+    strokeWidth: 30,
+    strokeDashoffset: "-175",
+  },
 
-//   98%,
-//   to {
-//     stroke-dasharray: 0 220;
-//     stroke-width: 20;
-//     stroke-dashoffset: -330;
-//   }
-// `;
+  "36%": {
+    strokeDasharray: "0 440",
+    strokeWidth: 20,
+    strokeDashoffset: "-220",
+  },
 
-// const left = keyframes`
-//   from {
-//     stroke-dasharray: 0 440;
-//     stroke-width: 20;
-//     stroke-dashoffset: 0;
-//   }
+  "58%": {
+    strokeDasharray: "0 440",
+    strokeWidth: 20,
+    strokeDashoffset: "-220",
+  },
 
-//   8% {
-//     stroke-dasharray: 40 400;
-//     stroke-width: 30;
-//     stroke-dashoffset: -5;
-//   }
+  "66%": {
+    strokeDasharray: "40 400",
+    strokeWidth: 30,
+    strokeDashoffset: "-225",
+  },
 
-//   28% {
-//     stroke-dasharray: 40 400;
-//     stroke-width: 30;
-//     stroke-dashoffset: -175;
-//   }
+  "86%": {
+    strokeDasharray: "40 400",
+    strokeWidth: 30,
+    strokeDashoffset: "-395",
+  },
 
-//   36%,
-//   58% {
-//     stroke-dasharray: 0 440;
-//     stroke-width: 20;
-//     stroke-dashoffset: -220;
-//   }
+  "94%": {
+    strokeDasharray: "0 440",
+    strokeWidth: 20,
+    strokeDashoffset: "-440",
+  },
 
-//   66% {
-//     stroke-dasharray: 40 400;
-//     stroke-width: 30;
-//     stroke-dashoffset: -225;
-//   }
+  to: {
+    strokeDasharray: "0 440",
+    strokeWidth: 20,
+    strokeDashoffset: "-440",
+  },
+});
 
-//   86% {
-//     stroke-dasharray: 40 400;
-//     stroke-width: 30;
-//     stroke-dashoffset: -395;
-//   }
+const right = stylex.keyframes({
+  from: {
+    strokeDasharray: "0 440",
+    strokeWidth: 20,
+    strokeDashoffset: "0",
+  },
 
-//   94%,
-//   to {
-//     stroke-dasharray: 0 440;
-//     stroke-width: 20;
-//     stroke-dashoffset: -440;
-//   }
-// `;
+  "8%": {
+    strokeDasharray: "0 440",
+    strokeWidth: 20,
+    strokeDashoffset: "0",
+  },
 
-// const right = keyframes`
-//   from,
-//   8% {
-//     stroke-dasharray: 0 440;
-//     stroke-width: 20;
-//     stroke-dashoffset: 0;
-//   }
+  "16%": {
+    strokeDasharray: "40 400",
+    strokeWidth: 30,
+    strokeDashoffset: "-5",
+  },
 
-//   16% {
-//     stroke-dasharray: 40 400;
-//     stroke-width: 30;
-//     stroke-dashoffset: -5;
-//   }
+  "36%": {
+    strokeDasharray: "40 400",
+    strokeWidth: 30,
+    strokeDashoffset: "-175",
+  },
 
-//   36% {
-//     stroke-dasharray: 40 400;
-//     stroke-width: 30;
-//     stroke-dashoffset: -175;
-//   }
+  "44%": {
+    strokeDasharray: "0 440",
+    strokeWidth: 20,
+    strokeDashoffset: "-220",
+  },
 
-//   44%,
-//   50% {
-//     stroke-dasharray: 0 440;
-//     stroke-width: 20;
-//     stroke-dashoffset: -220;
-//   }
+  "50%": {
+    strokeDasharray: "0 440",
+    strokeWidth: 20,
+    strokeDashoffset: "-220",
+  },
 
-//   58% {
-//     stroke-dasharray: 40 400;
-//     stroke-width: 30;
-//     stroke-dashoffset: -225;
-//   }
+  "58%": {
+    strokeDasharray: "40 400",
+    strokeWidth: 30,
+    strokeDashoffset: "-225",
+  },
 
-//   78% {
-//     stroke-dasharray: 40 400;
-//     stroke-width: 30;
-//     stroke-dashoffset: -395;
-//   }
+  "78%": {
+    strokeDasharray: "40 400",
+    strokeWidth: 30,
+    strokeDashoffset: "-395",
+  },
 
-//   86%,
-//   to {
-//     stroke-dasharray: 0 440;
-//     stroke-width: 20;
-//     stroke-dashoffset: -440;
-//   }
-// `;
+  "86%": {
+    strokeDasharray: "0 440",
+    strokeWidth: 20,
+    strokeDashoffset: "-440",
+  },
 
-const Loading = () => {
+  to: {
+    strokeDasharray: "0 440",
+    strokeWidth: 20,
+    strokeDashoffset: "-440",
+  },
+});
+
+const styles = stylex.create({
+  circle: {
+    animationDuration: "2s",
+    animationTimingFunction: "linear",
+    animationIterationCount: "infinite",
+    fill: "none",
+    strokeLinecap: "round",
+  },
+
+  top: {
+    animationName: top,
+    stroke: "#f42f25",
+  },
+
+  bottom: {
+    animationName: bottom,
+    stroke: "#f49725",
+  },
+
+  left: {
+    animationName: left,
+    stroke: "#255ff4",
+  },
+
+  right: {
+    animationName: right,
+    stroke: "#f42582",
+  },
+
+  small: {
+    width: sizes.large,
+    height: sizes.large,
+  },
+
+  medium: {
+    width: sizes.xlarge,
+    height: sizes.xlarge,
+  },
+
+  large: {
+    width: sizes.xxlarge,
+    height: sizes.xxlarge,
+  },
+});
+
+const Loading = ({ size = "medium" }: LoadingProps) => {
+  const circles = {
+    top: {
+      ...stylex.props(styles.circle, styles.top),
+      cx: "120",
+      cy: "120",
+      r: "105",
+    },
+    bottom: {
+      ...stylex.props(styles.circle, styles.bottom),
+      cx: "120",
+      cy: "120",
+      r: "35",
+    },
+    left: {
+      ...stylex.props(styles.circle, styles.left),
+      cx: "85",
+      cy: "120",
+      r: "70",
+    },
+    right: {
+      ...stylex.props(styles.circle, styles.right),
+      cx: "155",
+      cy: "120",
+      r: "70",
+    },
+  };
+
   return (
-    // <StyledWrapper width="240" height="240" viewBox="0 0 240 240">
-    //   <Circle animationName={large} cx="120" cy="120" r="105" stroke="#f42f25" />
-    //   <Circle animationName={small} cx="120" cy="120" r="35" stroke="#f49725" />
-    //   <Circle animationName={left} cx="85" cy="120" r="70" stroke="#255ff4" />
-    //   <Circle animationName={right} cx="155" cy="120" r="70" stroke="#f42582" />
-    // </StyledWrapper>
-    <div></div>
+    <svg viewBox="0 0 240 240" {...stylex.props(styles[size])}>
+      {Array.from(Object.entries(circles)).map(([key, props]) => {
+        return <circle {...props} key={key} />;
+      })}
+    </svg>
   );
 };
 

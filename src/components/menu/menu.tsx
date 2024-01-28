@@ -8,6 +8,15 @@ import { ComponentToken, MenuClassToken } from "../../utils/class-name";
 import Item from "./item";
 import { useContextValue } from "./hooks";
 import clsx from "clsx";
+import * as stylex from "@stylexjs/stylex";
+
+const styles = stylex.create({
+  menu: {
+    /// add position reason: when read li offsetTop, if parent is not relative, then it will read wrong value
+    /// https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetTop
+    position: "relative",
+  },
+});
 
 /**
  * @author murukal
@@ -37,16 +46,14 @@ const Menu = forwardRef<MenuRef, MenuProps>(({ onClick, className, style, ...pro
     },
   }));
 
+  const styled = stylex.props(styles.menu);
+
   return (
     <Context.Provider value={contextValue}>
       <ul
         ref={menuRef}
-        className={clsx(classNames[MenuClassToken.Menu], className)}
-        style={{
-          /// add position reason: when read li offsetTop, if parent is not relative, then it will read wrong value
-          /// https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetTop
-          position: "relative",
-        }}
+        className={clsx(classNames[MenuClassToken.Menu], className, styled.className)}
+        style={styled.style}
       >
         {props.items.map((item) => {
           const _props: Pick<MenuItemProps, Extract<keyof MenuItemProps, keyof MenuGroupProps>> & {
