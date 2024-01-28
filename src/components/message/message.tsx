@@ -17,16 +17,17 @@ const styles = stylex.create({
   }),
 });
 
-const Message = ({ duration, type, onHidden, id }: MessageProps) => {
+const Message = ({ duration = 3000, type, onClose }: MessageProps) => {
+  const theme = useTheme();
+
   useTimeout(
     () => {
-      onHidden?.(id);
+      onClose?.();
     },
     {
       duration,
     }
   );
-  const theme = useTheme();
 
   return (
     <div

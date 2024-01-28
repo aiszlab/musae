@@ -1,8 +1,9 @@
 import React, { forwardRef, useCallback, useImperativeHandle, useState } from "react";
-import { MessageRef, MessageProps } from "./types";
+import { MessageRef, MessageConfig } from "./types";
 import Message from "./message";
 import * as stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
+import { RequiredIn } from "@aiszlab/relax";
 
 const styles = stylex.create({
   holder: {
@@ -18,12 +19,12 @@ const styles = stylex.create({
 });
 
 const Holder = forwardRef<MessageRef>((props, ref) => {
-  const [messages, setMessages] = useState<Map<string, MessageProps>>(new Map());
+  const [messages, setMessages] = useState<Map<string, RequiredIn<MessageConfig, "key">>>(new Map());
 
   useImperativeHandle(ref, () => ({
     add: (props) => {
-      if (messages.has(props.id)) return;
-      setMessages((shown) => new Map([...shown, [props.id, props]]));
+      if (messages.has(props.key)) return;
+      setMessages((shown) => new Map([...shown, [props.key, props]]));
     },
   }));
 
@@ -42,8 +43,13 @@ const Holder = forwardRef<MessageRef>((props, ref) => {
 
   return (
     <div {...stylex.props(styles.holder)}>
-      {Array.from(messages.entries()).map(([key, item]) => (
-        <Message onHidden={hidden} key={key} {...item} />
+      {Array.from(messages.values()).map((item) => (
+        <Message
+          onClose={() => {
+            hidden(item.key);
+          }}
+          {...item}
+        />
       ))}
     </div>
   );
