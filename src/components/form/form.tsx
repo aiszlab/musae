@@ -10,7 +10,7 @@ const Form = forwardRef(
     ref: ForwardedRef<FormRef<T>>
   ) => {
     /// use react hook form
-    const methods = useForm<T>({
+    const { handleSubmit, watch, ...methods } = useForm<T>({
       mode: "all",
     });
 
@@ -39,20 +39,20 @@ const Form = forwardRef(
     });
 
     const _submit = useMemo(() => {
-      return methods.handleSubmit((values) => {
+      return handleSubmit((values) => {
         onSubmit?.(values);
       });
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [onSubmit, methods.handleSubmit]);
+    }, [onSubmit, handleSubmit]);
 
     useEffect(() => {
-      const subscription = methods.watch((values, { type }) => {
+      const subscription = watch((values, { type }) => {
         type === "change" && onChange?.(values);
       });
 
-      return subscription.unsubscribe;
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [onChange, methods.watch]);
+      return () => {
+        subscription.unsubscribe();
+      };
+    }, [onChange, watch]);
 
     /// context value
     const contextValue = useMemo<ContextValue>(() => {
@@ -69,7 +69,7 @@ const Form = forwardRef(
 
     return (
       <Context.Provider value={contextValue}>
-        <FormProvider {...methods}>
+        <FormProvider handleSubmit={handleSubmit} watch={watch} {...methods}>
           <form onSubmit={_submit}>{children}</form>
         </FormProvider>
       </Context.Provider>
