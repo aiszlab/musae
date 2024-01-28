@@ -7,12 +7,12 @@ import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
 
 const styles = stylex.create({
-  message: (backgroundColor: CSSProperties["backgroundColor"]) => ({
+  message: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
     marginBlock: spacing.small,
     paddingBlock: spacing.small,
     paddingInline: spacing.medium,
     borderRadius: 6,
-    backgroundColor,
+    backgroundColor: props.backgroundColor,
     boxShadow: elevations.xsmall,
   }),
 });
@@ -28,7 +28,17 @@ const Message = ({ duration, type, onHidden, id }: MessageProps) => {
   );
   const theme = useTheme();
 
-  return <div {...stylex.props(styles.message(theme.colors[ColorToken.OnPrimary]))}>{type}</div>;
+  return (
+    <div
+      {...stylex.props(
+        styles.message({
+          backgroundColor: theme.colors[ColorToken.OnPrimary],
+        })
+      )}
+    >
+      {type}
+    </div>
+  );
 };
 
 export default Message;
