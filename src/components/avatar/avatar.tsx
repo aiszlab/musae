@@ -1,26 +1,53 @@
-// import { useImageLoader } from "@aiszlab/relax";
-import clsx from "clsx";
-import React, { useMemo } from "react";
+import React from "react";
+import type { AvatarProps } from "./types";
+import * as stylex from "@stylexjs/stylex";
+import { sizes } from "../theme/tokens.stylex";
 
-interface Props {
-  src: string;
-  alt: string;
-}
+const styles = stylex.create({
+  avatar: {},
 
-const Avatar = (props: Props) => {
-  // const status = useImageLoader({
-  //   src: props.src,
-  // });
+  image: {
+    width: sizes.full,
+    height: sizes.full,
+    objectFit: "cover",
+    borderRadius: "inherit",
+  },
 
-  const child = useMemo(() => {
-    // if (status === "none") {
-    //   return props.alt;
-    // }
+  circle: {
+    borderRadius: sizes.infinity,
+  },
 
-    return <img src={props.src} />;
-  }, [props.alt, props.src]);
+  square: {
+    borderRadius: sizes.xxxsmall,
+  },
 
-  return <div className={clsx("relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full")}>{child}</div>;
+  small: {
+    width: sizes.small,
+    height: sizes.small,
+  },
+
+  medium: {
+    width: sizes.medium,
+    height: sizes.medium,
+  },
+
+  large: {
+    width: sizes.large,
+    height: sizes.large,
+  },
+});
+
+const Avatar = ({ src, alt, size = "medium", shape = "circle" }: AvatarProps) => {
+  const styled = {
+    avatar: stylex.props(styles.avatar, styles[size], styles[shape]),
+    image: stylex.props(styles.image),
+  };
+
+  return (
+    <span {...styled.avatar}>
+      <img {...styled.image} src={src} alt={alt} />
+    </span>
+  );
 };
 
 export default Avatar;

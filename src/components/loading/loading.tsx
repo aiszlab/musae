@@ -1,6 +1,6 @@
 import React from "react";
 import * as stylex from "@stylexjs/stylex";
-import { LoadingProps } from "./types";
+import type { LoadingProps } from "./types";
 import { sizes } from "../theme/tokens.stylex";
 
 const top = stylex.keyframes({
