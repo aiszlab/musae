@@ -1,9 +1,9 @@
-import React, { type ReactPortal, useCallback, useRef, useContext } from "react";
+import React, { type ReactPortal, useCallback, useRef } from "react";
 import { createPortal } from "react-dom";
 import Holder from "./holder";
-import { MessageConfig, MessageRef, Messager } from "./types";
+import type { MessageConfig, MessageRef, Messager } from "./types";
 import { useDefault, isDomUsable, Nullable } from "@aiszlab/relax";
-import ConfigContext from "../config/context";
+import { useConfiguration } from "../config/hooks";
 
 /**
  * @author murukal
@@ -13,7 +13,7 @@ import ConfigContext from "../config/context";
  */
 export const useMessage = (): [Messager, Nullable<ReactPortal>] => {
   const ref = useRef<MessageRef>(null);
-  const configuredMessageHolder = useContext(ConfigContext)?.messageHolder;
+  const configuredMessageHolder = useConfiguration().messageHolder;
 
   const holder = useDefault<Nullable<ReactPortal>>(() => {
     if (!isDomUsable()) return null;

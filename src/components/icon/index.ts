@@ -7,8 +7,21 @@ import KeyboardArrowUp from "./icons/keyboard-arrow-up";
 import KeyboardArrowDown from "./icons/keyboard-arrow-down";
 import SwapHoriz from "./icons/swap-horiz";
 
+/// action
 import Visibility from "./icons/action/visibility";
 import VisibilityOff from "./icons/action/visibility-off";
+import CheckCircleOutline from "./icons/action/check-circle-outline";
+import Done from "./icons/action/done";
+import CheckCircle from "./icons/action/check-circle";
+
+/// alert
+import ErrorOutline from "./icons/alert/error-outline";
+
+/// content
+import Clear from "./icons/content/clear";
+
+/// navigation
+import Cancel from "./icons/navigation/cancel";
 
 /**
  * @description
@@ -30,4 +43,12 @@ export {
   SwapHoriz,
   Visibility,
   VisibilityOff,
+  CheckCircle,
+  CheckCircleOutline,
+  Done,
+  ErrorOutline,
+  Cancel,
+  Clear,
 };
+
+export type { IconProps } from "./types";

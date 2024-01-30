@@ -2,7 +2,7 @@ import React, { type ReactNode, createElement, useMemo } from "react";
 import { AsProps, IconProps } from "./types";
 import { isFunction } from "@aiszlab/relax";
 import { useTheme } from "../theme";
-import { useClassNames } from "../config";
+import { useClassNames } from "../config/hooks";
 import { ComponentToken, IconClassToken } from "../../utils/class-name";
 import clsx from "clsx";
 import { ColorToken } from "../../utils/colors";

@@ -39,6 +39,8 @@ const configuration = {
     moduleSideEffects: false,
   },
 
+  strictDeprecations: true,
+
   plugins: [
     commonjs(),
     resolve({
