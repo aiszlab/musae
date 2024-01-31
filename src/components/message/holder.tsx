@@ -4,17 +4,19 @@ import Message from "./message";
 import * as stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
 import { RequiredIn } from "@aiszlab/relax";
+import { AnimatePresence } from "framer-motion";
 
 const styles = stylex.create({
   holder: {
     position: "fixed",
-    top: spacing.small,
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
     width: "100vw",
     pointerEvents: "none",
     zIndex: 100,
+    paddingInline: spacing.xlarge,
+    paddingTop: spacing.small,
   },
 });
 
@@ -43,14 +45,18 @@ const Holder = forwardRef<MessageRef>((props, ref) => {
 
   return (
     <div {...stylex.props(styles.holder)}>
-      {Array.from(messages.values()).map((item) => (
-        <Message
-          onClose={() => {
-            hidden(item.key);
-          }}
-          {...item}
-        />
-      ))}
+      <AnimatePresence>
+        {Array.from(messages.values()).map(({ content, ...item }) => (
+          <Message
+            onClose={() => {
+              hidden(item.key);
+            }}
+            {...item}
+          >
+            {content}
+          </Message>
+        ))}
+      </AnimatePresence>
     </div>
   );
 });

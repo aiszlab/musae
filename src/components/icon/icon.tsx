@@ -11,8 +11,6 @@ import * as stylex from "@stylexjs/stylex";
 const styles = stylex.create({
   icon: {
     display: "inline-flex",
-    alignItems: "center",
-    justifyContent: "center",
   },
 
   clickable: {

@@ -1,4 +1,5 @@
 import { RequiredIn } from "@aiszlab/relax";
+import { ReactNode } from "react";
 
 type Type = "success" | "error" | "info" | "warning" | "loading";
 type Open = (content: string, duration?: number) => Promise<void>;
@@ -71,13 +72,19 @@ export interface MessageProps {
    * close handler
    */
   onClose?: () => void;
+
+  /**
+   * @description
+   * message content
+   */
+  children?: ReactNode;
 }
 
 /**
  * @description
  * message config
  */
-export type MessageConfig = Omit<MessageProps, "onClose"> & {
+export type MessageConfig = Omit<MessageProps, "onClose" | "children"> & {
   /**
    * @description
    * message key

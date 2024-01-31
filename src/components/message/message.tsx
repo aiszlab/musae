@@ -2,22 +2,12 @@ import React, { CSSProperties, FC, createElement } from "react";
 import { useTimeout } from "@aiszlab/relax";
 import type { MessageProps } from "./types";
 import * as stylex from "@stylexjs/stylex";
-import { elevations, spacing } from "../theme/tokens.stylex";
+import { elevations, sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
 import { Cancel, CheckCircle, type IconProps } from "../icon";
-
-const appear = stylex.keyframes({
-  from: {
-    transform: "translateY(-100%)",
-    opacity: 0,
-  },
-
-  to: {
-    transform: "translateY(0)",
-    opacity: 1,
-  },
-});
+import { BODY } from "../theme/theme";
+import { motion } from "framer-motion";
 
 const SIGNALS = new Map<MessageProps["type"], FC<IconProps>>([
   ["success", CheckCircle],
@@ -32,13 +22,21 @@ const styles = stylex.create({
     borderRadius: 6,
     backgroundColor: props.backgroundColor,
     boxShadow: elevations.xsmall,
-    animationName: appear,
-    animationDuration: 50,
-    animationTimingFunction: "linear",
+
+    display: "flex",
+    alignItems: "flex-start",
+    columnGap: spacing.xsmall,
+    maxWidth: sizes.full,
+    pointerEvents: "auto",
   }),
+
+  content: {
+    display: "inline-block",
+    wordBreak: "break-word",
+  },
 });
 
-const Message = ({ duration = 3000, type, onClose }: MessageProps) => {
+const Message = ({ duration = 3000, type, onClose, children }: MessageProps) => {
   const theme = useTheme();
 
   useTimeout(
@@ -50,17 +48,42 @@ const Message = ({ duration = 3000, type, onClose }: MessageProps) => {
     }
   );
 
+  const color =
+    type === "success" ? theme.colors[ColorToken.Primary] : "error" ? theme.colors[ColorToken.Error] : void 0;
+  const styled = {
+    message: stylex.props(
+      styles.message({
+        backgroundColor: theme.colors[ColorToken.OnPrimary],
+      })
+    ),
+    content: stylex.props(BODY.medium, styles.content),
+  };
+
   return (
-    <div
-      {...stylex.props(
-        styles.message({
-          backgroundColor: theme.colors[ColorToken.OnPrimary],
-        })
-      )}
+    <motion.div
+      {...styled.message}
+      initial={{
+        y: "-100%",
+        opacity: 0,
+      }}
+      animate={{
+        y: 0,
+        opacity: 1,
+      }}
+      exit={{
+        y: "-100%",
+        opacity: 0,
+      }}
     >
-      {SIGNALS.get(type) && createElement(SIGNALS.get(type)!, {})}
-      {type}
-    </div>
+      {/* icon */}
+      {SIGNALS.get(type) &&
+        createElement(SIGNALS.get(type)!, {
+          color,
+        })}
+
+      {/* content */}
+      <span {...styled.content}>{children}</span>
+    </motion.div>
   );
 };
 
