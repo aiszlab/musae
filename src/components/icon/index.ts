@@ -1,10 +1,4 @@
 import Icon from "./icon";
-import KeyboardDoubleArrowLeft from "./icons/keyboard-double-arrow-left";
-import KeyboardDoubleArrowRight from "./icons/keyboard-double-arrow-right";
-import KeyboardArrowLeft from "./icons/keyboard-arrow-left";
-import KeyboardArrowRight from "./icons/keyboard-arrow-right";
-import KeyboardArrowUp from "./icons/keyboard-arrow-up";
-import KeyboardArrowDown from "./icons/keyboard-arrow-down";
 import SwapHoriz from "./icons/swap-horiz";
 
 /// action
@@ -22,6 +16,14 @@ import Clear from "./icons/content/clear";
 
 /// navigation
 import Cancel from "./icons/navigation/cancel";
+
+/// hardware
+import KeyboardDoubleArrowLeft from "./icons/hardware/keyboard-double-arrow-left";
+import KeyboardDoubleArrowRight from "./icons/hardware/keyboard-double-arrow-right";
+import KeyboardArrowLeft from "./icons/hardware/keyboard-arrow-left";
+import KeyboardArrowRight from "./icons/hardware/keyboard-arrow-right";
+import KeyboardArrowUp from "./icons/hardware/keyboard-arrow-up";
+import KeyboardArrowDown from "./icons/hardware/keyboard-arrow-down";
 
 /**
  * @description

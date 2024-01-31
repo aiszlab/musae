@@ -1,5 +1,5 @@
 import React from "react";
-import { withIcon } from "../hocs";
+import { withIcon } from "../../hocs";
 
 const KeyboardArrowDown = withIcon((props) => {
   return (
