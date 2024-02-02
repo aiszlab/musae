@@ -10,20 +10,17 @@ import { ColorToken } from "../../utils/colors";
 import clsx from "clsx";
 import { LABEL } from "../theme/theme";
 
-type BackgroundColor = Required<CSSProperties>["backgroundColor"];
-type Color = Required<CSSProperties>["color"];
-
 const styles = stylex.create({
   menuItem: {
     marginInline: spacing.xxsmall,
     marginBottom: spacing.xxsmall,
-
-    ":first-child": {
-      marginTop: spacing.xxsmall,
+    marginTop: {
+      default: spacing.none,
+      ":first-child": spacing.xxsmall,
     },
   },
 
-  normal: (props: { level: number; hoveredBackgroundColor: BackgroundColor }) => ({
+  normal: (props: { level: number; hoveredBackgroundColor: CSSProperties["backgroundColor"] }) => ({
     display: "flex",
     alignItems: "center",
     minHeight: sizes.small,
@@ -43,9 +40,9 @@ const styles = stylex.create({
     },
   }),
 
-  selected: (backgroundColor: BackgroundColor, color: Color) => ({
-    backgroundColor,
-    color,
+  selected: (props: { backgroundColor: CSSProperties["backgroundColor"]; color: CSSProperties["color"] }) => ({
+    backgroundColor: props.backgroundColor,
+    color: props.color,
   }),
 });
 
@@ -79,7 +76,11 @@ const Item = forwardRef<HTMLLIElement, MenuItemProps>(
           level,
           hoveredBackgroundColor: theme.colors[ColorToken.SurfaceContainer],
         }),
-        isSelected && styles.selected(theme.colors[ColorToken.SurfaceContainer], theme.colors[ColorToken.Primary]),
+        isSelected &&
+          styles.selected({
+            backgroundColor: theme.colors[ColorToken.SurfaceContainer],
+            color: theme.colors[ColorToken.Primary],
+          }),
         LABEL.large
       ),
     };

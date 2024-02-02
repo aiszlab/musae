@@ -53,6 +53,8 @@ const styles = stylex.create({
 
   item: {
     width: sizes.xlarge,
+    display: "flex",
+    justifyContent: "center",
   },
 });
 
