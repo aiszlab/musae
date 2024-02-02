@@ -21,13 +21,17 @@ import { ColorToken } from "../../utils/colors";
 import clsx from "clsx";
 
 const styles = stylex.create({
-  menu: (scrollbarThumbColor: CSSProperties["backgroundColor"], dividerColor: CSSProperties["borderLeftColor"]) => ({
+  menu: (props: {
+    scrollbarThumbColor: CSSProperties["backgroundColor"];
+    outlineColor: CSSProperties["borderLeftColor"];
+  }) => ({
+    overflowX: "hidden",
     overflowY: {
       default: "hidden",
       ":hover": "auto",
     },
-    overflowX: "hidden",
-    width: `calc(${spacing.xxsmall} + ${sizes.xlarge} * 2)`,
+
+    width: `calc(${sizes.xlarge} + ${spacing.xxsmall} * 2)`,
     marginBlock: spacing.xxsmall,
 
     "::-webkit-scrollbar": {
@@ -37,18 +41,17 @@ const styles = stylex.create({
 
     "::-webkit-scrollbar-thumb": {
       borderRadius: 4,
-      backgroundColor: scrollbarThumbColor,
+      backgroundColor: props.scrollbarThumbColor,
     },
 
     ":not(:first-of-type)": {
-      borderLeftWidth: "1px",
+      borderLeftWidth: sizes.smallest,
       borderLeftStyle: "solid",
-      borderLeftColor: dividerColor,
+      borderLeftColor: props.outlineColor,
     },
   }),
 
   item: {
-    marginInline: spacing.xxsmall,
     width: sizes.xlarge,
   },
 });
@@ -80,7 +83,12 @@ const Column = forwardRef<{}, ColumnProps>(({ unit, value, onChange }, ref) => {
   }, [value]);
 
   const styled = {
-    menu: stylex.props(styles.menu(theme.colors[ColorToken.Secondary], theme.colors[ColorToken.OutlineVariant])),
+    menu: stylex.props(
+      styles.menu({
+        scrollbarThumbColor: theme.colors[ColorToken.Secondary],
+        outlineColor: theme.colors[ColorToken.OutlineVariant],
+      })
+    ),
     item: stylex.props(styles.item),
   };
 

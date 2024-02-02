@@ -13,9 +13,11 @@ import { KeyboardArrowUp } from "../icon";
 
 const styles = stylex.create({
   group: {
+    /// reset ul styles
     margin: spacing.none,
     padding: spacing.none,
     listStyle: "none",
+
     overflow: "auto",
   },
 
@@ -23,14 +25,14 @@ const styles = stylex.create({
     display: "none",
   },
 
-  collapser: (isExpanded: boolean) => ({
+  collapser: (props: { isExpanded: boolean }) => ({
     ":last-child": {
       marginLeft: "auto",
     },
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    transform: isExpanded ? "rotateX(0)" : "rotateX(180deg)",
+    transform: props.isExpanded ? "rotateX(0)" : "rotateX(180deg)",
     transition: "transform 200ms",
   }),
 });
@@ -83,7 +85,13 @@ const Group = ({ items, level = 0, className, _key, ...itemProps }: MenuGroupPro
       level={level}
       key={_key}
       suffix={
-        <span {...stylex.props(styles.collapser(isExpanded))}>
+        <span
+          {...stylex.props(
+            styles.collapser({
+              isExpanded,
+            })
+          )}
+        >
           <KeyboardArrowUp size={16} />
         </span>
       }
@@ -94,9 +102,14 @@ const Group = ({ items, level = 0, className, _key, ...itemProps }: MenuGroupPro
       }}
     >
       <ul
-        className={clsx(classNames[MenuClassToken.Group], className, styled.className, {
-          [classNames[MenuClassToken.GroupHidden]]: !isExpanded,
-        })}
+        className={clsx(
+          classNames[MenuClassToken.Group],
+          {
+            [classNames[MenuClassToken.GroupHidden]]: !isExpanded,
+          },
+          className,
+          styled.className
+        )}
         style={{
           ...styled.style,
           ...itemProps.style,

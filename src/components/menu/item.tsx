@@ -17,7 +17,8 @@ const styles = stylex.create({
   menuItem: {
     marginInline: spacing.xxsmall,
     marginBottom: spacing.xxsmall,
-    ":first-of-type": {
+
+    ":first-child": {
       marginTop: spacing.xxsmall,
     },
   },
@@ -87,7 +88,7 @@ const Item = forwardRef<HTMLLIElement, MenuItemProps>(
       <li role="menuitem" ref={ref} {...styled.menuItem}>
         <div
           style={styled.item.style}
-          className={clsx(classNames[MenuClassToken.Item], styled.item.className, className)}
+          className={clsx(classNames[MenuClassToken.Item], className, styled.item.className)}
           onClick={click}
         >
           {_children.prefix}

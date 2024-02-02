@@ -9,12 +9,18 @@ import Item from "./item";
 import { useContextValue } from "./hooks";
 import clsx from "clsx";
 import * as stylex from "@stylexjs/stylex";
+import { spacing } from "../theme/tokens.stylex";
 
 const styles = stylex.create({
   menu: {
     /// add position reason: when read li offsetTop, if parent is not relative, then it will read wrong value
     /// https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetTop
     position: "relative",
+
+    /// reset ul styles
+    margin: spacing.none,
+    padding: spacing.none,
+    listStyle: "none",
   },
 });
 
