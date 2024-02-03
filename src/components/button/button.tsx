@@ -13,6 +13,7 @@ const styles = stylex.create({
     borderRadius: sizes.infinity,
     display: "flex",
     alignItems: "center",
+    gap: spacing.small,
   },
 
   small: {
@@ -25,30 +26,23 @@ const styles = stylex.create({
     paddingInline: spacing.xlarge,
   },
 
-  filled: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
-    backgroundColor: props.backgroundColor,
+  large: {
+    paddingBlock: spacing.medium,
+    paddingInline: spacing.xxlarge,
+  },
+
+  filled: (props: { backgroundColor: CSSProperties["backgroundColor"]; color: CSSProperties["color"] }) => ({
     border: "none",
-  }),
-
-  outlined: (props: { outlineColor: CSSProperties["borderColor"] }) => ({
-    borderWidth: sizes.smallest,
-    borderStyle: "solid",
-    borderColor: props.outlineColor,
-  }),
-
-  body: (props: { color: CSSProperties["color"] }) => ({
-    marginInline: spacing.small,
-    whiteSpace: "nowrap",
+    backgroundColor: props.backgroundColor,
     color: props.color,
   }),
 
-  prefix: {
-    display: "inline-flex",
-
-    ":not(:last-child)": {
-      marginLeft: spacing.small,
-    },
-  },
+  outlined: (props: { color: CSSProperties["color"] }) => ({
+    borderWidth: sizes.smallest,
+    borderStyle: "solid",
+    borderColor: props.color,
+    color: props.color,
+  }),
 });
 
 /**
@@ -69,21 +63,13 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         variant === "filled" &&
           styles.filled({
             backgroundColor: theme.colors[ColorToken.Primary],
+            color: theme.colors[ColorToken.OnPrimary],
           }),
         variant === "outlined" &&
           styles.outlined({
-            outlineColor: theme.colors[ColorToken.Outline],
+            color: theme.colors[ColorToken.Primary],
           })
       ),
-      body: stylex.props(
-        styles.body({
-          color:
-            variant === "outlined" || variant === "text"
-              ? theme.colors[ColorToken.Primary]
-              : theme.colors[ColorToken.OnPrimary],
-        })
-      ),
-      prefix: stylex.props(styles.prefix),
     };
 
     return (
@@ -94,19 +80,10 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           ...styled.button.style,
           ...style,
         }}
-        color={color}
         ref={ref}
       >
-        {props.prefix && (
-          <span
-            className={clsx(classNames[ButtonClassToken.Prefix], styled.prefix.className)}
-            style={styled.prefix.style}
-          >
-            {props.prefix}
-          </span>
-        )}
-
-        {children && <span {...styled.body}>{children}</span>}
+        {props.prefix}
+        {children && <span>{children}</span>}
       </button>
     );
   }

@@ -32,6 +32,7 @@ export { Clock } from "./components/clock";
 export { Tree } from "./components/tree";
 export { Table } from "./components/table";
 export { Layout } from "./components/layout";
+export { Pagination } from "./components/pagination";
 
 /**
  * @description
@@ -47,3 +48,9 @@ export { useTheme } from "./components/theme";
 export type { Option } from "./types/option";
 export type { MenuItem, MenuRef } from "./components/menu";
 export type { TreeProps } from "./components/tree";
+
+/**
+ * @description
+ * icons
+ */
+export { KeyboardArrowLeft, KeyboardArrowRight } from "./components/icon";

@@ -19,14 +19,12 @@ const styles = stylex.create({
 });
 
 const Icon = ({ as, color, size, onClick, className }: IconProps) => {
-  const theme = useTheme();
   const classNames = useClassNames(ComponentToken.Icon);
   const asProps = useMemo<AsProps>(() => {
     return {
-      color: color ?? theme.colors[ColorToken.Primary],
       size: size ?? 20,
     };
-  }, [color, size, theme]);
+  }, [size]);
 
   const children = useMemo<ReactNode>(() => {
     if (isFunction(as)) {
@@ -40,7 +38,7 @@ const Icon = ({ as, color, size, onClick, className }: IconProps) => {
   return (
     <span
       onClick={onClick}
-      className={clsx(styled.className, classNames[IconClassToken.Icon], className)}
+      className={clsx(styled.className, className, classNames[IconClassToken.Icon])}
       style={styled.style}
     >
       {children}

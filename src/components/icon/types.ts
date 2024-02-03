@@ -1,6 +1,6 @@
 import type { CSSProperties, FC, MouseEventHandler, ReactNode, ReactPortal } from "react";
 
-export type AsProps = Required<Omit<IconProps, "as" | "onClick" | "className">>;
+export type AsProps = Required<Pick<IconProps, "size">>;
 
 /**
  * @description
