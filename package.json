@@ -13,7 +13,7 @@
     "relink": "yarn unlink && yarn link"
   },
   "dependencies": {
-    "@aiszlab/relax": "1.2.16",
+    "@aiszlab/relax": "1.2.17-beta.1",
     "@popperjs/core": "^2.11.8",
     "@tanstack/react-table": "^8.11.3",
     "clsx": "^1.2.1",

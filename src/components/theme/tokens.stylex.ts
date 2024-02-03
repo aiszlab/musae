@@ -28,6 +28,7 @@ export const spacing = defineVars({
   xlarge: "24px",
   xxlarge: "32px",
   xxxlarge: "48px",
+  auto: "auto",
 });
 
 /**

@@ -57,6 +57,7 @@ export enum ComponentToken {
   Checkbox,
   Tree,
   Tabs,
+  Pagination,
 }
 
 /**
@@ -182,6 +183,9 @@ export enum TabsClassToken {
   Item,
   Indicator,
 }
+export enum PaginationClassToken {
+  Pagination,
+}
 
 /**
  * @description
@@ -306,6 +310,9 @@ export const CLASS_NAMES = {
     [TabsClassToken.Tabs]: "tabs",
     [TabsClassToken.Item]: "tabs-item",
     [TabsClassToken.Indicator]: "tabs-indicator",
+  },
+  [ComponentToken.Pagination]: {
+    [PaginationClassToken.Pagination]: "pagination",
   },
 };
 

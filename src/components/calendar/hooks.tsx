@@ -11,6 +11,7 @@ import { sizes, spacing } from "../theme/tokens.stylex";
 import { BODY } from "../theme/theme";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
+import { Button } from "../button";
 
 const styles = stylex.create({
   cell: {
@@ -61,7 +62,8 @@ const styles = stylex.create({
   },
 
   value: {
-    margin: "auto",
+    margin: spacing.auto,
+    paddingInline: spacing.none,
     width: sizes.large,
     height: sizes.large,
     display: "flex",
@@ -70,13 +72,7 @@ const styles = stylex.create({
     borderRadius: sizes.infinity,
     zIndex: 2,
     position: "relative",
-    cursor: "pointer",
   },
-
-  selectedValue: (backgroundColor: CSSProperties["backgroundColor"], color: CSSProperties["color"]) => ({
-    backgroundColor,
-    color,
-  }),
 });
 
 /**
@@ -133,10 +129,7 @@ export const useDateCells = ([timespan, focusedAt, click]: [Timespan, Dayjs, Req
             isDisabled && styles.hidden,
             isBetween && [styles.inRange, isFrom && styles.rangeFrom, isTo && styles.rangeTo]
           ),
-          date: stylex.props(
-            styles.value,
-            isSelected && styles.selectedValue(theme.colors[ColorToken.Primary], theme.colors[ColorToken.OnPrimary])
-          ),
+          date: stylex.props(styles.value),
         };
 
         prev.at(prev.length - 1)!.push(
@@ -159,7 +152,9 @@ export const useDateCells = ([timespan, focusedAt, click]: [Timespan, Dayjs, Req
             aria-selected={isSelected}
             aria-hidden={isDisabled}
           >
-            <div
+            <Button
+              variant={isSelected ? "filled" : "text"}
+              color={isSelected ? "primary" : "secondary"}
               className={clsx(classNames[CalendarClassToken.Date], styled.date.className)}
               style={styled.date.style}
               onClick={() => {
@@ -167,7 +162,7 @@ export const useDateCells = ([timespan, focusedAt, click]: [Timespan, Dayjs, Req
               }}
             >
               {currentAt.date()}
-            </div>
+            </Button>
           </td>
         );
 

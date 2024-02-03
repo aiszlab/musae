@@ -1,5 +1,5 @@
 import type { ButtonProps } from "./types";
-import React, { CSSProperties, forwardRef } from "react";
+import React, { type CSSProperties, forwardRef } from "react";
 import { useClassNames } from "../config";
 import { ButtonClassToken, ComponentToken } from "../../utils/class-name";
 import clsx from "clsx";
@@ -62,24 +62,23 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     const classNames = useClassNames(ComponentToken.Button);
     const theme = useTheme();
 
-    const _variants = {
-      filled: () =>
-        styles.filled({
-          backgroundColor: theme.colors[ColorToken.Primary],
-        }),
-      outlined: () =>
-        styles.outlined({
-          outlineColor: theme.colors[ColorToken.Outline],
-        }),
-      text: () => void 0,
-    };
-
     const styled = {
-      button: stylex.props(styles.button, _variants[variant](), styles[size]),
+      button: stylex.props(
+        styles.button,
+        styles[size],
+        variant === "filled" &&
+          styles.filled({
+            backgroundColor: theme.colors[ColorToken.Primary],
+          }),
+        variant === "outlined" &&
+          styles.outlined({
+            outlineColor: theme.colors[ColorToken.Outline],
+          })
+      ),
       body: stylex.props(
         styles.body({
           color:
-            variant === "text" || variant === "outlined"
+            variant === "outlined" || variant === "text"
               ? theme.colors[ColorToken.Primary]
               : theme.colors[ColorToken.OnPrimary],
         })
