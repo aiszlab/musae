@@ -168,3 +168,31 @@ export interface MenuRef {
    */
   scrollTo: (key: Key, duration?: number) => void;
 }
+
+/**
+ * @description
+ * menu child props
+ * used for menu child, child maybe group, maybe item
+ */
+export type MenuChildProps = {
+  /**
+   * @description
+   * item
+   */
+  item: MenuItem;
+
+  /**
+   * @description
+   * level
+   */
+  level: number;
+};
+
+/**
+ * @description
+ * some props between group and item
+ * they use the same props
+ */
+export type MenuChildRenderProps = Pick<MenuItemProps, Extract<keyof MenuItemProps, keyof MenuGroupProps>> & {
+  key: Key;
+};

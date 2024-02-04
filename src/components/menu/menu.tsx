@@ -1,15 +1,14 @@
-import React, { Key, forwardRef, useImperativeHandle, useRef } from "react";
-import type { MenuGroupProps, MenuItemProps, MenuProps, MenuRef } from "./types";
-import Group from "./group";
+import React, { forwardRef, useImperativeHandle, useRef } from "react";
+import type { MenuProps, MenuRef } from "./types";
 import Context from "./context";
 import { useRefs, useScrollable } from "@aiszlab/relax";
 import { useClassNames } from "../config";
 import { ComponentToken, MenuClassToken } from "../../utils/class-name";
-import Item from "./item";
 import { useContextValue } from "./hooks";
 import clsx from "clsx";
 import * as stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
+import Child from "./child";
 
 const styles = stylex.create({
   menu: {
@@ -62,31 +61,7 @@ const Menu = forwardRef<MenuRef, MenuProps>(({ onClick, className, style, ...pro
         style={styled.style}
       >
         {props.items.map((item) => {
-          const _props: Pick<MenuItemProps, Extract<keyof MenuItemProps, keyof MenuGroupProps>> & {
-            key: Key;
-          } = {
-            key: item.key,
-            _key: item.key,
-            level: 0,
-            label: item.label,
-            prefix: item.prefix,
-            className: item.className,
-            style: item.style,
-          };
-
-          if (item.children) {
-            return <Group {..._props} items={item.children} />;
-          }
-
-          return (
-            <Item
-              {..._props}
-              onClick={contextValue.click}
-              ref={(_ref) => {
-                contextValue.collect(item.key, _ref!);
-              }}
-            />
-          );
+          return <Child key={item.key} item={item} level={0} />;
         })}
       </ul>
     </Context.Provider>

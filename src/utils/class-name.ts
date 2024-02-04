@@ -171,6 +171,7 @@ export enum CheckboxClassToken {
   Checkbox,
 }
 export enum TreeClassToken {
+  Tree,
   List,
   Holder,
   Node,
@@ -299,6 +300,7 @@ export const CLASS_NAMES = {
     [CheckboxClassToken.Checkbox]: "checkbox",
   },
   [ComponentToken.Tree]: {
+    [TreeClassToken.Tree]: "tree",
     [TreeClassToken.List]: "tree-list",
     [TreeClassToken.Holder]: "tree-holder",
     [TreeClassToken.Node]: "tree-node",

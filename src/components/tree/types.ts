@@ -1,5 +1,5 @@
 import type { Key, ReactNode, RefObject } from "react";
-import type { WithLevel } from "../../types/element";
+import type { ComponentProps, WithLevel } from "../../types/element";
 
 export type ExpandHandler = (key: Key) => void;
 
@@ -31,7 +31,7 @@ export type TreeNode = {
  * @description
  * tree props
  */
-export type TreeProps = {
+export type TreeProps = ComponentProps & {
   /**
    * @description
    * nodes
