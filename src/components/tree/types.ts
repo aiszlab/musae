@@ -7,7 +7,7 @@ export type ExpandHandler = (key: Key) => void;
  * @description
  * tree node
  */
-type TreeNode = {
+export type TreeNode = {
   /**
    * @description
    * key

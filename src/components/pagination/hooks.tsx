@@ -1,7 +1,6 @@
 import { range, useCounter } from "@aiszlab/relax";
 import { useMemo } from "react";
-import { PaginationItemType } from "./enums";
-import type { PagiantionProps, PaginationItems } from "./types";
+import { type PagiantionProps, type PaginationItems, PaginationItemType } from "./types";
 
 /**
  * @author murukal

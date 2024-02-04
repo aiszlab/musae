@@ -1,6 +1,5 @@
 import React from "react";
-import type { PaginationItemProps } from "./types";
-import { PaginationItemType } from "./enums";
+import { type PaginationItemProps, PaginationItemType } from "./types";
 import { Button } from "../button";
 import { KeyboardArrowLeft, KeyboardArrowRight } from "../icon";
 import { useEvent } from "@aiszlab/relax";

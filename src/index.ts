@@ -29,7 +29,7 @@ export { TimePicker } from "./components/time-picker";
 export { DateRangePicker } from "./components/date-range-picker";
 export { Icon } from "./components/icon";
 export { Clock } from "./components/clock";
-export { Tree } from "./components/tree";
+export { Tree, TreeNode } from "./components/tree";
 export { Table } from "./components/table";
 export { Layout } from "./components/layout";
 export { Pagination } from "./components/pagination";
