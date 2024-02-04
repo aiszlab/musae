@@ -1,7 +1,5 @@
-import type { Key, ReactNode, RefObject } from "react";
+import type { Key, ReactNode } from "react";
 import type { ComponentProps, WithLevel } from "../../types/element";
-
-export type ExpandHandler = (key: Key) => void;
 
 /**
  * @description
@@ -53,33 +51,33 @@ export type TreeProps = ComponentProps & {
 
 /**
  * @description
- * tree list props
- */
-export type TreeListProps = WithLevel<Pick<TreeProps, "nodes">>;
-
-/**
- * @description
  * tree node props
  */
-export type TreeNodeProps = WithLevel<Omit<TreeNode, "children">> & {
-  /**
-   * @description
-   * children
-   */
-  children: ReactNode;
-
-  /**
-   * @description
-   * list ref
-   */
-  listRef: RefObject<ListRef>;
-
+export type TreeNodeProps = WithLevel<Omit<TreeNode, "children" | "key">> & {
   /**
    * @description
    * _key
    */
   _key: Key;
+
+  /**
+   * @description
+   * children
+   */
+  children?: ReactNode;
+
+  /**
+   * @description
+   * expand handler
+   */
+  onToggle?: (key: Key) => void;
 };
+
+/**
+ * @description
+ * tree list props
+ */
+export type TreeListProps = Omit<TreeNodeProps, "children"> & Pick<TreeProps, "nodes">;
 
 /**
  * @description
@@ -106,19 +104,15 @@ export type ContextValue = {
 
   /**
    * @description
-   * expand
+   * toggle
    */
-  expand?: ExpandHandler;
+  toggle?: (key: Key) => void;
 };
 
 /**
  * @description
- * menu ref
+ * tree child render props
  */
-export type ListRef = {
-  /**
-   * @description
-   * expand
-   */
-  expand: (isExpanded: boolean) => void;
+export type TreeChildRenderProps = Pick<TreeNodeProps, Extract<keyof TreeNodeProps, keyof TreeListProps>> & {
+  key: Key;
 };

@@ -69,6 +69,9 @@ export interface FieldRenderProps<T = unknown> {
  * with level
  */
 export type WithLevel<T extends Object> = T & {
-  /* level */
+  /**
+   * @description
+   * level
+   */
   level: number;
 };

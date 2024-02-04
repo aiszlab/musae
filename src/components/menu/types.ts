@@ -171,25 +171,6 @@ export interface MenuRef {
 
 /**
  * @description
- * menu child props
- * used for menu child, child maybe group, maybe item
- */
-export type MenuChildProps = {
-  /**
-   * @description
-   * item
-   */
-  item: MenuItem;
-
-  /**
-   * @description
-   * level
-   */
-  level: number;
-};
-
-/**
- * @description
  * some props between group and item
  * they use the same props
  */

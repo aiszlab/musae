@@ -1,5 +1,5 @@
 import React from "react";
-import type { MenuGroupProps } from "./types";
+import type { MenuChildRenderProps, MenuGroupProps } from "./types";
 import { useAnimate } from "framer-motion";
 import { useClassNames } from "../config";
 import { ComponentToken, MenuClassToken } from "../../utils/class-name";
@@ -10,7 +10,6 @@ import { useEvent, useThrottleCallback } from "@aiszlab/relax";
 import * as stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
 import { KeyboardArrowUp } from "../icon";
-import Child from "./child";
 
 const styles = stylex.create({
   group: {
@@ -45,7 +44,7 @@ const styles = stylex.create({
  * menu group
  */
 const Group = ({ items, level = 0, className, _key, ...itemProps }: MenuGroupProps) => {
-  const { expandedKeys, toggle, collect } = useMenuContext();
+  const { expandedKeys, toggle, collect, click } = useMenuContext();
   const classNames = useClassNames(ComponentToken.Menu);
   const [scope, animate] = useAnimate<HTMLUListElement>();
   const isExpanded = expandedKeys.has(_key);
@@ -84,7 +83,6 @@ const Group = ({ items, level = 0, className, _key, ...itemProps }: MenuGroupPro
     <Item
       _key={_key}
       level={level}
-      key={_key}
       suffix={
         <span
           {...stylex.props(
@@ -118,7 +116,31 @@ const Group = ({ items, level = 0, className, _key, ...itemProps }: MenuGroupPro
         ref={scope}
       >
         {items.map((item) => {
-          return <Child item={item} level={level + 1} key={item.key} />;
+          const _props: MenuChildRenderProps = {
+            key: item.key,
+            _key: item.key,
+            level,
+            label: item.label,
+            prefix: item.prefix,
+            className: item.className,
+            style: item.style,
+          };
+
+          /// if item with children, use group for child render
+          if (item.children) {
+            return <Group {..._props} items={item.children} />;
+          }
+
+          /// only render menu item
+          return (
+            <Item
+              {..._props}
+              onClick={click}
+              ref={(_ref) => {
+                collect(item.key, _ref!);
+              }}
+            />
+          );
         })}
       </ul>
     </Item>

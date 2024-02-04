@@ -1,5 +1,5 @@
-import React, { CSSProperties, useCallback, useContext } from "react";
-import { TreeNodeProps } from "./types";
+import React, { type CSSProperties, useContext } from "react";
+import type { TreeNodeProps } from "./types";
 import { useClassNames } from "../config";
 import { ComponentToken, TreeClassToken } from "../../utils/class-name";
 import Context from "./context";
@@ -12,14 +12,16 @@ import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
 
 const styles = stylex.create({
-  node: (level: number) => ({
+  node: (props: { level: number }) => ({
     display: "flex",
     alignItems: "center",
+    gap: spacing.xxsmall,
+
     paddingBlock: spacing.small,
-    paddingLeft: 12 + level * 24,
+    paddingLeft: 12 + props.level * 24,
   }),
 
-  expander: (isExpanded: boolean) => ({
+  expander: (props: { isExpanded: boolean }) => ({
     width: 24,
     height: 24,
     display: "flex",
@@ -27,32 +29,28 @@ const styles = stylex.create({
     justifyContent: "center",
     cursor: "pointer",
     transition: "transform 300ms",
-    transform: isExpanded ? "rotate(90deg)" : null,
+    transform: props.isExpanded ? "rotate(90deg)" : null,
   }),
 
-  title: (
-    isSelected: boolean,
-    backgroundColor: Required<CSSProperties>["backgroundColor"],
-    hoveredBackgroundColor: Required<CSSProperties>["backgroundColor"],
-    color: Required<CSSProperties>["color"]
-  ) => ({
+  title: (props: {
+    isSelected: boolean;
+    backgroundColor: CSSProperties["backgroundColor"];
+    hoveredBackgroundColor: CSSProperties["backgroundColor"];
+    color: CSSProperties["color"];
+  }) => ({
     paddingInline: spacing.xxsmall,
     borderRadius: 4,
     backgroundColor: {
-      default: isSelected ? backgroundColor : null,
-      ":hover": hoveredBackgroundColor,
+      default: props.isSelected ? props.backgroundColor : null,
+      ":hover": props.hoveredBackgroundColor,
     },
-    color: isSelected ? color : null,
+    color: props.isSelected ? props.color : null,
   }),
-
-  checkbox: {
-    marginRight: spacing.xxsmall,
-  },
 });
 
-const Node = ({ _key, children, listRef, ...props }: TreeNodeProps) => {
+const Node = ({ _key, children, level, onToggle, ...props }: TreeNodeProps) => {
   const classNames = useClassNames(ComponentToken.Tree);
-  const { checkedKeys, check: _check, expandedKeys, expand: _expand } = useContext(Context);
+  const { checkedKeys, check: _check, expandedKeys } = useContext(Context);
   const isChecked = checkedKeys.has(_key);
   const isExpanded = expandedKeys.has(_key);
   const theme = useTheme();
@@ -61,23 +59,21 @@ const Node = ({ _key, children, listRef, ...props }: TreeNodeProps) => {
     _check?.(_key);
   };
 
-  const expand = useCallback(() => {
-    listRef.current?.expand(!isExpanded);
-    _expand?.(_key);
-  }, [_expand, _key, isExpanded, listRef]);
-
   const styled = {
-    node: stylex.props(styles.node(props.level)),
+    node: stylex.props(styles.node({ level })),
     title: stylex.props(
-      styles.title(
-        false,
-        theme.colors[ColorToken.SurfaceContainer],
-        theme.colors[ColorToken.SurfaceContainer],
-        theme.colors[ColorToken.Primary]
-      )
+      styles.title({
+        isSelected: false,
+        backgroundColor: theme.colors[ColorToken.SurfaceContainer],
+        hoveredBackgroundColor: theme.colors[ColorToken.SurfaceContainer],
+        color: theme.colors[ColorToken.Primary],
+      })
     ),
-    checkbox: stylex.props(styles.checkbox),
-    expander: stylex.props(styles.expander(isExpanded)),
+    expander: stylex.props(
+      styles.expander({
+        isExpanded,
+      })
+    ),
   };
 
   return (
@@ -86,17 +82,14 @@ const Node = ({ _key, children, listRef, ...props }: TreeNodeProps) => {
         <span
           className={clsx(classNames[TreeClassToken.Expander], styled.expander.className)}
           style={styled.expander.style}
-          onClick={expand}
+          onClick={() => {
+            onToggle?.(_key);
+          }}
         >
           {!!children && <KeyboardArrowRight />}
         </span>
 
-        <Checkbox
-          className={clsx(classNames[TreeClassToken.Checkbox], styled.checkbox.className)}
-          style={styled.checkbox.style}
-          checked={isChecked}
-          value=""
-        />
+        <Checkbox className={clsx(classNames[TreeClassToken.Checkbox])} checked={isChecked} value="" />
 
         <span
           className={clsx(classNames[TreeClassToken.Title], styled.title.className)}
