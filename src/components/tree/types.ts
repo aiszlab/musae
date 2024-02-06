@@ -56,9 +56,9 @@ export type TreeProps = ComponentProps & {
 export type TreeNodeProps = WithLevel<Omit<TreeNode, "children" | "key">> & {
   /**
    * @description
-   * _key
+   * value
    */
-  _key: Key;
+  value: Key;
 
   /**
    * @description

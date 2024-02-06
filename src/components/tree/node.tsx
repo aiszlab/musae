@@ -48,15 +48,15 @@ const styles = stylex.create({
   }),
 });
 
-const Node = ({ _key, children, level, onToggle, ...props }: TreeNodeProps) => {
+const Node = ({ value, children, level, onToggle, ...props }: TreeNodeProps) => {
   const classNames = useClassNames(ComponentToken.Tree);
   const { checkedKeys, check: _check, expandedKeys } = useContext(Context);
-  const isChecked = checkedKeys.has(_key);
-  const isExpanded = expandedKeys.has(_key);
+  const isChecked = checkedKeys.has(value);
+  const isExpanded = expandedKeys.has(value);
   const theme = useTheme();
 
   const check = () => {
-    _check?.(_key);
+    _check?.(value);
   };
 
   const styled = {
@@ -76,15 +76,17 @@ const Node = ({ _key, children, level, onToggle, ...props }: TreeNodeProps) => {
     ),
   };
 
+  const toggle = () => {
+    onToggle?.(value);
+  };
+
   return (
     <li className={classNames[TreeClassToken.Holder]}>
       <div className={clsx(classNames[TreeClassToken.Node], styled.node.className)} style={styled.node.style}>
         <span
           className={clsx(classNames[TreeClassToken.Expander], styled.expander.className)}
           style={styled.expander.style}
-          onClick={() => {
-            onToggle?.(_key);
-          }}
+          onClick={toggle}
         >
           {!!children && <KeyboardArrowRight />}
         </span>

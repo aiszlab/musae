@@ -1,14 +1,14 @@
-import React, { useContext } from "react";
-import type { TreeChildRenderProps, TreeListProps } from "./types";
-import Node from "./node";
-import { useAnimate } from "framer-motion";
-import { useClassNames } from "../config";
-import { ComponentToken, TreeClassToken } from "../../utils/class-name";
 import * as stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
+import { TreeNode } from "./types";
+import React, { useContext } from "react";
+import Node from "./node";
 import clsx from "clsx";
+import { useUpdateEffect } from "@aiszlab/relax";
+import { useAnimate } from "framer-motion";
 import Context from "./context";
-import { useEvent, useThrottleCallback } from "@aiszlab/relax";
+import { useClassNames } from "../config";
+import { ComponentToken, TreeClassToken } from "../../utils/class-name";
 
 const styles = stylex.create({
   list: {
@@ -23,71 +23,54 @@ const styles = stylex.create({
   },
 });
 
-const List = ({ level, nodes, _key, title }: TreeListProps) => {
+interface Props {
+  nodes?: TreeNode[];
+  isExpanded?: boolean;
+  level?: number;
+}
+
+const List = ({ nodes, isExpanded = true, level = 0 }: Props) => {
   const [scope, animate] = useAnimate<HTMLUListElement>();
-  const classNames = useClassNames(ComponentToken.Tree);
   const { expandedKeys, toggle } = useContext(Context);
-  const isExpanded = expandedKeys.has(_key);
+  const classNames = useClassNames(ComponentToken.Tree);
 
-  const { next: _toggle } = useThrottleCallback(
-    useEvent(async () => {
-      toggle?.(_key);
-
-      if (isExpanded) {
-        scope.current.attributeStyleMap.set("overflow", "hidden");
-        scope.current.attributeStyleMap.set("height", "auto");
-        scope.current.attributeStyleMap.set("display", "block");
-        await animate(scope.current, {
-          height: 0,
-        });
-      } else {
-        // style play like display: none
-        scope.current.attributeStyleMap.set("height", 0);
-        scope.current.attributeStyleMap.set("overflow", "hidden");
-        scope.current.attributeStyleMap.set("display", "block");
-        await animate(scope.current, {
-          height: "auto",
-        });
-      }
-
-      scope.current.attributeStyleMap.clear();
-    }),
-    {
-      duration: 200,
+  useUpdateEffect(async () => {
+    if (isExpanded) {
+      await animate(scope.current, {
+        height: "auto",
+      });
+      return;
     }
-  );
+
+    await animate(scope.current, {
+      height: 0,
+    });
+  }, [isExpanded]);
+
+  if (!nodes) return null;
 
   const styled = stylex.props(styles.list, !isExpanded && styles.hidden);
 
   return (
-    <Node _key={_key} level={level} title={title} onToggle={_toggle}>
-      <ul
-        className={clsx(
-          classNames[TreeClassToken.List],
-          {
-            [classNames[TreeClassToken.ListHidden]]: !isExpanded,
-          },
-          styled.className
-        )}
-        style={styled.style}
-        ref={scope}
-      >
-        {nodes.map((item) => {
-          const _props: TreeChildRenderProps = {
-            key: item.key,
-            _key: item.key,
-            level: level + 1,
-            title: item.title,
-          };
-
-          if (item.children) {
-            return <List {..._props} nodes={item.children} />;
-          }
-
-          return <Node {..._props} />;
-        })}
-      </ul>
-    </Node>
+    <ul
+      className={clsx(
+        classNames[TreeClassToken.List],
+        {
+          [classNames[TreeClassToken.ListHidden]]: !isExpanded,
+        },
+        styled.className
+      )}
+      style={styled.style}
+      ref={scope}
+    >
+      {nodes.map((node) => {
+        return (
+          <Node value={node.key} onToggle={toggle} title={node.title} level={level}>
+            <List nodes={node.children} isExpanded={expandedKeys.has(node.key)} level={level + 1} />
+          </Node>
+        );
+      })}
+    </ul>
   );
 };
 

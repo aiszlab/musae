@@ -23,7 +23,6 @@ const styles = stylex.create({
 const Tree = ({ expandedKeys: _expandedKeys, onExpand, className, style, ...props }: TreeProps) => {
   const { toggledKeys: checkedKeys, toggle: check } = useToggleable(props.nodes);
   const { toggle, expandedKeys } = useExpandedKeys([_expandedKeys, onExpand]);
-  const classNames = useClassNames(ComponentToken.Tree);
 
   const contextValue = useMemo<ContextValue>(() => {
     return {
@@ -34,32 +33,11 @@ const Tree = ({ expandedKeys: _expandedKeys, onExpand, className, style, ...prop
     };
   }, [check, checkedKeys, toggle, expandedKeys]);
 
-  const styled = stylex.props(styles.tree);
+  // const styled = stylex.props(styles.tree);
 
   return (
     <Context.Provider value={contextValue}>
-      <ul
-        className={clsx(classNames[TreeClassToken.Tree], className, styled.className)}
-        style={{
-          ...styled.style,
-          ...style,
-        }}
-      >
-        {props.nodes.map((item) => {
-          const _props: TreeChildRenderProps = {
-            key: item.key,
-            _key: item.key,
-            level: 0,
-            title: item.title,
-          };
-
-          if (item.children) {
-            return <List {..._props} nodes={item.children} />;
-          }
-
-          return <Node {..._props} />;
-        })}
-      </ul>
+      <List nodes={props.nodes} />
     </Context.Provider>
   );
 };
