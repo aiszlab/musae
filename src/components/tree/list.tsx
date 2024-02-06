@@ -1,6 +1,6 @@
 import * as stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
-import { TreeNode } from "./types";
+import type { TreeListProps } from "./types";
 import React, { useContext } from "react";
 import Node from "./node";
 import clsx from "clsx";
@@ -23,50 +23,52 @@ const styles = stylex.create({
   },
 });
 
-interface Props {
-  nodes?: TreeNode[];
-  isExpanded?: boolean;
-  level?: number;
-}
-
-const List = ({ nodes, isExpanded = true, level = 0 }: Props) => {
+const List = ({ nodes = [], expanded = true, level = 0 }: TreeListProps) => {
   const [scope, animate] = useAnimate<HTMLUListElement>();
   const { expandedKeys, toggle } = useContext(Context);
   const classNames = useClassNames(ComponentToken.Tree);
 
   useUpdateEffect(async () => {
-    if (isExpanded) {
+    if (expanded) {
+      scope.current.attributeStyleMap.set("height", 0);
+      scope.current.attributeStyleMap.set("overflow", "hidden");
+      scope.current.attributeStyleMap.set("display", "block");
       await animate(scope.current, {
         height: "auto",
       });
+      scope.current.attributeStyleMap.clear();
       return;
     }
 
+    // style play like display: none
+    scope.current.attributeStyleMap.set("overflow", "hidden");
+    scope.current.attributeStyleMap.set("height", "auto");
+    scope.current.attributeStyleMap.set("display", "block");
     await animate(scope.current, {
       height: 0,
     });
-  }, [isExpanded]);
+    scope.current.attributeStyleMap.clear();
+  }, [expanded]);
 
-  if (!nodes) return null;
-
-  const styled = stylex.props(styles.list, !isExpanded && styles.hidden);
+  const styled = stylex.props(styles.list, !expanded && styles.hidden);
 
   return (
     <ul
       className={clsx(
-        classNames[TreeClassToken.List],
         {
-          [classNames[TreeClassToken.ListHidden]]: !isExpanded,
+          [classNames[TreeClassToken.Tree]]: level === 0,
+          [classNames[TreeClassToken.List]]: level > 0,
+          [classNames[TreeClassToken.ListHidden]]: !expanded,
         },
         styled.className
       )}
       style={styled.style}
       ref={scope}
     >
-      {nodes.map((node) => {
+      {nodes.map(({ children = [], ...node }) => {
         return (
-          <Node value={node.key} onToggle={toggle} title={node.title} level={level}>
-            <List nodes={node.children} isExpanded={expandedKeys.has(node.key)} level={level + 1} />
+          <Node key={node.key} value={node.key} onToggle={toggle} title={node.title} level={level}>
+            {children.length > 0 && <List nodes={children} expanded={expandedKeys.has(node.key)} level={level + 1} />}
           </Node>
         );
       })}

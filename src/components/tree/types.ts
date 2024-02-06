@@ -77,7 +77,25 @@ export type TreeNodeProps = WithLevel<Omit<TreeNode, "children" | "key">> & {
  * @description
  * tree list props
  */
-export type TreeListProps = Omit<TreeNodeProps, "children"> & Pick<TreeProps, "nodes">;
+export type TreeListProps = {
+  /**
+   * @description
+   * nodes
+   */
+  nodes?: TreeNode[];
+
+  /**
+   * @description
+   * if this list is expanded
+   */
+  expanded?: boolean;
+
+  /**
+   * @description
+   * current list display level
+   */
+  level?: number;
+};
 
 /**
  * @description
