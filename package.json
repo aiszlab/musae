@@ -4,7 +4,8 @@
   "description": "musae-ui",
   "author": "tutu@fantufantu.com",
   "license": "MIT",
-  "main": "./dist/index.js",
+  "main": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
   "type": "module",
   "scripts": {
     "dev": "rollup -c -w",

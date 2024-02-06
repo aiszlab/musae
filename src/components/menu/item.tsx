@@ -53,14 +53,14 @@ const styles = stylex.create({
  * menu item
  */
 const Item = forwardRef<HTMLLIElement, MenuItemProps>(
-  ({ level, label, prefix, suffix, _key, className, ...props }, ref) => {
+  ({ level, label, prefix, suffix, value, className, ...props }, ref) => {
     const { selectedKeys } = useMenuContext();
     const classNames = useClassNames(ComponentToken.Menu);
-    const isSelected = selectedKeys.has(_key);
+    const isSelected = selectedKeys.has(value);
     const theme = useTheme();
 
     const click = () => {
-      props.onClick(_key);
+      props.onClick(value);
     };
 
     const _children = useItemChildren({

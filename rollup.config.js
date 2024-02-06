@@ -18,6 +18,7 @@ const configuration = {
   output: {
     format: "es",
     dir: "./dist",
+    entryFileNames: "[name].mjs",
     banner: (chunk) => {
       if (chunk.isEntry) {
         // configuration readme: https://rollupjs.org/configuration-options/#output-banner-output-footer
