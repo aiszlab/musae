@@ -11,18 +11,19 @@ import * as stylex from "@stylexjs/stylex";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
 import clsx from "clsx";
+import { sizes, spacing } from "../theme/tokens.stylex";
 
 const styles = stylex.create({
-  panel: (borderTopColor: Required<CSSProperties>["borderTopColor"]) => ({
-    borderWidth: "1px",
+  panel: (props: { borderTopColor: CSSProperties["borderTopColor"] }) => ({
+    borderWidth: sizes.smallest,
     borderStyle: "solid",
-    borderTopColor,
+    borderTopColor: props.borderTopColor,
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
-    paddingBlock: 4,
-    paddingInline: 12,
-    minHeight: 40,
+    paddingBlock: spacing.xxsmall,
+    paddingInline: spacing.medium,
+    minHeight: sizes.large,
   }),
 });
 
@@ -54,7 +55,11 @@ const Panel = (props: PanelProps) => {
     setValue([currentAt.hour(), currentAt.minute(), currentAt.second()]);
   }, []);
 
-  const styled = stylex.props(styles.panel(theme.colors[ColorToken.OutlineVariant]));
+  const styled = stylex.props(
+    styles.panel({
+      borderTopColor: theme.colors[ColorToken.OutlineVariant],
+    })
+  );
 
   return (
     <div className={clsx(classNames[TimePickerClassToken.Panel], styled.className)} style={styled.style}>

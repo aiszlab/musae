@@ -6,7 +6,7 @@ import { ColorToken } from "../../utils/colors";
 import { sizes, spacing } from "../theme/tokens.stylex";
 
 const styles = stylex.create({
-  header: (backgroundColor: Required<CSSProperties>["backgroundColor"]) => ({
+  header: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
     height: sizes.xxlarge,
     paddingInline: spacing.xxlarge,
     marginBottom: spacing.xxlarge,
@@ -15,7 +15,7 @@ const styles = stylex.create({
     zIndex: 10,
     display: "flex",
     alignItems: "center",
-    backgroundColor,
+    backgroundColor: props.backgroundColor,
   }),
 });
 
@@ -23,7 +23,15 @@ const Header = (props: HeaderProps) => {
   const theme = useTheme();
 
   return (
-    <header {...stylex.props(styles.header(theme.colors[ColorToken.SurfaceContainerLowest]))}>{props.children}</header>
+    <header
+      {...stylex.props(
+        styles.header({
+          backgroundColor: theme.colors[ColorToken.SurfaceContainerLowest],
+        })
+      )}
+    >
+      {props.children}
+    </header>
   );
 };
 

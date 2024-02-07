@@ -20,7 +20,7 @@ const Pagination = (props: PagiantionProps) => {
     <nav aria-label="pagination navigation">
       <ul className={styled.className} style={styled.style}>
         {paginationItems.map((item) => (
-          <Item value={item} next={next} prev={prev} onPageChange={changePage} />
+          <Item key={item} value={item} next={next} prev={prev} onPageChange={changePage} />
         ))}
       </ul>
     </nav>

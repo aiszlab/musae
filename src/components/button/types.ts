@@ -7,6 +7,8 @@ export type Color = "primary" | "secondary" | "neutral";
 
 type Size = "small" | "medium";
 
+type Shape = "round" | "circle";
+
 /**
  * @author murukal
  *
@@ -26,6 +28,12 @@ export interface ButtonProps extends Partial<Pick<HTMLButtonElement, "type">>, C
    * color: only support preset colors
    */
   color?: Color;
+
+  /**
+   * @description
+   * shape
+   */
+  shape?: Shape;
 
   /**
    * @description

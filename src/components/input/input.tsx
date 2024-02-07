@@ -5,13 +5,13 @@ import { useBoolean, useControlledState } from "@aiszlab/relax";
 import Context from "../config/context";
 import { ComponentToken, InputClassToken } from "../../utils/class-name";
 import * as stylex from "@stylexjs/stylex";
-import { spacing } from "../theme/tokens.stylex";
+import { sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
 import clsx from "clsx";
 
 const styles = stylex.create({
-  wrapper: (borderColor: Required<CSSProperties>["borderColor"]) => ({
+  wrapper: (props: { outlineColor: CSSProperties["borderColor"] }) => ({
     minHeight: 36,
     minWidth: 0,
     width: 240,
@@ -21,10 +21,10 @@ const styles = stylex.create({
     cursor: "text",
 
     // border
-    borderColor,
-    borderWidth: 1,
+    borderColor: props.outlineColor,
+    borderWidth: sizes.smallest,
     borderStyle: "solid",
-    borderRadius: 4,
+    borderRadius: sizes.xxxsmall,
 
     // layout
     margin: spacing.none,
@@ -32,13 +32,13 @@ const styles = stylex.create({
     paddingInline: spacing.medium,
   }),
 
-  focused: (borderColor: Required<CSSProperties>["borderColor"]) => ({
+  focused: (props: { outlineColor: CSSProperties["borderColor"] }) => ({
     borderWidth: 2,
-    borderColor,
+    borderColor: props.outlineColor,
   }),
 
-  invalid: (borderColor: Required<CSSProperties>["borderColor"]) => ({
-    borderColor,
+  invalid: (props: { outlineColor: CSSProperties["borderColor"] }) => ({
+    borderColor: props.outlineColor,
   }),
 
   input: {
@@ -89,9 +89,17 @@ const Input = forwardRef<InputRef, InputProps>((props, ref) => {
 
   const styled = {
     wrapper: stylex.props(
-      styles.wrapper(theme.colors[ColorToken.Outline]),
-      isFocused && styles.focused(theme.colors[ColorToken.Primary]),
-      props.invalid && styles.invalid(theme.colors[ColorToken.Error])
+      styles.wrapper({
+        outlineColor: theme.colors[ColorToken.Outline],
+      }),
+      isFocused &&
+        styles.focused({
+          outlineColor: theme.colors[ColorToken.Primary],
+        }),
+      props.invalid &&
+        styles.invalid({
+          outlineColor: theme.colors[ColorToken.Error],
+        })
     ),
     input: stylex.props(styles.input),
   };

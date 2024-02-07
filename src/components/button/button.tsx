@@ -7,28 +7,49 @@ import * as stylex from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
+import { useButton } from "./hooks";
+import { Ripple } from "../ripple";
+import { typography } from "../theme/theme";
 
 const styles = stylex.create({
   button: {
-    borderRadius: sizes.infinity,
+    position: "relative",
+    overflow: "hidden",
     display: "flex",
     alignItems: "center",
     gap: spacing.small,
+    transition: "background-color 300ms",
+    willChange: "background-color",
   },
 
   small: {
-    paddingBlock: spacing.none,
-    paddingInline: spacing.xsmall,
+    padding: `${spacing.none} ${spacing.xsmall}`,
+    minHeight: sizes.medium,
+    minWidth: sizes.medium,
   },
 
   medium: {
-    paddingBlock: spacing.small,
-    paddingInline: spacing.xlarge,
+    padding: `${spacing.small} ${spacing.xlarge}`,
+    minHeight: sizes.large,
+    minWidth: sizes.large,
   },
 
   large: {
-    paddingBlock: spacing.medium,
-    paddingInline: spacing.xxlarge,
+    padding: `${spacing.medium} ${spacing.xxlarge}`,
+    minHeight: sizes.xlarge,
+    minWidth: sizes.xlarge,
+  },
+
+  circle: {
+    borderRadius: sizes.infinity,
+    padding: null,
+    // circle shape, always center layout
+    justifyContent: "center",
+  },
+
+  round: {
+    borderRadius: sizes.infinity,
+    minWidth: null,
   },
 
   filled: (props: { backgroundColor: CSSProperties["backgroundColor"]; color: CSSProperties["color"] }) => ({
@@ -52,14 +73,21 @@ const styles = stylex.create({
  * button
  */
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ children, className, onClick, style, color = "primary", size = "medium", variant = "filled", ...props }, ref) => {
+  (
+    { children, className, style, color = "primary", size = "medium", variant = "filled", shape = "round", ...props },
+    ref
+  ) => {
     const classNames = useClassNames(ComponentToken.Button);
     const theme = useTheme();
+    const { onClick, clear, ripples } = useButton({ onClick: props.onClick });
 
     const styled = {
       button: stylex.props(
         styles.button,
+        typography.body[size],
+        // size
         styles[size],
+        // variant
         variant === "filled" &&
           styles.filled({
             backgroundColor: theme.colors[ColorToken.Primary],
@@ -68,7 +96,9 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         variant === "outlined" &&
           styles.outlined({
             color: theme.colors[ColorToken.Primary],
-          })
+          }),
+        // shape
+        styles[shape]
       ),
     };
 
@@ -83,7 +113,8 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
       >
         {props.prefix}
-        {children && <span>{children}</span>}
+        {children}
+        <Ripple ripples={ripples} onClear={clear} />
       </button>
     );
   }

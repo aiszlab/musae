@@ -8,7 +8,7 @@ import clsx from "clsx";
 import type { CalendarProps } from "./types";
 import * as stylex from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";
-import { BODY } from "../theme/theme";
+import { typography } from "../theme/theme";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
 import { Button } from "../button";
@@ -24,13 +24,13 @@ const styles = stylex.create({
     textAlign: "center",
   },
 
-  date: (backgroundColor: CSSProperties["backgroundColor"]) => ({
+  date: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
     position: "relative",
 
     "::before": {
       content: "''",
       position: "absolute",
-      backgroundColor,
+      backgroundColor: props.backgroundColor,
       zIndex: 1,
       height: sizes.large,
     },
@@ -40,38 +40,29 @@ const styles = stylex.create({
     visibility: "hidden",
   },
 
-  inRange: {
+  range: {
     "::before": {
       insetInlineStart: 0,
       insetInlineEnd: 0,
     },
   },
 
-  rangeFrom: {
+  from: {
     "::before": {
       insetInlineStart: "50%",
       insetInlineEnd: 0,
     },
   },
 
-  rangeTo: {
+  to: {
     "::before": {
       insetInlineStart: 0,
       insetInlineEnd: "50%",
     },
   },
 
-  value: {
+  trigger: {
     margin: spacing.auto,
-    paddingInline: spacing.none,
-    width: sizes.large,
-    height: sizes.large,
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: sizes.infinity,
-    zIndex: 2,
-    position: "relative",
   },
 });
 
@@ -83,7 +74,7 @@ export const useHeadCells = () => {
   const classNames = useClassNames(ComponentToken.Calendar);
 
   return useMemo(() => {
-    const styled = stylex.props(styles.cell, styles.header, BODY.large);
+    const styled = stylex.props(styles.cell, styles.header, typography.body.large);
 
     return dayjs.Ls[dayjs.locale()].weekdays?.map((weekday, index) => (
       <th key={index} className={clsx(classNames[CalendarClassToken.HeadCell], styled.className)} style={styled.style}>
@@ -124,12 +115,14 @@ export const useDateCells = ([timespan, focusedAt, click]: [Timespan, Dayjs, Req
         const styled = {
           cell: stylex.props(
             styles.cell,
-            styles.date(theme.colors[ColorToken.SecondaryContainer]),
-            BODY.large,
+            styles.date({
+              backgroundColor: theme.colors[ColorToken.SecondaryContainer],
+            }),
+            typography.body.large,
             isDisabled && styles.hidden,
-            isBetween && [styles.inRange, isFrom && styles.rangeFrom, isTo && styles.rangeTo]
+            isBetween && [styles.range, isFrom && styles.from, isTo && styles.to]
           ),
-          date: stylex.props(styles.value),
+          trigger: stylex.props(styles.trigger),
         };
 
         prev.at(prev.length - 1)!.push(
@@ -155,11 +148,12 @@ export const useDateCells = ([timespan, focusedAt, click]: [Timespan, Dayjs, Req
             <Button
               variant={isSelected ? "filled" : "text"}
               color={isSelected ? "primary" : "secondary"}
-              className={clsx(classNames[CalendarClassToken.Date], styled.date.className)}
-              style={styled.date.style}
+              className={clsx(classNames[CalendarClassToken.Date], styled.trigger.className)}
+              style={styled.trigger.style}
               onClick={() => {
                 click(currentAt);
               }}
+              shape="circle"
             >
               {currentAt.date()}
             </Button>

@@ -50,3 +50,8 @@ export const LABEL = stylex.create({
     lineHeight: "20px",
   },
 });
+
+export const typography = {
+  body: BODY,
+  label: LABEL,
+};

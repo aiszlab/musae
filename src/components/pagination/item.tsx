@@ -2,13 +2,8 @@ import React from "react";
 import { type PaginationItemProps, PaginationItemType } from "./types";
 import { Button } from "../button";
 import { KeyboardArrowLeft, KeyboardArrowRight } from "../icon";
-import { useEvent } from "@aiszlab/relax";
 
 const Item = ({ value, onPageChange, next, prev }: PaginationItemProps) => {
-  const change = useEvent(() => {
-    onPageChange(value as number);
-  });
-
   if (value === PaginationItemType.Prev) {
     return (
       <Button onClick={prev}>
@@ -29,7 +24,15 @@ const Item = ({ value, onPageChange, next, prev }: PaginationItemProps) => {
     return <Button>{PaginationItemType.Dots}</Button>;
   }
 
-  return <Button onClick={change}>{value}</Button>;
+  return (
+    <Button
+      onClick={() => {
+        onPageChange(value);
+      }}
+    >
+      {value}
+    </Button>
+  );
 };
 
 export default Item;

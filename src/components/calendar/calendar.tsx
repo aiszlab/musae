@@ -6,7 +6,7 @@ import { useClassNames } from "../config";
 import { CalendarClassToken, ComponentToken } from "../../utils/class-name";
 import * as stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
-import { LABEL } from "../theme/theme";
+import { typography } from "../theme/theme";
 import clsx from "clsx";
 import { Button } from "../button";
 
@@ -23,10 +23,6 @@ const styles = stylex.create({
     display: "flex",
     justifyContent: "center",
   },
-
-  trigger: {
-    padding: spacing.none,
-  },
 });
 
 const Calendar = (props: CalendarProps) => {
@@ -37,7 +33,7 @@ const Calendar = (props: CalendarProps) => {
   const classNames = useClassNames(ComponentToken.Calendar);
 
   const styled = {
-    header: stylex.props(LABEL.large, styles.header),
+    header: stylex.props(typography.label.large, styles.header),
     heading: stylex.props(styles.heading),
   };
 
@@ -47,8 +43,8 @@ const Calendar = (props: CalendarProps) => {
         className={clsx(classNames[CalendarClassToken.Header], styled.header.className)}
         style={styled.header.style}
       >
-        <Button variant="text" prefix={<KeyboardDoubleArrowLeft />} onClick={toPrevYear} size="small" />
-        <Button variant="text" prefix={<KeyboardArrowLeft />} onClick={toPrevMonth} size="small" />
+        <Button variant="text" prefix={<KeyboardDoubleArrowLeft />} onClick={toPrevYear} size="small" shape="circle" />
+        <Button variant="text" prefix={<KeyboardArrowLeft />} onClick={toPrevMonth} size="small" shape="circle" />
 
         <span
           className={clsx(classNames[CalendarClassToken.Heading], styled.heading.className)}
@@ -57,8 +53,8 @@ const Calendar = (props: CalendarProps) => {
           {focusedAt.format("YYYY-MM")}
         </span>
 
-        <Button variant="text" prefix={<KeyboardArrowRight />} onClick={toNextMonth} size="small" />
-        <Button variant="text" prefix={<KeyboardDoubleArrowRight />} onClick={toNextYear} size="small" />
+        <Button variant="text" prefix={<KeyboardArrowRight />} onClick={toNextMonth} size="small" shape="circle" />
+        <Button variant="text" prefix={<KeyboardDoubleArrowRight />} onClick={toNextYear} size="small" shape="circle" />
       </header>
 
       <table>
