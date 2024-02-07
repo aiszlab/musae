@@ -140,7 +140,7 @@ export type MenuItemProps = WithLevel<Omit<MenuItem, "key" | "children">> &
      * @description
      * click handler
      */
-    onClick: ContextValue["click"];
+    onClick?: ContextValue["click"];
 
     /**
      * @description

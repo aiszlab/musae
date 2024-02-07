@@ -5,6 +5,9 @@ import { useScrollable } from "@aiszlab/relax";
 import { useContextValue } from "./hooks";
 import Group from "./group";
 import * as stylex from "@stylexjs/stylex";
+import { useClassNames } from "../config";
+import { ComponentToken, MenuClassToken } from "../../utils/class-name";
+import clsx from "clsx";
 
 const styles = stylex.create({
   menu: {
@@ -24,6 +27,7 @@ const Menu = forwardRef<MenuRef, MenuProps>(({ onClick, className, style, ...pro
   const { targetRef, scrollTo, to, setTrigger } = useScrollable<HTMLUListElement, HTMLLIElement>({
     direction: "vertical",
   });
+  const classNames = useClassNames(ComponentToken.Menu);
 
   /// context value
   const contextValue = useContextValue({
@@ -45,7 +49,15 @@ const Menu = forwardRef<MenuRef, MenuProps>(({ onClick, className, style, ...pro
 
   return (
     <Context.Provider value={contextValue}>
-      <Group ref={targetRef} items={props.items} className={styled.className} style={styled.style} />
+      <Group
+        ref={targetRef}
+        items={props.items}
+        className={clsx(classNames[MenuClassToken.Menu], className, styled.className)}
+        style={{
+          ...styled.style,
+          ...style,
+        }}
+      />
     </Context.Provider>
   );
 });

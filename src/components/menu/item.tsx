@@ -9,6 +9,7 @@ import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
 import clsx from "clsx";
 import { LABEL } from "../theme/theme";
+import { useEvent } from "@aiszlab/relax";
 
 const styles = stylex.create({
   menuItem: {
@@ -54,19 +55,29 @@ const styles = stylex.create({
  */
 const Item = forwardRef<HTMLLIElement, MenuItemProps>(
   ({ level, label, prefix, suffix, value, className, ...props }, ref) => {
-    const { selectedKeys } = useMenuContext();
+    const { selectedKeys, expandedKeys, click: _click, toggle } = useMenuContext();
     const classNames = useClassNames(ComponentToken.Menu);
     const isSelected = selectedKeys.has(value);
+    const isExpanded = expandedKeys.has(value);
     const theme = useTheme();
+    const hasChildren = !!props.children;
 
-    const click = () => {
-      props.onClick(value);
-    };
+    const click = useEvent(() => {
+      // if item is a group, just trigger key
+      if (hasChildren) {
+        toggle(value);
+        return;
+      }
+
+      _click(value);
+    });
 
     const _children = useItemChildren({
       label,
       prefix,
       suffix,
+      hasChildren,
+      isExpanded,
     });
 
     const styled = {
