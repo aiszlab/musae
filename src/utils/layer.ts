@@ -11,8 +11,12 @@ const THICKNESS = new Map<Thickness, string>([
  * @description
  * layer
  */
-export const layer = (color: string, thickness: Thickness) => {
+export const layer = (color?: string, thickness?: Thickness) => {
+  // no color or no thickness, return without any deal
+  if (!color || !thickness) return color;
   const layed = THICKNESS.get(thickness);
   if (!layed) return color;
+
+  // add thickness to color
   return `${color}${layed}`;
 };

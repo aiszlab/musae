@@ -4,7 +4,7 @@ import { useClassNames } from "../config";
 import { ButtonClassToken, ComponentToken } from "../../utils/class-name";
 import clsx from "clsx";
 import * as stylex from "@stylexjs/stylex";
-import { sizes, spacing } from "../theme/tokens.stylex";
+import { elevations, sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { useButton } from "./hooks";
 import { Ripple } from "../ripple";
@@ -20,7 +20,7 @@ const styles = stylex.create({
     alignItems: "center",
     gap: spacing.small,
     transition: "all 300ms",
-    willChange: "background-color, color",
+    willChange: "background-color, color, box-shadow",
   },
 
   small: {
@@ -58,18 +58,33 @@ const styles = stylex.create({
     border: "none",
     backgroundColor: props.backgroundColor,
     color: props.color,
+    boxShadow: {
+      default: null,
+      ":hover": elevations.xsmall,
+    },
   }),
 
-  outlined: (props: { color: CSSProperties["color"] }) => ({
+  outlined: (props: { color: CSSProperties["color"]; hoveredBackgroundColor: CSSProperties["backgroundColor"] }) => ({
     borderWidth: sizes.smallest,
     borderStyle: "solid",
     borderColor: props.color,
     color: props.color,
+    backgroundColor: {
+      default: null,
+      ":hover": layer(props.hoveredBackgroundColor, "thin"),
+    },
+  }),
+
+  text: (props: { hoveredBackgroundColor: CSSProperties["backgroundColor"] }) => ({
+    backgroundColor: {
+      default: null,
+      ":hover": layer(props.hoveredBackgroundColor, "thin"),
+    },
   }),
 
   disabled: (props: { color: CSSProperties["color"]; backgroundColor: CSSProperties["backgroundColor"] }) => ({
-    backgroundColor: props.backgroundColor,
-    color: props.color,
+    backgroundColor: layer(props.backgroundColor, "medium"),
+    color: layer(props.color, "thicker"),
     cursor: "not-allowed",
   }),
 });
@@ -114,14 +129,19 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         variant === "outlined" &&
           styles.outlined({
             color: theme.colors[color],
+            hoveredBackgroundColor: theme.colors[ColorToken.Primary],
+          }),
+        variant === "text" &&
+          styles.text({
+            hoveredBackgroundColor: theme.colors[ColorToken.Primary],
           }),
         // shape
         styles[shape],
-
+        // disabled
         disabled &&
           styles.disabled({
-            backgroundColor: layer(theme.colors[ColorToken.Surface], "medium"),
-            color: layer(theme.colors[ColorToken.OnSurface], "thicker"),
+            backgroundColor: theme.colors[ColorToken.Surface],
+            color: theme.colors[ColorToken.OnSurface],
           })
       ),
     };
