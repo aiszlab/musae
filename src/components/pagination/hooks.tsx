@@ -1,4 +1,4 @@
-import { range, useCounter } from "@aiszlab/relax";
+import { clamp, range, useCounter, useEvent } from "@aiszlab/relax";
 import { useMemo } from "react";
 import { type PagiantionProps, type PaginationItems, PaginationItemType } from "./types";
 
@@ -11,7 +11,14 @@ import { type PagiantionProps, type PaginationItems, PaginationItemType } from "
 export const usePagiantion = ({ total = 0, siblings = 1, boundaries = 1, ...dependencies }: PagiantionProps) => {
   const pageSize = dependencies.pageSize || 10;
   const pages = Math.ceil(total / pageSize);
-  const { count: page, next, prev, setCount: changePage } = useCounter();
+  const { count, next, prev, setCount } = useCounter();
+
+  // page used by index + 1
+  const page = count + 1;
+  // -1 when set page
+  const changePage = useEvent((page: number) => {
+    setCount(page - 1);
+  });
 
   const paginationItems = useMemo<PaginationItems>(() => {
     // max renderable pages
@@ -21,26 +28,35 @@ export const usePagiantion = ({ total = 0, siblings = 1, boundaries = 1, ...depe
       return [PaginationItemType.Prev, ...range(1, pages), PaginationItemType.Next];
     }
 
-    const from = Math.max(page - siblings, boundaries);
-    const to = Math.min(page + siblings, pages - boundaries);
-    const isPrevMore = from > boundaries + 2;
-    const isNextMore = to < pages - (boundaries + 1);
+    const focusedAt = clamp(page, boundaries + 3, pages - (boundaries + 2));
+    const from = Math.max(focusedAt - siblings, boundaries);
+    const to = Math.min(focusedAt + siblings, pages - (boundaries - 1));
+    const hasPrevMore = from > boundaries + 2;
+    const hasNextMore = to < pages - (boundaries + 1);
 
     return [
       PaginationItemType.Prev,
       ...range(1, boundaries),
-      ...(isPrevMore ? [PaginationItemType.Dots] : []),
+      ...(hasPrevMore ? [PaginationItemType.MorePrev] : [boundaries + 1]),
       ...range(from, to),
-      ...(isNextMore ? [PaginationItemType.Dots] : []),
-      ...range(pages - boundaries + 1, pages),
+      ...(hasNextMore ? [PaginationItemType.MoreNext] : [pages - boundaries]),
+      ...range(pages - (boundaries - 1), pages),
       PaginationItemType.Next,
     ];
   }, [boundaries, page, pages, siblings]);
+
+  // whether prev button is usable
+  const hasPrev = page > 1;
+  // whether next button is usable
+  const hasNext = page < pages;
 
   return {
     paginationItems,
     next,
     prev,
     changePage,
+    page,
+    hasPrev,
+    hasNext,
   };
 };

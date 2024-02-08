@@ -16,6 +16,7 @@ import Clear from "./icons/content/clear";
 
 /// navigation
 import Cancel from "./icons/navigation/cancel";
+import MoreHoriz from "./icons/navigation/more-horiz";
 
 /// hardware
 import KeyboardDoubleArrowLeft from "./icons/hardware/keyboard-double-arrow-left";
@@ -51,6 +52,7 @@ export {
   ErrorOutline,
   Cancel,
   Clear,
+  MoreHoriz,
 };
 
 export type { IconProps } from "./types";

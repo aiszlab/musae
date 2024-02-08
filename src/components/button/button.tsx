@@ -6,10 +6,11 @@ import clsx from "clsx";
 import * as stylex from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
-import { ColorToken } from "../../utils/colors";
 import { useButton } from "./hooks";
 import { Ripple } from "../ripple";
 import { typography } from "../theme/theme";
+import { ColorToken } from "../../utils/colors";
+import { layer } from "../../utils/layer";
 
 const styles = stylex.create({
   button: {
@@ -18,8 +19,8 @@ const styles = stylex.create({
     display: "flex",
     alignItems: "center",
     gap: spacing.small,
-    transition: "background-color 300ms",
-    willChange: "background-color",
+    transition: "all 300ms",
+    willChange: "background-color, color",
   },
 
   small: {
@@ -43,6 +44,7 @@ const styles = stylex.create({
   circle: {
     borderRadius: sizes.infinity,
     padding: null,
+    aspectRatio: 1,
     // circle shape, always center layout
     justifyContent: "center",
   },
@@ -64,6 +66,12 @@ const styles = stylex.create({
     borderColor: props.color,
     color: props.color,
   }),
+
+  disabled: (props: { color: CSSProperties["color"]; backgroundColor: CSSProperties["backgroundColor"] }) => ({
+    backgroundColor: props.backgroundColor,
+    color: props.color,
+    cursor: "not-allowed",
+  }),
 });
 
 /**
@@ -74,7 +82,17 @@ const styles = stylex.create({
  */
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
-    { children, className, style, color = "primary", size = "medium", variant = "filled", shape = "round", ...props },
+    {
+      children,
+      className,
+      style,
+      color = "primary",
+      size = "medium",
+      variant = "filled",
+      shape = "round",
+      disabled = false,
+      ...props
+    },
     ref
   ) => {
     const classNames = useClassNames(ComponentToken.Button);
@@ -90,15 +108,21 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         // variant
         variant === "filled" &&
           styles.filled({
-            backgroundColor: theme.colors[ColorToken.Primary],
-            color: theme.colors[ColorToken.OnPrimary],
+            backgroundColor: theme.colors[color],
+            color: theme.colors[`on-${color}`],
           }),
         variant === "outlined" &&
           styles.outlined({
-            color: theme.colors[ColorToken.Primary],
+            color: theme.colors[color],
           }),
         // shape
-        styles[shape]
+        styles[shape],
+
+        disabled &&
+          styles.disabled({
+            backgroundColor: layer(theme.colors[ColorToken.Surface], "medium"),
+            color: layer(theme.colors[ColorToken.OnSurface], "thicker"),
+          })
       ),
     };
 
@@ -111,6 +135,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           ...style,
         }}
         ref={ref}
+        disabled={disabled}
       >
         {props.prefix}
         {children}

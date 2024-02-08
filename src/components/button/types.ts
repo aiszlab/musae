@@ -3,7 +3,7 @@ import { ComponentProps } from "../../types/element";
 
 export type Variant = "filled" | "outlined" | "text";
 
-export type Color = "primary" | "secondary" | "neutral";
+export type Color = "primary" | "secondary" | "tertiary";
 
 type Size = "small" | "medium";
 

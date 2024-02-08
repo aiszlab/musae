@@ -5,7 +5,8 @@
 export enum PaginationItemType {
   Prev = "prev",
   Next = "next",
-  Dots = "dots",
+  MorePrev = "more-prev",
+  MoreNext = "more-next",
 }
 
 /**
@@ -70,4 +71,22 @@ export type PaginationItemProps = {
    * change
    */
   onPageChange: (page: number) => void;
+
+  /**
+   * @description
+   * checked
+   */
+  checked: boolean;
+
+  /**
+   * @description
+   * has prev
+   */
+  hasPrev: boolean;
+
+  /**
+   * @description
+   * has next
+   */
+  hasNext: boolean;
 };

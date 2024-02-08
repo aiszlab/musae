@@ -1,12 +1,12 @@
 import React from "react";
 import { type PaginationItemProps, PaginationItemType } from "./types";
 import { Button } from "../button";
-import { KeyboardArrowLeft, KeyboardArrowRight } from "../icon";
+import { KeyboardArrowLeft, KeyboardArrowRight, MoreHoriz } from "../icon";
 
-const Item = ({ value, onPageChange, next, prev }: PaginationItemProps) => {
+const Item = ({ value, onPageChange, next, prev, checked, hasNext, hasPrev }: PaginationItemProps) => {
   if (value === PaginationItemType.Prev) {
     return (
-      <Button onClick={prev}>
+      <Button onClick={prev} shape="circle" variant="text" color="secondary" disabled={!hasPrev}>
         <KeyboardArrowLeft />
       </Button>
     );
@@ -14,18 +14,25 @@ const Item = ({ value, onPageChange, next, prev }: PaginationItemProps) => {
 
   if (value === PaginationItemType.Next) {
     return (
-      <Button onClick={next}>
+      <Button onClick={next} shape="circle" variant="text" color="secondary" disabled={!hasNext}>
         <KeyboardArrowRight />
       </Button>
     );
   }
 
-  if (value === PaginationItemType.Dots) {
-    return <Button>{PaginationItemType.Dots}</Button>;
+  if (value === PaginationItemType.MorePrev || value === PaginationItemType.MoreNext) {
+    return (
+      <Button disabled shape="circle" variant="text" color="secondary">
+        <MoreHoriz />
+      </Button>
+    );
   }
 
   return (
     <Button
+      shape="circle"
+      color={checked ? "primary" : "secondary"}
+      variant={checked ? "filled" : "text"}
       onClick={() => {
         onPageChange(value);
       }}

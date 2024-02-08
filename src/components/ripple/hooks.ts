@@ -33,7 +33,5 @@ export function useRipple() {
     }));
   }, [_ripples]);
 
-  console.log("ripples====", ripples);
-
   return { ripples, add, clear };
 }

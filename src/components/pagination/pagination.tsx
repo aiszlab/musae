@@ -13,14 +13,23 @@ const styles = stylex.create({
 });
 
 const Pagination = (props: PagiantionProps) => {
-  const { paginationItems, next, prev, changePage } = usePagiantion(props);
+  const { paginationItems, next, prev, changePage, page, hasNext, hasPrev } = usePagiantion(props);
   const styled = stylex.props(styles.pagination);
 
   return (
     <nav aria-label="pagination navigation">
       <ul className={styled.className} style={styled.style}>
         {paginationItems.map((item) => (
-          <Item key={item} value={item} next={next} prev={prev} onPageChange={changePage} />
+          <Item
+            key={item}
+            value={item}
+            next={next}
+            prev={prev}
+            onPageChange={changePage}
+            checked={page === item}
+            hasNext={hasNext}
+            hasPrev={hasPrev}
+          />
         ))}
       </ul>
     </nav>
