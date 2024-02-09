@@ -75,7 +75,8 @@ const styles = stylex.create({
     },
   }),
 
-  text: (props: { hoveredBackgroundColor: CSSProperties["backgroundColor"] }) => ({
+  text: (props: { color: CSSProperties["color"]; hoveredBackgroundColor: CSSProperties["backgroundColor"] }) => ({
+    color: props.color,
     backgroundColor: {
       default: null,
       ":hover": layer(props.hoveredBackgroundColor, "thin"),
@@ -133,6 +134,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           }),
         variant === "text" &&
           styles.text({
+            color: theme.colors[color],
             hoveredBackgroundColor: theme.colors[ColorToken.Primary],
           }),
         // shape

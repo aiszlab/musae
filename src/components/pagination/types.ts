@@ -1,3 +1,7 @@
+import type { useCounter } from "@aiszlab/relax";
+
+type UsedCounter = ReturnType<typeof useCounter>;
+
 /**
  * @description
  * pagiantion item type
@@ -58,13 +62,13 @@ export type PaginationItemProps = {
    * @description
    * prev
    */
-  prev: () => void;
+  prev: UsedCounter["prev"];
 
   /**
    * @description
    * next
    */
-  next: () => void;
+  next: UsedCounter["next"];
 
   /**
    * @description

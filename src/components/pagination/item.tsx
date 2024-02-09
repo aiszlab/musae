@@ -1,7 +1,13 @@
-import React from "react";
+import React, { createElement } from "react";
 import { type PaginationItemProps, PaginationItemType } from "./types";
 import { Button } from "../button";
-import { KeyboardArrowLeft, KeyboardArrowRight, MoreHoriz } from "../icon";
+import {
+  KeyboardArrowLeft,
+  KeyboardArrowRight,
+  MoreHoriz,
+  KeyboardDoubleArrowLeft,
+  KeyboardDoubleArrowRight,
+} from "../icon";
 import * as stylex from "@stylexjs/stylex";
 
 const styles = stylex.create({
@@ -23,7 +29,7 @@ const styles = stylex.create({
 const Item = ({ value, onPageChange, next, prev, checked, hasNext, hasPrev }: PaginationItemProps) => {
   if (value === PaginationItemType.Prev) {
     return (
-      <Button onClick={prev} shape="circle" variant="text" color="secondary" disabled={!hasPrev}>
+      <Button onClick={() => prev()} shape="circle" variant="text" color="secondary" disabled={!hasPrev}>
         <KeyboardArrowLeft />
       </Button>
     );
@@ -31,7 +37,7 @@ const Item = ({ value, onPageChange, next, prev, checked, hasNext, hasPrev }: Pa
 
   if (value === PaginationItemType.Next) {
     return (
-      <Button onClick={next} shape="circle" variant="text" color="secondary" disabled={!hasNext}>
+      <Button onClick={() => next()} shape="circle" variant="text" color="secondary" disabled={!hasNext}>
         <KeyboardArrowRight />
       </Button>
     );
@@ -42,18 +48,26 @@ const Item = ({ value, onPageChange, next, prev, checked, hasNext, hasPrev }: Pa
       more: stylex.props(styles.more),
       hidden: stylex.props(styles.hidden),
     };
+    const isNegative = value === PaginationItemType.MorePrev;
 
     return (
       <Button
-        disabled
         shape="circle"
         variant="text"
         color="secondary"
         className={styled.more.className}
         style={styled.more.style}
+        onClick={() => {
+          isNegative ? prev(5) : next(5);
+        }}
       >
         <MoreHoriz />
-        <KeyboardArrowRight className={styled.hidden.className} style={styled.hidden.style} />
+
+        {/* hovered icon */}
+        {createElement(isNegative ? KeyboardDoubleArrowLeft : KeyboardDoubleArrowRight, {
+          className: styled.hidden.className,
+          style: styled.hidden.style,
+        })}
       </Button>
     );
   }

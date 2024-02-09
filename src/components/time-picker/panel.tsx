@@ -14,10 +14,13 @@ import clsx from "clsx";
 import { sizes, spacing } from "../theme/tokens.stylex";
 
 const styles = stylex.create({
-  panel: (props: { borderTopColor: CSSProperties["borderTopColor"] }) => ({
+  panel: {},
+
+  footer: (props: { borderTopColor: CSSProperties["borderTopColor"] }) => ({
     borderWidth: sizes.smallest,
     borderStyle: "solid",
     borderTopColor: props.borderTopColor,
+
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
@@ -55,21 +58,27 @@ const Panel = (props: PanelProps) => {
     setValue([currentAt.hour(), currentAt.minute(), currentAt.second()]);
   }, []);
 
-  const styled = stylex.props(
-    styles.panel({
-      borderTopColor: theme.colors[ColorToken.OutlineVariant],
-    })
-  );
+  const styled = {
+    panel: stylex.props(styles.panel),
+    footer: stylex.props(
+      styles.footer({
+        borderTopColor: theme.colors[ColorToken.OutlineVariant],
+      })
+    ),
+  };
 
   return (
-    <div className={clsx(classNames[TimePickerClassToken.Panel], styled.className)} style={styled.style}>
+    <div className={clsx(classNames[TimePickerClassToken.Panel], styled.panel.className)} style={styled.panel.style}>
       <Clock value={value} onChange={change} />
 
-      <div className={classNames[TimePickerClassToken.PanelFooter]}>
-        <Button variant="text" size="small" onClick={reset}>
+      <div
+        className={clsx(classNames[TimePickerClassToken.PanelFooter], styled.footer.className)}
+        style={styled.footer.style}
+      >
+        <Button variant="text" size="small" color="secondary" onClick={reset}>
           此刻
         </Button>
-        <Button variant="filled" size="small" onClick={confirm} disabled={!value}>
+        <Button variant="text" size="small" color="primary" onClick={confirm} disabled={!value}>
           确定
         </Button>
       </div>
