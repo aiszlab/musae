@@ -8,7 +8,7 @@ import * as stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
-import { BODY, HEADLINE } from "../theme/theme";
+import { typography } from "../theme/theme";
 import clsx from "clsx";
 import { useEvent } from "@aiszlab/relax";
 
@@ -86,8 +86,8 @@ const Popup = ({ onClose, open, dismissable = true, ...props }: PopupProps) => {
     popup: stylex.props(styles.popup),
     mask: stylex.props(styles.mask(theme.colors[ColorToken.SurfaceDim])),
     panel: stylex.props(styles.panel(theme.colors[ColorToken.SurfaceContainerLowest])),
-    header: stylex.props(HEADLINE.small),
-    body: stylex.props(BODY.medium, styles.body),
+    header: stylex.props(typography.headline.small),
+    body: stylex.props(typography.body.medium, styles.body),
     footer: stylex.props(styles.footer),
   };
 
@@ -99,21 +99,21 @@ const Popup = ({ onClose, open, dismissable = true, ...props }: PopupProps) => {
     <div ref={scope} className={styled.popup.className} style={styled.popup.style}>
       {/* mask */}
       <div
-        className={clsx(styled.mask.className, classNames[DialogClassToken.Mask])}
+        className={clsx(classNames[DialogClassToken.Mask], styled.mask.className)}
         style={styled.mask.style}
         onClick={clickMask}
       />
 
       {/* panel */}
-      <div className={clsx(styled.panel.className, classNames[DialogClassToken.Panel])} style={styled.panel.style}>
+      <div className={clsx(classNames[DialogClassToken.Panel], styled.panel.className)} style={styled.panel.style}>
         <div
-          className={clsx(styled.header.className, classNames[DialogClassToken.Header])}
+          className={clsx(classNames[DialogClassToken.Header], styled.header.className)}
           style={styled.header.style}
         ></div>
-        <div className={clsx(styled.body.className, classNames[DialogClassToken.Body])} style={styled.body.style}>
+        <div className={clsx(classNames[DialogClassToken.Body], styled.body.className)} style={styled.body.style}>
           {props.children}
         </div>
-        <div className={clsx(styled.footer.className, classNames[DialogClassToken.Footer])} style={styled.footer.style}>
+        <div className={clsx(classNames[DialogClassToken.Footer], styled.footer.className)} style={styled.footer.style}>
           {footer}
         </div>
       </div>

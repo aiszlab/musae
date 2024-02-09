@@ -54,4 +54,5 @@ export const LABEL = stylex.create({
 export const typography = {
   body: BODY,
   label: LABEL,
+  headline: HEADLINE,
 };
