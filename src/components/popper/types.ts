@@ -15,9 +15,9 @@ export interface PopperProps {
 
   /**
    * @description
-   * if popper is visible
+   * if popper is open
    */
-  isVisible: boolean;
+  open: boolean;
 
   /**
    * @description

@@ -10,6 +10,7 @@ import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
 import { BODY, HEADLINE } from "../theme/theme";
 import clsx from "clsx";
+import { useEvent } from "@aiszlab/relax";
 
 const styles = stylex.create({
   popup: {
@@ -58,15 +59,15 @@ const styles = stylex.create({
   },
 });
 
-const Popup = ({ onCancel, isOpened, ...props }: PopupProps) => {
+const Popup = ({ onClose, open, dismissable = true, ...props }: PopupProps) => {
   const classNames = useClassNames(ComponentToken.Dialog);
-  const footer = useFooter([props.footer, props.onConfirm, onCancel]);
+  const footer = useFooter([props.footer, props.onConfirm, onClose]);
   const [scope, animate] = useAnimate<HTMLDivElement>();
   const theme = useTheme();
 
   useEffect(() => {
     (async () => {
-      if (isOpened) {
+      if (open) {
         await animate(scope.current, { display: "flex" }, { duration: 0 });
         animate(withDot(classNames[DialogClassToken.Panel]), { opacity: 1 });
         animate(withDot(classNames[DialogClassToken.Mask]), { opacity: 0.8 });
@@ -79,7 +80,7 @@ const Popup = ({ onCancel, isOpened, ...props }: PopupProps) => {
       }
     })();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isOpened]);
+  }, [open]);
 
   const styled = {
     popup: stylex.props(styles.popup),
@@ -90,13 +91,17 @@ const Popup = ({ onCancel, isOpened, ...props }: PopupProps) => {
     footer: stylex.props(styles.footer),
   };
 
+  const clickMask = useEvent(() => {
+    dismissable && onClose?.();
+  });
+
   return (
     <div ref={scope} className={styled.popup.className} style={styled.popup.style}>
       {/* mask */}
       <div
         className={clsx(styled.mask.className, classNames[DialogClassToken.Mask])}
         style={styled.mask.style}
-        onClick={onCancel}
+        onClick={clickMask}
       />
 
       {/* panel */}

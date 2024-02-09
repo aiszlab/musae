@@ -3,10 +3,10 @@ import type { DrawerProps } from "./types";
 import { Portal } from "../portal";
 import Popup from "./popup";
 
-const Drawer = ({ isOpened, ...props }: DrawerProps) => {
+const Drawer = ({ open, ...props }: DrawerProps) => {
   return (
-    <Portal isVisible={isOpened}>
-      <Popup isOpened={isOpened} {...props} />
+    <Portal open={open}>
+      <Popup open={open} {...props} />
     </Portal>
   );
 };

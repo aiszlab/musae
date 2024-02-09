@@ -13,9 +13,9 @@ export interface DialogProps {
 
   /**
    * @description
-   * is open
+   * open
    */
-  isOpened: boolean;
+  open: boolean;
 
   /**
    * @description
@@ -31,9 +31,15 @@ export interface DialogProps {
 
   /**
    * @description
-   * on cancel
+   * on close
    */
-  onCancel?: VoidFunction;
+  onClose?: VoidFunction;
+
+  /**
+   * @description
+   * Whether the modal can be closed by clicking on the mask or pressing the Esc key.
+   */
+  dismissable?: boolean;
 }
 
 /**

@@ -3,10 +3,10 @@ import React from "react";
 import type { DialogProps } from "./types";
 import Popup from "./popup";
 
-const Dialog = ({ isOpened, ...props }: DialogProps) => {
+const Dialog = ({ open, ...props }: DialogProps) => {
   return (
-    <Portal isVisible={isOpened}>
-      <Popup isOpened={isOpened} {...props} />
+    <Portal open={open}>
+      <Popup open={open} {...props} />
     </Portal>
   );
 };

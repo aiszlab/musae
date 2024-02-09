@@ -3,18 +3,18 @@ import type { PortalProps } from "./types";
 import { useEffect, useState } from "react";
 import { isDomUsable, useScrollLocker } from "@aiszlab/relax";
 
-const Portal = ({ children, isVisible = false, destroyable = false, lockable = true }: PortalProps) => {
+const Portal = ({ children, open = false, destroyable = false, lockable = true }: PortalProps) => {
   const [shouldRender, setShouldRender] = useState(false);
 
   /// if render once, and is not destroyable
   /// anyway render
   useEffect(() => {
-    if (destroyable || isVisible) {
-      setShouldRender(isVisible);
+    if (destroyable || open) {
+      setShouldRender(open);
     }
-  }, [destroyable, isVisible]);
+  }, [destroyable, open]);
 
-  useScrollLocker(isDomUsable() && isVisible && lockable);
+  useScrollLocker(isDomUsable() && open && lockable);
 
   if (!shouldRender) return null;
 

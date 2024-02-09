@@ -24,12 +24,6 @@ export const withDot = (className: string) => `${Token.Dot}${className}`;
 
 /**
  * @description
- * with self
- */
-export const withSelf = (className: string) => `:where(&)${withDot(className)}`;
-
-/**
- * @description
  * class role
  */
 export enum ComponentToken {

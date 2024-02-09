@@ -125,7 +125,7 @@ const Picker = forwardRef<PickerRef, PickerProps>(
 
         <Popper
           trigger={trigger.current}
-          isVisible={isVisible}
+          open={isVisible}
           className={classNames[PickerClassToken.Dropdown]}
           // click on popper, keep select focused
           onMouseDown={onDropdownClick}

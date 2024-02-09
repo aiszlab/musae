@@ -17,7 +17,7 @@ export interface DrawerProps {
    * @description
    * is open
    */
-  isOpened: boolean;
+  open: boolean;
 
   /**
    * @description

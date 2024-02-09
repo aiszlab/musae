@@ -7,7 +7,7 @@ import Context from "../config/context";
 import { ComponentToken, PopperClassToken } from "../../utils/class-name";
 import { useMounted } from "@aiszlab/relax";
 
-const Dropdown = forwardRef<PopperRef, PopperProps>(({ isVisible, trigger, children, onMouseDown }, ref) => {
+const Dropdown = forwardRef<PopperRef, PopperProps>(({ open, trigger, children, onMouseDown }, ref) => {
   const [scope, animate] = useAnimate<HTMLDivElement>();
   const styles = useStyles();
   const classNames = useContext(Context).classNames[ComponentToken.Popper];
@@ -43,7 +43,7 @@ const Dropdown = forwardRef<PopperRef, PopperProps>(({ isVisible, trigger, child
 
   useEffect(() => {
     (async () => {
-      if (isVisible) {
+      if (open) {
         popper.current?.update();
         scope.current.attributeStyleMap.delete("display");
         await animate(scope.current, { opacity: 1 }, { duration: 0.1 });
@@ -53,7 +53,7 @@ const Dropdown = forwardRef<PopperRef, PopperProps>(({ isVisible, trigger, child
       }
     })();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isVisible]);
+  }, [open]);
 
   return (
     <div

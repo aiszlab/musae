@@ -1,4 +1,5 @@
 import type { CSSProperties, FC, MouseEventHandler, ReactNode, ReactPortal } from "react";
+import { ComponentProps } from "../../types/element";
 
 export type AsProps = Required<Pick<IconProps, "size">>;
 
@@ -6,13 +7,7 @@ export type AsProps = Required<Pick<IconProps, "size">>;
  * @description
  * icon props
  */
-export interface IconProps {
-  /**
-   * @description
-   * class name
-   */
-  className?: string;
-
+export interface IconProps extends ComponentProps {
   /**
    * @description
    * as render

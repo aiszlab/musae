@@ -80,7 +80,7 @@ const styles = stylex.create({
   },
 });
 
-const Popup = ({ isOpened, onClose, placement = "right", ...props }: PopupProps) => {
+const Popup = ({ open, onClose, placement = "right", ...props }: PopupProps) => {
   const [scope, animate] = useAnimate<HTMLDivElement>();
   const classNames = useClassNames(ComponentToken.Drawer);
   const _placement = PLACEMENTS[placement];
@@ -88,7 +88,7 @@ const Popup = ({ isOpened, onClose, placement = "right", ...props }: PopupProps)
 
   useEffect(() => {
     (async () => {
-      if (isOpened) {
+      if (open) {
         await animate(scope.current, { display: "block" }, { duration: 0 });
         animate(withDot(classNames[DrawerClassToken.Panel]), { transform: _placement.at(1) });
         animate(withDot(classNames[DrawerClassToken.Mask]), { opacity: 0.8 });
@@ -101,7 +101,7 @@ const Popup = ({ isOpened, onClose, placement = "right", ...props }: PopupProps)
       }
     })();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isOpened, ..._placement]);
+  }, [open, ..._placement]);
 
   const styled = {
     popup: stylex.props(styles.popup),

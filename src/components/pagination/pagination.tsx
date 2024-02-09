@@ -20,16 +20,17 @@ const Pagination = (props: PagiantionProps) => {
     <nav aria-label="pagination navigation">
       <ul className={styled.className} style={styled.style}>
         {paginationItems.map((item) => (
-          <Item
-            key={item}
-            value={item}
-            next={next}
-            prev={prev}
-            onPageChange={changePage}
-            checked={page === item}
-            hasNext={hasNext}
-            hasPrev={hasPrev}
-          />
+          <li key={item}>
+            <Item
+              value={item}
+              next={next}
+              prev={prev}
+              onPageChange={changePage}
+              checked={page === item}
+              hasNext={hasNext}
+              hasPrev={hasPrev}
+            />
+          </li>
         ))}
       </ul>
     </nav>
