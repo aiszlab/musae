@@ -5,7 +5,7 @@ export type Variant = "filled" | "outlined" | "text";
 
 export type Color = "primary" | "secondary" | "tertiary";
 
-type Size = "small" | "medium";
+type Size = "small" | "medium" | "large";
 
 type Shape = "round" | "circle";
 

@@ -1,5 +1,7 @@
 import type { ReactNode } from "react";
 
+export type Dismissable = "esc" | "mask" | "close";
+
 /**
  * @description
  * dialog props
@@ -39,11 +41,11 @@ export interface DialogProps {
    * @description
    * Whether the modal can be closed by clicking on the mask or pressing the Esc key.
    */
-  dismissable?: boolean;
+  dismissable?: boolean | Dismissable[];
 }
 
 /**
  * @description
  * popup
  */
-export interface PopupProps extends DialogProps {}
+export type PopupProps = DialogProps;

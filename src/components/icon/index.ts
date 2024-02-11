@@ -17,6 +17,7 @@ import Clear from "./icons/content/clear";
 /// navigation
 import Cancel from "./icons/navigation/cancel";
 import MoreHoriz from "./icons/navigation/more-horiz";
+import Close from "./icons/navigation/close";
 
 /// hardware
 import KeyboardDoubleArrowLeft from "./icons/hardware/keyboard-double-arrow-left";
@@ -53,6 +54,7 @@ export {
   Cancel,
   Clear,
   MoreHoriz,
+  Close,
 };
 
 export type { IconProps } from "./types";

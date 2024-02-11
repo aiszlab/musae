@@ -84,9 +84,14 @@ const styles = stylex.create({
   }),
 
   disabled: (props: { color: CSSProperties["color"]; backgroundColor: CSSProperties["backgroundColor"] }) => ({
-    backgroundColor: layer(props.backgroundColor, "medium"),
+    backgroundColor: props.backgroundColor,
     color: layer(props.color, "thicker"),
     cursor: "not-allowed",
+    boxShadow: null,
+  }),
+
+  disabledOutline: (props: { outlineColor: CSSProperties["borderColor"] }) => ({
+    borderColor: layer(props.outlineColor, "thicker"),
   }),
 });
 
@@ -118,7 +123,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     const styled = {
       button: stylex.props(
         styles.button,
-        typography.body[size],
+        typography.label[size],
         // size
         styles[size],
         // variant
@@ -142,8 +147,13 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         // disabled
         disabled &&
           styles.disabled({
-            backgroundColor: theme.colors[ColorToken.Surface],
+            backgroundColor: variant === "filled" ? layer(theme.colors[ColorToken.OnSurface], "medium") : "transparent",
             color: theme.colors[ColorToken.OnSurface],
+          }),
+        disabled &&
+          variant === "outlined" &&
+          styles.disabledOutline({
+            outlineColor: theme.colors[ColorToken.OnSurface],
           })
       ),
     };
@@ -151,13 +161,13 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     return (
       <button
         onClick={onClick}
+        ref={ref}
+        disabled={disabled}
         className={clsx(classNames[ButtonClassToken.Button], className, styled.button.className)}
         style={{
           ...styled.button.style,
           ...style,
         }}
-        ref={ref}
-        disabled={disabled}
       >
         {props.prefix}
         {children}

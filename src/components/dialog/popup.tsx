@@ -1,6 +1,6 @@
 import React, { CSSProperties, useEffect } from "react";
 import type { PopupProps } from "./types";
-import { useFooter } from "./hooks";
+import { useDismissable, useFooter } from "./hooks";
 import { useAnimate } from "framer-motion";
 import { ComponentToken, DialogClassToken, withDot } from "../../utils/class-name";
 import { useClassNames } from "../config";
@@ -10,7 +10,6 @@ import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
 import { typography } from "../theme/theme";
 import clsx from "clsx";
-import { useEvent } from "@aiszlab/relax";
 
 const styles = stylex.create({
   popup: {
@@ -46,6 +45,7 @@ const styles = stylex.create({
     backgroundColor,
     zIndex: 1000,
     opacity: 0,
+    position: "relative",
   }),
 
   body: { paddingInline: spacing.xlarge, flex: 1, wordBreak: "break-word", overflow: "auto" },
@@ -64,20 +64,23 @@ const Popup = ({ onClose, open, dismissable = true, ...props }: PopupProps) => {
   const footer = useFooter([props.footer, props.onConfirm, onClose]);
   const [scope, animate] = useAnimate<HTMLDivElement>();
   const theme = useTheme();
+  const { closer, onKeyDown, onMaskClick } = useDismissable({ dismissable, onClose });
 
   useEffect(() => {
     (async () => {
       if (open) {
-        await animate(scope.current, { display: "flex" }, { duration: 0 });
+        scope.current.focus();
+        scope.current.attributeStyleMap.set("display", "flex");
         animate(withDot(classNames[DialogClassToken.Panel]), { opacity: 1 });
         animate(withDot(classNames[DialogClassToken.Mask]), { opacity: 0.8 });
-      } else {
-        await Promise.all([
-          animate(withDot(classNames[DialogClassToken.Panel]), { opacity: 0 }),
-          animate(withDot(classNames[DialogClassToken.Mask]), { opacity: 0 }),
-        ]);
-        animate(scope.current, { display: "none" }, { duration: 0 });
+        return;
       }
+
+      await Promise.all([
+        animate(withDot(classNames[DialogClassToken.Panel]), { opacity: 0 }),
+        animate(withDot(classNames[DialogClassToken.Mask]), { opacity: 0 }),
+      ]);
+      scope.current.attributeStyleMap.set("display", "none");
     })();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open]);
@@ -91,21 +94,18 @@ const Popup = ({ onClose, open, dismissable = true, ...props }: PopupProps) => {
     footer: stylex.props(styles.footer),
   };
 
-  const clickMask = useEvent(() => {
-    dismissable && onClose?.();
-  });
-
   return (
-    <div ref={scope} className={styled.popup.className} style={styled.popup.style}>
+    <div ref={scope} className={styled.popup.className} style={styled.popup.style} tabIndex={-1} onKeyDown={onKeyDown}>
       {/* mask */}
       <div
         className={clsx(classNames[DialogClassToken.Mask], styled.mask.className)}
         style={styled.mask.style}
-        onClick={clickMask}
+        onClick={onMaskClick}
       />
 
       {/* panel */}
       <div className={clsx(classNames[DialogClassToken.Panel], styled.panel.className)} style={styled.panel.style}>
+        {closer}
         <div
           className={clsx(classNames[DialogClassToken.Header], styled.header.className)}
           style={styled.header.style}

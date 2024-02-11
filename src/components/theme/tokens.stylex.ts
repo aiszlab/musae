@@ -49,3 +49,16 @@ export const sizes = defineVars({
   infinity: `calc(${Infinity} * 1px)`,
   full: "100%",
 });
+
+/**
+ * @description
+ * tracking
+ */
+export const tracking = defineVars({
+  none: "0px",
+  xsmall: "0.1px",
+  small: "0.15px",
+  medium: "0.25px",
+  large: "0.4px",
+  xlarge: "0.5px",
+});
