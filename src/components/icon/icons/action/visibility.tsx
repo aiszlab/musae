@@ -1,5 +1,5 @@
 import React from "react";
-import { withIcon } from "../../hocs";
+import { withIcon } from "../../hoc";
 
 const Visibility = withIcon(({ size }) => {
   return (

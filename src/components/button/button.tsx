@@ -101,7 +101,7 @@ const styles = stylex.create({
  * @description
  * button
  */
-const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+export const _Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
     {
       children,
@@ -154,7 +154,8 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           variant === "outlined" &&
           styles.disabledOutline({
             outlineColor: theme.colors[ColorToken.OnSurface],
-          })
+          }),
+        props.styles
       ),
     };
 
@@ -177,4 +178,4 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   }
 );
 
-export default Button;
+export default _Button;

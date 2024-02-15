@@ -1,3 +1,4 @@
+import type { StyleXStyles } from "@stylexjs/stylex";
 import type { CSSProperties, RefCallback } from "react";
 
 /**
@@ -74,4 +75,16 @@ export type WithLevel<T extends Object> = T & {
    * level
    */
   level: number;
+};
+
+/**
+ * @description
+ * stylex component props
+ */
+export type StylexProps = {
+  /**
+   * @description
+   * styles
+   */
+  styles?: StyleXStyles;
 };

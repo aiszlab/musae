@@ -10,7 +10,7 @@ import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
 import { typography } from "../theme/theme";
 import clsx from "clsx";
-import { useUpdateEffect } from "@aiszlab/relax";
+import { contains } from "@aiszlab/relax/dom";
 
 const styles = stylex.create({
   popup: {
@@ -67,7 +67,7 @@ const Popup = ({ onClose, open, dismissable = true, ...props }: PopupProps) => {
   const theme = useTheme();
   const { closer, onKeyDown, onMaskClick } = useDismissable({ dismissable, onClose });
 
-  useUpdateEffect(() => {
+  useEffect(() => {
     (async () => {
       if (open) {
         scope.current.attributeStyleMap.set("display", "flex");
@@ -84,12 +84,15 @@ const Popup = ({ onClose, open, dismissable = true, ...props }: PopupProps) => {
       ]);
       scope.current.attributeStyleMap.set("display", "none");
     })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open]);
 
   /// when open, try focus dialog
-  useUpdateEffect(() => {
+  useEffect(() => {
     if (!open) return;
+    if (contains(scope.current, document.activeElement)) return;
     scope.current.focus();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open]);
 
   const styled = {

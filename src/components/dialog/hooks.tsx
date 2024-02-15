@@ -60,16 +60,7 @@ export const useDismissable = (props: Pick<PopupProps, "dismissable" | "onClose"
   const closer = useMemo(() => {
     if (!dismissable.has("close")) return null;
 
-    const styled = stylex.props(styles.closer);
-    return (
-      <Button
-        shape="circle"
-        prefix={<Close />}
-        className={styled.className}
-        style={styled.style}
-        onClick={props.onClose}
-      />
-    );
+    return <Button shape="circle" variant="text" prefix={<Close />} onClick={props.onClose} styles={styles.closer} />;
   }, [dismissable, props.onClose]);
 
   /// mask click callback

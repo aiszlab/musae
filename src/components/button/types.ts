@@ -1,5 +1,5 @@
 import type { MouseEventHandler, ReactNode } from "react";
-import { ComponentProps } from "../../types/element";
+import { ComponentProps, StylexProps } from "../../types/element";
 
 export type Variant = "filled" | "outlined" | "text";
 
@@ -15,7 +15,7 @@ type Shape = "round" | "circle";
  * @description
  * button render props
  */
-export interface ButtonProps extends Partial<Pick<HTMLButtonElement, "type">>, ComponentProps {
+export interface ButtonProps extends Partial<Pick<HTMLButtonElement, "type">>, ComponentProps, StylexProps {
   /**
    * @description
    * variant
