@@ -1,4 +1,5 @@
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
+import type { Dismissable } from "../../hooks/use-dismissable";
 
 export type Placement = "right" | "left" | "top" | "bottom";
 
@@ -36,6 +37,12 @@ export interface DrawerProps {
    * placement
    */
   placement?: Placement;
+
+  /**
+   * @description
+   * Whether the modal can be closed by clicking on the mask or pressing the Esc key.
+   */
+  dismissable?: boolean | Dismissable[];
 }
 
 /**

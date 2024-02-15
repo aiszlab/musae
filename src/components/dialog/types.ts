@@ -1,6 +1,5 @@
 import type { ReactNode } from "react";
-
-export type Dismissable = "esc" | "mask" | "close";
+import type { Dismissable } from "../../hooks/use-dismissable";
 
 /**
  * @description

@@ -1,6 +1,6 @@
 import React, { CSSProperties, useEffect } from "react";
 import type { PopupProps } from "./types";
-import { useDismissable, useFooter } from "./hooks";
+import { useFooter } from "./hooks";
 import { useAnimate } from "framer-motion";
 import { ComponentToken, DialogClassToken, withDot } from "../../utils/class-name";
 import { useClassNames } from "../config";
@@ -11,6 +11,7 @@ import { ColorToken } from "../../utils/colors";
 import { typography } from "../theme/theme";
 import clsx from "clsx";
 import { contains } from "@aiszlab/relax/dom";
+import { useDismissable } from "../../hooks/use-dismissable";
 
 const styles = stylex.create({
   header: {

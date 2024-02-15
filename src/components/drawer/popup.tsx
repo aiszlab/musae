@@ -9,8 +9,9 @@ import { spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
 import clsx from "clsx";
-import { BODY } from "../theme/theme";
+import { typography } from "../theme/theme";
 import { contains } from "@aiszlab/relax/dom";
+import { useDismissable } from "../../hooks/use-dismissable";
 
 const styles = stylex.create({
   popup: {
@@ -20,24 +21,24 @@ const styles = stylex.create({
     zIndex: 1000,
   },
 
-  mask: (backgroundColor: CSSProperties["backgroundColor"]) => ({
+  mask: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
     position: "absolute",
     inset: spacing.none,
     pointerEvents: "auto",
     zIndex: 1000,
     opacity: 0,
-    backgroundColor,
+    backgroundColor: props.backgroundColor,
   }),
 
-  panel: (backgroundColor: CSSProperties["backgroundColor"], transform: CSSProperties["transform"]) => ({
-    backgroundColor,
+  panel: (props: { backgroundColor: CSSProperties["backgroundColor"]; transform: CSSProperties["transform"] }) => ({
+    backgroundColor: props.backgroundColor,
     position: "absolute",
     zIndex: 1000,
     pointerEvents: "auto",
     willChange: "transform",
     display: "flex",
     flexDirection: "column",
-    transform,
+    transform: props.transform,
   }),
 
   right: {
@@ -81,11 +82,12 @@ const styles = stylex.create({
   },
 });
 
-const Popup = ({ open, onClose, placement = "right", ...props }: PopupProps) => {
+const Popup = ({ open, onClose, placement = "right", dismissable = true, ...props }: PopupProps) => {
   const [scope, animate] = useAnimate<HTMLDivElement>();
   const classNames = useClassNames(ComponentToken.Drawer);
   const _placement = PLACEMENTS[placement];
   const theme = useTheme();
+  const { closer, onKeyDown, onMaskClick } = useDismissable({ dismissable, onClose });
 
   useEffect(() => {
     (async () => {
@@ -117,32 +119,45 @@ const Popup = ({ open, onClose, placement = "right", ...props }: PopupProps) => 
 
   const styled = {
     popup: stylex.props(styles.popup),
-    mask: stylex.props(styles.mask(theme.colors[ColorToken.SurfaceDim])),
-    panel: stylex.props(styles.panel(theme.colors[ColorToken.OnPrimary], _placement.at(0)), styles[placement]),
-    header: stylex.props(BODY.large, styles.header),
+    mask: stylex.props(
+      styles.mask({
+        backgroundColor: theme.colors[ColorToken.SurfaceDim],
+      })
+    ),
+    panel: stylex.props(
+      styles.panel({
+        backgroundColor: theme.colors[ColorToken.OnPrimary],
+        transform: _placement.at(0),
+      }),
+      styles[placement]
+    ),
+    header: stylex.props(typography.body.large, styles.header),
     body: stylex.props(styles.body),
   };
 
   return (
     <div
+      tabIndex={-1}
       ref={scope}
       className={clsx(classNames[DrawerClassToken.Drawer], styled.popup.className)}
       style={styled.popup.style}
+      onKeyDown={onKeyDown}
     >
       {/* mask */}
       <div
         className={clsx(classNames[DrawerClassToken.Mask], styled.mask.className)}
-        onClick={onClose}
+        onClick={onMaskClick}
         style={styled.mask.style}
       />
 
       {/* panel */}
       <div className={clsx(classNames[DrawerClassToken.Panel], styled.panel.className)} style={styled.panel.style}>
+        {closer}
+
         {/* header */}
-        <div
-          className={clsx(classNames[DrawerClassToken.Header], styled.header.className)}
-          style={styled.header.style}
-        />
+        <div className={clsx(classNames[DrawerClassToken.Header], styled.header.className)} style={styled.header.style}>
+          {props.title}
+        </div>
 
         {/* body */}
         <div className={clsx(classNames[DrawerClassToken.Body], styled.body.className)} style={styled.body.style}>
