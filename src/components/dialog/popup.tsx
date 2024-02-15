@@ -10,6 +10,7 @@ import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
 import { typography } from "../theme/theme";
 import clsx from "clsx";
+import { useUpdateEffect } from "@aiszlab/relax";
 
 const styles = stylex.create({
   popup: {
@@ -66,13 +67,14 @@ const Popup = ({ onClose, open, dismissable = true, ...props }: PopupProps) => {
   const theme = useTheme();
   const { closer, onKeyDown, onMaskClick } = useDismissable({ dismissable, onClose });
 
-  useEffect(() => {
+  useUpdateEffect(() => {
     (async () => {
       if (open) {
-        scope.current.focus();
         scope.current.attributeStyleMap.set("display", "flex");
-        animate(withDot(classNames[DialogClassToken.Panel]), { opacity: 1 });
-        animate(withDot(classNames[DialogClassToken.Mask]), { opacity: 0.8 });
+        Promise.all([
+          animate(withDot(classNames[DialogClassToken.Panel]), { opacity: 1 }),
+          animate(withDot(classNames[DialogClassToken.Mask]), { opacity: 0.8 }),
+        ]);
         return;
       }
 
@@ -82,7 +84,12 @@ const Popup = ({ onClose, open, dismissable = true, ...props }: PopupProps) => {
       ]);
       scope.current.attributeStyleMap.set("display", "none");
     })();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [open]);
+
+  /// when open, try focus dialog
+  useUpdateEffect(() => {
+    if (!open) return;
+    scope.current.focus();
   }, [open]);
 
   const styled = {

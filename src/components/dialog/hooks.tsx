@@ -80,8 +80,6 @@ export const useDismissable = (props: Pick<PopupProps, "dismissable" | "onClose"
 
   /// esc key press callback
   const onKeyDown = useEvent((e: KeyboardEvent<HTMLDivElement>) => {
-    console.log("11111111");
-
     if (e.key !== "Escape") return;
     props.onClose?.();
   });
