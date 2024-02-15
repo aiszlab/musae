@@ -112,6 +112,7 @@ export const _Button = forwardRef<HTMLButtonElement, ButtonProps>(
       variant = "filled",
       shape = "round",
       disabled = false,
+      ripple = true,
       ...props
     },
     ref
@@ -172,7 +173,7 @@ export const _Button = forwardRef<HTMLButtonElement, ButtonProps>(
       >
         {props.prefix}
         {children}
-        <Ripple ripples={ripples} onClear={clear} />
+        {ripple && <Ripple ripples={ripples} onClear={clear} />}
       </button>
     );
   }

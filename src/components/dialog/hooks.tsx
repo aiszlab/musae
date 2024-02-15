@@ -10,8 +10,8 @@ import { spacing } from "../theme/tokens.stylex";
 const styles = stylex.create({
   closer: {
     position: "absolute",
-    top: spacing.xxsmall,
-    right: spacing.xxsmall,
+    top: spacing.medium,
+    right: spacing.medium,
   },
 });
 
@@ -60,7 +60,16 @@ export const useDismissable = (props: Pick<PopupProps, "dismissable" | "onClose"
   const closer = useMemo(() => {
     if (!dismissable.has("close")) return null;
 
-    return <Button shape="circle" variant="text" prefix={<Close />} onClick={props.onClose} styles={styles.closer} />;
+    return (
+      <Button
+        shape="circle"
+        variant="text"
+        prefix={<Close />}
+        onClick={props.onClose}
+        styles={styles.closer}
+        size="small"
+      />
+    );
   }, [dismissable, props.onClose]);
 
   /// mask click callback

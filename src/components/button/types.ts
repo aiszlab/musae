@@ -66,4 +66,10 @@ export interface ButtonProps extends Partial<Pick<HTMLButtonElement, "type">>, C
    * icon or prefix signal
    */
   prefix?: ReactNode;
+
+  /**
+   * @description
+   * if false, without a ripple
+   */
+  ripple?: boolean;
 }
