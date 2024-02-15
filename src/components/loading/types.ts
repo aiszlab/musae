@@ -1,9 +1,15 @@
+type Size = "small" | "medium" | "large";
+
 /**
  * @author murukal
  *
  * @description
- * circle props
+ * loading props
  */
-export interface CircleProps {
-  animationName: string;
+export interface LoadingProps {
+  /**
+   * @description
+   * size
+   */
+  size?: Size;
 }

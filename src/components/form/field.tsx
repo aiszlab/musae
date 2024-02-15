@@ -1,22 +1,36 @@
-import React, { isValidElement, useMemo, cloneElement, ReactElement, ReactNode, useContext } from "react";
-import { ContextValue, FormItemProps } from "./types";
+import React, { isValidElement, useMemo, cloneElement, ReactElement, type CSSProperties } from "react";
+import type { FormItemProps } from "./types";
 import { useController } from "react-hook-form";
 import { FieldRenderProps } from "../../types/element";
-import Context from "./context";
-import { Grid } from "../grid";
-import { StyledLabel, StyledSupportingText } from "./styled";
 import { RequiredIn, isRefable } from "@aiszlab/relax";
 import { useClassNames } from "../config";
 import { ComponentToken, FormClassToken } from "../../utils/class-name";
+import * as stylex from "@stylexjs/stylex";
+import clsx from "clsx";
+import { spacing } from "../theme/tokens.stylex";
+import { useTheme } from "../theme";
+import { ColorToken } from "../../utils/colors";
+import Gridded from "./gridded";
+import { BODY } from "../theme/theme";
 
-const { Row, Col } = Grid;
+const styles = stylex.create({
+  explain: {
+    paddingInline: spacing.large,
+    paddingBlock: spacing.xxxsmall,
+    marginBottom: `calc(${spacing.xlarge} * -1)`,
+  },
+
+  error: (props: { color: CSSProperties["color"] }) => ({
+    color: props.color,
+  }),
+});
 
 /**
  * @description
  * form item may not has name prop
  * if there is name prop, it will render
  */
-const Field = (props: RequiredIn<FormItemProps, "name">) => {
+const Field = ({ required, ...props }: RequiredIn<FormItemProps, "name" | "required">) => {
   const classNames = useClassNames(ComponentToken.Form);
   const {
     field: { onBlur, onChange, name, value, ref },
@@ -25,11 +39,12 @@ const Field = (props: RequiredIn<FormItemProps, "name">) => {
     name: props.name,
     rules: {
       required: {
-        value: !!props.required,
+        value: required,
         message: `${props.name} is required`,
       },
     },
   });
+  const theme = useTheme();
 
   const children = useMemo(() => {
     const _isValidElement = isValidElement<FieldRenderProps>(props.children);
@@ -60,45 +75,42 @@ const Field = (props: RequiredIn<FormItemProps, "name">) => {
     });
   }, [props.children, name, value, invalid, ref, onChange, onBlur]);
 
+  const styled = {
+    explain: stylex.props(BODY.medium, styles.explain),
+  };
+
+  const _error = useMemo(() => {
+    if (!invalid) return null;
+
+    const { className, style } = stylex.props(
+      styles.error({
+        color: theme.colors[ColorToken.Error],
+      })
+    );
+
+    return (
+      <span className={clsx(classNames[FormClassToken.ItemExplainError], className)} style={style}>
+        {error?.message}
+      </span>
+    );
+  }, [classNames, error?.message, invalid, theme.colors]);
+
   return (
-    <div className={classNames[FormClassToken.Item]}>
-      <Gridded label={props.label}>
+    <div className={clsx(classNames[FormClassToken.Item])}>
+      <Gridded label={props.label} required={required}>
         <div>{children}</div>
 
-        <StyledSupportingText>
-          {!!error?.message && <span className={classNames[FormClassToken.ItemExplainError]}>{error?.message}</span>}
-        </StyledSupportingText>
+        {/* explain */}
+        {_error && (
+          <div
+            className={clsx(classNames[FormClassToken.ItemExplain], styled.explain.className)}
+            style={styled.explain.style}
+          >
+            {_error}
+          </div>
+        )}
       </Gridded>
     </div>
-  );
-};
-
-/**
- * @description
- * item grid
- */
-export const Gridded = (props: {
-  children: ReactNode;
-  label?: string;
-  labelCol?: ContextValue["labelCol"];
-  wrapperCol?: ContextValue["wrapperCol"];
-}) => {
-  const contextValue = useContext(Context);
-  const labelCol = props.labelCol ?? contextValue.labelCol;
-  const wrapperCol = props.wrapperCol ?? contextValue.wrapperCol;
-
-  return (
-    <Row gutter={[0, 8]}>
-      {/* label */}
-      {!!labelCol && props.label && (
-        <Col span={labelCol}>
-          <StyledLabel>{props.label}</StyledLabel>
-        </Col>
-      )}
-
-      {/* input */}
-      <Col span={wrapperCol}>{props.children}</Col>
-    </Row>
   );
 };
 

@@ -17,7 +17,7 @@ const Popper = forwardRef<PopperRef, PopperProps>((props, ref) => {
   );
 
   return (
-    <Portal isVisible={props.isVisible} lockable={false}>
+    <Portal open={props.open} lockable={false}>
       <Popup {...props} ref={popper} />
     </Portal>
   );

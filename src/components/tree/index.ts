@@ -1,4 +1,4 @@
 import Tree from "./tree";
-import { TreeProps } from "./types";
+import { type TreeProps, type TreeNode } from "./types";
 
-export { Tree, TreeProps };
+export { Tree, TreeProps, TreeNode };

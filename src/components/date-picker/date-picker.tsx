@@ -3,9 +3,17 @@ import { Picker, PickerRef } from "../picker";
 import { Calendar } from "../calendar";
 import type { DatePickerProps } from "./types";
 import { useValue } from "./hooks";
-import { StyledInput } from "./styled";
 import { useClassNames } from "../config";
 import { ComponentToken, DatePickerClassToken } from "../../utils/class-name";
+import * as stylex from "@stylexjs/stylex";
+import clsx from "clsx";
+
+const styles = stylex.create({
+  trigger: {
+    outline: "none",
+    width: "100%",
+  },
+});
 
 const DatePicker = (props: DatePickerProps) => {
   const ref = useRef<PickerRef>(null);
@@ -14,9 +22,12 @@ const DatePicker = (props: DatePickerProps) => {
 
   /// picked date
   const picked = useMemo(() => {
+    const styled = stylex.props(styles.trigger);
+
     return (
-      <StyledInput
-        className={classNames[DatePickerClassToken.Input]}
+      <input
+        className={clsx(styled.className, classNames[DatePickerClassToken.Input])}
+        style={styled.style}
         value={value?.format("YYYY-MM-DD") ?? ""}
         readOnly
       />

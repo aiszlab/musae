@@ -1,18 +1,29 @@
-import { SiderProps, Token } from "./types";
+import { SiderProps } from "./types";
 import { Grid } from "../grid";
 import React from "react";
+import * as stylex from "@stylexjs/stylex";
+import { sizes, spacing } from "../theme/tokens.stylex";
+import clsx from "clsx";
+
+const styles = stylex.create({
+  sider: {
+    height: `calc(100vh - ${sizes.xxlarge} - ${spacing.xxlarge})`,
+    position: "sticky",
+    top: `calc(${sizes.xxlarge} + ${spacing.xxlarge})`,
+  },
+});
 
 const Sider = (props: SiderProps) => {
+  const styled = stylex.props(styles.sider);
+
   return (
     <Grid.Col
       style={{
-        height: `calc(100vh - ${Token.HeaderHeight + Token.RowGap}px)`,
-        position: "sticky",
-        top: Token.HeaderHeight + Token.RowGap,
+        ...styled.style,
         ...props.style,
       }}
-      className={props.className}
-      span={4}
+      className={clsx(styled.className, props.className)}
+      span={5}
       as="aside"
     >
       {props.children}

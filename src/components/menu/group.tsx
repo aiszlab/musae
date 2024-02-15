@@ -1,13 +1,30 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import type { MenuGroupProps } from "./types";
 import { useAnimate } from "framer-motion";
 import { useClassNames } from "../config";
 import { ComponentToken, MenuClassToken } from "../../utils/class-name";
 import clsx from "clsx";
 import Item from "./item";
-import { useGroupChildren, useMenuContext } from "./hooks";
-import { StyledMenuGroup } from "./styled";
-import { useEvent, useThrottleCallback } from "@aiszlab/relax";
+import { useMenuContext } from "./hooks";
+import { useRefs } from "@aiszlab/relax";
+import * as stylex from "@stylexjs/stylex";
+import { spacing } from "../theme/tokens.stylex";
+import { useExpandEffect } from "../../hooks/use-expand-effect";
+
+const styles = stylex.create({
+  group: {
+    /// reset ul styles
+    margin: spacing.none,
+    padding: spacing.none,
+    listStyle: "none",
+
+    overflow: "auto",
+  },
+
+  hidden: {
+    display: "none",
+  },
+});
 
 /**
  * @author murukal
@@ -15,91 +32,59 @@ import { useEvent, useThrottleCallback } from "@aiszlab/relax";
  * @description
  * menu group
  */
-const Group = ({ items, level = 0, className, _key, ...itemProps }: MenuGroupProps) => {
-  const { expandedKeys, click, toggle, collect } = useMenuContext();
-  const classNames = useClassNames(ComponentToken.Menu);
-  const [scope, animate] = useAnimate<HTMLUListElement>();
+const Group = forwardRef<HTMLUListElement, MenuGroupProps>(
+  ({ items = [], level = 0, expanded = true, className, style }, ref) => {
+    const classNames = useClassNames(ComponentToken.Menu);
+    const [scope, animate] = useAnimate<HTMLUListElement>();
+    const { collect, expandedKeys } = useMenuContext();
+    const groupRef = useRefs<HTMLUListElement>(ref, scope);
 
-  const isExpanded = expandedKeys.has(_key);
-  const { collapser } = useGroupChildren({ isExpanded });
+    useExpandEffect({
+      animate,
+      target: scope,
+      expanded,
+    });
 
-  const { next: _toggle } = useThrottleCallback(
-    useEvent(async () => {
-      toggle(_key);
+    const styled = stylex.props(styles.group, !expanded && styles.hidden);
 
-      if (isExpanded) {
-        scope.current.attributeStyleMap.set("overflow", "hidden");
-        scope.current.attributeStyleMap.set("height", "auto");
-        scope.current.attributeStyleMap.set("display", "block");
-        await animate(scope.current, {
-          height: 0,
-        });
-      } else {
-        // style play like display: none
-        scope.current.attributeStyleMap.set("height", 0);
-        scope.current.attributeStyleMap.set("overflow", "hidden");
-        scope.current.attributeStyleMap.set("display", "block");
-        await animate(scope.current, {
-          height: "auto",
-        });
-      }
-
-      scope.current.attributeStyleMap.clear();
-    }),
-    {
-      duration: 200,
-    }
-  );
-
-  return (
-    <Item
-      _key={_key}
-      level={level}
-      key={_key}
-      suffix={collapser}
-      {...itemProps}
-      onClick={_toggle}
-      ref={(_ref) => {
-        collect(_key, _ref!);
-      }}
-    >
-      <StyledMenuGroup
-        className={clsx(classNames[MenuClassToken.Group], className, {
-          [classNames[MenuClassToken.GroupHidden]]: !isExpanded,
-        })}
-        ref={scope}
+    return (
+      <ul
+        className={clsx(
+          classNames[MenuClassToken.Group],
+          {
+            [classNames[MenuClassToken.GroupHidden]]: !expanded,
+          },
+          className,
+          styled.className
+        )}
+        style={{
+          ...styled.style,
+          ...style,
+        }}
+        ref={groupRef}
       >
-        {items.map((item) => {
-          if (item.children) {
-            return (
-              <Group
-                key={item.key}
-                _key={item.key}
-                level={level + 1}
-                label={item.label}
-                prefix={item.prefix}
-                items={item.children}
-              />
-            );
-          }
-
+        {items.map(({ children = [], ...item }) => {
           return (
             <Item
               key={item.key}
-              _key={item.key}
-              level={level + 1}
+              value={item.key}
+              level={level}
+              className={item.className}
+              style={item.style}
               label={item.label}
-              prefix={item.prefix}
-              onClick={click}
               ref={(_ref) => {
                 collect(item.key, _ref!);
               }}
-            />
+            >
+              {children.length > 0 && (
+                <Group items={children} expanded={expandedKeys.has(item.key)} level={level + 1} />
+              )}
+            </Item>
           );
         })}
-      </StyledMenuGroup>
-    </Item>
-  );
-};
+      </ul>
+    );
+  }
+);
 
 export default Group;

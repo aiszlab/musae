@@ -1,13 +1,11 @@
-import type { Key, ReactNode, RefObject } from "react";
-import type { WithLevel } from "../../types/element";
-
-export type ExpandHandler = (key: Key) => void;
+import type { Key, ReactNode } from "react";
+import type { ComponentProps, WithLevel } from "../../types/element";
 
 /**
  * @description
  * tree node
  */
-type TreeNode = {
+export type TreeNode = {
   /**
    * @description
    * key
@@ -31,7 +29,7 @@ type TreeNode = {
  * @description
  * tree props
  */
-export type TreeProps = {
+export type TreeProps = ComponentProps & {
   /**
    * @description
    * nodes
@@ -53,57 +51,51 @@ export type TreeProps = {
 
 /**
  * @description
- * tree list props
- */
-export type TreeListProps = WithLevel<Pick<TreeProps, "nodes">>;
-
-/**
- * @description
  * tree node props
  */
-export type TreeNodeProps = WithLevel<Omit<TreeNode, "children">> & {
+export type TreeNodeProps = WithLevel<Omit<TreeNode, "children" | "key">> & {
+  /**
+   * @description
+   * value
+   */
+  value: Key;
+
   /**
    * @description
    * children
    */
-  children: ReactNode;
+  children?: ReactNode;
 
   /**
    * @description
-   * list ref
+   * expand handler
    */
-  listRef: RefObject<ListRef>;
-
-  /**
-   * @description
-   * _key
-   */
-  _key: Key;
+  onToggle?: (key: Key) => void;
 };
 
 /**
  * @description
- * tree node render props
+ * tree list props
  */
-export type TreeNodeRenderProps = WithLevel<{
+export type TreeListProps = {
   /**
    * @description
-   * is selected
+   * nodes
    */
-  isSelected: boolean;
+  nodes?: TreeNode[];
 
   /**
    * @description
-   * is expanded
+   * if this list is expanded
    */
-  isExpanded: boolean;
+  expanded?: boolean;
 
   /**
    * @description
-   * default expanded
+   * current list display level
    */
-  isDefaultExpanded: boolean;
-}>;
+  level?: number;
+};
 
 /**
  * @description
@@ -130,19 +122,15 @@ export type ContextValue = {
 
   /**
    * @description
-   * expand
+   * toggle
    */
-  expand?: ExpandHandler;
+  toggle?: (key: Key) => void;
 };
 
 /**
  * @description
- * menu ref
+ * tree child render props
  */
-export type ListRef = {
-  /**
-   * @description
-   * expand
-   */
-  expand: (isExpanded: boolean) => void;
+export type TreeChildRenderProps = Pick<TreeNodeProps, Extract<keyof TreeNodeProps, keyof TreeListProps>> & {
+  key: Key;
 };

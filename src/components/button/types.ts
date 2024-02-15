@@ -1,11 +1,13 @@
 import type { MouseEventHandler, ReactNode } from "react";
-import { ComponentProps } from "../../types/element";
+import { ComponentProps, StylexProps } from "../../types/element";
 
 export type Variant = "filled" | "outlined" | "text";
 
-export type Color = "primary" | "secondary" | "neutral";
+export type Color = "primary" | "secondary" | "tertiary";
 
-type Size = "small" | "medium";
+type Size = "small" | "medium" | "large";
+
+type Shape = "round" | "circle";
 
 /**
  * @author murukal
@@ -13,7 +15,7 @@ type Size = "small" | "medium";
  * @description
  * button render props
  */
-export interface ButtonProps extends Partial<Pick<HTMLButtonElement, "type">>, ComponentProps {
+export interface ButtonProps extends Partial<Pick<HTMLButtonElement, "type">>, ComponentProps, StylexProps {
   /**
    * @description
    * variant
@@ -26,6 +28,12 @@ export interface ButtonProps extends Partial<Pick<HTMLButtonElement, "type">>, C
    * color: only support preset colors
    */
   color?: Color;
+
+  /**
+   * @description
+   * shape
+   */
+  shape?: Shape;
 
   /**
    * @description
@@ -50,10 +58,18 @@ export interface ButtonProps extends Partial<Pick<HTMLButtonElement, "type">>, C
    * disabled
    */
   disabled?: boolean;
-}
 
-/**
- * @description
- * button render props
- */
-export type ButtonRenderProps = Required<Pick<ButtonProps, "variant" | "color" | "size">>;
+  /**
+   * @description
+   * prefix react node
+   * @template
+   * icon or prefix signal
+   */
+  prefix?: ReactNode;
+
+  /**
+   * @description
+   * if false, without a ripple
+   */
+  ripple?: boolean;
+}

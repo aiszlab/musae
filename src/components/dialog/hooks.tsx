@@ -7,16 +7,16 @@ import { Button } from "../button";
  * @description
  * footer
  */
-export const useFooter = ([footer, onConfirm, onCancel]: [
+export const useFooter = ([footer, onConfirm, onClose]: [
   footer: PopupProps["footer"],
   onConfirm: PopupProps["onConfirm"],
-  onCancel: PopupProps["onCancel"]
+  onClose: PopupProps["onClose"]
 ]) => {
   return useMemo(() => {
     return (
       footer ?? (
         <Space>
-          <Button onClick={onCancel} color="secondary" variant="text">
+          <Button onClick={onClose} color="secondary" variant="text">
             取消
           </Button>
           <Button onClick={onConfirm} variant="text">
@@ -25,5 +25,5 @@ export const useFooter = ([footer, onConfirm, onCancel]: [
         </Space>
       )
     );
-  }, [footer, onConfirm, onCancel]);
+  }, [footer, onConfirm, onClose]);
 };

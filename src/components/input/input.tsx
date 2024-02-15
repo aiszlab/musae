@@ -1,10 +1,55 @@
-import React, { forwardRef, useRef, useImperativeHandle, useContext } from "react";
+import React, { forwardRef, useRef, useImperativeHandle, useContext, CSSProperties } from "react";
 import { useInputEvents, useStyles, useWrapperEvents } from "./hooks";
 import type { InputProps, InputRef } from "./types";
 import { useBoolean, useControlledState } from "@aiszlab/relax";
-import { StyledWrapper } from "./styled";
 import Context from "../config/context";
 import { ComponentToken, InputClassToken } from "../../utils/class-name";
+import * as stylex from "@stylexjs/stylex";
+import { sizes, spacing } from "../theme/tokens.stylex";
+import { useTheme } from "../theme";
+import { ColorToken } from "../../utils/colors";
+import clsx from "clsx";
+
+const styles = stylex.create({
+  wrapper: (props: { outlineColor: CSSProperties["borderColor"] }) => ({
+    minHeight: 36,
+    minWidth: 0,
+    width: 240,
+    display: "flex",
+    alignItems: "center",
+    boxSizing: "border-box",
+    cursor: "text",
+
+    // border
+    borderColor: props.outlineColor,
+    borderWidth: sizes.smallest,
+    borderStyle: "solid",
+    borderRadius: sizes.xxxsmall,
+
+    // layout
+    margin: spacing.none,
+    paddingBlock: spacing.xxsmall,
+    paddingInline: spacing.medium,
+  }),
+
+  focused: (props: { outlineColor: CSSProperties["borderColor"] }) => ({
+    borderWidth: 2,
+    borderColor: props.outlineColor,
+  }),
+
+  invalid: (props: { outlineColor: CSSProperties["borderColor"] }) => ({
+    borderColor: props.outlineColor,
+  }),
+
+  input: {
+    backgroundColor: "transparent",
+    minWidth: 0,
+    outline: "none",
+    border: "none",
+    height: "auto",
+    flex: 1,
+  },
+});
 
 /**
  * @author murukal
@@ -14,6 +59,7 @@ const Input = forwardRef<InputRef, InputProps>((props, ref) => {
   const _input = useRef<HTMLInputElement>(null);
   const _wrapper = useRef<HTMLDivElement>(null);
   const classNames = useContext(Context).classNames[ComponentToken.Input];
+  const theme = useTheme();
 
   useImperativeHandle<InputRef, InputRef>(
     ref,
@@ -41,10 +87,31 @@ const Input = forwardRef<InputRef, InputProps>((props, ref) => {
   ]);
   const wrapperEvents = useWrapperEvents([_input]);
 
+  const styled = {
+    wrapper: stylex.props(
+      styles.wrapper({
+        outlineColor: theme.colors[ColorToken.Outline],
+      }),
+      isFocused &&
+        styles.focused({
+          outlineColor: theme.colors[ColorToken.Primary],
+        }),
+      props.invalid &&
+        styles.invalid({
+          outlineColor: theme.colors[ColorToken.Error],
+        })
+    ),
+    input: stylex.props(styles.input),
+  };
+
   return (
-    <StyledWrapper
+    <div
       ref={_wrapper}
-      className={wrapperClassName}
+      className={clsx(styled.wrapper.className, wrapperClassName)}
+      style={{
+        ...styled.wrapper.style,
+        ...props.style,
+      }}
       tabIndex={-1}
       onFocus={wrapperEvents.focus}
       onBlur={wrapperEvents.blur}
@@ -57,7 +124,8 @@ const Input = forwardRef<InputRef, InputProps>((props, ref) => {
       <input
         name={props.name}
         value={_value}
-        className={classNames[InputClassToken.Input]}
+        className={clsx(styled.input.className, classNames[InputClassToken.Input])}
+        style={styled.input.style}
         type={props.type}
         ref={_input}
         aria-invalid={props.invalid}
@@ -70,7 +138,7 @@ const Input = forwardRef<InputRef, InputProps>((props, ref) => {
 
       {/* suffix */}
       {props.suffix}
-    </StyledWrapper>
+    </div>
   );
 });
 

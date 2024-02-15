@@ -1,6 +1,6 @@
 import { useControlledState } from "@aiszlab/relax";
 import { useMemo, useCallback } from "react";
-import type { ExpandHandler, TreeProps } from "./types";
+import type { ContextValue, TreeProps } from "./types";
 
 /**
  * @description
@@ -8,10 +8,9 @@ import type { ExpandHandler, TreeProps } from "./types";
  */
 export const useExpandedKeys = ([expandedKeys, onExpand]: [TreeProps["expandedKeys"], TreeProps["onExpand"]]) => {
   const [_expandedKeys, _setExpandedKeys] = useControlledState(expandedKeys);
-
   const readableExpandedKeys = useMemo(() => new Set(_expandedKeys), [_expandedKeys]);
 
-  const expand = useCallback<ExpandHandler>(
+  const toggle = useCallback<Required<ContextValue>["toggle"]>(
     (key) => {
       // deal expanding key
       const readableExpandingKeys = new Set(_expandedKeys);
@@ -28,6 +27,6 @@ export const useExpandedKeys = ([expandedKeys, onExpand]: [TreeProps["expandedKe
 
   return {
     expandedKeys: readableExpandedKeys,
-    expand,
+    toggle,
   };
 };

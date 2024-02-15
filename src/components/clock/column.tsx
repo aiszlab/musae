@@ -1,15 +1,68 @@
-import React, { Key, forwardRef, useCallback, useEffect, useImperativeHandle, useMemo, useRef } from "react";
+import React, {
+  CSSProperties,
+  Key,
+  forwardRef,
+  useCallback,
+  useEffect,
+  useImperativeHandle,
+  useMemo,
+  useRef,
+} from "react";
 import { useTimeUnit } from "./hooks";
 import { ColumnProps } from "./types";
 import { Menu, MenuRef } from "../menu";
 import { useClassNames } from "../config";
 import { ClockClassToken, ComponentToken } from "../../utils/class-name";
 import { isVoid } from "@aiszlab/relax";
+import * as stylex from "@stylexjs/stylex";
+import { sizes, spacing } from "../theme/tokens.stylex";
+import { useTheme } from "../theme";
+import { ColorToken } from "../../utils/colors";
+import clsx from "clsx";
+
+const styles = stylex.create({
+  menu: (props: {
+    scrollbarThumbColor: CSSProperties["backgroundColor"];
+    outlineColor: CSSProperties["borderLeftColor"];
+  }) => ({
+    overflowX: "hidden",
+    overflowY: {
+      default: "hidden",
+      ":hover": "auto",
+    },
+
+    width: `calc(${sizes.xlarge} + ${spacing.xxsmall} * 2)`,
+    marginBlock: spacing.xxsmall,
+
+    "::-webkit-scrollbar": {
+      width: spacing.small,
+      backgroundColor: "transparent",
+    },
+
+    "::-webkit-scrollbar-thumb": {
+      borderRadius: 4,
+      backgroundColor: props.scrollbarThumbColor,
+    },
+
+    ":not(:first-of-type)": {
+      borderLeftWidth: sizes.smallest,
+      borderLeftStyle: "solid",
+      borderLeftColor: props.outlineColor,
+    },
+  }),
+
+  item: {
+    width: sizes.xlarge,
+    display: "flex",
+    justifyContent: "center",
+  },
+});
 
 const Column = forwardRef<{}, ColumnProps>(({ unit, value, onChange }, ref) => {
   const timeUnit = useTimeUnit(unit);
   const classNames = useClassNames(ComponentToken.Clock);
   const menuRef = useRef<MenuRef>(null);
+  const theme = useTheme();
 
   const onClick = useCallback(
     (key: Key) => {
@@ -31,14 +84,27 @@ const Column = forwardRef<{}, ColumnProps>(({ unit, value, onChange }, ref) => {
     return [value];
   }, [value]);
 
+  const styled = {
+    menu: stylex.props(
+      styles.menu({
+        scrollbarThumbColor: theme.colors[ColorToken.Secondary],
+        outlineColor: theme.colors[ColorToken.OutlineVariant],
+      })
+    ),
+    item: stylex.props(styles.item),
+  };
+
   return (
     <Menu
       selectedKeys={selectedKeys}
       ref={menuRef}
-      className={classNames[ClockClassToken.Column]}
-      items={[...Array(timeUnit).keys()].map((step) => ({
+      className={clsx(styled.menu.className, classNames[ClockClassToken.Column])}
+      style={styled.menu.style}
+      items={Array.from(Array(timeUnit).keys()).map((step) => ({
         key: step,
-        label: step < 10 ? `0${step}` : step.toString(),
+        label: step.toString().padStart(2, "0"),
+        className: styled.item.className,
+        style: styled.item.style,
       }))}
       onClick={onClick}
     />

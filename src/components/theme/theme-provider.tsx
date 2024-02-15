@@ -1,8 +1,6 @@
-import React, { useMemo } from "react";
-import { ThemeProvider as EmotionThemeProvider } from "@emotion/react";
+import React from "react";
 import type { Props } from "./types";
-import deepmerge from "deepmerge";
-import { THEME, useStyleVariables } from "./hooks";
+import { Context, useContextValue } from "./hooks";
 
 /**
  * @author murukal
@@ -12,15 +10,15 @@ import { THEME, useStyleVariables } from "./hooks";
  * if user provider theme, we will merge it with presets theme
  */
 const ThemeProvider = (props: Props) => {
-  // merge with presets
-  const theme = useMemo(() => (props.theme ? deepmerge(props.theme, THEME) : THEME), [props.theme]);
-  const style = useStyleVariables({ theme });
+  const contextValue = useContextValue({
+    theme: props.theme,
+  });
 
-  // provider
   return (
-    <EmotionThemeProvider theme={theme}>
-      <div style={style}>{props.children}</div>
-    </EmotionThemeProvider>
+    <Context.Provider value={contextValue}>
+      {/* children */}
+      {props.children}
+    </Context.Provider>
   );
 };
 

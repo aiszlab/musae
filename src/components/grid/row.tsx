@@ -4,7 +4,18 @@ import { isArray } from "@aiszlab/relax";
 import { useClassNames } from "../config";
 import { ComponentToken, GridClassToken } from "../../utils/class-name";
 import clsx from "clsx";
-import { useRowStyle } from "./hooks";
+import * as stylex from "@stylexjs/stylex";
+
+const styles = stylex.create({
+  row: (gutters: Gutters, justify: RowProps["justify"], align: RowProps["align"]) => ({
+    display: "grid",
+    gridTemplateColumns: "repeat(24, minmax(0, 1fr))",
+    columnGap: gutters[0],
+    rowGap: gutters[1],
+    justifyItems: justify,
+    alignItems: align,
+  }),
+});
 
 const Row = ({ align, children, gutter, justify, className, as: As = "div", ...props }: RowProps) => {
   /// col and row gap in grid
@@ -15,11 +26,16 @@ const Row = ({ align, children, gutter, justify, className, as: As = "div", ...p
   }, [gutter]);
 
   const classNames = useClassNames(ComponentToken.Grid);
-
-  const style = useRowStyle([gutters, justify, align, props.style]);
+  const styled = stylex.props(styles.row(gutters, justify, align));
 
   return (
-    <As style={style} className={clsx([classNames[GridClassToken.Row], className])}>
+    <As
+      className={clsx(styled.className, classNames[GridClassToken.Row], className)}
+      style={{
+        ...styled.style,
+        ...props.style,
+      }}
+    >
       {children}
     </As>
   );

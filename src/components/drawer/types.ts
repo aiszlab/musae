@@ -1,4 +1,5 @@
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
+import type { Dismissable } from "../../hooks/use-dismissable";
 
 export type Placement = "right" | "left" | "top" | "bottom";
 
@@ -17,7 +18,7 @@ export interface DrawerProps {
    * @description
    * is open
    */
-  isOpened: boolean;
+  open: boolean;
 
   /**
    * @description
@@ -36,6 +37,12 @@ export interface DrawerProps {
    * placement
    */
   placement?: Placement;
+
+  /**
+   * @description
+   * Whether the modal can be closed by clicking on the mask or pressing the Esc key.
+   */
+  dismissable?: boolean | Dismissable[];
 }
 
 /**
@@ -43,9 +50,3 @@ export interface DrawerProps {
  * popup
  */
 export interface PopupProps extends DrawerProps {}
-
-/**
- * @description
- * panel
- */
-export interface PopupRenderProps extends Required<Pick<DrawerProps, "placement">> {}

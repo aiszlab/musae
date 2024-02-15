@@ -4,9 +4,23 @@ import { useValue } from "./hooks";
 import { DateRangePickerProps } from "./types";
 import { Calendar } from "../calendar";
 import { SwapHoriz } from "../icon";
-import { StyledWrapper } from "./styled";
 import { useClassNames } from "../config";
 import { ComponentToken, DateRangePickerClassToken } from "../../utils/class-name";
+import * as stylex from "@stylexjs/stylex";
+import clsx from "clsx";
+
+const styles = stylex.create({
+  picker: {
+    flex: 1,
+    display: "flex",
+    columnGap: 8,
+    alignItems: "center",
+  },
+
+  trigger: {
+    flex: 1,
+  },
+});
 
 const DateRangePicker = (props: DateRangePickerProps) => {
   const ref = useRef<PickerRef>(null);
@@ -16,13 +30,30 @@ const DateRangePicker = (props: DateRangePickerProps) => {
   /// picked date
   const picked = useMemo(() => {
     const [from, to] = value;
+    const styled = {
+      picker: stylex.props(styles.picker),
+      trigger: stylex.props(styles.trigger),
+    };
 
     return (
-      <StyledWrapper className={classNames[DateRangePickerClassToken.Picker]}>
-        <span className={classNames[DateRangePickerClassToken.Input]}>{from?.format("YYYY-MM-DD")}</span>
+      <div
+        className={clsx(styled.picker.className, classNames[DateRangePickerClassToken.Picker])}
+        style={styled.picker.style}
+      >
+        <span
+          className={clsx(styled.trigger.className, classNames[DateRangePickerClassToken.Input])}
+          style={styled.trigger.style}
+        >
+          {from?.format("YYYY-MM-DD")}
+        </span>
         <SwapHoriz className={classNames[DateRangePickerClassToken.Separator]} />
-        <span className={classNames[DateRangePickerClassToken.Input]}>{to?.format("YYYY-MM-DD")}</span>
-      </StyledWrapper>
+        <span
+          className={clsx(styled.trigger.className, classNames[DateRangePickerClassToken.Input])}
+          style={styled.trigger.style}
+        >
+          {to?.format("YYYY-MM-DD")}
+        </span>
+      </div>
     );
   }, [value, classNames]);
 

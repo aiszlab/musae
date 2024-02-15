@@ -1,41 +1,65 @@
-import React from "react";
+import React, { CSSProperties } from "react";
 import { useTable } from "./hooks";
 import { flexRender } from "@tanstack/react-table";
 import { HeaderProps } from "./types";
-import { makeStyles, shorthands } from "@griffel/react";
-import { COLOR_TOKENS } from "../theme/hooks";
-import { Token } from "../theme/token";
+import * as stylex from "@stylexjs/stylex";
+import { sizes } from "../theme/tokens.stylex";
+import { useTheme } from "../theme";
+import clsx from "clsx";
+import { ColorToken } from "../../utils/colors";
+import { LABEL } from "../theme/theme";
 
-const useClasses = makeStyles({
-  cell: {
+const styles = stylex.create({
+  cell: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
+    backgroundColor: props.backgroundColor,
+    textAlign: "start",
     position: "relative",
-    ...shorthands.padding("16px"),
+  }),
 
-    ":not(:last-child)::before": {
-      content: "''",
-      height: "50%",
+  unbordered: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
+    ":not(:last-of-type)::after": {
+      content: '""',
       position: "absolute",
-      width: "1px",
-      backgroundColor: COLOR_TOKENS[Token.ColorOutline],
-      insetInlineEnd: 0,
       top: "50%",
+      width: sizes.smallest,
+      height: sizes.small,
+      backgroundColor: props.backgroundColor,
       transform: "translateY(-50%)",
+      insetInlineEnd: 0,
     },
+  }),
+
+  bordered: {
+    borderWidth: sizes.smallest,
   },
 });
 
 const Header = <T,>(props: HeaderProps) => {
-  const { table } = useTable<T>();
-  const classes = useClasses();
+  const { table, bordered } = useTable<T>();
+  const theme = useTheme();
 
   if (!table) return null;
 
+  const headerGroups = table.getHeaderGroups();
+  const styled = stylex.props(
+    styles.cell({
+      backgroundColor: theme.colors[ColorToken.Surface],
+    }),
+    LABEL.small,
+    bordered
+      ? styles.bordered
+      : styles.unbordered({
+          backgroundColor: theme.colors[ColorToken.OutlineVariant],
+        }),
+    props.styles
+  );
+
   return (
     <thead className={props.className}>
-      {table.getHeaderGroups().map((headerGroup) => (
+      {headerGroups.map((headerGroup) => (
         <tr key={headerGroup.id}>
           {headerGroup.headers.map((header) => (
-            <th key={header.id} className={classes.cell}>
+            <th key={header.id} className={clsx(styled.className)} style={styled.style}>
               {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
             </th>
           ))}

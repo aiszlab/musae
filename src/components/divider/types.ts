@@ -2,6 +2,8 @@ import type { ReactNode } from "react";
 
 export type Align = "center" | "left" | "right";
 
+export type Type = "horizontal" | "vertical";
+
 /**
  * @description
  * divider props
@@ -18,22 +20,10 @@ export interface DividerProps {
    * align
    */
   align?: Align;
-}
-
-/**
- * @description
- * divider render props
- */
-export interface DividerRenderProps {
-  /**
-   * @description
-   * if there is child
-   */
-  hasChildren: boolean;
 
   /**
    * @description
-   * offset
+   * type
    */
-  offset: number;
+  type?: Type;
 }

@@ -1,8 +1,31 @@
-import React, { Key, ReactNode, useCallback, useContext, useMemo } from "react";
+import React, { type Key, type ReactNode, useCallback, useContext, useMemo } from "react";
 import Context from "./context";
-import { KeyboardArrowUp } from "../icon";
 import type { ContextValue, MenuProps } from "./types";
 import { useControlledState } from "@aiszlab/relax";
+import * as stylex from "@stylexjs/stylex";
+import { spacing } from "../theme/tokens.stylex";
+import { KeyboardArrowUp } from "../icon";
+
+const styles = stylex.create({
+  prefix: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    marginRight: spacing.xxsmall,
+  },
+
+  suffix: {
+    marginLeft: spacing.auto,
+  },
+
+  collapser: (props: { isExpanded: boolean }) => ({
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    transform: props.isExpanded ? "rotateX(0)" : "rotateX(180deg)",
+    transition: "transform 200ms",
+  }),
+});
 
 /**
  * @description
@@ -18,71 +41,48 @@ export const useItemChildren = ({
   prefix,
   label,
   suffix,
+  hasChildren,
+  isExpanded,
 }: {
   prefix: ReactNode;
   label: ReactNode;
   suffix: ReactNode;
+  hasChildren: boolean;
+  isExpanded: boolean;
 }) => {
   /// prefix
-  const _prefix = useMemo(
-    () =>
-      prefix && (
-        <span style={{ display: "flex", justifyContent: "center", alignItems: "center", marginRight: 4 }}>
-          {prefix}
-        </span>
-      ),
-    [prefix]
-  );
+  const _prefix = useMemo(() => prefix && <span {...stylex.props(styles.prefix)}>{prefix}</span>, [prefix]);
 
   /// child
   const _label = useMemo(() => label && <span>{label}</span>, [label]);
 
   /// suffix
-  const _suffix = useMemo(
-    () =>
-      suffix && (
-        <span
-          style={{
-            marginLeft: "auto",
-          }}
-        >
-          {suffix}
-        </span>
-      ),
-    [suffix]
-  );
+  const _suffix = useMemo<ReactNode>(() => {
+    if (!suffix && !hasChildren) return null;
+
+    const styled = stylex.props(
+      styles.collapser({
+        isExpanded,
+      })
+    );
+
+    return (
+      <span {...stylex.props(styles.suffix)}>
+        {suffix}
+        {hasChildren && (
+          <span {...styled}>
+            <KeyboardArrowUp size={16} />
+          </span>
+        )}
+      </span>
+    );
+  }, [hasChildren, isExpanded, suffix]);
 
   return {
     suffix: _suffix,
     prefix: _prefix,
     label: _label,
   };
-};
-
-/**
- * @description
- * use menu group children
- */
-export const useGroupChildren = ({ isExpanded }: { isExpanded: boolean }) => {
-  /// if there are children, render trailing arrow
-  const collapser = useMemo(
-    () => (
-      <span
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          transform: isExpanded ? "rotateX(0)" : "rotateX(180deg)",
-          transition: "transform 200ms",
-        }}
-      >
-        <KeyboardArrowUp size={16} />
-      </span>
-    ),
-    [isExpanded]
-  );
-
-  return { collapser };
 };
 
 /**

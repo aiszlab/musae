@@ -1,9 +1,9 @@
-import React, { type ReactPortal, useCallback, useRef, useContext } from "react";
+import React, { type ReactPortal, useCallback, useRef } from "react";
 import { createPortal } from "react-dom";
 import Holder from "./holder";
-import { MessageRef } from "./types";
-import { useDefault } from "@aiszlab/relax";
-import ConfigContext from "../config/context";
+import type { MessageConfig, MessageRef, Messager } from "./types";
+import { useDefault, isDomUsable, Nullable } from "@aiszlab/relax";
+import { useConfiguration } from "../config/hooks";
 
 /**
  * @author murukal
@@ -11,25 +11,57 @@ import ConfigContext from "../config/context";
  * @description
  * hook for message
  */
-export const useMessage = (): [any, ReactPortal] => {
+export const useMessage = (): [Messager, Nullable<ReactPortal>] => {
   const ref = useRef<MessageRef>(null);
-  const configuredMessageHolder = useContext(ConfigContext)?.messageHolder;
+  const configuredMessageHolder = useConfiguration().messageHolder;
 
-  const holder = useDefault<ReactPortal>(() => {
-    return configuredMessageHolder || createPortal(<Holder ref={ref} />, document.body);
+  const holder = useDefault<Nullable<ReactPortal>>(() => {
+    if (!isDomUsable()) return null;
+    return configuredMessageHolder ?? createPortal(<Holder ref={ref} />, window.document.body);
   });
 
-  const error = useCallback(() => {
-    return ref.current?.add({
-      id: crypto.randomUUID(),
-      type: "error",
-      duration: 3000,
+  const open = useCallback(async (config: MessageConfig) => {
+    ref.current?.add({
+      key: config.key ?? crypto.randomUUID(),
+      type: config.type,
+      duration: config.duration,
+      content: config.content,
     });
   }, []);
 
   return [
     {
-      error,
+      success: (content, duration) =>
+        open({
+          type: "success",
+          content,
+          duration,
+        }),
+      error: (content, duration) =>
+        open({
+          type: "error",
+          content,
+          duration,
+        }),
+      info: (content, duration) =>
+        open({
+          type: "info",
+          content,
+          duration,
+        }),
+      loading: (content, duration) =>
+        open({
+          type: "loading",
+          content,
+          duration,
+        }),
+      warning: (content, duration) =>
+        open({
+          type: "warning",
+          content,
+          duration,
+        }),
+      open,
     },
     holder,
   ];

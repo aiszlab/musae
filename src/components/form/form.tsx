@@ -1,9 +1,8 @@
-import React, { ForwardedRef, forwardRef, useEffect, useImperativeHandle, useMemo } from "react";
-import { ContextValue, FormProps, FormRef } from "./types";
-import { useForm, type FieldValues, FormProvider, FieldErrors, FieldPath } from "react-hook-form";
+import React, { type ForwardedRef, forwardRef, useEffect, useImperativeHandle, useMemo } from "react";
+import type { ContextValue, FormProps, FormRef } from "./types";
+import { useForm, type FieldValues, FormProvider, type FieldErrors, type FieldPath } from "react-hook-form";
 import { isUndefined } from "@aiszlab/relax";
-import Context, { DEFAULT_CONTEXT_VALUE } from "./context";
-import { StyledForm } from "./styled";
+import Context, { CONTEXT_VALUE } from "./context";
 
 const Form = forwardRef(
   <T extends FieldValues = FieldValues>(
@@ -11,7 +10,7 @@ const Form = forwardRef(
     ref: ForwardedRef<FormRef<T>>
   ) => {
     /// use react hook form
-    const methods = useForm<T>({
+    const { handleSubmit, watch, ...methods } = useForm<T>({
       mode: "all",
     });
 
@@ -40,37 +39,38 @@ const Form = forwardRef(
     });
 
     const _submit = useMemo(() => {
-      return methods.handleSubmit((values) => {
+      return handleSubmit((values) => {
         onSubmit?.(values);
       });
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [onSubmit, methods.handleSubmit]);
+    }, [onSubmit, handleSubmit]);
 
     useEffect(() => {
-      const subscription = methods.watch((values, { type }) => {
+      const subscription = watch((values, { type }) => {
         type === "change" && onChange?.(values);
       });
 
-      return subscription.unsubscribe;
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [onChange, methods.watch]);
+      return () => {
+        subscription.unsubscribe();
+      };
+    }, [onChange, watch]);
 
     /// context value
     const contextValue = useMemo<ContextValue>(() => {
-      return Object.assign({}, DEFAULT_CONTEXT_VALUE, {
+      return {
+        ...CONTEXT_VALUE,
         ...(!!labelCol && {
           labelCol,
         }),
         ...(!!wrapperCol && {
           wrapperCol,
         }),
-      });
+      };
     }, [labelCol, wrapperCol]);
 
     return (
       <Context.Provider value={contextValue}>
-        <FormProvider {...methods}>
-          <StyledForm onSubmit={_submit}>{children}</StyledForm>
+        <FormProvider handleSubmit={handleSubmit} watch={watch} {...methods}>
+          <form onSubmit={_submit}>{children}</form>
         </FormProvider>
       </Context.Provider>
     );

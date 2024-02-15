@@ -1,21 +1,29 @@
-import React, { type ReactNode, createElement, useMemo } from "react";
-import { AsProps, IconProps } from "./types";
-import { StyledIcon } from "./styled";
+import React, { type ReactNode, createElement, useMemo, type CSSProperties } from "react";
+import type { AsProps, IconProps } from "./types";
 import { isFunction } from "@aiszlab/relax";
-import { useTheme } from "../theme";
-import { useClassNames } from "../config";
+import { useClassNames } from "../config/hooks";
 import { ComponentToken, IconClassToken } from "../../utils/class-name";
 import clsx from "clsx";
+import * as stylex from "@stylexjs/stylex";
+
+const styles = stylex.create({
+  icon: (props: { color: CSSProperties["color"] }) => ({
+    display: "inline-flex",
+    color: props.color ?? null,
+  }),
+
+  clickable: {
+    cursor: "pointer",
+  },
+});
 
 const Icon = ({ as, color, size, onClick, className }: IconProps) => {
-  const theme = useTheme();
   const classNames = useClassNames(ComponentToken.Icon);
   const asProps = useMemo<AsProps>(() => {
     return {
-      color: color ?? theme.colorRole.primary,
       size: size ?? 20,
     };
-  }, [color, size, theme]);
+  }, [size]);
 
   const children = useMemo<ReactNode>(() => {
     if (isFunction(as)) {
@@ -24,10 +32,21 @@ const Icon = ({ as, color, size, onClick, className }: IconProps) => {
     return as;
   }, [asProps, as]);
 
+  const styled = stylex.props(
+    styles.icon({
+      color,
+    }),
+    !!onClick && styles.clickable
+  );
+
   return (
-    <StyledIcon onClick={onClick} className={clsx(classNames[IconClassToken.Icon], className)} isClickable={!!onClick}>
+    <span
+      onClick={onClick}
+      className={clsx(styled.className, className, classNames[IconClassToken.Icon])}
+      style={styled.style}
+    >
       {children}
-    </StyledIcon>
+    </span>
   );
 };
 

@@ -1,9 +1,9 @@
-import { CSSProperties, ReactNode } from "react";
-import { type ColorRole } from "./color-role";
+import type { ReactNode } from "react";
+import type { toColors } from "../../utils/colors";
 
-type Typography = Pick<CSSProperties, "fontSize" | "fontWeight" | "lineHeight" | "letterSpacing">;
-
-type Elevation = Pick<CSSProperties, "boxShadow">;
+export type Theme = {
+  palettes: Palettes;
+};
 
 /**
  * @author murukal
@@ -12,16 +12,15 @@ type Elevation = Pick<CSSProperties, "boxShadow">;
  * theme provider
  */
 export interface Props {
-  /* children */
+  /**
+   * @description
+   * children
+   */
   children: ReactNode;
 
   /* theme */
   theme?: Theme;
 }
-
-type ColorReference = {
-  [key in 0 | 10 | 20 | 30 | 40 | 50 | 60 | 70 | 80 | 90 | 95 | 99 | 100]: string;
-};
 
 enum ColorProperty {
   Primary = "primary",
@@ -39,7 +38,9 @@ enum ColorProperty {
  * palettes
  */
 export type Palettes = {
-  [key in ColorProperty]: ColorReference;
+  [key in ColorProperty]: {
+    [key in 0 | 10 | 20 | 30 | 40 | 50 | 60 | 70 | 80 | 90 | 95 | 99 | 100]: string;
+  };
 };
 
 /**
@@ -48,32 +49,10 @@ export type Palettes = {
  * @description
  * declaration for theme
  */
-export interface _Theme {
-  typography: {
-    headline: {
-      small?: Typography;
-      medium?: Typography;
-      large?: Typography;
-    };
-
-    body: {
-      small?: Typography;
-      medium?: Typography;
-      large?: Typography;
-    };
-
-    label: {
-      small?: Typography;
-      medium?: Typography;
-      large?: Typography;
-    };
-  };
-
-  elevations: [Elevation, Elevation, Elevation, Elevation, Elevation, Elevation];
-
-  palettes: Palettes;
-
-  colorRole: ColorRole;
+export interface ContextValue {
+  /**
+   * @description
+   * colors
+   */
+  colors: ReturnType<typeof toColors>;
 }
-
-export type Theme = Omit<_Theme, "colorRole">;

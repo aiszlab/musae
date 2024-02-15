@@ -24,12 +24,6 @@ export const withDot = (className: string) => `${Token.Dot}${className}`;
 
 /**
  * @description
- * with self
- */
-export const withSelf = (className: string) => `:where(&)${withDot(className)}`;
-
-/**
- * @description
  * class role
  */
 export enum ComponentToken {
@@ -56,6 +50,8 @@ export enum ComponentToken {
   Menu,
   Checkbox,
   Tree,
+  Tabs,
+  Pagination,
 }
 
 /**
@@ -82,6 +78,7 @@ export enum PopperClassToken {
 }
 export enum FormClassToken {
   Item,
+  ItemExplain,
   ItemExplainError,
 }
 export enum GridClassToken {
@@ -96,6 +93,7 @@ export enum EmptyClassToken {
 }
 export enum ButtonClassToken {
   Button,
+  Prefix,
 }
 export enum DrawerClassToken {
   Drawer,
@@ -106,7 +104,7 @@ export enum DrawerClassToken {
 }
 export enum DividerClassToken {
   Divider,
-  Content,
+  Label,
 }
 export enum ChipClassToken {
   Chip,
@@ -167,30 +165,43 @@ export enum CheckboxClassToken {
   Checkbox,
 }
 export enum TreeClassToken {
+  Tree,
   List,
+  ListHidden,
   Holder,
   Node,
   Title,
   Expander,
   Checkbox,
 }
+export enum TabsClassToken {
+  Tabs,
+  Item,
+  Indicator,
+}
+export enum PaginationClassToken {
+  Pagination,
+}
 
 /**
  * @description
  * class name collection
+ * in musae, we use bem css name rule!!!
+ * if u want change class name, must follow bem css
+ * rule like: block__element--modifier
  */
 export const CLASS_NAMES = {
   [ComponentToken.Picker]: {
     [PickerClassToken.Picker]: "picker",
-    [PickerClassToken.Focused]: "picker-focused",
-    [PickerClassToken.Invalid]: "picker-invalid",
-    [PickerClassToken.Dropdown]: "picker-dropdown",
+    [PickerClassToken.Focused]: "picker--focused",
+    [PickerClassToken.Invalid]: "picker--invalid",
+    [PickerClassToken.Dropdown]: "picker__dropdown",
   },
   [ComponentToken.Input]: {
     [InputClassToken.Input]: "input",
-    [InputClassToken.Wrapper]: "input-wrapper",
-    [InputClassToken.Focused]: "input-wrapper-focused",
-    [InputClassToken.Invalid]: "input-wrapper-invalid",
+    [InputClassToken.Wrapper]: "input__wrapper",
+    [InputClassToken.Focused]: "input__wrapper--focused",
+    [InputClassToken.Invalid]: "input__wrapper--invalid",
   },
   [ComponentToken.Select]: {
     [SelectClassToken.Select]: "select",
@@ -199,98 +210,110 @@ export const CLASS_NAMES = {
     [PopperClassToken.Dropdown]: "dropdown",
   },
   [ComponentToken.Form]: {
-    [FormClassToken.Item]: "form-item",
-    [FormClassToken.ItemExplainError]: "form-item-explain-error",
+    [FormClassToken.Item]: "form__item",
+    [FormClassToken.ItemExplain]: "form__item-explain",
+    [FormClassToken.ItemExplainError]: "form__item-explain--error",
   },
   [ComponentToken.Grid]: {
-    [GridClassToken.Row]: "grid-row",
-    [GridClassToken.Col]: "grid-col",
+    [GridClassToken.Row]: "grid__row",
+    [GridClassToken.Col]: "grid__col",
   },
   [ComponentToken.Radio]: {
     [RadioClassToken.Radio]: "radio",
   },
   [ComponentToken.Empty]: {
-    [EmptyClassToken.Description]: "empty-description",
+    [EmptyClassToken.Description]: "empty__description",
   },
   [ComponentToken.Button]: {
     [ButtonClassToken.Button]: "button",
+    [ButtonClassToken.Prefix]: "button__prefix",
   },
   [ComponentToken.Drawer]: {
     [DrawerClassToken.Drawer]: "drawer",
-    [DrawerClassToken.Mask]: "drawer-mask",
-    [DrawerClassToken.Panel]: "drawer-panel",
-    [DrawerClassToken.Header]: "drawer-header",
-    [DrawerClassToken.Body]: "drawer-body",
+    [DrawerClassToken.Mask]: "drawer__mask",
+    [DrawerClassToken.Panel]: "drawer__panel",
+    [DrawerClassToken.Header]: "drawer__header",
+    [DrawerClassToken.Body]: "drawer__body",
   },
   [ComponentToken.Divider]: {
     [DividerClassToken.Divider]: "divider",
-    [DividerClassToken.Content]: "divider-content",
+    [DividerClassToken.Label]: "divider__label",
   },
   [ComponentToken.Chip]: {
     [ChipClassToken.Chip]: "chip",
   },
   [ComponentToken.Cascader]: {
     [CascaderClassToken.Cascader]: "cascader",
-    [CascaderClassToken.Options]: "cascader-options",
+    [CascaderClassToken.Options]: "cascader__options",
   },
   [ComponentToken.Dialog]: {
     [DialogClassToken.Dialog]: "dialog",
-    [DialogClassToken.Mask]: "dialog-mask",
-    [DialogClassToken.Panel]: "dialog-panel",
-    [DialogClassToken.Header]: "dialog-header",
-    [DialogClassToken.Body]: "dialog-body",
-    [DialogClassToken.Footer]: "dialog-footer",
+    [DialogClassToken.Mask]: "dialog__mask",
+    [DialogClassToken.Panel]: "dialog__panel",
+    [DialogClassToken.Header]: "dialog__header",
+    [DialogClassToken.Body]: "dialog__body",
+    [DialogClassToken.Footer]: "dialog__footer",
   },
   [ComponentToken.Calendar]: {
-    [CalendarClassToken.Header]: "calendar-header",
-    [CalendarClassToken.Heading]: "calendar-heading",
-    [CalendarClassToken.HeadCell]: "calendar-head-cell",
-    [CalendarClassToken.DateCell]: "calendar-date-cell",
-    [CalendarClassToken.DateCellSelected]: "calendar-date-cell-selected",
-    [CalendarClassToken.DateCellInRange]: "calendar-date-in-range",
-    [CalendarClassToken.DateCellRangeFrom]: "calendar-date-range-from",
-    [CalendarClassToken.DateCellRangeTo]: "calendar-date-range-to",
-    [CalendarClassToken.Date]: "calendar-date",
+    [CalendarClassToken.Header]: "calendar__header",
+    [CalendarClassToken.Heading]: "calendar__heading",
+    [CalendarClassToken.HeadCell]: "calendar__head-cell",
+    [CalendarClassToken.DateCell]: "calendar__date-cell",
+    [CalendarClassToken.DateCellSelected]: "calendar__date-cell--selected",
+    [CalendarClassToken.DateCellInRange]: "calendar__date--in-range",
+    [CalendarClassToken.DateCellRangeFrom]: "calendar__date--range-from",
+    [CalendarClassToken.DateCellRangeTo]: "calendar__date--range-to",
+    [CalendarClassToken.Date]: "calendar__date",
   },
   [ComponentToken.Icon]: {
     [IconClassToken.Icon]: "icon",
   },
   [ComponentToken.DatePicker]: {
     [DatePickerClassToken.Picker]: "date-picker",
-    [DatePickerClassToken.Input]: "date-picker-input",
+    [DatePickerClassToken.Input]: "date-picker__input",
   },
   [ComponentToken.TimePicker]: {
     [TimePickerClassToken.Picker]: "time-picker",
-    [TimePickerClassToken.Input]: "time-picker-input",
-    [TimePickerClassToken.Panel]: "time-picker-panel",
-    [TimePickerClassToken.PanelFooter]: "time-picker-panel-footer",
+    [TimePickerClassToken.Input]: "time-picker__input",
+    [TimePickerClassToken.Panel]: "time-picker__panel",
+    [TimePickerClassToken.PanelFooter]: "time-picker__panel-footer",
   },
   [ComponentToken.DateRangePicker]: {
     [DateRangePickerClassToken.Picker]: "date-range-picker",
-    [DateRangePickerClassToken.Input]: "date-range-picker-input",
-    [DateRangePickerClassToken.Separator]: "date-range-picker-separator",
+    [DateRangePickerClassToken.Input]: "date-range-picker__input",
+    [DateRangePickerClassToken.Separator]: "date-range-picker__separator",
   },
   [ComponentToken.Clock]: {
     [ClockClassToken.Clock]: "clock",
-    [ClockClassToken.Column]: "clock-column",
+    [ClockClassToken.Column]: "clock__column",
   },
   [ComponentToken.Menu]: {
     [MenuClassToken.Menu]: "menu",
-    [MenuClassToken.Group]: "menu-group",
-    [MenuClassToken.GroupHidden]: "menu-group-hidden",
-    [MenuClassToken.Collapser]: "menu-collapser",
-    [MenuClassToken.Item]: "menu-item",
+    [MenuClassToken.Group]: "menu__group",
+    [MenuClassToken.GroupHidden]: "menu__group--hidden",
+    [MenuClassToken.Collapser]: "menu__collapser",
+    [MenuClassToken.Item]: "menu__item",
   },
   [ComponentToken.Checkbox]: {
     [CheckboxClassToken.Checkbox]: "checkbox",
   },
   [ComponentToken.Tree]: {
-    [TreeClassToken.List]: "tree-list",
-    [TreeClassToken.Holder]: "tree-holder",
-    [TreeClassToken.Node]: "tree-node",
-    [TreeClassToken.Title]: "tree-node-title",
-    [TreeClassToken.Expander]: "tree-node-expander",
-    [TreeClassToken.Checkbox]: "tree-node-checkbox",
+    [TreeClassToken.Tree]: "tree",
+    [TreeClassToken.List]: "tree__list",
+    [TreeClassToken.ListHidden]: "tree__list--hidden",
+    [TreeClassToken.Holder]: "tree__holder",
+    [TreeClassToken.Node]: "tree__node",
+    [TreeClassToken.Title]: "tree__node-title",
+    [TreeClassToken.Expander]: "tree__node-expander",
+    [TreeClassToken.Checkbox]: "tree__node-checkbox",
+  },
+  [ComponentToken.Tabs]: {
+    [TabsClassToken.Tabs]: "tabs",
+    [TabsClassToken.Item]: "tabs__item",
+    [TabsClassToken.Indicator]: "tabs__indicator",
+  },
+  [ComponentToken.Pagination]: {
+    [PaginationClassToken.Pagination]: "pagination",
   },
 };
 

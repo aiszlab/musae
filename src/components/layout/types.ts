@@ -1,16 +1,5 @@
 import type { ReactNode } from "react";
-import { ComponentProps } from "../../types/element";
-
-export enum Token {
-  HeaderHeight = 64,
-  RowGap = 40,
-}
-
-/**
- * @description
- * context value type for shell
- */
-export type ContextValue = {};
+import type { ComponentProps } from "../../types/element";
 
 /**
  * @description
@@ -78,7 +67,7 @@ export type LayoutProps = {
  * @description
  * main props
  */
-export type MainProps = {
+export type MainProps = ComponentProps & {
   /**
    * @description
    * children

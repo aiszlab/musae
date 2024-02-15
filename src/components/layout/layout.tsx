@@ -1,29 +1,30 @@
 import React from "react";
 import { Grid } from "../grid";
 import { LayoutProps } from "./types";
-import { useChildren } from "./hooks";
+import { ChildToken, useChildren } from "./hooks";
 
 const Layout = (props: LayoutProps) => {
-  const children = useChildren([props.children]);
-  const hasSider = !!children.sider;
+  const { children, mainProps } = useChildren([props.children]);
+  const sider = children.get(ChildToken.Sider);
+  const hasSider = !!sider;
 
   return (
     <>
-      {children.header}
+      {children.get(ChildToken.Header)}
 
       {hasSider ? (
         <Grid.Row as="main">
-          {children.sider}
+          {sider}
 
-          <Grid.Col span={20}>
-            {children.main}
-            {children.footer}
+          <Grid.Col {...mainProps} span={19}>
+            {children.get(ChildToken.Main)}
+            {children.get(ChildToken.Footer)}
           </Grid.Col>
         </Grid.Row>
       ) : (
-        <main>
-          {children.main}
-          {children.footer}
+        <main {...mainProps}>
+          {children.get(ChildToken.Main)}
+          {children.get(ChildToken.Footer)}
         </main>
       )}
     </>

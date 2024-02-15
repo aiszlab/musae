@@ -19,9 +19,9 @@ export interface PortalProps {
 
   /**
    * @description
-   * visible
+   * open
    */
-  isVisible?: boolean;
+  open?: boolean;
 
   /**
    * @description

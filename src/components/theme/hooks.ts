@@ -1,9 +1,7 @@
-import { CSSProperties, useMemo } from "react";
-import { type Palettes, type Theme, _Theme } from "./types";
-import { useTheme as useEmotionTheme } from "@emotion/react";
-import { isEmpty } from "@aiszlab/relax";
-import { ColorRole } from "./color-role";
-import { Token } from "./token";
+import { createContext, useContext, useMemo } from "react";
+import type { Palettes, ContextValue, Theme } from "./types";
+import { toColors } from "../../utils/colors";
+import deepmerge from "deepmerge";
 
 const PALETTES: Readonly<Palettes> = {
   primary: {
@@ -99,161 +97,12 @@ const PALETTES: Readonly<Palettes> = {
 };
 
 /**
- * @author murukal
- *
  * @description
- * we set some presets theme
- * let ui components display well
+ * theme context
  */
-export const THEME: Readonly<Theme> = {
-  typography: {
-    headline: {
-      small: {
-        fontSize: 24,
-        fontWeight: 400,
-        lineHeight: "32px",
-      },
-    },
-
-    body: {
-      small: {
-        fontSize: 12,
-        fontWeight: 400,
-        lineHeight: "16px",
-      },
-      medium: {
-        fontSize: 14,
-        fontWeight: 400,
-        lineHeight: "20px",
-      },
-      large: {
-        fontSize: 16,
-        fontWeight: 400,
-        lineHeight: "24px",
-      },
-    },
-
-    label: {
-      small: {
-        fontSize: 11,
-        fontWeight: 500,
-        lineHeight: "16px",
-      },
-      large: {
-        fontSize: 14,
-        fontWeight: 500,
-        lineHeight: "20px",
-      },
-    },
-  },
-
-  elevations: [
-    {
-      boxShadow: "none",
-    },
-    {
-      boxShadow: "0px 1px 3px 1px rgba(0, 0, 0, 0.15), 0px 1px 2px 0px rgba(0, 0, 0, 0.30)",
-    },
-    {
-      boxShadow: "0px 2px 6px 2px rgba(0, 0, 0, 0.15), 0px 1px 2px 0px rgba(0, 0, 0, 0.30)",
-    },
-    {
-      boxShadow: "0px 1px 3px 0px rgba(0, 0, 0, 0.30), 0px 4px 8px 3px rgba(0, 0, 0, 0.15)",
-    },
-    {
-      boxShadow: "0px 2px 3px 0px rgba(0, 0, 0, 0.30), 0px 6px 10px 4px rgba(0, 0, 0, 0.15)",
-    },
-    {
-      boxShadow: "0px 4px 4px 0px rgba(0, 0, 0, 0.30), 0px 8px 12px 6px rgba(0, 0, 0, 0.15)",
-    },
-  ],
-
-  /// color
-  palettes: PALETTES,
-};
-
-/**
- * @description
- * to color tokens
- */
-const toColorTokens = (theme: Theme) => {
-  return {
-    [Token.ColorPrimary]: theme.palettes.primary[40],
-    [Token.ColorOnPrimary]: theme.palettes.primary[100],
-    [Token.ColorPrimaryContainer]: theme.palettes.primary[90],
-    [Token.ColorOnPrimaryContainer]: theme.palettes.primary[10],
-    [Token.ColorPrimaryFixed]: theme.palettes.primary[90],
-    [Token.ColorPrimaryFixedDim]: theme.palettes.primary[80],
-    [Token.ColorOnPrimaryFixed]: theme.palettes.primary[10],
-    [Token.ColorOnPrimaryFixedVariant]: theme.palettes.primary[30],
-
-    [Token.ColorSecondary]: theme.palettes.secondary[40],
-    [Token.ColorOnSecondary]: theme.palettes.secondary[100],
-    [Token.ColorSecondaryContainer]: theme.palettes.secondary[90],
-    [Token.ColorOnSecondaryContainer]: theme.palettes.secondary[10],
-    [Token.ColorSecondaryFixed]: theme.palettes.secondary[90],
-    [Token.ColorSecondaryFixedDim]: theme.palettes.secondary[80],
-    [Token.ColorOnSecondaryFixed]: theme.palettes.secondary[10],
-    [Token.ColorOnSecondaryFixedVariant]: theme.palettes.secondary[30],
-
-    [Token.ColorTertiary]: theme.palettes.tertiary[40],
-    [Token.ColorOnTertiary]: theme.palettes.tertiary[100],
-    [Token.ColorTertiaryContainer]: theme.palettes.tertiary[90],
-    [Token.ColorOnTertiaryContainer]: theme.palettes.tertiary[10],
-    [Token.ColorTertiaryFixed]: theme.palettes.tertiary[90],
-    [Token.ColorTertiaryFixedDim]: theme.palettes.tertiary[80],
-    [Token.ColorOnTertiaryFixed]: theme.palettes.tertiary[10],
-    [Token.ColorOnTertiaryFixedVariant]: theme.palettes.tertiary[30],
-
-    [Token.ColorError]: theme.palettes.error[40],
-    [Token.ColorOnError]: theme.palettes.error[100],
-    [Token.ColorErrorContainer]: theme.palettes.error[90],
-    [Token.ColorOnErrorContainer]: theme.palettes.error[10],
-
-    [Token.ColorSurface]: "#FEF7FF",
-    [Token.ColorOnSurface]: theme.palettes.neutral[10],
-    [Token.ColorSurfaceDim]: "#DED8E1",
-    [Token.ColorSurfaceContainer]: "#F3EDF7",
-    [Token.ColorSurfaceContainerLow]: theme.palettes.primary[100],
-    [Token.ColorSurfaceContainerLowest]: theme.palettes.neutral[100],
-    [Token.ColorSurfaceContainerHigh]: "#ECE6F0",
-    [Token.ColorSurfaceContainerHighest]: theme.palettes.neutral[90],
-    [Token.ColorOnSurfaceVariant]: theme.palettes.neutralVariant[30],
-    [Token.ColorInverseSurface]: theme.palettes.neutral[20],
-    [Token.ColorInverseOnSurface]: theme.palettes.neutral[95],
-    [Token.ColorInversePrimary]: theme.palettes.primary[80],
-
-    [Token.ColorOutline]: theme.palettes.neutralVariant[50],
-    [Token.ColorOutlineVariant]: theme.palettes.neutralVariant[80],
-
-    [Token.ColorShadow]: theme.palettes.neutral[0],
-    [Token.ColorScrim]: theme.palettes.neutral[0],
-  };
-};
-
-/**
- * @description
- * default color tokens
- */
-export const COLOR_TOKENS = toColorTokens(THEME);
-
-/**
- * @author murukal
- *
- * @description
- * use valid theme for components
- */
-export const useValidTheme = (usedTheme: Partial<Theme>) => {
-  return useMemo<_Theme>(() => {
-    // empty theme, use default
-    const _theme = isEmpty(usedTheme) ? THEME : (usedTheme as Theme);
-    // add color role
-    return {
-      ..._theme,
-      colorRole: new ColorRole(_theme.palettes),
-    };
-  }, [usedTheme]);
-};
+export const Context = createContext<ContextValue>({
+  colors: toColors(PALETTES),
+});
 
 /**
  * @author murukal
@@ -265,23 +114,29 @@ export const useValidTheme = (usedTheme: Partial<Theme>) => {
  * set the preset theme for musae ui component
  */
 export const useTheme = () => {
-  // emotion theme
-  const theme = useEmotionTheme();
-  // valid theme
-  return useValidTheme(theme);
+  return useContext(Context);
 };
 
 /**
- * @author murukal
- *
  * @description
- * in musae, use color variables from theme
- * add style variables
+ * context value
  */
-export const useStyleVariables = ({ theme }: { theme: Theme }) => {
-  const style = useMemo<Record<Token, string>>(() => {
-    return toColorTokens(theme);
-  }, [theme]);
+export const useContextValue = (dependencies: { theme?: Theme }) => {
+  const theme = useMemo<Theme>(() => {
+    if (!dependencies.theme) {
+      return {
+        palettes: PALETTES,
+      };
+    }
 
-  return style as CSSProperties;
+    return deepmerge<Theme, Theme>(dependencies.theme, {
+      palettes: PALETTES,
+    });
+  }, [dependencies.theme]);
+
+  return useMemo<ContextValue>(() => {
+    return {
+      colors: toColors(theme.palettes),
+    };
+  }, [theme]);
 };

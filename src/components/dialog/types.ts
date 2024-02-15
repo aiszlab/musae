@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import type { Dismissable } from "../../hooks/use-dismissable";
 
 /**
  * @description
@@ -13,9 +14,9 @@ export interface DialogProps {
 
   /**
    * @description
-   * is open
+   * open
    */
-  isOpened: boolean;
+  open: boolean;
 
   /**
    * @description
@@ -31,13 +32,25 @@ export interface DialogProps {
 
   /**
    * @description
-   * on cancel
+   * on close
    */
-  onCancel?: VoidFunction;
+  onClose?: VoidFunction;
+
+  /**
+   * @description
+   * Whether the modal can be closed by clicking on the mask or pressing the Esc key.
+   */
+  dismissable?: boolean | Dismissable[];
+
+  /**
+   * @description
+   * title
+   */
+  title?: ReactNode;
 }
 
 /**
  * @description
  * popup
  */
-export interface PopupProps extends DialogProps {}
+export type PopupProps = DialogProps;

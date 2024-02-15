@@ -1,4 +1,5 @@
 import type { InputHTMLAttributes, ReactNode } from "react";
+import { ComponentProps } from "../../types/element";
 
 /**
  * @description
@@ -11,10 +12,8 @@ export type Variant = "outlined" | "filled" | "standard";
  * component props
  */
 export interface InputProps
-  extends Pick<
-    InputHTMLAttributes<HTMLInputElement>,
-    "onFocus" | "onBlur" | "name" | "value" | "readOnly" | "onClick"
-  > {
+  extends Pick<InputHTMLAttributes<HTMLInputElement>, "onFocus" | "onBlur" | "name" | "value" | "readOnly" | "onClick">,
+    ComponentProps {
   /**
    * @description
    * placeholder for input
@@ -50,12 +49,6 @@ export interface InputProps
    * value
    */
   value?: string;
-
-  /**
-   * @description
-   * class name
-   */
-  className?: string;
 
   /**
    * @description

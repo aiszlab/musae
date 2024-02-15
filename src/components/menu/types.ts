@@ -90,7 +90,7 @@ export interface MenuProps extends ComponentProps {
  * @description
  * menu item
  */
-export interface MenuItem {
+export interface MenuItem extends ComponentProps {
   /**
    * @description
    * key
@@ -126,9 +126,9 @@ export type MenuItemProps = WithLevel<Omit<MenuItem, "key" | "children">> &
   ComponentProps & {
     /**
      * @description
-     * _key
+     * value
      */
-    _key: Key;
+    value: Key;
 
     /**
      * @description
@@ -140,7 +140,7 @@ export type MenuItemProps = WithLevel<Omit<MenuItem, "key" | "children">> &
      * @description
      * click handler
      */
-    onClick: ContextValue["click"];
+    onClick?: ContextValue["click"];
 
     /**
      * @description
@@ -155,7 +155,26 @@ export type MenuItemProps = WithLevel<Omit<MenuItem, "key" | "children">> &
  * @description
  * menu group props
  */
-export type MenuGroupProps = Omit<MenuItemProps, "suffix" | "onClick" | "children"> & Pick<MenuProps, "items">;
+export type MenuGroupProps = ComponentProps & {
+  /**
+   * @description
+   * menu group items
+   */
+  items?: MenuItem[];
+
+  /**
+   * @description
+   * current menu group display level
+   * like menu, display group in level 0
+   */
+  level?: number;
+
+  /**
+   * @description
+   * current menu group is expanded
+   */
+  expanded?: boolean;
+};
 
 /**
  * @description
@@ -168,8 +187,3 @@ export interface MenuRef {
    */
   scrollTo: (key: Key, duration?: number) => void;
 }
-
-/**
- * @description
- * group ref
- */

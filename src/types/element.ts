@@ -1,3 +1,4 @@
+import type { StyleXStyles } from "@stylexjs/stylex";
 import type { CSSProperties, RefCallback } from "react";
 
 /**
@@ -69,6 +70,21 @@ export interface FieldRenderProps<T = unknown> {
  * with level
  */
 export type WithLevel<T extends Object> = T & {
-  /* level */
+  /**
+   * @description
+   * level
+   */
   level: number;
+};
+
+/**
+ * @description
+ * stylex component props
+ */
+export type StylexProps = {
+  /**
+   * @description
+   * styles
+   */
+  styles?: StyleXStyles;
 };

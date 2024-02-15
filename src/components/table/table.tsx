@@ -1,51 +1,50 @@
 import { useReactTable, getCoreRowModel } from "@tanstack/react-table";
-import React from "react";
+import React, { CSSProperties } from "react";
 import { useColumns, useContextValue } from "./hooks";
 import type { TableProps } from "./types";
 import Header from "./header";
 import Context from "./context";
 import Body from "./body";
-import { makeStyles } from "@griffel/react";
-import { COLOR_TOKENS } from "../theme/hooks";
-import { Token } from "../theme/token";
+import * as stylex from "@stylexjs/stylex";
+import { sizes, spacing } from "../theme/tokens.stylex";
+import { useTheme } from "../theme";
+import { ColorToken } from "../../utils/colors";
 
-const useClasses = makeStyles({
+const styles = stylex.create({
   table: {
     width: "400px",
   },
-  header: {
-    backgroundColor: COLOR_TOKENS[Token.ColorSurface],
-  },
+
+  cell: (props: { outlineColor: CSSProperties["borderColor"] }) => ({
+    paddingInline: spacing.small,
+    paddingBlock: spacing.medium,
+    borderColor: props.outlineColor,
+    borderStyle: "solid",
+    borderBottomWidth: sizes.smallest,
+  }),
 });
 
-const Table = <T,>({ ...props }: TableProps<T>) => {
+const Table = <T,>({ bordered = false, ...props }: TableProps<T>) => {
   const columns = useColumns<T>([props.columns]);
   const table = useReactTable({
     columns: columns,
     data: props.dataSource ?? [],
     getCoreRowModel: getCoreRowModel(),
   });
+  const theme = useTheme();
 
-  const classes = useClasses();
-  const contextValue = useContextValue({ table });
+  const contextValue = useContextValue({ table, bordered });
+  const cellStyles = [
+    styles.cell({
+      outlineColor: theme.colors[ColorToken.OutlineVariant],
+    }),
+  ];
 
   return (
     <Context.Provider value={contextValue}>
-      <table className={classes.table}>
-        <Header<T> className={classes.header} />
-        <Body<T> />
-
-        {/* <tfoot>
-          {table.getFooterGroups().map((footerGroup) => (
-            <tr key={footerGroup.id}>
-              {footerGroup.headers.map((header) => (
-                <th key={header.id}>
-                  {header.isPlaceholder ? null : flexRender(header.column.columnDef.footer, header.getContext())}
-                </th>
-              ))}
-            </tr>
-          ))}
-        </tfoot> */}
+      <table {...stylex.props(styles.table)}>
+        <Header<T> styles={cellStyles} />
+        <Body<T> styles={cellStyles} />
       </table>
     </Context.Provider>
   );

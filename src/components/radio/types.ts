@@ -1,4 +1,5 @@
 import type { ReactNode, JSX, Key } from "react";
+import { ComponentProps } from "../../types/element";
 
 /**
  * @author murukal
@@ -32,7 +33,7 @@ export interface ContextValue {
  * @description
  * radio props
  */
-export interface RadioProps {
+export interface RadioProps extends ComponentProps {
   /**
    * @description
    * value for current radio
@@ -102,18 +103,4 @@ export interface TypedRadio {
    * group
    */
   Group: (props: RadioGroupProps) => JSX.Element;
-}
-
-/**
- * @author murukal
- *
- * @description
- * render props
- */
-export interface RadioRenderProps {
-  /**
-   * @description
-   * disabled
-   */
-  disabled: boolean;
 }

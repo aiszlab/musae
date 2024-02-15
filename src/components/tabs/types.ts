@@ -1,9 +1,11 @@
-export interface TabsProps {
+import { ComponentProps } from "../../types/element";
+
+export interface TabsProps extends ComponentProps {
   /**
    * @description
    * items
    */
-  items: TabItemType[];
+  items: TabItem[];
 
   /**
    * @description
@@ -32,7 +34,7 @@ export interface TabItemProps {
   onClick: (key: string) => void;
 }
 
-export interface TabItemType {
+export interface TabItem {
   /**
    * @description
    * key

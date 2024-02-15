@@ -1,27 +1,82 @@
-// import { useImageLoader } from "@aiszlab/relax";
-import clsx from "clsx";
-import React, { useMemo } from "react";
-import Image from "./image";
+import React, { CSSProperties, useContext } from "react";
+import type { AvatarProps } from "./types";
+import * as stylex from "@stylexjs/stylex";
+import { sizes, spacing } from "../theme/tokens.stylex";
+import { Context } from "./context";
+import { useTheme } from "../theme";
+import { ColorToken } from "../../utils/colors";
 
-interface Props {
-  src: string;
-  alt: string;
-}
+const styles = stylex.create({
+  avatar: {
+    borderWidth: sizes.smallest,
+    borderStyle: "solid",
+    borderColor: "transparent",
+    boxSizing: "border-box",
+  },
 
-const Avatar = (props: Props) => {
-  // const status = useImageLoader({
-  //   src: props.src,
-  // });
+  image: {
+    width: sizes.full,
+    height: sizes.full,
+    objectFit: "cover",
+    borderRadius: "inherit",
+  },
 
-  const child = useMemo(() => {
-    // if (status === "none") {
-    //   return props.alt;
-    // }
+  overlapping: (props: { outlineColor: CSSProperties["borderColor"] }) => ({
+    ":not(:first-child)": {
+      marginLeft: `calc(${spacing.small} * -1)`,
+    },
+    borderColor: props.outlineColor,
+  }),
 
-    return <Image src={props.src} />;
-  }, [props.alt, props.src]);
+  circle: {
+    borderRadius: sizes.infinity,
+  },
 
-  return <div className={clsx("relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full")}>{child}</div>;
+  square: {
+    borderRadius: sizes.xxxsmall,
+  },
+
+  small: {
+    width: sizes.small,
+    height: sizes.small,
+  },
+
+  medium: {
+    width: sizes.medium,
+    height: sizes.medium,
+  },
+
+  large: {
+    width: sizes.large,
+    height: sizes.large,
+  },
+});
+
+const Avatar = ({ src, alt, ...props }: AvatarProps) => {
+  const theme = useTheme();
+  const group = useContext(Context);
+  const isInGroup = !!group;
+  const size = group?.size ?? props.size ?? "medium";
+  const shape = group?.shape ?? props.shape ?? "circle";
+
+  const styled = {
+    avatar: stylex.props(
+      styles.avatar,
+      styles[size],
+      styles[shape],
+      isInGroup &&
+        styles.overlapping({
+          outlineColor: theme.colors[ColorToken.OnPrimary],
+        })
+    ),
+    image: stylex.props(styles.image),
+  };
+
+  return (
+    <span {...styled.avatar}>
+      <img {...styled.image} src={src} alt={alt} />
+    </span>
+  );
 };
 
 export default Avatar;
