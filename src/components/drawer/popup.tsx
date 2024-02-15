@@ -10,6 +10,7 @@ import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
 import clsx from "clsx";
 import { BODY } from "../theme/theme";
+import { contains } from "@aiszlab/relax/dom";
 
 const styles = stylex.create({
   popup: {
@@ -89,19 +90,30 @@ const Popup = ({ open, onClose, placement = "right", ...props }: PopupProps) => 
   useEffect(() => {
     (async () => {
       if (open) {
-        await animate(scope.current, { display: "block" }, { duration: 0 });
-        animate(withDot(classNames[DrawerClassToken.Panel]), { transform: _placement.at(1) });
-        animate(withDot(classNames[DrawerClassToken.Mask]), { opacity: 0.8 });
-      } else {
-        await Promise.all([
-          animate(withDot(classNames[DrawerClassToken.Panel]), { transform: _placement.at(0) }),
-          animate(withDot(classNames[DrawerClassToken.Mask]), { opacity: 0 }),
+        scope.current.attributeStyleMap.set("display", "block");
+        Promise.all([
+          animate(withDot(classNames[DrawerClassToken.Panel]), { transform: _placement.at(1) }),
+          animate(withDot(classNames[DrawerClassToken.Mask]), { opacity: 0.8 }),
         ]);
-        animate(scope.current, { display: "none" }, { duration: 0 });
+        return;
       }
+
+      await Promise.all([
+        animate(withDot(classNames[DrawerClassToken.Panel]), { transform: _placement.at(0) }),
+        animate(withDot(classNames[DrawerClassToken.Mask]), { opacity: 0 }),
+      ]);
+      scope.current.attributeStyleMap.set("display", "none");
     })();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open, ..._placement]);
+
+  /// when open, try focus dialog
+  useEffect(() => {
+    if (!open) return;
+    if (contains(scope.current, document.activeElement)) return;
+    scope.current.focus();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [open]);
 
   const styled = {
     popup: stylex.props(styles.popup),
@@ -114,23 +126,26 @@ const Popup = ({ open, onClose, placement = "right", ...props }: PopupProps) => 
   return (
     <div
       ref={scope}
-      className={clsx(styled.popup.className, classNames[DrawerClassToken.Drawer])}
+      className={clsx(classNames[DrawerClassToken.Drawer], styled.popup.className)}
       style={styled.popup.style}
     >
       {/* mask */}
       <div
-        className={clsx(styled.mask.className, classNames[DrawerClassToken.Mask])}
+        className={clsx(classNames[DrawerClassToken.Mask], styled.mask.className)}
         onClick={onClose}
         style={styled.mask.style}
       />
 
       {/* panel */}
-      <div className={clsx(styled.panel.className, classNames[DrawerClassToken.Panel])} style={styled.panel.style}>
+      <div className={clsx(classNames[DrawerClassToken.Panel], styled.panel.className)} style={styled.panel.style}>
+        {/* header */}
         <div
-          className={clsx(styled.header.className, classNames[DrawerClassToken.Header])}
+          className={clsx(classNames[DrawerClassToken.Header], styled.header.className)}
           style={styled.header.style}
         />
-        <div className={clsx(styled.body.className, classNames[DrawerClassToken.Body])} style={styled.body.style}>
+
+        {/* body */}
+        <div className={clsx(classNames[DrawerClassToken.Body], styled.body.className)} style={styled.body.style}>
           {props.children}
         </div>
       </div>

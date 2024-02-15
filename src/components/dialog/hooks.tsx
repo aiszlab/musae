@@ -10,8 +10,8 @@ import { spacing } from "../theme/tokens.stylex";
 const styles = stylex.create({
   closer: {
     position: "absolute",
-    top: spacing.medium,
-    right: spacing.medium,
+    top: spacing.large,
+    right: spacing.large,
   },
 });
 

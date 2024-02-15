@@ -42,6 +42,12 @@ export interface DialogProps {
    * Whether the modal can be closed by clicking on the mask or pressing the Esc key.
    */
   dismissable?: boolean | Dismissable[];
+
+  /**
+   * @description
+   * title
+   */
+  title?: ReactNode;
 }
 
 /**

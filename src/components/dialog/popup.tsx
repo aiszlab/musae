@@ -13,6 +13,11 @@ import clsx from "clsx";
 import { contains } from "@aiszlab/relax/dom";
 
 const styles = stylex.create({
+  header: {
+    paddingInline: spacing.xlarge,
+    paddingTop: spacing.large,
+  },
+
   popup: {
     position: "fixed",
     inset: spacing.none,
@@ -23,27 +28,26 @@ const styles = stylex.create({
     alignItems: "center",
   },
 
-  mask: (backgroundColor: CSSProperties["backgroundColor"]) => ({
+  mask: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
     position: "absolute",
     inset: 0,
     pointerEvents: "auto",
     zIndex: 1000,
-    backgroundColor,
+    backgroundColor: props.backgroundColor,
     opacity: 0,
   }),
 
-  panel: (backgroundColor: CSSProperties["backgroundColor"]) => ({
+  panel: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
     display: "flex",
     flexDirection: "column",
     gap: spacing.large,
     minWidth: 480,
     maxWidth: 960,
-    minHeight: 320,
     maxHeight: `calc(100% - ${spacing.xxxlarge})`,
     margin: spacing.xxlarge,
     borderRadius: 8,
     pointerEvents: "auto",
-    backgroundColor,
+    backgroundColor: props.backgroundColor,
     zIndex: 1000,
     opacity: 0,
     position: "relative",
@@ -97,9 +101,17 @@ const Popup = ({ onClose, open, dismissable = true, ...props }: PopupProps) => {
 
   const styled = {
     popup: stylex.props(styles.popup),
-    mask: stylex.props(styles.mask(theme.colors[ColorToken.SurfaceDim])),
-    panel: stylex.props(styles.panel(theme.colors[ColorToken.SurfaceContainerLowest])),
-    header: stylex.props(typography.headline.small),
+    mask: stylex.props(
+      styles.mask({
+        backgroundColor: theme.colors[ColorToken.SurfaceDim],
+      })
+    ),
+    panel: stylex.props(
+      styles.panel({
+        backgroundColor: theme.colors[ColorToken.SurfaceContainerLowest],
+      })
+    ),
+    header: stylex.props(styles.header, typography.headline.small),
     body: stylex.props(typography.body.medium, styles.body),
     footer: stylex.props(styles.footer),
   };
@@ -116,13 +128,18 @@ const Popup = ({ onClose, open, dismissable = true, ...props }: PopupProps) => {
       {/* panel */}
       <div className={clsx(classNames[DialogClassToken.Panel], styled.panel.className)} style={styled.panel.style}>
         {closer}
-        <div
-          className={clsx(classNames[DialogClassToken.Header], styled.header.className)}
-          style={styled.header.style}
-        ></div>
+
+        {/* header */}
+        <div className={clsx(classNames[DialogClassToken.Header], styled.header.className)} style={styled.header.style}>
+          {props.title}
+        </div>
+
+        {/* body */}
         <div className={clsx(classNames[DialogClassToken.Body], styled.body.className)} style={styled.body.style}>
           {props.children}
         </div>
+
+        {/* footer */}
         <div className={clsx(classNames[DialogClassToken.Footer], styled.footer.className)} style={styled.footer.style}>
           {footer}
         </div>
