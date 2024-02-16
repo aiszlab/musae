@@ -33,6 +33,7 @@ export { Tree, TreeNode } from "./components/tree";
 export { Table } from "./components/table";
 export { Layout } from "./components/layout";
 export { Pagination } from "./components/pagination";
+export { Tooltip } from "./components/tooltip";
 
 /**
  * @description

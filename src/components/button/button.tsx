@@ -101,7 +101,7 @@ const styles = stylex.create({
  * @description
  * button
  */
-export const _Button = forwardRef<HTMLButtonElement, ButtonProps>(
+export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
     {
       children,
@@ -179,4 +179,4 @@ export const _Button = forwardRef<HTMLButtonElement, ButtonProps>(
   }
 );
 
-export default _Button;
+export default Button;

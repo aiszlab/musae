@@ -1,3 +1,4 @@
+import type { Nullable } from "@aiszlab/relax";
 import type { DOMAttributes, ReactNode } from "react";
 
 /**
@@ -23,9 +24,7 @@ export interface PopperProps {
    * @description
    * trigger
    */
-  trigger?: {
-    getBoundingClientRect: () => DOMRect;
-  } | null;
+  trigger?: Nullable<Element>;
 
   /**
    * @description

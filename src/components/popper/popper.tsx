@@ -1,24 +1,20 @@
 import React, { forwardRef, useImperativeHandle, useRef } from "react";
 import { PopperRef, type PopperProps } from "./types";
 import { Portal } from "../portal";
-import Popup from "./dropdown";
+import Dropdown from "./dropdown";
 
 const Popper = forwardRef<PopperRef, PopperProps>((props, ref) => {
   const popper = useRef<PopperRef>(null);
 
-  useImperativeHandle(
-    ref,
-    () => ({
-      update: () => {
-        popper.current?.update?.();
-      },
-    }),
-    []
-  );
+  useImperativeHandle(ref, () => ({
+    update: () => {
+      popper.current?.update?.();
+    },
+  }));
 
   return (
     <Portal open={props.open} lockable={false}>
-      <Popup {...props} ref={popper} />
+      <Dropdown {...props} ref={popper} />
     </Portal>
   );
 });
