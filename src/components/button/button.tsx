@@ -41,15 +41,15 @@ const styles = stylex.create({
     minWidth: sizes.xlarge,
   },
 
-  circle: {
+  circular: {
     borderRadius: sizes.infinity,
     padding: null,
     aspectRatio: 1,
-    // circle shape, always center layout
+    // circular shape, always center layout
     justifyContent: "center",
   },
 
-  round: {
+  rounded: {
     borderRadius: sizes.infinity,
     minWidth: null,
   },
@@ -110,7 +110,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       color = "primary",
       size = "medium",
       variant = "filled",
-      shape = "round",
+      shape = "rounded",
       disabled = false,
       ripple = true,
       ...props

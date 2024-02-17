@@ -9,7 +9,7 @@ const styles = stylex.create({
   },
 });
 
-const Group = ({ children, shape = "circle", size = "medium" }: AvatarGroupProps) => {
+const Group = ({ children, shape = "circular", size = "medium" }: AvatarGroupProps) => {
   const styled = stylex.props(styles.group);
 
   return (

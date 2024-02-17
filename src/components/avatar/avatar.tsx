@@ -28,11 +28,11 @@ const styles = stylex.create({
     borderColor: props.outlineColor,
   }),
 
-  circle: {
+  circular: {
     borderRadius: sizes.infinity,
   },
 
-  square: {
+  squared: {
     borderRadius: sizes.xxxsmall,
   },
 
@@ -57,7 +57,7 @@ const Avatar = ({ src, alt, ...props }: AvatarProps) => {
   const group = useContext(Context);
   const isInGroup = !!group;
   const size = group?.size ?? props.size ?? "medium";
-  const shape = group?.shape ?? props.shape ?? "circle";
+  const shape = group?.shape ?? props.shape ?? "circular";
 
   const styled = {
     avatar: stylex.props(

@@ -37,7 +37,7 @@ export const useDismissable = (props: { onClose?: VoidFunction; dismissable: boo
 
     return (
       <Button
-        shape="circle"
+        shape="circular"
         variant="text"
         prefix={<Close />}
         onClick={props.onClose}

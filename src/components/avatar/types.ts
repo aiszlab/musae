@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 
 type Size = "small" | "medium" | "large";
-type Shape = "circle" | "square";
+type Shape = "circular" | "squared";
 
 /**
  * @description

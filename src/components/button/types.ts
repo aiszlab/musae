@@ -7,7 +7,7 @@ export type Color = "primary" | "secondary" | "tertiary";
 
 type Size = "small" | "medium" | "large";
 
-type Shape = "round" | "circle";
+type Shape = "rounded" | "circular";
 
 /**
  * @author murukal

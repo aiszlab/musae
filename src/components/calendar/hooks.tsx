@@ -153,7 +153,7 @@ export const useDateCells = ([timespan, focusedAt, click]: [Timespan, Dayjs, Req
               onClick={() => {
                 click(currentAt);
               }}
-              shape="circle"
+              shape="circular"
             >
               {currentAt.date()}
             </Button>

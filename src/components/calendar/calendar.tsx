@@ -43,8 +43,14 @@ const Calendar = (props: CalendarProps) => {
         className={clsx(classNames[CalendarClassToken.Header], styled.header.className)}
         style={styled.header.style}
       >
-        <Button variant="text" prefix={<KeyboardDoubleArrowLeft />} onClick={toPrevYear} size="small" shape="circle" />
-        <Button variant="text" prefix={<KeyboardArrowLeft />} onClick={toPrevMonth} size="small" shape="circle" />
+        <Button
+          variant="text"
+          prefix={<KeyboardDoubleArrowLeft />}
+          onClick={toPrevYear}
+          size="small"
+          shape="circular"
+        />
+        <Button variant="text" prefix={<KeyboardArrowLeft />} onClick={toPrevMonth} size="small" shape="circular" />
 
         <span
           className={clsx(classNames[CalendarClassToken.Heading], styled.heading.className)}
@@ -53,8 +59,14 @@ const Calendar = (props: CalendarProps) => {
           {focusedAt.format("YYYY-MM")}
         </span>
 
-        <Button variant="text" prefix={<KeyboardArrowRight />} onClick={toNextMonth} size="small" shape="circle" />
-        <Button variant="text" prefix={<KeyboardDoubleArrowRight />} onClick={toNextYear} size="small" shape="circle" />
+        <Button variant="text" prefix={<KeyboardArrowRight />} onClick={toNextMonth} size="small" shape="circular" />
+        <Button
+          variant="text"
+          prefix={<KeyboardDoubleArrowRight />}
+          onClick={toNextYear}
+          size="small"
+          shape="circular"
+        />
       </header>
 
       <table>
