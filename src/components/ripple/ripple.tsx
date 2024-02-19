@@ -7,7 +7,7 @@ import { clamp } from "@aiszlab/relax";
 
 const styles = stylex.create({
   ripple: {
-    backgroundColor: "currentColor",
+    backgroundColor: "currentcolor",
     borderRadius: sizes.infinity,
     transformOrigin: "center",
     pointerEvents: "none",

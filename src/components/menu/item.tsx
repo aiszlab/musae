@@ -8,44 +8,78 @@ import { sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
 import clsx from "clsx";
-import { LABEL } from "../theme/theme";
+import { typography } from "../theme/theme";
 import { useEvent } from "@aiszlab/relax";
 
-const styles = stylex.create({
-  menuItem: {
-    marginInline: spacing.xxsmall,
-    marginBottom: spacing.xxsmall,
-    marginTop: {
-      default: spacing.none,
-      ":first-child": spacing.xxsmall,
+const styles = {
+  default: stylex.create({
+    menuItem: {
+      marginInline: spacing.xxsmall,
+      marginBottom: spacing.xxsmall,
+      marginTop: {
+        default: spacing.none,
+        ":first-child": spacing.xxsmall,
+      },
     },
-  },
 
-  normal: (props: { level: number; hoveredBackgroundColor: CSSProperties["backgroundColor"] }) => ({
-    display: "flex",
-    alignItems: "center",
-    minHeight: sizes.small,
-    cursor: "pointer",
+    item: (props: { level: number }) => ({
+      display: "flex",
+      alignItems: "center",
+      minHeight: sizes.small,
+      cursor: "pointer",
 
-    // spacing
-    paddingTop: spacing.small,
-    paddingBottom: spacing.small,
-    paddingRight: spacing.medium,
-    paddingLeft: 12 + props.level * 24,
-    borderRadius: 8,
-    transition: "all 300ms",
-
-    backgroundColor: {
-      default: null,
-      ":hover": props.hoveredBackgroundColor,
-    },
+      // spacing
+      paddingTop: spacing.small,
+      paddingBottom: spacing.small,
+      paddingRight: spacing.medium,
+      paddingLeft: 12 + props.level * 24,
+      borderRadius: 8,
+      transition: "all 300ms",
+      willChange: "backgroundColor, borderColor, color",
+    }),
   }),
 
-  selected: (props: { backgroundColor: CSSProperties["backgroundColor"]; color: CSSProperties["color"] }) => ({
-    backgroundColor: props.backgroundColor,
-    color: props.color,
+  hovered: stylex.create({
+    filled: (props: Pick<CSSProperties, "backgroundColor" | "color" | "borderColor">) => ({
+      backgroundColor: {
+        default: null,
+        ":hover": props.backgroundColor,
+      },
+    }),
+
+    outlined: (props: Pick<CSSProperties, "backgroundColor" | "color" | "borderColor">) => ({
+      borderWidth: sizes.smallest,
+      borderStyle: "solid",
+      borderColor: {
+        default: null,
+        ":hover": props.borderColor,
+      },
+    }),
+
+    text: (props: Pick<CSSProperties, "backgroundColor" | "color" | "borderColor">) => ({
+      color: {
+        default: null,
+        ":hover": props.color,
+      },
+    }),
   }),
-});
+
+  selected: stylex.create({
+    filled: (props: Pick<CSSProperties, "backgroundColor" | "color">) => ({
+      backgroundColor: props.backgroundColor,
+      color: props.color,
+    }),
+
+    outlined: (props: Pick<CSSProperties, "backgroundColor" | "color">) => ({
+      backgroundColor: props.backgroundColor,
+      color: props.color,
+    }),
+
+    text: (props: Pick<CSSProperties, "backgroundColor" | "color">) => ({
+      color: props.color,
+    }),
+  }),
+};
 
 /**
  * @author murukal
@@ -55,7 +89,7 @@ const styles = stylex.create({
  */
 const Item = forwardRef<HTMLLIElement, MenuItemProps>(
   ({ level, label, prefix, suffix, value, className, ...props }, ref) => {
-    const { selectedKeys, expandedKeys, click: _click, toggle } = useMenuContext();
+    const { selectedKeys, expandedKeys, click: _click, toggle, variant } = useMenuContext();
     const classNames = useClassNames(ComponentToken.Menu);
     const isSelected = selectedKeys.has(value);
     const isExpanded = expandedKeys.has(value);
@@ -81,18 +115,22 @@ const Item = forwardRef<HTMLLIElement, MenuItemProps>(
     });
 
     const styled = {
-      menuItem: stylex.props(styles.menuItem),
+      menuItem: stylex.props(styles.default.menuItem),
       item: stylex.props(
-        styles.normal({
+        styles.default.item({
           level,
-          hoveredBackgroundColor: theme.colors[ColorToken.SurfaceContainer],
+        }),
+        styles.hovered[variant]({
+          color: variant === "text" ? theme.colors[ColorToken.OnPrimaryFixedVariant] : void 0,
+          backgroundColor: variant === "filled" ? theme.colors[ColorToken.SurfaceContainer] : void 0,
+          borderColor: variant === "outlined" ? theme.colors[ColorToken.SurfaceContainer] : void 0,
         }),
         isSelected &&
-          styles.selected({
+          styles.selected[variant]({
             backgroundColor: theme.colors[ColorToken.SurfaceContainer],
             color: theme.colors[ColorToken.Primary],
           }),
-        LABEL.large
+        typography.label.large
       ),
     };
 

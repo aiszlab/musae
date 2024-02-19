@@ -23,7 +23,7 @@ const styles = stylex.create({
  * @description
  * menu component
  */
-const Menu = forwardRef<MenuRef, MenuProps>(({ onClick, className, style, ...props }, ref) => {
+const Menu = forwardRef<MenuRef, MenuProps>(({ onClick, className, style, variant = "filled", ...props }, ref) => {
   const { targetRef, scrollTo, to, setTrigger } = useScrollable<HTMLUListElement, HTMLLIElement>({
     direction: "vertical",
   });
@@ -37,6 +37,7 @@ const Menu = forwardRef<MenuRef, MenuProps>(({ onClick, className, style, ...pro
     defaultExpandedKeys: props.defaultExpandedKeys,
     onClick,
     setTrigger,
+    variant,
   });
 
   useImperativeHandle(ref, () => ({
@@ -45,18 +46,14 @@ const Menu = forwardRef<MenuRef, MenuProps>(({ onClick, className, style, ...pro
     },
   }));
 
-  const styled = stylex.props(styles.menu);
-
   return (
     <Context.Provider value={contextValue}>
       <Group
         ref={targetRef}
         items={props.items}
-        className={clsx(classNames[MenuClassToken.Menu], className, styled.className)}
-        style={{
-          ...styled.style,
-          ...style,
-        }}
+        className={clsx(classNames[MenuClassToken.Menu], className)}
+        style={style}
+        styles={styles.menu}
       />
     </Context.Provider>
   );

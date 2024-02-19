@@ -1,6 +1,8 @@
 import type { Key, ReactNode } from "react";
-import type { ComponentProps } from "../../types/element";
+import type { ComponentProps, StylexProps } from "../../types/element";
 import type { WithLevel } from "../../types/element";
+
+export type Variant = "filled" | "outlined" | "text";
 
 /**
  * @author murukal
@@ -38,6 +40,8 @@ export interface ContextValue {
    * expanded keys
    */
   expandedKeys: Set<Key>;
+
+  variant: Variant;
 }
 
 /**
@@ -82,6 +86,12 @@ export interface MenuProps extends ComponentProps {
    * default expanded keys
    */
   defaultExpandedKeys?: Key[];
+
+  /**
+   * @description
+   * you can use the variant in the Menu component to change the hover style of the Menu items.
+   */
+  variant?: Variant;
 }
 
 /**
@@ -155,26 +165,27 @@ export type MenuItemProps = WithLevel<Omit<MenuItem, "key" | "children">> &
  * @description
  * menu group props
  */
-export type MenuGroupProps = ComponentProps & {
-  /**
-   * @description
-   * menu group items
-   */
-  items?: MenuItem[];
+export type MenuGroupProps = ComponentProps &
+  StylexProps & {
+    /**
+     * @description
+     * menu group items
+     */
+    items?: MenuItem[];
 
-  /**
-   * @description
-   * current menu group display level
-   * like menu, display group in level 0
-   */
-  level?: number;
+    /**
+     * @description
+     * current menu group display level
+     * like menu, display group in level 0
+     */
+    level?: number;
 
-  /**
-   * @description
-   * current menu group is expanded
-   */
-  expanded?: boolean;
-};
+    /**
+     * @description
+     * current menu group is expanded
+     */
+    expanded?: boolean;
+  };
 
 /**
  * @description

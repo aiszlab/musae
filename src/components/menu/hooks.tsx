@@ -92,10 +92,12 @@ export const useItemChildren = ({
 export const useContextValue = ({
   onClick,
   setTrigger,
+  variant,
   ...props
 }: {
   onClick: MenuProps["onClick"];
   setTrigger: ContextValue["collect"];
+  variant: ContextValue["variant"];
 } & Pick<MenuProps, "defaultExpandedKeys" | "defaultSelectedKeys" | "expandedKeys" | "selectedKeys">) => {
   const [_selectedKeys, _setSelectedKeys] = useControlledState(props.selectedKeys!, {
     defaultState: props.defaultSelectedKeys ?? [],
@@ -142,10 +144,11 @@ export const useContextValue = ({
     () => ({
       selectedKeys,
       expandedKeys,
+      variant,
       click,
       toggle,
       collect,
     }),
-    [selectedKeys, expandedKeys, click, toggle, collect]
+    [selectedKeys, expandedKeys, click, toggle, collect, variant]
   );
 };

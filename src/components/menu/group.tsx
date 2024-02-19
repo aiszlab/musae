@@ -33,7 +33,7 @@ const styles = stylex.create({
  * menu group
  */
 const Group = forwardRef<HTMLUListElement, MenuGroupProps>(
-  ({ items = [], level = 0, expanded = true, className, style }, ref) => {
+  ({ items = [], level = 0, expanded = true, className, style, ...props }, ref) => {
     const classNames = useClassNames(ComponentToken.Menu);
     const [scope, animate] = useAnimate<HTMLUListElement>();
     const { collect, expandedKeys } = useMenuContext();
@@ -45,7 +45,7 @@ const Group = forwardRef<HTMLUListElement, MenuGroupProps>(
       expanded,
     });
 
-    const styled = stylex.props(styles.group, !expanded && styles.hidden);
+    const styled = stylex.props(styles.group, !expanded && styles.hidden, props.styles);
 
     return (
       <ul

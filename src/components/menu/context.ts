@@ -13,6 +13,7 @@ const Context = createContext<ContextValue>({
   click: () => {},
   toggle: () => {},
   collect: () => {},
+  variant: "filled",
 });
 
 export default Context;
