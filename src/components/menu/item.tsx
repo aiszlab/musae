@@ -35,7 +35,7 @@ const styles = {
       paddingLeft: 12 + props.level * 24,
       borderRadius: 8,
       transition: "all 300ms",
-      willChange: "backgroundColor, borderColor, color",
+      willChange: "backgroundColor, border, color",
     }),
   }),
 
@@ -48,11 +48,9 @@ const styles = {
     }),
 
     outlined: (props: Pick<CSSProperties, "backgroundColor" | "color" | "borderColor">) => ({
-      borderWidth: sizes.smallest,
-      borderStyle: "solid",
-      borderColor: {
+      border: {
         default: null,
-        ":hover": props.borderColor,
+        ":hover": `${sizes.smallest} solid ${props.borderColor}`,
       },
     }),
 
@@ -121,9 +119,15 @@ const Item = forwardRef<HTMLLIElement, MenuItemProps>(
           level,
         }),
         styles.hovered[variant]({
-          color: variant === "text" ? theme.colors[ColorToken.OnPrimaryFixedVariant] : void 0,
-          backgroundColor: variant === "filled" ? theme.colors[ColorToken.SurfaceContainer] : void 0,
-          borderColor: variant === "outlined" ? theme.colors[ColorToken.SurfaceContainer] : void 0,
+          ...(variant === "text" && {
+            color: theme.colors[ColorToken.OnPrimaryFixedVariant],
+          }),
+          ...(variant === "filled" && {
+            backgroundColor: theme.colors[ColorToken.SurfaceContainer],
+          }),
+          ...(variant === "outlined" && {
+            borderColor: theme.colors[ColorToken.SurfaceContainer],
+          }),
         }),
         isSelected &&
           styles.selected[variant]({
