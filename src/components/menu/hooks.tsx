@@ -1,10 +1,11 @@
 import React, { type Key, type ReactNode, useCallback, useContext, useMemo } from "react";
 import Context from "./context";
-import type { ContextValue, MenuProps } from "./types";
+import type { ContextValue, MenuProps, Variant } from "./types";
 import { useControlledState } from "@aiszlab/relax";
 import * as stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
 import { KeyboardArrowUp } from "../icon";
+import type { Size } from "../../types/element";
 
 const styles = stylex.create({
   prefix: {
@@ -93,11 +94,13 @@ export const useContextValue = ({
   onClick,
   setTrigger,
   variant,
+  size,
   ...props
 }: {
   onClick: MenuProps["onClick"];
   setTrigger: ContextValue["collect"];
-  variant: ContextValue["variant"];
+  variant: Variant;
+  size: Size;
 } & Pick<MenuProps, "defaultExpandedKeys" | "defaultSelectedKeys" | "expandedKeys" | "selectedKeys">) => {
   const [_selectedKeys, _setSelectedKeys] = useControlledState(props.selectedKeys!, {
     defaultState: props.defaultSelectedKeys ?? [],
@@ -148,7 +151,8 @@ export const useContextValue = ({
       click,
       toggle,
       collect,
+      size,
     }),
-    [selectedKeys, expandedKeys, click, toggle, collect, variant]
+    [selectedKeys, expandedKeys, click, toggle, collect, variant, size]
   );
 };

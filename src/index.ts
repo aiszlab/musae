@@ -54,4 +54,4 @@ export type { TreeProps } from "./components/tree";
  * @description
  * icons
  */
-export { KeyboardArrowLeft, KeyboardArrowRight } from "./components/icon";
+export { KeyboardArrowLeft, KeyboardArrowRight, Github } from "./components/icon";

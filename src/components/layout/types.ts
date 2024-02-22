@@ -5,7 +5,7 @@ import type { ComponentProps } from "../../types/element";
  * @description
  * shell header props
  */
-export type HeaderProps = {
+export type HeaderProps = ComponentProps & {
   /**
    * @description
    * children

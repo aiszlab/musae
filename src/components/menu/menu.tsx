@@ -23,40 +23,43 @@ const styles = stylex.create({
  * @description
  * menu component
  */
-const Menu = forwardRef<MenuRef, MenuProps>(({ onClick, className, style, variant = "filled", ...props }, ref) => {
-  const { targetRef, scrollTo, to, setTrigger } = useScrollable<HTMLUListElement, HTMLLIElement>({
-    direction: "vertical",
-  });
-  const classNames = useClassNames(ComponentToken.Menu);
+const Menu = forwardRef<MenuRef, MenuProps>(
+  ({ onClick, className, style, variant = "filled", size = "medium", ...props }, ref) => {
+    const { targetRef, scrollTo, to, setTrigger } = useScrollable<HTMLUListElement, HTMLLIElement>({
+      direction: "vertical",
+    });
+    const classNames = useClassNames(ComponentToken.Menu);
 
-  /// context value
-  const contextValue = useContextValue({
-    selectedKeys: props.selectedKeys,
-    expandedKeys: props.expandedKeys,
-    defaultSelectedKeys: props.defaultSelectedKeys,
-    defaultExpandedKeys: props.defaultExpandedKeys,
-    onClick,
-    setTrigger,
-    variant,
-  });
+    /// context value
+    const contextValue = useContextValue({
+      selectedKeys: props.selectedKeys,
+      expandedKeys: props.expandedKeys,
+      defaultSelectedKeys: props.defaultSelectedKeys,
+      defaultExpandedKeys: props.defaultExpandedKeys,
+      onClick,
+      setTrigger,
+      variant,
+      size,
+    });
 
-  useImperativeHandle(ref, () => ({
-    scrollTo: (key, duration) => {
-      scrollTo(to(key), duration);
-    },
-  }));
+    useImperativeHandle(ref, () => ({
+      scrollTo: (key, duration) => {
+        scrollTo(to(key), duration);
+      },
+    }));
 
-  return (
-    <Context.Provider value={contextValue}>
-      <Group
-        ref={targetRef}
-        items={props.items}
-        className={clsx(classNames[MenuClassToken.Menu], className)}
-        style={style}
-        styles={styles.menu}
-      />
-    </Context.Provider>
-  );
-});
+    return (
+      <Context.Provider value={contextValue}>
+        <Group
+          ref={targetRef}
+          items={props.items}
+          className={clsx(classNames[MenuClassToken.Menu], className)}
+          style={style}
+          styles={styles.menu}
+        />
+      </Context.Provider>
+    );
+  }
+);
 
 export default Menu;

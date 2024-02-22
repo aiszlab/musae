@@ -22,21 +22,13 @@ const styles = {
       },
     },
 
-    item: (props: { level: number }) => ({
+    item: {
       display: "flex",
       alignItems: "center",
-      minHeight: sizes.small,
       cursor: "pointer",
-
-      // spacing
-      paddingTop: spacing.small,
-      paddingBottom: spacing.small,
-      paddingRight: spacing.medium,
-      paddingLeft: 12 + props.level * 24,
-      borderRadius: 8,
       transition: "all 300ms",
-      willChange: "backgroundColor, border, color",
-    }),
+      willChange: "background-color, border, color",
+    },
   }),
 
   hovered: stylex.create({
@@ -77,6 +69,29 @@ const styles = {
       color: props.color,
     }),
   }),
+
+  size: stylex.create({
+    small: (props: { level: number }) => ({
+      paddingBlock: spacing.xxsmall,
+      paddingRight: spacing.small,
+      paddingLeft: `calc(${spacing.small} + ${props.level} * ${spacing.large})`,
+      borderRadius: sizes.xxxsmall,
+    }),
+
+    medium: (props: { level: number }) => ({
+      paddingBlock: spacing.small,
+      paddingRight: spacing.medium,
+      paddingLeft: `calc(${spacing.medium} + ${props.level} * ${spacing.xlarge})`,
+      borderRadius: sizes.xxsmall,
+    }),
+
+    large: (props: { level: number }) => ({
+      paddingBlock: spacing.medium,
+      paddingRight: spacing.large,
+      paddingLeft: `calc(${spacing.large} + ${props.level} * ${spacing.xxlarge})`,
+      borderRadius: sizes.xsmall,
+    }),
+  }),
 };
 
 /**
@@ -87,7 +102,7 @@ const styles = {
  */
 const Item = forwardRef<HTMLLIElement, MenuItemProps>(
   ({ level, label, prefix, suffix, value, className, ...props }, ref) => {
-    const { selectedKeys, expandedKeys, click: _click, toggle, variant } = useMenuContext();
+    const { selectedKeys, expandedKeys, click: _click, toggle, variant, size } = useMenuContext();
     const classNames = useClassNames(ComponentToken.Menu);
     const isSelected = selectedKeys.has(value);
     const isExpanded = expandedKeys.has(value);
@@ -115,9 +130,8 @@ const Item = forwardRef<HTMLLIElement, MenuItemProps>(
     const styled = {
       menuItem: stylex.props(styles.default.menuItem),
       item: stylex.props(
-        styles.default.item({
-          level,
-        }),
+        styles.default.item,
+        styles.size[size]({ level }),
         styles.hovered[variant]({
           ...(variant === "text" && {
             color: theme.colors[ColorToken.OnPrimaryFixedVariant],
@@ -134,7 +148,7 @@ const Item = forwardRef<HTMLLIElement, MenuItemProps>(
             backgroundColor: theme.colors[ColorToken.SurfaceContainer],
             color: theme.colors[ColorToken.Primary],
           }),
-        typography.label.large
+        typography.label[size]
       ),
     };
 

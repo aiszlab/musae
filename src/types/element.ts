@@ -88,3 +88,10 @@ export type StylexProps = {
    */
   styles?: StyleXStyles;
 };
+
+/**
+ * @description
+ * size
+ * in musae, we always use three size
+ */
+export type Size = "small" | "medium" | "large";

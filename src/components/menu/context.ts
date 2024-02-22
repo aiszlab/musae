@@ -14,6 +14,7 @@ const Context = createContext<ContextValue>({
   toggle: () => {},
   collect: () => {},
   variant: "filled",
+  size: "medium",
 });
 
 export default Context;

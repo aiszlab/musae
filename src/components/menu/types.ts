@@ -1,5 +1,5 @@
 import type { Key, ReactNode } from "react";
-import type { ComponentProps, StylexProps } from "../../types/element";
+import type { ComponentProps, Size, StylexProps } from "../../types/element";
 import type { WithLevel } from "../../types/element";
 
 export type Variant = "filled" | "outlined" | "text";
@@ -42,6 +42,8 @@ export interface ContextValue {
   expandedKeys: Set<Key>;
 
   variant: Variant;
+
+  size: Size;
 }
 
 /**
@@ -92,6 +94,12 @@ export interface MenuProps extends ComponentProps {
    * you can use the variant in the Menu component to change the hover style of the Menu items.
    */
   variant?: Variant;
+
+  /**
+   * @description
+   * size
+   */
+  size?: Size;
 }
 
 /**

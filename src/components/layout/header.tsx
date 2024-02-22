@@ -4,6 +4,7 @@ import { useTheme } from "../theme";
 import * as stylex from "@stylexjs/stylex";
 import { ColorToken } from "../../utils/colors";
 import { sizes, spacing } from "../theme/tokens.stylex";
+import clsx from "clsx";
 
 const styles = stylex.create({
   header: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
@@ -19,18 +20,23 @@ const styles = stylex.create({
   }),
 });
 
-const Header = (props: HeaderProps) => {
+const Header = ({ className, style, children }: HeaderProps) => {
   const theme = useTheme();
+  const styled = stylex.props(
+    styles.header({
+      backgroundColor: theme.colors[ColorToken.SurfaceContainerLowest],
+    })
+  );
 
   return (
     <header
-      {...stylex.props(
-        styles.header({
-          backgroundColor: theme.colors[ColorToken.SurfaceContainerLowest],
-        })
-      )}
+      className={clsx(className, styled.className)}
+      style={{
+        ...styled.style,
+        ...style,
+      }}
     >
-      {props.children}
+      {children}
     </header>
   );
 };

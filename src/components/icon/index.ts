@@ -27,6 +27,9 @@ import KeyboardArrowRight from "./icons/hardware/keyboard-arrow-right";
 import KeyboardArrowUp from "./icons/hardware/keyboard-arrow-up";
 import KeyboardArrowDown from "./icons/hardware/keyboard-arrow-down";
 
+/// mocks, musae collect from comunic icons
+import Github from "./icons/mocks/github";
+
 /**
  * @description
  * icon component
@@ -55,6 +58,7 @@ export {
   Clear,
   MoreHoriz,
   Close,
+  Github,
 };
 
 export type { IconProps } from "./types";
