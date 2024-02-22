@@ -33,7 +33,7 @@
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@rollup/plugin-typescript": "^11.1.6",
     "@stylexjs/rollup-plugin": "^0.5.1",
-    "@stylexjs/stylex": "^0.4.1",
+    "@stylexjs/stylex": "^0.5.1",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "eslint": "^8.56.0",

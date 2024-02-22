@@ -1406,20 +1406,10 @@
   dependencies:
     postcss-value-parser "^4.1.0"
 
-"@stylexjs/stylex@0.5.1":
+"@stylexjs/stylex@0.5.1", "@stylexjs/stylex@^0.5.1":
   version "0.5.1"
   resolved "https://registry.npmjs.org/@stylexjs/stylex/-/stylex-0.5.1.tgz#e604908c4933d01474bff7c909cb9cef659bd56c"
   integrity sha512-KO55dRB1+LhUo9OxfHqH5FwO2F0HdTe4g6fyRJb7JT5FiWEA/vYJ9MY7W8NdMSprW/7FeQKnSg6u5WlHU2ji2g==
-  dependencies:
-    css-mediaquery "^0.1.2"
-    invariant "^2.2.4"
-    styleq "0.1.3"
-    utility-types "^3.10.0"
-
-"@stylexjs/stylex@^0.4.1":
-  version "0.4.1"
-  resolved "https://registry.npmjs.org/@stylexjs/stylex/-/stylex-0.4.1.tgz#6048571a93a9440131b25c3e9957d4e1933562a6"
-  integrity sha512-xc3hjEtqpluoZ1RcJZ1c59bdMITMHPh0FmCNi/01amaPhEw040WqgR/KGFHIqxIer9wt5mOeED3iM9tSrljeaQ==
   dependencies:
     css-mediaquery "^0.1.2"
     invariant "^2.2.4"
