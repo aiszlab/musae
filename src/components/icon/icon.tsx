@@ -42,7 +42,7 @@ const Icon = ({ as, color, size, onClick, className }: IconProps) => {
   return (
     <span
       onClick={onClick}
-      className={clsx(styled.className, className, classNames[IconClassToken.Icon])}
+      className={clsx(classNames[IconClassToken.Icon], className, styled.className)}
       style={styled.style}
     >
       {children}
