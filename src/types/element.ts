@@ -16,7 +16,7 @@ export interface ComponentProps {
 
   /**
    * @description
-   * style
+   * style for current component
    */
   style?: CSSProperties;
 }

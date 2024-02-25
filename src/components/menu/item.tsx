@@ -1,4 +1,4 @@
-import React, { type CSSProperties, forwardRef } from "react";
+import React, { type CSSProperties, forwardRef, useRef } from "react";
 import { MenuItemProps } from "./types";
 import { useItemChildren, useMenuContext } from "./hooks";
 import { useClassNames } from "../config";
@@ -10,18 +10,11 @@ import { ColorToken } from "../../utils/colors";
 import clsx from "clsx";
 import { typography } from "../theme/theme";
 import { useEvent } from "@aiszlab/relax";
+import { Popper } from "../popper";
+import { useHover } from "@aiszlab/relax";
 
 const styles = {
   default: stylex.create({
-    menuItem: {
-      marginInline: spacing.xxsmall,
-      marginBottom: spacing.xxsmall,
-      marginTop: {
-        default: spacing.none,
-        ":first-child": spacing.xxsmall,
-      },
-    },
-
     item: {
       display: "flex",
       alignItems: "center",
@@ -92,6 +85,38 @@ const styles = {
       borderRadius: sizes.xsmall,
     }),
   }),
+
+  mode: {
+    menuitem: stylex.create({
+      horizontal: {},
+
+      vertical: {
+        marginInline: spacing.xxsmall,
+        marginBottom: spacing.xxsmall,
+        marginTop: {
+          default: spacing.none,
+          ":first-child": spacing.xxsmall,
+        },
+      },
+
+      inline: {
+        marginInline: spacing.xxsmall,
+        marginBottom: spacing.xxsmall,
+        marginTop: {
+          default: spacing.none,
+          ":first-child": spacing.xxsmall,
+        },
+      },
+    }),
+
+    item: stylex.create({
+      horizontal: {},
+
+      vertical: {},
+
+      inline: {},
+    }),
+  },
 };
 
 /**
@@ -101,13 +126,16 @@ const styles = {
  * menu item
  */
 const Item = forwardRef<HTMLLIElement, MenuItemProps>(
-  ({ level, label, prefix, suffix, value, className, ...props }, ref) => {
+  ({ level, label, prefix, suffix, value, className, mode, ...props }, ref) => {
     const { selectedKeys, expandedKeys, click: _click, toggle, variant, size } = useMenuContext();
     const classNames = useClassNames(ComponentToken.Menu);
     const isSelected = selectedKeys.has(value);
     const isExpanded = expandedKeys.has(value);
     const theme = useTheme();
     const hasChildren = !!props.children;
+    const itemRef = useRef<HTMLDivElement | null>(null);
+    const { isHovered, ...hoverProps } = useHover();
+    const isInline = mode === "inline";
 
     const click = useEvent(() => {
       // if item is a group, just trigger key
@@ -125,10 +153,11 @@ const Item = forwardRef<HTMLLIElement, MenuItemProps>(
       suffix,
       hasChildren,
       isExpanded,
+      isInline,
     });
 
     const styled = {
-      menuItem: stylex.props(styles.default.menuItem),
+      menuItem: stylex.props(styles.mode.menuitem[mode]),
       item: stylex.props(
         styles.default.item,
         styles.size[size]({ level }),
@@ -155,16 +184,31 @@ const Item = forwardRef<HTMLLIElement, MenuItemProps>(
     return (
       <li role="menuitem" ref={ref} {...styled.menuItem}>
         <div
+          ref={itemRef}
           style={styled.item.style}
           className={clsx(classNames[MenuClassToken.Item], className, styled.item.className)}
           onClick={click}
+          {...hoverProps}
         >
           {_children.prefix}
           {_children.label}
           {_children.suffix}
         </div>
 
-        {props.children}
+        {/* inline mode, show children directly */}
+        {isInline && props.children}
+
+        {/* not inline mode, show children in popper */}
+        {!isInline && props.children && (
+          <Popper
+            trigger={itemRef.current}
+            open={isHovered}
+            placement={mode === "vertical" ? "auto-start" : "bottom-start"}
+            {...hoverProps}
+          >
+            {props.children}
+          </Popper>
+        )}
       </li>
     );
   }

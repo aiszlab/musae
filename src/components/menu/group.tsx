@@ -1,4 +1,4 @@
-import React, { forwardRef } from "react";
+import React, { CSSProperties, forwardRef } from "react";
 import type { MenuGroupProps } from "./types";
 import { useAnimate } from "framer-motion";
 import { useClassNames } from "../config";
@@ -8,21 +8,38 @@ import Item from "./item";
 import { useMenuContext } from "./hooks";
 import { useRefs } from "@aiszlab/relax";
 import * as stylex from "@stylexjs/stylex";
-import { spacing } from "../theme/tokens.stylex";
+import { elevations, sizes, spacing } from "../theme/tokens.stylex";
 import { useExpandEffect } from "../../hooks/use-expand-effect";
+import { useTheme } from "../theme";
+import { ColorToken } from "../../utils/colors";
 
 const styles = stylex.create({
-  group: {
+  group: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
     /// reset ul styles
     margin: spacing.none,
     padding: spacing.none,
     listStyle: "none",
-
+    backgroundColor: props.backgroundColor,
     overflow: "auto",
-  },
+  }),
 
   hidden: {
     display: "none",
+  },
+
+  vertical: {
+    display: null,
+  },
+
+  horizontal: {
+    display: "flex",
+  },
+
+  submenu: {
+    boxShadow: elevations.small,
+    borderRadius: sizes.xxsmall,
+    minWidth: 200,
+    padding: spacing.xxsmall,
   },
 });
 
@@ -33,11 +50,13 @@ const styles = stylex.create({
  * menu group
  */
 const Group = forwardRef<HTMLUListElement, MenuGroupProps>(
-  ({ items = [], level = 0, expanded = true, className, style, ...props }, ref) => {
+  ({ items = [], level = 0, expanded = true, className, style, mode, ...props }, ref) => {
     const classNames = useClassNames(ComponentToken.Menu);
     const [scope, animate] = useAnimate<HTMLUListElement>();
     const { collect, expandedKeys } = useMenuContext();
     const groupRef = useRefs<HTMLUListElement>(ref, scope);
+    const theme = useTheme();
+    const isInline = mode === "inline";
 
     useExpandEffect({
       animate,
@@ -45,7 +64,15 @@ const Group = forwardRef<HTMLUListElement, MenuGroupProps>(
       expanded,
     });
 
-    const styled = stylex.props(styles.group, !expanded && styles.hidden, props.styles);
+    const styled = {
+      group: stylex.props(
+        styles.group({
+          backgroundColor: theme.colors[ColorToken.SurfaceContainerLow],
+        }),
+        !expanded && styles.hidden,
+        props.styles
+      ),
+    };
 
     return (
       <ul
@@ -55,10 +82,10 @@ const Group = forwardRef<HTMLUListElement, MenuGroupProps>(
             [classNames[MenuClassToken.GroupHidden]]: !expanded,
           },
           className,
-          styled.className
+          styled.group.className
         )}
         style={{
-          ...styled.style,
+          ...styled.group.style,
           ...style,
         }}
         ref={groupRef}
@@ -72,12 +99,20 @@ const Group = forwardRef<HTMLUListElement, MenuGroupProps>(
               className={item.className}
               style={item.style}
               label={item.label}
+              mode={mode}
               ref={(_ref) => {
-                collect(item.key, _ref!);
+                if (!_ref) return;
+                collect(item.key, _ref);
               }}
             >
               {children.length > 0 && (
-                <Group items={children} expanded={expandedKeys.has(item.key)} level={level + 1} />
+                <Group
+                  items={children}
+                  expanded={!isInline || expandedKeys.has(item.key)}
+                  level={!isInline ? 0 : level + 1}
+                  mode="inline"
+                  styles={[!isInline && styles.submenu]}
+                />
               )}
             </Item>
           );

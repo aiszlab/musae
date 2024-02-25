@@ -44,12 +44,14 @@ export const useItemChildren = ({
   suffix,
   hasChildren,
   isExpanded,
+  isInline,
 }: {
   prefix: ReactNode;
   label: ReactNode;
   suffix: ReactNode;
   hasChildren: boolean;
   isExpanded: boolean;
+  isInline: boolean;
 }) => {
   /// prefix
   const _prefix = useMemo(() => prefix && <span {...stylex.props(styles.prefix)}>{prefix}</span>, [prefix]);
@@ -70,14 +72,14 @@ export const useItemChildren = ({
     return (
       <span {...stylex.props(styles.suffix)}>
         {suffix}
-        {hasChildren && (
+        {hasChildren && isInline && (
           <span {...styled}>
             <KeyboardArrowUp size={16} />
           </span>
         )}
       </span>
     );
-  }, [hasChildren, isExpanded, suffix]);
+  }, [hasChildren, isExpanded, suffix, isInline]);
 
   return {
     suffix: _suffix,

@@ -2,7 +2,8 @@ import React, { isValidElement, useMemo, cloneElement, ReactElement, type CSSPro
 import type { FormItemProps } from "./types";
 import { useController } from "react-hook-form";
 import { FieldRenderProps } from "../../types/element";
-import { RequiredIn, isRefable } from "@aiszlab/relax";
+import type { RequiredIn } from "@aiszlab/relax/types";
+import { isRefable } from "@aiszlab/relax";
 import { useClassNames } from "../config";
 import { ComponentToken, FormClassToken } from "../../utils/class-name";
 import * as stylex from "@stylexjs/stylex";

@@ -4,6 +4,8 @@ import type { WithLevel } from "../../types/element";
 
 export type Variant = "filled" | "outlined" | "text";
 
+export type Mode = "vertical" | "horizontal" | "inline";
+
 /**
  * @author murukal
  *
@@ -100,6 +102,12 @@ export interface MenuProps extends ComponentProps {
    * size
    */
   size?: Size;
+
+  /**
+   * @description
+   * mode
+   */
+  mode?: Mode;
 }
 
 /**
@@ -165,6 +173,12 @@ export type MenuItemProps = WithLevel<Omit<MenuItem, "key" | "children">> &
      * children
      */
     children?: ReactNode;
+
+    /**
+     * @description
+     * mode
+     */
+    mode: Mode;
   };
 
 /**
@@ -193,6 +207,12 @@ export type MenuGroupProps = ComponentProps &
      * current menu group is expanded
      */
     expanded?: boolean;
+
+    /**
+     * @description
+     * mode
+     */
+    mode: Mode;
   };
 
 /**

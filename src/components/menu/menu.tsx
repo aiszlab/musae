@@ -24,11 +24,11 @@ const styles = stylex.create({
  * menu component
  */
 const Menu = forwardRef<MenuRef, MenuProps>(
-  ({ onClick, className, style, variant = "filled", size = "medium", ...props }, ref) => {
-    const { targetRef, scrollTo, to, setTrigger } = useScrollable<HTMLUListElement, HTMLLIElement>({
-      direction: "vertical",
-    });
+  ({ onClick, className, style, variant = "filled", size = "medium", mode = "inline", ...props }, ref) => {
     const classNames = useClassNames(ComponentToken.Menu);
+    const { targetRef, scrollTo, to, setTrigger } = useScrollable<HTMLUListElement, HTMLLIElement>({
+      direction: mode === "horizontal" ? "horizontal" : "vertical",
+    });
 
     /// context value
     const contextValue = useContextValue({
@@ -55,7 +55,8 @@ const Menu = forwardRef<MenuRef, MenuProps>(
           items={props.items}
           className={clsx(classNames[MenuClassToken.Menu], className)}
           style={style}
-          styles={styles.menu}
+          styles={[styles.menu]}
+          mode={mode}
         />
       </Context.Provider>
     );

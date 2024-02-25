@@ -3,7 +3,7 @@ import { MessageRef, MessageConfig } from "./types";
 import Message from "./message";
 import * as stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
-import { RequiredIn } from "@aiszlab/relax";
+import type { RequiredIn } from "@aiszlab/relax/types";
 import { AnimatePresence } from "framer-motion";
 
 const styles = stylex.create({

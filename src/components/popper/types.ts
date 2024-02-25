@@ -1,4 +1,5 @@
-import type { Nullable } from "@aiszlab/relax";
+import type { Nullable } from "@aiszlab/relax/types";
+import { Placement } from "@popperjs/core";
 import type { DOMAttributes, ReactNode } from "react";
 
 /**
@@ -7,7 +8,8 @@ import type { DOMAttributes, ReactNode } from "react";
  * @description
  * popper props
  */
-export interface PopperProps {
+export interface PopperProps
+  extends Pick<DOMAttributes<HTMLDivElement>, "onMouseDown" | "onPointerEnter" | "onPointerLeave"> {
   /**
    * @description
    * children
@@ -34,9 +36,9 @@ export interface PopperProps {
 
   /**
    * @description
-   * click handler
+   * placement
    */
-  onMouseDown?: DOMAttributes<HTMLDivElement>["onMouseDown"];
+  placement?: Placement;
 }
 
 /**
@@ -50,3 +52,5 @@ export interface PopperRef {
    */
   update?: VoidFunction;
 }
+
+export type DropdownProps = PopperProps & {};

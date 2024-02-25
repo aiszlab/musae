@@ -1,5 +1,5 @@
-import { RequiredIn } from "@aiszlab/relax";
-import { ReactNode } from "react";
+import type { RequiredIn } from "@aiszlab/relax/types";
+import type { ReactNode } from "react";
 
 type Type = "success" | "error" | "info" | "warning" | "loading";
 type Open = (content: string, duration?: number) => Promise<void>;

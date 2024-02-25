@@ -2,7 +2,8 @@ import React, { type ReactPortal, useCallback, useRef } from "react";
 import { createPortal } from "react-dom";
 import Holder from "./holder";
 import type { MessageConfig, MessageRef, Messager } from "./types";
-import { useDefault, isDomUsable, Nullable } from "@aiszlab/relax";
+import { Nullable } from "@aiszlab/relax/types";
+import { useDefault, isDomUsable } from "@aiszlab/relax";
 import { useConfiguration } from "../config/hooks";
 
 /**
