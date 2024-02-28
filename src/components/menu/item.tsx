@@ -9,9 +9,8 @@ import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
 import clsx from "clsx";
 import { typography } from "../theme/theme";
-import { useEvent } from "@aiszlab/relax";
+import { useEvent, useHover } from "@aiszlab/relax";
 import { Popper } from "../popper";
-import { useHover } from "@aiszlab/relax";
 
 const styles = {
   default: stylex.create({
