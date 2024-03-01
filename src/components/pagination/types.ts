@@ -60,15 +60,15 @@ export type PaginationItemProps = {
 
   /**
    * @description
-   * prev
+   * add
    */
-  prev: UsedCounter["prev"];
+  add: UsedCounter[1]["add"];
 
   /**
    * @description
-   * next
+   * subtract
    */
-  next: UsedCounter["next"];
+  subtract: UsedCounter[1]["subtract"];
 
   /**
    * @description

@@ -11,13 +11,7 @@ import { type PagiantionProps, type PaginationItems, PaginationItemType } from "
 export const usePagiantion = ({ total = 0, siblings = 1, boundaries = 1, ...dependencies }: PagiantionProps) => {
   const pageSize = dependencies.pageSize || 10;
   const pages = Math.ceil(total / pageSize);
-  const {
-    count: page,
-    next,
-    prev,
-    setCount,
-  } = useCounter({
-    initialValue: 1,
+  const [page, { add, subtract, setCount }] = useCounter(1, {
     min: 1,
     max: pages,
   });
@@ -54,8 +48,8 @@ export const usePagiantion = ({ total = 0, siblings = 1, boundaries = 1, ...depe
 
   return {
     paginationItems,
-    next,
-    prev,
+    add,
+    subtract,
     changePage: setCount,
     page,
     hasPrev,

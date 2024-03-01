@@ -13,7 +13,7 @@ const styles = stylex.create({
 });
 
 const Pagination = (props: PagiantionProps) => {
-  const { paginationItems, next, prev, changePage, page, hasNext, hasPrev } = usePagiantion(props);
+  const { paginationItems, add, subtract, changePage, page, hasNext, hasPrev } = usePagiantion(props);
   const styled = stylex.props(styles.pagination);
 
   return (
@@ -23,8 +23,8 @@ const Pagination = (props: PagiantionProps) => {
           <li key={item}>
             <Item
               value={item}
-              next={next}
-              prev={prev}
+              add={add}
+              subtract={subtract}
               onPageChange={changePage}
               checked={page === item}
               hasNext={hasNext}

@@ -26,10 +26,10 @@ const styles = stylex.create({
   },
 });
 
-const Item = ({ value, onPageChange, next, prev, checked, hasNext, hasPrev }: PaginationItemProps) => {
+const Item = ({ value, onPageChange, add, subtract, checked, hasNext, hasPrev }: PaginationItemProps) => {
   if (value === PaginationItemType.Prev) {
     return (
-      <Button onClick={() => prev()} shape="circular" variant="text" color="secondary" disabled={!hasPrev}>
+      <Button onClick={() => add()} shape="circular" variant="text" color="secondary" disabled={!hasPrev}>
         <KeyboardArrowLeft />
       </Button>
     );
@@ -37,7 +37,7 @@ const Item = ({ value, onPageChange, next, prev, checked, hasNext, hasPrev }: Pa
 
   if (value === PaginationItemType.Next) {
     return (
-      <Button onClick={() => next()} shape="circular" variant="text" color="secondary" disabled={!hasNext}>
+      <Button onClick={() => add()} shape="circular" variant="text" color="secondary" disabled={!hasNext}>
         <KeyboardArrowRight />
       </Button>
     );
@@ -58,7 +58,7 @@ const Item = ({ value, onPageChange, next, prev, checked, hasNext, hasPrev }: Pa
         className={styled.more.className}
         style={styled.more.style}
         onClick={() => {
-          isNegative ? prev(5) : next(5);
+          isNegative ? add(5) : subtract(5);
         }}
       >
         <MoreHoriz />
