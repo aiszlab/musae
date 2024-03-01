@@ -133,7 +133,7 @@ const Item = forwardRef<HTMLLIElement, MenuItemProps>(
     const theme = useTheme();
     const hasChildren = !!props.children;
     const itemRef = useRef<HTMLDivElement | null>(null);
-    const { isHovered, ...hoverProps } = useHover();
+    const [isHovered, hoverProps] = useHover();
     const isInline = mode === "inline";
 
     const click = useEvent(() => {

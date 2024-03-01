@@ -8,7 +8,7 @@ import React, {
   CSSProperties,
 } from "react";
 import { Popper } from "../popper";
-import { useBoolean } from "@aiszlab/relax";
+import { useBoolean, useFoucs } from "@aiszlab/relax";
 import { useEvents } from "./hooks";
 import type { PickerProps, PickerRef } from "./types";
 import type { PopperRef } from "../popper/types";
@@ -66,8 +66,8 @@ const styles = stylex.create({
 const Picker = forwardRef<PickerRef, PickerProps>(
   ({ pickable, picked, className, popupWidth = "match", ...props }, ref) => {
     const trigger = useRef<HTMLDivElement>(null);
-    const { isOn: isVisible, turnOff: close, toggle } = useBoolean();
-    const { isOn: isFocused, turnOn: _focus, turnOff: _blur } = useBoolean();
+    const [isVisible, { turnOff: close, toggle }] = useBoolean();
+
     const classNames = useClassNames(ComponentToken.Picker);
     const popper = useRef<PopperRef>(null);
     const theme = useTheme();
@@ -93,7 +93,10 @@ const Picker = forwardRef<PickerRef, PickerProps>(
     }, [picked]);
 
     /// events
-    const { blur, click } = useEvents([[_blur], [close, toggle]]);
+    const { blur, click } = useEvents({ onBlur: close, onClick: toggle });
+    const [isFocused, focusProps] = useFoucs<HTMLInputElement>({
+      onBlur: blur,
+    });
 
     const styled = {
       picker: stylex.props(
@@ -116,8 +119,7 @@ const Picker = forwardRef<PickerRef, PickerProps>(
           }}
           ref={trigger}
           tabIndex={-1}
-          onFocus={_focus}
-          onBlur={blur}
+          {...focusProps}
           onClick={click}
         >
           {picked}

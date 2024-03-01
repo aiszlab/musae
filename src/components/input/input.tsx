@@ -1,7 +1,7 @@
 import React, { forwardRef, useRef, useImperativeHandle, useContext, CSSProperties } from "react";
 import { useInputEvents, useStyles, useWrapperEvents } from "./hooks";
 import type { InputProps, InputRef } from "./types";
-import { useBoolean, useControlledState } from "@aiszlab/relax";
+import { useControlledState, useFoucs } from "@aiszlab/relax";
 import Context from "../config/context";
 import { ComponentToken, InputClassToken } from "../../utils/class-name";
 import * as stylex from "@stylexjs/stylex";
@@ -43,10 +43,10 @@ const styles = stylex.create({
 
   input: {
     backgroundColor: "transparent",
-    minWidth: 0,
-    outline: "none",
-    border: "none",
-    height: "auto",
+    outline: sizes.none,
+    border: sizes.none,
+    minWidth: sizes.none,
+    height: sizes.auto,
     flex: 1,
   },
 });
@@ -75,17 +75,21 @@ const Input = forwardRef<InputRef, InputProps>((props, ref) => {
   const [_value, _setValue] = useControlledState(props.value, {
     defaultState: "",
   });
-  /// is focused
-  const { isOn: isFocused, turnOn: _focus, turnOff: _blur } = useBoolean();
-  /// style
-  const { wrapper: wrapperClassName } = useStyles([props.className, isFocused, props.invalid]);
 
   /// events
-  const inputEvents = useInputEvents([
-    [_focus, _blur, _setValue],
-    [props.onFocus, props.onBlur, props.onChange, props.onClick],
-  ]);
+  const inputEvents = useInputEvents({
+    setValue: _setValue,
+    onBlur: props.onBlur,
+    onChange: props.onChange,
+    onClick: props.onClick,
+    onFocus: props.onFocus,
+  });
   const wrapperEvents = useWrapperEvents([_input]);
+
+  /// is focused
+  const [isFocused, focusProps] = useFoucs({ onBlur: inputEvents.blur, onFocus: inputEvents.focus });
+  /// style
+  const { wrapper: wrapperClassName } = useStyles([props.className, isFocused, props.invalid]);
 
   const styled = {
     wrapper: stylex.props(
@@ -132,8 +136,7 @@ const Input = forwardRef<InputRef, InputProps>((props, ref) => {
         readOnly={props.readOnly}
         onChange={inputEvents.change}
         onClick={inputEvents.click}
-        onFocus={inputEvents.focus}
-        onBlur={inputEvents.blur}
+        {...focusProps}
       />
 
       {/* suffix */}

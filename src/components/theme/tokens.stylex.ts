@@ -48,6 +48,7 @@ export const sizes = defineVars({
   xxlarge: "64px",
   infinity: `calc(${Infinity} * 1px)`,
   full: "100%",
+  auto: "auto",
 });
 
 /**

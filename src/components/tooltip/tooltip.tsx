@@ -20,7 +20,7 @@ const styles = stylex.create({
 const Tooltip = (props: TooltipProps) => {
   const _ref = useRef<Element>(null);
   const childRef = useRefs(_ref, props.children.props.ref);
-  const { isOn: isVisible, turnOn: open, turnOff: close } = useBoolean(false);
+  const [isVisible, { turnOn: open, turnOff: close }] = useBoolean(false);
   const theme = useTheme();
 
   const hover: MouseEventHandler = (e) => {

@@ -4,17 +4,19 @@ import { FocusEventHandler, MouseEventHandler, useCallback } from "react";
  * @description
  * use events for input
  */
-export const useEvents = ([[_blur], [onBlur, onClick]]: [
-  [_blur: VoidFunction],
-  [FocusEventHandler<HTMLDivElement>, MouseEventHandler<HTMLInputElement>]
-]) => {
+export const useEvents = ({
+  onBlur,
+  onClick,
+}: {
+  onBlur: FocusEventHandler<HTMLDivElement>;
+  onClick: MouseEventHandler<HTMLInputElement>;
+}) => {
   const blur = useCallback<FocusEventHandler<HTMLInputElement>>(
     (e) => {
-      _blur();
       onBlur?.(e);
       e.stopPropagation();
     },
-    [_blur, onBlur]
+    [onBlur]
   );
 
   /// click handler

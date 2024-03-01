@@ -47,35 +47,38 @@ export const useStyles = ([className, isFocused, isInvalid]: [
  * @description
  * use events for input
  */
-export const useInputEvents = ([[_focus, _blur, _change], [onFocus, onBlur, onChange, onClick]]: [
-  [_focus: () => void, _blur: () => void, _change: Dispatch<SetStateAction<Partialable<string>>>],
-  [InputProps["onFocus"], InputProps["onBlur"], InputProps["onChange"], InputProps["onClick"]]
-]) => {
+export const useInputEvents = ({
+  setValue,
+  onBlur,
+  onChange,
+  onClick,
+  onFocus,
+}: Pick<InputProps, "onFocus" | "onBlur" | "onChange" | "onClick"> & {
+  setValue: Dispatch<SetStateAction<Partialable<string>>>;
+}) => {
   const focus = useCallback<FocusEventHandler<HTMLInputElement>>(
     (e) => {
-      _focus();
       onFocus?.(e);
       e.stopPropagation();
     },
-    [_focus, onFocus]
+    [onFocus]
   );
 
   const blur = useCallback<FocusEventHandler<HTMLInputElement>>(
     (e) => {
-      _blur();
       onBlur?.(e);
       e.stopPropagation();
     },
-    [_blur, onBlur]
+    [onBlur]
   );
 
   /// change handler
   const change = useCallback<ChangeEventHandler<HTMLInputElement>>(
     (e) => {
-      _change(e.target.value);
+      setValue(e.target.value);
       onChange?.(e.target.value);
     },
-    [_change, onChange]
+    [setValue, onChange]
   );
 
   /// click handler
