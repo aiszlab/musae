@@ -8,7 +8,7 @@ import React, {
   CSSProperties,
 } from "react";
 import { Popper } from "../popper";
-import { useBoolean, useFoucs } from "@aiszlab/relax";
+import { useBoolean, useFocus } from "@aiszlab/relax";
 import { useEvents } from "./hooks";
 import type { PickerProps, PickerRef } from "./types";
 import type { PopperRef } from "../popper/types";
@@ -94,7 +94,7 @@ const Picker = forwardRef<PickerRef, PickerProps>(
 
     /// events
     const { blur, click } = useEvents({ onBlur: close, onClick: toggle });
-    const [isFocused, focusProps] = useFoucs<HTMLInputElement>({
+    const [isFocused, focusProps] = useFocus<HTMLInputElement>({
       onBlur: blur,
     });
 

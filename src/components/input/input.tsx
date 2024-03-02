@@ -1,7 +1,7 @@
 import React, { forwardRef, useRef, useImperativeHandle, useContext, CSSProperties } from "react";
 import { useInputEvents, useStyles, useWrapperEvents } from "./hooks";
 import type { InputProps, InputRef } from "./types";
-import { useControlledState, useFoucs } from "@aiszlab/relax";
+import { useControlledState, useFocus } from "@aiszlab/relax";
 import Context from "../config/context";
 import { ComponentToken, InputClassToken } from "../../utils/class-name";
 import * as stylex from "@stylexjs/stylex";
@@ -87,7 +87,7 @@ const Input = forwardRef<InputRef, InputProps>((props, ref) => {
   const wrapperEvents = useWrapperEvents([_input]);
 
   /// is focused
-  const [isFocused, focusProps] = useFoucs({ onBlur: inputEvents.blur, onFocus: inputEvents.focus });
+  const [isFocused, focusProps] = useFocus({ onBlur: inputEvents.blur, onFocus: inputEvents.focus });
   /// style
   const { wrapper: wrapperClassName } = useStyles([props.className, isFocused, props.invalid]);
 
