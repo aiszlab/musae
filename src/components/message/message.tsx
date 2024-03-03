@@ -40,14 +40,9 @@ const styles = stylex.create({
 const Message = ({ duration = 3000, type, onClose, children }: MessageProps) => {
   const theme = useTheme();
 
-  useTimeout(
-    () => {
-      onClose?.();
-    },
-    {
-      duration,
-    }
-  );
+  useTimeout(() => {
+    onClose?.();
+  }, duration);
 
   const color =
     type === "success" ? theme.colors[ColorToken.Primary] : "error" ? theme.colors[ColorToken.Error] : void 0;
