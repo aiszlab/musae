@@ -1,7 +1,12 @@
 import React from "react";
 import { useDateCells, useHeadCells, useFocusedAt, useValue } from "./hooks";
 import type { CalendarProps } from "./types";
-import { KeyboardDoubleArrowLeft, KeyboardDoubleArrowRight, KeyboardArrowLeft, KeyboardArrowRight } from "../icon";
+import {
+  KeyboardDoubleArrowLeft,
+  KeyboardDoubleArrowRight,
+  KeyboardArrowLeft,
+  KeyboardArrowRight,
+} from "../icon/icons";
 import { useClassNames } from "../config";
 import { CalendarClassToken, ComponentToken } from "../../utils/class-name";
 import * as stylex from "@stylexjs/stylex";

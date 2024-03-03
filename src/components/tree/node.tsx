@@ -4,7 +4,7 @@ import { useClassNames } from "../config";
 import { ComponentToken, TreeClassToken } from "../../utils/class-name";
 import Context from "./context";
 import { Checkbox } from "../checkbox";
-import { KeyboardArrowRight } from "../icon";
+import { KeyboardArrowRight } from "../icon/icons";
 import * as stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
 import clsx from "clsx";

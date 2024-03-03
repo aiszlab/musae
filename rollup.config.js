@@ -10,17 +10,24 @@ import { fileURLToPath } from "url";
 import { dirname } from "path";
 
 const CSS_ASSET_FILENAME = "stylex.css";
+const ENTRY = "index";
+
+/** @type {import("rollup").RollupOptions['input']} */
+const input = {
+  [ENTRY]: "./src/index",
+  "components/icon/icons/index": "./src/components/icon/icons/index",
+};
 
 /** @type {import("rollup").RollupOptions} */
 const configuration = {
-  input: "./src/index.ts",
+  input,
 
   output: {
     format: "es",
     dir: "./dist",
     entryFileNames: "[name].mjs",
     banner: (chunk) => {
-      if (chunk.isEntry) {
+      if (chunk.isEntry && chunk.name === ENTRY) {
         // configuration readme: https://rollupjs.org/configuration-options/#output-banner-output-footer
         // update imports, importedBindings
         // add css to entry chunk

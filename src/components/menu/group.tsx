@@ -13,35 +13,41 @@ import { useExpandEffect } from "../../hooks/use-expand-effect";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
 
-const styles = stylex.create({
-  group: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
-    /// reset ul styles
-    margin: spacing.none,
-    padding: spacing.none,
-    listStyle: "none",
-    backgroundColor: props.backgroundColor,
-    overflow: "auto",
+const styles = {
+  group: stylex.create({
+    default: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
+      /// reset ul styles
+      margin: spacing.none,
+      padding: spacing.none,
+      listStyle: "none",
+      backgroundColor: props.backgroundColor,
+      overflow: "auto",
+    }),
+
+    hidden: {
+      display: "none",
+    },
   }),
 
-  hidden: {
-    display: "none",
-  },
+  submenu: stylex.create({
+    inline: {},
 
-  vertical: {
-    display: null,
-  },
+    horizontal: {
+      boxShadow: elevations.small,
+      borderRadius: sizes.xxsmall,
+      minWidth: 200,
+      padding: spacing.xxsmall,
+      marginTop: spacing.xsmall,
+    },
 
-  horizontal: {
-    display: "flex",
-  },
-
-  submenu: {
-    boxShadow: elevations.small,
-    borderRadius: sizes.xxsmall,
-    minWidth: 200,
-    padding: spacing.xxsmall,
-  },
-});
+    vertical: {
+      boxShadow: elevations.small,
+      borderRadius: sizes.xxsmall,
+      minWidth: 200,
+      padding: spacing.xxsmall,
+    },
+  }),
+};
 
 /**
  * @author murukal
@@ -66,12 +72,14 @@ const Group = forwardRef<HTMLUListElement, MenuGroupProps>(
 
     const styled = {
       group: stylex.props(
-        styles.group({
+        styles.group.default({
           backgroundColor: theme.colors[ColorToken.SurfaceContainerLow],
         }),
-        !expanded && styles.hidden,
+        !expanded && styles.group.hidden,
         props.styles
       ),
+
+      submenu: [styles.submenu[mode]],
     };
 
     return (
@@ -111,7 +119,7 @@ const Group = forwardRef<HTMLUListElement, MenuGroupProps>(
                   expanded={!isInline || expandedKeys.has(item.key)}
                   level={!isInline ? 0 : level + 1}
                   mode="inline"
-                  styles={[!isInline && styles.submenu]}
+                  styles={styled.submenu}
                 />
               )}
             </Item>

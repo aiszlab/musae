@@ -4,7 +4,7 @@ import type { ContextValue, MenuProps, Variant } from "./types";
 import { useControlledState } from "@aiszlab/relax";
 import * as stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
-import { KeyboardArrowUp } from "../icon";
+import { KeyboardArrowUp } from "../icon/icons";
 import type { Size } from "../../types/element";
 
 const styles = stylex.create({

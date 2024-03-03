@@ -7,7 +7,7 @@ import {
   MoreHoriz,
   KeyboardDoubleArrowLeft,
   KeyboardDoubleArrowRight,
-} from "../icon";
+} from "../icon/icons";
 import * as stylex from "@stylexjs/stylex";
 
 const styles = stylex.create({

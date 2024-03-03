@@ -14,6 +14,7 @@ const styles = stylex.create({
     backgroundColor: props.backgroundColor,
     borderRadius: sizes.xxsmall,
     padding: spacing.xxsmall,
+    marginTop: spacing.xxsmall,
   }),
 });
 

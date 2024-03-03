@@ -3,7 +3,7 @@ import React, { KeyboardEvent, useMemo } from "react";
 import { Button } from "../components/button";
 import * as stylex from "@stylexjs/stylex";
 import { spacing } from "../components/theme/tokens.stylex";
-import { Close } from "../components/icon";
+import { Close } from "../components/icon/icons";
 
 export type Dismissable = "esc" | "mask" | "close";
 

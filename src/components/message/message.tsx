@@ -5,7 +5,8 @@ import * as stylex from "@stylexjs/stylex";
 import { elevations, sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
-import { Cancel, CheckCircle, type IconProps } from "../icon";
+import { type IconProps } from "../icon";
+import { Cancel, CheckCircle } from "../icon/icons";
 import { BODY } from "../theme/theme";
 import { motion } from "framer-motion";
 

@@ -3,7 +3,7 @@ import { Picker, PickerRef } from "../picker";
 import { useValue } from "./hooks";
 import { DateRangePickerProps } from "./types";
 import { Calendar } from "../calendar";
-import { SwapHoriz } from "../icon";
+import { SwapHoriz } from "../icon/icons";
 import { useClassNames } from "../config";
 import { ComponentToken, DateRangePickerClassToken } from "../../utils/class-name";
 import * as stylex from "@stylexjs/stylex";
