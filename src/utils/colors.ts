@@ -1,4 +1,4 @@
-import { Palettes } from "../components/theme/types";
+import { Palette } from "../components/theme/types";
 
 /**
  * @description
@@ -58,59 +58,59 @@ export enum ColorToken {
 
 /**
  * @description
- * convert palettes to colors
+ * convert palette to colors
  */
-export const toColors = (palettes: Palettes): Record<ColorToken, string> => {
+export const toColors = (palette: Palette): Record<ColorToken, string> => {
   return {
-    [ColorToken.Primary]: palettes.primary[40],
-    [ColorToken.OnPrimary]: palettes.primary[100],
-    [ColorToken.PrimaryContainer]: palettes.primary[90],
-    [ColorToken.OnPrimaryContainer]: palettes.primary[10],
-    [ColorToken.PrimaryFixed]: palettes.primary[90],
-    [ColorToken.PrimaryFixedDim]: palettes.primary[80],
-    [ColorToken.OnPrimaryFixed]: palettes.primary[10],
-    [ColorToken.OnPrimaryFixedVariant]: palettes.primary[30],
+    [ColorToken.Primary]: palette.primary[40],
+    [ColorToken.OnPrimary]: palette.primary[100],
+    [ColorToken.PrimaryContainer]: palette.primary[90],
+    [ColorToken.OnPrimaryContainer]: palette.primary[10],
+    [ColorToken.PrimaryFixed]: palette.primary[90],
+    [ColorToken.PrimaryFixedDim]: palette.primary[80],
+    [ColorToken.OnPrimaryFixed]: palette.primary[10],
+    [ColorToken.OnPrimaryFixedVariant]: palette.primary[30],
 
-    [ColorToken.Secondary]: palettes.secondary[40],
-    [ColorToken.OnSecondary]: palettes.secondary[100],
-    [ColorToken.SecondaryContainer]: palettes.secondary[90],
-    [ColorToken.OnSecondaryContainer]: palettes.secondary[10],
-    [ColorToken.SecondaryFixed]: palettes.secondary[90],
-    [ColorToken.SecondaryFixedDim]: palettes.secondary[80],
-    [ColorToken.OnSecondaryFixed]: palettes.secondary[10],
-    [ColorToken.OnSecondaryFixedVariant]: palettes.secondary[30],
+    [ColorToken.Secondary]: palette.secondary[40],
+    [ColorToken.OnSecondary]: palette.secondary[100],
+    [ColorToken.SecondaryContainer]: palette.secondary[90],
+    [ColorToken.OnSecondaryContainer]: palette.secondary[10],
+    [ColorToken.SecondaryFixed]: palette.secondary[90],
+    [ColorToken.SecondaryFixedDim]: palette.secondary[80],
+    [ColorToken.OnSecondaryFixed]: palette.secondary[10],
+    [ColorToken.OnSecondaryFixedVariant]: palette.secondary[30],
 
-    [ColorToken.Tertiary]: palettes.tertiary[40],
-    [ColorToken.OnTertiary]: palettes.tertiary[100],
-    [ColorToken.TertiaryContainer]: palettes.tertiary[90],
-    [ColorToken.OnTertiaryContainer]: palettes.tertiary[10],
-    [ColorToken.TertiaryFixed]: palettes.tertiary[90],
-    [ColorToken.TertiaryFixedDim]: palettes.tertiary[80],
-    [ColorToken.OnTertiaryFixed]: palettes.tertiary[10],
-    [ColorToken.OnTertiaryFixedVariant]: palettes.tertiary[30],
+    [ColorToken.Tertiary]: palette.tertiary[40],
+    [ColorToken.OnTertiary]: palette.tertiary[100],
+    [ColorToken.TertiaryContainer]: palette.tertiary[90],
+    [ColorToken.OnTertiaryContainer]: palette.tertiary[10],
+    [ColorToken.TertiaryFixed]: palette.tertiary[90],
+    [ColorToken.TertiaryFixedDim]: palette.tertiary[80],
+    [ColorToken.OnTertiaryFixed]: palette.tertiary[10],
+    [ColorToken.OnTertiaryFixedVariant]: palette.tertiary[30],
 
-    [ColorToken.Error]: palettes.error[40],
-    [ColorToken.OnError]: palettes.error[100],
-    [ColorToken.ErrorContainer]: palettes.error[90],
-    [ColorToken.OnErrorContainer]: palettes.error[10],
+    [ColorToken.Error]: palette.error[40],
+    [ColorToken.OnError]: palette.error[100],
+    [ColorToken.ErrorContainer]: palette.error[90],
+    [ColorToken.OnErrorContainer]: palette.error[10],
 
     [ColorToken.Surface]: "#FEF7FF",
-    [ColorToken.OnSurface]: palettes.neutral[10],
+    [ColorToken.OnSurface]: palette.neutral[10],
     [ColorToken.SurfaceDim]: "#DED8E1",
     [ColorToken.SurfaceContainer]: "#F3EDF7",
-    [ColorToken.SurfaceContainerLow]: palettes.primary[100],
-    [ColorToken.SurfaceContainerLowest]: palettes.neutral[100],
+    [ColorToken.SurfaceContainerLow]: palette.primary[100],
+    [ColorToken.SurfaceContainerLowest]: palette.neutral[100],
     [ColorToken.SurfaceContainerHigh]: "#ECE6F0",
-    [ColorToken.SurfaceContainerHighest]: palettes.neutral[90],
-    [ColorToken.OnSurfaceVariant]: palettes.neutralVariant[30],
-    [ColorToken.InverseSurface]: palettes.neutral[20],
-    [ColorToken.InverseOnSurface]: palettes.neutral[95],
-    [ColorToken.InversePrimary]: palettes.primary[80],
+    [ColorToken.SurfaceContainerHighest]: palette.neutral[90],
+    [ColorToken.OnSurfaceVariant]: palette.neutralVariant[30],
+    [ColorToken.InverseSurface]: palette.neutral[20],
+    [ColorToken.InverseOnSurface]: palette.neutral[95],
+    [ColorToken.InversePrimary]: palette.primary[80],
 
-    [ColorToken.Outline]: palettes.neutralVariant[50],
-    [ColorToken.OutlineVariant]: palettes.neutralVariant[80],
+    [ColorToken.Outline]: palette.neutralVariant[50],
+    [ColorToken.OutlineVariant]: palette.neutralVariant[80],
 
-    [ColorToken.Shadow]: palettes.neutral[0],
-    [ColorToken.Scrim]: palettes.neutral[0],
+    [ColorToken.Shadow]: palette.neutral[0],
+    [ColorToken.Scrim]: palette.neutral[0],
   };
 };

@@ -5,7 +5,7 @@ import { useClassNames } from "../config";
 import { ChipClassToken, ComponentToken } from "../../utils/class-name";
 import * as stylex from "@stylexjs/stylex";
 import { useTheme } from "../theme";
-import { LABEL } from "../theme/theme";
+import { typography } from "../theme/theme";
 import { ColorToken } from "../../utils/colors";
 import { spacing } from "../theme/tokens.stylex";
 
@@ -33,7 +33,7 @@ const Chip = ({ children, size = "large", ...props }: ChipProps) => {
   const theme = useTheme();
 
   const styled = stylex.props(
-    LABEL.large,
+    typography.label.large,
     styles.chip({
       backgroundColor: theme.colors[ColorToken.PrimaryContainer],
       color: theme.colors[ColorToken.OnPrimaryContainer],

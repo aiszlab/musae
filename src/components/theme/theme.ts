@@ -5,7 +5,7 @@ import { tracking } from "./tokens.stylex";
  * @description
  * typography - display
  */
-export const DISPLAY = stylex.create({
+const display = stylex.create({
   small: {
     fontSize: 36,
     fontWeight: 400,
@@ -30,7 +30,7 @@ export const DISPLAY = stylex.create({
  * @description
  * typography - headline
  */
-export const HEADLINE = stylex.create({
+export const headline = stylex.create({
   small: {
     fontSize: 24,
     fontWeight: 400,
@@ -55,7 +55,7 @@ export const HEADLINE = stylex.create({
  * @description
  * typography - title
  */
-export const TITLE = stylex.create({
+const title = stylex.create({
   small: {
     fontSize: 14,
     fontWeight: 400,
@@ -80,7 +80,7 @@ export const TITLE = stylex.create({
  * @description
  * typography - body
  */
-export const BODY = stylex.create({
+const body = stylex.create({
   small: {
     fontSize: 12,
     fontWeight: 400,
@@ -105,7 +105,7 @@ export const BODY = stylex.create({
  * @description
  * typography - label
  */
-export const LABEL = stylex.create({
+const label = stylex.create({
   small: {
     fontSize: 11,
     fontWeight: 500,
@@ -127,7 +127,9 @@ export const LABEL = stylex.create({
 });
 
 export const typography = {
-  body: BODY,
-  label: LABEL,
-  headline: HEADLINE,
+  body,
+  label,
+  headline,
+  display,
+  title,
 };

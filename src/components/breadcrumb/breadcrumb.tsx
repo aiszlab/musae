@@ -1,7 +1,7 @@
 import React, { CSSProperties, isValidElement } from "react";
 import type { BreadcrumbProps } from "./types";
 import * as stylex from "@stylexjs/stylex";
-import { LABEL } from "../theme/theme";
+import { typography } from "../theme/theme";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
 import { spacing } from "../theme/tokens.stylex";
@@ -60,7 +60,7 @@ const Breadcrumb = (props: BreadcrumbProps) => {
 
   const styled = {
     breadcrumb: stylex.props(
-      LABEL.large,
+      typography.label.large,
       styles.breadcrumb({
         color: theme.colors[ColorToken.OnSurfaceVariant],
       })

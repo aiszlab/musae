@@ -8,7 +8,7 @@ import * as stylex from "@stylexjs/stylex";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
 import { sizes, spacing } from "../theme/tokens.stylex";
-import { BODY } from "../theme/theme";
+import { typography } from "../theme/theme";
 import clsx from "clsx";
 
 const styles = stylex.create({
@@ -122,7 +122,7 @@ const Radio = ({ children, value, ...props }: RadioProps) => {
               borderColor: theme.colors[ColorToken.Primary],
             }))
     ),
-    label: stylex.props(BODY.medium, styles.label),
+    label: stylex.props(typography.body.medium, styles.label),
   };
 
   return (

@@ -12,7 +12,7 @@ import { spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
 import Gridded from "./gridded";
-import { BODY } from "../theme/theme";
+import { typography } from "../theme/theme";
 
 const styles = stylex.create({
   explain: {
@@ -77,7 +77,7 @@ const Field = ({ required, ...props }: RequiredIn<FormItemProps, "name" | "requi
   }, [props.children, name, value, invalid, ref, onChange, onBlur]);
 
   const styled = {
-    explain: stylex.props(BODY.medium, styles.explain),
+    explain: stylex.props(typography.body.medium, styles.explain),
   };
 
   const _error = useMemo(() => {

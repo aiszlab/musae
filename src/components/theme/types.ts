@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import type { toColors } from "../../utils/colors";
 
 export type Theme = {
-  palettes: Palettes;
+  palette: Palette;
 };
 
 /**
@@ -35,9 +35,9 @@ enum ColorProperty {
  * @author murukal
  *
  * @description
- * palettes
+ * palette
  */
-export type Palettes = {
+export type Palette = {
   [key in ColorProperty]: {
     [key in 0 | 10 | 20 | 30 | 40 | 50 | 60 | 70 | 80 | 90 | 95 | 99 | 100]: string;
   };

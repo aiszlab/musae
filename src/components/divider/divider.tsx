@@ -7,7 +7,7 @@ import * as stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
-import { BODY } from "../theme/theme";
+import { typography } from "../theme/theme";
 import clsx from "clsx";
 
 const styles = stylex.create({
@@ -97,7 +97,7 @@ const Divider = ({ align, children, type = "horizontal" }: DividerProps) => {
             backgroundColor: theme.colors[ColorToken.OutlineVariant],
           })
     ),
-    label: stylex.props(BODY.small, styles[type === "horizontal" ? "horizontalLabel" : "verticalLabel"]),
+    label: stylex.props(typography.body.small, styles[type === "horizontal" ? "horizontalLabel" : "verticalLabel"]),
   };
 
   return (

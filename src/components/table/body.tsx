@@ -4,7 +4,7 @@ import { flexRender } from "@tanstack/react-table";
 import type { BodyProps } from "./types";
 import * as stylex from "@stylexjs/stylex";
 import clsx from "clsx";
-import { BODY } from "../theme/theme";
+import { typography } from "../theme/theme";
 import { sizes } from "../theme/tokens.stylex";
 
 const styles = stylex.create({
@@ -18,7 +18,7 @@ const Body = <T,>(props: BodyProps) => {
 
   if (!table) return;
 
-  const styled = stylex.props(bordered && styles.bordered, BODY.small, props.styles);
+  const styled = stylex.props(bordered && styles.bordered, typography.body.small, props.styles);
 
   return (
     <tbody>

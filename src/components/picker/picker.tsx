@@ -20,7 +20,7 @@ import { sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
 import clsx from "clsx";
-import { BODY } from "../theme/theme";
+import { typography } from "../theme/theme";
 
 const styles = stylex.create({
   picker: (borderColor: CSSProperties["borderColor"]) => ({
@@ -100,7 +100,7 @@ const Picker = forwardRef<PickerRef, PickerProps>(
 
     const styled = {
       picker: stylex.props(
-        BODY.small,
+        typography.body.small,
         styles.picker(theme.colors[ColorToken.Outline]),
         isFocused && styles.focused(theme.colors[ColorToken.Primary])
       ),

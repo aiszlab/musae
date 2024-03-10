@@ -1,6 +1,6 @@
 import React, { type Key, type ReactNode, useCallback, useContext, useMemo } from "react";
 import Context from "./context";
-import type { ContextValue, MenuProps, Variant } from "./types";
+import type { ContextValue, MenuProps, Mode, Variant } from "./types";
 import { useControlledState } from "@aiszlab/relax";
 import * as stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
@@ -157,4 +157,14 @@ export const useContextValue = ({
     }),
     [selectedKeys, expandedKeys, click, toggle, collect, variant, size]
   );
+};
+
+/**
+ * @description
+ * in menu, musae allow developer scroll to the position by given key
+ * but there are only x or y scroll direction
+ * so we need convert the mode into direction
+ */
+export const useScrollDirection = (mode: Mode) => {
+  return mode === "horizontal" ? "horizontal" : "vertical";
 };

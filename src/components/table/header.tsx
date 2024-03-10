@@ -7,7 +7,7 @@ import { sizes } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import clsx from "clsx";
 import { ColorToken } from "../../utils/colors";
-import { LABEL } from "../theme/theme";
+import { typography } from "../theme/theme";
 
 const styles = stylex.create({
   cell: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
@@ -45,7 +45,7 @@ const Header = <T,>(props: HeaderProps) => {
     styles.cell({
       backgroundColor: theme.colors[ColorToken.Surface],
     }),
-    LABEL.small,
+    typography.label.small,
     bordered
       ? styles.bordered
       : styles.unbordered({

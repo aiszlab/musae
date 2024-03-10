@@ -9,7 +9,7 @@ import * as stylex from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
-import { LABEL } from "../theme/theme";
+import { typography } from "../theme/theme";
 
 const styles = stylex.create({
   checkbox: {
@@ -113,7 +113,7 @@ const Checkbox = ({ value, className, style, children, ...props }: CheckboxProps
           triggerColor: theme.colors[ColorToken.OnPrimary],
         })
     ),
-    label: stylex.props(LABEL.small, styles.label),
+    label: stylex.props(typography.label.small, styles.label),
   };
 
   return (

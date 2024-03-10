@@ -2,7 +2,7 @@ import React, { forwardRef, useImperativeHandle } from "react";
 import type { MenuProps, MenuRef } from "./types";
 import Context from "./context";
 import { useScrollable } from "@aiszlab/relax";
-import { useContextValue } from "./hooks";
+import { useContextValue, useScrollDirection } from "./hooks";
 import Group from "./group";
 import * as stylex from "@stylexjs/stylex";
 import { useClassNames } from "../config";
@@ -27,7 +27,7 @@ const Menu = forwardRef<MenuRef, MenuProps>(
   ({ onClick, className, style, variant = "filled", size = "medium", mode = "inline", ...props }, ref) => {
     const classNames = useClassNames(ComponentToken.Menu);
     const { targetRef, scrollTo, to, setTrigger } = useScrollable<HTMLUListElement, HTMLLIElement>({
-      direction: mode === "horizontal" ? "horizontal" : "vertical",
+      direction: useScrollDirection(mode),
     });
 
     /// context value

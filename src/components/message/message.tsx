@@ -7,7 +7,7 @@ import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
 import { type IconProps } from "../icon";
 import { Cancel, CheckCircle } from "../icon/icons";
-import { BODY } from "../theme/theme";
+import { typography } from "../theme/theme";
 import { motion } from "framer-motion";
 
 const SIGNALS = new Map<MessageProps["type"], FC<IconProps>>([
@@ -52,7 +52,7 @@ const Message = ({ duration = 3000, type, onClose, children }: MessageProps) => 
         backgroundColor: theme.colors[ColorToken.OnPrimary],
       })
     ),
-    content: stylex.props(BODY.medium, styles.content),
+    content: stylex.props(typography.body.medium, styles.content),
   };
 
   return (

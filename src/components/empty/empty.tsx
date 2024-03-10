@@ -4,7 +4,7 @@ import { ComponentToken, EmptyClassToken } from "../../utils/class-name";
 import * as stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
 import clsx from "clsx";
-import { BODY } from "../theme/theme";
+import { typography } from "../theme/theme";
 
 const styles = stylex.create({
   empty: {
@@ -29,7 +29,7 @@ const Empty = () => {
 
   const styled = {
     empty: stylex.props(styles.empty),
-    label: stylex.props(BODY.small, styles.label),
+    label: stylex.props(typography.body.small, styles.label),
   };
 
   return (

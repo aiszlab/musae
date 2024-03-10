@@ -4,7 +4,7 @@ import type { ContextValue } from "./types";
 import Context from "./context";
 import { Grid } from "../grid";
 import * as stylex from "@stylexjs/stylex";
-import { LABEL } from "../theme/theme";
+import { typography } from "../theme/theme";
 import { spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
@@ -52,7 +52,7 @@ const Gridded = ({
         styles.required({
           color: theme.colors[ColorToken.Error],
         }),
-      LABEL.small
+      typography.label.small
     ),
   };
 

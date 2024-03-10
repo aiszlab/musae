@@ -1,9 +1,9 @@
 import { createContext, useContext, useMemo } from "react";
-import type { Palettes, ContextValue, Theme } from "./types";
+import type { Palette, ContextValue, Theme } from "./types";
 import { toColors } from "../../utils/colors";
 import deepmerge from "deepmerge";
 
-const PALETTES: Readonly<Palettes> = {
+const PALETTE: Readonly<Palette> = {
   primary: {
     "0": "#000",
     "10": "#21005D",
@@ -101,7 +101,7 @@ const PALETTES: Readonly<Palettes> = {
  * theme context
  */
 export const Context = createContext<ContextValue>({
-  colors: toColors(PALETTES),
+  colors: toColors(PALETTE),
 });
 
 /**
@@ -125,18 +125,18 @@ export const useContextValue = (dependencies: { theme?: Theme }) => {
   const theme = useMemo<Theme>(() => {
     if (!dependencies.theme) {
       return {
-        palettes: PALETTES,
+        palette: PALETTE,
       };
     }
 
     return deepmerge<Theme, Theme>(dependencies.theme, {
-      palettes: PALETTES,
+      palette: PALETTE,
     });
   }, [dependencies.theme]);
 
   return useMemo<ContextValue>(() => {
     return {
-      colors: toColors(theme.palettes),
+      colors: toColors(theme.palette),
     };
   }, [theme]);
 };
