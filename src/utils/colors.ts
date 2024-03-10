@@ -1,4 +1,4 @@
-import { Palette } from "../components/theme/types";
+import type { ContextValue, Palette } from "../components/theme/types";
 
 /**
  * @description
@@ -60,10 +60,10 @@ export enum ColorToken {
  * @description
  * convert palette to colors
  */
-export const toColors = (palette: Palette): Record<ColorToken, string> => {
+export const toColors = (palette: Palette, mode: ContextValue["mode"]): Record<ColorToken, string> => {
   return {
-    [ColorToken.Primary]: palette.primary[40],
-    [ColorToken.OnPrimary]: palette.primary[100],
+    [ColorToken.Primary]: mode === "light" ? palette.primary[40] : palette.primary[80],
+    [ColorToken.OnPrimary]: mode === "light" ? palette.primary[100] : palette.primary[20],
     [ColorToken.PrimaryContainer]: palette.primary[90],
     [ColorToken.OnPrimaryContainer]: palette.primary[10],
     [ColorToken.PrimaryFixed]: palette.primary[90],
@@ -94,14 +94,16 @@ export const toColors = (palette: Palette): Record<ColorToken, string> => {
     [ColorToken.ErrorContainer]: palette.error[90],
     [ColorToken.OnErrorContainer]: palette.error[10],
 
-    [ColorToken.Surface]: "#FEF7FF",
-    [ColorToken.OnSurface]: palette.neutral[10],
-    [ColorToken.SurfaceDim]: "#DED8E1",
-    [ColorToken.SurfaceContainer]: "#F3EDF7",
-    [ColorToken.SurfaceContainerLow]: palette.primary[100],
-    [ColorToken.SurfaceContainerLowest]: palette.neutral[100],
-    [ColorToken.SurfaceContainerHigh]: "#ECE6F0",
-    [ColorToken.SurfaceContainerHighest]: palette.neutral[90],
+    [ColorToken.Surface]: mode === "light" ? palette.neutral[99] : palette.neutral[10],
+    [ColorToken.OnSurface]: mode === "light" ? palette.neutral[10] : palette.neutral[90],
+    [ColorToken.SurfaceDim]: mode === "light" ? palette.neutral[90] : palette.neutral[10],
+
+    [ColorToken.SurfaceContainerLowest]: mode === "light" ? palette.neutral[100] : palette.neutral[0],
+    [ColorToken.SurfaceContainerLow]: mode === "light" ? palette.neutral[95] : palette.neutral[10],
+    [ColorToken.SurfaceContainer]: mode === "light" ? palette.neutral[95] : palette.neutral[10],
+    [ColorToken.SurfaceContainerHigh]: mode === "light" ? palette.neutral[95] : palette.neutral[10],
+    [ColorToken.SurfaceContainerHighest]: mode === "light" ? palette.neutral[90] : palette.neutral[20],
+
     [ColorToken.OnSurfaceVariant]: palette.neutralVariant[30],
     [ColorToken.InverseSurface]: palette.neutral[20],
     [ColorToken.InverseOnSurface]: palette.neutral[95],

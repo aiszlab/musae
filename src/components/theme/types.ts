@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import type { Dispatch, ReactNode, SetStateAction } from "react";
 import type { toColors } from "../../utils/colors";
 
 export type Theme = {
@@ -55,4 +55,18 @@ export interface ContextValue {
    * colors
    */
   colors: ReturnType<typeof toColors>;
+
+  /**
+   * @description
+   * theme mode
+   * in musae, use light or dark
+   * @example light
+   */
+  mode: "light" | "dark";
+
+  /**
+   * @description
+   * mode change handler
+   */
+  setMode: Dispatch<SetStateAction<ContextValue["mode"]>>;
 }

@@ -15,12 +15,13 @@ import { ColorToken } from "../../utils/colors";
 
 const styles = {
   group: stylex.create({
-    default: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
+    default: (props: { backgroundColor: CSSProperties["backgroundColor"]; color: CSSProperties["color"] }) => ({
       /// reset ul styles
       margin: spacing.none,
       padding: spacing.none,
       listStyle: "none",
       backgroundColor: props.backgroundColor,
+      color: props.color,
       overflow: "auto",
     }),
 
@@ -74,6 +75,7 @@ const Group = forwardRef<HTMLUListElement, MenuGroupProps>(
       group: stylex.props(
         styles.group.default({
           backgroundColor: theme.colors[ColorToken.SurfaceContainerLow],
+          color: theme.colors[ColorToken.OnSurface],
         }),
         !expanded && styles.group.hidden,
         props.styles

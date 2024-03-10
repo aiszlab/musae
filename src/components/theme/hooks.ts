@@ -1,4 +1,4 @@
-import { createContext, useContext, useMemo } from "react";
+import { createContext, useContext, useMemo, useState } from "react";
 import type { Palette, ContextValue, Theme } from "./types";
 import { toColors } from "../../utils/colors";
 import deepmerge from "deepmerge";
@@ -101,7 +101,9 @@ const PALETTE: Readonly<Palette> = {
  * theme context
  */
 export const Context = createContext<ContextValue>({
-  colors: toColors(PALETTE),
+  colors: toColors(PALETTE, "light"),
+  mode: "light",
+  setMode: () => void 0,
 });
 
 /**
@@ -121,22 +123,20 @@ export const useTheme = () => {
  * @description
  * context value
  */
-export const useContextValue = (dependencies: { theme?: Theme }) => {
-  const theme = useMemo<Theme>(() => {
-    if (!dependencies.theme) {
-      return {
-        palette: PALETTE,
-      };
-    }
+export const useContextValue = ({ theme }: { theme?: Theme }) => {
+  const [mode, setMode] = useState<ContextValue["mode"]>("light");
 
-    return deepmerge<Theme, Theme>(dependencies.theme, {
+  const _theme = useMemo<Theme>(() => {
+    return deepmerge<Theme, Theme>(theme ?? {}, {
       palette: PALETTE,
     });
-  }, [dependencies.theme]);
+  }, [theme]);
 
   return useMemo<ContextValue>(() => {
     return {
-      colors: toColors(theme.palette),
+      colors: toColors(_theme.palette, mode),
+      mode,
+      setMode,
     };
-  }, [theme]);
+  }, [_theme, mode]);
 };
