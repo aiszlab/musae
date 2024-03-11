@@ -26,6 +26,10 @@ import KeyboardArrowRight from "./hardware/keyboard-arrow-right";
 import KeyboardArrowUp from "./hardware/keyboard-arrow-up";
 import KeyboardArrowDown from "./hardware/keyboard-arrow-down";
 
+/// image
+import Bedtime from "./image/bedtime";
+import WbSunny from "./image/wb-sunny";
+
 /// mocks, musae collect from comunic icons
 import Github from "./mocks/github";
 
@@ -52,4 +56,6 @@ export {
   MoreHoriz,
   Close,
   Github,
+  Bedtime,
+  WbSunny,
 };

@@ -1,9 +1,9 @@
-import { Children, ReactNode, isValidElement, useMemo } from "react";
+import { type ReactNode, Children, isValidElement, useMemo } from "react";
+import type { ComponentProps } from "../../types/element";
 import Header from "./header";
 import Sider from "./sider";
 import Footer from "./footer";
 import Main from "./main";
-import { ComponentProps } from "../../types/element";
 
 export enum ChildToken {
   Header = "header",
@@ -37,7 +37,7 @@ export const useChildren = ([children]: [ReactNode]) => {
             prev[0].set(ChildToken.Footer, current);
             break;
           case Main:
-            prev[0].set(ChildToken.Footer, current);
+            prev[0].set(ChildToken.Main, current);
             prev[1] = {
               className: current.props.className,
               style: current.props.style,

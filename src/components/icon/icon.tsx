@@ -9,6 +9,7 @@ import * as stylex from "@stylexjs/stylex";
 const styles = stylex.create({
   icon: (props: { color: CSSProperties["color"] }) => ({
     display: "inline-flex",
+    verticalAlign: "text-bottom",
     color: props.color ?? null,
   }),
 

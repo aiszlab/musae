@@ -1,4 +1,4 @@
-import type { Dispatch, ReactNode, SetStateAction } from "react";
+import type { MouseEvent, ReactNode } from "react";
 import type { toColors } from "../../utils/colors";
 
 export type Theme = {
@@ -66,7 +66,7 @@ export interface ContextValue {
 
   /**
    * @description
-   * mode change handler
+   * toggle theme mode, if dark, change to light
    */
-  setMode: Dispatch<SetStateAction<ContextValue["mode"]>>;
+  toggle: (event: MouseEvent) => void;
 }

@@ -1,15 +1,34 @@
-import React from "react";
+import React, { CSSProperties } from "react";
 import { Grid } from "../grid";
 import { LayoutProps } from "./types";
 import { ChildToken, useChildren } from "./hooks";
+import stylex from "@stylexjs/stylex";
+import { useTheme } from "../theme";
+import { ColorToken } from "../../utils/colors";
+import clsx from "clsx";
+
+const styles = stylex.create({
+  layout: (props: { backgroundColor: CSSProperties["backgroundColor"]; color: CSSProperties["color"] }) => ({
+    backgroundColor: props.backgroundColor,
+    color: props.color,
+  }),
+});
 
 const Layout = (props: LayoutProps) => {
+  const theme = useTheme();
   const { children, mainProps } = useChildren([props.children]);
   const sider = children.get(ChildToken.Sider);
   const hasSider = !!sider;
 
+  const styled = stylex.props(
+    styles.layout({
+      backgroundColor: theme.colors[ColorToken.SurfaceContainerLowest],
+      color: theme.colors[ColorToken.OnSurface],
+    })
+  );
+
   return (
-    <>
+    <div className={clsx(styled.className)} style={styled.style}>
       {children.get(ChildToken.Header)}
 
       {hasSider ? (
@@ -27,7 +46,7 @@ const Layout = (props: LayoutProps) => {
           {children.get(ChildToken.Footer)}
         </main>
       )}
-    </>
+    </div>
   );
 };
 

@@ -74,7 +74,7 @@ const Group = forwardRef<HTMLUListElement, MenuGroupProps>(
     const styled = {
       group: stylex.props(
         styles.group.default({
-          backgroundColor: theme.colors[ColorToken.SurfaceContainerLow],
+          backgroundColor: theme.colors[ColorToken.SurfaceContainerLowest],
           color: theme.colors[ColorToken.OnSurface],
         }),
         !expanded && styles.group.hidden,

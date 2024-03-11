@@ -1,7 +1,9 @@
-import { createContext, useContext, useMemo, useState } from "react";
+import { createContext, useCallback, useContext, useMemo, useState } from "react";
 import type { Palette, ContextValue, Theme } from "./types";
 import { toColors } from "../../utils/colors";
 import deepmerge from "deepmerge";
+import { isFunction, useDefault, useEvent, useMounted } from "@aiszlab/relax";
+import * as stylex from "@stylexjs/stylex";
 
 const PALETTE: Readonly<Palette> = {
   primary: {
@@ -96,6 +98,40 @@ const PALETTE: Readonly<Palette> = {
   },
 };
 
+const styles = stylex.create({
+  default: {
+    "::view-transition-old(root)": {
+      animation: "none",
+      mixBlendMode: "normal",
+    },
+
+    "::view-transition-new(root)": {
+      animation: "none",
+      mixBlendMode: "normal",
+    },
+  },
+
+  light: {
+    "::view-transition-old(root)": {
+      zIndex: 999,
+    },
+
+    "::view-transition-new(root)": {
+      zIndex: 1,
+    },
+  },
+
+  dark: {
+    "::view-transition-old(root)": {
+      zIndex: 1,
+    },
+
+    "::view-transition-new(root)": {
+      zIndex: 999,
+    },
+  },
+});
+
 /**
  * @description
  * theme context
@@ -103,7 +139,7 @@ const PALETTE: Readonly<Palette> = {
 export const Context = createContext<ContextValue>({
   colors: toColors(PALETTE, "light"),
   mode: "light",
-  setMode: () => void 0,
+  toggle: () => void 0,
 });
 
 /**
@@ -125,6 +161,11 @@ export const useTheme = () => {
  */
 export const useContextValue = ({ theme }: { theme?: Theme }) => {
   const [mode, setMode] = useState<ContextValue["mode"]>("light");
+  const isDark = mode === "dark";
+
+  const modeToggler = useCallback(() => {
+    setMode((_mode) => (_mode === "light" ? "dark" : "light"));
+  }, []);
 
   const _theme = useMemo<Theme>(() => {
     return deepmerge<Theme, Theme>(theme ?? {}, {
@@ -132,11 +173,53 @@ export const useContextValue = ({ theme }: { theme?: Theme }) => {
     });
   }, [theme]);
 
+  const styled = useDefault(() => ({
+    default: (stylex.attrs(styles.default).class ?? "").split(" "),
+    light: (stylex.attrs(styles.light).class ?? "").split(" "),
+    dark: (stylex.attrs(styles.dark).class ?? "").split(" "),
+  }));
+
+  useMounted(() => {
+    document.documentElement.classList.add(...styled.default);
+    document.documentElement.classList.add(...styled[mode]);
+  });
+
+  /// dark, light mode switch
+  const themeToggler = useEvent<ContextValue["toggle"]>((event) => {
+    if (!(event && isFunction(document.startViewTransition))) {
+      modeToggler();
+      return;
+    }
+
+    const x = event.clientX;
+    const y = event.clientY;
+    const radius = Math.hypot(Math.max(x, window.innerWidth - x), Math.max(y, window.innerHeight - y));
+
+    const animation = document.startViewTransition(() => {
+      document.documentElement.classList.remove(...(isDark ? styled.dark : styled.light));
+      document.documentElement.classList.add(...(isDark ? styled.light : styled.dark));
+    });
+
+    animation.ready.then(() => {
+      modeToggler();
+
+      const clipPath = [`circle(0px at ${x}px ${y}px)`, `circle(${radius}px at ${x}px ${y}px)`];
+      document.documentElement.animate(
+        { clipPath: isDark ? [...clipPath].reverse() : clipPath },
+        {
+          duration: 500,
+          easing: "ease-in",
+          pseudoElement: isDark ? "::view-transition-old(root)" : "::view-transition-new(root)",
+        }
+      );
+    });
+  });
+
   return useMemo<ContextValue>(() => {
     return {
       colors: toColors(_theme.palette, mode),
       mode,
-      setMode,
+      toggle: themeToggler,
     };
-  }, [_theme, mode]);
+  }, [_theme, mode, themeToggler]);
 };

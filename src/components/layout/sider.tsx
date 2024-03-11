@@ -22,7 +22,7 @@ const Sider = (props: SiderProps) => {
         ...styled.style,
         ...props.style,
       }}
-      className={clsx(styled.className, props.className)}
+      className={clsx(props.className, styled.className)}
       span={5}
       as="aside"
     >

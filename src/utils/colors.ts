@@ -41,11 +41,13 @@ export enum ColorToken {
   OnSurface = "on-surface",
   OnSurfaceVariant = "on-surface-variant",
   SurfaceDim = "surface-dim",
-  SurfaceContainer = "surface-container",
-  SurfaceContainerLow = "surface-container-low",
+
   SurfaceContainerLowest = "surface-container-lowest",
+  SurfaceContainerLow = "surface-container-low",
+  SurfaceContainer = "surface-container",
   SurfaceContainerHigh = "surface-container-high",
   SurfaceContainerHighest = "surface-container-highest",
+
   InverseSurface = "inverse-surface",
   InverseOnSurface = "inverse-on-surface",
   InversePrimary = "inverse-primary",

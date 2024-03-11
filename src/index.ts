@@ -41,7 +41,6 @@ export { Tooltip } from "./components/tooltip";
  */
 export { useMessage } from "./components/message";
 export { useTheme } from "./components/theme";
-export { useDark } from "./hooks/use-dark";
 
 /**
  * @description
