@@ -29,7 +29,7 @@ const styles = stylex.create({
 const Item = ({ value, onPageChange, add, subtract, checked, hasNext, hasPrev }: PaginationItemProps) => {
   if (value === PaginationItemType.Prev) {
     return (
-      <Button onClick={() => add()} shape="circular" variant="text" color="secondary" disabled={!hasPrev}>
+      <Button onClick={() => subtract()} shape="circular" variant="text" color="secondary" disabled={!hasPrev}>
         <KeyboardArrowLeft />
       </Button>
     );
