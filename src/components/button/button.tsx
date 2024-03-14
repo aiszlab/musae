@@ -25,8 +25,8 @@ const styles = stylex.create({
 
   small: {
     padding: `${spacing.none} ${spacing.xsmall}`,
-    minHeight: sizes.medium,
-    minWidth: sizes.medium,
+    minHeight: sizes.small,
+    minWidth: sizes.small,
   },
 
   medium: {
@@ -177,6 +177,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       >
         {props.prefix}
         {children}
+        {props.suffix}
         {ripple && <Ripple ripples={ripples} onClear={clear} />}
       </button>
     );

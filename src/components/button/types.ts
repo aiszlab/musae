@@ -72,6 +72,14 @@ export interface ButtonProps
 
   /**
    * @description
+   * suffix react node
+   * @template
+   * icon or suffix signal
+   */
+  suffix?: ReactNode;
+
+  /**
+   * @description
    * if false, without a ripple
    */
   ripple?: boolean;

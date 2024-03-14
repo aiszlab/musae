@@ -61,6 +61,11 @@ export enum ColorToken {
 /**
  * @description
  * convert palette to colors
+ *
+ * you will always be confused, there are to many color roles
+ * how do i use them
+ *
+ * here, musae provide some easy usage
  */
 export const toColors = (palette: Palette, mode: ContextValue["mode"]): Record<ColorToken, string> => {
   const isLight = mode === "light";
