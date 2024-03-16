@@ -55,7 +55,7 @@ export interface TypedLayout {
  * @description
  * layout props
  */
-export type LayoutProps = {
+export type LayoutProps = ComponentProps & {
   /**
    * @description
    * children

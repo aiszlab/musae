@@ -11,10 +11,12 @@ const styles = stylex.create({
   layout: (props: { backgroundColor: CSSProperties["backgroundColor"]; color: CSSProperties["color"] }) => ({
     backgroundColor: props.backgroundColor,
     color: props.color,
+    display: "flex",
+    flexDirection: "column",
   }),
 });
 
-const Layout = (props: LayoutProps) => {
+const Layout = ({ className, style, ...props }: LayoutProps) => {
   const theme = useTheme();
   const { children, mainProps } = useChildren([props.children]);
   const sider = children.get(ChildToken.Sider);
@@ -28,7 +30,13 @@ const Layout = (props: LayoutProps) => {
   );
 
   return (
-    <div className={clsx(styled.className)} style={styled.style}>
+    <div
+      className={clsx(className, styled.className)}
+      style={{
+        ...styled.style,
+        ...style,
+      }}
+    >
       {children.get(ChildToken.Header)}
 
       {hasSider ? (
