@@ -82,6 +82,7 @@ const Group = forwardRef<HTMLUListElement, MenuGroupProps>(
 
     return (
       <ul
+        ref={groupRef}
         className={clsx(
           classNames[MenuClassToken.Group],
           {
@@ -94,7 +95,6 @@ const Group = forwardRef<HTMLUListElement, MenuGroupProps>(
           ...styled.style,
           ...style,
         }}
-        ref={groupRef}
       >
         {items.map(({ children = [], ...item }) => {
           return (
