@@ -71,18 +71,14 @@ const Group = forwardRef<HTMLUListElement, MenuGroupProps>(
       expanded,
     });
 
-    const styled = {
-      group: stylex.props(
-        styles.group.default({
-          backgroundColor: theme.colors[ColorToken.SurfaceContainerLowest],
-          color: theme.colors[ColorToken.OnSurface],
-        }),
-        !expanded && styles.group.hidden,
-        props.styles
-      ),
-
-      submenu: [styles.submenu[mode]],
-    };
+    const styled = stylex.props(
+      styles.group.default({
+        backgroundColor: theme.colors[ColorToken.SurfaceContainerLowest],
+        color: theme.colors[ColorToken.OnSurface],
+      }),
+      !expanded && styles.group.hidden,
+      props.styles
+    );
 
     return (
       <ul
@@ -92,10 +88,10 @@ const Group = forwardRef<HTMLUListElement, MenuGroupProps>(
             [classNames[MenuClassToken.GroupHidden]]: !expanded,
           },
           className,
-          styled.group.className
+          styled.className
         )}
         style={{
-          ...styled.group.style,
+          ...styled.style,
           ...style,
         }}
         ref={groupRef}
@@ -121,7 +117,7 @@ const Group = forwardRef<HTMLUListElement, MenuGroupProps>(
                   expanded={!isInline || expandedKeys.has(item.key)}
                   level={!isInline ? 0 : level + 1}
                   mode="inline"
-                  styles={styled.submenu}
+                  styles={[styles.submenu[mode]]}
                 />
               )}
             </Item>
