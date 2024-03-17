@@ -48,7 +48,7 @@
     "eslint": "^8.56.0",
     "eslint-config-react-app": "^7.0.1",
     "rollup": "^4.9.6",
-    "typescript": "^5.3.3"
+    "typescript": "^5.4.2"
   },
   "peerDependencies": {
     "react": "^18",

@@ -163,7 +163,7 @@ export const useContextValue = ({ theme }: { theme?: Theme }) => {
   const [mode, setMode] = useState<ContextValue["mode"]>("light");
   const isDark = mode === "dark";
 
-  const modeToggler = useCallback(() => {
+  const toggleMode = useCallback(() => {
     setMode((_mode) => (_mode === "light" ? "dark" : "light"));
   }, []);
 
@@ -187,7 +187,7 @@ export const useContextValue = ({ theme }: { theme?: Theme }) => {
   /// dark, light mode switch
   const themeToggler = useEvent<ContextValue["toggle"]>((event) => {
     if (!(event && isFunction(document.startViewTransition))) {
-      modeToggler();
+      toggleMode();
       return;
     }
 
@@ -201,13 +201,13 @@ export const useContextValue = ({ theme }: { theme?: Theme }) => {
     });
 
     animation.ready.then(() => {
-      modeToggler();
+      toggleMode();
 
       const clipPath = [`circle(0px at ${x}px ${y}px)`, `circle(${radius}px at ${x}px ${y}px)`];
       document.documentElement.animate(
         { clipPath: isDark ? [...clipPath].reverse() : clipPath },
         {
-          duration: 500,
+          duration: 150,
           easing: "ease-in",
           pseudoElement: isDark ? "::view-transition-old(root)" : "::view-transition-new(root)",
         }

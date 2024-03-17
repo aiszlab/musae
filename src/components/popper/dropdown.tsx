@@ -57,6 +57,8 @@ const Dropdown = forwardRef<PopperRef, DropdownProps>(
       (async () => {
         const toggleBy = styled.hidden.className?.split(" ") ?? [];
 
+        console.log("toggleBy====", toggleBy);
+
         if (open) {
           container.current?.classList.remove(...toggleBy);
           await onEntered?.();
@@ -72,8 +74,8 @@ const Dropdown = forwardRef<PopperRef, DropdownProps>(
     return (
       <div
         ref={container}
-        className={clsx(classNames[PopperClassToken.Dropdown], className, styled.dropdown)}
         {...props}
+        className={clsx(classNames[PopperClassToken.Dropdown], className, styled.dropdown.className)}
         style={{
           ...styled.dropdown.style,
           ...styled.hidden.style,

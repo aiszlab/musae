@@ -1,8 +1,6 @@
 import type { CSSProperties, ReactNode } from "react";
 import type { ComponentProps } from "../../types/element";
-
-export type Gutters = [colGutter: number, rowGutter: number];
-type Gutter = number | Gutters;
+import type { Gutter } from "../../hooks/use-gutters";
 
 export interface RowProps extends ComponentProps {
   /**
