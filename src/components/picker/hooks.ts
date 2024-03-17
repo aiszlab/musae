@@ -1,4 +1,6 @@
 import { FocusEventHandler, MouseEventHandler, useCallback } from "react";
+import { useEvent } from "@aiszlab/relax";
+import { useAnimate } from "framer-motion";
 
 /**
  * @description
@@ -31,5 +33,23 @@ export const useEvents = ({
   return {
     blur,
     click,
+  };
+};
+
+export const useFadeAnimate = () => {
+  const [scope, animate] = useAnimate<HTMLDivElement>();
+
+  const fadeIn = useEvent(async () => {
+    await animate(scope.current, { opacity: 1 }, { duration: 0.05 });
+  });
+
+  const fadeOut = useEvent(async () => {
+    await animate(scope.current, { opacity: 0 }, { duration: 0.05 });
+  });
+
+  return {
+    scope,
+    fadeIn,
+    fadeOut,
   };
 };

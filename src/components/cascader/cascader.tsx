@@ -12,6 +12,7 @@ import clsx from "clsx";
 const styles = stylex.create({
   options: {
     display: "flex",
+    columnGap: 4,
   },
 });
 
@@ -63,13 +64,9 @@ const Cascader = ({ mode, separator = "/", ...props }: CascaderProps) => {
   }, [additionalMenusItems, classNames, onChange, presetedMenuItems]);
 
   return (
-    <Picker
-      ref={ref}
-      picked={inputed}
-      pickable={menus}
-      className={classNames[CascaderClassToken.Cascader]}
-      popupWidth={false}
-    />
+    <Picker ref={ref} pickable={menus} className={classNames[CascaderClassToken.Cascader]} popupWidth={false}>
+      {inputed}
+    </Picker>
   );
 };
 

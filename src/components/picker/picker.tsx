@@ -6,21 +6,23 @@ import React, {
   useImperativeHandle,
   useEffect,
   CSSProperties,
+  useMemo,
 } from "react";
 import { Popper } from "../popper";
 import { useBoolean, useFocus } from "@aiszlab/relax";
 import { useEvents } from "./hooks";
-import type { PickerProps, PickerRef } from "./types";
+import type { ContextValue, PickerProps, PickerRef } from "./types";
 import type { PopperRef } from "../popper/types";
 import { ComponentToken, PickerClassToken } from "../../utils/class-name";
 import Context from "./context";
 import { useClassNames } from "../config";
 import * as stylex from "@stylexjs/stylex";
-import { sizes, spacing } from "../theme/tokens.stylex";
+import { elevations, sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
 import clsx from "clsx";
 import { typography } from "../theme/theme";
+import { useFadeAnimate } from "./hooks";
 
 const styles = stylex.create({
   picker: (borderColor: CSSProperties["borderColor"]) => ({
@@ -54,26 +56,29 @@ const styles = stylex.create({
     borderColor,
   }),
 
-  options: (backgroundColor: CSSProperties["backgroundColor"], minWidth: CSSProperties["minWidth"]) => ({
+  pickable: (props: { backgroundColor: CSSProperties["backgroundColor"]; minWidth: CSSProperties["minWidth"] }) => ({
     marginBlock: spacing.xxsmall,
     borderRadius: spacing.small,
-    backgroundColor,
+    backgroundColor: props.backgroundColor,
     overflow: "auto",
-    minWidth,
+    minWidth: props.minWidth,
+    boxShadow: elevations.small,
+    paddingInline: spacing.xxsmall,
+    opacity: 0,
   }),
 });
 
 const Picker = forwardRef<PickerRef, PickerProps>(
-  ({ pickable, picked, className, popupWidth = "match", ...props }, ref) => {
+  ({ pickable, children, className, popupWidth = "match", ...props }, ref) => {
     const trigger = useRef<HTMLDivElement>(null);
     const [isVisible, { turnOff: close, toggle }] = useBoolean();
-
     const classNames = useClassNames(ComponentToken.Picker);
     const popper = useRef<PopperRef>(null);
     const theme = useTheme();
+    const { fadeIn, fadeOut, scope } = useFadeAnimate();
 
     const onDropdownClick = useCallback((e: MouseEvent<HTMLDivElement>) => e.preventDefault(), []);
-    const dropdownWidthGetter = useCallback(() => {
+    const getDropdownWidth = useCallback(() => {
       if (!popupWidth) return void 0;
       if (!trigger.current) return void 0;
       return Math.max(trigger.current.getBoundingClientRect().width, popupWidth === "match" ? 0 : popupWidth);
@@ -87,14 +92,16 @@ const Picker = forwardRef<PickerRef, PickerProps>(
       [close]
     );
 
-    // for selection change, force render for next tick
+    /// for selection change, force render for next tick
+    /// for why?
+    /// if user select many choices, it will cause the input become larger
     useEffect(() => {
       popper.current?.update?.();
-    }, [picked]);
+    }, [children]);
 
     /// events
     const { blur, click } = useEvents({ onBlur: close, onClick: toggle });
-    const [isFocused, focusProps] = useFocus<HTMLInputElement>({
+    const [isFocused, focusProps] = useFocus<HTMLDivElement>({
       onBlur: blur,
     });
 
@@ -104,11 +111,15 @@ const Picker = forwardRef<PickerRef, PickerProps>(
         styles.picker(theme.colors[ColorToken.Outline]),
         isFocused && styles.focused(theme.colors[ColorToken.Primary])
       ),
-      options: stylex.props(styles.options(theme.colors[ColorToken.Surface], dropdownWidthGetter())),
+      pickable: stylex.props(
+        styles.pickable({ backgroundColor: theme.colors[ColorToken.Surface], minWidth: getDropdownWidth() })
+      ),
     };
 
+    const contextValue = useMemo<ContextValue>(() => ({ isVisible, getDropdownWidth }), [isVisible, getDropdownWidth]);
+
     return (
-      <>
+      <Context.Provider value={contextValue}>
         <div
           className={clsx(classNames[PickerClassToken.Picker], className, styled.picker.className, {
             [classNames[PickerClassToken.Focused]]: isFocused,
@@ -119,31 +130,27 @@ const Picker = forwardRef<PickerRef, PickerProps>(
           }}
           ref={trigger}
           tabIndex={-1}
-          {...focusProps}
           onClick={click}
+          {...focusProps}
         >
-          {picked}
+          {children}
         </div>
 
         <Popper
+          ref={popper}
           trigger={trigger.current}
           open={isVisible}
           className={classNames[PickerClassToken.Dropdown]}
           // click on popper, keep select focused
           onMouseDown={onDropdownClick}
-          ref={popper}
+          onEntered={fadeIn}
+          onExit={fadeOut}
         >
-          <div {...styled.options}>
-            <Context.Provider
-              value={{
-                isVisible,
-              }}
-            >
-              {pickable}
-            </Context.Provider>
+          <div ref={scope} className={styled.pickable.className} style={styled.pickable.style}>
+            {pickable}
           </div>
         </Popper>
-      </>
+      </Context.Provider>
     );
   }
 );

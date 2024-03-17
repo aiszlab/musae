@@ -58,7 +58,9 @@ const DateRangePicker = (props: DateRangePickerProps) => {
   }, [value, classNames]);
 
   return (
-    <Picker ref={ref} pickable={<Calendar value={value} onClick={onChange} />} picked={picked} popupWidth={false} />
+    <Picker ref={ref} pickable={<Calendar value={value} onClick={onChange} />} popupWidth={false}>
+      {picked}
+    </Picker>
   );
 };
 

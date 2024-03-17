@@ -41,11 +41,12 @@ const Select = ({ mode, ...props }: SelectProps) => {
   return (
     <Picker
       ref={ref}
-      picked={picked}
       pickable={menu}
       className={clsx(classNames[SelectClassToken.Select], props.className)}
       style={props.style}
-    />
+    >
+      {picked}
+    </Picker>
   );
 };
 

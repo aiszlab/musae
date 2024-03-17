@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { ComponentProps } from "../../types/element";
+import { Partialable } from "@aiszlab/relax/types";
 
 /**
  * @description
@@ -8,9 +9,9 @@ import { ComponentProps } from "../../types/element";
 export interface PickerProps extends ComponentProps {
   /**
    * @description
-   * picked
+   * children
    */
-  picked: ReactNode;
+  children: ReactNode;
 
   /**
    * @description
@@ -38,5 +39,15 @@ export interface PickerRef {
 }
 
 export interface ContextValue {
+  /**
+   * @description
+   * if true, dropdown is visible
+   */
   isVisible: boolean;
+
+  /**
+   * @description
+   * handler to get dropdown width
+   */
+  getDropdownWidth: () => Partialable<number>;
 }

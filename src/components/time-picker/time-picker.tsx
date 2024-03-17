@@ -38,9 +38,10 @@ const TimePicker = ({ className, ...props }: TimePickerProps) => {
       ref={ref}
       className={clsx(classNames[TimePickerClassToken.Picker], className)}
       pickable={<Panel value={value} onChange={onChange} />}
-      picked={picked}
       popupWidth={false}
-    />
+    >
+      {picked}
+    </Picker>
   );
 };
 

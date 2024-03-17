@@ -18,7 +18,7 @@ const styles = {
       display: "flex",
       alignItems: "center",
       cursor: "pointer",
-      transition: "all 300ms",
+      transition: "all 100ms",
       willChange: "background-color, border, color",
     },
   }),
@@ -90,7 +90,6 @@ const styles = {
       horizontal: {},
 
       vertical: {
-        marginInline: spacing.xxsmall,
         marginBottom: spacing.xxsmall,
         marginTop: {
           default: spacing.none,
@@ -99,7 +98,6 @@ const styles = {
       },
 
       inline: {
-        marginInline: spacing.xxsmall,
         marginBottom: spacing.xxsmall,
         marginTop: {
           default: spacing.none,
