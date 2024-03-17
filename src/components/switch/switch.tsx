@@ -16,7 +16,7 @@ const styles = stylex.create({
     borderStyle: "solid",
     borderColor: props.borderColor,
     backgroundColor: "transparent",
-    transition: "all 200ms",
+    transition: "all 0.2s",
 
     "::before": {
       content: "''",
@@ -26,7 +26,7 @@ const styles = stylex.create({
       width: "12px",
       borderRadius: sizes.infinity,
       backgroundColor: "black",
-      transition: "all 200ms",
+      transition: "all 0.2s",
     },
   }),
 

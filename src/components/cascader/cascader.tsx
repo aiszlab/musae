@@ -8,11 +8,12 @@ import { useClassNames } from "../config";
 import { CascaderClassToken, ComponentToken } from "../../utils/class-name";
 import * as stylex from "@stylexjs/stylex";
 import clsx from "clsx";
+import { spacing } from "../theme/tokens.stylex";
 
 const styles = stylex.create({
   options: {
     display: "flex",
-    columnGap: 4,
+    columnGap: spacing.xxsmall,
   },
 });
 

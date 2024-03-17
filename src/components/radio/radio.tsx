@@ -42,7 +42,7 @@ const styles = stylex.create({
       borderStyle: "solid",
       borderColor: props.borderColor,
       borderRadius: sizes.infinity,
-      transition: "all 200ms",
+      transition: "all 0.2s",
     },
   }),
 

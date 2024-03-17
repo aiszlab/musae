@@ -18,7 +18,7 @@ const styles = {
       display: "flex",
       alignItems: "center",
       cursor: "pointer",
-      transition: "all 100ms",
+      transition: "all 0.1s",
       willChange: "background-color, border, color",
     },
   }),

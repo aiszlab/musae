@@ -33,7 +33,7 @@ const styles = stylex.create({
       width: sizes.xsmall,
       height: sizes.xsmall,
       borderRadius: spacing.xxsmall,
-      transition: "all 200ms",
+      transition: "all 0.2s",
 
       borderWidth: "1px",
       borderStyle: "solid",

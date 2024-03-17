@@ -3,7 +3,6 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Ripple as RippleType, RippleProps } from "./types";
 import * as stylex from "@stylexjs/stylex";
 import { sizes } from "../theme/tokens.stylex";
-import { clamp } from "@aiszlab/relax";
 
 const styles = stylex.create({
   ripple: {
@@ -38,9 +37,6 @@ const Ripple = ({ ripples = [], onClear }: RippleProps) => {
       })
     );
 
-    // animate 100px per 10ms, use the mid value
-    const duration = clamp(0.01 * ripple.size, 0.2, ripple.size > 100 ? 0.75 : 0.5);
-
     return (
       <AnimatePresence key={ripple.key} mode="popLayout">
         <motion.span
@@ -49,7 +45,7 @@ const Ripple = ({ ripples = [], onClear }: RippleProps) => {
           initial={{ transform: "scale(0)", opacity: 0.35 }}
           animate={{ transform: "scale(2)", opacity: 0 }}
           exit={{ opacity: 0 }}
-          transition={{ duration }}
+          transition={{ duration: 0.2 }}
           onAnimationComplete={() => {
             onClear(ripple.key);
           }}

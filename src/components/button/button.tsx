@@ -19,7 +19,7 @@ const styles = stylex.create({
     display: "flex",
     alignItems: "center",
     gap: spacing.small,
-    transition: "all 300ms",
+    transition: "all 0.3s",
     willChange: "background-color, color, box-shadow",
   },
 

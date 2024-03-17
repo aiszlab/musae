@@ -24,7 +24,7 @@ const styles = stylex.create({
     alignItems: "center",
     justifyContent: "center",
     transform: props.isExpanded ? "rotateX(0)" : "rotateX(180deg)",
-    transition: "transform 200ms",
+    transition: "transform 0.2s",
   }),
 });
 

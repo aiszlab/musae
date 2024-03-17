@@ -29,7 +29,7 @@ const styles = stylex.create({
   }) => ({
     paddingBlock: spacing.none,
     paddingInline: spacing.xxsmall,
-    transition: "all 200ms",
+    transition: "all 0.2s",
     borderRadius: 4,
     backgroundColor: {
       default: null,
