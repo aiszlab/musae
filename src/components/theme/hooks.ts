@@ -207,7 +207,7 @@ export const useContextValue = ({ theme }: { theme?: Theme }) => {
       document.documentElement.animate(
         { clipPath: isDark ? [...clipPath].reverse() : clipPath },
         {
-          duration: 150,
+          duration: 300,
           easing: "ease-in",
           pseudoElement: isDark ? "::view-transition-old(root)" : "::view-transition-new(root)",
         }
