@@ -45,7 +45,7 @@ const Ripple = ({ ripples = [], onClear }: RippleProps) => {
           initial={{ transform: "scale(0)", opacity: 0.35 }}
           animate={{ transform: "scale(2)", opacity: 0 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.2 }}
+          transition={{ duration: 0.5 }}
           onAnimationComplete={() => {
             onClear(ripple.key);
           }}
