@@ -9,12 +9,6 @@ import { type Gutter } from "../../hooks/use-gutters";
 export type WaterfallProps = ComponentProps & {
   /**
    * @description
-   * children
-   */
-  children?: ReactNode;
-
-  /**
-   * @description
    * columns
    */
   columns?: number;
@@ -24,4 +18,10 @@ export type WaterfallProps = ComponentProps & {
    * gutter
    */
   gutter?: Gutter;
+
+  /**
+   * @description
+   * items
+   */
+  children?: Exclude<ReactNode, Iterable<ReactNode>>[];
 };

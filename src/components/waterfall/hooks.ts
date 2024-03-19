@@ -1,42 +1,46 @@
-import { useEffect, useRef } from "react";
-import { Gutters } from "../../hooks/use-gutters";
-
-const isElement = (node: Node): node is HTMLElement => {
-  return node.nodeType === Node.ELEMENT_NODE;
-};
+import { useCallback, useEffect, useRef } from "react";
 
 /**
  * @description
- * child render
+ * repaint child
  */
-export const useRenderable = ({ columns, gutters }: { columns: number; gutters: Gutters }) => {
-  const ref = useRef<HTMLDivElement>(null);
+export const useRepaint = ({ columns, rowGap }: { columns: number; rowGap: number }) => {
+  const items = useRef<Map<number, HTMLDivElement | null>>(new Map());
+  const orders = useRef<Map<number, number>>(new Map());
   const maxHeight = useRef<number>(0);
-  const [colGap, rowGap] = gutters;
+
+  const collect = useCallback((index: number, ref: HTMLDivElement | null) => {
+    items.current.set(index, ref);
+  }, []);
 
   useEffect(() => {
     const columnHeights = new Array(columns).fill(0);
 
-    ref.current?.childNodes.forEach((node) => {
-      if (!isElement(node)) return;
+    // reset
+    orders.current.clear();
+    maxHeight.current = 0;
 
-      const childHeight = (node.attributeStyleMap.get("height") as CSSUnitValue).value;
+    Array.from(items.current.entries()).forEach(([index, child]) => {
+      if (!child) return;
+      const childHeight = child.getBoundingClientRect().height;
       const order = columnHeights.indexOf(Math.min(...columnHeights));
       // count
       columnHeights[order] = columnHeights[order] + (columnHeights[order] && rowGap) + childHeight;
-
-      Object.assign(node.style, {
-        width: `calc((100% - ${columns - 1} * ${colGap}px) / ${columns})`,
-        order: order + 1,
-      });
+      // set order for render
+      orders.current.set(index, order + 1);
     });
 
     maxHeight.current = Math.max(...columnHeights);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [gutters]);
+  }, [rowGap]);
+
+  const getOrder = useCallback((index: number) => {
+    return orders.current.get(index) ?? null;
+  }, []);
 
   return {
-    ref,
     maxHeight,
+    collect,
+    getOrder,
   };
 };
