@@ -4,41 +4,41 @@ import type { WaterfallProps } from "./types";
 import React from "react";
 import { useRepaint } from "./hooks";
 import clsx from "clsx";
-import { type Gutters, useGutters } from "../../hooks/use-gutters";
+import { useGutters } from "../../hooks/use-gutters";
 
 const styles = stylex.create({
-  waterfall: (props: { gutters: Gutters }) => ({
+  waterfall: (props: { columnGap: number; rowGap: number }) => ({
     width: sizes.full,
     display: "flex",
     flexFlow: "row wrap",
-    // alignContent: "flex-start",
-
+    alignContent: "flex-start",
     height: "fit-content",
-    columnGap: props.gutters[0],
-    rowGap: props.gutters[1],
+    columnGap: props.columnGap,
+    rowGap: props.rowGap,
   }),
 
   repainted: (props: { maxHeight: number }) => ({
-    // flexFlow: "column wrap",
-    // height: props.maxHeight,
+    flexFlow: "column wrap",
+    height: props.maxHeight,
   }),
 
-  item: (props: { columns: number; colGutter: number; order: number | null }) => ({
-    order: props.order,
-    width: `calc((100% - ${props.columns - 1} * ${props.colGutter}px) / ${props.columns})`,
+  item: (props: { columns: number; columnGap: number; order: number | null }) => ({
+    order: props.order ?? 1,
+    width: `calc((100% - ${props.columns - 1} * ${props.columnGap}px) / ${props.columns})`,
+    height: "fit-content",
   }),
 });
 
-const Waterfall = ({ columns = 4, gutter, items = [], ...props }: WaterfallProps) => {
-  const gutters = useGutters({ gutter });
-  const { collect, maxHeight, getOrder } = useRepaint({ columns, gutters });
+const Waterfall = ({ columns = 4, gutter, children = [], ...props }: WaterfallProps) => {
+  const [columnGap, rowGap] = useGutters({ gutter });
+  const { collect, maxHeight, getOrder } = useRepaint({ columns, rowGap });
 
   const styled = stylex.props(
-    styles.waterfall({ gutters }),
+    styles.waterfall({ rowGap, columnGap }),
     maxHeight.current > 0 && styles.repainted({ maxHeight: maxHeight.current })
   );
 
-  if (items.length === 0) return null;
+  if (children.length === 0) return null;
 
   return (
     <div
@@ -48,9 +48,9 @@ const Waterfall = ({ columns = 4, gutter, items = [], ...props }: WaterfallProps
         ...styled.style,
       }}
     >
-      {items.map((item, index) => {
+      {children.map((item, index) => {
         const { className, style } = stylex.props(
-          styles.item({ colGutter: gutters[0], columns, order: getOrder(index) })
+          styles.item({ columnGap: columnGap, columns, order: getOrder(index) })
         );
 
         return (

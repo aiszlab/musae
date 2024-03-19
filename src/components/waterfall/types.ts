@@ -23,5 +23,5 @@ export type WaterfallProps = ComponentProps & {
    * @description
    * items
    */
-  items?: ReactNode[];
+  children?: Exclude<ReactNode, Iterable<ReactNode>>[];
 };
