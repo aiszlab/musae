@@ -2,37 +2,70 @@ import * as stylex from "@stylexjs/stylex";
 import { sizes } from "../theme/tokens.stylex";
 import type { WaterfallProps } from "./types";
 import React from "react";
-import { useRenderable } from "./hooks";
+import { useRepaint } from "./hooks";
 import clsx from "clsx";
 import { type Gutters, useGutters } from "../../hooks/use-gutters";
 
 const styles = stylex.create({
-  waterfall: (props: { maxHeight: number; gutters: Gutters }) => ({
+  waterfall: (props: { gutters: Gutters }) => ({
     width: sizes.full,
     display: "flex",
-    flexFlow: "column wrap",
-    alignContent: "flex-start",
-    maxHeight: props.maxHeight,
+    flexFlow: "row wrap",
+    // alignContent: "flex-start",
+
+    height: "fit-content",
     columnGap: props.gutters[0],
     rowGap: props.gutters[1],
   }),
+
+  repainted: (props: { maxHeight: number }) => ({
+    // flexFlow: "column wrap",
+    // height: props.maxHeight,
+  }),
+
+  item: (props: { columns: number; colGutter: number; order: number | null }) => ({
+    order: props.order,
+    width: `calc((100% - ${props.columns - 1} * ${props.colGutter}px) / ${props.columns})`,
+  }),
 });
 
-const Waterfall = ({ children, columns = 4, gutter, ...props }: WaterfallProps) => {
+const Waterfall = ({ columns = 4, gutter, items = [], ...props }: WaterfallProps) => {
   const gutters = useGutters({ gutter });
-  const { ref, maxHeight } = useRenderable({ columns, gutters });
-  const styled = stylex.props(styles.waterfall({ maxHeight: maxHeight.current, gutters }));
+  const { collect, maxHeight, getOrder } = useRepaint({ columns, gutters });
+
+  const styled = stylex.props(
+    styles.waterfall({ gutters }),
+    maxHeight.current > 0 && styles.repainted({ maxHeight: maxHeight.current })
+  );
+
+  if (items.length === 0) return null;
 
   return (
     <div
-      ref={ref}
       className={clsx(props.className, styled.className)}
       style={{
         ...props.style,
         ...styled.style,
       }}
     >
-      {children}
+      {items.map((item, index) => {
+        const { className, style } = stylex.props(
+          styles.item({ colGutter: gutters[0], columns, order: getOrder(index) })
+        );
+
+        return (
+          <div
+            key={index}
+            className={className}
+            style={style}
+            ref={(_ref) => {
+              collect(index, _ref);
+            }}
+          >
+            {item}
+          </div>
+        );
+      })}
     </div>
   );
 };
