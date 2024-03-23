@@ -181,15 +181,14 @@ export const useSwitchable = ({ theme }: { theme: Theme }) => {
   }, []);
 
   const repaint = useEvent((_mode: Mode) => {
-    const _isDark = mode === "dark";
-    document.documentElement.classList.remove(
-      ...toClassList((_mode === "dark" ? styled.light : styled.dark).className)
-    );
+    const _isDark = _mode === "dark";
+
+    document.documentElement.classList.remove(...toClassList((_isDark ? styled.light : styled.dark).className));
     document.documentElement.classList.add(...toClassList(styled[_mode].className));
 
     document.documentElement.attributeStyleMap.set(
       "background-color",
-      _isDark ? theme.palette.neutral[100] : theme.palette.neutral[0]
+      _isDark ? theme.palette.neutral[0] : theme.palette.neutral[100]
     );
   });
 
