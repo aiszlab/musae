@@ -11,9 +11,11 @@ const styles = stylex.create({
   chip: (props: { borderColor: CSSProperties["borderColor"] }) => ({
     width: sizes.large,
     height: 20,
+
     borderRadius: sizes.xsmall,
-    borderWidth: "2px",
+    borderWidth: sizes.xxxxsmall,
     borderStyle: "solid",
+
     borderColor: props.borderColor,
     backgroundColor: "transparent",
     transition: "all 0.2s",

@@ -17,8 +17,8 @@ const styles = stylex.create({
   panel: {},
 
   footer: (props: { borderTopColor: CSSProperties["borderTopColor"] }) => ({
-    borderWidth: sizes.smallest,
-    borderStyle: "solid",
+    borderTopWidth: sizes.smallest,
+    borderTopStyle: "solid",
     borderTopColor: props.borderTopColor,
 
     display: "flex",

@@ -31,7 +31,7 @@ const styles = stylex.create({
       ":hover": "auto",
     },
 
-    width: `calc(${sizes.xlarge} + ${spacing.xxsmall} * 2)`,
+    width: sizes.xlarge,
     marginBlock: spacing.xxsmall,
 
     "::-webkit-scrollbar": {
@@ -42,12 +42,6 @@ const styles = stylex.create({
     "::-webkit-scrollbar-thumb": {
       borderRadius: 4,
       backgroundColor: props.scrollbarThumbColor,
-    },
-
-    ":not(:first-of-type)": {
-      borderLeftWidth: sizes.smallest,
-      borderLeftStyle: "solid",
-      borderLeftColor: props.outlineColor,
     },
   }),
 

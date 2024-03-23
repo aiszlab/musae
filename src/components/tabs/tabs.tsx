@@ -7,7 +7,7 @@ import Item from "./item";
 import * as stylex from "@stylexjs/stylex";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
-import { spacing } from "../theme/tokens.stylex";
+import { sizes, spacing } from "../theme/tokens.stylex";
 import { useClassNames } from "../config";
 import { ComponentToken, TabsClassToken } from "../../utils/class-name";
 import clsx from "clsx";
@@ -22,7 +22,7 @@ const styles = stylex.create({
   }),
 
   indicator: (props: { indicatorColor: CSSProperties["backgroundColor"] }) => ({
-    height: "2px",
+    height: sizes.xxxxsmall,
     backgroundColor: props.indicatorColor,
     position: "absolute",
     bottom: spacing.none,

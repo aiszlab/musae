@@ -25,7 +25,7 @@ import { typography } from "../theme/theme";
 import { useFadeAnimate } from "./hooks";
 
 const styles = stylex.create({
-  picker: (borderColor: CSSProperties["borderColor"]) => ({
+  picker: (props: { borderColor: CSSProperties["borderColor"] }) => ({
     minHeight: "36px",
     minWidth: sizes.none,
     width: 240,
@@ -36,10 +36,10 @@ const styles = stylex.create({
     gap: spacing.xxsmall,
 
     // border
-    borderColor,
-    borderWidth: "1px",
+    borderColor: props.borderColor,
+    borderWidth: sizes.smallest,
     borderStyle: "solid",
-    borderRadius: "4px",
+    borderRadius: sizes.xxxsmall,
 
     // layout
     margin: spacing.none,
@@ -47,13 +47,13 @@ const styles = stylex.create({
     paddingInline: spacing.medium,
   }),
 
-  focused: (borderColor: CSSProperties["borderColor"]) => ({
-    borderWidth: "2px",
-    borderColor,
+  focused: (props: { borderColor: CSSProperties["borderColor"] }) => ({
+    borderWidth: sizes.xxxxsmall,
+    borderColor: props.borderColor,
   }),
 
-  invalid: (borderColor: CSSProperties["borderColor"]) => ({
-    borderColor,
+  invalid: (props: { borderColor: CSSProperties["borderColor"] }) => ({
+    borderColor: props.borderColor,
   }),
 
   pickable: (props: { backgroundColor: CSSProperties["backgroundColor"]; minWidth: CSSProperties["minWidth"] }) => ({
@@ -108,11 +108,14 @@ const Picker = forwardRef<PickerRef, PickerProps>(
     const styled = {
       picker: stylex.props(
         typography.body.small,
-        styles.picker(theme.colors[ColorToken.Outline]),
-        isFocused && styles.focused(theme.colors[ColorToken.Primary])
+        styles.picker({ borderColor: theme.colors[ColorToken.Outline] }),
+        isFocused && styles.focused({ borderColor: theme.colors[ColorToken.Primary] })
       ),
       pickable: stylex.props(
-        styles.pickable({ backgroundColor: theme.colors[ColorToken.Surface], minWidth: getDropdownWidth() })
+        styles.pickable({
+          backgroundColor: theme.colors[ColorToken.SurfaceContainerLowest],
+          minWidth: getDropdownWidth(),
+        })
       ),
     };
 
