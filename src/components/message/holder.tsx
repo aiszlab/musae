@@ -9,12 +9,16 @@ import { AnimatePresence } from "framer-motion";
 const styles = stylex.create({
   holder: {
     position: "fixed",
+    top: 0,
+    left: 0,
+    right: 0,
+    zIndex: 100,
+
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    width: "100vw",
     pointerEvents: "none",
-    zIndex: 100,
+
     paddingInline: spacing.xlarge,
     paddingTop: spacing.small,
   },

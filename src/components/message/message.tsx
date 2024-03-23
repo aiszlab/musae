@@ -37,7 +37,7 @@ const styles = stylex.create({
   },
 });
 
-const Message = ({ duration = 3000, type, onClose, children }: MessageProps) => {
+const Message = ({ duration = 60000000, type, onClose, children }: MessageProps) => {
   const theme = useTheme();
 
   useTimeout(() => {
