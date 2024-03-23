@@ -1,6 +1,7 @@
-import React from "react";
-import type { Props } from "./types";
-import { Context, useContextValue } from "./hooks";
+import React, { useMemo } from "react";
+import type { Props, Theme } from "./types";
+import { Context, PALETTE, useSwitchable } from "./hooks";
+import deepmerge from "deepmerge";
 
 /**
  * @author murukal
@@ -10,12 +11,18 @@ import { Context, useContextValue } from "./hooks";
  * if user provider theme, we will merge it with presets theme
  */
 const ThemeProvider = (props: Props) => {
-  const contextValue = useContextValue({
-    theme: props.theme,
-  });
+  const theme = useMemo<Theme>(
+    () =>
+      deepmerge<Theme, Theme>(props.theme ?? {}, {
+        palette: PALETTE,
+      }),
+    [props.theme]
+  );
+
+  const { mode, toggle, colors } = useSwitchable({ theme });
 
   return (
-    <Context.Provider value={contextValue}>
+    <Context.Provider value={{ colors, mode, toggle }}>
       {/* children */}
       {props.children}
     </Context.Provider>

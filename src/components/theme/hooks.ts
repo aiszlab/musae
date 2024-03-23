@@ -1,11 +1,12 @@
-import { createContext, useCallback, useContext, useMemo, useState } from "react";
-import type { Palette, ContextValue, Theme } from "./types";
+import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
+import type { Palette, ContextValue, Theme, Mode } from "./types";
 import { toColors } from "../../utils/colors";
-import deepmerge from "deepmerge";
-import { isFunction, useDefault, useEvent, useMounted } from "@aiszlab/relax";
+import { isFunction, useEvent, useMounted } from "@aiszlab/relax";
 import * as stylex from "@stylexjs/stylex";
+import { toClassList } from "../../utils/styles";
+import { Observable, type Subscriber, distinctUntilChanged } from "rxjs";
 
-const PALETTE: Readonly<Palette> = {
+export const PALETTE: Readonly<Palette> = {
   primary: {
     "0": "#000",
     "10": "#21005D",
@@ -157,37 +158,62 @@ export const useTheme = () => {
 
 /**
  * @description
- * context value
+ * inject css names and styles into html element
+ * for animations
+ *
+ * u may ask: why add a single hook for this?
+ * i will answer: because i want to keep the code clean.
  */
-export const useContextValue = ({ theme }: { theme?: Theme }) => {
-  const [mode, setMode] = useState<ContextValue["mode"]>("light");
+export const useSwitchable = ({ theme }: { theme: Theme }) => {
+  const [mode, setMode] = useState<Mode>("light");
   const isDark = mode === "dark";
+  const trigger = useRef<Subscriber<Mode> | null>(null);
+  const colors = useMemo(() => toColors(theme.palette, mode), [mode, theme.palette]);
 
-  const toggleMode = useCallback(() => {
+  const styled = {
+    default: stylex.props(styles.default),
+    light: stylex.props(styles.light),
+    dark: stylex.props(styles.dark),
+  };
+
+  const _toggle = useCallback(() => {
     setMode((_mode) => (_mode === "light" ? "dark" : "light"));
   }, []);
 
-  const _theme = useMemo<Theme>(() => {
-    return deepmerge<Theme, Theme>(theme ?? {}, {
-      palette: PALETTE,
-    });
-  }, [theme]);
+  const repaint = useEvent((_mode: Mode) => {
+    const _isDark = mode === "dark";
+    document.documentElement.classList.remove(
+      ...toClassList((_mode === "dark" ? styled.light : styled.dark).className)
+    );
+    document.documentElement.classList.add(...toClassList(styled[_mode].className));
 
-  const styled = useDefault(() => ({
-    default: (stylex.attrs(styles.default).class ?? "").split(" "),
-    light: (stylex.attrs(styles.light).class ?? "").split(" "),
-    dark: (stylex.attrs(styles.dark).class ?? "").split(" "),
-  }));
-
-  useMounted(() => {
-    document.documentElement.classList.add(...styled.default);
-    document.documentElement.classList.add(...styled[mode]);
+    document.documentElement.attributeStyleMap.set(
+      "background-color",
+      _isDark ? theme.palette.neutral[100] : theme.palette.neutral[0]
+    );
   });
 
+  useMounted(() => {
+    // set default class names
+    document.documentElement.classList.add(...toClassList(styled.default.className));
+
+    new Observable<Mode>((subscriber) => {
+      trigger.current = subscriber;
+    })
+      .pipe(distinctUntilChanged())
+      .subscribe((_mode) => {
+        repaint(_mode);
+      });
+  });
+
+  useEffect(() => {
+    trigger.current?.next(mode);
+  }, [mode]);
+
   /// dark, light mode switch
-  const themeToggler = useEvent<ContextValue["toggle"]>((event) => {
+  const toggle = useEvent<ContextValue["toggle"]>((event) => {
     if (!(event && isFunction(document.startViewTransition))) {
-      toggleMode();
+      _toggle();
       return;
     }
 
@@ -196,12 +222,11 @@ export const useContextValue = ({ theme }: { theme?: Theme }) => {
     const radius = Math.hypot(Math.max(x, window.innerWidth - x), Math.max(y, window.innerHeight - y));
 
     const animation = document.startViewTransition(() => {
-      document.documentElement.classList.remove(...(isDark ? styled.dark : styled.light));
-      document.documentElement.classList.add(...(isDark ? styled.light : styled.dark));
+      trigger.current?.next(isDark ? "light" : "dark");
     });
 
     animation.ready.then(() => {
-      toggleMode();
+      _toggle();
 
       const clipPath = [`circle(0px at ${x}px ${y}px)`, `circle(${radius}px at ${x}px ${y}px)`];
       document.documentElement.animate(
@@ -215,11 +240,9 @@ export const useContextValue = ({ theme }: { theme?: Theme }) => {
     });
   });
 
-  return useMemo<ContextValue>(() => {
-    return {
-      colors: toColors(_theme.palette, mode),
-      mode,
-      toggle: themeToggler,
-    };
-  }, [_theme, mode, themeToggler]);
+  return {
+    mode,
+    toggle,
+    colors: colors,
+  };
 };

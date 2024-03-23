@@ -5,6 +5,8 @@ export type Theme = {
   palette: Palette;
 };
 
+export type Mode = "light" | "dark";
+
 /**
  * @author murukal
  *
@@ -62,7 +64,7 @@ export interface ContextValue {
    * in musae, use light or dark
    * @example light
    */
-  mode: "light" | "dark";
+  mode: Mode;
 
   /**
    * @description

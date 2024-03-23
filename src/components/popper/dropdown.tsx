@@ -57,8 +57,6 @@ const Dropdown = forwardRef<PopperRef, DropdownProps>(
       (async () => {
         const toggleBy = styled.hidden.className?.split(" ") ?? [];
 
-        console.log("toggleBy====", toggleBy);
-
         if (open) {
           container.current?.classList.remove(...toggleBy);
           await onEntered?.();

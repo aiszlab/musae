@@ -63,7 +63,7 @@ const styles = stylex.create({
     overflow: "auto",
     minWidth: props.minWidth,
     boxShadow: elevations.small,
-    paddingInline: spacing.xxsmall,
+    padding: spacing.xxsmall,
     opacity: 0,
   }),
 });
