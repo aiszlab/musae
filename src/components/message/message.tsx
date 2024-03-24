@@ -16,19 +16,20 @@ const SIGNALS = new Map<MessageProps["type"], FC<IconProps>>([
 ]);
 
 const styles = stylex.create({
-  message: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
+  message: (props: { backgroundColor: CSSProperties["backgroundColor"]; color: CSSProperties["color"] }) => ({
     marginBlock: spacing.small,
     paddingBlock: spacing.small,
     paddingInline: spacing.medium,
-    borderRadius: 6,
-    backgroundColor: props.backgroundColor,
+    borderRadius: sizes.xxxsmall,
     boxShadow: elevations.xsmall,
-
     display: "flex",
     alignItems: "flex-start",
     columnGap: spacing.xsmall,
     maxWidth: sizes.full,
     pointerEvents: "auto",
+
+    backgroundColor: props.backgroundColor,
+    color: props.color,
   }),
 
   content: {
@@ -50,6 +51,7 @@ const Message = ({ duration = 3000, type, onClose, children }: MessageProps) => 
     message: stylex.props(
       styles.message({
         backgroundColor: theme.colors[ColorToken.OnPrimary],
+        color: theme.colors[ColorToken.OnPrimaryContainer],
       })
     ),
     content: stylex.props(typography.body.medium, styles.content),
@@ -57,7 +59,8 @@ const Message = ({ duration = 3000, type, onClose, children }: MessageProps) => 
 
   return (
     <motion.div
-      {...styled.message}
+      className={styled.message.className}
+      style={styled.message.style}
       initial={{
         y: "-100%",
         opacity: 0,
