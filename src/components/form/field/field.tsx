@@ -1,29 +1,29 @@
 import React, { isValidElement, useMemo, cloneElement, ReactElement, type CSSProperties } from "react";
-import type { FormItemProps } from "./types";
+import type { FormItemProps } from "../types";
 import { useController } from "react-hook-form";
-import { FieldRenderProps } from "../../types/element";
+import { FieldRenderProps } from "../../../types/element";
 import type { RequiredIn } from "@aiszlab/relax/types";
-import { isRefable } from "@aiszlab/relax";
-import { useClassNames } from "../config";
-import { ComponentToken, FormClassToken } from "../../utils/class-name";
+import { chain, isRefable } from "@aiszlab/relax";
+import { useClassNames } from "../../config";
+import { ComponentToken, FormClassToken } from "../../../utils/class-name";
 import * as stylex from "@stylexjs/stylex";
 import clsx from "clsx";
-import { spacing } from "../theme/tokens.stylex";
-import { useTheme } from "../theme";
-import { ColorToken } from "../../utils/colors";
-import Gridded from "./gridded";
-import { typography } from "../theme/theme";
+import { sizes } from "../../theme/tokens.stylex";
+import { useTheme } from "../../theme";
+import { ColorToken } from "../../../utils/colors";
+import Layout from "./layout";
+import Error from "./error";
+import { AnimatePresence } from "framer-motion";
 
 const styles = stylex.create({
-  explain: {
-    paddingInline: spacing.large,
-    paddingBlock: spacing.xxxsmall,
-    marginBottom: `calc(${spacing.xlarge} * -1)`,
-  },
-
   error: (props: { color: CSSProperties["color"] }) => ({
     color: props.color,
+    overflow: "hidden",
   }),
+
+  description: {
+    minHeight: sizes.small,
+  },
 });
 
 /**
@@ -33,6 +33,7 @@ const styles = stylex.create({
  */
 const Field = ({ required, ...props }: RequiredIn<FormItemProps, "name" | "required">) => {
   const classNames = useClassNames(ComponentToken.Form);
+  const theme = useTheme();
   const {
     field: { onBlur, onChange, name, value, ref },
     fieldState: { invalid, error },
@@ -45,7 +46,6 @@ const Field = ({ required, ...props }: RequiredIn<FormItemProps, "name" | "requi
       },
     },
   });
-  const theme = useTheme();
 
   const children = useMemo(() => {
     const _isValidElement = isValidElement<FieldRenderProps>(props.children);
@@ -54,14 +54,8 @@ const Field = ({ required, ...props }: RequiredIn<FormItemProps, "name" | "requi
 
     /// rewrite change and blur handler
     const handlers: Pick<FieldRenderProps, "onChange" | "onBlur"> = {
-      onChange: (...args) => {
-        _child.props.onChange?.(...args);
-        onChange(...args);
-      },
-      onBlur: (...args) => {
-        _child.props.onBlur?.(...args);
-        onBlur();
-      },
+      onChange: chain(_child.props.onChange, onChange),
+      onBlur: chain(_child.props.onBlur, onBlur),
     };
 
     /// registe react hook form
@@ -77,40 +71,29 @@ const Field = ({ required, ...props }: RequiredIn<FormItemProps, "name" | "requi
   }, [props.children, name, value, invalid, ref, onChange, onBlur]);
 
   const styled = {
-    explain: stylex.props(typography.body.medium, styles.explain),
-  };
-
-  const _error = useMemo(() => {
-    if (!invalid) return null;
-
-    const { className, style } = stylex.props(
+    error: stylex.props(
       styles.error({
         color: theme.colors[ColorToken.Error],
       })
-    );
+    ),
+    description: stylex.props(styles.description),
+  };
 
-    return (
-      <span className={clsx(classNames[FormClassToken.ItemExplainError], className)} style={style}>
-        {error?.message}
-      </span>
-    );
-  }, [classNames, error?.message, invalid, theme.colors]);
+  const descriptions = [
+    invalid && <Error error={error} className={styled.error.className} style={styled.error.style} />,
+  ];
 
   return (
     <div className={clsx(classNames[FormClassToken.Item])}>
-      <Gridded label={props.label} required={required}>
+      <Layout label={props.label} required={required} space={descriptions.length === 0}>
         <div>{children}</div>
 
-        {/* explain */}
-        {_error && (
-          <div
-            className={clsx(classNames[FormClassToken.ItemExplain], styled.explain.className)}
-            style={styled.explain.style}
-          >
-            {_error}
-          </div>
+        {descriptions.length > 0 && (
+          <AnimatePresence>
+            <div {...styled.description}>{descriptions}</div>
+          </AnimatePresence>
         )}
-      </Gridded>
+      </Layout>
     </div>
   );
 };

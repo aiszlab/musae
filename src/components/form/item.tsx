@@ -1,7 +1,6 @@
 import { FormItemProps } from "./types";
 import React from "react";
-import Field from "./field";
-import Gridded from "./gridded";
+import { Field, Layout } from "./field";
 
 /**
  * @description
@@ -13,9 +12,9 @@ const Item = ({ required = false, ...props }: FormItemProps) => {
   }
 
   return (
-    <Gridded label={props.label} labelCol={props.labelCol} wrapperCol={props.wrapperCol} required={required}>
+    <Layout label={props.label} labelCol={props.labelCol} wrapperCol={props.wrapperCol} required={required}>
       {props.children}
-    </Gridded>
+    </Layout>
   );
 };
 

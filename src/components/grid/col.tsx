@@ -18,7 +18,7 @@ const Col = ({ children, className, span = 8, as: As = "div", ...props }: ColPro
 
   return (
     <As
-      className={clsx(styled.className, classNames[GridClassToken.Col], className)}
+      className={clsx(classNames[GridClassToken.Col], className, styled.className)}
       style={{
         ...styled.style,
         ...props.style,

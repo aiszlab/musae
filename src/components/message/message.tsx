@@ -1,4 +1,4 @@
-import React, { CSSProperties, FC, createElement } from "react";
+import React, { CSSProperties, FC, createElement, useMemo } from "react";
 import { useTimeout } from "@aiszlab/relax";
 import type { MessageProps } from "./types";
 import * as stylex from "@stylexjs/stylex";
@@ -45,8 +45,14 @@ const Message = ({ duration = 3000, type, onClose, children }: MessageProps) => 
     onClose?.();
   }, duration);
 
-  const color =
-    type === "success" ? theme.colors[ColorToken.Primary] : "error" ? theme.colors[ColorToken.Error] : void 0;
+  const colors = useMemo(
+    () => ({
+      success: theme.colors[ColorToken.Primary],
+      error: theme.colors[ColorToken.Error],
+    }),
+    [theme]
+  );
+
   const styled = {
     message: stylex.props(
       styles.message({
@@ -77,7 +83,7 @@ const Message = ({ duration = 3000, type, onClose, children }: MessageProps) => 
       {/* icon */}
       {SIGNALS.get(type) &&
         createElement(SIGNALS.get(type)!, {
-          color,
+          color: colors[type as keyof typeof colors],
         })}
 
       {/* content */}

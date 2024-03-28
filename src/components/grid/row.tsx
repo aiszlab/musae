@@ -25,7 +25,7 @@ const Row = ({ align, children, gutter, justify, className, as: As = "div", ...p
 
   return (
     <As
-      className={clsx(styled.className, classNames[GridClassToken.Row], className)}
+      className={clsx(classNames[GridClassToken.Row], className, styled.className)}
       style={{
         ...styled.style,
         ...props.style,

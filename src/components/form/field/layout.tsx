@@ -1,14 +1,16 @@
 import React, { type CSSProperties } from "react";
 import { useContext, type ReactNode } from "react";
-import type { ContextValue } from "./types";
-import Context from "./context";
-import { Grid } from "../grid";
+import type { ContextValue } from "../types";
+import Context from "../context";
+import { Grid } from "../../grid";
 import * as stylex from "@stylexjs/stylex";
-import { typography } from "../theme/theme";
-import { spacing } from "../theme/tokens.stylex";
-import { useTheme } from "../theme";
-import { ColorToken } from "../../utils/colors";
+import { typography } from "../../theme/theme";
+import { spacing } from "../../theme/tokens.stylex";
+import { useTheme } from "../../theme";
+import { ColorToken } from "../../../utils/colors";
 import clsx from "clsx";
+
+const { Row, Col } = Grid;
 
 const styles = stylex.create({
   item: {
@@ -24,29 +26,60 @@ const styles = stylex.create({
   }),
 });
 
-const { Row, Col } = Grid;
+/**
+ * @description
+ * layout props
+ */
+type Props = {
+  /**
+   * @description
+   * children
+   */
+  children: ReactNode;
+
+  /**
+   * @description
+   * label for current input
+   */
+  label?: string;
+
+  /**
+   * @description
+   * how many columns should the label take
+   */
+  labelCol?: ContextValue["labelCol"];
+
+  /**
+   * @description
+   * how many columns should the input take
+   */
+  wrapperCol?: ContextValue["wrapperCol"];
+
+  /**
+   * @description
+   * display required
+   */
+  required: boolean;
+
+  /**
+   * @description
+   * if this item has margin space
+   */
+  space?: boolean;
+};
 
 /**
  * @description
- * item grid
+ * item layout
  */
-const Gridded = ({
-  required,
-  ...props
-}: {
-  children: ReactNode;
-  label?: string;
-  labelCol?: ContextValue["labelCol"];
-  wrapperCol?: ContextValue["wrapperCol"];
-  required: boolean;
-}) => {
+const Layout = ({ required, space, ...props }: Props) => {
   const contextValue = useContext(Context);
   const labelCol = props.labelCol ?? contextValue.labelCol;
   const wrapperCol = props.wrapperCol ?? contextValue.wrapperCol;
   const theme = useTheme();
 
   const styled = {
-    item: stylex.props(styles.item),
+    item: stylex.props(!!space && styles.item),
     label: stylex.props(
       required &&
         styles.required({
@@ -73,4 +106,4 @@ const Gridded = ({
   );
 };
 
-export default Gridded;
+export default Layout;
