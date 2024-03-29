@@ -6,6 +6,7 @@ import { useMounted } from "@aiszlab/relax";
 import { useClassNames } from "../config";
 import * as stylex from "@stylexjs/stylex";
 import clsx from "clsx";
+import { toClassList } from "../../utils/styles";
 
 const styles = stylex.create({
   dropdown: {
@@ -55,16 +56,14 @@ const Dropdown = forwardRef<PopperRef, DropdownProps>(
 
     useEffect(() => {
       (async () => {
-        const toggleBy = styled.hidden.className?.split(" ") ?? [];
-
         if (open) {
-          container.current?.classList.remove(...toggleBy);
+          container.current?.classList.remove(...toClassList(styled.hidden.className));
           await onEntered?.();
           return;
         }
 
         await onExit?.();
-        container.current?.classList.add(...toggleBy);
+        container.current?.classList.add(...toClassList(styled.hidden.className));
       })();
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [open]);
