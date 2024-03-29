@@ -2,7 +2,7 @@ import React, { forwardRef, useEffect, useImperativeHandle, useRef } from "react
 import type { PopperRef, DropdownProps } from "./types";
 import { Instance, createPopper } from "@popperjs/core";
 import { ComponentToken, PopperClassToken } from "../../utils/class-name";
-import { useMounted } from "@aiszlab/relax";
+import { useMount } from "@aiszlab/relax";
 import { useClassNames } from "../config";
 import * as stylex from "@stylexjs/stylex";
 import clsx from "clsx";
@@ -30,11 +30,13 @@ const Dropdown = forwardRef<PopperRef, DropdownProps>(
       },
     }));
 
-    useMounted(() => {
+    /// fix: why use mount instead of use mounted?
+    /// when mounted, this div display a normal block, must sync to popper.
+    useMount(() => {
       if (!trigger) return;
       if (!container.current) return;
 
-      const popped = createPopper(trigger, container.current, {
+      const _popper = createPopper(trigger, container.current, {
         placement,
         modifiers: [
           {
@@ -42,10 +44,10 @@ const Dropdown = forwardRef<PopperRef, DropdownProps>(
           },
         ],
       });
-      popper.current = popped;
+      popper.current = _popper;
 
       return () => {
-        popped.destroy();
+        _popper.destroy();
       };
     });
 
@@ -75,7 +77,6 @@ const Dropdown = forwardRef<PopperRef, DropdownProps>(
         className={clsx(classNames[PopperClassToken.Dropdown], className, styled.dropdown.className)}
         style={{
           ...styled.dropdown.style,
-          ...styled.hidden.style,
           ...style,
         }}
       >

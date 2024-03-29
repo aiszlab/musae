@@ -40,11 +40,11 @@ export const useFadeAnimate = () => {
   const [scope, animate] = useAnimate<HTMLDivElement>();
 
   const fadeIn = useEvent(async () => {
-    await animate(scope.current, { opacity: 1 }, { duration: 0.05 });
+    await animate(scope.current, { opacity: 1 }, { duration: 0.2 });
   });
 
   const fadeOut = useEvent(async () => {
-    await animate(scope.current, { opacity: 0 }, { duration: 0.05 });
+    await animate(scope.current, { opacity: 0 }, { duration: 0.2 });
   });
 
   return {
