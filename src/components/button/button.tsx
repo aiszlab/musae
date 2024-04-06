@@ -16,7 +16,7 @@ const styles = stylex.create({
   button: {
     position: "relative",
     overflow: "hidden",
-    display: "flex",
+    display: "inline-flex",
     alignItems: "center",
     gap: spacing.small,
     transition: "all 0.3s",
@@ -100,6 +100,7 @@ const styles = stylex.create({
  *
  * @description
  * button
+ * 1. diff from normal html button, this button is default type `button`, not `submit`
  */
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
@@ -115,6 +116,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       ripple = true,
       onPointerEnter,
       onPointerLeave,
+      type = "button",
       ...props
     },
     ref
@@ -174,6 +176,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         }}
         onPointerEnter={onPointerEnter}
         onPointerLeave={onPointerLeave}
+        type={type}
       >
         {props.prefix}
         {children}

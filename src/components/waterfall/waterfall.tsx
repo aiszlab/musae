@@ -35,7 +35,7 @@ const Waterfall = ({ columns = 4, gutter, children = [], ...props }: WaterfallPr
 
   const styled = stylex.props(
     styles.waterfall({ rowGap, columnGap }),
-    maxHeight.current > 0 && styles.repainted({ maxHeight: maxHeight.current })
+    maxHeight > 0 && styles.repainted({ maxHeight: maxHeight })
   );
 
   if (children.length === 0) return null;

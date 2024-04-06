@@ -72,9 +72,7 @@ const Input = forwardRef<InputRef, InputProps>((props, ref) => {
   );
 
   /// controlled value
-  const [_value, _setValue] = useControlledState(props.value, {
-    defaultState: "",
-  });
+  const [_value, _setValue] = useControlledState(props.value ?? "");
 
   /// events
   const inputEvents = useInputEvents({

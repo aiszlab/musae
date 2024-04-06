@@ -18,7 +18,7 @@ export { Breadcrumb } from "./components/breadcrumb";
 export { Tabs } from "./components/tabs";
 export { ThemeProvider } from "./components/theme";
 export { ConfigProvider } from "./components/config";
-export { Form } from "./components/form";
+export { Form, FormRef } from "./components/form";
 export { Empty } from "./components/empty";
 export { Drawer } from "./components/drawer";
 export { Dialog } from "./components/dialog";

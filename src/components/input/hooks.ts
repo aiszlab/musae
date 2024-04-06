@@ -54,7 +54,7 @@ export const useInputEvents = ({
   onClick,
   onFocus,
 }: Pick<InputProps, "onFocus" | "onBlur" | "onChange" | "onClick"> & {
-  setValue: Dispatch<SetStateAction<Partialable<string>>>;
+  setValue: Dispatch<SetStateAction<string>>;
 }) => {
   const focus = useCallback<FocusEventHandler<HTMLInputElement>>(
     (e) => {

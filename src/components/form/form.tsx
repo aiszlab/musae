@@ -1,7 +1,7 @@
-import React, { type ForwardedRef, forwardRef, useEffect, useImperativeHandle, useMemo } from "react";
+import React, { type ForwardedRef, forwardRef, useImperativeHandle, useMemo } from "react";
 import type { ContextValue, FormProps, FormRef } from "./types";
 import { useForm, type FieldValues, FormProvider, type FieldErrors, type FieldPath } from "react-hook-form";
-import { isUndefined } from "@aiszlab/relax";
+import { isUndefined, useEvent, useMounted } from "@aiszlab/relax";
 import Context, { CONTEXT_VALUE } from "./context";
 
 const Form = forwardRef(
@@ -35,24 +35,25 @@ const Form = forwardRef(
         getFieldsError,
         getFieldError,
         getValues: methods.getValues,
+        reset: methods.reset,
       };
     });
 
-    const _submit = useMemo(() => {
+    const submit = useEvent(() => {
       return handleSubmit((values) => {
         onSubmit?.(values);
       });
-    }, [onSubmit, handleSubmit]);
+    });
 
-    useEffect(() => {
-      const subscription = watch((values, { type }) => {
+    useMounted(() => {
+      const watched = watch((values, { type }) => {
         type === "change" && onChange?.(values);
       });
 
       return () => {
-        subscription.unsubscribe();
+        watched.unsubscribe();
       };
-    }, [onChange, watch]);
+    });
 
     /// context value
     const contextValue = useMemo<ContextValue>(() => {
@@ -70,7 +71,7 @@ const Form = forwardRef(
     return (
       <Context.Provider value={contextValue}>
         <FormProvider handleSubmit={handleSubmit} watch={watch} {...methods}>
-          <form onSubmit={_submit}>{children}</form>
+          <form onSubmit={submit}>{children}</form>
         </FormProvider>
       </Context.Provider>
     );

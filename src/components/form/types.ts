@@ -1,4 +1,4 @@
-import type { ExoticComponent, ReactNode } from "react";
+import type { ForwardRefExoticComponent, PropsWithoutRef, ReactNode, RefAttributes } from "react";
 import type {
   DeepPartial,
   FieldError,
@@ -6,6 +6,7 @@ import type {
   FieldPath,
   FieldValues,
   UseFormGetValues,
+  UseFormReset,
   UseFormTrigger,
 } from "react-hook-form";
 import type { Nullable, Partialable } from "@aiszlab/relax/types";
@@ -15,7 +16,7 @@ import type { Nullable, Partialable } from "@aiszlab/relax/types";
  * @description
  * form ref
  */
-export interface FormRef<T extends FieldValues> {
+export interface FormRef<T extends FieldValues = FieldValues> {
   /**
    * @description
    * validate
@@ -42,6 +43,12 @@ export interface FormRef<T extends FieldValues> {
    * get single field error
    */
   getValues: UseFormGetValues<T>;
+
+  /**
+   * @description
+   * reset form to default values, and clear all validation errors
+   */
+  reset: UseFormReset<T>;
 }
 
 /**
@@ -126,7 +133,8 @@ export interface FormItemProps extends Pick<FormProps<unknown>, "labelCol" | "wr
  * @description
  * typed form
  */
-export interface TypedForm<T extends FieldValues = FieldValues> extends ExoticComponent<FormProps<T>> {
+export interface TypedForm<T extends FieldValues = FieldValues>
+  extends ForwardRefExoticComponent<PropsWithoutRef<FormProps<T>> & RefAttributes<FormRef<T>>> {
   /* group */
   Item: (props: FormItemProps) => ReactNode;
 }

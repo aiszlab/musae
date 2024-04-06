@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 /**
  * @description
@@ -6,37 +6,40 @@ import { useCallback, useEffect, useRef } from "react";
  */
 export const useRepaint = ({ columns, rowGap }: { columns: number; rowGap: number }) => {
   const items = useRef<Map<number, HTMLDivElement | null>>(new Map());
-  const orders = useRef<Map<number, number>>(new Map());
-  const maxHeight = useRef<number>(0);
+  const [maxHeight, setMaxHeight] = useState(0);
+  const [orders, setOrders] = useState<Map<number, number>>(new Map());
 
   const collect = useCallback((index: number, ref: HTMLDivElement | null) => {
     items.current.set(index, ref);
   }, []);
 
   useEffect(() => {
-    const columnHeights = new Array(columns).fill(0);
+    const [columnHeights, _orders] = Array.from(items.current.entries()).reduce<[number[], typeof orders]>(
+      (prev, [index, child]) => {
+        if (!child) return prev;
 
-    // reset
-    orders.current.clear();
-    maxHeight.current = 0;
+        const childHeight = child.getBoundingClientRect().height;
+        const order = prev[0].indexOf(Math.min(...prev[0]));
+        // count
+        prev[0][order] = prev[0][order] + (prev[0][order] && rowGap) + childHeight;
+        // set order for render
+        prev[1].set(index, order + 1);
+        return prev;
+      },
+      [new Array(columns).fill(0), new Map()]
+    );
 
-    Array.from(items.current.entries()).forEach(([index, child]) => {
-      if (!child) return;
-      const childHeight = child.getBoundingClientRect().height;
-      const order = columnHeights.indexOf(Math.min(...columnHeights));
-      // count
-      columnHeights[order] = columnHeights[order] + (columnHeights[order] && rowGap) + childHeight;
-      // set order for render
-      orders.current.set(index, order + 1);
-    });
-
-    maxHeight.current = Math.max(...columnHeights);
+    setMaxHeight(Math.max(...columnHeights));
+    setOrders(_orders);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [rowGap]);
 
-  const getOrder = useCallback((index: number) => {
-    return orders.current.get(index) ?? null;
-  }, []);
+  const getOrder = useCallback(
+    (index: number) => {
+      return orders.get(index) ?? null;
+    },
+    [orders]
+  );
 
   return {
     maxHeight,

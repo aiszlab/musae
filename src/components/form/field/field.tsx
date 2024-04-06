@@ -81,10 +81,6 @@ const Field = ({ required, ...props }: RequiredIn<FormItemProps, "name" | "requi
     supporting: stylex.props(styles.supporting, typography.body.small),
   };
 
-  const supportings = [
-    ...(invalid ? [<Error error={error} className={styled.error.className} style={styled.error.style} />] : []),
-  ];
-
   return (
     <div className={clsx(classNames[FormClassToken.Item])}>
       <Layout label={props.label} required={required}>
@@ -94,7 +90,9 @@ const Field = ({ required, ...props }: RequiredIn<FormItemProps, "name" | "requi
           className={clsx(classNames[FormClassToken.FieldSupporting], styled.supporting.className)}
           style={styled.supporting.style}
         >
-          <AnimatePresence>{supportings}</AnimatePresence>
+          <AnimatePresence>
+            {invalid && <Error error={error} className={styled.error.className} style={styled.error.style} />}
+          </AnimatePresence>
         </div>
       </Layout>
     </div>
