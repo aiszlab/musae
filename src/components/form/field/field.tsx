@@ -8,12 +8,13 @@ import { useClassNames } from "../../config";
 import { ComponentToken, FormClassToken } from "../../../utils/class-name";
 import * as stylex from "@stylexjs/stylex";
 import clsx from "clsx";
-import { sizes } from "../../theme/tokens.stylex";
+import { sizes, spacing } from "../../theme/tokens.stylex";
 import { useTheme } from "../../theme";
 import { ColorToken } from "../../../utils/colors";
 import Layout from "./layout";
 import Error from "./error";
 import { AnimatePresence } from "framer-motion";
+import { typography } from "../../theme/theme";
 
 const styles = stylex.create({
   error: (props: { color: CSSProperties["color"] }) => ({
@@ -21,8 +22,9 @@ const styles = stylex.create({
     overflow: "hidden",
   }),
 
-  description: {
+  supporting: {
     minHeight: sizes.small,
+    paddingBottom: spacing.xxsmall,
   },
 });
 
@@ -76,23 +78,24 @@ const Field = ({ required, ...props }: RequiredIn<FormItemProps, "name" | "requi
         color: theme.colors[ColorToken.Error],
       })
     ),
-    description: stylex.props(styles.description),
+    supporting: stylex.props(styles.supporting, typography.body.small),
   };
 
-  const descriptions = [
-    invalid && <Error error={error} className={styled.error.className} style={styled.error.style} />,
+  const supportings = [
+    ...(invalid ? [<Error error={error} className={styled.error.className} style={styled.error.style} />] : []),
   ];
 
   return (
     <div className={clsx(classNames[FormClassToken.Item])}>
-      <Layout label={props.label} required={required} space={descriptions.length === 0}>
+      <Layout label={props.label} required={required}>
         <div>{children}</div>
 
-        {descriptions.length > 0 && (
-          <AnimatePresence>
-            <div {...styled.description}>{descriptions}</div>
-          </AnimatePresence>
-        )}
+        <div
+          className={clsx(classNames[FormClassToken.FieldSupporting], styled.supporting.className)}
+          style={styled.supporting.style}
+        >
+          <AnimatePresence>{supportings}</AnimatePresence>
+        </div>
       </Layout>
     </div>
   );

@@ -79,6 +79,7 @@ export enum PopperClassToken {
 export enum FormClassToken {
   Item,
   Field,
+  FieldSupporting,
   FieldError,
 }
 export enum GridClassToken {
@@ -212,6 +213,7 @@ export const CLASS_NAMES = {
   [ComponentToken.Form]: {
     [FormClassToken.Item]: "form__item",
     [FormClassToken.Field]: "form__item-field",
+    [FormClassToken.FieldSupporting]: "form__item-supporting",
     [FormClassToken.FieldError]: "form__item-field-error",
   },
   [ComponentToken.Grid]: {

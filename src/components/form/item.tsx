@@ -12,7 +12,7 @@ const Item = ({ required = false, ...props }: FormItemProps) => {
   }
 
   return (
-    <Layout label={props.label} labelCol={props.labelCol} wrapperCol={props.wrapperCol} required={required}>
+    <Layout label={props.label} labelCol={props.labelCol} wrapperCol={props.wrapperCol} required={required} space>
       {props.children}
     </Layout>
   );

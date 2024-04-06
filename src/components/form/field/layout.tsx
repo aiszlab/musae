@@ -13,7 +13,7 @@ import clsx from "clsx";
 const { Row, Col } = Grid;
 
 const styles = stylex.create({
-  item: {
+  space: {
     marginBottom: spacing.xlarge,
   },
 
@@ -79,7 +79,7 @@ const Layout = ({ required, space, ...props }: Props) => {
   const theme = useTheme();
 
   const styled = {
-    item: stylex.props(!!space && styles.item),
+    item: stylex.props(!!space && styles.space),
     label: stylex.props(
       required &&
         styles.required({
