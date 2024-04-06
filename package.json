@@ -22,7 +22,7 @@
     }
   },
   "dependencies": {
-    "@aiszlab/relax": "1.2.29",
+    "@aiszlab/relax": "^1.2.30",
     "@popperjs/core": "^2.11.8",
     "@tanstack/react-table": "^8.11.3",
     "clsx": "^2.1.0",
