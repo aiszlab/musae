@@ -14,6 +14,9 @@ export const useRepaint = ({ columns, rowGap }: { columns: number; rowGap: numbe
   }, []);
 
   useEffect(() => {
+    // only 1 columns, no need to repaint, just display as flex
+    if (columns <= 1) return;
+
     const [columnHeights, _orders] = Array.from(items.current.entries()).reduce<[number[], typeof orders]>(
       (prev, [index, child]) => {
         if (!child) return prev;
