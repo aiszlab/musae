@@ -24,4 +24,11 @@ export type WaterfallProps = ComponentProps & {
    * items
    */
   children?: Exclude<ReactNode, Iterable<ReactNode>>[];
+
+  /**
+   * @description
+   * sequential
+   * use list order rather than add to the shortest column
+   */
+  sequential?: boolean
 };

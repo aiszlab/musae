@@ -11,7 +11,8 @@ const styles = stylex.create({
   waterfall: (props: { columnGap: number; rowGap: number }) => ({
     width: sizes.full,
     display: "flex",
-    flexFlow: "row wrap",
+    flexDirection: "row",
+    flexWrap: "wrap",
     alignContent: "flex-start",
     height: "fit-content",
     columnGap: props.columnGap,
@@ -20,7 +21,7 @@ const styles = stylex.create({
   }),
 
   repainted: (props: { maxHeight: number }) => ({
-    flexFlow: "column wrap",
+    flexDirection: "column",
     height: props.maxHeight,
   }),
 
