@@ -1,4 +1,5 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEvent, useUpdateEffect } from "@aiszlab/relax";
+import { useCallback, useRef, useState } from "react";
 
 /**
  * @description
@@ -13,7 +14,7 @@ export const useRepaint = ({ columns, rowGap }: { columns: number; rowGap: numbe
     items.current.set(index, ref);
   }, []);
 
-  useEffect(() => {
+  const repaint = useEvent(() => {
     // only 1 columns, no need to repaint, just display as flex
     if (columns <= 1) return;
 
@@ -34,7 +35,10 @@ export const useRepaint = ({ columns, rowGap }: { columns: number; rowGap: numbe
 
     setMaxHeight(Math.max(...columnHeights));
     setOrders(_orders);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+  });
+
+  useUpdateEffect(() => {
+    repaint();
   }, [rowGap]);
 
   const getOrder = useCallback(
@@ -48,5 +52,7 @@ export const useRepaint = ({ columns, rowGap }: { columns: number; rowGap: numbe
     maxHeight,
     collect,
     getOrder,
+    items,
+    repaint,
   };
 };

@@ -5,6 +5,7 @@ import React from "react";
 import { useRepaint } from "./hooks";
 import clsx from "clsx";
 import { useGutters } from "../../hooks/use-gutters";
+import { useMounted } from "@aiszlab/relax";
 
 const styles = stylex.create({
   waterfall: (props: { columnGap: number; rowGap: number }) => ({
@@ -31,12 +32,28 @@ const styles = stylex.create({
 
 const Waterfall = ({ columns = 4, gutter, children = [], ...props }: WaterfallProps) => {
   const [columnGap, rowGap] = useGutters({ gutter });
-  const { collect, maxHeight, getOrder } = useRepaint({ columns, rowGap });
+  const { collect, maxHeight, getOrder, items, repaint } = useRepaint({ columns, rowGap });
 
   const styled = stylex.props(
     styles.waterfall({ rowGap, columnGap }),
     maxHeight > 0 && styles.repainted({ maxHeight: maxHeight })
   );
+
+  useMounted(() => {
+    // observer will be called when the component is mounted
+    // so in waterfall we use current time to first render
+    const resizer = new ResizeObserver(() => {
+      repaint();
+    });
+
+    Array.from(items.current.values()).forEach((node) => {
+      node && resizer.observe(node);
+    });
+
+    return () => {
+      resizer.disconnect();
+    };
+  });
 
   if (children.length === 0) return null;
 
