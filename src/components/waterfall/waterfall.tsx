@@ -16,6 +16,7 @@ const styles = stylex.create({
     height: "fit-content",
     columnGap: props.columnGap,
     rowGap: props.rowGap,
+    overflow: "hidden"
   }),
 
   repainted: (props: { maxHeight: number }) => ({
