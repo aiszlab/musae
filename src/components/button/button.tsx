@@ -19,6 +19,7 @@ const styles = stylex.create({
     display: "inline-flex",
     alignItems: "center",
     gap: spacing.small,
+    whiteSpace: "nowrap",
     transition: "all 0.3s",
     willChange: "background-color, color, box-shadow",
   },
