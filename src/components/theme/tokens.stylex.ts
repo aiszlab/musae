@@ -65,3 +65,14 @@ export const tracking = defineVars({
   large: "0.4px",
   xlarge: "0.5px",
 });
+
+/**
+ * @description
+ * positions
+ * in musae, we have many zIndex request
+ * like dialog, we need it be toper than other content
+ */
+export const positions = defineVars({
+  high: "1080",
+  higher: "1090",
+});
