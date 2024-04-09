@@ -6,6 +6,7 @@ import { useRepaint } from "./hooks";
 import clsx from "clsx";
 import { useGutters } from "../../hooks/use-gutters";
 import { useMounted } from "@aiszlab/relax";
+import Sequential from "./sequential";
 
 const styles = stylex.create({
   waterfall: (props: { columnGap: number; rowGap: number }) => ({
@@ -17,7 +18,7 @@ const styles = stylex.create({
     height: "fit-content",
     columnGap: props.columnGap,
     rowGap: props.rowGap,
-    overflow: "hidden"
+    overflow: "hidden",
   }),
 
   repainted: (props: { maxHeight: number }) => ({
@@ -58,6 +59,19 @@ const Waterfall = ({ columns = 4, gutter, children = [], ...props }: WaterfallPr
   });
 
   if (children.length === 0) return null;
+
+  if (props.sequential) {
+    return (
+      <Sequential
+        className={props.className}
+        style={props.style}
+        styles={[styles.waterfall({ rowGap, columnGap })]}
+        columns={columns}
+        children={children}
+        rowGap={rowGap}
+      />
+    );
+  }
 
   return (
     <div
