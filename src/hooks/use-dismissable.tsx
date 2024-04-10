@@ -10,7 +10,6 @@ export type Dismissable = "esc" | "mask" | "close";
 
 const styles = stylex.create({
   closer: {
-    position: "absolute",
     top: spacing.large,
     right: spacing.large,
   },
@@ -35,6 +34,7 @@ export const useDismissable = (props: { onClose?: VoidFunction; dismissable: boo
   /// closer for dialog
   const closer = useMemo(() => {
     if (!dismissable.has("close")) return null;
+    const styled = stylex.props(styles.closer);
 
     return (
       <Button
@@ -42,7 +42,11 @@ export const useDismissable = (props: { onClose?: VoidFunction; dismissable: boo
         variant="text"
         prefix={<Close />}
         onClick={props.onClose}
-        style={styles.closer}
+        className={styled.className}
+        style={{
+          ...styled.style,
+          position: "absolute",
+        }}
         size="small"
       />
     );

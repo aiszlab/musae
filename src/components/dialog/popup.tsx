@@ -127,7 +127,13 @@ const Popup = ({ onClose, open, dismissable = true, ...props }: PopupProps) => {
       />
 
       {/* panel */}
-      <div className={clsx(classNames[DialogClassToken.Panel], styled.panel.className)} style={styled.panel.style}>
+      <div
+        className={clsx(classNames[DialogClassToken.Panel], styled.panel.className)}
+        style={{
+          ...styled.panel.style,
+          ...props.styles?.panel,
+        }}
+      >
         {closer}
 
         {/* header */}

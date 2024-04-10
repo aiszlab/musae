@@ -1,4 +1,3 @@
-import type { StyleXStyles } from "@stylexjs/stylex";
 import type { CSSProperties, RefCallback } from "react";
 
 /**
@@ -18,7 +17,7 @@ export interface ComponentProps {
    * @description
    * style for current component
    */
-  style?: CSSProperties | StyleXStyles;
+  style?: CSSProperties;
 }
 
 /**

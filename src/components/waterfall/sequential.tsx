@@ -1,9 +1,7 @@
 import type { WaterfallProps } from "./types";
 import React, { useMemo, type ReactNode } from "react";
 import * as stylex from "@stylexjs/stylex";
-import { StylexProps } from "../../types/element";
-import clsx from "clsx";
-import { RequiredIn } from "@aiszlab/relax/types";
+import type { RequiredIn } from "@aiszlab/relax/types";
 
 const styles = stylex.create({
   column: (props: { rowGap: number }) => ({
@@ -23,7 +21,7 @@ const Sequential = ({
   ...props
 }: RequiredIn<Omit<WaterfallProps, "sequential" | "gutter">, "children" | "columns"> & {
   rowGap: number;
-} & StylexProps) => {
+}) => {
   // group children into diff columns
   // if current column do not has any child, mean this column is not need to render
   const groupedColumns = useMemo(() => {
@@ -54,16 +52,8 @@ const Sequential = ({
     });
   }, [groupedColumns, rowGap]);
 
-  const styled = stylex.props(props.styles);
-
   return (
-    <div
-      className={clsx(className, styled.className)}
-      style={{
-        ...style,
-        ...styled.style,
-      }}
-    >
+    <div className={className} style={style}>
       {_children}
     </div>
   );

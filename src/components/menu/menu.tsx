@@ -48,15 +48,19 @@ const Menu = forwardRef<MenuRef, MenuProps>(
       },
     }));
 
+    const styled = stylex.props(styles.menu);
+
     return (
       <Context.Provider value={contextValue}>
         <Group
           ref={targetRef}
           items={props.items}
-          className={clsx(classNames[MenuClassToken.Menu], className)}
-          style={styles.menu}
-          // styles={[styles.menu]}
           mode={mode}
+          className={clsx(classNames[MenuClassToken.Menu], className, styled.className)}
+          style={{
+            ...styled.style,
+            ...style,
+          }}
         />
       </Context.Provider>
     );

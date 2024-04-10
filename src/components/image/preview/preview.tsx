@@ -2,13 +2,6 @@ import React from "react";
 import { Dialog } from "../../dialog";
 import Operations from "./operations";
 import type { PreviewProps } from "../types";
-import stylex from "@stylexjs/stylex";
-
-const styles = stylex.create({
-  panel: {
-    backgroundColor: "transparent",
-  },
-});
 
 const Preview = ({ onClose, src, alt, ...props }: PreviewProps) => {
   const onSwitchLeft = () => {};
@@ -28,7 +21,9 @@ const Preview = ({ onClose, src, alt, ...props }: PreviewProps) => {
         footer={false}
         dismissable={["mask", "esc"]}
         styles={{
-          panel: [styles.panel],
+          panel: {
+            backgroundColor: "transparent",
+          },
         }}
       >
         <img src={src} alt={alt} />

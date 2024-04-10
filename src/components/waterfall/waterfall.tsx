@@ -33,13 +33,21 @@ const styles = stylex.create({
   }),
 });
 
-const Waterfall = ({ columns = 4, gutter, children = [], ...props }: WaterfallProps) => {
+const Waterfall = ({
+  columns = 4,
+  gutter,
+  children = [],
+  sequential = false,
+  className,
+  style,
+  ...props
+}: WaterfallProps) => {
   const [columnGap, rowGap] = useGutters({ gutter });
   const { collect, maxHeight, getOrder, items, repaint } = useRepaint({ columns, rowGap });
 
   const styled = stylex.props(
     styles.waterfall({ rowGap, columnGap }),
-    maxHeight > 0 && styles.repainted({ maxHeight: maxHeight })
+    sequential && maxHeight > 0 && styles.repainted({ maxHeight: maxHeight })
   );
 
   useMounted(() => {
@@ -60,25 +68,28 @@ const Waterfall = ({ columns = 4, gutter, children = [], ...props }: WaterfallPr
 
   if (children.length === 0) return null;
 
-  if (props.sequential) {
+  // sequential waterfall
+  if (sequential) {
     return (
       <Sequential
-        className={props.className}
-        style={props.style}
-        styles={[styles.waterfall({ rowGap, columnGap })]}
         columns={columns}
         children={children}
         rowGap={rowGap}
+        className={clsx(className, styled.className)}
+        style={{
+          ...styled.style,
+          ...style,
+        }}
       />
     );
   }
 
   return (
     <div
-      className={clsx(props.className, styled.className)}
+      className={clsx(className, styled.className)}
       style={{
-        ...props.style,
         ...styled.style,
+        ...style,
       }}
     >
       {children.map((item, index) => {

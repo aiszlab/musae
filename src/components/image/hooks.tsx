@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import type { OperationsProps, OperationEvent } from "./types";
 import stylex from "@stylexjs/stylex";
-import { CheckCircle, SwapHoriz, SwapVert } from "../icon/icons";
+import { SwapHoriz, SwapVert, RotateLeft, RotateRight, ZoomOut, ZoomIn } from "../icon/icons";
 
 const styles = stylex.create({
   handler: {
@@ -13,8 +13,6 @@ const styles = stylex.create({
 /**
  * @description
  * handlers
- *
- * // TODO add different handler icon, deps on musae/icons
  */
 export const useHandlers = ({
   onZoomIn,
@@ -37,22 +35,22 @@ export const useHandlers = ({
         type: "flip-y",
       },
       {
-        child: <CheckCircle />,
+        child: <RotateLeft />,
         onClick: onRotateLeft,
         type: "rotate-left",
       },
       {
-        child: <CheckCircle />,
+        child: <RotateRight />,
         onClick: onRotateRight,
         type: "rotate-right",
       },
       {
-        child: <CheckCircle />,
+        child: <ZoomOut />,
         onClick: onZoomOut,
         type: "zoom-out",
       },
       {
-        child: <CheckCircle />,
+        child: <ZoomIn />,
         onClick: onZoomIn,
         type: "zoom-in",
       },

@@ -6,6 +6,8 @@ import Done from "./action/done";
 import CheckCircle from "./action/check-circle";
 import SwapHoriz from "./action/swap-horiz";
 import SwapVert from "./action/swap-vert";
+import ZoomOut from "./action/zoom-out";
+import ZoomIn from "./action/zoom-in";
 
 /// alert
 import ErrorOutline from "./alert/error-outline";
@@ -29,6 +31,8 @@ import KeyboardArrowDown from "./hardware/keyboard-arrow-down";
 /// image
 import Bedtime from "./image/bedtime";
 import WbSunny from "./image/wb-sunny";
+import RotateLeft from "./image/rotate-left";
+import RotateRight from "./image/rotate-right";
 
 /// mocks, musae collect from comunic icons
 import Github from "./mocks/github";
@@ -59,4 +63,8 @@ export {
   Github,
   Bedtime,
   WbSunny,
+  RotateLeft,
+  RotateRight,
+  ZoomOut,
+  ZoomIn,
 };
