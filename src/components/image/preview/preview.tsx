@@ -1,13 +1,16 @@
 import React from "react";
 import { Dialog } from "../../dialog";
 import Operations from "./operations";
+import type { PreviewProps } from "../types";
+import stylex from "@stylexjs/stylex";
 
-interface Props {
-  src: string;
-  total: number;
-}
+const styles = stylex.create({
+  panel: {
+    backgroundColor: "transparent",
+  },
+});
 
-const Preview = (props: Props) => {
+const Preview = ({ onClose, src, alt, ...props }: PreviewProps) => {
   const onSwitchLeft = () => {};
   const onSwitchRight = () => {};
   const onZoomIn = () => {};
@@ -16,12 +19,19 @@ const Preview = (props: Props) => {
   const onRotateLeft = () => {};
   const onFlipX = () => {};
   const onFlipY = () => {};
-  const onClose = () => {};
 
   return (
     <>
-      <Dialog open>
-        <img src={props.src} />
+      <Dialog
+        open
+        onClose={onClose}
+        footer={false}
+        dismissable={["mask", "esc"]}
+        styles={{
+          panel: [styles.panel],
+        }}
+      >
+        <img src={src} alt={alt} />
       </Dialog>
 
       <Operations

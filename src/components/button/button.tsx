@@ -11,6 +11,7 @@ import { Ripple } from "../ripple";
 import { typography } from "../theme/theme";
 import { ColorToken } from "../../utils/colors";
 import { layer } from "../../utils/layer";
+import { toStyled } from "../../utils/styles";
 
 const styles = stylex.create({
   button: {
@@ -127,7 +128,11 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     const { onClick, clear, ripples } = useButton({ onClick: props.onClick });
 
     const styled = {
-      button: stylex.props(
+      button: toStyled(
+        {
+          className,
+          style,
+        },
         styles.button,
         typography.label[size],
         // size
@@ -160,8 +165,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           variant === "outlined" &&
           styles.disabledOutline({
             outlineColor: theme.colors[ColorToken.OnSurface],
-          }),
-        props.styles
+          })
       ),
     };
 
@@ -170,11 +174,8 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         onClick={onClick}
         ref={ref}
         disabled={disabled}
-        className={clsx(classNames[ButtonClassToken.Button], className, styled.button.className)}
-        style={{
-          ...styled.button.style,
-          ...style,
-        }}
+        className={clsx(classNames[ButtonClassToken.Button], styled.button.className)}
+        style={styled.button.style}
         onPointerEnter={onPointerEnter}
         onPointerLeave={onPointerLeave}
         type={type}

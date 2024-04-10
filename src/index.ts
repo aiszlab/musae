@@ -35,6 +35,7 @@ export { Layout } from "./components/layout";
 export { Pagination } from "./components/pagination";
 export { Tooltip } from "./components/tooltip";
 export { Waterfall } from "./components/waterfall";
+export { Image } from "./components/image";
 
 /**
  * @description

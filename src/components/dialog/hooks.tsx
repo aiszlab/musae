@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { PopupProps } from "./types";
+import type { PopupProps } from "./types";
 import { Space } from "../space";
 import { Button } from "../button";
 

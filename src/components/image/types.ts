@@ -1,17 +1,11 @@
-import { MouseEventHandler, ReactNode } from "react";
+import { ImgHTMLAttributes, MouseEventHandler, ReactNode } from "react";
 import { ComponentProps } from "../../types/element";
 
 /**
  * @description
  * image props
  */
-export type ImageProps = ComponentProps & {
-  /**
-   * @description
-   * image source
-   */
-  src: string;
-};
+export type ImageProps = ComponentProps & Pick<ImgHTMLAttributes<HTMLImageElement>, "alt" | "src"> & {};
 
 /**
  * @description
@@ -95,4 +89,16 @@ export type OperationsProps = {
    * close handler
    */
   onClose: OperationEvent["onClick"];
+};
+
+/**
+ * @description
+ * image preview props
+ */
+export type PreviewProps = Pick<ImgHTMLAttributes<HTMLImageElement>, "alt" | "src"> & {
+  /**
+   * @description
+   * close handler
+   */
+  onClose: () => void;
 };

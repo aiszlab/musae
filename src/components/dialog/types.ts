@@ -1,5 +1,6 @@
-import type { ReactNode } from "react";
+import type { CSSProperties, ReactNode } from "react";
 import type { Dismissable } from "../../hooks/use-dismissable";
+import type { StyleXStyles } from "@stylexjs/stylex";
 
 /**
  * @description
@@ -47,6 +48,17 @@ export interface DialogProps {
    * title
    */
   title?: ReactNode;
+
+  /**
+   * @description
+   * styles, in image preview, we need panel bg color to be transparent
+   * in musae, styles we support two ways
+   * 1. react css properties
+   * 2. stylex css styles
+   */
+  styles?: {
+    panel?: CSSProperties | StyleXStyles;
+  };
 }
 
 /**

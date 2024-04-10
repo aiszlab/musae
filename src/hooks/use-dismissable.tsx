@@ -4,6 +4,7 @@ import { Button } from "../components/button";
 import * as stylex from "@stylexjs/stylex";
 import { spacing } from "../components/theme/tokens.stylex";
 import { Close } from "../components/icon/icons";
+import { Keyboard } from "../utils/keyboard";
 
 export type Dismissable = "esc" | "mask" | "close";
 
@@ -41,7 +42,7 @@ export const useDismissable = (props: { onClose?: VoidFunction; dismissable: boo
         variant="text"
         prefix={<Close />}
         onClick={props.onClose}
-        styles={styles.closer}
+        style={styles.closer}
         size="small"
       />
     );
@@ -55,7 +56,7 @@ export const useDismissable = (props: { onClose?: VoidFunction; dismissable: boo
 
   /// esc key press callback
   const onKeyDown = useEvent((e: KeyboardEvent<HTMLDivElement>) => {
-    if (e.key !== "Escape") return;
+    if (e.key !== Keyboard.Escape) return;
     props.onClose?.();
   });
 

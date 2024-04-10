@@ -1,5 +1,5 @@
 import React from "react";
-import { withIcon } from "../hoc";
+import { withIcon } from "../../hoc";
 
 const SwapHoriz = withIcon(({ size }) => {
   return (

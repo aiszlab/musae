@@ -131,9 +131,14 @@ const Popup = ({ onClose, open, dismissable = true, ...props }: PopupProps) => {
         {closer}
 
         {/* header */}
-        <div className={clsx(classNames[DialogClassToken.Header], styled.header.className)} style={styled.header.style}>
-          {props.title}
-        </div>
+        {!!props.title && (
+          <div
+            className={clsx(classNames[DialogClassToken.Header], styled.header.className)}
+            style={styled.header.style}
+          >
+            {props.title}
+          </div>
+        )}
 
         {/* body */}
         <div className={clsx(classNames[DialogClassToken.Body], styled.body.className)} style={styled.body.style}>
@@ -141,9 +146,14 @@ const Popup = ({ onClose, open, dismissable = true, ...props }: PopupProps) => {
         </div>
 
         {/* footer */}
-        <div className={clsx(classNames[DialogClassToken.Footer], styled.footer.className)} style={styled.footer.style}>
-          {footer}
-        </div>
+        {!!footer && (
+          <div
+            className={clsx(classNames[DialogClassToken.Footer], styled.footer.className)}
+            style={styled.footer.style}
+          >
+            {footer}
+          </div>
+        )}
       </div>
     </div>
   );

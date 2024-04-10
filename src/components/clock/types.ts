@@ -1,4 +1,4 @@
-import { ComponentProps, StylexProps } from "../../types/element";
+import { ComponentProps } from "../../types/element";
 
 export enum TimeUnit {
   Hour = "hour",
@@ -12,20 +12,19 @@ type Value = [number, number, number];
  * @description
  * clock props
  */
-export type ClockProps = ComponentProps &
-  StylexProps & {
-    /**
-     * @description
-     * value
-     */
-    value?: Value;
+export type ClockProps = ComponentProps & {
+  /**
+   * @description
+   * value
+   */
+  value?: Value;
 
-    /**
-     * @description
-     * change handler
-     */
-    onChange?: (value: Value) => void;
-  };
+  /**
+   * @description
+   * change handler
+   */
+  onChange?: (value: Value) => void;
+};
 
 /**
  * @description

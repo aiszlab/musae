@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import type { OperationsProps, OperationEvent } from "./types";
-import { CheckCircle } from "../icon/icons";
 import stylex from "@stylexjs/stylex";
+import { CheckCircle, SwapHoriz, SwapVert } from "../icon/icons";
 
 const styles = stylex.create({
   handler: {
@@ -27,12 +27,12 @@ export const useHandlers = ({
   const events = useMemo<OperationEvent[]>(() => {
     return [
       {
-        child: <CheckCircle />,
+        child: <SwapHoriz />,
         onClick: onFlipX,
         type: "flip-x",
       },
       {
-        child: <CheckCircle />,
+        child: <SwapVert />,
         onClick: onFlipY,
         type: "flip-y",
       },
@@ -56,18 +56,8 @@ export const useHandlers = ({
         onClick: onZoomIn,
         type: "zoom-in",
       },
-      {
-        child: <CheckCircle />,
-        onClick: onFlipX,
-        type: "flip",
-      },
-      {
-        child: <CheckCircle />,
-        onClick: onFlipX,
-        type: "flip",
-      },
     ];
-  }, []);
+  }, [onFlipX, onFlipY, onRotateLeft, onRotateRight, onZoomIn, onZoomOut]);
 
   const handlers = useMemo(() => {
     const styled = stylex.props(styles.handler);

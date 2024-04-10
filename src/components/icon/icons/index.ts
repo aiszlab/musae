@@ -1,11 +1,11 @@
-import SwapHoriz from "./swap-horiz";
-
 /// action
 import Visibility from "./action/visibility";
 import VisibilityOff from "./action/visibility-off";
 import CheckCircleOutline from "./action/check-circle-outline";
 import Done from "./action/done";
 import CheckCircle from "./action/check-circle";
+import SwapHoriz from "./action/swap-horiz";
+import SwapVert from "./action/swap-vert";
 
 /// alert
 import ErrorOutline from "./alert/error-outline";
@@ -45,6 +45,7 @@ export {
   KeyboardArrowUp,
   KeyboardArrowDown,
   SwapHoriz,
+  SwapVert,
   Visibility,
   VisibilityOff,
   CheckCircle,

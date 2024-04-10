@@ -1,5 +1,5 @@
 import type { Key, ReactNode } from "react";
-import type { ComponentProps, Size, StylexProps } from "../../types/element";
+import type { ComponentProps, Size } from "../../types/element";
 import type { WithLevel } from "../../types/element";
 
 export type Variant = "filled" | "outlined" | "text";
@@ -187,33 +187,32 @@ export type MenuItemProps = WithLevel<Omit<MenuItem, "key" | "children">> &
  * @description
  * menu group props
  */
-export type MenuGroupProps = ComponentProps &
-  StylexProps & {
-    /**
-     * @description
-     * menu group items
-     */
-    items?: MenuItem[];
+export type MenuGroupProps = ComponentProps & {
+  /**
+   * @description
+   * menu group items
+   */
+  items?: MenuItem[];
 
-    /**
-     * @description
-     * current menu group display level
-     * like menu, display group in level 0
-     */
-    level?: number;
+  /**
+   * @description
+   * current menu group display level
+   * like menu, display group in level 0
+   */
+  level?: number;
 
-    /**
-     * @description
-     * current menu group is expanded
-     */
-    expanded?: boolean;
+  /**
+   * @description
+   * current menu group is expanded
+   */
+  expanded?: boolean;
 
-    /**
-     * @description
-     * mode
-     */
-    mode: Mode;
-  };
+  /**
+   * @description
+   * mode
+   */
+  mode: Mode;
+};
 
 /**
  * @description

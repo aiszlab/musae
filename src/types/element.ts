@@ -18,7 +18,7 @@ export interface ComponentProps {
    * @description
    * style for current component
    */
-  style?: CSSProperties;
+  style?: CSSProperties | StyleXStyles;
 }
 
 /**
@@ -75,18 +75,6 @@ export type WithLevel<T extends Object> = T & {
    * level
    */
   level: number;
-};
-
-/**
- * @description
- * stylex component props
- */
-export type StylexProps = {
-  /**
-   * @description
-   * styles
-   */
-  styles?: StyleXStyles;
 };
 
 /**

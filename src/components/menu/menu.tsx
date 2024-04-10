@@ -54,8 +54,8 @@ const Menu = forwardRef<MenuRef, MenuProps>(
           ref={targetRef}
           items={props.items}
           className={clsx(classNames[MenuClassToken.Menu], className)}
-          style={style}
-          styles={[styles.menu]}
+          style={styles.menu}
+          // styles={[styles.menu]}
           mode={mode}
         />
       </Context.Provider>
