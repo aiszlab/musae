@@ -53,7 +53,7 @@ export const useHandlers = ({
   const handlers = useMemo(() => {
     return events.map(({ type, onClick, child }) => {
       return (
-        <Button onClick={onClick} key={type} variant="text" shape="circular">
+        <Button onClick={onClick} key={type} variant="text" shape="circular" disabled={!onClick}>
           {child}
         </Button>
       );

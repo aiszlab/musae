@@ -1,11 +1,19 @@
-import { ImgHTMLAttributes, MouseEventHandler, ReactNode } from "react";
-import { ComponentProps } from "../../types/element";
+import type { ImgHTMLAttributes, MouseEventHandler, ReactNode } from "react";
+import type { ComponentProps } from "../../types/element";
+import type { Partialable } from "@aiszlab/relax/types";
 
 /**
  * @description
  * image props
  */
-export type ImageProps = ComponentProps & Pick<ImgHTMLAttributes<HTMLImageElement>, "alt" | "src"> & {};
+export type ImageProps = ComponentProps &
+  Pick<ImgHTMLAttributes<HTMLImageElement>, "alt"> & {
+    /**
+     * @description
+     * image source
+     */
+    src: string;
+  };
 
 /**
  * @description
@@ -22,7 +30,7 @@ export type OperationEvent = {
    * @description
    * click handler
    */
-  onClick: () => void;
+  onClick: Partialable<() => void>;
 
   /**
    * @description
@@ -95,10 +103,52 @@ export type OperationsProps = {
  * @description
  * image preview props
  */
-export type PreviewProps = Pick<ImgHTMLAttributes<HTMLImageElement>, "alt" | "src"> & {
+export type PreviewProps = {
+  /**
+   * @description
+   * image source
+   */
+  src: string;
+
   /**
    * @description
    * close handler
    */
   onClose: () => void;
+};
+
+/**
+ * @description
+ * image preview group context value
+ */
+export type PreviewGroupContextValue = {
+  /**
+   * @description
+   * total
+   */
+  total: number;
+
+  /**
+   * @description
+   * image click handler
+   */
+  onClick: (src: string) => void;
+};
+
+/**
+ * @description
+ * preview group props
+ */
+export type PreviewGroupProps = {
+  /**
+   * @description
+   * children
+   */
+  children: ReactNode;
+
+  /**
+   * @description
+   * items
+   */
+  items: string[];
 };
