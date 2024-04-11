@@ -1,14 +1,7 @@
 import React, { useMemo } from "react";
 import type { OperationsProps, OperationEvent } from "./types";
-import stylex from "@stylexjs/stylex";
 import { SwapHoriz, SwapVert, RotateLeft, RotateRight, ZoomOut, ZoomIn } from "../icon/icons";
-
-const styles = stylex.create({
-  handler: {
-    userSelect: "none",
-    cursor: "pointer",
-  },
-});
+import { Button } from "../button";
 
 /**
  * @description
@@ -58,13 +51,11 @@ export const useHandlers = ({
   }, [onFlipX, onFlipY, onRotateLeft, onRotateRight, onZoomIn, onZoomOut]);
 
   const handlers = useMemo(() => {
-    const styled = stylex.props(styles.handler);
-
     return events.map(({ type, onClick, child }) => {
       return (
-        <div className={styled.className} style={styled.style} onClick={onClick} key={type}>
+        <Button onClick={onClick} key={type} variant="text" shape="circular">
           {child}
-        </div>
+        </Button>
       );
     });
   }, [events]);

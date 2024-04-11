@@ -55,6 +55,7 @@ export interface DialogProps {
    */
   styles?: {
     panel?: CSSProperties;
+    body?: CSSProperties;
   };
 }
 

@@ -2,7 +2,7 @@ import React, { type CSSProperties } from "react";
 import stylex from "@stylexjs/stylex";
 import { Cancel } from "../../icon/icons";
 import { Portal } from "../../portal";
-import { spacing, positions } from "../../theme/tokens.stylex";
+import { spacing, positions, sizes } from "../../theme/tokens.stylex";
 import { useTheme } from "../../theme";
 import { ColorToken } from "../../../utils/colors";
 import type { OperationsProps } from "../types";
@@ -33,12 +33,15 @@ const styles = stylex.create({
     color: props.color,
   }),
 
-  handlers: {
+  handlers: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
     display: "flex",
     flexDirection: "row",
     gap: spacing.xxsmall,
     alignItems: "center",
-  },
+    backgroundColor: props.backgroundColor,
+    borderRadius: sizes.infinity,
+    paddingInline: spacing.xlarge,
+  }),
 });
 
 const Operations = ({
@@ -57,7 +60,7 @@ const Operations = ({
     operations: stylex.props(styles.operations),
     closer: stylex.props(styles.closer),
     footer: stylex.props(styles.footer({ color: theme.colors[ColorToken.OnSurface] })),
-    handlers: stylex.props(styles.handlers),
+    handlers: stylex.props(styles.handlers({ backgroundColor: theme.colors[ColorToken.Surface] })),
   };
 
   const handlers = useHandlers({

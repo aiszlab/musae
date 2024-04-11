@@ -43,8 +43,7 @@ const styles = stylex.create({
     flexDirection: "column",
     gap: spacing.large,
     minWidth: 480,
-    maxWidth: 960,
-    maxHeight: `calc(100% - ${spacing.xxxlarge})`,
+    maxHeight: `calc(100% - ${spacing.xxlarge} * 2)`,
     margin: spacing.xxlarge,
     borderRadius: 8,
     pointerEvents: "auto",
@@ -147,7 +146,13 @@ const Popup = ({ onClose, open, dismissable = true, ...props }: PopupProps) => {
         )}
 
         {/* body */}
-        <div className={clsx(classNames[DialogClassToken.Body], styled.body.className)} style={styled.body.style}>
+        <div
+          className={clsx(classNames[DialogClassToken.Body], styled.body.className)}
+          style={{
+            ...styled.body.style,
+            ...props.styles?.body,
+          }}
+        >
           {props.children}
         </div>
 
