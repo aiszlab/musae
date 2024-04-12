@@ -20,9 +20,6 @@ const Preview = ({ onClose, src, alt }: PreviewProps) => {
   const [isFlipX, setFlipX] = useState(false);
   const [isFlipY, setFlipY] = useState(false);
 
-  const onSwitchLeft = () => {};
-  const onSwitchRight = () => {};
-
   const onZoomOut = () => {
     setScale((prev) => Math.max(prev / 1.5, 1));
   };
@@ -70,8 +67,6 @@ const Preview = ({ onClose, src, alt }: PreviewProps) => {
       </Dialog>
 
       <Operations
-        onSwitchLeft={onSwitchLeft}
-        onSwitchRight={onSwitchRight}
         onZoomIn={onZoomIn}
         onZoomOut={onZoomOut}
         onRotateRight={onRotateRight}

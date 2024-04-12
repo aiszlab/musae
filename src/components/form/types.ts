@@ -135,7 +135,10 @@ export interface FormItemProps extends Pick<FormProps<unknown>, "labelCol" | "wr
  */
 export interface TypedForm<T extends FieldValues = FieldValues>
   extends ForwardRefExoticComponent<PropsWithoutRef<FormProps<T>> & RefAttributes<FormRef<T>>> {
-  /* group */
+  /**
+   * @description
+   * item component
+   */
   Item: (props: FormItemProps) => ReactNode;
 }
 

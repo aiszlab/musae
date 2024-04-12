@@ -1,4 +1,4 @@
-import type { ImgHTMLAttributes, MouseEventHandler, ReactNode } from "react";
+import type { FC, ImgHTMLAttributes, ReactNode } from "react";
 import type { ComponentProps } from "../../types/element";
 import type { Partialable } from "@aiszlab/relax/types";
 
@@ -44,18 +44,6 @@ export type OperationEvent = {
  * operations props
  */
 export type OperationsProps = {
-  /**
-   * @description
-   * to prev image
-   */
-  onSwitchLeft: MouseEventHandler<HTMLDivElement>;
-
-  /**
-   * @description
-   * to next image
-   */
-  onSwitchRight: MouseEventHandler<HTMLDivElement>;
-
   /**
    * @description
    * zoom in
@@ -133,6 +121,18 @@ export type PreviewGroupContextValue = {
    * image click handler
    */
   onClick: (src: string) => void;
+
+  /**
+   * @description
+   * prev image
+   */
+  onSwitchLeft: () => void;
+
+  /**
+   * @description
+   * next image
+   */
+  onSwitchRight: () => void;
 };
 
 /**
@@ -152,3 +152,16 @@ export type PreviewGroupProps = {
    */
   items: string[];
 };
+
+/**
+ * @author murukal
+ * @description
+ * typed image
+ */
+export interface TypedImage extends FC<ImageProps> {
+  /**
+   * @description
+   * item component
+   */
+  Group: FC<PreviewGroupProps>;
+}

@@ -1,6 +1,6 @@
-import React, { type CSSProperties } from "react";
+import React, { useContext, type CSSProperties } from "react";
 import stylex from "@stylexjs/stylex";
-import { Close } from "../../icon/icons";
+import { Close, KeyboardArrowLeft, KeyboardArrowRight } from "../../icon/icons";
 import { Portal } from "../../portal";
 import { spacing, positions, sizes } from "../../theme/tokens.stylex";
 import { useTheme } from "../../theme";
@@ -8,6 +8,7 @@ import { ColorToken } from "../../../utils/colors";
 import type { OperationsProps } from "../types";
 import { useHandlers } from "../hooks";
 import { Button } from "../../button";
+import PreviewGroupContext from "./context";
 
 const styles = stylex.create({
   operations: {
@@ -19,6 +20,18 @@ const styles = stylex.create({
     top: spacing.xxlarge,
     right: spacing.xxlarge,
     zIndex: positions.higher,
+  },
+
+  navigations: {
+    position: "fixed",
+    left: 0,
+    right: 0,
+    top: "50%",
+    paddingInline: spacing.medium,
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
   },
 
   footer: (props: { color: CSSProperties["color"] }) => ({
@@ -45,8 +58,6 @@ const styles = stylex.create({
 });
 
 const Operations = ({
-  onSwitchLeft,
-  onSwitchRight,
   onClose,
   onZoomIn,
   onZoomOut,
@@ -59,6 +70,7 @@ const Operations = ({
   const styled = {
     operations: stylex.props(styles.operations),
     closer: stylex.props(styles.closer),
+    navigations: stylex.props(styles.navigations),
     footer: stylex.props(styles.footer({ color: theme.colors[ColorToken.OnSurface] })),
     handlers: stylex.props(styles.handlers({ backgroundColor: theme.colors[ColorToken.Surface] })),
   };
@@ -71,6 +83,8 @@ const Operations = ({
     onZoomIn,
     onZoomOut,
   });
+
+  const { onSwitchLeft, onSwitchRight } = useContext(PreviewGroupContext) ?? {};
 
   return (
     <Portal open>
@@ -85,8 +99,18 @@ const Operations = ({
           onClick={onClose}
           shape="circular"
         >
-          <Close />
+          <Close size={32} />
         </Button>
+
+        {/* navigations */}
+        <div className={styled.navigations.className} style={styled.navigations.style}>
+          <Button variant="text" shape="circular" onClick={onSwitchLeft}>
+            <KeyboardArrowLeft size={32} />
+          </Button>
+          <Button variant="text" shape="circular" onClick={onSwitchRight}>
+            <KeyboardArrowRight size={32} />
+          </Button>
+        </div>
 
         {/* footer */}
         <div className={styled.footer.className} style={styled.footer.style}>
