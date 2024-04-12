@@ -7,7 +7,7 @@ import type { Partialable } from "@aiszlab/relax/types";
  * image props
  */
 export type ImageProps = ComponentProps &
-  Pick<ImgHTMLAttributes<HTMLImageElement>, "alt"> & {
+  Pick<ImgHTMLAttributes<HTMLImageElement>, "alt" | "width" | "height"> & {
     /**
      * @description
      * image source
@@ -103,7 +103,7 @@ export type OperationsProps = {
  * @description
  * image preview props
  */
-export type PreviewProps = {
+export type PreviewProps = Pick<ImgHTMLAttributes<HTMLImageElement>, "alt"> & {
   /**
    * @description
    * image source

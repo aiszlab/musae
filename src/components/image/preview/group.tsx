@@ -10,7 +10,7 @@ const Group = ({ children, items }: PreviewGroupProps) => {
 
   const source = useMemo(() => {
     return items[currentAt];
-  }, [currentAt]);
+  }, [currentAt, items]);
 
   return (
     <PreviewGroupContext.Provider

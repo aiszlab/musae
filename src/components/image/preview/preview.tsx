@@ -14,7 +14,7 @@ const styles = stylex.create({
   }),
 });
 
-const Preview = ({ onClose, src, ...props }: PreviewProps) => {
+const Preview = ({ onClose, src, alt }: PreviewProps) => {
   const [scale, setScale] = useState(1);
   const [rotate, setRotate] = useState(0);
   const [isFlipX, setFlipX] = useState(false);
@@ -66,7 +66,7 @@ const Preview = ({ onClose, src, ...props }: PreviewProps) => {
           },
         }}
       >
-        <img src={src} className={styled.className} style={styled.style} />
+        <img src={src} className={styled.className} style={styled.style} alt={alt} />
       </Dialog>
 
       <Operations

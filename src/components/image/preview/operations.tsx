@@ -1,12 +1,13 @@
 import React, { type CSSProperties } from "react";
 import stylex from "@stylexjs/stylex";
-import { Cancel } from "../../icon/icons";
+import { Close } from "../../icon/icons";
 import { Portal } from "../../portal";
 import { spacing, positions, sizes } from "../../theme/tokens.stylex";
 import { useTheme } from "../../theme";
 import { ColorToken } from "../../../utils/colors";
 import type { OperationsProps } from "../types";
 import { useHandlers } from "../hooks";
+import { Button } from "../../button";
 
 const styles = stylex.create({
   operations: {
@@ -15,7 +16,6 @@ const styles = stylex.create({
   },
 
   closer: {
-    position: "fixed",
     top: spacing.xxlarge,
     right: spacing.xxlarge,
     zIndex: positions.higher,
@@ -75,9 +75,18 @@ const Operations = ({
   return (
     <Portal open>
       <div className={styled.operations.className} style={styled.operations.style}>
-        <div className={styled.closer.className} style={styled.closer.style} onClick={onClose}>
-          <Cancel />
-        </div>
+        <Button
+          className={styled.closer.className}
+          style={{
+            ...styled.closer.style,
+            position: "fixed",
+          }}
+          variant="text"
+          onClick={onClose}
+          shape="circular"
+        >
+          <Close />
+        </Button>
 
         {/* footer */}
         <div className={styled.footer.className} style={styled.footer.style}>

@@ -4,7 +4,7 @@ import Preview from "./preview/preview";
 import PreviewGroupContext from "./preview/context";
 import { useBoolean, useEvent } from "@aiszlab/relax";
 
-const Image = ({ src, alt }: ImageProps) => {
+const Image = ({ src, alt, width, height }: ImageProps) => {
   const [isVisible, { turnOn, turnOff }] = useBoolean(false);
   const contextValue = useContext(PreviewGroupContext);
 
@@ -22,8 +22,8 @@ const Image = ({ src, alt }: ImageProps) => {
 
   return (
     <>
-      <img src={src} alt={alt} onClick={click} />
-      {isVisible && !contextValue && <Preview src={src} onClose={turnOff} />}
+      <img src={src} alt={alt} onClick={click} width={width} height={height} />
+      {isVisible && !contextValue && <Preview src={src} onClose={turnOff} alt={alt} />}
     </>
   );
 };
