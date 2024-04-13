@@ -40,6 +40,7 @@ const Preview = ({ onClose, src, alt }: PreviewProps) => {
   };
 
   const styled = stylex.props(styles.image({ scale, rotate, flipX: isFlipX ? -1 : 1, flipY: isFlipY ? -1 : 1 }));
+  const isSmallest = scale <= 1;
 
   return (
     <>
@@ -67,8 +68,8 @@ const Preview = ({ onClose, src, alt }: PreviewProps) => {
       </Dialog>
 
       <Operations
+        onZoomOut={isSmallest ? void 0 : onZoomOut}
         onZoomIn={onZoomIn}
-        onZoomOut={onZoomOut}
         onRotateRight={onRotateRight}
         onRotateLeft={onRotateLeft}
         onFlipX={onFlipX}
