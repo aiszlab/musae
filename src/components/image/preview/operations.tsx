@@ -84,7 +84,8 @@ const Operations = ({
     onZoomOut,
   });
 
-  const { onSwitchLeft, onSwitchRight } = useContext(PreviewGroupContext) ?? {};
+  const { onSwitchLeft, onSwitchRight, total = 1 } = useContext(PreviewGroupContext) ?? {};
+  const isMultiple = total > 1;
 
   return (
     <Portal open>
@@ -103,14 +104,16 @@ const Operations = ({
         </Button>
 
         {/* navigations */}
-        <div className={styled.navigations.className} style={styled.navigations.style}>
-          <Button variant="text" shape="circular" onClick={onSwitchLeft}>
-            <KeyboardArrowLeft size={32} />
-          </Button>
-          <Button variant="text" shape="circular" onClick={onSwitchRight}>
-            <KeyboardArrowRight size={32} />
-          </Button>
-        </div>
+        {isMultiple && (
+          <div className={styled.navigations.className} style={styled.navigations.style}>
+            <Button variant="text" shape="circular" onClick={onSwitchLeft}>
+              <KeyboardArrowLeft size={32} />
+            </Button>
+            <Button variant="text" shape="circular" onClick={onSwitchRight}>
+              <KeyboardArrowRight size={32} />
+            </Button>
+          </div>
+        )}
 
         {/* footer */}
         <div className={styled.footer.className} style={styled.footer.style}>
