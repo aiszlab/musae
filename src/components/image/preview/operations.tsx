@@ -54,6 +54,7 @@ const styles = stylex.create({
     backgroundColor: props.backgroundColor,
     borderRadius: sizes.infinity,
     paddingInline: spacing.xlarge,
+    paddingBlock: spacing.xxsmall,
   }),
 });
 
