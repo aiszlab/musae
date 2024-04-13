@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { forwardRef, useImperativeHandle, useState } from "react";
 import { Dialog } from "../../dialog";
 import Operations from "./operations";
-import type { PreviewProps } from "../types";
+import type { PreviewProps, PreviewRef } from "../types";
 import stylex from "@stylexjs/stylex";
 
 const styles = stylex.create({
@@ -14,11 +14,18 @@ const styles = stylex.create({
   }),
 });
 
-const Preview = ({ onClose, src, alt }: PreviewProps) => {
-  const [scale, setScale] = useState(1);
-  const [rotate, setRotate] = useState(0);
-  const [isFlipX, setFlipX] = useState(false);
-  const [isFlipY, setFlipY] = useState(false);
+enum DefaultStyle {
+  scale = 1,
+  rotate = 0,
+  flipX = 0,
+  flipY = 0,
+}
+
+const Preview = forwardRef<PreviewRef, PreviewProps>(({ onClose, src, alt }, ref) => {
+  const [scale, setScale] = useState(DefaultStyle.scale);
+  const [rotate, setRotate] = useState(DefaultStyle.rotate);
+  const [isFlipX, setFlipX] = useState(!!DefaultStyle.flipX);
+  const [isFlipY, setFlipY] = useState(!!DefaultStyle.flipY);
 
   const onZoomOut = () => {
     setScale((prev) => Math.max(prev / 1.5, 1));
@@ -38,6 +45,21 @@ const Preview = ({ onClose, src, alt }: PreviewProps) => {
   const onFlipY = () => {
     setFlipY((prev) => !prev);
   };
+
+  useImperativeHandle(
+    ref,
+    () => {
+      return {
+        reset: () => {
+          setScale(DefaultStyle.scale);
+          setRotate(DefaultStyle.rotate);
+          setFlipX(!!DefaultStyle.flipX);
+          setFlipY(!!DefaultStyle.flipY);
+        },
+      };
+    },
+    []
+  );
 
   const styled = stylex.props(styles.image({ scale, rotate, flipX: isFlipX ? -1 : 1, flipY: isFlipY ? -1 : 1 }));
   const isSmallest = scale <= 1;
@@ -78,6 +100,6 @@ const Preview = ({ onClose, src, alt }: PreviewProps) => {
       />
     </>
   );
-};
+});
 
 export default Preview;

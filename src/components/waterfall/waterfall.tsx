@@ -33,21 +33,13 @@ const styles = stylex.create({
   }),
 });
 
-const Waterfall = ({
-  columns = 4,
-  gutter,
-  children = [],
-  sequential = false,
-  className,
-  style,
-  ...props
-}: WaterfallProps) => {
+const Waterfall = ({ columns = 4, gutter, children = [], sequential = false, className, style }: WaterfallProps) => {
   const [columnGap, rowGap] = useGutters({ gutter });
   const { collect, maxHeight, getOrder, items, repaint } = useRepaint({ columns, rowGap });
 
   const styled = stylex.props(
     styles.waterfall({ rowGap, columnGap }),
-    sequential && maxHeight > 0 && styles.repainted({ maxHeight: maxHeight })
+    !sequential && maxHeight > 0 && styles.repainted({ maxHeight: maxHeight })
   );
 
   useMounted(() => {

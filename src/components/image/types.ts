@@ -1,4 +1,4 @@
-import type { FC, ImgHTMLAttributes, ReactNode } from "react";
+import type { FC, ImgHTMLAttributes, MouseEvent, ReactNode } from "react";
 import type { ComponentProps } from "../../types/element";
 import type { Partialable } from "@aiszlab/relax/types";
 
@@ -126,13 +126,13 @@ export type PreviewGroupContextValue = {
    * @description
    * prev image
    */
-  onSwitchLeft: () => void;
+  onSwitchLeft: Partialable<(event: MouseEvent<HTMLButtonElement>) => void>;
 
   /**
    * @description
    * next image
    */
-  onSwitchRight: () => void;
+  onSwitchRight: Partialable<(event: MouseEvent<HTMLButtonElement>) => void>;
 };
 
 /**
@@ -164,4 +164,16 @@ export interface TypedImage extends FC<ImageProps> {
    * item component
    */
   Group: FC<PreviewGroupProps>;
+}
+
+/**
+ * @description
+ * preview ref
+ */
+export interface PreviewRef {
+  /**
+   * @description
+   * reset preview image style
+   */
+  reset: () => void;
 }

@@ -107,10 +107,10 @@ const Operations = ({
         {/* navigations */}
         {isMultiple && (
           <div className={styled.navigations.className} style={styled.navigations.style}>
-            <Button variant="text" shape="circular" onClick={onSwitchLeft}>
+            <Button variant="text" shape="circular" onClick={onSwitchLeft} disabled={!onSwitchLeft}>
               <KeyboardArrowLeft size={32} />
             </Button>
-            <Button variant="text" shape="circular" onClick={onSwitchRight}>
+            <Button variant="text" shape="circular" onClick={onSwitchRight} disabled={!onSwitchRight}>
               <KeyboardArrowRight size={32} />
             </Button>
           </div>

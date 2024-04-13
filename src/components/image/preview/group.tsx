@@ -1,19 +1,29 @@
 import PreviewGroupContext from "./context";
-import type { PreviewGroupProps } from "../types";
+import type { PreviewGroupProps, PreviewRef } from "../types";
 import Preview from "./preview";
-import React, { useMemo } from "react";
-import { useBoolean, useCounter } from "@aiszlab/relax";
+import React, { useMemo, useRef } from "react";
+import { useBoolean, useCounter, useEvent } from "@aiszlab/relax";
 
 const Group = ({ children, items }: PreviewGroupProps) => {
+  const min = 0;
+  const max = items.length - 1;
   const [currentAt, { add, subtract, setCount: setCurrentAt }] = useCounter(0, { min: 0, max: items.length - 1 });
   const [isVisible, { turnOff, turnOn }] = useBoolean();
+  const ref = useRef<PreviewRef>(null);
 
   const source = useMemo(() => {
     return items[currentAt];
   }, [currentAt, items]);
 
-  console.log("currentAt====", currentAt);
-  console.log("source=====", source);
+  /// when image is changed, reset styles
+  const prev = useEvent(() => {
+    ref.current?.reset();
+    subtract();
+  });
+  const next = useEvent(() => {
+    ref.current?.reset();
+    add();
+  });
 
   return (
     <PreviewGroupContext.Provider
@@ -23,12 +33,12 @@ const Group = ({ children, items }: PreviewGroupProps) => {
           setCurrentAt(Math.max(items.indexOf(src), 0));
           turnOn();
         },
-        onSwitchLeft: subtract,
-        onSwitchRight: add,
+        onSwitchLeft: currentAt <= min ? void 0 : prev,
+        onSwitchRight: currentAt >= max ? void 0 : next,
       }}
     >
       {children}
-      {isVisible && <Preview src={source} onClose={turnOff} />}
+      {isVisible && <Preview src={source} onClose={turnOff} ref={ref} />}
     </PreviewGroupContext.Provider>
   );
 };

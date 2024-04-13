@@ -43,9 +43,9 @@ const Sequential = ({
   const _children = useMemo(() => {
     const styled = stylex.props(styles.column({ rowGap }));
 
-    return groupedColumns.map((column) => {
+    return groupedColumns.map((column, index) => {
       return (
-        <div className={styled.className} style={styled.style}>
+        <div className={styled.className} style={styled.style} key={index}>
           {column}
         </div>
       );
