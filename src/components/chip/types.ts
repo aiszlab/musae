@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { ComponentProps } from "../../types/element";
+import type { ComponentProps } from "../../types/element";
 
 type Size = "small" | "large";
 

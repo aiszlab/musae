@@ -1,4 +1,4 @@
-import React, { CSSProperties } from "react";
+import React, { type CSSProperties } from "react";
 import clsx from "clsx";
 import type { ChipProps } from "./types";
 import { useClassNames } from "../config";
@@ -28,7 +28,7 @@ const styles = stylex.create({
   },
 });
 
-const Chip = ({ children, size = "large", ...props }: ChipProps) => {
+const Chip = ({ children, size = "large", className, style }: ChipProps) => {
   const classNames = useClassNames(ComponentToken.Chip);
   const theme = useTheme();
 
@@ -43,10 +43,10 @@ const Chip = ({ children, size = "large", ...props }: ChipProps) => {
 
   return (
     <span
-      className={clsx([classNames[ChipClassToken.Chip], props.className, styled.className])}
+      className={clsx(classNames[ChipClassToken.Chip], className, styled.className)}
       style={{
         ...styled.style,
-        ...props.style,
+        ...style,
       }}
     >
       {children}
