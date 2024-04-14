@@ -1,52 +1,30 @@
 import React, { type ForwardedRef, forwardRef, useImperativeHandle, useMemo } from "react";
-import type { ContextValue, FormProps, FormRef } from "./types";
-import { useForm, type FieldValues, FormProvider, type FieldErrors, type FieldPath } from "react-hook-form";
-import { isUndefined, useEvent, useMounted } from "@aiszlab/relax";
+import type { ContextValue, FormProps } from "./types";
+import { type FieldValues, FormProvider, UseFormReturn } from "react-hook-form";
+import { useEvent, useMounted } from "@aiszlab/relax";
 import Context, { CONTEXT_VALUE } from "./context";
+import { useForm } from "./hooks";
 
 const Form = forwardRef(
-  <T extends FieldValues = FieldValues>(
-    { onSubmit, onChange, labelCol, wrapperCol, children }: FormProps<T>,
-    ref: ForwardedRef<FormRef<T>>
+  <T extends FieldValues>(
+    { onSubmit, onChange, labelCol, wrapperCol, children, ...props }: FormProps<T>,
+    ref: ForwardedRef<UseFormReturn<T>>
   ) => {
     /// use react hook form
-    const { handleSubmit, watch, ...methods } = useForm<T>({
-      mode: "all",
-    });
+    const form = useForm(props.form);
 
     useImperativeHandle(ref, () => {
-      const getFieldsError: FormRef<T>["getFieldsError"] = (namePaths) => {
-        if (isUndefined(namePaths)) {
-          return methods.formState.errors;
-        }
-
-        return namePaths.reduce<FieldErrors<T>>((prev, namePath) => {
-          const error = methods.getFieldState(namePath).error;
-          if (!error) return prev;
-          prev[namePath] = error as FieldErrors<T>[FieldPath<T>];
-          return prev;
-        }, {});
-      };
-
-      const getFieldError: FormRef<T>["getFieldError"] = (namePath) => methods.getFieldState(namePath).error;
-
-      return {
-        validate: methods.trigger,
-        getFieldsError,
-        getFieldError,
-        getValues: methods.getValues,
-        reset: methods.reset,
-      };
+      return form;
     });
 
     const submit = useEvent(() => {
-      return handleSubmit((values) => {
+      return form.handleSubmit((values) => {
         onSubmit?.(values);
       });
     });
 
     useMounted(() => {
-      const watched = watch((values, { type }) => {
+      const watched = form.watch((values, { type }) => {
         type === "change" && onChange?.(values);
       });
 
@@ -70,7 +48,7 @@ const Form = forwardRef(
 
     return (
       <Context.Provider value={contextValue}>
-        <FormProvider handleSubmit={handleSubmit} watch={watch} {...methods}>
+        <FormProvider {...form}>
           <form onSubmit={submit}>{children}</form>
         </FormProvider>
       </Context.Provider>

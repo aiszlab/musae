@@ -1,14 +1,32 @@
 import React from "react";
 import type { SpaceProps } from "./types";
 import * as stylex from "@stylexjs/stylex";
-import { spacing } from "../theme/tokens.stylex";
+import { useGutters } from "../../hooks/use-gutters";
 
 const styles = stylex.create({
-  space: { display: "flex", gap: spacing.small, alignItems: "center" },
+  space: (props: { columnGap: number; rowGap: number }) => ({
+    display: "flex",
+    flexDirection: "row",
+    columnGap: props.columnGap,
+    rowGap: props.rowGap,
+    alignItems: "center",
+  }),
 });
 
-const Space = (props: SpaceProps) => {
-  return <div {...stylex.props(styles.space)}>{props.children}</div>;
+const Space = ({ gutter = [4, 4], children }: SpaceProps) => {
+  const [columnGap, rowGap] = useGutters({ gutter });
+  const styled = stylex.props(
+    styles.space({
+      columnGap,
+      rowGap,
+    })
+  );
+
+  return (
+    <div className={styled.className} style={styled.style}>
+      {children}
+    </div>
+  );
 };
 
 export default Space;

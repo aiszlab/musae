@@ -6,7 +6,7 @@ import { sizes } from "../theme/tokens.stylex";
 
 const styles = stylex.create({
   ripple: {
-    backgroundColor: "currentcolor",
+    backgroundColor: "currentColor",
     borderRadius: sizes.infinity,
     transformOrigin: "center",
     pointerEvents: "none",

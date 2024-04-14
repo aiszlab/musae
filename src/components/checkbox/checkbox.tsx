@@ -35,7 +35,7 @@ const styles = stylex.create({
       borderRadius: spacing.xxsmall,
       transition: "all 0.2s",
 
-      borderWidth: "1px",
+      borderWidth: sizes.smallest,
       borderStyle: "solid",
       borderColor: props.borderColor,
     },
@@ -56,9 +56,9 @@ const styles = stylex.create({
       boxSizing: "border-box",
       position: "absolute",
       display: "block",
-      width: spacing.xxsmall,
-      height: spacing.small,
-      transform: "translate(150%, -150%) rotate(45deg)",
+      width: `calc(${sizes.xsmall} / 3)`,
+      height: `calc(${sizes.xsmall} / 2)`,
+      transform: "translate(100%, -150%) rotate(45deg)",
 
       borderWidth: spacing.xxxsmall,
       borderTopWidth: sizes.none,
@@ -119,15 +119,15 @@ const Checkbox = ({ value, className, style, children, ...props }: CheckboxProps
   return (
     <label
       className={clsx(styled.checkbox.className, className, classNames[CheckboxClassToken.Checkbox])}
-      style={styled.checkbox.style}
+      style={{
+        ...styled.checkbox.style,
+        ...style,
+      }}
     >
       <input
         type="checkbox"
         className={styled.trigger.className}
-        style={{
-          ...styled.trigger.style,
-          ...style,
-        }}
+        style={styled.trigger.style}
         checked={isChecked}
         aria-checked={isChecked}
         onChange={change}

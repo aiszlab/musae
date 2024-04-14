@@ -10,7 +10,7 @@ const styles = stylex.create({
   icon: (props: { color: CSSProperties["color"] }) => ({
     display: "inline-flex",
     verticalAlign: "text-bottom",
-    color: props.color ?? null,
+    color: props.color,
   }),
 
   clickable: {
@@ -18,7 +18,7 @@ const styles = stylex.create({
   },
 });
 
-const Icon = ({ as, color, size, onClick, className }: IconProps) => {
+const Icon = ({ as, color, size, onClick, style, className }: IconProps) => {
   const classNames = useClassNames(ComponentToken.Icon);
   const asProps = useMemo<AsProps>(() => {
     return {
@@ -44,7 +44,10 @@ const Icon = ({ as, color, size, onClick, className }: IconProps) => {
     <span
       onClick={onClick}
       className={clsx(classNames[IconClassToken.Icon], className, styled.className)}
-      style={styled.style}
+      style={{
+        ...styled.style,
+        ...style,
+      }}
     >
       {children}
     </span>

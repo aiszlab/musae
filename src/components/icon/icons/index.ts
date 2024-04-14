@@ -8,6 +8,7 @@ import SwapHoriz from "./action/swap-horiz";
 import SwapVert from "./action/swap-vert";
 import ZoomOut from "./action/zoom-out";
 import ZoomIn from "./action/zoom-in";
+import DoneOutline from "./action/done-outline";
 
 /// alert
 import ErrorOutline from "./alert/error-outline";
@@ -67,4 +68,5 @@ export {
   RotateRight,
   ZoomOut,
   ZoomIn,
+  DoneOutline,
 };
