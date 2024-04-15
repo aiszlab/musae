@@ -10,8 +10,8 @@ import clsx from "clsx";
 
 const Select = ({ mode, ...props }: SelectProps) => {
   const ref = useRef<PickerRef>(null);
-  const close = useCallback(() => ref.current?.close(), [ref]);
   const classNames = useContext(Context).classNames[ComponentToken.Select];
+  const close = useCallback(() => ref.current?.close(), []);
 
   /// options
   const { menuItems, readableOptions } = useOptions([props.options]);

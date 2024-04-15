@@ -1,3 +1,3 @@
-import Input from "./input";
+import Input, { styles } from "./input";
 
-export { Input };
+export { Input, styles };

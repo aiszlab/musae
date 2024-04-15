@@ -1,6 +1,5 @@
 import type { ReactNode } from "react";
 import { ComponentProps } from "../../types/element";
-import { Partialable } from "@aiszlab/relax/types";
 
 /**
  * @description
@@ -44,10 +43,4 @@ export interface ContextValue {
    * if true, dropdown is visible
    */
   isVisible: boolean;
-
-  /**
-   * @description
-   * handler to get dropdown width
-   */
-  getDropdownWidth: () => Partialable<number>;
 }

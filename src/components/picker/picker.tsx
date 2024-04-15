@@ -17,45 +17,15 @@ import { ComponentToken, PickerClassToken } from "../../utils/class-name";
 import Context from "./context";
 import { useClassNames } from "../config";
 import * as stylex from "@stylexjs/stylex";
-import { elevations, sizes, spacing } from "../theme/tokens.stylex";
+import { elevations, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
 import clsx from "clsx";
 import { typography } from "../theme/theme";
 import { useFadeAnimate } from "./hooks";
+import { styles as inputStyles } from "../input";
 
 const styles = stylex.create({
-  picker: (props: { borderColor: CSSProperties["borderColor"] }) => ({
-    minHeight: "36px",
-    minWidth: sizes.none,
-    width: 240,
-    display: "flex",
-    alignItems: "center",
-    boxSizing: "border-box",
-    cursor: "text",
-    gap: spacing.xxsmall,
-
-    // border
-    borderColor: props.borderColor,
-    borderWidth: sizes.smallest,
-    borderStyle: "solid",
-    borderRadius: sizes.xxxsmall,
-
-    // layout
-    margin: spacing.none,
-    paddingBlock: spacing.xxsmall,
-    paddingInline: spacing.medium,
-  }),
-
-  focused: (props: { borderColor: CSSProperties["borderColor"] }) => ({
-    borderWidth: sizes.xxxxsmall,
-    borderColor: props.borderColor,
-  }),
-
-  invalid: (props: { borderColor: CSSProperties["borderColor"] }) => ({
-    borderColor: props.borderColor,
-  }),
-
   pickable: (props: { backgroundColor: CSSProperties["backgroundColor"]; minWidth: CSSProperties["minWidth"] }) => ({
     marginBlock: spacing.xxsmall,
     borderRadius: spacing.small,
@@ -69,7 +39,7 @@ const styles = stylex.create({
 });
 
 const Picker = forwardRef<PickerRef, PickerProps>(
-  ({ pickable, children, className, popupWidth = "match", ...props }, ref) => {
+  ({ pickable, children, className, popupWidth = "match", style }, ref) => {
     const trigger = useRef<HTMLDivElement>(null);
     const [isVisible, { turnOff: close, toggle }] = useBoolean();
     const classNames = useClassNames(ComponentToken.Picker);
@@ -108,8 +78,8 @@ const Picker = forwardRef<PickerRef, PickerProps>(
     const styled = {
       picker: stylex.props(
         typography.body.small,
-        styles.picker({ borderColor: theme.colors[ColorToken.Outline] }),
-        isFocused && styles.focused({ borderColor: theme.colors[ColorToken.Primary] })
+        inputStyles.wrapper({ outlineColor: theme.colors[ColorToken.Outline] }),
+        isFocused && inputStyles.focused({ outlineColor: theme.colors[ColorToken.Primary] })
       ),
       pickable: stylex.props(
         styles.pickable({
@@ -124,12 +94,17 @@ const Picker = forwardRef<PickerRef, PickerProps>(
     return (
       <Context.Provider value={contextValue}>
         <div
-          className={clsx(classNames[PickerClassToken.Picker], className, styled.picker.className, {
-            [classNames[PickerClassToken.Focused]]: isFocused,
-          })}
+          className={clsx(
+            classNames[PickerClassToken.Picker],
+            {
+              [classNames[PickerClassToken.Focused]]: isFocused,
+            },
+            className,
+            styled.picker.className
+          )}
           style={{
             ...styled.picker.style,
-            ...props.style,
+            ...style,
           }}
           ref={trigger}
           tabIndex={-1}

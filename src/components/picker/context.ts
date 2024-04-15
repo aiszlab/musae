@@ -9,7 +9,6 @@ import { type ContextValue } from "./types";
  */
 const Context = createContext<ContextValue>({
   isVisible: false,
-  getDropdownWidth: () => void 0,
 });
 
 export default Context;
