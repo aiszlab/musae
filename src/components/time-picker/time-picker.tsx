@@ -1,24 +1,27 @@
 import React, { useMemo, useRef } from "react";
 import { Picker, type PickerRef } from "../picker";
-import { TimePickerProps } from "./types";
+import type { PanelRef, TimePickerProps } from "./types";
 import clsx from "clsx";
 import { useClassNames } from "../config";
 import { ComponentToken, TimePickerClassToken } from "../../utils/class-name";
 import Panel from "./panel";
 import { useValue } from "./hooks";
 import * as stylex from "@stylexjs/stylex";
+import { useEvent } from "@aiszlab/relax";
+import { sizes } from "../theme/tokens.stylex";
 
 const styles = stylex.create({
   input: {
     outline: "none",
-    width: "100%",
+    width: sizes.full,
   },
 });
 
 const TimePicker = ({ className, ...props }: TimePickerProps) => {
   const classNames = useClassNames(ComponentToken.TimePicker);
-  const ref = useRef<PickerRef>(null);
-  const { value, onChange } = useValue([props.value, ref]);
+  const pickerRef = useRef<PickerRef>(null);
+  const panelRef = useRef<PanelRef>(null);
+  const { value, onChange } = useValue([props.value, pickerRef]);
 
   /// picked date
   const picked = useMemo(() => {
@@ -33,12 +36,17 @@ const TimePicker = ({ className, ...props }: TimePickerProps) => {
     );
   }, [value, classNames]);
 
+  const popperEntered = useEvent(() => {
+    panelRef.current?.reset();
+  });
+
   return (
     <Picker
-      ref={ref}
+      ref={pickerRef}
       className={clsx(classNames[TimePickerClassToken.Picker], className)}
-      pickable={<Panel value={value} onChange={onChange} />}
+      pickable={<Panel value={value} onChange={onChange} ref={panelRef} />}
       popupWidth={false}
+      onPopperEntered={popperEntered}
     >
       {picked}
     </Picker>

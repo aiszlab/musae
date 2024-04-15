@@ -6,15 +6,13 @@ import React, {
   useImperativeHandle,
   useEffect,
   CSSProperties,
-  useMemo,
 } from "react";
 import { Popper } from "../popper";
-import { useBoolean, useFocus } from "@aiszlab/relax";
+import { useBoolean, useEvent, useFocus } from "@aiszlab/relax";
 import { useEvents } from "./hooks";
-import type { ContextValue, PickerProps, PickerRef } from "./types";
+import type { PickerProps, PickerRef } from "./types";
 import type { PopperRef } from "../popper/types";
 import { ComponentToken, PickerClassToken } from "../../utils/class-name";
-import Context from "./context";
 import { useClassNames } from "../config";
 import * as stylex from "@stylexjs/stylex";
 import { elevations, spacing } from "../theme/tokens.stylex";
@@ -39,7 +37,7 @@ const styles = stylex.create({
 });
 
 const Picker = forwardRef<PickerRef, PickerProps>(
-  ({ pickable, children, className, popupWidth = "match", style }, ref) => {
+  ({ pickable, children, className, popupWidth = "match", style, onPopperEntered }, ref) => {
     const trigger = useRef<HTMLDivElement>(null);
     const [isVisible, { turnOff: close, toggle }] = useBoolean();
     const classNames = useClassNames(ComponentToken.Picker);
@@ -89,10 +87,13 @@ const Picker = forwardRef<PickerRef, PickerProps>(
       ),
     };
 
-    const contextValue = useMemo<ContextValue>(() => ({ isVisible, getDropdownWidth }), [isVisible, getDropdownWidth]);
+    const entered = useEvent(async () => {
+      await fadeIn();
+      onPopperEntered?.();
+    });
 
     return (
-      <Context.Provider value={contextValue}>
+      <>
         <div
           className={clsx(
             classNames[PickerClassToken.Picker],
@@ -121,14 +122,14 @@ const Picker = forwardRef<PickerRef, PickerProps>(
           className={classNames[PickerClassToken.Dropdown]}
           // click on popper, keep select focused
           onMouseDown={onDropdownClick}
-          onEntered={fadeIn}
+          onEntered={entered}
           onExit={fadeOut}
         >
           <div ref={scope} className={styled.pickable.className} style={styled.pickable.style}>
             {pickable}
           </div>
         </Popper>
-      </Context.Provider>
+      </>
     );
   }
 );

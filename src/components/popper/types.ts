@@ -38,13 +38,13 @@ export interface PopperProps
 
   /**
    * @description
-   * 浮层出现之前的钩子函数，主要用于处理一些动画效果
+   * when trigger on popper entered, this function will be called
    */
   onEntered?: () => Promise<void>;
 
   /**
    * @description
-   * 浮层消失之前的钩子函数，主要用于处理一些动画效果
+   * when trigger on popper exiting, this function will be called
    */
   onExit?: () => Promise<void>;
 }

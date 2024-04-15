@@ -19,4 +19,20 @@ export interface TimePickerProps extends ComponentProps {
   onChange?: (value: Dayjs) => void;
 }
 
+/**
+ * @description
+ * panel props
+ */
 export type PanelProps = Pick<TimePickerProps, "value" | "onChange">;
+
+/**
+ * @description
+ * panel ref
+ */
+export type PanelRef = {
+  /**
+   * @description
+   * value reset handler
+   */
+  reset: () => void;
+};

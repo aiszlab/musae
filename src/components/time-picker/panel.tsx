@@ -1,10 +1,9 @@
-import React, { CSSProperties, useCallback, useContext, useEffect, useState } from "react";
+import React, { type CSSProperties, forwardRef, useCallback, useImperativeHandle, useState } from "react";
 import { Clock } from "../clock";
 import { useClassNames } from "../config";
 import { ComponentToken, TimePickerClassToken } from "../../utils/class-name";
 import { Button } from "../button";
-import { PanelProps } from "./types";
-import Context from "../picker/context";
+import type { PanelProps, PanelRef } from "./types";
 import { ClockProps } from "../clock/types";
 import dayjs from "dayjs";
 import * as stylex from "@stylexjs/stylex";
@@ -30,19 +29,22 @@ const styles = stylex.create({
   }),
 });
 
-const Panel = (props: PanelProps) => {
+const Panel = forwardRef<PanelRef, PanelProps>((props, ref) => {
   const classNames = useClassNames(ComponentToken.TimePicker);
-  const { isVisible } = useContext(Context);
   const [value, setValue] = useState<ClockProps["value"]>();
   const theme = useTheme();
 
-  useEffect(() => {
-    if (!isVisible || !props.value) {
-      setValue(void 0);
-      return;
-    }
-    setValue([props.value.hour(), props.value.minute(), props.value.second()]);
-  }, [props.value, isVisible]);
+  useImperativeHandle(ref, () => {
+    return {
+      reset: () => {
+        if (!props.value) {
+          setValue(void 0);
+          return;
+        }
+        setValue([props.value.hour(), props.value.minute(), props.value.second()]);
+      },
+    };
+  });
 
   const change = useCallback<Required<ClockProps>["onChange"]>((value) => {
     setValue(value);
@@ -84,6 +86,6 @@ const Panel = (props: PanelProps) => {
       </div>
     </div>
   );
-};
+});
 
 export default Panel;

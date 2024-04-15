@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { ComponentProps } from "../../types/element";
+import { Partialable } from "@aiszlab/relax/types";
 
 /**
  * @description
@@ -23,6 +24,12 @@ export interface PickerProps extends ComponentProps {
    * popup width
    */
   popupWidth?: "match" | number | false;
+
+  /**
+   * @description
+   * when trigger on popper entered
+   */
+  onPopperEntered?: Partialable<() => void>;
 }
 
 /**
