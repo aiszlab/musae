@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo, useRef, type ReactNode } from "react";
 import { Picker, type PickerRef } from "../picker";
-import { Chip } from "../chip";
+import { Tag } from "../tag";
 import { useOptions, useValue } from "./hooks";
 import { Menu, type MenuProps } from "../menu";
 import type { CascaderProps } from "./types";
@@ -38,9 +38,9 @@ const Cascader = ({ mode, separator = "/", ...props }: CascaderProps) => {
     // multiple value
     if (mode === "multiple") {
       return [...values.entries()].map(([_value, optionables]) => (
-        <Chip size="small" key={_value}>
+        <Tag size="small" key={_value}>
           {optionables.at(optionables.length - 1)?.label}
-        </Chip>
+        </Tag>
       ));
     }
 

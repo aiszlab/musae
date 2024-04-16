@@ -38,7 +38,7 @@ export enum ComponentToken {
   Button,
   Drawer,
   Divider,
-  Chip,
+  Tag,
   Cascader,
   Dialog,
   Calendar,
@@ -107,8 +107,8 @@ export enum DividerClassToken {
   Divider,
   Label,
 }
-export enum ChipClassToken {
-  Chip,
+export enum TagClassToken {
+  Tag,
 }
 export enum CascaderClassToken {
   Cascader,
@@ -241,8 +241,8 @@ export const CLASS_NAMES = {
     [DividerClassToken.Divider]: "divider",
     [DividerClassToken.Label]: "divider__label",
   },
-  [ComponentToken.Chip]: {
-    [ChipClassToken.Chip]: "chip",
+  [ComponentToken.Tag]: {
+    [TagClassToken.Tag]: "tag",
   },
   [ComponentToken.Cascader]: {
     [CascaderClassToken.Cascader]: "cascader",

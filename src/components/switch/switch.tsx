@@ -8,7 +8,7 @@ import { ColorToken } from "../../utils/colors";
 import clsx from "clsx";
 
 const styles = stylex.create({
-  chip: (props: { borderColor: CSSProperties["borderColor"] }) => ({
+  switch: (props: { borderColor: CSSProperties["borderColor"] }) => ({
     width: sizes.large,
     height: 20,
 
@@ -55,7 +55,7 @@ const Switch = ({ value, ...props }: SwitchProps) => {
   }, [setIsSelected]);
 
   const styled = stylex.props(
-    styles.chip({
+    styles.switch({
       borderColor: theme.colors[ColorToken.Outline],
     }),
     isSelected &&

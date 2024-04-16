@@ -22,7 +22,7 @@ export { Form, FormRef } from "./components/form";
 export { Empty } from "./components/empty";
 export { Drawer } from "./components/drawer";
 export { Dialog } from "./components/dialog";
-export { Chip } from "./components/chip";
+export { Tag } from "./components/tag";
 export { Calendar } from "./components/calendar";
 export { DatePicker } from "./components/date-picker";
 export { TimePicker } from "./components/time-picker";

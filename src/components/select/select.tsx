@@ -1,5 +1,5 @@
 import React, { useMemo, type ReactNode, useRef, useCallback, useContext } from "react";
-import { Chip } from "../chip";
+import { Tag } from "../tag";
 import { Picker, type PickerRef } from "../picker";
 import { Menu } from "../menu";
 import { useOptions, useValue } from "./hooks";
@@ -24,9 +24,9 @@ const Select = ({ mode, ...props }: SelectProps) => {
     // multiple value
     if (mode === "multiple") {
       return Array.from(value.entries()).map(([_value, label]) => (
-        <Chip size="small" key={_value}>
+        <Tag size="small" key={_value}>
           {label}
-        </Chip>
+        </Tag>
       ));
     }
     // default display value

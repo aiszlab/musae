@@ -5,9 +5,9 @@ type Size = "small" | "large";
 
 /**
  * @description
- * chip props
+ * tag props
  */
-export interface ChipProps extends ComponentProps {
+export type TagProps = ComponentProps & {
   /**
    * @description
    * children
@@ -19,4 +19,4 @@ export interface ChipProps extends ComponentProps {
    * size
    */
   size?: Size;
-}
+};
