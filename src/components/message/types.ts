@@ -1,5 +1,6 @@
 import type { RequiredIn } from "@aiszlab/relax/types";
 import type { ReactNode } from "react";
+import type { ComponentProps } from "../../types/element";
 
 type Type = "success" | "error" | "info" | "warning" | "loading";
 type Open = (content: string, duration?: number) => Promise<void>;
@@ -54,7 +55,7 @@ export interface Messager {
  * @description
  * message props
  */
-export interface MessageProps {
+export type MessageProps = ComponentProps & {
   /**
    * @description
    * message type
@@ -78,7 +79,7 @@ export interface MessageProps {
    * message content
    */
   children?: ReactNode;
-}
+};
 
 /**
  * @description

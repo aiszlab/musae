@@ -18,9 +18,8 @@ const styles = stylex.create({
     flexDirection: "column",
     alignItems: "center",
     pointerEvents: "none",
-
-    paddingInline: spacing.xlarge,
-    paddingTop: spacing.small,
+    rowGap: spacing.medium,
+    padding: spacing.medium,
   },
 });
 

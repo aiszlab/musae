@@ -27,6 +27,7 @@ const Error = ({ error, className, style }: Props) => {
   const classNames = useClassNames(ComponentToken.Form);
   const styled = stylex.props(styles.error);
 
+  // TODO remove error
   return (
     <motion.div
       className={clsx(classNames[FormClassToken.FieldError], className, styled.className)}
