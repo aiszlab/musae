@@ -1,10 +1,10 @@
 import { FieldError } from "react-hook-form";
 import { ComponentProps } from "../../../types/element";
-import React from "react";
+import React, { useEffect } from "react";
 import { useClassNames } from "../../config";
 import { ComponentToken, FormClassToken } from "../../../utils/class-name";
 import clsx from "clsx";
-import { motion } from "framer-motion";
+import { useAnimate, usePresence } from "framer-motion";
 import stylex from "@stylexjs/stylex";
 import { spacing } from "../../theme/tokens.stylex";
 
@@ -12,6 +12,7 @@ const styles = stylex.create({
   error: {
     paddingInline: spacing.large,
     paddingTop: spacing.xxsmall,
+    height: 0,
   },
 });
 
@@ -26,22 +27,55 @@ type Props = ComponentProps & {
 const Error = ({ error, className, style }: Props) => {
   const classNames = useClassNames(ComponentToken.Form);
   const styled = stylex.props(styles.error);
+  const [scope, animate] = useAnimate();
+  const [isPresent, safeToRemove] = usePresence();
 
-  // TODO remove error
+  useEffect(() => {
+    if (isPresent) {
+      const enter = async () => {
+        await animate(
+          scope.current,
+          {
+            height: "auto",
+          },
+          {
+            duration: 0.1,
+          }
+        );
+      };
+
+      enter();
+      return;
+    }
+
+    const exit = async () => {
+      await animate(
+        scope.current,
+        {
+          height: 0,
+        },
+        {
+          duration: 0.1,
+        }
+      );
+
+      safeToRemove();
+    };
+    exit();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isPresent]);
+
   return (
-    <motion.div
+    <div
       className={clsx(classNames[FormClassToken.FieldError], className, styled.className)}
       style={{
         ...style,
         ...styled.style,
       }}
-      initial={{ height: 0 }}
-      animate={{ height: "auto" }}
-      exit={{ height: 0 }}
-      transition={{ duration: 0.1 }}
+      ref={scope}
     >
       {error?.message}
-    </motion.div>
+    </div>
   );
 };
 
