@@ -39,6 +39,12 @@ export interface SelectProps extends ComponentProps {
    * mode
    */
   mode?: Mode;
+
+  /**
+   * @description
+   * searchable
+   */
+  searchable?: boolean;
 }
 
 /**

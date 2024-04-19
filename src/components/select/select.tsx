@@ -1,4 +1,4 @@
-import React, { useMemo, type ReactNode, useRef, useCallback, useContext } from "react";
+import React, { useMemo, type ReactNode, useRef, useCallback, useContext, useEffect } from "react";
 import { Tag } from "../tag";
 import { Picker, type PickerRef } from "../picker";
 import { Menu } from "../menu";
@@ -7,15 +7,22 @@ import Context from "../config/context";
 import { ComponentToken, SelectClassToken } from "../../utils/class-name";
 import type { SelectProps } from "./types";
 import clsx from "clsx";
+import stylex from "@stylexjs/stylex";
+import { spacing } from "../theme/tokens.stylex";
 
-const Select = ({ mode, ...props }: SelectProps) => {
+const styles = stylex.create({
+  picked: {
+    gap: spacing.xxsmall,
+    flexWrap: "wrap",
+  },
+});
+
+const Select = ({ mode, searchable = false, ...props }: SelectProps) => {
   const ref = useRef<PickerRef>(null);
   const classNames = useContext(Context).classNames[ComponentToken.Select];
   const close = useCallback(() => ref.current?.close(), []);
-
   /// options
   const { menuItems, readableOptions } = useOptions([props.options]);
-
   /// value
   const { value, onChange } = useValue([props.value, readableOptions, mode, close]);
 
@@ -38,12 +45,17 @@ const Select = ({ mode, ...props }: SelectProps) => {
     return <Menu items={menuItems} onClick={onChange} selectedKeys={Array.from(value.keys())} />;
   }, [menuItems, onChange, value]);
 
+  const styled = stylex.props(styles.picked);
+
   return (
     <Picker
       ref={ref}
       pickable={menu}
-      className={clsx(classNames[SelectClassToken.Select], props.className)}
-      style={props.style}
+      className={clsx(classNames[SelectClassToken.Select], props.className, styled.className)}
+      style={{
+        ...styled.style,
+        ...props.style,
+      }}
     >
       {picked}
     </Picker>

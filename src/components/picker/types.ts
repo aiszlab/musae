@@ -11,7 +11,7 @@ export interface PickerProps extends ComponentProps {
    * @description
    * children
    */
-  children: ReactNode;
+  children: ReactNode | ((props: { isFocused: boolean }) => ReactNode);
 
   /**
    * @description

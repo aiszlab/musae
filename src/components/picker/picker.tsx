@@ -9,7 +9,7 @@ import React, {
 } from "react";
 import { Popper } from "../popper";
 import { useBoolean, useEvent, useFocus } from "@aiszlab/relax";
-import { useEvents } from "./hooks";
+import { useChildren, useEvents } from "./hooks";
 import type { PickerProps, PickerRef } from "./types";
 import type { PopperRef } from "../popper/types";
 import { ComponentToken, PickerClassToken } from "../../utils/class-name";
@@ -37,7 +37,7 @@ const styles = stylex.create({
 });
 
 const Picker = forwardRef<PickerRef, PickerProps>(
-  ({ pickable, children, className, popupWidth = "match", style, onPopperEntered }, ref) => {
+  ({ pickable, className, popupWidth = "match", style, onPopperEntered, ...props }, ref) => {
     const trigger = useRef<HTMLDivElement>(null);
     const [isVisible, { turnOff: close, toggle }] = useBoolean();
     const classNames = useClassNames(ComponentToken.Picker);
@@ -60,18 +60,19 @@ const Picker = forwardRef<PickerRef, PickerProps>(
       [close]
     );
 
+    /// events
+    const { blur, click } = useEvents({ onBlur: close, onClick: toggle });
+    const [isFocused, focusProps] = useFocus<HTMLDivElement>({
+      onBlur: blur,
+    });
+    const children = useChildren({ children: props.children, isFocused });
+
     /// for selection change, force render for next tick
     /// for why?
     /// if user select many choices, it will cause the input become larger
     useEffect(() => {
       popper.current?.update?.();
     }, [children]);
-
-    /// events
-    const { blur, click } = useEvents({ onBlur: close, onClick: toggle });
-    const [isFocused, focusProps] = useFocus<HTMLDivElement>({
-      onBlur: blur,
-    });
 
     const styled = {
       picker: stylex.props(

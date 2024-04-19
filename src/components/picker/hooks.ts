@@ -1,6 +1,7 @@
-import { FocusEventHandler, MouseEventHandler, useCallback } from "react";
-import { useEvent } from "@aiszlab/relax";
+import { type FocusEventHandler, type MouseEventHandler, useCallback, useMemo } from "react";
+import { isFunction, useEvent } from "@aiszlab/relax";
 import { useAnimate } from "framer-motion";
+import type { PickerProps } from "./types";
 
 /**
  * @description
@@ -36,6 +37,10 @@ export const useEvents = ({
   };
 };
 
+/**
+ * @description
+ * common animations for picker dropdown
+ */
 export const useFadeAnimate = () => {
   const [scope, animate] = useAnimate<HTMLDivElement>();
 
@@ -52,4 +57,17 @@ export const useFadeAnimate = () => {
     fadeIn,
     fadeOut,
   };
+};
+
+/**
+ * @description
+ * children render
+ */
+export const useChildren = ({ children, isFocused }: Pick<PickerProps, "children"> & { isFocused: boolean }) => {
+  return useMemo(() => {
+    if (isFunction(children)) {
+      return children({ isFocused });
+    }
+    return children;
+  }, [children, isFocused]);
 };
