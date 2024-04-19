@@ -45,6 +45,12 @@ export interface SelectProps extends ComponentProps {
    * searchable
    */
   searchable?: boolean;
+
+  /**
+   * @description
+   * search handler
+   */
+  onSearch?: (value: string) => void;
 }
 
 /**

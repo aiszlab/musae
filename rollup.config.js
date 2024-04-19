@@ -60,7 +60,7 @@ const configuration = {
       presets: ["@babel/preset-env", "@babel/preset-react", "@babel/preset-typescript"],
     }),
     stylexPlugin({
-      fileName: "stylex.css",
+      fileName: CSS_ASSET_FILENAME,
       classNamePrefix: "musae-",
       unstable_moduleResolution: {
         type: "commonJS",

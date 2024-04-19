@@ -1,4 +1,4 @@
-import React, { useMemo, type ReactNode, useRef, useCallback, useContext, useEffect } from "react";
+import React, { useMemo, useRef, useCallback, useContext } from "react";
 import { Tag } from "../tag";
 import { Picker, type PickerRef } from "../picker";
 import { Menu } from "../menu";
@@ -9,6 +9,7 @@ import type { SelectProps } from "./types";
 import clsx from "clsx";
 import stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
+import type { PickerProps } from "../picker/types";
 
 const styles = stylex.create({
   picked: {
@@ -17,40 +18,57 @@ const styles = stylex.create({
   },
 });
 
-const Select = ({ mode, searchable = false, ...props }: SelectProps) => {
+const Select = ({ mode, searchable = false, onSearch, ...props }: SelectProps) => {
   const ref = useRef<PickerRef>(null);
   const classNames = useContext(Context).classNames[ComponentToken.Select];
   const close = useCallback(() => ref.current?.close(), []);
   /// options
   const { menuItems, readableOptions } = useOptions([props.options]);
   /// value
-  const { value, onChange } = useValue([props.value, readableOptions, mode, close]);
+  const { value, onChange } = useValue({
+    value: props.value,
+    readableOptions,
+    mode,
+    close,
+  });
 
   /// inputde value
-  const picked = useMemo<ReactNode>(() => {
+  const picked = useMemo<PickerProps["children"]>(() => {
     // multiple value
     if (mode === "multiple") {
-      return Array.from(value.entries()).map(([_value, label]) => (
+      const rendered = Array.from(value.entries()).map(([_value, label]) => (
         <Tag size="small" key={_value}>
           {label}
         </Tag>
       ));
-    }
-    // default display value
-    return Array.from(value.values()).join(",");
-  }, [value, mode]);
 
-  /// options render
-  const menu = useMemo(() => {
-    return <Menu items={menuItems} onClick={onChange} selectedKeys={Array.from(value.keys())} />;
-  }, [menuItems, onChange, value]);
+      if (searchable) {
+        return rendered.concat(<input onChange={(e) => onSearch?.(e.target.value)} />);
+      }
+      return rendered;
+    }
+
+    // single select value display
+    // if searchable
+    const rendered = Array.from(value.values()).join(",");
+    if (searchable) {
+      return ({ isFocused }) => (
+        <input
+          value={isFocused ? void 0 : rendered}
+          placeholder={rendered}
+          onChange={(e) => onSearch?.(e.target.value)}
+        />
+      );
+    }
+    return rendered;
+  }, [value, mode, searchable, onSearch]);
 
   const styled = stylex.props(styles.picked);
 
   return (
     <Picker
       ref={ref}
-      pickable={menu}
+      pickable={<Menu items={menuItems} onClick={onChange} selectedKeys={Array.from(value.keys())} />}
       className={clsx(classNames[SelectClassToken.Select], props.className, styled.className)}
       style={{
         ...styled.style,

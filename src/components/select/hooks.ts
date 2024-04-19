@@ -7,13 +7,18 @@ import { readOptions, toKey, toOption, toValues } from "./utils";
  * @description
  * use value
  */
-export const useValue = ([valueInProps, readableOptions, mode, close]: [
-  value: SelectProps["value"],
-  readableOptions: ReadableOptions,
-  mode: SelectProps["mode"],
-  close: VoidFunction
-]) => {
-  const [_value, setValue] = useControlledState(valueInProps);
+export const useValue = ({
+  readableOptions,
+  mode,
+  close,
+  ...props
+}: {
+  value: SelectProps["value"];
+  readableOptions: ReadableOptions;
+  mode: SelectProps["mode"];
+  close: VoidFunction;
+}) => {
+  const [_value, setValue] = useControlledState(props.value);
 
   /// convert prop value into a map
   /// in this component, only use map for controlled state

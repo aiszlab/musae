@@ -1,9 +1,7 @@
-import React, { type ReactPortal, useCallback, useRef } from "react";
-import { createPortal } from "react-dom";
+import React, { useRef, type ReactNode, useMemo } from "react";
 import Holder from "./holder";
 import type { MessageConfig, MessageRef, Messager } from "./types";
-import { Nullable } from "@aiszlab/relax/types";
-import { useDefault, isDomUsable } from "@aiszlab/relax";
+import { isDomUsable, useEvent } from "@aiszlab/relax";
 import { useConfiguration } from "../config/hooks";
 
 /**
@@ -12,23 +10,28 @@ import { useConfiguration } from "../config/hooks";
  * @description
  * hook for message
  */
-export const useMessage = (): [Messager, Nullable<ReactPortal>] => {
+export const useMessage = (): [Messager, ReactNode] => {
   const ref = useRef<MessageRef>(null);
-  const configuredMessageHolder = useConfiguration().messageHolder;
+  const { messager } = useConfiguration();
 
-  const holder = useDefault<Nullable<ReactPortal>>(() => {
+  const holder = useMemo<ReactNode>(() => {
     if (!isDomUsable()) return null;
-    return configuredMessageHolder ?? createPortal(<Holder ref={ref} />, window.document.body);
-  });
+    if (messager) return null;
+    return <Holder ref={ref} />;
+  }, [messager]);
 
-  const open = useCallback(async (config: MessageConfig) => {
-    ref.current?.add({
+  const open = useEvent(async (config: MessageConfig) => {
+    // use global messager first, if not valid, use current holder
+    // if u trigger open failed, must check holder is mounted into react dom tree
+    const usableMessager = messager?.current ?? ref.current;
+
+    usableMessager?.add({
       key: config.key ?? crypto.randomUUID(),
       type: config.type,
       duration: config.duration,
       content: config.content,
     });
-  }, []);
+  });
 
   return [
     {

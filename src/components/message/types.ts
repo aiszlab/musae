@@ -110,5 +110,5 @@ export interface MessageRef {
    * @description
    * add handler
    */
-  add: (props: RequiredIn<MessageConfig, "key">) => void;
+  add: (configuration: RequiredIn<MessageConfig, "key">) => void;
 }

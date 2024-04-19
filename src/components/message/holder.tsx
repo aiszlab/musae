@@ -5,6 +5,7 @@ import * as stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
 import type { RequiredIn } from "@aiszlab/relax/types";
 import { AnimatePresence } from "framer-motion";
+import { Portal } from "../portal";
 
 const styles = stylex.create({
   holder: {
@@ -23,13 +24,13 @@ const styles = stylex.create({
   },
 });
 
-const Holder = forwardRef<MessageRef>((props, ref) => {
+const Holder = forwardRef<MessageRef>((_, ref) => {
   const [messages, setMessages] = useState<Map<string, RequiredIn<MessageConfig, "key">>>(new Map());
 
   useImperativeHandle(ref, () => ({
-    add: (props) => {
-      if (messages.has(props.key)) return;
-      setMessages((shown) => new Map([...shown, [props.key, props]]));
+    add: (configuration) => {
+      if (messages.has(configuration.key)) return;
+      setMessages((shown) => new Map([...shown, [configuration.key, configuration]]));
     },
   }));
 
@@ -44,23 +45,23 @@ const Holder = forwardRef<MessageRef>((props, ref) => {
     []
   );
 
-  if (messages.size === 0) return null;
-
   return (
-    <div {...stylex.props(styles.holder)}>
-      <AnimatePresence>
-        {Array.from(messages.values()).map(({ content, ...item }) => (
-          <Message
-            onClose={() => {
-              hidden(item.key);
-            }}
-            {...item}
-          >
-            {content}
-          </Message>
-        ))}
-      </AnimatePresence>
-    </div>
+    <Portal destroyable open={messages.size > 0}>
+      <div {...stylex.props(styles.holder)}>
+        <AnimatePresence>
+          {Array.from(messages.values()).map(({ content, ...item }) => (
+            <Message
+              onClose={() => {
+                hidden(item.key);
+              }}
+              {...item}
+            >
+              {content}
+            </Message>
+          ))}
+        </AnimatePresence>
+      </div>
+    </Portal>
   );
 });
 

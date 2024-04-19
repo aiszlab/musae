@@ -4,7 +4,7 @@ import { useOffset } from "./hooks";
 import { useClassNames } from "../config";
 import { ComponentToken, DividerClassToken } from "../../utils/class-name";
 import * as stylex from "@stylexjs/stylex";
-import { spacing } from "../theme/tokens.stylex";
+import { sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
 import { typography } from "../theme/theme";
@@ -12,11 +12,11 @@ import clsx from "clsx";
 
 const styles = stylex.create({
   horizontal: {
-    width: "100%",
+    width: sizes.full,
   },
 
   vertical: {
-    height: "100%",
+    height: sizes.full,
   },
 
   horizontalLabeled: (props: { backgroundColor: CSSProperties["backgroundColor"]; offset: number }) => ({

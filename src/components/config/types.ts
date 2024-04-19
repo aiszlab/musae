@@ -1,5 +1,6 @@
-import type { ReactNode, ReactPortal } from "react";
+import type { ReactNode, RefObject } from "react";
 import { type CLASS_NAMES } from "../../utils/class-name";
+import type { MessageRef } from "../message";
 
 export type ClassNames = typeof CLASS_NAMES;
 
@@ -11,9 +12,11 @@ export type ClassNames = typeof CLASS_NAMES;
 export interface ContextValue {
   /**
    * @description
-   * message holder
+   * messager
+   * in musae, we can declare global messager
+   * so users will not need to declare anymore
    */
-  messageHolder: ReactPortal | null;
+  messager: RefObject<MessageRef> | null;
 
   /**
    * @description
