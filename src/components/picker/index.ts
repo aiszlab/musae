@@ -1,4 +1,5 @@
 import Picker from "./picker";
-import type { PickerRef } from "./types";
+import type { PickerRef, PickerProps } from "./types";
+import { Context } from "./context";
 
-export { Picker, PickerRef };
+export { Picker, Context, type PickerRef, type PickerProps };

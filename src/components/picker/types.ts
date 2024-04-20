@@ -1,6 +1,6 @@
-import type { ReactNode } from "react";
+import type { MouseEventHandler, ReactNode } from "react";
 import { ComponentProps } from "../../types/element";
-import { Partialable } from "@aiszlab/relax/types";
+import { Nullable, Partialable } from "@aiszlab/relax/types";
 
 /**
  * @description
@@ -11,7 +11,7 @@ export interface PickerProps extends ComponentProps {
    * @description
    * children
    */
-  children: ReactNode | ((props: { isFocused: boolean }) => ReactNode);
+  children: ReactNode;
 
   /**
    * @description
@@ -30,6 +30,12 @@ export interface PickerProps extends ComponentProps {
    * when trigger on popper entered
    */
   onPopperEntered?: Partialable<() => void>;
+
+  /**
+   * @description
+   * click handler
+   */
+  onClick?: MouseEventHandler<HTMLDivElement>;
 }
 
 /**
@@ -44,10 +50,31 @@ export interface PickerRef {
   close: () => void;
 }
 
+/**
+ * @description
+ * picker context value
+ * provide picker state for custom render
+ *
+ * like in searchable select, if picker is focused, should show search input
+ */
 export interface ContextValue {
   /**
    * @description
-   * if true, dropdown is visible
+   * why put `open` into context
+   *
+   * answer:
+   * in select case,
+   * if select is searchable, when typing search key,
+   * should show dropdown
    */
-  isVisible: boolean;
+  open: Nullable<() => void>;
+
+  /**
+   * @description
+   * why put `isFocused` into context
+   *
+   * answer:
+   * in select
+   */
+  isFocused: boolean;
 }

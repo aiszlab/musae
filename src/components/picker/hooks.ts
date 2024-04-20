@@ -1,7 +1,6 @@
-import { type FocusEventHandler, type MouseEventHandler, useCallback, useMemo } from "react";
-import { isFunction, useEvent } from "@aiszlab/relax";
+import { type FocusEventHandler, type MouseEventHandler, useCallback } from "react";
+import { useEvent } from "@aiszlab/relax";
 import { useAnimate } from "framer-motion";
-import type { PickerProps } from "./types";
 
 /**
  * @description
@@ -12,9 +11,9 @@ export const useEvents = ({
   onClick,
 }: {
   onBlur: FocusEventHandler<HTMLDivElement>;
-  onClick: MouseEventHandler<HTMLInputElement>;
+  onClick: MouseEventHandler<HTMLDivElement>;
 }) => {
-  const blur = useCallback<FocusEventHandler<HTMLInputElement>>(
+  const blur = useCallback<FocusEventHandler<HTMLDivElement>>(
     (e) => {
       onBlur?.(e);
       e.stopPropagation();
@@ -57,17 +56,4 @@ export const useFadeAnimate = () => {
     fadeIn,
     fadeOut,
   };
-};
-
-/**
- * @description
- * children render
- */
-export const useChildren = ({ children, isFocused }: Pick<PickerProps, "children"> & { isFocused: boolean }) => {
-  return useMemo(() => {
-    if (isFunction(children)) {
-      return children({ isFocused });
-    }
-    return children;
-  }, [children, isFocused]);
 };

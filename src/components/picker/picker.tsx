@@ -8,8 +8,8 @@ import React, {
   CSSProperties,
 } from "react";
 import { Popper } from "../popper";
-import { useBoolean, useEvent, useFocus } from "@aiszlab/relax";
-import { useChildren, useEvents } from "./hooks";
+import { useBoolean, useEvent, useFocus, chain } from "@aiszlab/relax";
+import { useEvents } from "./hooks";
 import type { PickerProps, PickerRef } from "./types";
 import type { PopperRef } from "../popper/types";
 import { ComponentToken, PickerClassToken } from "../../utils/class-name";
@@ -22,6 +22,7 @@ import clsx from "clsx";
 import { typography } from "../theme/theme";
 import { useFadeAnimate } from "./hooks";
 import { styles as inputStyles } from "../input";
+import { Context } from "./context";
 
 const styles = stylex.create({
   pickable: (props: { backgroundColor: CSSProperties["backgroundColor"]; minWidth: CSSProperties["minWidth"] }) => ({
@@ -37,9 +38,9 @@ const styles = stylex.create({
 });
 
 const Picker = forwardRef<PickerRef, PickerProps>(
-  ({ pickable, className, popupWidth = "match", style, onPopperEntered, ...props }, ref) => {
+  ({ pickable, className, popupWidth = "match", style, children, onPopperEntered, onClick, ...props }, ref) => {
     const trigger = useRef<HTMLDivElement>(null);
-    const [isVisible, { turnOff: close, toggle }] = useBoolean();
+    const [isVisible, { turnOff: close, toggle, turnOn: open }] = useBoolean();
     const classNames = useClassNames(ComponentToken.Picker);
     const popper = useRef<PopperRef>(null);
     const theme = useTheme();
@@ -61,11 +62,13 @@ const Picker = forwardRef<PickerRef, PickerProps>(
     );
 
     /// events
-    const { blur, click } = useEvents({ onBlur: close, onClick: toggle });
+    const { blur, click } = useEvents({
+      onBlur: close,
+      onClick: chain(onClick, toggle),
+    });
     const [isFocused, focusProps] = useFocus<HTMLDivElement>({
       onBlur: blur,
     });
-    const children = useChildren({ children: props.children, isFocused });
 
     /// for selection change, force render for next tick
     /// for why?
@@ -94,7 +97,7 @@ const Picker = forwardRef<PickerRef, PickerProps>(
     });
 
     return (
-      <>
+      <Context.Provider value={{ open, isFocused }}>
         <div
           className={clsx(
             classNames[PickerClassToken.Picker],
@@ -130,7 +133,7 @@ const Picker = forwardRef<PickerRef, PickerProps>(
             {pickable}
           </div>
         </Popper>
-      </>
+      </Context.Provider>
     );
   }
 );

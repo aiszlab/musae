@@ -1,15 +1,14 @@
-import React, { useMemo, useRef, useCallback, useContext } from "react";
-import { Tag } from "../tag";
+import React, { useRef, useCallback, useContext } from "react";
 import { Picker, type PickerRef } from "../picker";
 import { Menu } from "../menu";
 import { useOptions, useValue } from "./hooks";
 import Context from "../config/context";
 import { ComponentToken, SelectClassToken } from "../../utils/class-name";
-import type { SelectProps } from "./types";
+import type { SelectProps, SelectorRef } from "./types";
 import clsx from "clsx";
 import stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
-import type { PickerProps } from "../picker/types";
+import Selector from "./selector";
 
 const styles = stylex.create({
   picked: {
@@ -20,6 +19,7 @@ const styles = stylex.create({
 
 const Select = ({ mode, searchable = false, onSearch, ...props }: SelectProps) => {
   const ref = useRef<PickerRef>(null);
+  const selectorRef = useRef<SelectorRef>(null);
   const classNames = useContext(Context).classNames[ComponentToken.Select];
   const close = useCallback(() => ref.current?.close(), []);
   /// options
@@ -32,37 +32,9 @@ const Select = ({ mode, searchable = false, onSearch, ...props }: SelectProps) =
     close,
   });
 
-  /// inputde value
-  const picked = useMemo<PickerProps["children"]>(() => {
-    // multiple value
-    if (mode === "multiple") {
-      const rendered = Array.from(value.entries()).map(([_value, label]) => (
-        <Tag size="small" key={_value}>
-          {label}
-        </Tag>
-      ));
-
-      if (searchable) {
-        return rendered.concat(<input onChange={(e) => onSearch?.(e.target.value)} />);
-      }
-      return rendered;
-    }
-
-    // single select value display
-    // if searchable
-    const rendered = Array.from(value.values()).join(",");
-    if (searchable) {
-      return ({ isFocused }) => (
-        <input
-          value={isFocused ? void 0 : rendered}
-          placeholder={rendered}
-          onChange={(e) => onSearch?.(e.target.value)}
-        />
-      );
-    }
-    return rendered;
-  }, [value, mode, searchable, onSearch]);
-
+  const click = () => {
+    selectorRef.current?.focus();
+  };
   const styled = stylex.props(styles.picked);
 
   return (
@@ -74,8 +46,9 @@ const Select = ({ mode, searchable = false, onSearch, ...props }: SelectProps) =
         ...styled.style,
         ...props.style,
       }}
+      onClick={click}
     >
-      {picked}
+      <Selector value={value} mode={mode} searchable={searchable} ref={selectorRef} />
     </Picker>
   );
 };
