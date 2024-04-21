@@ -52,6 +52,7 @@ export enum ComponentToken {
   Tree,
   Tabs,
   Pagination,
+  Switch,
 }
 
 /**
@@ -182,6 +183,9 @@ export enum TabsClassToken {
 }
 export enum PaginationClassToken {
   Pagination,
+}
+export enum SwitchClassToken {
+  Switch,
 }
 
 /**
@@ -316,6 +320,9 @@ export const CLASS_NAMES = {
   },
   [ComponentToken.Pagination]: {
     [PaginationClassToken.Pagination]: "pagination",
+  },
+  [ComponentToken.Switch]: {
+    [SwitchClassToken.Switch]: "switch",
   },
 };
 

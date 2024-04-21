@@ -6,28 +6,36 @@ import { sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
 import clsx from "clsx";
+import { useClassNames } from "../config";
+import { ComponentToken, SwitchClassToken } from "../../utils/class-name";
 
 const styles = stylex.create({
-  switch: (props: { borderColor: CSSProperties["borderColor"] }) => ({
-    width: sizes.large,
-    height: 20,
+  switch: (props: {
+    borderColor: CSSProperties["borderColor"];
+    thumbColor: CSSProperties["color"];
+    backgroundColor: CSSProperties["backgroundColor"];
+  }) => ({
+    width: `calc(${sizes.xlarge} + ${spacing.xxxsmall} * 2)`,
+    height: sizes.medium,
+    display: "flex",
+    alignItems: "center",
 
-    borderRadius: sizes.xsmall,
+    borderRadius: sizes.infinity,
     borderWidth: sizes.xxxxsmall,
     borderStyle: "solid",
-
     borderColor: props.borderColor,
+
     backgroundColor: "transparent",
     transition: "all 0.2s",
 
     "::before": {
       content: "''",
       display: "block",
-      margin: spacing.xxxsmall,
-      height: "12px",
-      width: "12px",
+      height: sizes.xsmall,
+      width: sizes.xsmall,
+      transform: `translateX(${spacing.xsmall})`,
       borderRadius: sizes.infinity,
-      backgroundColor: "black",
+      backgroundColor: props.thumbColor,
       transition: "all 0.2s",
     },
   }),
@@ -40,13 +48,16 @@ const styles = stylex.create({
     backgroundColor: props.backgroundColor,
 
     "::before": {
-      translate: "20px",
+      transform: `translateX(calc(${sizes.xlarge} - 100% - ${spacing.xxxsmall}))`,
+      height: sizes.small,
+      width: sizes.small,
       backgroundColor: props.thumbColor,
     },
   }),
 });
 
-const Switch = ({ value, ...props }: SwitchProps) => {
+const Switch = ({ value, style, className }: SwitchProps) => {
+  const classNames = useClassNames(ComponentToken.Switch);
   const [isSelected, setIsSelected] = useControlledState(value);
   const theme = useTheme();
 
@@ -57,11 +68,13 @@ const Switch = ({ value, ...props }: SwitchProps) => {
   const styled = stylex.props(
     styles.switch({
       borderColor: theme.colors[ColorToken.Outline],
+      thumbColor: theme.colors[ColorToken.Outline],
+      backgroundColor: theme.colors[ColorToken.SurfaceContainerHighest],
     }),
     isSelected &&
       styles.selected({
         backgroundColor: theme.colors[ColorToken.Primary],
-        thumbColor: theme.colors[ColorToken.SurfaceContainerLow],
+        thumbColor: theme.colors[ColorToken.OnPrimary],
       })
   );
 
@@ -69,10 +82,10 @@ const Switch = ({ value, ...props }: SwitchProps) => {
     <div
       aria-selected={isSelected}
       onClick={toggle}
-      className={clsx(styled.className, props.className)}
+      className={clsx(classNames[SwitchClassToken.Switch], className, styled.className)}
       style={{
         ...styled.style,
-        ...props.style,
+        ...style,
       }}
     />
   );
