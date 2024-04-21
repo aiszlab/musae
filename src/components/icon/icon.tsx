@@ -15,14 +15,16 @@ const styles = stylex.create({
 
   clickable: {
     cursor: "pointer",
+    userSelect: "none",
   },
 });
 
 const Icon = ({ as, color, size, onClick, style, className }: IconProps) => {
   const classNames = useClassNames(ComponentToken.Icon);
+
   const asProps = useMemo<AsProps>(() => {
     return {
-      size: size ?? 20,
+      size: size === "small" ? 12 : size === "large" ? 20 : size ?? 16,
     };
   }, [size]);
 
@@ -42,12 +44,12 @@ const Icon = ({ as, color, size, onClick, style, className }: IconProps) => {
 
   return (
     <span
-      onClick={onClick}
       className={clsx(classNames[IconClassToken.Icon], className, styled.className)}
       style={{
         ...styled.style,
         ...style,
       }}
+      onClick={onClick}
     >
       {children}
     </span>

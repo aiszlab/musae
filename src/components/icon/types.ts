@@ -3,6 +3,8 @@ import { ComponentProps } from "../../types/element";
 
 export type AsProps = Required<Pick<IconProps, "size">>;
 
+type Size = "small" | "medium" | "large";
+
 /**
  * @description
  * icon props
@@ -18,7 +20,7 @@ export interface IconProps extends ComponentProps {
    * @description
    * size
    */
-  size?: number;
+  size?: number | Size;
 
   /**
    * @description

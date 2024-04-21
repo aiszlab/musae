@@ -46,7 +46,11 @@ const Selector = forwardRef<SelectorRef, SelectorProps>(({ mode, searchable, val
   if (mode === "multiple") {
     return [
       ...Array.from(value.entries()).map(([key, label]) => {
-        return <Tag key={key}>{label}</Tag>;
+        return (
+          <Tag key={key} size="small">
+            {label}
+          </Tag>
+        );
       }),
       searchable && <input ref={inputRef} />,
     ];

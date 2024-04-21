@@ -32,13 +32,27 @@ const styles = stylex.create({
     overflow: "auto",
     minWidth: props.minWidth,
     boxShadow: elevations.small,
-    padding: spacing.xxsmall,
+
+    // initial style, for animation
     opacity: 0,
   }),
 });
 
 const Picker = forwardRef<PickerRef, PickerProps>(
-  ({ pickable, className, popupWidth = "match", style, children, onPopperEntered, onClick, ...props }, ref) => {
+  (
+    {
+      pickable,
+      className,
+      popupWidth = "match",
+      style,
+      children,
+      onPopperEntered,
+      onClick,
+      pickableClassName,
+      pickableStyle,
+    },
+    ref
+  ) => {
     const trigger = useRef<HTMLDivElement>(null);
     const [isVisible, { turnOff: close, toggle, turnOn: open }] = useBoolean();
     const classNames = useClassNames(ComponentToken.Picker);
@@ -53,13 +67,9 @@ const Picker = forwardRef<PickerRef, PickerProps>(
       return Math.max(trigger.current.getBoundingClientRect().width, popupWidth === "match" ? 0 : popupWidth);
     }, [popupWidth]);
 
-    useImperativeHandle(
-      ref,
-      () => ({
-        close,
-      }),
-      [close]
-    );
+    useImperativeHandle(ref, () => ({
+      close,
+    }));
 
     /// events
     const { blur, click } = useEvents({
@@ -129,7 +139,14 @@ const Picker = forwardRef<PickerRef, PickerProps>(
           onEntered={entered}
           onExit={fadeOut}
         >
-          <div ref={scope} className={styled.pickable.className} style={styled.pickable.style}>
+          <div
+            ref={scope}
+            className={clsx(pickableClassName, styled.pickable.className)}
+            style={{
+              ...styled.pickable.style,
+              ...pickableStyle,
+            }}
+          >
             {pickable}
           </div>
         </Popper>

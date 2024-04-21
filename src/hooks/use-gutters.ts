@@ -10,7 +10,7 @@ export const useGutters = ({ gutter }: { gutter?: Gutter }) => {
   const gutters = useMemo<Gutters>(() => {
     if (!gutter) return [0, 0];
     if (isArray(gutter)) return gutter;
-    return [gutter, 0];
+    return [gutter, gutter];
   }, [gutter]);
 
   return gutters;

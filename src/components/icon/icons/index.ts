@@ -1,72 +1,27 @@
 /// action
-import Visibility from "./action/visibility";
-import VisibilityOff from "./action/visibility-off";
-import CheckCircleOutline from "./action/check-circle-outline";
-import Done from "./action/done";
-import CheckCircle from "./action/check-circle";
-import SwapHoriz from "./action/swap-horiz";
-import SwapVert from "./action/swap-vert";
-import ZoomOut from "./action/zoom-out";
-import ZoomIn from "./action/zoom-in";
-import DoneOutline from "./action/done-outline";
+export * from "./action";
+export * as action from "./action";
 
 /// alert
-import ErrorOutline from "./alert/error-outline";
+export * from "./alert";
+export * as alert from "./alert";
 
 /// content
-import Clear from "./content/clear";
-
-/// navigation
-import Cancel from "./navigation/cancel";
-import MoreHoriz from "./navigation/more-horiz";
-import Close from "./navigation/close";
+export * from "./content";
+export * as content from "./content";
 
 /// hardware
-import KeyboardDoubleArrowLeft from "./hardware/keyboard-double-arrow-left";
-import KeyboardDoubleArrowRight from "./hardware/keyboard-double-arrow-right";
-import KeyboardArrowLeft from "./hardware/keyboard-arrow-left";
-import KeyboardArrowRight from "./hardware/keyboard-arrow-right";
-import KeyboardArrowUp from "./hardware/keyboard-arrow-up";
-import KeyboardArrowDown from "./hardware/keyboard-arrow-down";
+export * from "./hardware";
+export * as hardware from "./hardware";
+
+/// navigation
+export * from "./navigation";
+export * as navigation from "./navigation";
 
 /// image
-import Bedtime from "./image/bedtime";
-import WbSunny from "./image/wb-sunny";
-import RotateLeft from "./image/rotate-left";
-import RotateRight from "./image/rotate-right";
+export * from "./image";
+export * as image from "./image";
 
 /// mocks, musae collect from comunic icons
-import Github from "./mocks/github";
-
-/**
- * @description
- * icon presets
- */
-export {
-  KeyboardDoubleArrowLeft,
-  KeyboardDoubleArrowRight,
-  KeyboardArrowLeft,
-  KeyboardArrowRight,
-  KeyboardArrowUp,
-  KeyboardArrowDown,
-  SwapHoriz,
-  SwapVert,
-  Visibility,
-  VisibilityOff,
-  CheckCircle,
-  CheckCircleOutline,
-  Done,
-  ErrorOutline,
-  Cancel,
-  Clear,
-  MoreHoriz,
-  Close,
-  Github,
-  Bedtime,
-  WbSunny,
-  RotateLeft,
-  RotateRight,
-  ZoomOut,
-  ZoomIn,
-  DoneOutline,
-};
+export * from "./mock";
+export * as mock from "./mock";

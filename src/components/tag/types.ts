@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import type { ComponentProps } from "../../types/element";
 
-type Size = "small" | "large";
+type Size = "small" | "medium" | "large";
 
 /**
  * @description
@@ -19,4 +19,22 @@ export type TagProps = ComponentProps & {
    * size
    */
   size?: Size;
+
+  /**
+   * @description
+   * if current tag is closable
+   */
+  closable?: boolean;
+
+  /**
+   * @description
+   * close handler
+   */
+  onClose?: () => void;
+
+  /**
+   * @description
+   * leading node
+   */
+  leading?: ReactNode;
 };

@@ -70,7 +70,7 @@ const Preview = forwardRef<PreviewRef, PreviewProps>(({ onClose, src, alt }, ref
         open
         onClose={onClose}
         footer={false}
-        dismissable={["mask", "esc"]}
+        dismissable={["esc"]}
         styles={{
           panel: {
             backgroundColor: "transparent",

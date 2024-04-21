@@ -13,7 +13,7 @@ const styles = stylex.create({
   }),
 });
 
-const Space = ({ gutter = [4, 4], children }: SpaceProps) => {
+const Space = ({ gutter = 4, children }: SpaceProps) => {
   const [columnGap, rowGap] = useGutters({ gutter });
   const styled = stylex.props(
     styles.space({

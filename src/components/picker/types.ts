@@ -1,4 +1,4 @@
-import type { MouseEventHandler, ReactNode } from "react";
+import type { CSSProperties, MouseEventHandler, ReactNode } from "react";
 import { ComponentProps } from "../../types/element";
 import { Nullable, Partialable } from "@aiszlab/relax/types";
 
@@ -12,12 +12,6 @@ export interface PickerProps extends ComponentProps {
    * children
    */
   children: ReactNode;
-
-  /**
-   * @description
-   * pickable
-   */
-  pickable: ReactNode;
 
   /**
    * @description
@@ -36,6 +30,24 @@ export interface PickerProps extends ComponentProps {
    * click handler
    */
   onClick?: MouseEventHandler<HTMLDivElement>;
+
+  /**
+   * @description
+   * pickable
+   */
+  pickable: ReactNode;
+
+  /**
+   * @description
+   * pickable class name
+   */
+  pickableClassName?: string;
+
+  /**
+   * @description
+   * pickable style
+   */
+  pickableStyle?: CSSProperties;
 }
 
 /**

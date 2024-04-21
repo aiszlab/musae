@@ -15,9 +15,13 @@ const styles = stylex.create({
     gap: spacing.xxsmall,
     flexWrap: "wrap",
   },
+
+  pickable: {
+    paddingInline: spacing.xxsmall,
+  },
 });
 
-const Select = ({ mode, searchable = false, onSearch, ...props }: SelectProps) => {
+const Select = ({ mode, searchable = false, onSearch, className, style, ...props }: SelectProps) => {
   const ref = useRef<PickerRef>(null);
   const selectorRef = useRef<SelectorRef>(null);
   const classNames = useContext(Context).classNames[ComponentToken.Select];
@@ -35,18 +39,23 @@ const Select = ({ mode, searchable = false, onSearch, ...props }: SelectProps) =
   const click = () => {
     selectorRef.current?.focus();
   };
-  const styled = stylex.props(styles.picked);
+  const styled = {
+    picker: stylex.props(styles.picked),
+    pickable: stylex.props(styles.pickable),
+  };
 
   return (
     <Picker
       ref={ref}
       pickable={<Menu items={menuItems} onClick={onChange} selectedKeys={Array.from(value.keys())} />}
-      className={clsx(classNames[SelectClassToken.Select], props.className, styled.className)}
+      className={clsx(classNames[SelectClassToken.Select], className, styled.picker.className)}
       style={{
-        ...styled.style,
-        ...props.style,
+        ...styled.picker.style,
+        ...style,
       }}
       onClick={click}
+      pickableClassName={styled.pickable.className}
+      pickableStyle={styled.pickable.style}
     >
       <Selector value={value} mode={mode} searchable={searchable} ref={selectorRef} />
     </Picker>
