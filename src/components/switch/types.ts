@@ -18,4 +18,10 @@ export interface SwitchProps extends ComponentProps {
    * handler after change
    */
   onChange?: (value: boolean) => void | PromiseLike<void>;
+
+  /**
+   * @description
+   * icon
+   */
+  icon?: boolean;
 }

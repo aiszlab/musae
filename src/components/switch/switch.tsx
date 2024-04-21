@@ -8,86 +8,109 @@ import { ColorToken } from "../../utils/colors";
 import clsx from "clsx";
 import { useClassNames } from "../config";
 import { ComponentToken, SwitchClassToken } from "../../utils/class-name";
+import { Close, Check } from "../icon/icons";
 
-const styles = stylex.create({
-  switch: (props: {
-    borderColor: CSSProperties["borderColor"];
-    thumbColor: CSSProperties["color"];
-    backgroundColor: CSSProperties["backgroundColor"];
-  }) => ({
-    width: `calc(${sizes.xlarge} + ${spacing.xxxsmall} * 2)`,
-    height: sizes.medium,
-    display: "flex",
-    alignItems: "center",
+const styles = {
+  switch: stylex.create({
+    normal: (props: { borderColor: CSSProperties["borderColor"] }) => ({
+      width: `calc(${sizes.xlarge} + ${spacing.xxxsmall} * 2)`,
+      height: sizes.medium,
+      display: "flex",
+      alignItems: "center",
 
-    borderRadius: sizes.infinity,
-    borderWidth: sizes.xxxxsmall,
-    borderStyle: "solid",
-    borderColor: props.borderColor,
+      borderRadius: sizes.infinity,
+      borderWidth: sizes.xxxxsmall,
+      borderStyle: "solid",
+      borderColor: props.borderColor,
 
-    backgroundColor: "transparent",
-    transition: "all 0.2s",
+      backgroundColor: "transparent",
+      transition: "all 0.2s",
+    }),
 
-    "::before": {
-      content: "''",
-      display: "block",
+    checked: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
+      borderColor: props.backgroundColor,
+      backgroundColor: props.backgroundColor,
+    }),
+  }),
+
+  handler: stylex.create({
+    normal: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
       height: sizes.xsmall,
       width: sizes.xsmall,
       transform: `translateX(${spacing.xsmall})`,
       borderRadius: sizes.infinity,
-      backgroundColor: props.thumbColor,
+      backgroundColor: props.backgroundColor,
       transition: "all 0.2s",
-    },
-  }),
+    }),
 
-  selected: (props: {
-    backgroundColor: CSSProperties["backgroundColor"];
-    thumbColor: CSSProperties["backgroundColor"];
-  }) => ({
-    borderColor: props.backgroundColor,
-    backgroundColor: props.backgroundColor,
+    icon: (props: { color: CSSProperties["color"] }) => ({
+      height: sizes.small,
+      width: sizes.small,
+      transform: `translateX(${spacing.xxxsmall})`,
+      color: props.color,
+    }),
 
-    "::before": {
+    checked: (props: { backgroundColor: CSSProperties["backgroundColor"]; color: CSSProperties["color"] }) => ({
       transform: `translateX(calc(${sizes.xlarge} - 100% - ${spacing.xxxsmall}))`,
       height: sizes.small,
       width: sizes.small,
-      backgroundColor: props.thumbColor,
-    },
+      backgroundColor: props.backgroundColor,
+      color: props.color,
+    }),
   }),
-});
+};
 
-const Switch = ({ value, style, className }: SwitchProps) => {
+const Switch = ({ value, style, className, icon = false }: SwitchProps) => {
   const classNames = useClassNames(ComponentToken.Switch);
-  const [isSelected, setIsSelected] = useControlledState(value);
+  const [isChecked, setIsChecked] = useControlledState(value);
   const theme = useTheme();
 
   const toggle = useCallback(() => {
-    setIsSelected((isSelected) => !isSelected);
-  }, [setIsSelected]);
+    setIsChecked((_isChecked) => !_isChecked);
+  }, [setIsChecked]);
 
-  const styled = stylex.props(
-    styles.switch({
-      borderColor: theme.colors[ColorToken.Outline],
-      thumbColor: theme.colors[ColorToken.Outline],
-      backgroundColor: theme.colors[ColorToken.SurfaceContainerHighest],
-    }),
-    isSelected &&
-      styles.selected({
-        backgroundColor: theme.colors[ColorToken.Primary],
-        thumbColor: theme.colors[ColorToken.OnPrimary],
-      })
-  );
+  const styled = {
+    switch: stylex.props(
+      styles.switch.normal({
+        borderColor: theme.colors[ColorToken.Outline],
+      }),
+      isChecked &&
+        styles.switch.checked({
+          backgroundColor: theme.colors[ColorToken.Primary],
+        })
+    ),
+    handle: stylex.props(
+      styles.handler.normal({
+        backgroundColor: theme.colors[ColorToken.Outline],
+      }),
+      icon &&
+        styles.handler.icon({
+          color: theme.colors[ColorToken.SurfaceContainerHighest],
+        }),
+      isChecked &&
+        styles.handler.checked({
+          backgroundColor: theme.colors[ColorToken.OnPrimary],
+          color: theme.colors[ColorToken.OnPrimaryContainer],
+        })
+    ),
+  };
 
   return (
-    <div
-      aria-selected={isSelected}
+    <button
+      role="switch"
+      type="button"
+      aria-checked={isChecked}
       onClick={toggle}
-      className={clsx(classNames[SwitchClassToken.Switch], className, styled.className)}
+      className={clsx(classNames[SwitchClassToken.Switch], className, styled.switch.className)}
       style={{
-        ...styled.style,
+        ...styled.switch.style,
         ...style,
       }}
-    />
+    >
+      <div className={clsx(classNames[SwitchClassToken.Handle], styled.handle.className)} style={styled.handle.style}>
+        {icon && (isChecked ? <Check /> : <Close />)}
+      </div>
+    </button>
   );
 };
 
