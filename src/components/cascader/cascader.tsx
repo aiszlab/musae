@@ -14,6 +14,7 @@ const styles = stylex.create({
   options: {
     display: "flex",
     columnGap: spacing.xxsmall,
+    marginInline: spacing.xxsmall,
   },
 });
 
