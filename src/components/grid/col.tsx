@@ -9,7 +9,6 @@ const styles = stylex.create({
   col: (props: { span: number }) => ({
     gridColumnStart: "auto",
     gridColumnEnd: `span ${props.span}`,
-    maxWidth: "1fr",
   }),
 });
 

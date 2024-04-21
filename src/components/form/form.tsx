@@ -1,7 +1,7 @@
 import React, { type ForwardedRef, forwardRef, useImperativeHandle, useMemo } from "react";
 import type { ContextValue, FormProps } from "./types";
 import { type FieldValues, FormProvider, UseFormReturn } from "react-hook-form";
-import { useEvent, useMounted } from "@aiszlab/relax";
+import { useMounted } from "@aiszlab/relax";
 import Context, { CONTEXT_VALUE } from "./context";
 import { useForm } from "./hooks";
 
@@ -17,10 +17,8 @@ const Form = forwardRef(
       return form;
     });
 
-    const submit = useEvent(() => {
-      return form.handleSubmit((values) => {
-        onSubmit?.(values);
-      });
+    const submit = form.handleSubmit((values) => {
+      onSubmit?.(values);
     });
 
     useMounted(() => {
