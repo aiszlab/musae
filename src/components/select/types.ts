@@ -51,7 +51,13 @@ export interface SelectProps extends ComponentProps {
    * @description
    * search handler
    */
-  onSearch?: (value: string) => void;
+  onSearch?: (searched: string) => void;
+
+  /**
+   * @description
+   * option filter, like array filter
+   */
+  onFilter?: ((searched: string, option: Option) => boolean) | boolean;
 }
 
 /**
@@ -66,16 +72,27 @@ export type ReadableOptions = Map<Key, string>;
  */
 export type ToMenuItem = (option: Option) => Pick<MenuItem, "key" | "label">;
 
+export type Filter = (option: Option) => boolean;
+
 /**
  * @description
  * selected props
  */
-export type SelectorProps = Pick<RequiredIn<SelectProps, "searchable">, "searchable" | "mode"> & {
+export type SelectorProps = Pick<
+  RequiredIn<SelectProps, "searchable" | "onSearch">,
+  "searchable" | "mode" | "onSearch"
+> & {
   /**
    * @description
    * value
    */
   value: Map<Key, string>;
+
+  /**
+   * @description
+   * searched value
+   */
+  searched: string;
 };
 
 /**

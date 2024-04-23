@@ -1,18 +1,16 @@
 import React, {
-  type ChangeEvent,
-  useState,
   forwardRef,
   useImperativeHandle,
   useRef,
   useContext,
-  CSSProperties,
+  type ChangeEvent,
+  type CSSProperties,
 } from "react";
 import type { SelectorProps, SelectorRef } from "./types";
 import { Tag } from "../tag";
 import { styles as inputStyles } from "../input";
 import stylex from "@stylexjs/stylex";
 import { Context } from "../picker";
-import { useUpdateEffect } from "@aiszlab/relax";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
 
@@ -24,15 +22,10 @@ const styles = stylex.create({
   }),
 });
 
-const Selector = forwardRef<SelectorRef, SelectorProps>(({ mode, searchable, value }, ref) => {
-  const [searched, setSearched] = useState<string>("");
+const Selector = forwardRef<SelectorRef, SelectorProps>(({ mode, searchable, value, onSearch, searched }, ref) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const { isFocused, open } = useContext(Context);
   const theme = useTheme();
-
-  useUpdateEffect(() => {
-    setSearched("");
-  }, [value]);
 
   useImperativeHandle(ref, () => {
     return {
@@ -57,8 +50,9 @@ const Selector = forwardRef<SelectorRef, SelectorProps>(({ mode, searchable, val
   }
 
   const search = (e: ChangeEvent<HTMLInputElement>) => {
-    setSearched(e.target.value);
     open?.();
+    // on user search input, trigger the search callback
+    onSearch(e.target.value);
   };
 
   const styled = stylex.props(

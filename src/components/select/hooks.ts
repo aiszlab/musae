@@ -1,7 +1,8 @@
-import { type Key, useMemo, useCallback } from "react";
-import type { ReadableOptions, SelectProps, ToMenuItem } from "./types";
-import { useControlledState } from "@aiszlab/relax";
+import { type Key, useMemo, useCallback, useState } from "react";
+import type { Filter, ReadableOptions, SelectProps, ToMenuItem } from "./types";
+import { useControlledState, useEvent } from "@aiszlab/relax";
 import { readOptions, toKey, toOption, toValues } from "./utils";
+import { Option } from "../../types/option";
 
 /**
  * @description
@@ -60,7 +61,36 @@ export const useValue = ({
  * @description
  * options
  */
-export const useOptions = ([options]: [options: SelectProps["options"]]) => {
+export const useOptions = ({
+  options,
+  onFilter,
+  onSearch,
+}: {
+  options: SelectProps["options"];
+  onFilter: SelectProps["onFilter"];
+  onSearch: SelectProps["onSearch"];
+}) => {
+  const [searched, setSearched] = useState("");
+
+  const _filter = useEvent((searched: string, option: Option) => {
+    if (!searched) return true;
+    if (onFilter === false) return true;
+    if (onFilter === true || !onFilter) return !!option.label?.includes(searched);
+    return onFilter(searched, option);
+  });
+
+  /// make sure filter function will changed by searched value
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const filter = useCallback<Filter>((option) => _filter(searched, option), [searched]);
+
+  /// wrapper search handler, set react state
+  const search = useEvent<Required<SelectProps>["onSearch"]>((searched) => {
+    setSearched(searched);
+    onSearch?.(searched);
+  });
+
+  const reset = () => setSearched("");
+
   const toMenuItems = useCallback<ToMenuItem>((option) => {
     return {
       key: option.value,
@@ -68,11 +98,19 @@ export const useOptions = ([options]: [options: SelectProps["options"]]) => {
     };
   }, []);
 
-  return useMemo(() => {
-    const [menuItems, readableOptions] = readOptions(options || [], toMenuItems);
+  const readable = useMemo(() => {
+    const [menuItems, readableOptions] = readOptions(options || [], toMenuItems, filter);
     return {
       menuItems,
       readableOptions,
     };
-  }, [options, toMenuItems]);
+  }, [options, toMenuItems, filter]);
+
+  return {
+    menuItems: readable.menuItems,
+    readableOptions: readable.readableOptions,
+    search,
+    searched,
+    reset,
+  };
 };

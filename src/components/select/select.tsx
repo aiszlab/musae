@@ -9,6 +9,7 @@ import clsx from "clsx";
 import stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
 import Selector from "./selector";
+import { useUpdateEffect } from "@aiszlab/relax";
 
 const styles = stylex.create({
   picked: {
@@ -21,13 +22,18 @@ const styles = stylex.create({
   },
 });
 
-const Select = ({ mode, searchable = false, onSearch, className, style, ...props }: SelectProps) => {
+const Select = ({ mode, searchable = false, onSearch, className, style, options, onFilter, ...props }: SelectProps) => {
   const ref = useRef<PickerRef>(null);
   const selectorRef = useRef<SelectorRef>(null);
   const classNames = useContext(Context).classNames[ComponentToken.Select];
   const close = useCallback(() => ref.current?.close(), []);
+
   /// options
-  const { menuItems, readableOptions } = useOptions([props.options]);
+  const { menuItems, readableOptions, search, searched, reset } = useOptions({
+    options,
+    onFilter,
+    onSearch,
+  });
   /// value
   const { value, onChange } = useValue({
     value: props.value,
@@ -44,6 +50,14 @@ const Select = ({ mode, searchable = false, onSearch, className, style, ...props
     pickable: stylex.props(styles.pickable),
   };
 
+  /// when value changed
+  /// 1. reset searched value
+  useUpdateEffect(() => {
+    if (searched) {
+      reset();
+    }
+  }, [value]);
+
   return (
     <Picker
       ref={ref}
@@ -57,7 +71,14 @@ const Select = ({ mode, searchable = false, onSearch, className, style, ...props
       pickableClassName={styled.pickable.className}
       pickableStyle={styled.pickable.style}
     >
-      <Selector value={value} mode={mode} searchable={searchable} ref={selectorRef} />
+      <Selector
+        value={value}
+        mode={mode}
+        searchable={searchable}
+        ref={selectorRef}
+        searched={searched}
+        onSearch={search}
+      />
     </Picker>
   );
 };

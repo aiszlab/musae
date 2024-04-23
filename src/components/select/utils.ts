@@ -1,5 +1,5 @@
 import { isVoid, isArray } from "@aiszlab/relax";
-import type { ReadableOptions, ToMenuItem, Value, ValueOrValues } from "./types";
+import type { Filter, ReadableOptions, ToMenuItem, Value, ValueOrValues } from "./types";
 import type { Option } from "../../types/option";
 import type { MenuItem } from "../menu";
 
@@ -45,11 +45,16 @@ export const toOption = (value: Value): Pick<Option, "value" | "label"> => {
  * @description
  * deep read options
  */
-export const readOptions = (options: Option[], toMenuItem: ToMenuItem) => {
+export const readOptions = (options: Option[], toMenuItem: ToMenuItem, filter: Filter) => {
   return options.reduce<[MenuItem[], ReadableOptions]>(
     (prev, option) => {
+      // first step, check current option is valid by filter
+      if (!filter(option)) {
+        return prev;
+      }
+
       // has child, read deeply
-      const [_additions, _readableOptions] = option.children ? readOptions(option.children, toMenuItem) : [];
+      const [_additions, _readableOptions] = option.children ? readOptions(option.children, toMenuItem, filter) : [];
 
       // convert with children
       prev[0].push({
