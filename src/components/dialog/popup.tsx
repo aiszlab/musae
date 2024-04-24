@@ -21,7 +21,10 @@ const styles = stylex.create({
 
   popup: {
     position: "fixed",
-    inset: spacing.none,
+    top: 0,
+    left: 0,
+    width: "100vw",
+    height: "100vh",
     pointerEvents: "none",
     zIndex: 1000,
     display: "flex",
@@ -31,7 +34,10 @@ const styles = stylex.create({
 
   mask: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
     position: "absolute",
-    inset: 0,
+    top: 0,
+    left: 0,
+    width: "100vw",
+    height: "100vh",
     pointerEvents: "auto",
     zIndex: 1000,
     backgroundColor: props.backgroundColor,

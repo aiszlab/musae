@@ -35,11 +35,12 @@ const Select = ({ mode, searchable = false, onSearch, className, style, options,
     onSearch,
   });
   /// value
-  const { value, onChange } = useValue({
+  const { value, readableValues, onChange } = useValue({
     value: props.value,
     readableOptions,
     mode,
     close,
+    reset,
   });
 
   const click = () => {
@@ -61,7 +62,7 @@ const Select = ({ mode, searchable = false, onSearch, className, style, options,
   return (
     <Picker
       ref={ref}
-      pickable={<Menu items={menuItems} onClick={onChange} selectedKeys={Array.from(value.keys())} />}
+      pickable={<Menu items={menuItems} onClick={onChange} selectedKeys={Array.from(readableValues.keys())} />}
       className={clsx(classNames[SelectClassToken.Select], className, styled.picker.className)}
       style={{
         ...styled.picker.style,
@@ -72,7 +73,7 @@ const Select = ({ mode, searchable = false, onSearch, className, style, options,
       pickableStyle={styled.pickable.style}
     >
       <Selector
-        value={value}
+        value={readableValues}
         mode={mode}
         searchable={searchable}
         ref={selectorRef}
