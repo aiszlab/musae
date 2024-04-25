@@ -108,7 +108,7 @@ const Picker = forwardRef<PickerRef, PickerProps>(
     });
 
     return (
-      <Context.Provider value={{ open, isFocused }}>
+      <Context.Provider value={{ open, isFocused, isVisible }}>
         <div
           className={clsx(
             classNames[PickerClassToken.Picker],

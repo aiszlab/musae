@@ -1,4 +1,4 @@
-import React, { memo, useContext } from "react";
+import React, { createElement, memo, useContext } from "react";
 import { Menu, type MenuItem, type MenuProps } from "../menu";
 import { Context } from "../picker";
 
@@ -6,7 +6,7 @@ interface Props {
   items: MenuItem[];
   onSelect: MenuProps["onClick"];
   selectedKeys: MenuProps["selectedKeys"];
-  open: boolean;
+  isVisible: boolean;
 }
 
 /**
@@ -22,11 +22,16 @@ const _Selections = memo(
   ({ items, onSelect, selectedKeys }: Props) => {
     return <Menu items={items} onClick={onSelect} selectedKeys={selectedKeys} />;
   },
-  (_, nextProps) => nextProps.open
+  (_, nextProps) => nextProps.isVisible
 );
 
-const Selections = () => {
-  const { isFocused } = useContext(Context);
+const Selections = (props: Omit<Props, "isVisible">) => {
+  const { isVisible } = useContext(Context);
+
+  return createElement(_Selections, {
+    ...props,
+    isVisible,
+  });
 };
 
-export default () => {};
+export default Selections;

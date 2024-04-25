@@ -96,8 +96,12 @@ export interface ContextValue {
    */
   isFocused: boolean;
 
-
   /**
    * @description
+   * why put `isVisible` into context
+   *
+   * answer:
+   * in `Select` component, when `isVisible` is false, should keep the last state options
    */
+  isVisible: boolean;
 }

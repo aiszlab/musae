@@ -10,6 +10,7 @@ import stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
 import Selector from "./selector";
 import { useEvent } from "@aiszlab/relax";
+import Selections from "./selections";
 
 const styles = stylex.create({
   picked: {
@@ -60,7 +61,7 @@ const Select = ({ mode, searchable = false, onSearch, className, style, options,
   return (
     <Picker
       ref={ref}
-      pickable={<Menu items={menuItems} onClick={onChange} selectedKeys={Array.from(readableValues.keys())} />}
+      pickable={<Selections items={menuItems} onSelect={onChange} selectedKeys={Array.from(readableValues.keys())} />}
       className={clsx(classNames[SelectClassToken.Select], className, styled.picker.className)}
       style={{
         ...styled.picker.style,
