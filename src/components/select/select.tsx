@@ -1,6 +1,5 @@
 import React, { useRef, useCallback, useContext } from "react";
 import { Picker, type PickerRef } from "../picker";
-import { Menu } from "../menu";
 import { useOptions, useValue } from "./hooks";
 import Context from "../config/context";
 import { ComponentToken, SelectClassToken } from "../../utils/class-name";
@@ -9,7 +8,6 @@ import clsx from "clsx";
 import stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
 import Selector from "./selector";
-import { useEvent } from "@aiszlab/relax";
 import Selections from "./selections";
 
 const styles = stylex.create({
@@ -52,12 +50,6 @@ const Select = ({ mode, searchable = false, onSearch, className, style, options,
     pickable: stylex.props(styles.pickable),
   };
 
-  /// handler trigger at popper exited
-  /// close dropdown will clean up single mode search text
-  const onPopperExited = useEvent(() => {
-    reset();
-  });
-
   return (
     <Picker
       ref={ref}
@@ -70,7 +62,7 @@ const Select = ({ mode, searchable = false, onSearch, className, style, options,
       onClick={click}
       pickableClassName={styled.pickable.className}
       pickableStyle={styled.pickable.style}
-      onPopperExited={onPopperExited}
+      onPopperExite={reset}
     >
       <Selector
         value={readableValues}

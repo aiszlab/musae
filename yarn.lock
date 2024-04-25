@@ -7,10 +7,10 @@
   resolved "https://registry.npmjs.org/@aashutoshrathi/word-wrap/-/word-wrap-1.2.6.tgz#bd9154aec9983f77b3a034ecaa015c2e4201f6cf"
   integrity sha512-1Yjs2SvM8TflER/OD3cOjhWWOZb58A2t7wpE2S9XfBYTiIl+XFhQG2bjy4Pu1I+EAlCNUzRDYDdFwFYUKvXcIA==
 
-"@aiszlab/relax@^1.2.33":
-  version "1.2.33"
-  resolved "https://registry.npmjs.org/@aiszlab/relax/-/relax-1.2.33.tgz#3d934e770858cd1bd851a1f8549b6dbf2be99ec1"
-  integrity sha512-hQuSZx07HFjUV9NkTYyHCtb3aIKvIxtzCUakgK8un2KLqTx5uni7at+r5d+kAbrjLhDL14yng8zWCBzsiiLM8g==
+"@aiszlab/relax@^1.2.34":
+  version "1.2.34"
+  resolved "https://registry.npmjs.org/@aiszlab/relax/-/relax-1.2.34.tgz#0e8adf50c9fe89a21d31f7e5e4c9347a67fa8ac4"
+  integrity sha512-SIFcpaPoHAl7GqXMO3/ioie6+QT0aQy7ja3cTnIjpIB76xC7QtYFCAcZKqZvzGfsDZ8QTWnRMsEE5W+CZdxlmw==
   dependencies:
     react-is "^18.2.0"
     rxjs "^7.8.1"

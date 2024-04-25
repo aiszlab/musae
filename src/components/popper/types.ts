@@ -52,7 +52,7 @@ export interface PopperProps
    * @description
    * when trigger on popper exited, this function will be called
    */
-  onExited?: () => void;
+  onExited?: () => Promise<void> | void;
 }
 
 /**

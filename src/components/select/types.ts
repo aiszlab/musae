@@ -1,8 +1,8 @@
 import type { Key } from "react";
 import type { Option } from "../../types/option";
-import type { MenuItem } from "../menu";
+import type { MenuItem, MenuProps } from "../menu";
 import type { ComponentProps } from "../../types/element";
-import { RequiredIn } from "@aiszlab/relax/types";
+import type { RequiredIn } from "@aiszlab/relax/types";
 
 export type Mode = "multiple";
 
@@ -105,4 +105,28 @@ export type SelectorRef = {
    * focus
    */
   focus: () => void;
+};
+
+/**
+ * @description
+ * selections props
+ */
+export type SelectionsProps = {
+  /**
+   * @description
+   * menu items
+   */
+  items: MenuItem[];
+
+  /**
+   * @description
+   * select menu item handler
+   */
+  onSelect: MenuProps["onClick"];
+
+  /**
+   * @description
+   * selected keys
+   */
+  selectedKeys: MenuProps["selectedKeys"];
 };

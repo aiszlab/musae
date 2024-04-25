@@ -1,13 +1,8 @@
-import React, { createElement, memo, useContext } from "react";
-import { Menu, type MenuItem, type MenuProps } from "../menu";
+import React, { useContext } from "react";
+import { Menu } from "../menu";
 import { Context } from "../picker";
-
-interface Props {
-  items: MenuItem[];
-  onSelect: MenuProps["onClick"];
-  selectedKeys: MenuProps["selectedKeys"];
-  isVisible: boolean;
-}
+import { useMemorable } from "@aiszlab/relax";
+import type { SelectionsProps } from "./types";
 
 /**
  * @description
@@ -18,20 +13,16 @@ interface Props {
  * because in options close, we use timeout animations
  * but in animation time, we do not need to re-render the component, keep options in last state
  */
-const _Selections = memo(
-  ({ items, onSelect, selectedKeys }: Props) => {
-    return <Menu items={items} onClick={onSelect} selectedKeys={selectedKeys} />;
-  },
-  (_, nextProps) => nextProps.isVisible
-);
-
-const Selections = (props: Omit<Props, "isVisible">) => {
+const Selections = ({ onSelect, selectedKeys, ...props }: SelectionsProps) => {
   const { isVisible } = useContext(Context);
 
-  return createElement(_Selections, {
-    ...props,
-    isVisible,
-  });
+  const items = useMemorable(
+    () => props.items,
+    [isVisible, props.items] as [boolean, SelectionsProps["items"]],
+    (prev, next) => next[0] && next[1] !== prev[1]
+  );
+
+  return <Menu items={items} onClick={onSelect} selectedKeys={selectedKeys} />;
 };
 
 export default Selections;

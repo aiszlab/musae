@@ -47,6 +47,7 @@ const Picker = forwardRef<PickerRef, PickerProps>(
       style,
       children,
       onPopperEntered,
+      onPopperExite,
       onPopperExited,
       onClick,
       pickableClassName,
@@ -59,7 +60,9 @@ const Picker = forwardRef<PickerRef, PickerProps>(
     const classNames = useClassNames(ComponentToken.Picker);
     const popper = useRef<PopperRef>(null);
     const theme = useTheme();
-    const { fadeIn, fadeOut, scope } = useFadeAnimate();
+    const { fadeIn, exit, scope } = useFadeAnimate({
+      onPopperExite,
+    });
 
     const onDropdownClick = useCallback((e: MouseEvent<HTMLDivElement>) => e.preventDefault(), []);
     const getDropdownWidth = useCallback(() => {
@@ -138,7 +141,7 @@ const Picker = forwardRef<PickerRef, PickerProps>(
           // click on popper, keep select focused
           onMouseDown={onDropdownClick}
           onEntered={entered}
-          onExit={fadeOut}
+          onExit={exit}
           onExited={onPopperExited}
         >
           <div

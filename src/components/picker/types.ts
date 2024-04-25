@@ -29,7 +29,13 @@ export interface PickerProps extends ComponentProps {
    * @description
    * when trigger on popper exited
    */
-  onPopperExited?: () => void;
+  onPopperExite?: () => Promise<void> | void;
+
+  /**
+   * @description
+   * when trigger on popper exited
+   */
+  onPopperExited?: () => Promise<void> | void;
 
   /**
    * @description
