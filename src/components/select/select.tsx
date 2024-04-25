@@ -9,7 +9,7 @@ import clsx from "clsx";
 import stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
 import Selector from "./selector";
-import { useUpdateEffect } from "@aiszlab/relax";
+import { useEvent } from "@aiszlab/relax";
 
 const styles = stylex.create({
   picked: {
@@ -35,7 +35,7 @@ const Select = ({ mode, searchable = false, onSearch, className, style, options,
     onSearch,
   });
   /// value
-  const { value, readableValues, onChange } = useValue({
+  const { readableValues, onChange } = useValue({
     value: props.value,
     readableOptions,
     mode,
@@ -51,13 +51,11 @@ const Select = ({ mode, searchable = false, onSearch, className, style, options,
     pickable: stylex.props(styles.pickable),
   };
 
-  /// when value changed
-  /// 1. reset searched value
-  useUpdateEffect(() => {
-    if (searched) {
-      reset();
-    }
-  }, [value]);
+  /// handler trigger at popper exited
+  /// close dropdown will clean up single mode search text
+  const onPopperExited = useEvent(() => {
+    reset();
+  });
 
   return (
     <Picker
@@ -71,6 +69,7 @@ const Select = ({ mode, searchable = false, onSearch, className, style, options,
       onClick={click}
       pickableClassName={styled.pickable.className}
       pickableStyle={styled.pickable.style}
+      onPopperExited={onPopperExited}
     >
       <Selector
         value={readableValues}

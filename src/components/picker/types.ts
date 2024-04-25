@@ -1,6 +1,6 @@
 import type { CSSProperties, MouseEventHandler, ReactNode } from "react";
-import { ComponentProps } from "../../types/element";
-import { Nullable, Partialable } from "@aiszlab/relax/types";
+import type { ComponentProps } from "../../types/element";
+import type { Nullable } from "@aiszlab/relax/types";
 
 /**
  * @description
@@ -23,7 +23,13 @@ export interface PickerProps extends ComponentProps {
    * @description
    * when trigger on popper entered
    */
-  onPopperEntered?: Partialable<() => void>;
+  onPopperEntered?: () => void;
+
+  /**
+   * @description
+   * when trigger on popper exited
+   */
+  onPopperExited?: () => void;
 
   /**
    * @description
@@ -89,4 +95,9 @@ export interface ContextValue {
    * in select
    */
   isFocused: boolean;
+
+
+  /**
+   * @description
+   */
 }

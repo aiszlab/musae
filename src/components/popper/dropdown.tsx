@@ -19,7 +19,10 @@ const styles = stylex.create({
 });
 
 const Dropdown = forwardRef<PopperRef, DropdownProps>(
-  ({ open, trigger, children, placement = "bottom-start", className, style, onExit, onEntered, ...props }, ref) => {
+  (
+    { open, trigger, children, placement = "bottom-start", className, style, onExit, onEntered, onExited, ...props },
+    ref
+  ) => {
     const container = useRef<HTMLDivElement>(null);
     const classNames = useClassNames(ComponentToken.Popper);
     const popper = useRef<Instance | null>(null);
@@ -66,6 +69,7 @@ const Dropdown = forwardRef<PopperRef, DropdownProps>(
 
         await onExit?.();
         container.current?.classList.add(...toClassList(styled.hidden.className));
+        onExited?.();
       })();
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [open]);

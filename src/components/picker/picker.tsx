@@ -47,6 +47,7 @@ const Picker = forwardRef<PickerRef, PickerProps>(
       style,
       children,
       onPopperEntered,
+      onPopperExited,
       onClick,
       pickableClassName,
       pickableStyle,
@@ -138,6 +139,7 @@ const Picker = forwardRef<PickerRef, PickerProps>(
           onMouseDown={onDropdownClick}
           onEntered={entered}
           onExit={fadeOut}
+          onExited={onPopperExited}
         >
           <div
             ref={scope}
