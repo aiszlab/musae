@@ -17,6 +17,7 @@ export const useValue = ({
   mode: SelectProps["mode"];
   close: () => void;
   reset: () => void;
+  onChange: SelectProps["onChange"];
 }) => {
   const [value, setValue] = useControlledState(props.value);
   const readableOptions = useRef<ReadableOptions>(props.readableOptions);

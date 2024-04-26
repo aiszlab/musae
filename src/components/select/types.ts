@@ -58,6 +58,12 @@ export interface SelectProps extends ComponentProps {
    * option filter, like array filter
    */
   onFilter?: ((searched: string, option: Option) => boolean) | boolean;
+
+  /**
+   * @description
+   * on value change, toggle
+   */
+  onChange?: () => void;
 }
 
 /**

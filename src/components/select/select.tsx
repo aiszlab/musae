@@ -40,6 +40,7 @@ const Select = ({ mode, searchable = false, onSearch, className, style, options,
     mode,
     close,
     reset,
+    onChange: props.onChange,
   });
 
   const click = () => {
