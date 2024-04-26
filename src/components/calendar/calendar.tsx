@@ -30,7 +30,7 @@ const styles = stylex.create({
   },
 });
 
-const Calendar = (props: CalendarProps) => {
+const Calendar = ({ className, style, ...props }: CalendarProps) => {
   const { timespan, onClick } = useValue([props.value, props.onClick]);
   const { focusedAt, toPrevYear, toPrevMonth, toNextYear, toNextMonth } = useFocusedAt([props.focusedAt]);
   const dateCells = useDateCells([timespan, focusedAt, onClick]);
@@ -43,19 +43,13 @@ const Calendar = (props: CalendarProps) => {
   };
 
   return (
-    <div>
+    <div className={className} style={style}>
       <header
         className={clsx(classNames[CalendarClassToken.Header], styled.header.className)}
         style={styled.header.style}
       >
-        <Button
-          variant="text"
-          prefix={<KeyboardDoubleArrowLeft />}
-          onClick={toPrevYear}
-          size="small"
-          shape="circular"
-        />
-        <Button variant="text" prefix={<KeyboardArrowLeft />} onClick={toPrevMonth} size="small" shape="circular" />
+        <Button variant="text" prefix={<KeyboardDoubleArrowLeft />} onClick={toPrevYear} shape="circular" />
+        <Button variant="text" prefix={<KeyboardArrowLeft />} onClick={toPrevMonth} shape="circular" />
 
         <span
           className={clsx(classNames[CalendarClassToken.Heading], styled.heading.className)}
@@ -64,14 +58,8 @@ const Calendar = (props: CalendarProps) => {
           {focusedAt.format("YYYY-MM")}
         </span>
 
-        <Button variant="text" prefix={<KeyboardArrowRight />} onClick={toNextMonth} size="small" shape="circular" />
-        <Button
-          variant="text"
-          prefix={<KeyboardDoubleArrowRight />}
-          onClick={toNextYear}
-          size="small"
-          shape="circular"
-        />
+        <Button variant="text" prefix={<KeyboardArrowRight />} onClick={toNextMonth} shape="circular" />
+        <Button variant="text" prefix={<KeyboardDoubleArrowRight />} onClick={toNextYear} shape="circular" />
       </header>
 
       <table>

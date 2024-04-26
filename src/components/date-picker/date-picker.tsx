@@ -1,4 +1,4 @@
-import React, { useMemo, useRef } from "react";
+import React, { useRef } from "react";
 import { Picker, PickerRef } from "../picker";
 import { Calendar } from "../calendar";
 import type { DatePickerProps } from "./types";
@@ -7,11 +7,16 @@ import { useClassNames } from "../config";
 import { ComponentToken, DatePickerClassToken } from "../../utils/class-name";
 import * as stylex from "@stylexjs/stylex";
 import clsx from "clsx";
+import { sizes, spacing } from "../theme/tokens.stylex";
 
 const styles = stylex.create({
   trigger: {
     outline: "none",
-    width: "100%",
+    width: sizes.full,
+  },
+
+  calendar: {
+    padding: spacing.xxsmall,
   },
 });
 
@@ -20,28 +25,31 @@ const DatePicker = (props: DatePickerProps) => {
   const { onChange, value } = useValue([props.value, props.onChange, ref]);
   const classNames = useClassNames(ComponentToken.DatePicker);
 
-  /// picked date
-  const picked = useMemo(() => {
-    const styled = stylex.props(styles.trigger);
-
-    return (
-      <input
-        className={clsx(styled.className, classNames[DatePickerClassToken.Input])}
-        style={styled.style}
-        value={value?.format("YYYY-MM-DD") ?? ""}
-        readOnly
-      />
-    );
-  }, [value, classNames]);
+  const styled = {
+    trigger: stylex.props(styles.trigger),
+    calendar: stylex.props(styles.calendar),
+  };
 
   return (
     <Picker
       ref={ref}
       className={classNames[DatePickerClassToken.Picker]}
-      pickable={<Calendar value={value} onClick={onChange} />}
+      pickable={
+        <Calendar
+          className={styled.calendar.className}
+          style={styled.calendar.style}
+          value={value}
+          onClick={onChange}
+        />
+      }
       popupWidth={false}
     >
-      {picked}
+      <input
+        className={clsx(classNames[DatePickerClassToken.Input], styled.trigger.className)}
+        style={styled.trigger.style}
+        value={value?.format("YYYY-MM-DD") ?? ""}
+        readOnly
+      />
     </Picker>
   );
 };

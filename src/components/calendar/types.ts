@@ -1,11 +1,12 @@
 import type { Dayjs } from "dayjs";
 import type { Partialable } from "@aiszlab/relax/types";
+import { ComponentProps } from "../../types/element";
 
 /**
  * @description
  * calendar props
  */
-export interface CalendarProps {
+export type CalendarProps = ComponentProps & {
   /**
    * @description
    * value
@@ -23,4 +24,4 @@ export interface CalendarProps {
    * click date handler
    */
   onClick?: (value: Dayjs) => void;
-}
+};

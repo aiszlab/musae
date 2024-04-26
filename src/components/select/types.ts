@@ -16,7 +16,7 @@ export type ValueOrValues = Value[] | Value;
  * @description
  * select props
  */
-export interface SelectProps extends ComponentProps {
+export type SelectProps = ComponentProps & {
   /**
    * @description
    * options
@@ -64,7 +64,7 @@ export interface SelectProps extends ComponentProps {
    * on value change, toggle
    */
   onChange?: (value: ValueOrValues) => void;
-}
+};
 
 /**
  * @description
