@@ -7,7 +7,6 @@ import { ClassNames } from "../components/config/types";
 enum Token {
   Prefix = "musae",
   Separator = "-",
-  Dot = ".",
 }
 
 /**
@@ -15,12 +14,6 @@ enum Token {
  * add prefix
  */
 export const withPrefix = (className: string, prefix: string) => [prefix, className].join(Token.Separator);
-
-/**
- * @description
- * with dot
- */
-export const withDot = (className: string) => `${Token.Dot}${className}`;
 
 /**
  * @description

@@ -32,12 +32,6 @@ export interface DialogProps {
 
   /**
    * @description
-   * on close
-   */
-  onClose?: VoidFunction;
-
-  /**
-   * @description
    * Whether the modal can be closed by clicking on the mask or pressing the Esc key.
    */
   dismissable?: boolean | Dismissable[];
@@ -57,10 +51,26 @@ export interface DialogProps {
     panel?: CSSProperties;
     body?: CSSProperties;
   };
+
+  /**
+   * @description
+   * close `Dialog` handler
+   *
+   * @template
+   * in `Dialog`, close icon & cancel button will render default
+   * if user click these nodes, this callback will be toggled
+   */
+  onClose?: VoidFunction;
 }
 
 /**
  * @description
  * popup
  */
-export type PopupProps = DialogProps;
+export type PopupProps = DialogProps & {
+  /**
+   * @description
+   * callback will be toggled after close animation end
+   */
+  onClosed?: () => void;
+};

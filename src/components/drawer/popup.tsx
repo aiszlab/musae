@@ -1,8 +1,8 @@
-import React, { CSSProperties, useEffect } from "react";
+import React, { type CSSProperties, useEffect, useRef } from "react";
 import { useAnimate } from "framer-motion";
 import type { PopupProps } from "./types";
 import { PLACEMENTS } from "./hooks";
-import { ComponentToken, DrawerClassToken, withDot } from "../../utils/class-name";
+import { ComponentToken, DrawerClassToken } from "../../utils/class-name";
 import { useClassNames } from "../config";
 import * as stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
@@ -16,20 +16,14 @@ import { useDismissable } from "../../hooks/use-dismissable";
 const styles = stylex.create({
   popup: {
     position: "fixed",
-    top: 0,
-    left: 0,
-    width: "100vw",
-    height: "100vh",
+    inset: 0,
     pointerEvents: "none",
     zIndex: 1000,
   },
 
   mask: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
     position: "absolute",
-    top: 0,
-    left: 0,
-    width: "100vw",
-    height: "100vh",
+    inset: 0,
     pointerEvents: "auto",
     zIndex: 1000,
     opacity: 0,
@@ -51,7 +45,6 @@ const styles = stylex.create({
     right: 0,
     top: 0,
     bottom: 0,
-    transform: "translateX(100%)",
     width: 400,
   },
 
@@ -88,29 +81,34 @@ const styles = stylex.create({
   },
 });
 
-const Popup = ({ open, onClose, placement = "right", dismissable = true, ...props }: PopupProps) => {
+const Popup = ({ open, onClose, placement = "right", dismissable = true, onClosed, ...props }: PopupProps) => {
   const [scope, animate] = useAnimate<HTMLDivElement>();
   const classNames = useClassNames(ComponentToken.Drawer);
   const _placement = PLACEMENTS[placement];
   const theme = useTheme();
+  const panelRef = useRef<HTMLDivElement>(null);
+  const maskRef = useRef<HTMLDivElement>(null);
+
+  /// children render hooks
   const { closer, onKeyDown, onMaskClick } = useDismissable({ dismissable, onClose });
 
   useEffect(() => {
     (async () => {
       if (open) {
         scope.current.attributeStyleMap.set("display", "block");
-        Promise.all([
-          animate(withDot(classNames[DrawerClassToken.Panel]), { transform: _placement.at(1) }),
-          animate(withDot(classNames[DrawerClassToken.Mask]), { opacity: 0.8 }),
+        await Promise.all([
+          panelRef.current && animate(panelRef.current, { transform: _placement.at(1) }),
+          maskRef.current && animate(maskRef.current, { opacity: 0.8 }),
         ]);
         return;
       }
 
       await Promise.all([
-        animate(withDot(classNames[DrawerClassToken.Panel]), { transform: _placement.at(0) }),
-        animate(withDot(classNames[DrawerClassToken.Mask]), { opacity: 0 }),
+        panelRef.current && animate(panelRef.current, { transform: _placement.at(0) }),
+        maskRef.current && animate(maskRef.current, { opacity: 0 }),
       ]);
       scope.current.attributeStyleMap.set("display", "none");
+      onClosed?.();
     })();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open, ..._placement]);
@@ -154,10 +152,15 @@ const Popup = ({ open, onClose, placement = "right", dismissable = true, ...prop
         className={clsx(classNames[DrawerClassToken.Mask], styled.mask.className)}
         onClick={onMaskClick}
         style={styled.mask.style}
+        ref={maskRef}
       />
 
       {/* panel */}
-      <div className={clsx(classNames[DrawerClassToken.Panel], styled.panel.className)} style={styled.panel.style}>
+      <div
+        className={clsx(classNames[DrawerClassToken.Panel], styled.panel.className)}
+        style={styled.panel.style}
+        ref={panelRef}
+      >
         {closer}
 
         {/* header */}

@@ -49,4 +49,10 @@ export interface DrawerProps {
  * @description
  * popup
  */
-export interface PopupProps extends DrawerProps {}
+export type PopupProps = DrawerProps & {
+  /**
+   * @description
+   * callback will be toggled after close animation end
+   */
+  onClosed?: () => void;
+};
