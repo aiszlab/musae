@@ -21,7 +21,7 @@ export const useValue = ({
   onChange: SelectProps["onChange"];
   isComplex: boolean;
 }) => {
-  const isControlled = isUndefined(props.value);
+  const isControlled = !isUndefined(props.value);
   const [value, setValue] = useControlledState(props.value);
   const readableOptions = useRef<ReadableOptions>(props.readableOptions);
   readableOptions.current = props.readableOptions;
@@ -69,7 +69,7 @@ export const useValue = ({
     // else add current values
     const prev = new Map(readableValues);
     const isRemoved = prev.has(key) && prev.delete(key);
-    const next = isRemoved ? prev.set(key, _value.label) : prev;
+    const next = isRemoved ? prev : prev.set(key, _value.label);
 
     if (isControlled) {
       props.onChange?.(
