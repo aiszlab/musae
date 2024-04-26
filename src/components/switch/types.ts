@@ -1,4 +1,5 @@
-import { ComponentProps } from "../../types/element";
+import type { ReactNode } from "react";
+import type { ComponentProps } from "../../types/element";
 
 /**
  * @author murukal
@@ -24,4 +25,16 @@ export interface SwitchProps extends ComponentProps {
    * icon
    */
   icon?: boolean;
+
+  /**
+   * @description
+   * checked children
+   */
+  checkedChildren?: ReactNode;
+
+  /**
+   * @description
+   * unchecked children
+   */
+  uncheckedChildren?: ReactNode;
 }

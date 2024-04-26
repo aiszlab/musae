@@ -60,7 +60,7 @@ const styles = {
   }),
 };
 
-const Switch = ({ value, style, className, icon = false }: SwitchProps) => {
+const Switch = ({ value, style, className, icon = false, checkedChildren, uncheckedChildren }: SwitchProps) => {
   const classNames = useClassNames(ComponentToken.Switch);
   const [isChecked, setIsChecked] = useControlledState(value);
   const theme = useTheme();
@@ -94,6 +94,8 @@ const Switch = ({ value, style, className, icon = false }: SwitchProps) => {
         })
     ),
   };
+
+  /// TODO display diff children in diff state
 
   return (
     <button
