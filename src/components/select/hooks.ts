@@ -74,11 +74,11 @@ export const useValue = ({
     if (isControlled) {
       props.onChange?.(
         isComplex
-          ? Array.from(next.keys())
-          : Array.from(next.entries()).map(([value, label]) => ({
+          ? Array.from(next.entries()).map(([value, label]) => ({
               value,
               label,
             }))
+          : Array.from(next.keys())
       );
       return;
     }
