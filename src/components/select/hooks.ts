@@ -1,6 +1,6 @@
-import { type Key, useMemo, useCallback, useState, useRef } from "react";
-import type { Filter, ReadableOptions, SelectProps, Value } from "./types";
-import { useControlledState, useEvent } from "@aiszlab/relax";
+import { type Key, useMemo, useState, useRef } from "react";
+import type { Filter, Mode, ReadableOptions, SelectProps, ValueOrValues } from "./types";
+import { isUndefined, useControlledState, useEvent } from "@aiszlab/relax";
 import { readOptions, toKey, toMenuItems, toValues } from "./utils";
 
 /**
@@ -10,15 +10,18 @@ import { readOptions, toKey, toMenuItems, toValues } from "./utils";
 export const useValue = ({
   mode,
   close,
+  isComplex,
   ...props
 }: {
-  value: SelectProps["value"];
+  value: ValueOrValues | undefined;
   readableOptions: ReadableOptions;
-  mode: SelectProps["mode"];
+  mode: Mode | undefined;
   close: () => void;
   reset: () => void;
   onChange: SelectProps["onChange"];
+  isComplex: boolean;
 }) => {
+  const isControlled = isUndefined(props.value);
   const [value, setValue] = useControlledState(props.value);
   const readableOptions = useRef<ReadableOptions>(props.readableOptions);
   readableOptions.current = props.readableOptions;
@@ -32,52 +35,61 @@ export const useValue = ({
         const key = toKey(_value);
         return prev.set(
           key,
-          (_value as Exclude<Value, Key>).label ?? readableOptions.current.get(key) ?? _value.toString()
+          // @ts-ignore
+          _value.label ?? readableOptions.current.get(key) ?? _value.toString()
         );
       }, new Map<Key, string>()),
     [value]
   );
 
-  const onChange = useCallback(
-    (key: Key) => {
-      // if this select is single mode, just use key value
-      // close dropdown after click
-      // handler reset searched value
-      if (!mode) {
-        close();
+  const onChange = useEvent((key: Key) => {
+    // convert to complex value
+    const _value = {
+      value: key,
+      label: readableOptions.current.get(key) ?? key.toString(),
+    };
 
-        if (!readableValues.has(key)) {
-          setValue({
-            value: key,
-            label: readableOptions.current.get(key) ?? key.toString(),
-          });
-        }
+    // single mode
+    if (!mode) {
+      close();
+      // same value, do not toggle again
+      if (readableValues.has(key)) return;
 
+      if (isControlled) {
+        props.onChange?.(isComplex ? _value : key);
         return;
       }
 
-      // in multiple mode
-      // click menu item twice mean cancel it
-      // else add current values
-      const _values = new Map(readableValues);
-      const isRemoved = _values.has(key) && _values.delete(key);
-      setValue([
-        ...Array.from(_values.entries()).map(([value, label]) => ({
-          value,
-          label,
-        })),
-        ...(isRemoved
-          ? []
-          : [
-              {
-                value: key,
-                label: readableOptions.current.get(key) ?? key.toString(),
-              },
-            ]),
-      ]);
-    },
-    [mode, readableValues, setValue, close]
-  );
+      setValue(_value);
+      return;
+    }
+
+    // in multiple mode
+    // click menu item twice mean cancel it
+    // else add current values
+    const prev = new Map(readableValues);
+    const isRemoved = prev.has(key) && prev.delete(key);
+    const next = isRemoved ? prev.set(key, _value.label) : prev;
+
+    if (isControlled) {
+      props.onChange?.(
+        isComplex
+          ? Array.from(next.keys())
+          : Array.from(next.entries()).map(([value, label]) => ({
+              value,
+              label,
+            }))
+      );
+      return;
+    }
+
+    setValue(
+      Array.from(next.entries()).map(([value, label]) => ({
+        value,
+        label,
+      }))
+    );
+  });
 
   return {
     value,
@@ -127,9 +139,7 @@ export const useOptions = ({
   const reset = useEvent(() => setSearched(""));
 
   const [menuItems, readableOptions] = useMemo(
-    () => {
-      return readOptions(options || [], toMenuItems, filter ?? (() => true));
-    },
+    () => readOptions(options ?? [], toMenuItems, filter ?? (() => true)),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [options, filter]
   );

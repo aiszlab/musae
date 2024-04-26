@@ -21,7 +21,17 @@ const styles = stylex.create({
   },
 });
 
-const Select = ({ mode, searchable = false, onSearch, className, style, options, onFilter, ...props }: SelectProps) => {
+const Select = ({
+  mode,
+  searchable = false,
+  onSearch,
+  className,
+  style,
+  options,
+  onFilter,
+  complex = false,
+  ...props
+}: SelectProps) => {
   const ref = useRef<PickerRef>(null);
   const selectorRef = useRef<SelectorRef>(null);
   const classNames = useContext(Context).classNames[ComponentToken.Select];
@@ -41,6 +51,7 @@ const Select = ({ mode, searchable = false, onSearch, className, style, options,
     close,
     reset,
     onChange: props.onChange,
+    isComplex: complex,
   });
 
   const click = () => {

@@ -63,7 +63,7 @@ export interface SelectProps extends ComponentProps {
    * @description
    * on value change, toggle
    */
-  onChange?: () => void;
+  onChange?: (value: ValueOrValues) => void;
 }
 
 /**
