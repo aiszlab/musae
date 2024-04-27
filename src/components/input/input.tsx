@@ -21,20 +21,21 @@ export const styles = stylex.create({
     cursor: "text",
 
     // border
-    borderColor: props.outlineColor,
-    borderWidth: sizes.smallest,
-    borderStyle: "solid",
     borderRadius: sizes.xxxsmall,
+    boxShadow: `inset 0px 0px 0px ${sizes.smallest} ${props.outlineColor}`,
 
     // layout
     margin: spacing.none,
     paddingBlock: spacing.xxsmall,
     paddingInline: spacing.medium,
+
+    // animation
+    transition: "box-shadow 0.2s",
+    willChange: "box-shadow",
   }),
 
   focused: (props: { outlineColor: CSSProperties["borderColor"] }) => ({
-    borderWidth: sizes.xxxxsmall,
-    borderColor: props.outlineColor,
+    boxShadow: `inset 0px 0px 0px ${sizes.xxxxsmall} ${props.outlineColor}`,
   }),
 
   invalid: (props: { outlineColor: CSSProperties["borderColor"] }) => ({

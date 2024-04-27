@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
-    "target": "ESNext" /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */,
+    /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
+    "target": "ESNext",
     "jsx": "react" /* Specify what JSX code is generated. */,
     "module": "ESNext" /* Specify what module code is generated. */,
     "moduleResolution": "Bundler" /* Specify how TypeScript looks up a file from a given module specifier. */,

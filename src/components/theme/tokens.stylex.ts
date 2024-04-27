@@ -19,6 +19,7 @@ export const elevations = defineVars({
  */
 export const spacing = defineVars({
   none: "0px",
+  smallest: "1px",
   xxxsmall: "2px",
   xxsmall: "4px",
   xsmall: "6px",
