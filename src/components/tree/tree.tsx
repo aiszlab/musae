@@ -20,7 +20,7 @@ const Tree = ({ expandedKeys: _expandedKeys, onExpand, className, style, ...prop
 
   return (
     <Context.Provider value={contextValue}>
-      <List nodes={props.nodes} />
+      <List nodes={props.nodes} className={className} style={style} />
     </Context.Provider>
   );
 };

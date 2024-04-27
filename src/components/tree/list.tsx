@@ -23,7 +23,7 @@ const styles = stylex.create({
   },
 });
 
-const List = ({ nodes = [], expanded = true, level = 0 }: TreeListProps) => {
+const List = ({ nodes = [], expanded = true, level = 0, className, style }: TreeListProps) => {
   const [scope, animate] = useAnimate<HTMLUListElement>();
   const { expandedKeys, toggle } = useContext(Context);
   const classNames = useClassNames(ComponentToken.Tree);
@@ -44,9 +44,13 @@ const List = ({ nodes = [], expanded = true, level = 0 }: TreeListProps) => {
           [classNames[TreeClassToken.List]]: level > 0,
           [classNames[TreeClassToken.ListHidden]]: !expanded,
         },
+        className,
         styled.className
       )}
-      style={styled.style}
+      style={{
+        ...styled.style,
+        ...style,
+      }}
       ref={scope}
     >
       {nodes.map(({ children = [], ...node }) => {
