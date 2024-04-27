@@ -28,6 +28,7 @@ const Item = ({ value, onClick, ...props }: TabItemProps) => {
       ref={setItem}
       onClick={click}
       className={classNames[TabsClassToken.Item]}
+      ripple={false}
     >
       {props.label}
     </Button>

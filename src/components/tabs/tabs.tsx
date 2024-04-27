@@ -1,4 +1,4 @@
-import React, { CSSProperties, useCallback, useMemo, useRef } from "react";
+import React, { type CSSProperties, useCallback, useMemo, useRef } from "react";
 import { useControlledState, useMounted } from "@aiszlab/relax";
 import { useAnimate } from "framer-motion";
 import type { ContextValue, TabsProps } from "./types";
