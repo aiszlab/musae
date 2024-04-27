@@ -28,15 +28,15 @@ export interface InputProps
 
   /**
    * @description
-   * prefix node
+   * leading node
    */
-  prefix?: ReactNode;
+  leading?: ReactNode;
 
   /**
    * @description
-   * suffix node
+   * trailing node
    */
-  suffix?: ReactNode;
+  trailing?: ReactNode;
 
   /**
    * @description

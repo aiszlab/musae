@@ -127,8 +127,8 @@ const Input = forwardRef<InputRef, InputProps>(({ className, style, type, invali
       onBlur={wrapperEvents.blur}
       onClick={wrapperEvents.click}
     >
-      {/* prefix */}
-      {props.prefix}
+      {/* leading */}
+      {props.leading}
 
       {/* input */}
       <input
@@ -146,8 +146,8 @@ const Input = forwardRef<InputRef, InputProps>(({ className, style, type, invali
         {...focusProps}
       />
 
-      {/* suffix */}
-      {props.suffix}
+      {/* trailing */}
+      {props.trailing}
     </div>
   );
 });
