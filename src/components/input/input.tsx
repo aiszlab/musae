@@ -20,7 +20,8 @@ export const styles = stylex.create({
     boxSizing: "border-box",
     cursor: "text",
 
-    // border
+    // border, for flexible, in musae, we use boxShadow replace border
+    // box shadow is not added into layout
     borderRadius: sizes.xxxsmall,
     boxShadow: `inset 0px 0px 0px ${sizes.smallest} ${props.outlineColor}`,
 
