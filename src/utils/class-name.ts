@@ -179,7 +179,10 @@ export enum PaginationClassToken {
 }
 export enum SwitchClassToken {
   Switch,
-  Handle,
+  Slider,
+  Supporting,
+  Leading,
+  Trailing,
 }
 
 /**
@@ -317,7 +320,10 @@ export const CLASS_NAMES = {
   },
   [ComponentToken.Switch]: {
     [SwitchClassToken.Switch]: "switch",
-    [SwitchClassToken.Handle]: "switch__handle",
+    [SwitchClassToken.Slider]: "switch__slider",
+    [SwitchClassToken.Supporting]: "switch__supporting",
+    [SwitchClassToken.Leading]: "switch__supporting-leading",
+    [SwitchClassToken.Trailing]: "switch__supporting-trailing",
   },
 };
 

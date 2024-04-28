@@ -13,7 +13,7 @@ import { Close, Check } from "../icon/icons";
 const styles = {
   switch: stylex.create({
     normal: (props: { borderColor: CSSProperties["borderColor"] }) => ({
-      minWidth: `calc(${sizes.xlarge} + ${spacing.xxxsmall} * 2)`,
+      minWidth: sizes.xlarge,
       height: sizes.medium,
       display: "flex",
       alignItems: "center",
@@ -24,7 +24,6 @@ const styles = {
       borderStyle: "solid",
       borderColor: props.borderColor,
 
-      backgroundColor: "transparent",
       transition: "all 0.2s",
     }),
 
@@ -34,17 +33,19 @@ const styles = {
     }),
   }),
 
-  handler: stylex.create({
+  slider: stylex.create({
     normal: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
-      height: sizes.xsmall,
-      width: sizes.xsmall,
       borderRadius: sizes.infinity,
       backgroundColor: props.backgroundColor,
       transition: "all 0.2s",
       position: "absolute",
+
+      height: sizes.xsmall,
+      width: sizes.xsmall,
       insetInlineStart: spacing.xsmall,
     }),
 
+    // in slider, if icon show, change default layout
     icon: (props: { color: CSSProperties["color"] }) => ({
       height: sizes.small,
       width: sizes.small,
@@ -52,47 +53,64 @@ const styles = {
       insetInlineStart: spacing.xxxsmall,
     }),
 
-    checked: (props: { backgroundColor: CSSProperties["backgroundColor"]; color: CSSProperties["color"] }) => ({
+    checked: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
       height: sizes.small,
       width: sizes.small,
       backgroundColor: props.backgroundColor,
-      color: props.color,
+      // `switch width` - `slider width` - `slider padding width`
       insetInlineStart: `calc(100% - ${sizes.small} - ${spacing.xxxsmall})`,
     }),
   }),
 
-  container: stylex.create({
+  // supporting container styles
+  supporting: stylex.create({
     default: {
       height: sizes.full,
       width: sizes.full,
-      paddingInlineStart: `calc(${sizes.small} + ${sizes.xxxxsmall} * 2)`,
-      paddingInlineEnd: `calc(${spacing.xxlarge} / 2 - ${sizes.xxxxsmall})`,
       overflow: "hidden",
       display: "flex",
       flexDirection: "column",
+
+      paddingInlineStart: `calc(${sizes.small} + ${sizes.xxxxsmall} * 2)`,
+      paddingInlineEnd: `calc(${spacing.xxlarge} / 2 - ${sizes.xxxxsmall})`,
     },
 
-    checked: {},
-  }),
+    // if checked, change padding styles, for slider has been right
+    checked: {
+      paddingInlineStart: `calc(${spacing.xxlarge} / 2 - ${sizes.xxxxsmall})`,
+      paddingInlineEnd: `calc(${sizes.small} + ${sizes.xxxxsmall} * 2)`,
+    },
 
-  supporting: stylex.create({
-    default: {
+    child: {
+      height: sizes.full,
       display: "flex",
       flexDirection: "row",
       alignItems: "center",
+      justifyContent: "center",
     },
+  }),
 
-    leading: {
-      height: sizes.full,
+  leading: stylex.create({
+    default: {
+      // - `self width` - `slider width` - `slider padding width * 2` - `border width`
       marginInlineStart: `calc(-100% - ${sizes.small} - ${sizes.xxxxsmall} * 2 - ${sizes.xxxxsmall})`,
     },
 
-    trailing: {
-      height: sizes.full,
+    checked: {
+      marginInlineStart: 0,
+    },
+  }),
+
+  trailing: stylex.create({
+    default: {
       marginTop: "-100%",
+      marginBlockEnd: 0,
     },
 
-    checked: {},
+    checked: {
+      // + `self width` + `slider width` + `slider padding width * 2` + `border width`
+      marginInlineEnd: `calc(100% + ${sizes.small} + ${sizes.xxxxsmall} * 2 + ${sizes.xxxxsmall})`,
+    },
   }),
 };
 
@@ -115,23 +133,24 @@ const Switch = ({ value, style, className, icon = false, checkedChildren, unchec
           backgroundColor: theme.colors[ColorToken.Primary],
         })
     ),
-    handle: stylex.props(
-      styles.handler.normal({
+    slider: stylex.props(
+      styles.slider.normal({
         backgroundColor: theme.colors[ColorToken.Outline],
       }),
       icon &&
-        styles.handler.icon({
-          color: theme.colors[ColorToken.SurfaceContainerHighest],
+        styles.slider.icon({
+          color: isChecked
+            ? theme.colors[ColorToken.OnPrimaryContainer]
+            : theme.colors[ColorToken.SurfaceContainerHighest],
         }),
       isChecked &&
-        styles.handler.checked({
+        styles.slider.checked({
           backgroundColor: theme.colors[ColorToken.OnPrimary],
-          color: theme.colors[ColorToken.OnPrimaryContainer],
         })
     ),
-    supporting: stylex.props(styles.container.default),
-    leading: stylex.props(styles.supporting.default, styles.supporting.leading),
-    trailing: stylex.props(styles.supporting.default, styles.supporting.trailing),
+    supporting: stylex.props(styles.supporting.default, isChecked && styles.supporting.checked),
+    leading: stylex.props(styles.supporting.child, styles.leading.default, isChecked && styles.leading.checked),
+    trailing: stylex.props(styles.supporting.child, styles.trailing.default, isChecked && styles.trailing.checked),
   };
 
   return (
@@ -146,7 +165,7 @@ const Switch = ({ value, style, className, icon = false, checkedChildren, unchec
         ...style,
       }}
     >
-      <div className={clsx(classNames[SwitchClassToken.Handle], styled.handle.className)} style={styled.handle.style}>
+      <div className={clsx(classNames[SwitchClassToken.Slider], styled.slider.className)} style={styled.slider.style}>
         {icon && (isChecked ? <Check /> : <Close />)}
       </div>
 
