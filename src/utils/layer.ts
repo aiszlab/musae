@@ -1,9 +1,13 @@
 type Thickness = "thin" | "medium" | "thick" | "thicker";
 
 const THICKNESS = new Map<Thickness, string>([
+  // 8%
   ["thin", "14"],
+  // 12%
   ["medium", "1F"],
+  // 16%
   ["thick", "29"],
+  // 38%
   ["thicker", "61"],
 ]);
 

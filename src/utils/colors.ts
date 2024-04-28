@@ -38,6 +38,7 @@ export enum ColorToken {
   OnErrorContainer = "on-error-container",
 
   Surface = "surface",
+  SurfaceVariant = "surface-variant",
   OnSurface = "on-surface",
   OnSurfaceVariant = "on-surface-variant",
   SurfaceDim = "surface-dim",
@@ -107,6 +108,7 @@ export const toColors = (palette: Palette, mode: ContextValue["mode"]): Record<C
     [ColorToken.OnErrorContainer]: isLight ? palette.error[10] : palette.error[90],
 
     [ColorToken.Surface]: isLight ? palette.neutral[99] : palette.neutral[10],
+    [ColorToken.SurfaceVariant]: isLight ? palette.neutralVariant[90] : palette.neutralVariant[30],
     [ColorToken.SurfaceDim]: isLight ? palette.neutral[90] : palette.neutral[10],
 
     [ColorToken.SurfaceContainerLowest]: isLight ? palette.neutral[100] : palette.neutral[0],

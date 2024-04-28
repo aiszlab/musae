@@ -37,4 +37,10 @@ export interface SwitchProps extends ComponentProps {
    * unchecked children
    */
   uncheckedChildren?: ReactNode;
+
+  /**
+   * @description
+   * disabled
+   */
+  disabled?: boolean;
 }
