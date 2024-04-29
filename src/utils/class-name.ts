@@ -46,6 +46,7 @@ export enum ComponentToken {
   Tabs,
   Pagination,
   Switch,
+  Rate,
 }
 
 /**
@@ -181,6 +182,12 @@ export enum SwitchClassToken {
   Switch,
   Slider,
   Supporting,
+  Leading,
+  Trailing,
+}
+export enum RateClassToken {
+  Rate,
+  Star,
   Leading,
   Trailing,
 }
@@ -324,6 +331,12 @@ export const CLASS_NAMES = {
     [SwitchClassToken.Supporting]: "switch__supporting",
     [SwitchClassToken.Leading]: "switch__supporting-leading",
     [SwitchClassToken.Trailing]: "switch__supporting-trailing",
+  },
+  [ComponentToken.Rate]: {
+    [RateClassToken.Rate]: "rate",
+    [RateClassToken.Star]: "rate__star",
+    [RateClassToken.Leading]: "rate__star-leading",
+    [RateClassToken.Trailing]: "rate__star-trailing",
   },
 };
 
