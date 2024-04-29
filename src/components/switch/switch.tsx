@@ -146,21 +146,27 @@ const Switch = ({
   const styled = {
     switch: stylex.props(
       styles.switch.normal({
-        borderColor: disabled ? layer(theme.colors[ColorToken.OnSurface], "medium") : theme.colors[ColorToken.Outline],
-        backgroundColor: disabled
-          ? layer(theme.colors[ColorToken.SurfaceVariant], "medium")
-          : theme.colors[ColorToken.SurfaceContainerHighest],
+        borderColor: theme.colors[ColorToken.Outline],
+        backgroundColor: theme.colors[ColorToken.SurfaceContainerHighest],
+        ...(disabled && {
+          borderColor: layer(theme.colors[ColorToken.OnSurface], "medium"),
+          backgroundColor: layer(theme.colors[ColorToken.SurfaceVariant], "medium"),
+        }),
       }),
       isChecked &&
         styles.switch.checked({
-          backgroundColor: disabled
-            ? layer(theme.colors[ColorToken.OnSurface], "medium")
-            : theme.colors[ColorToken.Primary],
+          backgroundColor: theme.colors[ColorToken.Primary],
+          ...(disabled && {
+            backgroundColor: layer(theme.colors[ColorToken.OnSurface], "medium"),
+          }),
         })
     ),
     slider: stylex.props(
       styles.slider.normal({
         backgroundColor: theme.colors[ColorToken.OnSurfaceVariant],
+        ...(disabled && {
+          backgroundColor: layer(theme.colors[ColorToken.OnSurface], "thicker"),
+        }),
       }),
       icon &&
         styles.slider.icon({
