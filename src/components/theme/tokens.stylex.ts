@@ -77,3 +77,14 @@ export const positions = defineVars({
   high: "1080",
   higher: "1090",
 });
+
+/**
+ * @description
+ * layer
+ */
+export const layers = defineVars({
+  thin: "0.08",
+  medium: "0.12",
+  thick: "0.16",
+  thicker: "0.38",
+});

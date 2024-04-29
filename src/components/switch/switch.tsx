@@ -2,7 +2,7 @@ import React, { CSSProperties, useCallback } from "react";
 import type { SwitchProps } from "./types";
 import { useControlledState } from "@aiszlab/relax";
 import * as stylex from "@stylexjs/stylex";
-import { sizes, spacing } from "../theme/tokens.stylex";
+import { layers, sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
 import clsx from "clsx";
@@ -13,9 +13,10 @@ import { layer } from "../../utils/layer";
 
 const styles = {
   switch: stylex.create({
-    normal: (props: {
+    default: (props: {
       borderColor: CSSProperties["borderColor"];
       backgroundColor: CSSProperties["backgroundColor"];
+      color: CSSProperties["color"];
     }) => ({
       minWidth: sizes.xlarge,
       height: sizes.medium,
@@ -28,48 +29,56 @@ const styles = {
       borderStyle: "solid",
       borderColor: props.borderColor,
       backgroundColor: props.backgroundColor,
+      color: props.color,
 
       transition: "all 0.2s",
     }),
 
-    checked: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
+    checked: (props: { backgroundColor: CSSProperties["backgroundColor"]; color: CSSProperties["color"] }) => ({
       borderColor: props.backgroundColor,
       backgroundColor: props.backgroundColor,
+      color: props.color,
     }),
   }),
 
   slider: stylex.create({
-    normal: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
+    normal: (props: { backgroundColor: CSSProperties["backgroundColor"]; color: CSSProperties["color"] }) => ({
       borderRadius: sizes.infinity,
-      backgroundColor: props.backgroundColor,
       position: "absolute",
       transition: "all 0.2s",
 
+      backgroundColor: props.backgroundColor,
+      color: props.color,
       height: sizes.xsmall,
       width: sizes.xsmall,
       insetInlineStart: spacing.xsmall,
     }),
 
     // in slider, if icon show, change default layout
-    icon: (props: { color: CSSProperties["color"] }) => ({
+    icon: {
       height: sizes.small,
       width: sizes.small,
-      color: props.color,
       insetInlineStart: spacing.xxxsmall,
-    }),
+    },
 
-    checked: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
+    checked: (props: { backgroundColor: CSSProperties["backgroundColor"]; color: CSSProperties["color"] }) => ({
+      backgroundColor: props.backgroundColor,
+      color: props.color,
       height: sizes.small,
       width: sizes.small,
-      backgroundColor: props.backgroundColor,
       // `switch width` - `slider width` - `slider padding width`
       insetInlineStart: `calc(100% - ${sizes.small} - ${spacing.xxxsmall})`,
+    }),
+
+    disabled: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
+      opacity: layers.thicker,
+      backgroundColor: props.backgroundColor,
     }),
   }),
 
   // supporting container styles
   supporting: stylex.create({
-    default: (props: { color: CSSProperties["color"] }) => ({
+    default: {
       height: sizes.full,
       width: sizes.full,
       overflow: "hidden",
@@ -77,17 +86,15 @@ const styles = {
       flexDirection: "column",
       transition: "all 0.2s",
 
-      color: props.color,
       paddingInlineStart: `calc(${sizes.small} + ${sizes.xxxxsmall} * 4)`,
       paddingInlineEnd: `calc(${spacing.xxlarge} / 2 - ${sizes.xxxxsmall})`,
-    }),
+    },
 
     // if checked, change padding styles, for slider has been right
-    checked: (props: { color: CSSProperties["color"] }) => ({
-      color: props.color,
+    checked: {
       paddingInlineStart: `calc(${spacing.xxlarge} / 2 - ${sizes.xxxxsmall})`,
       paddingInlineEnd: `calc(${sizes.small} + ${sizes.xxxxsmall} * 4)`,
-    }),
+    },
 
     child: {
       minHeight: sizes.full,
@@ -145,9 +152,10 @@ const Switch = ({
 
   const styled = {
     switch: stylex.props(
-      styles.switch.normal({
+      styles.switch.default({
         borderColor: theme.colors[ColorToken.Outline],
         backgroundColor: theme.colors[ColorToken.SurfaceContainerHighest],
+        color: theme.colors[ColorToken.OnSurfaceVariant],
         ...(disabled && {
           borderColor: layer(theme.colors[ColorToken.OnSurface], "medium"),
           backgroundColor: layer(theme.colors[ColorToken.SurfaceVariant], "medium"),
@@ -156,6 +164,7 @@ const Switch = ({
       isChecked &&
         styles.switch.checked({
           backgroundColor: theme.colors[ColorToken.Primary],
+          color: theme.colors[ColorToken.OnPrimary],
           ...(disabled && {
             backgroundColor: layer(theme.colors[ColorToken.OnSurface], "medium"),
           }),
@@ -164,27 +173,20 @@ const Switch = ({
     slider: stylex.props(
       styles.slider.normal({
         backgroundColor: theme.colors[ColorToken.OnSurfaceVariant],
-        ...(disabled && {
-          backgroundColor: layer(theme.colors[ColorToken.OnSurface], "thicker"),
-        }),
+        color: theme.colors[ColorToken.SurfaceContainerHighest],
       }),
-      icon &&
-        styles.slider.icon({
-          color: isChecked
-            ? theme.colors[ColorToken.OnPrimaryContainer]
-            : theme.colors[ColorToken.SurfaceContainerHighest],
-        }),
+      icon && styles.slider.icon,
       isChecked &&
         styles.slider.checked({
           backgroundColor: theme.colors[ColorToken.OnPrimary],
+          color: theme.colors[ColorToken.OnPrimaryContainer],
+        }),
+      disabled &&
+        styles.slider.disabled({
+          backgroundColor: layer(theme.colors[ColorToken.OnSurface], "thicker"),
         })
     ),
-    supporting: stylex.props(
-      styles.supporting.default({
-        color: theme.colors[ColorToken.OnSurfaceVariant],
-      }),
-      isChecked && styles.supporting.checked({ color: theme.colors[ColorToken.OnPrimary] })
-    ),
+    supporting: stylex.props(styles.supporting.default, isChecked && styles.supporting.checked),
     leading: stylex.props(styles.supporting.child, styles.leading.default, isChecked && styles.leading.checked),
     trailing: stylex.props(styles.supporting.child, styles.trailing.default, isChecked && styles.trailing.checked),
   };
@@ -193,6 +195,7 @@ const Switch = ({
     <button
       role="switch"
       type="button"
+      disabled={disabled}
       aria-checked={isChecked}
       onClick={toggle}
       className={clsx(classNames[SwitchClassToken.Switch], className, styled.switch.className)}
