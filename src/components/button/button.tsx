@@ -72,7 +72,7 @@ const styles = stylex.create({
     color: props.color,
     backgroundColor: {
       default: null,
-      ":hover": layer(props.hoveredBackgroundColor, "thin"),
+      ":hover": props.hoveredBackgroundColor,
     },
   }),
 
@@ -80,19 +80,19 @@ const styles = stylex.create({
     color: props.color,
     backgroundColor: {
       default: null,
-      ":hover": layer(props.hoveredBackgroundColor, "thin"),
+      ":hover": props.hoveredBackgroundColor,
     },
   }),
 
   disabled: (props: { color: CSSProperties["color"]; backgroundColor: CSSProperties["backgroundColor"] }) => ({
     backgroundColor: props.backgroundColor,
-    color: layer(props.color, "thicker"),
+    color: props.color,
     cursor: "not-allowed",
     boxShadow: null,
   }),
 
   disabledOutline: (props: { outlineColor: CSSProperties["borderColor"] }) => ({
-    borderColor: layer(props.outlineColor, "thicker"),
+    borderColor: props.outlineColor,
   }),
 });
 
@@ -141,12 +141,12 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         variant === "outlined" &&
           styles.outlined({
             color: theme.colors[color],
-            hoveredBackgroundColor: theme.colors[ColorToken.Primary],
+            hoveredBackgroundColor: layer(theme.colors[ColorToken.Primary], "thin"),
           }),
         variant === "text" &&
           styles.text({
             color: theme.colors[color],
-            hoveredBackgroundColor: theme.colors[ColorToken.Primary],
+            hoveredBackgroundColor: layer(theme.colors[ColorToken.Primary], "thin"),
           }),
         // shape
         styles[shape],
@@ -154,12 +154,12 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         disabled &&
           styles.disabled({
             backgroundColor: variant === "filled" ? layer(theme.colors[ColorToken.OnSurface], "medium") : "transparent",
-            color: theme.colors[ColorToken.OnSurface],
+            color: layer(theme.colors[ColorToken.OnSurface], "thicker"),
           }),
         disabled &&
           variant === "outlined" &&
           styles.disabledOutline({
-            outlineColor: theme.colors[ColorToken.OnSurface],
+            outlineColor: layer(theme.colors[ColorToken.OnSurface], "thicker"),
           })
       ),
     };

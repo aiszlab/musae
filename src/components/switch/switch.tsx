@@ -24,18 +24,17 @@ const styles = {
       alignItems: "center",
       position: "relative",
 
+      transition: "all 0.2s",
       borderRadius: sizes.infinity,
       borderWidth: sizes.xxxxsmall,
       borderStyle: "solid",
       borderColor: props.borderColor,
       backgroundColor: props.backgroundColor,
       color: props.color,
-
-      transition: "all 0.2s",
     }),
 
     checked: (props: { backgroundColor: CSSProperties["backgroundColor"]; color: CSSProperties["color"] }) => ({
-      borderColor: props.backgroundColor,
+      borderColor: "transparent",
       backgroundColor: props.backgroundColor,
       color: props.color,
     }),
@@ -61,18 +60,19 @@ const styles = {
       insetInlineStart: spacing.xxxsmall,
     },
 
+    // disabled: opacity: 0.38
+    disabled: {
+      opacity: layers.thicker,
+    },
+
     checked: (props: { backgroundColor: CSSProperties["backgroundColor"]; color: CSSProperties["color"] }) => ({
       backgroundColor: props.backgroundColor,
       color: props.color,
       height: sizes.small,
       width: sizes.small,
+      opacity: null,
       // `switch width` - `slider width` - `slider padding width`
       insetInlineStart: `calc(100% - ${sizes.small} - ${spacing.xxxsmall})`,
-    }),
-
-    disabled: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
-      opacity: layers.thicker,
-      backgroundColor: props.backgroundColor,
     }),
   }),
 
@@ -85,6 +85,7 @@ const styles = {
       display: "flex",
       flexDirection: "column",
       transition: "all 0.2s",
+      color: "inherit",
 
       paddingInlineStart: `calc(${sizes.small} + ${sizes.xxxxsmall} * 4)`,
       paddingInlineEnd: `calc(${spacing.xxlarge} / 2 - ${sizes.xxxxsmall})`,
@@ -102,6 +103,7 @@ const styles = {
       flexDirection: "row",
       alignItems: "center",
       transition: "all 0.2s",
+      color: "inherit",
     },
   }),
 
@@ -159,6 +161,7 @@ const Switch = ({
         ...(disabled && {
           borderColor: layer(theme.colors[ColorToken.OnSurface], "medium"),
           backgroundColor: layer(theme.colors[ColorToken.SurfaceVariant], "medium"),
+          color: layer(theme.colors[ColorToken.OnSurface], "thicker"),
         }),
       }),
       isChecked &&
@@ -167,6 +170,7 @@ const Switch = ({
           color: theme.colors[ColorToken.OnPrimary],
           ...(disabled && {
             backgroundColor: layer(theme.colors[ColorToken.OnSurface], "medium"),
+            color: theme.colors[ColorToken.Surface],
           }),
         })
     ),
@@ -174,16 +178,21 @@ const Switch = ({
       styles.slider.normal({
         backgroundColor: theme.colors[ColorToken.OnSurfaceVariant],
         color: theme.colors[ColorToken.SurfaceContainerHighest],
+        ...(disabled && {
+          backgroundColor: layer(theme.colors[ColorToken.OnSurface], "thicker"),
+          color: theme.colors[ColorToken.SurfaceContainerHighest],
+        }),
       }),
       icon && styles.slider.icon,
+      disabled && styles.slider.disabled,
       isChecked &&
         styles.slider.checked({
           backgroundColor: theme.colors[ColorToken.OnPrimary],
           color: theme.colors[ColorToken.OnPrimaryContainer],
-        }),
-      disabled &&
-        styles.slider.disabled({
-          backgroundColor: layer(theme.colors[ColorToken.OnSurface], "thicker"),
+          ...(disabled && {
+            backgroundColor: theme.colors[ColorToken.Surface],
+            color: layer(theme.colors[ColorToken.OnSurface], "thicker"),
+          }),
         })
     ),
     supporting: stylex.props(styles.supporting.default, isChecked && styles.supporting.checked),
