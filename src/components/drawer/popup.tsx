@@ -21,7 +21,7 @@ const styles = stylex.create({
     zIndex: 1000,
   },
 
-  mask: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
+  overlay: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
     position: "absolute",
     inset: 0,
     pointerEvents: "auto",
@@ -87,10 +87,10 @@ const Popup = ({ open, onClose, placement = "right", dismissable = true, onClose
   const _placement = PLACEMENTS[placement];
   const theme = useTheme();
   const panelRef = useRef<HTMLDivElement>(null);
-  const maskRef = useRef<HTMLDivElement>(null);
+  const overlayRef = useRef<HTMLDivElement>(null);
 
   /// children render hooks
-  const { closer, onKeyDown, onMaskClick } = useDismissable({ dismissable, onClose });
+  const { closer, onKeyDown, onOverlayClick } = useDismissable({ dismissable, onClose });
 
   useEffect(() => {
     (async () => {
@@ -98,14 +98,14 @@ const Popup = ({ open, onClose, placement = "right", dismissable = true, onClose
         scope.current.attributeStyleMap.set("display", "block");
         await Promise.all([
           panelRef.current && animate(panelRef.current, { transform: _placement.at(1) }),
-          maskRef.current && animate(maskRef.current, { opacity: 0.8 }),
+          overlayRef.current && animate(overlayRef.current, { opacity: 0.8 }),
         ]);
         return;
       }
 
       await Promise.all([
         panelRef.current && animate(panelRef.current, { transform: _placement.at(0) }),
-        maskRef.current && animate(maskRef.current, { opacity: 0 }),
+        overlayRef.current && animate(overlayRef.current, { opacity: 0 }),
       ]);
       scope.current.attributeStyleMap.set("display", "none");
       onClosed?.();
@@ -123,8 +123,8 @@ const Popup = ({ open, onClose, placement = "right", dismissable = true, onClose
 
   const styled = {
     popup: stylex.props(styles.popup),
-    mask: stylex.props(
-      styles.mask({
+    overlay: stylex.props(
+      styles.overlay({
         backgroundColor: theme.colors[ColorToken.SurfaceDim],
       })
     ),
@@ -147,12 +147,12 @@ const Popup = ({ open, onClose, placement = "right", dismissable = true, onClose
       style={styled.popup.style}
       onKeyDown={onKeyDown}
     >
-      {/* mask */}
+      {/* overlay */}
       <div
-        className={clsx(classNames[DrawerClassToken.Mask], styled.mask.className)}
-        onClick={onMaskClick}
-        style={styled.mask.style}
-        ref={maskRef}
+        className={clsx(classNames[DrawerClassToken.Overlay], styled.overlay.className)}
+        onClick={onOverlayClick}
+        style={styled.overlay.style}
+        ref={overlayRef}
       />
 
       {/* panel */}

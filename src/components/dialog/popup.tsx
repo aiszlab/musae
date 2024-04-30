@@ -32,7 +32,7 @@ const styles = stylex.create({
     alignItems: "center",
   },
 
-  mask: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
+  overlay: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
     position: "absolute",
     top: 0,
     left: 0,
@@ -75,11 +75,11 @@ const Popup = ({ onClose, open, dismissable = true, onClosed, ...props }: PopupP
   const [scope, animate] = useAnimate<HTMLDivElement>();
   const theme = useTheme();
   const panelRef = useRef<HTMLDivElement>(null);
-  const maskRef = useRef<HTMLDivElement>(null);
+  const overlayRef = useRef<HTMLDivElement>(null);
 
   /// children render hooks
   const footer = useFooter([props.footer, props.onConfirm, onClose]);
-  const { closer, onKeyDown, onMaskClick } = useDismissable({ dismissable, onClose });
+  const { closer, onKeyDown, onOverlayClick } = useDismissable({ dismissable, onClose });
 
   useEffect(() => {
     (async () => {
@@ -87,14 +87,14 @@ const Popup = ({ onClose, open, dismissable = true, onClosed, ...props }: PopupP
         scope.current.attributeStyleMap.set("display", "flex");
         await Promise.all([
           panelRef.current && animate(panelRef.current, { opacity: 1 }),
-          maskRef.current && animate(maskRef.current, { opacity: 0.8 }),
+          overlayRef.current && animate(overlayRef.current, { opacity: 0.8 }),
         ]);
         return;
       }
 
       await Promise.all([
         panelRef.current && animate(panelRef.current, { opacity: 0 }),
-        maskRef.current && animate(maskRef.current, { opacity: 0 }),
+        overlayRef.current && animate(overlayRef.current, { opacity: 0 }),
       ]);
       scope.current.attributeStyleMap.set("display", "none");
       onClosed?.();
@@ -112,8 +112,8 @@ const Popup = ({ onClose, open, dismissable = true, onClosed, ...props }: PopupP
 
   const styled = {
     popup: stylex.props(styles.popup),
-    mask: stylex.props(
-      styles.mask({
+    overlay: stylex.props(
+      styles.overlay({
         backgroundColor: theme.colors[ColorToken.SurfaceDim],
       })
     ),
@@ -129,12 +129,12 @@ const Popup = ({ onClose, open, dismissable = true, onClosed, ...props }: PopupP
 
   return (
     <div ref={scope} className={styled.popup.className} style={styled.popup.style} tabIndex={-1} onKeyDown={onKeyDown}>
-      {/* mask */}
+      {/* overlay */}
       <div
-        className={clsx(classNames[DialogClassToken.Mask], styled.mask.className)}
-        style={styled.mask.style}
-        onClick={onMaskClick}
-        ref={maskRef}
+        className={clsx(classNames[DialogClassToken.Overlay], styled.overlay.className)}
+        style={styled.overlay.style}
+        onClick={onOverlayClick}
+        ref={overlayRef}
       />
 
       {/* panel */}

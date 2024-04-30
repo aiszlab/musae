@@ -4,5 +4,5 @@
  * in some case, i usally need an array of class names
  */
 export const toClassList = (className: string = "") => {
-  return className.split(" ");
+  return className.split(" ").filter((className) => !!className);
 };

@@ -6,7 +6,7 @@ import { spacing } from "../components/theme/tokens.stylex";
 import { Close } from "../components/icon/icons";
 import { Keyboard } from "../utils/keyboard";
 
-export type Dismissable = "esc" | "mask" | "close";
+export type Dismissable = "esc" | "overlay" | "close";
 
 const styles = stylex.create({
   closer: {
@@ -26,7 +26,7 @@ const styles = stylex.create({
 export const useDismissable = (props: { onClose?: VoidFunction; dismissable: boolean | Dismissable[] }) => {
   const dismissable = useMemo<Set<Dismissable>>(() => {
     if (isUndefined(props.dismissable) || props.dismissable === true) {
-      return new Set(["close", "esc", "mask"]);
+      return new Set(["close", "esc", "overlay"]);
     }
     return new Set(props.dismissable || []);
   }, [props.dismissable]);
@@ -52,9 +52,9 @@ export const useDismissable = (props: { onClose?: VoidFunction; dismissable: boo
     );
   }, [dismissable, props.onClose]);
 
-  /// mask click callback
-  const onMaskClick = useEvent(() => {
-    if (!dismissable.has("mask")) return;
+  /// overlay click callback
+  const onOverlayClick = useEvent(() => {
+    if (!dismissable.has("overlay")) return;
     props.onClose?.();
   });
 
@@ -66,7 +66,7 @@ export const useDismissable = (props: { onClose?: VoidFunction; dismissable: boo
 
   return {
     closer,
-    onMaskClick,
+    onOverlayClick,
     onKeyDown,
   };
 };

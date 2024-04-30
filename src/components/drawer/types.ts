@@ -40,7 +40,7 @@ export interface DrawerProps {
 
   /**
    * @description
-   * Whether the modal can be closed by clicking on the mask or pressing the Esc key.
+   * Whether the drawer can be closed by clicking on the overlay or pressing the Esc key.
    */
   dismissable?: boolean | Dismissable[];
 }

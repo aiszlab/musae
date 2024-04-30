@@ -93,7 +93,7 @@ export enum ButtonClassToken {
 }
 export enum DrawerClassToken {
   Drawer,
-  Mask,
+  Overlay,
   Panel,
   Header,
   Body,
@@ -111,7 +111,7 @@ export enum CascaderClassToken {
 }
 export enum DialogClassToken {
   Dialog,
-  Mask,
+  Overlay,
   Panel,
   Header,
   Body,
@@ -240,7 +240,7 @@ export const CLASS_NAMES = {
   },
   [ComponentToken.Drawer]: {
     [DrawerClassToken.Drawer]: "drawer",
-    [DrawerClassToken.Mask]: "drawer__mask",
+    [DrawerClassToken.Overlay]: "drawer__overlay",
     [DrawerClassToken.Panel]: "drawer__panel",
     [DrawerClassToken.Header]: "drawer__header",
     [DrawerClassToken.Body]: "drawer__body",
@@ -258,7 +258,7 @@ export const CLASS_NAMES = {
   },
   [ComponentToken.Dialog]: {
     [DialogClassToken.Dialog]: "dialog",
-    [DialogClassToken.Mask]: "dialog__mask",
+    [DialogClassToken.Overlay]: "dialog__overlay",
     [DialogClassToken.Panel]: "dialog__panel",
     [DialogClassToken.Header]: "dialog__header",
     [DialogClassToken.Body]: "dialog__body",

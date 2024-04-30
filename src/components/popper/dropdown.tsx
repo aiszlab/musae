@@ -33,7 +33,7 @@ const Dropdown = forwardRef<PopperRef, DropdownProps>(
       },
     }));
 
-    /// fix: why use mount instead of use mounted?
+    /// fix: why use mount instead of mounted?
     /// when mounted, this div display a normal block, must sync to popper.
     useMount(() => {
       if (!trigger) return;

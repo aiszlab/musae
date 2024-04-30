@@ -32,7 +32,7 @@ export interface DialogProps {
 
   /**
    * @description
-   * Whether the modal can be closed by clicking on the mask or pressing the Esc key.
+   * Whether the dialog can be closed by clicking on the overlay or pressing the Esc key.
    */
   dismissable?: boolean | Dismissable[];
 
