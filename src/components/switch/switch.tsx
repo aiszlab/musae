@@ -84,8 +84,9 @@ const styles = {
       overflow: "hidden",
       display: "flex",
       flexDirection: "column",
-      transition: "all 0.2s",
       color: "inherit",
+      transitionProperty: "padding-inline-start, padding-inline-end",
+      transitionDuration: "0.2s",
 
       paddingInlineStart: `calc(${sizes.small} + ${sizes.xxxxsmall} * 4)`,
       paddingInlineEnd: `calc(${spacing.xxlarge} / 2 - ${sizes.xxxxsmall})`,
@@ -102,8 +103,10 @@ const styles = {
       display: "flex",
       flexDirection: "row",
       alignItems: "center",
-      transition: "all 0.2s",
       color: "inherit",
+
+      transitionProperty: "margin-inline-start, margin-inline-end",
+      transitionDuration: "0.2s",
     },
   }),
 
@@ -129,8 +132,8 @@ const styles = {
 
     checked: {
       // + `self width` + `slider width` + `slider padding width * 2` + `border width`
-      marginInlineEnd: `calc(100% + ${sizes.small} + ${sizes.xxxxsmall} * 4 + ${sizes.xxxxsmall})`,
-      marginInlineStart: `calc(-100% - ${sizes.small} - ${sizes.xxxxsmall} * 4 - ${sizes.xxxxsmall})`,
+      marginInlineEnd: `calc(-100% - ${sizes.small} - ${sizes.xxxxsmall} * 4 - ${sizes.xxxxsmall})`,
+      marginInlineStart: `calc(100% + ${sizes.small} + ${sizes.xxxxsmall} * 4 + ${sizes.xxxxsmall})`,
     },
   }),
 };
