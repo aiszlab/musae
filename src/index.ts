@@ -37,6 +37,7 @@ export { Tooltip } from "./components/tooltip";
 export { Waterfall } from "./components/waterfall";
 export { Image } from "./components/image";
 export { Space } from "./components/space";
+export { Rate } from "./components/rate";
 
 /**
  * @description

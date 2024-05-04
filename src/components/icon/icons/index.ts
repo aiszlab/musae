@@ -22,6 +22,10 @@ export * as navigation from "./navigation";
 export * from "./image";
 export * as image from "./image";
 
+/// toggle
+export * from "./toggle";
+export * as toggle from "./toggle";
+
 /// mocks, musae collect from comunic icons
 export * from "./mock";
 export * as mock from "./mock";

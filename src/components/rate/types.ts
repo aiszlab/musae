@@ -26,13 +26,55 @@ export type RateProps = ComponentProps & {
 
   /**
    * @description
-   * partialable
+   * halfable
    */
-  partialable?: boolean;
+  halfable?: boolean;
 
   /**
    * @description
    * disabled
    */
   disabled?: boolean;
+};
+
+/**
+ * @description
+ * star types
+ */
+export type StarProps = {
+  /**
+   * @description
+   * disabled
+   */
+  disabled: boolean;
+
+  /**
+   * @description
+   * value
+   */
+  value: number;
+
+  /**
+   * @description
+   * at
+   */
+  at: number;
+
+  /**
+   * @description
+   * hover handler
+   */
+  onEnter: (at: number) => void;
+
+  /**
+   * @description
+   * leave handler
+   */
+  onLeave: () => void;
+
+  /**
+   * @description
+   * click handler
+   */
+  onClick: (value: number) => void;
 };

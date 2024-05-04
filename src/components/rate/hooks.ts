@@ -1,5 +1,5 @@
 import { useControlledState, useEvent } from "@aiszlab/relax";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { RateProps } from "./types";
 
 /**
@@ -7,18 +7,18 @@ import { RateProps } from "./types";
  * value hooks
  */
 export const useValue = ({
-  partialable,
+  halfable,
   ...props
 }: Pick<RateProps, "value" | "onChange"> & {
-  partialable: boolean;
+  halfable: boolean;
 }) => {
   const [_value, setValue] = useControlledState(props.value!, { defaultState: 0 });
 
   /// convert value into valid number like `0` `0.5` `1.5` `2`
   const value = useMemo(() => {
-    if (!partialable) return Math.floor(_value);
+    if (!halfable) return Math.floor(_value);
     return Math.floor(_value * 2) / 2;
-  }, [_value, partialable]);
+  }, [_value, halfable]);
 
   /// change handler
   const change = useEvent((changed: number) => {
@@ -29,5 +29,27 @@ export const useValue = ({
   return {
     value,
     change,
+  };
+};
+
+/**
+ * @description
+ * star hover hooks
+ */
+export const useHover = () => {
+  const [hovered, setHovered] = useState<number>();
+
+  const enter = useEvent((at: number) => {
+    setHovered(at);
+  });
+
+  const leave = useEvent(() => {
+    setHovered(void 0);
+  });
+
+  return {
+    hovered,
+    enter,
+    leave,
   };
 };
