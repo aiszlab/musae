@@ -47,6 +47,7 @@ export enum ComponentToken {
   Pagination,
   Switch,
   Rate,
+  Tour,
 }
 
 /**
@@ -190,6 +191,14 @@ export enum RateClassToken {
   Star,
   Leading,
   Trailing,
+}
+export enum TourClassToken {
+  Tour,
+  Overlay,
+  Spotlight,
+  Title,
+  Description,
+  Footer,
 }
 
 /**
@@ -337,6 +346,14 @@ export const CLASS_NAMES = {
     [RateClassToken.Star]: "rate__star",
     [RateClassToken.Leading]: "rate__star-leading",
     [RateClassToken.Trailing]: "rate__star-trailing",
+  },
+  [ComponentToken.Tour]: {
+    [TourClassToken.Tour]: "tour",
+    [TourClassToken.Overlay]: "rate__overlay",
+    [TourClassToken.Spotlight]: "rate__spotlight",
+    [TourClassToken.Title]: "rate__title",
+    [TourClassToken.Description]: "rate__description",
+    [TourClassToken.Footer]: "rate__footer",
   },
 };
 

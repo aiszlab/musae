@@ -38,6 +38,12 @@ export interface PopperProps
 
   /**
    * @description
+   * offset
+   */
+  offset?: number | [number, number];
+
+  /**
+   * @description
    * when trigger on popper entered, this function will be called
    */
   onEntered?: () => Promise<void>;

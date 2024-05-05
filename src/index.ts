@@ -38,6 +38,7 @@ export { Waterfall } from "./components/waterfall";
 export { Image } from "./components/image";
 export { Space } from "./components/space";
 export { Rate } from "./components/rate";
+export { Tour } from "./components/tour";
 
 /**
  * @description
@@ -53,3 +54,4 @@ export { useTheme } from "./components/theme";
 export type { Option } from "./types/option";
 export type { MenuItem, MenuRef } from "./components/menu";
 export type { TreeProps } from "./components/tree";
+export type { TourStep } from "./components/tour";

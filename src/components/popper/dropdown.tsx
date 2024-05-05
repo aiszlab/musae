@@ -2,11 +2,11 @@ import React, { forwardRef, useEffect, useImperativeHandle, useRef } from "react
 import type { PopperRef, DropdownProps } from "./types";
 import { Instance, createPopper } from "@popperjs/core";
 import { ComponentToken, PopperClassToken } from "../../utils/class-name";
-import { useMount } from "@aiszlab/relax";
 import { useClassNames } from "../config";
 import * as stylex from "@stylexjs/stylex";
 import clsx from "clsx";
 import { toClassList } from "../../utils/styles";
+import { isArray } from "@aiszlab/relax";
 
 const styles = stylex.create({
   dropdown: {
@@ -20,7 +20,19 @@ const styles = stylex.create({
 
 const Dropdown = forwardRef<PopperRef, DropdownProps>(
   (
-    { open, trigger, children, placement = "bottom-start", style, className, onExit, onExited, onEntered, ...props },
+    {
+      open,
+      trigger,
+      offset = 0,
+      children,
+      placement = "bottom-start",
+      style,
+      className,
+      onExit,
+      onExited,
+      onEntered,
+      ...props
+    },
     ref
   ) => {
     const container = useRef<HTMLDivElement>(null);
@@ -35,7 +47,7 @@ const Dropdown = forwardRef<PopperRef, DropdownProps>(
 
     /// fix: why use mount instead of mounted?
     /// when mounted, this div display a normal block, must sync to popper.
-    useMount(() => {
+    useEffect(() => {
       if (!trigger) return;
       if (!container.current) return;
 
@@ -45,6 +57,12 @@ const Dropdown = forwardRef<PopperRef, DropdownProps>(
           {
             name: "flip",
           },
+          {
+            name: "offset",
+            options: {
+              offset: isArray(offset) ? offset : [offset, offset],
+            },
+          },
         ],
       });
       popper.current = _popper;
@@ -52,7 +70,8 @@ const Dropdown = forwardRef<PopperRef, DropdownProps>(
       return () => {
         _popper.destroy();
       };
-    });
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [trigger]);
 
     const styled = {
       dropdown: stylex.props(styles.dropdown),

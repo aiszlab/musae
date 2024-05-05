@@ -2,6 +2,7 @@ import React from "react";
 import type { SpaceProps } from "./types";
 import * as stylex from "@stylexjs/stylex";
 import { useGutters } from "../../hooks/use-gutters";
+import clsx from "clsx";
 
 const styles = stylex.create({
   space: (props: { columnGap: number; rowGap: number }) => ({
@@ -13,7 +14,7 @@ const styles = stylex.create({
   }),
 });
 
-const Space = ({ gutter = 4, children }: SpaceProps) => {
+const Space = ({ gutter = 4, children, className, style }: SpaceProps) => {
   const [columnGap, rowGap] = useGutters({ gutter });
   const styled = stylex.props(
     styles.space({
@@ -23,7 +24,13 @@ const Space = ({ gutter = 4, children }: SpaceProps) => {
   );
 
   return (
-    <div className={styled.className} style={styled.style}>
+    <div
+      className={clsx(className, styled.className)}
+      style={{
+        ...styled.style,
+        ...style,
+      }}
+    >
       {children}
     </div>
   );
