@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "@aiszlab/relax": "^1.2.37",
-    "@popperjs/core": "^2.11.8",
+    "@floating-ui/dom": "^1.6.5",
     "@tanstack/react-table": "^8.11.3",
     "clsx": "^2.1.0",
     "dayjs": "^1.11.10",

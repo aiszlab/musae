@@ -21,3 +21,8 @@ export const useOffsets = (props: Required<Pick<TourProps, "offset">>) => {
     offsets,
   };
 };
+
+/**
+ * @description
+ * use step at
+ */

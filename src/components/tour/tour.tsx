@@ -1,7 +1,7 @@
 import React, { type CSSProperties, useEffect } from "react";
 import type { TourProps } from "./types";
 import { Portal } from "../portal";
-import { isFunction, useCounter } from "@aiszlab/relax";
+import { useCounter } from "@aiszlab/relax";
 import { Popper } from "../popper";
 import stylex from "@stylexjs/stylex";
 import { Button } from "../button";
@@ -24,22 +24,7 @@ const styles = stylex.create({
     zIndex: 1000,
   }),
 
-  spotlight: (props: {
-    left: number;
-    top: number;
-    width: number;
-    height: number;
-    offsetX: number;
-    offsetY: number;
-  }) => ({
-    position: "relative",
-    backgroundColor: "gray",
-    transition: "all 0.2s",
-    insetInlineStart: props.left - props.offsetX,
-    insetBlockStart: props.top - props.offsetY,
-    width: props.width + props.offsetX * 2,
-    height: props.height + props.offsetY * 2,
-  }),
+  spotlight: { backgroundColor: "gray" },
 
   tour: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
     backgroundColor: props.backgroundColor,
@@ -66,35 +51,17 @@ const styles = stylex.create({
 });
 
 const Tour = ({ steps = [], open = false, onClose, offset = 8, overlay = true }: TourProps) => {
-  const [current, { add, subtract, reset }] = useCounter(0, { min: 0, max: steps.length - 1 });
-  const currentAt = steps[current];
+  const [stepAt, { add, subtract, reset }] = useCounter(0, { min: 0, max: steps.length - 1 });
+  const step = steps[stepAt];
   const theme = useTheme();
   const { offsets, spacings } = useOffsets({ offset });
-  const hasNext = current < steps.length - 1;
-  const hasPrev = current > 0;
+  const hasNext = stepAt < steps.length - 1;
+  const hasPrev = stepAt > 0;
   const classNames = useClassNames(ComponentToken.Tour);
-
-  /// current target
-  const target = isFunction(currentAt.target) ? currentAt.target() : currentAt.target;
-  const { left, top, width, height } = target?.getBoundingClientRect() ?? {
-    left: 0,
-    top: 0,
-    width: 0,
-    height: 0,
-  };
 
   const styled = {
     overlay: stylex.props(styles.overlay({ backgroundColor: theme.colors[ColorToken.SurfaceDim] })),
-    spotlight: stylex.props(
-      styles.spotlight({
-        left,
-        top,
-        width,
-        height,
-        offsetX: spacings[0],
-        offsetY: spacings[1],
-      })
-    ),
+    spotlight: stylex.props(styles.spotlight),
     tour: stylex.props(
       styles.tour({
         backgroundColor: theme.colors[ColorToken.OnPrimary],
@@ -133,29 +100,32 @@ const Tour = ({ steps = [], open = false, onClose, offset = 8, overlay = true }:
           className={clsx(classNames[TourClassToken.Overlay], styled.overlay.className)}
           style={styled.overlay.style}
         >
-          <div
+          <Popper
+            trigger={step.target}
+            open={open}
             className={clsx(classNames[TourClassToken.Spotlight], styled.spotlight.className)}
             style={styled.spotlight.style}
+            portal={false}
           />
         </div>
       </Portal>
 
       <Popper
-        trigger={target}
+        trigger={step.target}
         open={open}
         className={clsx(classNames[TourClassToken.Tour], styled.tour.className)}
         style={styled.tour.style}
         offset={offsets}
       >
         <div className={clsx(classNames[TourClassToken.Title], styled.title.className)} style={styled.title.style}>
-          {currentAt.title}
+          {step.title}
         </div>
 
         <div
           className={clsx(classNames[TourClassToken.Description], styled.description.className)}
           style={styled.description.style}
         >
-          {currentAt.description}
+          {step.description}
         </div>
 
         <Space

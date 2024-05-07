@@ -1,7 +1,7 @@
 import type { Nullable } from "@aiszlab/relax/types";
-import { Placement } from "@popperjs/core";
 import type { DOMAttributes, ReactNode } from "react";
-import { ComponentProps } from "../../types/element";
+import type { ComponentProps } from "../../types/element";
+import type { Placement } from "@floating-ui/dom";
 
 /**
  * @author murukal
@@ -16,7 +16,7 @@ export interface PopperProps
    * @description
    * children
    */
-  children: ReactNode;
+  children?: ReactNode;
 
   /**
    * @description
@@ -28,7 +28,7 @@ export interface PopperProps
    * @description
    * trigger
    */
-  trigger?: Nullable<Element>;
+  trigger?: Nullable<Element> | (() => Nullable<Element>);
 
   /**
    * @description
@@ -58,7 +58,13 @@ export interface PopperProps
    * @description
    * when trigger on popper exited, this function will be called
    */
-  onExited?: () => Promise<void> | void;
+  onExited?: () => Promise<void>;
+
+  /**
+   * @description
+   * if current popper is escape from current dom tree, we use `Portal` Component
+   */
+  portal?: boolean;
 }
 
 /**
@@ -73,4 +79,4 @@ export interface PopperRef {
   update?: VoidFunction;
 }
 
-export type DropdownProps = PopperProps & {};
+export type DropdownProps = Omit<PopperProps, "portal">;

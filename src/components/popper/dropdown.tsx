@@ -1,16 +1,21 @@
-import React, { forwardRef, useEffect, useImperativeHandle, useRef } from "react";
+import React, { forwardRef, useEffect, useImperativeHandle, useMemo, useRef } from "react";
 import type { PopperRef, DropdownProps } from "./types";
-import { Instance, createPopper } from "@popperjs/core";
 import { ComponentToken, PopperClassToken } from "../../utils/class-name";
 import { useClassNames } from "../config";
 import * as stylex from "@stylexjs/stylex";
 import clsx from "clsx";
 import { toClassList } from "../../utils/styles";
-import { isArray } from "@aiszlab/relax";
+import { isFunction } from "@aiszlab/relax";
+import { computePosition, flip, size } from "@floating-ui/dom";
+import { Nullable } from "@aiszlab/relax/types";
 
 const styles = stylex.create({
   dropdown: {
     zIndex: 1050,
+    position: "absolute",
+    insetBlockStart: 0,
+    insetInlineStart: 0,
+    willChange: "transform",
   },
 
   hidden: {
@@ -22,7 +27,6 @@ const Dropdown = forwardRef<PopperRef, DropdownProps>(
   (
     {
       open,
-      trigger,
       offset = 0,
       children,
       placement = "bottom-start",
@@ -31,46 +35,46 @@ const Dropdown = forwardRef<PopperRef, DropdownProps>(
       onExit,
       onExited,
       onEntered,
+      trigger: _trigger,
       ...props
     },
     ref
   ) => {
     const container = useRef<HTMLDivElement>(null);
     const classNames = useClassNames(ComponentToken.Popper);
-    const popper = useRef<Instance | null>(null);
 
     useImperativeHandle(ref, () => ({
-      update: () => {
-        popper.current?.update();
-      },
+      update: () => {},
     }));
 
-    /// fix: why use mount instead of mounted?
-    /// when mounted, this div display a normal block, must sync to popper.
+    /// how to get trigger
+    const trigger = useMemo<Nullable<Element>>(() => {
+      if (!open) return null;
+      if (isFunction(_trigger)) return _trigger();
+      return _trigger ?? null;
+    }, [open, _trigger]);
+
+    /// auto update: calc trigger dom to get position
+    /// if trigger changed, re-relate
     useEffect(() => {
       if (!trigger) return;
       if (!container.current) return;
 
-      const _popper = createPopper(trigger, container.current, {
-        placement,
-        modifiers: [
-          {
-            name: "flip",
-          },
-          {
-            name: "offset",
-            options: {
-              offset: isArray(offset) ? offset : [offset, offset],
+      computePosition(trigger, container.current, {
+        middleware: [
+          flip(),
+          size({
+            apply: ({ rects, elements }) => {
+              elements.floating.attributeStyleMap.set("width", `${rects.reference.width}px`);
+              elements.floating.attributeStyleMap.set("height", `${rects.reference.height}px`);
             },
-          },
+          }),
         ],
-      });
-      popper.current = _popper;
-
-      return () => {
-        _popper.destroy();
-      };
-      // eslint-disable-next-line react-hooks/exhaustive-deps
+      })
+        .then(({ x, y }) => {
+          container.current?.attributeStyleMap.set("transform", `translate(${x}px, ${y}px)`);
+        })
+        .catch(() => null);
     }, [trigger]);
 
     const styled = {
@@ -82,13 +86,13 @@ const Dropdown = forwardRef<PopperRef, DropdownProps>(
       (async () => {
         if (open) {
           container.current?.classList.remove(...toClassList(styled.hidden.className));
-          await onEntered?.();
+          await onEntered?.().catch(() => null);
           return;
         }
 
-        await onExit?.();
+        await onExit?.().catch(() => null);
         container.current?.classList.add(...toClassList(styled.hidden.className));
-        await onExited?.();
+        await onExited?.().catch(() => null);
       })();
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [open]);
