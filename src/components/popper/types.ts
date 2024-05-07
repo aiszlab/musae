@@ -34,7 +34,7 @@ export interface PopperProps
    * @description
    * placement
    */
-  placement?: Placement;
+  placement?: Placement | "center";
 
   /**
    * @description
@@ -65,18 +65,12 @@ export interface PopperProps
    * if current popper is escape from current dom tree, we use `Portal` Component
    */
   portal?: boolean;
-}
 
-/**
- * @description
- * popper ref
- */
-export interface PopperRef {
   /**
    * @description
-   * update
+   * cover
    */
-  update?: VoidFunction;
+  cover?: boolean;
 }
 
 export type DropdownProps = Omit<PopperProps, "portal">;

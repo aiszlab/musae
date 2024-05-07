@@ -54,7 +54,7 @@ const Tour = ({ steps = [], open = false, onClose, offset = 8, overlay = true }:
   const [stepAt, { add, subtract, reset }] = useCounter(0, { min: 0, max: steps.length - 1 });
   const step = steps[stepAt];
   const theme = useTheme();
-  const { offsets, spacings } = useOffsets({ offset });
+  const { offsets } = useOffsets({ offset });
   const hasNext = stepAt < steps.length - 1;
   const hasPrev = stepAt > 0;
   const classNames = useClassNames(ComponentToken.Tour);
@@ -106,6 +106,7 @@ const Tour = ({ steps = [], open = false, onClose, offset = 8, overlay = true }:
             className={clsx(classNames[TourClassToken.Spotlight], styled.spotlight.className)}
             style={styled.spotlight.style}
             portal={false}
+            placement="center"
           />
         </div>
       </Portal>

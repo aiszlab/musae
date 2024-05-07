@@ -200,7 +200,7 @@ const Item = forwardRef<HTMLLIElement, MenuItemProps>(
           <Popper
             trigger={itemRef.current}
             open={isHovered}
-            placement={mode === "vertical" ? "auto-start" : "bottom-start"}
+            placement={mode === "vertical" ? "top-start" : "bottom-start"}
             {...hoverProps}
           >
             {props.children}

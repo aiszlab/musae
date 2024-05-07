@@ -1,12 +1,12 @@
-import React, { forwardRef, useEffect, useImperativeHandle, useMemo, useRef } from "react";
-import type { PopperRef, DropdownProps } from "./types";
+import React, { useEffect, useMemo, useRef } from "react";
+import type { DropdownProps } from "./types";
 import { ComponentToken, PopperClassToken } from "../../utils/class-name";
 import { useClassNames } from "../config";
 import * as stylex from "@stylexjs/stylex";
 import clsx from "clsx";
 import { toClassList } from "../../utils/styles";
 import { isFunction } from "@aiszlab/relax";
-import { computePosition, flip, size } from "@floating-ui/dom";
+import { computePosition, flip, size, autoUpdate, offset } from "@floating-ui/dom";
 import { Nullable } from "@aiszlab/relax/types";
 
 const styles = stylex.create({
@@ -23,94 +23,103 @@ const styles = stylex.create({
   },
 });
 
-const Dropdown = forwardRef<PopperRef, DropdownProps>(
-  (
-    {
-      open,
-      offset = 0,
-      children,
-      placement = "bottom-start",
-      style,
-      className,
-      onExit,
-      onExited,
-      onEntered,
-      trigger: _trigger,
-      ...props
-    },
-    ref
-  ) => {
-    const container = useRef<HTMLDivElement>(null);
-    const classNames = useClassNames(ComponentToken.Popper);
+const Dropdown = ({
+  open,
+  children,
+  placement = "bottom-start",
+  style,
+  className,
+  onExit,
+  onExited,
+  onEntered,
+  trigger: _trigger,
+  ...props
+}: DropdownProps) => {
+  const floatable = useRef<HTMLDivElement>(null);
+  const classNames = useClassNames(ComponentToken.Popper);
 
-    useImperativeHandle(ref, () => ({
-      update: () => {},
-    }));
+  /// how to get trigger
+  const trigger = useMemo<Nullable<Element>>(() => {
+    if (!open) return null;
+    if (isFunction(_trigger)) return _trigger();
+    return _trigger ?? null;
+  }, [open, _trigger]);
 
-    /// how to get trigger
-    const trigger = useMemo<Nullable<Element>>(() => {
-      if (!open) return null;
-      if (isFunction(_trigger)) return _trigger();
-      return _trigger ?? null;
-    }, [open, _trigger]);
+  /// auto update: calc trigger dom to get position
+  /// if trigger changed, re-relate
+  useEffect(() => {
+    const _floatable = floatable.current;
+    const isCentered = placement === "center";
 
-    /// auto update: calc trigger dom to get position
-    /// if trigger changed, re-relate
-    useEffect(() => {
-      if (!trigger) return;
-      if (!container.current) return;
+    if (!trigger) return;
+    if (!_floatable) return;
 
-      computePosition(trigger, container.current, {
+    const cleanup = autoUpdate(trigger, _floatable, () => {
+      computePosition(trigger, _floatable, {
+        placement: isCentered ? "bottom" : placement,
         middleware: [
-          flip(),
-          size({
-            apply: ({ rects, elements }) => {
-              elements.floating.attributeStyleMap.set("width", `${rects.reference.width}px`);
-              elements.floating.attributeStyleMap.set("height", `${rects.reference.height}px`);
-            },
-          }),
+          !isCentered && flip(),
+          isCentered &&
+            offset(({ rects }) => {
+              return -rects.reference.height / 2 - rects.floating.height / 2;
+            }),
+          isCentered &&
+            size({
+              apply: ({ rects, elements }) => {
+                elements.floating.style.width = `${rects.reference.width}px`;
+                elements.floating.style.height = `${rects.reference.height}px`;
+              },
+            }),
         ],
       })
         .then(({ x, y }) => {
-          container.current?.attributeStyleMap.set("transform", `translate(${x}px, ${y}px)`);
+          _floatable.style.transform = `translate(${x}px, ${y}px)`;
         })
         .catch(() => null);
-    }, [trigger]);
+    });
 
-    const styled = {
-      dropdown: stylex.props(styles.dropdown),
-      hidden: stylex.props(styles.hidden),
+    return () => {
+      // reset rect styles
+      _floatable.style.width = "";
+      _floatable.style.height = "";
+      // cleanup listener
+      cleanup();
     };
+  }, [placement, trigger]);
 
-    useEffect(() => {
-      (async () => {
-        if (open) {
-          container.current?.classList.remove(...toClassList(styled.hidden.className));
-          await onEntered?.().catch(() => null);
-          return;
-        }
+  const styled = {
+    dropdown: stylex.props(styles.dropdown),
+    hidden: stylex.props(styles.hidden),
+  };
 
-        await onExit?.().catch(() => null);
-        container.current?.classList.add(...toClassList(styled.hidden.className));
-        await onExited?.().catch(() => null);
-      })();
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [open]);
+  useEffect(() => {
+    (async () => {
+      if (open) {
+        floatable.current?.classList.remove(...toClassList(styled.hidden.className));
+        await onEntered?.().catch(() => null);
+        return;
+      }
 
-    return (
-      <div
-        ref={container}
-        {...props}
-        className={clsx(classNames[PopperClassToken.Dropdown], className, styled.dropdown.className)}
-        style={{
-          ...styled.dropdown.style,
-          ...style,
-        }}
-      >
-        {children}
-      </div>
-    );
-  }
-);
+      await onExit?.().catch(() => null);
+      floatable.current?.classList.add(...toClassList(styled.hidden.className));
+      await onExited?.().catch(() => null);
+    })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [open]);
+
+  return (
+    <div
+      ref={floatable}
+      {...props}
+      className={clsx(classNames[PopperClassToken.Dropdown], className, styled.dropdown.className)}
+      style={{
+        ...styled.dropdown.style,
+        ...style,
+      }}
+    >
+      {children}
+    </div>
+  );
+};
 
 export default Dropdown;

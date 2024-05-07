@@ -1,17 +1,15 @@
 import React, {
-  type MouseEvent,
   useCallback,
   useRef,
   forwardRef,
   useImperativeHandle,
-  useEffect,
-  CSSProperties,
+  type MouseEvent,
+  type CSSProperties,
 } from "react";
 import { Popper } from "../popper";
 import { useBoolean, useEvent, useFocus, chain } from "@aiszlab/relax";
 import { useEvents } from "./hooks";
 import type { PickerProps, PickerRef } from "./types";
-import type { PopperRef } from "../popper/types";
 import { ComponentToken, PickerClassToken } from "../../utils/class-name";
 import { useClassNames } from "../config";
 import * as stylex from "@stylexjs/stylex";
@@ -58,7 +56,6 @@ const Picker = forwardRef<PickerRef, PickerProps>(
     const trigger = useRef<HTMLDivElement>(null);
     const [isVisible, { turnOff: close, toggle, turnOn: open }] = useBoolean();
     const classNames = useClassNames(ComponentToken.Picker);
-    const popper = useRef<PopperRef>(null);
     const theme = useTheme();
     const { fadeIn, exit, scope } = useFadeAnimate({
       onPopperExite,
@@ -83,13 +80,6 @@ const Picker = forwardRef<PickerRef, PickerProps>(
     const [isFocused, focusProps] = useFocus<HTMLDivElement>({
       onBlur: blur,
     });
-
-    /// for selection change, force render for next tick
-    /// for why?
-    /// if user select many choices, it will cause the input become larger
-    useEffect(() => {
-      popper.current?.update?.();
-    }, [children]);
 
     const styled = {
       picker: stylex.props(
@@ -134,7 +124,6 @@ const Picker = forwardRef<PickerRef, PickerProps>(
         </div>
 
         <Popper
-          ref={popper}
           trigger={trigger.current}
           open={isVisible}
           className={classNames[PickerClassToken.Dropdown]}
