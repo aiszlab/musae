@@ -2,7 +2,7 @@ import React, { forwardRef, useCallback, useImperativeHandle, useState } from "r
 import { MessageRef, MessageConfig } from "./types";
 import Message from "./message";
 import * as stylex from "@stylexjs/stylex";
-import { spacing } from "../theme/tokens.stylex";
+import { positions, spacing } from "../theme/tokens.stylex";
 import type { RequiredIn } from "@aiszlab/relax/types";
 import { AnimatePresence } from "framer-motion";
 import { Portal } from "../portal";
@@ -10,10 +10,9 @@ import { Portal } from "../portal";
 const styles = stylex.create({
   holder: {
     position: "fixed",
-    top: 0,
-    left: 0,
-    right: 0,
-    zIndex: 100,
+    insetBlockStart: 0,
+    insetInline: 0,
+    zIndex: positions.message,
 
     display: "flex",
     flexDirection: "column",

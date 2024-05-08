@@ -5,6 +5,7 @@ import { isFunction, useEvent, useMounted } from "@aiszlab/relax";
 import * as stylex from "@stylexjs/stylex";
 import { toClassList } from "../../utils/styles";
 import { Observable, type Subscriber, distinctUntilChanged } from "rxjs";
+import { positions } from "./tokens.stylex";
 
 export const PALETTE: Readonly<Palette> = {
   primary: {
@@ -114,21 +115,21 @@ const styles = stylex.create({
 
   light: {
     "::view-transition-old(root)": {
-      zIndex: 999,
+      zIndex: positions.max,
     },
 
     "::view-transition-new(root)": {
-      zIndex: 1,
+      zIndex: positions.min,
     },
   },
 
   dark: {
     "::view-transition-old(root)": {
-      zIndex: 1,
+      zIndex: positions.min,
     },
 
     "::view-transition-new(root)": {
-      zIndex: 999,
+      zIndex: positions.max,
     },
   },
 });

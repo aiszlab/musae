@@ -8,10 +8,12 @@ import { toClassList } from "../../utils/styles";
 import { isFunction } from "@aiszlab/relax";
 import { computePosition, flip, size, autoUpdate, offset } from "@floating-ui/dom";
 import { Nullable } from "@aiszlab/relax/types";
+import { useOffsets } from "./hooks";
+import { positions } from "../theme/tokens.stylex";
 
 const styles = stylex.create({
   dropdown: {
-    zIndex: 1050,
+    zIndex: positions.popper,
     position: "absolute",
     insetBlockStart: 0,
     insetInlineStart: 0,
@@ -45,6 +47,9 @@ const Dropdown = ({
     return _trigger ?? null;
   }, [open, _trigger]);
 
+  /// memorized offsets
+  const offsets = useOffsets({ offset: props.offset });
+
   /// auto update: calc trigger dom to get position
   /// if trigger changed, re-relate
   useEffect(() => {
@@ -59,15 +64,21 @@ const Dropdown = ({
         placement: isCentered ? "bottom" : placement,
         middleware: [
           !isCentered && flip(),
-          isCentered &&
-            offset(({ rects }) => {
-              return -rects.reference.height / 2 - rects.floating.height / 2;
-            }),
+          offset(({ rects }) => {
+            const mainAxis =
+              (offsets.mainAxis ?? 0) + (isCentered ? -rects.reference.height / 2 - rects.floating.height / 2 : 0);
+
+            return {
+              mainAxis,
+              crossAxis: offsets.crossAxis,
+              alignmentAxis: offsets.alignmentAxis,
+            };
+          }),
           isCentered &&
             size({
               apply: ({ rects, elements }) => {
-                elements.floating.style.width = `${rects.reference.width}px`;
-                elements.floating.style.height = `${rects.reference.height}px`;
+                elements.floating.style.width = `${rects.reference.width + Math.abs(offsets.crossAxis ?? 0) * 2}px`;
+                elements.floating.style.height = `${rects.reference.height + Math.abs(offsets.mainAxis ?? 0) * 2}px`;
               },
             }),
         ],
@@ -85,7 +96,7 @@ const Dropdown = ({
       // cleanup listener
       cleanup();
     };
-  }, [placement, trigger]);
+  }, [placement, trigger, offsets]);
 
   const styled = {
     dropdown: stylex.props(styles.dropdown),

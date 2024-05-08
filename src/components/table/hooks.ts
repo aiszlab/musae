@@ -1,7 +1,19 @@
 import { createColumnHelper } from "@tanstack/react-table";
-import { useContext, useMemo, useRef } from "react";
-import { ContextValue, TableProps } from "./types";
+import { type CSSProperties, useContext, useMemo, useRef } from "react";
+import type { ContextValue, TableProps } from "./types";
 import Context from "./context";
+import stylex from "@stylexjs/stylex";
+import { sizes, spacing } from "../theme/tokens.stylex";
+
+export const styles = stylex.create({
+  cell: (props: { outlineColor: CSSProperties["borderColor"] }) => ({
+    paddingInline: spacing.small,
+    paddingBlock: spacing.medium,
+    borderColor: props.outlineColor,
+    borderStyle: "solid",
+    borderBottomWidth: sizes.smallest,
+  }),
+});
 
 /**
  * @description

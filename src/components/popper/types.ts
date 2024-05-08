@@ -1,7 +1,7 @@
 import type { Nullable } from "@aiszlab/relax/types";
 import type { DOMAttributes, ReactNode } from "react";
 import type { ComponentProps } from "../../types/element";
-import type { Placement } from "@floating-ui/dom";
+import type { Derivable, OffsetOptions, Placement } from "@floating-ui/dom";
 
 /**
  * @author murukal
@@ -40,7 +40,7 @@ export interface PopperProps
    * @description
    * offset
    */
-  offset?: number | [number, number];
+  offset?: Exclude<OffsetOptions, Derivable<unknown>>;
 
   /**
    * @description

@@ -1,27 +1,16 @@
 import { useReactTable, getCoreRowModel } from "@tanstack/react-table";
-import React, { CSSProperties } from "react";
+import React from "react";
 import { useColumns, useContextValue } from "./hooks";
 import type { TableProps } from "./types";
 import Header from "./header";
 import Context from "./context";
 import Body from "./body";
 import * as stylex from "@stylexjs/stylex";
-import { sizes, spacing } from "../theme/tokens.stylex";
-import { useTheme } from "../theme";
-import { ColorToken } from "../../utils/colors";
 
 const styles = stylex.create({
   table: {
     width: "400px",
   },
-
-  cell: (props: { outlineColor: CSSProperties["borderColor"] }) => ({
-    paddingInline: spacing.small,
-    paddingBlock: spacing.medium,
-    borderColor: props.outlineColor,
-    borderStyle: "solid",
-    borderBottomWidth: sizes.smallest,
-  }),
 });
 
 const Table = <T,>({ bordered = false, ...props }: TableProps<T>) => {
@@ -31,20 +20,14 @@ const Table = <T,>({ bordered = false, ...props }: TableProps<T>) => {
     data: props.dataSource ?? [],
     getCoreRowModel: getCoreRowModel(),
   });
-  const theme = useTheme();
 
   const contextValue = useContextValue({ table, bordered });
-  const cellStyles = [
-    styles.cell({
-      outlineColor: theme.colors[ColorToken.OutlineVariant],
-    }),
-  ];
 
   return (
     <Context.Provider value={contextValue}>
       <table {...stylex.props(styles.table)}>
-        <Header<T> styles={cellStyles} />
-        <Body<T> styles={cellStyles} />
+        <Header<T> />
+        <Body<T> />
       </table>
     </Context.Provider>
   );

@@ -1,19 +1,18 @@
-import React, { type CSSProperties, useEffect } from "react";
+import React, { type CSSProperties } from "react";
 import type { TourProps } from "./types";
 import { Portal } from "../portal";
-import { useCounter } from "@aiszlab/relax";
 import { Popper } from "../popper";
 import stylex from "@stylexjs/stylex";
 import { Button } from "../button";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
-import { elevations, sizes, spacing } from "../theme/tokens.stylex";
+import { elevations, positions, sizes, spacing } from "../theme/tokens.stylex";
 import { Space } from "../space";
-import { useOffsets } from "./hooks";
 import { typography } from "../theme/theme";
 import { useClassNames } from "../config";
 import { ComponentToken, TourClassToken } from "../../utils/class-name";
 import clsx from "clsx";
+import { useStep } from "./hooks";
 
 const styles = stylex.create({
   overlay: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
@@ -21,7 +20,7 @@ const styles = stylex.create({
     inset: 0,
     mixBlendMode: "hard-light",
     backgroundColor: props.backgroundColor,
-    zIndex: 1000,
+    zIndex: positions.tour,
   }),
 
   spotlight: { backgroundColor: "gray" },
@@ -50,14 +49,16 @@ const styles = stylex.create({
   },
 });
 
-const Tour = ({ steps = [], open = false, onClose, offset = 8, overlay = true }: TourProps) => {
-  const [stepAt, { add, subtract, reset }] = useCounter(0, { min: 0, max: steps.length - 1 });
-  const step = steps[stepAt];
+const Tour = ({
+  steps = [],
+  open = false,
+  onClose,
+  offset = { mainAxis: -8, crossAxis: -8 },
+  overlay = true,
+}: TourProps) => {
   const theme = useTheme();
-  const { offsets } = useOffsets({ offset });
-  const hasNext = stepAt < steps.length - 1;
-  const hasPrev = stepAt > 0;
   const classNames = useClassNames(ComponentToken.Tour);
+  const { step, next, prev, hasNext, hasPrev } = useStep({ steps, open });
 
   const styled = {
     overlay: stylex.props(styles.overlay({ backgroundColor: theme.colors[ColorToken.SurfaceDim] })),
@@ -76,22 +77,6 @@ const Tour = ({ steps = [], open = false, onClose, offset = 8, overlay = true }:
   const close = () => {
     onClose?.();
   };
-
-  const next = () => {
-    add();
-  };
-
-  const prev = () => {
-    subtract();
-  };
-
-  useEffect(() => {
-    if (open) {
-      reset();
-      return;
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [open]);
 
   return (
     <>
@@ -116,7 +101,7 @@ const Tour = ({ steps = [], open = false, onClose, offset = 8, overlay = true }:
         open={open}
         className={clsx(classNames[TourClassToken.Tour], styled.tour.className)}
         style={styled.tour.style}
-        offset={offsets}
+        offset={offset}
       >
         <div className={clsx(classNames[TourClassToken.Title], styled.title.className)} style={styled.title.style}>
           {step.title}

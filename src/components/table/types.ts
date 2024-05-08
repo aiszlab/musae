@@ -1,7 +1,6 @@
 import type { ColumnDef, ColumnHelper } from "@tanstack/react-table";
 import type { Table } from "@tanstack/react-table";
 import type { ComponentProps } from "../../types/element";
-import type { Styles } from "../../types/stylex";
 
 /**
  * @description
@@ -51,14 +50,10 @@ export type ContextValue<T> = {
  * @description
  * header props
  */
-export type HeaderProps = ComponentProps & {
-  styles: Styles;
-};
+export type HeaderProps = ComponentProps;
 
 /**
  * @description
  * body props
  */
-export type BodyProps = ComponentProps & {
-  styles: Styles;
-};
+export type BodyProps = ComponentProps;

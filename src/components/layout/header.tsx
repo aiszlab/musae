@@ -3,7 +3,7 @@ import React, { CSSProperties } from "react";
 import { useTheme } from "../theme";
 import * as stylex from "@stylexjs/stylex";
 import { ColorToken } from "../../utils/colors";
-import { sizes, spacing } from "../theme/tokens.stylex";
+import { positions, sizes, spacing } from "../theme/tokens.stylex";
 import clsx from "clsx";
 
 const styles = stylex.create({
@@ -13,7 +13,7 @@ const styles = stylex.create({
     marginBottom: spacing.xxlarge,
     position: "sticky",
     top: 0,
-    zIndex: 10,
+    zIndex: positions.header,
     display: "flex",
     alignItems: "center",
     backgroundColor: props.backgroundColor,

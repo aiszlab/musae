@@ -5,7 +5,7 @@ import { PLACEMENTS } from "./hooks";
 import { ComponentToken, DrawerClassToken } from "../../utils/class-name";
 import { useClassNames } from "../config";
 import * as stylex from "@stylexjs/stylex";
-import { spacing } from "../theme/tokens.stylex";
+import { positions, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
 import clsx from "clsx";
@@ -18,14 +18,14 @@ const styles = stylex.create({
     position: "fixed",
     inset: 0,
     pointerEvents: "none",
-    zIndex: 1000,
+    zIndex: positions.drawer,
   },
 
   overlay: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
     position: "absolute",
     inset: 0,
     pointerEvents: "auto",
-    zIndex: 1000,
+    zIndex: positions.drawer,
     opacity: 0,
     backgroundColor: props.backgroundColor,
   }),
@@ -33,7 +33,7 @@ const styles = stylex.create({
   panel: (props: { backgroundColor: CSSProperties["backgroundColor"]; transform: CSSProperties["transform"] }) => ({
     backgroundColor: props.backgroundColor,
     position: "absolute",
-    zIndex: 1000,
+    zIndex: positions.drawer,
     pointerEvents: "auto",
     willChange: "transform",
     display: "flex",

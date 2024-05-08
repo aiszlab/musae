@@ -5,7 +5,7 @@ import { useAnimate } from "framer-motion";
 import { ComponentToken, DialogClassToken } from "../../utils/class-name";
 import { useClassNames } from "../config";
 import * as stylex from "@stylexjs/stylex";
-import { spacing } from "../theme/tokens.stylex";
+import { positions, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
 import { typography } from "../theme/theme";
@@ -26,7 +26,7 @@ const styles = stylex.create({
     width: "100vw",
     height: "100vh",
     pointerEvents: "none",
-    zIndex: 1000,
+    zIndex: positions.dialog,
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
@@ -39,7 +39,7 @@ const styles = stylex.create({
     width: "100vw",
     height: "100vh",
     pointerEvents: "auto",
-    zIndex: 1000,
+    zIndex: positions.dialog,
     backgroundColor: props.backgroundColor,
     opacity: 0,
   }),
@@ -54,7 +54,7 @@ const styles = stylex.create({
     borderRadius: 8,
     pointerEvents: "auto",
     backgroundColor: props.backgroundColor,
-    zIndex: 1000,
+    zIndex: positions.dialog,
     opacity: 0,
     position: "relative",
   }),

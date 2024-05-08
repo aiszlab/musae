@@ -7,7 +7,7 @@ import { Timespan } from "../../utils/timespan";
 import clsx from "clsx";
 import type { CalendarProps } from "./types";
 import * as stylex from "@stylexjs/stylex";
-import { sizes, spacing } from "../theme/tokens.stylex";
+import { positions, sizes, spacing } from "../theme/tokens.stylex";
 import { typography } from "../theme/theme";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
@@ -31,7 +31,7 @@ const styles = stylex.create({
       content: "''",
       position: "absolute",
       backgroundColor: props.backgroundColor,
-      zIndex: 1,
+      zIndex: positions.min,
       height: sizes.large,
     },
   }),

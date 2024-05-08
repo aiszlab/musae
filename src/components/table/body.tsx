@@ -6,6 +6,9 @@ import * as stylex from "@stylexjs/stylex";
 import clsx from "clsx";
 import { typography } from "../theme/theme";
 import { sizes } from "../theme/tokens.stylex";
+import { styles as _styles } from "./hooks";
+import { useTheme } from "../theme";
+import { ColorToken } from "../../utils/colors";
 
 const styles = stylex.create({
   bordered: {
@@ -15,10 +18,17 @@ const styles = stylex.create({
 
 const Body = <T,>(props: BodyProps) => {
   const { table, bordered } = useTable<T>();
+  const theme = useTheme();
 
-  if (!table) return;
+  if (!table) return null;
 
-  const styled = stylex.props(bordered && styles.bordered, typography.body.small, props.styles);
+  const styled = stylex.props(
+    bordered && styles.bordered,
+    typography.body.small,
+    _styles.cell({
+      outlineColor: theme.colors[ColorToken.OutlineVariant],
+    })
+  );
 
   return (
     <tbody>

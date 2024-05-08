@@ -8,6 +8,7 @@ import { useTheme } from "../theme";
 import clsx from "clsx";
 import { ColorToken } from "../../utils/colors";
 import { typography } from "../theme/theme";
+import { styles as _styles } from "./hooks";
 
 const styles = stylex.create({
   cell: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
@@ -51,7 +52,9 @@ const Header = <T,>(props: HeaderProps) => {
       : styles.unbordered({
           backgroundColor: theme.colors[ColorToken.OutlineVariant],
         }),
-    props.styles
+    _styles.cell({
+      outlineColor: theme.colors[ColorToken.OutlineVariant],
+    })
   );
 
   return (

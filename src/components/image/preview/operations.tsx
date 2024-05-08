@@ -13,13 +13,12 @@ import PreviewGroupContext from "./context";
 const styles = stylex.create({
   operations: {
     position: "fixed",
-    zIndex: positions.high,
+    zIndex: positions.image,
   },
 
   closer: {
     top: spacing.xxlarge,
     right: spacing.xxlarge,
-    zIndex: positions.higher,
   },
 
   navigations: {
@@ -39,7 +38,6 @@ const styles = stylex.create({
     left: 0,
     right: 0,
     bottom: spacing.xxlarge,
-    zIndex: positions.higher,
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
