@@ -13,6 +13,7 @@ import { useClassNames } from "../config";
 import { ComponentToken, TourClassToken } from "../../utils/class-name";
 import clsx from "clsx";
 import { useStep } from "./hooks";
+import Spotlight from "./spotlight";
 
 const styles = stylex.create({
   overlay: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
@@ -22,8 +23,6 @@ const styles = stylex.create({
     backgroundColor: props.backgroundColor,
     zIndex: positions.tour,
   }),
-
-  spotlight: { backgroundColor: "gray" },
 
   tour: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
     backgroundColor: props.backgroundColor,
@@ -62,7 +61,6 @@ const Tour = ({
 
   const styled = {
     overlay: stylex.props(styles.overlay({ backgroundColor: theme.colors[ColorToken.SurfaceDim] })),
-    spotlight: stylex.props(styles.spotlight),
     tour: stylex.props(
       styles.tour({
         backgroundColor: theme.colors[ColorToken.OnPrimary],
@@ -85,14 +83,7 @@ const Tour = ({
           className={clsx(classNames[TourClassToken.Overlay], styled.overlay.className)}
           style={styled.overlay.style}
         >
-          <Popper
-            trigger={step.target}
-            open={open}
-            className={clsx(classNames[TourClassToken.Spotlight], styled.spotlight.className)}
-            style={styled.spotlight.style}
-            portal={false}
-            placement="center"
-          />
+          <Spotlight trigger={step.target} />
         </div>
       </Portal>
 
