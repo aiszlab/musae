@@ -2,17 +2,17 @@ import React, { useEffect, useMemo, useRef } from "react";
 import { isFunction } from "@aiszlab/relax";
 import { computePosition, size, autoUpdate, offset } from "@floating-ui/dom";
 import { Nullable } from "@aiszlab/relax/types";
-import { PopperProps } from "../popper/types";
 import stylex from "@stylexjs/stylex";
 import clsx from "clsx";
 import { useClassNames } from "../config";
 import { ComponentToken, TourClassToken } from "../../utils/class-name";
+import { SpotlightProps } from "./types";
 
 const styles = stylex.create({
-  spotlight: { backgroundColor: "gray" },
+  spotlight: { backgroundColor: "#808080" },
 });
 
-const Spotlight = ({ trigger: _trigger, ...props }: Pick<PopperProps, "trigger">) => {
+const Spotlight = ({ trigger: _trigger, padding: [paddingY, paddingX] }: SpotlightProps) => {
   const floatable = useRef<HTMLDivElement>(null);
   const classNames = useClassNames(ComponentToken.Tour);
 
@@ -36,8 +36,8 @@ const Spotlight = ({ trigger: _trigger, ...props }: Pick<PopperProps, "trigger">
         middleware: [
           size({
             apply: ({ rects, elements }) => {
-              elements.floating.style.width = `${rects.reference.width}px`;
-              elements.floating.style.height = `${rects.reference.height}px`;
+              elements.floating.style.height = `${rects.reference.height + paddingY * 2}px`;
+              elements.floating.style.width = `${rects.reference.width + paddingX * 2}px`;
             },
           }),
           offset(({ rects }) => {
@@ -52,20 +52,15 @@ const Spotlight = ({ trigger: _trigger, ...props }: Pick<PopperProps, "trigger">
     });
 
     return () => {
-      // reset rect styles
-      _floatable.style.width = "";
-      _floatable.style.height = "";
-      // cleanup listener
       cleanup();
     };
-  }, [trigger]);
+  }, [trigger, paddingY, paddingX]);
 
   const styled = stylex.props(styles.spotlight);
 
   return (
     <div
       ref={floatable}
-      {...props}
       className={clsx(classNames[TourClassToken.Spotlight], styled.className)}
       style={styled.style}
     />

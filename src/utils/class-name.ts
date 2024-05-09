@@ -48,6 +48,7 @@ export enum ComponentToken {
   Switch,
   Rate,
   Tour,
+  Steps,
 }
 
 /**
@@ -199,6 +200,13 @@ export enum TourClassToken {
   Title,
   Description,
   Footer,
+}
+export enum StepsClassToken {
+  Steps,
+  Item,
+  Leading,
+  Title,
+  Description,
 }
 
 /**
@@ -354,6 +362,13 @@ export const CLASS_NAMES = {
     [TourClassToken.Title]: "rate__title",
     [TourClassToken.Description]: "rate__description",
     [TourClassToken.Footer]: "rate__footer",
+  },
+  [ComponentToken.Steps]: {
+    [StepsClassToken.Steps]: "steps",
+    [StepsClassToken.Item]: "steps__item",
+    [StepsClassToken.Leading]: "steps__item-leading",
+    [StepsClassToken.Title]: "steps__item-title",
+    [StepsClassToken.Description]: "steps__item-description",
   },
 };
 

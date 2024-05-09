@@ -14,6 +14,7 @@ import { ComponentToken, TourClassToken } from "../../utils/class-name";
 import clsx from "clsx";
 import { useStep } from "./hooks";
 import Spotlight from "./spotlight";
+import { useGutters } from "../../hooks/use-gutters";
 
 const styles = stylex.create({
   overlay: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
@@ -48,16 +49,11 @@ const styles = stylex.create({
   },
 });
 
-const Tour = ({
-  steps = [],
-  open = false,
-  onClose,
-  offset = { mainAxis: -8, crossAxis: -8 },
-  overlay = true,
-}: TourProps) => {
+const Tour = ({ steps = [], open = false, onClose, overlay = true, spotlightPadding = 8 }: TourProps) => {
   const theme = useTheme();
   const classNames = useClassNames(ComponentToken.Tour);
   const { step, next, prev, hasNext, hasPrev } = useStep({ steps, open });
+  const paddings = useGutters({ gutter: spotlightPadding });
 
   const styled = {
     overlay: stylex.props(styles.overlay({ backgroundColor: theme.colors[ColorToken.SurfaceDim] })),
@@ -83,7 +79,7 @@ const Tour = ({
           className={clsx(classNames[TourClassToken.Overlay], styled.overlay.className)}
           style={styled.overlay.style}
         >
-          <Spotlight trigger={step.target} />
+          <Spotlight trigger={step.target} padding={paddings} />
         </div>
       </Portal>
 
@@ -92,7 +88,7 @@ const Tour = ({
         open={open}
         className={clsx(classNames[TourClassToken.Tour], styled.tour.className)}
         style={styled.tour.style}
-        offset={offset}
+        offset={paddings[0]}
       >
         <div className={clsx(classNames[TourClassToken.Title], styled.title.className)} style={styled.title.style}>
           {step.title}

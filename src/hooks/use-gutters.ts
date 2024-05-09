@@ -1,17 +1,12 @@
-import { isArray } from "@aiszlab/relax";
 import { useMemo } from "react";
 
-export type Gutters = [colGutter: number, rowGutter: number];
+export type Gutters = [columnGutter: number, rowGutter: number];
 
 export type Gutter = number | Gutters;
 
-export const useGutters = ({ gutter }: { gutter?: Gutter }) => {
-  /// col and row gap in grid
-  const gutters = useMemo<Gutters>(() => {
-    if (!gutter) return [0, 0];
-    if (isArray(gutter)) return gutter;
-    return [gutter, gutter];
-  }, [gutter]);
-
-  return gutters;
+export const useGutters = ({ gutter = 0 }: { gutter?: Gutter }) => {
+  const columnGutter = typeof gutter === "number" ? gutter : gutter[0];
+  const rowGutter = typeof gutter === "number" ? gutter : gutter[1];
+  /// col gutter and row gutter
+  return useMemo<Gutters>(() => [columnGutter, rowGutter], [columnGutter, rowGutter]);
 };

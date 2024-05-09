@@ -34,7 +34,7 @@ export interface PopperProps
    * @description
    * placement
    */
-  placement?: Placement | "center";
+  placement?: Placement;
 
   /**
    * @description
@@ -59,18 +59,6 @@ export interface PopperProps
    * when trigger on popper exited, this function will be called
    */
   onExited?: () => Promise<void>;
-
-  /**
-   * @description
-   * if current popper is escape from current dom tree, we use `Portal` Component
-   */
-  portal?: boolean;
-
-  /**
-   * @description
-   * cover
-   */
-  cover?: boolean;
 }
 
 export type DropdownProps = Omit<PopperProps, "portal">;

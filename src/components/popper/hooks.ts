@@ -1,19 +1,14 @@
 import { useMemo } from "react";
 import { PopperProps } from "./types";
 
-// TODO: replace into relax
-const isNumber = (value: unknown): value is number => {
-  return typeof value === "number";
-};
-
 /**
  * @description
  * offset converter
  */
 export const useOffsets = ({ offset = 0 }: { offset: PopperProps["offset"] }) => {
-  const mainAxis = isNumber(offset) ? offset : offset.mainAxis;
-  const crossAxis = isNumber(offset) ? 0 : offset.crossAxis;
-  const alignmentAxis = isNumber(offset) ? 0 : offset.alignmentAxis;
+  const mainAxis = typeof offset === "number" ? offset : offset.mainAxis;
+  const crossAxis = typeof offset === "number" ? 0 : offset.crossAxis;
+  const alignmentAxis = typeof offset === "number" ? 0 : offset.alignmentAxis;
 
   return useMemo<Exclude<PopperProps["offset"], number | undefined>>(() => {
     return {

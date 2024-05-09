@@ -10,6 +10,18 @@ type StepItem = {
    * leading
    */
   leading?: ReactNode;
+
+  /**
+   * @description
+   * title
+   */
+  title: ReactNode;
+
+  /**
+   * @description
+   * description
+   */
+  description?: string;
 };
 
 /**
@@ -22,4 +34,16 @@ export type StepsProps = {
    * items
    */
   items: StepItem[];
+
+  /**
+   * @description
+   * value
+   */
+  value?: number;
 };
+
+/**
+ * @description
+ * step item props
+ */
+export type StepItemProps = StepItem;

@@ -1,5 +1,5 @@
 import type { Nullable } from "@aiszlab/relax/types";
-import type { PopperProps } from "../popper/types";
+import { PopperProps } from "../popper/types";
 
 /**
  * @description
@@ -50,13 +50,31 @@ export type TourProps = {
 
   /**
    * @description
-   * offset
-   */
-  offset?: PopperProps["offset"];
-
-  /**
-   * @description
    * overlay
    */
   overlay?: boolean;
+
+  /**
+   * @description
+   * spotlight padding
+   */
+  spotlightPadding?: number | [number, number];
+};
+
+/**
+ * @description
+ * spotlight props
+ */
+export type SpotlightProps = {
+  /**
+   * @description
+   * padding
+   */
+  padding: [number, number];
+
+  /**
+   * @description
+   * trigger
+   */
+  trigger: PopperProps["trigger"];
 };

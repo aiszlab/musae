@@ -6,7 +6,7 @@ import * as stylex from "@stylexjs/stylex";
 import clsx from "clsx";
 import { toClassList } from "../../utils/styles";
 import { isFunction } from "@aiszlab/relax";
-import { computePosition, flip, size, autoUpdate, offset } from "@floating-ui/dom";
+import { computePosition, flip, autoUpdate, offset } from "@floating-ui/dom";
 import { Nullable } from "@aiszlab/relax/types";
 import { useOffsets } from "./hooks";
 import { positions } from "../theme/tokens.stylex";
@@ -35,6 +35,7 @@ const Dropdown = ({
   onExited,
   onEntered,
   trigger: _trigger,
+  offset: _offset,
   ...props
 }: DropdownProps) => {
   const floatable = useRef<HTMLDivElement>(null);
@@ -48,40 +49,20 @@ const Dropdown = ({
   }, [open, _trigger]);
 
   /// memorized offsets
-  const offsets = useOffsets({ offset: props.offset });
+  const offsets = useOffsets({ offset: _offset });
 
   /// auto update: calc trigger dom to get position
   /// if trigger changed, re-relate
   useEffect(() => {
     const _floatable = floatable.current;
-    const isCentered = placement === "center";
 
     if (!trigger) return;
     if (!_floatable) return;
 
     const cleanup = autoUpdate(trigger, _floatable, () => {
       computePosition(trigger, _floatable, {
-        placement: isCentered ? "bottom" : placement,
-        middleware: [
-          !isCentered && flip(),
-          offset(({ rects }) => {
-            const mainAxis =
-              (offsets.mainAxis ?? 0) + (isCentered ? -rects.reference.height / 2 - rects.floating.height / 2 : 0);
-
-            return {
-              mainAxis,
-              crossAxis: offsets.crossAxis,
-              alignmentAxis: offsets.alignmentAxis,
-            };
-          }),
-          isCentered &&
-            size({
-              apply: ({ rects, elements }) => {
-                elements.floating.style.width = `${rects.reference.width + Math.abs(offsets.crossAxis ?? 0) * 2}px`;
-                elements.floating.style.height = `${rects.reference.height + Math.abs(offsets.mainAxis ?? 0) * 2}px`;
-              },
-            }),
-        ],
+        placement: placement,
+        middleware: [flip(), offset(offsets)],
       })
         .then(({ x, y }) => {
           _floatable.style.transform = `translate(${x}px, ${y}px)`;
@@ -90,10 +71,6 @@ const Dropdown = ({
     });
 
     return () => {
-      // reset rect styles
-      _floatable.style.width = "";
-      _floatable.style.height = "";
-      // cleanup listener
       cleanup();
     };
   }, [placement, trigger, offsets]);
