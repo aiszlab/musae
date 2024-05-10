@@ -7,9 +7,16 @@ import clsx from "clsx";
 import { useClassNames } from "../config";
 import { ComponentToken, TourClassToken } from "../../utils/class-name";
 import { SpotlightProps } from "./types";
+import { sizes } from "../theme/tokens.stylex";
 
 const styles = stylex.create({
-  spotlight: { backgroundColor: "#808080" },
+  spotlight: {
+    backgroundColor: "#808080",
+    borderRadius: sizes.xxxsmall,
+    transitionProperty: "transform",
+    transitionDuration: "0.2s",
+    willChange: "transform",
+  },
 });
 
 const Spotlight = ({ trigger: _trigger, padding: [paddingY, paddingX] }: SpotlightProps) => {

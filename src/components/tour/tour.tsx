@@ -89,6 +89,9 @@ const Tour = ({ steps = [], open = false, onClose, overlay = true, spotlightPadd
         className={clsx(classNames[TourClassToken.Tour], styled.tour.className)}
         style={styled.tour.style}
         offset={paddings[0]}
+        placement="bottom"
+        overlay={overlay}
+        destroyable
       >
         <div className={clsx(classNames[TourClassToken.Title], styled.title.className)} style={styled.title.style}>
           {step.title}

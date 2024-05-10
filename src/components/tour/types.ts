@@ -1,5 +1,6 @@
 import type { Nullable } from "@aiszlab/relax/types";
-import { PopperProps } from "../popper/types";
+import type { PopperProps } from "../popper/types";
+import type { ReactNode } from "react";
 
 /**
  * @description
@@ -10,13 +11,13 @@ export type TourStep = {
    * @description
    * title
    */
-  title: string;
+  title: ReactNode;
 
   /**
    * @description
    * description
    */
-  description: string;
+  description?: ReactNode;
 
   /**
    * @description

@@ -39,6 +39,7 @@ export { Image } from "./components/image";
 export { Space } from "./components/space";
 export { Rate } from "./components/rate";
 export { Tour } from "./components/tour";
+export { Steps } from "./components/steps";
 
 /**
  * @description

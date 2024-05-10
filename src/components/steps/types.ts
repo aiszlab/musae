@@ -1,5 +1,7 @@
 import type { ReactNode } from "react";
 
+export type Status = "done" | "doing" | "todo";
+
 /**
  * @description
  * step item
@@ -46,4 +48,10 @@ export type StepsProps = {
  * @description
  * step item props
  */
-export type StepItemProps = StepItem;
+export type StepItemProps = StepItem & {
+  /**
+   * @description
+   * status
+   */
+  status: Status;
+};

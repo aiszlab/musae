@@ -23,6 +23,10 @@ const styles = stylex.create({
   hidden: {
     display: "none",
   },
+
+  overlay: {
+    zIndex: positions.overlay,
+  },
 });
 
 const Dropdown = ({
@@ -36,6 +40,7 @@ const Dropdown = ({
   onEntered,
   trigger: _trigger,
   offset: _offset,
+  overlay = false,
   ...props
 }: DropdownProps) => {
   const floatable = useRef<HTMLDivElement>(null);
@@ -76,7 +81,7 @@ const Dropdown = ({
   }, [placement, trigger, offsets]);
 
   const styled = {
-    dropdown: stylex.props(styles.dropdown),
+    dropdown: stylex.props(styles.dropdown, overlay && styles.overlay),
     hidden: stylex.props(styles.hidden),
   };
 

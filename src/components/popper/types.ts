@@ -2,6 +2,7 @@ import type { Nullable } from "@aiszlab/relax/types";
 import type { DOMAttributes, ReactNode } from "react";
 import type { ComponentProps } from "../../types/element";
 import type { Derivable, OffsetOptions, Placement } from "@floating-ui/dom";
+import { PortalProps } from "../portal/types";
 
 /**
  * @author murukal
@@ -11,7 +12,8 @@ import type { Derivable, OffsetOptions, Placement } from "@floating-ui/dom";
  */
 export interface PopperProps
   extends Pick<DOMAttributes<HTMLDivElement>, "onMouseDown" | "onPointerEnter" | "onPointerLeave">,
-    ComponentProps {
+    ComponentProps,
+    Pick<PortalProps, "destroyable"> {
   /**
    * @description
    * children
@@ -59,6 +61,12 @@ export interface PopperProps
    * when trigger on popper exited, this function will be called
    */
   onExited?: () => Promise<void>;
+
+  /**
+   * @description
+   * render in overlay container
+   */
+  overlay?: boolean;
 }
 
 export type DropdownProps = Omit<PopperProps, "portal">;

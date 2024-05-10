@@ -4,26 +4,53 @@ import stylex from "@stylexjs/stylex";
 import { useClassNames } from "../config";
 import { ComponentToken, StepsClassToken } from "../../utils/class-name";
 import clsx from "clsx";
+import { spacing } from "../theme/tokens.stylex";
 
 const styles = stylex.create({
-  leading: {},
+  step: {
+    flex: 1,
+    display: "grid",
+    grid: "'leading title' '. description'",
+    alignItems: "center",
+    columnGap: spacing.xsmall,
+    overflow: "hidden",
+  },
 
-  title: {},
+  leading: {
+    gridArea: "leading",
+  },
 
-  description: {},
+  title: {
+    gridArea: "title",
+    position: "relative",
+    alignItems: "center",
+
+    "::after": {
+      content: "''",
+      position: "absolute",
+      height: 1,
+      width: 99999,
+      backgroundColor: "red",
+    },
+  },
+
+  description: {
+    gridArea: "description",
+  },
 });
 
 const Item = ({ leading, title, description }: StepItemProps) => {
   const classNames = useClassNames(ComponentToken.Steps);
 
   const styled = {
+    step: stylex.props(styles.step),
     leading: stylex.props(styles.leading),
     title: stylex.props(styles.title),
     description: stylex.props(styles.description),
   };
 
   return (
-    <li className={classNames[StepsClassToken.Item]}>
+    <li className={clsx(classNames[StepsClassToken.Item], styled.step.className)} style={styled.step.style}>
       <div className={clsx(classNames[StepsClassToken.Leading], styled.leading.className)} style={styled.leading.style}>
         {leading}
       </div>
