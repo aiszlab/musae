@@ -49,6 +49,7 @@ export enum ComponentToken {
   Rate,
   Tour,
   Steps,
+  Timeline,
 }
 
 /**
@@ -207,6 +208,13 @@ export enum StepsClassToken {
   Leading,
   Title,
   Description,
+  Done,
+  Doing,
+  Todo,
+}
+export enum TimelineClassToken {
+  Timeline,
+  Item,
 }
 
 /**
@@ -366,9 +374,16 @@ export const CLASS_NAMES = {
   [ComponentToken.Steps]: {
     [StepsClassToken.Steps]: "steps",
     [StepsClassToken.Item]: "steps__item",
+    [StepsClassToken.Done]: "steps__item--done",
+    [StepsClassToken.Doing]: "steps__item--doing",
+    [StepsClassToken.Todo]: "steps__item--todo",
     [StepsClassToken.Leading]: "steps__item-leading",
     [StepsClassToken.Title]: "steps__item-title",
     [StepsClassToken.Description]: "steps__item-description",
+  },
+  [ComponentToken.Timeline]: {
+    [TimelineClassToken.Timeline]: "timeline",
+    [TimelineClassToken.Item]: "timeline__item",
   },
 };
 

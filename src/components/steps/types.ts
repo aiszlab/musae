@@ -1,6 +1,9 @@
 import type { ReactNode } from "react";
+import { ComponentProps } from "../../types/element";
 
 export type Status = "done" | "doing" | "todo";
+
+export type Type = "horizontal" | "vertical";
 
 /**
  * @description
@@ -30,7 +33,7 @@ type StepItem = {
  * @description
  * steps props
  */
-export type StepsProps = {
+export type StepsProps = ComponentProps & {
   /**
    * @description
    * items
@@ -42,6 +45,21 @@ export type StepsProps = {
    * value
    */
   value?: number;
+
+  /**
+   * @description
+   * step change handler
+   */
+  onChange?: (value: number) => void;
+
+  /**
+   * @description
+   * steps type
+   * `horizontal` or `vertical`
+   *
+   * @default horizontal
+   */
+  type?: Type;
 };
 
 /**
@@ -54,4 +72,28 @@ export type StepItemProps = StepItem & {
    * status
    */
   status: Status;
+
+  /**
+   * @description
+   * current item value
+   */
+  value: number;
+};
+
+/**
+ * @description
+ * steps context value
+ */
+export type ContextValue = {
+  /**
+   * @description
+   * click handler
+   */
+  onChange?: (value: number) => void;
+
+  /**
+   * @description
+   * steps type: depends on steps prop
+   */
+  type: Type;
 };
