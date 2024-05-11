@@ -40,6 +40,7 @@ export { Space } from "./components/space";
 export { Rate } from "./components/rate";
 export { Tour } from "./components/tour";
 export { Steps } from "./components/steps";
+export { Timeline } from "./components/timeline";
 
 /**
  * @description

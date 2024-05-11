@@ -1,16 +1,18 @@
 import React, { useMemo } from "react";
-import type { StepsProps, Status, ContextValue } from "./types";
+import type { StepsProps, ContextValue } from "./types";
 import Item from "./item";
 import { useClassNames } from "../config";
 import { ComponentToken, StepsClassToken } from "../../utils/class-name";
 import stylex from "@stylexjs/stylex";
 import clsx from "clsx";
 import { Context } from "./context";
+import { spacing } from "../theme/tokens.stylex";
 
 const styles = stylex.create({
   steps: {
     display: "flex",
     alignItems: "flex-start",
+    gap: spacing.small,
   },
 
   horizontal: {
@@ -30,7 +32,7 @@ const styles = stylex.create({
  * 1. `Steps` only be controlled
  * 2. render by `items` prop
  */
-const Steps = ({ items, value = 0, className, style, type = "horizontal", onChange, ...props }: StepsProps) => {
+const Steps = ({ items, value = 0, className, style, type = "horizontal", onChange }: StepsProps) => {
   const classNames = useClassNames(ComponentToken.Steps);
 
   const styled = {
@@ -41,8 +43,10 @@ const Steps = ({ items, value = 0, className, style, type = "horizontal", onChan
     () => ({
       type,
       onChange,
+      max: items.length - 1,
+      value,
     }),
-    [type, onChange]
+    [type, onChange, items.length, value]
   );
 
   return (
@@ -54,20 +58,9 @@ const Steps = ({ items, value = 0, className, style, type = "horizontal", onChan
           ...style,
         }}
       >
-        {items.map((item, index) => {
-          const status: Status = index > value ? "todo" : index === value ? "doing" : "done";
-
-          return (
-            <Item
-              value={index}
-              title={item.title}
-              leading={item.leading}
-              key={index}
-              status={status}
-              description={item.description}
-            />
-          );
-        })}
+        {items.map((item, index) => (
+          <Item value={index} title={item.title} leading={item.leading} key={index} description={item.description} />
+        ))}
       </ol>
     </Context.Provider>
   );

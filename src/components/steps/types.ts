@@ -69,12 +69,6 @@ export type StepsProps = ComponentProps & {
 export type StepItemProps = StepItem & {
   /**
    * @description
-   * status
-   */
-  status: Status;
-
-  /**
-   * @description
    * current item value
    */
   value: number;
@@ -96,4 +90,16 @@ export type ContextValue = {
    * steps type: depends on steps prop
    */
   type: Type;
+
+  /**
+   * @description
+   * max
+   */
+  max: number;
+
+  /**
+   * @description
+   * value
+   */
+  value: number;
 };

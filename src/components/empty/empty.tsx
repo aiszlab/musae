@@ -16,7 +16,7 @@ const styles = stylex.create({
   },
 
   label: {
-    marginTop: spacing.small,
+    marginBlockStart: spacing.small,
   },
 });
 

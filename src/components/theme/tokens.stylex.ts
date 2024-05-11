@@ -76,8 +76,8 @@ export const tracking = defineVars({
  */
 export const positions = defineVars({
   min: "1",
-  popper: "2",
   header: "50",
+  popper: "60",
   dialog: "1080",
   drawer: "1080",
   tour: "1080",

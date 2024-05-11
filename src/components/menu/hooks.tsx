@@ -16,7 +16,7 @@ const styles = stylex.create({
   },
 
   suffix: {
-    marginLeft: spacing.auto,
+    marginInlineStart: spacing.auto,
   },
 
   collapser: (props: { isExpanded: boolean }) => ({

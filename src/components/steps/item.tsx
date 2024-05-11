@@ -1,5 +1,5 @@
 import React, { useContext, type CSSProperties } from "react";
-import type { StepItemProps } from "./types";
+import type { Status, StepItemProps } from "./types";
 import stylex from "@stylexjs/stylex";
 import { useClassNames } from "../config";
 import { ComponentToken, StepsClassToken } from "../../utils/class-name";
@@ -9,6 +9,7 @@ import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
 import { useEvent } from "@aiszlab/relax";
 import { Context } from "./context";
+import { typography } from "../theme/theme";
 
 const styles = {
   step: stylex.create({
@@ -40,6 +41,9 @@ const styles = {
         height: sizes.infinity,
         width: sizes.smallest,
         backgroundColor: props.color,
+        marginBlockStart: spacing.small,
+        insetBlockStart: "100%",
+        insetInlineStart: "50%",
       },
     }),
   }),
@@ -59,6 +63,8 @@ const styles = {
         height: sizes.smallest,
         width: sizes.infinity,
         backgroundColor: props.color,
+        marginInlineStart: spacing.small,
+        insetBlockStart: "50%",
       },
     }),
   }),
@@ -70,32 +76,37 @@ const styles = {
   }),
 };
 
-const Item = ({ leading, title, description, status, value }: StepItemProps) => {
+const Item = ({ leading, title, description, value }: StepItemProps) => {
   const classNames = useClassNames(ComponentToken.Steps);
   const theme = useTheme();
-  const { type, onChange } = useContext(Context);
+  const { type, onChange, value: _value, max } = useContext(Context);
 
+  const status: Status = _value < value ? "todo" : _value === value ? "doing" : "done";
   const isClickable = !!onChange && status !== "doing";
   const isHorizontal = type === "horizontal";
   const isVertical = type === "vertical";
+  const isMax = value === max;
 
   const styled = {
     step: stylex.props(styles.step.default, isClickable && styles.step.clickable),
     leading: stylex.props(
       styles.leading.default,
       isVertical &&
+        !isMax &&
         styles.leading.vertical({
           color: theme.colors[ColorToken.Primary],
         })
     ),
     title: stylex.props(
+      typography.title.medium,
       styles.title.default,
       isHorizontal &&
+        !isMax &&
         styles.title.horizontal({
           color: theme.colors[ColorToken.Primary],
         })
     ),
-    description: stylex.props(styles.description.default),
+    description: stylex.props(typography.body.medium, styles.description.default),
   };
 
   const click = useEvent(() => {

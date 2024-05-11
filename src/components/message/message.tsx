@@ -33,7 +33,7 @@ const styles = stylex.create({
 
     transform: "translateY(-100%)",
     opacity: 0,
-    marginTop: 0,
+    marginBlockStart: 0,
   }),
 
   content: {
@@ -49,7 +49,7 @@ const Message = ({ duration = 3000, type, onClose, children }: MessageProps) => 
 
   /// after duration, message will auto destory
   useTimeout(async () => {
-    await animate(scope.current, { opacity: 0, marginTop: scope.current.getBoundingClientRect().height * -1 });
+    await animate(scope.current, { opacity: 0, marginBlockStart: scope.current.getBoundingClientRect().height * -1 });
     onClose?.();
   }, duration);
 
