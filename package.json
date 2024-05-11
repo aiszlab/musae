@@ -10,7 +10,7 @@
     "build": "rollup -c",
     "prepublish": "rm -rf dist && npm run build",
     "relink": "yarn unlink && yarn link",
-    "test": "jest --clearCache && NODE_OPTIONS=--experimental-vm-modules npx jest"
+    "test": "vitest"
   },
   "exports": {
     ".": {
@@ -43,13 +43,20 @@
     "@rollup/plugin-typescript": "^11.1.6",
     "@stylexjs/rollup-plugin": "^0.5.1",
     "@stylexjs/stylex": "^0.5.1",
+    "@testing-library/jest-dom": "^6.4.5",
+    "@testing-library/react": "^15.0.7",
+    "@testing-library/user-event": "^14.5.2",
     "@types/dom-view-transitions": "^1.0.4",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "eslint": "^8.56.0",
     "eslint-config-react-app": "^7.0.1",
+    "jsdom": "^24.0.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "rollup": "^4.9.6",
-    "typescript": "^5.4.2"
+    "typescript": "^5.4.2",
+    "vitest": "^1.6.0"
   },
   "peerDependencies": {
     "react": "^18",
