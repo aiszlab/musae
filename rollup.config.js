@@ -57,7 +57,6 @@ const configuration = {
     typescript(),
     babel({
       babelHelpers: "bundled",
-      presets: ["@babel/preset-env", "@babel/preset-react", "@babel/preset-typescript"],
     }),
     stylexPlugin({
       fileName: CSS_ASSET_FILENAME,

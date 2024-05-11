@@ -9,7 +9,8 @@
     "dev": "rollup -c -w",
     "build": "rollup -c",
     "prepublish": "rm -rf dist && npm run build",
-    "relink": "yarn unlink && yarn link"
+    "relink": "yarn unlink && yarn link",
+    "test": "jest --clearCache && NODE_OPTIONS=--experimental-vm-modules npx jest"
   },
   "exports": {
     ".": {
@@ -68,5 +69,12 @@
       "react-app"
     ]
   },
-  "homepage": "https://aisz.dev/"
+  "homepage": "https://aisz.dev/",
+  "babel": {
+    "presets": [
+      "@babel/preset-env",
+      "@babel/preset-react",
+      "@babel/preset-typescript"
+    ]
+  }
 }
