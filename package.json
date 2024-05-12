@@ -32,8 +32,8 @@
     "react-hook-form": "^7.47.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.22.5",
-    "@babel/preset-env": "^7.22.5",
+    "@babel/core": "^7.24.5",
+    "@babel/preset-env": "^7.24.5",
     "@babel/preset-react": "^7.22.5",
     "@babel/preset-typescript": "^7.22.5",
     "@rollup/plugin-babel": "^6.0.4",
@@ -42,12 +42,13 @@
     "@rollup/plugin-typescript": "^11.1.6",
     "@stylexjs/rollup-plugin": "^0.5.1",
     "@stylexjs/stylex": "^0.5.1",
+    "@types/babel__core": "^7.20.5",
     "@types/dom-view-transitions": "^1.0.4",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "eslint": "^8.56.0",
     "eslint-config-react-app": "^7.0.1",
-    "rollup": "^4.9.6",
+    "rollup": "^4.17.2",
     "typescript": "^5.4.2"
   },
   "peerDependencies": {
