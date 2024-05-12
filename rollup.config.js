@@ -12,13 +12,17 @@ import { dirname } from "path";
 const CSS_ASSET_FILENAME = "stylex.css";
 const ENTRY = "index";
 
-/** @type {import("rollup").RollupOptions['input']} */
+/**
+ * @type {import("rollup").RollupOptions['input']}
+ */
 const input = {
   [ENTRY]: "./src/index",
   "components/icon/icons/index": "./src/components/icon/icons/index",
 };
 
-/** @type {import("rollup").RollupOptions} */
+/**
+ * @type {import("rollup").RollupOptions}
+ */
 const configuration = {
   input,
 

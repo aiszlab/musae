@@ -41,11 +41,12 @@
     "@rollup/plugin-commonjs": "^25.0.7",
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@rollup/plugin-typescript": "^11.1.6",
-    "@stylexjs/rollup-plugin": "^0.5.1",
+    "@stylexjs/rollup-plugin": "^0.6.1",
     "@stylexjs/stylex": "^0.5.1",
     "@testing-library/jest-dom": "^6.4.5",
     "@testing-library/react": "^15.0.7",
     "@testing-library/user-event": "^14.5.2",
+    "@types/babel__core": "^7.20.5",
     "@types/dom-view-transitions": "^1.0.4",
     "@types/react": "^18",
     "@types/react-dom": "^18",
@@ -76,12 +77,5 @@
       "react-app"
     ]
   },
-  "homepage": "https://aisz.dev/",
-  "babel": {
-    "presets": [
-      "@babel/preset-env",
-      "@babel/preset-react",
-      "@babel/preset-typescript"
-    ]
-  }
+  "homepage": "https://aisz.dev/"
 }
