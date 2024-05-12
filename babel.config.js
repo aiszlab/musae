@@ -5,7 +5,7 @@ const config = (api) => {
   api.cache.never();
 
   return {
-    presets: ["@babel/preset-env", "@babel/preset-react", "@babel/preset-typescript"],
+    presets: [],
   };
 };
 

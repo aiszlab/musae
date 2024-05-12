@@ -6,19 +6,19 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "dev": "rollup -c -w",
-    "build": "rollup -c",
+    "dev": "rollup -c -w --environment NODE_ENV:development",
+    "build": "rollup -c --environment NODE_ENV:production",
     "prepublish": "rm -rf dist && npm run build",
     "relink": "yarn unlink && yarn link"
   },
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "default": "./dist/index.mjs"
+      "default": "./dist/index.js"
     },
     "./icons": {
       "types": "./dist/components/icon/icons/index.d.ts",
-      "default": "./dist/components/icon/icons/index.mjs"
+      "default": "./dist/components/icon/icons/index.js"
     }
   },
   "dependencies": {

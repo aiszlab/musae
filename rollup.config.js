@@ -1,7 +1,6 @@
-import babel from "@rollup/plugin-babel";
 import resolve from "@rollup/plugin-node-resolve";
 import typescript from "@rollup/plugin-typescript";
-import stylexPlugin from "@stylexjs/rollup-plugin";
+import stylex from "@stylexjs/rollup-plugin";
 import commonjs from "@rollup/plugin-commonjs";
 
 import pkg from "./package.json" assert { type: "json" };
@@ -21,57 +20,59 @@ const input = {
 };
 
 /**
- * @type {import("rollup").RollupOptions}
+ * @type {import("rollup").RollupOptionsFunction}
  */
-const configuration = {
-  input,
+const config = () => {
+  const isProd = process.env.NODE_ENV === "production";
 
-  output: {
-    format: "es",
-    dir: "./dist",
-    banner: (chunk) => {
-      if (chunk.isEntry && chunk.name === ENTRY) {
-        // configuration readme: https://rollupjs.org/configuration-options/#output-banner-output-footer
-        // update imports, importedBindings
-        // add css to entry chunk
-        chunk.imports.push(CSS_ASSET_FILENAME);
-        Object.assign(chunk.importedBindings, {
-          [CSS_ASSET_FILENAME]: [],
-        });
+  return {
+    input,
 
-        return `import "./${CSS_ASSET_FILENAME}";`;
-      }
-    },
-    preserveModules: true,
-    preserveModulesRoot: "src",
-  },
+    output: {
+      format: "es",
+      dir: "./dist",
+      banner: (chunk) => {
+        if (isProd && chunk.isEntry && chunk.name === ENTRY) {
+          // configuration readme: https://rollupjs.org/configuration-options/#output-banner-output-footer
+          // update imports, importedBindings
+          // add css to entry chunk
+          chunk.imports.push(CSS_ASSET_FILENAME);
+          Object.assign(chunk.importedBindings, {
+            [CSS_ASSET_FILENAME]: [],
+          });
 
-  treeshake: {
-    moduleSideEffects: false,
-  },
-
-  strictDeprecations: true,
-
-  plugins: [
-    commonjs(),
-    resolve({
-      extensions: [".ts", ".tsx", ".js", ".jsx"],
-    }),
-    typescript(),
-    babel({
-      babelHelpers: "bundled",
-    }),
-    stylexPlugin({
-      fileName: CSS_ASSET_FILENAME,
-      classNamePrefix: "musae-",
-      unstable_moduleResolution: {
-        type: "commonJS",
-        rootDir: dirname(fileURLToPath(import.meta.url)),
+          return `import "./${CSS_ASSET_FILENAME}";`;
+        }
       },
-    }),
-  ],
+      preserveModules: true,
+      preserveModulesRoot: "src",
+    },
 
-  external: [...Object.keys(pkg.dependencies), ...Object.keys(pkg.peerDependencies)],
+    treeshake: {
+      moduleSideEffects: false,
+    },
+
+    strictDeprecations: true,
+
+    plugins: [
+      commonjs(),
+      resolve({
+        extensions: [".ts", ".tsx", ".js", ".jsx"],
+      }),
+      typescript(),
+
+      stylex({
+        fileName: CSS_ASSET_FILENAME,
+        classNamePrefix: "musae-",
+        unstable_moduleResolution: {
+          type: "commonJS",
+          rootDir: dirname(fileURLToPath(import.meta.url)),
+        },
+      }),
+    ],
+
+    external: [...Object.keys(pkg.dependencies), ...Object.keys(pkg.peerDependencies)],
+  };
 };
 
-export default configuration;
+export default config;
