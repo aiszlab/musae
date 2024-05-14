@@ -3,10 +3,10 @@
  */
 const config = async () => {
   return {
-    transformIgnorePatterns: [],
+    testEnvironment: "jsdom",
+    transformIgnorePatterns: ["node_modules/(?!(@aiszlab/relax)/)"],
     transform: {
       "\\.[jt]sx?$": "babel-jest",
-      "\\.mjs$": "babel-jest",
     },
   };
 };

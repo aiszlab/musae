@@ -33,7 +33,7 @@ const Empty = () => {
   };
 
   return (
-    <div className={styled.empty.className} style={styled.empty.style}>
+    <div className={clsx(classNames[EmptyClassToken.Empty], styled.empty.className)} style={styled.empty.style}>
       <svg width="64" height="41" viewBox="0 0 64 41" xmlns="http://www.w3.org/2000/svg">
         <g transform="translate(0 1)" fill="none" fillRule="evenodd">
           <ellipse fill="#f5f5f5" cx="32" cy="33" rx="32" ry="7" />
@@ -47,7 +47,7 @@ const Empty = () => {
         </g>
       </svg>
 
-      <div className={clsx(styled.label.className, classNames[EmptyClassToken.Description])} style={styled.label.style}>
+      <div className={clsx(classNames[EmptyClassToken.Description], styled.label.className)} style={styled.label.style}>
         暂无数据
       </div>
     </div>

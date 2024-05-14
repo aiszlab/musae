@@ -88,6 +88,7 @@ export enum RadioClassToken {
   Radio,
 }
 export enum EmptyClassToken {
+  Empty,
   Description,
 }
 export enum ButtonClassToken {
@@ -257,6 +258,7 @@ export const CLASS_NAMES = {
     [RadioClassToken.Radio]: "radio",
   },
   [ComponentToken.Empty]: {
+    [EmptyClassToken.Empty]: "empty",
     [EmptyClassToken.Description]: "empty__description",
   },
   [ComponentToken.Button]: {
