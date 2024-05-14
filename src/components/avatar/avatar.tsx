@@ -1,10 +1,13 @@
-import React, { CSSProperties, useContext } from "react";
+import React, { type CSSProperties, useContext } from "react";
 import type { AvatarProps } from "./types";
 import * as stylex from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { Context } from "./context";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
+import { useClassNames } from "../config";
+import { AvatarClassToken, ComponentToken } from "../../utils/class-name";
+import clsx from "clsx";
 
 const styles = stylex.create({
   avatar: {
@@ -58,6 +61,7 @@ const Avatar = ({ src, alt, ...props }: AvatarProps) => {
   const isInGroup = !!group;
   const size = group?.size ?? props.size ?? "medium";
   const shape = group?.shape ?? props.shape ?? "circular";
+  const classNames = useClassNames(ComponentToken.Avatar);
 
   const styled = {
     avatar: stylex.props(
@@ -73,7 +77,7 @@ const Avatar = ({ src, alt, ...props }: AvatarProps) => {
   };
 
   return (
-    <span {...styled.avatar}>
+    <span className={clsx(classNames[AvatarClassToken.Avatar], styled.avatar.className)} style={styled.avatar.style}>
       <img {...styled.image} src={src} alt={alt} />
     </span>
   );

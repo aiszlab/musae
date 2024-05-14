@@ -17,7 +17,7 @@ const styles = stylex.create({
   }),
 });
 
-const Row = ({ align, children, gutter, justify, className, as: As = "div", ...props }: RowProps) => {
+const Row = ({ align, children, gutter, justify, className, as: As = "div", style }: RowProps) => {
   /// col and row gap in grid
   const [columnGap, rowGap] = useGutters({ gutter });
   const classNames = useClassNames(ComponentToken.Grid);
@@ -28,7 +28,7 @@ const Row = ({ align, children, gutter, justify, className, as: As = "div", ...p
       className={clsx(classNames[GridClassToken.Row], className, styled.className)}
       style={{
         ...styled.style,
-        ...props.style,
+        ...style,
       }}
     >
       {children}

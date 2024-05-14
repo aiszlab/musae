@@ -1,32 +1,11 @@
 import type { ReactNode } from "react";
+import { ComponentProps } from "../../types/element";
 
 /**
- * @author murukal
- *
  * @description
- * breadcrumb props
+ * item
  */
-export interface BreadcrumbProps {
-  /**
-   * @description
-   * breadcrumb items
-   */
-  items: BreadcrumbItemProps[];
-
-  /**
-   * @description
-   * separator
-   */
-  separator?: ReactNode;
-}
-
-/**
- * @author murukal
- *
- * @description
- * item props
- */
-export interface BreadcrumbItemProps {
+export type BreadcrumbItem = {
   /**
    * @description
    * item display label
@@ -39,4 +18,40 @@ export interface BreadcrumbItemProps {
    * if link is not provided, item will display as a label
    */
   href?: string;
-}
+};
+
+/**
+ * @description
+ * breadcrumb props
+ */
+export type BreadcrumbProps = ComponentProps & {
+  /**
+   * @description
+   * breadcrumb items
+   */
+  items: BreadcrumbItem[];
+
+  /**
+   * @description
+   * separator
+   */
+  separator?: ReactNode;
+};
+
+/**
+ * @description
+ * breadcrumb item props
+ */
+export type BreadcrumbItemProps = BreadcrumbItem & {
+  /**
+   * @description
+   * max
+   */
+  max: boolean;
+
+  /**
+   * @description
+   * separator
+   */
+  separator?: ReactNode;
+};

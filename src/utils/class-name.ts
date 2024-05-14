@@ -50,6 +50,8 @@ export enum ComponentToken {
   Tour,
   Steps,
   Timeline,
+  Breadcrumb,
+  Avatar,
 }
 
 /**
@@ -216,6 +218,15 @@ export enum StepsClassToken {
 export enum TimelineClassToken {
   Timeline,
   Item,
+}
+export enum BreadcrumbClassToken {
+  Breadcrumb,
+  Item,
+  Separator,
+}
+export enum AvatarClassToken {
+  Avatar,
+  Group,
 }
 
 /**
@@ -386,6 +397,15 @@ export const CLASS_NAMES = {
   [ComponentToken.Timeline]: {
     [TimelineClassToken.Timeline]: "timeline",
     [TimelineClassToken.Item]: "timeline__item",
+  },
+  [ComponentToken.Breadcrumb]: {
+    [BreadcrumbClassToken.Breadcrumb]: "breadcrumb",
+    [BreadcrumbClassToken.Item]: "breadcrumb__item",
+    [BreadcrumbClassToken.Separator]: "breadcrumb__separator",
+  },
+  [ComponentToken.Avatar]: {
+    [AvatarClassToken.Avatar]: "avatar",
+    [AvatarClassToken.Group]: "avatar__group",
   },
 };
 

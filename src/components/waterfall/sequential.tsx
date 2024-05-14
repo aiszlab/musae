@@ -18,7 +18,6 @@ const Sequential = ({
   className,
   style,
   rowGap,
-  ...props
 }: RequiredIn<Omit<WaterfallProps, "sequential" | "gutter">, "children" | "columns"> & {
   rowGap: number;
 }) => {

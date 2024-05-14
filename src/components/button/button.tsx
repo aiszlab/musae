@@ -20,7 +20,8 @@ const styles = stylex.create({
     alignItems: "center",
     gap: spacing.small,
     whiteSpace: "nowrap",
-    transition: "all 0.3s",
+    transitionProperty: "all",
+    transitionDuration: "0.3s",
     willChange: "background-color, color, box-shadow",
   },
 
@@ -84,14 +85,15 @@ const styles = stylex.create({
     },
   }),
 
-  disabled: (props: { color: CSSProperties["color"]; backgroundColor: CSSProperties["backgroundColor"] }) => ({
+  disabled: (props: {
+    color: CSSProperties["color"];
+    backgroundColor: CSSProperties["backgroundColor"];
+    outlineColor: CSSProperties["borderColor"] | null;
+  }) => ({
     backgroundColor: props.backgroundColor,
     color: props.color,
     cursor: "not-allowed",
     boxShadow: null,
-  }),
-
-  disabledOutline: (props: { outlineColor: CSSProperties["borderColor"] }) => ({
     borderColor: props.outlineColor,
   }),
 });
@@ -155,11 +157,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           styles.disabled({
             backgroundColor: variant === "filled" ? layer(theme.colors[ColorToken.OnSurface], "medium") : "transparent",
             color: layer(theme.colors[ColorToken.OnSurface], "thicker"),
-          }),
-        disabled &&
-          variant === "outlined" &&
-          styles.disabledOutline({
-            outlineColor: layer(theme.colors[ColorToken.OnSurface], "thicker"),
+            outlineColor: variant === "outlined" ? layer(theme.colors[ColorToken.OnSurface], "thicker") : null,
           })
       ),
     };

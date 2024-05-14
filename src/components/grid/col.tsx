@@ -12,7 +12,7 @@ const styles = stylex.create({
   }),
 });
 
-const Col = ({ children, className, span = 8, as: As = "div", ...props }: ColProps) => {
+const Col = ({ children, className, span = 8, as: As = "div", style }: ColProps) => {
   const styled = stylex.props(styles.col({ span }));
   const classNames = useClassNames(ComponentToken.Grid);
 
@@ -21,7 +21,7 @@ const Col = ({ children, className, span = 8, as: As = "div", ...props }: ColPro
       className={clsx(classNames[GridClassToken.Col], className, styled.className)}
       style={{
         ...styled.style,
-        ...props.style,
+        ...style,
       }}
     >
       {children}

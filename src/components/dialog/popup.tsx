@@ -84,7 +84,7 @@ const Popup = ({ onClose, open, dismissable = true, onClosed, ...props }: PopupP
   useEffect(() => {
     (async () => {
       if (open) {
-        scope.current.attributeStyleMap.set("display", "flex");
+        scope.current.style.display = "flex";
         await Promise.all([
           panelRef.current && animate(panelRef.current, { opacity: 1 }),
           overlayRef.current && animate(overlayRef.current, { opacity: 0.8 }),
@@ -96,7 +96,7 @@ const Popup = ({ onClose, open, dismissable = true, onClosed, ...props }: PopupP
         panelRef.current && animate(panelRef.current, { opacity: 0 }),
         overlayRef.current && animate(overlayRef.current, { opacity: 0 }),
       ]);
-      scope.current.attributeStyleMap.set("display", "none");
+      scope.current.style.display = "none";
       onClosed?.();
     })();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -128,7 +128,13 @@ const Popup = ({ onClose, open, dismissable = true, onClosed, ...props }: PopupP
   };
 
   return (
-    <div ref={scope} className={styled.popup.className} style={styled.popup.style} tabIndex={-1} onKeyDown={onKeyDown}>
+    <div
+      ref={scope}
+      className={clsx(classNames[DialogClassToken.Dialog], styled.popup.className)}
+      style={styled.popup.style}
+      tabIndex={-1}
+      onKeyDown={onKeyDown}
+    >
       {/* overlay */}
       <div
         className={clsx(classNames[DialogClassToken.Overlay], styled.overlay.className)}

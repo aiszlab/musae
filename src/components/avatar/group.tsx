@@ -1,7 +1,9 @@
 import React from "react";
 import * as stylex from "@stylexjs/stylex";
-import { AvatarGroupProps } from "./types";
+import { type AvatarGroupProps } from "./types";
 import { Context } from "./context";
+import { useClassNames } from "../config";
+import { AvatarClassToken, ComponentToken } from "../../utils/class-name";
 
 const styles = stylex.create({
   group: {
@@ -11,6 +13,7 @@ const styles = stylex.create({
 
 const Group = ({ children, shape = "circular", size = "medium" }: AvatarGroupProps) => {
   const styled = stylex.props(styles.group);
+  const classNames = useClassNames(ComponentToken.Avatar);
 
   return (
     <Context.Provider
@@ -19,7 +22,9 @@ const Group = ({ children, shape = "circular", size = "medium" }: AvatarGroupPro
         size,
       }}
     >
-      <div {...styled}>{children}</div>
+      <div className={(classNames[AvatarClassToken.Group], styled.className)} style={styled.style}>
+        {children}
+      </div>
     </Context.Provider>
   );
 };
