@@ -1,18 +1,25 @@
-import React, { useContext } from "react";
+import React, { type CSSProperties, useContext } from "react";
 import { TimelineItemProps } from "./types";
 import stylex from "@stylexjs/stylex";
 import { Context } from "./context";
 import { sizes, spacing } from "../theme/tokens.stylex";
+import { useClassNames } from "../config";
+import { ComponentToken, TimelineClassToken } from "../../utils/class-name";
+import clsx from "clsx";
+import { useTheme } from "../theme";
+import { ColorToken } from "../../utils/colors";
 
 const styles = {
   item: stylex.create({
-    default: {
+    default: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
       display: "grid",
       justifyContent: "flex-start",
+      alignItems: "center",
       gap: spacing.medium,
       overflow: "hidden",
       paddingBottom: spacing.xlarge,
-    },
+      backgroundColor: props.backgroundColor,
+    }),
 
     right: {
       grid: "'leading description'",
@@ -56,8 +63,15 @@ const styles = {
   }),
 
   leading: stylex.create({
-    default: {
+    default: (props: { color: CSSProperties["color"] }) => ({
       gridArea: "leading",
+      width: sizes.xxxsmall,
+      height: sizes.xxxsmall,
+      borderRadius: sizes.infinity,
+      backgroundColor: props.color,
+    }),
+
+    vertical: (props: { color: CSSProperties["color"] }) => ({
       position: "relative",
 
       "::after": {
@@ -65,12 +79,10 @@ const styles = {
         position: "absolute",
         height: sizes.infinity,
         width: sizes.smallest,
-        backgroundColor: "#000",
-        marginBlockStart: spacing.xxxsmall,
-        insetBlockStart: "100%",
-        insetInlineStart: "50%",
+        backgroundColor: props.color,
+        insetInlineStart: `calc((100% - ${sizes.smallest}) / 2)`,
       },
-    },
+    }),
   }),
 
   description: stylex.create({
@@ -80,26 +92,35 @@ const styles = {
   }),
 };
 
-const Item = ({ description, label }: TimelineItemProps) => {
-  const { mode } = useContext(Context);
+const Item = ({ description, label, value }: TimelineItemProps) => {
+  const classNames = useClassNames(ComponentToken.Timeline);
+  const { mode, max } = useContext(Context);
+  const theme = useTheme();
   const isLabeled = !!label;
+  const isMax = max === value;
+
   const styled = {
-    item: stylex.props(styles.item.default, styles.item[mode], isLabeled && styles.labeled[mode]),
+    item: stylex.props(
+      styles.item.default({ backgroundColor: theme.colors[ColorToken.Surface] }),
+      styles.item[mode],
+      isLabeled && styles.labeled[mode]
+    ),
     label: stylex.props(styles.label.default),
-    leading: stylex.props(styles.leading.default),
+    leading: stylex.props(
+      styles.leading.default({ color: theme.colors[ColorToken.Primary] }),
+      !isMax && styles.leading.vertical({ color: theme.colors[ColorToken.Primary] })
+    ),
     description: stylex.props(styles.description.default),
   };
 
   return (
-    <li className={styled.item.className} style={styled.item.style}>
+    <li className={clsx(classNames[TimelineClassToken.Item], styled.item.className)} style={styled.item.style}>
       {isLabeled && (
         <div className={styled.label.className} style={styled.label.style}>
           {label}
         </div>
       )}
-      <div className={styled.leading.className} style={styled.leading.style}>
-        dots
-      </div>
+      <div className={styled.leading.className} style={styled.leading.style} />
       <div className={styled.description.className} style={styled.description.style}>
         {description}
       </div>

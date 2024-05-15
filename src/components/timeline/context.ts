@@ -3,4 +3,5 @@ import { ContextValue } from "./types";
 
 export const Context = createContext<ContextValue>({
   mode: "right",
+  max: 0,
 });

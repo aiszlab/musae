@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useMemo } from "react";
 import Item from "./item";
-import { TimelineProps } from "./types";
+import type { ContextValue, TimelineProps } from "./types";
 import stylex from "@stylexjs/stylex";
+import { Context } from "./context";
+import { useClassNames } from "../config";
+import { ComponentToken, TimelineClassToken } from "../../utils/class-name";
+import clsx from "clsx";
 
 const styles = stylex.create({
   timeline: {
@@ -12,13 +16,24 @@ const styles = stylex.create({
 
 const Timeline = ({ items, mode = "right" }: TimelineProps) => {
   const styled = stylex.props(styles.timeline);
+  const classNames = useClassNames(ComponentToken.Timeline);
+
+  const contextValue = useMemo<ContextValue>(
+    () => ({
+      mode,
+      max: items.length - 1,
+    }),
+    [mode, items.length]
+  );
 
   return (
-    <ol className={styled.className} style={styled.style}>
-      {items.map((item, index) => {
-        return <Item key={index} label={item.label} description={item.description} />;
-      })}
-    </ol>
+    <Context.Provider value={contextValue}>
+      <ol className={clsx(classNames[TimelineClassToken.Timeline], styled.className)} style={styled.style}>
+        {items.map((item, index) => {
+          return <Item key={index} value={index} label={item.label} description={item.description} />;
+        })}
+      </ol>
+    </Context.Provider>
   );
 };
 

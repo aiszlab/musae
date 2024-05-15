@@ -42,7 +42,13 @@ export type TimelineProps = {
  * @description
  * timeline item props
  */
-export type TimelineItemProps = TimelineItem;
+export type TimelineItemProps = TimelineItem & {
+  /**
+   * @description
+   * value
+   */
+  value: number;
+};
 
 /**
  * @description
@@ -54,4 +60,10 @@ export type ContextValue = {
    * you can use `mode` to switch the direction of the timeline
    */
   mode: Mode;
+
+  /**
+   * @description
+   * max
+   */
+  max: number;
 };
