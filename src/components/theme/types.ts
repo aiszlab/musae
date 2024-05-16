@@ -20,7 +20,10 @@ export interface Props {
    */
   children: ReactNode;
 
-  /* theme */
+  /**
+   * @description
+   * theme
+   */
   theme?: Theme;
 }
 
