@@ -7,14 +7,10 @@ import { useClassNames } from "../config";
 import { ComponentToken, DatePickerClassToken } from "../../utils/class-name";
 import * as stylex from "@stylexjs/stylex";
 import clsx from "clsx";
-import { sizes, spacing } from "../theme/tokens.stylex";
+import { spacing } from "../theme/tokens.stylex";
+import { styles as inputStyles } from "../input";
 
 const styles = stylex.create({
-  trigger: {
-    outline: "none",
-    width: sizes.full,
-  },
-
   calendar: {
     padding: spacing.xxsmall,
   },
@@ -26,7 +22,7 @@ const DatePicker = (props: DatePickerProps) => {
   const classNames = useClassNames(ComponentToken.DatePicker);
 
   const styled = {
-    trigger: stylex.props(styles.trigger),
+    input: stylex.props(inputStyles.input),
     calendar: stylex.props(styles.calendar),
   };
 
@@ -45,8 +41,8 @@ const DatePicker = (props: DatePickerProps) => {
       popupWidth={false}
     >
       <input
-        className={clsx(classNames[DatePickerClassToken.Input], styled.trigger.className)}
-        style={styled.trigger.style}
+        className={clsx(classNames[DatePickerClassToken.Input], styled.input.className)}
+        style={styled.input.style}
         value={value?.format("YYYY-MM-DD") ?? ""}
         readOnly
       />

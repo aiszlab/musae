@@ -34,7 +34,7 @@ export interface TabItemProps {
   onClick: (key: string) => void;
 }
 
-export interface TabItem {
+export type TabItem = {
   /**
    * @description
    * key
@@ -46,7 +46,7 @@ export interface TabItem {
    * label
    */
   label: string;
-}
+};
 
 export interface ContextValue {
   /**

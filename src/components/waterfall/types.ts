@@ -30,5 +30,5 @@ export type WaterfallProps = ComponentProps & {
    * sequential
    * use list order rather than add to the shortest column
    */
-  sequential?: boolean
+  sequential?: boolean;
 };

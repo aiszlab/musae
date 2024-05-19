@@ -1,4 +1,4 @@
-import React from "react";
+import React, { CSSProperties } from "react";
 import { useDateCells, useHeadCells, useFocusedAt, useValue } from "./hooks";
 import type { CalendarProps } from "./types";
 import {
@@ -14,14 +14,17 @@ import { spacing } from "../theme/tokens.stylex";
 import { typography } from "../theme/theme";
 import clsx from "clsx";
 import { Button } from "../button";
+import { useTheme } from "../theme";
+import { ColorToken } from "../../utils/colors";
 
 const styles = stylex.create({
-  header: {
+  header: (props: { color: CSSProperties["color"] }) => ({
     display: "flex",
     alignItems: "center",
     columnGap: spacing.small,
     paddingInline: spacing.medium,
-  },
+    color: props.color,
+  }),
 
   heading: {
     flex: 1,
@@ -36,9 +39,15 @@ const Calendar = ({ className, style, ...props }: CalendarProps) => {
   const dateCells = useDateCells([timespan, focusedAt, onClick]);
   const headCells = useHeadCells();
   const classNames = useClassNames(ComponentToken.Calendar);
+  const theme = useTheme();
 
   const styled = {
-    header: stylex.props(typography.label.large, styles.header),
+    header: stylex.props(
+      typography.label.large,
+      styles.header({
+        color: theme.colors[ColorToken.OnSurfaceVariant],
+      })
+    ),
     heading: stylex.props(styles.heading),
   };
 

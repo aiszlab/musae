@@ -1,5 +1,5 @@
-import dayjs, { Dayjs } from "dayjs";
-import React, { CSSProperties, ReactNode, useCallback, useMemo } from "react";
+import dayjs, { type Dayjs } from "dayjs";
+import React, { type CSSProperties, type ReactNode, useCallback, useMemo } from "react";
 import { useClassNames } from "../config";
 import { CalendarClassToken, ComponentToken } from "../../utils/class-name";
 import { isArray, useControlledState } from "@aiszlab/relax";
@@ -18,11 +18,12 @@ const styles = stylex.create({
     height: sizes.xlarge,
     width: sizes.xlarge,
     padding: spacing.none,
-  },
-
-  header: {
     textAlign: "center",
   },
+
+  header: (props: { color: CSSProperties["color"] }) => ({
+    color: props.color,
+  }),
 
   date: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
     position: "relative",
@@ -72,16 +73,23 @@ const styles = stylex.create({
  */
 export const useHeadCells = () => {
   const classNames = useClassNames(ComponentToken.Calendar);
+  const theme = useTheme();
 
   return useMemo(() => {
-    const styled = stylex.props(styles.cell, styles.header, typography.body.large);
+    const styled = stylex.props(
+      styles.cell,
+      styles.header({
+        color: theme.colors[ColorToken.OnSurfaceVariant],
+      }),
+      typography.body.large
+    );
 
     return dayjs.Ls[dayjs.locale()].weekdays?.map((weekday, index) => (
       <th key={index} className={clsx(classNames[CalendarClassToken.HeadCell], styled.className)} style={styled.style}>
         {weekday.charAt(0)}
       </th>
     ));
-  }, [classNames]);
+  }, [classNames, theme]);
 };
 
 /**

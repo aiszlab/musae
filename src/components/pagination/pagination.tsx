@@ -12,8 +12,13 @@ const styles = stylex.create({
   },
 });
 
-const Pagination = (props: PagiantionProps) => {
-  const { paginationItems, add, subtract, changePage, page, hasNext, hasPrev } = usePagiantion(props);
+const Pagination = ({ total = 0, siblings = 1, boundaries = 1, pageSize = 0 }: PagiantionProps) => {
+  const { paginationItems, add, subtract, changePage, page, hasNext, hasPrev } = usePagiantion({
+    boundaries,
+    pageSize,
+    siblings,
+    total,
+  });
   const styled = stylex.props(styles.pagination);
 
   return (

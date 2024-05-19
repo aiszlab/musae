@@ -1,6 +1,6 @@
 import { clamp, range, useCounter } from "@aiszlab/relax";
 import { useMemo } from "react";
-import { type PagiantionProps, type PaginationItems, PaginationItemType } from "./types";
+import { type PaginationItems, PaginationItemType } from "./types";
 
 /**
  * @author murukal
@@ -8,8 +8,18 @@ import { type PagiantionProps, type PaginationItems, PaginationItemType } from "
  * @description
  * use pagination
  */
-export const usePagiantion = ({ total = 0, siblings = 1, boundaries = 1, ...dependencies }: PagiantionProps) => {
-  const pageSize = dependencies.pageSize || 10;
+export const usePagiantion = ({
+  total,
+  siblings,
+  boundaries,
+  ...props
+}: {
+  total: number;
+  siblings: number;
+  boundaries: number;
+  pageSize: number;
+}) => {
+  const pageSize = props.pageSize;
   const pages = Math.ceil(total / pageSize);
   const [page, { add, subtract, setCount }] = useCounter(1, {
     min: 1,

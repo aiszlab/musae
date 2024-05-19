@@ -89,7 +89,7 @@ const Picker = forwardRef<PickerRef, PickerProps>(
       ),
       pickable: stylex.props(
         styles.pickable({
-          backgroundColor: theme.colors[ColorToken.SurfaceContainerLowest],
+          backgroundColor: theme.colors[ColorToken.SurfaceContainerHigh],
           minWidth: getDropdownWidth(),
         })
       ),

@@ -33,7 +33,14 @@ const styles = stylex.create({
   }),
 });
 
-const Waterfall = ({ columns = 4, gutter, children = [], sequential = false, className, style }: WaterfallProps) => {
+const Waterfall = ({
+  columns = 4,
+  gutter = 8,
+  children = [],
+  sequential = false,
+  className,
+  style,
+}: WaterfallProps) => {
   const [columnGap, rowGap] = useGutters({ gutter });
   const { collect, maxHeight, getOrder, items, repaint } = useRepaint({ columns, rowGap });
 

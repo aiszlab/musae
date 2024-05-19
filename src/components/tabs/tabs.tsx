@@ -29,9 +29,9 @@ const styles = stylex.create({
   }),
 });
 
-const Tabs = (props: TabsProps) => {
+const Tabs = ({ items = [], className, style, ...props }: TabsProps) => {
   const [_activeKey, _setActiveKey] = useControlledState(props.activeKey, {
-    defaultState: props.items[0]?.key,
+    defaultState: items.at(0)?.key,
   });
   const [indicatorScope, animateIndicatorScope] = useAnimate<HTMLDivElement>();
   const tabItemRefs = useRef<Map<string, HTMLButtonElement | null>>(new Map());
@@ -70,7 +70,7 @@ const Tabs = (props: TabsProps) => {
   );
 
   /// if there is not any item, return null
-  if (!props.items.length) return null;
+  if (items.length === 0) return null;
 
   const styled = {
     tabs: stylex.props(
@@ -90,13 +90,13 @@ const Tabs = (props: TabsProps) => {
     <Context.Provider value={contextValue}>
       <div
         role="tablist"
-        className={clsx(classNames[TabsClassToken.Tabs], styled.tabs.className, props.className)}
+        className={clsx(classNames[TabsClassToken.Tabs], className, styled.tabs.className)}
         style={{
           ...styled.tabs.style,
-          ...props.style,
+          ...style,
         }}
       >
-        {props.items.map((tabItem) => {
+        {items.map((tabItem) => {
           return <Item key={tabItem.key} value={tabItem.key} label={tabItem.label} onClick={onItemClick} />;
         })}
         <div

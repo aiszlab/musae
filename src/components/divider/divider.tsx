@@ -1,5 +1,5 @@
-import { DividerProps } from "./types";
-import React, { CSSProperties } from "react";
+import { type DividerProps } from "./types";
+import React, { type CSSProperties } from "react";
 import { useOffset } from "./hooks";
 import { useClassNames } from "../config";
 import { ComponentToken, DividerClassToken } from "../../utils/class-name";
@@ -10,98 +10,114 @@ import { ColorToken } from "../../utils/colors";
 import { typography } from "../theme/theme";
 import clsx from "clsx";
 
-const styles = stylex.create({
-  horizontal: {
-    width: sizes.full,
-  },
-
-  vertical: {
-    height: sizes.full,
-  },
-
-  horizontalLabeled: (props: { backgroundColor: CSSProperties["backgroundColor"]; offset: number }) => ({
-    display: "flex",
-    flexDirection: "row",
-    alignItems: "center",
-
-    "::before": {
-      height: 1,
-      width: `${props.offset}%`,
-      backgroundColor: props.backgroundColor,
-      content: "''",
+const styles = {
+  divider: stylex.create({
+    horizontal: {
+      width: sizes.full,
     },
 
-    "::after": {
-      height: 1,
-      width: `${100 - props.offset}%`,
-      backgroundColor: props.backgroundColor,
-      content: "''",
+    vertical: {
+      height: sizes.full,
     },
   }),
 
-  verticalLabeled: (props: { backgroundColor: CSSProperties["backgroundColor"]; offset: number }) => ({
-    display: "flex",
-    flexDirection: "row",
-    alignItems: "center",
-
-    "::before": {
-      width: 1,
-      height: `${props.offset}%`,
+  simple: stylex.create({
+    horizontal: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
+      height: sizes.smallest,
       backgroundColor: props.backgroundColor,
-      content: "''",
+    }),
+
+    vertical: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
+      height: sizes.smallest,
+      backgroundColor: props.backgroundColor,
+    }),
+  }),
+
+  labeled: stylex.create({
+    horizontal: (props: { backgroundColor: CSSProperties["backgroundColor"]; offset: number }) => ({
+      display: "flex",
+      flexDirection: "row",
+      alignItems: "center",
+
+      "::before": {
+        height: sizes.smallest,
+        width: `${props.offset}%`,
+        backgroundColor: props.backgroundColor,
+        content: "''",
+      },
+
+      "::after": {
+        height: sizes.smallest,
+        width: `${100 - props.offset}%`,
+        backgroundColor: props.backgroundColor,
+        content: "''",
+      },
+    }),
+
+    vertical: (props: { backgroundColor: CSSProperties["backgroundColor"]; offset: number }) => ({
+      display: "flex",
+      flexDirection: "row",
+      alignItems: "center",
+
+      "::before": {
+        width: sizes.smallest,
+        height: `${props.offset}%`,
+        backgroundColor: props.backgroundColor,
+        content: "''",
+      },
+
+      "::after": {
+        width: sizes.smallest,
+        height: `${100 - props.offset}%`,
+        backgroundColor: props.backgroundColor,
+        content: "''",
+      },
+    }),
+  }),
+
+  label: stylex.create({
+    horizontal: {
+      marginInline: spacing.small,
+      whiteSpace: "nowrap",
     },
 
-    "::after": {
-      width: 1,
-      height: `${100 - props.offset}%`,
-      backgroundColor: props.backgroundColor,
-      content: "''",
+    vertical: {
+      marginBlock: spacing.small,
+      whiteSpace: "nowrap",
     },
   }),
+};
 
-  horizontalUnlabeled: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
-    height: 1,
-    backgroundColor: props.backgroundColor,
-  }),
-
-  verticalUnlabeled: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
-    width: 1,
-    backgroundColor: props.backgroundColor,
-  }),
-
-  horizontalLabel: {
-    marginInline: spacing.small,
-    whiteSpace: "nowrap",
-  },
-
-  verticalLabel: {
-    marginBlock: spacing.small,
-    whiteSpace: "nowrap",
-  },
-});
-
-const Divider = ({ align, children, type = "horizontal" }: DividerProps) => {
+const Divider = ({ align = "center", children, type = "horizontal", className, style }: DividerProps) => {
   const classNames = useClassNames(ComponentToken.Divider);
-  const offset = useOffset([align]);
+  const offset = useOffset({ align });
   const theme = useTheme();
+  const isLabeled = !!children;
 
   const styled = {
     divider: stylex.props(
-      styles[type],
-      !!children
-        ? styles[type === "horizontal" ? "horizontalLabeled" : "verticalLabeled"]({
-            backgroundColor: theme.colors[ColorToken.OutlineVariant],
-            offset,
-          })
-        : styles[type === "horizontal" ? "horizontalUnlabeled" : "verticalUnlabeled"]({
-            backgroundColor: theme.colors[ColorToken.OutlineVariant],
-          })
+      styles.divider[type],
+      !isLabeled &&
+        styles.simple[type]({
+          backgroundColor: theme.colors[ColorToken.OutlineVariant],
+        }),
+      isLabeled &&
+        styles.labeled[type]({
+          backgroundColor: theme.colors[ColorToken.OutlineVariant],
+          offset,
+        })
     ),
-    label: stylex.props(typography.body.small, styles[type === "horizontal" ? "horizontalLabel" : "verticalLabel"]),
+    label: stylex.props(typography.body.small, styles.label[type]),
   };
 
   return (
-    <div className={clsx(styled.divider.className, classNames[DividerClassToken.Divider])} style={styled.divider.style}>
+    <div
+      className={clsx(styled.divider.className, className, classNames[DividerClassToken.Divider])}
+      style={{
+        ...styled.divider.style,
+        ...style,
+      }}
+    >
       {!!children && (
         <span className={clsx(styled.label.className, classNames[DividerClassToken.Label])} style={styled.label.style}>
           {children}

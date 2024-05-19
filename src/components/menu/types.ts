@@ -116,7 +116,7 @@ export interface MenuProps extends ComponentProps {
  * @description
  * menu item
  */
-export interface MenuItem extends ComponentProps {
+export type MenuItem = ComponentProps & {
   /**
    * @description
    * key
@@ -140,7 +140,7 @@ export interface MenuItem extends ComponentProps {
    * children
    */
   children?: MenuItem[];
-}
+};
 
 /**
  * @author murukal

@@ -1,6 +1,5 @@
 import { useMemo } from "react";
 import { Align } from "./types";
-import type { Partialable } from "@aiszlab/relax/types";
 
 const OFFSET = new Map<Align, 5 | 50 | 95>([
   ["center", 50],
@@ -8,12 +7,16 @@ const OFFSET = new Map<Align, 5 | 50 | 95>([
   ["right", 95],
 ]);
 
+interface UseOffsetProps {
+  align: Align;
+}
+
 /**
  * @description
  * offset for children
  */
-export const useOffset = ([align]: [align: Partialable<Align>]) => {
+export const useOffset = ({ align }: UseOffsetProps) => {
   return useMemo(() => {
-    return OFFSET.get(align ?? "center") ?? 50;
+    return OFFSET.get(align) ?? 50;
   }, [align]);
 };
