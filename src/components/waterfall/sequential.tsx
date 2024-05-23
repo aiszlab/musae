@@ -32,7 +32,7 @@ const Sequential = ({
           const next = addedIndex + 1;
           return [grouped, next >= columns ? 0 : next];
         },
-        [new Array<ReactNode[]>(columns).fill([]).map(() => []), 0]
+        [Array.from({ length: columns }, () => []), 0]
       )[0]
       .filter((column) => column.length > 0);
   }, [children, columns]);

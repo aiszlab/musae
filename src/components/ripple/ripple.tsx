@@ -12,7 +12,7 @@ const styles = stylex.create({
     pointerEvents: "none",
   },
 
-  position: (props: Pick<RippleType, "x" | "y">) => ({
+  position: (props: { x: number; y: number }) => ({
     position: "absolute",
     top: props.y,
     left: props.x,
