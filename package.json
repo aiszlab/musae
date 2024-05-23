@@ -1,6 +1,6 @@
 {
   "name": "musae",
-  "version": "0.1.44",
+  "version": "0.1.45",
   "description": "musae-ui",
   "author": "tutu@fantufantu.com",
   "license": "MIT",
@@ -23,7 +23,7 @@
     }
   },
   "dependencies": {
-    "@aiszlab/relax": "^1.2.38",
+    "@aiszlab/relax": "^1.2.40",
     "@floating-ui/dom": "^1.6.5",
     "@tanstack/react-table": "^8.16.0",
     "clsx": "^2.1.1",
