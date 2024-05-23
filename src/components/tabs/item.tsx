@@ -24,7 +24,7 @@ const Item = ({ value, onClick, ...props }: TabItemProps) => {
   return (
     <Button
       variant="text"
-      color={isActive ? "primary" : "tertiary"}
+      color={isActive ? "primary" : "secondary"}
       ref={setItem}
       onClick={click}
       className={classNames[TabsClassToken.Item]}

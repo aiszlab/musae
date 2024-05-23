@@ -4,7 +4,7 @@ import { Portal } from "../portal";
 import Popup from "./popup";
 import { useBoolean } from "@aiszlab/relax";
 
-const Drawer = ({ open, ...props }: DrawerProps) => {
+const Drawer = ({ open, size = 400, dismissable = true, placement = "right", ...props }: DrawerProps) => {
   /// `Portal` should disappear after `Dialog` disappear completely
   const [_isVisible, { turnOn, turnOff }] = useBoolean(false);
 
@@ -17,7 +17,7 @@ const Drawer = ({ open, ...props }: DrawerProps) => {
 
   return (
     <Portal open={open || _isVisible}>
-      <Popup open={open} {...props} onClosed={turnOff} />
+      <Popup {...props} onClosed={turnOff} size={size} open={open} dismissable={dismissable} placement={placement} />
     </Portal>
   );
 };

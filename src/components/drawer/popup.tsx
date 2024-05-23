@@ -41,33 +41,33 @@ const styles = stylex.create({
     transform: props.transform,
   }),
 
-  right: {
+  right: (props: { size: number }) => ({
     right: 0,
     top: 0,
     bottom: 0,
-    width: 400,
-  },
+    width: props.size,
+  }),
 
-  left: {
+  left: (props: { size: number }) => ({
     left: 0,
     top: 0,
     bottom: 0,
-    width: 400,
-  },
+    width: props.size,
+  }),
 
-  bottom: {
+  bottom: (props: { size: number }) => ({
     bottom: 0,
     left: 0,
     right: 0,
-    height: 400,
-  },
+    height: props.size,
+  }),
 
-  top: {
+  top: (props: { size: number }) => ({
     top: 0,
     left: 0,
     right: 0,
-    height: 400,
-  },
+    height: props.size,
+  }),
 
   header: {
     display: "flex",
@@ -81,7 +81,7 @@ const styles = stylex.create({
   },
 });
 
-const Popup = ({ open, onClose, placement = "right", dismissable = true, onClosed, ...props }: PopupProps) => {
+const Popup = ({ open, onClose, placement, dismissable, onClosed, size, ...props }: PopupProps) => {
   const [scope, animate] = useAnimate<HTMLDivElement>();
   const classNames = useClassNames(ComponentToken.Drawer);
   const _placement = PLACEMENTS[placement];
@@ -95,7 +95,7 @@ const Popup = ({ open, onClose, placement = "right", dismissable = true, onClose
   useEffect(() => {
     (async () => {
       if (open) {
-        scope.current.attributeStyleMap.set("display", "block");
+        scope.current.style.display = "block";
         await Promise.all([
           panelRef.current && animate(panelRef.current, { transform: _placement.at(1) }),
           overlayRef.current && animate(overlayRef.current, { opacity: 0.8 }),
@@ -107,7 +107,7 @@ const Popup = ({ open, onClose, placement = "right", dismissable = true, onClose
         panelRef.current && animate(panelRef.current, { transform: _placement.at(0) }),
         overlayRef.current && animate(overlayRef.current, { opacity: 0 }),
       ]);
-      scope.current.attributeStyleMap.set("display", "none");
+      scope.current.style.display = "none";
       onClosed?.();
     })();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -133,7 +133,7 @@ const Popup = ({ open, onClose, placement = "right", dismissable = true, onClose
         backgroundColor: theme.colors[ColorToken.OnPrimary],
         transform: _placement.at(0),
       }),
-      styles[placement]
+      styles[placement]({ size })
     ),
     header: stylex.props(typography.body.large, styles.header),
     body: stylex.props(styles.body),

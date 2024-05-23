@@ -1,4 +1,7 @@
+import { RequiredIn } from "@aiszlab/relax/types";
 import { ReactNode } from "react";
+
+type Open = (content: string, duration?: number) => Promise<void>;
 
 /**
  * @description
@@ -45,3 +48,85 @@ export type NotificationProps = {
    */
   children?: ReactNode;
 };
+
+/**
+ * @description
+ * notification config
+ */
+export type NotificationConfig = Omit<NotificationProps, "onClose" | "children" | "placement"> & {
+  /**
+   * @description
+   * message key
+   */
+  key?: string;
+
+  /**
+   * @description
+   * content
+   */
+  content: string;
+
+  /**
+   * @description
+   * placement
+   */
+  placement?: Placement;
+};
+
+/**
+ * @author murukal
+ *
+ * @description
+ * messager
+ */
+export interface Notifier {
+  /**
+   * @description
+   * show success notification
+   */
+  success: Open;
+
+  /**
+   * @description
+   * show error notification
+   */
+  error: Open;
+
+  /**
+   * @description
+   * show info notification
+   */
+  info: Open;
+
+  /**
+   * @description
+   * show warning notification
+   */
+  warning: Open;
+
+  /**
+   * @description
+   * show loading notification
+   */
+  loading: Open;
+
+  /**
+   * @description
+   * show config notification
+   */
+  open: (config: NotificationConfig) => Promise<void>;
+}
+
+/**
+ * @author murukal
+ *
+ * @description
+ * notifier ref
+ */
+export interface NotifierRef {
+  /**
+   * @description
+   * add handler
+   */
+  add: (configuration: RequiredIn<NotificationConfig, "key">) => void;
+}

@@ -43,6 +43,18 @@ export interface DrawerProps {
    * Whether the drawer can be closed by clicking on the overlay or pressing the Esc key.
    */
   dismissable?: boolean | Dismissable[];
+
+  /**
+   * @description
+   * size
+   * horizontal drawer, size prop mean width
+   * vertical drawer, size prop mean height
+   *
+   * @default 400
+   *
+   * // TODO: add prop to docs
+   */
+  size?: number;
 }
 
 /**
@@ -50,6 +62,15 @@ export interface DrawerProps {
  * popup
  */
 export type PopupProps = DrawerProps & {
+  /* {DrawerProps.size} */
+  size: number;
+
+  /* {DrawerProps.dismissable} */
+  dismissable: boolean | Dismissable[];
+
+  /* {DrawerProps.placement} */
+  placement: Placement;
+
   /**
    * @description
    * callback will be toggled after close animation end

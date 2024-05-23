@@ -52,6 +52,7 @@ export enum ComponentToken {
   Timeline,
   Breadcrumb,
   Avatar,
+  Notification,
 }
 
 /**
@@ -227,6 +228,12 @@ export enum BreadcrumbClassToken {
 export enum AvatarClassToken {
   Avatar,
   Group,
+}
+export enum NotificationClassToken {
+  Notification,
+  Title,
+  Description,
+  Closer,
 }
 
 /**
@@ -406,6 +413,12 @@ export const CLASS_NAMES = {
   [ComponentToken.Avatar]: {
     [AvatarClassToken.Avatar]: "avatar",
     [AvatarClassToken.Group]: "avatar__group",
+  },
+  [ComponentToken.Notification]: {
+    [NotificationClassToken.Notification]: "notification",
+    [NotificationClassToken.Title]: "notification__title",
+    [NotificationClassToken.Description]: "notification__description",
+    [NotificationClassToken.Closer]: "notification__closer",
   },
 };
 

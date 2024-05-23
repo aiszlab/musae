@@ -16,14 +16,14 @@ const styles = stylex.create({
   tabs: (props: { outline: CSSProperties["borderBottomColor"] }) => ({
     display: "flex",
     borderBottomColor: props.outline,
-    borderBottomWidth: "1px",
+    borderBottomWidth: sizes.smallest,
     borderBottomStyle: "solid",
     position: "relative",
   }),
 
-  indicator: (props: { indicatorColor: CSSProperties["backgroundColor"] }) => ({
+  indicator: (props: { color: CSSProperties["backgroundColor"] }) => ({
     height: sizes.xxxxsmall,
-    backgroundColor: props.indicatorColor,
+    backgroundColor: props.color,
     position: "absolute",
     bottom: spacing.none,
   }),
@@ -80,12 +80,11 @@ const Tabs = ({ items = [], className, style, ...props }: TabsProps) => {
     ),
     indicator: stylex.props(
       styles.indicator({
-        indicatorColor: theme.colors[ColorToken.Primary],
+        color: theme.colors[ColorToken.Primary],
       })
     ),
   };
 
-  /// render tabs
   return (
     <Context.Provider value={contextValue}>
       <div
@@ -99,6 +98,7 @@ const Tabs = ({ items = [], className, style, ...props }: TabsProps) => {
         {items.map((tabItem) => {
           return <Item key={tabItem.key} value={tabItem.key} label={tabItem.label} onClick={onItemClick} />;
         })}
+
         <div
           ref={indicatorScope}
           className={clsx(classNames[TabsClassToken.Indicator], styled.indicator.className)}
