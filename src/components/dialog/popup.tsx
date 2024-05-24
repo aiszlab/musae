@@ -3,7 +3,7 @@ import type { PopupProps } from "./types";
 import { useFooter } from "./hooks";
 import { useAnimate } from "framer-motion";
 import { ComponentToken, DialogClassToken } from "../../utils/class-name";
-import { useClassNames } from "../config";
+import { useClassNames } from "../../hooks/use-class-names";
 import * as stylex from "@stylexjs/stylex";
 import { positions, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";

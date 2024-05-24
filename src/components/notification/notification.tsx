@@ -5,7 +5,7 @@ import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
 import { NotificationProps, Placement, Direction } from "./types";
 import { useTimeout } from "@aiszlab/relax";
-import { useClassNames } from "../config/hooks";
+import { useClassNames } from "../../hooks/use-class-names";
 import { ComponentToken, NotificationClassToken } from "../../utils/class-name";
 import clsx from "clsx";
 import { elevations, sizes, spacing } from "../theme/tokens.stylex";

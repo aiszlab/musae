@@ -11,7 +11,7 @@ import { useBoolean, useEvent, useFocus, chain } from "@aiszlab/relax";
 import { useEvents } from "./hooks";
 import type { PickerProps, PickerRef } from "./types";
 import { ComponentToken, PickerClassToken } from "../../utils/class-name";
-import { useClassNames } from "../config";
+import { useClassNames } from "../../hooks/use-class-names";
 import * as stylex from "@stylexjs/stylex";
 import { elevations, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";

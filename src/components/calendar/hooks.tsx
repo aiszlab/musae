@@ -1,6 +1,6 @@
 import dayjs, { type Dayjs } from "dayjs";
 import React, { type CSSProperties, type ReactNode, useCallback, useMemo } from "react";
-import { useClassNames } from "../config";
+import { useClassNames } from "../../hooks/use-class-names";
 import { CalendarClassToken, ComponentToken } from "../../utils/class-name";
 import { isArray, useControlledState } from "@aiszlab/relax";
 import { Timespan } from "../../utils/timespan";

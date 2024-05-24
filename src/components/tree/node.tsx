@@ -1,6 +1,6 @@
 import React, { type CSSProperties, useContext } from "react";
 import type { TreeNodeProps } from "./types";
-import { useClassNames } from "../config";
+import { useClassNames } from "../../hooks/use-class-names";
 import { ComponentToken, TreeClassToken } from "../../utils/class-name";
 import Context from "./context";
 import { Checkbox } from "../checkbox";

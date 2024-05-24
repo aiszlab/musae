@@ -2,7 +2,7 @@ import React, { CSSProperties, ChangeEventHandler, useCallback, useContext, useM
 import { useControlledState } from "@aiszlab/relax";
 import Context from "./context";
 import type { CheckboxProps } from "./types";
-import { useClassNames } from "../config";
+import { useClassNames } from "../../hooks/use-class-names";
 import { CheckboxClassToken, ComponentToken } from "../../utils/class-name";
 import clsx from "clsx";
 import * as stylex from "@stylexjs/stylex";

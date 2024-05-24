@@ -11,7 +11,7 @@ import React, {
 import { useTimeUnit } from "./hooks";
 import { ColumnProps } from "./types";
 import { Menu, MenuRef } from "../menu";
-import { useClassNames } from "../config";
+import { useClassNames } from "../../hooks/use-class-names";
 import { ClockClassToken, ComponentToken } from "../../utils/class-name";
 import { isVoid } from "@aiszlab/relax";
 import * as stylex from "@stylexjs/stylex";

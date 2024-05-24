@@ -6,7 +6,7 @@ import { layers, sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
 import clsx from "clsx";
-import { useClassNames } from "../config";
+import { useClassNames } from "../../hooks/use-class-names";
 import { ComponentToken, SwitchClassToken } from "../../utils/class-name";
 import { Close, Check } from "../icon/icons";
 import { layer } from "../../utils/layer";

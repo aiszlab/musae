@@ -1,6 +1,6 @@
 import type { ButtonProps } from "./types";
 import React, { type CSSProperties, forwardRef } from "react";
-import { useClassNames } from "../config";
+// import { useClassNames } from "../../hooks/use-class-names";
 import { ButtonClassToken, ComponentToken } from "../../utils/class-name";
 import clsx from "clsx";
 import * as stylex from "@stylexjs/stylex";
@@ -11,6 +11,7 @@ import { Ripple } from "../ripple";
 import { typography } from "../theme/theme";
 import { ColorToken } from "../../utils/colors";
 import { layer } from "../../utils/layer";
+import { useClassNames } from "../../hooks/use-class-names";
 
 const styles = stylex.create({
   button: {

@@ -1,6 +1,6 @@
 import React, { type CSSProperties, forwardRef, useCallback, useImperativeHandle, useState } from "react";
 import { Clock } from "../clock";
-import { useClassNames } from "../config";
+import { useClassNames } from "../../hooks/use-class-names";
 import { ComponentToken, TimePickerClassToken } from "../../utils/class-name";
 import { Button } from "../button";
 import type { PanelProps, PanelRef } from "./types";

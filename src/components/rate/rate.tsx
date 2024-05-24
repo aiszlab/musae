@@ -1,7 +1,7 @@
 import React from "react";
 import type { RateProps } from "./types";
 import stylex from "@stylexjs/stylex";
-import { useClassNames } from "../config";
+import { useClassNames } from "../../hooks/use-class-names";
 import { ComponentToken, RateClassToken } from "../../utils/class-name";
 import clsx from "clsx";
 import { useHover, useValue } from "./hooks";

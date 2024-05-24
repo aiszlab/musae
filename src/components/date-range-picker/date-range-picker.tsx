@@ -4,7 +4,7 @@ import { useValue } from "./hooks";
 import { DateRangePickerProps } from "./types";
 import { Calendar } from "../calendar";
 import { SwapHoriz } from "../icon/icons";
-import { useClassNames } from "../config";
+import { useClassNames } from "../../hooks/use-class-names";
 import { ComponentToken, DateRangePickerClassToken } from "../../utils/class-name";
 import * as stylex from "@stylexjs/stylex";
 import clsx from "clsx";

@@ -4,7 +4,7 @@ import { Tag } from "../tag";
 import { useOptions, useValue } from "./hooks";
 import { Menu, type MenuProps } from "../menu";
 import type { CascaderProps } from "./types";
-import { useClassNames } from "../config";
+import { useClassNames } from "../../hooks/use-class-names";
 import { CascaderClassToken, ComponentToken } from "../../utils/class-name";
 import * as stylex from "@stylexjs/stylex";
 import clsx from "clsx";

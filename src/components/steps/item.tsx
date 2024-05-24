@@ -1,7 +1,7 @@
 import React, { useContext, type CSSProperties } from "react";
 import type { Status, StepItemProps } from "./types";
 import stylex from "@stylexjs/stylex";
-import { useClassNames } from "../config";
+import { useClassNames } from "../../hooks/use-class-names";
 import { ComponentToken, StepsClassToken } from "../../utils/class-name";
 import clsx from "clsx";
 import { sizes, spacing } from "../theme/tokens.stylex";

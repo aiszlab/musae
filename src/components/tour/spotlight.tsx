@@ -4,7 +4,7 @@ import { computePosition, size, autoUpdate, offset } from "@floating-ui/dom";
 import { Nullable } from "@aiszlab/relax/types";
 import stylex from "@stylexjs/stylex";
 import clsx from "clsx";
-import { useClassNames } from "../config";
+import { useClassNames } from "../../hooks/use-class-names";
 import { ComponentToken, TourClassToken } from "../../utils/class-name";
 import { SpotlightProps } from "./types";
 import { sizes } from "../theme/tokens.stylex";

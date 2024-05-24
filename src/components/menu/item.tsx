@@ -1,7 +1,7 @@
 import React, { type CSSProperties, forwardRef, useRef } from "react";
 import { MenuItemProps } from "./types";
 import { useItemChildren, useMenuContext } from "./hooks";
-import { useClassNames } from "../config";
+import { useClassNames } from "../../hooks/use-class-names";
 import { ComponentToken, MenuClassToken } from "../../utils/class-name";
 import * as stylex from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";

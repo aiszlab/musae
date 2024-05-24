@@ -2,7 +2,7 @@ import React, { useCallback, useContext } from "react";
 import { Button } from "../button";
 import type { TabItemProps } from "./types";
 import Context from "./context";
-import { useClassNames } from "../config";
+import { useClassNames } from "../../hooks/use-class-names";
 import { ComponentToken, TabsClassToken } from "../../utils/class-name";
 
 const Item = ({ value, onClick, ...props }: TabItemProps) => {

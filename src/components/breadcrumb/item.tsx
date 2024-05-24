@@ -4,7 +4,7 @@ import { sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
 import { type BreadcrumbItemProps } from "./types";
-import { useClassNames } from "../config";
+import { useClassNames } from "../../hooks/use-class-names";
 import { BreadcrumbClassToken, ComponentToken } from "../../utils/class-name";
 import clsx from "clsx";
 

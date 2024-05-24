@@ -1,7 +1,7 @@
 import React, { type CSSProperties } from "react";
 import clsx from "clsx";
 import type { TagProps } from "./types";
-import { useClassNames } from "../config";
+import { useClassNames } from "../../hooks/use-class-names";
 import { TagClassToken, ComponentToken } from "../../utils/class-name";
 import * as stylex from "@stylexjs/stylex";
 import { useTheme } from "../theme";

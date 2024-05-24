@@ -3,7 +3,7 @@ import Item from "./item";
 import type { ContextValue, TimelineProps } from "./types";
 import stylex from "@stylexjs/stylex";
 import { Context } from "./context";
-import { useClassNames } from "../config";
+import { useClassNames } from "../../hooks/use-class-names";
 import { ComponentToken, TimelineClassToken } from "../../utils/class-name";
 import clsx from "clsx";
 

@@ -6,7 +6,7 @@ import Node from "./node";
 import clsx from "clsx";
 import { useAnimate } from "framer-motion";
 import Context from "./context";
-import { useClassNames } from "../config";
+import { useClassNames } from "../../hooks/use-class-names";
 import { ComponentToken, TreeClassToken } from "../../utils/class-name";
 import { useExpandEffect } from "../../hooks/use-expand-effect";
 

@@ -7,7 +7,7 @@ import {
   KeyboardArrowLeft,
   KeyboardArrowRight,
 } from "../icon/icons";
-import { useClassNames } from "../config";
+import { useClassNames } from "../../hooks/use-class-names";
 import { CalendarClassToken, ComponentToken } from "../../utils/class-name";
 import * as stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";

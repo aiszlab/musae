@@ -1,7 +1,7 @@
 import { type DividerProps } from "./types";
 import React, { type CSSProperties } from "react";
 import { useOffset } from "./hooks";
-import { useClassNames } from "../config";
+import { useClassNames } from "../../hooks/use-class-names";
 import { ComponentToken, DividerClassToken } from "../../utils/class-name";
 import * as stylex from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";

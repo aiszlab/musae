@@ -1,7 +1,7 @@
 import React, { CSSProperties, forwardRef } from "react";
 import type { MenuGroupProps } from "./types";
 import { useAnimate } from "framer-motion";
-import { useClassNames } from "../config";
+import { useClassNames } from "../../hooks/use-class-names";
 import { ComponentToken, MenuClassToken } from "../../utils/class-name";
 import clsx from "clsx";
 import Item from "./item";

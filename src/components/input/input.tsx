@@ -8,7 +8,7 @@ import { sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
 import clsx from "clsx";
-import { useClassNames } from "../config";
+import { useClassNames } from "../../hooks/use-class-names";
 
 export const styles = stylex.create({
   wrapper: (props: { outlineColor: CSSProperties["borderColor"] }) => ({

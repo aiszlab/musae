@@ -5,7 +5,7 @@ import { useScrollable } from "@aiszlab/relax";
 import { useContextValue, useScrollDirection } from "./hooks";
 import Group from "./group";
 import * as stylex from "@stylexjs/stylex";
-import { useClassNames } from "../config";
+import { useClassNames } from "../../hooks/use-class-names";
 import { ComponentToken, MenuClassToken } from "../../utils/class-name";
 import clsx from "clsx";
 

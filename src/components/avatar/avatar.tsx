@@ -5,7 +5,7 @@ import { sizes, spacing } from "../theme/tokens.stylex";
 import { Context } from "./context";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
-import { useClassNames } from "../config";
+import { useClassNames } from "../../hooks/use-class-names";
 import { AvatarClassToken, ComponentToken } from "../../utils/class-name";
 import clsx from "clsx";
 

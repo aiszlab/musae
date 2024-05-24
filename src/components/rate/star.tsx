@@ -3,7 +3,7 @@ import { useEvent, useHover } from "@aiszlab/relax";
 import stylex from "@stylexjs/stylex";
 import { sizes } from "../theme/tokens.stylex";
 import clsx from "clsx";
-import { useClassNames } from "../config";
+import { useClassNames } from "../../hooks/use-class-names";
 import { ComponentToken, RateClassToken } from "../../utils/class-name";
 import { Star as _Star } from "../icon/icons";
 import { StarProps } from "./types";

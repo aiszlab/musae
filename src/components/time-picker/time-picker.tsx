@@ -2,7 +2,7 @@ import React, { useMemo, useRef } from "react";
 import { Picker, type PickerRef } from "../picker";
 import type { PanelRef, TimePickerProps } from "./types";
 import clsx from "clsx";
-import { useClassNames } from "../config";
+import { useClassNames } from "../../hooks/use-class-names";
 import { ComponentToken, TimePickerClassToken } from "../../utils/class-name";
 import Panel from "./panel";
 import { useValue } from "./hooks";

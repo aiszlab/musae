@@ -1,5 +1,5 @@
 import React from "react";
-import { useClassNames } from "../config";
+import { useClassNames } from "../../hooks/use-class-names";
 import { ClockClassToken, ComponentToken } from "../../utils/class-name";
 import { ClockProps, TimeUnit } from "./types";
 import Column from "./column";

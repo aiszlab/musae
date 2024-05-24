@@ -4,7 +4,7 @@ import * as stylex from "@stylexjs/stylex";
 import { typography } from "../theme/theme";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
-import { useClassNames } from "../config";
+import { useClassNames } from "../../hooks/use-class-names";
 import { BreadcrumbClassToken, ComponentToken } from "../../utils/class-name";
 import clsx from "clsx";
 import Item from "./item";

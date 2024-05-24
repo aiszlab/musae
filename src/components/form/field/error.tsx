@@ -1,12 +1,12 @@
 import { FieldError } from "react-hook-form";
 import { ComponentProps } from "../../../types/element";
 import React, { useEffect } from "react";
-import { useClassNames } from "../../config";
 import { ComponentToken, FormClassToken } from "../../../utils/class-name";
 import clsx from "clsx";
 import { useAnimate, usePresence } from "framer-motion";
 import stylex from "@stylexjs/stylex";
 import { spacing } from "../../theme/tokens.stylex";
+import { useClassNames } from "../../../hooks/use-class-names";
 
 const styles = stylex.create({
   error: {

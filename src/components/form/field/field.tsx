@@ -4,7 +4,6 @@ import { useController } from "react-hook-form";
 import { FieldRenderProps } from "../../../types/element";
 import type { RequiredIn } from "@aiszlab/relax/types";
 import { chain, isRefable } from "@aiszlab/relax";
-import { useClassNames } from "../../config";
 import { ComponentToken, FormClassToken } from "../../../utils/class-name";
 import * as stylex from "@stylexjs/stylex";
 import clsx from "clsx";
@@ -15,6 +14,7 @@ import Layout from "./layout";
 import Error from "./error";
 import { AnimatePresence } from "framer-motion";
 import { typography } from "../../theme/theme";
+import { useClassNames } from "../../../hooks/use-class-names";
 
 const styles = stylex.create({
   error: (props: { color: CSSProperties["color"] }) => ({

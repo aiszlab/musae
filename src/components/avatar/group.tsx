@@ -2,7 +2,7 @@ import React from "react";
 import * as stylex from "@stylexjs/stylex";
 import { type AvatarGroupProps } from "./types";
 import { Context } from "./context";
-import { useClassNames } from "../config";
+import { useClassNames } from "../../hooks/use-class-names";
 import { AvatarClassToken, ComponentToken } from "../../utils/class-name";
 
 const styles = stylex.create({

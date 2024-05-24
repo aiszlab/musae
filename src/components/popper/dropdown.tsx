@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useRef } from "react";
 import type { DropdownProps } from "./types";
 import { ComponentToken, PopperClassToken } from "../../utils/class-name";
-import { useClassNames } from "../config";
+import { useClassNames } from "../../hooks/use-class-names";
 import * as stylex from "@stylexjs/stylex";
 import clsx from "clsx";
 import { toClassList } from "../../utils/styles";

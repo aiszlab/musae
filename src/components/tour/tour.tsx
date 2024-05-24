@@ -9,7 +9,7 @@ import { ColorToken } from "../../utils/colors";
 import { elevations, positions, sizes, spacing } from "../theme/tokens.stylex";
 import { Space } from "../space";
 import { typography } from "../theme/theme";
-import { useClassNames } from "../config";
+import { useClassNames } from "../../hooks/use-class-names";
 import { ComponentToken, TourClassToken } from "../../utils/class-name";
 import clsx from "clsx";
 import { useStep } from "./hooks";
