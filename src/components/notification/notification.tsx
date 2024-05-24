@@ -9,6 +9,9 @@ import { useClassNames } from "../config/hooks";
 import { ComponentToken, NotificationClassToken } from "../../utils/class-name";
 import clsx from "clsx";
 import { elevations, sizes, spacing } from "../theme/tokens.stylex";
+import { Button } from "../button";
+import { Close } from "../icon/icons";
+import { typography } from "../theme/theme";
 
 const DIRECTIONS: Readonly<Record<Placement, Direction>> = {
   top: "top",
@@ -31,13 +34,6 @@ export const PLACEMENTS: Record<Direction, [hidden: string, appeared: string]> =
 //   ["error", Cancel],
 // ]);
 
-// const styles = stylex.create({
-//   message: (props: { backgroundColor: CSSProperties["backgroundColor"]; color: CSSProperties["color"] }) => ({
-
-//   }),
-
-// });
-
 const styles = stylex.create({
   notification: (props: {
     backgroundColor: CSSProperties["backgroundColor"];
@@ -46,21 +42,30 @@ const styles = stylex.create({
   }) => ({
     backgroundColor: props.backgroundColor,
     color: props.color,
-    transform: props.transform,
-
     paddingBlock: spacing.small,
     paddingInline: spacing.medium,
     borderRadius: sizes.xxxsmall,
     boxShadow: elevations.xsmall,
-    display: "flex",
     alignItems: "flex-start",
     columnGap: spacing.xsmall,
     maxWidth: sizes.full,
     pointerEvents: "all",
     overflow: "hidden",
-    opacity: 0,
     marginBlockStart: 0,
+
+    // hidden styles
+    transform: props.transform,
+    opacity: 0,
+    height: 0,
+
+    // layout
+    display: "grid",
+    grid: "'leading title closer' 'leading description description'",
   }),
+
+  simple: {
+    grid: "'leading description closer'",
+  },
 
   top: {
     transform: "translateY(-100%)",
@@ -78,13 +83,26 @@ const styles = stylex.create({
     transform: "translateY(100%)",
   },
 
-  content: {
+  leading: {
+    gridArea: "leading",
+  },
+
+  title: {
+    gridArea: "title",
+  },
+
+  description: {
+    gridArea: "description",
     display: "inline-block",
     wordBreak: "break-word",
   },
+
+  closer: {
+    gridArea: "closer",
+  },
 });
 
-const Notification = ({ placement, duration = 3000, onClose, children }: NotificationProps) => {
+const Notification = ({ placement, duration = 3000, onClose, description, title }: NotificationProps) => {
   const theme = useTheme();
   const [isPresent, safeToRemove] = usePresence();
   const direction = DIRECTIONS[placement];
@@ -101,24 +119,16 @@ const Notification = ({ placement, duration = 3000, onClose, children }: Notific
   const styled = {
     notification: stylex.props(
       styles.notification({
-        backgroundColor: theme.colors[ColorToken.SurfaceContainer],
-        color: theme.colors[ColorToken.OnSurface],
+        backgroundColor: theme.colors[ColorToken.OnPrimary],
+        color: theme.colors[ColorToken.OnPrimaryContainer],
         transform: _placement[0],
       }),
       styles[direction]
     ),
-    content: stylex.props(styles.content),
+    title: stylex.props(typography.title.small, styles.title),
+    description: stylex.props(typography.body.small, styles.description),
+    closer: stylex.props(styles.closer),
   };
-
-  // const styled = {
-  //   message: stylex.props(
-  //     styles.message({
-  //       backgroundColor: theme.colors[ColorToken.OnPrimary],
-  //       color: theme.colors[ColorToken.OnPrimaryContainer],
-  //     })
-  //   ),
-  //   content: stylex.props(typography.body.medium, styles.content),
-  // };
 
   useEffect(() => {
     if (!isPresent) {
@@ -127,7 +137,11 @@ const Notification = ({ placement, duration = 3000, onClose, children }: Notific
     }
 
     // appear animation
-    animate(scope.current, { opacity: 1, transform: _placement[1] });
+    const appear = async () => {
+      await animate(scope.current, { height: "auto" });
+      await animate(scope.current, { opacity: 1, transform: _placement[1] });
+    };
+    appear();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isPresent]);
 
@@ -137,8 +151,30 @@ const Notification = ({ placement, duration = 3000, onClose, children }: Notific
       style={styled.notification.style}
       ref={scope}
     >
-      <div className={clsx(classNames[NotificationClassToken.Title])}></div>
-      <div className={clsx(classNames[NotificationClassToken.Description])}>{children}</div>
+      {!!title && (
+        <div
+          className={clsx(classNames[NotificationClassToken.Title], styled.title.className)}
+          style={styled.title.style}
+        >
+          {title}
+        </div>
+      )}
+
+      <div
+        className={clsx(classNames[NotificationClassToken.Description], styled.description.className)}
+        style={styled.description.style}
+      >
+        {description}
+      </div>
+
+      <Button
+        className={clsx(classNames[NotificationClassToken.Closer], styled.closer.className)}
+        shape="circular"
+        variant="text"
+        prefix={<Close />}
+        onClick={onClose}
+        size="small"
+      />
     </div>
   );
 };

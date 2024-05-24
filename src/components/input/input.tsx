@@ -23,7 +23,7 @@ export const styles = stylex.create({
     // border, for flexible, in musae, we use boxShadow replace border
     // box shadow is not added into layout
     borderRadius: sizes.xxxsmall,
-    boxShadow: `inset 0px 0px 0px ${sizes.smallest} ${props.outlineColor}`,
+    boxShadow: `inset 0 0 0 ${sizes.smallest} ${props.outlineColor}`,
 
     // layout
     margin: spacing.none,
@@ -70,6 +70,9 @@ const Input = forwardRef<InputRef, InputProps>(({ className, style, type, invali
     () => ({
       focus: () => {
         inputRef.current?.focus();
+      },
+      select: () => {
+        inputRef.current?.select();
       },
     }),
     []

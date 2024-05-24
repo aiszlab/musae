@@ -21,19 +21,24 @@ export interface ButtonProps
   /**
    * @description
    * variant
-   * @example filled
+   *
+   * @default "filled"
    */
   variant?: Variant;
 
   /**
    * @description
    * color: only support preset colors
+   *
+   * @default "primary"
    */
   color?: Color;
 
   /**
    * @description
    * shape
+   *
+   * @default "rounded"
    */
   shape?: Shape;
 
@@ -52,18 +57,23 @@ export interface ButtonProps
   /**
    * @description
    * size
+   *
+   * @default "medium"
    */
   size?: Size;
 
   /**
    * @description
    * disabled
+   *
+   * @default false
    */
   disabled?: boolean;
 
   /**
    * @description
    * prefix react node
+   *
    * @template
    * icon or prefix signal
    */
@@ -80,6 +90,8 @@ export interface ButtonProps
   /**
    * @description
    * if false, without a ripple
+   *
+   * @default true
    */
   ripple?: boolean;
 }

@@ -29,7 +29,7 @@ export const useNotification = (): [Notifier, ReactNode] => {
       key: config.key ?? crypto.randomUUID(),
       type: config.type,
       duration: config.duration,
-      content: config.content,
+      description: config.description,
     });
   });
 
@@ -38,31 +38,31 @@ export const useNotification = (): [Notifier, ReactNode] => {
       success: (content, duration) =>
         open({
           type: "success",
-          content,
+          description: content,
           duration,
         }),
       error: (content, duration) =>
         open({
           type: "error",
-          content,
+          description: content,
           duration,
         }),
       info: (content, duration) =>
         open({
           type: "info",
-          content,
+          description: content,
           duration,
         }),
       loading: (content, duration) =>
         open({
           type: "loading",
-          content,
+          description: content,
           duration,
         }),
       warning: (content, duration) =>
         open({
           type: "warning",
-          content,
+          description: content,
           duration,
         }),
       open,

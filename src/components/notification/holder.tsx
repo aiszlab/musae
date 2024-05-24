@@ -1,5 +1,5 @@
 import React, { forwardRef, useImperativeHandle, useState } from "react";
-import { NotificationConfig, NotifierRef, Placement } from "./types";
+import type { NotificationConfig, NotifierRef, Placement } from "./types";
 import { Portal } from "../portal";
 import { AnimatePresence } from "framer-motion";
 import Notification from "./notification";
@@ -101,17 +101,16 @@ const Holder = forwardRef<NotifierRef>((_, ref) => {
       <Portal destroyable open={notifications.size > 0} key={placement} lockable={false}>
         <div className={styled.className} style={styled.style}>
           <AnimatePresence>
-            {Array.from(notifications.entries()).map(([key, { content, ...item }]) => (
+            {Array.from(notifications.entries()).map(([key, { description, ...item }]) => (
               <Notification
                 {...item}
                 placement={placement}
                 key={key}
+                description={description}
                 onClose={() => {
                   hidden(placement, key);
                 }}
-              >
-                {content}
-              </Notification>
+              />
             ))}
           </AnimatePresence>
         </div>

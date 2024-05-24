@@ -12,7 +12,10 @@ export type Variant = "outlined" | "filled" | "standard";
  * component props
  */
 export interface InputProps
-  extends Pick<InputHTMLAttributes<HTMLInputElement>, "onFocus" | "onBlur" | "name" | "value" | "readOnly" | "onClick">,
+  extends Pick<
+      InputHTMLAttributes<HTMLInputElement>,
+      "onFocus" | "onBlur" | "name" | "value" | "readOnly" | "onClick" | "maxLength"
+    >,
     ComponentProps {
   /**
    * @description
@@ -41,8 +44,10 @@ export interface InputProps
   /**
    * @description
    * input type
+   *
+   * @default "text"
    */
-  type?: "text" | "password";
+  type?: "text" | "password" | "number";
 
   /**
    * @description
@@ -82,6 +87,12 @@ export interface InputRef {
    * focus
    */
   focus?: HTMLInputElement["focus"];
+
+  /**
+   * @description
+   * select
+   */
+  select?: HTMLInputElement["select"];
 }
 
 /**

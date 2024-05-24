@@ -44,9 +44,15 @@ export type NotificationProps = {
 
   /**
    * @description
-   * message content
+   * notification description
    */
-  children?: ReactNode;
+  description: ReactNode;
+
+  /**
+   * @description
+   * notification title
+   */
+  title?: ReactNode;
 };
 
 /**
@@ -59,12 +65,6 @@ export type NotificationConfig = Omit<NotificationProps, "onClose" | "children" 
    * message key
    */
   key?: string;
-
-  /**
-   * @description
-   * content
-   */
-  content: string;
 
   /**
    * @description

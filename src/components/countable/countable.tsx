@@ -4,7 +4,19 @@ import { Observable, Subscription, interval, map, switchAll, type Subscriber } f
 import { CountableProps } from "./types";
 import { useEvent, useMounted } from "@aiszlab/relax";
 
-const Countable = ({ count, children }: CountableProps) => {
+const Countable = ({
+  count = 60,
+  children,
+  interval: _interval = 1000,
+  disabled = false,
+  variant = "filled",
+  color = "primary",
+  shape = "rounded",
+  size = "medium",
+  ripple = true,
+  className,
+  style,
+}: CountableProps) => {
   const trigger = useRef<Subscriber<MouseEvent<HTMLButtonElement>> | null>(null);
   const counter = useRef<Observable<number> | null>(null);
   const stopper = useRef<Subscription | null>(null);
@@ -20,12 +32,12 @@ const Countable = ({ count, children }: CountableProps) => {
     counter.current = new Observable<MouseEvent<HTMLButtonElement>>((subscribe) => {
       trigger.current = subscribe;
     })
-      .pipe(map(() => interval(1000)))
+      .pipe(map(() => interval(_interval)))
       .pipe(switchAll());
 
     return () => {
       stop();
-
+      trigger.current?.complete();
       counter.current = null;
       stopper.current = null;
       trigger.current = null;
@@ -51,7 +63,17 @@ const Countable = ({ count, children }: CountableProps) => {
   });
 
   return (
-    <Button onClick={start} disabled={isCounting}>
+    <Button
+      onClick={start}
+      disabled={disabled || isCounting}
+      variant={variant}
+      color={color}
+      size={size}
+      shape={shape}
+      className={className}
+      style={style}
+      ripple={ripple}
+    >
       {isCounting ? counted : children}
     </Button>
   );
