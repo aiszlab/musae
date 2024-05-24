@@ -5,14 +5,14 @@ import { ComponentToken, FormClassToken } from "../../../utils/class-name";
 import clsx from "clsx";
 import { useAnimate, usePresence } from "framer-motion";
 import stylex from "@stylexjs/stylex";
-import { spacing } from "../../theme/tokens.stylex";
+import { sizes, spacing } from "../../theme/tokens.stylex";
 import { useClassNames } from "../../../hooks/use-class-names";
 
 const styles = stylex.create({
   error: {
     paddingInline: spacing.large,
     paddingTop: spacing.xxsmall,
-    height: 0,
+    height: sizes.none,
   },
 });
 
