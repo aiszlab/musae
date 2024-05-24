@@ -10,16 +10,43 @@ import { useEvent } from "@aiszlab/relax";
 const styles = stylex.create({
   holder: {
     position: "fixed",
-    insetBlockStart: 0,
-    insetInline: 0,
     zIndex: positions.message,
-
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
     pointerEvents: "none",
     rowGap: spacing.medium,
     padding: spacing.medium,
+  },
+
+  top: {
+    insetBlockStart: 0,
+    insetInline: 0,
+  },
+
+  topRight: {
+    insetBlockStart: 0,
+    insetInlineEnd: 0,
+  },
+
+  topLeft: {
+    insetBlockStart: 0,
+    insetInlineStart: 0,
+  },
+
+  bottom: {
+    insetBlockEnd: 0,
+    insetInlineStart: 0,
+  },
+
+  bottomRight: {
+    insetBlockEnd: 0,
+    insetInlineStart: 0,
+  },
+
+  bottomLeft: {
+    insetBlockEnd: 0,
+    insetInlineStart: 0,
   },
 });
 
@@ -56,16 +83,23 @@ const Holder = forwardRef<NotifierRef>((_, ref) => {
       const placed = new Map(next.get(placement));
 
       placed.delete(key);
-      placed.size === 0 && next.delete(placement);
+
+      if (placed.size === 0) {
+        next.delete(placement);
+      } else {
+        next.set(placement, placed);
+      }
 
       return next;
     });
   });
 
   return Array.from(placements.entries()).map(([placement, notifications]) => {
+    const styled = stylex.props(styles.holder, styles[placement]);
+
     return (
-      <Portal destroyable open={notifications.size > 0} key={placement}>
-        <div {...stylex.props(styles.holder)}>
+      <Portal destroyable open={notifications.size > 0} key={placement} lockable={false}>
+        <div className={styled.className} style={styled.style}>
           <AnimatePresence>
             {Array.from(notifications.entries()).map(([key, { content, ...item }]) => (
               <Notification

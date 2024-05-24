@@ -1,39 +1,31 @@
-import type { Direction } from "./types";
 import React, { useRef, type ReactNode, useMemo } from "react";
 import Holder from "./holder";
 import type { NotificationConfig, Notifier, NotifierRef } from "./types";
 import { isDomUsable, useEvent } from "@aiszlab/relax";
 import { useConfiguration } from "../config/hooks";
 
-export const PLACEMENTS: Record<Direction, [hidden: string, appeared: string]> = {
-  right: ["translateX(100%)", "translateX(0)"],
-  left: ["translateX(-100%)", "translateX(0)"],
-  bottom: ["translateY(100%)", "translateY(0)"],
-  top: ["translateY(-100%)", "translateY(0)"],
-};
-
 /**
  * @author murukal
  *
  * @description
- * hook for message
+ * hook for notification
  */
-export const useMessage = (): [Notifier, ReactNode] => {
+export const useNotification = (): [Notifier, ReactNode] => {
   const ref = useRef<NotifierRef>(null);
-  const { messager } = useConfiguration();
+  const { notifier } = useConfiguration();
 
   const holder = useMemo<ReactNode>(() => {
     if (!isDomUsable()) return null;
-    if (messager) return null;
+    if (notifier) return null;
     return <Holder ref={ref} />;
-  }, [messager]);
+  }, [notifier]);
 
   const open = useEvent(async (config: NotificationConfig) => {
-    // use global messager first, if not valid, use current holder
+    // use global notifier first, if not valid, use current holder
     // if u trigger open failed, must check holder is mounted into react dom tree
-    const _messager = messager?.current ?? ref.current;
+    const _notifier = notifier?.current ?? ref.current;
 
-    _messager?.add({
+    _notifier?.add({
       key: config.key ?? crypto.randomUUID(),
       type: config.type,
       duration: config.duration,

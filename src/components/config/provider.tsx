@@ -1,11 +1,11 @@
 import React, { useMemo, useRef } from "react";
 import Context from "./context";
-import { Holder, MessageRef } from "../message";
+import { Holder, type NotifierRef } from "../notification";
 import type { ConfigProps } from "./types";
 import { CLASS_NAMES, DEFAULT_CLASS_NAMES, addPrefix } from "../../utils/class-name";
 
 const ConfigProvider = (props: ConfigProps) => {
-  const messageRef = useRef<MessageRef>(null);
+  const notifierRef = useRef<NotifierRef>(null);
 
   const classNames = useMemo(() => {
     if (!props.prefix) return DEFAULT_CLASS_NAMES;
@@ -15,12 +15,12 @@ const ConfigProvider = (props: ConfigProps) => {
   return (
     <Context.Provider
       value={{
-        messager: messageRef,
+        notifier: notifierRef,
         classNames,
       }}
     >
       {props.children}
-      <Holder ref={messageRef} />
+      <Holder ref={notifierRef} />
     </Context.Provider>
   );
 };

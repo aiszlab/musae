@@ -1,0 +1,60 @@
+import React, { type MouseEvent, useRef, useState } from "react";
+import { Button } from "../button";
+import { Observable, Subscription, interval, map, switchAll, type Subscriber } from "rxjs";
+import { CountableProps } from "./types";
+import { useEvent, useMounted } from "@aiszlab/relax";
+
+const Countable = ({ count, children }: CountableProps) => {
+  const trigger = useRef<Subscriber<MouseEvent<HTMLButtonElement>> | null>(null);
+  const counter = useRef<Observable<number> | null>(null);
+  const stopper = useRef<Subscription | null>(null);
+
+  const [counted, setCounted] = useState(0);
+  const isCounting = counted > 0;
+
+  const stop = useEvent(() => {
+    stopper.current?.unsubscribe();
+  });
+
+  useMounted(() => {
+    counter.current = new Observable<MouseEvent<HTMLButtonElement>>((subscribe) => {
+      trigger.current = subscribe;
+    })
+      .pipe(map(() => interval(1000)))
+      .pipe(switchAll());
+
+    return () => {
+      stop();
+
+      counter.current = null;
+      stopper.current = null;
+      trigger.current = null;
+    };
+  });
+
+  const countdown = useEvent(() => {
+    setCounted(count);
+
+    stopper.current =
+      counter.current?.subscribe((value) => {
+        const _counted = Math.max(count - value - 1, 0);
+        setCounted(_counted);
+        if (_counted === 0) {
+          stop();
+        }
+      }) ?? null;
+  });
+
+  const start = useEvent((e: MouseEvent<HTMLButtonElement>) => {
+    countdown();
+    trigger.current?.next(e);
+  });
+
+  return (
+    <Button onClick={start} disabled={isCounting}>
+      {isCounting ? counted : children}
+    </Button>
+  );
+};
+
+export default Countable;
