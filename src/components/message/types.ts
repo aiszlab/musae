@@ -1,7 +1,7 @@
 import type { Notifier } from "../notification";
 import type { NotificationConfig } from "../notification/types";
 
-type Open = (config: Omit<NotificationConfig, "type" | "title">) => Promise<void>;
+type Open = (config: Omit<NotificationConfig, "type" | "title" | "placement">) => Promise<void>;
 
 /**
  * @author murukal
