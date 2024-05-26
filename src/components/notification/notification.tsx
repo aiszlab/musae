@@ -1,5 +1,5 @@
 import stylex from "@stylexjs/stylex";
-import React, { type CSSProperties, useEffect } from "react";
+import React, { type CSSProperties, useEffect, type FC, createElement } from "react";
 import { useAnimate, usePresence } from "framer-motion";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
@@ -10,8 +10,9 @@ import { ComponentToken, NotificationClassToken } from "../../utils/class-name";
 import clsx from "clsx";
 import { elevations, sizes, spacing } from "../theme/tokens.stylex";
 import { Button } from "../button";
-import { Close } from "../icon/icons";
+import { Cancel, CheckCircle, Close } from "../icon/icons";
 import { typography } from "../theme/theme";
+import type { IconProps } from "../icon";
 
 const DIRECTIONS: Readonly<Record<Placement, Direction>> = {
   top: "top",
@@ -29,80 +30,95 @@ export const PLACEMENTS: Record<Direction, [hidden: string, appeared: string]> =
   top: ["translateY(-100%)", "translateY(0)"],
 };
 
-// const SIGNALS = new Map<MessageProps["type"], FC<IconProps>>([
-//   ["success", CheckCircle],
-//   ["error", Cancel],
-// ]);
+const SIGNALS = new Map<NotificationProps["type"], FC<IconProps>>([
+  ["success", CheckCircle],
+  ["error", Cancel],
+]);
 
-const styles = stylex.create({
-  notification: (props: {
-    backgroundColor: CSSProperties["backgroundColor"];
-    color: CSSProperties["color"];
-    transform: CSSProperties["transform"];
-  }) => ({
-    backgroundColor: props.backgroundColor,
-    color: props.color,
-    paddingBlock: spacing.small,
-    paddingInline: spacing.medium,
-    borderRadius: sizes.xxxxxsmall,
-    boxShadow: elevations.xsmall,
-    alignItems: "flex-start",
-    columnGap: spacing.xsmall,
-    maxWidth: sizes.full,
-    pointerEvents: "all",
-    overflow: "hidden",
-    marginBlockStart: 0,
+const styles = {
+  notification: stylex.create({
+    default: (props: {
+      backgroundColor: CSSProperties["backgroundColor"];
+      color: CSSProperties["color"];
+      transform: CSSProperties["transform"];
+    }) => ({
+      backgroundColor: props.backgroundColor,
+      color: props.color,
+      paddingBlock: spacing.small,
+      paddingInline: spacing.medium,
+      borderRadius: sizes.xxxxxsmall,
+      boxShadow: elevations.xsmall,
+      alignItems: "flex-start",
+      columnGap: spacing.xsmall,
+      maxWidth: sizes.full,
+      pointerEvents: "all",
+      overflow: "hidden",
+      marginTop: 0,
+      transitionProperty: "margin-top, transform",
+      transitionDuration: "0.2s",
+      // hidden styles
+      transform: props.transform,
+      opacity: 0,
+      // layout
+      display: "grid",
+      grid: "'leading title closer' 'leading description description'",
+    }),
 
-    // hidden styles
-    transform: props.transform,
-    opacity: 0,
-    height: 0,
+    simple: {
+      grid: "'leading description closer'",
+    },
 
-    // layout
-    display: "grid",
-    grid: "'leading title closer' 'leading description description'",
+    top: {
+      transform: "translateY(-100%)",
+    },
+
+    right: {
+      transform: "translateX(100%)",
+    },
+
+    left: {
+      transform: "translateX(-100%)",
+    },
+
+    bottom: {
+      transform: "translateY(100%)",
+    },
   }),
 
-  simple: {
-    grid: "'leading description closer'",
-  },
+  leading: stylex.create({
+    default: {
+      gridArea: "leading",
+      alignSelf: "center",
+      display: "inline-flex",
+    },
+  }),
 
-  top: {
-    transform: "translateY(-100%)",
-  },
+  title: stylex.create({
+    default: {
+      gridArea: "title",
+    },
+  }),
 
-  right: {
-    transform: "translateX(100%)",
-  },
+  description: stylex.create({
+    default: {
+      gridArea: "description",
+      display: "inline-block",
+      wordBreak: "break-word",
+    },
 
-  left: {
-    transform: "translateX(-100%)",
-  },
+    simple: {
+      alignSelf: "center",
+    },
+  }),
 
-  bottom: {
-    transform: "translateY(100%)",
-  },
+  closer: stylex.create({
+    default: {
+      gridArea: "closer",
+    },
+  }),
+};
 
-  leading: {
-    gridArea: "leading",
-  },
-
-  title: {
-    gridArea: "title",
-  },
-
-  description: {
-    gridArea: "description",
-    display: "inline-block",
-    wordBreak: "break-word",
-  },
-
-  closer: {
-    gridArea: "closer",
-  },
-});
-
-const Notification = ({ placement, duration = 3000, onClose, description, title }: NotificationProps) => {
+const Notification = ({ placement, duration = 3000, onClose, description, title, type }: NotificationProps) => {
   const theme = useTheme();
   const [isPresent, safeToRemove] = usePresence();
   const direction = DIRECTIONS[placement];
@@ -112,22 +128,24 @@ const Notification = ({ placement, duration = 3000, onClose, description, title 
 
   /// after duration, `Notification` will auto destory
   useTimeout(async () => {
-    await animate(scope.current, { opacity: 0, marginBlockStart: scope.current.getBoundingClientRect().height * -1 });
+    await animate(scope.current, { opacity: 0, marginTop: scope.current.getBoundingClientRect().height * -1 });
     onClose?.();
   }, duration);
 
   const styled = {
     notification: stylex.props(
-      styles.notification({
+      styles.notification.default({
         backgroundColor: theme.colors[ColorToken.OnPrimary],
         color: theme.colors[ColorToken.OnPrimaryContainer],
         transform: _placement[0],
       }),
-      styles[direction]
+      styles.notification[direction],
+      !title && styles.notification.simple
     ),
-    title: stylex.props(typography.title.small, styles.title),
-    description: stylex.props(typography.body.small, styles.description),
-    closer: stylex.props(styles.closer),
+    leading: stylex.props(styles.leading.default),
+    title: stylex.props(typography.title.small, styles.title.default),
+    description: stylex.props(typography.body.small, styles.description.default, !title && styles.description.simple),
+    closer: stylex.props(styles.closer.default),
   };
 
   useEffect(() => {
@@ -137,13 +155,11 @@ const Notification = ({ placement, duration = 3000, onClose, description, title 
     }
 
     // appear animation
-    const appear = async () => {
-      await animate(scope.current, { height: "auto" });
-      await animate(scope.current, { opacity: 1, transform: _placement[1] });
-    };
-    appear();
+    animate(scope.current, { opacity: 1, transform: _placement[1] });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isPresent]);
+
+  const leading = SIGNALS.get(type);
 
   return (
     <div
@@ -151,6 +167,12 @@ const Notification = ({ placement, duration = 3000, onClose, description, title 
       style={styled.notification.style}
       ref={scope}
     >
+      {leading && (
+        <div className={styled.leading.className} style={styled.leading.style}>
+          {createElement(leading)}
+        </div>
+      )}
+
       {!!title && (
         <div
           className={clsx(classNames[NotificationClassToken.Title], styled.title.className)}

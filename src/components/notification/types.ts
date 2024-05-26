@@ -1,8 +1,6 @@
 import { RequiredIn } from "@aiszlab/relax/types";
 import { ReactNode } from "react";
 
-type Open = (content: string, duration?: number) => Promise<void>;
-
 /**
  * @description
  * notification placement
@@ -73,6 +71,8 @@ export type NotificationConfig = Omit<NotificationProps, "onClose" | "children" 
   placement?: Placement;
 };
 
+type Open = (config: Omit<NotificationConfig, "type">) => Promise<void>;
+
 /**
  * @author murukal
  *
@@ -109,12 +109,6 @@ export interface Notifier {
    * show loading notification
    */
   loading: Open;
-
-  /**
-   * @description
-   * show config notification
-   */
-  open: (config: NotificationConfig) => Promise<void>;
 }
 
 /**

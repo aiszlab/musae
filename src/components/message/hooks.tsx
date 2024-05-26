@@ -9,5 +9,6 @@ import { useNotification } from "../notification";
  * hook for message
  */
 export const useMessage = (): [Messager, ReactNode] => {
-  return useNotification();
+  const [notifier, holder] = useNotification();
+  return [notifier, holder];
 };

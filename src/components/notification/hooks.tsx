@@ -35,37 +35,31 @@ export const useNotification = (): [Notifier, ReactNode] => {
 
   return [
     {
-      success: (content, duration) =>
+      success: (config) =>
         open({
           type: "success",
-          description: content,
-          duration,
+          ...config,
         }),
-      error: (content, duration) =>
+      error: (config) =>
         open({
           type: "error",
-          description: content,
-          duration,
+          ...config,
         }),
-      info: (content, duration) =>
+      info: (config) =>
         open({
           type: "info",
-          description: content,
-          duration,
+          ...config,
         }),
-      loading: (content, duration) =>
+      loading: (config) =>
         open({
           type: "loading",
-          description: content,
-          duration,
+          ...config,
         }),
-      warning: (content, duration) =>
+      warning: (config) =>
         open({
           type: "warning",
-          description: content,
-          duration,
+          ...config,
         }),
-      open,
     },
     holder,
   ];
