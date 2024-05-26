@@ -23,7 +23,7 @@ const styles = stylex.create({
   }),
 
   supporting: {
-    minHeight: sizes.small,
+    minHeight: sizes.xsmall,
     paddingBottom: spacing.xxsmall,
   },
 });

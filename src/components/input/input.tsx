@@ -9,21 +9,20 @@ import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
 import clsx from "clsx";
 import { useClassNames } from "../../hooks/use-class-names";
+import { typography } from "../theme/theme";
 
 export const styles = stylex.create({
   wrapper: (props: { outlineColor: CSSProperties["borderColor"] }) => ({
-    minHeight: 36,
-    minWidth: sizes.none,
-    width: 240,
     display: "flex",
     alignItems: "center",
-    boxSizing: "border-box",
     cursor: "text",
+    minHeight: sizes.medium,
+    minWidth: sizes.xxxxxlarge,
 
     // border, for flexible, in musae, we use boxShadow replace border
     // box shadow is not added into layout
-    borderRadius: sizes.xxxsmall,
-    boxShadow: `inset 0 0 0 ${sizes.smallest} ${props.outlineColor}`,
+    borderRadius: sizes.xxxxxsmall,
+    boxShadow: `inset 0px 0px 0px ${sizes.smallest} ${props.outlineColor}`,
 
     // layout
     margin: spacing.none,
@@ -32,11 +31,16 @@ export const styles = stylex.create({
 
     // animation
     transition: "box-shadow 0.2s",
-    willChange: "box-shadow",
+    // fix: eliminate serrations, use gpu speed up by add `transform`
+    willChange: "box-shadow, transform",
   }),
 
+  flexible: {
+    minWidth: null,
+  },
+
   focused: (props: { outlineColor: CSSProperties["borderColor"] }) => ({
-    boxShadow: `inset 0px 0px 0px ${sizes.xxxxsmall} ${props.outlineColor}`,
+    boxShadow: `inset 0px 0px 0px ${sizes.xxxxxxsmall} ${props.outlineColor}`,
   }),
 
   invalid: (props: { outlineColor: CSSProperties["borderColor"] }) => ({
@@ -59,102 +63,125 @@ export const styles = stylex.create({
  * @description
  * input component
  */
-const Input = forwardRef<InputRef, InputProps>(({ className, style, type, invalid, readOnly, ...props }, ref) => {
-  const wrapperRef = useRef<HTMLDivElement>(null);
-  const inputRef = useRef<HTMLInputElement>(null);
-  const classNames = useClassNames(ComponentToken.Input);
-  const theme = useTheme();
+const Input = forwardRef<InputRef, InputProps>(
+  (
+    {
+      className,
+      style,
+      type,
+      invalid = false,
+      readOnly,
+      maxLength,
+      flexible = false,
+      value: __value,
+      onBlur,
+      onChange,
+      onClick,
+      onFocus,
+      leading,
+      trailing,
+      ...inputProps
+    },
+    ref
+  ) => {
+    const wrapperRef = useRef<HTMLDivElement>(null);
+    const inputRef = useRef<HTMLInputElement>(null);
+    const classNames = useClassNames(ComponentToken.Input);
+    const theme = useTheme();
 
-  useImperativeHandle<InputRef, InputRef>(
-    ref,
-    () => ({
-      focus: () => {
-        inputRef.current?.focus();
-      },
-      select: () => {
-        inputRef.current?.select();
-      },
-    }),
-    []
-  );
-
-  /// controlled value
-  const [_value, _setValue] = useControlledState(props.value!, { defaultState: "" });
-
-  /// events
-  const inputEvents = useInputEvents({
-    setValue: _setValue,
-    onBlur: props.onBlur,
-    onChange: props.onChange,
-    onClick: props.onClick,
-    onFocus: props.onFocus,
-  });
-  const wrapperEvents = useWrapperEvents({ inputRef });
-
-  /// is focused
-  const [isFocused, focusProps] = useFocus({ onBlur: inputEvents.blur, onFocus: inputEvents.focus });
-
-  const styled = {
-    wrapper: stylex.props(
-      styles.wrapper({
-        outlineColor: theme.colors[ColorToken.Outline],
-      }),
-      isFocused &&
-        styles.focused({
-          outlineColor: theme.colors[ColorToken.Primary],
-        }),
-      !!invalid &&
-        styles.invalid({
-          outlineColor: theme.colors[ColorToken.Error],
-        })
-    ),
-    input: stylex.props(styles.input),
-  };
-
-  return (
-    <div
-      ref={wrapperRef}
-      className={clsx(
-        classNames[InputClassToken.Wrapper],
-        {
-          [classNames[InputClassToken.Focused]]: isFocused,
-          [classNames[InputClassToken.Invalid]]: !!invalid,
+    useImperativeHandle<InputRef, InputRef>(
+      ref,
+      () => ({
+        focus: () => {
+          inputRef.current?.focus();
         },
-        className,
-        styled.wrapper.className
-      )}
-      style={{
-        ...styled.wrapper.style,
-        ...style,
-      }}
-      tabIndex={-1}
-      onFocus={wrapperEvents.focus}
-      onBlur={wrapperEvents.blur}
-      onClick={wrapperEvents.click}
-    >
-      {/* leading */}
-      {props.leading}
+        select: () => {
+          inputRef.current?.select();
+        },
+      }),
+      []
+    );
 
-      {/* input */}
-      <input
-        name={props.name}
-        value={_value}
-        className={clsx(classNames[InputClassToken.Input], styled.input.className)}
-        style={styled.input.style}
-        type={type}
-        ref={inputRef}
-        aria-invalid={invalid}
-        readOnly={readOnly}
-        onChange={inputEvents.change}
-        onClick={inputEvents.click}
-        placeholder={props.placeholder}
-        {...focusProps}
-      />
+    /// controlled value
+    const [_value, _setValue] = useControlledState(__value!, { defaultState: "" });
 
-      {/* trailing */}
-      {props.trailing}
-    </div>
-  );
-});
+    /// events
+    const inputEvents = useInputEvents({
+      setValue: _setValue,
+      onBlur,
+      onChange,
+      onClick,
+      onFocus,
+    });
+    const wrapperEvents = useWrapperEvents({ inputRef });
+
+    /// is focused
+    const [isFocused, focusProps] = useFocus({ onBlur: inputEvents.blur, onFocus: inputEvents.focus });
+
+    const styled = {
+      wrapper: stylex.props(
+        typography.body.medium,
+        styles.wrapper({
+          outlineColor: theme.colors[ColorToken.Outline],
+        }),
+        isFocused &&
+          styles.focused({
+            outlineColor: theme.colors[ColorToken.Primary],
+          }),
+        invalid &&
+          styles.invalid({
+            outlineColor: theme.colors[ColorToken.Error],
+          }),
+        flexible && styles.flexible
+      ),
+      input: stylex.props(styles.input),
+    };
+
+    return (
+      <div
+        ref={wrapperRef}
+        className={clsx(
+          classNames[InputClassToken.Wrapper],
+          {
+            [classNames[InputClassToken.Focused]]: isFocused,
+            [classNames[InputClassToken.Invalid]]: !!invalid,
+          },
+          className,
+          styled.wrapper.className
+        )}
+        style={{
+          ...styled.wrapper.style,
+          ...style,
+        }}
+        tabIndex={-1}
+        onFocus={wrapperEvents.focus}
+        onBlur={wrapperEvents.blur}
+        onClick={wrapperEvents.click}
+      >
+        {/* leading */}
+        {leading}
+
+        {/* input */}
+        <input
+          value={_value}
+          className={clsx(classNames[InputClassToken.Input], styled.input.className)}
+          style={styled.input.style}
+          type={type}
+          ref={inputRef}
+          aria-invalid={invalid}
+          readOnly={readOnly}
+          onChange={inputEvents.change}
+          onClick={inputEvents.click}
+          maxLength={maxLength}
+          {...inputProps}
+          {...focusProps}
+        />
+
+        {/* trailing */}
+        {trailing}
+      </div>
+    );
+  }
+);
 
 export default Input;

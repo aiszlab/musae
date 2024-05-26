@@ -7,9 +7,9 @@ import clsx from "clsx";
 
 const styles = stylex.create({
   sider: {
-    height: `calc(100vh - ${sizes.xxlarge} - ${spacing.xxlarge})`,
+    height: `calc(100vh - ${sizes.xxxlarge} - ${spacing.xxlarge})`,
     position: "sticky",
-    top: `calc(${sizes.xxlarge} + ${spacing.xxlarge})`,
+    top: `calc(${sizes.xxxlarge} + ${spacing.xxlarge})`,
   },
 });
 

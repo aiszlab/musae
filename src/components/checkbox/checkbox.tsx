@@ -30,8 +30,8 @@ const styles = stylex.create({
       visibility: "visible",
       display: "block",
       boxSizing: "border-box",
-      width: sizes.xsmall,
-      height: sizes.xsmall,
+      width: sizes.xxxsmall,
+      height: sizes.xxxsmall,
       borderRadius: spacing.xxsmall,
       transition: "all 0.2s",
 
@@ -56,8 +56,8 @@ const styles = stylex.create({
       boxSizing: "border-box",
       position: "absolute",
       display: "block",
-      width: `calc(${sizes.xsmall} / 3)`,
-      height: `calc(${sizes.xsmall} / 2)`,
+      width: `calc(${sizes.xxxsmall} / 3)`,
+      height: `calc(${sizes.xxxsmall} / 2)`,
       transform: "translate(100%, -150%) rotate(45deg)",
 
       borderWidth: spacing.xxxsmall,

@@ -12,7 +12,7 @@ import { sizes } from "../theme/tokens.stylex";
 const styles = stylex.create({
   spotlight: {
     backgroundColor: "#808080",
-    borderRadius: sizes.xxxsmall,
+    borderRadius: sizes.xxxxxsmall,
     transitionProperty: "transform",
     transitionDuration: "0.2s",
     willChange: "transform",

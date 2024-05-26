@@ -65,8 +65,8 @@ const styles = {
   leading: stylex.create({
     default: (props: { color: CSSProperties["color"] }) => ({
       gridArea: "leading",
-      width: sizes.xxxsmall,
-      height: sizes.xxxsmall,
+      width: sizes.xxxxxsmall,
+      height: sizes.xxxxxsmall,
       borderRadius: sizes.infinity,
       backgroundColor: props.color,
     }),

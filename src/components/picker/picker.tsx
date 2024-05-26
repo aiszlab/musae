@@ -83,13 +83,13 @@ const Picker = forwardRef<PickerRef, PickerProps>(
 
     const styled = {
       picker: stylex.props(
-        typography.body.small,
+        typography.body.medium,
         inputStyles.wrapper({ outlineColor: theme.colors[ColorToken.Outline] }),
         isFocused && inputStyles.focused({ outlineColor: theme.colors[ColorToken.Primary] })
       ),
       pickable: stylex.props(
         styles.pickable({
-          backgroundColor: theme.colors[ColorToken.SurfaceContainerHigh],
+          backgroundColor: theme.colors[ColorToken.SurfaceContainerLowest],
           minWidth: getDropdownWidth(),
         })
       ),

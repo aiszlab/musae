@@ -23,7 +23,7 @@ const styles = stylex.create({
       position: "absolute",
       top: "50%",
       width: sizes.smallest,
-      height: sizes.small,
+      height: sizes.xsmall,
       backgroundColor: props.backgroundColor,
       transform: "translateY(-50%)",
       insetInlineEnd: 0,

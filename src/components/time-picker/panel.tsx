@@ -25,7 +25,7 @@ const styles = stylex.create({
     alignItems: "center",
     paddingBlock: spacing.xxsmall,
     paddingInline: spacing.medium,
-    minHeight: sizes.large,
+    minHeight: sizes.xlarge,
   }),
 });
 

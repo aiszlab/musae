@@ -67,21 +67,21 @@ const styles = {
       paddingBlock: spacing.xxsmall,
       paddingRight: spacing.small,
       paddingLeft: `calc(${spacing.small} + ${props.level} * ${spacing.large})`,
-      borderRadius: sizes.xxxsmall,
+      borderRadius: sizes.xxxxxsmall,
     }),
 
     medium: (props: { level: number }) => ({
       paddingBlock: spacing.small,
       paddingRight: spacing.medium,
       paddingLeft: `calc(${spacing.medium} + ${props.level} * ${spacing.xlarge})`,
-      borderRadius: sizes.xxsmall,
+      borderRadius: sizes.xxxxsmall,
     }),
 
     large: (props: { level: number }) => ({
       paddingBlock: spacing.medium,
       paddingRight: spacing.large,
       paddingLeft: `calc(${spacing.large} + ${props.level} * ${spacing.xxlarge})`,
-      borderRadius: sizes.xsmall,
+      borderRadius: sizes.xxxsmall,
     }),
   }),
 

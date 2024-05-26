@@ -15,8 +15,8 @@ import { Button } from "../button";
 
 const styles = stylex.create({
   cell: {
-    height: sizes.xlarge,
-    width: sizes.xlarge,
+    height: sizes.xxlarge,
+    width: sizes.xxlarge,
     padding: spacing.none,
     textAlign: "center",
   },
@@ -33,7 +33,7 @@ const styles = stylex.create({
       position: "absolute",
       backgroundColor: props.backgroundColor,
       zIndex: positions.min,
-      height: sizes.large,
+      height: sizes.xlarge,
     },
   }),
 

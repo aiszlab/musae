@@ -35,7 +35,7 @@ const styles = {
 
     horizontal: {
       boxShadow: elevations.small,
-      borderRadius: sizes.xxsmall,
+      borderRadius: sizes.xxxxsmall,
       minWidth: 200,
       padding: spacing.xxsmall,
       marginBlockStart: spacing.xsmall,
@@ -43,7 +43,7 @@ const styles = {
 
     vertical: {
       boxShadow: elevations.small,
-      borderRadius: sizes.xxsmall,
+      borderRadius: sizes.xxxxsmall,
       minWidth: 200,
       padding: spacing.xxsmall,
     },

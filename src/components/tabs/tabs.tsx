@@ -22,7 +22,7 @@ const styles = stylex.create({
   }),
 
   indicator: (props: { color: CSSProperties["backgroundColor"] }) => ({
-    height: sizes.xxxxsmall,
+    height: sizes.xxxxxxsmall,
     backgroundColor: props.color,
     position: "absolute",
     bottom: spacing.none,

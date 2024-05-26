@@ -42,6 +42,7 @@ export { Tour } from "./components/tour";
 export { Steps } from "./components/steps";
 export { Timeline } from "./components/timeline";
 export { Countable } from "./components/countable";
+export { OtpInput } from "./components/otp-input";
 
 /**
  * @description

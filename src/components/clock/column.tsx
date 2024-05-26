@@ -31,7 +31,7 @@ const styles = stylex.create({
       ":hover": "auto",
     },
 
-    width: sizes.xlarge,
+    width: sizes.xxlarge,
     marginBlock: spacing.xxsmall,
 
     "::-webkit-scrollbar": {
@@ -46,7 +46,7 @@ const styles = stylex.create({
   }),
 
   item: {
-    width: sizes.xlarge,
+    width: sizes.xxlarge,
     display: "flex",
     justifyContent: "center",
   },

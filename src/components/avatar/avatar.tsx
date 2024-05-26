@@ -36,12 +36,12 @@ const styles = stylex.create({
   },
 
   squared: {
-    borderRadius: sizes.xxxsmall,
+    borderRadius: sizes.xxxxxsmall,
   },
 
   small: {
-    width: sizes.small,
-    height: sizes.small,
+    width: sizes.xsmall,
+    height: sizes.xsmall,
   },
 
   medium: {
@@ -50,8 +50,8 @@ const styles = stylex.create({
   },
 
   large: {
-    width: sizes.large,
-    height: sizes.large,
+    width: sizes.xlarge,
+    height: sizes.xlarge,
   },
 });
 

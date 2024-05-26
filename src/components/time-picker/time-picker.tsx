@@ -8,14 +8,7 @@ import Panel from "./panel";
 import { useValue } from "./hooks";
 import * as stylex from "@stylexjs/stylex";
 import { useEvent } from "@aiszlab/relax";
-import { sizes } from "../theme/tokens.stylex";
-
-const styles = stylex.create({
-  input: {
-    outline: "none",
-    width: sizes.full,
-  },
-});
+import { styles as inputStyles } from "../input";
 
 const TimePicker = ({ className, ...props }: TimePickerProps) => {
   const classNames = useClassNames(ComponentToken.TimePicker);
@@ -25,7 +18,8 @@ const TimePicker = ({ className, ...props }: TimePickerProps) => {
 
   /// picked date
   const picked = useMemo(() => {
-    const { className, style } = stylex.props(styles.input);
+    const { className, style } = stylex.props(inputStyles.input);
+
     return (
       <input
         className={clsx(classNames[TimePickerClassToken.Input], className)}

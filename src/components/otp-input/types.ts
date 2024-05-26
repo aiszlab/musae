@@ -15,5 +15,11 @@ export type OtpInputProps = {
    * @description
    * value change handler
    */
-  onChange: (value: string) => void;
+  onChange?: (value: string) => void;
+
+  /**
+   * @description
+   * value
+   */
+  value?: string;
 };

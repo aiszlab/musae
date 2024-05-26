@@ -12,7 +12,7 @@ const styles = stylex.create({
   tooltip: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
     boxShadow: elevations.xsmall,
     backgroundColor: props.backgroundColor,
-    borderRadius: sizes.xxsmall,
+    borderRadius: sizes.xxxxsmall,
     padding: spacing.xxsmall,
     marginBlockStart: spacing.xxsmall,
   }),

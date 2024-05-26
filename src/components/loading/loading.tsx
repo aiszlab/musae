@@ -275,18 +275,18 @@ const styles = stylex.create({
   },
 
   small: {
-    width: sizes.large,
-    height: sizes.large,
-  },
-
-  medium: {
     width: sizes.xlarge,
     height: sizes.xlarge,
   },
 
-  large: {
+  medium: {
     width: sizes.xxlarge,
     height: sizes.xxlarge,
+  },
+
+  large: {
+    width: sizes.xxxlarge,
+    height: sizes.xxxlarge,
   },
 });
 

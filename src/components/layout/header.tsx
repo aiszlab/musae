@@ -8,7 +8,7 @@ import clsx from "clsx";
 
 const styles = stylex.create({
   header: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
-    height: sizes.xxlarge,
+    height: sizes.xxxlarge,
     paddingInline: spacing.xxlarge,
     marginBottom: spacing.xxlarge,
     position: "sticky",

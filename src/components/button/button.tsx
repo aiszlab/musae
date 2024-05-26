@@ -28,20 +28,20 @@ const styles = stylex.create({
 
   small: {
     padding: `${spacing.none} ${spacing.xsmall}`,
-    minHeight: sizes.small,
-    minWidth: sizes.small,
+    minHeight: sizes.xsmall,
+    minWidth: sizes.xsmall,
   },
 
   medium: {
     padding: `${spacing.small} ${spacing.xlarge}`,
-    minHeight: sizes.large,
-    minWidth: sizes.large,
+    minHeight: sizes.xlarge,
+    minWidth: sizes.xlarge,
   },
 
   large: {
     padding: `${spacing.medium} ${spacing.xxlarge}`,
-    minHeight: sizes.xlarge,
-    minWidth: sizes.xlarge,
+    minHeight: sizes.xxlarge,
+    minWidth: sizes.xxlarge,
   },
 
   circular: {

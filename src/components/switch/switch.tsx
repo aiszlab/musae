@@ -18,7 +18,7 @@ const styles = {
       backgroundColor: CSSProperties["backgroundColor"];
       color: CSSProperties["color"];
     }) => ({
-      minWidth: sizes.xlarge,
+      minWidth: sizes.xxlarge,
       height: sizes.medium,
       display: "flex",
       alignItems: "center",
@@ -26,7 +26,7 @@ const styles = {
 
       transition: "all 0.2s",
       borderRadius: sizes.infinity,
-      borderWidth: sizes.xxxxsmall,
+      borderWidth: sizes.xxxxxxsmall,
       borderStyle: "solid",
       borderColor: props.borderColor,
       backgroundColor: props.backgroundColor,
@@ -48,15 +48,15 @@ const styles = {
 
       backgroundColor: props.backgroundColor,
       color: props.color,
-      height: sizes.xsmall,
-      width: sizes.xsmall,
+      height: sizes.xxxsmall,
+      width: sizes.xxxsmall,
       insetInlineStart: spacing.xsmall,
     }),
 
     // in slider, if icon show, change default layout
     icon: {
-      height: sizes.small,
-      width: sizes.small,
+      height: sizes.xsmall,
+      width: sizes.xsmall,
       insetInlineStart: spacing.xxxsmall,
     },
 
@@ -68,11 +68,11 @@ const styles = {
     checked: (props: { backgroundColor: CSSProperties["backgroundColor"]; color: CSSProperties["color"] }) => ({
       backgroundColor: props.backgroundColor,
       color: props.color,
-      height: sizes.small,
-      width: sizes.small,
+      height: sizes.xsmall,
+      width: sizes.xsmall,
       opacity: null,
       // `switch width` - `slider width` - `slider padding width`
-      insetInlineStart: `calc(100% - ${sizes.small} - ${spacing.xxxsmall})`,
+      insetInlineStart: `calc(100% - ${sizes.xsmall} - ${spacing.xxxsmall})`,
     }),
   }),
 
@@ -88,14 +88,14 @@ const styles = {
       transitionProperty: "padding-inline-start, padding-inline-end",
       transitionDuration: "0.2s",
 
-      paddingInlineStart: `calc(${sizes.small} + ${sizes.xxxxsmall} * 4)`,
-      paddingInlineEnd: `calc(${spacing.xxlarge} / 2 - ${sizes.xxxxsmall})`,
+      paddingInlineStart: `calc(${sizes.xsmall} + ${sizes.xxxxxxsmall} * 4)`,
+      paddingInlineEnd: `calc(${spacing.xxlarge} / 2 - ${sizes.xxxxxxsmall})`,
     },
 
     // if checked, change padding styles, for slider has been right
     checked: {
-      paddingInlineStart: `calc(${spacing.xxlarge} / 2 - ${sizes.xxxxsmall})`,
-      paddingInlineEnd: `calc(${sizes.small} + ${sizes.xxxxsmall} * 4)`,
+      paddingInlineStart: `calc(${spacing.xxlarge} / 2 - ${sizes.xxxxxxsmall})`,
+      paddingInlineEnd: `calc(${sizes.xsmall} + ${sizes.xxxxxxsmall} * 4)`,
     },
 
     child: {
@@ -113,8 +113,8 @@ const styles = {
   leading: stylex.create({
     default: {
       // - `self width` - `slider width` - `slider padding width * 4` - `border width`
-      marginInlineStart: `calc(-100% - ${sizes.small} - ${sizes.xxxxsmall} * 4 - ${sizes.xxxxsmall})`,
-      marginInlineEnd: `calc(100% + ${sizes.small} + ${sizes.xxxxsmall} * 4 + ${sizes.xxxxsmall})`,
+      marginInlineStart: `calc(-100% - ${sizes.xsmall} - ${sizes.xxxxxxsmall} * 4 - ${sizes.xxxxxxsmall})`,
+      marginInlineEnd: `calc(100% + ${sizes.xsmall} + ${sizes.xxxxxxsmall} * 4 + ${sizes.xxxxxxsmall})`,
     },
 
     checked: {
@@ -132,8 +132,8 @@ const styles = {
 
     checked: {
       // + `self width` + `slider width` + `slider padding width * 2` + `border width`
-      marginInlineEnd: `calc(-100% - ${sizes.small} - ${sizes.xxxxsmall} * 4 - ${sizes.xxxxsmall})`,
-      marginInlineStart: `calc(100% + ${sizes.small} + ${sizes.xxxxsmall} * 4 + ${sizes.xxxxsmall})`,
+      marginInlineEnd: `calc(-100% - ${sizes.xsmall} - ${sizes.xxxxxxsmall} * 4 - ${sizes.xxxxxxsmall})`,
+      marginInlineStart: `calc(100% + ${sizes.xsmall} + ${sizes.xxxxxxsmall} * 4 + ${sizes.xxxxxxsmall})`,
     },
   }),
 };

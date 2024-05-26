@@ -24,8 +24,8 @@ const styles = stylex.create({
 
   trigger: (props: { borderColor: CSSProperties["borderColor"] }) => ({
     visibility: "hidden",
-    height: sizes.xsmall,
-    width: sizes.xsmall,
+    height: sizes.xxxsmall,
+    width: sizes.xxxsmall,
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
@@ -58,8 +58,8 @@ const styles = stylex.create({
       content: "''",
       position: "absolute",
       visibility: "visible",
-      height: sizes.xxsmall,
-      width: sizes.xxsmall,
+      height: sizes.xxxxsmall,
+      width: sizes.xxxxsmall,
       backgroundColor: props.backgroundColor,
       borderRadius: sizes.infinity,
     },

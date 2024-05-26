@@ -44,7 +44,7 @@ const styles = stylex.create({
     color: props.color,
     paddingBlock: spacing.small,
     paddingInline: spacing.medium,
-    borderRadius: sizes.xxxsmall,
+    borderRadius: sizes.xxxxxsmall,
     boxShadow: elevations.xsmall,
     alignItems: "flex-start",
     columnGap: spacing.xsmall,
