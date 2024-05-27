@@ -67,22 +67,6 @@ const styles = {
     simple: {
       grid: "'leading description closer'",
     },
-
-    top: {
-      transform: "translateY(-100%)",
-    },
-
-    right: {
-      transform: "translateX(100%)",
-    },
-
-    left: {
-      transform: "translateX(-100%)",
-    },
-
-    bottom: {
-      transform: "translateY(100%)",
-    },
   }),
 
   leading: stylex.create({
@@ -118,7 +102,15 @@ const styles = {
   }),
 };
 
-const Notification = ({ placement, duration = 3000, onClose, description, title, type }: NotificationProps) => {
+const Notification = ({
+  placement,
+  duration = 3000,
+  onClose,
+  description,
+  title,
+  type,
+  closable = false,
+}: NotificationProps) => {
   const theme = useTheme();
   const [isPresent, safeToRemove] = usePresence();
   const direction = DIRECTIONS[placement];
@@ -126,7 +118,7 @@ const Notification = ({ placement, duration = 3000, onClose, description, title,
   const _placement = PLACEMENTS[direction];
   const classNames = useClassNames(ComponentToken.Notification);
 
-  /// after duration, `Notification` will auto destory
+  // after duration, `Notification` will auto destory
   useTimeout(async () => {
     await animate(scope.current, { opacity: 0, marginTop: scope.current.getBoundingClientRect().height * -1 });
     onClose?.();
@@ -139,7 +131,6 @@ const Notification = ({ placement, duration = 3000, onClose, description, title,
         color: theme.colors[ColorToken.OnPrimaryContainer],
         transform: _placement[0],
       }),
-      styles.notification[direction],
       !title && styles.notification.simple
     ),
     leading: stylex.props(styles.leading.default),
@@ -189,14 +180,16 @@ const Notification = ({ placement, duration = 3000, onClose, description, title,
         {description}
       </div>
 
-      <Button
-        className={clsx(classNames[NotificationClassToken.Closer], styled.closer.className)}
-        shape="circular"
-        variant="text"
-        prefix={<Close />}
-        onClick={onClose}
-        size="small"
-      />
+      {closable && (
+        <Button
+          className={clsx(classNames[NotificationClassToken.Closer], styled.closer.className)}
+          shape="circular"
+          variant="text"
+          prefix={<Close />}
+          onClick={onClose}
+          size="small"
+        />
+      )}
     </div>
   );
 };

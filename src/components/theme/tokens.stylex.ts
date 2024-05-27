@@ -88,7 +88,7 @@ export const positions = defineVars({
   tour: "1080",
   overlay: "1080",
   image: "1090",
-  message: "1200",
+  notification: "1200",
   max: "9999",
 });
 

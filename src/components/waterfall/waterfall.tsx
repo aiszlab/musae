@@ -42,7 +42,7 @@ const Waterfall = ({
   style,
 }: WaterfallProps) => {
   const [columnGap, rowGap] = useGutters({ gutter });
-  const { collect, maxHeight, getOrder, items, repaint } = useRepaint({ columns, rowGap });
+  const { collect, maxHeight, order, items, repaint } = useRepaint({ columns, rowGap, isSequential: sequential });
 
   const styled = stylex.props(
     styles.waterfall({ rowGap, columnGap }),
@@ -50,8 +50,12 @@ const Waterfall = ({
   );
 
   useMounted(() => {
-    // observer will be called when the component is mounted
+    // no need to observer when `sequential`
+    if (sequential) return;
+
+    // observer be called when the component is mounted
     // so in waterfall we use current time to first render
+    // FIXME: repaint twice in layout effect & resize observer
     const resizer = new ResizeObserver(() => {
       repaint();
     });
@@ -92,9 +96,7 @@ const Waterfall = ({
       }}
     >
       {children.map((item, index) => {
-        const { className, style } = stylex.props(
-          styles.item({ columnGap: columnGap, columns, order: getOrder(index) })
-        );
+        const { className, style } = stylex.props(styles.item({ columnGap: columnGap, columns, order: order(index) }));
 
         return (
           <div

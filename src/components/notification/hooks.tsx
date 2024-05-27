@@ -1,6 +1,6 @@
 import React, { useRef, type ReactNode, useMemo } from "react";
 import Holder from "./holder";
-import type { NotificationConfig, Notifier, NotifierRef } from "./types";
+import type { NotificationConfig, Notifier, NotifierRef, UseNotificationProps } from "./types";
 import { isDomUsable, useEvent } from "@aiszlab/relax";
 import { useConfiguration } from "../config/hooks";
 
@@ -10,7 +10,7 @@ import { useConfiguration } from "../config/hooks";
  * @description
  * hook for notification
  */
-export const useNotification = (): [Notifier, ReactNode] => {
+export const useNotification = ({ placement }: UseNotificationProps = {}): [Notifier, ReactNode] => {
   const ref = useRef<NotifierRef>(null);
   const { notifier } = useConfiguration();
 
@@ -24,12 +24,14 @@ export const useNotification = (): [Notifier, ReactNode] => {
     // use global notifier first, if not valid, use current holder
     // if u trigger open failed, must check holder is mounted into react dom tree
     const _notifier = notifier?.current ?? ref.current;
+    const key = config.key ?? crypto.randomUUID();
 
     _notifier?.add({
-      key: config.key ?? crypto.randomUUID(),
+      key,
       type: config.type,
       duration: config.duration,
       description: config.description,
+      placement: config.placement ?? placement,
     });
   });
 

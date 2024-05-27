@@ -51,6 +51,12 @@ export type NotificationProps = {
    * notification title
    */
   title?: ReactNode;
+
+  /**
+   * @description
+   * closable
+   */
+  closable?: boolean;
 };
 
 /**
@@ -124,3 +130,11 @@ export interface NotifierRef {
    */
   add: (configuration: RequiredIn<NotificationConfig, "key">) => void;
 }
+
+/**
+ * @description
+ * use notification props
+ */
+export type UseNotificationProps = {
+  placement?: Placement;
+};

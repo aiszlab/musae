@@ -91,7 +91,7 @@ const styles = {
 
       vertical: {
         marginBottom: spacing.xxsmall,
-        marginBlockStart: {
+        marginTop: {
           default: spacing.none,
           ":first-child": spacing.xxsmall,
         },
@@ -99,7 +99,7 @@ const styles = {
 
       inline: {
         marginBottom: spacing.xxsmall,
-        marginBlockStart: {
+        marginTop: {
           default: spacing.none,
           ":first-child": spacing.xxsmall,
         },

@@ -9,35 +9,15 @@ import { useNotification } from "../notification";
  * hook for message
  */
 export const useMessage = (): [Messager, ReactNode] => {
-  const [notifier, holder] = useNotification();
+  const [notifier, holder] = useNotification({ placement: "top" });
 
   return [
     {
-      error: (config) =>
-        notifier.error({
-          placement: "top",
-          ...config,
-        }),
-      info: (config) =>
-        notifier.info({
-          placement: "top",
-          ...config,
-        }),
-      loading: (config) =>
-        notifier.loading({
-          placement: "top",
-          ...config,
-        }),
-      success: (config) =>
-        notifier.success({
-          placement: "top",
-          ...config,
-        }),
-      warning: (config) =>
-        notifier.warning({
-          placement: "top",
-          ...config,
-        }),
+      error: (config) => notifier.error(config),
+      info: (config) => notifier.info(config),
+      loading: (config) => notifier.loading(config),
+      success: (config) => notifier.success(config),
+      warning: (config) => notifier.warning(config),
     },
     holder,
   ];

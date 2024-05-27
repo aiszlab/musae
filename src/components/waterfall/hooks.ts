@@ -5,7 +5,15 @@ import { useCallback, useRef, useState } from "react";
  * @description
  * repaint child
  */
-export const useRepaint = ({ columns, rowGap }: { columns: number; rowGap: number }) => {
+export const useRepaint = ({
+  columns,
+  rowGap,
+  isSequential,
+}: {
+  columns: number;
+  rowGap: number;
+  isSequential: boolean;
+}) => {
   const items = useRef<Map<number, HTMLDivElement | null>>(new Map());
   const [maxHeight, setMaxHeight] = useState(0);
   const [orders, setOrders] = useState<Map<number, number>>(new Map());
@@ -38,10 +46,12 @@ export const useRepaint = ({ columns, rowGap }: { columns: number; rowGap: numbe
   });
 
   useUpdateEffect(() => {
+    // no need to repaint when `sequential`
+    if (isSequential) return;
     repaint();
   }, [rowGap]);
 
-  const getOrder = useCallback(
+  const order = useCallback(
     (index: number) => {
       return orders.get(index) ?? null;
     },
@@ -51,7 +61,7 @@ export const useRepaint = ({ columns, rowGap }: { columns: number; rowGap: numbe
   return {
     maxHeight,
     collect,
-    getOrder,
+    order,
     items,
     repaint,
   };

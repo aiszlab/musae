@@ -10,10 +10,9 @@ import { useEvent } from "@aiszlab/relax";
 const styles = stylex.create({
   holder: {
     position: "fixed",
-    zIndex: positions.message,
+    zIndex: positions.notification,
     display: "flex",
     flexDirection: "column",
-    alignItems: "center",
     pointerEvents: "none",
     rowGap: spacing.medium,
     padding: spacing.medium,

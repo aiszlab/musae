@@ -125,7 +125,7 @@ const styles = {
 
   trailing: stylex.create({
     default: {
-      marginBlockStart: "-100%",
+      marginTop: "-100%",
       marginInlineEnd: 0,
       marginInlineStart: 0,
     },

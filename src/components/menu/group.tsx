@@ -38,7 +38,7 @@ const styles = {
       borderRadius: sizes.xxxxsmall,
       minWidth: 200,
       padding: spacing.xxsmall,
-      marginBlockStart: spacing.xsmall,
+      marginTop: spacing.xsmall,
     },
 
     vertical: {
