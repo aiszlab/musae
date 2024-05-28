@@ -44,28 +44,31 @@ const styles = {
     }) => ({
       backgroundColor: props.backgroundColor,
       color: props.color,
-      paddingBlock: spacing.small,
-      paddingInline: spacing.medium,
       borderRadius: sizes.xxxxxsmall,
       boxShadow: elevations.xsmall,
-      alignItems: "flex-start",
-      columnGap: spacing.xsmall,
       maxWidth: sizes.full,
       pointerEvents: "all",
       overflow: "hidden",
-      marginTop: 0,
       transitionProperty: "margin-top, transform",
       transitionDuration: "0.2s",
       // hidden styles
       transform: props.transform,
       opacity: 0,
+      marginTop: 0,
       // layout
       display: "grid",
+      gap: spacing.small,
       grid: "'leading title closer' 'leading description description'",
+      // padding
+      paddingBlock: spacing.large,
+      paddingInline: spacing.large,
     }),
 
     simple: {
       grid: "'leading description closer'",
+      // padding
+      paddingBlock: spacing.small,
+      paddingInline: spacing.medium,
     },
   }),
 
@@ -98,18 +101,19 @@ const styles = {
   closer: stylex.create({
     default: {
       gridArea: "closer",
+      justifySelf: "flex-end",
     },
   }),
 };
 
 const Notification = ({
   placement,
-  duration = 3000,
+  duration = 3000000,
   onClose,
   description,
   title,
   type,
-  closable = false,
+  closable = true,
 }: NotificationProps) => {
   const theme = useTheme();
   const [isPresent, safeToRemove] = usePresence();
@@ -134,8 +138,8 @@ const Notification = ({
       !title && styles.notification.simple
     ),
     leading: stylex.props(styles.leading.default),
-    title: stylex.props(typography.title.small, styles.title.default),
-    description: stylex.props(typography.body.small, styles.description.default, !title && styles.description.simple),
+    title: stylex.props(typography.title.medium, styles.title.default),
+    description: stylex.props(typography.body.medium, styles.description.default, !title && styles.description.simple),
     closer: stylex.props(styles.closer.default),
   };
 

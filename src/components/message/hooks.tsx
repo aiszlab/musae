@@ -13,11 +13,31 @@ export const useMessage = (): [Messager, ReactNode] => {
 
   return [
     {
-      error: (config) => notifier.error(config),
-      info: (config) => notifier.info(config),
-      loading: (config) => notifier.loading(config),
-      success: (config) => notifier.success(config),
-      warning: (config) => notifier.warning(config),
+      error: (config) =>
+        notifier.error({
+          ...config,
+          closable: false,
+        }),
+      info: (config) =>
+        notifier.info({
+          ...config,
+          closable: false,
+        }),
+      loading: (config) =>
+        notifier.loading({
+          ...config,
+          closable: false,
+        }),
+      success: (config) =>
+        notifier.success({
+          ...config,
+          closable: false,
+        }),
+      warning: (config) =>
+        notifier.warning({
+          ...config,
+          closable: false,
+        }),
     },
     holder,
   ];

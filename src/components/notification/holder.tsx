@@ -21,6 +21,7 @@ const styles = stylex.create({
   top: {
     insetBlockStart: 0,
     insetInline: 0,
+    alignItems: "center",
   },
 
   topRight: {
@@ -35,17 +36,18 @@ const styles = stylex.create({
 
   bottom: {
     insetBlockEnd: 0,
-    insetInlineStart: 0,
-  },
-
-  bottomRight: {
-    insetBlockEnd: 0,
-    insetInlineStart: 0,
+    insetInline: 0,
+    alignItems: "center",
   },
 
   bottomLeft: {
     insetBlockEnd: 0,
     insetInlineStart: 0,
+  },
+
+  bottomRight: {
+    insetBlockEnd: 0,
+    insetInlineEnd: 0,
   },
 });
 

@@ -28,6 +28,7 @@ export const useNotification = ({ placement }: UseNotificationProps = {}): [Noti
 
     _notifier?.add({
       key,
+      title: config.title,
       type: config.type,
       duration: config.duration,
       description: config.description,

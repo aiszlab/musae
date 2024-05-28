@@ -49,6 +49,7 @@ export { OtpInput } from "./components/otp-input";
  * hooks
  */
 export { useMessage } from "./components/message";
+export { useNotification } from "./components/notification";
 export { useTheme } from "./components/theme";
 
 /**
