@@ -8,13 +8,13 @@ import { useClassNames } from "../../hooks/use-class-names";
 import { ComponentToken, DateRangePickerClassToken } from "../../utils/class-name";
 import * as stylex from "@stylexjs/stylex";
 import clsx from "clsx";
-import { sizes } from "../theme/tokens.stylex";
+import { spacing } from "../theme/tokens.stylex";
 
 const styles = stylex.create({
   picker: {
     flex: 1,
     display: "flex",
-    columnGap: sizes.small,
+    columnGap: spacing.small,
     alignItems: "center",
   },
 
