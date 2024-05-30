@@ -1,3 +1,5 @@
+import type { ReactNode } from "react";
+
 /**
  * @description
  * `Upload` props
@@ -24,4 +26,10 @@ export type UploadProps = {
    * @default false
    */
   multiple?: boolean;
+
+  /**
+   * @description
+   * children
+   */
+  children?: ReactNode;
 };
