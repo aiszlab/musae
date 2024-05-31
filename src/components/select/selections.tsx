@@ -14,11 +14,11 @@ import type { SelectionsProps } from "./types";
  * but in animation time, we do not need to re-render the component, keep options in last state
  */
 const Selections = ({ onSelect, selectedKeys, ...props }: SelectionsProps) => {
-  const { isVisible } = useContext(Context);
+  const { isOpen } = useContext(Context);
 
   const items = useMemorable(
     () => props.items,
-    [isVisible, props.items] as [boolean, SelectionsProps["items"]],
+    [isOpen, props.items] as [boolean, SelectionsProps["items"]],
     (prev, next) => next[0] && next[1] !== prev[1]
   );
 

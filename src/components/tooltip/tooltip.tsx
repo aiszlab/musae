@@ -21,7 +21,7 @@ const styles = stylex.create({
 const Tooltip = (props: TooltipProps) => {
   const _ref = useRef<Element>(null);
   const childRef = useRefs(_ref, props.children.props.ref);
-  const [isVisible, { turnOn: open, turnOff: close }] = useBoolean(false);
+  const [isOpen, { turnOn: open, turnOff: close }] = useBoolean(false);
   const theme = useTheme();
 
   const hover: MouseEventHandler = (e) => {
@@ -47,7 +47,7 @@ const Tooltip = (props: TooltipProps) => {
   return (
     <>
       {children}
-      <Popper trigger={_ref.current} open={isVisible}>
+      <Popper trigger={_ref.current} open={isOpen}>
         <div className={styled.tooltip.className} style={styled.tooltip.style}>
           {props.title}
         </div>

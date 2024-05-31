@@ -104,10 +104,10 @@ export interface ContextValue {
 
   /**
    * @description
-   * why put `isVisible` into context
+   * why put `isOpen` into context
    *
    * answer:
-   * in `Select` component, when `isVisible` is false, should keep the last state options
+   * in `Select` component, when `isOpen` is false, should keep the last state options
    */
-  isVisible: boolean;
+  isOpen: boolean;
 }

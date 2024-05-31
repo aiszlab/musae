@@ -8,7 +8,7 @@ const Group = ({ children, items }: PreviewGroupProps) => {
   const min = 0;
   const max = items.length - 1;
   const [currentAt, { add, subtract, setCount: setCurrentAt }] = useCounter(0, { min: 0, max: items.length - 1 });
-  const [isVisible, { turnOff, turnOn }] = useBoolean();
+  const [isOpen, { turnOff, turnOn }] = useBoolean();
   const ref = useRef<PreviewRef>(null);
 
   const source = useMemo(() => {
@@ -38,7 +38,7 @@ const Group = ({ children, items }: PreviewGroupProps) => {
       }}
     >
       {children}
-      {isVisible && <Preview src={source} onClose={turnOff} ref={ref} />}
+      {isOpen && <Preview src={source} onClose={turnOff} ref={ref} />}
     </PreviewGroupContext.Provider>
   );
 };

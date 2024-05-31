@@ -108,7 +108,7 @@ const styles = {
 
 const Notification = ({
   placement,
-  duration = 3000000,
+  duration = 3000,
   onClose,
   description,
   title,

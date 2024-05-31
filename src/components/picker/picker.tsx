@@ -54,7 +54,7 @@ const Picker = forwardRef<PickerRef, PickerProps>(
     ref
   ) => {
     const trigger = useRef<HTMLDivElement>(null);
-    const [isVisible, { turnOff: close, toggle, turnOn: open }] = useBoolean();
+    const [isOpen, { turnOff: close, toggle, turnOn: open }] = useBoolean();
     const classNames = useClassNames(ComponentToken.Picker);
     const theme = useTheme();
     const { fadeIn, exit, scope } = useFadeAnimate({
@@ -101,7 +101,7 @@ const Picker = forwardRef<PickerRef, PickerProps>(
     });
 
     return (
-      <Context.Provider value={{ open, isFocused, isVisible }}>
+      <Context.Provider value={{ open, isFocused, isOpen }}>
         <div
           className={clsx(
             classNames[PickerClassToken.Picker],
@@ -125,7 +125,7 @@ const Picker = forwardRef<PickerRef, PickerProps>(
 
         <Popper
           trigger={trigger.current}
-          open={isVisible}
+          open={isOpen}
           className={classNames[PickerClassToken.Dropdown]}
           // click on popper, keep select focused
           onMouseDown={onDropdownClick}
