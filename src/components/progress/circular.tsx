@@ -1,44 +1,45 @@
-import React, { useRef } from "react";
+import React from "react";
 import stylex from "@stylexjs/stylex";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
 import { sizes } from "../theme/tokens.stylex";
 import { CircularProps } from "./types";
+import { useCircular } from "./hooks";
 
 const styles = stylex.create({
-  indicators: {
-    r: 22,
-    cx: 24,
-    cy: 24,
-    strokeWidth: sizes.xxxxxsmall,
-    strokeLinecap: "round",
+  progress: {
+    transform: "rotate(-90deg)",
   },
 
-  segment: (props: { length: number; percent: number }) => ({
-    strokeDasharray: `${props.length} ${props.length}`,
-    strokeDashoffset: (props.length * (100 - props.percent)) / 100,
+  shape: (props: { radius: number }) => ({
+    r: props.radius,
+    cx: `calc(${props.radius}px + (${sizes.xxxxxsmall} / 2))`,
+    cy: `calc(${props.radius}px + (${sizes.xxxxxsmall} / 2))`,
+    strokeWidth: sizes.xxxxxsmall,
+    strokeLinecap: "round",
   }),
 
-  track: (props: { length: number; percent: number }) => ({
-    strokeDasharray: `${props.length} ${props.length}`,
-    strokeDashoffset: ((props.length * props.percent) / 100) * -1,
+  segment: (props: { perimeter: number; offset: number }) => ({
+    strokeDasharray: `${props.perimeter} ${props.perimeter}`,
+    strokeDashoffset: props.offset,
   }),
 });
 
 const Circular = ({ value, className, style }: CircularProps) => {
   const theme = useTheme();
-  const segmentRef = useRef<SVGCircleElement>(null);
-  const trackRef = useRef<SVGCircleElement>(null);
+  const radius = 22;
+
+  const { segmentPerimeter, segmentOffset, segmentRef } = useCircular({
+    value,
+  });
 
   const styled = {
+    progress: stylex.props(styles.progress),
     segment: stylex.props(
-      styles.indicators,
-      styles.segment({ length: segmentRef.current?.getTotalLength() ?? 0, percent: value })
+      styles.shape({ radius }),
+      styles.segment({ perimeter: segmentPerimeter, offset: segmentOffset })
     ),
-    track: stylex.props(
-      styles.indicators,
-      styles.track({ length: trackRef.current?.getTotalLength() ?? 0, percent: value })
-    ),
+    track: stylex.props(styles.shape({ radius })),
   };
 
   return (
@@ -48,21 +49,20 @@ const Circular = ({ value, className, style }: CircularProps) => {
       height="48"
       viewBox="0 0 48 48"
       fill="none"
-      style={{
-        transform: "rotate(-90deg);",
-      }}
+      className={styled.progress.className}
+      style={styled.progress.style}
     >
+      <circle
+        className={styled.track.className}
+        style={styled.track.style}
+        stroke={theme.colors[ColorToken.PrimaryContainer]}
+      />
+
       <circle
         ref={segmentRef}
         className={styled.segment.className}
         style={styled.segment.style}
         stroke={theme.colors[ColorToken.Primary]}
-      />
-      <circle
-        ref={trackRef}
-        className={styled.track.className}
-        style={styled.track.style}
-        stroke={theme.colors[ColorToken.PrimaryContainer]}
       />
     </svg>
   );
