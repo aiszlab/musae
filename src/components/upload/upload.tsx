@@ -1,4 +1,4 @@
-import React, { ChangeEvent, DragEvent, KeyboardEvent, forwardRef, useRef } from "react";
+import React, { ChangeEvent, DragEvent, KeyboardEvent, useRef } from "react";
 import { UploadProps } from "./types";
 import stylex from "@stylexjs/stylex";
 import { useEvent } from "@aiszlab/relax";
@@ -10,7 +10,7 @@ const styles = stylex.create({
   },
 });
 
-const Upload = forwardRef(({ onClick: _onClick, disabled, multiple, children, uploader, onError }: UploadProps) => {
+const Upload = ({ onClick: _onClick, disabled, multiple, children, uploader, onError }: UploadProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   // file upload
@@ -68,6 +68,6 @@ const Upload = forwardRef(({ onClick: _onClick, disabled, multiple, children, up
       {children}
     </div>
   );
-});
+};
 
 export default Upload;

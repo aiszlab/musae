@@ -53,6 +53,7 @@ export enum ComponentToken {
   Breadcrumb,
   Avatar,
   Notification,
+  Progress,
 }
 
 /**
@@ -234,6 +235,12 @@ export enum NotificationClassToken {
   Title,
   Description,
   Closer,
+}
+export enum ProgressClassToken {
+  Progress,
+  Segment,
+  Track,
+  Stop,
 }
 
 /**
@@ -419,6 +426,12 @@ export const CLASS_NAMES = {
     [NotificationClassToken.Title]: "notification__title",
     [NotificationClassToken.Description]: "notification__description",
     [NotificationClassToken.Closer]: "notification__closer",
+  },
+  [ComponentToken.Progress]: {
+    [ProgressClassToken.Progress]: "progress",
+    [ProgressClassToken.Segment]: "progress__segment",
+    [ProgressClassToken.Track]: "progress__track",
+    [ProgressClassToken.Stop]: "progress__stop",
   },
 };
 
