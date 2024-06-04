@@ -45,3 +45,15 @@ export type UploadProps = {
    */
   onError?: (event: any) => void;
 };
+
+/**
+ * @description
+ * Uploadeds Ref
+ */
+export type UploadedsRef = {
+  /**
+   * @description
+   * add
+   */
+  add: (file: File) => void;
+};

@@ -4,7 +4,7 @@ import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
 import { sizes } from "../theme/tokens.stylex";
 import { CircularProps } from "./types";
-import { useCircular } from "./hooks";
+import { useCircular, useValue } from "./hooks";
 
 const styles = stylex.create({
   progress: {
@@ -25,10 +25,11 @@ const styles = stylex.create({
   }),
 });
 
-const Circular = ({ value, className, style }: CircularProps) => {
+const Circular = ({ value: _value, className, style }: CircularProps) => {
   const theme = useTheme();
   const radius = 22;
 
+  const { value } = useValue({ value: _value });
   const { segmentPerimeter, segmentOffset, segmentRef } = useCircular({
     value,
   });

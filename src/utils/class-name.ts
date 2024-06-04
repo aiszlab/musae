@@ -430,8 +430,6 @@ export const CLASS_NAMES = {
   [ComponentToken.Progress]: {
     [ProgressClassToken.Progress]: "progress",
     [ProgressClassToken.Segment]: "progress__segment",
-    [ProgressClassToken.Track]: "progress__track",
-    [ProgressClassToken.Stop]: "progress__stop",
   },
 };
 
