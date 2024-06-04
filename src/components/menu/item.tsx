@@ -196,7 +196,7 @@ const Item = forwardRef<HTMLLIElement, MenuItemProps>(
         {isInline && props.children}
 
         {/* not inline mode, show children in popper */}
-        {!isInline && props.children && (
+        {!isInline && !!props.children && (
           <Popper
             trigger={itemRef.current}
             open={isHovered}
