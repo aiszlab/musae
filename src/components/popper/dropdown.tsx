@@ -5,7 +5,7 @@ import { useClassNames } from "../../hooks/use-class-names";
 import * as stylex from "@stylexjs/stylex";
 import clsx from "clsx";
 import { toClassList } from "../../utils/styles";
-import { isFunction } from "@aiszlab/relax";
+import { isFunction, isVoid } from "@aiszlab/relax";
 import { computePosition, flip, autoUpdate, offset, arrow } from "@floating-ui/dom";
 import { Nullable } from "@aiszlab/relax/types";
 import { useOffsets } from "./hooks";
@@ -26,6 +26,10 @@ const styles = stylex.create({
 
   overlay: {
     zIndex: positions.overlay,
+  },
+
+  arrow: {
+    position: "absolute",
   },
 });
 
@@ -69,10 +73,21 @@ const Dropdown = ({
     const cleanup = autoUpdate(trigger, _floatable, () => {
       computePosition(trigger, _floatable, {
         placement: placement,
-        middleware: [flip(), offset(offsets), arrow({ element: arrowRef.current! })],
+        middleware: [flip(), offset(offsets), arrowable && !!arrowRef.current && arrow({ element: arrowRef.current })],
       })
-        .then(({ x, y }) => {
+        .then(({ x, y, middlewareData }) => {
+          // set float element styles
           _floatable.style.transform = `translate(${x}px, ${y}px)`;
+
+          // set arrwo styles
+          if (middlewareData.arrow && !!arrowRef.current) {
+            arrowRef.current.style.insetInlineStart = isVoid(middlewareData.arrow.x)
+              ? ""
+              : `${middlewareData.arrow.x}px`;
+            arrowRef.current.style.insetBlockStart = isVoid(middlewareData.arrow.y)
+              ? ""
+              : `${middlewareData.arrow.y}px`;
+          }
         })
         .catch(() => null);
     });
@@ -80,11 +95,12 @@ const Dropdown = ({
     return () => {
       cleanup();
     };
-  }, [placement, trigger, offsets]);
+  }, [placement, trigger, offsets, arrowable]);
 
   const styled = {
     dropdown: stylex.props(styles.dropdown, overlay && styles.overlay),
     hidden: stylex.props(styles.hidden),
+    arrow: stylex.props(styles.arrow),
   };
 
   useEffect(() => {
@@ -114,7 +130,7 @@ const Dropdown = ({
     >
       {children}
 
-      <div ref={arrowRef} />
+      {arrowable && <div ref={arrowRef} className={styled.arrow.className} style={styled.arrow.style} />}
     </div>
   );
 };
