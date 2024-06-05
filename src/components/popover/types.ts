@@ -36,6 +36,12 @@ export type PopoverProps<P extends ChildProps<T>, T extends HTMLElement> = Compo
 
   /**
    * @description
+   * description
+   */
+  description: ReactNode;
+
+  /**
+   * @description
    * trigger by
    */
   triggerBy?: TriggerBy | TriggerBy[];

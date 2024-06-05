@@ -44,7 +44,8 @@ export { Timeline } from "./components/timeline";
 export { Countable } from "./components/countable";
 export { OtpInput } from "./components/otp-input";
 export { Upload } from "./components/upload";
-export {Progress} from './components/progress'
+export { Progress } from "./components/progress";
+export { Popover } from "./components/popover";
 
 /**
  * @description
