@@ -14,11 +14,12 @@ const styles = stylex.create({
     boxShadow: elevations.small,
     borderRadius: sizes.xxxxsmall,
     padding: spacing.medium,
+    display: "flex",
+    flexDirection: "column",
+    gap: spacing.small,
   }),
 
   title: {},
-
-  description: {},
 });
 
 const Popover = <P extends ChildProps<T>, T extends HTMLElement>({
@@ -85,7 +86,6 @@ const Popover = <P extends ChildProps<T>, T extends HTMLElement>({
       typography.body.medium
     ),
     title: stylex.props(styles.title, typography.title.medium),
-    description: stylex.props(styles.description),
   };
 
   return (
@@ -102,12 +102,14 @@ const Popover = <P extends ChildProps<T>, T extends HTMLElement>({
         <div className={styled.popover.className} style={styled.popover.style}>
           {!!title && (
             <>
-              <div>{title}</div>
+              <div className={styled.title.className} style={styled.title.style}>
+                {title}
+              </div>
               <div>{description}</div>
             </>
           )}
 
-          {description}
+          {!title && description}
         </div>
       </Popper>
     </>

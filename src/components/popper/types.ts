@@ -67,6 +67,12 @@ export interface PopperProps
    * render in overlay container
    */
   overlay?: boolean;
+
+  /**
+   * @description
+   * arrow
+   */
+  arrow?: boolean;
 }
 
 export type DropdownProps = Omit<PopperProps, "portal">;

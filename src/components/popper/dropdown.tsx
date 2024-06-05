@@ -6,7 +6,7 @@ import * as stylex from "@stylexjs/stylex";
 import clsx from "clsx";
 import { toClassList } from "../../utils/styles";
 import { isFunction } from "@aiszlab/relax";
-import { computePosition, flip, autoUpdate, offset } from "@floating-ui/dom";
+import { computePosition, flip, autoUpdate, offset, arrow } from "@floating-ui/dom";
 import { Nullable } from "@aiszlab/relax/types";
 import { useOffsets } from "./hooks";
 import { positions } from "../theme/tokens.stylex";
@@ -41,9 +41,11 @@ const Dropdown = ({
   trigger: _trigger,
   offset: _offset,
   overlay = false,
+  arrow: arrowable = false,
   ...props
 }: DropdownProps) => {
   const floatable = useRef<HTMLDivElement>(null);
+  const arrowRef = useRef<HTMLDivElement>(null);
   const classNames = useClassNames(ComponentToken.Popper);
 
   /// how to get trigger
@@ -67,7 +69,7 @@ const Dropdown = ({
     const cleanup = autoUpdate(trigger, _floatable, () => {
       computePosition(trigger, _floatable, {
         placement: placement,
-        middleware: [flip(), offset(offsets)],
+        middleware: [flip(), offset(offsets), arrow({ element: arrowRef.current! })],
       })
         .then(({ x, y }) => {
           _floatable.style.transform = `translate(${x}px, ${y}px)`;
@@ -111,6 +113,8 @@ const Dropdown = ({
       }}
     >
       {children}
+
+      <div ref={arrowRef} />
     </div>
   );
 };
