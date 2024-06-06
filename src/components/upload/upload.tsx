@@ -67,7 +67,7 @@ const Upload = ({ onClick: _onClick, disabled, multiple, children, uploader, onE
         {children}
       </div>
 
-      <Uploadeds ref={uploadedsRef} />
+      <Uploadeds ref={uploadedsRef} uploader={uploader} />
     </div>
   );
 };

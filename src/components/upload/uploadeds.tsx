@@ -1,8 +1,9 @@
-import React, { forwardRef, useImperativeHandle, useState } from "react";
+import React, { forwardRef, useImperativeHandle, useRef, useState } from "react";
 import stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
-import { UploadedsRef } from "./types";
-import { Loading } from "../icon/icons";
+import type { UploadedItem, UploadedsProps, UploadedsRef } from "./types";
+import { Loading, Clear } from "../icon/icons";
+import { useEvent } from "@aiszlab/relax";
 
 const styles = stylex.create({
   uploadeds: {
@@ -10,35 +11,70 @@ const styles = stylex.create({
     flexDirection: "column",
     gap: spacing.xsmall,
   },
+
+  item: {
+    display: "flex",
+    alignItems: "center",
+    gap: spacing.small,
+  },
 });
 
-const Uploadeds = forwardRef<UploadedsRef>((props, ref) => {
-  const [items, setItems] = useState(new Map<string, File>());
+const Uploadeds = forwardRef<UploadedsRef, UploadedsProps>(({ uploader }, ref) => {
+  const [items, setItems] = useState(new Map<number, UploadedItem>());
+  const _counter = useRef(0);
+
+  const loaded = useEvent((id, status: "success" | "error") => {
+    // update uploaded list status
+    setItems((_items) => {
+      const current = _items.get(id);
+      if (!current) return _items;
+      return new Map(_items).set(id, { ...current, status });
+    });
+  });
 
   useImperativeHandle(ref, () => {
     return {
-      add: (file: File) => {
+      add: async (file: File) => {
+        // push current file
+        const id = _counter.current++;
         setItems((items) => {
-          const id = file.name;
-          return new Map(items).set(id, file);
+          return new Map(items).set(id, { file, status: "loading" });
         });
+
+        // call request by user provided
+        const url = await uploader(file).catch(() => {
+          loaded(id, "error");
+          return null;
+        });
+        if (!url) return;
+        loaded(id, "success");
       },
     };
   });
 
+  const remove = useEvent((id: number) => {
+    setItems((_items) => {
+      const next = new Map(_items);
+      next.delete(id);
+      return next;
+    });
+  });
+
   const styled = {
     uploadeds: stylex.props(styles.uploadeds),
+    item: stylex.props(styles.item),
   };
 
   return (
     <div className={styled.uploadeds.className} style={styled.uploadeds.style}>
       {Array.from(items.entries()).map(([key, item]) => {
         return (
-          <div key={key}>
-            <span>
-              <Loading />
-              {item.name}
-            </span>
+          <div key={key} className={styled.item.className} style={styled.item.style}>
+            <Loading />
+
+            {item.file.name}
+
+            <Clear onClick={() => remove(key)} />
           </div>
         );
       })}

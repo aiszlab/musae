@@ -57,3 +57,32 @@ export type UploadedsRef = {
    */
   add: (file: File) => void;
 };
+
+/**
+ * @description
+ * uploaded list props
+ */
+export type UploadedsProps = Pick<UploadProps, "uploader">;
+
+/**
+ * @description
+ * status
+ */
+export type UploadStatus = "success" | "error" | "loading";
+
+/**
+ * @description
+ * uploaded item
+ */
+export type UploadedItem = {
+  /**
+   * @description
+   * file
+   */
+  file: File;
+
+  /**
+   * {@link UploadStatus}
+   */
+  status: UploadStatus;
+};

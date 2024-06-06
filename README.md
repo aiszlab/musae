@@ -13,14 +13,7 @@
 
 ```bash
 npm install musae
-```
-
-```bash
-yarn add musae
-```
-
-```bash
-pnpm add musae
+## yarn add musae
 ```
 
 ## 🔨 Usage
@@ -29,9 +22,5 @@ pnpm add musae
 import React from "react";
 import { Button } from "musae";
 
-const App = () => (
-  <>
-    <Button>PRESS ME</Button>
-  </>
-);
+const App = () => <Button>PRESS ME</Button>;
 ```

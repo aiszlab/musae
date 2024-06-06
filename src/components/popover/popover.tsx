@@ -91,9 +91,11 @@ const Popover = <P extends ChildProps<T>, T extends HTMLElement>({
   return (
     <>
       {children}
+
       <Popper
         trigger={_ref.current}
         open={isOpen}
+        arrow
         {...(triggerBy.has("hover") && {
           onPointerEnter: enterPopper,
           onPointerLeave: leavePopper,
