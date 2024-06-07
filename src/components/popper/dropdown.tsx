@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef } from "react";
+import React, { CSSProperties, useEffect, useMemo, useRef } from "react";
 import type { DropdownProps } from "./types";
 import { ComponentToken, PopperClassToken } from "../../utils/class-name";
 import { useClassNames } from "../../hooks/use-class-names";
@@ -9,29 +9,40 @@ import { isFunction, isVoid } from "@aiszlab/relax";
 import { computePosition, flip, autoUpdate, offset, arrow } from "@floating-ui/dom";
 import { Nullable } from "@aiszlab/relax/types";
 import { useOffsets } from "./hooks";
-import { positions } from "../theme/tokens.stylex";
+import { positions, sizes } from "../theme/tokens.stylex";
+import { useTheme } from "../theme";
+import { ColorToken } from "../../utils/colors";
 
-const styles = stylex.create({
-  dropdown: {
-    zIndex: positions.popper,
-    position: "absolute",
-    insetBlockStart: 0,
-    insetInlineStart: 0,
-    willChange: "transform",
-  },
+const styles = {
+  dropdown: stylex.create({
+    default: {
+      zIndex: positions.popper,
+      position: "absolute",
+      insetBlockStart: 0,
+      insetInlineStart: 0,
+      willChange: "transform",
+    },
 
-  hidden: {
-    display: "none",
-  },
+    hidden: {
+      display: "none",
+    },
 
-  overlay: {
-    zIndex: positions.overlay,
-  },
+    overlay: {
+      zIndex: positions.overlay,
+    },
+  }),
 
-  arrow: {
-    position: "absolute",
-  },
-});
+  arrow: stylex.create({
+    default: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
+      position: "absolute",
+      width: sizes.xxxsmall,
+      height: sizes.xxxsmall,
+      backgroundColor: props.backgroundColor,
+      insetBlockStart: `calc(${sizes.xxxsmall} * -1)`,
+      transform: "rotate(45deg)",
+    }),
+  }),
+};
 
 const Dropdown = ({
   open,
@@ -51,6 +62,7 @@ const Dropdown = ({
   const floatable = useRef<HTMLDivElement>(null);
   const arrowRef = useRef<HTMLDivElement>(null);
   const classNames = useClassNames(ComponentToken.Popper);
+  const theme = useTheme();
 
   /// how to get trigger
   const trigger = useMemo<Nullable<Element>>(() => {
@@ -73,7 +85,11 @@ const Dropdown = ({
     const cleanup = autoUpdate(trigger, _floatable, () => {
       computePosition(trigger, _floatable, {
         placement: placement,
-        middleware: [flip(), offset(offsets), arrowable && !!arrowRef.current && arrow({ element: arrowRef.current })],
+        middleware: [
+          flip(),
+          offset(offsets),
+          arrowable && !!arrowRef.current && arrow({ element: arrowRef.current, padding: 30 }),
+        ],
       })
         .then(({ x, y, middlewareData }) => {
           // set float element styles
@@ -98,9 +114,9 @@ const Dropdown = ({
   }, [placement, trigger, offsets, arrowable]);
 
   const styled = {
-    dropdown: stylex.props(styles.dropdown, overlay && styles.overlay),
-    hidden: stylex.props(styles.hidden),
-    arrow: stylex.props(styles.arrow),
+    dropdown: stylex.props(styles.dropdown.default, overlay && styles.dropdown.overlay),
+    hidden: stylex.props(styles.dropdown.hidden),
+    arrow: stylex.props(styles.arrow.default({ backgroundColor: theme.colors[ColorToken.SurfaceContainer] })),
   };
 
   useEffect(() => {

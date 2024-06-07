@@ -82,7 +82,7 @@ const Popover = <P extends ChildProps<T>, T extends HTMLElement>({
 
   const styled = {
     popover: stylex.props(
-      styles.popover({ backgroundColor: theme.colors[ColorToken.SurfaceContainerLowest] }),
+      styles.popover({ backgroundColor: theme.colors[ColorToken.SurfaceContainer] }),
       typography.body.medium
     ),
     title: stylex.props(styles.title, typography.title.medium),
