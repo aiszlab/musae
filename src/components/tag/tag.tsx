@@ -14,7 +14,7 @@ const styles = stylex.create({
   tag: (props: { backgroundColor: CSSProperties["backgroundColor"]; color: CSSProperties["color"] }) => ({
     backgroundColor: props.backgroundColor,
     color: props.color,
-    display: "flex",
+    display: "inline-flex",
     flexDirection: "row",
     alignItems: "center",
   }),
