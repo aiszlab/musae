@@ -74,7 +74,7 @@ const Dropdown = ({
   }, [open, _trigger]);
 
   /// memorized offsets
-  const offsets = useOffsets({ offset: _offset });
+  const offsets = useOffsets({ offset: _offset, arrowable });
 
   /// auto update: calc trigger dom to get position
   /// if trigger changed, re-relate
@@ -87,7 +87,7 @@ const Dropdown = ({
         middleware: [
           flip(),
           offset(offsets),
-          arrowable && !!arrowRef.current && arrow({ element: arrowRef.current, padding: 30 }),
+          arrowable && !!arrowRef.current && arrow({ element: arrowRef.current, padding: 16 }),
         ],
       })
         .then(({ x, y, middlewareData }) => {
@@ -99,9 +99,7 @@ const Dropdown = ({
             arrowRef.current.style.insetInlineStart = isVoid(middlewareData.arrow.x)
               ? ""
               : `${middlewareData.arrow.x}px`;
-            arrowRef.current.style.insetBlockStart = isVoid(middlewareData.arrow.y)
-              ? ""
-              : `${middlewareData.arrow.y}px`;
+            arrowRef.current.style.insetBlockStart = `${middlewareData.arrow.y ?? 0 - 8}px`;
           }
         })
         .catch(() => null);
