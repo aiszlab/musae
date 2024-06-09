@@ -7,32 +7,22 @@ import React, {
   type CSSProperties,
 } from "react";
 import { Popper } from "../popper";
-import { useBoolean, useEvent, useFocus, chain } from "@aiszlab/relax";
+import { useBoolean, useFocus, chain } from "@aiszlab/relax";
 import { useEvents } from "./hooks";
 import type { PickerProps, PickerRef } from "./types";
 import { ComponentToken, PickerClassToken } from "../../utils/class-name";
 import { useClassNames } from "../../hooks/use-class-names";
 import * as stylex from "@stylexjs/stylex";
-import { elevations, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
 import clsx from "clsx";
 import { typography } from "../theme/theme";
-import { useFadeAnimate } from "./hooks";
 import { styles as inputStyles } from "../input";
 import { Context } from "./context";
 
 const styles = stylex.create({
-  pickable: (props: { backgroundColor: CSSProperties["backgroundColor"]; minWidth: CSSProperties["minWidth"] }) => ({
-    marginBlock: spacing.xxsmall,
-    borderRadius: spacing.small,
-    backgroundColor: props.backgroundColor,
-    overflow: "auto",
+  pickable: (props: { minWidth: CSSProperties["minWidth"] }) => ({
     minWidth: props.minWidth,
-    boxShadow: elevations.small,
-
-    // initial style, for animation
-    opacity: 0,
   }),
 });
 
@@ -44,12 +34,12 @@ const Picker = forwardRef<PickerRef, PickerProps>(
       popupWidth = "match",
       style,
       children,
-      onPopperEntered,
-      onPopperExite,
-      onPopperExited,
       onClick,
       pickableClassName,
       pickableStyle,
+      onPopperEntered,
+      onPopperExited,
+      onPopperExite,
     },
     ref
   ) => {
@@ -57,9 +47,7 @@ const Picker = forwardRef<PickerRef, PickerProps>(
     const [isOpen, { turnOff: close, toggle, turnOn: open }] = useBoolean();
     const classNames = useClassNames(ComponentToken.Picker);
     const theme = useTheme();
-    const { fadeIn, exit, scope } = useFadeAnimate({
-      onPopperExite,
-    });
+    const pickableRef = useRef<HTMLDivElement>(null);
 
     const onDropdownClick = useCallback((e: MouseEvent<HTMLDivElement>) => e.preventDefault(), []);
     const getDropdownWidth = useCallback(() => {
@@ -89,16 +77,10 @@ const Picker = forwardRef<PickerRef, PickerProps>(
       ),
       pickable: stylex.props(
         styles.pickable({
-          backgroundColor: theme.colors[ColorToken.SurfaceContainerLowest],
           minWidth: getDropdownWidth(),
         })
       ),
     };
-
-    const entered = useEvent(async () => {
-      await fadeIn();
-      onPopperEntered?.();
-    });
 
     return (
       <Context.Provider value={{ open, isFocused, isOpen }}>
@@ -129,12 +111,12 @@ const Picker = forwardRef<PickerRef, PickerProps>(
           className={classNames[PickerClassToken.Dropdown]}
           // click on popper, keep select focused
           onMouseDown={onDropdownClick}
-          onEntered={entered}
-          onExit={exit}
+          onEntered={onPopperEntered}
+          onExit={onPopperExite}
           onExited={onPopperExited}
         >
           <div
-            ref={scope}
+            ref={pickableRef}
             className={clsx(pickableClassName, styled.pickable.className)}
             style={{
               ...styled.pickable.style,

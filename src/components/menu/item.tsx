@@ -163,15 +163,15 @@ const Item = forwardRef<HTMLLIElement, MenuItemProps>(
             color: theme.colors[ColorToken.OnPrimaryFixedVariant],
           }),
           ...(variant === "filled" && {
-            backgroundColor: theme.colors[ColorToken.SurfaceContainer],
+            backgroundColor: theme.colors[ColorToken.SurfaceContainerHighest],
           }),
           ...(variant === "outlined" && {
-            borderColor: theme.colors[ColorToken.SurfaceContainer],
+            borderColor: theme.colors[ColorToken.SurfaceContainerHighest],
           }),
         }),
         isSelected &&
           styles.selected[variant]({
-            backgroundColor: theme.colors[ColorToken.SurfaceContainer],
+            backgroundColor: theme.colors[ColorToken.SurfaceContainerHighest],
             color: theme.colors[ColorToken.Primary],
           }),
         typography.label[size]

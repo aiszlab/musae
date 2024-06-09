@@ -8,19 +8,18 @@ import Item from "./item";
 import { useMenuContext } from "./hooks";
 import { useRefs } from "@aiszlab/relax";
 import * as stylex from "@stylexjs/stylex";
-import { elevations, sizes, spacing } from "../theme/tokens.stylex";
+import { spacing } from "../theme/tokens.stylex";
 import { useExpandEffect } from "../../hooks/use-expand-effect";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
 
 const styles = {
   group: stylex.create({
-    default: (props: { backgroundColor: CSSProperties["backgroundColor"]; color: CSSProperties["color"] }) => ({
+    default: (props: { color: CSSProperties["color"] }) => ({
       /// reset ul styles
       margin: spacing.none,
       padding: spacing.none,
       listStyle: "none",
-      backgroundColor: props.backgroundColor,
       color: props.color,
       overflow: "auto",
     }),
@@ -34,18 +33,13 @@ const styles = {
     inline: {},
 
     horizontal: {
-      boxShadow: elevations.small,
-      borderRadius: sizes.xxxxsmall,
       minWidth: 200,
-      padding: spacing.xxsmall,
-      marginTop: spacing.xsmall,
+      paddingInline: spacing.xxsmall,
     },
 
     vertical: {
-      boxShadow: elevations.small,
-      borderRadius: sizes.xxxxsmall,
       minWidth: 200,
-      padding: spacing.xxsmall,
+      paddingInline: spacing.xxsmall,
     },
   }),
 };
@@ -74,7 +68,6 @@ const Group = forwardRef<HTMLUListElement, MenuGroupProps>(
     const styled = {
       group: stylex.props(
         styles.group.default({
-          backgroundColor: theme.colors[ColorToken.SurfaceContainerLowest],
           color: theme.colors[ColorToken.OnSurface],
         }),
         !expanded && styles.group.hidden

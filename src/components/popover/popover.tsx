@@ -1,23 +1,21 @@
 import { useRefs, useHover, chain, toArray, useBoolean, useEvent, useFocus } from "@aiszlab/relax";
-import React, { type MouseEvent, cloneElement, useMemo, useRef, PointerEvent, CSSProperties } from "react";
+import React, { type MouseEvent, cloneElement, useMemo, useRef, type PointerEvent } from "react";
 import type { ChildProps, PopoverProps } from "./types";
 import { Popper } from "../popper";
 import stylex from "@stylexjs/stylex";
-import { useTheme } from "../theme";
-import { ColorToken } from "../../utils/colors";
-import { elevations, sizes, spacing } from "../theme/tokens.stylex";
+import { spacing } from "../theme/tokens.stylex";
 import { typography } from "../theme/theme";
+import { useClassNames } from "../../hooks/use-class-names";
+import { ComponentToken, PopoverClassToken } from "../../utils/class-name";
+import clsx from "clsx";
 
 const styles = stylex.create({
-  popover: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
-    backgroundColor: props.backgroundColor,
-    boxShadow: elevations.small,
-    borderRadius: sizes.xxxxsmall,
+  popover: {
     padding: spacing.medium,
     display: "flex",
     flexDirection: "column",
     gap: spacing.small,
-  }),
+  },
 
   title: {},
 });
@@ -31,7 +29,7 @@ const Popover = <P extends ChildProps<T>, T extends HTMLElement>({
   const _ref = useRef<Element>(null);
   const [_isOpen, { toggle, turnOn }] = useBoolean(false);
   const triggerBy = useMemo(() => new Set(toArray(_triggerBy)), [_triggerBy]);
-  const theme = useTheme();
+  const classNames = useClassNames(ComponentToken.Popover);
 
   // @ts-ignore
   // FIXME
@@ -81,10 +79,7 @@ const Popover = <P extends ChildProps<T>, T extends HTMLElement>({
   });
 
   const styled = {
-    popover: stylex.props(
-      styles.popover({ backgroundColor: theme.colors[ColorToken.SurfaceContainer] }),
-      typography.body.medium
-    ),
+    popover: stylex.props(styles.popover, typography.body.medium),
     title: stylex.props(styles.title, typography.title.medium),
   };
 
@@ -101,13 +96,19 @@ const Popover = <P extends ChildProps<T>, T extends HTMLElement>({
           onPointerLeave: leavePopper,
         })}
       >
-        <div className={styled.popover.className} style={styled.popover.style}>
+        <div
+          className={clsx(classNames[PopoverClassToken.Popover], styled.popover.className)}
+          style={styled.popover.style}
+        >
           {!!title && (
             <>
-              <div className={styled.title.className} style={styled.title.style}>
+              <div
+                className={clsx(classNames[PopoverClassToken.Title], styled.title.className)}
+                style={styled.title.style}
+              >
                 {title}
               </div>
-              <div>{description}</div>
+              <div className={clsx(classNames[PopoverClassToken.Description])}>{description}</div>
             </>
           )}
 

@@ -4,28 +4,30 @@ import { ComponentToken, PopperClassToken } from "../../utils/class-name";
 import { useClassNames } from "../../hooks/use-class-names";
 import * as stylex from "@stylexjs/stylex";
 import clsx from "clsx";
-import { toClassList } from "../../utils/styles";
 import { isFunction, isVoid } from "@aiszlab/relax";
 import { computePosition, flip, autoUpdate, offset, arrow } from "@floating-ui/dom";
 import { Nullable } from "@aiszlab/relax/types";
 import { useOffsets } from "./hooks";
-import { positions, sizes } from "../theme/tokens.stylex";
+import { elevations, positions, sizes } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
+import { useAnimate } from "framer-motion";
 
 const styles = {
   dropdown: stylex.create({
-    default: {
+    default: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
       zIndex: positions.popper,
       position: "absolute",
+      backgroundColor: props.backgroundColor,
       insetBlockStart: 0,
       insetInlineStart: 0,
-      willChange: "transform",
-    },
+      boxShadow: elevations.small,
+      borderRadius: sizes.xxxxsmall,
 
-    hidden: {
-      display: "none",
-    },
+      // animation
+      willChange: "transform, opacity",
+      transformOrigin: "50% 50%",
+    }),
 
     overlay: {
       zIndex: positions.overlay,
@@ -59,7 +61,7 @@ const Dropdown = ({
   arrow: arrowable = false,
   ...props
 }: DropdownProps) => {
-  const floatable = useRef<HTMLDivElement>(null);
+  const [floatable, animate] = useAnimate<HTMLDivElement>();
   const arrowRef = useRef<HTMLDivElement>(null);
   const classNames = useClassNames(ComponentToken.Popper);
   const theme = useTheme();
@@ -77,13 +79,10 @@ const Dropdown = ({
   /// auto update: calc trigger dom to get position
   /// if trigger changed, re-relate
   useEffect(() => {
-    const _floatable = floatable.current;
-
     if (!trigger) return;
-    if (!_floatable) return;
 
-    const cleanup = autoUpdate(trigger, _floatable, () => {
-      computePosition(trigger, _floatable, {
+    const cleanup = autoUpdate(trigger, floatable.current, () => {
+      computePosition(trigger, floatable.current, {
         placement: placement,
         middleware: [
           flip(),
@@ -93,7 +92,7 @@ const Dropdown = ({
       })
         .then(({ x, y, middlewareData }) => {
           // set float element styles
-          _floatable.style.transform = `translate(${x}px, ${y}px)`;
+          floatable.current.style.translate = `${x}px ${y}px`;
 
           // set arrwo styles
           if (middlewareData.arrow && !!arrowRef.current) {
@@ -111,25 +110,37 @@ const Dropdown = ({
     return () => {
       cleanup();
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [placement, trigger, offsets, arrowable]);
 
   const styled = {
-    dropdown: stylex.props(styles.dropdown.default, overlay && styles.dropdown.overlay),
-    hidden: stylex.props(styles.dropdown.hidden),
+    dropdown: stylex.props(
+      styles.dropdown.default({ backgroundColor: theme.colors[ColorToken.SurfaceContainer] }),
+      overlay && styles.dropdown.overlay
+    ),
     arrow: stylex.props(styles.arrow.default({ backgroundColor: theme.colors[ColorToken.SurfaceContainer] })),
   };
 
   useEffect(() => {
     (async () => {
       if (open) {
-        floatable.current?.classList.remove(...toClassList(styled.hidden.className));
-        await onEntered?.().catch(() => null);
+        floatable.current.style.display = "";
+        floatable.current.style.opacity = "0";
+        floatable.current.style.opacity = "scale(0, 0)";
+        await animate(floatable.current, { opacity: 1, transform: "scale(1, 1)" }, { delay: 0.1, duration: 0.2 });
+        await onEntered?.();
         return;
       }
 
-      await onExit?.().catch(() => null);
-      floatable.current?.classList.add(...toClassList(styled.hidden.className));
-      await onExited?.().catch(() => null);
+      await Promise.all([
+        onExit?.(),
+        animate(floatable.current, { opacity: 0, transform: "scale(0, 0)" }, { delay: 0.1, duration: 0.2 }).then(() => {
+          floatable.current.style.display = "none";
+          floatable.current.style.opacity = "";
+          floatable.current.style.transform = "";
+        }),
+      ]);
+      onExited?.();
     })();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open]);

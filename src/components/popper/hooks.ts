@@ -12,7 +12,7 @@ export const useOffsets = ({ offset = 0 }: { offset: PopperProps["offset"] }) =>
 
   return useMemo<Exclude<PopperProps["offset"], number | undefined>>(() => {
     return {
-      mainAxis,
+      mainAxis: 8 + (mainAxis ?? 0),
       crossAxis,
       alignmentAxis,
     };

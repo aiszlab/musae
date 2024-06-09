@@ -30,7 +30,7 @@ const TimePicker = ({ className, ...props }: TimePickerProps) => {
     );
   }, [value, classNames]);
 
-  const popperEntered = useEvent(() => {
+  const popperEntered = useEvent(async () => {
     panelRef.current?.reset();
   });
 

@@ -54,6 +54,8 @@ export enum ComponentToken {
   Avatar,
   Notification,
   Progress,
+  Tooltip,
+  Popover,
 }
 
 /**
@@ -241,6 +243,14 @@ export enum ProgressClassToken {
   Segment,
   Track,
   Stop,
+}
+export enum TooltipClassToken {
+  Tooltip,
+}
+export enum PopoverClassToken {
+  Popover,
+  Title,
+  Description,
 }
 
 /**
@@ -430,6 +440,14 @@ export const CLASS_NAMES = {
   [ComponentToken.Progress]: {
     [ProgressClassToken.Progress]: "progress",
     [ProgressClassToken.Segment]: "progress__segment",
+  },
+  [ComponentToken.Tooltip]: {
+    [TooltipClassToken.Tooltip]: "tooltip",
+  },
+  [ComponentToken.Popover]: {
+    [PopoverClassToken.Popover]: "popover",
+    [PopoverClassToken.Title]: "popover__title",
+    [PopoverClassToken.Description]: "popover__description",
   },
 };
 

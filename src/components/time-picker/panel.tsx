@@ -13,7 +13,9 @@ import clsx from "clsx";
 import { sizes, spacing } from "../theme/tokens.stylex";
 
 const styles = stylex.create({
-  panel: {},
+  panel: {
+    marginInline: spacing.xxsmall,
+  },
 
   footer: (props: { borderTopColor: CSSProperties["borderTopColor"] }) => ({
     borderTopWidth: sizes.smallest,

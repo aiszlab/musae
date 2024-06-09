@@ -2,7 +2,7 @@ import type { Nullable } from "@aiszlab/relax/types";
 import type { DOMAttributes, ReactNode } from "react";
 import type { ComponentProps } from "../../types/element";
 import type { Derivable, OffsetOptions, Placement } from "@floating-ui/dom";
-import { PortalProps } from "../portal/types";
+import type { PortalProps } from "../portal/types";
 
 /**
  * @author murukal
@@ -48,19 +48,19 @@ export interface PopperProps
    * @description
    * when trigger on popper entered, this function will be called
    */
-  onEntered?: () => Promise<void>;
+  onEntered?: () => Promise<void> | void;
 
   /**
    * @description
    * when trigger on popper exiting, this function will be called
    */
-  onExit?: () => Promise<void>;
+  onExit?: () => Promise<void> | void;
 
   /**
    * @description
    * when trigger on popper exited, this function will be called
    */
-  onExited?: () => Promise<void>;
+  onExited?: () => Promise<void> | void;
 
   /**
    * @description
