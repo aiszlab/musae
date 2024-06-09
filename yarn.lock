@@ -12,10 +12,10 @@
   resolved "https://registry.npmjs.org/@adobe/css-tools/-/css-tools-4.3.3.tgz#90749bde8b89cd41764224f5aac29cd4138f75ff"
   integrity sha512-rE0Pygv0sEZ4vBWHlAgJLGDU7Pm8xoO6p3wsEceb7GYAjScrOHpEo8KK/eVkAcnSM+slAEtXjA2JpdjLp4fJQQ==
 
-"@aiszlab/relax@^1.2.46":
-  version "1.2.46"
-  resolved "https://registry.npmjs.org/@aiszlab/relax/-/relax-1.2.46.tgz#529498b386a2135d3874a6f6c8b4339d7c31c57c"
-  integrity sha512-qE+u/Tk7EYdP4iOm61oR7a8rpmYQ3Br2G+e6gb/1/mm2pSVps9XvUVwBzGv0RzHO/xo1HI0eJnAIOCumiLK2Fg==
+"@aiszlab/relax@^1.2.48":
+  version "1.2.48"
+  resolved "https://registry.npmjs.org/@aiszlab/relax/-/relax-1.2.48.tgz#946bcb38d68ff5223219749059c8af0683a8c2a3"
+  integrity sha512-7TpBuTVYscu+OY1Xo7IdCtIl+EzZpR2MWuN5OEsTRLIpHSmGTrEzGS2TwbTbYu5MWvH6HRF0T8zOAvRea8mwYg==
   dependencies:
     react-is "^18.2.0"
     rxjs "^7.8.1"
