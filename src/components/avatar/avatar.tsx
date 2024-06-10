@@ -15,6 +15,7 @@ const styles = stylex.create({
     borderStyle: "solid",
     borderColor: "transparent",
     boxSizing: "border-box",
+    display: "inline-flex",
   },
 
   image: {
@@ -55,12 +56,12 @@ const styles = stylex.create({
   },
 });
 
-const Avatar = ({ src, alt, ...props }: AvatarProps) => {
+const Avatar = ({ src, alt, shape: _shape = "circular", size: _size = "medium" }: AvatarProps) => {
   const theme = useTheme();
   const group = useContext(Context);
   const isInGroup = !!group;
-  const size = group?.size ?? props.size ?? "medium";
-  const shape = group?.shape ?? props.shape ?? "circular";
+  const size = group?.size ?? _size;
+  const shape = group?.shape ?? _shape;
   const classNames = useClassNames(ComponentToken.Avatar);
 
   const styled = {
@@ -78,7 +79,7 @@ const Avatar = ({ src, alt, ...props }: AvatarProps) => {
 
   return (
     <span className={clsx(classNames[AvatarClassToken.Avatar], styled.avatar.className)} style={styled.avatar.style}>
-      <img {...styled.image} src={src} alt={alt} />
+      <img src={src} alt={alt} className={styled.image.className} style={styled.image.style} />
     </span>
   );
 };

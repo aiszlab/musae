@@ -30,9 +30,6 @@ const Popover = <P extends ChildProps<T>, T extends HTMLElement>({
   const [_isOpen, { toggle, turnOn }] = useBoolean(false);
   const triggerBy = useMemo(() => new Set(toArray(_triggerBy)), [_triggerBy]);
   const classNames = useClassNames(ComponentToken.Popover);
-
-  // @ts-ignore
-  // FIXME
   const childRef = useRefs(_ref, props.children.props.ref);
 
   const click = useEvent((e: MouseEvent<T>) => {

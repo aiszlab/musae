@@ -23,24 +23,28 @@ export type PagiantionProps = {
   /**
    * @description
    * total count
+   * @default 0
    */
   total?: number;
 
   /**
    * @description
    * page size
+   * @default 10
    */
   pageSize?: number;
 
   /**
    * @description
    * siblings
+   * @default 1
    */
   siblings?: number;
 
   /**
    * @description
    * boundaries
+   * @default 1
    */
   boundaries?: number;
 };

@@ -10,18 +10,21 @@ export type WaterfallProps = ComponentProps & {
   /**
    * @description
    * columns
+   * @default 4
    */
   columns?: number;
 
   /**
    * @description
    * gutter
+   * @default 8
    */
   gutter?: Gutter;
 
   /**
    * @description
    * items
+   * @default void 0
    */
   children?: Exclude<ReactNode, Iterable<ReactNode>>[];
 
@@ -29,6 +32,7 @@ export type WaterfallProps = ComponentProps & {
    * @description
    * sequential
    * use list order rather than add to the shortest column
+   * @default false
    */
   sequential?: boolean;
 };

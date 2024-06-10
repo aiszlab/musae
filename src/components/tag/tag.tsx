@@ -41,7 +41,7 @@ const styles = stylex.create({
   },
 });
 
-const Tag = ({ children, size = "large", className, style, closable = false, onClose, leading }: TagProps) => {
+const Tag = ({ children, size = "medium", className, style, closable = false, onClose, leading }: TagProps) => {
   const classNames = useClassNames(ComponentToken.Tag);
   const theme = useTheme();
 

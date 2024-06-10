@@ -11,7 +11,7 @@ const styles = stylex.create({
   },
 });
 
-const Group = ({ children, shape = "circular", size = "medium" }: AvatarGroupProps) => {
+const Group = ({ children, shape = "circular", size = "medium", max = 3 }: AvatarGroupProps) => {
   const styled = stylex.props(styles.group);
   const classNames = useClassNames(ComponentToken.Avatar);
 

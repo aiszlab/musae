@@ -18,13 +18,13 @@ const styles = stylex.create({
   },
 });
 
-const Cascader = ({ mode, separator = "/", ...props }: CascaderProps) => {
+const Cascader = ({ mode, separator = "/", options = [], complex = false, ...props }: CascaderProps) => {
   const ref = useRef<PickerRef>(null);
   const close = useCallback(() => ref.current?.close(), []);
   const classNames = useClassNames(ComponentToken.Cascader);
 
   const { readableOptions, readablePaths, additionalMenusItems, presetedMenuItems, setAdditionalMenusItems } =
-    useOptions([props.options]);
+    useOptions([options]);
   const { values, onChange } = useValue([
     props.value,
     readableOptions,

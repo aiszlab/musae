@@ -208,29 +208,29 @@ export const useValue = ([value, _click]: [CalendarProps["value"], CalendarProps
  * @description
  * point at
  */
-export const useFocusedAt = ([focusedAtInProps]: [CalendarProps["focusedAt"]]) => {
-  const [focusedAt, setFocusedAt] = useControlledState(focusedAtInProps!, {
+export const useFocusedAt = ([_focusedAt]: [CalendarProps["focusedAt"]]) => {
+  const [focusedAt, setFocusedAt] = useControlledState(_focusedAt!, {
     defaultState: dayjs(),
   });
 
   /// next year
   const toNextYear = useCallback(() => {
-    setFocusedAt((_focusedAt) => _focusedAt.add(1, "year"));
+    setFocusedAt((__focusedAt) => __focusedAt.add(1, "year"));
   }, [setFocusedAt]);
 
   /// prev year
   const toPrevYear = useCallback(() => {
-    setFocusedAt((_focusedAt) => _focusedAt.subtract(1, "year"));
+    setFocusedAt((__focusedAt) => __focusedAt.subtract(1, "year"));
   }, [setFocusedAt]);
 
   /// next month
   const toNextMonth = useCallback(() => {
-    setFocusedAt((_focusedAt) => _focusedAt.add(1, "month"));
+    setFocusedAt((__focusedAt) => __focusedAt.add(1, "month"));
   }, [setFocusedAt]);
 
   /// prev month
   const toPrevMonth = useCallback(() => {
-    setFocusedAt((_focusedAt) => _focusedAt.subtract(1, "month"));
+    setFocusedAt((__focusedAt) => __focusedAt.subtract(1, "month"));
   }, [setFocusedAt]);
 
   return {

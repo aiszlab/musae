@@ -1,7 +1,8 @@
 import React from "react";
 import { useClassNames } from "../../hooks/use-class-names";
 import { ClockClassToken, ComponentToken } from "../../utils/class-name";
-import { ClockProps, TimeUnit } from "./types";
+import type { ClockProps } from "./types";
+import { TimeUnit } from "./types";
 import Column from "./column";
 import * as stylex from "@stylexjs/stylex";
 import clsx from "clsx";

@@ -51,6 +51,11 @@ const styles = {
       height: sizes.xxxsmall,
       width: sizes.xxxsmall,
       insetInlineStart: spacing.xsmall,
+
+      // layout
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
     }),
 
     // in slider, if icon show, change default layout

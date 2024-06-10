@@ -8,13 +8,15 @@ import { ComponentProps } from "../../types/element";
 export type TooltipProps = ComponentProps & {
   /**
    * @description
-   * a trigger element.
+   * title
+   * @default void 0
    */
-  children: ReactElement;
+  title?: ReactNode;
 
   /**
    * @description
-   * title
+   * a trigger element.
+   * @requires
    */
-  title?: ReactNode;
+  children: ReactElement;
 };

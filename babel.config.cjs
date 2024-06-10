@@ -1,7 +1,3 @@
-// import stylex from "@stylexjs/babel-plugin";
-// import { fileURLToPath } from "url";
-// import { dirname } from "path";
-
 const stylex = require("@stylexjs/babel-plugin");
 
 /**

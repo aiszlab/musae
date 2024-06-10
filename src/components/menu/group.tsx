@@ -51,7 +51,7 @@ const styles = {
  * menu group
  */
 const Group = forwardRef<HTMLUListElement, MenuGroupProps>(
-  ({ items = [], level = 0, expanded = true, className, style, mode, ...props }, ref) => {
+  ({ items, level = 0, expanded = true, className, style, mode }, ref) => {
     const classNames = useClassNames(ComponentToken.Menu);
     const [scope, animate] = useAnimate<HTMLUListElement>();
     const { collect, expandedKeys } = useMenuContext();

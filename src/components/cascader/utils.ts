@@ -16,7 +16,7 @@ import type { Option } from "../../types/option";
  * @description
  * read options
  */
-export const readOptions = ({ options = [], from = 1, paths = [] }: ReadBy) => {
+export const readOptions = ({ options, from = 1, paths = [] }: ReadBy) => {
   return options.reduce<[ReadableOptions, ReadablePaths, number]>(
     (prev, option) => {
       const [collectedOptions, collectedPaths, next] = prev;
@@ -31,7 +31,7 @@ export const readOptions = ({ options = [], from = 1, paths = [] }: ReadBy) => {
 
       // read deeply
       const [children, readPaths, readId] = readOptions({
-        options: option.children,
+        options: option.children ?? [],
         from: next,
         paths: currentPaths,
       });

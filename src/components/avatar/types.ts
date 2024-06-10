@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 
 type Size = "small" | "medium" | "large";
+
 type Shape = "circular" | "squared";
 
 /**
@@ -11,24 +12,28 @@ export type AvatarProps = {
   /**
    * @description
    * src
+   * @default void 0
    */
   src?: string;
 
   /**
    * @description
    * alt
+   * @default void 0
    */
   alt?: string;
 
   /**
    * @description
    * size
+   * @default "medium"
    */
   size?: Size;
 
   /**
    * @description
    * shape
+   * @default "circular"
    */
   shape?: Shape;
 };
@@ -41,26 +46,30 @@ export type AvatarGroupProps = {
   /**
    * @description
    * children
+   * @requires
    */
   children: ReactNode;
 
   /**
    * @description
    * max
+   * @default 3
    */
   max?: number;
 
   /**
    * @description
-   * shape
+   * size
+   * @default "circular"
    */
-  shape?: Shape;
+  size?: Size;
 
   /**
    * @description
-   * size
+   * shape
+   * @default "circular"
    */
-  size?: Size;
+  shape?: Shape;
 };
 
 /**

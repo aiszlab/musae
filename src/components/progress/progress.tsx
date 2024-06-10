@@ -1,5 +1,5 @@
 import React from "react";
-import { ProgressProps } from "./types";
+import type { ProgressProps } from "./types";
 import Linear from "./linear";
 import Circular from "./circular";
 

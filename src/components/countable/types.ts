@@ -13,7 +13,6 @@ export type CountableProps = Pick<
     /**
      * @description
      * count total after every trigger
-     *
      * @default 60
      */
     count?: number;
@@ -21,7 +20,6 @@ export type CountableProps = Pick<
     /**
      * @description
      * interval, unit(ms)
-     *
      * @default 1000
      */
     interval?: number;

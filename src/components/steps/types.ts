@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { ComponentProps } from "../../types/element";
+import type { ComponentProps } from "../../types/element";
 
 export type Status = "done" | "doing" | "todo";
 
@@ -13,20 +13,23 @@ type StepItem = {
   /**
    * @description
    * leading
+   * @default void 0
    */
   leading?: ReactNode;
 
   /**
    * @description
    * title
+   * @requires
    */
   title: ReactNode;
 
   /**
    * @description
    * description
+   * @default void 0
    */
-  description?: string;
+  description?: ReactNode;
 };
 
 /**

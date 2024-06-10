@@ -33,18 +33,21 @@ export type TreeProps = ComponentProps & {
   /**
    * @description
    * nodes
+   * @default []
    */
   nodes: TreeNode[];
 
   /**
    * @description
    * expanded keys
+   * @default void 0
    */
   expandedKeys?: Key[];
 
   /**
    * @description
    * expand handler
+   * @default void 0
    */
   onExpand?: (keys: Key[]) => void;
 };

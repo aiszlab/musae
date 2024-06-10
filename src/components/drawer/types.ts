@@ -11,36 +11,35 @@ export interface DrawerProps {
   /**
    * @description
    * children
+   * @default void 0
    */
   children?: ReactNode;
 
   /**
    * @description
    * is open
+   * @requires
    */
   open: boolean;
 
   /**
    * @description
-   * close handler
-   */
-  onClose?: VoidFunction;
-
-  /**
-   * @description
    * title
+   * @default void 0
    */
   title?: ReactNode;
 
   /**
    * @description
    * placement
+   * @default "right"
    */
   placement?: Placement;
 
   /**
    * @description
    * Whether the drawer can be closed by clicking on the overlay or pressing the Esc key.
+   * @default true
    */
   dismissable?: boolean | Dismissable[];
 
@@ -51,10 +50,15 @@ export interface DrawerProps {
    * vertical drawer, size prop mean height
    *
    * @default 400
-   *
-   * // TODO: add prop to docs
    */
   size?: number;
+
+  /**
+   * @description
+   * close handler
+   * @default void 0
+   */
+  onClose?: VoidFunction;
 }
 
 /**

@@ -29,30 +29,35 @@ export interface CascaderProps {
   /**
    * @description
    * value
+   * @default void 0
    */
   value?: ValueOrValues;
 
   /**
    * @description
    * options
+   * @default []
    */
   options?: Option[];
 
   /**
    * @description
    * mode
+   * @default void 0
    */
   mode?: Mode;
 
   /**
    * @description
    * complex
+   * @default false
    */
   complex?: boolean;
 
   /**
    * @description
    * separator
+   * @default "/"
    */
   separator?: ReactNode;
 }
@@ -66,7 +71,7 @@ export interface ReadBy {
    * @description
    * options
    */
-  options?: Option[];
+  options: Option[];
 
   /**
    * @description

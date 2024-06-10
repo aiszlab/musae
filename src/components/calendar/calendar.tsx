@@ -18,6 +18,10 @@ import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
 
 const styles = stylex.create({
+  calendar: {
+    width: "fit-content",
+  },
+
   header: (props: { color: CSSProperties["color"] }) => ({
     display: "flex",
     alignItems: "center",
@@ -42,6 +46,7 @@ const Calendar = ({ className, style, ...props }: CalendarProps) => {
   const theme = useTheme();
 
   const styled = {
+    calendar: stylex.props(styles.calendar),
     header: stylex.props(
       typography.label.large,
       styles.header({
@@ -52,7 +57,13 @@ const Calendar = ({ className, style, ...props }: CalendarProps) => {
   };
 
   return (
-    <div className={className} style={style}>
+    <div
+      className={clsx(styled.calendar.className, className)}
+      style={{
+        ...styled.calendar.style,
+        ...style,
+      }}
+    >
       <header
         className={clsx(classNames[CalendarClassToken.Header], styled.header.className)}
         style={styled.header.style}

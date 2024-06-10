@@ -10,12 +10,14 @@ export type TimelineItem = {
   /**
    * @description
    * label
+   * @default void 0
    */
   label?: ReactNode;
 
   /**
    * @description
    * description
+   * @requires
    */
   description: ReactNode;
 };
@@ -28,12 +30,14 @@ export type TimelineProps = {
   /**
    * @description
    * items
+   * @requires
    */
   items: TimelineItem[];
 
   /**
    * @description
    * you can use `mode` to switch the direction of the timeline
+   * @default "right"
    */
   mode?: Mode;
 };

@@ -15,24 +15,28 @@ export type RateProps = ComponentProps & {
   /**
    * @description
    * rate value
+   * @default void 0
    */
   value?: number;
 
   /**
    * @description
    * change handler
+   * @default void 0
    */
   onChange?: (value: number) => void;
 
   /**
    * @description
    * halfable
+   * @default true
    */
   halfable?: boolean;
 
   /**
    * @description
    * disabled
+   * @default false
    */
   disabled?: boolean;
 };

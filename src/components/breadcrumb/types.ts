@@ -9,6 +9,7 @@ export type BreadcrumbItem = {
   /**
    * @description
    * item display label
+   * @requires
    */
   label: ReactNode;
 
@@ -16,6 +17,7 @@ export type BreadcrumbItem = {
    * @description
    * item href link
    * if link is not provided, item will display as a label
+   * @default void 0
    */
   href?: string;
 };
@@ -28,14 +30,16 @@ export type BreadcrumbProps = ComponentProps & {
   /**
    * @description
    * breadcrumb items
+   * @default []
    */
-  items: BreadcrumbItem[];
+  items?: BreadcrumbItem[];
 
   /**
    * @description
    * separator
+   * @default "/"
    */
-  separator?: ReactNode;
+  separator?: Exclude<ReactNode, undefined | null>;
 };
 
 /**
@@ -46,12 +50,14 @@ export type BreadcrumbItemProps = BreadcrumbItem & {
   /**
    * @description
    * max
+   * @requires
    */
   max: boolean;
 
   /**
    * @description
    * separator
+   * @requires
    */
-  separator?: ReactNode;
+  separator: Exclude<ReactNode, undefined | null>;
 };

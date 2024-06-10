@@ -1,4 +1,4 @@
-import React, { CSSProperties, ChangeEventHandler, useCallback, useContext, useMemo } from "react";
+import React, { type CSSProperties, type ChangeEventHandler, useCallback, useContext, useMemo } from "react";
 import { useControlledState } from "@aiszlab/relax";
 import Context from "./context";
 import type { CheckboxProps } from "./types";

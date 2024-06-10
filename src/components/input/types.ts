@@ -19,60 +19,59 @@ export interface InputProps
     ComponentProps {
   /**
    * @description
+   * value
+   * @default void 0
+   */
+  value?: string;
+
+  /**
+   * @description
    * placeholder for input
+   * @default void 0
    */
   placeholder?: string;
 
   /**
    * @description
    * variant for input, display different style
+   * @default "outlined"
    */
   variant?: Variant;
 
   /**
    * @description
    * leading node
+   * @default void 0
    */
   leading?: ReactNode;
 
   /**
    * @description
    * trailing node
+   * @default void 0
    */
   trailing?: ReactNode;
 
   /**
    * @description
    * input type
-   *
    * @default "text"
    */
   type?: "text" | "password" | "number";
 
   /**
    * @description
-   * value
-   */
-  value?: string;
-
-  /**
-   * @description
    * invalid
+   * @default false
    */
   invalid?: boolean;
 
   /**
    * @description
    * change handler
+   * @default void 0
    */
   onChange?: (value: string) => void;
-
-  /**
-   * @description
-   * flexible
-   * `true` mean width = `100%`, `false` mean default min width
-   */
-  flexible?: boolean;
 }
 
 /**

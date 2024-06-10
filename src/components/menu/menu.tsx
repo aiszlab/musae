@@ -24,7 +24,22 @@ const styles = stylex.create({
  * menu component
  */
 const Menu = forwardRef<MenuRef, MenuProps>(
-  ({ onClick, className, style, variant = "filled", size = "medium", mode = "inline", ...props }, ref) => {
+  (
+    {
+      onClick,
+      className,
+      style,
+      variant = "filled",
+      size = "medium",
+      mode = "inline",
+      items = [],
+      selectedKeys,
+      expandedKeys,
+      defaultExpandedKeys,
+      defaultSelectedKeys,
+    },
+    ref
+  ) => {
     const classNames = useClassNames(ComponentToken.Menu);
     const { targetRef, scrollTo, to, setTrigger } = useScrollable<HTMLUListElement, HTMLLIElement>({
       direction: useScrollDirection(mode),
@@ -32,10 +47,10 @@ const Menu = forwardRef<MenuRef, MenuProps>(
 
     /// context value
     const contextValue = useContextValue({
-      selectedKeys: props.selectedKeys,
-      expandedKeys: props.expandedKeys,
-      defaultSelectedKeys: props.defaultSelectedKeys,
-      defaultExpandedKeys: props.defaultExpandedKeys,
+      selectedKeys,
+      expandedKeys,
+      defaultSelectedKeys,
+      defaultExpandedKeys,
       onClick,
       setTrigger,
       variant,
@@ -54,7 +69,7 @@ const Menu = forwardRef<MenuRef, MenuProps>(
       <Context.Provider value={contextValue}>
         <Group
           ref={targetRef}
-          items={props.items}
+          items={items}
           mode={mode}
           className={clsx(classNames[MenuClassToken.Menu], className, styled.className)}
           style={{

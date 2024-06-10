@@ -71,7 +71,7 @@ const Item = ({ href, label, max, separator }: BreadcrumbItemProps) => {
           className={clsx(classNames[BreadcrumbClassToken.Separator], styled.separator.className)}
           style={styled.separator.style}
         >
-          {separator ?? "/"}
+          {separator}
         </li>
       )}
     </>

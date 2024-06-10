@@ -27,7 +27,7 @@ const Select = ({
   onSearch,
   className,
   style,
-  options,
+  options = [],
   onFilter,
   complex = false,
   ...props

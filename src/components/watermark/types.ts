@@ -8,7 +8,7 @@ type Font = {
   /**
    * @description
    * fill color
-   * @default rgba(0,0,0,.15)
+   * @default "rgba(0,0,0,.15)"
    */
   color?: CanvasFillStrokeStyles["fillStyle"];
 
@@ -22,28 +22,28 @@ type Font = {
   /**
    * @description
    * font weight
-   * @default normal
+   * @default "normal"
    */
   fontWeight?: "normal" | "light" | "weight" | number;
 
   /**
    * @description
    * font style
-   * @default sans-serif
+   * @default "normal"
    */
   fontStyle?: "none" | "normal" | "italic" | "oblique";
 
   /**
    * @description
    * font family
-   * @default normal
+   * @default "sans-serif"
    */
   fontFamily?: string;
 
   /**
    * @description
    * text align
-   * @default start
+   * @default "start"
    */
   textAlign?: CanvasTextAlign;
 };
@@ -56,12 +56,14 @@ export type WatermarkProps = {
   /**
    * @description
    * children
+   * @default void 0
    */
   children?: ReactNode;
 
   /**
    * @description
    * mark
+   * @requires
    */
   mark: string | string[] | HTMLImageElement;
 
@@ -82,6 +84,7 @@ export type WatermarkProps = {
   /**
    * @description
    * font
+   * @default {}
    */
   font?: Font;
 };

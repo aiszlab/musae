@@ -72,7 +72,6 @@ const Input = forwardRef<InputRef, InputProps>(
       invalid = false,
       readOnly,
       maxLength,
-      flexible = false,
       value: __value,
       onBlur,
       onChange,
@@ -80,6 +79,7 @@ const Input = forwardRef<InputRef, InputProps>(
       onFocus,
       leading,
       trailing,
+      variant = "outlined",
       ...inputProps
     },
     ref
@@ -131,8 +131,7 @@ const Input = forwardRef<InputRef, InputProps>(
         invalid &&
           styles.invalid({
             outlineColor: theme.colors[ColorToken.Error],
-          }),
-        flexible && styles.flexible
+          })
       ),
       input: stylex.props(styles.input),
     };

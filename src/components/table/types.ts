@@ -10,6 +10,7 @@ export type TableProps<T> = {
   /**
    * @description
    * data
+   * @default []
    */
   dataSource?: T[];
 
@@ -17,12 +18,14 @@ export type TableProps<T> = {
    * @description
    * in react table, columns always are created by helper
    * so in musae, we use this function to create columns
+   * @default void 0
    */
   columns?: (helper: ColumnHelper<T>) => ColumnDef<T, any>[];
 
   /**
    * @description
    * bordered
+   * @default false
    */
   bordered?: boolean;
 };

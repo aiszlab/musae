@@ -33,6 +33,7 @@ export interface CheckboxGroupProps {
    * checked values
    * @example
    * ["A"]
+   * @default void 0
    */
   value?: Key[];
 
@@ -41,6 +42,7 @@ export interface CheckboxGroupProps {
    * children
    * @example
    * <Checkbox value="A" />
+   * @requires
    */
   children: ReactNode;
 }
@@ -55,18 +57,21 @@ export interface CheckboxProps extends ComponentProps {
   /**
    * @description
    * if is checked
+   * @default void 0
    */
   checked?: boolean;
 
   /**
    * @description
    * value
+   * @requires
    */
   value: Key;
 
   /**
    * @description
    * children
+   * @default void 0
    */
   children?: ReactNode;
 }

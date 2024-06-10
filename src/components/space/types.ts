@@ -10,12 +10,14 @@ export type SpaceProps = ComponentProps & {
   /**
    * @description
    * children
+   * @default void 0
    */
   children?: ReactNode;
 
   /**
    * @description
    * gutter
+   * @default 4
    */
   gutter?: Gutter;
 };

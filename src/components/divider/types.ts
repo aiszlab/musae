@@ -13,18 +13,21 @@ export interface DividerProps extends ComponentProps {
   /**
    * @description
    * children
+   * @default void 0
    */
   children?: ReactNode;
 
   /**
    * @description
    * align
+   * @default "center"
    */
   align?: Align;
 
   /**
    * @description
    * type
+   * @default "horizontal"
    */
   type?: Type;
 }

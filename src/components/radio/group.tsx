@@ -3,7 +3,7 @@ import Context from "./context";
 import { ContextValue, RadioGroupProps } from "./types";
 import { useControlledState } from "@aiszlab/relax";
 
-const Group = (props: RadioGroupProps) => {
+const Group = ({ disabled = false, children, ...props }: RadioGroupProps) => {
   /// controlled value
   const [value, setValue] = useControlledState(props.value);
 
@@ -20,12 +20,12 @@ const Group = (props: RadioGroupProps) => {
     () => ({
       value,
       change,
-      isDisabled: !!props.disabled,
+      isDisabled: disabled,
     }),
-    [value, change, props.disabled]
+    [value, change, disabled]
   );
 
-  return <Context.Provider value={contextValue}>{props.children}</Context.Provider>;
+  return <Context.Provider value={contextValue}>{children}</Context.Provider>;
 };
 
 export default Group;

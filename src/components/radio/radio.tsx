@@ -11,75 +11,78 @@ import { sizes, spacing } from "../theme/tokens.stylex";
 import { typography } from "../theme/theme";
 import clsx from "clsx";
 
-const styles = stylex.create({
-  radio: {
-    display: "flex",
-    alignItems: "center",
-    cursor: "pointer",
-  },
+const styles = {
+  radio: stylex.create({
+    default: {
+      display: "flex",
+      alignItems: "center",
+      cursor: "pointer",
+    },
 
-  disabled: {
-    cursor: "not-allowed",
-  },
-
-  trigger: (props: { borderColor: CSSProperties["borderColor"] }) => ({
-    visibility: "hidden",
-    height: sizes.xxxsmall,
-    width: sizes.xxxsmall,
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    cursor: "inherit",
-
-    "::after": {
-      content: "''",
-      visibility: "visible",
-      display: "block",
-      height: sizes.full,
-      width: sizes.full,
-      boxSizing: "border-box",
-      borderWidth: "1px",
-      borderStyle: "solid",
-      borderColor: props.borderColor,
-      borderRadius: sizes.infinity,
-      transition: "all 0.2s",
+    disabled: {
+      cursor: "not-allowed",
     },
   }),
 
-  checkedTrigger: (props: { borderColor: CSSProperties["borderColor"] }) => ({
-    "::after": {
-      borderColor: props.borderColor,
-      borderWidth: "4px",
-    },
+  toggler: stylex.create({
+    default: (props: { borderColor: CSSProperties["borderColor"] }) => ({
+      visibility: "hidden",
+      height: sizes.xxxsmall,
+      width: sizes.xxxsmall,
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      cursor: "inherit",
+
+      "::after": {
+        content: "''",
+        visibility: "visible",
+        display: "block",
+        height: sizes.full,
+        width: sizes.full,
+        boxSizing: "border-box",
+        borderWidth: sizes.smallest,
+        borderStyle: "solid",
+        borderColor: props.borderColor,
+        borderRadius: sizes.infinity,
+        transition: "all 0.2s",
+      },
+    }),
+
+    checked: (props: { borderColor: CSSProperties["borderColor"] }) => ({
+      "::after": {
+        borderColor: props.borderColor,
+        borderWidth: sizes.xxxxxsmall,
+      },
+    }),
+
+    disabled: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
+      "::before": {
+        content: "''",
+        position: "absolute",
+        visibility: "visible",
+        height: sizes.xxxxsmall,
+        width: sizes.xxxxsmall,
+        backgroundColor: props.backgroundColor,
+        borderRadius: sizes.infinity,
+      },
+    }),
   }),
 
-  disabledCheckedTrigger: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
-    "::before": {
-      content: "''",
-      position: "absolute",
-      visibility: "visible",
-      height: sizes.xxxxsmall,
-      width: sizes.xxxxsmall,
-      backgroundColor: props.backgroundColor,
-      borderRadius: sizes.infinity,
+  label: stylex.create({
+    default: {
+      paddingInline: spacing.xsmall,
     },
   }),
+};
 
-  label: {
-    paddingInline: spacing.xsmall,
-  },
-});
-
-const Radio = ({ children, value, ...props }: RadioProps) => {
+const Radio = ({ children, value, checked, disabled = false, ...props }: RadioProps) => {
   const contextValue = useContext(Context);
-  const [_isChecked, _setIsChecked] = useControlledState(props.checked);
+  const [_isChecked, _setIsChecked] = useControlledState(checked);
   const classNames = useClassNames(ComponentToken.Radio);
   const theme = useTheme();
 
-  const isDisabled = useMemo(
-    () => contextValue?.isDisabled ?? props.disabled ?? false,
-    [contextValue?.isDisabled, props.disabled]
-  );
+  const isDisabled = useMemo(() => contextValue?.isDisabled ?? disabled, [contextValue?.isDisabled, disabled]);
 
   /// check current radio is checked
   /// if current radio is in provider, use provider context value first
@@ -108,21 +111,21 @@ const Radio = ({ children, value, ...props }: RadioProps) => {
   }, [isChecked, contextValue, value, isDisabled]);
 
   const styled = {
-    radio: stylex.props(styles.radio, isDisabled && styles.disabled),
+    radio: stylex.props(styles.radio.default, isDisabled && styles.radio.disabled),
     trigger: stylex.props(
-      styles.trigger({
+      styles.toggler.default({
         borderColor: theme.colors[ColorToken.Outline],
       }),
       isChecked &&
         (isDisabled
-          ? styles.disabledCheckedTrigger({
+          ? styles.toggler.disabled({
               backgroundColor: theme.colors[ColorToken.InversePrimary],
             })
-          : styles.checkedTrigger({
+          : styles.toggler.default({
               borderColor: theme.colors[ColorToken.Primary],
             }))
     ),
-    label: stylex.props(typography.body.medium, styles.label),
+    label: stylex.props(typography.body.medium, styles.label.default),
   };
 
   return (

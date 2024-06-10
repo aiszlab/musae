@@ -21,7 +21,7 @@ const styles = stylex.create({
   },
 });
 
-const Breadcrumb = ({ items = [], className, separator, style }: BreadcrumbProps) => {
+const Breadcrumb = ({ items = [], className, separator = "/", style }: BreadcrumbProps) => {
   const theme = useTheme();
   const classNames = useClassNames(ComponentToken.Breadcrumb);
 

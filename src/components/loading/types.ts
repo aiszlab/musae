@@ -10,6 +10,7 @@ export interface LoadingProps {
   /**
    * @description
    * size
+   * @default "medium"
    */
   size?: Size;
 }

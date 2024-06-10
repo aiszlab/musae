@@ -11,18 +11,21 @@ export type TagProps = ComponentProps & {
   /**
    * @description
    * children
+   * @default void 0
    */
   children?: ReactNode;
 
   /**
    * @description
    * size
+   * @default "medium"
    */
   size?: Size;
 
   /**
    * @description
    * if current tag is closable
+   * @default false
    */
   closable?: boolean;
 
@@ -35,6 +38,7 @@ export type TagProps = ComponentProps & {
   /**
    * @description
    * leading node
+   * @default void 0
    */
   leading?: ReactNode;
 };

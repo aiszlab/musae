@@ -16,12 +16,14 @@ export type ClockProps = ComponentProps & {
   /**
    * @description
    * value
+   * @default void 0
    */
   value?: Value;
 
   /**
    * @description
    * change handler
+   * @default void 0
    */
   onChange?: (value: Value) => void;
 };

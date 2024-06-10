@@ -70,7 +70,7 @@ const styles = stylex.create({
   },
 });
 
-const Popup = ({ onClose, open, dismissable = true, onClosed, ...props }: PopupProps) => {
+const Popup = ({ onClose, open, dismissable, onClosed, ...props }: PopupProps) => {
   const classNames = useClassNames(ComponentToken.Dialog);
   const [scope, animate] = useAnimate<HTMLDivElement>();
   const theme = useTheme();

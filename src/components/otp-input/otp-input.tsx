@@ -68,13 +68,15 @@ const OtpInput = ({ length = 6, onChange, value: _value }: OtpInputProps) => {
             value={item}
             maxLength={1}
             className={styled.input.className}
-            style={styled.input.style}
+            style={{
+              ...styled.input.style,
+              minWidth: "unset",
+            }}
             ref={(inputRef) => {
               inputRefs.current[index] = inputRef;
             }}
             onChange={change}
             onKeyDown={keyDown}
-            flexible
             onFocus={(e) => focus(e, index)}
           />
         );

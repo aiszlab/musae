@@ -9,12 +9,14 @@ export interface TimePickerProps extends ComponentProps {
   /**
    * @description
    * value
+   * @default void 0
    */
   value?: Dayjs;
 
   /**
    * @description
    * change handler
+   * @default void 0
    */
   onChange?: (value: Dayjs) => void;
 }

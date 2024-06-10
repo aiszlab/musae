@@ -58,56 +58,64 @@ export interface MenuProps extends ComponentProps {
   /**
    * @description
    * items
+   * @default []
    */
   items: MenuItem[];
-
-  /**
-   * @description
-   * click handler
-   */
-  onClick?: ContextValue["click"];
-
-  /**
-   * @description
-   * selected keys
-   */
-  selectedKeys?: Key[];
-
-  /**
-   * @description
-   * default selected keys
-   */
-  defaultSelectedKeys?: Key[];
-
-  /**
-   * @description
-   * expanded keys
-   */
-  expandedKeys?: Key[];
-
-  /**
-   * @description
-   * default expanded keys
-   */
-  defaultExpandedKeys?: Key[];
-
-  /**
-   * @description
-   * you can use the variant in the Menu component to change the hover style of the Menu items.
-   */
-  variant?: Variant;
-
-  /**
-   * @description
-   * size
-   */
-  size?: Size;
 
   /**
    * @description
    * mode
    */
   mode?: Mode;
+
+  /**
+   * @description
+   * you can use the variant in the Menu component to change the hover style of the Menu items.
+   * @default "filled"
+   */
+  variant?: Variant;
+
+  /**
+   * @description
+   * size
+   * @default "medium"
+   */
+  size?: Size;
+
+  /**
+   * @description
+   * selected keys
+   * @default void 0
+   */
+  selectedKeys?: Key[];
+
+  /**
+   * @description
+   * default selected keys
+   * @default void 0
+   */
+  defaultSelectedKeys?: Key[];
+
+  /**
+   * @description
+   * expanded keys
+   * @default void 0
+   */
+  expandedKeys?: Key[];
+
+  /**
+   * @description
+   * default expanded keys
+   * @default void 0
+   */
+  defaultExpandedKeys?: Key[];
+
+  /**
+   * @description
+   * click handler
+   * @default void 0
+   */
+  onClick?: ContextValue["click"];
 }
 
 /**
@@ -120,24 +128,28 @@ export type MenuItem = ComponentProps & {
   /**
    * @description
    * key
+   * @requires
    */
   key: Key;
 
   /**
    * @description
    * label
+   * @default void 0
    */
   label?: ReactNode;
 
   /**
    * @description
    * prefix node
+   * @default void 0
    */
   prefix?: ReactNode;
 
   /**
    * @description
    * children
+   * @default void 0
    */
   children?: MenuItem[];
 };
@@ -159,6 +171,7 @@ export type MenuItemProps = WithLevel<Omit<MenuItem, "key" | "children">> &
     /**
      * @description
      * suffix
+     * @default void 0
      */
     suffix?: ReactNode;
 
@@ -191,25 +204,29 @@ export type MenuGroupProps = ComponentProps & {
   /**
    * @description
    * menu group items
+   * @requires
    */
-  items?: MenuItem[];
+  items: MenuItem[];
 
   /**
    * @description
    * current menu group display level
    * like menu, display group in level 0
+   * @default 0
    */
   level?: number;
 
   /**
    * @description
    * current menu group is expanded
+   * @default true
    */
   expanded?: boolean;
 
   /**
    * @description
    * mode
+   * @requires
    */
   mode: Mode;
 };

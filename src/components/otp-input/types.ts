@@ -6,7 +6,6 @@ export type OtpInputProps = {
   /**
    * @description
    * length
-   *
    * @default 6
    */
   length?: number;
@@ -14,12 +13,14 @@ export type OtpInputProps = {
   /**
    * @description
    * value change handler
+   * @default void 0
    */
   onChange?: (value: string) => void;
 
   /**
    * @description
    * value
+   * @default void 0
    */
   value?: string;
 };

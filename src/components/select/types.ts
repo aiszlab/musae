@@ -20,48 +20,56 @@ export type SelectProps = ComponentProps & {
   /**
    * @description
    * options
+   * @default []
    */
   options?: Option[];
 
   /**
    * @description
    * complex
+   * @default false
    */
   complex?: boolean;
 
   /**
    * @description
    * value
+   * @default void 0
    */
   value?: ValueOrValues;
 
   /**
    * @description
    * mode
+   * @default void 0
    */
   mode?: Mode;
 
   /**
    * @description
    * searchable
+   * @default false
    */
   searchable?: boolean;
 
   /**
    * @description
    * search handler
+   * @default void 0
    */
   onSearch?: (searched: string) => void;
 
   /**
    * @description
    * option filter, like array filter
+   * @default void 0
    */
   onFilter?: ((searched: string, option: Option) => boolean) | boolean;
 
   /**
    * @description
    * on value change, toggle
+   * @default void 0
    */
   onChange?: (value: ValueOrValues) => void;
 };

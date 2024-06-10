@@ -11,6 +11,7 @@ export type ImageProps = ComponentProps &
     /**
      * @description
      * image source
+     * @requires
      */
     src: string;
   };
@@ -143,12 +144,14 @@ export type PreviewGroupProps = {
   /**
    * @description
    * children
+   * @requires
    */
   children: ReactNode;
 
   /**
    * @description
    * items
+   * @requires
    */
   items: string[];
 };

@@ -2,6 +2,7 @@ import { type Key, useMemo, useState, useRef } from "react";
 import type { Filter, Mode, ReadableOptions, SelectProps, ValueOrValues } from "./types";
 import { isUndefined, useControlledState, useEvent } from "@aiszlab/relax";
 import { readOptions, toKey, toMenuItems, toValues } from "./utils";
+import type { Option } from "../../types/option";
 
 /**
  * @description
@@ -107,7 +108,7 @@ export const useOptions = ({
   onSearch,
   ...props
 }: {
-  options: SelectProps["options"];
+  options: Option[];
   onFilter: SelectProps["onFilter"];
   onSearch: SelectProps["onSearch"];
 }) => {
@@ -139,8 +140,7 @@ export const useOptions = ({
   const reset = useEvent(() => setSearched(""));
 
   const [menuItems, readableOptions] = useMemo(
-    () => readOptions(options ?? [], toMenuItems, filter ?? (() => true)),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    () => readOptions(options, toMenuItems, filter ?? (() => true)),
     [options, filter]
   );
 
