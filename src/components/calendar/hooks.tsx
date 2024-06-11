@@ -2,7 +2,7 @@ import dayjs, { type Dayjs } from "dayjs";
 import React, { type CSSProperties, type ReactNode, useCallback, useMemo } from "react";
 import { useClassNames } from "../../hooks/use-class-names";
 import { CalendarClassToken, ComponentToken } from "../../utils/class-name";
-import { isArray, useControlledState } from "@aiszlab/relax";
+import { toArray, useControlledState } from "@aiszlab/relax";
 import { Timespan } from "../../utils/timespan";
 import clsx from "clsx";
 import type { CalendarProps } from "./types";
@@ -183,7 +183,13 @@ export const useDateCells = ([timespan, focusedAt, click]: [Timespan, Dayjs, Req
  * @description
  * time span
  */
-export const useValue = ([value, _click]: [CalendarProps["value"], CalendarProps["onClick"]]) => {
+export const useValue = ({
+  onClick: _click,
+  value,
+}: {
+  value: CalendarProps["value"];
+  onClick: CalendarProps["onClick"];
+}) => {
   /// change handler
   const onClick = useCallback(
     (_value: Dayjs) => {
@@ -194,7 +200,7 @@ export const useValue = ([value, _click]: [CalendarProps["value"], CalendarProps
 
   /// time span
   const timespan = useMemo(() => {
-    const [from, to] = isArray(value) ? value : [value, void 0];
+    const [from, to] = toArray(value);
     return new Timespan({ from, to });
   }, [value]);
 
@@ -208,7 +214,7 @@ export const useValue = ([value, _click]: [CalendarProps["value"], CalendarProps
  * @description
  * point at
  */
-export const useFocusedAt = ([_focusedAt]: [CalendarProps["focusedAt"]]) => {
+export const useFocusedAt = ({ focusedAt: _focusedAt }: { focusedAt: CalendarProps["focusedAt"] }) => {
   const [focusedAt, setFocusedAt] = useControlledState(_focusedAt!, {
     defaultState: dayjs(),
   });

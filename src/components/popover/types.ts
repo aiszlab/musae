@@ -3,10 +3,10 @@ import type { ComponentProps } from "../../types/element";
 
 export type ChildProps<T> = Pick<
   DOMAttributes<T>,
-  | "onPointerEnter"
   | "onMouseEnter"
   | "onMouseOver"
   | "onMouseLeave"
+  | "onPointerEnter"
   | "onPointerLeave"
   | "onClick"
   | "onContextMenu"

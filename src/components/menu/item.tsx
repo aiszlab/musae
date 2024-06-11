@@ -18,8 +18,11 @@ const styles = {
       display: "flex",
       alignItems: "center",
       cursor: "pointer",
-      transition: "all 0.1s",
+      userSelect: "none",
+
       willChange: "background-color, border, color",
+      transitionProperty: "background-color, border, color",
+      transitionDuration: "0.1s",
     },
   }),
 
@@ -182,8 +185,8 @@ const Item = forwardRef<HTMLLIElement, MenuItemProps>(
       <li role="menuitem" ref={ref} {...styled.menuItem}>
         <div
           ref={itemRef}
-          style={styled.item.style}
           className={clsx(classNames[MenuClassToken.Item], className, styled.item.className)}
+          style={styled.item.style}
           onClick={click}
           {...hoverProps}
         >

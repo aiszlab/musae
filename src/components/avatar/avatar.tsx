@@ -1,4 +1,4 @@
-import React, { type CSSProperties, useContext } from "react";
+import React, { type CSSProperties, useContext, forwardRef } from "react";
 import type { AvatarProps } from "./types";
 import * as stylex from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";
@@ -29,6 +29,7 @@ const styles = stylex.create({
     ":not(:first-child)": {
       marginInlineStart: `calc(${spacing.small} * -1)`,
     },
+
     borderColor: props.outlineColor,
   }),
 
@@ -56,32 +57,45 @@ const styles = stylex.create({
   },
 });
 
-const Avatar = ({ src, alt, shape: _shape = "circular", size: _size = "medium" }: AvatarProps) => {
-  const theme = useTheme();
-  const group = useContext(Context);
-  const isInGroup = !!group;
-  const size = group?.size ?? _size;
-  const shape = group?.shape ?? _shape;
-  const classNames = useClassNames(ComponentToken.Avatar);
+/**
+ * @description
+ * `Avatar`
+ *
+ * component
+ */
+const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(
+  ({ src, alt, shape: _shape = "circular", size: _size = "medium", ...props }, ref) => {
+    const theme = useTheme();
+    const group = useContext(Context);
+    const isInGroup = !!group;
+    const size = group?.size ?? _size;
+    const shape = group?.shape ?? _shape;
+    const classNames = useClassNames(ComponentToken.Avatar);
 
-  const styled = {
-    avatar: stylex.props(
-      styles.avatar,
-      styles[size],
-      styles[shape],
-      isInGroup &&
-        styles.overlapping({
-          outlineColor: theme.colors[ColorToken.OnPrimary],
-        })
-    ),
-    image: stylex.props(styles.image),
-  };
+    const styled = {
+      avatar: stylex.props(
+        styles.avatar,
+        styles[size],
+        styles[shape],
+        isInGroup &&
+          styles.overlapping({
+            outlineColor: theme.colors[ColorToken.OnPrimary],
+          })
+      ),
+      image: stylex.props(styles.image),
+    };
 
-  return (
-    <span className={clsx(classNames[AvatarClassToken.Avatar], styled.avatar.className)} style={styled.avatar.style}>
-      <img src={src} alt={alt} className={styled.image.className} style={styled.image.style} />
-    </span>
-  );
-};
+    return (
+      <span
+        {...props}
+        className={clsx(classNames[AvatarClassToken.Avatar], styled.avatar.className)}
+        style={styled.avatar.style}
+        ref={ref}
+      >
+        <img src={src} alt={alt} className={styled.image.className} style={styled.image.style} />
+      </span>
+    );
+  }
+);
 
 export default Avatar;

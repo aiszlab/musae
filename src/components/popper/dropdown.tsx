@@ -124,7 +124,7 @@ const Dropdown = ({
       if (open) {
         floatable.current.style.display = "";
         floatable.current.style.opacity = "0";
-        floatable.current.style.opacity = "scale(0, 0)";
+        floatable.current.style.transform = "scale(0, 0)";
         await animate(floatable.current, { opacity: 1, transform: "scale(1, 1)" }, { delay: 0.1, duration: 0.2 });
         await onEntered?.();
         return;

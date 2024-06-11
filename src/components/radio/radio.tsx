@@ -1,6 +1,6 @@
 import React, { CSSProperties, useCallback, useContext, useMemo } from "react";
 import Context from "./context";
-import { RadioProps } from "./types";
+import type { RadioProps } from "./types";
 import { useControlledState } from "@aiszlab/relax";
 import { useClassNames } from "../../hooks/use-class-names";
 import { ComponentToken, RadioClassToken } from "../../utils/class-name";
@@ -24,7 +24,7 @@ const styles = {
     },
   }),
 
-  toggler: stylex.create({
+  trigger: stylex.create({
     default: (props: { borderColor: CSSProperties["borderColor"] }) => ({
       visibility: "hidden",
       height: sizes.xxxsmall,
@@ -45,7 +45,10 @@ const styles = {
         borderStyle: "solid",
         borderColor: props.borderColor,
         borderRadius: sizes.infinity,
-        transition: "all 0.2s",
+
+        willChange: "border-color, border-width",
+        transitionProperty: "border-color, border-width",
+        transitionDuration: "0.2s",
       },
     }),
 
@@ -57,6 +60,8 @@ const styles = {
     }),
 
     disabled: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
+      borderColor: props.backgroundColor,
+
       "::before": {
         content: "''",
         position: "absolute",
@@ -67,6 +72,10 @@ const styles = {
         borderRadius: sizes.infinity,
       },
     }),
+
+    unckecked: {
+      "::before": null,
+    },
   }),
 
   label: stylex.create({
@@ -113,17 +122,18 @@ const Radio = ({ children, value, checked, disabled = false, ...props }: RadioPr
   const styled = {
     radio: stylex.props(styles.radio.default, isDisabled && styles.radio.disabled),
     trigger: stylex.props(
-      styles.toggler.default({
+      styles.trigger.default({
         borderColor: theme.colors[ColorToken.Outline],
       }),
       isChecked &&
-        (isDisabled
-          ? styles.toggler.disabled({
-              backgroundColor: theme.colors[ColorToken.InversePrimary],
-            })
-          : styles.toggler.default({
-              borderColor: theme.colors[ColorToken.Primary],
-            }))
+        styles.trigger.checked({
+          borderColor: theme.colors[ColorToken.Primary],
+        }),
+      isDisabled &&
+        styles.trigger.disabled({
+          backgroundColor: theme.colors[ColorToken.InversePrimary],
+        }),
+      !isChecked && styles.trigger.unckecked
     ),
     label: stylex.props(typography.body.medium, styles.label.default),
   };

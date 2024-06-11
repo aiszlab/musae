@@ -37,9 +37,9 @@ const styles = stylex.create({
   },
 });
 
-const Calendar = ({ className, style, ...props }: CalendarProps) => {
-  const { timespan, onClick } = useValue([props.value, props.onClick]);
-  const { focusedAt, toPrevYear, toPrevMonth, toNextYear, toNextMonth } = useFocusedAt([props.focusedAt]);
+const Calendar = ({ className, style, value, onClick: _onClick, focusedAt: _focusedAt }: CalendarProps) => {
+  const { timespan, onClick } = useValue({ onClick: _onClick, value });
+  const { focusedAt, toPrevYear, toPrevMonth, toNextYear, toNextMonth } = useFocusedAt({ focusedAt: _focusedAt });
   const dateCells = useDateCells([timespan, focusedAt, onClick]);
   const headCells = useHeadCells();
   const classNames = useClassNames(ComponentToken.Calendar);

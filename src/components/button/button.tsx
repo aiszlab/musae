@@ -121,13 +121,15 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       onPointerEnter,
       onPointerLeave,
       type = "button",
-      ...props
+      onClick: _onClick,
+      prefix,
+      suffix,
     },
     ref
   ) => {
     const classNames = useClassNames(ComponentToken.Button);
     const theme = useTheme();
-    const { onClick, clear, ripples } = useButton({ onClick: props.onClick });
+    const { onClick, clear, ripples } = useButton({ onClick: _onClick });
 
     const styled = {
       button: stylex.props(
@@ -177,9 +179,9 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         onPointerLeave={onPointerLeave}
         type={type}
       >
-        {props.prefix}
+        {prefix}
         {children}
-        {props.suffix}
+        {suffix}
         {ripple && <Ripple ripples={ripples} onClear={clear} />}
       </button>
     );

@@ -4,7 +4,7 @@ import { sizes } from "../theme/tokens.stylex";
 import { WatermarkProps } from "./types";
 import { useMutateObserver, useRaf, useDevicePixelRatio } from "@aiszlab/relax";
 import { useClips, useWatermarks } from "./hooks";
-import { Nullable } from "@aiszlab/relax/types";
+import type { Nullable } from "@aiszlab/relax/types";
 
 const styles = stylex.create({
   watermark: {
