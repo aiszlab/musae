@@ -1,12 +1,12 @@
-import React, { CSSProperties, useEffect, useMemo, useRef } from "react";
+import React, { type CSSProperties, useEffect, useMemo, useRef } from "react";
 import type { DropdownProps } from "./types";
 import { ComponentToken, PopperClassToken } from "../../utils/class-name";
 import { useClassNames } from "../../hooks/use-class-names";
 import * as stylex from "@stylexjs/stylex";
 import clsx from "clsx";
-import { isFunction, isVoid } from "@aiszlab/relax";
-import { computePosition, flip, autoUpdate, offset, arrow } from "@floating-ui/dom";
-import { Nullable } from "@aiszlab/relax/types";
+import { isFunction } from "@aiszlab/relax";
+import { computePosition, flip, autoUpdate, offset, arrow, type Side, type Alignment } from "@floating-ui/dom";
+import type { Nullable } from "@aiszlab/relax/types";
 import { useOffsets } from "./hooks";
 import { elevations, positions, sizes } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
@@ -40,7 +40,6 @@ const styles = {
       width: sizes.xxxsmall,
       height: sizes.xxxsmall,
       backgroundColor: props.backgroundColor,
-      insetBlockStart: `calc(${sizes.xxxsmall} * -1)`,
       transform: "rotate(45deg)",
     }),
   }),
@@ -49,7 +48,7 @@ const styles = {
 const Dropdown = ({
   open,
   children,
-  placement = "bottom-start",
+  placement,
   style,
   className,
   onExit,
@@ -90,16 +89,20 @@ const Dropdown = ({
           arrowable && !!arrowRef.current && arrow({ element: arrowRef.current, padding: 16 }),
         ],
       })
-        .then(({ x, y, middlewareData }) => {
+        .then(({ x, y, middlewareData, placement: _placement }) => {
+          const [side] = _placement.split("-") as [Side, Alignment?];
+
           // set float element styles
           floatable.current.style.translate = `${x}px ${y}px`;
 
           // set arrwo styles
           if (middlewareData.arrow && !!arrowRef.current) {
-            arrowRef.current.style.insetInlineStart = isVoid(middlewareData.arrow.x)
-              ? ""
-              : `${middlewareData.arrow.x}px`;
-            arrowRef.current.style.insetBlockStart = `${middlewareData.arrow.y ?? 0 - 8}px`;
+            const offsetY = `${middlewareData.arrow.y ?? 0 - 8}px`;
+            const offsetX = `${middlewareData.arrow.x ?? 0}px`;
+
+            arrowRef.current.style.insetInlineStart = offsetX;
+            side === "top" && (arrowRef.current.style.insetBlockEnd = offsetY);
+            side === "bottom" && (arrowRef.current.style.insetBlockStart = offsetY);
           }
         })
         .catch(() => null);
@@ -123,8 +126,6 @@ const Dropdown = ({
     (async () => {
       if (open) {
         floatable.current.style.display = "";
-        floatable.current.style.opacity = "0";
-        floatable.current.style.transform = "scale(0, 0)";
         await animate(floatable.current, { opacity: 1, transform: "scale(1, 1)" }, { delay: 0.1, duration: 0.2 });
         await onEntered?.();
         return;
@@ -134,8 +135,6 @@ const Dropdown = ({
         onExit?.(),
         animate(floatable.current, { opacity: 0, transform: "scale(0, 0)" }, { delay: 0.1, duration: 0.2 }).then(() => {
           floatable.current.style.display = "none";
-          floatable.current.style.opacity = "";
-          floatable.current.style.transform = "";
         }),
       ]);
       onExited?.();

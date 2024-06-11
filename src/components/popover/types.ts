@@ -1,5 +1,6 @@
 import type { DOMAttributes, ReactElement, ReactNode, RefAttributes } from "react";
 import type { ComponentProps } from "../../types/element";
+import type { Placement } from "@floating-ui/dom";
 
 export type ChildProps<T> = Pick<
   DOMAttributes<T>,
@@ -25,24 +26,35 @@ export type PopoverProps<P extends ChildProps<T>, T extends HTMLElement> = Compo
   /**
    * @description
    * a trigger element.
+   * @requires
    */
   children: ReactElement<P>;
 
   /**
    * @description
    * title
+   * @default void 0
    */
   title?: ReactNode;
 
   /**
    * @description
    * description
+   * @requires
    */
   description: ReactNode;
 
   /**
    * @description
    * trigger by
+   * @default "hover"
    */
   triggerBy?: TriggerBy | TriggerBy[];
+
+  /**
+   * @description
+   * popover placement
+   * @default "bottom"
+   */
+  placement?: Placement;
 };

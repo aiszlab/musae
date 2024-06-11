@@ -24,13 +24,16 @@ const Popover = <P extends ChildProps<T>, T extends HTMLElement>({
   triggerBy: _triggerBy = "hover",
   title,
   description,
-  ...props
+  placement = "bottom",
+  className,
+  style,
+  children: _children,
 }: PopoverProps<P, T>) => {
   const _ref = useRef<Element>(null);
   const [_isOpen, { toggle, turnOn }] = useBoolean(false);
   const triggerBy = useMemo(() => new Set(toArray(_triggerBy)), [_triggerBy]);
   const classNames = useClassNames(ComponentToken.Popover);
-  const childRef = useRefs(_ref, props.children.props.ref);
+  const childRef = useRefs(_ref, _children.props.ref);
 
   const click = useEvent((e: MouseEvent<T>) => {
     toggle();
@@ -41,13 +44,12 @@ const Popover = <P extends ChildProps<T>, T extends HTMLElement>({
   });
 
   const [isHovered, hoverProps] = useHover<T>({
-    onEnter: () =>
-      chain(props.children.props.onMouseOver, props.children.props.onMouseEnter, props.children.props.onPointerEnter),
-    onLeave: () => chain(props.children.props.onMouseLeave, props.children.props.onPointerLeave),
+    onEnter: () => chain(_children.props.onMouseOver, _children.props.onMouseEnter, _children.props.onPointerEnter),
+    onLeave: () => chain(_children.props.onMouseLeave, _children.props.onPointerLeave),
   });
   const [isFocused, focusProps] = useFocus({
-    onFocus: props.children.props.onFocus,
-    onBlur: props.children.props.onBlur,
+    onFocus: _children.props.onFocus,
+    onBlur: _children.props.onBlur,
   });
 
   const isOpen = useMemo(() => {
@@ -60,7 +62,7 @@ const Popover = <P extends ChildProps<T>, T extends HTMLElement>({
   }, [triggerBy, isHovered, _isOpen, isFocused]);
 
   // @ts-ignore
-  const children = cloneElement<P>(props.children, {
+  const children = cloneElement<P>(_children, {
     ref: childRef,
     ...hoverProps,
     ...focusProps,
@@ -92,10 +94,14 @@ const Popover = <P extends ChildProps<T>, T extends HTMLElement>({
           onPointerEnter: enterPopper,
           onPointerLeave: leavePopper,
         })}
+        placement={placement}
       >
         <div
-          className={clsx(classNames[PopoverClassToken.Popover], styled.popover.className)}
-          style={styled.popover.style}
+          className={clsx(classNames[PopoverClassToken.Popover], className, styled.popover.className)}
+          style={{
+            ...styled.popover.style,
+            ...style,
+          }}
         >
           {!!title && (
             <>

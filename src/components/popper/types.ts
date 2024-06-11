@@ -75,4 +75,9 @@ export interface PopperProps
   arrow?: boolean;
 }
 
-export type DropdownProps = Omit<PopperProps, "portal">;
+export type DropdownProps = Omit<PopperProps, "portal" | "placement"> & {
+  /**
+   * {@link} `PopperProps`.`placement`
+   */
+  placement: Placement;
+};

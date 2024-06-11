@@ -7,20 +7,29 @@ import clsx from "clsx";
 const styles = stylex.create({
   space: (props: { columnGap: number; rowGap: number }) => ({
     display: "flex",
-    flexDirection: "row",
     columnGap: props.columnGap,
     rowGap: props.rowGap,
-    alignItems: "center",
   }),
+
+  horizontal: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+
+  vertical: {
+    flexDirection: "column",
+    justifyContent: "center",
+  },
 });
 
-const Space = ({ gutter = 4, children, className, style }: SpaceProps) => {
+const Space = ({ gutter = 4, children, className, style, type = "horizontal" }: SpaceProps) => {
   const [columnGap, rowGap] = useGutters({ gutter });
   const styled = stylex.props(
     styles.space({
       columnGap,
       rowGap,
-    })
+    }),
+    styles[type]
   );
 
   return (

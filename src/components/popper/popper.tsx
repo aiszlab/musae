@@ -3,10 +3,10 @@ import type { PopperProps } from "./types";
 import { Portal } from "../portal";
 import Dropdown from "./dropdown";
 
-const Popper = ({ destroyable, ...props }: PopperProps) => {
+const Popper = ({ destroyable, placement = "bottom-start", ...props }: PopperProps) => {
   return (
     <Portal open={props.open} lockable={false} destroyable={destroyable}>
-      <Dropdown {...props} />
+      <Dropdown {...props} placement={placement} />
     </Portal>
   );
 };

@@ -1,6 +1,8 @@
 import type { ReactNode } from "react";
-import { Gutter } from "../../hooks/use-gutters";
-import { ComponentProps } from "../../types/element";
+import type { Gutter } from "../../hooks/use-gutters";
+import type { ComponentProps } from "../../types/element";
+
+type Type = "horizontal" | "vertical";
 
 /**
  * @description
@@ -20,4 +22,11 @@ export type SpaceProps = ComponentProps & {
    * @default 4
    */
   gutter?: Gutter;
+
+  /**
+   * @description
+   * direction
+   * @default "horizontal"
+   */
+  type?: Type;
 };

@@ -10,6 +10,7 @@ import Avatar from "./avatar";
 const styles = stylex.create({
   group: {
     display: "inline-flex",
+    userSelect: "none",
   },
 });
 
@@ -41,8 +42,8 @@ const Group = ({ children: _children, shape = "circular", size = "medium", max =
     // got hidden nodes, show ellipse node
     if (hidden.length > 0) {
       visible.push(
-        <Popover description={<Group>{hidden}</Group>} key="avatars-hidden">
-          <Avatar />
+        <Popover description={<Group>{hidden}</Group>} key="avatars-hidden" placement="top">
+          <Avatar fallback={`+${hidden.length}`} />
         </Popover>
       );
     }

@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import type { ReactNode, RefAttributes } from "react";
 
 type Size = "small" | "medium" | "large";
 
@@ -36,6 +36,15 @@ export type AvatarProps = {
    * @default "circular"
    */
   shape?: Shape;
+
+  /**
+   * @description
+   * fallback node
+   * if user do not provide `src`, or `src` is invalid
+   * show `fallback`
+   * @default void 0
+   */
+  fallback?: ReactNode;
 };
 
 /**
@@ -81,7 +90,7 @@ export type TypedAvatar = {
    * @description
    * component self
    */
-  (props: AvatarProps): JSX.Element;
+  (props: AvatarProps & RefAttributes<HTMLSpanElement>): ReactNode;
 
   /**
    * @description

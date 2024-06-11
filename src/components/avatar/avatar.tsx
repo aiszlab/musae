@@ -8,15 +8,21 @@ import { ColorToken } from "../../utils/colors";
 import { useClassNames } from "../../hooks/use-class-names";
 import { AvatarClassToken, ComponentToken } from "../../utils/class-name";
 import clsx from "clsx";
+import { typography } from "../theme/theme";
 
 const styles = stylex.create({
-  avatar: {
+  avatar: (props: { backgroundColor: CSSProperties["backgroundColor"]; color: CSSProperties["color"] }) => ({
     borderWidth: sizes.smallest,
     borderStyle: "solid",
     borderColor: "transparent",
     boxSizing: "border-box",
     display: "inline-flex",
-  },
+    backgroundColor: props.backgroundColor,
+    color: props.color,
+    alignItems: "center",
+    justifyContent: "center",
+    userSelect: "none",
+  }),
 
   image: {
     width: sizes.full,
@@ -64,7 +70,7 @@ const styles = stylex.create({
  * component
  */
 const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(
-  ({ src, alt, shape: _shape = "circular", size: _size = "medium", ...props }, ref) => {
+  ({ src, alt, shape: _shape = "circular", size: _size = "medium", fallback, ...props }, ref) => {
     const theme = useTheme();
     const group = useContext(Context);
     const isInGroup = !!group;
@@ -74,7 +80,11 @@ const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(
 
     const styled = {
       avatar: stylex.props(
-        styles.avatar,
+        typography.label[size],
+        styles.avatar({
+          backgroundColor: theme.colors[ColorToken.PrimaryContainer],
+          color: theme.colors[ColorToken.Primary],
+        }),
         styles[size],
         styles[shape],
         isInGroup &&
@@ -92,7 +102,11 @@ const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(
         style={styled.avatar.style}
         ref={ref}
       >
-        <img src={src} alt={alt} className={styled.image.className} style={styled.image.style} />
+        {!!src ? (
+          <img draggable={false} src={src} alt={alt} className={styled.image.className} style={styled.image.style} />
+        ) : (
+          fallback
+        )}
       </span>
     );
   }
