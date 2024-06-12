@@ -43,7 +43,7 @@ const Group = ({ children: _children, shape = "circular", size = "medium", max =
     if (hidden.length > 0) {
       visible.push(
         <Popover description={<Group>{hidden}</Group>} key="avatars-hidden" placement="top">
-          <Avatar fallback={`+${hidden.length}`} />
+          <Avatar alt={`+${hidden.length}`} />
         </Popover>
       );
     }
