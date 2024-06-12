@@ -1,5 +1,5 @@
-import { useControlledState } from "@aiszlab/relax";
-import { useMemo, useCallback } from "react";
+import { useControlledState, useEvent } from "@aiszlab/relax";
+import { useMemo, useCallback, Key } from "react";
 import type { ContextValue, TreeProps } from "./types";
 
 /**
@@ -10,7 +10,7 @@ export const useExpandedKeys = ([expandedKeys, onExpand]: [TreeProps["expandedKe
   const [_expandedKeys, _setExpandedKeys] = useControlledState(expandedKeys);
   const readableExpandedKeys = useMemo(() => new Set(_expandedKeys), [_expandedKeys]);
 
-  const toggle = useCallback<Required<ContextValue>["toggle"]>(
+  const toggle = useCallback<Required<ContextValue>["expand"]>(
     (key) => {
       // deal expanding key
       const readableExpandingKeys = new Set(_expandedKeys);
@@ -27,6 +27,26 @@ export const useExpandedKeys = ([expandedKeys, onExpand]: [TreeProps["expandedKe
 
   return {
     expandedKeys: readableExpandedKeys,
+    toggle,
+  };
+};
+
+/**
+ * @description
+ * selected keys
+ */
+export const useSelectedKeys = ({ selectedKeys: _selectedKeys }: { selectedKeys?: Key[] }) => {
+  const [selectedKeys, setSelectedKeys] = useControlledState(_selectedKeys);
+  const __selectedKeys = useMemo(() => new Set(selectedKeys), [selectedKeys]);
+
+  const toggle = useEvent((key: Key) => {
+    setSelectedKeys(() => {
+      return Array.from([key]);
+    });
+  });
+
+  return {
+    selectedKeys: __selectedKeys,
     toggle,
   };
 };

@@ -10,6 +10,7 @@ import { spacing } from "../theme/tokens.stylex";
 import clsx from "clsx";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
+import { useEvent } from "@aiszlab/relax";
 
 const styles = stylex.create({
   node: (props: { level: number }) => ({
@@ -48,7 +49,7 @@ const styles = stylex.create({
   }),
 });
 
-const Node = ({ value, children, level, onToggle, ...props }: TreeNodeProps) => {
+const Node = ({ value, children, level, onExpand, ...props }: TreeNodeProps) => {
   const classNames = useClassNames(ComponentToken.Tree);
   const { checkedKeys, check: _check, expandedKeys } = useContext(Context);
   const isChecked = checkedKeys.has(value);
@@ -76,9 +77,9 @@ const Node = ({ value, children, level, onToggle, ...props }: TreeNodeProps) => 
     ),
   };
 
-  const toggle = () => {
-    onToggle?.(value);
-  };
+  const expand = useEvent(() => {
+    onExpand?.(value);
+  });
 
   return (
     <li className={classNames[TreeClassToken.Holder]}>
@@ -86,7 +87,7 @@ const Node = ({ value, children, level, onToggle, ...props }: TreeNodeProps) => 
         <span
           className={clsx(classNames[TreeClassToken.Expander], styled.expander.className)}
           style={styled.expander.style}
-          onClick={toggle}
+          onClick={expand}
         >
           {!!children && <KeyboardArrowRight />}
         </span>

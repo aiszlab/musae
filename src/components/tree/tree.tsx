@@ -3,24 +3,35 @@ import type { ContextValue, TreeProps } from "./types";
 import List from "./list";
 import Context from "./context";
 import { useToggleable } from "@aiszlab/relax";
-import { useExpandedKeys } from "./hooks";
+import { useExpandedKeys, useSelectedKeys } from "./hooks";
 
-const Tree = ({ expandedKeys: _expandedKeys, onExpand, className, style, ...props }: TreeProps) => {
-  const { toggledKeys: checkedKeys, toggle: check } = useToggleable(props.nodes);
-  const { toggle, expandedKeys } = useExpandedKeys([_expandedKeys, onExpand]);
+const Tree = ({
+  expandedKeys: _expandedKeys,
+  onExpand,
+  className,
+  style,
+  nodes,
+  selectable = true,
+  selectedKeys: _selectedKeys,
+}: TreeProps) => {
+  const { toggledKeys: checkedKeys, toggle: check } = useToggleable(nodes);
+  const { expandedKeys, toggle: expand } = useExpandedKeys([_expandedKeys, onExpand]);
+  const { selectedKeys, toggle: select } = useSelectedKeys({ selectedKeys: _selectedKeys });
 
   const contextValue = useMemo<ContextValue>(() => {
     return {
       checkedKeys,
       check,
       expandedKeys,
-      toggle,
+      expand,
+      selectedKeys,
+      select,
     };
-  }, [check, checkedKeys, toggle, expandedKeys]);
+  }, [check, checkedKeys, expand, expandedKeys, select, selectedKeys]);
 
   return (
     <Context.Provider value={contextValue}>
-      <List nodes={props.nodes} className={className} style={style} />
+      <List nodes={nodes} className={className} style={style} />
     </Context.Provider>
   );
 };

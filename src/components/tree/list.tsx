@@ -25,7 +25,7 @@ const styles = stylex.create({
 
 const List = ({ nodes = [], expanded = true, level = 0, className, style }: TreeListProps) => {
   const [scope, animate] = useAnimate<HTMLUListElement>();
-  const { expandedKeys, toggle } = useContext(Context);
+  const { expandedKeys, expand } = useContext(Context);
   const classNames = useClassNames(ComponentToken.Tree);
 
   useExpandEffect({
@@ -55,7 +55,7 @@ const List = ({ nodes = [], expanded = true, level = 0, className, style }: Tree
     >
       {nodes.map(({ children = [], ...node }) => {
         return (
-          <Node key={node.key} value={node.key} onToggle={toggle} title={node.title} level={level}>
+          <Node key={node.key} value={node.key} onExpand={expand} title={node.title} level={level}>
             {children.length > 0 && <List nodes={children} expanded={expandedKeys.has(node.key)} level={level + 1} />}
           </Node>
         );

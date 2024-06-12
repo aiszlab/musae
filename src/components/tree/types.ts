@@ -50,6 +50,22 @@ export type TreeProps = ComponentProps & {
    * @default void 0
    */
   onExpand?: (keys: Key[]) => void;
+
+  // TODO add to docs
+  /**
+   * @description
+   * selectable
+   * @default true
+   */
+  selectable?: boolean;
+
+  // TODO add to docs
+  /**
+   * @description
+   * selected keys
+   * @default void 0
+   */
+  selectedKeys?: Key[];
 };
 
 /**
@@ -73,7 +89,7 @@ export type TreeNodeProps = WithLevel<Omit<TreeNode, "children" | "key">> & {
    * @description
    * expand handler
    */
-  onToggle?: (key: Key) => void;
+  onExpand?: (key: Key) => void;
 };
 
 /**
@@ -100,34 +116,18 @@ export type TreeListProps = ComponentProps & {
   level?: number;
 };
 
-/**
- * @description
- * context value
- */
 export type ContextValue = {
-  /**
-   * @description
-   * checked keys
-   */
+  /* check */
   checkedKeys: Set<Key>;
-
-  /**
-   * @description
-   * check
-   */
   check?: (key: Key) => void;
 
-  /**
-   * @description
-   * expandedKeys
-   */
+  /* expand */
   expandedKeys: Set<Key>;
+  expand?: (key: Key) => void;
 
-  /**
-   * @description
-   * toggle
-   */
-  toggle?: (key: Key) => void;
+  /* select */
+  selectedKeys: Set<Key>;
+  select?: (key: Key) => void;
 };
 
 /**
