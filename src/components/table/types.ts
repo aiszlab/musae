@@ -1,6 +1,25 @@
-import type { ColumnDef, ColumnHelper } from "@tanstack/react-table";
+import type { DeepKeys } from "@tanstack/react-table";
 import type { Table } from "@tanstack/react-table";
 import type { ComponentProps } from "../../types/element";
+import type { ReactNode } from "react";
+
+/**
+ * @description
+ * column def
+ */
+export type Column<T> = {
+  /**
+   * @description
+   * key
+   */
+  key: DeepKeys<T>;
+
+  /**
+   * @description
+   * title
+   */
+  title: ReactNode | (() => ReactNode);
+};
 
 /**
  * @description
@@ -16,11 +35,10 @@ export type TableProps<T> = {
 
   /**
    * @description
-   * in react table, columns always are created by helper
-   * so in musae, we use this function to create columns
+   * columns
    * @default void 0
    */
-  columns?: (helper: ColumnHelper<T>) => ColumnDef<T, any>[];
+  columns?: Column<T>[];
 
   /**
    * @description

@@ -1,6 +1,6 @@
-import { createColumnHelper } from "@tanstack/react-table";
+import { type ColumnDef, createColumnHelper, DeepKeys, IdentifiedColumnDef } from "@tanstack/react-table";
 import { type CSSProperties, useContext, useMemo, useRef } from "react";
-import type { ContextValue, TableProps } from "./types";
+import type { Column, ContextValue } from "./types";
 import Context from "./context";
 import stylex from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";
@@ -19,9 +19,17 @@ export const styles = stylex.create({
  * @description
  * use columns
  */
-export const useColumns = <T>([columns]: [TableProps<T>["columns"]]) => {
-  const { current: helper } = useRef(createColumnHelper<T>());
-  return columns ? columns(helper) : [];
+export const useColumns = <T>({ columns }: { columns: Column<T>[] }) => {
+  const helper = useRef(createColumnHelper<T>());
+
+  return useMemo<ColumnDef<T, any>[]>(() => {
+    return columns.map((column) => {
+      // @ts-ignore
+      return helper.current.accessor(column.key, {
+        header: column.title,
+      });
+    });
+  }, [columns]);
 };
 
 /**

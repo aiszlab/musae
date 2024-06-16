@@ -13,10 +13,10 @@ const styles = stylex.create({
   },
 });
 
-const Table = <T,>({ bordered = false, dataSource = [], ...props }: TableProps<T>) => {
-  const columns = useColumns<T>([props.columns]);
+const Table = <T,>({ bordered = false, dataSource = [], columns: _columns = [], ...props }: TableProps<T>) => {
+  const columns = useColumns<T>({ columns: _columns });
   const table = useReactTable({
-    columns: columns,
+    columns,
     data: dataSource,
     getCoreRowModel: getCoreRowModel(),
   });
