@@ -2115,7 +2115,7 @@
   dependencies:
     postcss-value-parser "^4.1.0"
 
-"@stylexjs/stylex@0.6.1":
+"@stylexjs/stylex@0.6.1", "@stylexjs/stylex@^0.6.1":
   version "0.6.1"
   resolved "https://registry.npmjs.org/@stylexjs/stylex/-/stylex-0.6.1.tgz#27d3adf9f6856fded2cf16513bea941bf164061b"
   integrity sha512-1dKZG4VA8qxNf8LqiDWM0JL2YIFpLlblRivv0fabpc+PY02FqwOMdKRWscNCZy2dHGrUOGjjUvkPIU/doAqGzg==
@@ -2123,16 +2123,6 @@
     css-mediaquery "^0.1.2"
     invariant "^2.2.4"
     styleq "0.1.3"
-
-"@stylexjs/stylex@^0.5.1":
-  version "0.5.1"
-  resolved "https://registry.npmjs.org/@stylexjs/stylex/-/stylex-0.5.1.tgz#e604908c4933d01474bff7c909cb9cef659bd56c"
-  integrity sha512-KO55dRB1+LhUo9OxfHqH5FwO2F0HdTe4g6fyRJb7JT5FiWEA/vYJ9MY7W8NdMSprW/7FeQKnSg6u5WlHU2ji2g==
-  dependencies:
-    css-mediaquery "^0.1.2"
-    invariant "^2.2.4"
-    styleq "0.1.3"
-    utility-types "^3.10.0"
 
 "@tanstack/react-table@^8.16.0":
   version "8.16.0"
@@ -6060,11 +6050,6 @@ url-parse@^1.5.3:
   dependencies:
     querystringify "^2.1.1"
     requires-port "^1.0.0"
-
-utility-types@^3.10.0:
-  version "3.11.0"
-  resolved "https://registry.npmjs.org/utility-types/-/utility-types-3.11.0.tgz#607c40edb4f258915e901ea7995607fdf319424c"
-  integrity sha512-6Z7Ma2aVEWisaL6TvBCy7P8rm2LQoPv6dJ7ecIaIixHcwfbJ0x7mWdbcwlIM5IGQxPZSFYeqRCqlOOeKoJYMkw==
 
 v8-to-istanbul@^9.0.1:
   version "9.2.0"
