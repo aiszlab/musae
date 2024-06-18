@@ -2,14 +2,14 @@ import { useReactTable, getCoreRowModel } from "@tanstack/react-table";
 import React from "react";
 import { useColumns, useContextValue } from "./hooks";
 import type { TableProps } from "./types";
-import Header from "./header";
+import Header from "./header/header";
 import Context from "./context";
 import Body from "./body";
 import * as stylex from "@stylexjs/stylex";
 
 const styles = stylex.create({
   table: {
-    width: "400px",
+    width: "100%",
   },
 });
 

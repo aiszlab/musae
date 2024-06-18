@@ -7,7 +7,7 @@ import type { ReactNode } from "react";
  * @description
  * column def
  */
-export type Column<T> = {
+export type Column<T, V = unknown> = {
   /**
    * @description
    * key
@@ -19,6 +19,19 @@ export type Column<T> = {
    * title
    */
   title: ReactNode | (() => ReactNode);
+
+  /**
+   * @description
+   * custom render, render is not provided, just render value
+   */
+  render?: (value: V, record: T, index: number) => ReactNode | unknown;
+
+  /**
+   * @description
+   * enable sort
+   * @default false
+   */
+  sortable?: boolean;
 };
 
 /**

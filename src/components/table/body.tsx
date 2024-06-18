@@ -1,16 +1,23 @@
-import React from "react";
-import { useTable } from "./hooks";
+import React, { CSSProperties } from "react";
+import { useTable } from "./context";
 import { flexRender } from "@tanstack/react-table";
 import type { BodyProps } from "./types";
 import * as stylex from "@stylexjs/stylex";
 import clsx from "clsx";
 import { typography } from "../theme/theme";
-import { sizes } from "../theme/tokens.stylex";
-import { styles as _styles } from "./hooks";
+import { sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
 
 const styles = stylex.create({
+  cell: (props: { borderColor: CSSProperties["borderColor"] }) => ({
+    paddingInline: spacing.small,
+    paddingBlock: spacing.medium,
+    borderColor: props.borderColor,
+    borderStyle: "solid",
+    borderBottomWidth: sizes.smallest,
+  }),
+
   bordered: {
     borderInline: sizes.smallest,
   },
@@ -25,9 +32,7 @@ const Body = <T,>(props: BodyProps) => {
   const styled = stylex.props(
     bordered && styles.bordered,
     typography.body.small,
-    _styles.cell({
-      outlineColor: theme.colors[ColorToken.OutlineVariant],
-    })
+    styles.cell({ borderColor: theme.colors[ColorToken.OutlineVariant] })
   );
 
   return (

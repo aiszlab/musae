@@ -32,8 +32,8 @@ const styles = {
     },
   }),
 
-  leading: stylex.create({
-    default: (props: { hoveredColor: CSSProperties["color"] }) => ({
+  half: stylex.create({
+    default: {
       position: "absolute",
       width: sizes.half,
       height: sizes.full,
@@ -42,7 +42,7 @@ const styles = {
       opacity: 0,
       userSelect: "none",
       overflow: "hidden",
-    }),
+    },
 
     checked: (props: { color: CSSProperties["color"] }) => ({
       opacity: 1,
@@ -50,12 +50,12 @@ const styles = {
     }),
   }),
 
-  trailing: stylex.create({
+  full: stylex.create({
     default: {
       userSelect: "none",
     },
 
-    checkd: (props: { color: CSSProperties["color"] }) => ({
+    checked: (props: { color: CSSProperties["color"] }) => ({
       color: props.color,
     }),
   }),
@@ -95,25 +95,22 @@ const Star = ({ disabled, value, onEnter, at, onLeave, onClick }: StarProps) => 
       styles.star.default({ color: theme.colors[ColorToken.SurfaceContainerHighest] }),
       disabled && styles.star.disabled
     ),
-    leading: stylex.props(
-      styles.leading.default({ hoveredColor: theme.colors[ColorToken.Primary] }),
+    half: stylex.props(
+      styles.half.default,
       isHalf &&
-        styles.leading.checked({
+        styles.half.checked({
           color: theme.colors[ColorToken.Primary],
         })
     ),
-    trailing: stylex.props(
-      styles.trailing.default,
-      isFull && styles.trailing.checkd({ color: theme.colors[ColorToken.Primary] })
-    ),
+    full: stylex.props(styles.full.default, isFull && styles.full.checked({ color: theme.colors[ColorToken.Primary] })),
   };
 
   return (
     <li className={clsx(classNames[RateClassToken.Star], styled.star.className)} style={styled.star.style}>
       {/* half */}
       <div
-        className={clsx(classNames[RateClassToken.Leading], styled.leading.className)}
-        style={styled.leading.style}
+        className={clsx(classNames[RateClassToken.Half], styled.half.className)}
+        style={styled.half.style}
         {...(!disabled && {
           ...halfHoverProps,
           onClick: half,
@@ -124,8 +121,8 @@ const Star = ({ disabled, value, onEnter, at, onLeave, onClick }: StarProps) => 
 
       {/* full */}
       <div
-        className={clsx(classNames[RateClassToken.Trailing], styled.trailing.className)}
-        style={styled.trailing.style}
+        className={clsx(classNames[RateClassToken.Full], styled.full.className)}
+        style={styled.full.style}
         {...(!disabled && {
           ...fullHoverProps,
           onClick: full,

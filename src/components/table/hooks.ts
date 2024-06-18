@@ -1,19 +1,7 @@
-import { type ColumnDef, createColumnHelper, DeepKeys, IdentifiedColumnDef } from "@tanstack/react-table";
-import { type CSSProperties, useContext, useMemo, useRef } from "react";
+import { type ColumnDef, createColumnHelper, CellContext } from "@tanstack/react-table";
+import { useMemo, useRef, createElement } from "react";
 import type { Column, ContextValue } from "./types";
-import Context from "./context";
-import stylex from "@stylexjs/stylex";
-import { sizes, spacing } from "../theme/tokens.stylex";
-
-export const styles = stylex.create({
-  cell: (props: { outlineColor: CSSProperties["borderColor"] }) => ({
-    paddingInline: spacing.small,
-    paddingBlock: spacing.medium,
-    borderColor: props.outlineColor,
-    borderStyle: "solid",
-    borderBottomWidth: sizes.smallest,
-  }),
-});
+import HeaderCell from "./header/cell";
 
 /**
  * @description
@@ -23,22 +11,20 @@ export const useColumns = <T>({ columns }: { columns: Column<T>[] }) => {
   const helper = useRef(createColumnHelper<T>());
 
   return useMemo<ColumnDef<T, any>[]>(() => {
-    return columns.map((column) => {
+    return columns.map(({ key, render, title, sortable = false }) => {
       // @ts-ignore
-      return helper.current.accessor(column.key, {
-        header: column.title,
+      return helper.current.accessor(key, {
+        header: createElement(HeaderCell, { children: title, sortable }),
+        cell: (_context: CellContext<T, unknown>) => {
+          const value = _context.getValue();
+          if (!render) {
+            return value;
+          }
+          return render(value, _context.row.original, _context.row.index);
+        },
       });
     });
   }, [columns]);
-};
-
-/**
- * @author murukal
- * @description
- * use table context hook
- */
-export const useTable = <T>() => {
-  return useContext(Context) as ContextValue<T>;
 };
 
 /**
