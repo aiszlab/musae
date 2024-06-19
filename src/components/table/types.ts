@@ -59,6 +59,7 @@ export type TableProps<T> = {
    */
   dataSource?: T[];
 
+  // TODO change to docs
   /**
    * @description
    * columns
