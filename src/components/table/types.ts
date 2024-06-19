@@ -3,6 +3,8 @@ import type { Table } from "@tanstack/react-table";
 import type { ComponentProps } from "../../types/element";
 import type { ReactNode } from "react";
 
+export type SortOrder = "ascend" | "descend";
+
 /**
  * @description
  * column def
@@ -32,6 +34,12 @@ export type Column<T, V = unknown> = {
    * @default false
    */
   sortable?: boolean;
+
+  /**
+   * @description
+   * allowed sort orders
+   */
+  sortOrders?: SortOrder[];
 };
 
 /**
@@ -59,6 +67,20 @@ export type TableProps<T> = {
    * @default false
    */
   bordered?: boolean;
+
+  // TODO add to docs
+  /**
+   * @description
+   * callback when table has changed, like sort
+   * @default void 0
+   */
+  onChange?: (params: {
+    pagination: string;
+    filters: string;
+    sorters: {
+      key: string;
+    }[];
+  }) => void;
 };
 
 /**
@@ -91,3 +113,18 @@ export type HeaderProps = ComponentProps;
  * body props
  */
 export type BodyProps = ComponentProps;
+
+/**
+ * @description
+ * header cell props
+ */
+export type HeaderCellProps = {
+  // is current cell sortable
+  sortable?: boolean;
+
+  // children
+  children: ReactNode | (() => ReactNode);
+
+  // controlled sort order
+  sort?: SortOrder | null;
+};
