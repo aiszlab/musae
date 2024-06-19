@@ -1,11 +1,13 @@
-import React, { type CSSProperties } from "react";
-import { toFunction, useControlledState } from "@aiszlab/relax";
+import React, { useContext, useMemo, type CSSProperties } from "react";
+import { toFunction, useEvent } from "@aiszlab/relax";
 import stylex from "@stylexjs/stylex";
 import { sizes, spacing } from "../../theme/tokens.stylex";
 import { useTheme } from "../../theme";
 import { ColorToken } from "../../../utils/colors";
 import { UnfoldMore } from "../../icon/icons";
-import { HeaderCellProps } from "../types";
+import type { HeaderCellProps, SortDirection } from "../types";
+import Context from "../context";
+import type { Nullable } from "@aiszlab/relax/types";
 
 const styles = {
   cell: stylex.create({
@@ -44,19 +46,30 @@ const styles = {
   }),
 };
 
-const DIRECTIONS = new Map<HeaderCellProps["sort"], HeaderCellProps["sort"]>([
-  ["ascend", "descend"],
-  ["descend", null],
+const DIRECTIONS = new Map<Nullable<SortDirection>, Nullable<SortDirection>>([
+  ["ascending", "descending"],
+  ["descending", null],
 ]);
 
-const Cell = ({ sortable = false, children: _children, sort: _sort }: HeaderCellProps) => {
+const Cell = ({ sortable = false, children: _children, value }: HeaderCellProps) => {
+  const { sortDescriptor, onSortChange } = useContext(Context);
   const children = toFunction(_children)();
-  const [sort, setSort] = useControlledState(_sort);
   const theme = useTheme();
 
-  const orderBy = () => {
-    setSort(DIRECTIONS.get(sort) ?? "ascend");
-  };
+  const sort = useMemo(() => {
+    if (sortDescriptor?.key === value) {
+      return sortDescriptor.direction;
+    }
+    return null;
+  }, [sortDescriptor, value]);
+
+  // sort handler
+  const onSort = useEvent(() => {
+    onSortChange?.({
+      key: value,
+      direction: DIRECTIONS.get(sort) ?? "ascending",
+    });
+  });
 
   // only children, render directly
   if (!sortable) {
@@ -69,7 +82,7 @@ const Cell = ({ sortable = false, children: _children, sort: _sort }: HeaderCell
     sort: stylex.props(styles.sort.default),
 
     fullSort: stylex.props(
-      sort === "descend" &&
+      sort === "descending" &&
         styles.sort.checked({
           color: theme.colors[ColorToken.Primary],
         })
@@ -77,7 +90,7 @@ const Cell = ({ sortable = false, children: _children, sort: _sort }: HeaderCell
 
     halfSort: stylex.props(
       styles.sort.half,
-      sort === "ascend" && styles.sort.checked({ color: theme.colors[ColorToken.Primary] })
+      sort === "ascending" && styles.sort.checked({ color: theme.colors[ColorToken.Primary] })
     ),
   };
 
@@ -87,7 +100,7 @@ const Cell = ({ sortable = false, children: _children, sort: _sort }: HeaderCell
 
       {/* header cell operations */}
       <span className={styled.handlers.className} style={styled.handlers.style}>
-        <span className={styled.sort.className} style={styled.sort.style} onClick={orderBy}>
+        <span className={styled.sort.className} style={styled.sort.style} onClick={onSort}>
           {/* full */}
           <div className={styled.fullSort.className} style={styled.fullSort.style}>
             <UnfoldMore size="medium" />

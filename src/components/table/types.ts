@@ -1,9 +1,14 @@
 import type { DeepKeys } from "@tanstack/react-table";
 import type { Table } from "@tanstack/react-table";
 import type { ComponentProps } from "../../types/element";
-import type { ReactNode } from "react";
+import type { Key, ReactNode } from "react";
 
-export type SortOrder = "ascend" | "descend";
+export type SortDirection = "ascending" | "descending";
+
+export type SortDescriptor = {
+  key: Key;
+  direction: SortDirection;
+};
 
 /**
  * @description
@@ -39,7 +44,7 @@ export type Column<T, V = unknown> = {
    * @description
    * allowed sort orders
    */
-  sortOrders?: SortOrder[];
+  sortDirections?: SortDirection[];
 };
 
 /**
@@ -71,16 +76,17 @@ export type TableProps<T> = {
   // TODO add to docs
   /**
    * @description
+   * sort descriptor
+   */
+  sortDescriptor: SortDescriptor;
+
+  // TODO add to docs
+  /**
+   * @description
    * callback when table has changed, like sort
    * @default void 0
    */
-  onChange?: (params: {
-    pagination: string;
-    filters: string;
-    sorters: {
-      key: string;
-    }[];
-  }) => void;
+  onSortChange?: (sortDescriptor: SortDescriptor) => void;
 };
 
 /**
@@ -100,6 +106,17 @@ export type ContextValue<T> = {
    * if current table is bordered
    */
   bordered: boolean;
+
+  /**
+   * {@link} `SortDescriptor`
+   */
+  sortDescriptor?: SortDescriptor;
+
+  /**
+   * @description
+   * `SortDescriptor` Setter
+   */
+  onSortChange?: (sortDescriptor: SortDescriptor) => void;
 };
 
 /**
@@ -125,6 +142,6 @@ export type HeaderCellProps = {
   // children
   children: ReactNode | (() => ReactNode);
 
-  // controlled sort order
-  sort?: SortOrder | null;
+  // key
+  value: Key;
 };

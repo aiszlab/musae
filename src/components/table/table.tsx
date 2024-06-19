@@ -13,7 +13,13 @@ const styles = stylex.create({
   },
 });
 
-const Table = <T,>({ bordered = false, dataSource = [], columns: _columns = [], ...props }: TableProps<T>) => {
+const Table = <T,>({
+  bordered = false,
+  dataSource = [],
+  columns: _columns = [],
+  sortDescriptor,
+  onSortChange,
+}: TableProps<T>) => {
   const columns = useColumns<T>({ columns: _columns });
   const table = useReactTable({
     columns,
@@ -21,7 +27,7 @@ const Table = <T,>({ bordered = false, dataSource = [], columns: _columns = [], 
     getCoreRowModel: getCoreRowModel(),
   });
 
-  const contextValue = useContextValue({ table, bordered });
+  const contextValue = useContextValue({ table, bordered, sortDescriptor, onSortChange });
 
   return (
     <Context.Provider value={contextValue}>
