@@ -198,8 +198,8 @@ export enum SwitchClassToken {
 export enum RateClassToken {
   Rate,
   Star,
-  Leading,
-  Trailing,
+  Half,
+  Full,
 }
 export enum TourClassToken {
   Tour,
@@ -397,8 +397,8 @@ export const CLASS_NAMES = {
   [ComponentToken.Rate]: {
     [RateClassToken.Rate]: "rate",
     [RateClassToken.Star]: "rate__star",
-    [RateClassToken.Leading]: "rate__star-leading",
-    [RateClassToken.Trailing]: "rate__star-trailing",
+    [RateClassToken.Half]: "rate__star-half",
+    [RateClassToken.Full]: "rate__star-full",
   },
   [ComponentToken.Tour]: {
     [TourClassToken.Tour]: "tour",
