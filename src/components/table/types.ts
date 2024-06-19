@@ -3,7 +3,7 @@ import type { Table } from "@tanstack/react-table";
 import type { ComponentProps } from "../../types/element";
 import type { Key, ReactNode } from "react";
 
-export type SortDirection = "ascending" | "descending";
+export type SortDirection = "ascending" | "descending" | null;
 
 export type SortDescriptor = {
   key: Key;
@@ -74,14 +74,13 @@ export type TableProps<T> = {
    */
   bordered?: boolean;
 
-  // TODO add to docs
   /**
    * @description
    * sort descriptor
+   * @default void 0
    */
-  sortDescriptor: SortDescriptor;
+  sortDescriptor?: SortDescriptor;
 
-  // TODO add to docs
   /**
    * @description
    * callback when table has changed, like sort
@@ -145,4 +144,7 @@ export type HeaderCellProps = {
 
   // key
   value: Key;
+
+  // sort dierctions
+  sortDirections: SortDirection[];
 };

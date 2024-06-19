@@ -1,5 +1,5 @@
 import React, { useContext, useMemo, type CSSProperties } from "react";
-import { toFunction, useEvent } from "@aiszlab/relax";
+import { isUndefined, toFunction, useEvent } from "@aiszlab/relax";
 import stylex from "@stylexjs/stylex";
 import { sizes, spacing } from "../../theme/tokens.stylex";
 import { useTheme } from "../../theme";
@@ -7,7 +7,6 @@ import { ColorToken } from "../../../utils/colors";
 import { UnfoldMore } from "../../icon/icons";
 import type { HeaderCellProps, SortDirection } from "../types";
 import Context from "../context";
-import type { Nullable } from "@aiszlab/relax/types";
 
 const styles = {
   cell: stylex.create({
@@ -46,15 +45,17 @@ const styles = {
   }),
 };
 
-const DIRECTIONS = new Map<Nullable<SortDirection>, Nullable<SortDirection>>([
-  ["ascending", "descending"],
-  ["descending", null],
-]);
-
-const Cell = ({ sortable = false, children: _children, value }: HeaderCellProps) => {
+const Cell = ({ sortable = false, children: _children, value, sortDirections: _sortDirections }: HeaderCellProps) => {
   const { sortDescriptor, onSortChange } = useContext(Context);
   const children = toFunction(_children)();
   const theme = useTheme();
+
+  // convert sort directions to usable
+  const sortDirections = useMemo(() => {
+    return _sortDirections.reduce((prev, item, index) => {
+      return prev.set(item, _sortDirections[index + 1] ?? null);
+    }, new Map<SortDirection, SortDirection>());
+  }, [_sortDirections]);
 
   const sort = useMemo(() => {
     if (sortDescriptor?.key === value) {
@@ -65,9 +66,12 @@ const Cell = ({ sortable = false, children: _children, value }: HeaderCellProps)
 
   // sort handler
   const onSort = useEvent(() => {
+    const _direction = sortDirections.get(sort);
+    const __direction: SortDirection = isUndefined(_direction) ? "ascending" : _direction;
+
     onSortChange?.({
       key: value,
-      direction: DIRECTIONS.get(sort) ?? "ascending",
+      direction: __direction,
     });
   });
 
