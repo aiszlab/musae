@@ -13,7 +13,7 @@ import { typography } from "../theme/theme";
 
 const styles = stylex.create({
   checkbox: {
-    display: "flex",
+    display: "inline-flex",
     alignItems: "center",
     cursor: "pointer",
   },

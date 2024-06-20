@@ -56,6 +56,7 @@ export enum ComponentToken {
   Progress,
   Tooltip,
   Popover,
+  Loading,
 }
 
 /**
@@ -251,6 +252,11 @@ export enum PopoverClassToken {
   Popover,
   Title,
   Description,
+}
+export enum LoadingClassToken {
+  Loading,
+  Spin,
+  Content,
 }
 
 /**
@@ -448,6 +454,11 @@ export const CLASS_NAMES = {
     [PopoverClassToken.Popover]: "popover",
     [PopoverClassToken.Title]: "popover__title",
     [PopoverClassToken.Description]: "popover__description",
+  },
+  [ComponentToken.Loading]: {
+    [LoadingClassToken.Loading]: "loading",
+    [LoadingClassToken.Spin]: "loading__spin",
+    [LoadingClassToken.Content]: "loading__content",
   },
 };
 

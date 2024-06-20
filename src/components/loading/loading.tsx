@@ -1,7 +1,12 @@
-import React from "react";
+import React, { CSSProperties } from "react";
 import * as stylex from "@stylexjs/stylex";
 import type { LoadingProps } from "./types";
 import { sizes } from "../theme/tokens.stylex";
+import { useClassNames } from "../../hooks/use-class-names";
+import { ComponentToken, LoadingClassToken } from "../../utils/class-name";
+import clsx from "clsx";
+import { useTheme } from "../theme";
+import { ColorToken } from "../../utils/colors";
 
 const top = stylex.keyframes({
   from: {
@@ -288,9 +293,42 @@ const styles = stylex.create({
     width: sizes.xxxlarge,
     height: sizes.xxxlarge,
   },
+
+  loading: {
+    position: "relative",
+    minWidth: sizes.xxxxlarge,
+    minHeight: sizes.xxxxlarge,
+  },
+
+  content: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
+    opacity: 0.5,
+    userSelect: "none",
+    pointerEvents: "none",
+    transitionProperty: "opacity",
+    transitionDuration: "0.3s",
+    zIndex: 0,
+
+    "::after": {
+      content: "''",
+      display: "block",
+      position: "absolute",
+      inset: 0,
+      backgroundColor: props.backgroundColor,
+    },
+  }),
+
+  spin: {
+    position: "absolute",
+    top: "50%",
+    insetInlineStart: "50%",
+    transform: "translate(-50%, -50%)",
+    zIndex: 1,
+  },
 });
 
-const Loading = ({ size = "medium" }: LoadingProps) => {
+const Loading = ({ size = "medium", overlay = true, children }: LoadingProps) => {
+  const classNames = useClassNames(ComponentToken.Loading);
+  const theme = useTheme();
   const circles = {
     top: {
       ...stylex.props(styles.circle, styles.top),
@@ -318,12 +356,33 @@ const Loading = ({ size = "medium" }: LoadingProps) => {
     },
   };
 
+  const styled = {
+    loading: stylex.props(styles.loading),
+    spin: stylex.props(styles.spin, styles[size]),
+    content: stylex.props(
+      overlay &&
+        styles.content({
+          backgroundColor: theme.colors[ColorToken.SurfaceDim],
+        })
+    ),
+  };
+
   return (
-    <svg viewBox="0 0 240 240" {...stylex.props(styles[size])}>
-      {Array.from(Object.entries(circles)).map(([key, props]) => {
-        return <circle {...props} key={key} />;
-      })}
-    </svg>
+    <div className={clsx(classNames[LoadingClassToken.Loading], styled.loading.className)} style={styled.loading.style}>
+      <svg
+        viewBox="0 0 240 240"
+        className={clsx(classNames[LoadingClassToken.Spin], styled.spin.className)}
+        style={styled.spin.style}
+      >
+        {Array.from(Object.entries(circles)).map(([key, props]) => {
+          return <circle {...props} key={key} />;
+        })}
+      </svg>
+
+      <div className={(classNames[LoadingClassToken.Content], styled.content.className)} style={styled.content.style}>
+        {children}
+      </div>
+    </div>
   );
 };
 
