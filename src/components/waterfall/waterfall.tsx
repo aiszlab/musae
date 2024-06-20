@@ -5,7 +5,7 @@ import React from "react";
 import { useRepaint } from "./hooks";
 import clsx from "clsx";
 import { useGutters } from "../../hooks/use-gutters";
-import { useMounted } from "@aiszlab/relax";
+import { useMounted, useUpdateEffect } from "@aiszlab/relax";
 import Sequential from "./sequential";
 
 const styles = stylex.create({
@@ -42,12 +42,18 @@ const Waterfall = ({
   style,
 }: WaterfallProps) => {
   const [columnGap, rowGap] = useGutters({ gutter });
-  const { collect, maxHeight, order, items, repaint } = useRepaint({ columns, rowGap, isSequential: sequential });
+  const { collect, maxHeight, order, items, repaint } = useRepaint({ columns, rowGap });
 
   const styled = stylex.props(
     styles.waterfall({ rowGap, columnGap }),
     !sequential && maxHeight > 0 && styles.repainted({ maxHeight: maxHeight })
   );
+
+  useUpdateEffect(() => {
+    // no need to repaint when `sequential`
+    if (sequential) return;
+    repaint();
+  }, [rowGap]);
 
   useMounted(() => {
     // no need to observer when `sequential`
@@ -55,13 +61,13 @@ const Waterfall = ({
 
     // observer be called when the component is mounted
     // so in waterfall we use current time to first render
-    // FIXME: repaint twice in layout effect & resize observer
     const resizer = new ResizeObserver(() => {
       repaint();
     });
 
     Array.from(items.current.values()).forEach((node) => {
-      node && resizer.observe(node);
+      if (!node) return;
+      resizer.observe(node);
     });
 
     return () => {
