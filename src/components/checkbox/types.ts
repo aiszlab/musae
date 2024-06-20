@@ -1,4 +1,4 @@
-import type { Key, ReactNode } from "react";
+import type { ChangeEvent, Key, ReactNode } from "react";
 import type { ComponentProps } from "../../types/element";
 
 /**
@@ -64,9 +64,9 @@ export interface CheckboxProps extends ComponentProps {
   /**
    * @description
    * value
-   * @requires
+   * @default void 0
    */
-  value: Key;
+  value?: Key;
 
   /**
    * @description
@@ -74,6 +74,13 @@ export interface CheckboxProps extends ComponentProps {
    * @default void 0
    */
   children?: ReactNode;
+
+  /**
+   * @description
+   * change handler
+   * @default void 0
+   */
+  onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
 /**

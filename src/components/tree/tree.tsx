@@ -21,11 +21,11 @@ const Tree = ({
   const contextValue = useMemo<ContextValue>(() => {
     return {
       checkedKeys,
-      check,
+      onCheck: check,
       expandedKeys,
-      expand,
+      onExpand: expand,
       selectedKeys,
-      select,
+      onSelect: select,
     };
   }, [check, checkedKeys, expand, expandedKeys, select, selectedKeys]);
 

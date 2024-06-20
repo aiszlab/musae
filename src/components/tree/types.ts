@@ -119,15 +119,15 @@ export type TreeListProps = ComponentProps & {
 export type ContextValue = {
   /* check */
   checkedKeys: Set<Key>;
-  check?: (key: Key) => void;
+  onCheck?: (key: Key) => void;
 
   /* expand */
   expandedKeys: Set<Key>;
-  expand?: (key: Key) => void;
+  onExpand?: (key: Key) => void;
 
   /* select */
   selectedKeys: Set<Key>;
-  select?: (key: Key) => void;
+  onSelect?: (key: Key) => void;
 };
 
 /**

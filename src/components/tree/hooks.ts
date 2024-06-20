@@ -10,7 +10,7 @@ export const useExpandedKeys = ([expandedKeys, onExpand]: [TreeProps["expandedKe
   const [_expandedKeys, _setExpandedKeys] = useControlledState(expandedKeys);
   const readableExpandedKeys = useMemo(() => new Set(_expandedKeys), [_expandedKeys]);
 
-  const toggle = useCallback<Required<ContextValue>["expand"]>(
+  const toggle = useCallback<Required<ContextValue>["onExpand"]>(
     (key) => {
       // deal expanding key
       const readableExpandingKeys = new Set(_expandedKeys);

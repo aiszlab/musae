@@ -51,20 +51,17 @@ const styles = stylex.create({
 
 const Node = ({ value, children, level, onExpand, ...props }: TreeNodeProps) => {
   const classNames = useClassNames(ComponentToken.Tree);
-  const { checkedKeys, check: _check, expandedKeys } = useContext(Context);
+  const { checkedKeys, onCheck, expandedKeys, onSelect, selectedKeys } = useContext(Context);
   const isChecked = checkedKeys.has(value);
   const isExpanded = expandedKeys.has(value);
+  const isSelected = selectedKeys.has(value);
   const theme = useTheme();
-
-  const check = () => {
-    _check?.(value);
-  };
 
   const styled = {
     node: stylex.props(styles.node({ level })),
     title: stylex.props(
       styles.title({
-        isSelected: false,
+        isSelected,
         backgroundColor: theme.colors[ColorToken.SurfaceContainer],
         hoveredBackgroundColor: theme.colors[ColorToken.SurfaceContainer],
         color: theme.colors[ColorToken.Primary],
@@ -77,8 +74,16 @@ const Node = ({ value, children, level, onExpand, ...props }: TreeNodeProps) => 
     ),
   };
 
+  const check = useEvent(() => {
+    onCheck?.(value);
+  });
+
   const expand = useEvent(() => {
     onExpand?.(value);
+  });
+
+  const select = useEvent(() => {
+    onSelect?.(value);
   });
 
   return (
@@ -92,12 +97,12 @@ const Node = ({ value, children, level, onExpand, ...props }: TreeNodeProps) => 
           {!!children && <KeyboardArrowRight />}
         </span>
 
-        <Checkbox className={clsx(classNames[TreeClassToken.Checkbox])} checked={isChecked} value="" />
+        <Checkbox className={clsx(classNames[TreeClassToken.Checkbox])} checked={isChecked} onChange={check} />
 
         <span
           className={clsx(classNames[TreeClassToken.Title], styled.title.className)}
           style={styled.title.style}
-          onClick={check}
+          onClick={select}
         >
           {props.title}
         </span>
