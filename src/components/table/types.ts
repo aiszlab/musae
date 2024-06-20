@@ -1,6 +1,51 @@
-import type { ColumnDef, ColumnHelper } from "@tanstack/react-table";
+import type { DeepKeys } from "@tanstack/react-table";
 import type { Table } from "@tanstack/react-table";
 import type { ComponentProps } from "../../types/element";
+import type { Key, ReactNode } from "react";
+
+export type SortDirection = "ascending" | "descending" | null;
+
+export type SortDescriptor = {
+  key: Key;
+  direction: SortDirection;
+};
+
+/**
+ * @description
+ * column def
+ */
+export type Column<T, V = unknown> = {
+  /**
+   * @description
+   * key
+   */
+  key: DeepKeys<T>;
+
+  /**
+   * @description
+   * title
+   */
+  title: ReactNode | (() => ReactNode);
+
+  /**
+   * @description
+   * custom render, render is not provided, just render value
+   */
+  render?: (value: V, record: T, index: number) => ReactNode | unknown;
+
+  /**
+   * @description
+   * enable sort
+   * @default false
+   */
+  sortable?: boolean;
+
+  /**
+   * @description
+   * allowed sort orders
+   */
+  sortDirections?: SortDirection[];
+};
 
 /**
  * @description
@@ -16,11 +61,10 @@ export type TableProps<T> = {
 
   /**
    * @description
-   * in react table, columns always are created by helper
-   * so in musae, we use this function to create columns
+   * columns
    * @default void 0
    */
-  columns?: (helper: ColumnHelper<T>) => ColumnDef<T, any>[];
+  columns?: Column<T>[];
 
   /**
    * @description
@@ -28,6 +72,20 @@ export type TableProps<T> = {
    * @default false
    */
   bordered?: boolean;
+
+  /**
+   * @description
+   * sort descriptor
+   * @default void 0
+   */
+  sortDescriptor?: SortDescriptor;
+
+  /**
+   * @description
+   * callback when table has changed, like sort
+   * @default void 0
+   */
+  onSortChange?: (sortDescriptor: SortDescriptor) => void;
 };
 
 /**
@@ -47,6 +105,17 @@ export type ContextValue<T> = {
    * if current table is bordered
    */
   bordered: boolean;
+
+  /**
+   * {@link} `SortDescriptor`
+   */
+  sortDescriptor?: SortDescriptor;
+
+  /**
+   * @description
+   * `SortDescriptor` Setter
+   */
+  onSortChange?: (sortDescriptor: SortDescriptor) => void;
 };
 
 /**
@@ -60,3 +129,21 @@ export type HeaderProps = ComponentProps;
  * body props
  */
 export type BodyProps = ComponentProps;
+
+/**
+ * @description
+ * header cell props
+ */
+export type HeaderCellProps = {
+  // is current cell sortable
+  sortable?: boolean;
+
+  // children
+  children: ReactNode | (() => ReactNode);
+
+  // key
+  value: Key;
+
+  // sort dierctions
+  sortDirections: SortDirection[];
+};

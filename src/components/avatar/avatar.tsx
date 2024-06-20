@@ -9,6 +9,7 @@ import { useClassNames } from "../../hooks/use-class-names";
 import { AvatarClassToken, ComponentToken } from "../../utils/class-name";
 import clsx from "clsx";
 import { typography } from "../theme/theme";
+import { useImage } from "../../hooks/use-image";
 
 const styles = stylex.create({
   avatar: (props: { backgroundColor: CSSProperties["backgroundColor"]; color: CSSProperties["color"] }) => ({
@@ -66,17 +67,16 @@ const styles = stylex.create({
 /**
  * @description
  * `Avatar`
- *
- * component
  */
 const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(
-  ({ src, alt, shape: _shape = "circular", size: _size = "medium", fallback, ...props }, ref) => {
+  ({ src, alt, shape: _shape = "circular", size: _size = "medium", ...props }, ref) => {
     const theme = useTheme();
     const group = useContext(Context);
     const isInGroup = !!group;
     const size = group?.size ?? _size;
     const shape = group?.shape ?? _shape;
     const classNames = useClassNames(ComponentToken.Avatar);
+    const isLoaded = useImage({ src });
 
     const styled = {
       avatar: stylex.props(
@@ -102,10 +102,10 @@ const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(
         style={styled.avatar.style}
         ref={ref}
       >
-        {!!src ? (
+        {isLoaded === "loaded" ? (
           <img draggable={false} src={src} alt={alt} className={styled.image.className} style={styled.image.style} />
         ) : (
-          fallback
+          alt?.slice(0, 2).toUpperCase()
         )}
       </span>
     );

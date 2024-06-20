@@ -2,26 +2,32 @@ import { useReactTable, getCoreRowModel } from "@tanstack/react-table";
 import React from "react";
 import { useColumns, useContextValue } from "./hooks";
 import type { TableProps } from "./types";
-import Header from "./header";
+import Header from "./header/header";
 import Context from "./context";
 import Body from "./body";
 import * as stylex from "@stylexjs/stylex";
 
 const styles = stylex.create({
   table: {
-    width: "400px",
+    width: "100%",
   },
 });
 
-const Table = <T,>({ bordered = false, dataSource = [], ...props }: TableProps<T>) => {
-  const columns = useColumns<T>([props.columns]);
+const Table = <T,>({
+  bordered = false,
+  dataSource = [],
+  columns: _columns = [],
+  sortDescriptor,
+  onSortChange,
+}: TableProps<T>) => {
+  const columns = useColumns<T>({ columns: _columns });
   const table = useReactTable({
-    columns: columns,
+    columns,
     data: dataSource,
     getCoreRowModel: getCoreRowModel(),
   });
 
-  const contextValue = useContextValue({ table, bordered });
+  const contextValue = useContextValue({ table, bordered, sortDescriptor, onSortChange });
 
   return (
     <Context.Provider value={contextValue}>

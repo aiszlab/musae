@@ -24,7 +24,7 @@ const Icon = ({ as, color, size, onClick, style, className }: IconProps) => {
 
   const asProps = useMemo<AsProps>(() => {
     return {
-      size: size === "small" ? 12 : size === "large" ? 20 : size ?? 16,
+      size: size === "small" ? 12 : size === "large" ? 20 : size === "medium" ? 16 : size ?? 16,
     };
   }, [size]);
 

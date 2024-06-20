@@ -13,7 +13,7 @@ import { typography } from "../theme/theme";
 
 const styles = stylex.create({
   checkbox: {
-    display: "flex",
+    display: "inline-flex",
     alignItems: "center",
     cursor: "pointer",
   },
@@ -24,6 +24,7 @@ const styles = stylex.create({
     cursor: "inherit",
     width: spacing.large,
     height: spacing.large,
+    position: "relative",
 
     "::before": {
       content: "''",
@@ -58,7 +59,7 @@ const styles = stylex.create({
       display: "block",
       width: `calc(${sizes.xxxsmall} / 3)`,
       height: `calc(${sizes.xxxsmall} / 2)`,
-      transform: "translate(100%, -150%) rotate(45deg)",
+      transform: "translate(100%, -160%) rotate(45deg)",
 
       borderWidth: spacing.xxxsmall,
       borderTopWidth: sizes.none,

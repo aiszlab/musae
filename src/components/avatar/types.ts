@@ -18,7 +18,9 @@ export type AvatarProps = {
 
   /**
    * @description
-   * alt
+   * alt, (fallback usage)
+   * if user do not provide `src`, or `src` is invalid
+   * show `alt`
    * @default void 0
    */
   alt?: string;
@@ -36,15 +38,6 @@ export type AvatarProps = {
    * @default "circular"
    */
   shape?: Shape;
-
-  /**
-   * @description
-   * fallback node
-   * if user do not provide `src`, or `src` is invalid
-   * show `fallback`
-   * @default void 0
-   */
-  fallback?: ReactNode;
 };
 
 /**

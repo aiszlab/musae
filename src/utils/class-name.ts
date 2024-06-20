@@ -56,6 +56,7 @@ export enum ComponentToken {
   Progress,
   Tooltip,
   Popover,
+  Loading,
 }
 
 /**
@@ -198,8 +199,8 @@ export enum SwitchClassToken {
 export enum RateClassToken {
   Rate,
   Star,
-  Leading,
-  Trailing,
+  Half,
+  Full,
 }
 export enum TourClassToken {
   Tour,
@@ -251,6 +252,11 @@ export enum PopoverClassToken {
   Popover,
   Title,
   Description,
+}
+export enum LoadingClassToken {
+  Loading,
+  Spin,
+  Content,
 }
 
 /**
@@ -397,8 +403,8 @@ export const CLASS_NAMES = {
   [ComponentToken.Rate]: {
     [RateClassToken.Rate]: "rate",
     [RateClassToken.Star]: "rate__star",
-    [RateClassToken.Leading]: "rate__star-leading",
-    [RateClassToken.Trailing]: "rate__star-trailing",
+    [RateClassToken.Half]: "rate__star-half",
+    [RateClassToken.Full]: "rate__star-full",
   },
   [ComponentToken.Tour]: {
     [TourClassToken.Tour]: "tour",
@@ -448,6 +454,11 @@ export const CLASS_NAMES = {
     [PopoverClassToken.Popover]: "popover",
     [PopoverClassToken.Title]: "popover__title",
     [PopoverClassToken.Description]: "popover__description",
+  },
+  [ComponentToken.Loading]: {
+    [LoadingClassToken.Loading]: "loading",
+    [LoadingClassToken.Spin]: "loading__spin",
+    [LoadingClassToken.Content]: "loading__content",
   },
 };
 

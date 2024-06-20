@@ -1,3 +1,5 @@
+import { type ReactNode } from "react";
+
 type Size = "small" | "medium" | "large";
 
 /**
@@ -13,4 +15,18 @@ export interface LoadingProps {
    * @default "medium"
    */
   size?: Size;
+
+  /**
+   * @description
+   * overlay shown
+   * @default true
+   */
+  overlay?: boolean;
+
+  /**
+   * @description
+   * children
+   * @default void 0
+   */
+  children?: ReactNode;
 }

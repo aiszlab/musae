@@ -1,20 +1,25 @@
-import React, { CSSProperties } from "react";
-import { useTable } from "./hooks";
+import React, { type CSSProperties } from "react";
+import { useTable } from "../context";
 import { flexRender } from "@tanstack/react-table";
-import { HeaderProps } from "./types";
+import type { HeaderProps } from "../types";
 import * as stylex from "@stylexjs/stylex";
-import { sizes } from "../theme/tokens.stylex";
-import { useTheme } from "../theme";
+import { sizes, spacing } from "../../theme/tokens.stylex";
+import { useTheme } from "../../theme";
 import clsx from "clsx";
-import { ColorToken } from "../../utils/colors";
-import { typography } from "../theme/theme";
-import { styles as _styles } from "./hooks";
+import { ColorToken } from "../../../utils/colors";
+import { typography } from "../../theme/theme";
 
 const styles = stylex.create({
-  cell: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
+  cell: (props: { backgroundColor: CSSProperties["backgroundColor"]; borderColor: CSSProperties["borderColor"] }) => ({
     backgroundColor: props.backgroundColor,
     textAlign: "start",
     position: "relative",
+
+    paddingInline: spacing.small,
+    paddingBlock: spacing.medium,
+    borderColor: props.borderColor,
+    borderStyle: "solid",
+    borderBottomWidth: sizes.smallest,
   }),
 
   unbordered: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
@@ -45,16 +50,14 @@ const Header = <T,>(props: HeaderProps) => {
   const styled = stylex.props(
     styles.cell({
       backgroundColor: theme.colors[ColorToken.Surface],
+      borderColor: theme.colors[ColorToken.OutlineVariant],
     }),
     typography.label.small,
-    bordered
-      ? styles.bordered
-      : styles.unbordered({
-          backgroundColor: theme.colors[ColorToken.OutlineVariant],
-        }),
-    _styles.cell({
-      outlineColor: theme.colors[ColorToken.OutlineVariant],
-    })
+    bordered && styles.bordered,
+    !bordered &&
+      styles.unbordered({
+        backgroundColor: theme.colors[ColorToken.OutlineVariant],
+      })
   );
 
   return (
@@ -63,6 +66,7 @@ const Header = <T,>(props: HeaderProps) => {
         <tr key={headerGroup.id}>
           {headerGroup.headers.map((header) => (
             <th key={header.id} className={clsx(styled.className)} style={styled.style}>
+              {}
               {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
             </th>
           ))}
