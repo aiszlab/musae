@@ -10,6 +10,7 @@ import { ColorToken } from "../../utils/colors";
 import { useEvent } from "@aiszlab/relax";
 import { Context } from "./context";
 import { typography } from "../theme/theme";
+import { Done } from "../icon/icons";
 
 const styles = {
   step: stylex.create({
@@ -30,6 +31,10 @@ const styles = {
   leading: stylex.create({
     default: {
       gridArea: "leading",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      borderRadius: sizes.infinity,
     },
 
     vertical: (props: { color: CSSProperties["color"] }) => ({
@@ -45,6 +50,21 @@ const styles = {
         insetBlockStart: "100%",
         insetInlineStart: `calc((100% - ${sizes.smallest}) / 2)`,
       },
+    }),
+
+    doing: (props: { backgroundColor: CSSProperties["backgroundColor"]; color: CSSProperties["color"] }) => ({
+      backgroundColor: props.backgroundColor,
+      color: props.color,
+    }),
+
+    done: (props: { backgroundColor: CSSProperties["backgroundColor"]; color: CSSProperties["color"] }) => ({
+      backgroundColor: props.backgroundColor,
+      color: props.color,
+    }),
+
+    todo: (props: { backgroundColor: CSSProperties["backgroundColor"]; color: CSSProperties["color"] }) => ({
+      backgroundColor: props.backgroundColor,
+      color: props.color,
     }),
   }),
 
@@ -95,6 +115,21 @@ const Item = ({ leading, title, description, value }: StepItemProps) => {
         !isMax &&
         styles.leading.vertical({
           color: theme.colors[ColorToken.Primary],
+        }),
+      status === "doing" &&
+        styles.leading.doing({
+          backgroundColor: theme.colors[ColorToken.Primary],
+          color: theme.colors[ColorToken.OnPrimary],
+        }),
+      status === "done" &&
+        styles.leading.done({
+          backgroundColor: theme.colors[ColorToken.PrimaryContainer],
+          color: theme.colors[ColorToken.OnPrimaryContainer],
+        }),
+      status === "todo" &&
+        styles.leading.todo({
+          backgroundColor: theme.colors[ColorToken.Secondary],
+          color: theme.colors[ColorToken.OnSecondary],
         })
     ),
     title: stylex.props(
@@ -129,7 +164,7 @@ const Item = ({ leading, title, description, value }: StepItemProps) => {
       onClick={click}
     >
       <div className={clsx(classNames[StepsClassToken.Leading], styled.leading.className)} style={styled.leading.style}>
-        {leading}
+        {leading ?? (status === "done" ? <Done /> : value)}
       </div>
       <div className={clsx(classNames[StepsClassToken.Title], styled.title.className)} style={styled.title.style}>
         {title}
