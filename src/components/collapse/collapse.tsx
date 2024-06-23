@@ -20,9 +20,17 @@ const styles = stylex.create({
   }),
 });
 
-const Collapse = ({ items, className, defaultActiveKeys, onChange, style }: CollapseProps) => {
+const Collapse = ({
+  items,
+  className,
+  defaultActiveKey,
+  activeKey,
+  onChange,
+  style,
+  accordion = false,
+}: CollapseProps) => {
   const classNames = useClassNames(ComponentToken.Collapse);
-  const [activeKeys, toggle] = useActiveKeys({ defaultActiveKeys, onChange });
+  const [activeKeys, toggle] = useActiveKeys({ defaultActiveKey, activeKey, onChange, accordion });
   const theme = useTheme();
 
   // no need to render when items is empty

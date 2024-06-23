@@ -34,16 +34,14 @@ const styles = {
       flexDirection: "row",
       alignItems: "center",
       gap: spacing.small,
+      cursor: "pointer",
     },
   }),
 
   panel: stylex.create({
-    default: (props: { outlineColor: CSSProperties["borderColor"] }) => ({
+    default: {
       height: "auto",
-      borderTopWidth: sizes.smallest,
-      borderTopStyle: "solid",
-      borderTopColor: props.outlineColor,
-    }),
+    },
 
     hidden: {
       display: "none",
@@ -51,9 +49,12 @@ const styles = {
   }),
 
   content: stylex.create({
-    default: {
+    default: (props: { outlineColor: CSSProperties["borderColor"] }) => ({
+      borderTopWidth: sizes.smallest,
+      borderTopStyle: "solid",
+      borderTopColor: props.outlineColor,
       padding: spacing.large,
-    },
+    }),
   }),
 
   collapser: stylex.create({
@@ -81,11 +82,8 @@ const CollapseItem = ({ children, label, value }: CollapseItemProps) => {
   const styled = {
     item: stylex.props(styles.item.default({ outlineColor: theme.colors[ColorToken.OutlineVariant] })),
     header: stylex.props(styles.header.default),
-    panel: stylex.props(
-      styles.panel.default({ outlineColor: theme.colors[ColorToken.OutlineVariant] }),
-      !isExpanded && styles.panel.hidden
-    ),
-    content: stylex.props(styles.content.default),
+    panel: stylex.props(styles.panel.default, !isExpanded && styles.panel.hidden),
+    content: stylex.props(styles.content.default({ outlineColor: theme.colors[ColorToken.OutlineVariant] })),
     collapser: stylex.props(styles.collapser.default, isExpanded && styles.collapser.expanded),
   };
 

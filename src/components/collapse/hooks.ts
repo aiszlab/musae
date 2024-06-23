@@ -1,31 +1,49 @@
-import { useControlledState, useEvent } from "@aiszlab/relax";
+import { useControlledState, useEvent, toArray, exclude } from "@aiszlab/relax";
 import { useMemo, type Key } from "react";
+import type { Value } from "./types";
 
 /**
  * @description
  * `Collapse` active key hook
  */
 export const useActiveKeys = ({
-  defaultActiveKeys,
-  activeKeys: _activeKeys,
+  defaultActiveKey,
+  activeKey: _activeKey,
   onChange: _onChange,
+  accordion,
 }: {
-  defaultActiveKeys?: Key[];
-  activeKeys?: Key[];
-  onChange?: (keys: Key[]) => void;
+  defaultActiveKey?: Value;
+  activeKey?: Value;
+  onChange?: (value: Key[]) => void;
+  accordion: boolean;
 }): [Set<Key>, (key: Key) => void] => {
-  const [__activeKeys, _setActiveKeys] = useControlledState(_activeKeys, { defaultState: defaultActiveKeys });
+  const [_activeKeys, _setActiveKeys] = useControlledState(_activeKey, { defaultState: defaultActiveKey });
 
-  const activeKeys = useMemo(() => new Set(__activeKeys), [__activeKeys]);
+  const activeKeys = useMemo(() => {
+    const keys = exclude(toArray(_activeKeys), [void 0]);
+    if (accordion) {
+      return new Set(keys.slice(0, 1));
+    }
+    return new Set(keys);
+  }, [_activeKeys, accordion]);
 
   const toggle = useEvent((key: Key) => {
     const expandedKeys = new Set(activeKeys);
     const isExpanded = expandedKeys.has(key);
 
-    if (isExpanded) {
-      expandedKeys.delete(key);
+    // `accordion` mode, just toggle `key`
+    // otherwise, normally toggle `key`
+    if (accordion) {
+      expandedKeys.clear();
+      if (!isExpanded) {
+        expandedKeys.add(key);
+      }
     } else {
-      expandedKeys.add(key);
+      if (isExpanded) {
+        expandedKeys.delete(key);
+      } else {
+        expandedKeys.add(key);
+      }
     }
 
     const _expandedKeys = Array.from(expandedKeys);

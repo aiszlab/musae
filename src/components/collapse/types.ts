@@ -1,6 +1,8 @@
 import type { Key, ReactNode } from "react";
 import type { ComponentProps } from "../../types/element";
 
+export type Value = Key | Key[];
+
 /**
  * @description
  * `Collapse` item
@@ -35,7 +37,14 @@ export interface CollapseProps extends ComponentProps {
    * default active key
    * @default void 0
    */
-  defaultActiveKeys?: Key[];
+  defaultActiveKey?: Value;
+
+  /**
+   * @description
+   * active key
+   * @default void 0
+   */
+  activeKey?: Value;
 
   /**
    * @description
@@ -46,8 +55,16 @@ export interface CollapseProps extends ComponentProps {
   /**
    * @description
    * change handler
+   * @default void 0
    */
-  onChange?: (keys: Key[]) => void;
+  onChange?: (value: Key[]) => void;
+
+  /**
+   * @description
+   * accordion mode
+   * @default false
+   */
+  accordion?: boolean;
 }
 
 /**
