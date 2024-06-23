@@ -57,6 +57,7 @@ export enum ComponentToken {
   Tooltip,
   Popover,
   Loading,
+  Collapse,
 }
 
 /**
@@ -257,6 +258,16 @@ export enum LoadingClassToken {
   Loading,
   Spin,
   Content,
+}
+export enum CollapseClassToken {
+  Collapse,
+  Item,
+  ItemActive,
+  Header,
+  Panel,
+  PanelActive,
+  Content,
+  Collapser,
 }
 
 /**
@@ -459,6 +470,16 @@ export const CLASS_NAMES = {
     [LoadingClassToken.Loading]: "loading",
     [LoadingClassToken.Spin]: "loading__spin",
     [LoadingClassToken.Content]: "loading__content",
+  },
+  [ComponentToken.Collapse]: {
+    [CollapseClassToken.Collapse]: "collapse",
+    [CollapseClassToken.Item]: "collapse__item",
+    [CollapseClassToken.ItemActive]: "collapse__item--active",
+    [CollapseClassToken.Header]: "collapse__item-header",
+    [CollapseClassToken.Collapser]: "collapse__header-collapser",
+    [CollapseClassToken.Panel]: "collapse__item-panel",
+    [CollapseClassToken.PanelActive]: "collapse__item-panel--active",
+    [CollapseClassToken.Content]: "collapse__item-content",
   },
 };
 

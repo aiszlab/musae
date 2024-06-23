@@ -47,6 +47,7 @@ export { Upload } from "./components/upload";
 export { Progress } from "./components/progress";
 export { Popover } from "./components/popover";
 export { Watermark } from "./components/watermark";
+export { Collapse } from "./components/collapse";
 
 /**
  * @description

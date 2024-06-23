@@ -12,10 +12,10 @@
   resolved "https://registry.yarnpkg.com/@adobe/css-tools/-/css-tools-4.4.0.tgz#728c484f4e10df03d5a3acd0d8adcbbebff8ad63"
   integrity sha512-Ff9+ksdQQB3rMncgqDK78uLznstjyfIf2Arnh22pW8kBpLs6rpKDwgnZT46hin5Hl1WzazzK64DOrhSwYpS7bQ==
 
-"@aiszlab/relax@^1.2.50":
-  version "1.2.50"
-  resolved "https://registry.npmjs.org/@aiszlab/relax/-/relax-1.2.50.tgz#28bbd2df1a5574d359b842ef64adda74684be3ae"
-  integrity sha512-le+l8sGe0OL/8DtuvVKVpNWfsC/UfNX6mvop7xBdq3R8D2QI5HJy6kGxYpLyBAoSEHOLIundLNwiVgogDEI1+w==
+"@aiszlab/relax@^1.2.54":
+  version "1.2.54"
+  resolved "https://registry.npmjs.org/@aiszlab/relax/-/relax-1.2.54.tgz#b02ad352c735eb176640e421bda9042d618a4bc3"
+  integrity sha512-wqzBGO234Q484AKox+lpGp4kyUxOcMysgfgxhNjYkK1IRQld3yp5HHwhpNC9NW9aU8VqxQbNgHn72r2MBnGT5Q==
   dependencies:
     react-is "^18.2.0"
     rxjs "^7.8.1"
@@ -3557,10 +3557,10 @@ form-data@^4.0.0:
     combined-stream "^1.0.8"
     mime-types "^2.1.12"
 
-framer-motion@^11.2.10:
-  version "11.2.10"
-  resolved "https://registry.npmjs.org/framer-motion/-/framer-motion-11.2.10.tgz#c8671e33e8f8d4abbd95efd20d3b8a888f457ed7"
-  integrity sha512-/gr3PLZUVFCc86a9MqCUboVrALscrdluzTb3yew+2/qKBU8CX6nzs918/SRBRCqaPbx0TZP10CB6yFgK2C5cYQ==
+framer-motion@^11.2.11:
+  version "11.2.11"
+  resolved "https://registry.npmjs.org/framer-motion/-/framer-motion-11.2.11.tgz#bbadbb15914d90e54cc5fa52c4b5ba7418f26c04"
+  integrity sha512-n+ozoEzgJu/2h9NoQMokF+CwNqIRVyuRC4RwMPwklfrrTjbVV32k9uBIgqYAwn7Jfpt5LuDVCtT57MWz1FbaLw==
   dependencies:
     tslib "^2.4.0"
 

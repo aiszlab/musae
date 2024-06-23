@@ -23,13 +23,13 @@
     }
   },
   "dependencies": {
-    "@aiszlab/relax": "^1.2.50",
+    "@aiszlab/relax": "^1.2.54",
     "@floating-ui/dom": "^1.6.5",
     "@tanstack/react-table": "^8.16.0",
     "clsx": "^2.1.1",
     "dayjs": "^1.11.11",
     "deepmerge": "^4.3.1",
-    "framer-motion": "^11.2.10",
+    "framer-motion": "^11.2.11",
     "react-hook-form": "^7.47.0",
     "rxjs": "^7.8.1"
   },
