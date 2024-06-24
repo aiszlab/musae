@@ -15,7 +15,6 @@ export type UploadProps = {
   /**
    * @description
    * disabled
-   *
    * @default false
    */
   disabled?: boolean;
@@ -23,7 +22,6 @@ export type UploadProps = {
   /**
    * @description
    * multiple
-   *
    * @default false
    */
   multiple?: boolean;
@@ -31,12 +29,14 @@ export type UploadProps = {
   /**
    * @description
    * children
+   * @default void 0
    */
   children?: ReactNode;
 
   /**
    * @description
    * uploader
+   * @default void 0
    */
   uploader?: (file: File) => Promise<string>;
 
@@ -44,7 +44,7 @@ export type UploadProps = {
    * @description
    * error
    */
-  onError?: (event: any) => void;
+  onError?: (error: unknown) => void;
 };
 
 /**
