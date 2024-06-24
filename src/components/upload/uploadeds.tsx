@@ -1,7 +1,7 @@
 import React, { forwardRef, useImperativeHandle, useRef, useState } from "react";
 import stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
-import type { UploadedItem, UploadedsProps, UploadedsRef } from "./types";
+import type { UploadStatus, UploadedItem, UploadedsProps, UploadedsRef } from "./types";
 import { Loading, Clear } from "../icon/icons";
 import { useEvent } from "@aiszlab/relax";
 
@@ -35,17 +35,22 @@ const Uploadeds = forwardRef<UploadedsRef, UploadedsProps>(({ uploader }, ref) =
   useImperativeHandle(ref, () => {
     return {
       add: async (file: File) => {
+        const hasUploader = !!uploader;
+        const status: UploadStatus = hasUploader ? "loading" : "success";
+
         // push current file
         const id = _counter.current++;
         setItems((items) => {
-          return new Map(items).set(id, { file, status: "loading" });
+          return new Map(items).set(id, { file, status });
         });
 
         // call request by user provided
+        if (!hasUploader) return;
         const url = await uploader(file).catch(() => {
           loaded(id, "error");
           return null;
         });
+
         if (!url) return;
         loaded(id, "success");
       },

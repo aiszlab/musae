@@ -30,7 +30,7 @@ const Upload = ({ onClick: _onClick, disabled, multiple, children, uploader, onE
 
   const onClick = useEvent(() => {
     inputRef.current?.click();
-    _onClick();
+    _onClick?.();
   });
 
   const onKeyDown = useEvent((e: KeyboardEvent<HTMLDivElement>) => {

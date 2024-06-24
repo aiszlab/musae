@@ -8,8 +8,9 @@ export type UploadProps = {
   /**
    * @description
    * on upload wrapper click handler
+   * @default void 0
    */
-  onClick: () => void;
+  onClick?: () => void;
 
   /**
    * @description
@@ -37,7 +38,7 @@ export type UploadProps = {
    * @description
    * uploader
    */
-  uploader: (file: File) => Promise<string>;
+  uploader?: (file: File) => Promise<string>;
 
   /**
    * @description
