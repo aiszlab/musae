@@ -1,6 +1,5 @@
 import type { ButtonProps } from "./types";
 import React, { type CSSProperties, forwardRef } from "react";
-// import { useClassNames } from "../../hooks/use-class-names";
 import { ButtonClassToken, ComponentToken } from "../../utils/class-name";
 import clsx from "clsx";
 import * as stylex from "@stylexjs/stylex";
