@@ -29,6 +29,9 @@ const Item = ({ value, onClick, ...props }: TabItemProps) => {
       onClick={click}
       className={classNames[TabsClassToken.Item]}
       ripple={false}
+      style={{
+        borderRadius: "10% 10% 0 0",
+      }}
     >
       {props.label}
     </Button>
