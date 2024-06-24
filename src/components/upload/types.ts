@@ -43,6 +43,7 @@ export type UploadProps = {
   /**
    * @description
    * error
+   * @default void 0
    */
   onError?: (error: unknown) => void;
 };
