@@ -9,7 +9,7 @@
     "dev": "rollup -c -w --environment NODE_ENV:development",
     "build": "rollup -c --environment NODE_ENV:production",
     "prepublish": "rm -rf dist && npm run build",
-    "relink": "yarn unlink && yarn link",
+    "relink": "pnpm unlink && pnpm link",
     "test": "jest"
   },
   "exports": {

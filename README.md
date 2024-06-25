@@ -13,7 +13,7 @@
 
 ```bash
 npm install musae
-## yarn add musae
+## pnpm i musae
 ```
 
 ## 🔨 Usage
