@@ -64,7 +64,7 @@ export type UploadedsRef = {
  * @description
  * uploaded list props
  */
-export type UploadedsProps = Pick<UploadProps, "uploader">;
+export type UploadedsProps = Pick<UploadProps, "uploader" | "onError">;
 
 /**
  * @description

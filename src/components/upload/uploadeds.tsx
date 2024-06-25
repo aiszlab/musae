@@ -19,7 +19,7 @@ const styles = stylex.create({
   },
 });
 
-const Uploadeds = forwardRef<UploadedsRef, UploadedsProps>(({ uploader }, ref) => {
+const Uploadeds = forwardRef<UploadedsRef, UploadedsProps>(({ uploader, onError }, ref) => {
   const [items, setItems] = useState(new Map<number, UploadedItem>());
   const _counter = useRef(0);
 
@@ -46,8 +46,9 @@ const Uploadeds = forwardRef<UploadedsRef, UploadedsProps>(({ uploader }, ref) =
 
         // call request by user provided
         if (!hasUploader) return;
-        const url = await uploader(file).catch(() => {
+        const url = await uploader(file).catch((error) => {
           loaded(id, "error");
+          onError?.(error);
           return null;
         });
 
