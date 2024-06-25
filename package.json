@@ -42,7 +42,7 @@
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@rollup/plugin-typescript": "^11.1.6",
     "@stylexjs/babel-plugin": "^0.7.0",
-    "@stylexjs/rollup-plugin": "^0.6.1",
+    "@stylexjs/rollup-plugin": "^0.7.0",
     "@stylexjs/stylex": "^0.7.0",
     "@testing-library/jest-dom": "^6.4.5",
     "@testing-library/react": "^16.0.0",
