@@ -164,6 +164,7 @@ export enum ClockClassToken {
 }
 export enum MenuClassToken {
   Menu,
+  MenuHorizontal,
   Group,
   GroupHidden,
   Collapser,
@@ -378,6 +379,7 @@ export const CLASS_NAMES = {
   },
   [ComponentToken.Menu]: {
     [MenuClassToken.Menu]: "menu",
+    [MenuClassToken.MenuHorizontal]: "menu--horizontal",
     [MenuClassToken.Group]: "menu__group",
     [MenuClassToken.GroupHidden]: "menu__group--hidden",
     [MenuClassToken.Collapser]: "menu__collapser",

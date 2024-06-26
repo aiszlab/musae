@@ -24,6 +24,16 @@ const styles = {
       overflow: "auto",
     }),
 
+    horizontal: {
+      display: "flex",
+      flexDirection: "row",
+      gap: spacing.small,
+    },
+
+    vertical: {},
+
+    inline: {},
+
     hidden: {
       display: "none",
     },
@@ -70,6 +80,7 @@ const Group = forwardRef<HTMLUListElement, MenuGroupProps>(
         styles.group.default({
           color: theme.colors[ColorToken.OnSurface],
         }),
+        styles.group[mode],
         !expanded && styles.group.hidden
       ),
       submenu: stylex.props(styles.submenu[mode]),

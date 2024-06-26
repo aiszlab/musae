@@ -71,7 +71,14 @@ const Menu = forwardRef<MenuRef, MenuProps>(
           ref={targetRef}
           items={items}
           mode={mode}
-          className={clsx(classNames[MenuClassToken.Menu], className, styled.className)}
+          className={clsx(
+            classNames[MenuClassToken.Menu],
+            {
+              [classNames[MenuClassToken.MenuHorizontal]]: mode === "horizontal",
+            },
+            className,
+            styled.className
+          )}
           style={{
             ...styled.style,
             ...style,
