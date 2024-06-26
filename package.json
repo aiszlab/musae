@@ -1,6 +1,6 @@
 {
   "name": "musae",
-  "version": "0.2.5-beta.0",
+  "version": "0.2.5",
   "description": "musae-ui",
   "author": "tutu@fantufantu.com",
   "license": "MIT",
@@ -38,6 +38,7 @@
     "@babel/preset-env": "^7.24.5",
     "@babel/preset-react": "^7.22.5",
     "@babel/preset-typescript": "^7.22.5",
+    "@changesets/cli": "^2.27.6",
     "@rollup/plugin-commonjs": "^26.0.1",
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@rollup/plugin-typescript": "^11.1.6",
