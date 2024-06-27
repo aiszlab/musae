@@ -27,7 +27,7 @@ const Item = ({ value, onClick, ...props }: TabItemProps) => {
       color={isActive ? "primary" : "secondary"}
       ref={setItem}
       onClick={click}
-      className={classNames[TabsClassToken.Item]}
+      className={classNames[TabsClassToken.Tab]}
       ripple={false}
       style={{
         borderRadius: "10% 10% 0 0",

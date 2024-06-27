@@ -1,4 +1,7 @@
-import { ComponentProps } from "../../types/element";
+// TODO tab props change, sync to docs!!!
+
+import type { Key, ReactNode } from "react";
+import type { ComponentProps } from "../../types/element";
 
 export interface TabsProps extends ComponentProps {
   /**
@@ -13,7 +16,21 @@ export interface TabsProps extends ComponentProps {
    * activeKey
    * @default void 0
    */
-  activeKey?: string;
+  activeKey?: Key;
+
+  /**
+   * @description
+   * default active key
+   * @default void 0
+   */
+  defaultActiveKey?: Key;
+
+  /**
+   * @description
+   * forceRender
+   * @default false
+   */
+  forceRender?: boolean;
 }
 
 export interface TabItemProps {
@@ -22,7 +39,7 @@ export interface TabItemProps {
    * value
    * @requires
    */
-  value: string;
+  value: Key;
 
   /**
    * @description
@@ -36,7 +53,7 @@ export interface TabItemProps {
    * on tab item click
    * @requires
    */
-  onClick: (key: string) => void;
+  onClick: (key: Key) => void;
 }
 
 export type TabItem = {
@@ -45,7 +62,7 @@ export type TabItem = {
    * key
    * @requires
    */
-  key: string;
+  key: Key;
 
   /**
    * @description
@@ -53,6 +70,12 @@ export type TabItem = {
    * @requires
    */
   label: string;
+
+  /**
+   * @description
+   * children
+   */
+  children?: ReactNode;
 };
 
 export interface ContextValue {
@@ -60,11 +83,11 @@ export interface ContextValue {
    * @description
    * item ref setter
    */
-  setItem: (key: string, itemRef: HTMLButtonElement | null) => void;
+  setItem: (key: Key, itemRef: HTMLButtonElement | null) => void;
 
   /**
    * @description
    * active key
    */
-  activeKey?: string;
+  activeKey?: Key;
 }

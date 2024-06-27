@@ -185,8 +185,11 @@ export enum TreeClassToken {
 }
 export enum TabsClassToken {
   Tabs,
-  Item,
+  TabsNavigation,
+  Tab,
   Indicator,
+  Body,
+  Panel,
 }
 export enum PaginationClassToken {
   Pagination,
@@ -400,8 +403,11 @@ export const CLASS_NAMES = {
   },
   [ComponentToken.Tabs]: {
     [TabsClassToken.Tabs]: "tabs",
-    [TabsClassToken.Item]: "tabs__item",
+    [TabsClassToken.TabsNavigation]: "tabs__navigation",
+    [TabsClassToken.Tab]: "tabs__item",
     [TabsClassToken.Indicator]: "tabs__indicator",
+    [TabsClassToken.Body]: "tabs__body",
+    [TabsClassToken.Panel]: "tabs__panel",
   },
   [ComponentToken.Pagination]: {
     [PaginationClassToken.Pagination]: "pagination",
