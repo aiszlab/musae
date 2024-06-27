@@ -31,6 +31,13 @@ export interface TabsProps extends ComponentProps {
    * @default false
    */
   forceRender?: boolean;
+
+  /**
+   * @description
+   * destroyable
+   * @default false
+   */
+  destroyable?: boolean;
 }
 
 export interface TabItemProps {
@@ -90,4 +97,16 @@ export interface ContextValue {
    * active key
    */
   activeKey?: Key;
+}
+
+/**
+ * @description
+ * panel props
+ */
+export interface PanelProps {
+  forceRender: boolean;
+  destroyable: boolean;
+  activeKey?: Key;
+  items: TabItem[];
+  activatedKeys: Set<Key>;
 }

@@ -1,5 +1,5 @@
-import { isVoid, useControlledState } from "@aiszlab/relax";
-import { ReactNode, useMemo, useState, type Key } from "react";
+import { isUndefined, useControlledState, useEvent } from "@aiszlab/relax";
+import { useState, type Key } from "react";
 import { TabItem } from "./types";
 
 /**
@@ -8,39 +8,29 @@ import { TabItem } from "./types";
  */
 export const useTabs = ({
   activeKey: _activeKey,
-  items: _items,
+  items,
   defaultActiveKey,
 }: {
   activeKey?: Key;
   items: TabItem[];
   defaultActiveKey?: Key;
 }) => {
-  // convert to mapped items
-  // content count
-  const [items, hasChildren] = useMemo(() => {
-    return _items.reduce<[Map<Key, TabItem>, boolean]>(
-      ([collected, hasChildren], item) => {
-        return [collected.set(item.key, item), hasChildren || !!item.children];
-      },
-      [new Map(), false]
-    );
-  }, [_items]);
-
   const [activeKey, setActiveKey] = useControlledState(_activeKey, {
-    defaultState: defaultActiveKey ?? _items.at(0)?.key,
+    defaultState: defaultActiveKey ?? items.at(0)?.key,
   });
 
-  const [children, setChildren] = useState<Map<Key, ReactNode>>(() => {
-    if (isVoid(activeKey)) return new Map();
-    return new Map().set(activeKey, items.get(activeKey)?.children);
+  const [activatedKeys, setActivatedKeys] = useState<Set<Key>>(() => {
+    return new Set(isUndefined(activeKey) ? [] : [activeKey]);
+  });
+
+  const changeActiveKey = useEvent((key: Key) => {
+    setActiveKey(key);
+    setActivatedKeys((prev) => new Set(prev).add(key));
   });
 
   return {
-    children,
-    setActiveKey,
     activeKey,
-    items,
-    setChildren,
-    hasChildren,
+    activatedKeys,
+    changeActiveKey,
   };
 };

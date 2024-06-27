@@ -1,4 +1,4 @@
-import React, { type CSSProperties, useCallback, useMemo, useRef, useState, Key } from "react";
+import React, { type CSSProperties, useMemo, useRef, Key } from "react";
 import { isVoid, useEvent, useMounted } from "@aiszlab/relax";
 import { useAnimate } from "framer-motion";
 import type { ContextValue, TabsProps } from "./types";
@@ -12,6 +12,7 @@ import { useClassNames } from "../../hooks/use-class-names";
 import { ComponentToken, TabsClassToken } from "../../utils/class-name";
 import clsx from "clsx";
 import { useTabs } from "./hooks";
+import Panels from "./panels";
 
 const styles = {
   tabs: stylex.create({
@@ -30,36 +31,19 @@ const styles = {
       bottom: spacing.none,
     }),
   }),
-
-  body: stylex.create({
-    default: {
-      marginTop: spacing.medium,
-    },
-  }),
-
-  panel: stylex.create({
-    default: {},
-
-    active: {
-      display: null,
-    },
-
-    hidden: {
-      display: "none",
-    },
-  }),
 };
 
 const Tabs = ({
-  items: _items = [],
+  items = [],
   className,
   style,
   activeKey: _activeKey,
   defaultActiveKey,
   forceRender = false,
+  destroyable = false,
 }: TabsProps) => {
-  const { activeKey, children, items, setActiveKey, setChildren, hasChildren } = useTabs({
-    items: _items,
+  const { activeKey, activatedKeys, changeActiveKey } = useTabs({
+    items,
     activeKey: _activeKey,
     defaultActiveKey,
   });
@@ -93,19 +77,15 @@ const Tabs = ({
     };
   }, [activeKey]);
 
-  const change = useCallback(
-    (key: Key) => {
-      // move indicator to active tab item
-      repaint(key);
-      // control state
-      setActiveKey(key);
-      setChildren((prev) => new Map(prev).set(key, items.get(key)?.children));
-    },
-    [setActiveKey, animateIndicatorScope, indicatorScope]
-  );
+  const change = useEvent((key: Key) => {
+    // move indicator to active tab item
+    repaint(key);
+    // control state
+    changeActiveKey(key);
+  });
 
   // if there is not any item, return null
-  if (_items.length === 0) return null;
+  if (items.length === 0) return null;
 
   const styled = {
     navigation: stylex.props(
@@ -118,7 +98,6 @@ const Tabs = ({
         color: theme.colors[ColorToken.Primary],
       })
     ),
-    body: stylex.props(styles.body.default),
   };
 
   return (
@@ -132,7 +111,7 @@ const Tabs = ({
             ...style,
           }}
         >
-          {_items.map((item) => {
+          {items.map((item) => {
             return <Tab key={item.key} value={item.key} label={item.label} onClick={change} />;
           })}
 
@@ -143,34 +122,13 @@ const Tabs = ({
           />
         </div>
 
-        {(children.size > 0 || (forceRender && hasChildren)) && (
-          <div className={clsx(classNames[TabsClassToken.Body], styled.body.className)} style={styled.body.style}>
-            {_items.map((item) => {
-              // cases:
-              // 1. force render, always use item self child
-              // 2. lazy render, use child by collected
-              const child = forceRender ? item.children : children.get(item.key);
-              if (!child) return null;
-
-              const isActive = activeKey === item.key;
-              const styled = stylex.props(
-                styles.panel.default,
-                isActive && styles.panel.active,
-                !isActive && styles.panel.hidden
-              );
-
-              return (
-                <div
-                  key={item.key}
-                  className={clsx(classNames[TabsClassToken.Panel], styled.className)}
-                  style={styled.style}
-                >
-                  {child}
-                </div>
-              );
-            })}
-          </div>
-        )}
+        <Panels
+          activeKey={activeKey}
+          activatedKeys={activatedKeys}
+          destroyable={destroyable}
+          forceRender={forceRender}
+          items={items}
+        />
       </div>
     </Context.Provider>
   );
