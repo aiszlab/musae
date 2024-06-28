@@ -58,6 +58,7 @@ export enum ComponentToken {
   Popover,
   Loading,
   Collapse,
+  Waterfall,
 }
 
 /**
@@ -272,6 +273,10 @@ export enum CollapseClassToken {
   PanelActive,
   Content,
   Collapser,
+}
+export enum WaterfallClassToken {
+  Waterfall,
+  Sequential,
 }
 
 /**
@@ -488,6 +493,10 @@ export const CLASS_NAMES = {
     [CollapseClassToken.Panel]: "collapse__item-panel",
     [CollapseClassToken.PanelActive]: "collapse__item-panel--active",
     [CollapseClassToken.Content]: "collapse__item-content",
+  },
+  [ComponentToken.Waterfall]: {
+    [WaterfallClassToken.Waterfall]: "waterfall",
+    [WaterfallClassToken.Sequential]: "waterfall--sequential",
   },
 };
 

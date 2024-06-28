@@ -23,6 +23,7 @@ const styles = stylex.create({
     transitionProperty: "all",
     transitionDuration: "0.3s",
     willChange: "background-color, color, box-shadow",
+    flexShrink: 0,
   },
 
   small: {

@@ -7,6 +7,8 @@ import clsx from "clsx";
 import { useGutters } from "../../hooks/use-gutters";
 import { useMounted, useUpdateEffect } from "@aiszlab/relax";
 import Sequential from "./sequential";
+import { useClassNames } from "../../hooks/use-class-names";
+import { ComponentToken, WaterfallClassToken } from "../../utils/class-name";
 
 const styles = stylex.create({
   waterfall: (props: { columnGap: number; rowGap: number }) => ({
@@ -43,6 +45,7 @@ const Waterfall = ({
 }: WaterfallProps) => {
   const [columnGap, rowGap] = useGutters({ gutter });
   const { collect, maxHeight, order, items, repaint } = useRepaint({ columns, rowGap });
+  const classNames = useClassNames(ComponentToken.Waterfall);
 
   const styled = stylex.props(
     styles.waterfall({ rowGap, columnGap }),
@@ -84,7 +87,7 @@ const Waterfall = ({
         columns={columns}
         children={children}
         rowGap={rowGap}
-        className={clsx(className, styled.className)}
+        className={clsx(classNames[WaterfallClassToken.Sequential], className, styled.className)}
         style={{
           ...styled.style,
           ...style,
@@ -95,7 +98,7 @@ const Waterfall = ({
 
   return (
     <div
-      className={clsx(className, styled.className)}
+      className={clsx(classNames[WaterfallClassToken.Waterfall], className, styled.className)}
       style={{
         ...styled.style,
         ...style,
