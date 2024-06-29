@@ -88,25 +88,31 @@ export type TabItem = {
 export interface ContextValue {
   /**
    * @description
-   * item ref setter
-   */
-  setItem: (key: Key, itemRef: HTMLButtonElement | null) => void;
-
-  /**
-   * @description
    * active key
    */
   activeKey?: Key;
+
+  /**
+   * @description
+   * items
+   */
+  items: TabItem[];
 }
 
 /**
  * @description
- * panel props
+ * panels props
  */
-export interface PanelProps {
+export interface PanelsProps {
   forceRender: boolean;
   destroyable: boolean;
-  activeKey?: Key;
-  items: TabItem[];
   activatedKeys: Set<Key>;
+}
+
+/**
+ * @description
+ * navigation props
+ */
+export interface NavigationProps {
+  onChange: (key: Key) => void;
 }

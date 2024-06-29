@@ -3,9 +3,10 @@ import stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
 import { useClassNames } from "../../hooks/use-class-names";
 import { ComponentToken, TabsClassToken } from "../../utils/class-name";
-import { type PanelProps } from "./types";
+import { type PanelsProps } from "./types";
 import clsx from "clsx";
 import { isUndefined, isVoid } from "@aiszlab/relax";
+import { useTabsContext } from "./hooks";
 
 const styles = {
   panels: stylex.create({
@@ -27,7 +28,8 @@ const styles = {
   }),
 };
 
-const Panels = ({ forceRender, destroyable, activeKey, activatedKeys, items }: PanelProps) => {
+const Panels = ({ forceRender, destroyable, activatedKeys }: PanelsProps) => {
+  const { items, activeKey } = useTabsContext();
   const classNames = useClassNames(ComponentToken.Tabs);
   const styled = {
     panels: stylex.props(styles.panels.default),

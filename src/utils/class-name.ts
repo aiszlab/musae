@@ -187,6 +187,8 @@ export enum TreeClassToken {
 export enum TabsClassToken {
   Tabs,
   TabsNavigation,
+  TabsNavigator,
+  TabList,
   Tab,
   Indicator,
   Panels,
@@ -409,6 +411,8 @@ export const CLASS_NAMES = {
   [ComponentToken.Tabs]: {
     [TabsClassToken.Tabs]: "tabs",
     [TabsClassToken.TabsNavigation]: "tabs__navigation",
+    [TabsClassToken.TabsNavigator]: "tabs__navigator",
+    [TabsClassToken.TabList]: "tabs__tab-list",
     [TabsClassToken.Tab]: "tabs__item",
     [TabsClassToken.Indicator]: "tabs__indicator",
     [TabsClassToken.Panels]: "tabs__panels",
