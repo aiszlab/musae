@@ -33,6 +33,9 @@ const styles = {
         position: "absolute",
         insetBlock: 0,
         insetInlineStart: 0,
+        pointerEvents: "none",
+        width: sizes.medium,
+        boxShadow: "inset 10px 0 8px -8px rgba(0, 0, 0, 0.08)",
       },
     },
 
@@ -42,6 +45,9 @@ const styles = {
         position: "absolute",
         insetBlock: 0,
         insetInlineEnd: 0,
+        pointerEvents: "none",
+        width: sizes.medium,
+        boxShadow: "inset -10px 0 8px -8px rgba(0, 0, 0, 0.08)",
       },
     },
   }),
@@ -49,7 +55,8 @@ const styles = {
   list: stylex.create({
     default: (props: { offset: number }) => ({
       display: "flex",
-      transform: `translateX(${props.offset}px)`,
+      width: "fit-content",
+      transform: `translateX(-${props.offset}px)`,
     }),
   }),
 
@@ -69,7 +76,7 @@ const Navigation = ({ onChange }: NavigationProps) => {
   const [indicatorRef, animateIndicator] = useAnimate<HTMLDivElement>();
   const tabRefs = useRef<Map<Key, HTMLButtonElement | null>>(new Map());
   const theme = useTheme();
-  const { navigatorRef, scroll, offset, isLeadingOverflow, isTrailingOverflow } = useNavigation();
+  const { navigatorRef, tabsRef, scroll, offset, isLeadingOverflow, isTrailingOverflow } = useNavigation();
 
   // control tabs scroll
   useNavigatorScroll({ navigatorRef, scroll });
@@ -114,10 +121,15 @@ const Navigation = ({ onChange }: NavigationProps) => {
       style={styled.navigation.style}
     >
       <div
+        ref={navigatorRef}
         className={clsx(classNames[TabsClassToken.TabsNavigator], styled.navigator.className)}
         style={styled.navigator.style}
       >
-        <div className={(classNames[TabsClassToken.TabList], styled.list.className)} style={styled.list.style}>
+        <div
+          ref={tabsRef}
+          className={clsx(classNames[TabsClassToken.TabList], styled.list.className)}
+          style={styled.list.style}
+        >
           {items.map((item) => {
             return (
               <Tab

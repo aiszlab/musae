@@ -68,15 +68,15 @@ export const useNavigation = () => {
 
   const { maxOffset, minOffset } = useMemo(() => {
     return {
-      maxOffset: Math.max(0, navigatorSize - tabsSize),
+      maxOffset: Math.max(0, tabsSize - navigatorSize),
       minOffset: 0,
     };
   }, [navigatorSize, tabsSize]);
 
   const { isLeadingOverflow, isTrailingOverflow } = useMemo(() => {
     return {
-      isLeadingOverflow: offset < minOffset,
-      isTrailingOverflow: offset > maxOffset,
+      isLeadingOverflow: offset > minOffset,
+      isTrailingOverflow: offset < maxOffset,
     };
   }, [minOffset, maxOffset, offset]);
 
@@ -88,6 +88,7 @@ export const useNavigation = () => {
 
   return {
     navigatorRef,
+    tabsRef,
     scroll,
     offset,
     isLeadingOverflow,
@@ -107,8 +108,10 @@ export const useNavigatorScroll = ({
   scroll: (delta: number) => void;
 }) => {
   // mouse wheel
-  const wheel = useEvent(({ deltaX }: WheelEvent) => {
-    scroll(deltaX);
+  const wheel = useEvent((event: WheelEvent) => {
+    event.stopPropagation();
+    const { deltaY } = event;
+    scroll(deltaY);
   });
 
   useEffect(() => {
