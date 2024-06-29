@@ -94,7 +94,7 @@ const styles = {
   }),
 };
 
-const Item = ({ description, label, value }: TimelineItemProps) => {
+const Item = ({ description, label, value, dot }: TimelineItemProps) => {
   const classNames = useClassNames(ComponentToken.Timeline);
   const { mode, max } = useContext(Context);
   const theme = useTheme();
@@ -109,7 +109,7 @@ const Item = ({ description, label, value }: TimelineItemProps) => {
     ),
     label: stylex.props(styles.label.default),
     leading: stylex.props(
-      styles.leading.default({ color: theme.colors[ColorToken.Primary] }),
+      !dot && styles.leading.default({ color: theme.colors[ColorToken.Primary] }),
       !isMax && styles.leading.vertical({ color: theme.colors[ColorToken.Primary] })
     ),
     description: stylex.props(styles.description.default),
@@ -122,7 +122,9 @@ const Item = ({ description, label, value }: TimelineItemProps) => {
           {label}
         </div>
       )}
-      <div className={styled.leading.className} style={styled.leading.style} />
+      <div className={styled.leading.className} style={styled.leading.style}>
+        {dot}
+      </div>
       <div className={styled.description.className} style={styled.description.style}>
         {description}
       </div>
