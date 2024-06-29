@@ -4,7 +4,7 @@
 const config = async () => {
   return {
     testEnvironment: "jsdom",
-    transformIgnorePatterns: ["node_modules/(?!(@aiszlab/relax)/)"],
+    transformIgnorePatterns: ["node_modules/(?!(.pnpm|@aiszlab/relax)/)"],
     transform: {
       "\\.[jt]sx?$": "babel-jest",
     },
