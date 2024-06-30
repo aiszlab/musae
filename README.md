@@ -6,14 +6,14 @@
 - 📦 A set of high-quality React components out of the box.
 - 🛡 Written in TypeScript with predictable static types.
 - ⚙️ Whole package of design resources and development tools.
-- 🌍 Internationalization support for dozens of languages.
 - 🎨 Powerful theme customization based on CSS-in-JS.
 
 ## 📦 Install
 
 ```bash
 npm install musae
-## pnpm i musae
+## pnpm add musae
+## yarn add musae
 ```
 
 ## 🔨 Usage
@@ -23,4 +23,6 @@ import React from "react";
 import { Button } from "musae";
 
 const App = () => <Button>PRESS ME</Button>;
+
+export default App;
 ```
