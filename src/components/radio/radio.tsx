@@ -60,7 +60,10 @@ const styles = {
     }),
 
     disabled: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
-      borderColor: props.backgroundColor,
+      "::after": {
+        borderWidth: sizes.smallest,
+        borderColor: props.backgroundColor,
+      },
 
       "::before": {
         content: "''",
@@ -74,7 +77,9 @@ const styles = {
     }),
 
     unckecked: {
-      "::before": null,
+      "::before": {
+        display: "none",
+      },
     },
   }),
 
@@ -139,7 +144,7 @@ const Radio = ({ children, value, checked, disabled = false, ...props }: RadioPr
   };
 
   return (
-    <label className={clsx(styled.radio.className, classNames[RadioClassToken.Radio], props.className)}>
+    <label className={clsx(classNames[RadioClassToken.Radio], props.className, styled.radio.className)}>
       <input
         type="radio"
         aria-checked={isChecked}

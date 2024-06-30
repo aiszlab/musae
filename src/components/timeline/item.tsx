@@ -1,4 +1,4 @@
-import React, { type CSSProperties, useContext } from "react";
+import React, { type CSSProperties, useContext, useMemo } from "react";
 import { TimelineItemProps } from "./types";
 import stylex from "@stylexjs/stylex";
 import { Context } from "./context";
@@ -11,108 +11,131 @@ import { ColorToken } from "../../utils/colors";
 
 const styles = {
   item: stylex.create({
-    default: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
+    default: {
       display: "grid",
       justifyContent: "flex-start",
-      alignItems: "center",
       gap: spacing.medium,
       overflow: "hidden",
       paddingBottom: spacing.xlarge,
-      backgroundColor: props.backgroundColor,
-    }),
+    },
 
     right: {
-      grid: "'leading description'",
+      gridTemplateColumns: "auto 1fr",
+      gridTemplateAreas: "'leading description'",
     },
 
     left: {
-      grid: "'description leading'",
-    },
-
-    alternate: {
-      grid: "'leading description'",
-
-      ":nth-of-type(2n)": {
-        grid: "'description leading'",
-      },
+      gridTemplateColumns: "1fr auto",
+      gridTemplateAreas: "'description leading'",
     },
   }),
 
   labeled: stylex.create({
+    default: {
+      gridTemplateColumns: "1fr auto 1fr",
+    },
+
     right: {
-      grid: "'label leading description'",
+      gridTemplateAreas: "'label leading description'",
     },
 
     left: {
-      grid: "'description leading label'",
-    },
-
-    alternate: {
-      grid: "'label leading description'",
-
-      ":nth-of-type(2n)": {
-        grid: "'description leading label'",
-      },
-    },
-  }),
-
-  label: stylex.create({
-    default: {
-      gridArea: "label",
+      gridTemplateAreas: "'description leading label'",
     },
   }),
 
   leading: stylex.create({
-    default: (props: { color: CSSProperties["color"] }) => ({
+    default: {
+      alignSelf: "flex-start",
       gridArea: "leading",
-      width: sizes.xxxxxsmall,
-      height: sizes.xxxxxsmall,
-      borderRadius: sizes.infinity,
-      backgroundColor: props.color,
-    }),
-
-    vertical: (props: { color: CSSProperties["color"] }) => ({
       position: "relative",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      width: sizes.xsmall,
+      height: sizes.xsmall,
+    },
 
+    tail: (props: { color: CSSProperties["color"] }) => ({
       "::after": {
         content: "''",
         position: "absolute",
         height: sizes.infinity,
         width: sizes.smallest,
         backgroundColor: props.color,
-        marginTop: spacing.xsmall,
         insetBlockStart: "100%",
         insetInlineStart: `calc((100% - ${sizes.smallest}) / 2)`,
       },
     }),
   }),
 
+  dot: stylex.create({
+    default: (props: { color: CSSProperties["color"] }) => ({
+      width: sizes.xxxxxsmall,
+      height: sizes.xxxxxsmall,
+      borderRadius: sizes.infinity,
+      backgroundColor: props.color,
+    }),
+  }),
+
+  label: stylex.create({
+    default: {
+      gridArea: "label",
+    },
+
+    right: {
+      justifySelf: "flex-end",
+    },
+
+    left: {
+      justifySelf: "flex-start",
+    },
+  }),
+
   description: stylex.create({
     default: {
       gridArea: "description",
     },
+
+    right: {
+      justifySelf: "flex-start",
+    },
+
+    left: {
+      justifySelf: "flex-end",
+    },
   }),
 };
 
-const Item = ({ description, label, value }: TimelineItemProps) => {
+const Item = ({ description, label, value, dot }: TimelineItemProps) => {
   const classNames = useClassNames(ComponentToken.Timeline);
-  const { mode, max } = useContext(Context);
+  const { mode: _mode, max } = useContext(Context);
   const theme = useTheme();
   const isLabeled = !!label;
   const isMax = max === value;
 
+  // convert alternate mode to normal mode
+  const mode = useMemo(() => {
+    if (_mode === "alternate") {
+      return value % 2 === 1 ? "right" : "left";
+    }
+    return _mode;
+  }, [_mode, value]);
+
   const styled = {
     item: stylex.props(
-      styles.item.default({ backgroundColor: theme.colors[ColorToken.Surface] }),
+      styles.item.default,
       styles.item[mode],
+      isLabeled && styles.labeled.default,
       isLabeled && styles.labeled[mode]
     ),
-    label: stylex.props(styles.label.default),
+    label: stylex.props(styles.label.default, styles.label[mode]),
     leading: stylex.props(
-      styles.leading.default({ color: theme.colors[ColorToken.Primary] }),
-      !isMax && styles.leading.vertical({ color: theme.colors[ColorToken.Primary] })
+      styles.leading.default,
+      !isMax && styles.leading.tail({ color: theme.colors[ColorToken.Primary] })
     ),
-    description: stylex.props(styles.description.default),
+    dot: stylex.props(styles.dot.default({ color: theme.colors[ColorToken.Primary] })),
+    description: stylex.props(styles.description.default, styles.description[mode]),
   };
 
   return (
@@ -122,7 +145,9 @@ const Item = ({ description, label, value }: TimelineItemProps) => {
           {label}
         </div>
       )}
-      <div className={styled.leading.className} style={styled.leading.style} />
+      <div className={styled.leading.className} style={styled.leading.style}>
+        {dot ?? <span className={styled.dot.className} style={styled.dot.style} />}
+      </div>
       <div className={styled.description.className} style={styled.description.style}>
         {description}
       </div>

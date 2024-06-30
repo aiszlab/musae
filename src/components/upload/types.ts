@@ -8,13 +8,13 @@ export type UploadProps = {
   /**
    * @description
    * on upload wrapper click handler
+   * @default void 0
    */
-  onClick: () => void;
+  onClick?: () => void;
 
   /**
    * @description
    * disabled
-   *
    * @default false
    */
   disabled?: boolean;
@@ -22,7 +22,6 @@ export type UploadProps = {
   /**
    * @description
    * multiple
-   *
    * @default false
    */
   multiple?: boolean;
@@ -30,20 +29,23 @@ export type UploadProps = {
   /**
    * @description
    * children
+   * @default void 0
    */
   children?: ReactNode;
 
   /**
    * @description
    * uploader
+   * @default void 0
    */
-  uploader: (file: File) => Promise<string>;
+  uploader?: (file: File) => Promise<string>;
 
   /**
    * @description
    * error
+   * @default void 0
    */
-  onError?: (event: any) => void;
+  onError?: (error: unknown) => void;
 };
 
 /**
@@ -62,7 +64,7 @@ export type UploadedsRef = {
  * @description
  * uploaded list props
  */
-export type UploadedsProps = Pick<UploadProps, "uploader">;
+export type UploadedsProps = Pick<UploadProps, "uploader" | "onError">;
 
 /**
  * @description

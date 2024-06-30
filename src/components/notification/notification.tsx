@@ -122,7 +122,7 @@ const Notification = ({
   const _placement = PLACEMENTS[direction];
   const classNames = useClassNames(ComponentToken.Notification);
 
-  // after duration, `Notification` will auto destory
+  // after duration, `Notification` will auto destroy
   useTimeout(async () => {
     await animate(scope.current, { opacity: 0, marginTop: scope.current.getBoundingClientRect().height * -1 });
     onClose?.();

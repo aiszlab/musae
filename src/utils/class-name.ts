@@ -57,6 +57,8 @@ export enum ComponentToken {
   Tooltip,
   Popover,
   Loading,
+  Collapse,
+  Waterfall,
 }
 
 /**
@@ -163,6 +165,7 @@ export enum ClockClassToken {
 }
 export enum MenuClassToken {
   Menu,
+  MenuHorizontal,
   Group,
   GroupHidden,
   Collapser,
@@ -183,8 +186,13 @@ export enum TreeClassToken {
 }
 export enum TabsClassToken {
   Tabs,
-  Item,
+  TabsNavigation,
+  TabsNavigator,
+  TabList,
+  Tab,
   Indicator,
+  Panels,
+  Panel,
 }
 export enum PaginationClassToken {
   Pagination,
@@ -257,6 +265,20 @@ export enum LoadingClassToken {
   Loading,
   Spin,
   Content,
+}
+export enum CollapseClassToken {
+  Collapse,
+  Item,
+  ItemActive,
+  Header,
+  Panel,
+  PanelActive,
+  Content,
+  Collapser,
+}
+export enum WaterfallClassToken {
+  Waterfall,
+  Sequential,
 }
 
 /**
@@ -367,6 +389,7 @@ export const CLASS_NAMES = {
   },
   [ComponentToken.Menu]: {
     [MenuClassToken.Menu]: "menu",
+    [MenuClassToken.MenuHorizontal]: "menu--horizontal",
     [MenuClassToken.Group]: "menu__group",
     [MenuClassToken.GroupHidden]: "menu__group--hidden",
     [MenuClassToken.Collapser]: "menu__collapser",
@@ -387,8 +410,13 @@ export const CLASS_NAMES = {
   },
   [ComponentToken.Tabs]: {
     [TabsClassToken.Tabs]: "tabs",
-    [TabsClassToken.Item]: "tabs__item",
+    [TabsClassToken.TabsNavigation]: "tabs__navigation",
+    [TabsClassToken.TabsNavigator]: "tabs__navigator",
+    [TabsClassToken.TabList]: "tabs__tab-list",
+    [TabsClassToken.Tab]: "tabs__item",
     [TabsClassToken.Indicator]: "tabs__indicator",
+    [TabsClassToken.Panels]: "tabs__panels",
+    [TabsClassToken.Panel]: "tabs__panel",
   },
   [ComponentToken.Pagination]: {
     [PaginationClassToken.Pagination]: "pagination",
@@ -459,6 +487,20 @@ export const CLASS_NAMES = {
     [LoadingClassToken.Loading]: "loading",
     [LoadingClassToken.Spin]: "loading__spin",
     [LoadingClassToken.Content]: "loading__content",
+  },
+  [ComponentToken.Collapse]: {
+    [CollapseClassToken.Collapse]: "collapse",
+    [CollapseClassToken.Item]: "collapse__item",
+    [CollapseClassToken.ItemActive]: "collapse__item--active",
+    [CollapseClassToken.Header]: "collapse__item-header",
+    [CollapseClassToken.Collapser]: "collapse__header-collapser",
+    [CollapseClassToken.Panel]: "collapse__item-panel",
+    [CollapseClassToken.PanelActive]: "collapse__item-panel--active",
+    [CollapseClassToken.Content]: "collapse__item-content",
+  },
+  [ComponentToken.Waterfall]: {
+    [WaterfallClassToken.Waterfall]: "waterfall",
+    [WaterfallClassToken.Sequential]: "waterfall--sequential",
   },
 };
 

@@ -114,6 +114,8 @@ const styles = stylex.create({
   },
 
   light: {
+    colorScheme: "light",
+
     "::view-transition-old(root)": {
       zIndex: positions.max,
     },
@@ -124,6 +126,8 @@ const styles = stylex.create({
   },
 
   dark: {
+    colorScheme: "dark",
+
     "::view-transition-old(root)": {
       zIndex: positions.min,
     },
@@ -186,11 +190,7 @@ export const useSwitchable = ({ theme }: { theme: Theme }) => {
 
     document.documentElement.classList.remove(...toClassList((_isDark ? styled.light : styled.dark).className));
     document.documentElement.classList.add(...toClassList(styled[_mode].className));
-
-    document.documentElement.attributeStyleMap.set(
-      "background-color",
-      _isDark ? theme.palette.neutral[0] : theme.palette.neutral[100]
-    );
+    document.documentElement.style.backgroundColor = _isDark ? theme.palette.neutral[0] : theme.palette.neutral[100];
   });
 
   useMounted(() => {

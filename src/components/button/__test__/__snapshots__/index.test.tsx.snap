@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`\`Avatar\` Component snapshot 1`] = `
+<DocumentFragment>
+  <button
+    class="musae-button button__styles.button x1n2onr6 xb3r6kr x3nfvp2 x6s0dn4 x1kuhzbp xuxw1ft xfagghw x1d8287x x19v51jg x2lah0s theme__label.medium xfifm61 xk50ysn x1d3mw78 xym44dp button__styles.medium x1aaw50t x116qmb8 button__styles.filled x1gs6z28 xq1mx2j x19dipnz x1wyb0se button__styles.rounded x1raaeag"
+    style="--backgroundColor: #6750A4; --color: #FFF;"
+    type="button"
+  >
+    button
+  </button>
+</DocumentFragment>
+`;

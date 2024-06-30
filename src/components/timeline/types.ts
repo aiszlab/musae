@@ -20,6 +20,13 @@ export type TimelineItem = {
    * @requires
    */
   description: ReactNode;
+
+  /**
+   * @description
+   * dot render slot
+   * @default void 0
+   */
+  dot?: ReactNode;
 };
 
 /**

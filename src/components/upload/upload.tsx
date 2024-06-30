@@ -1,4 +1,4 @@
-import React, { ChangeEvent, DragEvent, KeyboardEvent, useRef } from "react";
+import React, { ChangeEvent, DragEvent, KeyboardEvent, cloneElement, useMemo, useRef } from "react";
 import { UploadProps, UploadedsRef } from "./types";
 import stylex from "@stylexjs/stylex";
 import { useEvent } from "@aiszlab/relax";
@@ -11,7 +11,7 @@ const styles = stylex.create({
   },
 });
 
-const Upload = ({ onClick: _onClick, disabled, multiple, children, uploader, onError }: UploadProps) => {
+const Upload = ({ onClick: _onClick, disabled, multiple, children: _children, uploader, onError }: UploadProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const uploadedsRef = useRef<UploadedsRef>(null);
 
@@ -30,7 +30,7 @@ const Upload = ({ onClick: _onClick, disabled, multiple, children, uploader, onE
 
   const onClick = useEvent(() => {
     inputRef.current?.click();
-    _onClick();
+    _onClick?.();
   });
 
   const onKeyDown = useEvent((e: KeyboardEvent<HTMLDivElement>) => {
@@ -52,6 +52,11 @@ const Upload = ({ onClick: _onClick, disabled, multiple, children, uploader, onE
     input: stylex.props(styles.input),
   };
 
+  const children = useMemo(() => {
+    // @ts-ignore
+    return cloneElement(_children, { disabled });
+  }, [_children, disabled]);
+
   return (
     <div>
       <div {...(!disabled && { onClick, onKeyDown, onDrop, onDragOver: onDrop })}>
@@ -67,7 +72,7 @@ const Upload = ({ onClick: _onClick, disabled, multiple, children, uploader, onE
         {children}
       </div>
 
-      <Uploadeds ref={uploadedsRef} uploader={uploader} />
+      <Uploadeds ref={uploadedsRef} uploader={uploader} onError={onError} />
     </div>
   );
 };

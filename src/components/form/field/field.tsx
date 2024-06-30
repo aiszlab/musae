@@ -33,7 +33,7 @@ const styles = stylex.create({
  * form item may not has name prop
  * if there is name prop, it will render
  */
-const Field = ({ required, ...props }: RequiredIn<FormItemProps, "name" | "required">) => {
+const Field = ({ required, children: _children, ...props }: RequiredIn<FormItemProps, "name" | "required">) => {
   const classNames = useClassNames(ComponentToken.Form);
   const theme = useTheme();
   const {
@@ -50,9 +50,9 @@ const Field = ({ required, ...props }: RequiredIn<FormItemProps, "name" | "requi
   });
 
   const children = useMemo(() => {
-    const _isValidElement = isValidElement<FieldRenderProps>(props.children);
-    if (!_isValidElement) return props.children;
-    const _child = props.children as ReactElement<FieldRenderProps>;
+    const _isValidElement = isValidElement<FieldRenderProps>(_children);
+    if (!_isValidElement) return _children;
+    const _child = _children as ReactElement<FieldRenderProps>;
 
     /// rewrite change and blur handler
     const handlers: Pick<FieldRenderProps, "onChange" | "onBlur"> = {
@@ -61,16 +61,16 @@ const Field = ({ required, ...props }: RequiredIn<FormItemProps, "name" | "requi
     };
 
     /// registe react hook form
-    return cloneElement(props.children as ReactElement<FieldRenderProps>, {
+    return cloneElement(_children as ReactElement<FieldRenderProps>, {
       name,
       value,
       ...handlers,
       invalid,
-      ...(isRefable(props.children) && {
+      ...(isRefable(_children) && {
         ref,
       }),
     });
-  }, [props.children, name, value, invalid, ref, onChange, onBlur]);
+  }, [_children, name, value, invalid, ref, onChange, onBlur]);
 
   const styled = {
     error: stylex.props(

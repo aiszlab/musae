@@ -24,7 +24,7 @@ const Watermark = ({
   width = 120,
   height = 64,
   font: {
-    color = "rgba(0,0,0,.15)",
+    color = "rgba(0, 0, 0, 0.15)",
     fontSize = 16,
     fontFamily = "sans-serif",
     fontStyle = "normal",

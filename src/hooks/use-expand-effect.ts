@@ -1,7 +1,7 @@
 import { useUpdateEffect } from "@aiszlab/relax";
 import { useAnimate } from "framer-motion";
 
-type UsedAnimate = ReturnType<typeof useAnimate<HTMLUListElement>>;
+type UsedAnimate = ReturnType<typeof useAnimate<HTMLElement>>;
 
 /**
  * @description
@@ -18,23 +18,27 @@ export const useExpandEffect = ({
 }) => {
   useUpdateEffect(async () => {
     if (expanded) {
-      target.current.attributeStyleMap.set("height", 0);
-      target.current.attributeStyleMap.set("overflow", "hidden");
-      target.current.attributeStyleMap.set("display", "block");
+      target.current.style.height = "0";
+      target.current.style.overflow = "hidden";
+      target.current.style.display = "inherit";
       await animate(target.current, {
         height: "auto",
       });
-      target.current.attributeStyleMap.clear();
+      target.current.style.height = "";
+      target.current.style.overflow = "";
+      target.current.style.display = "";
       return;
     }
 
     // style play like display: none
-    target.current.attributeStyleMap.set("overflow", "hidden");
-    target.current.attributeStyleMap.set("height", "auto");
-    target.current.attributeStyleMap.set("display", "block");
+    target.current.style.overflow = "hidden";
+    target.current.style.height = "auto";
+    target.current.style.display = "inherit";
     await animate(target.current, {
       height: 0,
     });
-    target.current.attributeStyleMap.clear();
+    target.current.style.height = "";
+    target.current.style.overflow = "";
+    target.current.style.display = "none";
   }, [expanded]);
 };

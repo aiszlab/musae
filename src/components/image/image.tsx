@@ -2,11 +2,13 @@ import React, { useContext } from "react";
 import type { ImageProps } from "./types";
 import Preview from "./preview/preview";
 import PreviewGroupContext from "./preview/context";
-import { useBoolean, useEvent } from "@aiszlab/relax";
+import { useBoolean, useEvent, useImageLoader } from "@aiszlab/relax";
 
 const Image = ({ src, alt, width, height }: ImageProps) => {
   const [isOpen, { turnOn, turnOff }] = useBoolean(false);
   const contextValue = useContext(PreviewGroupContext);
+
+  const status = useImageLoader({ src });
 
   const click = useEvent(() => {
     // if current image is in preview group
@@ -22,7 +24,7 @@ const Image = ({ src, alt, width, height }: ImageProps) => {
 
   return (
     <>
-      <img src={src} alt={alt} onClick={click} width={width} height={height} />
+      {status === "loaded" && <img src={src} alt={alt} onClick={click} width={width} height={height} />}
       {isOpen && !contextValue && <Preview src={src} onClose={turnOff} alt={alt} />}
     </>
   );

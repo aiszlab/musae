@@ -43,8 +43,8 @@ body:
         How the issue manifests?
         You could leave this blank if you already write this in your reproduction code
       placeholder: |
-        1. `yarn`
-        2. `yarn dev`
+        1. `pnpm i`
+        2. `pnpm run dev`
         3. See error...
 
   - type: textarea

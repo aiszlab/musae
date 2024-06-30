@@ -9,6 +9,7 @@ const styles = stylex.create({
     display: "flex",
     flexDirection: "column",
     rowGap: props.rowGap,
+    overflow: "auto",
   }),
 });
 

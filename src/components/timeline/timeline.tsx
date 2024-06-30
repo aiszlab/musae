@@ -17,20 +17,21 @@ const styles = stylex.create({
 const Timeline = ({ items, mode = "right" }: TimelineProps) => {
   const styled = stylex.props(styles.timeline);
   const classNames = useClassNames(ComponentToken.Timeline);
+  const total = items.length;
 
   const contextValue = useMemo<ContextValue>(
     () => ({
       mode,
-      max: items.length - 1,
+      max: total - 1,
     }),
-    [mode, items.length]
+    [mode, total]
   );
 
   return (
     <Context.Provider value={contextValue}>
       <ol className={clsx(classNames[TimelineClassToken.Timeline], styled.className)} style={styled.style}>
         {items.map((item, index) => {
-          return <Item key={index} value={index} label={item.label} description={item.description} />;
+          return <Item key={index} value={index} label={item.label} description={item.description} dot={item.dot} />;
         })}
       </ol>
     </Context.Provider>

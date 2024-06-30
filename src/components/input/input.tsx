@@ -44,7 +44,7 @@ export const styles = stylex.create({
   }),
 
   invalid: (props: { outlineColor: CSSProperties["borderColor"] }) => ({
-    borderColor: props.outlineColor,
+    boxShadow: `inset 0px 0px 0px ${sizes.xxxxxxsmall} ${props.outlineColor}`,
   }),
 
   input: {
