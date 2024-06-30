@@ -12,15 +12,14 @@ export const usePagiantion = ({
   total,
   siblings,
   boundaries,
-  ...props
+  pageSize,
 }: {
   total: number;
   siblings: number;
   boundaries: number;
   pageSize: number;
 }) => {
-  const pageSize = props.pageSize;
-  const pages = Math.ceil(total / pageSize);
+  const pages = Math.ceil(total / Math.max(1, pageSize));
   const [page, { add, subtract, setCount }] = useCounter(1, {
     min: 1,
     max: pages,

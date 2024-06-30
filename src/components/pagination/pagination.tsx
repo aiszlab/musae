@@ -12,7 +12,7 @@ const styles = stylex.create({
   },
 });
 
-const Pagination = ({ total = 0, siblings = 1, boundaries = 1, pageSize = 0 }: PagiantionProps) => {
+const Pagination = ({ total = 0, siblings = 1, boundaries = 1, pageSize = 10 }: PagiantionProps) => {
   const { paginationItems, add, subtract, changePage, page, hasNext, hasPrev } = usePagiantion({
     boundaries,
     pageSize,
