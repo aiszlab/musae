@@ -74,7 +74,7 @@ const styles = stylex.create({
   },
 });
 
-const Checkbox = ({ value, className, style, children, ...props }: CheckboxProps) => {
+const Checkbox = ({ value, className, style, children, onChange, ...props }: CheckboxProps) => {
   const contextValue = useContext(Context);
   const classNames = useClassNames(ComponentToken.Checkbox);
   const theme = useTheme();
@@ -87,7 +87,7 @@ const Checkbox = ({ value, className, style, children, ...props }: CheckboxProps
   /// if there is context value, use context value
   /// else use controlled state
   const isChecked = useMemo<boolean>(
-    () => (contextValue ? contextValue.value.has(value) : _isChecked),
+    () => (contextValue && !!value ? contextValue.value.has(value) : _isChecked),
     [_isChecked, contextValue, value]
   );
 
@@ -96,10 +96,11 @@ const Checkbox = ({ value, className, style, children, ...props }: CheckboxProps
   /// else change the controlled state
   const change = useCallback<ChangeEventHandler<HTMLInputElement>>(
     (event) => {
-      contextValue?.change(value);
+      !!value && contextValue?.change(value);
       _setIsChecked(event.target.checked);
+      onChange?.(event);
     },
-    [_setIsChecked, contextValue, value]
+    [_setIsChecked, contextValue, value, onChange]
   );
 
   const styled = {

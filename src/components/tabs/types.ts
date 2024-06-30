@@ -1,5 +1,3 @@
-// TODO tab props change, sync to docs!!!
-
 import type { Key, ReactNode } from "react";
 import type { ComponentProps } from "../../types/element";
 
@@ -81,6 +79,7 @@ export type TabItem = {
   /**
    * @description
    * children
+   * @default void 0
    */
   children?: ReactNode;
 };

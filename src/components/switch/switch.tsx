@@ -1,6 +1,6 @@
-import React, { CSSProperties, useCallback } from "react";
+import React, { type CSSProperties } from "react";
 import type { SwitchProps } from "./types";
-import { useControlledState } from "@aiszlab/relax";
+import { useControlledState, useEvent } from "@aiszlab/relax";
 import * as stylex from "@stylexjs/stylex";
 import { layers, sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
@@ -19,12 +19,14 @@ const styles = {
       color: CSSProperties["color"];
     }) => ({
       minWidth: sizes.xxlarge,
+      width: "fit-content",
       height: sizes.medium,
       display: "flex",
       alignItems: "center",
       position: "relative",
 
-      transition: "all 0.2s",
+      transitionProperty: "all",
+      transitionDuration: "0.2s",
       borderRadius: sizes.infinity,
       borderWidth: sizes.xxxxxxsmall,
       borderStyle: "solid",
@@ -104,7 +106,7 @@ const styles = {
     },
 
     child: {
-      minHeight: sizes.full,
+      height: sizes.full,
       display: "flex",
       flexDirection: "row",
       alignItems: "center",
@@ -130,7 +132,7 @@ const styles = {
 
   trailing: stylex.create({
     default: {
-      marginTop: "-100%",
+      marginTop: `calc(-1 * ${sizes.small})`,
       marginInlineEnd: 0,
       marginInlineStart: 0,
     },
@@ -151,14 +153,17 @@ const Switch = ({
   checkedChildren,
   uncheckedChildren,
   disabled = false,
+  onChange,
 }: SwitchProps) => {
   const classNames = useClassNames(ComponentToken.Switch);
   const [isChecked, setIsChecked] = useControlledState(value);
   const theme = useTheme();
 
-  const toggle = useCallback(() => {
-    setIsChecked((_isChecked) => !_isChecked);
-  }, [setIsChecked]);
+  const toggle = useEvent(() => {
+    const _isChecked = !isChecked;
+    setIsChecked(_isChecked);
+    onChange?.(_isChecked);
+  });
 
   const styled = {
     switch: stylex.props(
@@ -225,11 +230,20 @@ const Switch = ({
         {icon && (isChecked ? <Check /> : <Close />)}
       </div>
 
-      <span className={styled.supporting.className} style={styled.supporting.style}>
-        <span className={styled.leading.className} style={styled.leading.style}>
+      <span
+        className={clsx(classNames[SwitchClassToken.Supporting], styled.supporting.className)}
+        style={styled.supporting.style}
+      >
+        <span
+          className={clsx(classNames[SwitchClassToken.Leading], styled.leading.className)}
+          style={styled.leading.style}
+        >
           {checkedChildren}
         </span>
-        <span className={styled.trailing.className} style={styled.trailing.style}>
+        <span
+          className={clsx(classNames[SwitchClassToken.Trailing], styled.trailing.className)}
+          style={styled.trailing.style}
+        >
           {uncheckedChildren}
         </span>
       </span>

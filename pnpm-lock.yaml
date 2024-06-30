@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   '@aiszlab/relax':
-    specifier: ^1.2.55
-    version: 1.2.55(react-dom@18.3.1)(react@18.3.1)
+    specifier: ^1.2.56
+    version: 1.2.56(react-dom@18.3.1)(react@18.3.1)
   '@floating-ui/dom':
     specifier: ^1.6.5
     version: 1.6.6
@@ -125,8 +125,8 @@ packages:
     resolution: {integrity: sha512-Ff9+ksdQQB3rMncgqDK78uLznstjyfIf2Arnh22pW8kBpLs6rpKDwgnZT46hin5Hl1WzazzK64DOrhSwYpS7bQ==}
     dev: true
 
-  /@aiszlab/relax@1.2.55(react-dom@18.3.1)(react@18.3.1):
-    resolution: {integrity: sha512-W4Qsu/m/vzVOWv0sRzOOnhDW6zoaVQ0UTFD/haslMb5mCcCt/xra7Eu0nS9UgEiiCxvjY85FBHsmRYzPcpCUGg==}
+  /@aiszlab/relax@1.2.56(react-dom@18.3.1)(react@18.3.1):
+    resolution: {integrity: sha512-DCypdtBflWmYy4mXwkgnpd2OKoyQHBhw3LUWsg2PBFGD/7+zNxE4ULqfHjByi0cPjzQxz5DkPgI0qvNmWH1d8w==}
     peerDependencies:
       react: '18'
       react-dom: '18'
