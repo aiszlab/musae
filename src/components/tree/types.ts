@@ -51,7 +51,6 @@ export type TreeProps = ComponentProps & {
    */
   onExpand?: (keys: Key[]) => void;
 
-  // TODO add to docs
   /**
    * @description
    * selectable
@@ -59,7 +58,6 @@ export type TreeProps = ComponentProps & {
    */
   selectable?: boolean;
 
-  // TODO add to docs
   /**
    * @description
    * selected keys
@@ -128,6 +126,7 @@ export type ContextValue = {
   /* select */
   selectedKeys: Set<Key>;
   onSelect?: (key: Key) => void;
+  selectable: boolean;
 };
 
 /**

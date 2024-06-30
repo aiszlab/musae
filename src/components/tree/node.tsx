@@ -51,7 +51,7 @@ const styles = stylex.create({
 
 const Node = ({ value, children, level, onExpand, ...props }: TreeNodeProps) => {
   const classNames = useClassNames(ComponentToken.Tree);
-  const { checkedKeys, onCheck, expandedKeys, onSelect, selectedKeys } = useContext(Context);
+  const { checkedKeys, onCheck, expandedKeys, onSelect, selectedKeys, selectable } = useContext(Context);
   const isChecked = checkedKeys.has(value);
   const isExpanded = expandedKeys.has(value);
   const isSelected = selectedKeys.has(value);
@@ -83,6 +83,8 @@ const Node = ({ value, children, level, onExpand, ...props }: TreeNodeProps) => 
   });
 
   const select = useEvent(() => {
+    // no action when `selectable` is false
+    if (!selectable) return;
     onSelect?.(value);
   });
 

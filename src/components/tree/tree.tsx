@@ -2,7 +2,7 @@ import React, { useMemo } from "react";
 import type { ContextValue, TreeProps } from "./types";
 import List from "./list";
 import Context from "./context";
-import { useToggleable } from "@aiszlab/relax";
+import { useTogglable } from "@aiszlab/relax";
 import { useExpandedKeys, useSelectedKeys } from "./hooks";
 
 const Tree = ({
@@ -14,7 +14,7 @@ const Tree = ({
   selectable = true,
   selectedKeys: _selectedKeys,
 }: TreeProps) => {
-  const { toggledKeys: checkedKeys, toggle: check } = useToggleable(nodes);
+  const { toggledKeys: checkedKeys, toggle: check } = useTogglable(nodes);
   const { expandedKeys, toggle: expand } = useExpandedKeys([_expandedKeys, onExpand]);
   const { selectedKeys, toggle: select } = useSelectedKeys({ selectedKeys: _selectedKeys });
 
@@ -26,8 +26,9 @@ const Tree = ({
       onExpand: expand,
       selectedKeys,
       onSelect: select,
+      selectable,
     };
-  }, [check, checkedKeys, expand, expandedKeys, select, selectedKeys]);
+  }, [check, checkedKeys, expand, expandedKeys, select, selectedKeys, selectable]);
 
   return (
     <Context.Provider value={contextValue}>
