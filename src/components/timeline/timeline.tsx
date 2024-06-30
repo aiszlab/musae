@@ -17,13 +17,14 @@ const styles = stylex.create({
 const Timeline = ({ items, mode = "right" }: TimelineProps) => {
   const styled = stylex.props(styles.timeline);
   const classNames = useClassNames(ComponentToken.Timeline);
+  const total = items.length;
 
   const contextValue = useMemo<ContextValue>(
     () => ({
       mode,
-      max: items.length - 1,
+      max: total - 1,
     }),
-    [mode, items.length]
+    [mode, total]
   );
 
   return (
