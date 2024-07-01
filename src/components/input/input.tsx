@@ -35,10 +35,6 @@ export const styles = stylex.create({
     willChange: "box-shadow, transform",
   }),
 
-  flexible: {
-    minWidth: null,
-  },
-
   focused: (props: { outlineColor: CSSProperties["borderColor"] }) => ({
     boxShadow: `inset 0px 0px 0px ${sizes.xxxxxxsmall} ${props.outlineColor}`,
   }),
