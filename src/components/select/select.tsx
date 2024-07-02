@@ -30,7 +30,8 @@ const Select = ({
   options = [],
   onFilter,
   complex = false,
-  ...props
+  value,
+  onChange: _onChange,
 }: SelectProps) => {
   const ref = useRef<PickerRef>(null);
   const selectorRef = useRef<SelectorRef>(null);
@@ -45,12 +46,12 @@ const Select = ({
   });
   /// value
   const { readableValues, onChange } = useValue({
-    value: props.value,
+    value,
     readableOptions,
     mode,
     close,
     reset,
-    onChange: props.onChange,
+    onChange: _onChange,
     isComplex: complex,
   });
 

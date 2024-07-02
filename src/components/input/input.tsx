@@ -13,15 +13,17 @@ import { typography } from "../theme/theme";
 
 export const styles = stylex.create({
   wrapper: (props: { outlineColor: CSSProperties["borderColor"] }) => ({
-    display: "flex",
+    display: "inline-flex",
     alignItems: "center",
     cursor: "text",
+    borderRadius: sizes.xxxxxsmall,
+
+    width: "fill-available",
     minHeight: sizes.medium,
     minWidth: sizes.xxxxxlarge,
 
     // border, for flexible, in musae, we use boxShadow replace border
     // box shadow is not added into layout
-    borderRadius: sizes.xxxxxsmall,
     boxShadow: `inset 0px 0px 0px ${sizes.smallest} ${props.outlineColor}`,
 
     // layout
@@ -30,7 +32,8 @@ export const styles = stylex.create({
     paddingInline: spacing.medium,
 
     // animation
-    transition: "box-shadow 0.2s",
+    transitionProperty: "box-shadow",
+    transitionDuration: "0.2s",
     // fix: eliminate serrations, use gpu speed up by add `transform`
     willChange: "box-shadow, transform",
   }),
@@ -133,7 +136,7 @@ const Input = forwardRef<InputRef, InputProps>(
     };
 
     return (
-      <div
+      <span
         ref={wrapperRef}
         className={clsx(
           classNames[InputClassToken.Wrapper],
@@ -174,7 +177,7 @@ const Input = forwardRef<InputRef, InputProps>(
 
         {/* trailing */}
         {trailing}
-      </div>
+      </span>
     );
   }
 );

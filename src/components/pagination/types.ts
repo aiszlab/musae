@@ -47,6 +47,13 @@ export type PagiantionProps = {
    * @default 1
    */
   boundaries?: number;
+
+  /**
+   * @description
+   * page sizes
+   * @default [10, 20, 50, 100]
+   */
+  pageSizes?: number[];
 };
 
 export type PaginationItems = [PaginationItemType.Prev, ...(PaginationItemType | number)[], PaginationItemType.Next];

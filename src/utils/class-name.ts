@@ -196,6 +196,7 @@ export enum TabsClassToken {
 }
 export enum PaginationClassToken {
   Pagination,
+  SizeSelector,
 }
 export enum SwitchClassToken {
   Switch,
@@ -420,6 +421,7 @@ export const CLASS_NAMES = {
   },
   [ComponentToken.Pagination]: {
     [PaginationClassToken.Pagination]: "pagination",
+    [PaginationClassToken.SizeSelector]: "pagination__size-selector",
   },
   [ComponentToken.Switch]: {
     [SwitchClassToken.Switch]: "switch",
