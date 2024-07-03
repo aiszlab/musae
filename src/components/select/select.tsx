@@ -38,19 +38,19 @@ const Select = ({
   const classNames = useContext(Context).classNames[ComponentToken.Select];
   const close = useCallback(() => ref.current?.close(), []);
 
-  /// options
   const { menuItems, readableOptions, search, searched, reset } = useOptions({
     options,
     onFilter,
     onSearch,
   });
-  /// value
+
   const { readableValues, onChange } = useValue({
     value,
     readableOptions,
     mode,
     close,
     reset,
+    // @ts-ignore
     onChange: _onChange,
     isComplex: complex,
   });

@@ -17,10 +17,11 @@ export const styles = stylex.create({
     alignItems: "center",
     cursor: "text",
     borderRadius: sizes.xxxxxsmall,
+    verticalAlign: "bottom",
 
-    width: "fill-available",
     minHeight: sizes.medium,
     minWidth: sizes.xxxxxlarge,
+    maxWidth: sizes.full,
 
     // border, for flexible, in musae, we use boxShadow replace border
     // box shadow is not added into layout

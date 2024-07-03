@@ -16,6 +16,7 @@ import stylex from "@stylexjs/stylex";
 import { Context } from "../picker";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
+import { typography } from "../theme/theme";
 
 const styles = stylex.create({
   input: (props: { color: CSSProperties["color"] }) => ({
@@ -63,13 +64,21 @@ const Selector: ForwardRefExoticComponent<PropsWithoutRef<SelectorProps> & RefAt
       inputStyles.input,
       styles.input({
         color: isFocused && searchable ? void 0 : theme.colors[ColorToken.OnSurface],
-      })
+      }),
+      typography.body.small
     );
 
-    /// single mode render
+    // single mode render
+    if (!searchable) {
+      return (
+        <span className={styled.className} style={styled.style}>
+          {Array.from(value.values()).join(",")}
+        </span>
+      );
+    }
+
     return (
       <input
-        readOnly={!searchable}
         ref={inputRef}
         value={searched}
         placeholder={Array.from(value.values()).join(",")}

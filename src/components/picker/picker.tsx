@@ -84,7 +84,7 @@ const Picker = forwardRef<PickerRef, PickerProps>(
 
     return (
       <Context.Provider value={{ open, isFocused, isOpen }}>
-        <div
+        <span
           className={clsx(
             classNames[PickerClassToken.Picker],
             {
@@ -103,7 +103,7 @@ const Picker = forwardRef<PickerRef, PickerProps>(
           {...focusProps}
         >
           {children}
-        </div>
+        </span>
 
         <Popper
           trigger={trigger.current}

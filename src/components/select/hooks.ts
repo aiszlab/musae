@@ -19,7 +19,7 @@ export const useValue = ({
   mode: Mode | undefined;
   close: () => void;
   reset: () => void;
-  onChange: SelectProps["onChange"];
+  onChange?: (value: ValueOrValues) => void;
   isComplex: boolean;
 }) => {
   const isControlled = !isUndefined(props.value);
