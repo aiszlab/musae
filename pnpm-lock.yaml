@@ -68,7 +68,7 @@ importers:
         version: 0.7.4
       '@stylexjs/rollup-plugin':
         specifier: ^0.7.4
-        version: 0.7.4
+        version: 0.7.5
       '@stylexjs/stylex':
         specifier: ^0.7.4
         version: 0.7.4
@@ -1210,14 +1210,23 @@ packages:
   '@stylexjs/babel-plugin@0.7.4':
     resolution: {integrity: sha512-uDAzEww5/Fzhrq6Pus5c03pBwZBRR4Kie66J260WNmYrf2gZZ7yjey6LFXWRVFQET4m2DpPiLC4SefcjNojJDQ==}
 
-  '@stylexjs/rollup-plugin@0.7.4':
-    resolution: {integrity: sha512-fsvLD/2MY6Ov0NodAywqlKcWW+hf4S76i62BWnLXaXd4l9q3LMl4Tq/x+RSV8AowpZBSyV7pMMVNYYgjWBwOSA==}
+  '@stylexjs/babel-plugin@0.7.5':
+    resolution: {integrity: sha512-KirLQIaOVHpuSZT37qV19Pw8x4te5x6hZ90+2VsrJ4NzwyYFpovlMNsTeT+eE9mcdp84VksIi7QnrNpMvqBJMQ==}
+
+  '@stylexjs/rollup-plugin@0.7.5':
+    resolution: {integrity: sha512-/2Ly04W/b3LQhGj3K4rgcoRKgL9LDc3Yig+vdNZFKjJ1oyGt0yt91AwKhZjE+fyWsvcWQXCreYLt8IO8g4UCcw==}
 
   '@stylexjs/shared@0.7.4':
     resolution: {integrity: sha512-ThBekCDw/hsHZLuuHL+ZJfEl3HJW9PgrbM8puSEpCkiM+LT4FzQXW9sR7/hVHGA4ng7MA+9/qpto3gT9i4G9HQ==}
 
+  '@stylexjs/shared@0.7.5':
+    resolution: {integrity: sha512-B357xldr9Dh3tP646P0JKNnarxy5ei4mkZh1qQmuhgGewbaVcrD8jiEWH3WjEzRrBKfmJtcTxBC3xp507u7O4A==}
+
   '@stylexjs/stylex@0.7.4':
     resolution: {integrity: sha512-4taMrW4Yk2DuSABuHAplkVvVQqEG6TicMg7mX7KeO3LeX42o+n2hcKEv1UnsgKxGpmAIQdvLpiuhsCVaKd1oOg==}
+
+  '@stylexjs/stylex@0.7.5':
+    resolution: {integrity: sha512-e4bryU2AoKBeAlloea7sJZrYrjiqJYViw8AWL6eanTVdk7qJ0CduNoiRQxtCP1dOhqGAPG74kaWT7slLzZnqKg==}
 
   '@tanstack/react-table@8.17.3':
     resolution: {integrity: sha512-5gwg5SvPD3lNAXPuJJz1fOCEZYk9/GeBFH3w/hCgnfyszOIzwkwgp5I7Q4MJtn0WECp84b5STQUDdmvGi8m3nA==}
@@ -5165,13 +5174,24 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@stylexjs/rollup-plugin@0.7.4':
+  '@stylexjs/babel-plugin@0.7.5':
+    dependencies:
+      '@babel/core': 7.24.7
+      '@babel/helper-module-imports': 7.24.7
+      '@babel/traverse': 7.24.7
+      '@babel/types': 7.24.7
+      '@stylexjs/shared': 0.7.5
+      '@stylexjs/stylex': 0.7.5
+    transitivePeerDependencies:
+      - supports-color
+
+  '@stylexjs/rollup-plugin@0.7.5':
     dependencies:
       '@babel/core': 7.24.7
       '@babel/plugin-syntax-flow': 7.24.7(@babel/core@7.24.7)
       '@babel/plugin-syntax-jsx': 7.24.7(@babel/core@7.24.7)
       '@babel/plugin-syntax-typescript': 7.24.7(@babel/core@7.24.7)
-      '@stylexjs/babel-plugin': 0.7.4
+      '@stylexjs/babel-plugin': 0.7.5
     transitivePeerDependencies:
       - supports-color
 
@@ -5179,7 +5199,17 @@ snapshots:
     dependencies:
       postcss-value-parser: 4.2.0
 
+  '@stylexjs/shared@0.7.5':
+    dependencies:
+      postcss-value-parser: 4.2.0
+
   '@stylexjs/stylex@0.7.4':
+    dependencies:
+      css-mediaquery: 0.1.2
+      invariant: 2.2.4
+      styleq: 0.1.3
+
+  '@stylexjs/stylex@0.7.5':
     dependencies:
       css-mediaquery: 0.1.2
       invariant: 2.2.4
