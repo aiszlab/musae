@@ -1,4 +1,4 @@
-import type { CSSProperties, FC, MouseEventHandler, ReactNode, ReactPortal } from "react";
+import type { CSSProperties, FC, HTMLAttributes, MouseEventHandler, ReactNode, ReactPortal } from "react";
 import { ComponentProps } from "../../types/element";
 
 export type AsProps = Required<Pick<IconProps, "size">>;
@@ -33,4 +33,10 @@ export interface IconProps extends ComponentProps {
    * click handler
    */
   onClick?: MouseEventHandler<HTMLSpanElement>;
+
+  /**
+   * @description
+   * role
+   */
+  role?: HTMLAttributes<HTMLSpanElement>["role"];
 }

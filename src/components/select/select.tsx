@@ -30,27 +30,28 @@ const Select = ({
   options = [],
   onFilter,
   complex = false,
-  ...props
+  value,
+  onChange: _onChange,
 }: SelectProps) => {
   const ref = useRef<PickerRef>(null);
   const selectorRef = useRef<SelectorRef>(null);
   const classNames = useContext(Context).classNames[ComponentToken.Select];
   const close = useCallback(() => ref.current?.close(), []);
 
-  /// options
   const { menuItems, readableOptions, search, searched, reset } = useOptions({
     options,
     onFilter,
     onSearch,
   });
-  /// value
+
   const { readableValues, onChange } = useValue({
-    value: props.value,
+    value,
     readableOptions,
     mode,
     close,
     reset,
-    onChange: props.onChange,
+    // @ts-ignore
+    onChange: _onChange,
     isComplex: complex,
   });
 

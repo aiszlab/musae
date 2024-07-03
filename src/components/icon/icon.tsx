@@ -19,7 +19,7 @@ const styles = stylex.create({
   },
 });
 
-const Icon = ({ as, color, size, onClick, style, className }: IconProps) => {
+const Icon = ({ as, color, size, onClick, style, className, ...props }: IconProps) => {
   const classNames = useClassNames(ComponentToken.Icon);
 
   const asProps = useMemo<AsProps>(() => {
@@ -50,6 +50,7 @@ const Icon = ({ as, color, size, onClick, style, className }: IconProps) => {
         ...style,
       }}
       onClick={onClick}
+      {...props}
     >
       {children}
     </span>

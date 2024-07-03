@@ -1,4 +1,4 @@
-import { clamp, range, useCounter } from "@aiszlab/relax";
+import { clamp, range, useControlledState, useCounter } from "@aiszlab/relax";
 import { useMemo } from "react";
 import { type PaginationItems, PaginationItemType } from "./types";
 
@@ -12,15 +12,15 @@ export const usePagiantion = ({
   total,
   siblings,
   boundaries,
-  ...props
+  pageSize: _pageSize,
 }: {
   total: number;
   siblings: number;
   boundaries: number;
-  pageSize: number;
+  pageSize?: number;
 }) => {
-  const pageSize = props.pageSize;
-  const pages = Math.ceil(total / pageSize);
+  const [pageSize, setPageSize] = useControlledState(_pageSize!, { defaultState: 10 });
+  const pages = useMemo(() => Math.ceil(total / Math.max(1, pageSize)), [total, pageSize]);
   const [page, { add, subtract, setCount }] = useCounter(1, {
     min: 1,
     max: pages,
@@ -56,6 +56,10 @@ export const usePagiantion = ({
   // whether next button is usable
   const hasNext = page < pages;
 
+  const onPageSizeChange = (pageSize: number) => {
+    setPageSize(pageSize);
+  };
+
   return {
     paginationItems,
     add,
@@ -64,5 +68,7 @@ export const usePagiantion = ({
     page,
     hasPrev,
     hasNext,
+    pageSize,
+    onPageSizeChange,
   };
 };

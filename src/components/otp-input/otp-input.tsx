@@ -70,7 +70,7 @@ const OtpInput = ({ length = 6, onChange, value: _value }: OtpInputProps) => {
             className={styled.input.className}
             style={{
               ...styled.input.style,
-              minWidth: "unset",
+              minWidth: 0,
             }}
             ref={(inputRef) => {
               inputRefs.current[index] = inputRef;

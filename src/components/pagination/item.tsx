@@ -12,11 +12,11 @@ import * as stylex from "@stylexjs/stylex";
 
 const styles = stylex.create({
   more: {
-    ":hover > span:first-child": {
+    ":hover > [data-role='leading']": {
       display: "none",
     },
 
-    ":hover > span:last-child": {
+    ":hover > [data-role='trailing']": {
       display: "inline-flex",
     },
   },
@@ -58,15 +58,16 @@ const Item = ({ value, onPageChange, add, subtract, checked, hasNext, hasPrev }:
         className={styled.more.className}
         style={styled.more.style}
         onClick={() => {
-          isNegative ? add(5) : subtract(5);
+          isNegative ? subtract(5) : add(5);
         }}
       >
-        <MoreHoriz />
+        <MoreHoriz data-role="leading" />
 
         {/* hovered icon */}
         {createElement(isNegative ? KeyboardDoubleArrowLeft : KeyboardDoubleArrowRight, {
           className: styled.hidden.className,
           style: styled.hidden.style,
+          "data-role": "trailing",
         })}
       </Button>
     );
