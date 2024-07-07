@@ -11,6 +11,9 @@ importers:
       '@aiszlab/relax':
         specifier: ^1.2.56
         version: 1.2.56(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@dnd-kit/core':
+        specifier: ^6.1.0
+        version: 6.1.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@floating-ui/dom':
         specifier: ^1.6.5
         version: 1.6.7
@@ -911,6 +914,22 @@ packages:
   '@changesets/write@0.3.1':
     resolution: {integrity: sha512-SyGtMXzH3qFqlHKcvFY2eX+6b0NGiFcNav8AFsYwy5l8hejOeoeTDemu5Yjmke2V5jpzY+pBvM0vCCQ3gdZpfw==}
 
+  '@dnd-kit/accessibility@3.1.0':
+    resolution: {integrity: sha512-ea7IkhKvlJUv9iSHJOnxinBcoOI3ppGnnL+VDJ75O45Nss6HtZd8IdN8touXPDtASfeI2T2LImb8VOZcL47wjQ==}
+    peerDependencies:
+      react: '>=16.8.0'
+
+  '@dnd-kit/core@6.1.0':
+    resolution: {integrity: sha512-J3cQBClB4TVxwGo3KEjssGEXNJqGVWx17aRTZ1ob0FliR5IjYgTxl5YJbKTzA6IzrtelotH19v6y7uoIRUZPSg==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+
+  '@dnd-kit/utilities@3.2.2':
+    resolution: {integrity: sha512-+MKAJEOfaBe5SmV6t34p80MMKhjvUz0vRrvVJbPT0WElzaOJ/1xs+D+KDv+tD/NE5ujfrChEcshd4fLn0wpiqg==}
+    peerDependencies:
+      react: '>=16.8.0'
+
   '@eslint-community/eslint-utils@4.4.0':
     resolution: {integrity: sha512-1/sA4dwrzBAyeUoQ6oxahHKmrZvsnLCg4RfxW3ZFGGmQkSNQPFNLV9CUEFQP1x9EYXHTo5p6xdhZM1Ne9p/AfA==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
@@ -1215,9 +1234,6 @@ packages:
 
   '@stylexjs/shared@0.7.5':
     resolution: {integrity: sha512-B357xldr9Dh3tP646P0JKNnarxy5ei4mkZh1qQmuhgGewbaVcrD8jiEWH3WjEzRrBKfmJtcTxBC3xp507u7O4A==}
-
-  '@stylexjs/stylex@0.7.4':
-    resolution: {integrity: sha512-4taMrW4Yk2DuSABuHAplkVvVQqEG6TicMg7mX7KeO3LeX42o+n2hcKEv1UnsgKxGpmAIQdvLpiuhsCVaKd1oOg==}
 
   '@stylexjs/stylex@0.7.5':
     resolution: {integrity: sha512-e4bryU2AoKBeAlloea7sJZrYrjiqJYViw8AWL6eanTVdk7qJ0CduNoiRQxtCP1dOhqGAPG74kaWT7slLzZnqKg==}
@@ -4775,6 +4791,24 @@ snapshots:
       human-id: 1.0.2
       prettier: 2.8.8
 
+  '@dnd-kit/accessibility@3.1.0(react@18.3.1)':
+    dependencies:
+      react: 18.3.1
+      tslib: 2.6.3
+
+  '@dnd-kit/core@6.1.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+    dependencies:
+      '@dnd-kit/accessibility': 3.1.0(react@18.3.1)
+      '@dnd-kit/utilities': 3.2.2(react@18.3.1)
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+      tslib: 2.6.3
+
+  '@dnd-kit/utilities@3.2.2(react@18.3.1)':
+    dependencies:
+      react: 18.3.1
+      tslib: 2.6.3
+
   '@eslint-community/eslint-utils@4.4.0(eslint@8.57.0)':
     dependencies:
       eslint: 8.57.0
@@ -5181,12 +5215,6 @@ snapshots:
   '@stylexjs/shared@0.7.5':
     dependencies:
       postcss-value-parser: 4.2.0
-
-  '@stylexjs/stylex@0.7.4':
-    dependencies:
-      css-mediaquery: 0.1.2
-      invariant: 2.2.4
-      styleq: 0.1.3
 
   '@stylexjs/stylex@0.7.5':
     dependencies:
