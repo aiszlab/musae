@@ -6,11 +6,11 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
+    "test": "jest",
     "dev": "rollup -c -w --environment NODE_ENV:development",
     "build": "rollup -c --environment NODE_ENV:production",
-    "prepublish": "rm -rf dist && npm run build",
-    "relink": "pnpm unlink && pnpm link",
-    "test": "jest"
+    "prepublishOnly": "rm -rf dist && npm run build",
+    "preinstall": "npx @aiszlab/watchdog preinstall"
   },
   "exports": {
     ".": {
@@ -21,6 +21,10 @@
       "types": "./dist/components/icon/icons/index.d.ts",
       "default": "./dist/components/icon/icons/index.js"
     }
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=9"
   },
   "dependencies": {
     "@aiszlab/relax": "^1.2.56",

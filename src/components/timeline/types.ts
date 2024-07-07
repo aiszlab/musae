@@ -48,7 +48,6 @@ export type TimelineProps = {
    */
   mode?: Mode;
 
-  // TODO: add to docs
   /**
    * @description
    * size

@@ -64,7 +64,6 @@ export type StepsProps = ComponentProps & {
    */
   type?: Type;
 
-  // TODO add to docs
   /**
    * @description
    * size
