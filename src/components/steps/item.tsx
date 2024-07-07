@@ -17,10 +17,12 @@ const styles = {
     default: {
       flex: 1,
       display: "grid",
-      grid: "'leading title' '. description'",
       alignItems: "center",
       columnGap: spacing.xsmall,
       overflow: "hidden",
+
+      gridTemplateAreas: "'leading title' '. description'",
+      gridTemplateColumns: "auto 1fr",
     },
 
     clickable: {
@@ -31,13 +33,9 @@ const styles = {
   leading: stylex.create({
     default: {
       gridArea: "leading",
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-      borderRadius: sizes.infinity,
     },
 
-    vertical: (props: { color: CSSProperties["color"] }) => ({
+    tail: (props: { color: CSSProperties["color"] }) => ({
       position: "relative",
 
       "::after": {
@@ -46,10 +44,22 @@ const styles = {
         height: sizes.infinity,
         width: sizes.smallest,
         backgroundColor: props.color,
-        marginTop: spacing.small,
         insetBlockStart: "100%",
         insetInlineStart: `calc((100% - ${sizes.smallest}) / 2)`,
+        marginTop: spacing.small,
       },
+    }),
+  }),
+
+  sign: stylex.create({
+    default: (props: { size?: number }) => ({
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      borderRadius: sizes.infinity,
+      overflow: "hidden",
+      width: props.size ?? sizes.xsmall,
+      height: props.size ?? sizes.xsmall,
     }),
 
     doing: (props: { backgroundColor: CSSProperties["backgroundColor"]; color: CSSProperties["color"] }) => ({
@@ -74,7 +84,7 @@ const styles = {
       alignItems: "center",
     },
 
-    horizontal: (props: { color: CSSProperties["color"] }) => ({
+    tail: (props: { color: CSSProperties["color"] }) => ({
       position: "relative",
 
       "::after": {
@@ -96,7 +106,7 @@ const styles = {
   }),
 };
 
-const Item = ({ leading, title, description, value }: StepItemProps) => {
+const Item = ({ leading, title, description, value, size }: StepItemProps) => {
   const classNames = useClassNames(ComponentToken.Steps);
   const theme = useTheme();
   const { type, onChange, value: _value, max } = useContext(Context);
@@ -113,21 +123,24 @@ const Item = ({ leading, title, description, value }: StepItemProps) => {
       styles.leading.default,
       isVertical &&
         !isMax &&
-        styles.leading.vertical({
+        styles.leading.tail({
           color: theme.colors[ColorToken.Primary],
-        }),
+        })
+    ),
+    sign: stylex.props(
+      styles.sign.default({ size }),
       status === "doing" &&
-        styles.leading.doing({
+        styles.sign.doing({
           backgroundColor: theme.colors[ColorToken.Primary],
           color: theme.colors[ColorToken.OnPrimary],
         }),
       status === "done" &&
-        styles.leading.done({
+        styles.sign.done({
           backgroundColor: theme.colors[ColorToken.PrimaryContainer],
           color: theme.colors[ColorToken.OnPrimaryContainer],
         }),
       status === "todo" &&
-        styles.leading.todo({
+        styles.sign.todo({
           backgroundColor: theme.colors[ColorToken.Secondary],
           color: theme.colors[ColorToken.OnSecondary],
         })
@@ -137,7 +150,7 @@ const Item = ({ leading, title, description, value }: StepItemProps) => {
       styles.title.default,
       isHorizontal &&
         !isMax &&
-        styles.title.horizontal({
+        styles.title.tail({
           color: theme.colors[ColorToken.Primary],
         })
     ),
@@ -164,7 +177,9 @@ const Item = ({ leading, title, description, value }: StepItemProps) => {
       onClick={click}
     >
       <div className={clsx(classNames[StepsClassToken.Leading], styled.leading.className)} style={styled.leading.style}>
-        {leading ?? (status === "done" ? <Done /> : value)}
+        <div className={clsx(classNames[StepsClassToken.Sign], styled.sign.className)} style={styled.sign.style}>
+          {leading ?? (status === "done" ? <Done /> : value)}
+        </div>
       </div>
       <div className={clsx(classNames[StepsClassToken.Title], styled.title.className)} style={styled.title.style}>
         {title}

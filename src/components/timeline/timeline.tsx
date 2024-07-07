@@ -14,7 +14,7 @@ const styles = stylex.create({
   },
 });
 
-const Timeline = ({ items, mode = "right" }: TimelineProps) => {
+const Timeline = ({ items, mode = "right", size }: TimelineProps) => {
   const styled = stylex.props(styles.timeline);
   const classNames = useClassNames(ComponentToken.Timeline);
   const total = items.length;
@@ -23,8 +23,9 @@ const Timeline = ({ items, mode = "right" }: TimelineProps) => {
     () => ({
       mode,
       max: total - 1,
+      size,
     }),
-    [mode, total]
+    [mode, total, size]
   );
 
   return (

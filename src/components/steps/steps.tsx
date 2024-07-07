@@ -32,7 +32,7 @@ const styles = stylex.create({
  * 1. `Steps` only be controlled
  * 2. render by `items` prop
  */
-const Steps = ({ items, value = 0, className, style, type = "horizontal", onChange }: StepsProps) => {
+const Steps = ({ items, value = 0, className, style, type = "horizontal", onChange, size }: StepsProps) => {
   const classNames = useClassNames(ComponentToken.Steps);
 
   const styled = {
@@ -45,8 +45,9 @@ const Steps = ({ items, value = 0, className, style, type = "horizontal", onChan
       onChange,
       max: items.length - 1,
       value,
+      size,
     }),
-    [type, onChange, items.length, value]
+    [type, onChange, items.length, value, size]
   );
 
   return (

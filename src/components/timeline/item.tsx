@@ -46,17 +46,13 @@ const styles = {
 
   leading: stylex.create({
     default: {
-      alignSelf: "flex-start",
       gridArea: "leading",
-      position: "relative",
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-      width: sizes.xsmall,
-      height: sizes.xsmall,
+      alignSelf: "flex-start",
     },
 
     tail: (props: { color: CSSProperties["color"] }) => ({
+      position: "relative",
+
       "::after": {
         content: "''",
         position: "absolute",
@@ -66,6 +62,16 @@ const styles = {
         insetBlockStart: "100%",
         insetInlineStart: `calc((100% - ${sizes.smallest}) / 2)`,
       },
+    }),
+  }),
+
+  sign: stylex.create({
+    default: (props: { size?: number }) => ({
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      width: props.size ?? sizes.xsmall,
+      height: props.size ?? sizes.xsmall,
     }),
   }),
 
@@ -109,7 +115,7 @@ const styles = {
 
 const Item = ({ description, label, value, dot }: TimelineItemProps) => {
   const classNames = useClassNames(ComponentToken.Timeline);
-  const { mode: _mode, max } = useContext(Context);
+  const { mode: _mode, max, size } = useContext(Context);
   const theme = useTheme();
   const isLabeled = !!label;
   const isMax = max === value;
@@ -134,6 +140,7 @@ const Item = ({ description, label, value, dot }: TimelineItemProps) => {
       styles.leading.default,
       !isMax && styles.leading.tail({ color: theme.colors[ColorToken.Primary] })
     ),
+    sign: stylex.props(styles.sign.default({ size })),
     dot: stylex.props(styles.dot.default({ color: theme.colors[ColorToken.Primary] })),
     description: stylex.props(styles.description.default, styles.description[mode]),
   };
@@ -141,14 +148,26 @@ const Item = ({ description, label, value, dot }: TimelineItemProps) => {
   return (
     <li className={clsx(classNames[TimelineClassToken.Item], styled.item.className)} style={styled.item.style}>
       {isLabeled && (
-        <div className={styled.label.className} style={styled.label.style}>
+        <div className={clsx(classNames[TimelineClassToken.Label], styled.label.className)} style={styled.label.style}>
           {label}
         </div>
       )}
-      <div className={styled.leading.className} style={styled.leading.style}>
-        {dot ?? <span className={styled.dot.className} style={styled.dot.style} />}
+
+      <div
+        className={clsx(classNames[TimelineClassToken.Leading], styled.leading.className)}
+        style={styled.leading.style}
+      >
+        <div className={clsx(classNames[TimelineClassToken.Sign], styled.sign.className)} style={styled.sign.style}>
+          {dot ?? (
+            <span className={clsx(classNames[TimelineClassToken.Dot], styled.dot.className)} style={styled.dot.style} />
+          )}
+        </div>
       </div>
-      <div className={styled.description.className} style={styled.description.style}>
+
+      <div
+        className={clsx(classNames[TimelineClassToken.Description], styled.description.className)}
+        style={styled.description.style}
+      >
         {description}
       </div>
     </li>

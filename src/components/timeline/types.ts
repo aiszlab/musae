@@ -47,6 +47,13 @@ export type TimelineProps = {
    * @default "right"
    */
   mode?: Mode;
+
+  // TODO: add to docs
+  /**
+   * @description
+   * size
+   */
+  size?: number;
 };
 
 /**
@@ -77,4 +84,10 @@ export type ContextValue = {
    * max
    */
   max: number;
+
+  /**
+   * @description
+   * size
+   */
+  size?: number;
 };

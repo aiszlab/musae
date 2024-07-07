@@ -63,6 +63,13 @@ export type StepsProps = ComponentProps & {
    * @default horizontal
    */
   type?: Type;
+
+  // TODO add to docs
+  /**
+   * @description
+   * size
+   */
+  size?: number;
 };
 
 /**
@@ -75,6 +82,12 @@ export type StepItemProps = StepItem & {
    * current item value
    */
   value: number;
+
+  /**
+   * @description
+   * leading size
+   */
+  size?: number;
 };
 
 /**
@@ -105,4 +118,10 @@ export type ContextValue = {
    * value
    */
   value: number;
+
+  /**
+   * @description
+   * size
+   */
+  size?: number;
 };

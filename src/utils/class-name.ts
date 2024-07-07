@@ -223,6 +223,7 @@ export enum StepsClassToken {
   Steps,
   Item,
   Leading,
+  Sign,
   Title,
   Description,
   Done,
@@ -232,6 +233,11 @@ export enum StepsClassToken {
 export enum TimelineClassToken {
   Timeline,
   Item,
+  Leading,
+  Sign,
+  Dot,
+  Label,
+  Description,
 }
 export enum BreadcrumbClassToken {
   Breadcrumb,
@@ -451,12 +457,18 @@ export const CLASS_NAMES = {
     [StepsClassToken.Doing]: "steps__item--doing",
     [StepsClassToken.Todo]: "steps__item--todo",
     [StepsClassToken.Leading]: "steps__item-leading",
+    [StepsClassToken.Sign]: "steps__item-leading-sign",
     [StepsClassToken.Title]: "steps__item-title",
     [StepsClassToken.Description]: "steps__item-description",
   },
   [ComponentToken.Timeline]: {
     [TimelineClassToken.Timeline]: "timeline",
     [TimelineClassToken.Item]: "timeline__item",
+    [TimelineClassToken.Leading]: "timeline__item-leading",
+    [TimelineClassToken.Sign]: "timeline__item-leading-sign",
+    [TimelineClassToken.Dot]: "timeline__item-leading-dot",
+    [TimelineClassToken.Label]: "timeline__item-label",
+    [TimelineClassToken.Description]: "timeline__item-description",
   },
   [ComponentToken.Breadcrumb]: {
     [BreadcrumbClassToken.Breadcrumb]: "breadcrumb",
