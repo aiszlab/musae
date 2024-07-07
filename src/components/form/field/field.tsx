@@ -1,4 +1,4 @@
-import React, { isValidElement, useMemo, cloneElement, ReactElement, type CSSProperties } from "react";
+import React, { isValidElement, useMemo, cloneElement, ReactElement } from "react";
 import type { FormItemProps } from "../types";
 import { useController } from "react-hook-form";
 import { FieldRenderProps } from "../../../types/element";
@@ -8,8 +8,6 @@ import { ComponentToken, FormClassToken } from "../../../utils/class-name";
 import * as stylex from "@stylexjs/stylex";
 import clsx from "clsx";
 import { sizes, spacing } from "../../theme/tokens.stylex";
-import { useTheme } from "../../theme";
-import { ColorToken } from "../../../utils/colors";
 import Layout from "./layout";
 import Error from "./error";
 import { AnimatePresence } from "framer-motion";
@@ -17,14 +15,9 @@ import { typography } from "../../theme/theme";
 import { useClassNames } from "../../../hooks/use-class-names";
 
 const styles = stylex.create({
-  error: (props: { color: CSSProperties["color"] }) => ({
-    color: props.color,
-    overflow: "hidden",
-  }),
-
   supporting: {
     minHeight: sizes.xsmall,
-    paddingBottom: spacing.xxsmall,
+    paddingBlock: spacing.xxsmall,
   },
 });
 
@@ -35,7 +28,7 @@ const styles = stylex.create({
  */
 const Field = ({ required, children: _children, ...props }: RequiredIn<FormItemProps, "name" | "required">) => {
   const classNames = useClassNames(ComponentToken.Form);
-  const theme = useTheme();
+
   const {
     field: { onBlur, onChange, name, value, ref },
     fieldState: { invalid, error },
@@ -73,11 +66,6 @@ const Field = ({ required, children: _children, ...props }: RequiredIn<FormItemP
   }, [_children, name, value, invalid, ref, onChange, onBlur]);
 
   const styled = {
-    error: stylex.props(
-      styles.error({
-        color: theme.colors[ColorToken.Error],
-      })
-    ),
     supporting: stylex.props(styles.supporting, typography.body.small),
   };
 
@@ -90,9 +78,7 @@ const Field = ({ required, children: _children, ...props }: RequiredIn<FormItemP
           className={clsx(classNames[FormClassToken.FieldSupporting], styled.supporting.className)}
           style={styled.supporting.style}
         >
-          <AnimatePresence>
-            {invalid && <Error error={error} className={styled.error.className} style={styled.error.style} />}
-          </AnimatePresence>
+          <AnimatePresence mode="wait">{invalid && <Error error={error} />}</AnimatePresence>
         </div>
       </Layout>
     </div>

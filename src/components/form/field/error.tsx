@@ -1,19 +1,22 @@
-import { FieldError } from "react-hook-form";
-import { ComponentProps } from "../../../types/element";
-import React, { useEffect } from "react";
+import { type FieldError } from "react-hook-form";
+import type { ComponentProps } from "../../../types/element";
+import React, { type CSSProperties, useEffect } from "react";
 import { ComponentToken, FormClassToken } from "../../../utils/class-name";
 import clsx from "clsx";
 import { useAnimate, usePresence } from "framer-motion";
 import stylex from "@stylexjs/stylex";
-import { sizes, spacing } from "../../theme/tokens.stylex";
+import { spacing } from "../../theme/tokens.stylex";
 import { useClassNames } from "../../../hooks/use-class-names";
+import { useTheme } from "../../theme";
+import { ColorToken } from "../../../utils/colors";
 
 const styles = stylex.create({
-  error: {
+  error: (props: { color: CSSProperties["color"] }) => ({
     paddingInline: spacing.large,
-    paddingTop: spacing.xxsmall,
-    height: sizes.none,
-  },
+    color: props.color,
+    height: 0,
+    overflow: "hidden",
+  }),
 });
 
 type Props = ComponentProps & {
@@ -26,55 +29,38 @@ type Props = ComponentProps & {
 
 const Error = ({ error, className, style }: Props) => {
   const classNames = useClassNames(ComponentToken.Form);
-  const styled = stylex.props(styles.error);
-  const [scope, animate] = useAnimate();
+  const [scope, animate] = useAnimate<HTMLDivElement>();
   const [isPresent, safeToRemove] = usePresence();
+  const theme = useTheme();
 
   useEffect(() => {
     if (isPresent) {
-      const enter = async () => {
-        await animate(
-          scope.current,
-          {
-            height: "auto",
-          },
-          {
-            duration: 0.1,
-          }
-        );
-      };
-
-      enter();
+      animate(scope.current, { height: "auto" }, { duration: 0.2 });
       return;
     }
 
-    const exit = async () => {
-      await animate(
-        scope.current,
-        {
-          height: 0,
-        },
-        {
-          duration: 0.1,
-        }
-      );
-
+    animate(scope.current, { height: 0 }).then(() => {
       safeToRemove();
-    };
-    exit();
+    });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isPresent]);
+
+  const styled = stylex.props(
+    styles.error({
+      color: theme.colors[ColorToken.Error],
+    })
+  );
 
   return (
     <div
       className={clsx(classNames[FormClassToken.FieldError], className, styled.className)}
       style={{
-        ...style,
         ...styled.style,
+        ...style,
       }}
       ref={scope}
     >
-      {error?.message}
+      <p>{error?.message}</p>
     </div>
   );
 };

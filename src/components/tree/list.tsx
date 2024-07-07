@@ -8,7 +8,8 @@ import { useAnimate } from "framer-motion";
 import Context from "./context";
 import { useClassNames } from "../../hooks/use-class-names";
 import { ComponentToken, TreeClassToken } from "../../utils/class-name";
-import { useExpandEffect } from "../../hooks/use-expand-effect";
+import { useExpandable } from "../../hooks/use-expandable";
+import { useUpdateEffect } from "@aiszlab/relax";
 
 const styles = stylex.create({
   list: {
@@ -28,11 +29,15 @@ const List = ({ nodes = [], expanded = true, level = 0, className, style }: Tree
   const { expandedKeys, onExpand } = useContext(Context);
   const classNames = useClassNames(ComponentToken.Tree);
 
-  useExpandEffect({
-    animate,
-    target: scope,
-    expanded,
-  });
+  const { expand, collapse } = useExpandable();
+
+  useUpdateEffect(async () => {
+    if (expanded) {
+      await expand([scope, animate]);
+      return;
+    }
+    await collapse([scope, animate]);
+  }, [expanded]);
 
   const styled = stylex.props(styles.list, !expanded && styles.hidden);
 

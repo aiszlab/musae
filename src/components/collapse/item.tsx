@@ -3,12 +3,12 @@ import { useClassNames } from "../../hooks/use-class-names";
 import { CollapseClassToken, ComponentToken } from "../../utils/class-name";
 import stylex from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";
-import { useEvent } from "@aiszlab/relax";
+import { useEvent, useUpdateEffect } from "@aiszlab/relax";
 import { useAnimate } from "framer-motion";
 import clsx from "clsx";
 import type { CollapseItemProps } from "./types";
 import { Context } from "./context";
-import { useExpandEffect } from "../../hooks/use-expand-effect";
+import { useExpandable } from "../../hooks/use-expandable";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
 import { KeyboardArrowRight } from "../icon/icons";
@@ -77,7 +77,15 @@ const CollapseItem = ({ children, label, value }: CollapseItemProps) => {
   const [collapser, animate] = useAnimate<HTMLDivElement>();
   const theme = useTheme();
 
-  useExpandEffect({ animate, expanded: isExpanded, target: collapser });
+  const { expand, collapse } = useExpandable();
+
+  useUpdateEffect(async () => {
+    if (isExpanded) {
+      await expand([collapser, animate]);
+      return;
+    }
+    await collapse([collapser, animate]);
+  }, [isExpanded]);
 
   const styled = {
     item: stylex.props(styles.item.default({ outlineColor: theme.colors[ColorToken.OutlineVariant] })),

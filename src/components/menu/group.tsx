@@ -6,10 +6,10 @@ import { ComponentToken, MenuClassToken } from "../../utils/class-name";
 import clsx from "clsx";
 import Item from "./item";
 import { useMenuContext } from "./hooks";
-import { useRefs } from "@aiszlab/relax";
+import { useRefs, useUpdateEffect } from "@aiszlab/relax";
 import * as stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
-import { useExpandEffect } from "../../hooks/use-expand-effect";
+import { useExpandable } from "../../hooks/use-expandable";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
 
@@ -69,11 +69,15 @@ const Group = forwardRef<HTMLUListElement, MenuGroupProps>(
     const theme = useTheme();
     const isInline = mode === "inline";
 
-    useExpandEffect({
-      animate,
-      target: scope,
-      expanded,
-    });
+    const { expand, collapse } = useExpandable();
+
+    useUpdateEffect(async () => {
+      if (expanded) {
+        await expand([scope, animate]);
+        return;
+      }
+      await collapse([scope, animate]);
+    }, [expanded]);
 
     const styled = {
       group: stylex.props(
