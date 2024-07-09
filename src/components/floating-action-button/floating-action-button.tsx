@@ -1,28 +1,28 @@
-import React from "react";
-import { DndContext } from "@dnd-kit/core";
-import { Button } from "../button";
-import stylex from "@stylexjs/stylex";
+import React, { useRef } from "react";
+import { DndContext, Modifier } from "@dnd-kit/core";
+import Floatable from "./floatable";
+import { restrictToParentElement } from "@dnd-kit/modifiers";
+import { useEvent, useIdentity } from "@aiszlab/relax";
+import type { FloatingActionButtonProps, FloatableRef } from "./types";
 
-const styles = stylex.create({
-  floating: {
-    position: "fixed",
-    bottom: "1rem",
-    right: "1rem",
-  },
+const FloatingActionButton = ({ container }: FloatingActionButtonProps) => {
+  const [id] = useIdentity();
+  const floatableRef = useRef<FloatableRef>(null);
 
-  collapsable: {
-    transform: "",
+  const modifier = useEvent<Modifier>((args) => {
+    const clientRect = floatableRef.current?.getBoundingClientRect();
 
-    ":hover": {
-      transform: "scale(1.1)",
-    },
-  },
-});
+    return restrictToParentElement({
+      ...args,
+      ...(!!clientRect && {
+        draggingNodeRect: clientRect,
+      }),
+    });
+  });
 
-const FloatingActionButton = () => {
   return (
-    <DndContext>
-      <Button></Button>
+    <DndContext id={id} modifiers={[modifier]}>
+      <Floatable ref={floatableRef} />
     </DndContext>
   );
 };

@@ -87,7 +87,7 @@ const Operations = ({
   const isMultiple = total > 1;
 
   return (
-    <Portal open>
+    <Portal lockable>
       <div className={styled.operations.className} style={styled.operations.style}>
         <Button
           className={styled.closer.className}

@@ -1,3 +1,4 @@
+import { Voidable } from "@aiszlab/relax/types";
 import type { ReactNode } from "react";
 
 /**
@@ -28,4 +29,10 @@ export interface PortalProps {
    * lockable
    */
   lockable?: boolean;
+
+  /**
+   * @description
+   * container
+   */
+  container?: (() => Voidable<HTMLElement>) | HTMLElement | null;
 }

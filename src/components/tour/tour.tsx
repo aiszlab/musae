@@ -74,7 +74,7 @@ const Tour = ({ steps = [], open = false, onClose, overlay = true, spotlightPadd
 
   return (
     <>
-      <Portal open={overlay && open} destroyable>
+      <Portal open={overlay && open} destroyable lockable>
         <div
           className={clsx(classNames[TourClassToken.Overlay], styled.overlay.className)}
           style={styled.overlay.style}

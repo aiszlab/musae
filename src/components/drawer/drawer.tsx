@@ -16,7 +16,7 @@ const Drawer = ({ open, size = 400, dismissable = true, placement = "right", ...
   }, [open]);
 
   return (
-    <Portal open={open || _isVisible}>
+    <Portal open={open || _isVisible} lockable>
       <Popup {...props} onClosed={turnOff} size={size} open={open} dismissable={dismissable} placement={placement} />
     </Portal>
   );

@@ -5,7 +5,7 @@ import Dropdown from "./dropdown";
 
 const Popper = ({ destroyable, placement = "bottom-start", ...props }: PopperProps) => {
   return (
-    <Portal open={props.open} lockable={false} destroyable={destroyable}>
+    <Portal open={props.open} destroyable={destroyable}>
       <Dropdown {...props} placement={placement} />
     </Portal>
   );

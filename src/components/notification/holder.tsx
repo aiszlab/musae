@@ -99,7 +99,7 @@ const Holder = forwardRef<NotifierRef>((_, ref) => {
     const styled = stylex.props(styles.holder, styles[placement]);
 
     return (
-      <Portal destroyable open={notifications.size > 0} key={placement} lockable={false}>
+      <Portal destroyable open={notifications.size > 0} key={placement}>
         <div className={styled.className} style={styled.style}>
           <AnimatePresence>
             {Array.from(notifications.entries()).map(([key, { description, ...item }]) => (
