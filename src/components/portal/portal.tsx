@@ -1,10 +1,12 @@
 import { createPortal } from "react-dom";
 import type { PortalProps } from "./types";
 import { type FC, useEffect, useState } from "react";
-import { isDomUsable, toFunction, useScrollLocker } from "@aiszlab/relax";
+import { isDomUsable, useScrollLocker } from "@aiszlab/relax";
+import { useContainer } from "../../hooks/use-container";
 
 const Portal: FC<PortalProps> = ({ children, open = true, destroyable = false, lockable = false, container }) => {
   const [shouldRender, setShouldRender] = useState(false);
+  const { container: _container } = useContainer({ container });
 
   /// if render once, and is not destroyable
   /// anyway render
@@ -17,8 +19,9 @@ const Portal: FC<PortalProps> = ({ children, open = true, destroyable = false, l
   useScrollLocker(isDomUsable() && lockable && open);
 
   if (!shouldRender) return null;
+  if (!_container) return null;
 
-  return createPortal(children, toFunction(container)() ?? document.body);
+  return createPortal(children, _container);
 };
 
 export default Portal;

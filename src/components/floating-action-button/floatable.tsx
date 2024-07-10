@@ -23,14 +23,14 @@ const styles = stylex.create({
   },
 });
 
-const Floatable = forwardRef<FloatableRef, FloatableProps>(({ container }, ref) => {
+const Floatable = forwardRef<FloatableRef, FloatableProps>(({ container, children }, ref) => {
   const [id] = useIdentity();
   const _ref = useRef<HTMLDivElement>(null);
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
     id,
   });
   const floatableRef = useRefs<HTMLDivElement>(_ref, setNodeRef);
-  const { container: _container, isBody } = useContainer({ container });
+  const { container: _container, isDocumentBody } = useContainer({ container });
 
   const [offsetX, setOffsetX] = useState(0);
   const [offsetY, setOffsetY] = useState(0);
@@ -54,13 +54,13 @@ const Floatable = forwardRef<FloatableRef, FloatableProps>(({ container }, ref) 
 
   const styled = stylex.props(
     styles.floatable({ x: offsetX + (transform?.x ?? 0), y: offsetY + (transform?.y ?? 0) }),
-    isBody && styles.fixed
+    isDocumentBody && styles.fixed
   );
 
   return (
     <Portal container={_container}>
       <div ref={floatableRef} {...listeners} {...attributes} className={styled.className} style={styled.style}>
-        <Button shape="circular">1</Button>
+        <Button shape="circular">{children}</Button>
       </div>
     </Portal>
   );

@@ -82,7 +82,7 @@ export const useNavigation = () => {
 
   const scroll = useEvent((delta: number) => {
     setOffset((prev) => {
-      return clamp(minOffset, maxOffset, prev + delta);
+      return clamp(prev + delta, minOffset, maxOffset);
     });
   });
 
@@ -108,8 +108,8 @@ export const useNavigatorScroll = ({
   scroll: (delta: number) => void;
 }) => {
   // mouse wheel
-  const wheel = useEvent((event: WheelEvent) => {
-    event.stopPropagation();
+  const onWheel = useEvent((event: WheelEvent) => {
+    event.preventDefault();
     const { deltaY } = event;
     scroll(deltaY);
   });
@@ -117,10 +117,10 @@ export const useNavigatorScroll = ({
   useEffect(() => {
     const navigator = navigatorRef.current;
 
-    navigator?.addEventListener("wheel", wheel);
+    navigator?.addEventListener("wheel", onWheel);
 
     return () => {
-      navigator?.removeEventListener("wheel", wheel);
+      navigator?.removeEventListener("wheel", onWheel);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

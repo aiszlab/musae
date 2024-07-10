@@ -1,4 +1,5 @@
-import { PortalProps } from "../portal/types";
+import type { ReactNode } from "react";
+import type { PortalProps } from "../portal/types";
 
 /**
  * @description
@@ -22,6 +23,12 @@ export type FloatingActionButtonProps = {
    * container
    */
   container?: PortalProps["container"];
+
+  /**
+   * @description
+   * children
+   */
+  children?: ReactNode;
 };
 
 /**
@@ -33,4 +40,10 @@ export type FloatableProps = {
    * @link {FloatingActionButtonProps.container}
    */
   container?: FloatingActionButtonProps["container"];
+
+  /**
+   * @description
+   * children
+   */
+  children?: ReactNode;
 };
