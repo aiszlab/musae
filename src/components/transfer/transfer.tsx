@@ -6,7 +6,11 @@ import stylex from "@stylexjs/stylex";
 import { KeyboardArrowLeft, KeyboardArrowRight } from "../icon/icons";
 
 const styles = stylex.create({
-  transfer: {},
+  transfer: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+  },
 
   operation: {},
 });
