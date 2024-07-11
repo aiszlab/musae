@@ -6,3 +6,6 @@ dist
 
 # yarn
 yarn-error.log
+
+# editor
+.idea
