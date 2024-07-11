@@ -13,23 +13,23 @@ export const useTransfer = (props: { options: TransferOption[]; value?: Key[] })
     return props.options.reduce((prev, item) => prev.set(item.value, item), new Map<Key, TransferOption>());
   }, [props.options]);
 
-  const [transfered, untransfered] = useMemo(() => {
+  const [transferred, untransferred] = useMemo(() => {
     return (value ?? []).reduce<[Map<Key, TransferOption>, Map<Key, TransferOption>]>(
-      ([transfered, untransfered], key) => {
-        if (untransfered.has(key)) {
-          transfered.set(key, untransfered.get(key)!);
-          untransfered.delete(key);
+      ([transferred, untransferred], key) => {
+        if (untransferred.has(key)) {
+          transferred.set(key, untransferred.get(key)!);
+          untransferred.delete(key);
         }
 
-        return [transfered, untransfered];
+        return [transferred, untransferred];
       },
       [new Map(), new Map(options)]
     );
   }, [options, value]);
 
   return {
-    transfered,
-    untransfered,
-    setValue,
+    transferred,
+    untransferred,
+    setValue
   };
 };

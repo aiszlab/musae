@@ -9,28 +9,28 @@ const styles = stylex.create({
   transfer: {
     display: "flex",
     flexDirection: "row",
-    alignItems: "center",
+    alignItems: "center"
   },
 
-  operation: {},
+  operation: {}
 });
 
 const Transfer = (props: TransferProps) => {
-  const { transfered, untransfered } = useTransfer({ options: props.options, value: props.value });
+  const { transferred, untransferred } = useTransfer({ options: props.options, value: props.value });
 
   const styled = {
     transfer: stylex.props(styles.transfer),
-    operation: stylex.props(styles.operation),
+    operation: stylex.props(styles.operation)
   };
 
   return (
     <div className={styled.transfer.className} style={styled.transfer.style}>
-      <List options={Array.from(untransfered.values())} />
+      <List options={Array.from(untransferred.values())} />
       <div className={styled.operation.className} style={styled.operation.style}>
         <KeyboardArrowLeft />
         <KeyboardArrowRight />
       </div>
-      <List options={Array.from(transfered.values())} />
+      <List options={Array.from(transferred.values())} />
     </div>
   );
 };
