@@ -1,18 +1,27 @@
-import React from "react";
+import React, { CSSProperties } from "react";
 import type { TransferListProps } from "./types";
 import stylex from "@stylexjs/stylex";
 import { sizes } from "../theme/tokens.stylex";
+import { useTheme } from "../theme";
+import { ColorToken } from "../../utils/colors";
 
 const styles = stylex.create({
-  list: {
+  list: (props: {
+    outlineColor: CSSProperties["borderColor"]
+  }) => ({
     width: sizes.xxxxxlarge,
     height: sizes.xxxxxxlarge,
-  },
+    borderWidth: sizes.smallest,
+    borderColor: props.outlineColor,
+    borderStyle: "solid",
+    borderRadius: sizes.xxxxsmall
+  })
 });
 
 const List = ({ options }: TransferListProps) => {
+  const theme = useTheme();
   const styled = {
-    list: stylex.props(styles.list),
+    list: stylex.props(styles.list({ outlineColor: theme.colors[ColorToken.Outline] }))
   };
 
   return (

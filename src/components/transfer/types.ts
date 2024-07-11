@@ -1,4 +1,4 @@
-import type { Key } from "react";
+import type { Key, ReactNode } from "react";
 import type { Option } from "../../types/option";
 
 export type TransferOption = Omit<Option, "children">;
@@ -32,3 +32,21 @@ export type TransferListProps = {
    */
   options: TransferOption[];
 };
+
+/**
+ * @description
+ * transfer item props
+ */
+export type TransferItemProps = {
+  /**
+   * @description
+   * value
+   */
+  value: Key
+
+  /**
+   * @description
+   * label
+   */
+  label: ReactNode
+}
