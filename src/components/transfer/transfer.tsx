@@ -7,6 +7,9 @@ import { KeyboardArrowLeft, KeyboardArrowRight } from "../icon/icons";
 import { Button } from "../button";
 import { spacing } from "../theme/tokens.stylex";
 import { Context } from "./context";
+import { useClassNames } from "../../hooks/use-class-names";
+import { ComponentToken, TransferClassToken } from "../../utils/class-name";
+import clsx from "clsx";
 
 const styles = stylex.create({
   transfer: {
@@ -23,7 +26,7 @@ const styles = stylex.create({
   },
 });
 
-const Transfer = ({ options, value, titles = [null, null], disabled = false }: TransferProps) => {
+const Transfer = ({ options, value, titles = [null, null], disabled = false, className, style }: TransferProps) => {
   const {
     transferred,
     untransferred,
@@ -38,6 +41,8 @@ const Transfer = ({ options, value, titles = [null, null], disabled = false }: T
     value,
   });
 
+  const classNames = useClassNames(ComponentToken.Transfer);
+
   const styled = {
     transfer: stylex.props(styles.transfer),
     operation: stylex.props(styles.operation),
@@ -51,7 +56,13 @@ const Transfer = ({ options, value, titles = [null, null], disabled = false }: T
 
   return (
     <Context.Provider value={contextValue}>
-      <div className={styled.transfer.className} style={styled.transfer.style}>
+      <div
+        className={clsx(classNames[TransferClassToken.Transfer], className, styled.transfer.className)}
+        style={{
+          ...styled.transfer.style,
+          ...style,
+        }}
+      >
         <List
           options={Array.from(untransferred.values())}
           title={titles[0]}
@@ -59,7 +70,10 @@ const Transfer = ({ options, value, titles = [null, null], disabled = false }: T
           onChange={setTransferKeys}
         />
 
-        <div className={styled.operation.className} style={styled.operation.style}>
+        <div
+          className={clsx(classNames[TransferClassToken.Operation], styled.operation.className)}
+          style={styled.operation.style}
+        >
           <Button shape="circular" size="small" onClick={transfer} disabled={disabled || transferKeys.length === 0}>
             <KeyboardArrowRight />
           </Button>

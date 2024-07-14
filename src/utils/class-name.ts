@@ -59,6 +59,7 @@ export enum ComponentToken {
   Loading,
   Collapse,
   Waterfall,
+  Transfer,
 }
 
 /**
@@ -286,6 +287,15 @@ export enum CollapseClassToken {
 export enum WaterfallClassToken {
   Waterfall,
   Sequential,
+}
+export enum TransferClassToken {
+  Transfer,
+  List,
+  Header,
+  Title,
+  Body,
+  Item,
+  Operation,
 }
 
 /**
@@ -515,6 +525,15 @@ export const CLASS_NAMES = {
   [ComponentToken.Waterfall]: {
     [WaterfallClassToken.Waterfall]: "waterfall",
     [WaterfallClassToken.Sequential]: "waterfall--sequential",
+  },
+  [ComponentToken.Transfer]: {
+    [TransferClassToken.Transfer]: "transfer",
+    [TransferClassToken.Operation]: "transfer__operation",
+    [TransferClassToken.List]: "transfer__list",
+    [TransferClassToken.Title]: "transfer__list-title",
+    [TransferClassToken.Item]: "transfer__list-item",
+    [TransferClassToken.Header]: "transfer__list-header",
+    [TransferClassToken.Body]: "transfer__list-body",
   },
 };
 

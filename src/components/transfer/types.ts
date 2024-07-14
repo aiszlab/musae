@@ -1,5 +1,6 @@
 import type { Key, ReactNode } from "react";
 import type { Option } from "../../types/option";
+import { ComponentProps } from "../../types/element";
 
 export type TransferOption = Omit<Option, "children">;
 
@@ -7,7 +8,7 @@ export type TransferOption = Omit<Option, "children">;
  * @description
  * transfer props
  */
-export type TransferProps = {
+export type TransferProps = ComponentProps & {
   /**
    * @description
    * options
