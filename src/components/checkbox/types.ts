@@ -52,10 +52,10 @@ export interface CheckboxGroupProps {
    */
   children: ReactNode;
 
-  // TODO add to docs
   /**
    * @description
    * change handler
+   * @default void 0
    */
   onChange?: (value: Key[]) => void;
 
@@ -105,6 +105,7 @@ export interface CheckboxProps extends ComponentProps {
   /**
    * @description
    * disabled
+   * @default false
    */
   disabled?: boolean;
 }

@@ -3,7 +3,7 @@ import { Picker, type PickerRef } from "../picker";
 import { useOptions, useValue } from "./hooks";
 import Context from "../config/context";
 import { ComponentToken, SelectClassToken } from "../../utils/class-name";
-import type { SelectProps, SelectorRef } from "./types";
+import type { SelectProps, SelectorRef, ValueOrValues } from "./types";
 import clsx from "clsx";
 import stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
@@ -21,7 +21,7 @@ const styles = stylex.create({
   },
 });
 
-const Select = ({
+const Select = <T extends ValueOrValues = ValueOrValues>({
   mode,
   searchable = false,
   onSearch,
@@ -32,7 +32,7 @@ const Select = ({
   complex = false,
   value,
   onChange: _onChange,
-}: SelectProps) => {
+}: SelectProps<T>) => {
   const ref = useRef<PickerRef>(null);
   const selectorRef = useRef<SelectorRef>(null);
   const classNames = useContext(Context).classNames[ComponentToken.Select];
@@ -50,7 +50,6 @@ const Select = ({
     mode,
     close,
     reset,
-    // @ts-ignore
     onChange: _onChange,
     isComplex: complex,
   });

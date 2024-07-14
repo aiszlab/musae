@@ -1,6 +1,6 @@
 {
   "name": "musae",
-  "version": "0.2.7",
+  "version": "0.2.8",
   "description": "musae-ui",
   "author": "tutu@fantufantu.com",
   "license": "MIT",
@@ -37,7 +37,6 @@
     "deepmerge": "^4.3.1",
     "framer-motion": "^11.2.11",
     "react-hook-form": "^7.47.0",
-    "rrweb": "2.0.0-alpha.4",
     "rxjs": "^7.8.1"
   },
   "devDependencies": {

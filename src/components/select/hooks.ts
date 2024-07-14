@@ -8,7 +8,7 @@ import type { Option } from "../../types/option";
  * @description
  * use value
  */
-export const useValue = ({
+export const useValue = <T extends ValueOrValues = ValueOrValues>({
   mode,
   close,
   isComplex,
@@ -19,7 +19,7 @@ export const useValue = ({
   mode: Mode | undefined;
   close: () => void;
   reset: () => void;
-  onChange?: (value: ValueOrValues) => void;
+  onChange?: (value: T) => void;
   isComplex: boolean;
 }) => {
   const isControlled = !isUndefined(props.value);
@@ -37,10 +37,10 @@ export const useValue = ({
         return prev.set(
           key,
           // @ts-ignore
-          _value.label ?? readableOptions.current.get(key) ?? _value.toString()
+          _value.label ?? readableOptions.current.get(key) ?? _value.toString(),
         );
       }, new Map<Key, string>()),
-    [value]
+    [value],
   );
 
   const onChange = useEvent((key: Key) => {
@@ -57,7 +57,7 @@ export const useValue = ({
       if (readableValues.has(key)) return;
 
       if (isControlled) {
-        props.onChange?.(isComplex ? _value : key);
+        props.onChange?.((isComplex ? _value : key) as T);
         return;
       }
 
@@ -74,12 +74,12 @@ export const useValue = ({
 
     if (isControlled) {
       props.onChange?.(
-        isComplex
+        (isComplex
           ? Array.from(next.entries()).map(([value, label]) => ({
               value,
               label,
             }))
-          : Array.from(next.keys())
+          : Array.from(next.keys())) as T,
       );
       return;
     }
@@ -88,7 +88,7 @@ export const useValue = ({
       Array.from(next.entries()).map(([value, label]) => ({
         value,
         label,
-      }))
+      })),
     );
   });
 
@@ -141,7 +141,7 @@ export const useOptions = ({
 
   const [menuItems, readableOptions] = useMemo(
     () => readOptions(options, toMenuItems, filter ?? (() => true)),
-    [options, filter]
+    [options, filter],
   );
 
   return {

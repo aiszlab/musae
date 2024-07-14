@@ -10,19 +10,13 @@ export type Value = Key | Pick<Option, "value" | "label">;
 
 export type ValueOrValues = Value[] | Value;
 
-type ChangeHandler =
-  | ((value: string) => void)
-  | ((value: number) => void)
-  | ((value: bigint) => void)
-  | ((values: Value[]) => void);
-
 /**
  * @author murukal
  *
  * @description
  * select props
  */
-export type SelectProps = ComponentProps & {
+export type SelectProps<T extends ValueOrValues = ValueOrValues> = ComponentProps & {
   /**
    * @description
    * options
@@ -77,7 +71,7 @@ export type SelectProps = ComponentProps & {
    * on value change, toggle
    * @default void 0
    */
-  onChange?: ChangeHandler;
+  onChange?: (value: T) => void;
 };
 
 /**

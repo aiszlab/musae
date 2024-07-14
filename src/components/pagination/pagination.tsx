@@ -48,7 +48,7 @@ const Pagination = ({
         value: size,
         label: `${size} 条/页`,
       })),
-    [pageSizes]
+    [pageSizes],
   );
 
   return (

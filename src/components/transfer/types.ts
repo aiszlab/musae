@@ -12,24 +12,28 @@ export type TransferProps = ComponentProps & {
   /**
    * @description
    * options
+   * @requires
    */
   options: TransferOption[];
 
   /**
    * @description
    * value
+   * @default void 0
    */
   value?: Key[];
 
   /**
    * @description
    * titles
+   * @default [null, null]
    */
   titles?: [ReactNode, ReactNode];
 
   /**
    * @description
    * disabled
+   * @default false
    */
   disabled?: boolean;
 };
