@@ -12,17 +12,13 @@ import * as stylex from "@stylexjs/stylex";
 
 const styles = stylex.create({
   more: {
-    ":hover > [data-role='leading']": {
+    ":hover > [role='separator']": {
       display: "none",
     },
 
-    ":hover > [data-role='trailing']": {
-      display: "inline-flex",
+    ":not(:hover) > [role='button']": {
+      display: "none",
     },
-  },
-
-  hidden: {
-    display: "none",
   },
 });
 
@@ -46,7 +42,6 @@ const Item = ({ value, onPageChange, add, subtract, checked, hasNext, hasPrev }:
   if (value === PaginationItemType.MorePrev || value === PaginationItemType.MoreNext) {
     const styled = {
       more: stylex.props(styles.more),
-      hidden: stylex.props(styles.hidden),
     };
     const isNegative = value === PaginationItemType.MorePrev;
 
@@ -61,13 +56,11 @@ const Item = ({ value, onPageChange, add, subtract, checked, hasNext, hasPrev }:
           isNegative ? subtract(5) : add(5);
         }}
       >
-        <MoreHoriz data-role="leading" />
+        <MoreHoriz role="separator" />
 
         {/* hovered icon */}
         {createElement(isNegative ? KeyboardDoubleArrowLeft : KeyboardDoubleArrowRight, {
-          className: styled.hidden.className,
-          style: styled.hidden.style,
-          "data-role": "trailing",
+          role: "button",
         })}
       </Button>
     );

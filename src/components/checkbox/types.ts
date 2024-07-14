@@ -19,6 +19,12 @@ export interface ContextValue {
    * change handler
    */
   change: (value: Key, isChecked: boolean) => void;
+
+  /**
+   * @description
+   * disabled
+   */
+  disabled: boolean;
 }
 
 /**
@@ -52,6 +58,13 @@ export interface CheckboxGroupProps {
    * change handler
    */
   onChange?: (value: Key[]) => void;
+
+  /**
+   * @description
+   * disabled
+   * @default false
+   */
+  disabled?: boolean;
 }
 
 /**
@@ -88,6 +101,12 @@ export interface CheckboxProps extends ComponentProps {
    * @default void 0
    */
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
+
+  /**
+   * @description
+   * disabled
+   */
+  disabled?: boolean;
 }
 
 /**

@@ -39,7 +39,7 @@ const Icon = ({ as, color, size, onClick, style, className, ...props }: IconProp
     styles.icon({
       color,
     }),
-    !!onClick && styles.clickable
+    !!onClick && styles.clickable,
   );
 
   return (

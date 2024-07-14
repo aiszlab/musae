@@ -3,7 +3,7 @@ import React, { useCallback, useMemo } from "react";
 import type { ContextValue, CheckboxGroupProps } from "./types";
 import { useControlledState, toggle } from "@aiszlab/relax";
 
-const Group = ({ value: controlledValue, children, onChange }: CheckboxGroupProps) => {
+const Group = ({ value: controlledValue, children, onChange, disabled = false }: CheckboxGroupProps) => {
   const [_value, setValue] = useControlledState(controlledValue!, {
     defaultState: [],
   });
@@ -33,8 +33,9 @@ const Group = ({ value: controlledValue, children, onChange }: CheckboxGroupProp
     return {
       value,
       change,
+      disabled,
     };
-  }, [value, change]);
+  }, [value, change, disabled]);
 
   return <Context.Provider value={contextValue}>{children}</Context.Provider>;
 };

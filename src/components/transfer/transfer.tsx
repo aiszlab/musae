@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { useTransfer } from "./hooks";
-import type { TransferProps } from "./types";
+import type { ContextValue, TransferProps } from "./types";
 import List from "./list";
 import stylex from "@stylexjs/stylex";
 import { KeyboardArrowLeft, KeyboardArrowRight } from "../icon/icons";
 import { Button } from "../button";
 import { spacing } from "../theme/tokens.stylex";
+import { Context } from "./context";
 
 const styles = stylex.create({
   transfer: {
@@ -22,7 +23,7 @@ const styles = stylex.create({
   },
 });
 
-const Transfer = ({ options, value, titles = [null, null] }: TransferProps) => {
+const Transfer = ({ options, value, titles = [null, null], disabled = false }: TransferProps) => {
   const {
     transferred,
     untransferred,
@@ -42,30 +43,40 @@ const Transfer = ({ options, value, titles = [null, null] }: TransferProps) => {
     operation: stylex.props(styles.operation),
   };
 
-  return (
-    <div className={styled.transfer.className} style={styled.transfer.style}>
-      <List
-        options={Array.from(untransferred.values())}
-        title={titles[0]}
-        value={transferKeys}
-        onChange={setTransferKeys}
-      />
-      <div className={styled.operation.className} style={styled.operation.style}>
-        <Button shape="circular" size="small" onClick={transfer} disabled={transferKeys.length === 0}>
-          <KeyboardArrowRight />
-        </Button>
+  const contextValue = useMemo<ContextValue>(() => {
+    return {
+      disabled,
+    };
+  }, [disabled]);
 
-        <Button shape="circular" size="small" onClick={untransfer} disabled={untransferKeys.length === 0}>
-          <KeyboardArrowLeft />
-        </Button>
+  return (
+    <Context.Provider value={contextValue}>
+      <div className={styled.transfer.className} style={styled.transfer.style}>
+        <List
+          options={Array.from(untransferred.values())}
+          title={titles[0]}
+          value={transferKeys}
+          onChange={setTransferKeys}
+        />
+
+        <div className={styled.operation.className} style={styled.operation.style}>
+          <Button shape="circular" size="small" onClick={transfer} disabled={disabled || transferKeys.length === 0}>
+            <KeyboardArrowRight />
+          </Button>
+
+          <Button shape="circular" size="small" onClick={untransfer} disabled={disabled || untransferKeys.length === 0}>
+            <KeyboardArrowLeft />
+          </Button>
+        </div>
+
+        <List
+          options={Array.from(transferred.values())}
+          title={titles[1]}
+          value={untransferKeys}
+          onChange={setUntransferKeys}
+        />
       </div>
-      <List
-        options={Array.from(transferred.values())}
-        title={titles[1]}
-        value={untransferKeys}
-        onChange={setUntransferKeys}
-      />
-    </div>
+    </Context.Provider>
   );
 };
 

@@ -58,6 +58,7 @@ const Select = ({
   const click = () => {
     selectorRef.current?.focus();
   };
+
   const styled = {
     picker: stylex.props(styles.picked),
     pickable: stylex.props(styles.pickable),

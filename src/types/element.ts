@@ -18,12 +18,6 @@ export interface ComponentProps {
    * style for current component
    */
   style?: CSSProperties;
-
-  /**
-   * @description
-   * data-role
-   */
-  ["data-role"]?: "leading" | "trailing";
 }
 
 /**

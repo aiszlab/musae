@@ -63,9 +63,9 @@ const Selector: ForwardRefExoticComponent<PropsWithoutRef<SelectorProps> & RefAt
     const styled = stylex.props(
       inputStyles.input,
       styles.input({
-        color: isFocused && searchable ? void 0 : theme.colors[ColorToken.OnSurface],
+        color: (isFocused && searchable && theme.colors[ColorToken.OnSurface]) || void 0,
       }),
-      typography.body.small
+      typography.body.small,
     );
 
     // single mode render
@@ -87,7 +87,7 @@ const Selector: ForwardRefExoticComponent<PropsWithoutRef<SelectorProps> & RefAt
         onChange={search}
       />
     );
-  }
+  },
 );
 
 export default Selector;

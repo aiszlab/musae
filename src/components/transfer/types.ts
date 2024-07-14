@@ -20,12 +20,17 @@ export type TransferProps = {
    */
   value?: Key[];
 
-  // TODO add to docs
   /**
    * @description
    * titles
    */
   titles?: [ReactNode, ReactNode];
+
+  /**
+   * @description
+   * disabled
+   */
+  disabled?: boolean;
 };
 
 /**
@@ -74,4 +79,16 @@ export type TransferItemProps = {
    * label
    */
   label: ReactNode;
+};
+
+/**
+ * @description
+ * context value
+ */
+export type ContextValue = {
+  /**
+   * @description
+   * disabled
+   */
+  disabled: boolean;
 };

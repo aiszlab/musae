@@ -1,4 +1,4 @@
-import React, { type CSSProperties } from "react";
+import React, { useContext, type CSSProperties } from "react";
 import type { TransferListProps } from "./types";
 import stylex from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";
@@ -6,6 +6,7 @@ import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
 import Item from "./item";
 import { Checkbox } from "../checkbox";
+import { Context } from "./context";
 
 const styles = stylex.create({
   list: (props: { outlineColor: CSSProperties["borderColor"] }) => ({
@@ -36,6 +37,7 @@ const styles = stylex.create({
 
 const List = ({ options, title, onChange, value }: TransferListProps) => {
   const theme = useTheme();
+  const { disabled } = useContext(Context);
   const styled = {
     list: stylex.props(styles.list({ outlineColor: theme.colors[ColorToken.Outline] })),
     header: stylex.props(styles.header({ outlineColor: theme.colors[ColorToken.Outline] })),
@@ -51,7 +53,7 @@ const List = ({ options, title, onChange, value }: TransferListProps) => {
         </span>
       </div>
 
-      <Checkbox.Group value={value} onChange={onChange}>
+      <Checkbox.Group value={value} onChange={onChange} disabled={disabled}>
         <ul>
           {options.map((option) => {
             return <Item key={option.value} label={option.label} value={option.value} />;
