@@ -1,39 +1,42 @@
 import Context from "./context";
 import React, { useCallback, useMemo } from "react";
 import type { ContextValue, CheckboxGroupProps } from "./types";
-import { useControlledState } from "@aiszlab/relax";
+import { useControlledState, toggle } from "@aiszlab/relax";
 
-const Group = (props: CheckboxGroupProps) => {
-  const [_value, _setValue] = useControlledState(props.value!, {
+const Group = ({ value: controlledValue, children, onChange }: CheckboxGroupProps) => {
+  const [_value, setValue] = useControlledState(controlledValue!, {
     defaultState: [],
   });
+
   const value = useMemo(() => new Set(_value), [_value]);
 
-  /// change handler
+  // change handler
   const change = useCallback<ContextValue["change"]>(
-    (value) => {
-      _setValue((prev) => {
-        const next = new Set(prev);
-        if (next.has(value)) {
-          next.delete(value);
-        } else {
-          next.add(value);
-        }
-        return Array.from(next);
-      });
+    (key, isChecked) => {
+      const checkedKeys = new Set(value);
+
+      if (isChecked) {
+        checkedKeys.add(key);
+      } else {
+        checkedKeys.delete(key);
+      }
+
+      const _checkedKeys = Array.from(checkedKeys);
+      onChange?.(_checkedKeys);
+      setValue(_checkedKeys);
     },
-    [_setValue]
+    [setValue, value],
   );
 
-  /// context value
-  const _contextValue = useMemo<ContextValue>(() => {
+  // context value
+  const contextValue = useMemo<ContextValue>(() => {
     return {
       value,
       change,
     };
   }, [value, change]);
 
-  return <Context.Provider value={_contextValue}>{props.children}</Context.Provider>;
+  return <Context.Provider value={contextValue}>{children}</Context.Provider>;
 };
 
 export default Group;

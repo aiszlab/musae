@@ -1,4 +1,4 @@
-import { Key, useMemo } from "react";
+import { Key, useCallback, useMemo, useState } from "react";
 import { TransferOption } from "./types";
 import { useControlledState } from "@aiszlab/relax";
 
@@ -8,6 +8,8 @@ import { useControlledState } from "@aiszlab/relax";
  */
 export const useTransfer = (props: { options: TransferOption[]; value?: Key[] }) => {
   const [value, setValue] = useControlledState(props.value);
+  const [transferKeys, setTransferKeys] = useState<Key[]>([]);
+  const [untransferKeys, setUntransferKeys] = useState<Key[]>([]);
 
   const options = useMemo(() => {
     return props.options.reduce((prev, item) => prev.set(item.value, item), new Map<Key, TransferOption>());
@@ -23,13 +25,35 @@ export const useTransfer = (props: { options: TransferOption[]; value?: Key[] })
 
         return [transferred, untransferred];
       },
-      [new Map(), new Map(options)]
+      [new Map(), new Map(options)],
     );
   }, [options, value]);
+
+  const transfer = useCallback(() => {
+    setValue((prev = []) => [...prev, ...transferKeys]);
+    setTransferKeys([]);
+  }, [transferKeys]);
+
+  const untransfer = useCallback(() => {
+    setValue((prev = []) => {
+      return Array.from(
+        untransferKeys.reduce((checkedKeys, unchecked) => {
+          checkedKeys.delete(unchecked);
+          return checkedKeys;
+        }, new Set(prev)),
+      );
+    });
+    setUntransferKeys([]);
+  }, [untransferKeys]);
 
   return {
     transferred,
     untransferred,
-    setValue
+    transfer,
+    untransfer,
+    transferKeys,
+    untransferKeys,
+    setTransferKeys,
+    setUntransferKeys,
   };
 };

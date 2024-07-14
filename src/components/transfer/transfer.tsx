@@ -1,36 +1,70 @@
-import React from "react";
+import React, { Key, useCallback, useRef, useState } from "react";
 import { useTransfer } from "./hooks";
 import type { TransferProps } from "./types";
 import List from "./list";
 import stylex from "@stylexjs/stylex";
 import { KeyboardArrowLeft, KeyboardArrowRight } from "../icon/icons";
+import { Button } from "../button";
+import { spacing } from "../theme/tokens.stylex";
 
 const styles = stylex.create({
   transfer: {
     display: "flex",
     flexDirection: "row",
-    alignItems: "center"
+    alignItems: "center",
+    gap: spacing.small,
   },
 
-  operation: {}
+  operation: {
+    display: "flex",
+    flexDirection: "column",
+    gap: spacing.small,
+  },
 });
 
-const Transfer = (props: TransferProps) => {
-  const { transferred, untransferred } = useTransfer({ options: props.options, value: props.value });
+const Transfer = ({ options, value, titles = [null, null] }: TransferProps) => {
+  const {
+    transferred,
+    untransferred,
+    transfer,
+    untransfer,
+    transferKeys,
+    untransferKeys,
+    setTransferKeys,
+    setUntransferKeys,
+  } = useTransfer({
+    options,
+    value,
+  });
 
   const styled = {
     transfer: stylex.props(styles.transfer),
-    operation: stylex.props(styles.operation)
+    operation: stylex.props(styles.operation),
   };
 
   return (
     <div className={styled.transfer.className} style={styled.transfer.style}>
-      <List options={Array.from(untransferred.values())} />
+      <List
+        options={Array.from(untransferred.values())}
+        title={titles[0]}
+        value={transferKeys}
+        onChange={setTransferKeys}
+      />
       <div className={styled.operation.className} style={styled.operation.style}>
-        <KeyboardArrowLeft />
-        <KeyboardArrowRight />
+        <Button shape="circular" size="small" onClick={transfer} disabled={transferKeys.length === 0}>
+          <KeyboardArrowRight />
+        </Button>
+
+        <Button shape="circular" size="small" onClick={untransfer} disabled={untransferKeys.length === 0}>
+          <KeyboardArrowLeft />
+        </Button>
       </div>
-      <List options={Array.from(transferred.values())} />
+      <List
+        options={Array.from(transferred.values())}
+        title={titles[1]}
+        value={untransferKeys}
+        onChange={setUntransferKeys}
+      />
     </div>
   );
 };

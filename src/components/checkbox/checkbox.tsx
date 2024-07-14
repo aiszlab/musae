@@ -86,21 +86,24 @@ const Checkbox = ({ value, className, style, children, onChange, ...props }: Che
   /// check current checkbox is checked
   /// if there is context value, use context value
   /// else use controlled state
-  const isChecked = useMemo<boolean>(
-    () => (contextValue && !!value ? contextValue.value.has(value) : _isChecked),
-    [_isChecked, contextValue, value]
-  );
+  const isChecked = useMemo<boolean>(() => {
+    if (!contextValue || !value) {
+      return _isChecked;
+    }
+    return contextValue.value.has(value);
+  }, [_isChecked, contextValue, value]);
 
   /// change handler
   /// if there is context value, just notify context
   /// else change the controlled state
   const change = useCallback<ChangeEventHandler<HTMLInputElement>>(
     (event) => {
-      !!value && contextValue?.change(value);
-      _setIsChecked(event.target.checked);
+      const checked = event.target.checked;
+      !!value && contextValue?.change(value, checked);
+      _setIsChecked(checked);
       onChange?.(event);
     },
-    [_setIsChecked, contextValue, value, onChange]
+    [_setIsChecked, contextValue, value, onChange],
   );
 
   const styled = {
@@ -113,7 +116,7 @@ const Checkbox = ({ value, className, style, children, onChange, ...props }: Che
         styles.checked({
           backgroundColor: theme.colors[ColorToken.Primary],
           triggerColor: theme.colors[ColorToken.OnPrimary],
-        })
+        }),
     ),
     label: stylex.props(typography.label.small, styles.label),
   };

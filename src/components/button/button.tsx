@@ -27,19 +27,22 @@ const styles = stylex.create({
   },
 
   small: {
-    padding: `${spacing.none} ${spacing.xsmall}`,
+    paddingBlock: spacing.none,
+    paddingInline: spacing.xsmall,
     minHeight: sizes.xsmall,
     minWidth: sizes.xsmall,
   },
 
   medium: {
-    padding: `${spacing.small} ${spacing.xlarge}`,
+    paddingBlock: spacing.small,
+    paddingInline: spacing.xlarge,
     minHeight: sizes.xlarge,
     minWidth: sizes.xlarge,
   },
 
   large: {
-    padding: `${spacing.medium} ${spacing.xxlarge}`,
+    paddingBlock: spacing.medium,
+    paddingInline: spacing.xxlarge,
     minHeight: sizes.xxlarge,
     minWidth: sizes.xxlarge,
   },
@@ -125,7 +128,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       prefix,
       suffix,
     },
-    ref
+    ref,
   ) => {
     const classNames = useClassNames(ComponentToken.Button);
     const theme = useTheme();
@@ -161,7 +164,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             backgroundColor: variant === "filled" ? layer(theme.colors[ColorToken.OnSurface], "medium") : "transparent",
             color: layer(theme.colors[ColorToken.OnSurface], "thicker"),
             outlineColor: variant === "outlined" ? layer(theme.colors[ColorToken.OnSurface], "thicker") : null,
-          })
+          }),
       ),
     };
 
@@ -185,7 +188,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         {ripple && <Ripple ripples={ripples} onClear={clear} />}
       </button>
     );
-  }
+  },
 );
 
 export default Button;

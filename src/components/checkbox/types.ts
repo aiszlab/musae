@@ -18,7 +18,7 @@ export interface ContextValue {
    * @description
    * change handler
    */
-  change: (value: Key) => void;
+  change: (value: Key, isChecked: boolean) => void;
 }
 
 /**
@@ -45,6 +45,13 @@ export interface CheckboxGroupProps {
    * @requires
    */
   children: ReactNode;
+
+  // TODO add to docs
+  /**
+   * @description
+   * change handler
+   */
+  onChange?: (value: Key[]) => void;
 }
 
 /**

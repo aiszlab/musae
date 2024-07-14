@@ -18,7 +18,14 @@ export type TransferProps = {
    * @description
    * value
    */
-  value: Key[];
+  value?: Key[];
+
+  // TODO add to docs
+  /**
+   * @description
+   * titles
+   */
+  titles?: [ReactNode, ReactNode];
 };
 
 /**
@@ -28,9 +35,27 @@ export type TransferProps = {
 export type TransferListProps = {
   /**
    * @description
+   * value
+   */
+  value: Key[];
+
+  /**
+   * @description
    * options
    */
   options: TransferOption[];
+
+  /**
+   * @description
+   * title
+   */
+  title?: ReactNode;
+
+  /**
+   * @description
+   * change handler
+   */
+  onChange: (keys: Key[]) => void;
 };
 
 /**
@@ -42,11 +67,11 @@ export type TransferItemProps = {
    * @description
    * value
    */
-  value: Key
+  value: Key;
 
   /**
    * @description
    * label
    */
-  label: ReactNode
-}
+  label: ReactNode;
+};
