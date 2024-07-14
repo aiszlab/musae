@@ -1,4 +1,4 @@
-import React, { CSSProperties } from "react";
+import React, { type CSSProperties } from "react";
 import type { TransferListProps } from "./types";
 import stylex from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";

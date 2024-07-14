@@ -1,4 +1,4 @@
-import React, { Key, useCallback, useRef, useState } from "react";
+import React from "react";
 import { useTransfer } from "./hooks";
 import type { TransferProps } from "./types";
 import List from "./list";
