@@ -73,5 +73,5 @@ export interface ContextValue {
    * @description
    * toggle theme mode, if dark, change to light
    */
-  toggle: (event: MouseEvent) => void;
+  toggle: (event?: MouseEvent) => void;
 }

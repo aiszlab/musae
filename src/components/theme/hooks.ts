@@ -1,4 +1,4 @@
-import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
+import { MouseEvent, createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
 import type { Palette, ContextValue, Theme, Mode } from "./types";
 import { toColors } from "../../utils/colors";
 import { isFunction, useEvent, useMounted } from "@aiszlab/relax";
@@ -181,10 +181,6 @@ export const useSwitchable = ({ theme }: { theme: Theme }) => {
     dark: stylex.props(styles.dark),
   };
 
-  const _toggle = useCallback(() => {
-    setMode((_mode) => (_mode === "light" ? "dark" : "light"));
-  }, []);
-
   const repaint = useEvent((_mode: Mode) => {
     const _isDark = _mode === "dark";
 
@@ -203,39 +199,37 @@ export const useSwitchable = ({ theme }: { theme: Theme }) => {
       .pipe(distinctUntilChanged())
       .subscribe((_mode) => {
         repaint(_mode);
+        setMode(_mode);
       });
   });
 
-  useEffect(() => {
-    trigger.current?.next(mode);
-  }, [mode]);
+  // dark, light mode switch
+  const toggle = useEvent((event?: MouseEvent) => {
+    const modeSwitchTo = isDark ? "light" : "dark";
 
-  /// dark, light mode switch
-  const toggle = useEvent<ContextValue["toggle"]>((event) => {
-    if (!(event && isFunction(document.startViewTransition))) {
-      _toggle();
+    // dom not support animation
+    if (!isFunction(document.startViewTransition)) {
+      trigger.current?.next(modeSwitchTo);
       return;
     }
 
-    const x = event.clientX;
-    const y = event.clientY;
-    const radius = Math.hypot(Math.max(x, window.innerWidth - x), Math.max(y, window.innerHeight - y));
-
     const animation = document.startViewTransition(() => {
-      trigger.current?.next(isDark ? "light" : "dark");
+      trigger.current?.next(modeSwitchTo);
     });
 
     animation.ready.then(() => {
-      _toggle();
-
+      const x = event?.clientX ?? 0;
+      const y = event?.clientY ?? 0;
+      const radius = Math.hypot(Math.max(x, window.innerWidth - x), Math.max(y, window.innerHeight - y));
       const clipPath = [`circle(0px at ${x}px ${y}px)`, `circle(${radius}px at ${x}px ${y}px)`];
+
       document.documentElement.animate(
         { clipPath: isDark ? [...clipPath].reverse() : clipPath },
         {
           duration: 300,
           easing: "ease-in",
           pseudoElement: isDark ? "::view-transition-old(root)" : "::view-transition-new(root)",
-        }
+        },
       );
     });
   });
@@ -243,6 +237,6 @@ export const useSwitchable = ({ theme }: { theme: Theme }) => {
   return {
     mode,
     toggle,
-    colors: colors,
+    colors,
   };
 };
