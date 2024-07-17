@@ -60,6 +60,7 @@ export enum ComponentToken {
   Collapse,
   Waterfall,
   Transfer,
+  Badge,
 }
 
 /**
@@ -296,6 +297,10 @@ export enum TransferClassToken {
   Body,
   Item,
   Operation,
+}
+export enum BadgeClassToken {
+  Badge,
+  Tail,
 }
 
 /**
@@ -534,6 +539,10 @@ export const CLASS_NAMES = {
     [TransferClassToken.Item]: "transfer__list-item",
     [TransferClassToken.Header]: "transfer__list-header",
     [TransferClassToken.Body]: "transfer__list-body",
+  },
+  [ComponentToken.Badge]: {
+    [BadgeClassToken.Badge]: "badge",
+    [BadgeClassToken.Tail]: "badge__tail",
   },
 };
 
