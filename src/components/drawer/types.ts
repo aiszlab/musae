@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import type { Dismissable } from "../../hooks/use-dismissable";
+import type { Closable } from "../../hooks/use-closable";
 
 export type Placement = "right" | "left" | "top" | "bottom";
 
@@ -41,7 +41,7 @@ export interface DrawerProps {
    * Whether the drawer can be closed by clicking on the overlay or pressing the Esc key.
    * @default true
    */
-  dismissable?: boolean | Dismissable[];
+  closable?: boolean | Closable[];
 
   /**
    * @description
@@ -69,8 +69,8 @@ export type PopupProps = DrawerProps & {
   /* {DrawerProps.size} */
   size: number;
 
-  /* {DrawerProps.dismissable} */
-  dismissable: boolean | Dismissable[];
+  /* {DrawerProps.closable} */
+  closable: boolean | Closable[];
 
   /* {DrawerProps.placement} */
   placement: Placement;

@@ -66,8 +66,12 @@ const Popover = <P extends ChildProps<T>, T extends HTMLElement>({
     ref: childRef,
     ...hoverProps,
     ...focusProps,
-    onClick: triggerBy.has("click") ? click : void 0,
-    onContextMenu: triggerBy.has("contextMenu") ? contextMenu : void 0,
+    ...(triggerBy.has("click") && {
+      onClick: click,
+    }),
+    ...(triggerBy.has("contextMenu") && {
+      onContextMenu: contextMenu,
+    }),
   });
 
   const enterPopper = useEvent((e: PointerEvent<HTMLDivElement>) => {

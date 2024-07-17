@@ -58,7 +58,7 @@ const Preview = forwardRef<PreviewRef, PreviewProps>(({ onClose, src, alt }, ref
         },
       };
     },
-    []
+    [],
   );
 
   const styled = stylex.props(styles.image({ scale, rotate, flipX: isFlipX ? -1 : 1, flipY: isFlipY ? -1 : 1 }));
@@ -70,7 +70,7 @@ const Preview = forwardRef<PreviewRef, PreviewProps>(({ onClose, src, alt }, ref
         open
         onClose={onClose}
         footer={false}
-        dismissable={["esc"]}
+        closable={["esc"]}
         styles={{
           panel: {
             backgroundColor: "transparent",

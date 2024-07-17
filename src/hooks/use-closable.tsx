@@ -6,7 +6,7 @@ import { spacing } from "../components/theme/tokens.stylex";
 import { Close } from "../components/icon/icons";
 import { Keyboard } from "../utils/keyboard";
 
-export type Dismissable = "esc" | "overlay" | "close";
+export type Closable = "esc" | "overlay" | "close";
 
 const styles = stylex.create({
   closer: {
@@ -17,23 +17,25 @@ const styles = stylex.create({
 
 /**
  * @description
- * for dialog, dismiss means some events or some elements
+ * for dialog, close means some events or some elements
  * in musae, we use a hook to handle this
  *
- * by default, dismissable may be different type, like `false` | ['esc'] | undefined
- * resolve these types, we convert to `Set<Dismissable>`
+ * by default, closable may be different type, like `false` | ['esc'] | undefined
+ * resolve these types, we convert to `Set<Closable>`
  */
-export const useDismissable = (props: { onClose?: VoidFunction; dismissable: boolean | Dismissable[] }) => {
-  const dismissable = useMemo<Set<Dismissable>>(() => {
-    if (isUndefined(props.dismissable) || props.dismissable === true) {
+export const useClosable = ({ onClose, closable }: { onClose?: VoidFunction; closable: boolean | Closable[] }) => {
+  // convert closable to enum sets
+  const triggers = useMemo<Set<Closable>>(() => {
+    if (isUndefined(closable) || closable === true) {
       return new Set(["close", "esc", "overlay"]);
     }
-    return new Set(props.dismissable || []);
-  }, [props.dismissable]);
+    return new Set(closable || []);
+  }, [closable]);
 
-  /// closer for dialog
+  // closer react element for dialog
   const closer = useMemo(() => {
-    if (!dismissable.has("close")) return null;
+    if (!triggers.has("close")) return null;
+
     const styled = stylex.props(styles.closer);
 
     return (
@@ -41,7 +43,7 @@ export const useDismissable = (props: { onClose?: VoidFunction; dismissable: boo
         shape="circular"
         variant="text"
         prefix={<Close />}
-        onClick={props.onClose}
+        onClick={onClose}
         className={styled.className}
         style={{
           ...styled.style,
@@ -50,18 +52,18 @@ export const useDismissable = (props: { onClose?: VoidFunction; dismissable: boo
         size="small"
       />
     );
-  }, [dismissable, props.onClose]);
+  }, [triggers, onClose]);
 
   /// overlay click callback
   const onOverlayClick = useEvent(() => {
-    if (!dismissable.has("overlay")) return;
-    props.onClose?.();
+    if (!triggers.has("overlay")) return;
+    onClose?.();
   });
 
   /// esc key press callback
   const onKeyDown = useEvent((e: KeyboardEvent<HTMLDivElement>) => {
     if (e.key !== Keyboard.Escape) return;
-    props.onClose?.();
+    onClose?.();
   });
 
   return {

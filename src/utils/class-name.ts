@@ -61,6 +61,8 @@ export enum ComponentToken {
   Waterfall,
   Transfer,
   Badge,
+  Skeleton,
+  VisuallyHidden,
 }
 
 /**
@@ -301,6 +303,13 @@ export enum TransferClassToken {
 export enum BadgeClassToken {
   Badge,
   Tail,
+}
+export enum SkeletonClassToken {
+  Skeleton,
+  Circular,
+}
+export enum VisuallyHiddenClassToken {
+  VisuallyHidden,
 }
 
 /**
@@ -543,6 +552,13 @@ export const CLASS_NAMES = {
   [ComponentToken.Badge]: {
     [BadgeClassToken.Badge]: "badge",
     [BadgeClassToken.Tail]: "badge__tail",
+  },
+  [ComponentToken.Skeleton]: {
+    [SkeletonClassToken.Skeleton]: "skeleton",
+    [SkeletonClassToken.Circular]: "skeleton--circular",
+  },
+  [ComponentToken.VisuallyHidden]: {
+    [VisuallyHiddenClassToken.VisuallyHidden]: "visually-hidden",
   },
 };
 

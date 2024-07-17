@@ -51,6 +51,7 @@ export { Collapse } from "./components/collapse";
 export { FloatingActionButton } from "./components/floating-action-button";
 export { Transfer } from "./components/transfer";
 export { Badge } from "./components/badge";
+export { Skeleton } from "./components/skeleton";
 
 /**
  * @description

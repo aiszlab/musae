@@ -1,7 +1,7 @@
 import Context from "./context";
 import React, { useCallback, useMemo } from "react";
 import type { ContextValue, CheckboxGroupProps } from "./types";
-import { useControlledState, toggle } from "@aiszlab/relax";
+import { useControlledState } from "@aiszlab/relax";
 
 const Group = ({ value: controlledValue, children, onChange, disabled = false }: CheckboxGroupProps) => {
   const [_value, setValue] = useControlledState(controlledValue!, {
@@ -25,7 +25,7 @@ const Group = ({ value: controlledValue, children, onChange, disabled = false }:
       onChange?.(_checkedKeys);
       setValue(_checkedKeys);
     },
-    [setValue, value],
+    [onChange, setValue, value],
   );
 
   // context value

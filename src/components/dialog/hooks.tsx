@@ -10,7 +10,7 @@ import { Button } from "../button";
 export const useFooter = ([footer, onConfirm, onClose]: [
   footer: PopupProps["footer"],
   onConfirm: PopupProps["onConfirm"],
-  onClose: PopupProps["onClose"]
+  onClose: PopupProps["onClose"],
 ]) => {
   return useMemo(() => {
     return (

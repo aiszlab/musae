@@ -11,7 +11,7 @@ import { ColorToken } from "../../utils/colors";
 import { typography } from "../theme/theme";
 import clsx from "clsx";
 import { contains } from "@aiszlab/relax/dom";
-import { useDismissable } from "../../hooks/use-dismissable";
+import { useClosable } from "../../hooks/use-closable";
 
 const styles = stylex.create({
   header: {
@@ -70,7 +70,7 @@ const styles = stylex.create({
   },
 });
 
-const Popup = ({ onClose, open, dismissable, onClosed, ...props }: PopupProps) => {
+const Popup = ({ onClose, open, closable, onClosed, ...props }: PopupProps) => {
   const classNames = useClassNames(ComponentToken.Dialog);
   const [scope, animate] = useAnimate<HTMLDivElement>();
   const theme = useTheme();
@@ -79,7 +79,7 @@ const Popup = ({ onClose, open, dismissable, onClosed, ...props }: PopupProps) =
 
   /// children render hooks
   const footer = useFooter([props.footer, props.onConfirm, onClose]);
-  const { closer, onKeyDown, onOverlayClick } = useDismissable({ dismissable, onClose });
+  const { closer, onKeyDown, onOverlayClick } = useClosable({ closable, onClose });
 
   useEffect(() => {
     (async () => {
@@ -115,12 +115,12 @@ const Popup = ({ onClose, open, dismissable, onClosed, ...props }: PopupProps) =
     overlay: stylex.props(
       styles.overlay({
         backgroundColor: theme.colors[ColorToken.SurfaceDim],
-      })
+      }),
     ),
     panel: stylex.props(
       styles.panel({
         backgroundColor: theme.colors[ColorToken.SurfaceContainerLowest],
-      })
+      }),
     ),
     header: stylex.props(styles.header, typography.headline.small),
     body: stylex.props(typography.body.medium, styles.body),

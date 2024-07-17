@@ -1,5 +1,5 @@
 import type { CSSProperties, ReactNode } from "react";
-import type { Dismissable } from "../../hooks/use-dismissable";
+import type { Closable } from "../../hooks/use-closable";
 import { RequiredIn } from "@aiszlab/relax/types";
 
 /**
@@ -33,7 +33,7 @@ export interface DialogProps {
    * Whether the dialog can be closed by clicking on the overlay or pressing the Esc key.
    * @default true
    */
-  dismissable?: boolean | Dismissable[];
+  closable?: boolean | Closable[];
 
   /**
    * @description
@@ -76,7 +76,7 @@ export interface DialogProps {
  * @description
  * popup
  */
-export type PopupProps = RequiredIn<DialogProps, "dismissable"> & {
+export type PopupProps = RequiredIn<DialogProps, "closable"> & {
   /**
    * @description
    * callback will be toggled after close animation end

@@ -4,7 +4,7 @@ import type { DialogProps } from "./types";
 import Popup from "./popup";
 import { useBoolean } from "@aiszlab/relax";
 
-const Dialog = ({ open, dismissable = true, ...props }: DialogProps) => {
+const Dialog = ({ open, closable = true, ...props }: DialogProps) => {
   /// `Portal` should disappear after `Dialog` disappear completely
   const [_isVisible, { turnOn, turnOff }] = useBoolean(false);
 
@@ -17,7 +17,7 @@ const Dialog = ({ open, dismissable = true, ...props }: DialogProps) => {
 
   return (
     <Portal open={open || _isVisible} lockable>
-      <Popup {...props} dismissable open={open} onClosed={turnOff} />
+      <Popup {...props} closable open={open} onClosed={turnOff} />
     </Portal>
   );
 };
