@@ -27,6 +27,7 @@ const styles = {
       borderRadius: sizes.infinity,
       minWidth: sizes.xxxsmall,
       textAlign: "center",
+      boxShadow: `0 0 0 ${sizes.smallest} ${props.color}`,
 
       backgroundColor: props.backgroundColor,
       color: props.color,
@@ -35,10 +36,14 @@ const styles = {
     dot: {
       minWidth: null,
     },
+
+    invisible: {
+      display: "none",
+    },
   }),
 };
 
-const Badge = ({ className, style, children, content }: BadgeProps) => {
+const Badge = ({ className, style, children, content, invisible = false }: BadgeProps) => {
   const classNames = useClassNames(ComponentToken.Badge);
   const theme = useTheme();
   const isDot = isVoid(content);
@@ -52,6 +57,7 @@ const Badge = ({ className, style, children, content }: BadgeProps) => {
       }),
       isDot && styles.tail.dot,
       typography.label.small,
+      invisible && styles.tail.invisible,
     ),
   };
 
@@ -64,6 +70,7 @@ const Badge = ({ className, style, children, content }: BadgeProps) => {
       }}
     >
       {children}
+
       <span className={clsx(classNames[BadgeClassToken.Tail], styled.tail.className)} style={styled.tail.style}>
         {content}
       </span>

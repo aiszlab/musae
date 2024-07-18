@@ -23,12 +23,13 @@ const OtpInput = ({ length = 6, onChange, value: _value }: OtpInputProps) => {
   const inputRefs = useRef(Array.from<InputRef | null>({ length }).fill(null));
   const [focusedAt, setFocusedAt] = useState(0);
 
-  const refocus = useEvent((foucsAt: number) => {
-    const _foucsAt = clamp(foucsAt, 0, length - 1);
-    // handle input
-    inputRefs.current[_foucsAt]?.focus?.();
-    inputRefs.current[_foucsAt]?.select?.();
-    setFocusedAt(_foucsAt);
+  const refocus = useEvent((_foucsAt: number) => {
+    const foucsAt = clamp(_foucsAt, 0, length - 1);
+
+    // handle input, only select when prev input
+    inputRefs.current[foucsAt]?.focus?.();
+    _foucsAt < length && inputRefs.current[foucsAt]?.select?.();
+    setFocusedAt(foucsAt);
   });
 
   const changeValue = useEvent((value: string) => {

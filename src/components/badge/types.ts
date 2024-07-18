@@ -17,4 +17,10 @@ export type BadgeProps = ComponentProps & {
    * content
    */
   content?: ReactNode;
+
+  /**
+   * @description
+   * invisible
+   */
+  invisible?: boolean;
 };
