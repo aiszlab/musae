@@ -35,17 +35,18 @@ const Popover = <P extends ChildProps<T>, T extends HTMLElement>({
   const classNames = useClassNames(ComponentToken.Popover);
   const childRef = useRefs(_ref, _children.props.ref);
 
-  const click = useEvent((e: MouseEvent<T>) => {
-    toggle();
+  const onClick = useEvent((e: MouseEvent<T>) => {
     e.stopPropagation();
+    toggle();
   });
-  const contextMenu = useEvent(() => {
+  const onContextMenu = useEvent(() => {
     turnOn();
   });
 
   const [isHovered, hoverProps] = useHover<T>({
-    onEnter: () => chain(_children.props.onMouseOver, _children.props.onMouseEnter, _children.props.onPointerEnter),
-    onLeave: () => chain(_children.props.onMouseLeave, _children.props.onPointerLeave),
+    onEnter: (event) =>
+      chain(_children.props.onMouseOver, _children.props.onMouseEnter, _children.props.onPointerEnter)(event),
+    onLeave: (event) => chain(_children.props.onMouseLeave, _children.props.onPointerLeave)(event),
   });
   const [isFocused, focusProps] = useFocus({
     onFocus: _children.props.onFocus,
@@ -67,10 +68,10 @@ const Popover = <P extends ChildProps<T>, T extends HTMLElement>({
     ...hoverProps,
     ...focusProps,
     ...(triggerBy.has("click") && {
-      onClick: click,
+      onClick,
     }),
     ...(triggerBy.has("contextMenu") && {
-      onContextMenu: contextMenu,
+      onContextMenu,
     }),
   });
 
