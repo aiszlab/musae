@@ -21,29 +21,51 @@ const styles = {
   tail: stylex.create({
     default: (props: { backgroundColor: CSSProperties["backgroundColor"]; color: CSSProperties["color"] }) => ({
       position: "absolute",
-      top: 0,
-      right: 0,
-      transform: "translateX(50%) translateY(-50%)",
       borderRadius: sizes.infinity,
       minWidth: sizes.xxxsmall,
       textAlign: "center",
       boxShadow: `0 0 0 ${sizes.smallest} ${props.color}`,
-
       backgroundColor: props.backgroundColor,
       color: props.color,
     }),
 
     dot: {
       minWidth: null,
+      width: sizes.xxxxsmall,
+      height: sizes.xxxxsmall,
     },
 
     invisible: {
       display: "none",
     },
+
+    ["top-right"]: {
+      top: 0,
+      right: 0,
+      transform: "translateX(50%) translateY(-50%)",
+    },
+
+    ["top-left"]: {
+      top: 0,
+      left: 0,
+      transform: "translateX(-50%) translateY(-50%)",
+    },
+
+    ["bottom-right"]: {
+      bottom: 0,
+      right: 0,
+      transform: "translateX(50%) translateY(50%)",
+    },
+
+    ["bottom-left"]: {
+      bottom: 0,
+      left: 0,
+      transform: "translateX(-50%) translateY(50%)",
+    },
   }),
 };
 
-const Badge = ({ className, style, children, content, invisible = false }: BadgeProps) => {
+const Badge = ({ className, style, children, content, invisible = false, placement = "top-right" }: BadgeProps) => {
   const classNames = useClassNames(ComponentToken.Badge);
   const theme = useTheme();
   const isDot = isVoid(content);
@@ -58,6 +80,7 @@ const Badge = ({ className, style, children, content, invisible = false }: Badge
       isDot && styles.tail.dot,
       typography.label.small,
       invisible && styles.tail.invisible,
+      styles.tail[placement],
     ),
   };
 

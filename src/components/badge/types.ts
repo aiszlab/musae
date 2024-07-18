@@ -1,5 +1,7 @@
-import { ReactNode } from "react";
-import { ComponentProps } from "../../types/element";
+import type { ReactNode } from "react";
+import type { ComponentProps } from "../../types/element";
+
+type Placement = "top-right" | "top-left" | "bottom-right" | "bottom-left";
 
 /**
  * @description
@@ -9,18 +11,28 @@ export type BadgeProps = ComponentProps & {
   /**
    * @description
    * children
+   * @requires
    */
   children: ReactNode;
 
   /**
    * @description
    * content
+   * @default void 0
    */
   content?: ReactNode;
 
   /**
    * @description
    * invisible
+   * @default false
    */
   invisible?: boolean;
+
+  /**
+   * @description
+   * placement
+   * @default "top-right"
+   */
+  placement?: Placement;
 };
