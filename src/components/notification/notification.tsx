@@ -124,7 +124,22 @@ const Notification = ({
 
   // after duration, `Notification` will auto destroy
   useTimeout(async () => {
-    await animate(scope.current, { opacity: 0, marginTop: scope.current.getBoundingClientRect().height * -1 });
+    switch (placement) {
+      case "bottom":
+      case "bottomLeft":
+      case "bottomRight":
+        await animate(scope.current, {
+          opacity: 0,
+          marginBottom: (scope.current.getBoundingClientRect().height + 12) * -1,
+        });
+        break;
+      default:
+        await animate(scope.current, {
+          opacity: 0,
+          marginTop: (scope.current.getBoundingClientRect().height + 12) * -1,
+        });
+        break;
+    }
     onClose?.();
   }, duration);
 
@@ -135,7 +150,7 @@ const Notification = ({
         color: theme.colors[ColorToken.OnPrimaryContainer],
         transform: _placement[0],
       }),
-      !title && styles.notification.simple
+      !title && styles.notification.simple,
     ),
     leading: stylex.props(styles.leading.default),
     title: stylex.props(typography.title.medium, styles.title.default),
