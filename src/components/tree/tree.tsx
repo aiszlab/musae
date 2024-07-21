@@ -8,15 +8,26 @@ import { useExpandedKeys, useSelectedKeys } from "./hooks";
 const Tree = ({
   expandedKeys: _expandedKeys,
   onExpand,
+  onSelect,
   className,
   style,
   nodes,
   selectable = true,
   selectedKeys: _selectedKeys,
+  defaultExpandedKeys = [],
+  defaultSelectedKeys = [],
 }: TreeProps) => {
   const { toggledKeys: checkedKeys, toggle: check } = useTogglable(nodes);
-  const { expandedKeys, toggle: expand } = useExpandedKeys([_expandedKeys, onExpand]);
-  const { selectedKeys, toggle: select } = useSelectedKeys({ selectedKeys: _selectedKeys });
+  const { expandedKeys, toggle: expand } = useExpandedKeys({
+    expandedKeys: _expandedKeys,
+    onExpand,
+    defaultExpandedKeys,
+  });
+  const { selectedKeys, toggle: select } = useSelectedKeys({
+    selectedKeys: _selectedKeys,
+    defaultSelectedKeys,
+    onSelect,
+  });
 
   const contextValue = useMemo<ContextValue>(() => {
     return {

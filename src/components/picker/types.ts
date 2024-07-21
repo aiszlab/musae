@@ -41,7 +41,7 @@ export interface PickerProps extends ComponentProps {
    * @description
    * click handler
    */
-  onClick?: MouseEventHandler<HTMLDivElement>;
+  onClick?: MouseEventHandler<HTMLSpanElement>;
 
   /**
    * @description

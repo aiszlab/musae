@@ -34,7 +34,7 @@ const Clock = ({ value, onChange }: ClockProps) => {
               onChange?.(Object.values({ ...[0, 0, 0], ...value, [index]: _value }) as Required<ClockProps>["value"]);
             }}
           />,
-          index === columns.length - 1 ? null : <Divider type="vertical" />,
+          index === columns.length - 1 ? null : <Divider type="vertical" key={`${unit}-divider`} />,
         ];
       })}
     </div>

@@ -6,23 +6,31 @@ import type { ContextValue, TreeProps } from "./types";
  * @description
  * expanded keys
  */
-export const useExpandedKeys = ([expandedKeys, onExpand]: [TreeProps["expandedKeys"], TreeProps["onExpand"]]) => {
-  const [_expandedKeys, _setExpandedKeys] = useControlledState(expandedKeys);
+export const useExpandedKeys = ({
+  expandedKeys,
+  onExpand,
+  defaultExpandedKeys,
+}: {
+  expandedKeys?: Key[];
+  onExpand: TreeProps["onExpand"];
+  defaultExpandedKeys: Key[];
+}) => {
+  const [_expandedKeys, _setExpandedKeys] = useControlledState(expandedKeys!, { defaultState: defaultExpandedKeys });
   const readableExpandedKeys = useMemo(() => new Set(_expandedKeys), [_expandedKeys]);
 
-  const toggle = useCallback<Required<ContextValue>["onExpand"]>(
-    (key) => {
+  const toggle = useCallback(
+    (key: Key) => {
       // deal expanding key
-      const readableExpandingKeys = new Set(_expandedKeys);
-      readableExpandingKeys.has(key) ? readableExpandingKeys.delete(key) : readableExpandingKeys.add(key);
-      const expandingKeys = Array.from(readableExpandingKeys);
+      const _keys = new Set(_expandedKeys);
+      _keys.has(key) ? _keys.delete(key) : _keys.add(key);
+      const expandingKeys = Array.from(_keys);
 
       // change inner state
       // emit change handler
       _setExpandedKeys(expandingKeys);
       onExpand?.(expandingKeys);
     },
-    [_expandedKeys, _setExpandedKeys, onExpand]
+    [_expandedKeys, _setExpandedKeys, onExpand],
   );
 
   return {
@@ -35,18 +43,25 @@ export const useExpandedKeys = ([expandedKeys, onExpand]: [TreeProps["expandedKe
  * @description
  * selected keys
  */
-export const useSelectedKeys = ({ selectedKeys: _selectedKeys }: { selectedKeys?: Key[] }) => {
-  const [selectedKeys, setSelectedKeys] = useControlledState(_selectedKeys);
-  const __selectedKeys = useMemo(() => new Set(selectedKeys), [selectedKeys]);
+export const useSelectedKeys = ({
+  selectedKeys: _selectedKeys,
+  defaultSelectedKeys,
+  onSelect,
+}: {
+  selectedKeys?: Key[];
+  defaultSelectedKeys: Key[];
+  onSelect?: (key: Key) => void;
+}) => {
+  const [selectedKeys, setSelectedKeys] = useControlledState(_selectedKeys!, { defaultState: defaultSelectedKeys });
+  const readableSelectedKeys = useMemo(() => new Set(selectedKeys), [selectedKeys]);
 
   const toggle = useEvent((key: Key) => {
-    setSelectedKeys(() => {
-      return Array.from([key]);
-    });
+    setSelectedKeys(() => [key]);
+    onSelect?.(key);
   });
 
   return {
-    selectedKeys: __selectedKeys,
+    selectedKeys: readableSelectedKeys,
     toggle,
   };
 };

@@ -1,4 +1,4 @@
-import { useRefs, useHover, chain, toArray, useBoolean, useEvent, useFocus } from "@aiszlab/relax";
+import { useRefs, useHover, chain, toArray, useBoolean, useEvent, useFocus, useClickAway } from "@aiszlab/relax";
 import React, { type MouseEvent, cloneElement, useMemo, useRef, type PointerEvent } from "react";
 import type { ChildProps, PopoverProps } from "./types";
 import { Popper } from "../popper";
@@ -30,16 +30,18 @@ const Popover = <P extends ChildProps<T>, T extends HTMLElement>({
   children: _children,
 }: PopoverProps<P, T>) => {
   const _ref = useRef<Element>(null);
-  const [_isOpen, { toggle, turnOn }] = useBoolean(false);
+  const [_isOpen, { toggle, turnOn, turnOff }] = useBoolean(false);
   const triggerBy = useMemo(() => new Set(toArray(_triggerBy)), [_triggerBy]);
   const classNames = useClassNames(ComponentToken.Popover);
   const childRef = useRefs(_ref, _children.props.ref);
+  const popperRef = useRef<HTMLDivElement>(null);
 
   const onClick = useEvent((e: MouseEvent<T>) => {
     e.stopPropagation();
     toggle();
   });
-  const onContextMenu = useEvent(() => {
+  const onContextMenu = useEvent((e: MouseEvent<T>) => {
+    e.preventDefault();
     turnOn();
   });
 
@@ -82,6 +84,10 @@ const Popover = <P extends ChildProps<T>, T extends HTMLElement>({
     hoverProps.onPointerLeave(e as unknown as PointerEvent<T>);
   });
 
+  useClickAway(() => {
+    turnOff();
+  }, popperRef);
+
   const styled = {
     popover: stylex.props(styles.popover, typography.body.medium),
     title: stylex.props(styles.title, typography.title.medium),
@@ -100,6 +106,7 @@ const Popover = <P extends ChildProps<T>, T extends HTMLElement>({
           onPointerLeave: leavePopper,
         })}
         placement={placement}
+        ref={popperRef}
       >
         <div
           className={clsx(classNames[PopoverClassToken.Popover], className, styled.popover.className)}

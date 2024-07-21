@@ -46,6 +46,13 @@ export type TreeProps = ComponentProps & {
 
   /**
    * @description
+   * default expanded keys
+   * @default []
+   */
+  defaultExpandedKeys?: Key[];
+
+  /**
+   * @description
    * expand handler
    * @default void 0
    */
@@ -64,6 +71,20 @@ export type TreeProps = ComponentProps & {
    * @default void 0
    */
   selectedKeys?: Key[];
+
+  /**
+   * @description
+   * default selected keys
+   * @default []
+   */
+  defaultSelectedKeys?: Key[];
+
+  /**
+   * @description
+   * select handler
+   * @default void 0
+   */
+  onSelect?: (key: Key) => void;
 };
 
 /**

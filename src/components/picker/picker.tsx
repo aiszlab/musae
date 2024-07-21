@@ -5,10 +5,10 @@ import React, {
   useImperativeHandle,
   type MouseEvent,
   type CSSProperties,
+  type FocusEvent,
 } from "react";
 import { Popper } from "../popper";
-import { useBoolean, useFocus, chain } from "@aiszlab/relax";
-import { useEvents } from "./hooks";
+import { useBoolean, useFocus, useEvent } from "@aiszlab/relax";
 import type { PickerProps, PickerRef } from "./types";
 import { ComponentToken, PickerClassToken } from "../../utils/class-name";
 import { useClassNames } from "../../hooks/use-class-names";
@@ -41,7 +41,7 @@ const Picker = forwardRef<PickerRef, PickerProps>(
       onPopperExited,
       onPopperExite,
     },
-    ref
+    ref,
   ) => {
     const trigger = useRef<HTMLDivElement>(null);
     const [isOpen, { turnOff: close, toggle, turnOn: open }] = useBoolean();
@@ -49,7 +49,6 @@ const Picker = forwardRef<PickerRef, PickerProps>(
     const theme = useTheme();
     const pickableRef = useRef<HTMLDivElement>(null);
 
-    const onDropdownClick = useCallback((e: MouseEvent<HTMLDivElement>) => e.preventDefault(), []);
     const getDropdownWidth = useCallback(() => {
       if (!popupWidth) return void 0;
       if (!trigger.current) return void 0;
@@ -60,25 +59,35 @@ const Picker = forwardRef<PickerRef, PickerProps>(
       close,
     }));
 
-    /// events
-    const { blur, click } = useEvents({
-      onBlur: close,
-      onClick: chain(onClick, toggle),
+    const click = useEvent((event: MouseEvent<HTMLSpanElement>) => {
+      event.stopPropagation();
+
+      toggle();
+      onClick?.(event);
     });
+
+    const onBlur = useEvent((e: FocusEvent<HTMLSpanElement>) => {
+      e.stopPropagation();
+
+      close();
+    });
+
     const [isFocused, focusProps] = useFocus<HTMLDivElement>({
-      onBlur: blur,
+      onBlur,
     });
+
+    const onDropdownClick = useCallback((e: MouseEvent<HTMLDivElement>) => e.preventDefault(), []);
 
     const styled = {
       picker: stylex.props(
         typography.body.medium,
         inputStyles.wrapper({ outlineColor: theme.colors[ColorToken.Outline] }),
-        isFocused && inputStyles.focused({ outlineColor: theme.colors[ColorToken.Primary] })
+        isFocused && inputStyles.focused({ outlineColor: theme.colors[ColorToken.Primary] }),
       ),
       pickable: stylex.props(
         styles.pickable({
           minWidth: getDropdownWidth(),
-        })
+        }),
       ),
     };
 
@@ -91,7 +100,7 @@ const Picker = forwardRef<PickerRef, PickerProps>(
               [classNames[PickerClassToken.Focused]]: isFocused,
             },
             className,
-            styled.picker.className
+            styled.picker.className,
           )}
           style={{
             ...styled.picker.style,
@@ -109,11 +118,11 @@ const Picker = forwardRef<PickerRef, PickerProps>(
           trigger={trigger.current}
           open={isOpen}
           className={classNames[PickerClassToken.Dropdown]}
-          // click on popper, keep select focused
-          onMouseDown={onDropdownClick}
           onEntered={onPopperEntered}
           onExit={onPopperExite}
           onExited={onPopperExited}
+          // click on popper, keep select focused
+          onMouseDown={onDropdownClick}
         >
           <div
             ref={pickableRef}
@@ -128,7 +137,7 @@ const Picker = forwardRef<PickerRef, PickerProps>(
         </Popper>
       </Context.Provider>
     );
-  }
+  },
 );
 
 export default Picker;
