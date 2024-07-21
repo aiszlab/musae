@@ -17,7 +17,7 @@ const Dialog = ({ open, closable = true, ...props }: DialogProps) => {
 
   return (
     <Portal open={open || _isVisible} lockable>
-      <Popup {...props} closable open={open} onClosed={turnOff} />
+      <Popup {...props} closable={closable} open={open} onClosed={turnOff} />
     </Portal>
   );
 };

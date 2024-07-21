@@ -31,6 +31,7 @@ const styles = stylex.create({
     cursor: "pointer",
     transition: "transform 0.3s",
     transform: props.isExpanded ? "rotate(90deg)" : null,
+    userSelect: "none",
   }),
 
   title: (props: {
@@ -46,7 +47,12 @@ const styles = stylex.create({
       ":hover": props.hoveredBackgroundColor,
     },
     color: props.isSelected ? props.color : null,
+    cursor: "default",
   }),
+
+  selectable: {
+    cursor: "pointer",
+  },
 });
 
 const Node = ({ value, children, level, onExpand, ...props }: TreeNodeProps) => {
@@ -65,12 +71,13 @@ const Node = ({ value, children, level, onExpand, ...props }: TreeNodeProps) => 
         backgroundColor: theme.colors[ColorToken.SurfaceContainer],
         hoveredBackgroundColor: theme.colors[ColorToken.SurfaceContainer],
         color: theme.colors[ColorToken.Primary],
-      })
+      }),
+      selectable && styles.selectable,
     ),
     expander: stylex.props(
       styles.expander({
         isExpanded,
-      })
+      }),
     ),
   };
 
