@@ -85,6 +85,27 @@ export type TreeProps = ComponentProps & {
    * @default void 0
    */
   onSelect?: (key: Key) => void;
+
+  /**
+   * @description
+   * checked keys
+   * @default void 0
+   */
+  checkedKeys?: Key[];
+
+  /**
+   * @description
+   * default checked keys
+   * @default []
+   */
+  defaultCheckedKeys?: Key[];
+
+  /**
+   * @description
+   * check handler
+   * @default void 0
+   */
+  onCheck?: (keys: Key[]) => void;
 };
 
 /**

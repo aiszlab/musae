@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@aiszlab/relax':
-        specifier: ^1.2.63
-        version: 1.2.63(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        specifier: ^1.2.64
+        version: 1.2.64(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@dnd-kit/core':
         specifier: ^6.1.0
         version: 6.1.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -135,8 +135,8 @@ packages:
   '@adobe/css-tools@4.4.0':
     resolution: {integrity: sha512-Ff9+ksdQQB3rMncgqDK78uLznstjyfIf2Arnh22pW8kBpLs6rpKDwgnZT46hin5Hl1WzazzK64DOrhSwYpS7bQ==}
 
-  '@aiszlab/relax@1.2.63':
-    resolution: {integrity: sha512-Wn3hp4M8SimY3eHgliEciuT6hZu476fw/inJSUxAE0gggg16f8GCl45QMg+I9/VY0Ebagq3uRvt0Fuef2Cw/Sg==}
+  '@aiszlab/relax@1.2.64':
+    resolution: {integrity: sha512-UE7gNwz00wg0/6cjp89qgDPj1/sC/GLsIehpU3uq9MHo7e0K8etyVNMppove32eKxqXBeuSNVJ50OCNHTBPlnQ==}
     peerDependencies:
       react: '18'
       react-dom: '18'
@@ -3692,7 +3692,7 @@ snapshots:
 
   '@adobe/css-tools@4.4.0': {}
 
-  '@aiszlab/relax@1.2.63(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@aiszlab/relax@1.2.64(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)

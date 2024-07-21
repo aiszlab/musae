@@ -6,18 +6,26 @@ import { useTogglable } from "@aiszlab/relax";
 import { useExpandedKeys, useSelectedKeys } from "./hooks";
 
 const Tree = ({
-  expandedKeys: _expandedKeys,
-  onExpand,
-  onSelect,
   className,
   style,
   nodes,
   selectable = true,
+
+  expandedKeys: _expandedKeys,
   selectedKeys: _selectedKeys,
+  checkedKeys: _checkedKeys,
   defaultExpandedKeys = [],
   defaultSelectedKeys = [],
+  defaultCheckedKeys = [],
+  onExpand,
+  onSelect,
+  onCheck,
 }: TreeProps) => {
-  const { toggledKeys: checkedKeys, toggle: check } = useTogglable(nodes);
+  const { toggledKeys: checkedKeys, toggle: check } = useTogglable(nodes, {
+    defaultToggledKeys: defaultCheckedKeys,
+    toggledKeys: _checkedKeys,
+    onToggle: onCheck,
+  });
   const { expandedKeys, toggle: expand } = useExpandedKeys({
     expandedKeys: _expandedKeys,
     onExpand,
