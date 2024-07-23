@@ -2,6 +2,7 @@ import resolve from "@rollup/plugin-node-resolve";
 import typescript from "@rollup/plugin-typescript";
 import stylex from "@stylexjs/rollup-plugin";
 import commonjs from "@rollup/plugin-commonjs";
+import babel from "@rollup/plugin-babel";
 
 import pkg from "./package.json" assert { type: "json" };
 
@@ -10,6 +11,7 @@ import { dirname } from "path";
 
 const CSS_ASSET_FILENAME = "stylex.css";
 const ENTRY = "index";
+const EXTENSIONS = [".ts", ".tsx", ".js", ".jsx"];
 
 /**
  * @type {import("rollup").RollupOptions["input"]}
@@ -68,6 +70,11 @@ const config = () => {
           type: "commonJS",
           rootDir: dirname(fileURLToPath(import.meta.url)),
         },
+      }),
+
+      babel({
+        babelHelpers: "bundled",
+        extensions: EXTENSIONS,
       }),
     ],
 
