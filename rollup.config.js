@@ -64,7 +64,7 @@ const config = () => {
       typescript(),
 
       // bundler will generate when production mode
-      ...((isProd && [
+      isProd &&
         stylex({
           fileName: CSS_ASSET_FILENAME,
           classNamePrefix: "musae-",
@@ -73,14 +73,12 @@ const config = () => {
             rootDir: dirname(fileURLToPath(import.meta.url)),
           },
         }),
-      ]) ||
-        []),
 
       babel({
         babelHelpers: "runtime",
         extensions: EXTENSIONS,
       }),
-    ],
+    ].filter(Boolean),
 
     external: [...Object.keys(pkg.dependencies), ...Object.keys(pkg.peerDependencies), /@babel\/runtime/],
   };

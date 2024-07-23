@@ -19,7 +19,7 @@ const config = (api) => {
     plugins: [
       // not in production mode
       // use stylex babel plugin to transform stylex
-      ...((!isProd && [
+      !isProd && [
         stylex,
         {
           dev: isDev,
@@ -29,15 +29,14 @@ const config = (api) => {
             rootDir: __dirname,
           },
         },
-      ]) ||
-        []),
+      ],
 
       // add runtime helpers
       // must add version, in babel runtime, default version is 7.0.0
       // at next time, @babel/runtime had upgrade many times and add many new apis
       // jusy like `_objectSpread`, if use old version, this api will be bundled into every entry file
       ["@babel/plugin-transform-runtime", { version: pkg.dependencies["@babel/runtime"] }],
-    ],
+    ].filter(Boolean),
   };
 };
 
