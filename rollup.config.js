@@ -63,14 +63,19 @@ const config = () => {
       }),
       typescript(),
 
-      stylex({
-        fileName: CSS_ASSET_FILENAME,
-        classNamePrefix: "musae-",
-        unstable_moduleResolution: {
-          type: "commonJS",
-          rootDir: dirname(fileURLToPath(import.meta.url)),
-        },
-      }),
+      // bundler will generate when production mode
+      ...(isProd
+        ? [
+            stylex({
+              fileName: CSS_ASSET_FILENAME,
+              classNamePrefix: "musae-",
+              unstable_moduleResolution: {
+                type: "commonJS",
+                rootDir: dirname(fileURLToPath(import.meta.url)),
+              },
+            }),
+          ]
+        : []),
 
       babel({
         babelHelpers: "bundled",
