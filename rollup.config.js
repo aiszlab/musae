@@ -59,31 +59,30 @@ const config = () => {
     plugins: [
       commonjs(),
       resolve({
-        extensions: [".ts", ".tsx", ".js", ".jsx"],
+        extensions: EXTENSIONS,
       }),
       typescript(),
 
       // bundler will generate when production mode
-      ...(isProd
-        ? [
-            stylex({
-              fileName: CSS_ASSET_FILENAME,
-              classNamePrefix: "musae-",
-              unstable_moduleResolution: {
-                type: "commonJS",
-                rootDir: dirname(fileURLToPath(import.meta.url)),
-              },
-            }),
-          ]
-        : []),
+      ...((isProd && [
+        stylex({
+          fileName: CSS_ASSET_FILENAME,
+          classNamePrefix: "musae-",
+          unstable_moduleResolution: {
+            type: "commonJS",
+            rootDir: dirname(fileURLToPath(import.meta.url)),
+          },
+        }),
+      ]) ||
+        []),
 
       babel({
-        babelHelpers: "bundled",
+        babelHelpers: "runtime",
         extensions: EXTENSIONS,
       }),
     ],
 
-    external: [...Object.keys(pkg.dependencies), ...Object.keys(pkg.peerDependencies)],
+    external: [...Object.keys(pkg.dependencies), ...Object.keys(pkg.peerDependencies), /@babel\/runtime/],
   };
 };
 
