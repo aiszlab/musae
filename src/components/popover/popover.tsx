@@ -29,7 +29,7 @@ const Popover = <P extends ChildProps<T>, T extends HTMLElement>({
   style,
   children: _children,
 }: PopoverProps<P, T>) => {
-  const _ref = useRef<Element>(null);
+  const _ref = useRef<HTMLElement>(null);
   const [_isOpen, { toggle, turnOn, turnOff }] = useBoolean(false);
   const triggerBy = useMemo(() => new Set(toArray(_triggerBy)), [_triggerBy]);
   const classNames = useClassNames(ComponentToken.Popover);
