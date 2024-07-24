@@ -121,12 +121,11 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       shape = "rounded",
       disabled = false,
       ripple = true,
-      onPointerEnter,
-      onPointerLeave,
       type = "button",
       onClick: _onClick,
       prefix,
       suffix,
+      ...props
     },
     ref,
   ) => {
@@ -178,9 +177,8 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           ...styled.button.style,
           ...style,
         }}
-        onPointerEnter={onPointerEnter}
-        onPointerLeave={onPointerLeave}
         type={type}
+        {...props}
       >
         {prefix}
         {children}

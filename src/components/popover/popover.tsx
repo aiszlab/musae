@@ -86,7 +86,7 @@ const Popover = <P extends ChildProps<T>, T extends HTMLElement>({
 
   useClickAway(() => {
     turnOff();
-  }, popperRef);
+  }, [popperRef, ...(triggerBy.has("click") ? [_ref] : [])]);
 
   const styled = {
     popover: stylex.props(styles.popover, typography.body.medium),
