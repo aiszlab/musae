@@ -138,7 +138,7 @@ const Radio = ({ children, value, checked, disabled = false, ...props }: RadioPr
         styles.trigger.disabled({
           backgroundColor: theme.colors[ColorToken.InversePrimary],
         }),
-      !isChecked && styles.trigger.unckecked
+      !isChecked && styles.trigger.unckecked,
     ),
     label: stylex.props(typography.body.medium, styles.label.default),
   };

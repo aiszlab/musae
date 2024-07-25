@@ -33,7 +33,7 @@ const Group = ({ value: controlledValue, children, onChange, disabled = false }:
     return {
       value,
       change,
-      disabled,
+      isDisabled: disabled,
     };
   }, [value, change, disabled]);
 

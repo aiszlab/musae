@@ -16,7 +16,12 @@ const animation = stylex.keyframes({
 });
 
 const styles = stylex.create({
-  skeleton: {},
+  skeleton: {
+    width: 200,
+    height: 20,
+    background: "linear-gradient(90deg, rgba(0, 0, 0, 0.06) 25%, rgba(0, 0, 0, 0.15) 37%, rgba(0, 0, 0, 0.06) 63%)",
+    backgroundSize: "400% 100%",
+  },
 
   animation: {
     animationName: animation,

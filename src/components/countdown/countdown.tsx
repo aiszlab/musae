@@ -4,7 +4,7 @@ import { Observable, Subscription, interval, map, switchAll, type Subscriber } f
 import { CountableProps } from "./types";
 import { useEvent, useMounted } from "@aiszlab/relax";
 
-const Countable = ({
+const Countdown = ({
   count = 60,
   children,
   interval: _interval = 1000,
@@ -79,4 +79,4 @@ const Countable = ({
   );
 };
 
-export default Countable;
+export default Countdown;

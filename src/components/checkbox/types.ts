@@ -22,9 +22,9 @@ export interface ContextValue {
 
   /**
    * @description
-   * disabled
+   * is disabled
    */
-  disabled: boolean;
+  isDisabled: boolean;
 }
 
 /**

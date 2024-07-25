@@ -20,7 +20,7 @@ export const styles = stylex.create({
     verticalAlign: "bottom",
 
     minHeight: sizes.medium,
-    minWidth: sizes.xxxxxlarge,
+    minWidth: sizes.xxxxxxlarge,
     maxWidth: sizes.full,
 
     // border, for flexible, in musae, we use boxShadow replace border
@@ -82,7 +82,7 @@ const Input = forwardRef<InputRef, InputProps>(
       variant = "outlined",
       ...inputProps
     },
-    ref
+    ref,
   ) => {
     const wrapperRef = useRef<HTMLDivElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
@@ -99,7 +99,7 @@ const Input = forwardRef<InputRef, InputProps>(
           inputRef.current?.select();
         },
       }),
-      []
+      [],
     );
 
     /// controlled value
@@ -131,7 +131,7 @@ const Input = forwardRef<InputRef, InputProps>(
         invalid &&
           styles.invalid({
             outlineColor: theme.colors[ColorToken.Error],
-          })
+          }),
       ),
       input: stylex.props(styles.input),
     };
@@ -146,7 +146,7 @@ const Input = forwardRef<InputRef, InputProps>(
             [classNames[InputClassToken.Invalid]]: !!invalid,
           },
           className,
-          styled.wrapper.className
+          styled.wrapper.className,
         )}
         style={{
           ...styled.wrapper.style,
@@ -180,7 +180,7 @@ const Input = forwardRef<InputRef, InputProps>(
         {trailing}
       </span>
     );
-  }
+  },
 );
 
 export default Input;

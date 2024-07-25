@@ -103,10 +103,7 @@ const Checkbox = ({ value, className, style, children, onChange, disabled = fals
   const contextValue = useContext(Context);
   const classNames = useClassNames(ComponentToken.Checkbox);
   const theme = useTheme();
-
-  const isDisabled = useMemo(() => {
-    return contextValue?.disabled ?? disabled;
-  }, [contextValue, disabled]);
+  const isDisabled = useMemo(() => contextValue?.isDisabled ?? disabled, [contextValue, disabled]);
 
   const [_isChecked, _setIsChecked] = useControlledState(checked!, {
     defaultState: false,

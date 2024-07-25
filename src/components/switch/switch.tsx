@@ -40,6 +40,10 @@ const styles = {
       backgroundColor: props.backgroundColor,
       color: props.color,
     }),
+
+    disabled: {
+      cursor: "not-allowed",
+    },
   }),
 
   slider: stylex.create({
@@ -185,7 +189,8 @@ const Switch = ({
             backgroundColor: layer(theme.colors[ColorToken.OnSurface], "medium"),
             color: theme.colors[ColorToken.Surface],
           }),
-        })
+        }),
+      disabled && styles.switch.disabled,
     ),
     slider: stylex.props(
       styles.slider.normal({
@@ -206,7 +211,7 @@ const Switch = ({
             backgroundColor: theme.colors[ColorToken.Surface],
             color: layer(theme.colors[ColorToken.OnSurface], "thicker"),
           }),
-        })
+        }),
     ),
     supporting: stylex.props(styles.supporting.default, isChecked && styles.supporting.checked),
     leading: stylex.props(styles.supporting.child, styles.leading.default, isChecked && styles.leading.checked),

@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { ContextValue } from "./types";
+import type { ContextValue } from "./types";
 
 const Context = createContext<ContextValue | null>(null);
 
