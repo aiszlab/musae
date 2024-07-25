@@ -52,6 +52,7 @@ export { FloatingActionButton } from "./components/floating-action-button";
 export { Transfer } from "./components/transfer";
 export { Badge } from "./components/badge";
 export { Skeleton } from "./components/skeleton";
+export { VisuallyHidden } from "./components/visually-hidden";
 
 /**
  * @description
