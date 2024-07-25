@@ -1,6 +1,6 @@
 import { ComponentProps } from "../../types/element";
 
-type Variant = "circular" | "rectangular" | "rounded";
+type Variant = "button" | "avatar" | "title";
 
 /**
  * @description
