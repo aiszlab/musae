@@ -78,6 +78,10 @@ const styles = {
       alignSelf: "center",
       display: "inline-flex",
     },
+
+    success: (props: { color: CSSProperties["color"] }) => ({
+      color: props.color,
+    }),
   }),
 
   title: stylex.create({
@@ -130,13 +134,13 @@ const Notification = ({
       case "bottomRight":
         await animate(scope.current, {
           opacity: 0,
-          marginBottom: (scope.current.getBoundingClientRect().height + 12) * -1,
+          marginBottom: scope.current.getBoundingClientRect().height * -1,
         });
         break;
       default:
         await animate(scope.current, {
           opacity: 0,
-          marginTop: (scope.current.getBoundingClientRect().height + 12) * -1,
+          marginTop: scope.current.getBoundingClientRect().height * -1,
         });
         break;
     }
@@ -152,7 +156,10 @@ const Notification = ({
       }),
       !title && styles.notification.simple,
     ),
-    leading: stylex.props(styles.leading.default),
+    leading: stylex.props(
+      styles.leading.default,
+      type === "success" && styles.leading.success({ color: theme.colors[ColorToken.Success] }),
+    ),
     title: stylex.props(typography.title.medium, styles.title.default),
     description: stylex.props(typography.body.medium, styles.description.default, !title && styles.description.simple),
     closer: stylex.props(styles.closer.default),

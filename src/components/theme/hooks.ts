@@ -98,6 +98,10 @@ export const PALETTE: Readonly<Palette> = {
     "99": "#FFFBFE",
     "100": "#FFF",
   },
+  success: {
+    "0": "#49AA19",
+    "100": "#52C41A",
+  },
 };
 
 const styles = stylex.create({

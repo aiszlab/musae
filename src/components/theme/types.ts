@@ -34,6 +34,7 @@ enum ColorProperty {
   Error = "error",
   Neutral = "neutral",
   NeutralVariant = "neutralVariant",
+  Success = "success",
 }
 
 /**
@@ -43,8 +44,13 @@ enum ColorProperty {
  * palette
  */
 export type Palette = {
-  [key in ColorProperty]: {
+  [key in Exclude<ColorProperty, ColorProperty.Success>]: {
     [key in 0 | 10 | 20 | 30 | 40 | 50 | 60 | 70 | 80 | 90 | 95 | 99 | 100]: string;
+  };
+} & {
+  [ColorProperty.Success]: {
+    0: string;
+    100: string;
   };
 };
 

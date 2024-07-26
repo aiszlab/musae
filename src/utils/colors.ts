@@ -57,6 +57,8 @@ export enum ColorToken {
   OutlineVariant = "outline-variant",
   Scrim = "scrim",
   Shadow = "shadow",
+
+  Success = "success",
 }
 
 /**
@@ -129,5 +131,7 @@ export const toColors = (palette: Palette, mode: ContextValue["mode"]): Record<C
 
     [ColorToken.Shadow]: palette.neutral[0],
     [ColorToken.Scrim]: palette.neutral[0],
+
+    [ColorToken.Success]: isLight ? palette.success[100] : palette.success[0],
   };
 };
