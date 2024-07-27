@@ -1,3 +1,4 @@
 import { useMessage } from "./hooks";
+import Messager from "./messager";
 
-export { useMessage };
+export { useMessage, Messager };

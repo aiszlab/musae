@@ -1,15 +1,14 @@
-import { RequiredIn } from "@aiszlab/relax/types";
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
 
 /**
  * @description
  * notification placement
  */
-export type Placement = "top" | "topLeft" | "topRight" | "bottom" | "bottomLeft" | "bottomRight";
+export type Placement = "top" | "top-left" | "top-right" | "bottom" | "bottom-left" | "bottom-right";
 
 export type Direction = "top" | "left" | "bottom" | "right";
 
-type Type = "success" | "error" | "info" | "warning" | "loading";
+export type Type = "success" | "error" | "info" | "warning" | "loading";
 
 /**
  * @description
@@ -77,7 +76,9 @@ export type NotificationConfig = Omit<NotificationProps, "onClose" | "children" 
   placement?: Placement;
 };
 
-type Open = (config: Omit<NotificationConfig, "type">) => Promise<void>;
+export type NotificationWithoutKeyAndPlacement = Omit<NotificationConfig, "key" | "placement">;
+
+export type OpenHandler = (config: Omit<NotificationConfig, "type">) => Promise<void>;
 
 /**
  * @author murukal
@@ -85,50 +86,20 @@ type Open = (config: Omit<NotificationConfig, "type">) => Promise<void>;
  * @description
  * messager
  */
-export interface Notifier {
-  /**
-   * @description
-   * show success notification
-   */
-  success: Open;
-
-  /**
-   * @description
-   * show error notification
-   */
-  error: Open;
-
-  /**
-   * @description
-   * show info notification
-   */
-  info: Open;
-
-  /**
-   * @description
-   * show warning notification
-   */
-  warning: Open;
-
-  /**
-   * @description
-   * show loading notification
-   */
-  loading: Open;
-}
+export type Notifier = Record<Type, OpenHandler>;
 
 /**
  * @author murukal
  *
  * @description
- * notifier ref
+ * holder ref
  */
-export interface NotifierRef {
+export interface HolderRef {
   /**
    * @description
    * add handler
    */
-  add: (configuration: RequiredIn<NotificationConfig, "key">) => void;
+  add: (configuration: NotificationConfig) => void;
 }
 
 /**
@@ -138,3 +109,34 @@ export interface NotifierRef {
 export type UseNotificationProps = {
   placement?: Placement;
 };
+
+/**
+ * @description
+ * holder props
+ */
+export type HolderProps = {
+  /**
+   * @description
+   * default notifications
+   */
+  defaultNotifications?: NotificationConfig[];
+};
+
+/**
+ * @author murukal
+ * @description
+ * typed notification
+ */
+export type TypedNotification = {
+  /**
+   * @description
+   * component self
+   */
+  (props: NotificationProps): JSX.Element;
+
+  /**
+   * @description
+   * open
+   */
+  open: (config: NotificationConfig) => Promise<void>;
+} & Omit<Notifier, "loading">;

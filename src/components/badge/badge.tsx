@@ -39,25 +39,25 @@ const styles = {
       display: "none",
     },
 
-    ["top-right"]: {
+    "top-right": {
       top: 0,
       right: 0,
       transform: "translateX(50%) translateY(-50%)",
     },
 
-    ["top-left"]: {
+    "top-left": {
       top: 0,
       left: 0,
       transform: "translateX(-50%) translateY(-50%)",
     },
 
-    ["bottom-right"]: {
+    "bottom-right": {
       bottom: 0,
       right: 0,
       transform: "translateX(50%) translateY(50%)",
     },
 
-    ["bottom-left"]: {
+    "bottom-left": {
       bottom: 0,
       left: 0,
       transform: "translateX(-50%) translateY(50%)",

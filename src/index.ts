@@ -58,8 +58,8 @@ export { VisuallyHidden } from "./components/visually-hidden";
  * @description
  * hooks
  */
-export { useMessage } from "./components/message";
-export { useNotification } from "./components/notification";
+export { useMessage, Messager } from "./components/message";
+export { useNotification, Notification } from "./components/notification";
 export { useTheme } from "./components/theme";
 
 /**

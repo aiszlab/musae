@@ -1,7 +1,8 @@
-import type { Notifier } from "../notification";
-import type { NotificationConfig } from "../notification/types";
+import type { NotificationConfig, Type } from "../notification";
 
-type Open = (config: Omit<NotificationConfig, "type" | "title" | "placement" | "closable">) => Promise<void>;
+export type MessageConfig = Omit<NotificationConfig, "title" | "placement" | "closable">;
+
+export type OpenHandler = (config: Omit<MessageConfig, "type">) => Promise<void>;
 
 /**
  * @author murukal
@@ -9,4 +10,16 @@ type Open = (config: Omit<NotificationConfig, "type" | "title" | "placement" | "
  * @description
  * messager
  */
-export type Messager = Record<keyof Notifier, Open>;
+export type Messager = Record<Type, OpenHandler>;
+
+/**
+ * @description
+ * typed message
+ */
+export type TypedMessage = {
+  /**
+   * @description
+   * open
+   */
+  open: (config: MessageConfig) => Promise<void>;
+} & Messager;

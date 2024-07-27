@@ -1,6 +1,6 @@
 import type { ReactNode, RefObject } from "react";
 import type { CLASS_NAMES } from "../../utils/class-name";
-import type { NotifierRef } from "../notification/types";
+import type { HolderRef } from "../notification/types";
 
 export type ClassNames = typeof CLASS_NAMES;
 
@@ -16,7 +16,7 @@ export interface ContextValue {
    * in musae, we can declare global notifier
    * so users will not need to declare anymore
    */
-  notifier?: RefObject<NotifierRef> | null;
+  notifier?: RefObject<HolderRef> | null;
 
   /**
    * @description

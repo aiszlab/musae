@@ -1,11 +1,11 @@
 import React, { useMemo, useRef } from "react";
 import Context from "./context";
-import { Holder, type NotifierRef } from "../notification";
+import { Holder, type HolderRef } from "../notification";
 import type { ConfigProps } from "./types";
 import { CLASS_NAMES, DEFAULT_CLASS_NAMES, addPrefix } from "../../utils/class-name";
 
 const ConfigProvider = (props: ConfigProps) => {
-  const notifierRef = useRef<NotifierRef>(null);
+  const notifierRef = useRef<HolderRef>(null);
 
   const classNames = useMemo(() => {
     if (!props.prefix) return DEFAULT_CLASS_NAMES;

@@ -1,6 +1,6 @@
 import React, { useRef, type ReactNode, useMemo } from "react";
 import Holder from "./holder";
-import type { NotificationConfig, Notifier, NotifierRef, UseNotificationProps } from "./types";
+import type { NotificationConfig, Notifier, HolderRef, UseNotificationProps } from "./types";
 import { isDomUsable, useEvent } from "@aiszlab/relax";
 import { useConfiguration } from "../config/hooks";
 
@@ -11,7 +11,7 @@ import { useConfiguration } from "../config/hooks";
  * hook for notification
  */
 export const useNotification = ({ placement }: UseNotificationProps = {}): [Notifier, ReactNode] => {
-  const ref = useRef<NotifierRef>(null);
+  const ref = useRef<HolderRef>(null);
   const { notifier } = useConfiguration();
 
   const holder = useMemo<ReactNode>(() => {
