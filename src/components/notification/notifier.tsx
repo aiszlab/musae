@@ -1,4 +1,4 @@
-import { createElement } from "react";
+import React from "react";
 import { createRoot } from "react-dom/client";
 import Holder from "./holder";
 import type { HolderRef, NotificationConfig, OpenHandler, Type, TypedNotification } from "./types";
@@ -19,12 +19,12 @@ export class Notifier {
   open(notification: NotificationConfig) {
     if (!this.#holder) {
       createRoot(document.createDocumentFragment()).render(
-        createElement(Holder, {
-          ref: (holder) => {
+        <Holder
+          ref={(holder) => {
             this.#holder = holder;
-          },
-          defaultNotifications: [notification],
-        }),
+          }}
+          defaultNotifications={[notification]}
+        />,
       );
       return;
     }
