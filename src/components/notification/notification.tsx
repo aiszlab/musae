@@ -3,14 +3,14 @@ import React, { type CSSProperties, useEffect, type FC, createElement, forwardRe
 import { useAnimate, usePresence } from "framer-motion";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
-import type { NotificationProps, Placement, Direction } from "./types";
+import type { NotificationProps, Placement, Direction, Type } from "./types";
 import { useRefs, useTimeout } from "@aiszlab/relax";
 import { useClassNames } from "../../hooks/use-class-names";
 import { ComponentToken, NotificationClassToken } from "../../utils/class-name";
 import clsx from "clsx";
 import { elevations, sizes, spacing } from "../theme/tokens.stylex";
 import { Button } from "../button";
-import { Cancel, CheckCircle, Close, Loading } from "../icon/icons";
+import { CheckCircle, Close, Loading, Error, NotificationImportant, Warning } from "../icon/icons";
 import { typography } from "../theme/theme";
 import type { IconProps } from "../icon";
 
@@ -30,10 +30,12 @@ export const PLACEMENTS: Record<Direction, [hidden: string, appeared: string]> =
   top: ["translateY(-100%)", "translateY(0)"],
 };
 
-const SIGNALS = new Map<NotificationProps["type"], FC<IconProps>>([
+const LEADINGS = new Map<Type, FC<IconProps>>([
   ["success", CheckCircle],
-  ["error", Cancel],
+  ["error", Error],
   ["loading", Loading],
+  ["info", NotificationImportant],
+  ["warning", Warning],
 ]);
 
 const styles = {
@@ -74,13 +76,10 @@ const styles = {
   }),
 
   leading: stylex.create({
-    default: {
+    default: (props: { color: CSSProperties["color"] }) => ({
       gridArea: "leading",
       alignSelf: "center",
       display: "inline-flex",
-    },
-
-    success: (props: { color: CSSProperties["color"] }) => ({
       color: props.color,
     }),
   }),
@@ -145,15 +144,23 @@ const Notification = forwardRef<HTMLDivElement, NotificationProps>(
     const styled = {
       notification: stylex.props(
         styles.notification.default({
-          backgroundColor: theme.colors[ColorToken.OnPrimary],
-          color: theme.colors[ColorToken.OnPrimaryContainer],
+          backgroundColor: theme.colors[ColorToken.SurfaceContainerLowest],
+          color: theme.colors[ColorToken.OnSurface],
           transform: _placement[0],
         }),
         !title && styles.notification.simple,
       ),
       leading: stylex.props(
-        styles.leading.default,
-        type === "success" && styles.leading.success({ color: theme.colors[ColorToken.Success] }),
+        styles.leading.default({
+          color:
+            type === "success"
+              ? theme.colors[ColorToken.Success]
+              : type === "warning"
+              ? theme.colors[ColorToken.Warning]
+              : type === "error"
+              ? theme.colors[ColorToken.Error]
+              : theme.colors[ColorToken.Primary],
+        }),
       ),
       title: stylex.props(typography.title.medium, styles.title.default),
       description: stylex.props(
@@ -175,17 +182,15 @@ const Notification = forwardRef<HTMLDivElement, NotificationProps>(
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isPresent]);
 
-    const leading = SIGNALS.get(type);
-
     return (
       <div
         className={clsx(classNames[NotificationClassToken.Notification], styled.notification.className)}
         style={styled.notification.style}
         ref={notificationRef}
       >
-        {leading && (
+        {LEADINGS.has(type) && (
           <div className={styled.leading.className} style={styled.leading.style}>
-            {createElement(leading)}
+            {createElement(LEADINGS.get(type)!)}
           </div>
         )}
 

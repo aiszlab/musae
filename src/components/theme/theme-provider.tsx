@@ -16,17 +16,12 @@ const ThemeProvider = (props: Props) => {
       deepmerge<Theme, Theme>(props.theme ?? {}, {
         palette: PALETTE,
       }),
-    [props.theme]
+    [props.theme],
   );
 
   const { mode, toggle, colors } = useSwitchable({ theme });
 
-  return (
-    <Context.Provider value={{ colors, mode, toggle }}>
-      {/* children */}
-      {props.children}
-    </Context.Provider>
-  );
+  return <Context.Provider value={{ colors, mode, toggle }}>{props.children}</Context.Provider>;
 };
 
 export default ThemeProvider;

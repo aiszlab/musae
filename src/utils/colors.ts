@@ -59,6 +59,7 @@ export enum ColorToken {
   Shadow = "shadow",
 
   Success = "success",
+  Warning = "warning",
 }
 
 /**
@@ -133,5 +134,6 @@ export const toColors = (palette: Palette, mode: ContextValue["mode"]): Record<C
     [ColorToken.Scrim]: palette.neutral[0],
 
     [ColorToken.Success]: isLight ? palette.success[100] : palette.success[0],
+    [ColorToken.Warning]: isLight ? palette.warning[100] : palette.warning[0],
   };
 };

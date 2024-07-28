@@ -130,12 +130,6 @@ export type HolderProps = {
 export type TypedNotification = {
   /**
    * @description
-   * component self
-   */
-  (props: NotificationProps): JSX.Element;
-
-  /**
-   * @description
    * open
    */
   open: (config: NotificationConfig) => Promise<void>;

@@ -35,6 +35,7 @@ enum ColorProperty {
   Neutral = "neutral",
   NeutralVariant = "neutralVariant",
   Success = "success",
+  Warning = "warning",
 }
 
 /**
@@ -43,16 +44,11 @@ enum ColorProperty {
  * @description
  * palette
  */
-export type Palette = {
-  [key in Exclude<ColorProperty, ColorProperty.Success>]: {
-    [key in 0 | 10 | 20 | 30 | 40 | 50 | 60 | 70 | 80 | 90 | 95 | 99 | 100]: string;
-  };
-} & {
-  [ColorProperty.Success]: {
-    0: string;
-    100: string;
-  };
-};
+export type Palette = Record<
+  Exclude<ColorProperty, ColorProperty.Success | ColorProperty.Warning>,
+  Record<0 | 10 | 20 | 30 | 40 | 50 | 60 | 70 | 80 | 90 | 95 | 99 | 100, string>
+> &
+  Record<ColorProperty.Success | ColorProperty.Warning, Record<0 | 100, string>>;
 
 /**
  * @author murukal

@@ -2,7 +2,6 @@ import React from "react";
 import { createRoot } from "react-dom/client";
 import Holder from "./holder";
 import type { HolderRef, NotificationConfig, OpenHandler, Type, TypedNotification } from "./types";
-import Notification from "./notification";
 
 const METHODS: Type[] = ["error", "info", "success", "warning"];
 
@@ -33,8 +32,7 @@ export class Notifier {
   }
 }
 
-const _Notification: TypedNotification = Object.assign(
-  Notification,
+const Notification: TypedNotification = Object.assign(
   { open: (notification: NotificationConfig) => new Notifier().open(notification) },
   ...METHODS.map((type) => ({
     [type]: (async (notification) => {
@@ -43,4 +41,4 @@ const _Notification: TypedNotification = Object.assign(
   })),
 );
 
-export default _Notification;
+export default Notification;

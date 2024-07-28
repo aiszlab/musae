@@ -53,12 +53,13 @@ export { Transfer } from "./components/transfer";
 export { Badge } from "./components/badge";
 export { Skeleton } from "./components/skeleton";
 export { VisuallyHidden } from "./components/visually-hidden";
+export { NumberInput } from "./components/number-input";
 
 /**
  * @description
  * hooks
  */
-export { useMessage, Messager } from "./components/message";
+export { useMessage, Message } from "./components/message";
 export { useNotification, Notification } from "./components/notification";
 export { useTheme } from "./components/theme";
 

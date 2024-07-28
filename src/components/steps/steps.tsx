@@ -47,7 +47,7 @@ const Steps = ({ items, value = 0, className, style, type = "horizontal", onChan
       value,
       size,
     }),
-    [type, onChange, items.length, value, size]
+    [type, onChange, items.length, value, size],
   );
 
   return (

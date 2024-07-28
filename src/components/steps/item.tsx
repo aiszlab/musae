@@ -106,10 +106,10 @@ const styles = {
   }),
 };
 
-const Item = ({ leading, title, description, value, size }: StepItemProps) => {
+const Item = ({ leading, title, description, value }: StepItemProps) => {
   const classNames = useClassNames(ComponentToken.Steps);
   const theme = useTheme();
-  const { type, onChange, value: _value, max } = useContext(Context);
+  const { type, onChange, value: _value, max, size } = useContext(Context);
 
   const status: Status = _value < value ? "todo" : _value === value ? "doing" : "done";
   const isClickable = !!onChange && status !== "doing";
@@ -125,7 +125,7 @@ const Item = ({ leading, title, description, value, size }: StepItemProps) => {
         !isMax &&
         styles.leading.tail({
           color: theme.colors[ColorToken.Primary],
-        })
+        }),
     ),
     sign: stylex.props(
       styles.sign.default({ size }),
@@ -143,7 +143,7 @@ const Item = ({ leading, title, description, value, size }: StepItemProps) => {
         styles.sign.todo({
           backgroundColor: theme.colors[ColorToken.Secondary],
           color: theme.colors[ColorToken.OnSecondary],
-        })
+        }),
     ),
     title: stylex.props(
       typography.title.medium,
@@ -152,7 +152,7 @@ const Item = ({ leading, title, description, value, size }: StepItemProps) => {
         !isMax &&
         styles.title.tail({
           color: theme.colors[ColorToken.Primary],
-        })
+        }),
     ),
     description: stylex.props(typography.body.medium, styles.description.default),
   };
@@ -171,7 +171,7 @@ const Item = ({ leading, title, description, value, size }: StepItemProps) => {
           [classNames[StepsClassToken.Doing]]: status === "doing",
           [classNames[StepsClassToken.Todo]]: status === "todo",
         },
-        styled.step.className
+        styled.step.className,
       )}
       style={styled.step.style}
       onClick={click}

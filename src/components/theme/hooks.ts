@@ -1,4 +1,4 @@
-import { MouseEvent, createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
+import { MouseEvent, createContext, useContext, useMemo, useRef, useState } from "react";
 import type { Palette, ContextValue, Theme, Mode } from "./types";
 import { toColors } from "../../utils/colors";
 import { isFunction, useEvent, useMounted } from "@aiszlab/relax";
@@ -101,6 +101,10 @@ export const PALETTE: Readonly<Palette> = {
   success: {
     "0": "#49AA19",
     "100": "#52C41A",
+  },
+  warning: {
+    "0": "#FAAD14",
+    "100": "#FAAD14",
   },
 };
 

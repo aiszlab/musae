@@ -81,12 +81,6 @@ export type StepItemProps = StepItem & {
    * current item value
    */
   value: number;
-
-  /**
-   * @description
-   * leading size
-   */
-  size?: number;
 };
 
 /**

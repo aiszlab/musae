@@ -3,7 +3,7 @@ import type { TypedMessage, MessageConfig, OpenHandler } from "./types";
 
 const METHODS: Type[] = ["error", "info", "loading", "success", "warning"];
 
-const Messager: TypedMessage = Object.assign(
+const Message: TypedMessage = Object.assign(
   {
     open: (message: MessageConfig) => {
       Notification.open(message);
@@ -13,10 +13,11 @@ const Messager: TypedMessage = Object.assign(
     [type]: ((message) => {
       return Notification.open({
         ...message,
+        placement: "top",
         type,
       });
     }) satisfies OpenHandler,
   })),
 );
 
-export default Messager;
+export default Message;
