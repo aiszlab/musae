@@ -1,6 +1,15 @@
-import { useRefs, useHover, chain, toArray, useBoolean, useEvent, useFocus, useClickAway } from "@aiszlab/relax";
-import React, { type MouseEvent, cloneElement, useMemo, useRef, type PointerEvent } from "react";
-import type { ChildProps, PopoverProps } from "./types";
+import { useRefs, useHover, chain, toArray, useEvent, useFocus, useClickAway } from "@aiszlab/relax";
+import React, {
+  cloneElement,
+  useMemo,
+  useRef,
+  forwardRef,
+  useImperativeHandle,
+  type MouseEvent,
+  type PointerEvent,
+  type ForwardedRef,
+} from "react";
+import type { ChildProps, PopoverProps, PopoverRef } from "./types";
 import { Popper } from "../popper";
 import stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
@@ -8,6 +17,7 @@ import { typography } from "../theme/theme";
 import { useClassNames } from "../../hooks/use-class-names";
 import { ComponentToken, PopoverClassToken } from "../../utils/class-name";
 import clsx from "clsx";
+import { useIsOpen } from "./hooks";
 
 const styles = stylex.create({
   popover: {
@@ -20,49 +30,42 @@ const styles = stylex.create({
   title: {},
 });
 
-const Popover = <P extends ChildProps<T>, T extends HTMLElement>({
-  triggerBy: _triggerBy = "hover",
-  title,
-  description,
-  placement = "bottom",
-  className,
-  style,
-  children: _children,
-}: PopoverProps<P, T>) => {
+const Popover = <P extends ChildProps<T>, T extends HTMLElement>(
+  {
+    triggerBy: _triggerBy = "hover",
+    title,
+    description,
+    placement = "bottom",
+    className,
+    style,
+    children: _children,
+  }: PopoverProps<P, T>,
+  ref: ForwardedRef<PopoverRef>,
+) => {
   const _ref = useRef<HTMLElement>(null);
-  const [_isOpen, { toggle, turnOn, turnOff }] = useBoolean(false);
+  const { isOpen, open, close, toggle } = useIsOpen();
   const triggerBy = useMemo(() => new Set(toArray(_triggerBy)), [_triggerBy]);
   const classNames = useClassNames(ComponentToken.Popover);
   const childRef = useRefs(_ref, _children.props.ref);
   const popperRef = useRef<HTMLDivElement>(null);
 
-  const onClick = useEvent((e: MouseEvent<T>) => {
-    e.stopPropagation();
+  const onClick = useEvent((event: MouseEvent<T>) => {
+    event.stopPropagation();
     toggle();
   });
-  const onContextMenu = useEvent((e: MouseEvent<T>) => {
-    e.preventDefault();
-    turnOn();
+  const onContextMenu = useEvent((event: MouseEvent<T>) => {
+    event.preventDefault();
+    open();
   });
 
-  const [isHovered, hoverProps] = useHover<T>({
-    onEnter: (event) =>
-      chain(_children.props.onMouseOver, _children.props.onMouseEnter, _children.props.onPointerEnter)(event),
-    onLeave: (event) => chain(_children.props.onMouseLeave, _children.props.onPointerLeave)(event),
+  const [, hoverProps] = useHover<T>({
+    onEnter: (event) => chain(_children.props.onMouseEnter, _children.props.onPointerEnter, open)(event),
+    onLeave: (event) => chain(_children.props.onMouseLeave, _children.props.onPointerLeave, close)(event),
   });
-  const [isFocused, focusProps] = useFocus({
-    onFocus: _children.props.onFocus,
-    onBlur: _children.props.onBlur,
+  const [, focusProps] = useFocus<T>({
+    onFocus: (event) => chain(_children.props.onFocus, open)(event),
+    onBlur: (event) => chain(_children.props.onBlur, close)(event),
   });
-
-  const isOpen = useMemo(() => {
-    // allow hover
-    if (triggerBy.has("hover")) return isHovered || _isOpen;
-    // allow focus
-    if (triggerBy.has("focus")) return isFocused || _isOpen;
-    // click, contextMenu
-    return _isOpen;
-  }, [triggerBy, isHovered, _isOpen, isFocused]);
 
   // @ts-ignore
   const children = cloneElement<P>(_children, {
@@ -77,16 +80,22 @@ const Popover = <P extends ChildProps<T>, T extends HTMLElement>({
     }),
   });
 
-  const enterPopper = useEvent((e: PointerEvent<HTMLDivElement>) => {
-    hoverProps.onPointerEnter(e as unknown as PointerEvent<T>);
+  const enterPopper = useEvent((event: PointerEvent<HTMLDivElement>) => {
+    hoverProps.onPointerEnter(event as unknown as PointerEvent<T>);
   });
-  const leavePopper = useEvent((e: PointerEvent<HTMLDivElement>) => {
-    hoverProps.onPointerLeave(e as unknown as PointerEvent<T>);
+  const leavePopper = useEvent((event: PointerEvent<HTMLDivElement>) => {
+    hoverProps.onPointerLeave(event as unknown as PointerEvent<T>);
   });
 
   useClickAway(() => {
-    turnOff();
+    close();
   }, [popperRef, ...(triggerBy.has("click") ? [_ref] : [])]);
+
+  useImperativeHandle(ref, () => {
+    return {
+      close,
+    };
+  });
 
   const styled = {
     popover: stylex.props(styles.popover, typography.body.medium),
@@ -134,4 +143,4 @@ const Popover = <P extends ChildProps<T>, T extends HTMLElement>({
   );
 };
 
-export default Popover;
+export default forwardRef(Popover);

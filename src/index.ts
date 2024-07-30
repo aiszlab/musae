@@ -54,6 +54,7 @@ export { Badge } from "./components/badge";
 export { Skeleton } from "./components/skeleton";
 export { VisuallyHidden } from "./components/visually-hidden";
 export { NumberInput } from "./components/number-input";
+export { Popconfirm } from "./components/popconfirm";
 
 /**
  * @description

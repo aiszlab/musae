@@ -56,6 +56,7 @@ export enum ComponentToken {
   Progress,
   Tooltip,
   Popover,
+  Popconfirm,
   Loading,
   Collapse,
   Waterfall,
@@ -311,6 +312,12 @@ export enum SkeletonClassToken {
 export enum VisuallyHiddenClassToken {
   VisuallyHidden,
 }
+export enum PopconfirmClassToken {
+  Popconfirm,
+  Title,
+  Description,
+  Footer,
+}
 
 /**
  * @description
@@ -559,6 +566,12 @@ export const CLASS_NAMES = {
   },
   [ComponentToken.VisuallyHidden]: {
     [VisuallyHiddenClassToken.VisuallyHidden]: "visually-hidden",
+  },
+  [ComponentToken.Popconfirm]: {
+    [PopconfirmClassToken.Popconfirm]: "popconfirm",
+    [PopconfirmClassToken.Title]: "popconfirm__title",
+    [PopconfirmClassToken.Description]: "popconfirm__description",
+    [PopconfirmClassToken.Footer]: "popconfirm__footer",
   },
 };
 

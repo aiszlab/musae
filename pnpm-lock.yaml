@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@aiszlab/relax':
-        specifier: ^1.2.67
-        version: 1.2.67(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        specifier: ^1.2.68
+        version: 1.2.68(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@babel/runtime':
         specifier: ^7.24.8
         version: 7.24.8
@@ -144,8 +144,8 @@ packages:
   '@adobe/css-tools@4.4.0':
     resolution: {integrity: sha512-Ff9+ksdQQB3rMncgqDK78uLznstjyfIf2Arnh22pW8kBpLs6rpKDwgnZT46hin5Hl1WzazzK64DOrhSwYpS7bQ==}
 
-  '@aiszlab/relax@1.2.67':
-    resolution: {integrity: sha512-FvVmNZKGiK1mBib9U/jxoNN3vIy6PDu+3/n4Y7ZF/ZrjtOhm6adE/TNXs2lNWuW82QYueoxV53LU54vkJBsHEg==}
+  '@aiszlab/relax@1.2.68':
+    resolution: {integrity: sha512-VqEN2tRw3hzbeM+SPB39LF0EnL1ZoTyvE2gOIb5DgV9wkn+M8wJ3rgu8QPmqh95mmjOvs1h8UP5VHyUGxMzsZw==}
     peerDependencies:
       react: '18'
       react-dom: '18'
@@ -872,6 +872,10 @@ packages:
 
   '@babel/runtime@7.24.8':
     resolution: {integrity: sha512-5F7SDGs1T72ZczbRwbGO9lQi0NLjQxzl6i4lJxLxfW9U5UluCSyEJeniWvnhl3/euNiqQVbo8zruhsDfid0esA==}
+    engines: {node: '>=6.9.0'}
+
+  '@babel/runtime@7.25.0':
+    resolution: {integrity: sha512-7dRy4DwXwtzBrPbZflqxnvfxLF8kdZXPkhymtDeFoFqE6ldzjQFgYTtYIFARcLEYDrqfBfYcZt1WqFxRoyC9Rw==}
     engines: {node: '>=6.9.0'}
 
   '@babel/template@7.24.7':
@@ -3710,7 +3714,7 @@ snapshots:
 
   '@adobe/css-tools@4.4.0': {}
 
-  '@aiszlab/relax@1.2.67(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@aiszlab/relax@1.2.68(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@babel/runtime': 7.24.8
       react: 18.3.1
@@ -4648,6 +4652,10 @@ snapshots:
     dependencies:
       regenerator-runtime: 0.14.1
 
+  '@babel/runtime@7.25.0':
+    dependencies:
+      regenerator-runtime: 0.14.1
+
   '@babel/template@7.24.7':
     dependencies:
       '@babel/code-frame': 7.24.7
@@ -5310,7 +5318,7 @@ snapshots:
   '@testing-library/dom@10.2.0':
     dependencies:
       '@babel/code-frame': 7.24.7
-      '@babel/runtime': 7.24.8
+      '@babel/runtime': 7.25.0
       '@types/aria-query': 5.0.4
       aria-query: 5.3.0
       chalk: 4.1.2

@@ -5,7 +5,6 @@ import type { Placement } from "@floating-ui/dom";
 export type ChildProps<T> = Pick<
   DOMAttributes<T>,
   | "onMouseEnter"
-  | "onMouseOver"
   | "onMouseLeave"
   | "onPointerEnter"
   | "onPointerLeave"
@@ -57,4 +56,16 @@ export type PopoverProps<P extends ChildProps<T>, T extends HTMLElement> = Compo
    * @default "bottom"
    */
   placement?: Placement;
+};
+
+/**
+ * @description
+ * popover ref
+ */
+export type PopoverRef = {
+  /**
+   * @description
+   * close
+   */
+  close: () => void;
 };

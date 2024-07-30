@@ -12,4 +12,16 @@ export type PopconfirmProps<P extends ChildProps<T>, T extends HTMLElement> = Pi
   PopoverProps<P, T>,
   "children" | "placement" | "title" | "description"
 > &
-  ComponentProps;
+  ComponentProps & {
+    /**
+     * @description
+     * confirm handler
+     */
+    onConfirm?: () => void;
+
+    /**
+     * @description
+     * cancel handler
+     */
+    onCancel?: () => void;
+  };
