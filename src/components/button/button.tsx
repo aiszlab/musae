@@ -28,7 +28,7 @@ const styles = stylex.create({
 
   small: {
     paddingBlock: spacing.none,
-    paddingInline: spacing.xsmall,
+    paddingInline: spacing.small,
     minHeight: sizes.xsmall,
     minWidth: sizes.xsmall,
   },

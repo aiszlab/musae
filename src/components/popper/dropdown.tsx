@@ -1,4 +1,4 @@
-import React, { type CSSProperties, forwardRef, useEffect, useLayoutEffect, useMemo, useRef } from "react";
+import React, { type CSSProperties, forwardRef, useLayoutEffect, useMemo, useRef } from "react";
 import type { DropdownProps } from "./types";
 import { ComponentToken, PopperClassToken } from "../../utils/class-name";
 import { useClassNames } from "../../hooks/use-class-names";

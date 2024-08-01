@@ -6,7 +6,7 @@ import { useCallback } from "react";
  * use is open
  */
 export const useIsOpen = () => {
-  const [isOpen, { turnOn, turnOff, toggle }] = useBoolean();
+  const [isOpen, { turnOn, turnOff, toggle: _toggle }] = useBoolean();
   const { timeout } = useTimer();
 
   const open = useCallback(() => {
@@ -19,7 +19,21 @@ export const useIsOpen = () => {
   const close = useCallback(() => {
     timeout(() => {
       turnOff();
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const disappear = useCallback(() => {
+    timeout(() => {
+      turnOff();
     }, 100);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const toggle = useCallback(() => {
+    timeout(() => {
+      _toggle();
+    });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -28,5 +42,6 @@ export const useIsOpen = () => {
     open,
     close,
     toggle,
+    disappear,
   };
 };

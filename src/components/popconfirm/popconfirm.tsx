@@ -8,6 +8,7 @@ import clsx from "clsx";
 import { Space } from "../space";
 import { Button } from "../button";
 import { useEvent } from "@aiszlab/relax";
+import { Warning } from "../icon/icons";
 
 const styles = stylex.create({
   title: {},
@@ -23,6 +24,7 @@ const Popconfirm = <P extends ChildProps<T>, T extends HTMLElement>({
   onConfirm,
   onCancel,
   className,
+  placement = "top",
   ...props
 }: PopconfirmProps<P, T>) => {
   const classNames = useClassNames(ComponentToken.Popconfirm);
@@ -46,6 +48,7 @@ const Popconfirm = <P extends ChildProps<T>, T extends HTMLElement>({
   return (
     <Popover
       {...props}
+      placement={placement}
       className={clsx(classNames[PopconfirmClassToken.Popconfirm], className)}
       ref={popoverRef}
       triggerBy="click"

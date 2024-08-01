@@ -6,8 +6,8 @@ import React, {
   forwardRef,
   useImperativeHandle,
   type MouseEvent,
-  type PointerEvent,
   type ForwardedRef,
+  useCallback,
 } from "react";
 import type { ChildProps, PopoverProps, PopoverRef } from "./types";
 import { Popper } from "../popper";
@@ -25,6 +25,8 @@ const styles = stylex.create({
     display: "flex",
     flexDirection: "column",
     gap: spacing.small,
+    width: "max-content",
+    maxWidth: "100vw",
   },
 
   title: {},
@@ -43,7 +45,7 @@ const Popover = <P extends ChildProps<T>, T extends HTMLElement>(
   ref: ForwardedRef<PopoverRef>,
 ) => {
   const _ref = useRef<HTMLElement>(null);
-  const { isOpen, open, close, toggle } = useIsOpen();
+  const { isOpen, open, close, toggle, disappear } = useIsOpen();
   const triggerBy = useMemo(() => new Set(toArray(_triggerBy)), [_triggerBy]);
   const classNames = useClassNames(ComponentToken.Popover);
   const childRef = useRefs(_ref, _children.props.ref);
@@ -60,7 +62,7 @@ const Popover = <P extends ChildProps<T>, T extends HTMLElement>(
 
   const [, hoverProps] = useHover<T>({
     onEnter: (event) => chain(_children.props.onMouseEnter, _children.props.onPointerEnter, open)(event),
-    onLeave: (event) => chain(_children.props.onMouseLeave, _children.props.onPointerLeave, close)(event),
+    onLeave: (event) => chain(_children.props.onMouseLeave, _children.props.onPointerLeave, disappear)(event),
   });
   const [, focusProps] = useFocus<T>({
     onFocus: (event) => chain(_children.props.onFocus, open)(event),
@@ -70,8 +72,8 @@ const Popover = <P extends ChildProps<T>, T extends HTMLElement>(
   // @ts-ignore
   const children = cloneElement<P>(_children, {
     ref: childRef,
-    ...hoverProps,
-    ...focusProps,
+    ...(triggerBy.has("hover") && hoverProps),
+    ...(triggerBy.has("focus") && focusProps),
     ...(triggerBy.has("click") && {
       onClick,
     }),
@@ -80,12 +82,14 @@ const Popover = <P extends ChildProps<T>, T extends HTMLElement>(
     }),
   });
 
-  const enterPopper = useEvent((event: PointerEvent<HTMLDivElement>) => {
-    hoverProps.onPointerEnter(event as unknown as PointerEvent<T>);
-  });
-  const leavePopper = useEvent((event: PointerEvent<HTMLDivElement>) => {
-    hoverProps.onPointerLeave(event as unknown as PointerEvent<T>);
-  });
+  const enterPopper = useCallback(() => {
+    open();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  const leavePopper = useCallback(() => {
+    disappear();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useClickAway(() => {
     close();
