@@ -1,15 +1,6 @@
 import { useRefs, useHover, chain, toArray, useEvent, useFocus, useClickAway } from "@aiszlab/relax";
-import React, {
-  cloneElement,
-  useMemo,
-  useRef,
-  forwardRef,
-  useImperativeHandle,
-  type MouseEvent,
-  type ForwardedRef,
-  useCallback,
-} from "react";
-import type { ChildProps, PopoverProps, PopoverRef } from "./types";
+import React, { cloneElement, useMemo, useRef, useCallback, type MouseEvent } from "react";
+import type { ChildProps, PopoverProps } from "./types";
 import { Popper } from "../popper";
 import stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
@@ -22,28 +13,26 @@ import { useIsOpen } from "./hooks";
 const styles = stylex.create({
   popover: {
     padding: spacing.medium,
+    maxWidth: "100vw",
+
+    // layout
     display: "flex",
     flexDirection: "column",
     gap: spacing.small,
-    width: "max-content",
-    maxWidth: "100vw",
   },
 
   title: {},
 });
 
-const Popover = <P extends ChildProps<T>, T extends HTMLElement>(
-  {
-    triggerBy: _triggerBy = "hover",
-    title,
-    description,
-    placement = "bottom",
-    className,
-    style,
-    children: _children,
-  }: PopoverProps<P, T>,
-  ref: ForwardedRef<PopoverRef>,
-) => {
+const Popover = <P extends ChildProps<T>, T extends HTMLElement>({
+  triggerBy: _triggerBy = "hover",
+  title,
+  description,
+  placement = "bottom",
+  className,
+  style,
+  children: _children,
+}: PopoverProps<P, T>) => {
   const _ref = useRef<HTMLElement>(null);
   const { isOpen, open, close, toggle, disappear } = useIsOpen();
   const triggerBy = useMemo(() => new Set(toArray(_triggerBy)), [_triggerBy]);
@@ -95,15 +84,10 @@ const Popover = <P extends ChildProps<T>, T extends HTMLElement>(
     close();
   }, [popperRef, ...(triggerBy.has("click") ? [_ref] : [])]);
 
-  useImperativeHandle(ref, () => {
-    return {
-      close,
-    };
-  });
-
   const styled = {
     popover: stylex.props(styles.popover, typography.body.medium),
     title: stylex.props(styles.title, typography.title.medium),
+    description: stylex.props(typography.body.medium),
   };
 
   return (
@@ -129,22 +113,24 @@ const Popover = <P extends ChildProps<T>, T extends HTMLElement>(
           }}
         >
           {!!title && (
-            <>
-              <div
-                className={clsx(classNames[PopoverClassToken.Title], styled.title.className)}
-                style={styled.title.style}
-              >
-                {title}
-              </div>
-              <div className={clsx(classNames[PopoverClassToken.Description])}>{description}</div>
-            </>
+            <div
+              className={clsx(classNames[PopoverClassToken.Title], styled.title.className)}
+              style={styled.title.style}
+            >
+              {title}
+            </div>
           )}
 
-          {!title && description}
+          <div
+            className={clsx(classNames[PopoverClassToken.Description], styled.description.className)}
+            style={styled.description.style}
+          >
+            {description}
+          </div>
         </div>
       </Popper>
     </>
   );
 };
 
-export default forwardRef(Popover);
+export default Popover;

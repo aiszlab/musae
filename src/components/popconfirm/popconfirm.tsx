@@ -1,19 +1,47 @@
-import React, { useRef } from "react";
-import { Popover, PopoverRef } from "../popover";
-import { PopconfirmProps, ChildProps } from "./types";
+import React, { cloneElement, useRef, type MouseEvent, type CSSProperties } from "react";
+import type { PopconfirmProps, ChildProps } from "./types";
 import stylex from "@stylexjs/stylex";
 import { useClassNames } from "../../hooks/use-class-names";
 import { ComponentToken, PopconfirmClassToken } from "../../utils/class-name";
 import clsx from "clsx";
 import { Space } from "../space";
 import { Button } from "../button";
-import { useEvent } from "@aiszlab/relax";
+import { useBoolean, useClickAway, useEvent, useRefs } from "@aiszlab/relax";
 import { Warning } from "../icon/icons";
+import { Popper } from "../popper";
+import { spacing } from "../theme/tokens.stylex";
+import { typography } from "../theme/theme";
+import { useTheme } from "../theme";
+import { ColorToken } from "../../utils/colors";
 
 const styles = stylex.create({
-  title: {},
+  popconfirm: {
+    padding: spacing.medium,
+    maxWidth: "100vw",
+
+    // layout
+    display: "grid",
+    grid: "'leading title' '. description' 'footer footer'",
+    gap: spacing.small,
+  },
+
+  leading: (props: { color: CSSProperties["color"] }) => ({
+    gridArea: "leading",
+    display: "flex",
+    alignSelf: "center",
+    color: props.color,
+  }),
+
+  title: {
+    gridArea: "title",
+  },
+
+  description: {
+    gridArea: "description",
+  },
 
   footer: {
+    gridArea: "footer",
     justifyContent: "flex-end",
   },
 });
@@ -25,35 +53,65 @@ const Popconfirm = <P extends ChildProps<T>, T extends HTMLElement>({
   onCancel,
   className,
   placement = "top",
-  ...props
+  children: _children,
+  style,
 }: PopconfirmProps<P, T>) => {
+  const _ref = useRef<HTMLElement>(null);
+  const [isOpen, { turnOff, toggle }] = useBoolean();
   const classNames = useClassNames(ComponentToken.Popconfirm);
-  const popoverRef = useRef<PopoverRef>(null);
+  const childRef = useRefs(_ref, _children.props.ref);
+  const popperRef = useRef<HTMLDivElement>(null);
+  const theme = useTheme();
 
-  const styled = {
-    title: stylex.props(styles.title),
-    footer: stylex.props(styles.footer),
-  };
+  const onClick = useEvent((event: MouseEvent<T>) => {
+    event.stopPropagation();
+    toggle();
+  });
 
   const confirm = useEvent(() => {
     onConfirm?.();
-    popoverRef.current?.close();
+    turnOff();
   });
 
   const cancel = useEvent(() => {
     onCancel?.();
-    popoverRef.current?.close();
+    turnOff();
   });
 
+  // @ts-ignore
+  const children = cloneElement<P>(_children, {
+    ref: childRef,
+    onClick,
+  });
+
+  useClickAway(() => {
+    turnOff();
+  }, [popperRef, _ref]);
+
+  const styled = {
+    popconfirm: stylex.props(styles.popconfirm),
+    leading: stylex.props(styles.leading({ color: theme.colors[ColorToken.Warning] })),
+    title: stylex.props(styles.title, typography.title.medium),
+    description: stylex.props(styles.description, typography.body.medium),
+    footer: stylex.props(styles.footer),
+  };
+
   return (
-    <Popover
-      {...props}
-      placement={placement}
-      className={clsx(classNames[PopconfirmClassToken.Popconfirm], className)}
-      ref={popoverRef}
-      triggerBy="click"
-      description={
-        <>
+    <>
+      {children}
+
+      <Popper trigger={_ref.current} open={isOpen} arrow placement={placement} ref={popperRef}>
+        <div
+          className={clsx(classNames[PopconfirmClassToken.Popconfirm], className, styled.popconfirm.className)}
+          style={{
+            ...styled.popconfirm.style,
+            ...style,
+          }}
+        >
+          <div className={styled.leading.className} style={styled.leading.style}>
+            <Warning />
+          </div>
+
           <div
             className={clsx(classNames[PopconfirmClassToken.Title], styled.title.className)}
             style={styled.title.style}
@@ -61,7 +119,12 @@ const Popconfirm = <P extends ChildProps<T>, T extends HTMLElement>({
             {title}
           </div>
 
-          <div className={clsx(classNames[PopconfirmClassToken.Description])}>{description}</div>
+          <div
+            className={clsx(classNames[PopconfirmClassToken.Description], styled.description.className)}
+            style={styled.description.style}
+          >
+            {description}
+          </div>
 
           <Space
             className={clsx(classNames[PopconfirmClassToken.Footer], styled.footer.className)}
@@ -75,9 +138,9 @@ const Popconfirm = <P extends ChildProps<T>, T extends HTMLElement>({
               取消
             </Button>
           </Space>
-        </>
-      }
-    />
+        </div>
+      </Popper>
+    </>
   );
 };
 

@@ -57,15 +57,3 @@ export type PopoverProps<P extends ChildProps<T>, T extends HTMLElement> = Compo
    */
   placement?: Placement;
 };
-
-/**
- * @description
- * popover ref
- */
-export type PopoverRef = {
-  /**
-   * @description
-   * close
-   */
-  close: () => void;
-};
