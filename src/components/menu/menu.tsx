@@ -38,7 +38,7 @@ const Menu = forwardRef<MenuRef, MenuProps>(
       defaultExpandedKeys,
       defaultSelectedKeys,
     },
-    ref
+    ref,
   ) => {
     const classNames = useClassNames(ComponentToken.Menu);
     const { targetRef, scrollTo, to, setTrigger } = useScrollable<HTMLUListElement, HTMLLIElement>({
@@ -77,7 +77,7 @@ const Menu = forwardRef<MenuRef, MenuProps>(
               [classNames[MenuClassToken.MenuHorizontal]]: mode === "horizontal",
             },
             className,
-            styled.className
+            styled.className,
           )}
           style={{
             ...styled.style,
@@ -86,7 +86,7 @@ const Menu = forwardRef<MenuRef, MenuProps>(
         />
       </Context.Provider>
     );
-  }
+  },
 );
 
 export default Menu;

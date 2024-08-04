@@ -9,7 +9,7 @@ import { useClassNames } from "../../hooks/use-class-names";
 import { AvatarClassToken, ComponentToken } from "../../utils/class-name";
 import clsx from "clsx";
 import { typography } from "../theme/theme";
-import { useImage } from "../../hooks/use-image";
+import { useImageLoader } from "@aiszlab/relax";
 
 const styles = stylex.create({
   avatar: (props: { backgroundColor: CSSProperties["backgroundColor"]; color: CSSProperties["color"] }) => ({
@@ -76,7 +76,7 @@ const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(
     const size = group?.size ?? _size;
     const shape = group?.shape ?? _shape;
     const classNames = useClassNames(ComponentToken.Avatar);
-    const isLoaded = useImage({ src });
+    const loadStatus = useImageLoader({ src });
 
     const styled = {
       avatar: stylex.props(
@@ -90,7 +90,7 @@ const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(
         isInGroup &&
           styles.overlapping({
             outlineColor: theme.colors[ColorToken.OnPrimary],
-          })
+          }),
       ),
       image: stylex.props(styles.image),
     };
@@ -102,14 +102,14 @@ const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(
         style={styled.avatar.style}
         ref={ref}
       >
-        {isLoaded === "loaded" ? (
+        {loadStatus === "loaded" ? (
           <img draggable={false} src={src} alt={alt} className={styled.image.className} style={styled.image.style} />
         ) : (
           alt?.slice(0, 2).toUpperCase()
         )}
       </span>
     );
-  }
+  },
 );
 
 export default Avatar;

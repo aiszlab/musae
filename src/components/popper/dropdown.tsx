@@ -5,7 +5,15 @@ import { useClassNames } from "../../hooks/use-class-names";
 import * as stylex from "@stylexjs/stylex";
 import clsx from "clsx";
 import { isFunction, useRefs } from "@aiszlab/relax";
-import { computePosition, flip, autoUpdate, offset, arrow, type Side, type Alignment } from "@floating-ui/dom";
+import {
+  computePosition,
+  flip,
+  autoUpdate,
+  offset,
+  arrow,
+  type Side,
+  type Alignment,
+} from "@floating-ui/dom";
 import type { Nullable } from "@aiszlab/relax/types";
 import { useOffsets } from "./hooks";
 import { elevations, positions, sizes } from "../theme/tokens.stylex";
@@ -123,18 +131,25 @@ const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(
       (async () => {
         if (open) {
           _floatable.current.style.display = "";
-          await animate(_floatable.current, { opacity: 1, transform: "scale(1, 1)" }, { delay: 0.1, duration: 0.2 });
+          await animate(
+            _floatable.current,
+            { opacity: 1, transform: "scale(1, 1)" },
+            { duration: 0.2 },
+          );
           await onEntered?.();
           return;
         }
 
         await Promise.all([
           onExit?.(),
-          animate(_floatable.current, { opacity: 0, transform: "scale(0, 0)" }, { delay: 0.1, duration: 0.2 }).then(
-            () => {
-              _floatable.current.style.display = "none";
-            },
-          ),
+          animate(
+            _floatable.current,
+            { opacity: 0, transform: "scale(0, 0)" },
+            { duration: 0.2 },
+          ).then(() => {
+            if (!_floatable.current) return;
+            _floatable.current.style.display = "none";
+          }),
         ]);
         onExited?.();
       })();
@@ -146,14 +161,20 @@ const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(
         styles.dropdown.default({ backgroundColor: theme.colors[ColorToken.SurfaceContainer] }),
         overlay && styles.dropdown.overlay,
       ),
-      arrow: stylex.props(styles.arrow.default({ backgroundColor: theme.colors[ColorToken.SurfaceContainer] })),
+      arrow: stylex.props(
+        styles.arrow.default({ backgroundColor: theme.colors[ColorToken.SurfaceContainer] }),
+      ),
     };
 
     return (
       <div
         ref={floatable}
         {...props}
-        className={clsx(classNames[PopperClassToken.Dropdown], className, styled.dropdown.className)}
+        className={clsx(
+          classNames[PopperClassToken.Dropdown],
+          className,
+          styled.dropdown.className,
+        )}
         style={{
           ...styled.dropdown.style,
           ...style,
@@ -161,7 +182,9 @@ const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(
       >
         {children}
 
-        {arrowable && <div ref={arrowRef} className={styled.arrow.className} style={styled.arrow.style} />}
+        {arrowable && (
+          <div ref={arrowRef} className={styled.arrow.className} style={styled.arrow.style} />
+        )}
       </div>
     );
   },

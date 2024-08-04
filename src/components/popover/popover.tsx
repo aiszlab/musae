@@ -1,4 +1,12 @@
-import { useRefs, useHover, chain, toArray, useEvent, useFocus, useClickAway } from "@aiszlab/relax";
+import {
+  useRefs,
+  useHover,
+  chain,
+  toArray,
+  useEvent,
+  useFocus,
+  useClickAway,
+} from "@aiszlab/relax";
 import React, { cloneElement, useMemo, useRef, useCallback, type MouseEvent } from "react";
 import type { ChildProps, PopoverProps } from "./types";
 import { Popper } from "../popper";
@@ -8,7 +16,7 @@ import { typography } from "../theme/theme";
 import { useClassNames } from "../../hooks/use-class-names";
 import { ComponentToken, PopoverClassToken } from "../../utils/class-name";
 import clsx from "clsx";
-import { useIsOpen } from "./hooks";
+import { useLazyBoolean } from "../../hooks/use-lazy-boolean";
 
 const styles = stylex.create({
   popover: {
@@ -34,7 +42,7 @@ const Popover = <P extends ChildProps<T>, T extends HTMLElement>({
   children: _children,
 }: PopoverProps<P, T>) => {
   const _ref = useRef<HTMLElement>(null);
-  const { isOpen, open, close, toggle, disappear } = useIsOpen();
+  const [isOpen, { turnOn, turnOff, toggle, disappear }] = useLazyBoolean();
   const triggerBy = useMemo(() => new Set(toArray(_triggerBy)), [_triggerBy]);
   const classNames = useClassNames(ComponentToken.Popover);
   const childRef = useRefs(_ref, _children.props.ref);
@@ -46,16 +54,18 @@ const Popover = <P extends ChildProps<T>, T extends HTMLElement>({
   });
   const onContextMenu = useEvent((event: MouseEvent<T>) => {
     event.preventDefault();
-    open();
+    toggle();
   });
 
   const [, hoverProps] = useHover<T>({
-    onEnter: (event) => chain(_children.props.onMouseEnter, _children.props.onPointerEnter, open)(event),
-    onLeave: (event) => chain(_children.props.onMouseLeave, _children.props.onPointerLeave, disappear)(event),
+    onEnter: (event) =>
+      chain(_children.props.onMouseEnter, _children.props.onPointerEnter, turnOn)(event),
+    onLeave: (event) =>
+      chain(_children.props.onMouseLeave, _children.props.onPointerLeave, disappear)(event),
   });
   const [, focusProps] = useFocus<T>({
-    onFocus: (event) => chain(_children.props.onFocus, open)(event),
-    onBlur: (event) => chain(_children.props.onBlur, close)(event),
+    onFocus: (event) => chain(_children.props.onFocus, turnOn)(event),
+    onBlur: (event) => chain(_children.props.onBlur, turnOff)(event),
   });
 
   // @ts-ignore
@@ -72,7 +82,7 @@ const Popover = <P extends ChildProps<T>, T extends HTMLElement>({
   });
 
   const enterPopper = useCallback(() => {
-    open();
+    turnOn();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const leavePopper = useCallback(() => {
@@ -81,7 +91,7 @@ const Popover = <P extends ChildProps<T>, T extends HTMLElement>({
   }, []);
 
   useClickAway(() => {
-    close();
+    turnOff();
   }, [popperRef, ...(triggerBy.has("click") ? [_ref] : [])]);
 
   const styled = {
@@ -106,7 +116,11 @@ const Popover = <P extends ChildProps<T>, T extends HTMLElement>({
         ref={popperRef}
       >
         <div
-          className={clsx(classNames[PopoverClassToken.Popover], className, styled.popover.className)}
+          className={clsx(
+            classNames[PopoverClassToken.Popover],
+            className,
+            styled.popover.className,
+          )}
           style={{
             ...styled.popover.style,
             ...style,
@@ -122,7 +136,10 @@ const Popover = <P extends ChildProps<T>, T extends HTMLElement>({
           )}
 
           <div
-            className={clsx(classNames[PopoverClassToken.Description], styled.description.className)}
+            className={clsx(
+              classNames[PopoverClassToken.Description],
+              styled.description.className,
+            )}
             style={styled.description.style}
           >
             {description}

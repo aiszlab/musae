@@ -11,6 +11,7 @@ import clsx from "clsx";
 import { typography } from "../theme/theme";
 import { useEvent, useHover } from "@aiszlab/relax";
 import { Popper } from "../popper";
+import { useLazyBoolean } from "../../hooks/use-lazy-boolean";
 
 const styles = {
   default: stylex.create({
@@ -134,8 +135,14 @@ const Item = forwardRef<HTMLLIElement, MenuItemProps>(
     const theme = useTheme();
     const hasChildren = !!props.children;
     const itemRef = useRef<HTMLDivElement | null>(null);
-    const [isHovered, hoverProps] = useHover();
     const isInline = mode === "inline";
+
+    // delay disappear after hover leave
+    const [isOpen, { turnOn, disappear }] = useLazyBoolean();
+    const [, hoverProps] = useHover({
+      onEnter: turnOn,
+      onLeave: disappear,
+    });
 
     const click = useEvent(() => {
       // if item is a group, just trigger key
@@ -177,7 +184,7 @@ const Item = forwardRef<HTMLLIElement, MenuItemProps>(
             backgroundColor: theme.colors[ColorToken.SurfaceContainerHighest],
             color: theme.colors[ColorToken.Primary],
           }),
-        typography.label[size]
+        typography.label[size],
       ),
     };
 
@@ -202,7 +209,7 @@ const Item = forwardRef<HTMLLIElement, MenuItemProps>(
         {!isInline && !!props.children && (
           <Popper
             trigger={itemRef.current}
-            open={isHovered}
+            open={isOpen}
             placement={mode === "vertical" ? "top-start" : "bottom-start"}
             {...hoverProps}
           >
@@ -211,7 +218,7 @@ const Item = forwardRef<HTMLLIElement, MenuItemProps>(
         )}
       </li>
     );
-  }
+  },
 );
 
 export default Item;
