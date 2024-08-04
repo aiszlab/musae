@@ -10,21 +10,30 @@ import type { Option } from "../../types/option";
  * @description
  * cascader value
  */
-export const useValue = ([valueInProps, readableOptions, readablePaths, mode, close, setAdditionalMenusItems]: [
+export const useValue = ([
+  valueInProps,
+  readableOptions,
+  readablePaths,
+  mode,
+  close,
+  setAdditionalMenusItems,
+]: [
   CascaderProps["value"],
   ReadableOptions,
   ReadablePaths,
   CascaderProps["mode"],
   close: VoidFunction,
-  Dispatch<SetStateAction<MenuItem[][]>>
+  Dispatch<SetStateAction<MenuItem[][]>>,
 ]) => {
   const [_value, setValue] = useControlledState(valueInProps);
 
-  /// convert value
+  // convert value
   const values = useMemo(() => {
     return toValues(_value).reduce<Map<number, Optionable[]>>((prev, keysOrOptions) => {
       /// read item id for menu
-      const [id, options] = keysOrOptions.reduce<[Partialable<number>, Optionable[], Partialable<ReadableOptions>]>(
+      const [id, options] = keysOrOptions.reduce<
+        [Partialable<number>, Optionable[], Partialable<ReadableOptions>]
+      >(
         (prev, keyOrOption) => {
           const key = toKey(keyOrOption);
           const currentOption = prev[2]?.get(key);
@@ -39,15 +48,15 @@ export const useValue = ([valueInProps, readableOptions, readablePaths, mode, cl
           prev[2] = currentOption?.children;
           return prev;
         },
-        [void 0, [], readableOptions]
+        [void 0, [], readableOptions],
       );
 
-      /// set item
+      // set item
       return id ? prev.set(id, options) : prev;
     }, new Map());
   }, [_value, readableOptions]);
 
-  /// change handler
+  // change handler
   const onChange = useCallback(
     (id: number) => {
       // on menu click, when menu has children, add submenu
@@ -55,18 +64,21 @@ export const useValue = ([valueInProps, readableOptions, readablePaths, mode, cl
       const _paths = readablePaths.get(id)!;
       const _values = _paths.map((optionable) => optionable.value);
 
-      const [hasChildren, menusItems] = _values.reduce<[boolean, MenuItem[][], Partialable<ReadableOptions>]>(
+      const [hasChildren, menusItems] = _values.reduce<
+        [boolean, MenuItem[][], Partialable<ReadableOptions>]
+      >(
         (prev, key) => {
           const _option = prev[2]?.get(key);
           // check has children
           prev[0] = !!_option?.children;
           // add submenus
-          _option?.children && prev[1].push([..._option.children.values()].map((option) => toMenuItem(option)));
+          _option?.children &&
+            prev[1].push([..._option.children.values()].map((option) => toMenuItem(option)));
           // pass children
           prev[2] = _option?.children;
           return prev;
         },
-        [false, [], readableOptions]
+        [false, [], readableOptions],
       );
 
       // display submenus
@@ -81,13 +93,14 @@ export const useValue = ([valueInProps, readableOptions, readablePaths, mode, cl
         close();
         return;
       }
-      /// in multiple mode
-      /// click menu item twice mean cancel it
-      /// else add current values
+
+      // in multiple mode
+      // click menu item twice mean cancel it
+      // else add current values
       const isRemoved = values.has(id) && values.delete(id);
       setValue([...[...values.values()].map(toKeys), ...(isRemoved ? [] : [_values])]);
     },
-    [readablePaths, readableOptions, mode, values, setValue, setAdditionalMenusItems, close]
+    [readablePaths, readableOptions, mode, values, setValue, setAdditionalMenusItems, close],
   );
 
   return {

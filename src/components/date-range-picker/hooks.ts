@@ -12,7 +12,7 @@ import { PickerRef } from "../picker";
 export const useValue = ([_value, _change, ref]: [
   DateRangePickerProps["value"],
   DateRangePickerProps["onChange"],
-  RefObject<PickerRef>
+  RefObject<PickerRef>,
 ]) => {
   const [value, setValue] = useControlledState<[Partialable<Dayjs>, Partialable<Dayjs>]>(_value!, {
     defaultState: [void 0, void 0],
@@ -21,7 +21,7 @@ export const useValue = ([_value, _change, ref]: [
   const onChange = useCallback(
     (_value: Dayjs) => {
       // click first time
-      if ([0, 2].includes(value.filter((_value) => !!_value)?.length ?? 0)) {
+      if (new Set([0, 2]).has(value.filter((_value) => !!_value)?.length ?? 0)) {
         setValue([_value, void 0]);
         return;
       }
@@ -32,7 +32,7 @@ export const useValue = ([_value, _change, ref]: [
       _change?.(_range);
       ref.current?.close();
     },
-    [value, setValue, _change, ref]
+    [value, setValue, _change, ref],
   );
 
   return {

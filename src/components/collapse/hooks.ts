@@ -17,7 +17,9 @@ export const useActiveKeys = ({
   onChange?: (value: Key[]) => void;
   accordion: boolean;
 }): [Set<Key>, (key: Key) => void] => {
-  const [_activeKeys, _setActiveKeys] = useControlledState(_activeKey, { defaultState: defaultActiveKey });
+  const [_activeKeys, _setActiveKeys] = useControlledState(_activeKey, {
+    defaultState: defaultActiveKey,
+  });
 
   const activeKeys = useMemo(() => {
     const keys = exclude(toArray(_activeKeys), [void 0]);

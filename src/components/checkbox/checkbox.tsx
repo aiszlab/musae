@@ -50,7 +50,10 @@ const styles = {
       },
     }),
 
-    checked: (props: { backgroundColor: CSSProperties["backgroundColor"]; color: CSSProperties["borderColor"] }) => ({
+    checked: (props: {
+      backgroundColor: CSSProperties["backgroundColor"];
+      color: CSSProperties["borderColor"];
+    }) => ({
       "::before": {
         backgroundColor: props.backgroundColor,
         borderColor: props.backgroundColor,
@@ -74,7 +77,10 @@ const styles = {
       },
     }),
 
-    disabled: (props: { backgroundColor: CSSProperties["backgroundColor"]; color: CSSProperties["borderColor"] }) => ({
+    disabled: (props: {
+      backgroundColor: CSSProperties["backgroundColor"];
+      color: CSSProperties["borderColor"];
+    }) => ({
       "::before": {
         backgroundColor: props.backgroundColor,
         borderColor: props.backgroundColor,
@@ -99,13 +105,21 @@ const styles = {
   }),
 };
 
-const Checkbox = ({ value, className, style, children, onChange, disabled = false, checked }: CheckboxProps) => {
+const Checkbox = ({
+  value,
+  className,
+  style,
+  children,
+  onChange,
+  disabled = false,
+  checked,
+}: CheckboxProps) => {
   const contextValue = useContext(Context);
   const classNames = useClassNames(ComponentToken.Checkbox);
   const theme = useTheme();
   const isDisabled = useMemo(() => contextValue?.isDisabled ?? disabled, [contextValue, disabled]);
 
-  const [_isChecked, _setIsChecked] = useControlledState(checked!, {
+  const [_isChecked, _setIsChecked] = useControlledState(checked, {
     defaultState: false,
   });
 
@@ -154,7 +168,11 @@ const Checkbox = ({ value, className, style, children, onChange, disabled = fals
 
   return (
     <label
-      className={clsx(styled.checkbox.className, className, classNames[CheckboxClassToken.Checkbox])}
+      className={clsx(
+        styled.checkbox.className,
+        className,
+        classNames[CheckboxClassToken.Checkbox],
+      )}
       style={{
         ...styled.checkbox.style,
         ...style,

@@ -3,8 +3,13 @@ import React, { useCallback, useMemo } from "react";
 import type { ContextValue, CheckboxGroupProps } from "./types";
 import { useControlledState } from "@aiszlab/relax";
 
-const Group = ({ value: controlledValue, children, onChange, disabled = false }: CheckboxGroupProps) => {
-  const [_value, setValue] = useControlledState(controlledValue!, {
+const Group = ({
+  value: controlledValue,
+  children,
+  onChange,
+  disabled = false,
+}: CheckboxGroupProps) => {
+  const [_value, setValue] = useControlledState(controlledValue, {
     defaultState: [],
   });
 

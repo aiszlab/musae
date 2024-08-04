@@ -64,6 +64,7 @@ const styles = stylex.create({
 
   trigger: {
     margin: spacing.auto,
+    zIndex: positions.max,
   },
 });
 
@@ -81,11 +82,15 @@ export const useHeadCells = () => {
       styles.header({
         color: theme.colors[ColorToken.OnSurfaceVariant],
       }),
-      typography.body.large
+      typography.body.large,
     );
 
     return dayjs.Ls[dayjs.locale()].weekdays?.map((weekday, index) => (
-      <th key={index} className={clsx(classNames[CalendarClassToken.HeadCell], styled.className)} style={styled.style}>
+      <th
+        key={index}
+        className={clsx(classNames[CalendarClassToken.HeadCell], styled.className)}
+        style={styled.style}
+      >
         {weekday.charAt(0)}
       </th>
     ));
@@ -96,7 +101,15 @@ export const useHeadCells = () => {
  * @description
  * dates
  */
-export const useDateCells = ([timespan, focusedAt, click]: [Timespan, Dayjs, Required<CalendarProps>["onClick"]]) => {
+export const useDateCells = ({
+  timespan,
+  focusedAt,
+  click,
+}: {
+  timespan: Timespan;
+  focusedAt: Dayjs;
+  click: Required<CalendarProps>["onClick"];
+}) => {
   const classNames = useClassNames(ComponentToken.Calendar);
   const theme = useTheme();
 
@@ -126,9 +139,11 @@ export const useDateCells = ([timespan, focusedAt, click]: [Timespan, Dayjs, Req
             styles.date({
               backgroundColor: theme.colors[ColorToken.SecondaryContainer],
             }),
-            typography.body.large,
             isDisabled && styles.hidden,
-            isBetween && [styles.range, isFrom && styles.from, isTo && styles.to]
+            isBetween && styles.range,
+            isFrom && timespan.isRange && styles.from,
+            isTo && timespan.isRange && styles.to,
+            typography.body.large,
           ),
           trigger: stylex.props(styles.trigger),
         };
@@ -147,7 +162,7 @@ export const useDateCells = ([timespan, focusedAt, click]: [Timespan, Dayjs, Req
                   [classNames[CalendarClassToken.DateCellRangeTo]]: isTo,
                 }),
               },
-              styled.cell.className
+              styled.cell.className,
             )}
             style={styled.cell.style}
             aria-selected={isSelected}
@@ -165,12 +180,12 @@ export const useDateCells = ([timespan, focusedAt, click]: [Timespan, Dayjs, Req
             >
               {currentAt.date()}
             </Button>
-          </td>
+          </td>,
         );
 
         return prev;
       },
-      [[]]
+      [[]],
     );
 
     return dateCells.map((cells, index) => {
@@ -195,7 +210,7 @@ export const useValue = ({
     (_value: Dayjs) => {
       _click?.(_value);
     },
-    [_click]
+    [_click],
   );
 
   /// time span
@@ -214,8 +229,12 @@ export const useValue = ({
  * @description
  * point at
  */
-export const useFocusedAt = ({ focusedAt: _focusedAt }: { focusedAt: CalendarProps["focusedAt"] }) => {
-  const [focusedAt, setFocusedAt] = useControlledState(_focusedAt!, {
+export const useFocusedAt = ({
+  focusedAt: _focusedAt,
+}: {
+  focusedAt: CalendarProps["focusedAt"];
+}) => {
+  const [focusedAt, setFocusedAt] = useControlledState(_focusedAt, {
     defaultState: dayjs(),
   });
 

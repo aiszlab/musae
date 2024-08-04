@@ -8,7 +8,7 @@ import { useClassNames } from "../../hooks/use-class-names";
 import { ComponentToken, DateRangePickerClassToken } from "../../utils/class-name";
 import * as stylex from "@stylexjs/stylex";
 import clsx from "clsx";
-import { spacing } from "../theme/tokens.stylex";
+import { sizes, spacing } from "../theme/tokens.stylex";
 
 const styles = stylex.create({
   picker: {
@@ -19,7 +19,13 @@ const styles = stylex.create({
   },
 
   trigger: {
-    flex: 1,
+    flexGrow: 1,
+    flexShrink: 1,
+    flexBasis: "fit-content",
+    whiteSpace: "nowrap",
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+    minWidth: sizes.medium,
   },
 });
 
@@ -28,7 +34,7 @@ const DateRangePicker = (props: DateRangePickerProps) => {
   const { onChange, value } = useValue([props.value, props.onChange, ref]);
   const classNames = useClassNames(ComponentToken.DateRangePicker);
 
-  /// picked date
+  // picked date
   const picked = useMemo(() => {
     const [from, to] = value;
     const styled = {
@@ -47,7 +53,9 @@ const DateRangePicker = (props: DateRangePickerProps) => {
         >
           {from?.format("YYYY-MM-DD")}
         </span>
+
         <SwapHoriz className={classNames[DateRangePickerClassToken.Separator]} />
+
         <span
           className={clsx(styled.trigger.className, classNames[DateRangePickerClassToken.Input])}
           style={styled.trigger.style}
