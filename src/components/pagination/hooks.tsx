@@ -19,7 +19,7 @@ export const usePagiantion = ({
   boundaries: number;
   pageSize?: number;
 }) => {
-  const [pageSize, setPageSize] = useControlledState(_pageSize!, { defaultState: 10 });
+  const [pageSize, setPageSize] = useControlledState(_pageSize, { defaultState: 10 });
   const pages = useMemo(() => Math.ceil(total / Math.max(1, pageSize)), [total, pageSize]);
   const [page, { add, subtract, setCount }] = useCounter(1, {
     min: 1,

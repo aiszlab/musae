@@ -1,4 +1,4 @@
-import React, { CSSProperties, useCallback, useContext, useMemo } from "react";
+import React, { type CSSProperties, useCallback, useContext, useMemo } from "react";
 import Context from "./context";
 import type { RadioProps } from "./types";
 import { useControlledState } from "@aiszlab/relax";
@@ -96,12 +96,15 @@ const Radio = ({ children, value, checked, disabled = false, ...props }: RadioPr
   const classNames = useClassNames(ComponentToken.Radio);
   const theme = useTheme();
 
-  const isDisabled = useMemo(() => contextValue?.isDisabled ?? disabled, [contextValue?.isDisabled, disabled]);
+  const isDisabled = useMemo(
+    () => contextValue?.isDisabled ?? disabled,
+    [contextValue?.isDisabled, disabled],
+  );
 
-  /// check current radio is checked
-  /// if current radio is in provider, use provider context value first
-  /// or not, use isChecked property
-  /// otherwise, it control itself
+  // check current radio is checked
+  // if current radio is in provider, use provider context value first
+  // or not, use isChecked property
+  // otherwise, it control itself
   const isChecked = useMemo(() => {
     if (contextValue) {
       return value === contextValue.value;
@@ -109,8 +112,8 @@ const Radio = ({ children, value, checked, disabled = false, ...props }: RadioPr
     return !!_isChecked;
   }, [contextValue, _isChecked, value]);
 
-  /// change handler for radio
-  /// radio do not support cancel checked
+  // change handler for radio
+  // radio do not support cancel checked
   const change = useCallback(() => {
     // if chekced, ignore
     if (isChecked) return;
@@ -144,7 +147,9 @@ const Radio = ({ children, value, checked, disabled = false, ...props }: RadioPr
   };
 
   return (
-    <label className={clsx(classNames[RadioClassToken.Radio], props.className, styled.radio.className)}>
+    <label
+      className={clsx(classNames[RadioClassToken.Radio], props.className, styled.radio.className)}
+    >
       <input
         type="radio"
         aria-checked={isChecked}

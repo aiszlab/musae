@@ -72,7 +72,7 @@ const Input = forwardRef<InputRef, InputProps>(
       invalid = false,
       readOnly,
       maxLength,
-      value: __value,
+      value: valueInProps,
       onBlur,
       onChange,
       onClick,
@@ -103,7 +103,7 @@ const Input = forwardRef<InputRef, InputProps>(
     );
 
     /// controlled value
-    const [_value, _setValue] = useControlledState(__value!, { defaultState: "" });
+    const [_value, _setValue] = useControlledState(valueInProps, { defaultState: "" });
 
     /// events
     const inputEvents = useInputEvents({
@@ -116,7 +116,10 @@ const Input = forwardRef<InputRef, InputProps>(
     const wrapperEvents = useWrapperEvents({ inputRef });
 
     /// is focused
-    const [isFocused, focusProps] = useFocus({ onBlur: inputEvents.blur, onFocus: inputEvents.focus });
+    const [isFocused, focusProps] = useFocus({
+      onBlur: inputEvents.blur,
+      onFocus: inputEvents.focus,
+    });
 
     const styled = {
       wrapper: stylex.props(

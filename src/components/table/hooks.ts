@@ -12,19 +12,26 @@ export const useColumns = <T>({ columns }: { columns: Column<T>[] }) => {
   const helper = useRef(createColumnHelper<T>());
 
   return useMemo<ColumnDef<T, any>[]>(() => {
-    return columns.map(({ key, render, title, sortable = false, sortDirections = ["ascending", "descending"] }) => {
-      // @ts-ignore
-      return helper.current.accessor(key, {
-        header: createElement(HeaderCell, { children: title, sortable, value: key, sortDirections }),
-        cell: (_context: CellContext<T, unknown>) => {
-          const value = _context.getValue();
-          if (!render) {
-            return value;
-          }
-          return render(value, _context.row.original, _context.row.index);
-        },
-      });
-    });
+    return columns.map(
+      ({ key, render, title, sortable = false, sortDirections = ["ascending", "descending"] }) => {
+        // @ts-ignore
+        return helper.current.accessor(key, {
+          header: createElement(HeaderCell, {
+            children: title,
+            sortable,
+            value: key,
+            sortDirections,
+          }),
+          cell: (_context: CellContext<T, unknown>) => {
+            const value = _context.getValue();
+            if (!render) {
+              return value;
+            }
+            return render(value, _context.row.original, _context.row.index);
+          },
+        });
+      },
+    );
   }, [columns]);
 };
 
@@ -62,6 +69,6 @@ export const useContextValue = <T>({
       sortDescriptor,
       onSortChange,
     }),
-    [_table, bordered, sortDescriptor, onSortChange]
+    [_table, bordered, sortDescriptor, onSortChange],
   );
 };

@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@aiszlab/relax':
-        specifier: ^1.2.70
-        version: 1.2.70(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        specifier: ^1.2.71
+        version: 1.2.71(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@babel/runtime':
         specifier: ^7.25.0
         version: 7.25.0
@@ -144,8 +144,8 @@ packages:
   '@adobe/css-tools@4.4.0':
     resolution: {integrity: sha512-Ff9+ksdQQB3rMncgqDK78uLznstjyfIf2Arnh22pW8kBpLs6rpKDwgnZT46hin5Hl1WzazzK64DOrhSwYpS7bQ==}
 
-  '@aiszlab/relax@1.2.70':
-    resolution: {integrity: sha512-MV4WtZrerFRTjaV3eTFprObRr8UJwC0W7xSI3Jq4VzkUFUa+AwnqLGSeqDJHmxHiLVCbM5yzWUdnbRQbEMf5KA==}
+  '@aiszlab/relax@1.2.71':
+    resolution: {integrity: sha512-jvj1CbcLX9KURDPsVv9nE61lCZu4nI2Br4CjYkf8Ly2PZSNQnAqgfzn6JhIAFPT94f4FscNmY/gNdwyUhtz/6A==}
     peerDependencies:
       react: '18'
       react-dom: '18'
@@ -3656,7 +3656,7 @@ snapshots:
 
   '@adobe/css-tools@4.4.0': {}
 
-  '@aiszlab/relax@1.2.70(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@aiszlab/relax@1.2.71(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@babel/runtime': 7.25.0
       react: 18.3.1

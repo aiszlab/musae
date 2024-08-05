@@ -54,7 +54,10 @@ export const useItemChildren = ({
   isInline: boolean;
 }) => {
   /// prefix
-  const _prefix = useMemo(() => prefix && <span {...stylex.props(styles.prefix)}>{prefix}</span>, [prefix]);
+  const _prefix = useMemo(
+    () => prefix && <span {...stylex.props(styles.prefix)}>{prefix}</span>,
+    [prefix],
+  );
 
   /// child
   const _label = useMemo(() => label && <span>{label}</span>, [label]);
@@ -66,7 +69,7 @@ export const useItemChildren = ({
     const styled = stylex.props(
       styles.collapser({
         isExpanded,
-      })
+      }),
     );
 
     return (
@@ -103,11 +106,14 @@ export const useContextValue = ({
   setTrigger: ContextValue["collect"];
   variant: Variant;
   size: Size;
-} & Pick<MenuProps, "defaultExpandedKeys" | "defaultSelectedKeys" | "expandedKeys" | "selectedKeys">) => {
-  const [_selectedKeys, _setSelectedKeys] = useControlledState(props.selectedKeys!, {
+} & Pick<
+  MenuProps,
+  "defaultExpandedKeys" | "defaultSelectedKeys" | "expandedKeys" | "selectedKeys"
+>) => {
+  const [_selectedKeys, _setSelectedKeys] = useControlledState(props.selectedKeys, {
     defaultState: props.defaultSelectedKeys ?? [],
   });
-  const [_expandedKeys, _setExpandedKeys] = useControlledState(props.expandedKeys!, {
+  const [_expandedKeys, _setExpandedKeys] = useControlledState(props.expandedKeys, {
     defaultState: props.defaultExpandedKeys ?? [],
   });
 
@@ -120,7 +126,7 @@ export const useContextValue = ({
       _setSelectedKeys([key]);
       await onClick?.(key);
     },
-    [onClick, _setSelectedKeys]
+    [onClick, _setSelectedKeys],
   );
 
   /// toggle expand
@@ -133,7 +139,7 @@ export const useContextValue = ({
         return Array.from(expanded);
       });
     },
-    [expandedKeys, _setExpandedKeys]
+    [expandedKeys, _setExpandedKeys],
   );
 
   /// collect item
@@ -142,7 +148,7 @@ export const useContextValue = ({
       if (!item) return;
       setTrigger(key, item);
     },
-    [setTrigger]
+    [setTrigger],
   );
 
   return useMemo<ContextValue>(
@@ -155,7 +161,7 @@ export const useContextValue = ({
       collect,
       size,
     }),
-    [selectedKeys, expandedKeys, click, toggle, collect, variant, size]
+    [selectedKeys, expandedKeys, click, toggle, collect, variant, size],
   );
 };
 

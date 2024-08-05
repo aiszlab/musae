@@ -1,7 +1,17 @@
 import { clamp, isUndefined, useControlledState, useEvent } from "@aiszlab/relax";
-import { useLayoutEffect, useMemo, useRef, useState, useEffect, type Key, type RefObject, useContext } from "react";
+import {
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+  useEffect,
+  type Key,
+  type RefObject,
+  useContext,
+} from "react";
 import type { TabItem } from "./types";
 import Context from "./context";
+import type { Partialable } from "@aiszlab/relax/types";
 
 /**
  * @description
@@ -24,7 +34,7 @@ export const useTabs = ({
   items: TabItem[];
   defaultActiveKey?: Key;
 }) => {
-  const [activeKey, setActiveKey] = useControlledState(_activeKey, {
+  const [activeKey, setActiveKey] = useControlledState<Partialable<Key>>(_activeKey, {
     defaultState: defaultActiveKey ?? items.at(0)?.key,
   });
 

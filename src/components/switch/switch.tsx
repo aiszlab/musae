@@ -35,7 +35,10 @@ const styles = {
       color: props.color,
     }),
 
-    checked: (props: { backgroundColor: CSSProperties["backgroundColor"]; color: CSSProperties["color"] }) => ({
+    checked: (props: {
+      backgroundColor: CSSProperties["backgroundColor"];
+      color: CSSProperties["color"];
+    }) => ({
       borderColor: "transparent",
       backgroundColor: props.backgroundColor,
       color: props.color,
@@ -47,7 +50,10 @@ const styles = {
   }),
 
   slider: stylex.create({
-    normal: (props: { backgroundColor: CSSProperties["backgroundColor"]; color: CSSProperties["color"] }) => ({
+    normal: (props: {
+      backgroundColor: CSSProperties["backgroundColor"];
+      color: CSSProperties["color"];
+    }) => ({
       borderRadius: sizes.infinity,
       position: "absolute",
       transition: "all 0.2s",
@@ -76,7 +82,10 @@ const styles = {
       opacity: layers.thicker,
     },
 
-    checked: (props: { backgroundColor: CSSProperties["backgroundColor"]; color: CSSProperties["color"] }) => ({
+    checked: (props: {
+      backgroundColor: CSSProperties["backgroundColor"];
+      color: CSSProperties["color"];
+    }) => ({
       backgroundColor: props.backgroundColor,
       color: props.color,
       height: sizes.xsmall,
@@ -214,8 +223,16 @@ const Switch = ({
         }),
     ),
     supporting: stylex.props(styles.supporting.default, isChecked && styles.supporting.checked),
-    leading: stylex.props(styles.supporting.child, styles.leading.default, isChecked && styles.leading.checked),
-    trailing: stylex.props(styles.supporting.child, styles.trailing.default, isChecked && styles.trailing.checked),
+    leading: stylex.props(
+      styles.supporting.child,
+      styles.leading.default,
+      isChecked && styles.leading.checked,
+    ),
+    trailing: stylex.props(
+      styles.supporting.child,
+      styles.trailing.default,
+      isChecked && styles.trailing.checked,
+    ),
   };
 
   return (
@@ -231,7 +248,10 @@ const Switch = ({
         ...style,
       }}
     >
-      <div className={clsx(classNames[SwitchClassToken.Slider], styled.slider.className)} style={styled.slider.style}>
+      <div
+        className={clsx(classNames[SwitchClassToken.Slider], styled.slider.className)}
+        style={styled.slider.style}
+      >
         {icon && (isChecked ? <Check /> : <Close />)}
       </div>
 

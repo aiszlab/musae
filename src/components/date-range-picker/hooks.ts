@@ -1,9 +1,8 @@
 import { useControlledState } from "@aiszlab/relax";
-import { DateRangePickerProps } from "./types";
-import { RefObject, useCallback } from "react";
+import type { DateRangePickerProps } from "./types";
+import { type RefObject, useCallback } from "react";
 import { Dayjs } from "dayjs";
-import { Partialable } from "@aiszlab/relax/types";
-import { PickerRef } from "../picker";
+import { type PickerRef } from "../picker";
 
 /**
  * @description
@@ -14,7 +13,7 @@ export const useValue = ([_value, _change, ref]: [
   DateRangePickerProps["onChange"],
   RefObject<PickerRef>,
 ]) => {
-  const [value, setValue] = useControlledState<[Partialable<Dayjs>, Partialable<Dayjs>]>(_value!, {
+  const [value, setValue] = useControlledState(_value!, {
     defaultState: [void 0, void 0],
   });
 

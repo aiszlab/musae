@@ -1,5 +1,4 @@
 import { isUndefined, useControlledState, useEvent } from "@aiszlab/relax";
-import { useMemo } from "react";
 
 /**
  * @description
@@ -7,10 +6,6 @@ import { useMemo } from "react";
  */
 export const useValue = ({ value: _value }: { value?: number }) => {
   const [value, setValue] = useControlledState(_value?.toString());
-
-  const __value = useMemo(() => {
-    return value;
-  }, [value]);
 
   const change = useEvent((___value: string) => {
     // ignore invalid character
@@ -26,7 +21,7 @@ export const useValue = ({ value: _value }: { value?: number }) => {
   });
 
   return {
-    value: __value,
+    value,
     change,
   };
 };

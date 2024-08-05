@@ -240,22 +240,22 @@ export const useFocusedAt = ({
 
   /// next year
   const toNextYear = useCallback(() => {
-    setFocusedAt((__focusedAt) => __focusedAt.add(1, "year"));
+    setFocusedAt((prev) => prev.add(1, "year"));
   }, [setFocusedAt]);
 
   /// prev year
   const toPrevYear = useCallback(() => {
-    setFocusedAt((__focusedAt) => __focusedAt.subtract(1, "year"));
+    setFocusedAt((prev) => prev.subtract(1, "year"));
   }, [setFocusedAt]);
 
   /// next month
   const toNextMonth = useCallback(() => {
-    setFocusedAt((__focusedAt) => __focusedAt.add(1, "month"));
+    setFocusedAt((prev) => prev.add(1, "month"));
   }, [setFocusedAt]);
 
   /// prev month
   const toPrevMonth = useCallback(() => {
-    setFocusedAt((__focusedAt) => __focusedAt.subtract(1, "month"));
+    setFocusedAt((prev) => prev.subtract(1, "month"));
   }, [setFocusedAt]);
 
   return {

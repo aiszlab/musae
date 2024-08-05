@@ -12,7 +12,10 @@ export const useTransfer = (props: { options: TransferOption[]; value?: Key[] })
   const [untransferKeys, setUntransferKeys] = useState<Key[]>([]);
 
   const options = useMemo(() => {
-    return props.options.reduce((prev, item) => prev.set(item.value, item), new Map<Key, TransferOption>());
+    return props.options.reduce(
+      (prev, item) => prev.set(item.value, item),
+      new Map<Key, TransferOption>(),
+    );
   }, [props.options]);
 
   const [transferred, untransferred] = useMemo(() => {
@@ -32,7 +35,7 @@ export const useTransfer = (props: { options: TransferOption[]; value?: Key[] })
   const transfer = useCallback(() => {
     setValue((prev = []) => [...prev, ...transferKeys]);
     setTransferKeys([]);
-  }, [transferKeys]);
+  }, [transferKeys, setValue]);
 
   const untransfer = useCallback(() => {
     setValue((prev = []) => {
@@ -44,7 +47,7 @@ export const useTransfer = (props: { options: TransferOption[]; value?: Key[] })
       );
     });
     setUntransferKeys([]);
-  }, [untransferKeys]);
+  }, [untransferKeys, setValue]);
 
   return {
     transferred,

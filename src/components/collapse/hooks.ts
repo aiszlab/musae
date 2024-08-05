@@ -17,7 +17,7 @@ export const useActiveKeys = ({
   onChange?: (value: Key[]) => void;
   accordion: boolean;
 }): [Set<Key>, (key: Key) => void] => {
-  const [_activeKeys, _setActiveKeys] = useControlledState(_activeKey, {
+  const [_activeKeys, _setActiveKeys] = useControlledState<Value | undefined>(_activeKey, {
     defaultState: defaultActiveKey,
   });
 
