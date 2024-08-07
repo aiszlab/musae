@@ -64,6 +64,7 @@ export enum ComponentToken {
   Badge,
   Skeleton,
   VisuallyHidden,
+  Highlight,
 }
 
 /**
@@ -317,6 +318,9 @@ export enum PopconfirmClassToken {
   Title,
   Description,
   Footer,
+}
+export enum HighlightClassToken {
+  Highlight,
 }
 
 /**
@@ -572,6 +576,9 @@ export const CLASS_NAMES = {
     [PopconfirmClassToken.Title]: "popconfirm__title",
     [PopconfirmClassToken.Description]: "popconfirm__description",
     [PopconfirmClassToken.Footer]: "popconfirm__footer",
+  },
+  [ComponentToken.Highlight]: {
+    [HighlightClassToken.Highlight]: "highlight",
   },
 };
 

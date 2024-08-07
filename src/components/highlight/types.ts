@@ -8,4 +8,10 @@ export type HighlightProps = {
    * children
    */
   children: string;
+
+  /**
+   * @description
+   * capture
+   */
+  capture?: string | RegExp;
 };
