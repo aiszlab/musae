@@ -55,6 +55,7 @@ export { Skeleton } from "./components/skeleton";
 export { VisuallyHidden } from "./components/visually-hidden";
 export { NumberInput } from "./components/number-input";
 export { Popconfirm } from "./components/popconfirm";
+export { Highlight } from "./components/highlight";
 
 /**
  * @description

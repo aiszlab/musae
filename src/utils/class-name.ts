@@ -13,7 +13,8 @@ enum Token {
  * @description
  * add prefix
  */
-export const withPrefix = (className: string, prefix: string) => [prefix, className].join(Token.Separator);
+export const withPrefix = (className: string, prefix: string) =>
+  [prefix, className].join(Token.Separator);
 
 /**
  * @description
@@ -321,6 +322,7 @@ export enum PopconfirmClassToken {
 }
 export enum HighlightClassToken {
   Highlight,
+  Capture,
 }
 
 /**
@@ -579,6 +581,7 @@ export const CLASS_NAMES = {
   },
   [ComponentToken.Highlight]: {
     [HighlightClassToken.Highlight]: "highlight",
+    [HighlightClassToken.Capture]: "highlight__capture",
   },
 };
 
