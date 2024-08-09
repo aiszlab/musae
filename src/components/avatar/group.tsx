@@ -6,6 +6,7 @@ import { useClassNames } from "../../hooks/use-class-names";
 import { AvatarClassToken, ComponentToken } from "../../utils/class-name";
 import { Popover } from "../popover";
 import Avatar from "./avatar";
+import clsx from "clsx";
 
 const styles = stylex.create({
   group: {
@@ -14,14 +15,17 @@ const styles = stylex.create({
   },
 });
 
-const Group = ({ children: _children, shape = "circular", size = "medium", max = 3 }: AvatarGroupProps) => {
+const Group = ({
+  children: _children,
+  shape = "circular",
+  size = "medium",
+  max = 3,
+}: AvatarGroupProps) => {
   const styled = stylex.props(styles.group);
   const classNames = useClassNames(ComponentToken.Avatar);
 
   const children = useMemo(() => {
-    const __children = Children.toArray(_children);
-
-    const [visible, hidden] = __children.reduce<
+    const [visible, hidden] = Children.toArray(_children).reduce<
       [ReturnType<(typeof Children)["toArray"]>, ReturnType<(typeof Children)["toArray"]>]
     >(
       (prev, child, index) => {
@@ -36,7 +40,7 @@ const Group = ({ children: _children, shape = "circular", size = "medium", max =
         }
         return prev;
       },
-      [[], []]
+      [[], []],
     );
 
     // got hidden nodes, show ellipse node
@@ -44,7 +48,7 @@ const Group = ({ children: _children, shape = "circular", size = "medium", max =
       visible.push(
         <Popover description={<Group>{hidden}</Group>} key="avatars-hidden" placement="top">
           <Avatar alt={`+${hidden.length}`} />
-        </Popover>
+        </Popover>,
       );
     }
 
@@ -58,7 +62,10 @@ const Group = ({ children: _children, shape = "circular", size = "medium", max =
         size,
       }}
     >
-      <div className={(classNames[AvatarClassToken.Group], styled.className)} style={styled.style}>
+      <div
+        className={clsx(classNames[AvatarClassToken.Group], styled.className)}
+        style={styled.style}
+      >
         {children}
       </div>
     </Context.Provider>

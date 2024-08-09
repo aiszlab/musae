@@ -1,11 +1,13 @@
-# npm
-node_modules
-
 # build output
 dist
 
-# yarn
+# package manager
+node_modules
 yarn-error.log
 
 # editor
 .idea
+.vscode
+
+# unit test
+coverage

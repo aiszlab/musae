@@ -35,14 +35,18 @@ const Breadcrumb = ({ items = [], className, separator = "/", style }: Breadcrum
       typography.label.large,
       styles.breadcrumb({
         color: theme.colors[ColorToken.OnSurfaceVariant],
-      })
+      }),
     ),
     navigations: stylex.props(styles.navigations),
   };
 
   return (
     <nav
-      className={clsx(classNames[BreadcrumbClassToken.Breadcrumb], className, styled.breadcrumb.className)}
+      className={clsx(
+        classNames[BreadcrumbClassToken.Breadcrumb],
+        className,
+        styled.breadcrumb.className,
+      )}
       style={{
         ...styled.breadcrumb.style,
         ...style,

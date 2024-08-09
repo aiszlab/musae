@@ -1,14 +1,18 @@
-import React, { useMemo } from "react";
+import React from "react";
 import { Layout } from "../layout";
 import stylex from "@stylexjs/stylex";
 import { elevations, spacing } from "../theme/tokens.stylex";
-import type { WorkbenchProps, Logo } from "./types";
-import { Partialable } from "@aiszlab/relax/types";
+import type { WorkbenchProps } from "./types";
 import { Divider } from "../divider";
+import { useLogo } from "./hooks";
 
-const { Header, Main } = Layout;
+const { Header, Main, Sider } = Layout;
 
 const styles = stylex.create({
+  workbench: {
+    height: "100vh",
+  },
+
   header: {
     display: "flex",
     flexDirection: "row",
@@ -16,31 +20,25 @@ const styles = stylex.create({
     gap: spacing.xxsmall,
     boxShadow: elevations.small,
   },
-
-  workbench: {
-    height: "100vh",
-  },
 });
 const Workbench = ({ children, title, logo }: WorkbenchProps) => {
-  const _logo = useMemo<Partialable<Logo>>(() => {
-    if (typeof logo === "string") {
-      return {
-        url: logo,
-      };
-    }
-
-    return logo;
-  }, [logo]);
+  const _logo = useLogo(logo);
 
   const styled = {
     workbench: stylex.props(styles.workbench),
+    header: stylex.props(styles.header),
   };
 
   return (
     <Layout className={styled.workbench.className} style={styled.workbench.style}>
-      <Header>
-        {!!_logo?.url && <img src={_logo?.url} />}
+      <Header className={styled.header.className} style={styled.header.style}>
+        {/* logo */}
+        {!!_logo && <img src={_logo?.url} alt="logo" />}
+
+        {/* divider */}
         <Divider type="vertical" />
+
+        {/* title */}
         {title}
       </Header>
 

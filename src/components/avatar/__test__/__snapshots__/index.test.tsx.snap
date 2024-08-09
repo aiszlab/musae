@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`\`Avatar\` Component in group 1`] = `
+<DocumentFragment>
+  <div
+    class="musae-avatar__group group__styles.group"
+  >
+    <span
+      class="musae-avatar theme__label.medium avatar__styles.avatar avatar__styles.medium avatar__styles.circular avatar__styles.overlapping"
+      style="--backgroundColor: #EADDFF; --color: #6750A4; --borderColor: #FFF;"
+    >
+      <img
+        alt="AA"
+        class="avatar__styles.image"
+        draggable="false"
+        src="https://images.unsplash.com/photo-1511485977113-f34c92461ad9?ixlib=rb-1.2.1&w=128&h=128&dpr=2&q=80"
+      />
+    </span>
+    <span
+      class="musae-avatar theme__label.medium avatar__styles.avatar avatar__styles.medium avatar__styles.circular avatar__styles.overlapping"
+      style="--backgroundColor: #EADDFF; --color: #6750A4; --borderColor: #FFF;"
+    >
+      <img
+        alt="BB"
+        class="avatar__styles.image"
+        draggable="false"
+        src="https://images.unsplash.com/photo-1511485977113-f34c92461ad9?ixlib=rb-1.2.1&w=128&h=128&dpr=2&q=80"
+      />
+    </span>
+    <span
+      class="musae-avatar theme__label.medium avatar__styles.avatar avatar__styles.medium avatar__styles.circular avatar__styles.overlapping"
+      style="--backgroundColor: #EADDFF; --color: #6750A4; --borderColor: #FFF;"
+    >
+      <img
+        alt="CC"
+        class="avatar__styles.image"
+        draggable="false"
+        src="https://images.unsplash.com/photo-1511485977113-f34c92461ad9?ixlib=rb-1.2.1&w=128&h=128&dpr=2&q=80"
+      />
+    </span>
+  </div>
+</DocumentFragment>
+`;
