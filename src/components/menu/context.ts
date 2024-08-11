@@ -13,7 +13,6 @@ const Context = createContext<ContextValue>({
   click: () => {},
   toggle: () => {},
   collect: () => {},
-  variant: "filled",
   size: "medium",
 });
 

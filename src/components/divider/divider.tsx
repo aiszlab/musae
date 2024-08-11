@@ -28,7 +28,7 @@ const styles = {
     }),
 
     vertical: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
-      height: sizes.smallest,
+      width: sizes.smallest,
       backgroundColor: props.backgroundColor,
     }),
   }),
@@ -88,7 +88,13 @@ const styles = {
   }),
 };
 
-const Divider = ({ align = "center", children, type = "horizontal", className, style }: DividerProps) => {
+const Divider = ({
+  align = "center",
+  children,
+  type = "horizontal",
+  className,
+  style,
+}: DividerProps) => {
   const classNames = useClassNames(ComponentToken.Divider);
   const offset = useOffset({ align });
   const theme = useTheme();
@@ -105,21 +111,24 @@ const Divider = ({ align = "center", children, type = "horizontal", className, s
         styles.labeled[type]({
           backgroundColor: theme.colors[ColorToken.OutlineVariant],
           offset,
-        })
+        }),
     ),
-    label: stylex.props(typography.body.small, styles.label[type]),
+    label: stylex.props(styles.label[type], typography.body.small),
   };
 
   return (
     <div
-      className={clsx(styled.divider.className, className, classNames[DividerClassToken.Divider])}
+      className={clsx(classNames[DividerClassToken.Divider], className, styled.divider.className)}
       style={{
         ...styled.divider.style,
         ...style,
       }}
     >
       {!!children && (
-        <span className={clsx(styled.label.className, classNames[DividerClassToken.Label])} style={styled.label.style}>
+        <span
+          className={clsx(classNames[DividerClassToken.Label], styled.label.className)}
+          style={styled.label.style}
+        >
           {children}
         </span>
       )}

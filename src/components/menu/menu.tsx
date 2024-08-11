@@ -29,7 +29,6 @@ const Menu = forwardRef<MenuRef, MenuProps>(
       onClick,
       className,
       style,
-      variant = "filled",
       size = "medium",
       mode = "inline",
       items = [],
@@ -53,7 +52,6 @@ const Menu = forwardRef<MenuRef, MenuProps>(
       defaultExpandedKeys,
       onClick,
       setTrigger,
-      variant,
       size,
     });
 

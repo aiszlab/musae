@@ -1,6 +1,6 @@
 import React, { type Key, type ReactNode, useCallback, useContext, useMemo } from "react";
 import Context from "./context";
-import type { ContextValue, MenuProps, Mode, Variant } from "./types";
+import type { ContextValue, MenuProps, Mode } from "./types";
 import { useControlledState } from "@aiszlab/relax";
 import * as stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
@@ -98,13 +98,11 @@ export const useItemChildren = ({
 export const useContextValue = ({
   onClick,
   setTrigger,
-  variant,
   size,
   ...props
 }: {
   onClick: MenuProps["onClick"];
   setTrigger: ContextValue["collect"];
-  variant: Variant;
   size: Size;
 } & Pick<
   MenuProps,
@@ -155,13 +153,12 @@ export const useContextValue = ({
     () => ({
       selectedKeys,
       expandedKeys,
-      variant,
       click,
       toggle,
       collect,
       size,
     }),
-    [selectedKeys, expandedKeys, click, toggle, collect, variant, size],
+    [selectedKeys, expandedKeys, click, toggle, collect, size],
   );
 };
 

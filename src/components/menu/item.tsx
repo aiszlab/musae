@@ -23,70 +23,8 @@ const styles = {
 
       willChange: "background-color, border, color",
       transitionProperty: "background-color, border, color",
-      transitionDuration: "0.1s",
+      transitionDuration: "0.2s",
     },
-  }),
-
-  hovered: stylex.create({
-    filled: (props: Pick<CSSProperties, "backgroundColor" | "color" | "borderColor">) => ({
-      backgroundColor: {
-        default: null,
-        ":hover": props.backgroundColor,
-      },
-    }),
-
-    outlined: (props: Pick<CSSProperties, "backgroundColor" | "color" | "borderColor">) => ({
-      border: {
-        default: null,
-        ":hover": `${sizes.smallest} solid ${props.borderColor}`,
-      },
-    }),
-
-    text: (props: Pick<CSSProperties, "backgroundColor" | "color" | "borderColor">) => ({
-      color: {
-        default: null,
-        ":hover": props.color,
-      },
-    }),
-  }),
-
-  selected: stylex.create({
-    filled: (props: Pick<CSSProperties, "backgroundColor" | "color">) => ({
-      backgroundColor: props.backgroundColor,
-      color: props.color,
-    }),
-
-    outlined: (props: Pick<CSSProperties, "backgroundColor" | "color">) => ({
-      backgroundColor: props.backgroundColor,
-      color: props.color,
-    }),
-
-    text: (props: Pick<CSSProperties, "backgroundColor" | "color">) => ({
-      color: props.color,
-    }),
-  }),
-
-  size: stylex.create({
-    small: (props: { level: number }) => ({
-      paddingBlock: spacing.xxsmall,
-      paddingRight: spacing.small,
-      paddingLeft: `calc(${spacing.small} + ${props.level} * ${spacing.large})`,
-      borderRadius: sizes.xxxxxsmall,
-    }),
-
-    medium: (props: { level: number }) => ({
-      paddingBlock: spacing.small,
-      paddingRight: spacing.medium,
-      paddingLeft: `calc(${spacing.medium} + ${props.level} * ${spacing.xlarge})`,
-      borderRadius: sizes.xxxxsmall,
-    }),
-
-    large: (props: { level: number }) => ({
-      paddingBlock: spacing.medium,
-      paddingRight: spacing.large,
-      paddingLeft: `calc(${spacing.large} + ${props.level} * ${spacing.xxlarge})`,
-      borderRadius: sizes.xxxsmall,
-    }),
   }),
 
   mode: {
@@ -111,13 +49,94 @@ const styles = {
     }),
 
     item: stylex.create({
-      horizontal: {},
+      horizontal: (props: { outlineColor?: CSSProperties["borderColor"] }) => ({
+        height: sizes.full,
+        position: "relative",
 
-      vertical: {},
+        "::after": {
+          content: "",
+          position: "absolute",
+          insetInline: 0,
+          insetBlockEnd: 0,
+          borderBottomWidth: sizes.xxxxxxsmall,
+          willChange: "border-color",
+          transitionProperty: "border-color",
+          transitionDuration: "0.2s",
+        },
 
-      inline: {},
+        ":not(:hover)::after": {
+          borderBottomColor: "transparent",
+        },
+
+        ":hover::after": {
+          borderBottomColor: props.outlineColor,
+        },
+      }),
+
+      vertical: (props: { backgroundColor?: CSSProperties["backgroundColor"] }) => ({
+        backgroundColor: {
+          default: null,
+          ":hover": props.backgroundColor,
+        },
+      }),
+
+      inline: (props: { backgroundColor?: CSSProperties["backgroundColor"] }) => ({
+        backgroundColor: {
+          default: null,
+          ":hover": props.backgroundColor,
+        },
+      }),
     }),
   },
+
+  size: stylex.create({
+    small: (props: { level: number }) => ({
+      paddingBlock: spacing.xxsmall,
+      paddingRight: spacing.small,
+      paddingLeft: `calc(${spacing.small} + ${props.level} * ${spacing.large})`,
+      borderRadius: sizes.xxxxxsmall,
+    }),
+
+    medium: (props: { level: number }) => ({
+      paddingBlock: spacing.small,
+      paddingRight: spacing.medium,
+      paddingLeft: `calc(${spacing.medium} + ${props.level} * ${spacing.xlarge})`,
+      borderRadius: sizes.xxxxsmall,
+    }),
+
+    large: (props: { level: number }) => ({
+      paddingBlock: spacing.medium,
+      paddingRight: spacing.large,
+      paddingLeft: `calc(${spacing.large} + ${props.level} * ${spacing.xxlarge})`,
+      borderRadius: sizes.xxxsmall,
+    }),
+  }),
+
+  selected: stylex.create({
+    inline: (props: {
+      color?: CSSProperties["color"];
+      backgroundColor?: CSSProperties["backgroundColor"];
+    }) => ({
+      backgroundColor: props.backgroundColor,
+      color: props.color,
+    }),
+
+    vertical: (props: {
+      color?: CSSProperties["color"];
+      backgroundColor?: CSSProperties["backgroundColor"];
+    }) => ({
+      backgroundColor: props.backgroundColor,
+      color: props.color,
+    }),
+
+    horizontal: (props: { color?: CSSProperties["color"] }) => ({
+      color: props.color,
+
+      "::after": {
+        borderBottomColor: props.color,
+      },
+    }),
+  }),
 };
 
 /**
@@ -128,7 +147,7 @@ const styles = {
  */
 const Item = forwardRef<HTMLLIElement, MenuItemProps>(
   ({ level, label, prefix, suffix, value, className, mode, ...props }, ref) => {
-    const { selectedKeys, expandedKeys, click: _click, toggle, variant, size } = useMenuContext();
+    const { selectedKeys, expandedKeys, click: _click, toggle, size } = useMenuContext();
     const classNames = useClassNames(ComponentToken.Menu);
     const isSelected = selectedKeys.has(value);
     const isExpanded = expandedKeys.has(value);
@@ -136,6 +155,8 @@ const Item = forwardRef<HTMLLIElement, MenuItemProps>(
     const hasChildren = !!props.children;
     const itemRef = useRef<HTMLDivElement | null>(null);
     const isInline = mode === "inline";
+    const isVertical = mode === "vertical";
+    const isHorizontal = mode === "horizontal";
 
     // delay disappear after hover leave
     const [isOpen, { turnOn, disappear }] = useLazyBoolean();
@@ -165,25 +186,34 @@ const Item = forwardRef<HTMLLIElement, MenuItemProps>(
 
     const styled = {
       menuItem: stylex.props(styles.mode.menuitem[mode]),
+
       item: stylex.props(
         styles.default.item,
         styles.size[size]({ level }),
-        styles.hovered[variant]({
-          ...(variant === "text" && {
-            color: theme.colors[ColorToken.OnPrimaryFixedVariant],
-          }),
-          ...(variant === "filled" && {
+
+        styles.mode.item[mode]({
+          ...(isInline && {
             backgroundColor: theme.colors[ColorToken.SurfaceContainerHighest],
           }),
-          ...(variant === "outlined" && {
-            borderColor: theme.colors[ColorToken.SurfaceContainerHighest],
+          ...(isVertical && {
+            backgroundColor: theme.colors[ColorToken.SurfaceContainerHighest],
+          }),
+          ...(isHorizontal && {
+            outlineColor: theme.colors[ColorToken.Primary],
           }),
         }),
+
         isSelected &&
-          styles.selected[variant]({
-            backgroundColor: theme.colors[ColorToken.SurfaceContainerHighest],
-            color: theme.colors[ColorToken.Primary],
+          styles.selected[mode]({
+            ...((isInline || isVertical) && {
+              backgroundColor: theme.colors[ColorToken.SurfaceContainerHighest],
+              color: theme.colors[ColorToken.Primary],
+            }),
+            ...(isHorizontal && {
+              color: theme.colors[ColorToken.Primary],
+            }),
           }),
+
         typography.label[size],
       ),
     };

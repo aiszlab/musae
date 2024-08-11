@@ -2,8 +2,6 @@ import type { Key, ReactNode } from "react";
 import type { ComponentProps, Size } from "../../types/element";
 import type { WithLevel } from "../../types/element";
 
-export type Variant = "filled" | "outlined" | "text";
-
 export type Mode = "vertical" | "horizontal" | "inline";
 
 /**
@@ -43,8 +41,6 @@ export interface ContextValue {
    */
   expandedKeys: Set<Key>;
 
-  variant: Variant;
-
   size: Size;
 }
 
@@ -67,13 +63,6 @@ export interface MenuProps extends ComponentProps {
    * mode
    */
   mode?: Mode;
-
-  /**
-   * @description
-   * you can use the variant in the Menu component to change the hover style of the Menu items.
-   * @default "filled"
-   */
-  variant?: Variant;
 
   /**
    * @description

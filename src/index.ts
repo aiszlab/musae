@@ -56,6 +56,7 @@ export { VisuallyHidden } from "./components/visually-hidden";
 export { NumberInput } from "./components/number-input";
 export { Popconfirm } from "./components/popconfirm";
 export { Highlight } from "./components/highlight";
+export { Bench } from "./components/bench";
 
 /**
  * @description
@@ -73,3 +74,4 @@ export type { Option } from "./types/option";
 export type { MenuItem, MenuRef } from "./components/menu";
 export type { TreeProps } from "./components/tree";
 export type { TourStep } from "./components/tour";
+export type { NavigationItem } from "./components/bench";

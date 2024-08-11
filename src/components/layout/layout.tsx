@@ -8,7 +8,10 @@ import { ColorToken } from "../../utils/colors";
 import clsx from "clsx";
 
 const styles = stylex.create({
-  layout: (props: { backgroundColor: CSSProperties["backgroundColor"]; color: CSSProperties["color"] }) => ({
+  layout: (props: {
+    backgroundColor: CSSProperties["backgroundColor"];
+    color: CSSProperties["color"];
+  }) => ({
     backgroundColor: props.backgroundColor,
     color: props.color,
     display: "flex",
@@ -26,7 +29,7 @@ const Layout = ({ className, style, ...props }: LayoutProps) => {
     styles.layout({
       backgroundColor: theme.colors[ColorToken.SurfaceContainerLowest],
       color: theme.colors[ColorToken.OnSurface],
-    })
+    }),
   );
 
   return (
