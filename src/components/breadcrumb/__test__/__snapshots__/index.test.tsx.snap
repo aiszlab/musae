@@ -1,0 +1,93 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`\`Breadcrumb\` Component customize separator 1`] = `
+<DocumentFragment>
+  <nav
+    class="musae-breadcrumb theme__label.large breadcrumb__styles.breadcrumb"
+    style="--color: #49454F;"
+  >
+    <ol
+      class="breadcrumb__styles.navigations"
+    >
+      <li
+        class="musae-breadcrumb__item"
+      >
+        label1
+      </li>
+      <li
+        class="musae-breadcrumb__separator item__default"
+        role="separator"
+      >
+        -
+      </li>
+      <li
+        class="musae-breadcrumb__item"
+      >
+        <a
+          href="https://aiszlab.dev"
+        >
+          link2
+        </a>
+      </li>
+      <li
+        class="musae-breadcrumb__separator item__default"
+        role="separator"
+      >
+        -
+      </li>
+      <li
+        class="musae-breadcrumb__item"
+      >
+        label3
+      </li>
+    </ol>
+  </nav>
+</DocumentFragment>
+`;
+
+exports[`\`Breadcrumb\` Component display items 1`] = `
+<DocumentFragment>
+  <nav
+    class="musae-breadcrumb theme__label.large breadcrumb__styles.breadcrumb"
+    style="--color: #49454F;"
+  >
+    <ol
+      class="breadcrumb__styles.navigations"
+    >
+      <li
+        class="musae-breadcrumb__item"
+      >
+        label1
+      </li>
+      <li
+        class="musae-breadcrumb__separator item__default"
+        role="separator"
+      >
+        /
+      </li>
+      <li
+        class="musae-breadcrumb__item"
+      >
+        <a
+          href="https://aiszlab.dev"
+        >
+          link2
+        </a>
+      </li>
+      <li
+        class="musae-breadcrumb__separator item__default"
+        role="separator"
+      >
+        /
+      </li>
+      <li
+        class="musae-breadcrumb__item"
+      >
+        label3
+      </li>
+    </ol>
+  </nav>
+</DocumentFragment>
+`;
+
+exports[`\`Breadcrumb\` Component empty items 1`] = `<DocumentFragment />`;
