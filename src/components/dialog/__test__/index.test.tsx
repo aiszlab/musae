@@ -8,6 +8,42 @@ describe("`Dialog` Component", () => {
     render(<Dialog open />);
 
     // node render in screen
-    expect(document.body.querySelector(".musae-dialog")).toBeInTheDocument();
+    expect(document.querySelector(".musae-dialog")).toBeInTheDocument();
   });
+
+  // test("dialog destory after 3s", () => {
+  //   jest.useFakeTimers();
+
+  //   const Demo = () => {
+  //     const [isOpen, { turnOff, turnOn }] = useBoolean(false);
+  //     const ref = useRef<HTMLDivElement>(null);
+
+  //     useEffect(() => {
+  //       act(() => {
+  //         turnOn();
+  //       });
+  //     }, []);
+
+  //     useTimeout(() => {
+  //       act(() => {
+  //         turnOff();
+  //         console.log("112321321321");
+  //       });
+  //     }, 3000);
+
+  //     return (
+  //       <div ref={ref}>
+  //         <Dialog open={isOpen} container={ref.current} />
+  //       </div>
+  //     );
+  //   };
+
+  //   const { asFragment } = render(<Demo />);
+
+  //   jest.runAllTimers();
+
+  //   console.log("22222222=======", jest.getTimerCount());
+  //   expect(asFragment()).toMatchSnapshot();
+  //   expect(document.querySelector(".musae-dialog")).toBeNull();
+  // });
 });

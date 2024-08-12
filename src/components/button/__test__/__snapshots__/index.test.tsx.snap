@@ -1,13 +1,56 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`\`Avatar\` Component snapshot 1`] = `
+exports[`\`Button\` Component disabled variant render 1`] = `
+<DocumentFragment>
+  <button
+    class="musae-button button__styles.button theme__label.medium button__styles.medium button__styles.filled button__styles.rounded button__styles.disabled"
+    disabled=""
+    style="--backgroundColor: #1D1B201F; --color: #1D1B2061; --borderColor: initial;"
+    type="button"
+  >
+    disabled filled
+  </button>
+  <button
+    class="musae-button button__styles.button theme__label.medium button__styles.medium button__styles.outlined button__styles.rounded button__styles.disabled"
+    disabled=""
+    style="--1e2mv7m: #6750A414; --backgroundColor: transparent; --color: #1D1B2061; --borderColor: #1D1B2061;"
+    type="button"
+  >
+    disabled outlined
+  </button>
+  <button
+    class="musae-button button__styles.button theme__label.medium button__styles.medium button__styles.text button__styles.rounded button__styles.disabled"
+    disabled=""
+    style="--1e2mv7m: #6750A414; --backgroundColor: transparent; --color: #1D1B2061; --borderColor: initial;"
+    type="button"
+  >
+    disabled text
+  </button>
+</DocumentFragment>
+`;
+
+exports[`\`Button\` Component variant render 1`] = `
 <DocumentFragment>
   <button
     class="musae-button button__styles.button theme__label.medium button__styles.medium button__styles.filled button__styles.rounded"
     style="--backgroundColor: #6750A4; --color: #FFF;"
     type="button"
   >
-    button
+    filled
+  </button>
+  <button
+    class="musae-button button__styles.button theme__label.medium button__styles.medium button__styles.outlined button__styles.rounded"
+    style="--borderColor: #6750A4; --color: #6750A4; --1e2mv7m: #6750A414;"
+    type="button"
+  >
+    outlined
+  </button>
+  <button
+    class="musae-button button__styles.button theme__label.medium button__styles.medium button__styles.text button__styles.rounded"
+    style="--color: #6750A4; --1e2mv7m: #6750A414;"
+    type="button"
+  >
+    text
   </button>
 </DocumentFragment>
 `;

@@ -1,11 +1,32 @@
 import { fireEvent, render, getByText } from "@testing-library/react";
-import Button from "../button";
+import { Button } from "..";
 import React from "react";
 import "@testing-library/jest-dom";
 
-describe("`Avatar` Component", () => {
-  test("snapshot", () => {
-    const { asFragment } = render(<Button>button</Button>);
+describe("`Button` Component", () => {
+  test("variant render", () => {
+    const { asFragment } = render(
+      <>
+        <Button>filled</Button>
+        <Button variant="outlined">outlined</Button>
+        <Button variant="text">text</Button>
+      </>,
+    );
+    expect(asFragment()).toMatchSnapshot();
+  });
+
+  test("disabled variant render", () => {
+    const { asFragment } = render(
+      <>
+        <Button disabled>disabled filled</Button>
+        <Button disabled variant="outlined">
+          disabled outlined
+        </Button>
+        <Button disabled variant="text">
+          disabled text
+        </Button>
+      </>,
+    );
     expect(asFragment()).toMatchSnapshot();
   });
 
@@ -15,7 +36,7 @@ describe("`Avatar` Component", () => {
     const { container: disabledButton } = render(
       <Button disabled onClick={click}>
         disabled
-      </Button>
+      </Button>,
     );
     const { container: normalButton } = render(<Button onClick={click}>normal</Button>);
 

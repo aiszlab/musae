@@ -77,7 +77,7 @@ const Popup = ({ onClose, open, closable, onClosed, ...props }: PopupProps) => {
   const panelRef = useRef<HTMLDivElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
 
-  /// children render hooks
+  // children render hooks
   const footer = useFooter([props.footer, props.onConfirm, onClose]);
   const { closer, onKeyDown, onOverlayClick } = useClosable({ closable, onClose });
 
@@ -102,7 +102,7 @@ const Popup = ({ onClose, open, closable, onClosed, ...props }: PopupProps) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open]);
 
-  /// when open, try focus dialog
+  // when open, try focus dialog
   useEffect(() => {
     if (!open) return;
     if (contains(scope.current, document.activeElement)) return;

@@ -1,6 +1,7 @@
 import type { CSSProperties, ReactNode } from "react";
 import type { Closable } from "../../hooks/use-closable";
 import { RequiredIn } from "@aiszlab/relax/types";
+import { PortalProps } from "../portal/types";
 
 /**
  * @description
@@ -70,6 +71,11 @@ export interface DialogProps {
    * @default void 0
    */
   onClose?: VoidFunction;
+
+  /**
+   * @link {PortalProps.container}
+   */
+  container?: PortalProps["container"];
 }
 
 /**
