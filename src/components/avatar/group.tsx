@@ -21,12 +21,12 @@ const Group = ({
   size = "medium",
   max = 3,
 }: AvatarGroupProps) => {
-  const styled = stylex.props(styles.group);
   const classNames = useClassNames(ComponentToken.Avatar);
+  const styled = stylex.props(styles.group);
 
   const children = useMemo(() => {
     const [visible, hidden] = Children.toArray(_children).reduce<
-      [ReturnType<(typeof Children)["toArray"]>, ReturnType<(typeof Children)["toArray"]>]
+      [ReturnType<typeof Children.toArray>, ReturnType<typeof Children.toArray>]
     >(
       (prev, child, index) => {
         // @ts-ignore
@@ -46,7 +46,11 @@ const Group = ({
     // got hidden nodes, show ellipse node
     if (hidden.length > 0) {
       visible.push(
-        <Popover description={<Group>{hidden}</Group>} key="avatars-hidden" placement="top">
+        <Popover
+          description={<Group max={Infinity}>{hidden}</Group>}
+          key="avatars-hidden"
+          placement="top"
+        >
           <Avatar alt={`+${hidden.length}`} />
         </Popover>,
       );

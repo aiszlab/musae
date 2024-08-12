@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`\`Avatar\` Component in group 1`] = `
+exports[`\`Avatar.Group\` Component in group 1`] = `
 <DocumentFragment>
   <div
     class="musae-avatar__group group__styles.group"
@@ -13,7 +13,6 @@ exports[`\`Avatar\` Component in group 1`] = `
         alt="AA"
         class="avatar__styles.image"
         draggable="false"
-        src="https://images.unsplash.com/photo-1511485977113-f34c92461ad9?ixlib=rb-1.2.1&w=128&h=128&dpr=2&q=80"
       />
     </span>
     <span
@@ -24,7 +23,6 @@ exports[`\`Avatar\` Component in group 1`] = `
         alt="BB"
         class="avatar__styles.image"
         draggable="false"
-        src="https://images.unsplash.com/photo-1511485977113-f34c92461ad9?ixlib=rb-1.2.1&w=128&h=128&dpr=2&q=80"
       />
     </span>
     <span
@@ -35,9 +33,103 @@ exports[`\`Avatar\` Component in group 1`] = `
         alt="CC"
         class="avatar__styles.image"
         draggable="false"
-        src="https://images.unsplash.com/photo-1511485977113-f34c92461ad9?ixlib=rb-1.2.1&w=128&h=128&dpr=2&q=80"
       />
     </span>
   </div>
+</DocumentFragment>
+`;
+
+exports[`\`Avatar.Group\` Component in group, but is more than limit 1`] = `
+<DocumentFragment>
+  <div
+    class="musae-avatar__group group__styles.group"
+  >
+    <span
+      class="musae-avatar theme__label.medium avatar__styles.avatar avatar__styles.medium avatar__styles.circular avatar__styles.overlapping"
+      style="--backgroundColor: #EADDFF; --color: #6750A4; --borderColor: #FFF;"
+    >
+      <img
+        alt="AA"
+        class="avatar__styles.image"
+        draggable="false"
+      />
+    </span>
+    <span
+      class="musae-avatar theme__label.medium avatar__styles.avatar avatar__styles.medium avatar__styles.circular avatar__styles.overlapping"
+      style="--backgroundColor: #EADDFF; --color: #6750A4; --borderColor: #FFF;"
+    >
+      <img
+        alt="BB"
+        class="avatar__styles.image"
+        draggable="false"
+      />
+    </span>
+    <span
+      class="musae-avatar theme__label.medium avatar__styles.avatar avatar__styles.medium avatar__styles.circular avatar__styles.overlapping"
+      style="--backgroundColor: #EADDFF; --color: #6750A4; --borderColor: #FFF;"
+    >
+      <img
+        alt="CC"
+        class="avatar__styles.image"
+        draggable="false"
+      />
+    </span>
+    <span
+      class="musae-avatar theme__label.medium avatar__styles.avatar avatar__styles.medium avatar__styles.circular avatar__styles.overlapping"
+      style="--backgroundColor: #EADDFF; --color: #6750A4; --borderColor: #FFF;"
+    >
+      <img
+        alt="DD"
+        class="avatar__styles.image"
+        draggable="false"
+      />
+    </span>
+    <span
+      class="musae-avatar theme__label.medium avatar__styles.avatar avatar__styles.medium avatar__styles.circular avatar__styles.overlapping"
+      style="--backgroundColor: #EADDFF; --color: #6750A4; --borderColor: #FFF;"
+    >
+      <img
+        alt="+2"
+        class="avatar__styles.image"
+        draggable="false"
+      />
+    </span>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`\`Avatar\` Component mock image is loaded 1`] = `
+<DocumentFragment>
+  <span
+    class="musae-avatar theme__label.medium avatar__styles.avatar avatar__styles.medium avatar__styles.circular"
+    style="--backgroundColor: #EADDFF; --color: #6750A4;"
+  >
+    <img
+      alt="RJ"
+      class="avatar__styles.image"
+      draggable="false"
+      src="https://aiszlab.com"
+    />
+  </span>
+</DocumentFragment>
+`;
+
+exports[`\`Avatar\` Component with src, load error 1`] = `
+<DocumentFragment>
+  <span
+    class="musae-avatar theme__label.medium avatar__styles.avatar avatar__styles.medium avatar__styles.circular"
+    style="--backgroundColor: #EADDFF; --color: #6750A4;"
+  >
+    RJ
+  </span>
+</DocumentFragment>
+`;
+
+exports[`\`Avatar\` Component without src 1`] = `
+<DocumentFragment>
+  <span
+    class="musae-avatar theme__label.medium avatar__styles.avatar avatar__styles.medium avatar__styles.circular"
+    style="--backgroundColor: #EADDFF; --color: #6750A4;"
+  />
 </DocumentFragment>
 `;
