@@ -5,7 +5,7 @@ import Popup from "./popup";
 import { useBoolean } from "@aiszlab/relax";
 
 const Dialog = ({ open, closable = true, ...props }: DialogProps) => {
-  /// `Portal` should disappear after `Dialog` disappear completely
+  /// `Portal` should disappear after `Dialog` disappear animation completely
   const [_isVisible, { turnOn, turnOff }] = useBoolean(false);
 
   useEffect(() => {

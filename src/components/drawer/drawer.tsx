@@ -4,8 +4,14 @@ import { Portal } from "../portal";
 import Popup from "./popup";
 import { useBoolean } from "@aiszlab/relax";
 
-const Drawer = ({ open, size = 400, closable = true, placement = "right", ...props }: DrawerProps) => {
-  /// `Portal` should disappear after `Dialog` disappear completely
+const Drawer = ({
+  open,
+  size = 400,
+  closable = true,
+  placement = "right",
+  ...props
+}: DrawerProps) => {
+  /// `Portal` should disappear after `Drawer` disappear animation completely
   const [_isVisible, { turnOn, turnOff }] = useBoolean(false);
 
   useEffect(() => {
@@ -17,7 +23,14 @@ const Drawer = ({ open, size = 400, closable = true, placement = "right", ...pro
 
   return (
     <Portal open={open || _isVisible} lockable>
-      <Popup {...props} onClosed={turnOff} size={size} open={open} closable={closable} placement={placement} />
+      <Popup
+        {...props}
+        onClosed={turnOff}
+        size={size}
+        open={open}
+        closable={closable}
+        placement={placement}
+      />
     </Portal>
   );
 };
