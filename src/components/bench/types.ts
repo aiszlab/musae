@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { Key, ReactNode } from "react";
 import { ComponentProps } from "../../types/element";
 
 export type Logo = {
@@ -76,4 +76,16 @@ export type BenchProps = ComponentProps & {
    * location
    */
   location?: string;
+
+  /**
+   * @description
+   * default expanded keys
+   */
+  defaultExpandedKeys?: Key[];
+
+  /**
+   * @description
+   * class names
+   */
+  classNames?: Partial<Record<"main", string>>;
 };

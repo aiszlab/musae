@@ -8,14 +8,16 @@ import clsx from "clsx";
 
 const styles = stylex.create({
   header: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
+    display: "flex",
+    alignItems: "center",
     height: sizes.xxxlarge,
     paddingInline: spacing.xxlarge,
     marginBottom: spacing.xxlarge,
+
     position: "sticky",
     top: 0,
     zIndex: positions.header,
-    display: "flex",
-    alignItems: "center",
+
     backgroundColor: props.backgroundColor,
   }),
 });
@@ -25,7 +27,7 @@ const Header = ({ className, style, children }: HeaderProps) => {
   const styled = stylex.props(
     styles.header({
       backgroundColor: theme.colors[ColorToken.SurfaceContainerLowest],
-    })
+    }),
   );
 
   return (

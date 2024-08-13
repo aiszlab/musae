@@ -1,8 +1,8 @@
-import { type Key, useMemo, useState } from "react";
+import { type Key, useMemo } from "react";
 import type { BenchProps, Logo, NavigationItem } from "./types";
 import type { Partialable } from "@aiszlab/relax/types";
 import { MenuItem } from "../menu";
-import { isDomUsable, isUndefined, useDefault, useEvent } from "@aiszlab/relax";
+import { isUndefined, useEvent } from "@aiszlab/relax";
 
 /**
  * @description
@@ -62,36 +62,34 @@ export const useNavigations = ({
   location?: string;
 }) => {
   // menu click handler => jump link
-  const navigate = useEvent((path: string) => {
+  const navigate = useEvent((path: Key) => {
     if (onNavigate) {
-      onNavigate(path);
+      onNavigate(path.toString());
       return;
     }
 
-    window.open(path, "_self");
+    window.open(path.toString(), "_self");
   });
 
+  // convert navigations into diff menus
   const [topMenuItems, sideNavigations, paths] = useMemo(() => {
     return navigations.reduce<
       [Map<Key, MenuItem>, Map<Key, Partialable<MenuItem[]>>, Map<Key, Key[]>]
     >(
-      ([topMenuItems, sideNavigations, paths], { children, ...item }) => {
-        const [_menuItem, _paths] = toMenuItem(item, [], paths);
+      ([topMenuItems, sideNavigations, paths], item) => {
+        const [{ children, ..._menuItem }, _paths] = toMenuItem(item, [], paths);
         topMenuItems.set(item.path, _menuItem);
-        sideNavigations.set(item.path, _menuItem.children);
+        sideNavigations.set(item.path, children);
         return [topMenuItems, sideNavigations, _paths];
       },
       [new Map(), new Map(), new Map()],
     );
   }, [navigations]);
 
-  const selectedKeys = useMemo<[Partialable<Key>, Partialable<Key>]>(() => {
-    if (isUndefined(location)) return [void 0, void 0];
-
-    const root = paths.get(location)?.at(0);
-    if (isUndefined(root)) return [void 0, void 0];
-
-    return [root, location];
+  // menu selected keys
+  const selectedKeys = useMemo<[Key?, Key?]>(() => {
+    if (isUndefined(location)) return [];
+    return [paths.get(location)?.at(0) ?? location, location];
   }, [location, paths]);
 
   const sideMenuItems = useMemo<MenuItem[]>(() => {
@@ -101,19 +99,10 @@ export const useNavigations = ({
     return sideNavigations.get(selectedKeys[0]) ?? [];
   }, [sideNavigations, selectedKeys]);
 
-  const onTopNavigationClick = (key: Key) => {
-    navigate(key.toString());
-  };
-
-  const onSideNavigationClick = (key: Key) => {
-    navigate(key.toString());
-  };
-
   return {
     selectedKeys,
     topMenuItems: useMemo(() => Array.from(topMenuItems.values()), [topMenuItems]),
     sideMenuItems,
-    onTopNavigationClick,
-    onSideNavigationClick,
+    navigate,
   };
 };

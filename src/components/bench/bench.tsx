@@ -22,29 +22,24 @@ const styles = {
       borderRightStyle: "solid",
       borderRightColor: props.outlineColor,
       paddingInline: spacing.medium,
-      height: `calc(100vh - ${sizes.xxxlarge} - ${spacing.xxlarge})`,
+
       position: "sticky",
+      height: `calc(100vh - ${sizes.xxxlarge} - ${spacing.xxlarge})`,
       top: `calc(${sizes.xxxlarge} + ${spacing.xxlarge})`,
+
       overflowY: {
         default: "hidden",
         ":hover": "auto",
       },
     }),
 
-    main: {
-      paddingInline: spacing.xxlarge,
-      paddingBottom: spacing.xxlarge,
-    },
+    main: {},
   }),
 
   header: stylex.create({
     default: {
-      display: "flex",
-      flexDirection: "row",
-      alignItems: "center",
       gap: spacing.small,
       boxShadow: elevations.small,
-      marginBottom: spacing.xxlarge,
     },
 
     navigation: {
@@ -68,15 +63,16 @@ const Bench = ({
   trailing,
   onNavigate,
   location,
+  defaultExpandedKeys,
+  classNames: { main: mainClassName } = {},
 }: BenchProps) => {
   const theme = useTheme();
   const _logo = useLogo(logo);
-  const { onSideNavigationClick, onTopNavigationClick, topMenuItems, sideMenuItems } =
-    useNavigations({
-      navigations,
-      onNavigate,
-      location,
-    });
+  const { navigate, topMenuItems, sideMenuItems, selectedKeys } = useNavigations({
+    navigations,
+    onNavigate,
+    location,
+  });
 
   const styled = {
     bench: stylex.props(styles.bench.default),
@@ -117,10 +113,13 @@ const Bench = ({
         {/* top navigation */}
         <Menu
           items={topMenuItems}
-          onClick={onTopNavigationClick}
+          onClick={navigate}
           mode="horizontal"
           className={styled.headerNavigation.className}
           style={styled.headerNavigation.style}
+          {...(!!selectedKeys[0] && {
+            selectedKeys: [selectedKeys[0]],
+          })}
         />
 
         {/* trailing */}
@@ -130,11 +129,18 @@ const Bench = ({
       {sideMenuItems.length > 0 && (
         <Sider className={styled.sider.className} style={styled.sider.style}>
           {/* side navigation */}
-          <Menu items={sideMenuItems} onClick={onSideNavigationClick} />
+          <Menu
+            items={sideMenuItems}
+            onClick={navigate}
+            defaultExpandedKeys={defaultExpandedKeys}
+            {...(!!selectedKeys[1] && {
+              selectedKeys: [selectedKeys[1]],
+            })}
+          />
         </Sider>
       )}
 
-      <Main className={styled.main.className} style={styled.main.style}>
+      <Main className={clsx(mainClassName, styled.main.className)} style={styled.main.style}>
         {children}
       </Main>
     </Layout>
