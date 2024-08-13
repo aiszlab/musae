@@ -1,8 +1,6 @@
 import { ReactNode } from "react";
 import { ComponentProps } from "../../types/element";
 
-type Layout = "vertical" | "horizontal";
-
 export type Logo = {
   /**
    * @description
@@ -63,12 +61,6 @@ export type BenchProps = ComponentProps & {
 
   /**
    * @description
-   * layout
-   */
-  layout?: Layout;
-
-  /**
-   * @description
    * trailing
    */
   trailing?: ReactNode;
@@ -78,4 +70,10 @@ export type BenchProps = ComponentProps & {
    * navigate handler
    */
   onNavigate?: (path: string) => void;
+
+  /**
+   * @description
+   * location
+   */
+  location?: string;
 };

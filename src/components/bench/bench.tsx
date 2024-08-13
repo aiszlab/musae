@@ -1,4 +1,4 @@
-import React, { CSSProperties } from "react";
+import React, { type CSSProperties } from "react";
 import { Layout } from "../layout";
 import stylex from "@stylexjs/stylex";
 import { elevations, sizes, spacing } from "../theme/tokens.stylex";
@@ -63,11 +63,11 @@ const Bench = ({
   title,
   logo,
   navigations = [],
-  layout = "vertical",
   className,
   style,
   trailing,
   onNavigate,
+  location,
 }: BenchProps) => {
   const theme = useTheme();
   const _logo = useLogo(logo);
@@ -75,6 +75,7 @@ const Bench = ({
     useNavigations({
       navigations,
       onNavigate,
+      location,
     });
 
   const styled = {
