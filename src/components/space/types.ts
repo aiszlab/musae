@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import type { Gutter } from "../../hooks/use-gutters";
 import type { ComponentProps } from "../../types/element";
 
-type Type = "horizontal" | "vertical";
+type Orientation = "horizontal" | "vertical";
 
 /**
  * @description
@@ -23,10 +23,11 @@ export type SpaceProps = ComponentProps & {
    */
   gutter?: Gutter;
 
+  // TODO: update docs
   /**
    * @description
-   * direction
+   * orientation
    * @default "horizontal"
    */
-  type?: Type;
+  orientation?: Orientation;
 };

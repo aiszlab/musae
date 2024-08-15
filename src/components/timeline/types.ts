@@ -43,7 +43,7 @@ export type TimelineProps = {
 
   /**
    * @description
-   * you can use `mode` to switch the direction of the timeline
+   * you can use `mode` to switch the orientation of the timeline
    * @default "right"
    */
   mode?: Mode;
@@ -74,7 +74,7 @@ export type TimelineItemProps = TimelineItem & {
 export type ContextValue = {
   /**
    * @description
-   * you can use `mode` to switch the direction of the timeline
+   * you can use `mode` to switch the orientation of the timeline
    */
   mode: Mode;
 

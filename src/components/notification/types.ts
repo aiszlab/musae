@@ -4,9 +4,15 @@ import type { ReactNode } from "react";
  * @description
  * notification placement
  */
-export type Placement = "top" | "top-left" | "top-right" | "bottom" | "bottom-left" | "bottom-right";
+export type Placement =
+  | "top"
+  | "top-left"
+  | "top-right"
+  | "bottom"
+  | "bottom-left"
+  | "bottom-right";
 
-export type Direction = "top" | "left" | "bottom" | "right";
+export type Axis = "top" | "left" | "bottom" | "right";
 
 export type Type = "success" | "error" | "info" | "warning" | "loading";
 

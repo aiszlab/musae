@@ -165,9 +165,9 @@ export const useContextValue = ({
 /**
  * @description
  * in menu, musae allow developer scroll to the position by given key
- * but there are only x or y scroll direction
- * so we need convert the mode into direction
+ * but there are only x or y scroll orientation
+ * so we need convert the mode into orientation
  */
-export const useScrollDirection = (mode: Mode) => {
+export const useScrollOrientation = (mode: Mode) => {
   return mode === "horizontal" ? "horizontal" : "vertical";
 };

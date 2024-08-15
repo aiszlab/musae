@@ -3,7 +3,7 @@ import React, { type CSSProperties, useEffect, type FC, createElement, forwardRe
 import { useAnimate, usePresence } from "framer-motion";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
-import type { NotificationProps, Placement, Direction, Type } from "./types";
+import type { NotificationProps, Placement, Axis, Type } from "./types";
 import { useRefs, useTimeout } from "@aiszlab/relax";
 import { useClassNames } from "../../hooks/use-class-names";
 import { ComponentToken, NotificationClassToken } from "../../utils/class-name";
@@ -14,7 +14,7 @@ import { CheckCircle, Close, Loading, Error, NotificationImportant, Warning } fr
 import { typography } from "../theme/theme";
 import type { IconProps } from "../icon";
 
-const DIRECTIONS: Readonly<Record<Placement, Direction>> = {
+const AXIS: Readonly<Record<Placement, Axis>> = {
   top: "top",
   "top-left": "left",
   "top-right": "right",
@@ -23,7 +23,7 @@ const DIRECTIONS: Readonly<Record<Placement, Direction>> = {
   "bottom-right": "right",
 };
 
-export const PLACEMENTS: Record<Direction, [hidden: string, appeared: string]> = {
+export const PLACEMENTS: Record<Axis, [hidden: string, appeared: string]> = {
   right: ["translateX(100%)", "translateX(0)"],
   left: ["translateX(-100%)", "translateX(0)"],
   bottom: ["translateY(100%)", "translateY(0)"],
@@ -114,9 +114,9 @@ const Notification = forwardRef<HTMLDivElement, NotificationProps>(
   ({ placement, duration = 3000, onClose, description, title, type, closable = true }, ref) => {
     const theme = useTheme();
     const [isPresent, safeToRemove] = usePresence();
-    const direction = DIRECTIONS[placement];
+    const axis = AXIS[placement];
     const [scope, animate] = useAnimate<HTMLDivElement>();
-    const _placement = PLACEMENTS[direction];
+    const _placement = PLACEMENTS[axis];
     const classNames = useClassNames(ComponentToken.Notification);
     const notificationRef = useRefs(scope, ref);
 
@@ -184,7 +184,10 @@ const Notification = forwardRef<HTMLDivElement, NotificationProps>(
 
     return (
       <div
-        className={clsx(classNames[NotificationClassToken.Notification], styled.notification.className)}
+        className={clsx(
+          classNames[NotificationClassToken.Notification],
+          styled.notification.className,
+        )}
         style={styled.notification.style}
         ref={notificationRef}
       >
@@ -204,7 +207,10 @@ const Notification = forwardRef<HTMLDivElement, NotificationProps>(
         )}
 
         <div
-          className={clsx(classNames[NotificationClassToken.Description], styled.description.className)}
+          className={clsx(
+            classNames[NotificationClassToken.Description],
+            styled.description.className,
+          )}
           style={styled.description.style}
         >
           {description}

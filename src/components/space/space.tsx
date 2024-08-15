@@ -22,14 +22,20 @@ const styles = stylex.create({
   },
 });
 
-const Space = ({ gutter = 4, children, className, style, type = "horizontal" }: SpaceProps) => {
+const Space = ({
+  gutter = 4,
+  children,
+  className,
+  style,
+  orientation = "horizontal",
+}: SpaceProps) => {
   const [columnGap, rowGap] = useGutters({ gutter });
   const styled = stylex.props(
     styles.space({
       columnGap,
       rowGap,
     }),
-    styles[type]
+    styles[orientation],
   );
 
   return (

@@ -2,7 +2,7 @@ import React, { forwardRef, useImperativeHandle } from "react";
 import type { MenuProps, MenuRef } from "./types";
 import Context from "./context";
 import { useScrollable } from "@aiszlab/relax";
-import { useContextValue, useScrollDirection } from "./hooks";
+import { useContextValue, useScrollOrientation } from "./hooks";
 import Group from "./group";
 import * as stylex from "@stylexjs/stylex";
 import { useClassNames } from "../../hooks/use-class-names";
@@ -40,11 +40,12 @@ const Menu = forwardRef<MenuRef, MenuProps>(
     ref,
   ) => {
     const classNames = useClassNames(ComponentToken.Menu);
+    // TODO: change `direction` prop into `orientation` prop
     const { targetRef, scrollTo, to, setTrigger } = useScrollable<HTMLUListElement, HTMLLIElement>({
-      direction: useScrollDirection(mode),
+      direction: useScrollOrientation(mode),
     });
 
-    /// context value
+    // context value
     const contextValue = useContextValue({
       selectedKeys,
       expandedKeys,
