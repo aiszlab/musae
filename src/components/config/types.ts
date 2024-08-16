@@ -1,6 +1,7 @@
 import type { ReactNode, RefObject } from "react";
 import type { CLASS_NAMES } from "../../utils/class-name";
 import type { HolderRef } from "../notification/types";
+import type { Locale } from "../../locale";
 
 export type ClassNames = typeof CLASS_NAMES;
 
@@ -42,4 +43,10 @@ export interface ConfigProps {
    * prefix
    */
   prefix?: string;
+
+  /**
+   * @description
+   * locale
+   */
+  locale?: Locale;
 }

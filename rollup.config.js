@@ -19,6 +19,7 @@ const EXTENSIONS = [".ts", ".tsx", ".js", ".jsx"];
 const input = {
   [ENTRY]: "./src/index",
   "components/icon/icons/index": "./src/components/icon/icons/index",
+  "locale/locales/index": "./src/locale/locales/index",
 };
 
 /**
@@ -80,7 +81,11 @@ const config = () => {
       }),
     ].filter(Boolean),
 
-    external: [...Object.keys(pkg.dependencies), ...Object.keys(pkg.peerDependencies), /@babel\/runtime/],
+    external: [
+      ...Object.keys(pkg.dependencies),
+      ...Object.keys(pkg.peerDependencies),
+      /@babel\/runtime/,
+    ],
   };
 };
 

@@ -2,6 +2,7 @@ import React, { useMemo } from "react";
 import type { PopupProps } from "./types";
 import { Space } from "../space";
 import { Button } from "../button";
+import { useLocale } from "../../locale";
 
 /**
  * @description
@@ -12,18 +13,20 @@ export const useFooter = ([footer, onConfirm, onClose]: [
   onConfirm: PopupProps["onConfirm"],
   onClose: PopupProps["onClose"],
 ]) => {
+  const [locale] = useLocale("Dialog");
+
   return useMemo(() => {
     return (
       footer ?? (
         <Space>
           <Button onClick={onClose} color="secondary" variant="text">
-            取消
+            {locale.confirm}
           </Button>
           <Button onClick={onConfirm} variant="text">
-            确认
+            {locale.cancel}
           </Button>
         </Space>
       )
     );
-  }, [footer, onConfirm, onClose]);
+  }, [footer, onConfirm, onClose, locale]);
 };

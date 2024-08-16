@@ -22,6 +22,10 @@
     "./icons": {
       "types": "./dist/components/icon/icons/index.d.ts",
       "default": "./dist/components/icon/icons/index.js"
+    },
+    "./locales": {
+      "types": "./dist/locale/locales/index.d.ts",
+      "default": "./dist/locale/locales/index.js"
     }
   },
   "engines": {
