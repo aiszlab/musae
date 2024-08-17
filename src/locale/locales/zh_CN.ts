@@ -1,3 +1,5 @@
+/* eslint-disable no-template-curly-in-string */
+
 import { ComponentToken } from "../../utils/component-token";
 import type { Locale } from "../types";
 
@@ -9,6 +11,30 @@ const zh_CN: Locale = {
 
   [ComponentToken.Empty]: {
     placeholder: "暂无数据",
+  },
+
+  [ComponentToken.Pagination]: {
+    size: (size) => `${size} 条/页`,
+  },
+
+  [ComponentToken.Popconfirm]: {
+    confirm: "确认",
+    cancel: "取消",
+  },
+
+  [ComponentToken.TimePicker]: {
+    confirm: "确认",
+    now: "此刻",
+  },
+
+  [ComponentToken.Tour]: {
+    finish: "结束",
+    prev: "上一步",
+    next: "下一步",
+  },
+
+  [ComponentToken.Transfer]: {
+    unit: "项",
   },
 };
 

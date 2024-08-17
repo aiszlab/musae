@@ -10,6 +10,8 @@ import { useClassNames } from "../../hooks/use-class-names";
 import { PaginationClassToken } from "../../utils/class-name";
 import clsx from "clsx";
 import { ComponentToken } from "../../utils/component-token";
+import { useLocale } from "../../locale";
+import { toFunction } from "@aiszlab/relax";
 
 const styles = stylex.create({
   pagination: {
@@ -51,14 +53,15 @@ const Pagination = ({
     sizer: stylex.props(styles.sizer),
   };
   const classNames = useClassNames(ComponentToken.Pagination);
+  const locale = useLocale(ComponentToken.Pagination);
 
   const sizeOptions = useMemo<Option[]>(
     () =>
       Array.from(new Set(pageSizes)).map((size) => ({
         value: size,
-        label: `${size} 条/页`,
+        label: toFunction(locale.size)(size),
       })),
-    [pageSizes],
+    [locale, pageSizes],
   );
 
   return (

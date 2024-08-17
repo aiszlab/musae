@@ -14,6 +14,7 @@ import { typography } from "../theme/theme";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
 import { ComponentToken } from "../../utils/component-token";
+import { useLocale } from "../../locale";
 
 const styles = stylex.create({
   popconfirm: {
@@ -63,6 +64,7 @@ const Popconfirm = <P extends ChildProps<T>, T extends HTMLElement>({
   const childRef = useRefs(_ref, _children.props.ref);
   const popperRef = useRef<HTMLDivElement>(null);
   const theme = useTheme();
+  const locale = useLocale(ComponentToken.Popconfirm);
 
   const onClick = useEvent((event: MouseEvent<T>) => {
     event.stopPropagation();
@@ -139,11 +141,11 @@ const Popconfirm = <P extends ChildProps<T>, T extends HTMLElement>({
             style={styled.footer.style}
           >
             <Button variant="filled" size="small" onClick={confirm}>
-              确认
+              {locale.confirm}
             </Button>
 
             <Button variant="text" size="small" onClick={cancel}>
-              取消
+              {locale.cancel}
             </Button>
           </Space>
         </div>

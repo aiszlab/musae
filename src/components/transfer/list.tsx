@@ -12,6 +12,7 @@ import { TransferClassToken } from "../../utils/class-name";
 import clsx from "clsx";
 import { typography } from "../theme/theme";
 import { ComponentToken } from "../../utils/component-token";
+import { useLocale } from "../../locale";
 
 const styles = stylex.create({
   list: (props: { outlineColor: CSSProperties["borderColor"] }) => ({
@@ -52,6 +53,7 @@ const List = ({ options, title, onChange, value }: TransferListProps) => {
     ),
     title: stylex.props(styles.title),
   };
+  const locale = useLocale(ComponentToken.Transfer);
 
   return (
     <div
@@ -62,7 +64,10 @@ const List = ({ options, title, onChange, value }: TransferListProps) => {
         className={clsx(classNames[TransferClassToken.Header], styled.header.className)}
         style={styled.header.style}
       >
-        <span>{options.length}项</span>
+        <span>
+          {options.length}
+          {locale.unit}
+        </span>
         <span
           className={clsx(classNames[TransferClassToken.Title], styled.title.className)}
           style={styled.title.style}

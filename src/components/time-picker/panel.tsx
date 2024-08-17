@@ -18,6 +18,7 @@ import { ColorToken } from "../../utils/colors";
 import clsx from "clsx";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { ComponentToken } from "../../utils/component-token";
+import { useLocale } from "../../locale";
 
 const styles = stylex.create({
   panel: {
@@ -42,6 +43,7 @@ const Panel = forwardRef<PanelRef, PanelProps>((props, ref) => {
   const classNames = useClassNames(ComponentToken.TimePicker);
   const [value, setValue] = useState<ClockProps["value"]>();
   const theme = useTheme();
+  const locale = useLocale(ComponentToken.TimePicker);
 
   useImperativeHandle(ref, () => {
     return {
@@ -90,10 +92,10 @@ const Panel = forwardRef<PanelRef, PanelProps>((props, ref) => {
         style={styled.footer.style}
       >
         <Button variant="text" size="small" color="secondary" onClick={reset}>
-          此刻
+          {locale.now}
         </Button>
         <Button variant="text" size="small" color="primary" onClick={confirm} disabled={!value}>
-          确定
+          {locale.confirm}
         </Button>
       </div>
     </div>

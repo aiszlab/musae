@@ -16,6 +16,7 @@ import { useStep } from "./hooks";
 import Spotlight from "./spotlight";
 import { useGutters } from "../../hooks/use-gutters";
 import { ComponentToken } from "../../utils/component-token";
+import { useLocale } from "../../locale";
 
 const styles = stylex.create({
   overlay: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
@@ -61,6 +62,7 @@ const Tour = ({
   const classNames = useClassNames(ComponentToken.Tour);
   const { step, next, prev, hasNext, hasPrev } = useStep({ steps, open });
   const paddings = useGutters({ gutter: spotlightPadding });
+  const locale = useLocale(ComponentToken.Tour);
 
   const styled = {
     overlay: stylex.props(styles.overlay({ backgroundColor: theme.colors[ColorToken.SurfaceDim] })),
@@ -122,21 +124,21 @@ const Tour = ({
           {/* prev */}
           {hasPrev && (
             <Button onClick={prev} size="small">
-              上一步
+              {locale.prev}
             </Button>
           )}
 
           {/* next */}
           {hasNext && (
             <Button onClick={next} size="small">
-              下一步
+              {locale.next}
             </Button>
           )}
 
           {/* close */}
           {!hasNext && (
             <Button onClick={close} size="small">
-              结束
+              {locale.finish}
             </Button>
           )}
         </Space>
