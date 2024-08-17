@@ -1,6 +1,6 @@
 import React, { type CSSProperties, forwardRef, useLayoutEffect, useMemo, useRef } from "react";
 import type { DropdownProps } from "./types";
-import { ComponentToken, PopperClassToken } from "../../utils/class-name";
+import { PopperClassToken } from "../../utils/class-name";
 import { useClassNames } from "../../hooks/use-class-names";
 import * as stylex from "@stylexjs/stylex";
 import clsx from "clsx";
@@ -20,6 +20,7 @@ import { elevations, positions, sizes } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
 import { useAnimate } from "framer-motion";
+import { ComponentToken } from "../../utils/component-token";
 
 const styles = {
   dropdown: stylex.create({

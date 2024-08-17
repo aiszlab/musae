@@ -3,13 +3,14 @@ import { useControlledState, useEvent } from "@aiszlab/relax";
 import Context from "./context";
 import type { CheckboxProps } from "./types";
 import { useClassNames } from "../../hooks/use-class-names";
-import { CheckboxClassToken, ComponentToken } from "../../utils/class-name";
+import { CheckboxClassToken } from "../../utils/class-name";
 import clsx from "clsx";
 import * as stylex from "@stylexjs/stylex";
 import { layers, sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
 import { typography } from "../theme/theme";
+import { ComponentToken } from "../../utils/component-token";
 
 const styles = {
   checkbox: stylex.create({

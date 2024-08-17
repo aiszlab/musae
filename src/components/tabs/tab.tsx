@@ -3,7 +3,8 @@ import { Button } from "../button";
 import type { TabItemProps } from "./types";
 import Context from "./context";
 import { useClassNames } from "../../hooks/use-class-names";
-import { ComponentToken, TabsClassToken } from "../../utils/class-name";
+import { TabsClassToken } from "../../utils/class-name";
+import { ComponentToken } from "../../utils/component-token";
 
 const Tab = forwardRef<HTMLButtonElement, TabItemProps>(({ value, onClick, label }, ref) => {
   const { activeKey } = useContext(Context) ?? {};

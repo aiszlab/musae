@@ -6,13 +6,17 @@ import { Context } from "./context";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
 import { useClassNames } from "../../hooks/use-class-names";
-import { AvatarClassToken, ComponentToken } from "../../utils/class-name";
+import { AvatarClassToken } from "../../utils/class-name";
 import clsx from "clsx";
 import { typography } from "../theme/theme";
 import { useImageLoader } from "@aiszlab/relax";
+import { ComponentToken } from "../../utils/component-token";
 
 const styles = stylex.create({
-  avatar: (props: { backgroundColor: CSSProperties["backgroundColor"]; color: CSSProperties["color"] }) => ({
+  avatar: (props: {
+    backgroundColor: CSSProperties["backgroundColor"];
+    color: CSSProperties["color"];
+  }) => ({
     borderWidth: sizes.smallest,
     borderStyle: "solid",
     borderColor: "transparent",
@@ -103,7 +107,13 @@ const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(
         ref={ref}
       >
         {loadStatus === "loaded" ? (
-          <img draggable={false} src={src} alt={alt} className={styled.image.className} style={styled.image.style} />
+          <img
+            draggable={false}
+            src={src}
+            alt={alt}
+            className={styled.image.className}
+            style={styled.image.style}
+          />
         ) : (
           alt?.slice(0, 2).toUpperCase()
         )}

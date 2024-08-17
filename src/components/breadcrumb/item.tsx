@@ -5,8 +5,9 @@ import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
 import { type BreadcrumbItemProps } from "./types";
 import { useClassNames } from "../../hooks/use-class-names";
-import { BreadcrumbClassToken, ComponentToken } from "../../utils/class-name";
+import { BreadcrumbClassToken } from "../../utils/class-name";
 import clsx from "clsx";
+import { ComponentToken } from "../../utils/component-token";
 
 const styles = {
   navigation: stylex.create({
@@ -54,7 +55,7 @@ const Item = ({ href, label, max, separator }: BreadcrumbItemProps) => {
         styles.navigation.link({
           hoveredBackgroundColor: theme.colors[ColorToken.Surface],
           hoveredColor: theme.colors[ColorToken.OnSurface],
-        })
+        }),
     ),
     separator: stylex.props(styles.separator.default),
   };

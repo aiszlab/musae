@@ -2,7 +2,7 @@ import React, { cloneElement, useRef, type MouseEvent, type CSSProperties } from
 import type { PopconfirmProps, ChildProps } from "./types";
 import stylex from "@stylexjs/stylex";
 import { useClassNames } from "../../hooks/use-class-names";
-import { ComponentToken, PopconfirmClassToken } from "../../utils/class-name";
+import { PopconfirmClassToken } from "../../utils/class-name";
 import clsx from "clsx";
 import { Space } from "../space";
 import { Button } from "../button";
@@ -13,6 +13,7 @@ import { spacing } from "../theme/tokens.stylex";
 import { typography } from "../theme/theme";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
+import { ComponentToken } from "../../utils/component-token";
 
 const styles = stylex.create({
   popconfirm: {
@@ -102,7 +103,11 @@ const Popconfirm = <P extends ChildProps<T>, T extends HTMLElement>({
 
       <Popper trigger={_ref.current} open={isOpen} arrow placement={placement} ref={popperRef}>
         <div
-          className={clsx(classNames[PopconfirmClassToken.Popconfirm], className, styled.popconfirm.className)}
+          className={clsx(
+            classNames[PopconfirmClassToken.Popconfirm],
+            className,
+            styled.popconfirm.className,
+          )}
           style={{
             ...styled.popconfirm.style,
             ...style,
@@ -120,7 +125,10 @@ const Popconfirm = <P extends ChildProps<T>, T extends HTMLElement>({
           </div>
 
           <div
-            className={clsx(classNames[PopconfirmClassToken.Description], styled.description.className)}
+            className={clsx(
+              classNames[PopconfirmClassToken.Description],
+              styled.description.className,
+            )}
             style={styled.description.style}
           >
             {description}

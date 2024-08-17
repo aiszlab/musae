@@ -2,10 +2,11 @@ import React from "react";
 import type { RateProps } from "./types";
 import stylex from "@stylexjs/stylex";
 import { useClassNames } from "../../hooks/use-class-names";
-import { ComponentToken, RateClassToken } from "../../utils/class-name";
+import { RateClassToken } from "../../utils/class-name";
 import clsx from "clsx";
 import { useHover, useValue } from "./hooks";
 import Star from "./star";
+import { ComponentToken } from "../../utils/component-token";
 
 const styles = {
   rate: stylex.create({
@@ -17,7 +18,14 @@ const styles = {
   }),
 };
 
-const Rate = ({ count = 5, className, style, halfable = true, disabled = false, ...props }: RateProps) => {
+const Rate = ({
+  count = 5,
+  className,
+  style,
+  halfable = true,
+  disabled = false,
+  ...props
+}: RateProps) => {
   const classNames = useClassNames(ComponentToken.Rate);
   const { value, change } = useValue({ value: props.value, onChange: props.onChange, halfable });
   const { enter, hovered, leave } = useHover();

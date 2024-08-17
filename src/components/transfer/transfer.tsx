@@ -8,8 +8,9 @@ import { Button } from "../button";
 import { spacing } from "../theme/tokens.stylex";
 import { Context } from "./context";
 import { useClassNames } from "../../hooks/use-class-names";
-import { ComponentToken, TransferClassToken } from "../../utils/class-name";
+import { TransferClassToken } from "../../utils/class-name";
 import clsx from "clsx";
+import { ComponentToken } from "../../utils/component-token";
 
 const styles = stylex.create({
   transfer: {
@@ -26,7 +27,14 @@ const styles = stylex.create({
   },
 });
 
-const Transfer = ({ options, value, titles = [null, null], disabled = false, className, style }: TransferProps) => {
+const Transfer = ({
+  options,
+  value,
+  titles = [null, null],
+  disabled = false,
+  className,
+  style,
+}: TransferProps) => {
   const {
     transferred,
     untransferred,
@@ -57,7 +65,11 @@ const Transfer = ({ options, value, titles = [null, null], disabled = false, cla
   return (
     <Context.Provider value={contextValue}>
       <div
-        className={clsx(classNames[TransferClassToken.Transfer], className, styled.transfer.className)}
+        className={clsx(
+          classNames[TransferClassToken.Transfer],
+          className,
+          styled.transfer.className,
+        )}
         style={{
           ...styled.transfer.style,
           ...style,
@@ -74,11 +86,21 @@ const Transfer = ({ options, value, titles = [null, null], disabled = false, cla
           className={clsx(classNames[TransferClassToken.Operation], styled.operation.className)}
           style={styled.operation.style}
         >
-          <Button shape="circular" size="small" onClick={transfer} disabled={disabled || transferKeys.length === 0}>
+          <Button
+            shape="circular"
+            size="small"
+            onClick={transfer}
+            disabled={disabled || transferKeys.length === 0}
+          >
             <KeyboardArrowRight />
           </Button>
 
-          <Button shape="circular" size="small" onClick={untransfer} disabled={disabled || untransferKeys.length === 0}>
+          <Button
+            shape="circular"
+            size="small"
+            onClick={untransfer}
+            disabled={disabled || untransferKeys.length === 0}
+          >
             <KeyboardArrowLeft />
           </Button>
         </div>

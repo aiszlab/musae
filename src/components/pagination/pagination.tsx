@@ -7,8 +7,9 @@ import { spacing } from "../theme/tokens.stylex";
 import { Select } from "../select";
 import type { Option } from "../../types/option";
 import { useClassNames } from "../../hooks/use-class-names";
-import { ComponentToken, PaginationClassToken } from "../../utils/class-name";
+import { PaginationClassToken } from "../../utils/class-name";
 import clsx from "clsx";
+import { ComponentToken } from "../../utils/component-token";
 
 const styles = stylex.create({
   pagination: {
@@ -29,13 +30,22 @@ const Pagination = ({
   pageSize: _pageSize,
   pageSizes = [10, 20, 50, 100],
 }: PagiantionProps) => {
-  const { paginationItems, add, subtract, changePage, page, hasNext, hasPrev, pageSize, onPageSizeChange } =
-    usePagiantion({
-      boundaries,
-      pageSize: _pageSize,
-      siblings,
-      total,
-    });
+  const {
+    paginationItems,
+    add,
+    subtract,
+    changePage,
+    page,
+    hasNext,
+    hasPrev,
+    pageSize,
+    onPageSizeChange,
+  } = usePagiantion({
+    boundaries,
+    pageSize: _pageSize,
+    siblings,
+    total,
+  });
   const styled = {
     pagination: stylex.props(styles.pagination),
     sizer: stylex.props(styles.sizer),
@@ -72,7 +82,12 @@ const Pagination = ({
           className={clsx(classNames[PaginationClassToken.SizeSelector], styled.sizer.className)}
           style={styled.sizer.style}
         >
-          <Select options={sizeOptions} value={pageSize} style={{ minWidth: 0 }} onChange={onPageSizeChange} />
+          <Select
+            options={sizeOptions}
+            value={pageSize}
+            style={{ minWidth: 0 }}
+            onChange={onPageSizeChange}
+          />
         </li>
       </ul>
     </nav>

@@ -10,11 +10,12 @@ import { elevations, positions, sizes, spacing } from "../theme/tokens.stylex";
 import { Space } from "../space";
 import { typography } from "../theme/theme";
 import { useClassNames } from "../../hooks/use-class-names";
-import { ComponentToken, TourClassToken } from "../../utils/class-name";
+import { TourClassToken } from "../../utils/class-name";
 import clsx from "clsx";
 import { useStep } from "./hooks";
 import Spotlight from "./spotlight";
 import { useGutters } from "../../hooks/use-gutters";
+import { ComponentToken } from "../../utils/component-token";
 
 const styles = stylex.create({
   overlay: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
@@ -49,7 +50,13 @@ const styles = stylex.create({
   },
 });
 
-const Tour = ({ steps = [], open = false, onClose, overlay = true, spotlightPadding = 8 }: TourProps) => {
+const Tour = ({
+  steps = [],
+  open = false,
+  onClose,
+  overlay = true,
+  spotlightPadding = 8,
+}: TourProps) => {
   const theme = useTheme();
   const classNames = useClassNames(ComponentToken.Tour);
   const { step, next, prev, hasNext, hasPrev } = useStep({ steps, open });
@@ -60,7 +67,7 @@ const Tour = ({ steps = [], open = false, onClose, overlay = true, spotlightPadd
     tour: stylex.props(
       styles.tour({
         backgroundColor: theme.colors[ColorToken.OnPrimary],
-      })
+      }),
     ),
     title: stylex.props(styles.title, typography.title.medium),
     description: stylex.props(styles.description, typography.body.medium),
@@ -93,7 +100,10 @@ const Tour = ({ steps = [], open = false, onClose, overlay = true, spotlightPadd
         overlay={overlay}
         destroyable
       >
-        <div className={clsx(classNames[TourClassToken.Title], styled.title.className)} style={styled.title.style}>
+        <div
+          className={clsx(classNames[TourClassToken.Title], styled.title.className)}
+          style={styled.title.style}
+        >
           {step.title}
         </div>
 

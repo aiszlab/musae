@@ -7,9 +7,10 @@ import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
 import clsx from "clsx";
 import { useClassNames } from "../../hooks/use-class-names";
-import { ComponentToken, SwitchClassToken } from "../../utils/class-name";
+import { SwitchClassToken } from "../../utils/class-name";
 import { Close, Check } from "../icon/icons";
 import { layer } from "../../utils/layer";
+import { ComponentToken } from "../../utils/component-token";
 
 const styles = {
   switch: stylex.create({

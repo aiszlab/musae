@@ -3,8 +3,9 @@ import React from "react";
 import type { VisuallyHiddenProps } from "./types";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { useClassNames } from "../../hooks/use-class-names";
-import { ComponentToken, VisuallyHiddenClassToken } from "../../utils/class-name";
+import { VisuallyHiddenClassToken } from "../../utils/class-name";
 import clsx from "clsx";
+import { ComponentToken } from "../../utils/component-token";
 
 const styles = stylex.create({
   hidden: {
@@ -21,7 +22,10 @@ const VisuallyHidden = ({ children }: VisuallyHiddenProps) => {
   const classNames = useClassNames(ComponentToken.VisuallyHidden);
 
   return (
-    <span className={clsx(classNames[VisuallyHiddenClassToken.VisuallyHidden], styled.className)} style={styled.style}>
+    <span
+      className={clsx(classNames[VisuallyHiddenClassToken.VisuallyHidden], styled.className)}
+      style={styled.style}
+    >
       {children}
     </span>
   );

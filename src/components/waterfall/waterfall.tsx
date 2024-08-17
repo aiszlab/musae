@@ -8,7 +8,8 @@ import { useGutters } from "../../hooks/use-gutters";
 import { useMounted, useUpdateEffect } from "@aiszlab/relax";
 import Sequential from "./sequential";
 import { useClassNames } from "../../hooks/use-class-names";
-import { ComponentToken, WaterfallClassToken } from "../../utils/class-name";
+import { WaterfallClassToken } from "../../utils/class-name";
+import { ComponentToken } from "../../utils/component-token";
 
 const styles = stylex.create({
   waterfall: (props: { columnGap: number; rowGap: number }) => ({
@@ -49,7 +50,7 @@ const Waterfall = ({
 
   const styled = stylex.props(
     styles.waterfall({ rowGap, columnGap }),
-    !sequential && maxHeight > 0 && styles.repainted({ maxHeight: maxHeight })
+    !sequential && maxHeight > 0 && styles.repainted({ maxHeight: maxHeight }),
   );
 
   useUpdateEffect(() => {
@@ -105,7 +106,9 @@ const Waterfall = ({
       }}
     >
       {children.map((item, index) => {
-        const { className, style } = stylex.props(styles.item({ columnGap: columnGap, columns, order: order(index) }));
+        const { className, style } = stylex.props(
+          styles.item({ columnGap: columnGap, columns, order: order(index) }),
+        );
 
         return (
           <div

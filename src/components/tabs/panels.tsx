@@ -2,11 +2,12 @@ import React, { type Key, type ReactNode, useMemo } from "react";
 import stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
 import { useClassNames } from "../../hooks/use-class-names";
-import { ComponentToken, TabsClassToken } from "../../utils/class-name";
+import { TabsClassToken } from "../../utils/class-name";
 import { type PanelsProps } from "./types";
 import clsx from "clsx";
 import { isUndefined, isVoid } from "@aiszlab/relax";
 import { useTabsContext } from "./hooks";
+import { ComponentToken } from "../../utils/component-token";
 
 const styles = {
   panels: stylex.create({
@@ -56,7 +57,10 @@ const Panels = ({ forceRender, destroyable, activatedKeys }: PanelsProps) => {
   }, [destroyable, forceRender, items, activeKey, activatedKeys]);
 
   return (
-    <div className={clsx(classNames[TabsClassToken.Panels], styled.panels.className)} style={styled.panels.style}>
+    <div
+      className={clsx(classNames[TabsClassToken.Panels], styled.panels.className)}
+      style={styled.panels.style}
+    >
       {panels.map(([key, children]) => {
         const { className, style } = key === activeKey ? styled.panel.active : styled.panel.hidden;
 
@@ -65,7 +69,11 @@ const Panels = ({ forceRender, destroyable, activatedKeys }: PanelsProps) => {
         }
 
         return (
-          <div key={key} className={clsx(classNames[TabsClassToken.Panel], className)} style={style}>
+          <div
+            key={key}
+            className={clsx(classNames[TabsClassToken.Panel], className)}
+            style={style}
+          >
             {children}
           </div>
         );

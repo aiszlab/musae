@@ -1,13 +1,19 @@
 import React from "react";
 import type { RowProps } from "./types";
 import { useClassNames } from "../../hooks/use-class-names";
-import { ComponentToken, GridClassToken } from "../../utils/class-name";
+import { GridClassToken } from "../../utils/class-name";
 import clsx from "clsx";
 import * as stylex from "@stylexjs/stylex";
 import { useGutters } from "../../hooks/use-gutters";
+import { ComponentToken } from "../../utils/component-token";
 
 const styles = stylex.create({
-  row: (props: { columnGap: number; rowGap: number; justify: RowProps["justify"]; align: RowProps["align"] }) => ({
+  row: (props: {
+    columnGap: number;
+    rowGap: number;
+    justify: RowProps["justify"];
+    align: RowProps["align"];
+  }) => ({
     display: "grid",
     gridTemplateColumns: "repeat(24, minmax(0, 1fr))",
     columnGap: props.columnGap,
@@ -17,7 +23,15 @@ const styles = stylex.create({
   }),
 });
 
-const Row = ({ align, children, gutter = 0, justify, className, as: As = "div", style }: RowProps) => {
+const Row = ({
+  align,
+  children,
+  gutter = 0,
+  justify,
+  className,
+  as: As = "div",
+  style,
+}: RowProps) => {
   /// col and row gap in grid
   const [columnGap, rowGap] = useGutters({ gutter });
   const classNames = useClassNames(ComponentToken.Grid);

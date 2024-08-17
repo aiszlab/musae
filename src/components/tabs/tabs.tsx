@@ -2,11 +2,12 @@ import React, { useMemo } from "react";
 import type { ContextValue, TabsProps } from "./types";
 import Context from "./context";
 import { useClassNames } from "../../hooks/use-class-names";
-import { ComponentToken, TabsClassToken } from "../../utils/class-name";
+import { TabsClassToken } from "../../utils/class-name";
 import clsx from "clsx";
 import { useTabs } from "./hooks";
 import Panels from "./panels";
 import Navigation from "./navigation";
+import { ComponentToken } from "../../utils/component-token";
 
 const Tabs = ({
   items = [],

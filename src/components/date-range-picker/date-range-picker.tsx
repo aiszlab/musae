@@ -5,10 +5,11 @@ import { DateRangePickerProps } from "./types";
 import { Calendar } from "../calendar";
 import { SwapHoriz } from "../icon/icons";
 import { useClassNames } from "../../hooks/use-class-names";
-import { ComponentToken, DateRangePickerClassToken } from "../../utils/class-name";
+import { DateRangePickerClassToken } from "../../utils/class-name";
 import * as stylex from "@stylexjs/stylex";
 import clsx from "clsx";
 import { sizes, spacing } from "../theme/tokens.stylex";
+import { ComponentToken } from "../../utils/component-token";
 
 const styles = stylex.create({
   picker: {

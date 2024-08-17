@@ -3,6 +3,7 @@ import type { PopupProps } from "./types";
 import { Space } from "../space";
 import { Button } from "../button";
 import { useLocale } from "../../locale";
+import { ComponentToken } from "../../utils/component-token";
 
 /**
  * @description
@@ -13,7 +14,7 @@ export const useFooter = ([footer, onConfirm, onClose]: [
   onConfirm: PopupProps["onConfirm"],
   onClose: PopupProps["onClose"],
 ]) => {
-  const [locale] = useLocale("Dialog");
+  const locale = useLocale(ComponentToken.Dialog);
 
   return useMemo(() => {
     return (

@@ -1,6 +1,6 @@
 import React from "react";
 import { useClassNames } from "../../hooks/use-class-names";
-import { ClockClassToken, ComponentToken } from "../../utils/class-name";
+import { ClockClassToken } from "../../utils/class-name";
 import type { ClockProps } from "./types";
 import { TimeUnit } from "./types";
 import Column from "./column";
@@ -8,6 +8,7 @@ import * as stylex from "@stylexjs/stylex";
 import clsx from "clsx";
 import { Divider } from "../divider";
 import { spacing } from "../theme/tokens.stylex";
+import { ComponentToken } from "../../utils/component-token";
 
 const styles = stylex.create({
   clock: {
@@ -31,7 +32,13 @@ const Clock = ({ value, onChange }: ClockProps) => {
             key={unit}
             value={value?.[index]}
             onChange={(_value) => {
-              onChange?.(Object.values({ ...[0, 0, 0], ...value, [index]: _value }) as Required<ClockProps>["value"]);
+              onChange?.(
+                Object.values({
+                  ...[0, 0, 0],
+                  ...value,
+                  [index]: _value,
+                }) as Required<ClockProps>["value"],
+              );
             }}
           />,
           index === columns.length - 1 ? null : <Divider type="vertical" key={`${unit}-divider`} />,

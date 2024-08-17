@@ -1,6 +1,6 @@
 import React, { type CSSProperties } from "react";
 import { useClassNames } from "../../hooks/use-class-names";
-import { BadgeClassToken, ComponentToken } from "../../utils/class-name";
+import { BadgeClassToken } from "../../utils/class-name";
 import type { BadgeProps } from "./types";
 import stylex from "@stylexjs/stylex";
 import clsx from "clsx";
@@ -9,6 +9,7 @@ import { sizes } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
 import { isVoid } from "@aiszlab/relax";
+import { ComponentToken } from "../../utils/component-token";
 
 const styles = {
   badge: stylex.create({
@@ -19,7 +20,10 @@ const styles = {
   }),
 
   tail: stylex.create({
-    default: (props: { backgroundColor: CSSProperties["backgroundColor"]; color: CSSProperties["color"] }) => ({
+    default: (props: {
+      backgroundColor: CSSProperties["backgroundColor"];
+      color: CSSProperties["color"];
+    }) => ({
       position: "absolute",
       borderRadius: sizes.infinity,
       minWidth: sizes.xxxsmall,
@@ -65,7 +69,14 @@ const styles = {
   }),
 };
 
-const Badge = ({ className, style, children, content, invisible = false, placement = "top-right" }: BadgeProps) => {
+const Badge = ({
+  className,
+  style,
+  children,
+  content,
+  invisible = false,
+  placement = "top-right",
+}: BadgeProps) => {
   const classNames = useClassNames(ComponentToken.Badge);
   const theme = useTheme();
   const isDot = isVoid(content);
@@ -94,7 +105,10 @@ const Badge = ({ className, style, children, content, invisible = false, placeme
     >
       {children}
 
-      <span className={clsx(classNames[BadgeClassToken.Tail], styled.tail.className)} style={styled.tail.style}>
+      <span
+        className={clsx(classNames[BadgeClassToken.Tail], styled.tail.className)}
+        style={styled.tail.style}
+      >
         {content}
       </span>
     </span>

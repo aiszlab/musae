@@ -14,9 +14,10 @@ import stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
 import { typography } from "../theme/theme";
 import { useClassNames } from "../../hooks/use-class-names";
-import { ComponentToken, PopoverClassToken } from "../../utils/class-name";
+import { PopoverClassToken } from "../../utils/class-name";
 import clsx from "clsx";
 import { useLazyBoolean } from "../../hooks/use-lazy-boolean";
+import { ComponentToken } from "../../utils/component-token";
 
 const styles = stylex.create({
   popover: {

@@ -1,14 +1,15 @@
-import React, { useRef, useCallback, useContext } from "react";
+import React, { useRef, useCallback } from "react";
 import { Picker, type PickerRef } from "../picker";
 import { useOptions, useValue } from "./hooks";
-import Context from "../config/context";
-import { ComponentToken, SelectClassToken } from "../../utils/class-name";
+import { SelectClassToken } from "../../utils/class-name";
 import type { SelectProps, SelectorRef, ValueOrValues } from "./types";
 import clsx from "clsx";
 import stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
 import Selector from "./selector";
 import Selections from "./selections";
+import { useClassNames } from "../../hooks/use-class-names";
+import { ComponentToken } from "../../utils/component-token";
 
 const styles = stylex.create({
   picked: {
@@ -35,7 +36,7 @@ const Select = <T extends ValueOrValues = ValueOrValues>({
 }: SelectProps<T>) => {
   const ref = useRef<PickerRef>(null);
   const selectorRef = useRef<SelectorRef>(null);
-  const classNames = useContext(Context).classNames[ComponentToken.Select];
+  const classNames = useClassNames(ComponentToken.Select);
   const close = useCallback(() => ref.current?.close(), []);
 
   const { menuItems, readableOptions, search, searched, reset } = useOptions({
@@ -66,7 +67,13 @@ const Select = <T extends ValueOrValues = ValueOrValues>({
   return (
     <Picker
       ref={ref}
-      pickable={<Selections items={menuItems} onSelect={onChange} selectedKeys={Array.from(readableValues.keys())} />}
+      pickable={
+        <Selections
+          items={menuItems}
+          onSelect={onChange}
+          selectedKeys={Array.from(readableValues.keys())}
+        />
+      }
       className={clsx(classNames[SelectClassToken.Select], className, styled.picker.className)}
       style={{
         ...styled.picker.style,

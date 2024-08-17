@@ -1,10 +1,11 @@
 import React, { type ReactNode, createElement, useMemo, type CSSProperties } from "react";
 import type { AsProps, IconProps } from "./types";
 import { isFunction } from "@aiszlab/relax";
-import { ComponentToken, IconClassToken } from "../../utils/class-name";
+import { IconClassToken } from "../../utils/class-name";
 import clsx from "clsx";
 import * as stylex from "@stylexjs/stylex";
 import { useClassNames } from "../../hooks/use-class-names";
+import { ComponentToken } from "../../utils/component-token";
 
 const styles = stylex.create({
   icon: (props: { color: CSSProperties["color"] }) => ({

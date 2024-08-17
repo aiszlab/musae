@@ -3,10 +3,11 @@ import * as stylex from "@stylexjs/stylex";
 import type { LoadingProps } from "./types";
 import { sizes } from "../theme/tokens.stylex";
 import { useClassNames } from "../../hooks/use-class-names";
-import { ComponentToken, LoadingClassToken } from "../../utils/class-name";
+import { LoadingClassToken } from "../../utils/class-name";
 import clsx from "clsx";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
+import { ComponentToken } from "../../utils/component-token";
 
 const top = stylex.keyframes({
   from: {
@@ -363,12 +364,15 @@ const Loading = ({ size = "medium", overlay = true, children }: LoadingProps) =>
       overlay &&
         styles.content({
           backgroundColor: theme.colors[ColorToken.SurfaceDim],
-        })
+        }),
     ),
   };
 
   return (
-    <div className={clsx(classNames[LoadingClassToken.Loading], styled.loading.className)} style={styled.loading.style}>
+    <div
+      className={clsx(classNames[LoadingClassToken.Loading], styled.loading.className)}
+      style={styled.loading.style}
+    >
       <svg
         viewBox="0 0 240 240"
         className={clsx(classNames[LoadingClassToken.Spin], styled.spin.className)}
@@ -379,7 +383,10 @@ const Loading = ({ size = "medium", overlay = true, children }: LoadingProps) =>
         })}
       </svg>
 
-      <div className={(classNames[LoadingClassToken.Content], styled.content.className)} style={styled.content.style}>
+      <div
+        className={(classNames[LoadingClassToken.Content], styled.content.className)}
+        style={styled.content.style}
+      >
         {children}
       </div>
     </div>

@@ -3,12 +3,13 @@ import { Picker, type PickerRef } from "../picker";
 import type { PanelRef, TimePickerProps } from "./types";
 import clsx from "clsx";
 import { useClassNames } from "../../hooks/use-class-names";
-import { ComponentToken, TimePickerClassToken } from "../../utils/class-name";
+import { TimePickerClassToken } from "../../utils/class-name";
 import Panel from "./panel";
 import { useValue } from "./hooks";
 import * as stylex from "@stylexjs/stylex";
 import { useEvent } from "@aiszlab/relax";
 import { styles as inputStyles } from "../input";
+import { ComponentToken } from "../../utils/component-token";
 
 const TimePicker = ({ className, ...props }: TimePickerProps) => {
   const classNames = useClassNames(ComponentToken.TimePicker);

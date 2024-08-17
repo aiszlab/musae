@@ -3,7 +3,7 @@ import React, { useEffect, useRef, type CSSProperties, type Key } from "react";
 import stylex from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { useClassNames } from "../../hooks/use-class-names";
-import { ComponentToken, TabsClassToken } from "../../utils/class-name";
+import { TabsClassToken } from "../../utils/class-name";
 import { type NavigationProps } from "./types";
 import Tab from "./tab";
 import { useAnimate } from "framer-motion";
@@ -11,6 +11,7 @@ import { isUndefined } from "@aiszlab/relax";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
 import { useNavigation, useNavigatorScroll, useTabsContext } from "./hooks";
+import { ComponentToken } from "../../utils/component-token";
 
 const styles = {
   navigation: stylex.create({
@@ -76,7 +77,8 @@ const Navigation = ({ onChange }: NavigationProps) => {
   const [indicatorRef, animateIndicator] = useAnimate<HTMLDivElement>();
   const tabRefs = useRef<Map<Key, HTMLButtonElement | null>>(new Map());
   const theme = useTheme();
-  const { navigatorRef, tabsRef, scroll, offset, isLeadingOverflow, isTrailingOverflow } = useNavigation();
+  const { navigatorRef, tabsRef, scroll, offset, isLeadingOverflow, isTrailingOverflow } =
+    useNavigation();
 
   // control tabs scroll
   useNavigatorScroll({ navigatorRef, scroll });
@@ -85,18 +87,18 @@ const Navigation = ({ onChange }: NavigationProps) => {
     navigation: stylex.props(
       styles.navigation.default({
         outlineColor: theme.colors[ColorToken.Outline],
-      })
+      }),
     ),
     navigator: stylex.props(
       styles.navigator.default,
       isLeadingOverflow && styles.navigator.leading,
-      isTrailingOverflow && styles.navigator.trailing
+      isTrailingOverflow && styles.navigator.trailing,
     ),
     list: stylex.props(styles.list.default({ offset })),
     indicator: stylex.props(
       styles.indicator.default({
         color: theme.colors[ColorToken.Primary],
-      })
+      }),
     ),
   };
 

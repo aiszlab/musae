@@ -4,8 +4,9 @@ import { Checkbox } from "../checkbox";
 import stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
 import { useClassNames } from "../../hooks/use-class-names";
-import { ComponentToken, TransferClassToken } from "../../utils/class-name";
+import { TransferClassToken } from "../../utils/class-name";
 import clsx from "clsx";
+import { ComponentToken } from "../../utils/component-token";
 
 const styles = stylex.create({
   item: {
@@ -24,7 +25,10 @@ const Item = ({ value, label }: TransferItemProps) => {
   };
 
   return (
-    <li className={clsx(classNames[TransferClassToken.Item], styled.item.className)} style={styled.item.style}>
+    <li
+      className={clsx(classNames[TransferClassToken.Item], styled.item.className)}
+      style={styled.item.style}
+    >
       <Checkbox value={value} />
       {label}
     </li>

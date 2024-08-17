@@ -4,10 +4,11 @@ import stylex from "@stylexjs/stylex";
 import { Context } from "./context";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { useClassNames } from "../../hooks/use-class-names";
-import { ComponentToken, TimelineClassToken } from "../../utils/class-name";
+import { TimelineClassToken } from "../../utils/class-name";
 import clsx from "clsx";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
+import { ComponentToken } from "../../utils/component-token";
 
 const styles = {
   item: stylex.create({
@@ -133,12 +134,12 @@ const Item = ({ description, label, value, dot }: TimelineItemProps) => {
       styles.item.default,
       styles.item[mode],
       isLabeled && styles.labeled.default,
-      isLabeled && styles.labeled[mode]
+      isLabeled && styles.labeled[mode],
     ),
     label: stylex.props(styles.label.default, styles.label[mode]),
     leading: stylex.props(
       styles.leading.default,
-      !isMax && styles.leading.tail({ color: theme.colors[ColorToken.Primary] })
+      !isMax && styles.leading.tail({ color: theme.colors[ColorToken.Primary] }),
     ),
     sign: stylex.props(styles.sign.default({ size })),
     dot: stylex.props(styles.dot.default({ color: theme.colors[ColorToken.Primary] })),
@@ -146,9 +147,15 @@ const Item = ({ description, label, value, dot }: TimelineItemProps) => {
   };
 
   return (
-    <li className={clsx(classNames[TimelineClassToken.Item], styled.item.className)} style={styled.item.style}>
+    <li
+      className={clsx(classNames[TimelineClassToken.Item], styled.item.className)}
+      style={styled.item.style}
+    >
       {isLabeled && (
-        <div className={clsx(classNames[TimelineClassToken.Label], styled.label.className)} style={styled.label.style}>
+        <div
+          className={clsx(classNames[TimelineClassToken.Label], styled.label.className)}
+          style={styled.label.style}
+        >
           {label}
         </div>
       )}
@@ -157,9 +164,15 @@ const Item = ({ description, label, value, dot }: TimelineItemProps) => {
         className={clsx(classNames[TimelineClassToken.Leading], styled.leading.className)}
         style={styled.leading.style}
       >
-        <div className={clsx(classNames[TimelineClassToken.Sign], styled.sign.className)} style={styled.sign.style}>
+        <div
+          className={clsx(classNames[TimelineClassToken.Sign], styled.sign.className)}
+          style={styled.sign.style}
+        >
           {dot ?? (
-            <span className={clsx(classNames[TimelineClassToken.Dot], styled.dot.className)} style={styled.dot.style} />
+            <span
+              className={clsx(classNames[TimelineClassToken.Dot], styled.dot.className)}
+              style={styled.dot.style}
+            />
           )}
         </div>
       </div>

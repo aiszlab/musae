@@ -10,7 +10,7 @@ import React, {
 import { Popper } from "../popper";
 import { useBoolean, useFocus, useEvent } from "@aiszlab/relax";
 import type { PickerProps, PickerRef } from "./types";
-import { ComponentToken, PickerClassToken } from "../../utils/class-name";
+import { PickerClassToken } from "../../utils/class-name";
 import { useClassNames } from "../../hooks/use-class-names";
 import * as stylex from "@stylexjs/stylex";
 import { useTheme } from "../theme";
@@ -19,6 +19,7 @@ import clsx from "clsx";
 import { typography } from "../theme/theme";
 import { styles as inputStyles } from "../input";
 import { Context } from "./context";
+import { ComponentToken } from "../../utils/component-token";
 
 const styles = stylex.create({
   pickable: (props: { minWidth: CSSProperties["minWidth"] }) => ({
@@ -52,7 +53,10 @@ const Picker = forwardRef<PickerRef, PickerProps>(
     const getDropdownWidth = useCallback(() => {
       if (!popupWidth) return void 0;
       if (!trigger.current) return void 0;
-      return Math.max(trigger.current.getBoundingClientRect().width, popupWidth === "match" ? 0 : popupWidth);
+      return Math.max(
+        trigger.current.getBoundingClientRect().width,
+        popupWidth === "match" ? 0 : popupWidth,
+      );
     }, [popupWidth]);
 
     useImperativeHandle(ref, () => ({

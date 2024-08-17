@@ -2,12 +2,13 @@ import React, { CSSProperties } from "react";
 import stylex from "@stylexjs/stylex";
 import { LinearProps } from "./types";
 import { useClassNames } from "../../hooks/use-class-names";
-import { ComponentToken, ProgressClassToken } from "../../utils/class-name";
+import { ProgressClassToken } from "../../utils/class-name";
 import clsx from "clsx";
 import { sizes } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
 import { useValue } from "./hooks";
+import { ComponentToken } from "../../utils/component-token";
 
 const styles = stylex.create({
   progress: (props: { color: CSSProperties["backgroundColor"] }) => ({
@@ -37,7 +38,11 @@ const Linear = ({ value: _value, className, style }: LinearProps) => {
 
   return (
     <div
-      className={clsx(classNames[ProgressClassToken.Progress], className, styled.progress.className)}
+      className={clsx(
+        classNames[ProgressClassToken.Progress],
+        className,
+        styled.progress.className,
+      )}
       style={{
         ...styled.progress.style,
         ...style,

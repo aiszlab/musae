@@ -1,7 +1,7 @@
 import dayjs, { type Dayjs } from "dayjs";
 import React, { type CSSProperties, type ReactNode, useCallback, useMemo } from "react";
 import { useClassNames } from "../../hooks/use-class-names";
-import { CalendarClassToken, ComponentToken } from "../../utils/class-name";
+import { CalendarClassToken } from "../../utils/class-name";
 import { toArray, useControlledState } from "@aiszlab/relax";
 import { Timespan } from "../../utils/timespan";
 import clsx from "clsx";
@@ -12,6 +12,7 @@ import { typography } from "../theme/theme";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
 import { Button } from "../button";
+import { ComponentToken } from "../../utils/component-token";
 
 const styles = stylex.create({
   cell: {

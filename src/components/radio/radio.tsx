@@ -3,13 +3,14 @@ import Context from "./context";
 import type { RadioProps } from "./types";
 import { useControlledState } from "@aiszlab/relax";
 import { useClassNames } from "../../hooks/use-class-names";
-import { ComponentToken, RadioClassToken } from "../../utils/class-name";
+import { RadioClassToken } from "../../utils/class-name";
 import * as stylex from "@stylexjs/stylex";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { typography } from "../theme/theme";
 import clsx from "clsx";
+import { ComponentToken } from "../../utils/component-token";
 
 const styles = {
   radio: stylex.create({

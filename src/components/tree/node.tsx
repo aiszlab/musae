@@ -1,7 +1,7 @@
 import React, { type CSSProperties, useContext } from "react";
 import type { TreeNodeProps } from "./types";
 import { useClassNames } from "../../hooks/use-class-names";
-import { ComponentToken, TreeClassToken } from "../../utils/class-name";
+import { TreeClassToken } from "../../utils/class-name";
 import Context from "./context";
 import { Checkbox } from "../checkbox";
 import { KeyboardArrowRight } from "../icon/icons";
@@ -11,6 +11,7 @@ import clsx from "clsx";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
 import { useEvent } from "@aiszlab/relax";
+import { ComponentToken } from "../../utils/component-token";
 
 const styles = stylex.create({
   node: (props: { level: number }) => ({
@@ -57,7 +58,8 @@ const styles = stylex.create({
 
 const Node = ({ value, children, level, onExpand, ...props }: TreeNodeProps) => {
   const classNames = useClassNames(ComponentToken.Tree);
-  const { checkedKeys, onCheck, expandedKeys, onSelect, selectedKeys, selectable } = useContext(Context);
+  const { checkedKeys, onCheck, expandedKeys, onSelect, selectedKeys, selectable } =
+    useContext(Context);
   const isChecked = checkedKeys.has(value);
   const isExpanded = expandedKeys.has(value);
   const isSelected = selectedKeys.has(value);
@@ -97,7 +99,10 @@ const Node = ({ value, children, level, onExpand, ...props }: TreeNodeProps) => 
 
   return (
     <li className={classNames[TreeClassToken.Holder]}>
-      <div className={clsx(classNames[TreeClassToken.Node], styled.node.className)} style={styled.node.style}>
+      <div
+        className={clsx(classNames[TreeClassToken.Node], styled.node.className)}
+        style={styled.node.style}
+      >
         <span
           className={clsx(classNames[TreeClassToken.Expander], styled.expander.className)}
           style={styled.expander.style}
@@ -106,7 +111,11 @@ const Node = ({ value, children, level, onExpand, ...props }: TreeNodeProps) => 
           {!!children && <KeyboardArrowRight />}
         </span>
 
-        <Checkbox className={clsx(classNames[TreeClassToken.Checkbox])} checked={isChecked} onChange={check} />
+        <Checkbox
+          className={clsx(classNames[TreeClassToken.Checkbox])}
+          checked={isChecked}
+          onChange={check}
+        />
 
         <span
           className={clsx(classNames[TreeClassToken.Title], styled.title.className)}

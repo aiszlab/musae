@@ -1,9 +1,10 @@
 import React from "react";
 import type { ColProps } from "./types";
 import { useClassNames } from "../../hooks/use-class-names";
-import { ComponentToken, GridClassToken } from "../../utils/class-name";
+import { GridClassToken } from "../../utils/class-name";
 import clsx from "clsx";
 import * as stylex from "@stylexjs/stylex";
+import { ComponentToken } from "../../utils/component-token";
 
 const styles = stylex.create({
   col: (props: { span: number }) => ({

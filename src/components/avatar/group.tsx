@@ -3,10 +3,11 @@ import * as stylex from "@stylexjs/stylex";
 import { type AvatarGroupProps } from "./types";
 import { Context } from "./context";
 import { useClassNames } from "../../hooks/use-class-names";
-import { AvatarClassToken, ComponentToken } from "../../utils/class-name";
+import { AvatarClassToken } from "../../utils/class-name";
 import { Popover } from "../popover";
 import Avatar from "./avatar";
 import clsx from "clsx";
+import { ComponentToken } from "../../utils/component-token";
 
 const styles = stylex.create({
   group: {

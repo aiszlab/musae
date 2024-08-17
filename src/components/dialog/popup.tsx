@@ -2,7 +2,7 @@ import React, { CSSProperties, useEffect, useRef } from "react";
 import type { PopupProps } from "./types";
 import { useFooter } from "./hooks";
 import { useAnimate } from "framer-motion";
-import { ComponentToken, DialogClassToken } from "../../utils/class-name";
+import { DialogClassToken } from "../../utils/class-name";
 import { useClassNames } from "../../hooks/use-class-names";
 import * as stylex from "@stylexjs/stylex";
 import { positions, spacing } from "../theme/tokens.stylex";
@@ -12,6 +12,7 @@ import { typography } from "../theme/theme";
 import clsx from "clsx";
 import { contains } from "@aiszlab/relax/dom";
 import { useClosable } from "../../hooks/use-closable";
+import { ComponentToken } from "../../utils/component-token";
 
 const styles = stylex.create({
   header: {

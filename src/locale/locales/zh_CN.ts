@@ -1,11 +1,15 @@
+import { ComponentToken } from "../../utils/component-token";
 import type { Locale } from "../types";
 
 const zh_CN: Locale = {
-  Dialog: {
+  [ComponentToken.Dialog]: {
     confirm: "确认",
     cancel: "取消",
   },
-  locale: "zh_CN",
+
+  [ComponentToken.Empty]: {
+    placeholder: "暂无数据",
+  },
 };
 
 export default zh_CN;

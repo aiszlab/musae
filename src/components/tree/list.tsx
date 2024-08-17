@@ -7,9 +7,10 @@ import clsx from "clsx";
 import { useAnimate } from "framer-motion";
 import Context from "./context";
 import { useClassNames } from "../../hooks/use-class-names";
-import { ComponentToken, TreeClassToken } from "../../utils/class-name";
+import { TreeClassToken } from "../../utils/class-name";
 import { useExpandable } from "../../hooks/use-expandable";
 import { useUpdateEffect } from "@aiszlab/relax";
+import { ComponentToken } from "../../utils/component-token";
 
 const styles = stylex.create({
   list: {
@@ -50,7 +51,7 @@ const List = ({ nodes = [], expanded = true, level = 0, className, style }: Tree
           [classNames[TreeClassToken.ListHidden]]: !expanded,
         },
         className,
-        styled.className
+        styled.className,
       )}
       style={{
         ...styled.style,
@@ -60,8 +61,16 @@ const List = ({ nodes = [], expanded = true, level = 0, className, style }: Tree
     >
       {nodes.map(({ children = [], ...node }) => {
         return (
-          <Node key={node.key} value={node.key} onExpand={onExpand} title={node.title} level={level}>
-            {children.length > 0 && <List nodes={children} expanded={expandedKeys.has(node.key)} level={level + 1} />}
+          <Node
+            key={node.key}
+            value={node.key}
+            onExpand={onExpand}
+            title={node.title}
+            level={level}
+          >
+            {children.length > 0 && (
+              <List nodes={children} expanded={expandedKeys.has(node.key)} level={level + 1} />
+            )}
           </Node>
         );
       })}

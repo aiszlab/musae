@@ -4,11 +4,12 @@ import stylex from "@stylexjs/stylex";
 import { sizes } from "../theme/tokens.stylex";
 import clsx from "clsx";
 import { useClassNames } from "../../hooks/use-class-names";
-import { ComponentToken, RateClassToken } from "../../utils/class-name";
+import { RateClassToken } from "../../utils/class-name";
 import { Star as _Star } from "../icon/icons";
 import { StarProps } from "./types";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
+import { ComponentToken } from "../../utils/component-token";
 
 const styles = {
   star: stylex.create({
@@ -93,20 +94,26 @@ const Star = ({ disabled, value, onEnter, at, onLeave, onClick }: StarProps) => 
   const styled = {
     star: stylex.props(
       styles.star.default({ color: theme.colors[ColorToken.SurfaceContainerHighest] }),
-      disabled && styles.star.disabled
+      disabled && styles.star.disabled,
     ),
     half: stylex.props(
       styles.half.default,
       isHalf &&
         styles.half.checked({
           color: theme.colors[ColorToken.Primary],
-        })
+        }),
     ),
-    full: stylex.props(styles.full.default, isFull && styles.full.checked({ color: theme.colors[ColorToken.Primary] })),
+    full: stylex.props(
+      styles.full.default,
+      isFull && styles.full.checked({ color: theme.colors[ColorToken.Primary] }),
+    ),
   };
 
   return (
-    <li className={clsx(classNames[RateClassToken.Star], styled.star.className)} style={styled.star.style}>
+    <li
+      className={clsx(classNames[RateClassToken.Star], styled.star.className)}
+      style={styled.star.style}
+    >
       {/* half */}
       <div
         className={clsx(classNames[RateClassToken.Half], styled.half.className)}

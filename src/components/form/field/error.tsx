@@ -1,7 +1,7 @@
 import { type FieldError } from "react-hook-form";
 import type { ComponentProps } from "../../../types/element";
 import React, { type CSSProperties, useEffect } from "react";
-import { ComponentToken, FormClassToken } from "../../../utils/class-name";
+import { FormClassToken } from "../../../utils/class-name";
 import clsx from "clsx";
 import { useAnimate, usePresence } from "framer-motion";
 import stylex from "@stylexjs/stylex";
@@ -9,6 +9,7 @@ import { spacing } from "../../theme/tokens.stylex";
 import { useClassNames } from "../../../hooks/use-class-names";
 import { useTheme } from "../../theme";
 import { ColorToken } from "../../../utils/colors";
+import { ComponentToken } from "../../../utils/component-token";
 
 const styles = stylex.create({
   error: (props: { color: CSSProperties["color"] }) => ({
@@ -48,7 +49,7 @@ const Error = ({ error, className, style }: Props) => {
   const styled = stylex.props(
     styles.error({
       color: theme.colors[ColorToken.Error],
-    })
+    }),
   );
 
   return (

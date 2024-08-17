@@ -4,7 +4,7 @@ import { useController } from "react-hook-form";
 import { FieldRenderProps } from "../../../types/element";
 import type { RequiredIn } from "@aiszlab/relax/types";
 import { chain, isRefable } from "@aiszlab/relax";
-import { ComponentToken, FormClassToken } from "../../../utils/class-name";
+import { FormClassToken } from "../../../utils/class-name";
 import * as stylex from "@stylexjs/stylex";
 import clsx from "clsx";
 import { sizes, spacing } from "../../theme/tokens.stylex";
@@ -13,6 +13,7 @@ import Error from "./error";
 import { AnimatePresence } from "framer-motion";
 import { typography } from "../../theme/theme";
 import { useClassNames } from "../../../hooks/use-class-names";
+import { ComponentToken } from "../../../utils/component-token";
 
 const styles = stylex.create({
   supporting: {
@@ -26,7 +27,11 @@ const styles = stylex.create({
  * form item may not has name prop
  * if there is name prop, it will render
  */
-const Field = ({ required, children: _children, ...props }: RequiredIn<FormItemProps, "name" | "required">) => {
+const Field = ({
+  required,
+  children: _children,
+  ...props
+}: RequiredIn<FormItemProps, "name" | "required">) => {
   const classNames = useClassNames(ComponentToken.Form);
 
   const {

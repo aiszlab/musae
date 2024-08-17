@@ -1,10 +1,12 @@
-export interface Locale {
-  // locale: string
-  locale: string;
+import type { ComponentToken } from "../utils/component-token";
 
-  // dialog
-  Dialog: {
+export interface Locale {
+  [ComponentToken.Dialog]: {
     confirm: string;
     cancel: string;
+  };
+
+  [ComponentToken.Empty]: {
+    placeholder: string;
   };
 }

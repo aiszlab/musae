@@ -4,11 +4,12 @@ import { Calendar } from "../calendar";
 import type { DatePickerProps } from "./types";
 import { useValue } from "./hooks";
 import { useClassNames } from "../../hooks/use-class-names";
-import { ComponentToken, DatePickerClassToken } from "../../utils/class-name";
+import { DatePickerClassToken } from "../../utils/class-name";
 import * as stylex from "@stylexjs/stylex";
 import clsx from "clsx";
 import { spacing } from "../theme/tokens.stylex";
 import { styles as inputStyles } from "../input";
+import { ComponentToken } from "../../utils/component-token";
 
 const styles = stylex.create({
   calendar: {

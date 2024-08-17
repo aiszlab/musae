@@ -2,7 +2,7 @@ import React, { type CSSProperties, useEffect, useRef } from "react";
 import { useAnimate } from "framer-motion";
 import type { PopupProps } from "./types";
 import { PLACEMENTS } from "./hooks";
-import { ComponentToken, DrawerClassToken } from "../../utils/class-name";
+import { DrawerClassToken } from "../../utils/class-name";
 import { useClassNames } from "../../hooks/use-class-names";
 import * as stylex from "@stylexjs/stylex";
 import { positions, spacing } from "../theme/tokens.stylex";
@@ -12,6 +12,7 @@ import clsx from "clsx";
 import { typography } from "../theme/theme";
 import { contains } from "@aiszlab/relax/dom";
 import { useClosable } from "../../hooks/use-closable";
+import { ComponentToken } from "../../utils/component-token";
 
 const styles = stylex.create({
   popup: {
@@ -30,7 +31,10 @@ const styles = stylex.create({
     backgroundColor: props.backgroundColor,
   }),
 
-  panel: (props: { backgroundColor: CSSProperties["backgroundColor"]; transform: CSSProperties["transform"] }) => ({
+  panel: (props: {
+    backgroundColor: CSSProperties["backgroundColor"];
+    transform: CSSProperties["transform"];
+  }) => ({
     backgroundColor: props.backgroundColor,
     position: "absolute",
     zIndex: positions.drawer,
@@ -164,12 +168,18 @@ const Popup = ({ open, onClose, placement, closable, onClosed, size, ...props }:
         {closer}
 
         {/* header */}
-        <div className={clsx(classNames[DrawerClassToken.Header], styled.header.className)} style={styled.header.style}>
+        <div
+          className={clsx(classNames[DrawerClassToken.Header], styled.header.className)}
+          style={styled.header.style}
+        >
           {props.title}
         </div>
 
         {/* body */}
-        <div className={clsx(classNames[DrawerClassToken.Body], styled.body.className)} style={styled.body.style}>
+        <div
+          className={clsx(classNames[DrawerClassToken.Body], styled.body.className)}
+          style={styled.body.style}
+        >
           {props.children}
         </div>
       </div>

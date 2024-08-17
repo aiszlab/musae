@@ -2,7 +2,7 @@ import React, { useContext, type CSSProperties } from "react";
 import type { Status, StepItemProps } from "./types";
 import stylex from "@stylexjs/stylex";
 import { useClassNames } from "../../hooks/use-class-names";
-import { ComponentToken, StepsClassToken } from "../../utils/class-name";
+import { StepsClassToken } from "../../utils/class-name";
 import clsx from "clsx";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
@@ -11,6 +11,7 @@ import { useEvent } from "@aiszlab/relax";
 import { Context } from "./context";
 import { typography } from "../theme/theme";
 import { Done } from "../icon/icons";
+import { ComponentToken } from "../../utils/component-token";
 
 const styles = {
   step: stylex.create({
@@ -62,17 +63,26 @@ const styles = {
       height: props.size ?? sizes.xsmall,
     }),
 
-    doing: (props: { backgroundColor: CSSProperties["backgroundColor"]; color: CSSProperties["color"] }) => ({
+    doing: (props: {
+      backgroundColor: CSSProperties["backgroundColor"];
+      color: CSSProperties["color"];
+    }) => ({
       backgroundColor: props.backgroundColor,
       color: props.color,
     }),
 
-    done: (props: { backgroundColor: CSSProperties["backgroundColor"]; color: CSSProperties["color"] }) => ({
+    done: (props: {
+      backgroundColor: CSSProperties["backgroundColor"];
+      color: CSSProperties["color"];
+    }) => ({
       backgroundColor: props.backgroundColor,
       color: props.color,
     }),
 
-    todo: (props: { backgroundColor: CSSProperties["backgroundColor"]; color: CSSProperties["color"] }) => ({
+    todo: (props: {
+      backgroundColor: CSSProperties["backgroundColor"];
+      color: CSSProperties["color"];
+    }) => ({
       backgroundColor: props.backgroundColor,
       color: props.color,
     }),
@@ -176,12 +186,21 @@ const Item = ({ leading, title, description, value }: StepItemProps) => {
       style={styled.step.style}
       onClick={click}
     >
-      <div className={clsx(classNames[StepsClassToken.Leading], styled.leading.className)} style={styled.leading.style}>
-        <div className={clsx(classNames[StepsClassToken.Sign], styled.sign.className)} style={styled.sign.style}>
+      <div
+        className={clsx(classNames[StepsClassToken.Leading], styled.leading.className)}
+        style={styled.leading.style}
+      >
+        <div
+          className={clsx(classNames[StepsClassToken.Sign], styled.sign.className)}
+          style={styled.sign.style}
+        >
           {leading ?? (status === "done" ? <Done /> : value)}
         </div>
       </div>
-      <div className={clsx(classNames[StepsClassToken.Title], styled.title.className)} style={styled.title.style}>
+      <div
+        className={clsx(classNames[StepsClassToken.Title], styled.title.className)}
+        style={styled.title.style}
+      >
         {title}
       </div>
       <div

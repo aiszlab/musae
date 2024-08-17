@@ -1,11 +1,12 @@
 import React, { type CSSProperties, memo, type ReactNode, useMemo } from "react";
 import type { HighlightProps } from "./types";
 import { useClassNames } from "../../hooks/use-class-names";
-import { ComponentToken, HighlightClassToken } from "../../utils/class-name";
+import { HighlightClassToken } from "../../utils/class-name";
 import stylex from "@stylexjs/stylex";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
 import clsx from "clsx";
+import { ComponentToken } from "../../utils/component-token";
 
 const styles = stylex.create({
   capture: (props: { color: CSSProperties["color"] }) => ({

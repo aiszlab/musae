@@ -1,7 +1,7 @@
 import React, { type CSSProperties } from "react";
 import type { CollapseProps } from "./types";
 import { useClassNames } from "../../hooks/use-class-names";
-import { CollapseClassToken, ComponentToken } from "../../utils/class-name";
+import { CollapseClassToken } from "../../utils/class-name";
 import Item from "./item";
 import stylex from "@stylexjs/stylex";
 import { sizes } from "../theme/tokens.stylex";
@@ -10,6 +10,7 @@ import { useActiveKeys } from "./hooks";
 import { Context } from "./context";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
+import { ComponentToken } from "../../utils/component-token";
 
 const styles = stylex.create({
   collapse: (props: { outlineColor: CSSProperties["borderColor"] }) => ({
@@ -36,7 +37,9 @@ const Collapse = ({
   // no need to render when items is empty
   if (items.length === 0) return null;
 
-  const styled = stylex.props(styles.collapse({ outlineColor: theme.colors[ColorToken.OutlineVariant] }));
+  const styled = stylex.props(
+    styles.collapse({ outlineColor: theme.colors[ColorToken.OutlineVariant] }),
+  );
 
   return (
     <Context.Provider

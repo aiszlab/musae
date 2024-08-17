@@ -1,10 +1,12 @@
 import React from "react";
 import { useClassNames } from "../../hooks/use-class-names";
-import { ComponentToken, EmptyClassToken } from "../../utils/class-name";
+import { EmptyClassToken } from "../../utils/class-name";
 import * as stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
 import clsx from "clsx";
 import { typography } from "../theme/theme";
+import { useLocale } from "../../locale";
+import { ComponentToken } from "../../utils/component-token";
 
 const styles = stylex.create({
   empty: {
@@ -26,6 +28,7 @@ const styles = stylex.create({
  */
 const Empty = () => {
   const classNames = useClassNames(ComponentToken.Empty);
+  const locale = useLocale(ComponentToken.Empty);
 
   const styled = {
     empty: stylex.props(styles.empty),
@@ -33,7 +36,10 @@ const Empty = () => {
   };
 
   return (
-    <div className={clsx(classNames[EmptyClassToken.Empty], styled.empty.className)} style={styled.empty.style}>
+    <div
+      className={clsx(classNames[EmptyClassToken.Empty], styled.empty.className)}
+      style={styled.empty.style}
+    >
       <svg width="64" height="41" viewBox="0 0 64 41" xmlns="http://www.w3.org/2000/svg">
         <g transform="translate(0 1)" fill="none" fillRule="evenodd">
           <ellipse fill="#f5f5f5" cx="32" cy="33" rx="32" ry="7" />
@@ -47,8 +53,11 @@ const Empty = () => {
         </g>
       </svg>
 
-      <div className={clsx(classNames[EmptyClassToken.Description], styled.label.className)} style={styled.label.style}>
-        暂无数据
+      <div
+        className={clsx(classNames[EmptyClassToken.Description], styled.label.className)}
+        style={styled.label.style}
+      >
+        {locale.placeholder}
       </div>
     </div>
   );

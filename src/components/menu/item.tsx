@@ -2,7 +2,7 @@ import React, { type CSSProperties, forwardRef, useRef } from "react";
 import { MenuItemProps } from "./types";
 import { useItemChildren, useMenuContext } from "./hooks";
 import { useClassNames } from "../../hooks/use-class-names";
-import { ComponentToken, MenuClassToken } from "../../utils/class-name";
+import { MenuClassToken } from "../../utils/class-name";
 import * as stylex from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
@@ -12,6 +12,7 @@ import { typography } from "../theme/theme";
 import { useEvent, useHover } from "@aiszlab/relax";
 import { Popper } from "../popper";
 import { useLazyBoolean } from "../../hooks/use-lazy-boolean";
+import { ComponentToken } from "../../utils/component-token";
 
 const styles = {
   default: stylex.create({

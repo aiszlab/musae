@@ -1,7 +1,13 @@
-import React, { type CSSProperties, forwardRef, useCallback, useImperativeHandle, useState } from "react";
+import React, {
+  type CSSProperties,
+  forwardRef,
+  useCallback,
+  useImperativeHandle,
+  useState,
+} from "react";
 import { Clock } from "../clock";
 import { useClassNames } from "../../hooks/use-class-names";
-import { ComponentToken, TimePickerClassToken } from "../../utils/class-name";
+import { TimePickerClassToken } from "../../utils/class-name";
 import { Button } from "../button";
 import type { PanelProps, PanelRef } from "./types";
 import { ClockProps } from "../clock/types";
@@ -11,6 +17,7 @@ import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
 import clsx from "clsx";
 import { sizes, spacing } from "../theme/tokens.stylex";
+import { ComponentToken } from "../../utils/component-token";
 
 const styles = stylex.create({
   panel: {
@@ -67,12 +74,15 @@ const Panel = forwardRef<PanelRef, PanelProps>((props, ref) => {
     footer: stylex.props(
       styles.footer({
         borderTopColor: theme.colors[ColorToken.OutlineVariant],
-      })
+      }),
     ),
   };
 
   return (
-    <div className={clsx(classNames[TimePickerClassToken.Panel], styled.panel.className)} style={styled.panel.style}>
+    <div
+      className={clsx(classNames[TimePickerClassToken.Panel], styled.panel.className)}
+      style={styled.panel.style}
+    >
       <Clock value={value} onChange={change} />
 
       <div

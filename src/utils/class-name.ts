@@ -1,4 +1,5 @@
 import { ClassNames } from "../components/config/types";
+import { ComponentToken } from "./component-token";
 
 /**
  * @description
@@ -15,58 +16,6 @@ enum Token {
  */
 export const withPrefix = (className: string, prefix: string) =>
   [prefix, className].join(Token.Separator);
-
-/**
- * @description
- * class role
- */
-export enum ComponentToken {
-  Picker,
-  Input,
-  Select,
-  Popper,
-  Form,
-  Grid,
-  Radio,
-  Empty,
-  Button,
-  Drawer,
-  Divider,
-  Tag,
-  Cascader,
-  Dialog,
-  Calendar,
-  Icon,
-  DatePicker,
-  TimePicker,
-  DateRangePicker,
-  Clock,
-  Menu,
-  Checkbox,
-  Tree,
-  Tabs,
-  Pagination,
-  Switch,
-  Rate,
-  Tour,
-  Steps,
-  Timeline,
-  Breadcrumb,
-  Avatar,
-  Notification,
-  Progress,
-  Tooltip,
-  Popover,
-  Popconfirm,
-  Loading,
-  Collapse,
-  Waterfall,
-  Transfer,
-  Badge,
-  Skeleton,
-  VisuallyHidden,
-  Highlight,
-}
 
 /**
  * @description

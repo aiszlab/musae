@@ -12,13 +12,14 @@ import { useTimeUnit } from "./hooks";
 import { ColumnProps } from "./types";
 import { Menu, MenuRef } from "../menu";
 import { useClassNames } from "../../hooks/use-class-names";
-import { ClockClassToken, ComponentToken } from "../../utils/class-name";
+import { ClockClassToken } from "../../utils/class-name";
 import { isVoid } from "@aiszlab/relax";
 import * as stylex from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
 import clsx from "clsx";
+import { ComponentToken } from "../../utils/component-token";
 
 const styles = stylex.create({
   menu: (props: {
@@ -63,7 +64,7 @@ const Column = forwardRef<{}, ColumnProps>(({ unit, value, onChange }, ref) => {
       onChange?.(key as number);
       menuRef.current?.scrollTo(key, 100);
     },
-    [onChange]
+    [onChange],
   );
 
   useImperativeHandle(ref, () => ({}), []);
@@ -83,7 +84,7 @@ const Column = forwardRef<{}, ColumnProps>(({ unit, value, onChange }, ref) => {
       styles.menu({
         scrollbarThumbColor: theme.colors[ColorToken.Secondary],
         outlineColor: theme.colors[ColorToken.OutlineVariant],
-      })
+      }),
     ),
     item: stylex.props(styles.item),
   };

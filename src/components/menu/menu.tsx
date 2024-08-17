@@ -6,8 +6,9 @@ import { useContextValue, useScrollOrientation } from "./hooks";
 import Group from "./group";
 import * as stylex from "@stylexjs/stylex";
 import { useClassNames } from "../../hooks/use-class-names";
-import { ComponentToken, MenuClassToken } from "../../utils/class-name";
+import { MenuClassToken } from "../../utils/class-name";
 import clsx from "clsx";
+import { ComponentToken } from "../../utils/component-token";
 
 const styles = stylex.create({
   menu: {

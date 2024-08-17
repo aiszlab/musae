@@ -1,6 +1,6 @@
 import React, { type CSSProperties, useContext } from "react";
 import { useClassNames } from "../../hooks/use-class-names";
-import { CollapseClassToken, ComponentToken } from "../../utils/class-name";
+import { CollapseClassToken } from "../../utils/class-name";
 import stylex from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { useEvent, useUpdateEffect } from "@aiszlab/relax";
@@ -12,6 +12,7 @@ import { useExpandable } from "../../hooks/use-expandable";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
 import { KeyboardArrowRight } from "../icon/icons";
+import { ComponentToken } from "../../utils/component-token";
 
 const styles = {
   item: stylex.create({
@@ -88,10 +89,14 @@ const CollapseItem = ({ children, label, value }: CollapseItemProps) => {
   }, [isExpanded]);
 
   const styled = {
-    item: stylex.props(styles.item.default({ outlineColor: theme.colors[ColorToken.OutlineVariant] })),
+    item: stylex.props(
+      styles.item.default({ outlineColor: theme.colors[ColorToken.OutlineVariant] }),
+    ),
     header: stylex.props(styles.header.default),
     panel: stylex.props(styles.panel.default, !isExpanded && styles.panel.hidden),
-    content: stylex.props(styles.content.default({ outlineColor: theme.colors[ColorToken.OutlineVariant] })),
+    content: stylex.props(
+      styles.content.default({ outlineColor: theme.colors[ColorToken.OutlineVariant] }),
+    ),
     collapser: stylex.props(styles.collapser.default, isExpanded && styles.collapser.expanded),
   };
 
@@ -106,7 +111,7 @@ const CollapseItem = ({ children, label, value }: CollapseItemProps) => {
         {
           [classNames[CollapseClassToken.ItemActive]]: isExpanded,
         },
-        styled.item.className
+        styled.item.className,
       )}
       style={styled.item.style}
     >
@@ -130,7 +135,7 @@ const CollapseItem = ({ children, label, value }: CollapseItemProps) => {
           {
             [classNames[CollapseClassToken.PanelActive]]: isExpanded,
           },
-          styled.panel.className
+          styled.panel.className,
         )}
         style={styled.panel.style}
       >

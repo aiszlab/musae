@@ -2,12 +2,12 @@ import type { Locale } from "./types";
 import { LocaleContext } from "./context";
 import { useContext, useMemo } from "react";
 
-export type LocaleComponentToken = Exclude<keyof Locale, "locale">;
+export type LocaleComponentToken = keyof Locale;
 
-type UsedLocale<C extends LocaleComponentToken> = readonly [Locale[C], string];
+type UsedLocale<C extends LocaleComponentToken> = Locale[C];
 
 export const useLocale = <C extends LocaleComponentToken = LocaleComponentToken>(
-  componentName: LocaleComponentToken,
+  componentName: C,
 ): UsedLocale<C> => {
   const localeContextValue = useContext(LocaleContext);
 
@@ -15,5 +15,5 @@ export const useLocale = <C extends LocaleComponentToken = LocaleComponentToken>
     return localeContextValue[componentName];
   }, [componentName, localeContextValue]);
 
-  return [locale, localeContextValue.locale];
+  return locale;
 };

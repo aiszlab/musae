@@ -4,8 +4,9 @@ import type { ContextValue, TimelineProps } from "./types";
 import stylex from "@stylexjs/stylex";
 import { Context } from "./context";
 import { useClassNames } from "../../hooks/use-class-names";
-import { ComponentToken, TimelineClassToken } from "../../utils/class-name";
+import { TimelineClassToken } from "../../utils/class-name";
 import clsx from "clsx";
+import { ComponentToken } from "../../utils/component-token";
 
 const styles = stylex.create({
   timeline: {
@@ -25,14 +26,25 @@ const Timeline = ({ items, mode = "right", size }: TimelineProps) => {
       max: total - 1,
       size,
     }),
-    [mode, total, size]
+    [mode, total, size],
   );
 
   return (
     <Context.Provider value={contextValue}>
-      <ol className={clsx(classNames[TimelineClassToken.Timeline], styled.className)} style={styled.style}>
+      <ol
+        className={clsx(classNames[TimelineClassToken.Timeline], styled.className)}
+        style={styled.style}
+      >
         {items.map((item, index) => {
-          return <Item key={index} value={index} label={item.label} description={item.description} dot={item.dot} />;
+          return (
+            <Item
+              key={index}
+              value={index}
+              label={item.label}
+              description={item.description}
+              dot={item.dot}
+            />
+          );
         })}
       </ol>
     </Context.Provider>

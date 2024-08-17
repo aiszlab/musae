@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { ComponentToken } from "../utils/class-name";
+import { ComponentToken } from "../utils/component-token";
 import Context from "../components/config/context";
 
 /**

@@ -5,10 +5,11 @@ import { useOptions, useValue } from "./hooks";
 import { Menu, type MenuProps } from "../menu";
 import type { CascaderProps } from "./types";
 import { useClassNames } from "../../hooks/use-class-names";
-import { CascaderClassToken, ComponentToken } from "../../utils/class-name";
+import { CascaderClassToken } from "../../utils/class-name";
 import * as stylex from "@stylexjs/stylex";
 import clsx from "clsx";
 import { spacing } from "../theme/tokens.stylex";
+import { ComponentToken } from "../../utils/component-token";
 
 const styles = stylex.create({
   options: {
@@ -18,13 +19,24 @@ const styles = stylex.create({
   },
 });
 
-const Cascader = ({ mode, separator = "/", options = [], complex = false, ...props }: CascaderProps) => {
+const Cascader = ({
+  mode,
+  separator = "/",
+  options = [],
+  complex = false,
+  ...props
+}: CascaderProps) => {
   const ref = useRef<PickerRef>(null);
   const close = useCallback(() => ref.current?.close(), []);
   const classNames = useClassNames(ComponentToken.Cascader);
 
-  const { readableOptions, readablePaths, additionalMenusItems, presetedMenuItems, setAdditionalMenusItems } =
-    useOptions([options]);
+  const {
+    readableOptions,
+    readablePaths,
+    additionalMenusItems,
+    presetedMenuItems,
+    setAdditionalMenusItems,
+  } = useOptions([options]);
   const { values, onChange } = useValue([
     props.value,
     readableOptions,
@@ -57,7 +69,10 @@ const Cascader = ({ mode, separator = "/", options = [], complex = false, ...pro
     const styled = stylex.props(styles.options);
 
     return (
-      <div className={clsx(classNames[CascaderClassToken.Options], styled.className)} style={styled.style}>
+      <div
+        className={clsx(classNames[CascaderClassToken.Options], styled.className)}
+        style={styled.style}
+      >
         {[presetedMenuItems, ...additionalMenusItems].map((menuItems, index) => {
           return <Menu items={menuItems} key={index} onClick={onChange as MenuProps["onClick"]} />;
         })}
@@ -66,7 +81,12 @@ const Cascader = ({ mode, separator = "/", options = [], complex = false, ...pro
   }, [additionalMenusItems, classNames, onChange, presetedMenuItems]);
 
   return (
-    <Picker ref={ref} pickable={menus} className={classNames[CascaderClassToken.Cascader]} popupWidth={false}>
+    <Picker
+      ref={ref}
+      pickable={menus}
+      className={classNames[CascaderClassToken.Cascader]}
+      popupWidth={false}
+    >
       {inputed}
     </Picker>
   );

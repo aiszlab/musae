@@ -1,6 +1,6 @@
 import type { ButtonProps } from "./types";
 import React, { type CSSProperties, forwardRef } from "react";
-import { ButtonClassToken, ComponentToken } from "../../utils/class-name";
+import { ButtonClassToken } from "../../utils/class-name";
 import clsx from "clsx";
 import * as stylex from "@stylexjs/stylex";
 import { elevations, sizes, spacing } from "../theme/tokens.stylex";
@@ -11,6 +11,7 @@ import { typography } from "../theme/theme";
 import { ColorToken } from "../../utils/colors";
 import { layer } from "../../utils/layer";
 import { useClassNames } from "../../hooks/use-class-names";
+import { ComponentToken } from "../../utils/component-token";
 
 const styles = stylex.create({
   button: {
@@ -60,7 +61,10 @@ const styles = stylex.create({
     minWidth: null,
   },
 
-  filled: (props: { backgroundColor: CSSProperties["backgroundColor"]; color: CSSProperties["color"] }) => ({
+  filled: (props: {
+    backgroundColor: CSSProperties["backgroundColor"];
+    color: CSSProperties["color"];
+  }) => ({
     border: "none",
     backgroundColor: props.backgroundColor,
     color: props.color,
@@ -70,7 +74,10 @@ const styles = stylex.create({
     },
   }),
 
-  outlined: (props: { color: CSSProperties["color"]; hoveredBackgroundColor: CSSProperties["backgroundColor"] }) => ({
+  outlined: (props: {
+    color: CSSProperties["color"];
+    hoveredBackgroundColor: CSSProperties["backgroundColor"];
+  }) => ({
     borderWidth: sizes.smallest,
     borderStyle: "solid",
     borderColor: props.color,
@@ -81,7 +88,10 @@ const styles = stylex.create({
     },
   }),
 
-  text: (props: { color: CSSProperties["color"]; hoveredBackgroundColor: CSSProperties["backgroundColor"] }) => ({
+  text: (props: {
+    color: CSSProperties["color"];
+    hoveredBackgroundColor: CSSProperties["backgroundColor"];
+  }) => ({
     color: props.color,
     backgroundColor: {
       default: null,
@@ -160,9 +170,13 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         // disabled
         disabled &&
           styles.disabled({
-            backgroundColor: variant === "filled" ? layer(theme.colors[ColorToken.OnSurface], "medium") : "transparent",
+            backgroundColor:
+              variant === "filled"
+                ? layer(theme.colors[ColorToken.OnSurface], "medium")
+                : "transparent",
             color: layer(theme.colors[ColorToken.OnSurface], "thicker"),
-            outlineColor: variant === "outlined" ? layer(theme.colors[ColorToken.OnSurface], "thicker") : null,
+            outlineColor:
+              variant === "outlined" ? layer(theme.colors[ColorToken.OnSurface], "thicker") : null,
           }),
       ),
     };

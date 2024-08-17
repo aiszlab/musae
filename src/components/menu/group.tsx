@@ -2,7 +2,7 @@ import React, { CSSProperties, forwardRef } from "react";
 import type { MenuGroupProps } from "./types";
 import { useAnimate } from "framer-motion";
 import { useClassNames } from "../../hooks/use-class-names";
-import { ComponentToken, MenuClassToken } from "../../utils/class-name";
+import { MenuClassToken } from "../../utils/class-name";
 import clsx from "clsx";
 import Item from "./item";
 import { useMenuContext } from "./hooks";
@@ -12,6 +12,7 @@ import { spacing } from "../theme/tokens.stylex";
 import { useExpandable } from "../../hooks/use-expandable";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
+import { ComponentToken } from "../../utils/component-token";
 
 const styles = {
   group: stylex.create({
@@ -85,7 +86,7 @@ const Group = forwardRef<HTMLUListElement, MenuGroupProps>(
           color: theme.colors[ColorToken.OnSurface],
         }),
         styles.group[mode],
-        !expanded && styles.group.hidden
+        !expanded && styles.group.hidden,
       ),
       submenu: stylex.props(styles.submenu[mode]),
     };
@@ -99,7 +100,7 @@ const Group = forwardRef<HTMLUListElement, MenuGroupProps>(
             [classNames[MenuClassToken.GroupHidden]]: !expanded,
           },
           className,
-          styled.group.className
+          styled.group.className,
         )}
         style={{
           ...styled.group.style,
@@ -136,7 +137,7 @@ const Group = forwardRef<HTMLUListElement, MenuGroupProps>(
         })}
       </ul>
     );
-  }
+  },
 );
 
 export default Group;

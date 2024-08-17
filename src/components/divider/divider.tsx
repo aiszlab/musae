@@ -2,13 +2,14 @@ import { type DividerProps } from "./types";
 import React, { type CSSProperties } from "react";
 import { useOffset } from "./hooks";
 import { useClassNames } from "../../hooks/use-class-names";
-import { ComponentToken, DividerClassToken } from "../../utils/class-name";
+import { DividerClassToken } from "../../utils/class-name";
 import * as stylex from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
 import { typography } from "../theme/theme";
 import clsx from "clsx";
+import { ComponentToken } from "../../utils/component-token";
 
 const styles = {
   divider: stylex.create({

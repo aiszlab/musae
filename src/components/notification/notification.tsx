@@ -6,13 +6,14 @@ import { ColorToken } from "../../utils/colors";
 import type { NotificationProps, Placement, Axis, Type } from "./types";
 import { useRefs, useTimeout } from "@aiszlab/relax";
 import { useClassNames } from "../../hooks/use-class-names";
-import { ComponentToken, NotificationClassToken } from "../../utils/class-name";
+import { NotificationClassToken } from "../../utils/class-name";
 import clsx from "clsx";
 import { elevations, sizes, spacing } from "../theme/tokens.stylex";
 import { Button } from "../button";
 import { CheckCircle, Close, Loading, Error, NotificationImportant, Warning } from "../icon/icons";
 import { typography } from "../theme/theme";
 import type { IconProps } from "../icon";
+import { ComponentToken } from "../../utils/component-token";
 
 const AXIS: Readonly<Record<Placement, Axis>> = {
   top: "top",

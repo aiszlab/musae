@@ -2,9 +2,10 @@ import stylex from "@stylexjs/stylex";
 import type { SkeletonProps } from "./types";
 import React from "react";
 import { useClassNames } from "../../hooks/use-class-names";
-import { ComponentToken, SkeletonClassToken } from "../../utils/class-name";
+import { SkeletonClassToken } from "../../utils/class-name";
 import clsx from "clsx";
 import { sizes } from "../theme/tokens.stylex";
+import { ComponentToken } from "../../utils/component-token";
 
 const animation = stylex.keyframes({
   from: {
@@ -40,7 +41,8 @@ const styles = stylex.create({
   },
 
   animation: {
-    background: "linear-gradient(90deg, rgba(0, 0, 0, 0.06) 25%, rgba(0, 0, 0, 0.15) 37%, rgba(0, 0, 0, 0.06) 63%)",
+    background:
+      "linear-gradient(90deg, rgba(0, 0, 0, 0.06) 25%, rgba(0, 0, 0, 0.15) 37%, rgba(0, 0, 0, 0.06) 63%)",
     backgroundSize: "400% 100%",
     animationName: animation,
     animationDuration: "1.5s",

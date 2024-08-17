@@ -2,16 +2,20 @@ import React, { type CSSProperties } from "react";
 import clsx from "clsx";
 import type { TagProps } from "./types";
 import { useClassNames } from "../../hooks/use-class-names";
-import { TagClassToken, ComponentToken } from "../../utils/class-name";
+import { TagClassToken } from "../../utils/class-name";
 import * as stylex from "@stylexjs/stylex";
 import { useTheme } from "../theme";
 import { typography } from "../theme/theme";
 import { ColorToken } from "../../utils/colors";
 import { spacing } from "../theme/tokens.stylex";
 import { Close } from "../icon/icons";
+import { ComponentToken } from "../../utils/component-token";
 
 const styles = stylex.create({
-  tag: (props: { backgroundColor: CSSProperties["backgroundColor"]; color: CSSProperties["color"] }) => ({
+  tag: (props: {
+    backgroundColor: CSSProperties["backgroundColor"];
+    color: CSSProperties["color"];
+  }) => ({
     backgroundColor: props.backgroundColor,
     color: props.color,
     display: "inline-flex",
@@ -41,7 +45,15 @@ const styles = stylex.create({
   },
 });
 
-const Tag = ({ children, size = "medium", className, style, closable = false, onClose, leading }: TagProps) => {
+const Tag = ({
+  children,
+  size = "medium",
+  className,
+  style,
+  closable = false,
+  onClose,
+  leading,
+}: TagProps) => {
   const classNames = useClassNames(ComponentToken.Tag);
   const theme = useTheme();
 
@@ -51,7 +63,7 @@ const Tag = ({ children, size = "medium", className, style, closable = false, on
       backgroundColor: theme.colors[ColorToken.PrimaryContainer],
       color: theme.colors[ColorToken.OnPrimaryContainer],
     }),
-    styles[size]
+    styles[size],
   );
 
   return (

@@ -8,7 +8,7 @@ import {
   KeyboardArrowRight,
 } from "../icon/icons";
 import { useClassNames } from "../../hooks/use-class-names";
-import { CalendarClassToken, ComponentToken } from "../../utils/class-name";
+import { CalendarClassToken } from "../../utils/class-name";
 import * as stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
 import { typography } from "../theme/theme";
@@ -16,6 +16,7 @@ import clsx from "clsx";
 import { Button } from "../button";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
+import { ComponentToken } from "../../utils/component-token";
 
 const styles = stylex.create({
   calendar: {

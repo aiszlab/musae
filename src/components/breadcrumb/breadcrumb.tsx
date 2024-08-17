@@ -5,9 +5,10 @@ import { typography } from "../theme/theme";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
 import { useClassNames } from "../../hooks/use-class-names";
-import { BreadcrumbClassToken, ComponentToken } from "../../utils/class-name";
+import { BreadcrumbClassToken } from "../../utils/class-name";
 import clsx from "clsx";
 import Item from "./item";
+import { ComponentToken } from "../../utils/component-token";
 
 const styles = stylex.create({
   breadcrumb: (props: { color: CSSProperties["color"] }) => ({

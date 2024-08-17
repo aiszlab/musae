@@ -2,11 +2,12 @@ import React, { useMemo } from "react";
 import type { StepsProps, ContextValue } from "./types";
 import Item from "./item";
 import { useClassNames } from "../../hooks/use-class-names";
-import { ComponentToken, StepsClassToken } from "../../utils/class-name";
+import { StepsClassToken } from "../../utils/class-name";
 import stylex from "@stylexjs/stylex";
 import clsx from "clsx";
 import { Context } from "./context";
 import { spacing } from "../theme/tokens.stylex";
+import { ComponentToken } from "../../utils/component-token";
 
 const styles = stylex.create({
   steps: {
@@ -32,7 +33,15 @@ const styles = stylex.create({
  * 1. `Steps` only be controlled
  * 2. render by `items` prop
  */
-const Steps = ({ items, value = 0, className, style, type = "horizontal", onChange, size }: StepsProps) => {
+const Steps = ({
+  items,
+  value = 0,
+  className,
+  style,
+  type = "horizontal",
+  onChange,
+  size,
+}: StepsProps) => {
   const classNames = useClassNames(ComponentToken.Steps);
 
   const styled = {
@@ -60,7 +69,13 @@ const Steps = ({ items, value = 0, className, style, type = "horizontal", onChan
         }}
       >
         {items.map((item, index) => (
-          <Item value={index} title={item.title} leading={item.leading} key={index} description={item.description} />
+          <Item
+            value={index}
+            title={item.title}
+            leading={item.leading}
+            key={index}
+            description={item.description}
+          />
         ))}
       </ol>
     </Context.Provider>

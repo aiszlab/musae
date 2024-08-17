@@ -2,7 +2,7 @@ import React, { forwardRef, useRef, useImperativeHandle, type CSSProperties } fr
 import { useInputEvents, useWrapperEvents } from "./hooks";
 import type { InputProps, InputRef } from "./types";
 import { useControlledState, useFocus } from "@aiszlab/relax";
-import { ComponentToken, InputClassToken } from "../../utils/class-name";
+import { InputClassToken } from "../../utils/class-name";
 import * as stylex from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
@@ -10,6 +10,7 @@ import { ColorToken } from "../../utils/colors";
 import clsx from "clsx";
 import { useClassNames } from "../../hooks/use-class-names";
 import { typography } from "../theme/theme";
+import { ComponentToken } from "../../utils/component-token";
 
 export const styles = stylex.create({
   wrapper: (props: { outlineColor: CSSProperties["borderColor"] }) => ({
