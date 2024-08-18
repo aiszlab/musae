@@ -13,8 +13,8 @@ const I18nButton = ({ onChange, variant }: I18nButtonProps) => {
   const popoverRef = useRef<PopoverRef>(null);
 
   const change = useEvent((value: Key) => {
-    onChange?.(locales.get(value as LocaleCode));
     popoverRef.current?.close();
+    onChange?.(locales.get(value as LocaleCode));
   });
 
   return (
