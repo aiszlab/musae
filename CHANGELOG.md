@@ -1,7 +1,7 @@
 # musae
 
-## 0.2.5
+## 0.2.17
 
 ### Patch Changes
 
-- chore: use changeset
+- feat(i18n): all components use locale insteadof hard code

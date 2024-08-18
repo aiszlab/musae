@@ -1,6 +1,6 @@
 {
   "name": "musae",
-  "version": "0.2.16",
+  "version": "0.2.17",
   "description": "musae-ui",
   "author": "tutu@fantufantu.com",
   "license": "MIT",
@@ -12,7 +12,9 @@
     "build": "rollup -c --environment NODE_ENV:production",
     "prepublishOnly": "rm -rf dist && npm run build",
     "preinstall": "npx @aiszlab/watchdog preinstall",
-    "authors": "zx scripts/contributors.mjs"
+    "authors": "zx scripts/contributors.mjs",
+    "changeset": "changeset",
+    "cv": "changeset version"
   },
   "exports": {
     ".": {
