@@ -41,9 +41,8 @@ const Menu = forwardRef<MenuRef, MenuProps>(
     ref,
   ) => {
     const classNames = useClassNames(ComponentToken.Menu);
-    // TODO: change `direction` prop into `orientation` prop
     const { targetRef, scrollTo, to, setTrigger } = useScrollable<HTMLUListElement, HTMLLIElement>({
-      direction: useScrollOrientation(mode),
+      orientation: useScrollOrientation(mode),
     });
 
     // context value

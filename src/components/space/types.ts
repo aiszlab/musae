@@ -23,7 +23,6 @@ export type SpaceProps = ComponentProps & {
    */
   gutter?: Gutter;
 
-  // TODO: update docs
   /**
    * @description
    * orientation

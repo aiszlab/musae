@@ -1,5 +1,11 @@
 # musae
 
+## 0.2.18
+
+### Patch Changes
+
+- chore(deps): upgrade relax & use jarvis
+
 ## 0.2.17
 
 ### Patch Changes
