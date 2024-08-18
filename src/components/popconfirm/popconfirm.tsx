@@ -23,7 +23,7 @@ const styles = stylex.create({
 
     // layout
     display: "grid",
-    grid: "'leading title' '. description' 'footer footer'",
+    grid: "'leading title' '. content' 'footer footer'",
     gap: spacing.small,
   },
 
@@ -38,8 +38,8 @@ const styles = stylex.create({
     gridArea: "title",
   },
 
-  description: {
-    gridArea: "description",
+  content: {
+    gridArea: "content",
   },
 
   footer: {
@@ -49,7 +49,7 @@ const styles = stylex.create({
 });
 
 const Popconfirm = <P extends ChildProps<T>, T extends HTMLElement>({
-  description,
+  content,
   title,
   onConfirm,
   onCancel,
@@ -64,7 +64,7 @@ const Popconfirm = <P extends ChildProps<T>, T extends HTMLElement>({
   const childRef = useRefs(_ref, _children.props.ref);
   const popperRef = useRef<HTMLDivElement>(null);
   const theme = useTheme();
-  const locale = useLocale(ComponentToken.Popconfirm);
+  const [locale] = useLocale(ComponentToken.Popconfirm);
 
   const onClick = useEvent((event: MouseEvent<T>) => {
     event.stopPropagation();
@@ -95,7 +95,7 @@ const Popconfirm = <P extends ChildProps<T>, T extends HTMLElement>({
     popconfirm: stylex.props(styles.popconfirm),
     leading: stylex.props(styles.leading({ color: theme.colors[ColorToken.Warning] })),
     title: stylex.props(styles.title, typography.title.medium),
-    description: stylex.props(styles.description, typography.body.medium),
+    content: stylex.props(styles.content, typography.body.medium),
     footer: stylex.props(styles.footer),
   };
 
@@ -127,13 +127,10 @@ const Popconfirm = <P extends ChildProps<T>, T extends HTMLElement>({
           </div>
 
           <div
-            className={clsx(
-              classNames[PopconfirmClassToken.Description],
-              styled.description.className,
-            )}
-            style={styled.description.style}
+            className={clsx(classNames[PopconfirmClassToken.Description], styled.content.className)}
+            style={styled.content.style}
           >
-            {description}
+            {content}
           </div>
 
           <Space

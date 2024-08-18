@@ -62,7 +62,7 @@ const Tour = ({
   const classNames = useClassNames(ComponentToken.Tour);
   const { step, next, prev, hasNext, hasPrev } = useStep({ steps, open });
   const paddings = useGutters({ gutter: spotlightPadding });
-  const locale = useLocale(ComponentToken.Tour);
+  const [locale] = useLocale(ComponentToken.Tour);
 
   const styled = {
     overlay: stylex.props(styles.overlay({ backgroundColor: theme.colors[ColorToken.SurfaceDim] })),

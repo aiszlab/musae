@@ -80,6 +80,7 @@ export const tracking = defineVars({
  * like dialog, we need it be toper than other content
  */
 export const positions = defineVars({
+  background: "-1",
   min: "1",
   header: "50",
   popper: "60",

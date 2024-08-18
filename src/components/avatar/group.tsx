@@ -48,7 +48,7 @@ const Group = ({
     if (hidden.length > 0) {
       visible.push(
         <Popover
-          description={<Group max={Infinity}>{hidden}</Group>}
+          content={<Group max={Infinity}>{hidden}</Group>}
           key="avatars-hidden"
           placement="top"
         >

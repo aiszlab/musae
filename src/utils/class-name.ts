@@ -38,6 +38,7 @@ export enum SelectClassToken {
 }
 export enum PopperClassToken {
   Dropdown,
+  Arrow,
 }
 export enum FormClassToken {
   Item,
@@ -222,7 +223,7 @@ export enum TooltipClassToken {
 export enum PopoverClassToken {
   Popover,
   Title,
-  Description,
+  Content,
 }
 export enum LoadingClassToken {
   Loading,
@@ -299,6 +300,7 @@ export const CLASS_NAMES = {
   },
   [ComponentToken.Popper]: {
     [PopperClassToken.Dropdown]: "dropdown",
+    [PopperClassToken.Arrow]: "arrow",
   },
   [ComponentToken.Form]: {
     [FormClassToken.Item]: "form__item",
@@ -481,7 +483,7 @@ export const CLASS_NAMES = {
   [ComponentToken.Popover]: {
     [PopoverClassToken.Popover]: "popover",
     [PopoverClassToken.Title]: "popover__title",
-    [PopoverClassToken.Description]: "popover__description",
+    [PopoverClassToken.Content]: "popover__content",
   },
   [ComponentToken.Loading]: {
     [LoadingClassToken.Loading]: "loading",
@@ -532,6 +534,7 @@ export const CLASS_NAMES = {
     [HighlightClassToken.Highlight]: "highlight",
     [HighlightClassToken.Capture]: "highlight__capture",
   },
+  [ComponentToken.I18nButton]: {},
 };
 
 /**

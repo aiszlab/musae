@@ -6,13 +6,17 @@ import { CLASS_NAMES, DEFAULT_CLASS_NAMES, addPrefix } from "../../utils/class-n
 import { LocaleContext, DEFAULT_LOCALE } from "../../locale";
 import deepmerge from "deepmerge";
 
-const ConfigProvider = ({ children, prefix, locale = DEFAULT_LOCALE }: ConfigProps) => {
+const ConfigProvider = ({ children, prefix, locale: _locale }: ConfigProps) => {
   const notifierRef = useRef<HolderRef>(null);
 
   const classNames = useMemo(() => {
     if (!prefix) return DEFAULT_CLASS_NAMES;
     return addPrefix(CLASS_NAMES, prefix);
   }, [prefix]);
+
+  const locale = useMemo(() => {
+    return deepmerge(DEFAULT_LOCALE, _locale ?? {});
+  }, [_locale]);
 
   return (
     <Context.Provider
@@ -21,7 +25,7 @@ const ConfigProvider = ({ children, prefix, locale = DEFAULT_LOCALE }: ConfigPro
         classNames,
       }}
     >
-      <LocaleContext.Provider value={deepmerge(DEFAULT_LOCALE, locale)}>
+      <LocaleContext.Provider value={locale}>
         {children}
         <Holder ref={notifierRef} />
       </LocaleContext.Provider>

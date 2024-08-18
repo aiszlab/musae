@@ -1,9 +1,11 @@
 /* eslint-disable no-template-curly-in-string */
 
 import { ComponentToken } from "../../utils/component-token";
-import type { Locale } from "../types";
+import { LocaleCode, type Locale } from "../types";
 
 const zh_CN: Locale = {
+  locale: LocaleCode.zh_CN,
+
   [ComponentToken.Dialog]: {
     confirm: "确认",
     cancel: "取消",
@@ -35,6 +37,11 @@ const zh_CN: Locale = {
 
   [ComponentToken.Transfer]: {
     unit: "项",
+  },
+
+  [ComponentToken.I18nButton]: {
+    zh_CN: "中文",
+    en_US: "英文",
   },
 };
 

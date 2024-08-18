@@ -9,10 +9,10 @@ import { ComponentToken } from "../../utils/component-token";
 const Tooltip = ({ children, className, style, title }: TooltipProps) => {
   const classNames = useClassNames(ComponentToken.Tooltip);
 
-  // `Tooltip` title is used into `Popover` description!!! not a bug!
+  // `Tooltip` title is used into `Popover` content!!! not a bug!
   return (
     <Popover
-      description={title}
+      content={title}
       className={clsx(classNames[TooltipClassToken.Tooltip], className)}
       style={style}
     >

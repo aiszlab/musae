@@ -10,7 +10,7 @@ export type ChildProps<T> = Pick<DOMAttributes<T>, "onClick"> & RefAttributes<T>
  */
 export type PopconfirmProps<P extends ChildProps<T>, T extends HTMLElement> = Pick<
   PopoverProps<P, T>,
-  "children" | "placement" | "title" | "description"
+  "children" | "placement" | "title" | "content"
 > &
   ComponentProps & {
     /**

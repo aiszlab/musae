@@ -53,7 +53,7 @@ const List = ({ options, title, onChange, value }: TransferListProps) => {
     ),
     title: stylex.props(styles.title),
   };
-  const locale = useLocale(ComponentToken.Transfer);
+  const [locale] = useLocale(ComponentToken.Transfer);
 
   return (
     <div

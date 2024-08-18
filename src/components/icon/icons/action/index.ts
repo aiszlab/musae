@@ -8,6 +8,7 @@ import SwapVert from "./swap-vert";
 import ZoomOut from "./zoom-out";
 import ZoomIn from "./zoom-in";
 import DoneOutline from "./done-outline";
+import Translate from "./translate";
 
 export {
   Visibility,
@@ -20,4 +21,5 @@ export {
   ZoomOut,
   ZoomIn,
   DoneOutline,
+  Translate,
 };

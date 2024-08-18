@@ -1,6 +1,13 @@
 import type { ComponentToken } from "../utils/component-token";
 
+export enum LocaleCode {
+  zh_CN = "zh_CN",
+  en_US = "en_US",
+}
+
 export interface Locale {
+  locale: LocaleCode;
+
   [ComponentToken.Dialog]: {
     confirm: string;
     cancel: string;
@@ -33,4 +40,6 @@ export interface Locale {
   [ComponentToken.Transfer]: {
     unit: string;
   };
+
+  [ComponentToken.I18nButton]: Record<LocaleCode, string>;
 }

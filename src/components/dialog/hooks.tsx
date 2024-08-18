@@ -14,7 +14,7 @@ export const useFooter = ([footer, onConfirm, onClose]: [
   onConfirm: PopupProps["onConfirm"],
   onClose: PopupProps["onClose"],
 ]) => {
-  const locale = useLocale(ComponentToken.Dialog);
+  const [locale] = useLocale(ComponentToken.Dialog);
 
   return useMemo(() => {
     return (

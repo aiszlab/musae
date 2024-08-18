@@ -53,7 +53,7 @@ const Pagination = ({
     sizer: stylex.props(styles.sizer),
   };
   const classNames = useClassNames(ComponentToken.Pagination);
-  const locale = useLocale(ComponentToken.Pagination);
+  const [locale] = useLocale(ComponentToken.Pagination);
 
   const sizeOptions = useMemo<Option[]>(
     () =>

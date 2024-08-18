@@ -1,5 +1,5 @@
 import Popover from "./popover";
-import type { PopoverProps } from "./types";
+import type { PopoverProps, PopoverRef } from "./types";
 
 export { Popover };
-export type { PopoverProps };
+export type { PopoverProps, PopoverRef };

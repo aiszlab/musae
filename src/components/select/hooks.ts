@@ -1,6 +1,6 @@
-import { type Key, useMemo, useState, useRef } from "react";
+import { type Key, useMemo, useState } from "react";
 import type { Filter, Mode, ReadableOptions, SelectProps, ValueOrValues } from "./types";
-import { isUndefined, useControlledState, useEvent } from "@aiszlab/relax";
+import { isFunction, isUndefined, useControlledState, useEvent } from "@aiszlab/relax";
 import { readOptions, toKey, toMenuItems, toValues } from "./utils";
 import type { Option } from "../../types/option";
 
@@ -12,6 +12,7 @@ export const useValue = <T extends ValueOrValues = ValueOrValues>({
   mode,
   close,
   isComplex,
+  readableOptions,
   ...props
 }: {
   value: ValueOrValues | undefined;
@@ -24,8 +25,6 @@ export const useValue = <T extends ValueOrValues = ValueOrValues>({
 }) => {
   const isControlled = !isUndefined(props.value);
   const [value, setValue] = useControlledState(props.value);
-  const readableOptions = useRef<ReadableOptions>(props.readableOptions);
-  readableOptions.current = props.readableOptions;
 
   /// convert prop value into a map
   /// in this component, only use map for controlled state
@@ -37,17 +36,17 @@ export const useValue = <T extends ValueOrValues = ValueOrValues>({
         return prev.set(
           key,
           // @ts-ignore
-          _value.label ?? readableOptions.current.get(key) ?? _value.toString(),
+          _value.label ?? readableOptions.get(key) ?? _value.toString(),
         );
       }, new Map<Key, string>()),
-    [value],
+    [value, readableOptions],
   );
 
   const onChange = useEvent((key: Key) => {
     // convert to complex value
     const _value = {
       value: key,
-      label: readableOptions.current.get(key) ?? key.toString(),
+      label: readableOptions.get(key) ?? key.toString(),
     };
 
     // single mode
@@ -113,22 +112,16 @@ export const useOptions = ({
   onSearch: SelectProps["onSearch"];
 }) => {
   const [searched, setSearched] = useState("");
-  const onFilter = useRef<SelectProps["onFilter"]>(props.onFilter);
-  onFilter.current = props.onFilter;
+  const onFilterGetter = useEvent(() => props.onFilter ?? true);
 
   const filter = useMemo<Filter | null>(() => {
-    if (!searched) {
-      return null;
-    }
-    if (onFilter.current === false) {
-      return null;
-    }
-    if (onFilter.current === true || !onFilter.current) {
-      return (option) => !!option.label?.includes(searched);
-    }
-    // @ts-ignore
-    return (option) => onFilter.current(searched, option);
-  }, [searched]);
+    if (!searched) return null;
+
+    const onFilter = onFilterGetter();
+    if (!onFilter) return null;
+    if (isFunction(onFilter)) return (option) => onFilter(searched, option);
+    return (option) => !!option.label?.includes(searched);
+  }, [searched, onFilterGetter]);
 
   /// wrapper search handler, set react state
   const search = useEvent<Required<SelectProps>["onSearch"]>((searched) => {

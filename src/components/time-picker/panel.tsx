@@ -43,7 +43,7 @@ const Panel = forwardRef<PanelRef, PanelProps>((props, ref) => {
   const classNames = useClassNames(ComponentToken.TimePicker);
   const [value, setValue] = useState<ClockProps["value"]>();
   const theme = useTheme();
-  const locale = useLocale(ComponentToken.TimePicker);
+  const [locale] = useLocale(ComponentToken.TimePicker);
 
   useImperativeHandle(ref, () => {
     return {

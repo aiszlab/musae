@@ -38,10 +38,10 @@ export type PopoverProps<P extends ChildProps<T>, T extends HTMLElement> = Compo
 
   /**
    * @description
-   * description
+   * content
    * @requires
    */
-  description: ReactNode;
+  content: ReactNode;
 
   /**
    * @description
@@ -56,4 +56,26 @@ export type PopoverProps<P extends ChildProps<T>, T extends HTMLElement> = Compo
    * @default "bottom"
    */
   placement?: Placement;
+
+  /**
+   * @description
+   * padding
+   * @default true
+   */
+  padding?: boolean | number;
+};
+
+/**
+ * @description
+ * popover ref
+ *
+ * if user want to handle popover's event, they can use this ref.
+ * just like `close`
+ */
+export type PopoverRef = {
+  /**
+   * @description
+   * close popover
+   */
+  close: () => void;
 };

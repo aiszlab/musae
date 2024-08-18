@@ -57,6 +57,7 @@ export { NumberInput } from "./components/number-input";
 export { Popconfirm } from "./components/popconfirm";
 export { Highlight } from "./components/highlight";
 export { Bench } from "./components/bench";
+export { I18nButton } from "./components/i18n-button";
 
 /**
  * @description
@@ -75,3 +76,4 @@ export type { MenuItem, MenuRef } from "./components/menu";
 export type { TreeProps } from "./components/tree";
 export type { TourStep } from "./components/tour";
 export type { NavigationItem } from "./components/bench";
+export type { Locale } from "./locale";

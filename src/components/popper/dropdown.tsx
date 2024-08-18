@@ -50,6 +50,7 @@ const styles = {
       height: sizes.xxxsmall,
       backgroundColor: props.backgroundColor,
       transform: "rotate(45deg)",
+      zIndex: positions.background,
     }),
   }),
 };
@@ -79,18 +80,18 @@ const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(
     const theme = useTheme();
     const floatable = useRefs(_floatable, ref);
 
-    /// how to get trigger
+    // how to get trigger
     const trigger = useMemo<Nullable<Element>>(() => {
       if (!open) return null;
       if (isFunction(_trigger)) return _trigger();
       return _trigger ?? null;
     }, [open, _trigger]);
 
-    /// memorized offsets
+    // memorized offsets
     const offsets = useOffsets({ offset: _offset, arrowable });
 
-    /// auto update: calc trigger dom to get position
-    /// if trigger changed, re-relate
+    // auto update: calc trigger dom to get position
+    // if trigger changed, re-relate
     useLayoutEffect(() => {
       if (!trigger) return;
 
@@ -125,8 +126,7 @@ const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(
       return () => {
         cleanup();
       };
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [placement, trigger, offsets, arrowable]);
+    }, [placement, trigger, offsets, arrowable, _floatable]);
 
     useLayoutEffect(() => {
       (async () => {

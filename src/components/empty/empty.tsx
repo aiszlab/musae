@@ -28,7 +28,7 @@ const styles = stylex.create({
  */
 const Empty = () => {
   const classNames = useClassNames(ComponentToken.Empty);
-  const locale = useLocale(ComponentToken.Empty);
+  const [locale] = useLocale(ComponentToken.Empty);
 
   const styled = {
     empty: stylex.props(styles.empty),
