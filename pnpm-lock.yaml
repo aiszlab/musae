@@ -9,7 +9,7 @@ importers:
   .:
     dependencies:
       '@aiszlab/relax':
-        specifier: ^1.2.72
+        specifier: ^1.2.73
         version: 1.2.73(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@babel/runtime':
         specifier: ^7.25.0
@@ -100,7 +100,7 @@ importers:
         specifier: ^29.5.12
         version: 29.5.12
       '@types/node':
-        specifier: ^22.4.0
+        specifier: ^22.4.1
         version: 22.4.1
       '@types/react':
         specifier: ^18.3.3
