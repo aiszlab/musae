@@ -31,16 +31,22 @@ export const useLazyBoolean = (): UsedLazyBoolean => {
   }, []);
 
   const appear = useCallback(() => {
+    const { resolve, promise } = Promise.withResolvers<void>();
     timeout(() => {
       turnOn();
+      resolve();
     }, 100);
+    return promise;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const disappear = useCallback(() => {
+    const { resolve, promise } = Promise.withResolvers<void>();
     timeout(() => {
       turnOff();
+      resolve();
     }, 100);
+    return promise;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
