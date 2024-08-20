@@ -18,7 +18,7 @@ import React, {
   type ForwardedRef,
 } from "react";
 import type { ChildProps, PopoverProps, PopoverRef } from "./types";
-import { Popper } from "../popper";
+import { Popper, type PopperRef } from "../popper";
 import stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
 import { typography } from "../theme/theme";
@@ -64,7 +64,7 @@ const Popover = forwardRef(
     const triggerBy = useMemo(() => new Set(toArray(_triggerBy)), [_triggerBy]);
     const classNames = useClassNames(ComponentToken.Popover);
     const childRef = useRefs(_ref, _children.props.ref);
-    const popperRef = useRef<HTMLDivElement>(null);
+    const popperRef = useRef<PopperRef>(null);
 
     const onClick = useEvent((event: MouseEvent<T>) => {
       event.stopPropagation();

@@ -1,5 +1,12 @@
-import React, { type CSSProperties, forwardRef, useLayoutEffect, useMemo, useRef } from "react";
-import type { DropdownProps } from "./types";
+import React, {
+  type CSSProperties,
+  forwardRef,
+  useImperativeHandle,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+} from "react";
+import type { DropdownProps, PopperRef } from "./types";
 import { PopperClassToken } from "../../utils/class-name";
 import { useClassNames } from "../../hooks/use-class-names";
 import * as stylex from "@stylexjs/stylex";
@@ -15,7 +22,7 @@ import {
   type Alignment,
 } from "@floating-ui/dom";
 import type { Nullable } from "@aiszlab/relax/types";
-import { useOffsets } from "./hooks";
+import { useAnimation, useOffsets } from "./hooks";
 import { elevations, positions, sizes } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
@@ -55,7 +62,7 @@ const styles = {
   }),
 };
 
-const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(
+const Dropdown = forwardRef<PopperRef, DropdownProps>(
   (
     {
       open,
@@ -70,15 +77,40 @@ const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(
       offset: _offset,
       overlay = false,
       arrow: arrowable = false,
+      animatable = true,
       ...props
     },
     ref,
   ) => {
-    const [_floatable, animate] = useAnimate<HTMLDivElement>();
     const arrowRef = useRef<HTMLDivElement>(null);
+    const contentRef = useRef<HTMLDivElement>(null);
     const classNames = useClassNames(ComponentToken.Popper);
     const theme = useTheme();
-    const floatable = useRefs(_floatable, ref);
+
+    const {
+      collapse,
+      expand,
+      floatable: _floatable,
+    } = useAnimation({
+      open,
+      animatable,
+      onEntered,
+      onExit,
+      onExited,
+    });
+    const floatable = useRefs(_floatable, contentRef);
+
+    useImperativeHandle(
+      ref,
+      () => {
+        return {
+          ...contentRef.current!,
+          open: expand,
+          close: collapse,
+        };
+      },
+      [],
+    );
 
     // how to get trigger
     const trigger = useMemo<Nullable<Element>>(() => {
@@ -127,35 +159,6 @@ const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(
         cleanup();
       };
     }, [placement, trigger, offsets, arrowable, _floatable]);
-
-    useLayoutEffect(() => {
-      (async () => {
-        if (open) {
-          _floatable.current.style.display = "";
-          await animate(
-            _floatable.current,
-            { opacity: 1, transform: "scale(1, 1)" },
-            { duration: 0.2 },
-          );
-          await onEntered?.();
-          return;
-        }
-
-        await Promise.all([
-          onExit?.(),
-          animate(
-            _floatable.current,
-            { opacity: 0, transform: "scale(0, 0)" },
-            { duration: 0.2 },
-          ).then(() => {
-            if (!_floatable.current) return;
-            _floatable.current.style.display = "none";
-          }),
-        ]);
-        onExited?.();
-      })();
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [open]);
 
     const styled = {
       dropdown: stylex.props(

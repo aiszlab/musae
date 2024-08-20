@@ -73,6 +73,18 @@ export interface PopperProps
    * arrow
    */
   arrow?: boolean;
+
+  /**
+   * @description
+   * animatable
+   *
+   * @default true
+   *
+   * default case, popper will auto animate after open change
+   * but sometimes, you want to control popper open/close animation
+   * set `animatable` to false, and use popper.ref to show animations
+   */
+  animatable?: boolean;
 }
 
 export type DropdownProps = Omit<PopperProps, "portal" | "placement"> & {
@@ -80,4 +92,22 @@ export type DropdownProps = Omit<PopperProps, "portal" | "placement"> & {
    * {@link} `PopperProps`.`placement`
    */
   placement: Placement;
+};
+
+/**
+ * @description
+ * Popper Ref
+ */
+export type PopperRef = HTMLDivElement & {
+  /**
+   * @description
+   * close popper
+   */
+  close: () => Promise<void>;
+
+  /**
+   * @description
+   * open popper
+   */
+  open: () => Promise<void>;
 };
