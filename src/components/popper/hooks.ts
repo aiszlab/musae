@@ -58,25 +58,22 @@ export const useAnimation = ({
           _floatable.current.style.display = "none";
         },
       ),
-    ]).then(() => {
-      console.log("11111");
-    });
+    ]);
     await onExited?.();
-    console.log("222222");
   });
 
   const _disappear = useCallback(() => {
     if (!disappearable) return;
     disappear();
-  }, []);
+  }, [disappear, disappearable]);
 
   useLayoutEffect(() => {
     if (open) {
       appear();
       return;
     }
-
     _disappear();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open]);
 
   return {

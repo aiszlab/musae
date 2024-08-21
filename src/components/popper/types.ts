@@ -98,10 +98,18 @@ export type DropdownProps = Omit<PopperProps, "portal" | "placement"> & {
  * @description
  * Popper Ref
  */
-export type PopperRef = HTMLDivElement & {
+export type PopperRef = {
   /**
    * @description
    * disappear popper
    */
   disappear: () => Promise<void>;
+
+  /**
+   * @description
+   * contain
+   *
+   * used for `clickaway`, check clicked node is contained in popper
+   */
+  contains: (node: Nullable<Node>) => boolean;
 };

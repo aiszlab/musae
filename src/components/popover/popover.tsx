@@ -25,7 +25,6 @@ import { typography } from "../theme/theme";
 import { useClassNames } from "../../hooks/use-class-names";
 import { PopoverClassToken } from "../../utils/class-name";
 import clsx from "clsx";
-import { useLazyBoolean } from "../../hooks/use-lazy-boolean";
 import { ComponentToken } from "../../utils/component-token";
 import { useIsOpen } from "./hooks";
 
@@ -84,7 +83,7 @@ const Popover = forwardRef(
     });
     const [, focusProps] = useFocus<T>({
       onFocus: (event) => chain(_children.props.onFocus, turnOn)(event),
-      onBlur: (event) => chain(_children.props.onBlur, turnOff)(event),
+      onBlur: (event) => chain(_children.props.onBlur)(event),
     });
 
     // @ts-ignore
@@ -109,17 +108,15 @@ const Popover = forwardRef(
 
     useClickAway(() => {
       turnOff();
-    }, [popperRef, ...(triggerBy.has("click") ? [_ref] : [])]);
+    }, [popperRef as any, ...(triggerBy.has("click") ? [_ref] : [])]);
 
-    useImperativeHandle(
-      ref,
-      () => {
-        return {
-          close: turnOff,
-        };
+    useImperativeHandle(ref, () => ({
+      close: async () => {
+        console.log("popover close handler start");
+        await turnOff();
+        console.log("popover close handler over");
       },
-      [turnOff],
-    );
+    }));
 
     const styled = {
       popover: stylex.props(

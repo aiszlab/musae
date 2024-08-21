@@ -11,7 +11,7 @@ import { PopperClassToken } from "../../utils/class-name";
 import { useClassNames } from "../../hooks/use-class-names";
 import * as stylex from "@stylexjs/stylex";
 import clsx from "clsx";
-import { isFunction, useRefs } from "@aiszlab/relax";
+import { isFunction } from "@aiszlab/relax";
 import {
   computePosition,
   flip,
@@ -27,6 +27,7 @@ import { elevations, positions, sizes } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
 import { ComponentToken } from "../../utils/component-token";
+import { contains } from "@aiszlab/relax/dom";
 
 const styles = {
   dropdown: stylex.create({
@@ -82,32 +83,25 @@ const Dropdown = forwardRef<PopperRef, DropdownProps>(
     ref,
   ) => {
     const arrowRef = useRef<HTMLDivElement>(null);
-    const contentRef = useRef<HTMLDivElement>(null);
     const classNames = useClassNames(ComponentToken.Popper);
     const theme = useTheme();
 
-    const { disappear, floatable: _floatable } = useAnimation({
+    const { disappear, floatable } = useAnimation({
       open,
       disappearable,
       onEntered,
       onExit,
       onExited,
     });
-    const floatable = useRefs(_floatable, contentRef);
 
-    useImperativeHandle(
-      ref,
-      () => {
-        return {
-          ...contentRef.current!,
-          disappear: async () => {
-            await disappear();
-            console.log("disappear=======");
-          },
-        };
-      },
-      [],
-    );
+    useImperativeHandle(ref, () => {
+      return {
+        disappear,
+        contains: (node) => {
+          return contains(floatable.current, node);
+        },
+      };
+    });
 
     // how to get trigger
     const trigger = useMemo<Nullable<Element>>(() => {
@@ -124,8 +118,8 @@ const Dropdown = forwardRef<PopperRef, DropdownProps>(
     useLayoutEffect(() => {
       if (!trigger) return;
 
-      const cleanup = autoUpdate(trigger, _floatable.current, () => {
-        computePosition(trigger, _floatable.current, {
+      const cleanup = autoUpdate(trigger, floatable.current, () => {
+        computePosition(trigger, floatable.current, {
           placement: placement,
           middleware: [
             flip(),
@@ -137,7 +131,7 @@ const Dropdown = forwardRef<PopperRef, DropdownProps>(
             const [side] = _placement.split("-") as [Side, Alignment?];
 
             // set float element styles
-            _floatable.current.style.translate = `${x}px ${y}px`;
+            floatable.current.style.translate = `${x}px ${y}px`;
 
             // set arrwo styles
             if (middlewareData.arrow && !!arrowRef.current) {
@@ -155,7 +149,7 @@ const Dropdown = forwardRef<PopperRef, DropdownProps>(
       return () => {
         cleanup();
       };
-    }, [placement, trigger, offsets, arrowable, _floatable]);
+    }, [placement, trigger, offsets, arrowable, floatable]);
 
     const styled = {
       dropdown: stylex.props(

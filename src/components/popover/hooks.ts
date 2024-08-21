@@ -1,3 +1,4 @@
+import { useEvent } from "@aiszlab/relax";
 import { useLazyBoolean } from "../../hooks/use-lazy-boolean";
 import { type PopperRef } from "../popper";
 import { useCallback } from "react";
@@ -19,18 +20,10 @@ type UsedIsOpen = [
 export const useIsOpen = (popperRef: React.RefObject<PopperRef>): UsedIsOpen => {
   const [isOpen, { turnOn, turnOff: _turnOff, disappear: _disappear }] = useLazyBoolean();
 
-  const turnOff = useCallback(() => {
-    const { promise, resolve } = Promise.withResolvers<void>();
+  const turnOff = useEvent(async () => {
     _turnOff();
-    popperRef.current?.disappear().then(() => {
-      console.log("312321321321");
-
-      resolve();
-    });
-    return promise.then(() => {
-      console.log("bbbbbbbbbbbbb");
-    });
-  }, []);
+    await popperRef.current?.disappear();
+  });
 
   const toggle = useCallback(() => {
     if (isOpen) {
@@ -38,11 +31,11 @@ export const useIsOpen = (popperRef: React.RefObject<PopperRef>): UsedIsOpen => 
       return;
     }
     turnOn();
-  }, [isOpen]);
+  }, [isOpen, turnOff, turnOn]);
 
   const disappear = useCallback(async () => {
     await Promise.all([_disappear(), popperRef.current?.disappear()]).catch(() => null);
-  }, []);
+  }, [_disappear, popperRef]);
 
   return [
     isOpen,
