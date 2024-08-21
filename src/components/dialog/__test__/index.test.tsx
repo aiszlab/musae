@@ -27,7 +27,6 @@ describe("`Dialog` Component", () => {
   //     useTimeout(() => {
   //       act(() => {
   //         turnOff();
-  //         console.log("112321321321");
   //       });
   //     }, 3000);
 
@@ -41,8 +40,6 @@ describe("`Dialog` Component", () => {
   //   const { asFragment } = render(<Demo />);
 
   //   jest.runAllTimers();
-
-  //   console.log("22222222=======", jest.getTimerCount());
   //   expect(asFragment()).toMatchSnapshot();
   //   expect(document.querySelector(".musae-dialog")).toBeNull();
   // });

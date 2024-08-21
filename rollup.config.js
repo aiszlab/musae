@@ -3,12 +3,12 @@ import typescript from "@rollup/plugin-typescript";
 import stylex from "@stylexjs/rollup-plugin";
 import commonjs from "@rollup/plugin-commonjs";
 import babel from "@rollup/plugin-babel";
-
-import pkg from "./package.json" assert { type: "json" };
-
 import { fileURLToPath } from "url";
 import { dirname } from "path";
+import { createRequire } from "module";
 
+const require = createRequire(import.meta.url);
+const pkg = require("./package.json");
 const CSS_ASSET_FILENAME = "stylex.css";
 const ENTRY = "index";
 const EXTENSIONS = [".ts", ".tsx", ".js", ".jsx"];

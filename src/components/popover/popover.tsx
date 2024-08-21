@@ -108,14 +108,10 @@ const Popover = forwardRef(
 
     useClickAway(() => {
       turnOff();
-    }, [popperRef as any, ...(triggerBy.has("click") ? [_ref] : [])]);
+    }, [popperRef, triggerBy.has("click") && _ref]);
 
     useImperativeHandle(ref, () => ({
-      close: async () => {
-        console.log("popover close handler start");
-        await turnOff();
-        console.log("popover close handler over");
-      },
+      close: turnOff,
     }));
 
     const styled = {
