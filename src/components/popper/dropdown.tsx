@@ -26,7 +26,6 @@ import { useAnimation, useOffsets } from "./hooks";
 import { elevations, positions, sizes } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
-import { useAnimate } from "framer-motion";
 import { ComponentToken } from "../../utils/component-token";
 
 const styles = {
@@ -77,7 +76,7 @@ const Dropdown = forwardRef<PopperRef, DropdownProps>(
       offset: _offset,
       overlay = false,
       arrow: arrowable = false,
-      animatable = true,
+      disappearable = true,
       ...props
     },
     ref,
@@ -87,13 +86,9 @@ const Dropdown = forwardRef<PopperRef, DropdownProps>(
     const classNames = useClassNames(ComponentToken.Popper);
     const theme = useTheme();
 
-    const {
-      collapse,
-      expand,
-      floatable: _floatable,
-    } = useAnimation({
+    const { disappear, floatable: _floatable } = useAnimation({
       open,
-      animatable,
+      disappearable,
       onEntered,
       onExit,
       onExited,
@@ -105,8 +100,10 @@ const Dropdown = forwardRef<PopperRef, DropdownProps>(
       () => {
         return {
           ...contentRef.current!,
-          open: expand,
-          close: collapse,
+          disappear: async () => {
+            await disappear();
+            console.log("disappear=======");
+          },
         };
       },
       [],

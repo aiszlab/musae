@@ -27,6 +27,7 @@ import { PopoverClassToken } from "../../utils/class-name";
 import clsx from "clsx";
 import { useLazyBoolean } from "../../hooks/use-lazy-boolean";
 import { ComponentToken } from "../../utils/component-token";
+import { useIsOpen } from "./hooks";
 
 const styles = {
   popover: stylex.create({
@@ -60,11 +61,11 @@ const Popover = forwardRef(
     ref: ForwardedRef<PopoverRef>,
   ) => {
     const _ref = useRef<HTMLElement>(null);
-    const [isOpen, { turnOn, turnOff, toggle, disappear }] = useLazyBoolean();
+    const popperRef = useRef<PopperRef>(null);
+    const [isOpen, { turnOn, turnOff, toggle, disappear }] = useIsOpen(popperRef);
     const triggerBy = useMemo(() => new Set(toArray(_triggerBy)), [_triggerBy]);
     const classNames = useClassNames(ComponentToken.Popover);
     const childRef = useRefs(_ref, _children.props.ref);
-    const popperRef = useRef<PopperRef>(null);
 
     const onClick = useEvent((event: MouseEvent<T>) => {
       event.stopPropagation();
@@ -144,6 +145,7 @@ const Popover = forwardRef(
           })}
           placement={placement}
           ref={popperRef}
+          disappearable={false}
         >
           <div
             className={clsx(

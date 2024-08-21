@@ -76,15 +76,15 @@ export interface PopperProps
 
   /**
    * @description
-   * animatable
+   * disappearable
    *
    * @default true
    *
-   * default case, popper will auto animate after open change
-   * but sometimes, you want to control popper open/close animation
-   * set `animatable` to false, and use popper.ref to show animations
+   * default case, popper will auto disappear after open change
+   * but sometimes, you want to control popper disappear animation
+   * set `disappearable` to false, and use popper.ref to disappear
    */
-  animatable?: boolean;
+  disappearable?: boolean;
 }
 
 export type DropdownProps = Omit<PopperProps, "portal" | "placement"> & {
@@ -101,13 +101,7 @@ export type DropdownProps = Omit<PopperProps, "portal" | "placement"> & {
 export type PopperRef = HTMLDivElement & {
   /**
    * @description
-   * close popper
+   * disappear popper
    */
-  close: () => Promise<void>;
-
-  /**
-   * @description
-   * open popper
-   */
-  open: () => Promise<void>;
+  disappear: () => Promise<void>;
 };

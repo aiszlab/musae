@@ -11,7 +11,7 @@ const Drawer = ({
   placement = "right",
   ...props
 }: DrawerProps) => {
-  /// `Portal` should disappear after `Drawer` disappear animation completely
+  // `Portal` should disappear after `Drawer` disappear animation completely
   const [_isVisible, { turnOn, turnOff }] = useBoolean(false);
 
   useEffect(() => {

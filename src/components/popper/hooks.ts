@@ -1,4 +1,4 @@
-import { useLayoutEffect, useMemo } from "react";
+import { useCallback, useLayoutEffect, useMemo } from "react";
 import { PopperProps } from "./types";
 import { useAnimate } from "framer-motion";
 import { useEvent } from "@aiszlab/relax";
@@ -33,23 +33,23 @@ export const useOffsets = ({
  */
 export const useAnimation = ({
   open,
-  animatable,
+  disappearable,
   onEntered,
   onExit,
   onExited,
-}: { open: boolean; animatable: boolean } & Pick<
+}: { open: boolean; disappearable: boolean } & Pick<
   PopperProps,
   "onEntered" | "onExit" | "onExited"
 >) => {
   const [_floatable, animate] = useAnimate<HTMLDivElement>();
 
-  const expand = useEvent(async () => {
+  const appear = useEvent(async () => {
     _floatable.current.style.display = "";
     await animate(_floatable.current, { opacity: 1, transform: "scale(1, 1)" }, { duration: 0.2 });
     await onEntered?.();
   });
 
-  const collapse = useEvent(async () => {
+  const disappear = useEvent(async () => {
     await Promise.all([
       onExit?.(),
       animate(_floatable.current, { opacity: 0, transform: "scale(0, 0)" }, { duration: 0.2 }).then(
@@ -58,24 +58,29 @@ export const useAnimation = ({
           _floatable.current.style.display = "none";
         },
       ),
-    ]);
-    onExited?.();
+    ]).then(() => {
+      console.log("11111");
+    });
+    await onExited?.();
+    console.log("222222");
   });
 
-  useLayoutEffect(() => {
-    if (!animatable) return;
+  const _disappear = useCallback(() => {
+    if (!disappearable) return;
+    disappear();
+  }, []);
 
+  useLayoutEffect(() => {
     if (open) {
-      expand();
+      appear();
       return;
     }
 
-    collapse();
-  }, [open, animatable]);
+    _disappear();
+  }, [open]);
 
   return {
     floatable: _floatable,
-    expand,
-    collapse,
+    disappear,
   };
 };

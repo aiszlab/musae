@@ -7,8 +7,8 @@ type UsedLazyBoolean = [
     turnOn: () => void;
     turnOff: () => void;
     toggle: () => void;
-    appear: () => void;
-    disappear: () => void;
+    appear: () => Promise<void>;
+    disappear: () => Promise<void>;
   },
 ];
 

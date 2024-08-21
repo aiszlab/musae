@@ -77,5 +77,5 @@ export type PopoverRef = {
    * @description
    * close popover
    */
-  close: () => void;
+  close: () => Promise<void>;
 };
