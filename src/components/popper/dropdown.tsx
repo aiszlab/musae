@@ -1,10 +1,17 @@
-import React, { type CSSProperties, forwardRef, useLayoutEffect, useMemo, useRef } from "react";
-import type { DropdownProps } from "./types";
+import React, {
+  type CSSProperties,
+  forwardRef,
+  useImperativeHandle,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+} from "react";
+import type { DropdownProps, PopperRef } from "./types";
 import { PopperClassToken } from "../../utils/class-name";
 import { useClassNames } from "../../hooks/use-class-names";
 import * as stylex from "@stylexjs/stylex";
 import clsx from "clsx";
-import { isFunction, useRefs } from "@aiszlab/relax";
+import { isFunction } from "@aiszlab/relax";
 import {
   computePosition,
   flip,
@@ -15,12 +22,12 @@ import {
   type Alignment,
 } from "@floating-ui/dom";
 import type { Nullable } from "@aiszlab/relax/types";
-import { useOffsets } from "./hooks";
+import { useAnimation, useOffsets } from "./hooks";
 import { elevations, positions, sizes } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
-import { useAnimate } from "framer-motion";
 import { ComponentToken } from "../../utils/component-token";
+import { contains } from "@aiszlab/relax/dom";
 
 const styles = {
   dropdown: stylex.create({
@@ -55,7 +62,7 @@ const styles = {
   }),
 };
 
-const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(
+const Dropdown = forwardRef<PopperRef, DropdownProps>(
   (
     {
       open,
@@ -70,15 +77,31 @@ const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(
       offset: _offset,
       overlay = false,
       arrow: arrowable = false,
+      disappearable = true,
       ...props
     },
     ref,
   ) => {
-    const [_floatable, animate] = useAnimate<HTMLDivElement>();
     const arrowRef = useRef<HTMLDivElement>(null);
     const classNames = useClassNames(ComponentToken.Popper);
     const theme = useTheme();
-    const floatable = useRefs(_floatable, ref);
+
+    const { disappear, floatable } = useAnimation({
+      open,
+      disappearable,
+      onEntered,
+      onExit,
+      onExited,
+    });
+
+    useImperativeHandle(ref, () => {
+      return {
+        disappear,
+        contains: (node) => {
+          return contains(floatable.current, node);
+        },
+      };
+    });
 
     // how to get trigger
     const trigger = useMemo<Nullable<Element>>(() => {
@@ -95,8 +118,8 @@ const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(
     useLayoutEffect(() => {
       if (!trigger) return;
 
-      const cleanup = autoUpdate(trigger, _floatable.current, () => {
-        computePosition(trigger, _floatable.current, {
+      const cleanup = autoUpdate(trigger, floatable.current, () => {
+        computePosition(trigger, floatable.current, {
           placement: placement,
           middleware: [
             flip(),
@@ -108,7 +131,7 @@ const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(
             const [side] = _placement.split("-") as [Side, Alignment?];
 
             // set float element styles
-            _floatable.current.style.translate = `${x}px ${y}px`;
+            floatable.current.style.translate = `${x}px ${y}px`;
 
             // set arrwo styles
             if (middlewareData.arrow && !!arrowRef.current) {
@@ -126,36 +149,7 @@ const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(
       return () => {
         cleanup();
       };
-    }, [placement, trigger, offsets, arrowable, _floatable]);
-
-    useLayoutEffect(() => {
-      (async () => {
-        if (open) {
-          _floatable.current.style.display = "";
-          await animate(
-            _floatable.current,
-            { opacity: 1, transform: "scale(1, 1)" },
-            { duration: 0.2 },
-          );
-          await onEntered?.();
-          return;
-        }
-
-        await Promise.all([
-          onExit?.(),
-          animate(
-            _floatable.current,
-            { opacity: 0, transform: "scale(0, 0)" },
-            { duration: 0.2 },
-          ).then(() => {
-            if (!_floatable.current) return;
-            _floatable.current.style.display = "none";
-          }),
-        ]);
-        onExited?.();
-      })();
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [open]);
+    }, [placement, trigger, offsets, arrowable, floatable]);
 
     const styled = {
       dropdown: stylex.props(

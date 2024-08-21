@@ -1,6 +1,6 @@
 {
   "name": "musae",
-  "version": "0.2.18",
+  "version": "0.2.19",
   "description": "musae-ui",
   "author": "tutu@fantufantu.com",
   "license": "MIT",
@@ -34,7 +34,7 @@
     "pnpm": ">=9"
   },
   "dependencies": {
-    "@aiszlab/relax": "^1.2.73",
+    "@aiszlab/relax": "^1.2.74",
     "@babel/runtime": "^7.25.0",
     "@dnd-kit/core": "^6.1.0",
     "@dnd-kit/modifiers": "^7.0.0",

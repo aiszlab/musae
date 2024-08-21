@@ -1,5 +1,11 @@
 # musae
 
+## 0.2.19
+
+### Patch Changes
+
+- chore(deps): upgrade deps
+
 ## 0.2.18
 
 ### Patch Changes

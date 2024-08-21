@@ -4,7 +4,13 @@ import { type FC, useEffect, useState } from "react";
 import { isDomUsable, useScrollLocker } from "@aiszlab/relax";
 import { useContainer } from "../../hooks/use-container";
 
-const Portal: FC<PortalProps> = ({ children, open = true, destroyable = false, lockable = false, container }) => {
+const Portal: FC<PortalProps> = ({
+  children,
+  open = true,
+  destroyable = false,
+  lockable = false,
+  container,
+}) => {
   const [shouldRender, setShouldRender] = useState(false);
   const { container: _container } = useContainer({ container });
 
@@ -18,7 +24,7 @@ const Portal: FC<PortalProps> = ({ children, open = true, destroyable = false, l
 
   useScrollLocker(isDomUsable() && lockable && open);
 
-  if (!shouldRender) return null;
+  if (!(shouldRender || open)) return null;
   if (!_container) return null;
 
   return createPortal(children, _container);

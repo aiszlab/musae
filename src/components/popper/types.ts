@@ -73,6 +73,18 @@ export interface PopperProps
    * arrow
    */
   arrow?: boolean;
+
+  /**
+   * @description
+   * disappearable
+   *
+   * @default true
+   *
+   * default case, popper will auto disappear after open change
+   * but sometimes, you want to control popper disappear animation
+   * set `disappearable` to false, and use popper.ref to disappear
+   */
+  disappearable?: boolean;
 }
 
 export type DropdownProps = Omit<PopperProps, "portal" | "placement"> & {
@@ -80,4 +92,24 @@ export type DropdownProps = Omit<PopperProps, "portal" | "placement"> & {
    * {@link} `PopperProps`.`placement`
    */
   placement: Placement;
+};
+
+/**
+ * @description
+ * Popper Ref
+ */
+export type PopperRef = {
+  /**
+   * @description
+   * disappear popper
+   */
+  disappear: () => Promise<void>;
+
+  /**
+   * @description
+   * contain
+   *
+   * used for `clickaway`, check clicked node is contained in popper
+   */
+  contains: (node: Nullable<Node>) => boolean;
 };

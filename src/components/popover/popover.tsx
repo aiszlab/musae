@@ -18,15 +18,15 @@ import React, {
   type ForwardedRef,
 } from "react";
 import type { ChildProps, PopoverProps, PopoverRef } from "./types";
-import { Popper } from "../popper";
+import { Popper, type PopperRef } from "../popper";
 import stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
 import { typography } from "../theme/theme";
 import { useClassNames } from "../../hooks/use-class-names";
 import { PopoverClassToken } from "../../utils/class-name";
 import clsx from "clsx";
-import { useLazyBoolean } from "../../hooks/use-lazy-boolean";
 import { ComponentToken } from "../../utils/component-token";
+import { useIsOpen } from "./hooks";
 
 const styles = {
   popover: stylex.create({
@@ -60,11 +60,11 @@ const Popover = forwardRef(
     ref: ForwardedRef<PopoverRef>,
   ) => {
     const _ref = useRef<HTMLElement>(null);
-    const [isOpen, { turnOn, turnOff, toggle, disappear }] = useLazyBoolean();
+    const popperRef = useRef<PopperRef>(null);
+    const [isOpen, { turnOn, turnOff, toggle, disappear }] = useIsOpen(popperRef);
     const triggerBy = useMemo(() => new Set(toArray(_triggerBy)), [_triggerBy]);
     const classNames = useClassNames(ComponentToken.Popover);
     const childRef = useRefs(_ref, _children.props.ref);
-    const popperRef = useRef<HTMLDivElement>(null);
 
     const onClick = useEvent((event: MouseEvent<T>) => {
       event.stopPropagation();
@@ -83,7 +83,7 @@ const Popover = forwardRef(
     });
     const [, focusProps] = useFocus<T>({
       onFocus: (event) => chain(_children.props.onFocus, turnOn)(event),
-      onBlur: (event) => chain(_children.props.onBlur, turnOff)(event),
+      onBlur: (event) => chain(_children.props.onBlur)(event),
     });
 
     // @ts-ignore
@@ -108,17 +108,11 @@ const Popover = forwardRef(
 
     useClickAway(() => {
       turnOff();
-    }, [popperRef, ...(triggerBy.has("click") ? [_ref] : [])]);
+    }, [popperRef, triggerBy.has("click") && _ref]);
 
-    useImperativeHandle(
-      ref,
-      () => {
-        return {
-          close: turnOff,
-        };
-      },
-      [turnOff],
-    );
+    useImperativeHandle(ref, () => ({
+      close: turnOff,
+    }));
 
     const styled = {
       popover: stylex.props(
@@ -144,6 +138,7 @@ const Popover = forwardRef(
           })}
           placement={placement}
           ref={popperRef}
+          disappearable={false}
         >
           <div
             className={clsx(

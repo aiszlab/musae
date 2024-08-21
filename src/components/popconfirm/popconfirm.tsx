@@ -8,7 +8,7 @@ import { Space } from "../space";
 import { Button } from "../button";
 import { useBoolean, useClickAway, useEvent, useRefs } from "@aiszlab/relax";
 import { Warning } from "../icon/icons";
-import { Popper } from "../popper";
+import { Popper, type PopperRef } from "../popper";
 import { spacing } from "../theme/tokens.stylex";
 import { typography } from "../theme/theme";
 import { useTheme } from "../theme";
@@ -62,7 +62,7 @@ const Popconfirm = <P extends ChildProps<T>, T extends HTMLElement>({
   const [isOpen, { turnOff, toggle }] = useBoolean();
   const classNames = useClassNames(ComponentToken.Popconfirm);
   const childRef = useRefs(_ref, _children.props.ref);
-  const popperRef = useRef<HTMLDivElement>(null);
+  const popperRef = useRef<PopperRef>(null);
   const theme = useTheme();
   const [locale] = useLocale(ComponentToken.Popconfirm);
 

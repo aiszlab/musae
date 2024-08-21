@@ -1,9 +1,9 @@
 import React, { forwardRef } from "react";
-import type { PopperProps } from "./types";
+import type { PopperProps, PopperRef } from "./types";
 import { Portal } from "../portal";
 import Dropdown from "./dropdown";
 
-const Popper = forwardRef<HTMLDivElement, PopperProps>(
+const Popper = forwardRef<PopperRef, PopperProps>(
   ({ destroyable, placement = "bottom-start", ...props }, ref) => {
     return (
       <Portal open={props.open} destroyable={destroyable}>
