@@ -3,6 +3,7 @@ import { Menu } from "../menu";
 import { Context } from "../picker";
 import { useMemorable } from "@aiszlab/relax";
 import type { SelectionsProps } from "./types";
+import { Empty } from "../empty";
 
 /**
  * @description
@@ -19,8 +20,12 @@ const Selections = ({ onSelect, selectedKeys, ...props }: SelectionsProps) => {
   const items = useMemorable(
     () => props.items,
     [isOpen, props.items] satisfies [boolean, SelectionsProps["items"]],
-    (prev, next) => next[0] && next[1] !== prev[1]
+    (prev, next) => next[0] && next[1] !== prev[1],
   );
+
+  if (items.length === 0) {
+    return <Empty />;
+  }
 
   return <Menu items={items} onClick={onSelect} selectedKeys={selectedKeys} />;
 };
