@@ -26,6 +26,10 @@ export * as image from "./image";
 export * from "./toggle";
 export * as toggle from "./toggle";
 
+/// editor
+export * from "./editor";
+export * as editor from "./editor";
+
 /// mocks, musae collect from comunic icons
 export * from "./mock";
 export * as mock from "./mock";

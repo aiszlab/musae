@@ -92,7 +92,7 @@ const styles = {
 const Divider = ({
   align = "center",
   children,
-  type = "horizontal",
+  orientation = "horizontal",
   className,
   style,
 }: DividerProps) => {
@@ -103,18 +103,18 @@ const Divider = ({
 
   const styled = {
     divider: stylex.props(
-      styles.divider[type],
+      styles.divider[orientation],
       !isLabeled &&
-        styles.simple[type]({
+        styles.simple[orientation]({
           backgroundColor: theme.colors[ColorToken.OutlineVariant],
         }),
       isLabeled &&
-        styles.labeled[type]({
+        styles.labeled[orientation]({
           backgroundColor: theme.colors[ColorToken.OutlineVariant],
           offset,
         }),
     ),
-    label: stylex.props(styles.label[type], typography.body.small),
+    label: stylex.props(styles.label[orientation], typography.body.small),
   };
 
   return (

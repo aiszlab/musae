@@ -41,7 +41,9 @@ const Clock = ({ value, onChange }: ClockProps) => {
               );
             }}
           />,
-          index === columns.length - 1 ? null : <Divider type="vertical" key={`${unit}-divider`} />,
+          index === columns.length - 1 ? null : (
+            <Divider orientation="vertical" key={`${unit}-divider`} />
+          ),
         ];
       })}
     </div>

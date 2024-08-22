@@ -101,7 +101,7 @@ const Bench = ({
         {/* divider */}
         {!!_logo && (
           <div className={styled.divider.className} style={styled.divider.style}>
-            <Divider type="vertical" />
+            <Divider orientation="vertical" />
           </div>
         )}
 

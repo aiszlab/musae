@@ -3,7 +3,7 @@ import { ComponentProps } from "../../types/element";
 
 export type Align = "center" | "left" | "right";
 
-export type Type = "horizontal" | "vertical";
+export type Orientation = "horizontal" | "vertical";
 
 /**
  * @description
@@ -24,10 +24,11 @@ export interface DividerProps extends ComponentProps {
    */
   align?: Align;
 
+  // TODO update to docs
   /**
    * @description
-   * type
+   * orientation
    * @default "horizontal"
    */
-  type?: Type;
+  orientation?: Orientation;
 }
