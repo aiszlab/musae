@@ -68,7 +68,7 @@ const config = () => {
       isProd &&
         stylex({
           fileName: CSS_ASSET_FILENAME,
-          classNamePrefix: "musae-",
+          classNamePrefix: "musaex-",
           unstable_moduleResolution: {
             type: "commonJS",
             rootDir: dirname(fileURLToPath(import.meta.url)),

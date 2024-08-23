@@ -19,7 +19,7 @@ import { LinkNode } from "@lexical/link";
 import { ListNode, ListItemNode } from "@lexical/list";
 import { HorizontalRuleNode } from "@lexical/react/LexicalHorizontalRuleNode";
 import { CodeNode } from "@lexical/code";
-import { CodeNode2 } from "./hooks";
+import { StyledCodeNode } from "./hooks";
 
 import ToolbarPlugin from "./plugins/toolbar";
 import MarkdownShortcutPlugin from "./plugins/markdown-shortcut";
@@ -29,6 +29,9 @@ const styles = stylex.create({
   shell: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
     backgroundColor: props.backgroundColor,
     borderRadius: sizes.xxxxsmall,
+
+    // code var
+    "--code-bg-color": props.backgroundColor,
   }),
 
   editor: {
@@ -38,7 +41,9 @@ const styles = stylex.create({
     paddingBlockEnd: spacing.small,
   },
 
-  code: () => ({}),
+  code: {
+    backgroundColor: "var(--code-bg-color)",
+  },
 });
 
 const RichTextEditor = ({ placeholder, disabled = false }: RichTextEditorProps) => {
@@ -57,23 +62,28 @@ const RichTextEditor = ({ placeholder, disabled = false }: RichTextEditorProps) 
     h4: stylex.props(typography.headline.large),
     h5: stylex.props(typography.headline.medium),
     h6: stylex.props(typography.headline.small),
+    code: stylex.props(styles.code({ bgColor: theme.colors[ColorToken.Primary] })),
   };
+
+  console.log("styled=====", styled);
 
   const initialConfig = useDefault<InitialConfigType>(() => {
     return {
       namespace: id,
       onError: (error) => {
-        messager.error({
-          description: error.message,
-        });
+        // messager.error({
+        //   description: error.message,
+        // });
+        throw error;
       },
       nodes: [
         HeadingNode,
         QuoteNode,
+        StyledCodeNode,
         {
           replace: CodeNode,
-          with: (node) => {
-            return CodeNode2.clone(node);
+          with: (node: CodeNode) => {
+            return new StyledCodeNode(node.getLanguage()).style(styled.code);
           },
         },
         LinkNode,
