@@ -18,8 +18,8 @@ import { HeadingNode, QuoteNode } from "@lexical/rich-text";
 import { LinkNode } from "@lexical/link";
 import { ListNode, ListItemNode } from "@lexical/list";
 import { HorizontalRuleNode } from "@lexical/react/LexicalHorizontalRuleNode";
-import CodeNode from "./nodes/code";
-// import { CodeNode } from "@lexical/code";
+import { CodeNode } from "@lexical/code";
+import { CodeNode2 } from "./hooks";
 
 import ToolbarPlugin from "./plugins/toolbar";
 import MarkdownShortcutPlugin from "./plugins/markdown-shortcut";
@@ -37,6 +37,8 @@ const styles = stylex.create({
     paddingBlockStart: spacing.small,
     paddingBlockEnd: spacing.small,
   },
+
+  code: () => ({}),
 });
 
 const RichTextEditor = ({ placeholder, disabled = false }: RichTextEditorProps) => {
@@ -61,7 +63,6 @@ const RichTextEditor = ({ placeholder, disabled = false }: RichTextEditorProps) 
     return {
       namespace: id,
       onError: (error) => {
-        throw error;
         messager.error({
           description: error.message,
         });
@@ -69,7 +70,12 @@ const RichTextEditor = ({ placeholder, disabled = false }: RichTextEditorProps) 
       nodes: [
         HeadingNode,
         QuoteNode,
-        CodeNode,
+        {
+          replace: CodeNode,
+          with: (node) => {
+            return CodeNode2.clone(node);
+          },
+        },
         LinkNode,
         ListNode,
         ListItemNode,
