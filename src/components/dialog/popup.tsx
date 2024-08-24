@@ -1,4 +1,4 @@
-import React, { CSSProperties, useEffect, useRef } from "react";
+import React, { type CSSProperties, useEffect, useRef } from "react";
 import type { PopupProps } from "./types";
 import { useFooter } from "./hooks";
 import { useAnimate } from "framer-motion";
@@ -64,7 +64,7 @@ const styles = stylex.create({
 
   footer: {
     paddingInline: spacing.xlarge,
-    paddingBottom: spacing.xlarge,
+    paddingBlockEnd: spacing.xlarge,
     display: "flex",
     flexDirection: "column",
     alignItems: "flex-end",

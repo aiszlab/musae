@@ -17,7 +17,7 @@ const styles = {
       justifyContent: "flex-start",
       gap: spacing.medium,
       overflow: "hidden",
-      paddingBottom: spacing.xlarge,
+      paddingBlockEnd: spacing.xlarge,
     },
 
     right: {
