@@ -47,7 +47,7 @@ const styles = {
         backgroundColor: props.color,
         insetBlockStart: "100%",
         insetInlineStart: `calc((100% - ${sizes.smallest}) / 2)`,
-        marginTop: spacing.small,
+        marginBlockStart: spacing.small,
       },
     }),
   }),

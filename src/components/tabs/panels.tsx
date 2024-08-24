@@ -12,7 +12,7 @@ import { ComponentToken } from "../../utils/component-token";
 const styles = {
   panels: stylex.create({
     default: {
-      marginTop: spacing.medium,
+      marginBlockStart: spacing.medium,
     },
   }),
 
