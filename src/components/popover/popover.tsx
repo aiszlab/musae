@@ -56,6 +56,7 @@ const Popover = forwardRef(
       style,
       children: _children,
       padding = true,
+      arrow = true,
     }: PopoverProps<P, T>,
     ref: ForwardedRef<PopoverRef>,
   ) => {
@@ -131,7 +132,7 @@ const Popover = forwardRef(
         <Popper
           trigger={_ref.current}
           open={isOpen}
-          arrow
+          arrow={arrow}
           {...(triggerBy.has("hover") && {
             onPointerEnter: enterPopper,
             onPointerLeave: leavePopper,

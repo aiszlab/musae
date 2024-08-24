@@ -20,13 +20,49 @@
       "types": "./dist/index.d.ts",
       "default": "./dist/index.js"
     },
+    "./locales": {
+      "types": "./dist/locale/locales/index.d.ts",
+      "default": "./dist/locale/locales/index.js"
+    },
     "./icons": {
       "types": "./dist/components/icon/icons/index.d.ts",
       "default": "./dist/components/icon/icons/index.js"
     },
-    "./locales": {
-      "types": "./dist/locale/locales/index.d.ts",
-      "default": "./dist/locale/locales/index.js"
+    "./icons/action": {
+      "types": "./dist/components/icon/icons/action/index.d.ts",
+      "default": "./dist/components/icon/icons/action/index.js"
+    },
+    "./icons/alert": {
+      "types": "./dist/components/icon/icons/alert/index.d.ts",
+      "default": "./dist/components/icon/icons/alert/index.js"
+    },
+    "./icons/content": {
+      "types": "./dist/components/icon/icons/content/index.d.ts",
+      "default": "./dist/components/icon/icons/content/index.js"
+    },
+    "./icons/editor": {
+      "types": "./dist/components/icon/icons/editor/index.d.ts",
+      "default": "./dist/components/icon/icons/editor/index.js"
+    },
+    "./icons/hardware": {
+      "types": "./dist/components/icon/icons/hardware/index.d.ts",
+      "default": "./dist/components/icon/icons/hardware/index.js"
+    },
+    "./icons/image": {
+      "types": "./dist/components/icon/icons/image/index.d.ts",
+      "default": "./dist/components/icon/icons/image/index.js"
+    },
+    "./icons/mock": {
+      "types": "./dist/components/icon/icons/mock/index.d.ts",
+      "default": "./dist/components/icon/icons/mock/index.js"
+    },
+    "./icons/navigation": {
+      "types": "./dist/components/icon/icons/navigation/index.d.ts",
+      "default": "./dist/components/icon/icons/navigation/index.js"
+    },
+    "./icons/toggle": {
+      "types": "./dist/components/icon/icons/toggle/index.d.ts",
+      "default": "./dist/components/icon/icons/toggle/index.js"
     }
   },
   "engines": {

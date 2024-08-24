@@ -9,6 +9,7 @@ import ZoomOut from "./zoom-out";
 import ZoomIn from "./zoom-in";
 import DoneOutline from "./done-outline";
 import Translate from "./translate";
+import Code from "./code";
 
 export {
   Visibility,
@@ -22,4 +23,5 @@ export {
   ZoomIn,
   DoneOutline,
   Translate,
+  Code,
 };

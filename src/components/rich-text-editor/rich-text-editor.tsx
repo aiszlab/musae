@@ -1,9 +1,12 @@
 import React, { type CSSProperties } from "react";
-import { LexicalComposer, InitialConfigType } from "@lexical/react/LexicalComposer";
+import { LexicalComposer, type InitialConfigType } from "@lexical/react/LexicalComposer";
 import { ContentEditable } from "@lexical/react/LexicalContentEditable";
 import { LexicalErrorBoundary } from "@lexical/react/LexicalErrorBoundary";
 import { HistoryPlugin } from "@lexical/react/LexicalHistoryPlugin";
 import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
+import { LinkPlugin } from "@lexical/react/LexicalLinkPlugin";
+import { ClickableLinkPlugin } from "@lexical/react/LexicalClickableLinkPlugin";
+
 import { useDefault, useIdentity } from "@aiszlab/relax";
 import { useMessage } from "../message";
 import stylex from "@stylexjs/stylex";
@@ -19,7 +22,6 @@ import { LinkNode } from "@lexical/link";
 import { ListNode, ListItemNode } from "@lexical/list";
 import { HorizontalRuleNode } from "@lexical/react/LexicalHorizontalRuleNode";
 import { CodeNode } from "@lexical/code";
-import { StyledCodeNode } from "./hooks";
 
 import ToolbarPlugin from "./plugins/toolbar";
 import MarkdownShortcutPlugin from "./plugins/markdown-shortcut";
@@ -29,9 +31,14 @@ const styles = stylex.create({
   shell: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
     backgroundColor: props.backgroundColor,
     borderRadius: sizes.xxxxsmall,
+  }),
 
-    // code var
-    "--code-bg-color": props.backgroundColor,
+  variables: (props: {
+    codeBackgroundColor: CSSProperties["backgroundColor"];
+    linkColor: CSSProperties["color"];
+  }) => ({
+    "--code-background-color": props.codeBackgroundColor,
+    "--link-color": props.linkColor,
   }),
 
   editor: {
@@ -42,7 +49,26 @@ const styles = stylex.create({
   },
 
   code: {
-    backgroundColor: "var(--code-bg-color)",
+    backgroundColor: "var(--code-background-color)",
+    padding: spacing.xxsmall,
+    borderRadius: spacing.xxsmall,
+    display: "block",
+    overflow: "auto",
+  },
+
+  inlineCode: {
+    padding: spacing.xxsmall,
+    backgroundColor: "var(--code-background-color)",
+    borderRadius: spacing.xxsmall,
+  },
+
+  link: {
+    color: "var(--link-color)",
+    cursor: "text",
+    textDecoration: {
+      default: "none",
+      ":hover": "underline",
+    },
   },
 });
 
@@ -54,6 +80,10 @@ const RichTextEditor = ({ placeholder, disabled = false }: RichTextEditorProps) 
   const styled = {
     shell: stylex.props(
       styles.shell({ backgroundColor: theme.colors[ColorToken.SurfaceContainer] }),
+      styles.variables({
+        codeBackgroundColor: theme.colors[ColorToken.SurfaceContainerHighest],
+        linkColor: theme.colors[ColorToken.Primary],
+      }),
     ),
     editor: stylex.props(styles.editor),
     h1: stylex.props(typography.display.large),
@@ -62,30 +92,23 @@ const RichTextEditor = ({ placeholder, disabled = false }: RichTextEditorProps) 
     h4: stylex.props(typography.headline.large),
     h5: stylex.props(typography.headline.medium),
     h6: stylex.props(typography.headline.small),
-    code: stylex.props(styles.code({ bgColor: theme.colors[ColorToken.Primary] })),
+    code: stylex.props(styles.code),
+    inlineCode: stylex.props(styles.inlineCode),
+    link: stylex.props(styles.link),
   };
-
-  console.log("styled=====", styled);
 
   const initialConfig = useDefault<InitialConfigType>(() => {
     return {
       namespace: id,
       onError: (error) => {
-        // messager.error({
-        //   description: error.message,
-        // });
-        throw error;
+        messager.error({
+          description: error.message,
+        });
       },
       nodes: [
         HeadingNode,
         QuoteNode,
-        StyledCodeNode,
-        {
-          replace: CodeNode,
-          with: (node: CodeNode) => {
-            return new StyledCodeNode(node.getLanguage()).style(styled.code);
-          },
-        },
+        CodeNode,
         LinkNode,
         ListNode,
         ListItemNode,
@@ -100,7 +123,14 @@ const RichTextEditor = ({ placeholder, disabled = false }: RichTextEditorProps) 
           h5: styled.h5.className,
           h6: styled.h6.className,
         },
+        code: styled.code.className,
+        text: {
+          code: styled.inlineCode.className,
+        },
+        link: styled.link.className,
       },
+
+      editable: !disabled,
     };
   });
 
@@ -124,6 +154,9 @@ const RichTextEditor = ({ placeholder, disabled = false }: RichTextEditorProps) 
         <HistoryPlugin />
 
         <MarkdownShortcutPlugin />
+
+        <LinkPlugin />
+        <ClickableLinkPlugin disabled={!disabled} newTab />
 
         {/* message holder */}
         {holder}

@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const DoneOutline = withIcon(({ size }) => {
+const FormatUnderlined = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -11,11 +11,11 @@ const DoneOutline = withIcon(({ size }) => {
       fill="none"
     >
       <path
-        d="M19.77 4.92961L21.17 6.32961L8.43 19.0696L2.83 13.4696L4.23 12.0696L8.43 16.2696L19.77 4.92961ZM19.77 2.09961L8.43 13.4396L4.23 9.23961L0 13.4696L8.43 21.8996L24 6.32961L19.77 2.09961Z"
+        d="M12 17C15.31 17 18 14.31 18 11V3H15.5V11C15.5 12.93 13.93 14.5 12 14.5C10.07 14.5 8.5 12.93 8.5 11V3H6V11C6 14.31 8.69 17 12 17ZM5 19V21H19V19H5Z"
         fill="currentColor"
       />
     </svg>
   );
 });
 
-export default DoneOutline;
+export default FormatUnderlined;

@@ -33,18 +33,16 @@ const styles = {
       horizontal: {},
 
       vertical: {
-        marginBottom: spacing.xxsmall,
-        marginTop: {
-          default: spacing.none,
-          ":first-child": spacing.xxsmall,
+        marginBlockStart: {
+          default: spacing.xxsmall,
+          ":first-of-type": spacing.none,
         },
       },
 
       inline: {
-        marginBottom: spacing.xxsmall,
-        marginTop: {
-          default: spacing.none,
-          ":first-child": spacing.xxsmall,
+        marginBlockStart: {
+          default: spacing.xxsmall,
+          ":first-of-type": spacing.none,
         },
       },
     }),

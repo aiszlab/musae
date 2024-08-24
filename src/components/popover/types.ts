@@ -63,6 +63,13 @@ export type PopoverProps<P extends ChildProps<T>, T extends HTMLElement> = Compo
    * @default true
    */
   padding?: boolean | number;
+
+  /**
+   * @description
+   * arrow
+   * @default false
+   */
+  arrow?: boolean;
 };
 
 /**
