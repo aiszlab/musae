@@ -17,7 +17,7 @@ import { ComponentToken } from "../../utils/component-token";
 const styles = stylex.create({
   header: {
     paddingInline: spacing.xlarge,
-    paddingTop: spacing.large,
+    paddingBlockStart: spacing.large,
   },
 
   popup: {
