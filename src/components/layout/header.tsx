@@ -12,7 +12,7 @@ const styles = stylex.create({
     alignItems: "center",
     height: sizes.xxxlarge,
     paddingInline: spacing.xxlarge,
-    marginBottom: spacing.xxlarge,
+    marginBlockEnd: spacing.xxlarge,
 
     position: "sticky",
     top: 0,

@@ -129,7 +129,7 @@ const Notification = forwardRef<HTMLDivElement, NotificationProps>(
         case "bottom-right":
           await animate(scope.current, {
             opacity: 0,
-            marginBottom: scope.current.getBoundingClientRect().height * -1,
+            marginBlockEnd: scope.current.getBoundingClientRect().height * -1,
           });
           break;
         default:
