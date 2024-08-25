@@ -1,110 +1,16 @@
-import React, { type CSSProperties, type ChangeEvent, useContext, useMemo } from "react";
+import React, { type ChangeEvent, useContext, useMemo } from "react";
 import { useControlledState, useEvent } from "@aiszlab/relax";
 import Context from "./context";
 import type { CheckboxProps } from "./types";
 import { useClassNames } from "../../hooks/use-class-names";
 import { CheckboxClassToken } from "../../utils/class-name";
 import clsx from "clsx";
-import * as stylex from "@stylexjs/stylex";
-import { layers, sizes, spacing } from "../theme/tokens.stylex";
+import stylex from "@stylexjs/stylex";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
 import { typography } from "../theme/theme";
 import { ComponentToken } from "../../utils/component-token";
-
-const styles = {
-  checkbox: stylex.create({
-    default: {
-      display: "inline-flex",
-      alignItems: "center",
-      cursor: "pointer",
-    },
-
-    disabled: {
-      opacity: layers.thicker,
-      cursor: "not-allowed",
-    },
-  }),
-
-  trigger: stylex.create({
-    default: (props: { borderColor: CSSProperties["borderColor"] }) => ({
-      margin: spacing.none,
-      visibility: "hidden",
-      cursor: "inherit",
-      width: spacing.large,
-      height: spacing.large,
-      position: "relative",
-
-      "::before": {
-        content: "''",
-        visibility: "visible",
-        display: "block",
-        boxSizing: "border-box",
-        width: sizes.xxxsmall,
-        height: sizes.xxxsmall,
-        borderRadius: spacing.xxsmall,
-        transition: "all 0.2s",
-
-        borderWidth: sizes.smallest,
-        borderStyle: "solid",
-        borderColor: props.borderColor,
-      },
-    }),
-
-    checked: (props: {
-      backgroundColor: CSSProperties["backgroundColor"];
-      color: CSSProperties["borderColor"];
-    }) => ({
-      "::before": {
-        backgroundColor: props.backgroundColor,
-        borderColor: props.backgroundColor,
-      },
-
-      "::after": {
-        content: "''",
-        visibility: "visible",
-        boxSizing: "border-box",
-        position: "absolute",
-        display: "block",
-        width: `calc(${sizes.xxxsmall} / 3)`,
-        height: `calc(${sizes.xxxsmall} / 2)`,
-        transform: "translate(100%, -160%) rotate(45deg)",
-
-        borderWidth: spacing.xxxsmall,
-        borderTopWidth: sizes.none,
-        borderLeftWidth: sizes.none,
-        borderStyle: "solid",
-        borderColor: props.color,
-      },
-    }),
-
-    disabled: (props: {
-      backgroundColor: CSSProperties["backgroundColor"];
-      color: CSSProperties["borderColor"];
-    }) => ({
-      "::before": {
-        backgroundColor: props.backgroundColor,
-        borderColor: props.backgroundColor,
-      },
-
-      "::after": {
-        borderColor: props.color,
-      },
-    }),
-
-    unchecked: {
-      "::before": {
-        backgroundColor: null,
-      },
-    },
-  }),
-
-  label: stylex.create({
-    default: {
-      paddingInline: spacing.xsmall,
-    },
-  }),
-};
+import styles from "./styles";
 
 const Checkbox = ({
   value,
@@ -124,9 +30,9 @@ const Checkbox = ({
     defaultState: false,
   });
 
-  /// check current checkbox is checked
-  /// if there is context value, use context value
-  /// else use controlled state
+  // check current checkbox is checked
+  // if there is context value, use context value
+  // else use controlled state
   const isChecked = useMemo<boolean>(() => {
     if (!contextValue || !value) {
       return _isChecked;
@@ -134,9 +40,9 @@ const Checkbox = ({
     return contextValue.value.has(value);
   }, [_isChecked, contextValue, value]);
 
-  /// change handler
-  /// if there is context value, just notify context
-  /// else change the controlled state
+  // change handler
+  // if there is context value, just notify context
+  // else change the controlled state
   const change = useEvent((event: ChangeEvent<HTMLInputElement>) => {
     if (isDisabled) return;
 
@@ -147,16 +53,18 @@ const Checkbox = ({
   });
 
   const styled = {
-    checkbox: stylex.props(styles.checkbox.default, isDisabled && styles.checkbox.disabled),
-    trigger: stylex.props(
-      styles.trigger.default({
-        borderColor: theme.colors[ColorToken.Outline],
+    checkbox: stylex.props(
+      styles.checkbox.default,
+      isDisabled && styles.checkbox.disabled,
+      styles.checkbox.variables({
+        primaryColor: theme.colors[ColorToken.Primary],
+        onPrimaryColor: theme.colors[ColorToken.OnPrimary],
+        outlineColor: theme.colors[ColorToken.Outline],
       }),
-      isChecked &&
-        styles.trigger.checked({
-          backgroundColor: theme.colors[ColorToken.Primary],
-          color: theme.colors[ColorToken.OnPrimary],
-        }),
+    ),
+    trigger: stylex.props(
+      styles.trigger.default,
+      isChecked && styles.trigger.checked,
       isDisabled &&
         styles.trigger.disabled({
           backgroundColor: theme.colors[ColorToken.OnSurface],
@@ -199,3 +107,4 @@ const Checkbox = ({
 };
 
 export default Checkbox;
+export { styles };

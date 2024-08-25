@@ -5,6 +5,8 @@ import InsertLink from "./insert-link";
 import FormatStrikethrough from "./format-strikethrough";
 import Subscript from "./subscript";
 import Superscript from "./superscript";
+import Notes from "./notes";
+import Checklist from "./checklist";
 
 export {
   FormatBold,
@@ -14,4 +16,6 @@ export {
   FormatStrikethrough,
   Subscript,
   Superscript,
+  Notes,
+  Checklist,
 };

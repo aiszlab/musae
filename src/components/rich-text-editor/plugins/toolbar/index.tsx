@@ -1,4 +1,4 @@
-import React, { type CSSProperties, useCallback, useState } from "react";
+import React, { type CSSProperties, useState } from "react";
 import {
   Redo,
   Undo,
@@ -23,13 +23,16 @@ import {
   COMMAND_PRIORITY_CRITICAL,
   SELECTION_CHANGE_COMMAND,
 } from "lexical";
-import { chain, useMounted } from "@aiszlab/relax";
+import { chain, useEvent, useMounted } from "@aiszlab/relax";
 import { Button } from "../../../button";
 import { useTheme } from "../../../theme";
 import { ColorToken } from "../../../../utils/colors";
-import { useFormats, useHandlers } from "./hooks";
+import { useBlockFormats, useHandlers } from "./hooks";
 import { $isLinkNode } from "@lexical/link";
 import Dropdown from "../../dropdown";
+import { $isHeadingNode } from "@lexical/rich-text";
+import { $isListNode, ListNode } from "@lexical/list";
+import { $getNearestNodeOfType } from "@lexical/utils";
 
 const styles = stylex.create({
   default: (props: { outlineColor: CSSProperties["borderColor"] }) => ({
@@ -57,27 +60,37 @@ const Toolbar = () => {
   const [isStrikethrough, setIsStrikethrough] = useState(false);
   const [isSubscript, setIsSubscript] = useState(false);
   const [isSuperscript, setIsSuperscript] = useState(false);
+  const { blockFormat, blockFormats, change: setBlockFormat, formatBlock } = useBlockFormats();
 
   const [isUndoable, setIsUndoable] = useState(false);
   const [isRedoable, setIsRedoable] = useState(false);
 
-  const formats = useFormats();
-
-  const updateToolbar = useCallback(() => {
+  const updateToolbar = useEvent(() => {
     const selection = $getSelection();
     if (!$isRangeSelection(selection)) return;
 
     const _focusedNode = selection.focus.getNode();
+    const _anchorNode = selection.anchor.getNode();
+    const _rootNode = _anchorNode.getTopLevelElementOrThrow();
 
     setIsBold(selection.hasFormat("bold"));
     setIsCode(selection.hasFormat("code"));
     setIsItalic(selection.hasFormat("italic"));
     setIsUnderline(selection.hasFormat("underline"));
-    setIsLink($isLinkNode(_focusedNode) || $isLinkNode(_focusedNode.getParent()));
     setIsStrikethrough(selection.hasFormat("strikethrough"));
     setIsSubscript(selection.hasFormat("subscript"));
     setIsSuperscript(selection.hasFormat("superscript"));
-  }, []);
+    setIsLink($isLinkNode(_focusedNode) || $isLinkNode(_focusedNode.getParent()));
+
+    if ($isListNode(_rootNode)) {
+      const parentList = $getNearestNodeOfType<ListNode>(_anchorNode, ListNode);
+      const type = parentList ? parentList.getListType() : _rootNode.getListType();
+      setBlockFormat(type);
+    } else {
+      const type = $isHeadingNode(_rootNode) ? _rootNode.getTag() : _rootNode.getType();
+      setBlockFormat(type);
+    }
+  });
 
   const handlers = useHandlers({
     isLink,
@@ -148,7 +161,9 @@ const Toolbar = () => {
       </Button>
 
       <Divider orientation="vertical" />
-      <Dropdown items={formats} />
+
+      <Dropdown items={blockFormats} value={blockFormat} onChange={formatBlock} />
+
       <Divider orientation="vertical" />
 
       <Button

@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@aiszlab/relax':
-        specifier: ^1.2.74
-        version: 1.2.74(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        specifier: ^1.2.75
+        version: link:../relax/packages/relax
       '@babel/runtime':
         specifier: ^7.25.0
         version: 7.25.0
@@ -39,6 +39,12 @@ importers:
         specifier: ^0.17.0
         version: 0.17.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(yjs@13.6.18)
       '@lexical/rich-text':
+        specifier: ^0.17.0
+        version: 0.17.0
+      '@lexical/selection':
+        specifier: ^0.17.0
+        version: 0.17.0
+      '@lexical/utils':
         specifier: ^0.17.0
         version: 0.17.0
       '@tanstack/react-table':
@@ -171,12 +177,6 @@ packages:
   '@aiszlab/jarvis@1.0.2':
     resolution: {integrity: sha512-fM6c6lhoXA6btgTAd7+xE14zWXbeHRMyWeS992mDiSAMvJ9s5X39fr8z1mMmnAog2sNGKSZ2ElDqgQs+mWcAZg==}
     hasBin: true
-
-  '@aiszlab/relax@1.2.74':
-    resolution: {integrity: sha512-d5ojpeQLGXk7MsKfiBEaTagWXOCcbg7Qyg8DCnHTISe3WBJCZ8HiYw6HoIQK07BXF4myCsFg6K9Itn48kJhXoA==}
-    peerDependencies:
-      react: '18'
-      react-dom: '18'
 
   '@ampproject/remapping@2.3.0':
     resolution: {integrity: sha512-30iZtAPgz+LTIYoeivqYo853f02jBYSd5uGnGpkFV0M3xOt9aN73erkgYAmZU43x4VfqcnLxW9Kpg3R5LC4YYw==}
@@ -878,6 +878,10 @@ packages:
 
   '@babel/runtime@7.25.0':
     resolution: {integrity: sha512-7dRy4DwXwtzBrPbZflqxnvfxLF8kdZXPkhymtDeFoFqE6ldzjQFgYTtYIFARcLEYDrqfBfYcZt1WqFxRoyC9Rw==}
+    engines: {node: '>=6.9.0'}
+
+  '@babel/runtime@7.25.4':
+    resolution: {integrity: sha512-DSgLeL/FNcpXuzav5wfYvHCGvynXkJbn3Zvc3823AEe9nPwW9IK4UoCSS5yGymmQzN0pCPvivtgS6/8U2kkm1w==}
     engines: {node: '>=6.9.0'}
 
   '@babel/template@7.25.0':
@@ -3821,14 +3825,6 @@ snapshots:
       '@npmcli/promise-spawn': 7.0.2
       commander: 12.1.0
 
-  '@aiszlab/relax@1.2.74(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@babel/runtime': 7.25.0
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
-      react-is: 18.3.1
-      rxjs: 7.8.1
-
   '@ampproject/remapping@2.3.0':
     dependencies:
       '@jridgewell/gen-mapping': 0.3.5
@@ -4741,6 +4737,10 @@ snapshots:
     dependencies:
       regenerator-runtime: 0.14.1
 
+  '@babel/runtime@7.25.4':
+    dependencies:
+      regenerator-runtime: 0.14.1
+
   '@babel/template@7.25.0':
     dependencies:
       '@babel/code-frame': 7.24.7
@@ -5528,7 +5528,7 @@ snapshots:
   '@testing-library/dom@10.2.0':
     dependencies:
       '@babel/code-frame': 7.24.7
-      '@babel/runtime': 7.25.0
+      '@babel/runtime': 7.25.4
       '@types/aria-query': 5.0.4
       aria-query: 5.3.0
       chalk: 4.1.2

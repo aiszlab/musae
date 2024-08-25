@@ -8,7 +8,7 @@ const styles = stylex.create({
   ripple: {
     backgroundColor: "currentColor",
     borderRadius: sizes.infinity,
-    transformOrigin: "center",
+    transformOrigin: "50% 50%",
     pointerEvents: "none",
   },
 
@@ -34,7 +34,7 @@ const Ripple = ({ ripples = [], onClear }: RippleProps) => {
       }),
       styles.size({
         size: ripple.size,
-      })
+      }),
     );
 
     return (

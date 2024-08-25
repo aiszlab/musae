@@ -6,12 +6,13 @@ import { HistoryPlugin } from "@lexical/react/LexicalHistoryPlugin";
 import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
 import { LinkPlugin } from "@lexical/react/LexicalLinkPlugin";
 import { ClickableLinkPlugin } from "@lexical/react/LexicalClickableLinkPlugin";
+import CheckListPlugin from "./plugins/check-list";
 
 import { useDefault, useIdentity } from "@aiszlab/relax";
 import { useMessage } from "../message";
 import stylex from "@stylexjs/stylex";
 
-import type { RichTextEditorProps } from "./types";
+import type { EditorThemeClasses, RichTextEditorProps } from "./types";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
@@ -19,13 +20,15 @@ import { ColorToken } from "../../utils/colors";
 /* nodes */
 import { HeadingNode, QuoteNode } from "@lexical/rich-text";
 import { LinkNode } from "@lexical/link";
-import { ListNode, ListItemNode } from "@lexical/list";
+import { ListNode } from "@lexical/list";
 import { HorizontalRuleNode } from "@lexical/react/LexicalHorizontalRuleNode";
 import { CodeNode } from "@lexical/code";
+import { ListItemNode, replacement as listItemNodeReplacement } from "./nodes/list-item-node";
 
 import ToolbarPlugin from "./plugins/toolbar";
 import MarkdownShortcutPlugin from "./plugins/markdown-shortcut";
 import { typography } from "../theme/theme";
+import { styles as checkboxStyles } from "../checkbox";
 
 const styles = stylex.create({
   shell: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
@@ -34,11 +37,15 @@ const styles = stylex.create({
   }),
 
   variables: (props: {
-    codeBackgroundColor: CSSProperties["backgroundColor"];
-    linkColor: CSSProperties["color"];
+    primaryColor: string;
+    onPrimaryColor: string;
+    outlineColor: string;
+    codeBackgroundColor: string;
   }) => ({
+    "--primary-color": props.primaryColor,
+    "--on-primary-color": props.onPrimaryColor,
+    "--outline-color": props.outlineColor,
     "--code-background-color": props.codeBackgroundColor,
-    "--link-color": props.linkColor,
   }),
 
   editor: {
@@ -46,6 +53,7 @@ const styles = stylex.create({
     paddingInline: spacing.large,
     paddingBlockStart: spacing.small,
     paddingBlockEnd: spacing.small,
+    minHeight: sizes.xxxxxlarge,
   },
 
   code: {
@@ -63,12 +71,30 @@ const styles = stylex.create({
   },
 
   link: {
-    color: "var(--link-color)",
+    color: "var(--primary-color)",
     cursor: "text",
     textDecoration: {
       default: "none",
       ":hover": "underline",
     },
+  },
+
+  list: {},
+
+  checkbox: {
+    position: "absolute",
+    insetInlineStart: spacing.xxsmall,
+    insetBlockStart: spacing.xxsmall,
+  },
+
+  listItem: {
+    outline: "none",
+    position: "relative",
+    paddingInline: spacing.xlarge,
+  },
+
+  listItemChecked: {
+    textDecoration: "line-through",
   },
 });
 
@@ -81,8 +107,10 @@ const RichTextEditor = ({ placeholder, disabled = false }: RichTextEditorProps) 
     shell: stylex.props(
       styles.shell({ backgroundColor: theme.colors[ColorToken.SurfaceContainer] }),
       styles.variables({
+        primaryColor: theme.colors[ColorToken.Primary],
+        onPrimaryColor: theme.colors[ColorToken.OnPrimary],
+        outlineColor: theme.colors[ColorToken.Outline],
         codeBackgroundColor: theme.colors[ColorToken.SurfaceContainerHighest],
-        linkColor: theme.colors[ColorToken.Primary],
       }),
     ),
     editor: stylex.props(styles.editor),
@@ -95,9 +123,47 @@ const RichTextEditor = ({ placeholder, disabled = false }: RichTextEditorProps) 
     code: stylex.props(styles.code),
     inlineCode: stylex.props(styles.inlineCode),
     link: stylex.props(styles.link),
+    listItem: {
+      default: stylex.props(styles.listItem),
+      checked: stylex.props(styles.listItemChecked),
+    },
+    checkbox: {
+      unchecked: stylex.props(checkboxStyles.trigger.default, styles.checkbox),
+      checked: stylex.props(
+        checkboxStyles.trigger.default,
+        checkboxStyles.trigger.checked,
+        styles.checkbox,
+      ),
+    },
   };
 
   const initialConfig = useDefault<InitialConfigType>(() => {
+    const theme: EditorThemeClasses = {
+      heading: {
+        h1: styled.h1.className,
+        h2: styled.h2.className,
+        h3: styled.h3.className,
+        h4: styled.h4.className,
+        h5: styled.h5.className,
+        h6: styled.h6.className,
+      },
+      code: styled.code.className,
+      text: {
+        code: styled.inlineCode.className,
+      },
+      link: styled.link.className,
+      list: {
+        listitem: styled.listItem.default.className,
+        listitemChecked: styled.listItem.checked.className,
+      },
+      checkList: {
+        checkbox: {
+          checked: styled.checkbox.checked.className,
+          unchecked: styled.checkbox.unchecked.className,
+        },
+      },
+    };
+
     return {
       namespace: id,
       onError: (error) => {
@@ -112,24 +178,10 @@ const RichTextEditor = ({ placeholder, disabled = false }: RichTextEditorProps) 
         LinkNode,
         ListNode,
         ListItemNode,
+        listItemNodeReplacement,
         HorizontalRuleNode,
       ],
-      theme: {
-        heading: {
-          h1: styled.h1.className,
-          h2: styled.h2.className,
-          h3: styled.h3.className,
-          h4: styled.h4.className,
-          h5: styled.h5.className,
-          h6: styled.h6.className,
-        },
-        code: styled.code.className,
-        text: {
-          code: styled.inlineCode.className,
-        },
-        link: styled.link.className,
-      },
-
+      theme,
       editable: !disabled,
     };
   });
@@ -157,6 +209,8 @@ const RichTextEditor = ({ placeholder, disabled = false }: RichTextEditorProps) 
 
         <LinkPlugin />
         <ClickableLinkPlugin disabled={!disabled} newTab />
+
+        <CheckListPlugin />
 
         {/* message holder */}
         {holder}

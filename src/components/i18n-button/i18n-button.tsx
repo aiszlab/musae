@@ -22,6 +22,7 @@ const I18nButton = ({ onChange, variant }: I18nButtonProps) => {
       ref={popoverRef}
       triggerBy="click"
       content={<Menu selectedKeys={[localeCode]} items={selections} onClick={change} />}
+      padding={8}
     >
       <Button shape="circular" variant={variant}>
         <Translate />

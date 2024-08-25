@@ -22,6 +22,7 @@ const styles = {
       borderRightStyle: "solid",
       borderRightColor: props.outlineColor,
       paddingInline: spacing.medium,
+      paddingBlockEnd: spacing.small,
 
       position: "sticky",
       height: `calc(100vh - ${sizes.xxxlarge} - ${spacing.xxlarge})`,

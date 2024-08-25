@@ -1,4 +1,5 @@
 import { type Props as ContentEditableProps } from "@lexical/react/LexicalContentEditable";
+import { type EditorThemeClasses as _EditorThemeClasses } from "lexical";
 
 /**
  * @description
@@ -16,4 +17,21 @@ export type RichTextEditorProps = {
    * disabled
    */
   disabled?: boolean;
+};
+
+/**
+ * @description
+ * inject custom class names into `EditorThemeClasses`
+ */
+export type EditorThemeClasses = _EditorThemeClasses & {
+  /**
+   * @description
+   * check list class names
+   */
+  checkList?: {
+    checkbox?: {
+      checked?: string;
+      unchecked?: string;
+    };
+  };
 };

@@ -70,7 +70,7 @@
     "pnpm": ">=9"
   },
   "dependencies": {
-    "@aiszlab/relax": "^1.2.74",
+    "@aiszlab/relax": "^1.2.75",
     "@babel/runtime": "^7.25.0",
     "@dnd-kit/core": "^6.1.0",
     "@dnd-kit/modifiers": "^7.0.0",
@@ -81,6 +81,8 @@
     "@lexical/markdown": "^0.17.0",
     "@lexical/react": "^0.17.0",
     "@lexical/rich-text": "^0.17.0",
+    "@lexical/selection": "^0.17.0",
+    "@lexical/utils": "^0.17.0",
     "@tanstack/react-table": "^8.20.1",
     "clsx": "^2.1.1",
     "dayjs": "^1.11.12",
