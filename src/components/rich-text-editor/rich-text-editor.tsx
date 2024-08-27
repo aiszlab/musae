@@ -6,6 +6,7 @@ import { HistoryPlugin } from "@lexical/react/LexicalHistoryPlugin";
 import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
 import { LinkPlugin } from "@lexical/react/LexicalLinkPlugin";
 import { ClickableLinkPlugin } from "@lexical/react/LexicalClickableLinkPlugin";
+import { ListPlugin } from "@lexical/react/LexicalListPlugin";
 import CheckListPlugin from "./plugins/check-list";
 
 import { useDefault, useIdentity } from "@aiszlab/relax";
@@ -210,6 +211,7 @@ const RichTextEditor = ({ placeholder, disabled = false }: RichTextEditorProps) 
         <LinkPlugin />
         <ClickableLinkPlugin disabled={!disabled} newTab />
 
+        <ListPlugin />
         <CheckListPlugin />
 
         {/* message holder */}

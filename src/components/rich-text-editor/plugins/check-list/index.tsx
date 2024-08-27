@@ -1,13 +1,12 @@
 import { $isListItemNode, INSERT_CHECK_LIST_COMMAND, insertList } from "@lexical/list";
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
 import { $getNearestNodeFromDOMNode, COMMAND_PRIORITY_LOW } from "lexical";
-import { chain, useMounted, isHTMLInputElement } from "@aiszlab/relax";
-import { useCallback } from "react";
+import { chain, useMounted, isHTMLInputElement, useEvent } from "@aiszlab/relax";
 
 const CheckListPlugin = () => {
   const [editor] = useLexicalComposerContext();
 
-  const onEditorClick = useCallback((event: MouseEvent) => {
+  const onEditorClick = useEvent((event: MouseEvent) => {
     if (!editor.isEditable()) return;
 
     const target = event.target;
@@ -26,7 +25,7 @@ const CheckListPlugin = () => {
       target.focus();
       node.toggleChecked();
     });
-  }, []);
+  });
 
   useMounted(() => {
     const unregister = chain(
