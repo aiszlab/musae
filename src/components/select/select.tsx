@@ -18,7 +18,7 @@ const styles = stylex.create({
   },
 
   pickable: {
-    paddingInline: spacing.xxsmall,
+    padding: spacing.xxsmall,
   },
 });
 

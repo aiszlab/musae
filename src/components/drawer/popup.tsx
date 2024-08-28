@@ -85,7 +85,16 @@ const styles = stylex.create({
   },
 });
 
-const Popup = ({ open, onClose, placement, closable, onClosed, size, ...props }: PopupProps) => {
+const Popup = ({
+  open,
+  onClose,
+  placement,
+  closable,
+  onClosed,
+  size,
+  className,
+  ...props
+}: PopupProps) => {
   const [scope, animate] = useAnimate<HTMLDivElement>();
   const classNames = useClassNames(ComponentToken.Drawer);
   const _placement = PLACEMENTS[placement];
@@ -147,7 +156,7 @@ const Popup = ({ open, onClose, placement, closable, onClosed, size, ...props }:
     <div
       tabIndex={-1}
       ref={scope}
-      className={clsx(classNames[DrawerClassToken.Drawer], styled.popup.className)}
+      className={clsx(classNames[DrawerClassToken.Drawer], className, styled.popup.className)}
       style={styled.popup.style}
       onKeyDown={onKeyDown}
     >
