@@ -71,7 +71,7 @@ const styles = stylex.create({
   },
 });
 
-const Popup = ({ onClose, open, closable, onClosed, ...props }: PopupProps) => {
+const Popup = ({ onClose, open, closable, onClosed, className, ...props }: PopupProps) => {
   const classNames = useClassNames(ComponentToken.Dialog);
   const [scope, animate] = useAnimate<HTMLDivElement>();
   const theme = useTheme();
@@ -131,7 +131,7 @@ const Popup = ({ onClose, open, closable, onClosed, ...props }: PopupProps) => {
   return (
     <div
       ref={scope}
-      className={clsx(classNames[DialogClassToken.Dialog], styled.popup.className)}
+      className={clsx(classNames[DialogClassToken.Dialog], className, styled.popup.className)}
       style={styled.popup.style}
       tabIndex={-1}
       onKeyDown={onKeyDown}

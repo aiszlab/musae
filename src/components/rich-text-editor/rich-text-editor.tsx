@@ -8,6 +8,7 @@ import { LinkPlugin } from "@lexical/react/LexicalLinkPlugin";
 import { ClickableLinkPlugin } from "@lexical/react/LexicalClickableLinkPlugin";
 import { ListPlugin } from "@lexical/react/LexicalListPlugin";
 import CheckListPlugin from "./plugins/check-list";
+import FloatingLinkEditorPlugin from "./plugins/floating-link-editor";
 
 import { useDefault, useIdentity } from "@aiszlab/relax";
 import { useMessage } from "../message";
@@ -213,6 +214,7 @@ const RichTextEditor = ({ placeholder, disabled = false }: RichTextEditorProps) 
 
         <LinkPlugin />
         <ClickableLinkPlugin disabled={!disabled} newTab />
+        <FloatingLinkEditorPlugin />
 
         <ListPlugin />
         <CheckListPlugin />

@@ -1,13 +1,14 @@
 import type { CSSProperties, ReactNode } from "react";
 import type { Closable } from "../../hooks/use-closable";
-import { RequiredIn } from "@aiszlab/relax/types";
-import { PortalProps } from "../portal/types";
+import type { RequiredIn } from "@aiszlab/relax/types";
+import type { PortalProps } from "../portal/types";
+import type { ComponentProps } from "../../types/element";
 
 /**
  * @description
  * dialog props
  */
-export interface DialogProps {
+export type DialogProps = Pick<ComponentProps, "className"> & {
   /**
    * @description
    * children
@@ -76,7 +77,7 @@ export interface DialogProps {
    * @link {PortalProps.container}
    */
   container?: PortalProps["container"];
-}
+};
 
 /**
  * @description
