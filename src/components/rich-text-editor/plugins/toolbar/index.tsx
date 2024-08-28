@@ -49,7 +49,7 @@ const styles = stylex.create({
   }),
 });
 
-const Toolbar = () => {
+const ToolbarPlugin = () => {
   const theme = useTheme();
   const [editor] = useLexicalComposerContext();
   const [isBold, setIsBold] = useState(false);
@@ -241,4 +241,4 @@ const Toolbar = () => {
   );
 };
 
-export default Toolbar;
+export default ToolbarPlugin;

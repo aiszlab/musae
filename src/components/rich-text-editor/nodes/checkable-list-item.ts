@@ -1,4 +1,4 @@
-import { $isListNode, ListItemNode as _ListItemNode, SerializedListItemNode } from "@lexical/list";
+import { $isListNode, ListItemNode, SerializedListItemNode } from "@lexical/list";
 import { addClassNamesToElement, removeClassNamesFromElement } from "@lexical/utils";
 import { type EditorConfig, type LexicalNodeReplacement } from "lexical";
 import type { EditorThemeClasses } from "../types";
@@ -21,16 +21,16 @@ const toggleCheckboxClassNames = (
   }
 };
 
-class ListItemNode extends _ListItemNode {
+class CheckableListItemNode extends ListItemNode {
   static getType(): string {
     return "checkable-list-item";
   }
 
-  static clone(node: ListItemNode) {
-    return new ListItemNode(node.__value, node.__checked, node.__key);
+  static clone(node: CheckableListItemNode) {
+    return new CheckableListItemNode(node.__value, node.__checked, node.__key);
   }
 
-  static importJSON(serializedNode: SerializedListItemNode): ListItemNode {
+  static importJSON(serializedNode: SerializedListItemNode) {
     return super.importJSON(serializedNode);
   }
 
@@ -45,6 +45,8 @@ class ListItemNode extends _ListItemNode {
   }
 
   createDOM(config: EditorConfig): HTMLElement {
+    console.log("createDOM======");
+
     const listItem = super.createDOM(config);
 
     const parent = this.getParent();
@@ -61,7 +63,13 @@ class ListItemNode extends _ListItemNode {
     return listItem;
   }
 
-  updateDOM(prevNode: ListItemNode, dom: HTMLElement, config: EditorConfig): boolean {
+  updateDOM(prevNode: CheckableListItemNode, dom: HTMLElement, config: EditorConfig): boolean {
+    console.log("updateDOM======");
+
+    console.log("dom=====", dom.firstElementChild);
+
+    debugger;
+
     const isRerender = super.updateDOM(prevNode, dom, config);
     const checkbox = dom.firstElementChild;
 
@@ -73,11 +81,16 @@ class ListItemNode extends _ListItemNode {
 
     return isRerender;
   }
+
+  clear() {
+    console.log("clear=========");
+    return super.clear();
+  }
 }
 
 export const replacement: LexicalNodeReplacement = {
-  replace: _ListItemNode,
-  with: (node: _ListItemNode) => new ListItemNode(node.getValue(), node.getChecked()),
+  replace: ListItemNode,
+  with: (node: ListItemNode) => new CheckableListItemNode(node.getValue(), node.getChecked()),
 };
 
-export { ListItemNode };
+export { CheckableListItemNode };

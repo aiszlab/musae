@@ -24,7 +24,10 @@ import { LinkNode } from "@lexical/link";
 import { ListNode } from "@lexical/list";
 import { HorizontalRuleNode } from "@lexical/react/LexicalHorizontalRuleNode";
 import { CodeNode } from "@lexical/code";
-import { ListItemNode, replacement as listItemNodeReplacement } from "./nodes/list-item-node";
+import {
+  CheckableListItemNode,
+  replacement as listItemNodeReplacement,
+} from "./nodes/checkable-list-item";
 
 import ToolbarPlugin from "./plugins/toolbar";
 import MarkdownShortcutPlugin from "./plugins/markdown-shortcut";
@@ -178,7 +181,7 @@ const RichTextEditor = ({ placeholder, disabled = false }: RichTextEditorProps) 
         CodeNode,
         LinkNode,
         ListNode,
-        ListItemNode,
+        CheckableListItemNode,
         listItemNodeReplacement,
         HorizontalRuleNode,
       ],
