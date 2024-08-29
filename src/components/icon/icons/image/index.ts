@@ -9,6 +9,7 @@ import LooksThree from "./looks-three";
 import LooksFour from "./looks-four";
 import LooksFive from "./looks-five";
 import LooksSix from "./looks-six";
+import Edit from "./edit";
 
 export {
   Bedtime,
@@ -21,4 +22,5 @@ export {
   LooksFour,
   LooksFive,
   LooksSix,
+  Edit,
 };

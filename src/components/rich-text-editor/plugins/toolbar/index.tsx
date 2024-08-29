@@ -28,11 +28,12 @@ import { Button } from "../../../button";
 import { useTheme } from "../../../theme";
 import { ColorToken } from "../../../../utils/colors";
 import { useBlockFormats, useHandlers } from "./hooks";
-import { $isLinkNode } from "@lexical/link";
+import { $isLinkNode, LinkNode } from "@lexical/link";
 import Dropdown from "../../dropdown";
 import { $isHeadingNode } from "@lexical/rich-text";
 import { $isListNode, ListNode } from "@lexical/list";
 import { $getNearestNodeOfType } from "@lexical/utils";
+import FloatingLinkEditorPlugin from "../floating-link-editor";
 
 const styles = stylex.create({
   default: (props: { outlineColor: CSSProperties["borderColor"] }) => ({
@@ -56,11 +57,13 @@ const ToolbarPlugin = () => {
   const [isItalic, setIsItalic] = useState(false);
   const [isUnderline, setIsUnderline] = useState(false);
   const [isCode, setIsCode] = useState(false);
-  const [isLink, setIsLink] = useState(false);
   const [isStrikethrough, setIsStrikethrough] = useState(false);
   const [isSubscript, setIsSubscript] = useState(false);
   const [isSuperscript, setIsSuperscript] = useState(false);
   const { blockFormat, blockFormats, change: setBlockFormat, formatBlock } = useBlockFormats();
+
+  const [linkNode, setLinkNode] = useState<LinkNode | null>(null);
+  const isLink = !!linkNode;
 
   const [isUndoable, setIsUndoable] = useState(false);
   const [isRedoable, setIsRedoable] = useState(false);
@@ -72,6 +75,7 @@ const ToolbarPlugin = () => {
     const _focusedNode = selection.focus.getNode();
     const _anchorNode = selection.anchor.getNode();
     const _rootNode = _anchorNode.getTopLevelElementOrThrow();
+    const _focusedNodeParent = _focusedNode.getParent();
 
     setIsBold(selection.hasFormat("bold"));
     setIsCode(selection.hasFormat("code"));
@@ -80,7 +84,15 @@ const ToolbarPlugin = () => {
     setIsStrikethrough(selection.hasFormat("strikethrough"));
     setIsSubscript(selection.hasFormat("subscript"));
     setIsSuperscript(selection.hasFormat("superscript"));
-    setIsLink($isLinkNode(_focusedNode) || $isLinkNode(_focusedNode.getParent()));
+
+    // link node
+    setLinkNode(
+      $isLinkNode(_focusedNode)
+        ? _focusedNode
+        : $isLinkNode(_focusedNodeParent)
+        ? _focusedNodeParent
+        : null,
+    );
 
     if ($isListNode(_rootNode)) {
       const parentList = $getNearestNodeOfType<ListNode>(_anchorNode, ListNode);
@@ -139,105 +151,109 @@ const ToolbarPlugin = () => {
   );
 
   return (
-    <div className={styled.className} style={styled.style}>
-      <Button
-        variant="text"
-        shape="rounded"
-        size="small"
-        onClick={handlers.undo}
-        disabled={!isUndoable}
-      >
-        <Undo />
-      </Button>
+    <>
+      <div className={styled.className} style={styled.style}>
+        <Button
+          variant="text"
+          shape="rounded"
+          size="small"
+          onClick={handlers.undo}
+          disabled={!isUndoable}
+        >
+          <Undo />
+        </Button>
 
-      <Button
-        variant="text"
-        shape="rounded"
-        size="small"
-        onClick={handlers.redo}
-        disabled={!isRedoable}
-      >
-        <Redo />
-      </Button>
+        <Button
+          variant="text"
+          shape="rounded"
+          size="small"
+          onClick={handlers.redo}
+          disabled={!isRedoable}
+        >
+          <Redo />
+        </Button>
 
-      <Divider orientation="vertical" />
+        <Divider orientation="vertical" />
 
-      <Dropdown items={blockFormats} value={blockFormat} onChange={formatBlock} />
+        <Dropdown items={blockFormats} value={blockFormat} onChange={formatBlock} />
 
-      <Divider orientation="vertical" />
+        <Divider orientation="vertical" />
 
-      <Button
-        variant={isBold ? "filled" : "text"}
-        shape="rounded"
-        size="small"
-        onClick={handlers.bold}
-      >
-        <FormatBold />
-      </Button>
+        <Button
+          variant={isBold ? "filled" : "text"}
+          shape="rounded"
+          size="small"
+          onClick={handlers.bold}
+        >
+          <FormatBold />
+        </Button>
 
-      <Button
-        variant={isItalic ? "filled" : "text"}
-        shape="rounded"
-        size="small"
-        onClick={handlers.italic}
-      >
-        <FormatItalic />
-      </Button>
+        <Button
+          variant={isItalic ? "filled" : "text"}
+          shape="rounded"
+          size="small"
+          onClick={handlers.italic}
+        >
+          <FormatItalic />
+        </Button>
 
-      <Button
-        variant={isUnderline ? "filled" : "text"}
-        shape="rounded"
-        size="small"
-        onClick={handlers.italic}
-      >
-        <FormatUnderlined />
-      </Button>
+        <Button
+          variant={isUnderline ? "filled" : "text"}
+          shape="rounded"
+          size="small"
+          onClick={handlers.italic}
+        >
+          <FormatUnderlined />
+        </Button>
 
-      <Button
-        variant={isLink ? "filled" : "text"}
-        shape="rounded"
-        size="small"
-        onClick={handlers.insertLink}
-      >
-        <InsertLink />
-      </Button>
+        <Button
+          variant={isLink ? "filled" : "text"}
+          shape="rounded"
+          size="small"
+          onClick={handlers.insertLink}
+        >
+          <InsertLink />
+        </Button>
 
-      <Button
-        variant={isStrikethrough ? "filled" : "text"}
-        shape="rounded"
-        size="small"
-        onClick={handlers.insertLink}
-      >
-        <FormatStrikethrough />
-      </Button>
+        <Button
+          variant={isStrikethrough ? "filled" : "text"}
+          shape="rounded"
+          size="small"
+          onClick={handlers.insertLink}
+        >
+          <FormatStrikethrough />
+        </Button>
 
-      <Button
-        variant={isSubscript ? "filled" : "text"}
-        shape="rounded"
-        size="small"
-        onClick={handlers.subscript}
-      >
-        <Subscript />
-      </Button>
+        <Button
+          variant={isSubscript ? "filled" : "text"}
+          shape="rounded"
+          size="small"
+          onClick={handlers.subscript}
+        >
+          <Subscript />
+        </Button>
 
-      <Button
-        variant={isSuperscript ? "filled" : "text"}
-        shape="rounded"
-        size="small"
-        onClick={handlers.superscript}
-      >
-        <Superscript />
-      </Button>
+        <Button
+          variant={isSuperscript ? "filled" : "text"}
+          shape="rounded"
+          size="small"
+          onClick={handlers.superscript}
+        >
+          <Superscript />
+        </Button>
 
-      <Button
-        variant={isCode ? "filled" : "text"}
-        shape="rounded"
-        size="small"
-        onClick={handlers.code}
-      >
-        <Code />
-      </Button>
-    </div>
+        <Button
+          variant={isCode ? "filled" : "text"}
+          shape="rounded"
+          size="small"
+          onClick={handlers.code}
+        >
+          <Code />
+        </Button>
+      </div>
+
+      <FloatingLinkEditorPlugin link={linkNode} />
+    </>
   );
 };
 

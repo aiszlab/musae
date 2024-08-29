@@ -45,8 +45,6 @@ class CheckableListItemNode extends ListItemNode {
   }
 
   createDOM(config: EditorConfig): HTMLElement {
-    console.log("createDOM======");
-
     const listItem = super.createDOM(config);
 
     const parent = this.getParent();
@@ -64,13 +62,7 @@ class CheckableListItemNode extends ListItemNode {
   }
 
   updateDOM(prevNode: CheckableListItemNode, dom: HTMLElement, config: EditorConfig): boolean {
-    console.log("updateDOM======");
-
-    console.log("dom=====", dom.firstElementChild);
-
-    debugger;
-
-    const isRerender = super.updateDOM(prevNode, dom, config);
+    super.updateDOM(prevNode, dom, config);
     const checkbox = dom.firstElementChild;
 
     toggleCheckboxClassNames(
@@ -79,12 +71,7 @@ class CheckableListItemNode extends ListItemNode {
       config.theme,
     );
 
-    return isRerender;
-  }
-
-  clear() {
-    console.log("clear=========");
-    return super.clear();
+    return true;
   }
 }
 

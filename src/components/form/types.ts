@@ -1,12 +1,13 @@
 import type { PropsWithoutRef, ReactNode, RefAttributes } from "react";
 import type { DeepPartial, FieldValues, UseFormReturn } from "react-hook-form";
+import type { ComponentProps } from "../../types/element";
 
 /**
  * @author murukal
  * @description
  * form props
  */
-export interface FormProps<T extends FieldValues> {
+export interface FormProps<T extends FieldValues> extends ComponentProps {
   /**
    * @description
    * default form values
@@ -117,7 +118,7 @@ export interface ContextValue {
  */
 export interface TypedForm {
   <T extends FieldValues = FieldValues>(
-    props: PropsWithoutRef<FormProps<T> & RefAttributes<UseFormReturn<T>>>
+    props: PropsWithoutRef<FormProps<T> & RefAttributes<UseFormReturn<T>>>,
   ): ReactNode;
 
   /**

@@ -1,58 +1,112 @@
-import React, { useState } from "react";
+import React, { useMemo } from "react";
 import { Popper } from "../../../popper";
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
-import { chain, useEvent, useMounted } from "@aiszlab/relax";
-import { $getSelection, $isLineBreakNode, $isRangeSelection } from "lexical";
-import { getSelectedNode } from "../../utils/get-selected-node";
-import { $findMatchingParent } from "@lexical/utils";
-import { $isAutoLinkNode, $isLinkNode } from "@lexical/link";
+import { getElementByNode } from "../../utils/get-element-by-node";
+import { $createLinkNode, TOGGLE_LINK_COMMAND, type LinkNode } from "@lexical/link";
+import { useBoolean, useEvent } from "@aiszlab/relax";
+import { Space } from "../../../space";
+import { OpenInNew, Edit, LinkOff } from "../../../icon/icons";
+import stylex from "@stylexjs/stylex";
+import { spacing } from "../../../theme/tokens.stylex";
+import { Button } from "../../../button";
+import { Form } from "../../../form";
+import { Input } from "../../../input";
+import { useForm } from "../../../form/hooks";
 
-const FloatingLinkEditor = () => {
+interface Props {
+  link: LinkNode | null;
+}
+
+interface FormValues {
+  href: string;
+}
+
+const styles = stylex.create({
+  popper: {
+    padding: spacing.small,
+  },
+});
+
+const FloatingLinkEditorPlugin = ({ link }: Props) => {
   const [editor] = useLexicalComposerContext();
-  const container = editor.getRootElement();
-  const [isOpen, setIsOpen] = useState(false);
-  const [isLink, setIsLink] = useState(false);
+  const isLink = !!link;
+  const [isEditable, { turnOn, turnOff }] = useBoolean();
+  const form = useForm<FormValues>();
 
-  console.log("container=====", container);
+  const trigger = useMemo(() => {
+    return getElementByNode(editor, link);
+  }, [editor, link]);
 
-  const updateToolbar = useEvent(() => {
-    const selection = $getSelection();
-    if (!$isRangeSelection(selection)) {
-      return;
-    }
+  const styled = stylex.props(styles.popper);
 
-    const focusedNode = getSelectedNode(selection);
-    const focusedLinkNode = $findMatchingParent(focusedNode, $isLinkNode);
-    const focusedAutoLinkNode = $findMatchingParent(focusedNode, $isAutoLinkNode);
+  const changeLink = useEvent(async () => {
+    const isValid = await form.trigger().catch(() => false);
+    if (!isValid) return;
 
-    if (!focusedLinkNode && !focusedAutoLinkNode) {
-      setIsLink(false);
-      setIsOpen(false);
-      return;
-    }
+    const { href } = form.getValues();
 
-    setIsLink(true);
-    setIsOpen(true);
+    editor.update(() => {
+      const linkNode = $createLinkNode(href);
+      link?.replace(linkNode, true);
+    });
+
+    turnOff();
   });
 
-  useMounted(() => {
-    const unregister = chain(
-      editor.registerUpdateListener(({ editorState }) => {
-        editorState.read(() => {
-          console.log("dsadsadsadsad");
-          updateToolbar();
-        });
-      }),
-    );
+  const edit = () => {
+    if (!link) return;
 
-    return unregister;
-  });
+    editor.read(() => {
+      const href = link.getURL();
+
+      console.log("href======", href);
+
+      form.setValue("href", href);
+      turnOn();
+    });
+  };
+
+  const linkOff = () => {
+    editor.dispatchCommand(TOGGLE_LINK_COMMAND, null);
+  };
 
   return (
-    <Popper open={isOpen}>
-      <div>test editor</div>
+    <Popper
+      open={isLink}
+      trigger={trigger}
+      className={styled.className}
+      style={styled.style}
+      onExited={turnOff}
+    >
+      {!isEditable && (
+        <Space>
+          <Button variant="text" shape="circular" size="small">
+            <OpenInNew />
+          </Button>
+
+          <Button variant="text" shape="circular" size="small" onClick={edit}>
+            <Edit />
+          </Button>
+
+          <Button variant="text" shape="circular" size="small" onClick={linkOff}>
+            <LinkOff />
+          </Button>
+        </Space>
+      )}
+
+      {isEditable && (
+        <Form form={form}>
+          <Form.Item name="href" label="链接">
+            <Input />
+          </Form.Item>
+
+          <Button variant="filled" size="small" onClick={changeLink}>
+            确定
+          </Button>
+        </Form>
+      )}
     </Popper>
   );
 };
 
-export default FloatingLinkEditor;
+export default FloatingLinkEditorPlugin;

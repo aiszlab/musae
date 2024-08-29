@@ -30,7 +30,7 @@ export interface PopperProps
    * @description
    * trigger
    */
-  trigger?: Nullable<Element> | (() => Nullable<Element>);
+  trigger?: Nullable<HTMLElement> | (() => Nullable<HTMLElement>);
 
   /**
    * @description

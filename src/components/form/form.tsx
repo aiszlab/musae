@@ -7,8 +7,17 @@ import { useForm } from "./hooks";
 
 const Form = forwardRef(
   <T extends FieldValues>(
-    { onSubmit, onChange, labelCol, wrapperCol, children, ...props }: FormProps<T>,
-    ref: ForwardedRef<UseFormReturn<T>>
+    {
+      onSubmit,
+      onChange,
+      labelCol,
+      wrapperCol,
+      children,
+      className,
+      style,
+      ...props
+    }: FormProps<T>,
+    ref: ForwardedRef<UseFormReturn<T>>,
   ) => {
     /// use react hook form
     const form = useForm(props.form);
@@ -47,11 +56,13 @@ const Form = forwardRef(
     return (
       <Context.Provider value={contextValue}>
         <FormProvider {...form}>
-          <form onSubmit={submit}>{children}</form>
+          <form className={className} style={style} onSubmit={submit}>
+            {children}
+          </form>
         </FormProvider>
       </Context.Provider>
     );
-  }
+  },
 );
 
 export default Form;

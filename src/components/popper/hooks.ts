@@ -1,7 +1,17 @@
-import { useCallback, useLayoutEffect, useMemo } from "react";
-import { PopperProps } from "./types";
+import { useCallback, useLayoutEffect, useMemo, useRef } from "react";
+import type { DropdownProps, PopperProps } from "./types";
 import { useAnimate } from "framer-motion";
 import { useEvent } from "@aiszlab/relax";
+import { useContainer } from "../../hooks/use-container";
+import {
+  arrow,
+  autoUpdate,
+  computePosition,
+  flip,
+  offset,
+  type Side,
+  type Alignment,
+} from "@floating-ui/dom";
 
 /**
  * @description
@@ -41,23 +51,29 @@ export const useAnimation = ({
   PopperProps,
   "onEntered" | "onExit" | "onExited"
 >) => {
-  const [_floatable, animate] = useAnimate<HTMLDivElement>();
+  const [animatableRef, animate] = useAnimate<HTMLDivElement>();
 
   const appear = useEvent(async () => {
-    _floatable.current.style.display = "";
-    await animate(_floatable.current, { opacity: 1, transform: "scale(1, 1)" }, { duration: 0.2 });
+    animatableRef.current.style.display = "";
+    await animate(
+      animatableRef.current,
+      { opacity: 1, transform: "scale(1, 1)" },
+      { duration: 0.2 },
+    );
     await onEntered?.();
   });
 
   const disappear = useEvent(async () => {
     await Promise.all([
       onExit?.(),
-      animate(_floatable.current, { opacity: 0, transform: "scale(0, 0)" }, { duration: 0.2 }).then(
-        () => {
-          if (!_floatable.current) return;
-          _floatable.current.style.display = "none";
-        },
-      ),
+      animate(
+        animatableRef.current,
+        { opacity: 0, transform: "scale(0, 0)" },
+        { duration: 0.2 },
+      ).then(() => {
+        if (!animatableRef.current) return;
+        animatableRef.current.style.display = "none";
+      }),
     ]);
     await onExited?.();
   });
@@ -77,7 +93,84 @@ export const useAnimation = ({
   }, [open]);
 
   return {
-    floatable: _floatable,
+    animatableRef,
     disappear,
+  };
+};
+
+/**
+ * @description
+ * floating position
+ */
+export const useFloating = ({
+  open,
+  trigger: _trigger,
+  placement,
+  arrowable,
+  offset: _offset,
+}: {
+  open: boolean;
+  trigger: DropdownProps["trigger"];
+  placement: DropdownProps["placement"];
+  arrowable: boolean;
+  offset: DropdownProps["offset"];
+}) => {
+  const floatableRef = useRef<HTMLDivElement>(null);
+  const { container: trigger } = useContainer({ container: _trigger, useBody: false }, [open]);
+  const arrowRef = useRef<HTMLDivElement>(null);
+
+  // memorized offsets
+  const offsets = useOffsets({ offset: _offset, arrowable });
+
+  // auto update: calc trigger dom to get position
+  // if trigger changed, re-relate
+  useLayoutEffect(() => {
+    const floatable = floatableRef.current;
+
+    if (!trigger) return;
+    if (!floatable) return;
+
+    const cleanup = autoUpdate(trigger, floatable, () => {
+      computePosition(trigger, floatable, {
+        placement,
+        middleware: [
+          flip(),
+          offset(offsets),
+          arrowable && !!arrowRef.current && arrow({ element: arrowRef.current, padding: 16 }),
+        ],
+      })
+        .then(({ x, y, middlewareData, placement: _placement }) => {
+          const [side] = _placement.split("-") as [Side, Alignment?];
+
+          // set float element styles
+          floatable.style.translate = `${x}px ${y}px`;
+
+          // set arrow styles
+          if (middlewareData.arrow && !!arrowRef.current) {
+            const offsetY = `${middlewareData.arrow.y ?? 0 - 8}px`;
+            const offsetX = `${middlewareData.arrow.x ?? 0}px`;
+
+            arrowRef.current.style.insetInlineStart = offsetX;
+            side === "top" && (arrowRef.current.style.insetBlockEnd = offsetY);
+            side === "bottom" && (arrowRef.current.style.insetBlockStart = offsetY);
+          }
+        })
+        .catch(() => null)
+        .then(() => {
+          requestAnimationFrame(() => {
+            floatable.style.transitionProperty = "translate";
+            floatable.style.transitionDuration = "0.1s";
+          });
+        });
+    });
+
+    return () => {
+      cleanup();
+    };
+  }, [placement, trigger, offsets, arrowable]);
+
+  return {
+    floatableRef,
+    arrowRef,
   };
 };

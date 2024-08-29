@@ -21,12 +21,13 @@ export type TourStep = {
    */
   description?: ReactNode;
 
+  // TODO: update docs
   /**
    * @description
    * target
    * @requires
    */
-  target: Nullable<Element> | (() => Nullable<Element>);
+  target: Nullable<HTMLElement> | (() => Nullable<HTMLElement>);
 };
 
 /**

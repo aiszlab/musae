@@ -10,6 +10,7 @@ import ZoomIn from "./zoom-in";
 import DoneOutline from "./done-outline";
 import Translate from "./translate";
 import Code from "./code";
+import OpenInNew from "./open-in-new";
 
 export {
   Visibility,
@@ -24,4 +25,5 @@ export {
   DoneOutline,
   Translate,
   Code,
+  OpenInNew,
 };
