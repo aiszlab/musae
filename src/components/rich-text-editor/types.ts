@@ -17,6 +17,18 @@ export type RichTextEditorProps = {
    * disabled
    */
   disabled?: boolean;
+
+  /**
+   * @description
+   * value
+   */
+  value?: string;
+
+  /**
+   * @description
+   * change handler
+   */
+  onChange?: (value: string) => void;
 };
 
 /**

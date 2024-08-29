@@ -12,12 +12,14 @@ import { Button } from "../../../button";
 import { Form } from "../../../form";
 import { Input } from "../../../input";
 import { useForm } from "../../../form/hooks";
+import { $createTextNode } from "lexical";
 
 interface Props {
   link: LinkNode | null;
 }
 
 interface FormValues {
+  title: string;
   href: string;
 }
 
@@ -29,7 +31,6 @@ const styles = stylex.create({
 
 const FloatingLinkEditorPlugin = ({ link }: Props) => {
   const [editor] = useLexicalComposerContext();
-  const isLink = !!link;
   const [isEditable, { turnOn, turnOff }] = useBoolean();
   const form = useForm<FormValues>();
 
@@ -39,15 +40,18 @@ const FloatingLinkEditorPlugin = ({ link }: Props) => {
 
   const styled = stylex.props(styles.popper);
 
-  const changeLink = useEvent(async () => {
+  const updateLink = useEvent(async () => {
     const isValid = await form.trigger().catch(() => false);
     if (!isValid) return;
 
-    const { href } = form.getValues();
+    const { href, title } = form.getValues();
 
     editor.update(() => {
+      if (!link) return;
       const linkNode = $createLinkNode(href);
-      link?.replace(linkNode, true);
+      linkNode.append($createTextNode(title));
+      linkNode.select();
+      link.replace(linkNode, false);
     });
 
     turnOff();
@@ -58,9 +62,6 @@ const FloatingLinkEditorPlugin = ({ link }: Props) => {
 
     editor.read(() => {
       const href = link.getURL();
-
-      console.log("href======", href);
-
       form.setValue("href", href);
       turnOn();
     });
@@ -70,9 +71,14 @@ const FloatingLinkEditorPlugin = ({ link }: Props) => {
     editor.dispatchCommand(TOGGLE_LINK_COMMAND, null);
   };
 
+  const openLink = () => {
+    if (!link) return;
+    window.open(link.getURL());
+  };
+
   return (
     <Popper
-      open={isLink}
+      open={!!link}
       trigger={trigger}
       className={styled.className}
       style={styled.style}
@@ -80,7 +86,7 @@ const FloatingLinkEditorPlugin = ({ link }: Props) => {
     >
       {!isEditable && (
         <Space>
-          <Button variant="text" shape="circular" size="small">
+          <Button variant="text" shape="circular" size="small" onClick={openLink}>
             <OpenInNew />
           </Button>
 
@@ -96,11 +102,15 @@ const FloatingLinkEditorPlugin = ({ link }: Props) => {
 
       {isEditable && (
         <Form form={form}>
+          <Form.Item name="title" label="标题">
+            <Input />
+          </Form.Item>
+
           <Form.Item name="href" label="链接">
             <Input />
           </Form.Item>
 
-          <Button variant="filled" size="small" onClick={changeLink}>
+          <Button variant="filled" size="small" onClick={updateLink}>
             确定
           </Button>
         </Form>

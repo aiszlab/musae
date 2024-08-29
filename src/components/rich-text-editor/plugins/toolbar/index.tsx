@@ -27,13 +27,14 @@ import { chain, useEvent, useMounted } from "@aiszlab/relax";
 import { Button } from "../../../button";
 import { useTheme } from "../../../theme";
 import { ColorToken } from "../../../../utils/colors";
-import { useBlockFormats, useHandlers } from "./hooks";
+import { useBlockFormats, useFontSizes, useHandlers } from "./hooks";
 import { $isLinkNode, LinkNode } from "@lexical/link";
 import Dropdown from "../../dropdown";
 import { $isHeadingNode } from "@lexical/rich-text";
 import { $isListNode, ListNode } from "@lexical/list";
 import { $getNearestNodeOfType } from "@lexical/utils";
 import FloatingLinkEditorPlugin from "../floating-link-editor";
+import { $getSelectionStyleValueForProperty } from "@lexical/selection";
 
 const styles = stylex.create({
   default: (props: { outlineColor: CSSProperties["borderColor"] }) => ({
@@ -60,13 +61,15 @@ const ToolbarPlugin = () => {
   const [isStrikethrough, setIsStrikethrough] = useState(false);
   const [isSubscript, setIsSubscript] = useState(false);
   const [isSuperscript, setIsSuperscript] = useState(false);
-  const { blockFormat, blockFormats, change: setBlockFormat, formatBlock } = useBlockFormats();
 
   const [linkNode, setLinkNode] = useState<LinkNode | null>(null);
   const isLink = !!linkNode;
 
   const [isUndoable, setIsUndoable] = useState(false);
   const [isRedoable, setIsRedoable] = useState(false);
+
+  const { blockFormat, blockFormats, setBlockFormat, formatBlock } = useBlockFormats();
+  const { fontSize, fontSizes, setFontSize, updateFontSize } = useFontSizes();
 
   const updateToolbar = useEvent(() => {
     const selection = $getSelection();
@@ -84,6 +87,9 @@ const ToolbarPlugin = () => {
     setIsStrikethrough(selection.hasFormat("strikethrough"));
     setIsSubscript(selection.hasFormat("subscript"));
     setIsSuperscript(selection.hasFormat("superscript"));
+
+    // font size
+    setFontSize($getSelectionStyleValueForProperty(selection, "font-size"));
 
     // link node
     setLinkNode(
@@ -176,6 +182,10 @@ const ToolbarPlugin = () => {
         <Divider orientation="vertical" />
 
         <Dropdown items={blockFormats} value={blockFormat} onChange={formatBlock} />
+
+        <Divider orientation="vertical" />
+
+        <Dropdown items={fontSizes} value={fontSize} onChange={updateFontSize} />
 
         <Divider orientation="vertical" />
 

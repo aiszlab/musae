@@ -9,6 +9,7 @@ import {
   computePosition,
   flip,
   offset,
+  size,
   type Side,
   type Alignment,
 } from "@floating-ui/dom";
@@ -137,6 +138,12 @@ export const useFloating = ({
           flip(),
           offset(offsets),
           arrowable && !!arrowRef.current && arrow({ element: arrowRef.current, padding: 16 }),
+          size({
+            apply({ availableWidth, availableHeight, elements: { floating } }) {
+              floating.style.maxWidth = `${availableWidth}px`;
+              floating.style.maxHeight = `${availableHeight}px`;
+            },
+          }),
         ],
       })
         .then(({ x, y, middlewareData, placement: _placement }) => {

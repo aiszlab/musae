@@ -3,6 +3,7 @@ import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext
 import {
   $createParagraphNode,
   $getSelection,
+  $isRangeSelection,
   FORMAT_TEXT_COMMAND,
   REDO_COMMAND,
   UNDO_COMMAND,
@@ -19,11 +20,14 @@ import {
   LooksTwo,
   Notes,
 } from "../../../icon/icons";
-import { $setBlocksType } from "@lexical/selection";
+import { $patchStyleText, $setBlocksType } from "@lexical/selection";
 import { $createHeadingNode, type HeadingTagType } from "@lexical/rich-text";
 import { INSERT_CHECK_LIST_COMMAND } from "@lexical/list";
+import { $createCodeNode } from "@lexical/code";
 
-type BlockFormat = HeadingTagType | "paragraph" | "check";
+type BlockFormat = HeadingTagType | "paragraph" | "check" | "code-block";
+
+const DEFAULT_FONT_SIZE = "15px";
 
 /**
  * @description
@@ -96,9 +100,9 @@ export const useHandlers = ({ isLink }: { isLink: boolean }) => {
 export const useBlockFormats = () => {
   const [editor] = useLexicalComposerContext();
 
-  const blockFormats = useMemo<Map<BlockFormat, Omit<MenuItem, "key">>>(
+  const blockFormats = useMemo(
     () =>
-      new Map([
+      new Map<BlockFormat, Omit<MenuItem, "key">>([
         [
           "paragraph",
           {
@@ -155,6 +159,13 @@ export const useBlockFormats = () => {
             prefix: <Checklist />,
           },
         ],
+        [
+          "code-block",
+          {
+            label: "Check List",
+            prefix: <Checklist />,
+          },
+        ],
       ]),
     [],
   );
@@ -178,11 +189,31 @@ export const useBlockFormats = () => {
 
     if (_blockFormat === "check") {
       if (blockFormat !== "check") {
-        editor.dispatchCommand(INSERT_CHECK_LIST_COMMAND, undefined);
+        editor.dispatchCommand(INSERT_CHECK_LIST_COMMAND, void 0);
         return;
       }
-
       formatParagraph();
+      return;
+    }
+
+    if (_blockFormat === "code-block") {
+      editor.update(() => {
+        const selection = $getSelection();
+        if (!selection) return;
+
+        if (selection.isCollapsed()) {
+          $setBlocksType(selection, () => $createCodeNode());
+          return;
+        }
+
+        const textContent = selection.getTextContent();
+        const codeNode = $createCodeNode();
+        selection.insertNodes([codeNode]);
+        const _selection = $getSelection();
+        if ($isRangeSelection(_selection)) {
+          _selection.insertRawText(textContent);
+        }
+      });
       return;
     }
 
@@ -192,12 +223,66 @@ export const useBlockFormats = () => {
     });
   };
 
+  const _setBlockFormat = useCallback((value: string) => {
+    setBlockFormat(value as BlockFormat);
+  }, []);
+
   return {
     blockFormat,
     blockFormats,
-    change: useCallback((value: string) => {
-      setBlockFormat(value as BlockFormat);
-    }, []),
+    setBlockFormat: _setBlockFormat,
     formatBlock,
+  };
+};
+
+/**
+ * @description
+ * font sizes
+ */
+export const useFontSizes = () => {
+  const [editor] = useLexicalComposerContext();
+  const [fontSize, setFontSize] = useState(DEFAULT_FONT_SIZE);
+
+  const fontSizes = useMemo(() => {
+    return new Map<string, Omit<MenuItem, "key">>([
+      ["12px", { label: "12px" }],
+      ["13px", { label: "13px" }],
+      ["14px", { label: "14px" }],
+      ["15px", { label: "15px" }],
+      ["16px", { label: "16px" }],
+      ["19px", { label: "19px" }],
+      ["22px", { label: "22px" }],
+      ["24px", { label: "24px" }],
+      ["29px", { label: "29px" }],
+      ["32px", { label: "32px" }],
+      ["40px", { label: "40px" }],
+      ["48px", { label: "48px" }],
+    ]);
+  }, []);
+
+  const updateFontSize = useCallback(
+    (value: string) => {
+      editor.update(() => {
+        if (!editor.isEditable()) return;
+        const selection = $getSelection();
+        if (!selection) return;
+
+        $patchStyleText(selection, {
+          "font-size": value,
+        });
+      });
+    },
+    [editor],
+  );
+
+  const _setFontSize = useCallback((value: string) => {
+    setFontSize(value || DEFAULT_FONT_SIZE);
+  }, []);
+
+  return {
+    fontSize,
+    fontSizes,
+    setFontSize: _setFontSize,
+    updateFontSize,
   };
 };

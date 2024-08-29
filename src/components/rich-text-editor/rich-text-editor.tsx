@@ -7,9 +7,11 @@ import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
 import { LinkPlugin } from "@lexical/react/LexicalLinkPlugin";
 import { ClickableLinkPlugin } from "@lexical/react/LexicalClickableLinkPlugin";
 import { ListPlugin } from "@lexical/react/LexicalListPlugin";
+import { OnChangePlugin } from "@lexical/react/LexicalOnChangePlugin";
 import CheckListPlugin from "./plugins/check-list";
+import ControlledStatePlugin from "./plugins/controlled-state";
 
-import { useDefault, useIdentity } from "@aiszlab/relax";
+import { useDefault, useEvent, useIdentity } from "@aiszlab/relax";
 import { useMessage } from "../message";
 import stylex from "@stylexjs/stylex";
 
@@ -33,6 +35,7 @@ import ToolbarPlugin from "./plugins/toolbar";
 import MarkdownShortcutPlugin from "./plugins/markdown-shortcut";
 import { typography } from "../theme/theme";
 import { styles as checkboxStyles } from "../checkbox";
+import { type EditorState } from "lexical";
 
 const styles = stylex.create({
   shell: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
@@ -102,7 +105,12 @@ const styles = stylex.create({
   },
 });
 
-const RichTextEditor = ({ placeholder, disabled = false }: RichTextEditorProps) => {
+const RichTextEditor = ({
+  placeholder,
+  disabled = false,
+  value,
+  onChange,
+}: RichTextEditorProps) => {
   const [id] = useIdentity();
   const [messager, holder] = useMessage();
   const theme = useTheme();
@@ -190,6 +198,11 @@ const RichTextEditor = ({ placeholder, disabled = false }: RichTextEditorProps) 
     };
   });
 
+  const change = useEvent((state: EditorState) => {
+    const _value = JSON.stringify(state.toJSON());
+    onChange?.(_value);
+  });
+
   return (
     <LexicalComposer initialConfig={initialConfig}>
       <div className={styled.shell.className} style={styled.shell.style}>
@@ -216,6 +229,9 @@ const RichTextEditor = ({ placeholder, disabled = false }: RichTextEditorProps) 
 
         <ListPlugin />
         <CheckListPlugin />
+
+        <ControlledStatePlugin value={value} />
+        <OnChangePlugin onChange={change} />
 
         {/* message holder */}
         {holder}
