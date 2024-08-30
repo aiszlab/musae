@@ -58,7 +58,7 @@ const styles = {
       // hidden styles
       transform: props.transform,
       opacity: 0,
-      marginTop: 0,
+      marginBlockStart: spacing.none,
       // layout
       display: "grid",
       gap: spacing.small,
@@ -129,13 +129,13 @@ const Notification = forwardRef<HTMLDivElement, NotificationProps>(
         case "bottom-right":
           await animate(scope.current, {
             opacity: 0,
-            marginBottom: scope.current.getBoundingClientRect().height * -1,
+            marginBlockEnd: scope.current.getBoundingClientRect().height * -1,
           });
           break;
         default:
           await animate(scope.current, {
             opacity: 0,
-            marginTop: scope.current.getBoundingClientRect().height * -1,
+            marginBlockStart: scope.current.getBoundingClientRect().height * -1,
           });
           break;
       }

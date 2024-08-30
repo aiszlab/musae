@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import type { Closable } from "../../hooks/use-closable";
+import type { ComponentProps } from "../../types/element";
 
 export type Placement = "right" | "left" | "top" | "bottom";
 
@@ -7,7 +8,7 @@ export type Placement = "right" | "left" | "top" | "bottom";
  * @description
  * drawer props
  */
-export interface DrawerProps {
+export type DrawerProps = Pick<ComponentProps, "className"> & {
   /**
    * @description
    * children
@@ -59,7 +60,7 @@ export interface DrawerProps {
    * @default void 0
    */
   onClose?: VoidFunction;
-}
+};
 
 /**
  * @description

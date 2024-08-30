@@ -17,9 +17,21 @@ const EXTENSIONS = [".ts", ".tsx", ".js", ".jsx"];
  * @type {import("rollup").RollupOptions["input"]}
  */
 const input = {
+  // components
   [ENTRY]: "./src/index",
-  "components/icon/icons/index": "./src/components/icon/icons/index",
+  // locale
   "locale/locales/index": "./src/locale/locales/index",
+  // icons
+  "components/icon/icons/index": "./src/components/icon/icons/index",
+  "components/icon/icons/action/index": "./src/components/icon/icons/action/index",
+  "components/icon/icons/alert/index": "./src/components/icon/icons/alert/index",
+  "components/icon/icons/content/index": "./src/components/icon/icons/content/index",
+  "components/icon/icons/editor/index": "./src/components/icon/icons/editor/index",
+  "components/icon/icons/hardware/index": "./src/components/icon/icons/hardware/index",
+  "components/icon/icons/image/index": "./src/components/icon/icons/image/index",
+  "components/icon/icons/mock/index": "./src/components/icon/icons/mock/index",
+  "components/icon/icons/navigation/index": "./src/components/icon/icons/navigation/index",
+  "components/icon/icons/toggle/index": "./src/components/icon/icons/toggle/index",
 };
 
 /**
@@ -68,7 +80,7 @@ const config = () => {
       isProd &&
         stylex({
           fileName: CSS_ASSET_FILENAME,
-          classNamePrefix: "musae-",
+          classNamePrefix: "musaex-",
           unstable_moduleResolution: {
             type: "commonJS",
             rootDir: dirname(fileURLToPath(import.meta.url)),
@@ -81,11 +93,11 @@ const config = () => {
       }),
     ].filter(Boolean),
 
-    external: [
-      ...Object.keys(pkg.dependencies),
-      ...Object.keys(pkg.peerDependencies),
-      /@babel\/runtime/,
-    ],
+    // use regexp to external dependencies
+    // like `@aiszlab/relax`, we may use `@aiszlab/relax/dom` as submodule
+    external: [...Object.keys(pkg.dependencies), ...Object.keys(pkg.peerDependencies)].map(
+      (dependency) => new RegExp(`^${dependency}`),
+    ),
   };
 };
 

@@ -30,9 +30,8 @@ const styles = stylex.create({
   }),
 
   image: {
-    width: sizes.full,
-    height: sizes.full,
     objectFit: "cover",
+    objectPosition: "center center",
     borderRadius: "inherit",
   },
 
@@ -96,7 +95,7 @@ const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(
             outlineColor: theme.colors[ColorToken.OnPrimary],
           }),
       ),
-      image: stylex.props(styles.image),
+      image: stylex.props(styles.image, styles[size]),
     };
 
     return (

@@ -14,7 +14,7 @@ const { Row, Col } = Grid;
 
 const styles = stylex.create({
   space: {
-    marginBottom: spacing.xlarge,
+    marginBlockEnd: spacing.xlarge,
   },
 
   required: (props: { color: CSSProperties["color"] }) => ({
@@ -85,7 +85,7 @@ const Layout = ({ required, space, ...props }: Props) => {
         styles.required({
           color: theme.colors[ColorToken.Error],
         }),
-      typography.label.small
+      typography.label.small,
     ),
   };
 

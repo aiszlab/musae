@@ -22,6 +22,7 @@ const styles = {
       borderRightStyle: "solid",
       borderRightColor: props.outlineColor,
       paddingInline: spacing.medium,
+      paddingBlockEnd: spacing.small,
 
       position: "sticky",
       height: `calc(100vh - ${sizes.xxxlarge} - ${spacing.xxlarge})`,
@@ -101,7 +102,7 @@ const Bench = ({
         {/* divider */}
         {!!_logo && (
           <div className={styled.divider.className} style={styled.divider.style}>
-            <Divider type="vertical" />
+            <Divider orientation="vertical" />
           </div>
         )}
 

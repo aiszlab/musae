@@ -1,4 +1,4 @@
-import React, { CSSProperties, useEffect, useRef } from "react";
+import React, { type CSSProperties, useEffect, useRef } from "react";
 import type { PopupProps } from "./types";
 import { useFooter } from "./hooks";
 import { useAnimate } from "framer-motion";
@@ -17,7 +17,7 @@ import { ComponentToken } from "../../utils/component-token";
 const styles = stylex.create({
   header: {
     paddingInline: spacing.xlarge,
-    paddingTop: spacing.large,
+    paddingBlockStart: spacing.large,
   },
 
   popup: {
@@ -64,14 +64,14 @@ const styles = stylex.create({
 
   footer: {
     paddingInline: spacing.xlarge,
-    paddingBottom: spacing.xlarge,
+    paddingBlockEnd: spacing.xlarge,
     display: "flex",
     flexDirection: "column",
     alignItems: "flex-end",
   },
 });
 
-const Popup = ({ onClose, open, closable, onClosed, ...props }: PopupProps) => {
+const Popup = ({ onClose, open, closable, onClosed, className, ...props }: PopupProps) => {
   const classNames = useClassNames(ComponentToken.Dialog);
   const [scope, animate] = useAnimate<HTMLDivElement>();
   const theme = useTheme();
@@ -131,7 +131,7 @@ const Popup = ({ onClose, open, closable, onClosed, ...props }: PopupProps) => {
   return (
     <div
       ref={scope}
-      className={clsx(classNames[DialogClassToken.Dialog], styled.popup.className)}
+      className={clsx(classNames[DialogClassToken.Dialog], className, styled.popup.className)}
       style={styled.popup.style}
       tabIndex={-1}
       onKeyDown={onKeyDown}

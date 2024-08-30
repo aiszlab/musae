@@ -1,28 +1,11 @@
-import React, {
-  type CSSProperties,
-  forwardRef,
-  useImperativeHandle,
-  useLayoutEffect,
-  useMemo,
-  useRef,
-} from "react";
+import React, { type CSSProperties, forwardRef, useImperativeHandle } from "react";
 import type { DropdownProps, PopperRef } from "./types";
 import { PopperClassToken } from "../../utils/class-name";
 import { useClassNames } from "../../hooks/use-class-names";
 import * as stylex from "@stylexjs/stylex";
 import clsx from "clsx";
-import { isFunction } from "@aiszlab/relax";
-import {
-  computePosition,
-  flip,
-  autoUpdate,
-  offset,
-  arrow,
-  type Side,
-  type Alignment,
-} from "@floating-ui/dom";
-import type { Nullable } from "@aiszlab/relax/types";
-import { useAnimation, useOffsets } from "./hooks";
+import { useRefs } from "@aiszlab/relax";
+import { useAnimation, useFloating } from "./hooks";
 import { elevations, positions, sizes } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
@@ -39,10 +22,10 @@ const styles = {
       insetInlineStart: 0,
       boxShadow: elevations.small,
       borderRadius: sizes.xxxxsmall,
+      overflow: "auto",
 
       // animation
-      willChange: "transform, opacity",
-      transformOrigin: "50% 50%",
+      willChange: "translate",
     }),
 
     overlay: {
@@ -73,7 +56,7 @@ const Dropdown = forwardRef<PopperRef, DropdownProps>(
       onExit,
       onExited,
       onEntered,
-      trigger: _trigger,
+      trigger,
       offset: _offset,
       overlay = false,
       arrow: arrowable = false,
@@ -82,74 +65,32 @@ const Dropdown = forwardRef<PopperRef, DropdownProps>(
     },
     ref,
   ) => {
-    const arrowRef = useRef<HTMLDivElement>(null);
     const classNames = useClassNames(ComponentToken.Popper);
     const theme = useTheme();
-
-    const { disappear, floatable } = useAnimation({
+    const { floatableRef, arrowRef } = useFloating({
+      arrowable,
+      offset: _offset,
+      placement,
+      open,
+      trigger,
+    });
+    const { disappear, animatableRef } = useAnimation({
       open,
       disappearable,
       onEntered,
       onExit,
       onExited,
     });
+    const refs = useRefs(floatableRef, animatableRef);
 
     useImperativeHandle(ref, () => {
       return {
         disappear,
         contains: (node) => {
-          return contains(floatable.current, node);
+          return contains(floatableRef.current, node);
         },
       };
     });
-
-    // how to get trigger
-    const trigger = useMemo<Nullable<Element>>(() => {
-      if (!open) return null;
-      if (isFunction(_trigger)) return _trigger();
-      return _trigger ?? null;
-    }, [open, _trigger]);
-
-    // memorized offsets
-    const offsets = useOffsets({ offset: _offset, arrowable });
-
-    // auto update: calc trigger dom to get position
-    // if trigger changed, re-relate
-    useLayoutEffect(() => {
-      if (!trigger) return;
-
-      const cleanup = autoUpdate(trigger, floatable.current, () => {
-        computePosition(trigger, floatable.current, {
-          placement: placement,
-          middleware: [
-            flip(),
-            offset(offsets),
-            arrowable && !!arrowRef.current && arrow({ element: arrowRef.current, padding: 16 }),
-          ],
-        })
-          .then(({ x, y, middlewareData, placement: _placement }) => {
-            const [side] = _placement.split("-") as [Side, Alignment?];
-
-            // set float element styles
-            floatable.current.style.translate = `${x}px ${y}px`;
-
-            // set arrwo styles
-            if (middlewareData.arrow && !!arrowRef.current) {
-              const offsetY = `${middlewareData.arrow.y ?? 0 - 8}px`;
-              const offsetX = `${middlewareData.arrow.x ?? 0}px`;
-
-              arrowRef.current.style.insetInlineStart = offsetX;
-              side === "top" && (arrowRef.current.style.insetBlockEnd = offsetY);
-              side === "bottom" && (arrowRef.current.style.insetBlockStart = offsetY);
-            }
-          })
-          .catch(() => null);
-      });
-
-      return () => {
-        cleanup();
-      };
-    }, [placement, trigger, offsets, arrowable, floatable]);
 
     const styled = {
       dropdown: stylex.props(
@@ -163,7 +104,7 @@ const Dropdown = forwardRef<PopperRef, DropdownProps>(
 
     return (
       <div
-        ref={floatable}
+        ref={refs}
         {...props}
         className={clsx(
           classNames[PopperClassToken.Dropdown],

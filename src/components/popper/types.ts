@@ -13,7 +13,7 @@ import type { PortalProps } from "../portal/types";
 export interface PopperProps
   extends Pick<DOMAttributes<HTMLDivElement>, "onMouseDown" | "onPointerEnter" | "onPointerLeave">,
     ComponentProps,
-    Pick<PortalProps, "destroyable"> {
+    Pick<PortalProps, "destroyable" | "container"> {
   /**
    * @description
    * children
@@ -30,7 +30,7 @@ export interface PopperProps
    * @description
    * trigger
    */
-  trigger?: Nullable<Element> | (() => Nullable<Element>);
+  trigger?: Nullable<HTMLElement> | (() => Nullable<HTMLElement>);
 
   /**
    * @description
@@ -87,7 +87,7 @@ export interface PopperProps
   disappearable?: boolean;
 }
 
-export type DropdownProps = Omit<PopperProps, "portal" | "placement"> & {
+export type DropdownProps = Omit<PopperProps, "portal" | "placement" | "container"> & {
   /**
    * {@link} `PopperProps`.`placement`
    */

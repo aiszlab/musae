@@ -1,4 +1,4 @@
-import React, { CSSProperties, forwardRef } from "react";
+import React, { type CSSProperties, forwardRef } from "react";
 import type { MenuGroupProps } from "./types";
 import { useAnimate } from "framer-motion";
 import { useClassNames } from "../../hooks/use-class-names";
@@ -41,7 +41,9 @@ const styles = {
   }),
 
   submenu: stylex.create({
-    inline: {},
+    inline: {
+      marginBlockStart: spacing.xxsmall,
+    },
 
     horizontal: {
       minWidth: 200,
@@ -116,6 +118,7 @@ const Group = forwardRef<HTMLUListElement, MenuGroupProps>(
               className={item.className}
               style={item.style}
               label={item.label}
+              prefix={item.prefix}
               mode={mode}
               ref={(_ref) => {
                 if (!_ref) return;

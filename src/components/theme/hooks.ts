@@ -99,12 +99,12 @@ export const PALETTE: Readonly<Palette> = {
     "100": "#FFF",
   },
   success: {
-    "0": "#49AA19",
-    "100": "#52C41A",
+    "0": "#36c450",
+    "100": "#34be4d",
   },
   warning: {
-    "0": "#FAAD14",
-    "100": "#FAAD14",
+    "0": "#ffce22",
+    "100": "#ffce22",
   },
 };
 
@@ -192,9 +192,13 @@ export const useSwitchable = ({ theme }: { theme: Theme }) => {
   const repaint = useEvent((_mode: Mode) => {
     const _isDark = _mode === "dark";
 
-    document.documentElement.classList.remove(...toClassList((_isDark ? styled.light : styled.dark).className));
+    document.documentElement.classList.remove(
+      ...toClassList((_isDark ? styled.light : styled.dark).className),
+    );
     document.documentElement.classList.add(...toClassList(styled[_mode].className));
-    document.documentElement.style.backgroundColor = _isDark ? theme.palette.neutral[0] : theme.palette.neutral[100];
+    document.documentElement.style.backgroundColor = _isDark
+      ? theme.palette.neutral[0]
+      : theme.palette.neutral[100];
   });
 
   useMounted(() => {
@@ -228,7 +232,10 @@ export const useSwitchable = ({ theme }: { theme: Theme }) => {
     animation.ready.then(() => {
       const x = event?.clientX ?? 0;
       const y = event?.clientY ?? 0;
-      const radius = Math.hypot(Math.max(x, window.innerWidth - x), Math.max(y, window.innerHeight - y));
+      const radius = Math.hypot(
+        Math.max(x, window.innerWidth - x),
+        Math.max(y, window.innerHeight - y),
+      );
       const clipPath = [`circle(0px at ${x}px ${y}px)`, `circle(${radius}px at ${x}px ${y}px)`];
 
       document.documentElement.animate(
