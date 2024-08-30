@@ -9,7 +9,6 @@ import {
   UNDO_COMMAND,
 } from "lexical";
 import React, { useCallback, useMemo, useState } from "react";
-import { type MenuItem } from "../../../menu";
 import {
   Checklist,
   LooksFive,
@@ -19,6 +18,9 @@ import {
   LooksThree,
   LooksTwo,
   Notes,
+  FormatStrikethrough,
+  Subscript,
+  Superscript,
 } from "../../../icon/icons";
 import { $patchStyleText, $setBlocksType } from "@lexical/selection";
 import { $createHeadingNode, type HeadingTagType } from "@lexical/rich-text";
@@ -27,6 +29,7 @@ import { $createCodeNode } from "@lexical/code";
 import { DropdownProps } from "../../types";
 
 type BlockFormat = HeadingTagType | "paragraph" | "check" | "code-block";
+export type FontFormat = "strikethrough" | "subscript" | "superscript";
 
 const DEFAULT_FONT_SIZE = "15px";
 
@@ -68,18 +71,6 @@ export const useHandlers = ({ isLink }: { isLink: boolean }) => {
     }
   };
 
-  const strikethrough = () => {
-    editor.dispatchCommand(FORMAT_TEXT_COMMAND, "strikethrough");
-  };
-
-  const subscript = () => {
-    editor.dispatchCommand(FORMAT_TEXT_COMMAND, "subscript");
-  };
-
-  const superscript = () => {
-    editor.dispatchCommand(FORMAT_TEXT_COMMAND, "superscript");
-  };
-
   return {
     bold,
     redo,
@@ -88,9 +79,6 @@ export const useHandlers = ({ isLink }: { isLink: boolean }) => {
     italic,
     underline,
     insertLink,
-    strikethrough,
-    subscript,
-    superscript,
   };
 };
 
@@ -293,17 +281,46 @@ export const useFontSizes = () => {
  * more font formats
  */
 export const useFontFormats = () => {
-  const [isStrikethrough, setIsStrikethrough] = useState(false);
-  const [fontFormated, setFontFormated] = useState("");
+  const [fontFormat, setFontFormat] = useState<Set<FontFormat>>(new Set());
+  const [editor] = useLexicalComposerContext();
 
-  const fontFormats = useMemo<DropdownProps<string>["items"]>(() => {
-    return new Map();
-  }, []);
+  const formatFont = useCallback(
+    (_fontFormat: FontFormat) => {
+      editor.dispatchCommand(FORMAT_TEXT_COMMAND, _fontFormat);
+    },
+    [editor],
+  );
 
-  const _setFontFormated = useCallback((value: string) => {
+  const fontFormats = useMemo<DropdownProps<FontFormat>["items"]>(() => {
+    return new Map([
+      [
+        "strikethrough",
+        {
+          label: "strikethrough",
+          prefix: <FormatStrikethrough />,
+        },
+      ],
+      [
+        "subscript",
+        {
+          label: "subscript",
+          prefix: <Subscript />,
+        },
+      ],
+      [
+        "superscript",
+        {
+          label: "superscript",
+          prefix: <Superscript />,
+        },
+      ],
+    ]);
   }, []);
 
   return {
+    fontFormat,
     fontFormats,
+    setFontFormat,
+    formatFont,
   };
 };

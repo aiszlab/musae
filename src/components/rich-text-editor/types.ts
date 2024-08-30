@@ -56,7 +56,7 @@ export type EditorThemeClasses = _EditorThemeClasses & {
  */
 export type DropdownProps<T> = {
   items?: Map<T, Omit<MenuItem, "key">>;
-  value: T;
+  value: T | T[];
   onChange: (value: T) => void;
   children?: ReactNode;
 };

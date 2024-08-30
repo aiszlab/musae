@@ -3,12 +3,12 @@ import React, { type Key, useMemo, useRef } from "react";
 import { Popover, type PopoverRef } from "../popover";
 import { Menu } from "../menu";
 import { Empty } from "../empty";
-import { useEvent } from "@aiszlab/relax";
+import { toArray, useEvent } from "@aiszlab/relax";
 import { DropdownProps } from "./types";
 
 const Dropdown = <T extends Key = Key>({
   items: _items = new Map(),
-  value,
+  value: _value,
   onChange,
   children,
 }: DropdownProps<T>) => {
@@ -26,11 +26,13 @@ const Dropdown = <T extends Key = Key>({
     }));
   }, [_items]);
 
+  const value = useMemo(() => toArray(_value), [_value]);
+
   const content = useMemo(() => {
     if (items.length === 0) {
       return <Empty />;
     }
-    return <Menu items={items} onClick={onClick} selectedKeys={[value]} />;
+    return <Menu items={items} onClick={onClick} selectedKeys={toArray(value)} />;
   }, [items, onClick, value]);
 
   return (
@@ -43,7 +45,7 @@ const Dropdown = <T extends Key = Key>({
       ref={popoverRef}
     >
       <Button variant="text" size="small">
-        {children ?? _items.get(value)?.label}
+        {children ?? _items.get(value[0])?.label}
       </Button>
     </Popover>
   );

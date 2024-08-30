@@ -7,9 +7,7 @@ import {
   FormatItalic,
   FormatUnderlined,
   InsertLink,
-  FormatStrikethrough,
-  Subscript,
-  Superscript,
+  FontDownload,
 } from "../../../icon/icons";
 import stylex from "@stylexjs/stylex";
 import { sizes, spacing } from "../../../theme/tokens.stylex";
@@ -27,7 +25,7 @@ import { chain, useEvent, useMounted } from "@aiszlab/relax";
 import { Button } from "../../../button";
 import { useTheme } from "../../../theme";
 import { ColorToken } from "../../../../utils/colors";
-import { useBlockFormats, useFontSizes, useHandlers } from "./hooks";
+import { useBlockFormats, useFontFormats, useFontSizes, useHandlers, FontFormat } from "./hooks";
 import { $isLinkNode, LinkNode } from "@lexical/link";
 import Dropdown from "../../dropdown";
 import { $isHeadingNode } from "@lexical/rich-text";
@@ -38,7 +36,7 @@ import { $getSelectionStyleValueForProperty } from "@lexical/selection";
 
 const styles = stylex.create({
   default: (props: { outlineColor: CSSProperties["borderColor"] }) => ({
-    height: sizes.medium,
+    minHeight: sizes.medium,
 
     display: "flex",
     flexDirection: "row",
@@ -48,6 +46,7 @@ const styles = stylex.create({
     borderBottomWidth: sizes.smallest,
     borderBottomColor: props.outlineColor,
     borderBottomStyle: "solid",
+    overflow: "auto",
   }),
 });
 
@@ -58,9 +57,6 @@ const ToolbarPlugin = () => {
   const [isItalic, setIsItalic] = useState(false);
   const [isUnderline, setIsUnderline] = useState(false);
   const [isCode, setIsCode] = useState(false);
-  const [isStrikethrough, setIsStrikethrough] = useState(false);
-  const [isSubscript, setIsSubscript] = useState(false);
-  const [isSuperscript, setIsSuperscript] = useState(false);
 
   const [linkNode, setLinkNode] = useState<LinkNode | null>(null);
   const isLink = !!linkNode;
@@ -70,6 +66,7 @@ const ToolbarPlugin = () => {
 
   const { blockFormat, blockFormats, setBlockFormat, formatBlock } = useBlockFormats();
   const { fontSize, fontSizes, setFontSize, updateFontSize } = useFontSizes();
+  const { fontFormat, fontFormats, setFontFormat, formatFont } = useFontFormats();
 
   const updateToolbar = useEvent(() => {
     const selection = $getSelection();
@@ -84,9 +81,14 @@ const ToolbarPlugin = () => {
     setIsCode(selection.hasFormat("code"));
     setIsItalic(selection.hasFormat("italic"));
     setIsUnderline(selection.hasFormat("underline"));
-    setIsStrikethrough(selection.hasFormat("strikethrough"));
-    setIsSubscript(selection.hasFormat("subscript"));
-    setIsSuperscript(selection.hasFormat("superscript"));
+
+    setFontFormat(() => {
+      return new Set([
+        ...(selection.hasFormat("strikethrough") ? (["strikethrough"] satisfies FontFormat[]) : []),
+        ...(selection.hasFormat("subscript") ? (["subscript"] satisfies FontFormat[]) : []),
+        ...(selection.hasFormat("superscript") ? (["superscript"] satisfies FontFormat[]) : []),
+      ]);
+    });
 
     // font size
     setFontSize($getSelectionStyleValueForProperty(selection, "font-size"));
@@ -226,33 +228,6 @@ const ToolbarPlugin = () => {
         </Button>
 
         <Button
-          variant={isStrikethrough ? "filled" : "text"}
-          shape="rounded"
-          size="small"
-          onClick={handlers.insertLink}
-        >
-          <FormatStrikethrough />
-        </Button>
-
-        <Button
-          variant={isSubscript ? "filled" : "text"}
-          shape="rounded"
-          size="small"
-          onClick={handlers.subscript}
-        >
-          <Subscript />
-        </Button>
-
-        <Button
-          variant={isSuperscript ? "filled" : "text"}
-          shape="rounded"
-          size="small"
-          onClick={handlers.superscript}
-        >
-          <Superscript />
-        </Button>
-
-        <Button
           variant={isCode ? "filled" : "text"}
           shape="rounded"
           size="small"
@@ -261,7 +236,9 @@ const ToolbarPlugin = () => {
           <Code />
         </Button>
 
-        <Dropdown items={blockFormats} value={blockFormat} onChange={formatBlock} />
+        <Dropdown items={fontFormats} value={Array.from(fontFormat)} onChange={formatFont}>
+          <FontDownload />
+        </Dropdown>
       </div>
 
       <FloatingLinkEditorPlugin link={linkNode} />
