@@ -11,7 +11,7 @@ exports[`\`Avatar.Group\` Component in group 1`] = `
     >
       <img
         alt="AA"
-        class="avatar__styles.image"
+        class="avatar__styles.image avatar__styles.medium"
         draggable="false"
       />
     </span>
@@ -21,7 +21,7 @@ exports[`\`Avatar.Group\` Component in group 1`] = `
     >
       <img
         alt="BB"
-        class="avatar__styles.image"
+        class="avatar__styles.image avatar__styles.medium"
         draggable="false"
       />
     </span>
@@ -31,7 +31,7 @@ exports[`\`Avatar.Group\` Component in group 1`] = `
     >
       <img
         alt="CC"
-        class="avatar__styles.image"
+        class="avatar__styles.image avatar__styles.medium"
         draggable="false"
       />
     </span>
@@ -50,7 +50,7 @@ exports[`\`Avatar.Group\` Component in group, but is more than limit 1`] = `
     >
       <img
         alt="AA"
-        class="avatar__styles.image"
+        class="avatar__styles.image avatar__styles.medium"
         draggable="false"
       />
     </span>
@@ -60,7 +60,7 @@ exports[`\`Avatar.Group\` Component in group, but is more than limit 1`] = `
     >
       <img
         alt="BB"
-        class="avatar__styles.image"
+        class="avatar__styles.image avatar__styles.medium"
         draggable="false"
       />
     </span>
@@ -70,7 +70,7 @@ exports[`\`Avatar.Group\` Component in group, but is more than limit 1`] = `
     >
       <img
         alt="CC"
-        class="avatar__styles.image"
+        class="avatar__styles.image avatar__styles.medium"
         draggable="false"
       />
     </span>
@@ -80,7 +80,7 @@ exports[`\`Avatar.Group\` Component in group, but is more than limit 1`] = `
     >
       <img
         alt="DD"
-        class="avatar__styles.image"
+        class="avatar__styles.image avatar__styles.medium"
         draggable="false"
       />
     </span>
@@ -90,7 +90,7 @@ exports[`\`Avatar.Group\` Component in group, but is more than limit 1`] = `
     >
       <img
         alt="+2"
-        class="avatar__styles.image"
+        class="avatar__styles.image avatar__styles.medium"
         draggable="false"
       />
     </span>
@@ -106,7 +106,7 @@ exports[`\`Avatar\` Component mock image is loaded 1`] = `
   >
     <img
       alt="RJ"
-      class="avatar__styles.image"
+      class="avatar__styles.image avatar__styles.medium"
       draggable="false"
       src="https://aiszlab.com"
     />

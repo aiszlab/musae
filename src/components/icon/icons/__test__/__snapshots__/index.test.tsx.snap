@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`icons action icons render 1`] = `
+exports[`icons icons render 1`] = `
 <DocumentFragment>
   <div>
     <span
@@ -49,6 +49,23 @@ exports[`icons action icons render 1`] = `
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
+          d="M9.4 16.6L4.8 12L9.4 7.4L8 6L2 12L8 18L9.4 16.6ZM14.6 16.6L19.2 12L14.6 7.4L16 6L22 12L16 18L14.6 16.6Z"
+          fill="currentColor"
+        />
+      </svg>
+    </span>
+    <span
+      class="musae-icon icon__styles.icon"
+      style="--color: initial;"
+    >
+      <svg
+        fill="none"
+        height="16"
+        viewBox="0 0 24 24"
+        width="16"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
           d="M8.80001 15.8998L4.60001 11.6998L3.20001 13.0998L8.80001 18.6998L20.8 6.6998L19.4 5.2998L8.80001 15.8998Z"
           fill="currentColor"
         />
@@ -67,6 +84,23 @@ exports[`icons action icons render 1`] = `
       >
         <path
           d="M19.77 4.92961L21.17 6.32961L8.43 19.0696L2.83 13.4696L4.23 12.0696L8.43 16.2696L19.77 4.92961ZM19.77 2.09961L8.43 13.4396L4.23 9.23961L0 13.4696L8.43 21.8996L24 6.32961L19.77 2.09961Z"
+          fill="currentColor"
+        />
+      </svg>
+    </span>
+    <span
+      class="musae-icon icon__styles.icon"
+      style="--color: initial;"
+    >
+      <svg
+        fill="none"
+        height="16"
+        viewBox="0 0 24 24"
+        width="16"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M19 19H5V5H12V3H5C3.89 3 3 3.9 3 5V19C3 20.1 3.89 21 5 21H19C20.1 21 21 20.1 21 19V12H19V19ZM14 3V5H17.59L7.76 14.83L9.17 16.24L19 6.41V10H21V3H14Z"
           fill="currentColor"
         />
       </svg>
@@ -190,13 +224,6 @@ exports[`icons action icons render 1`] = `
         />
       </svg>
     </span>
-  </div>
-</DocumentFragment>
-`;
-
-exports[`icons alert icons render 1`] = `
-<DocumentFragment>
-  <div>
     <span
       class="musae-icon icon__styles.icon"
       style="--color: initial;"
@@ -324,13 +351,6 @@ exports[`icons alert icons render 1`] = `
         />
       </svg>
     </span>
-  </div>
-</DocumentFragment>
-`;
-
-exports[`icons content icons render 1`] = `
-<DocumentFragment>
-  <div>
     <span
       class="musae-icon icon__styles.icon"
       style="--color: initial;"
@@ -343,18 +363,79 @@ exports[`icons content icons render 1`] = `
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
-          d="M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12L19 6.41Z"
+          d="M18.63 11.1C16.78 9.49 14.38 8.5 11.73 8.5C7.07999 8.5 3.14999 11.53 1.76999 15.72L4.12999 16.5C5.17999 13.31 8.17999 11 11.73 11C13.68 11 15.46 11.72 16.85 12.88L13.23 16.5H22.23V7.5L18.63 11.1Z"
           fill="currentColor"
         />
       </svg>
     </span>
-  </div>
-</DocumentFragment>
-`;
-
-exports[`icons hardware icons render 1`] = `
-<DocumentFragment>
-  <div>
+    <span
+      class="musae-icon icon__styles.icon"
+      style="--color: initial;"
+    >
+      <svg
+        fill="none"
+        height="16"
+        viewBox="0 0 24 24"
+        width="16"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M9.17 15.5H14.81L15.95 18.5H18.04L12.93 5.5H11.07L5.96 18.5H8.05L9.17 15.5ZM12 7.98L14.07 13.5H9.93L12 7.98ZM20 2H4C2.9 2 2 2.9 2 4V20C2 21.1 2.9 22 4 22H20C21.1 22 22 21.1 22 20V4C22 2.9 21.1 2 20 2ZM20 20H4V4H20V20Z"
+          fill="currentColor"
+        />
+      </svg>
+    </span>
+    <span
+      class="musae-icon icon__styles.icon"
+      style="--color: initial;"
+    >
+      <svg
+        fill="none"
+        height="16"
+        viewBox="0 0 24 24"
+        width="16"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M14.39 11.0648L16 12.6748V11.0648H14.39ZM17 7.06481H13V8.9648H17C18.71 8.9648 20.1 10.3548 20.1 12.0648C20.1 13.3348 19.33 14.4348 18.23 14.9048L19.63 16.3048C21.05 15.4248 22 13.8548 22 12.0648C22 9.3048 19.76 7.06481 17 7.06481ZM2 4.3348L5.11 7.44481C3.29 8.1848 2 9.9748 2 12.0648C2 14.8248 4.24 17.0648 7 17.0648H11V15.1648H7C5.29 15.1648 3.9 13.7748 3.9 12.0648C3.9 10.4748 5.11 9.16481 6.66 8.99481L8.73 11.0648H8V13.0648H10.73L13 15.3348V17.0648H14.73L18.74 21.0748L20.15 19.6648L3.41 2.9248L2 4.3348Z"
+          fill="currentColor"
+        />
+      </svg>
+    </span>
+    <span
+      class="musae-icon icon__styles.icon"
+      style="--color: initial;"
+    >
+      <svg
+        fill="none"
+        height="16"
+        viewBox="0 0 24 24"
+        width="16"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M18.63 11.1C16.78 9.49 14.38 8.5 11.73 8.5C7.07999 8.5 3.14999 11.53 1.76999 15.72L4.12999 16.5C5.17999 13.31 8.17999 11 11.73 11C13.68 11 15.46 11.72 16.85 12.88L13.23 16.5H22.23V7.5L18.63 11.1Z"
+          fill="currentColor"
+        />
+      </svg>
+    </span>
+    <span
+      class="musae-icon icon__styles.icon"
+      style="--color: initial;"
+    >
+      <svg
+        fill="none"
+        height="16"
+        viewBox="0 0 24 24"
+        width="16"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M12.265 8.5C9.61501 8.5 7.21501 9.49 5.36501 11.1L1.76501 7.5V16.5H10.765L7.14501 12.88C8.53501 11.72 10.305 11 12.265 11C15.805 11 18.815 13.31 19.865 16.5L22.235 15.72C20.845 11.53 16.915 8.5 12.265 8.5Z"
+          fill="currentColor"
+        />
+      </svg>
+    </span>
     <span
       class="musae-icon icon__styles.icon"
       style="--color: initial;"
@@ -465,134 +546,6 @@ exports[`icons hardware icons render 1`] = `
         />
       </svg>
     </span>
-  </div>
-</DocumentFragment>
-`;
-
-exports[`icons image icons render 1`] = `
-<DocumentFragment>
-  <div>
-    <span
-      class="musae-icon icon__styles.icon"
-      style="--color: initial;"
-    >
-      <svg
-        fill="none"
-        height="16"
-        viewBox="0 0 24 24"
-        width="16"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M9.93998 4.48488C8.30998 12.0249 13.69 16.8949 17.6 18.2849C16.21 19.3749 14.48 19.9949 12.67 19.9949C8.25998 19.9949 4.66998 16.4049 4.66998 11.9949C4.66998 8.54488 6.86998 5.59488 9.93998 4.48488ZM12.66 2.00488C7.06998 2.00488 2.66998 6.53488 2.66998 11.9949C2.66998 17.5149 7.14998 21.9949 12.67 21.9949C16.38 21.9949 19.6 19.9749 21.33 16.9749C13.82 16.7249 9.23998 8.54488 13.01 2.00488H12.66Z"
-          fill="currentColor"
-        />
-      </svg>
-    </span>
-    <span
-      class="musae-icon icon__styles.icon"
-      style="--color: initial;"
-    >
-      <svg
-        fill="none"
-        height="16"
-        viewBox="0 0 24 24"
-        width="16"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M7.07497 10.0652L5.66497 8.64516C4.76497 9.80516 4.20497 11.1452 4.03497 12.5352H6.05497C6.19497 11.6652 6.54497 10.8152 7.07497 10.0652ZM6.05497 14.5352H4.03497C4.20497 15.9252 4.75497 17.2652 5.65497 18.4252L7.06497 17.0052C6.54497 16.2552 6.19497 15.4152 6.05497 14.5352ZM7.06497 19.8552C8.22497 20.7552 9.57497 21.2952 10.965 21.4652V19.4352C10.095 19.2852 9.25497 18.9452 8.50497 18.4052L7.06497 19.8552ZM12.965 5.60516V2.53516L8.41497 7.08516L12.965 11.5352V7.62516C15.805 8.10516 17.965 10.5652 17.965 13.5352C17.965 16.5052 15.805 18.9652 12.965 19.4452V21.4652C16.915 20.9752 19.965 17.6152 19.965 13.5352C19.965 9.45516 16.915 6.09516 12.965 5.60516Z"
-          fill="currentColor"
-        />
-      </svg>
-    </span>
-    <span
-      class="musae-icon icon__styles.icon"
-      style="--color: initial;"
-    >
-      <svg
-        fill="none"
-        height="16"
-        viewBox="0 0 24 24"
-        width="16"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M15.585 7.08516L11.035 2.53516V5.60516C7.09497 6.09516 4.03497 9.45516 4.03497 13.5352C4.03497 17.6152 7.08497 20.9752 11.035 21.4652V19.4452C8.19497 18.9652 6.03497 16.5052 6.03497 13.5352C6.03497 10.5652 8.19497 8.10516 11.035 7.62516V11.5352L15.585 7.08516ZM19.965 12.5352C19.795 11.1452 19.245 9.80516 18.345 8.64516L16.925 10.0652C17.465 10.8152 17.805 11.6652 17.945 12.5352H19.965ZM13.035 19.4352V21.4552C14.425 21.2852 15.775 20.7452 16.935 19.8452L15.495 18.4052C14.745 18.9452 13.905 19.2952 13.035 19.4352ZM16.925 17.0152L18.345 18.4252C19.245 17.2652 19.795 15.9252 19.965 14.5352H17.945C17.805 15.4052 17.465 16.2552 16.925 17.0152Z"
-          fill="currentColor"
-        />
-      </svg>
-    </span>
-    <span
-      class="musae-icon icon__styles.icon"
-      style="--color: initial;"
-    >
-      <svg
-        fill="none"
-        height="16"
-        viewBox="0 0 24 24"
-        width="16"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M6.76 5.3398L4.96 3.5498L3.55 4.9598L5.34 6.7498L6.76 5.3398ZM1 10.9998H4V12.9998H1V10.9998ZM11 1.0498H13V3.9998H11V1.0498ZM19.04 3.5448L20.448 4.9518L18.658 6.7418L17.251 5.3338L19.04 3.5448ZM17.24 18.6598L19.03 20.4598L20.44 19.0498L18.64 17.2598L17.24 18.6598ZM20 10.9998H23V12.9998H20V10.9998ZM12 5.9998C8.69 5.9998 6 8.6898 6 11.9998C6 15.3098 8.69 17.9998 12 17.9998C15.31 17.9998 18 15.3098 18 11.9998C18 8.6898 15.31 5.9998 12 5.9998ZM12 15.9998C9.79 15.9998 8 14.2098 8 11.9998C8 9.7898 9.79 7.9998 12 7.9998C14.21 7.9998 16 9.7898 16 11.9998C16 14.2098 14.21 15.9998 12 15.9998ZM11 19.9998H13V22.9498H11V19.9998ZM3.55 19.0398L4.96 20.4498L6.75 18.6498L5.34 17.2398L3.55 19.0398Z"
-          fill="currentColor"
-        />
-      </svg>
-    </span>
-  </div>
-</DocumentFragment>
-`;
-
-exports[`icons mock icons render 1`] = `
-<DocumentFragment>
-  <div>
-    <span
-      class="musae-icon icon__styles.icon"
-      style="--color: initial;"
-    >
-      <svg
-        fill="none"
-        height="16"
-        viewBox="0 0 24 24"
-        width="16"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          clip-rule="evenodd"
-          d="M12.026 2c-5.509 0-9.974 4.465-9.974 9.974 0 4.406 2.857 8.145 6.821 9.465.499.09.679-.217.679-.481 0-.237-.008-.865-.011-1.696-2.775.602-3.361-1.338-3.361-1.338-.452-1.152-1.107-1.459-1.107-1.459-.905-.619.069-.605.069-.605 1.002.07 1.527 1.028 1.527 1.028.89 1.524 2.336 1.084 2.902.829.091-.645.351-1.085.635-1.334-2.214-.251-4.542-1.107-4.542-4.93 0-1.087.389-1.979 1.024-2.675-.101-.253-.446-1.268.099-2.64 0 0 .837-.269 2.742 1.021a9.582 9.582 0 0 1 2.496-.336 9.554 9.554 0 0 1 2.496.336c1.906-1.291 2.742-1.021 2.742-1.021.545 1.372.203 2.387.099 2.64.64.696 1.024 1.587 1.024 2.675 0 3.833-2.33 4.675-4.552 4.922.355.308.675.916.675 1.846 0 1.334-.012 2.41-.012 2.737 0 .267.178.577.687.479C19.146 20.115 22 16.379 22 11.974 22 6.465 17.535 2 12.026 2z"
-          fill="currentColor"
-          fill-rule="evenodd"
-        />
-      </svg>
-    </span>
-    <span
-      class="musae-icon icon__styles.icon"
-      style="--color: initial;"
-    >
-      <svg
-        class="loading__styles.loading"
-        fill="none"
-        height="16"
-        viewBox="0 0 1024 1024"
-        width="16"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          clip-rule="evenodd"
-          d="M988 548c-19.9 0-36-16.1-36-36 0-59.4-11.6-117-34.6-171.3a440.45 440.45 0 00-94.3-139.9 437.71 437.71 0 00-139.9-94.3C629 83.6 571.4 72 512 72c-19.9 0-36-16.1-36-36s16.1-36 36-36c69.1 0 136.2 13.5 199.3 40.3C772.3 66 827 103 874 150c47 47 83.9 101.8 109.7 162.7 26.7 63.1 40.2 130.2 40.2 199.3.1 19.9-16 36-35.9 36z"
-          fill="currentColor"
-          fill-rule="evenodd"
-        />
-      </svg>
-    </span>
-  </div>
-</DocumentFragment>
-`;
-
-exports[`icons navigation icons render 1`] = `
-<DocumentFragment>
-  <div>
     <span
       class="musae-icon icon__styles.icon"
       style="--color: initial;"
@@ -678,13 +631,193 @@ exports[`icons navigation icons render 1`] = `
         />
       </svg>
     </span>
-  </div>
-</DocumentFragment>
-`;
-
-exports[`icons toggle icons render 1`] = `
-<DocumentFragment>
-  <div>
+    <span
+      class="musae-icon icon__styles.icon"
+      style="--color: initial;"
+    >
+      <svg
+        fill="none"
+        height="16"
+        viewBox="0 0 24 24"
+        width="16"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M9.93998 4.48488C8.30998 12.0249 13.69 16.8949 17.6 18.2849C16.21 19.3749 14.48 19.9949 12.67 19.9949C8.25998 19.9949 4.66998 16.4049 4.66998 11.9949C4.66998 8.54488 6.86998 5.59488 9.93998 4.48488ZM12.66 2.00488C7.06998 2.00488 2.66998 6.53488 2.66998 11.9949C2.66998 17.5149 7.14998 21.9949 12.67 21.9949C16.38 21.9949 19.6 19.9749 21.33 16.9749C13.82 16.7249 9.23998 8.54488 13.01 2.00488H12.66Z"
+          fill="currentColor"
+        />
+      </svg>
+    </span>
+    <span
+      class="musae-icon icon__styles.icon"
+      style="--color: initial;"
+    >
+      <svg
+        fill="none"
+        height="16"
+        viewBox="0 0 24 24"
+        width="16"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M14.0588 9.02L14.9788 9.94L5.91878 19H4.99878V18.08L14.0588 9.02ZM17.6588 3C17.4088 3 17.1488 3.1 16.9588 3.29L15.1288 5.12L18.8788 8.87L20.7088 7.04C21.0988 6.65 21.0988 6.02 20.7088 5.63L18.3688 3.29C18.1688 3.09 17.9188 3 17.6588 3ZM14.0588 6.19L2.99878 17.25V21H6.74878L17.8088 9.94L14.0588 6.19Z"
+          fill="currentColor"
+        />
+      </svg>
+    </span>
+    <span
+      class="musae-icon icon__styles.icon"
+      style="--color: initial;"
+    >
+      <svg
+        fill="none"
+        height="16"
+        viewBox="0 0 24 24"
+        width="16"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3ZM19 19H5V5H19V19ZM15 15V13C15 11.89 14.1 11 13 11H11V9H15V7H9V13H13V15H9V17H13C14.1 17 15 16.11 15 15Z"
+          fill="currentColor"
+        />
+      </svg>
+    </span>
+    <span
+      class="musae-icon icon__styles.icon"
+      style="--color: initial;"
+    >
+      <svg
+        fill="none"
+        height="16"
+        viewBox="0 0 24 24"
+        width="16"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3ZM19 19H5V5H19V19ZM13 17H15V7H13V11H11V7H9V13H13V17Z"
+          fill="currentColor"
+        />
+      </svg>
+    </span>
+    <span
+      class="musae-icon icon__styles.icon"
+      style="--color: initial;"
+    >
+      <svg
+        fill="none"
+        height="16"
+        viewBox="0 0 24 24"
+        width="16"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3ZM19 19H5V5H19V19ZM12 17H14V7H10V9H12V17Z"
+          fill="currentColor"
+        />
+      </svg>
+    </span>
+    <span
+      class="musae-icon icon__styles.icon"
+      style="--color: initial;"
+    >
+      <svg
+        fill="none"
+        height="16"
+        viewBox="0 0 24 24"
+        width="16"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3ZM19 19H5V5H19V19ZM15 15V13C15 11.89 14.1 11 13 11H11V9H15V7H9V13H13V15H9V17H13C14.1 17 15 16.11 15 15Z"
+          fill="currentColor"
+        />
+      </svg>
+    </span>
+    <span
+      class="musae-icon icon__styles.icon"
+      style="--color: initial;"
+    >
+      <svg
+        fill="none"
+        height="16"
+        viewBox="0 0 24 24"
+        width="16"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3ZM19 19H5V5H19V19ZM15 15V13.5C15 12.67 14.33 12 13.5 12C14.33 12 15 11.33 15 10.5V9C15 7.89 14.1 7 13 7H9V9H13V11H11V13H13V15H9V17H13C14.1 17 15 16.11 15 15Z"
+          fill="currentColor"
+        />
+      </svg>
+    </span>
+    <span
+      class="musae-icon icon__styles.icon"
+      style="--color: initial;"
+    >
+      <svg
+        fill="none"
+        height="16"
+        viewBox="0 0 24 24"
+        width="16"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3ZM19 19H5V5H19V19ZM15 15H11V13H13C14.1 13 15 12.11 15 11V9C15 7.89 14.1 7 13 7H9V9H13V11H11C9.9 11 9 11.89 9 13V17H15V15Z"
+          fill="currentColor"
+        />
+      </svg>
+    </span>
+    <span
+      class="musae-icon icon__styles.icon"
+      style="--color: initial;"
+    >
+      <svg
+        fill="none"
+        height="16"
+        viewBox="0 0 24 24"
+        width="16"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M7.07497 10.0652L5.66497 8.64516C4.76497 9.80516 4.20497 11.1452 4.03497 12.5352H6.05497C6.19497 11.6652 6.54497 10.8152 7.07497 10.0652ZM6.05497 14.5352H4.03497C4.20497 15.9252 4.75497 17.2652 5.65497 18.4252L7.06497 17.0052C6.54497 16.2552 6.19497 15.4152 6.05497 14.5352ZM7.06497 19.8552C8.22497 20.7552 9.57497 21.2952 10.965 21.4652V19.4352C10.095 19.2852 9.25497 18.9452 8.50497 18.4052L7.06497 19.8552ZM12.965 5.60516V2.53516L8.41497 7.08516L12.965 11.5352V7.62516C15.805 8.10516 17.965 10.5652 17.965 13.5352C17.965 16.5052 15.805 18.9652 12.965 19.4452V21.4652C16.915 20.9752 19.965 17.6152 19.965 13.5352C19.965 9.45516 16.915 6.09516 12.965 5.60516Z"
+          fill="currentColor"
+        />
+      </svg>
+    </span>
+    <span
+      class="musae-icon icon__styles.icon"
+      style="--color: initial;"
+    >
+      <svg
+        fill="none"
+        height="16"
+        viewBox="0 0 24 24"
+        width="16"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M15.585 7.08516L11.035 2.53516V5.60516C7.09497 6.09516 4.03497 9.45516 4.03497 13.5352C4.03497 17.6152 7.08497 20.9752 11.035 21.4652V19.4452C8.19497 18.9652 6.03497 16.5052 6.03497 13.5352C6.03497 10.5652 8.19497 8.10516 11.035 7.62516V11.5352L15.585 7.08516ZM19.965 12.5352C19.795 11.1452 19.245 9.80516 18.345 8.64516L16.925 10.0652C17.465 10.8152 17.805 11.6652 17.945 12.5352H19.965ZM13.035 19.4352V21.4552C14.425 21.2852 15.775 20.7452 16.935 19.8452L15.495 18.4052C14.745 18.9452 13.905 19.2952 13.035 19.4352ZM16.925 17.0152L18.345 18.4252C19.245 17.2652 19.795 15.9252 19.965 14.5352H17.945C17.805 15.4052 17.465 16.2552 16.925 17.0152Z"
+          fill="currentColor"
+        />
+      </svg>
+    </span>
+    <span
+      class="musae-icon icon__styles.icon"
+      style="--color: initial;"
+    >
+      <svg
+        fill="none"
+        height="16"
+        viewBox="0 0 24 24"
+        width="16"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M6.76 5.3398L4.96 3.5498L3.55 4.9598L5.34 6.7498L6.76 5.3398ZM1 10.9998H4V12.9998H1V10.9998ZM11 1.0498H13V3.9998H11V1.0498ZM19.04 3.5448L20.448 4.9518L18.658 6.7418L17.251 5.3338L19.04 3.5448ZM17.24 18.6598L19.03 20.4598L20.44 19.0498L18.64 17.2598L17.24 18.6598ZM20 10.9998H23V12.9998H20V10.9998ZM12 5.9998C8.69 5.9998 6 8.6898 6 11.9998C6 15.3098 8.69 17.9998 12 17.9998C15.31 17.9998 18 15.3098 18 11.9998C18 8.6898 15.31 5.9998 12 5.9998ZM12 15.9998C9.79 15.9998 8 14.2098 8 11.9998C8 9.7898 9.79 7.9998 12 7.9998C14.21 7.9998 16 9.7898 16 11.9998C16 14.2098 14.21 15.9998 12 15.9998ZM11 19.9998H13V22.9498H11V19.9998ZM3.55 19.0398L4.96 20.4498L6.75 18.6498L5.34 17.2398L3.55 19.0398Z"
+          fill="currentColor"
+        />
+      </svg>
+    </span>
     <span
       class="musae-icon icon__styles.icon"
       style="--color: initial;"
@@ -733,6 +866,198 @@ exports[`icons toggle icons render 1`] = `
         <path
           d="M22 9.74L14.81 9.12L12 2.5L9.19 9.13L2 9.74L7.46 14.47L5.82 21.5L12 17.77L18.18 21.5L16.55 14.47L22 9.74ZM12 15.9L8.24 18.17L9.24 13.89L5.92 11.01L10.3 10.63L12 6.6L13.71 10.64L18.09 11.02L14.77 13.9L15.77 18.18L12 15.9Z"
           fill="currentColor"
+        />
+      </svg>
+    </span>
+    <span
+      class="musae-icon icon__styles.icon"
+      style="--color: initial;"
+    >
+      <svg
+        fill="none"
+        height="16"
+        viewBox="0 0 24 24"
+        width="16"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M22 7.53484H13V9.53484H22V7.53484ZM22 15.5348H13V17.5348H22V15.5348ZM5.54 11.5348L2 7.99484L3.41 6.58484L5.53 8.70484L9.77 4.46484L11.18 5.87484L5.54 11.5348ZM5.54 19.5348L2 15.9948L3.41 14.5848L5.53 16.7048L9.77 12.4648L11.18 13.8748L5.54 19.5348Z"
+          fill="currentColor"
+        />
+      </svg>
+    </span>
+    <span
+      class="musae-icon icon__styles.icon"
+      style="--color: initial;"
+    >
+      <svg
+        fill="none"
+        height="16"
+        viewBox="0 0 24 24"
+        width="16"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M15.225 11.79C16.195 11.12 16.875 10.02 16.875 9C16.875 6.74 15.125 5 12.875 5H6.625V19H13.665C15.755 19 17.375 17.3 17.375 15.21C17.375 13.69 16.515 12.39 15.225 11.79ZM9.625 7.5H12.625C13.455 7.5 14.125 8.17 14.125 9C14.125 9.83 13.455 10.5 12.625 10.5H9.625V7.5ZM13.125 16.5H9.625V13.5H13.125C13.955 13.5 14.625 14.17 14.625 15C14.625 15.83 13.955 16.5 13.125 16.5Z"
+          fill="currentColor"
+        />
+      </svg>
+    </span>
+    <span
+      class="musae-icon icon__styles.icon"
+      style="--color: initial;"
+    >
+      <svg
+        fill="none"
+        height="16"
+        viewBox="0 0 24 24"
+        width="16"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M10 5V8H12.21L8.79 16H6V19H14V16H11.79L15.21 8H18V5H10Z"
+          fill="currentColor"
+        />
+      </svg>
+    </span>
+    <span
+      class="musae-icon icon__styles.icon"
+      style="--color: initial;"
+    >
+      <svg
+        fill="none"
+        height="16"
+        viewBox="0 0 24 24"
+        width="16"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M10 19.5H14V16.5H10V19.5ZM5 4.5V7.5H10V10.5H14V7.5H19V4.5H5ZM3 14.5H21V12.5H3V14.5Z"
+          fill="currentColor"
+        />
+      </svg>
+    </span>
+    <span
+      class="musae-icon icon__styles.icon"
+      style="--color: initial;"
+    >
+      <svg
+        fill="none"
+        height="16"
+        viewBox="0 0 24 24"
+        width="16"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M12 17C15.31 17 18 14.31 18 11V3H15.5V11C15.5 12.93 13.93 14.5 12 14.5C10.07 14.5 8.5 12.93 8.5 11V3H6V11C6 14.31 8.69 17 12 17ZM5 19V21H19V19H5Z"
+          fill="currentColor"
+        />
+      </svg>
+    </span>
+    <span
+      class="musae-icon icon__styles.icon"
+      style="--color: initial;"
+    >
+      <svg
+        fill="none"
+        height="16"
+        viewBox="0 0 24 24"
+        width="16"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M3.9 12C3.9 10.29 5.29 8.9 7 8.9H11V7H7C4.24 7 2 9.24 2 12C2 14.76 4.24 17 7 17H11V15.1H7C5.29 15.1 3.9 13.71 3.9 12ZM8 13H16V11H8V13ZM17 7H13V8.9H17C18.71 8.9 20.1 10.29 20.1 12C20.1 13.71 18.71 15.1 17 15.1H13V17H17C19.76 17 22 14.76 22 12C22 9.24 19.76 7 17 7Z"
+          fill="currentColor"
+        />
+      </svg>
+    </span>
+    <span
+      class="musae-icon icon__styles.icon"
+      style="--color: initial;"
+    >
+      <svg
+        fill="none"
+        height="16"
+        viewBox="0 0 24 24"
+        width="16"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M21 11.01L3 11V13H21V11.01ZM3 16H15V18H3V16ZM21 6H3V8.01L21 8V6Z"
+          fill="currentColor"
+        />
+      </svg>
+    </span>
+    <span
+      class="musae-icon icon__styles.icon"
+      style="--color: initial;"
+    >
+      <svg
+        fill="none"
+        height="16"
+        viewBox="0 0 24 24"
+        width="16"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M19.56 18H17.56V19H20.56V20H16.56V18C16.56 17.45 17.01 17 17.56 17H19.56V16H16.56V15H19.56C20.11 15 20.56 15.45 20.56 16V17C20.56 17.55 20.11 18 19.56 18ZM3.44 18H6.1L9.5 12.58H9.62L13.02 18H15.68L11.03 10.73L15.37 4H12.69L9.62 8.99H9.5L6.41 4H3.75L8.07 10.73L3.44 18Z"
+          fill="currentColor"
+        />
+      </svg>
+    </span>
+    <span
+      class="musae-icon icon__styles.icon"
+      style="--color: initial;"
+    >
+      <svg
+        fill="none"
+        height="16"
+        viewBox="0 0 24 24"
+        width="16"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M19.56 7H17.56V8H20.56V9H16.56V7C16.56 6.45 17.01 6 17.56 6H19.56V5H16.56V4H19.56C20.11 4 20.56 4.45 20.56 5V6C20.56 6.55 20.11 7 19.56 7ZM3.44 20H6.1L9.5 14.58H9.62L13.02 20H15.68L11.03 12.73L15.37 6H12.69L9.62 10.99H9.5L6.41 6H3.75L8.07 12.73L3.44 20Z"
+          fill="currentColor"
+        />
+      </svg>
+    </span>
+    <span
+      class="musae-icon icon__styles.icon"
+      style="--color: initial;"
+    >
+      <svg
+        fill="none"
+        height="16"
+        viewBox="0 0 24 24"
+        width="16"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          clip-rule="evenodd"
+          d="M12.026 2c-5.509 0-9.974 4.465-9.974 9.974 0 4.406 2.857 8.145 6.821 9.465.499.09.679-.217.679-.481 0-.237-.008-.865-.011-1.696-2.775.602-3.361-1.338-3.361-1.338-.452-1.152-1.107-1.459-1.107-1.459-.905-.619.069-.605.069-.605 1.002.07 1.527 1.028 1.527 1.028.89 1.524 2.336 1.084 2.902.829.091-.645.351-1.085.635-1.334-2.214-.251-4.542-1.107-4.542-4.93 0-1.087.389-1.979 1.024-2.675-.101-.253-.446-1.268.099-2.64 0 0 .837-.269 2.742 1.021a9.582 9.582 0 0 1 2.496-.336 9.554 9.554 0 0 1 2.496.336c1.906-1.291 2.742-1.021 2.742-1.021.545 1.372.203 2.387.099 2.64.64.696 1.024 1.587 1.024 2.675 0 3.833-2.33 4.675-4.552 4.922.355.308.675.916.675 1.846 0 1.334-.012 2.41-.012 2.737 0 .267.178.577.687.479C19.146 20.115 22 16.379 22 11.974 22 6.465 17.535 2 12.026 2z"
+          fill="currentColor"
+          fill-rule="evenodd"
+        />
+      </svg>
+    </span>
+    <span
+      class="musae-icon icon__styles.icon"
+      style="--color: initial;"
+    >
+      <svg
+        class="loading__styles.loading"
+        fill="none"
+        height="16"
+        viewBox="0 0 1024 1024"
+        width="16"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          clip-rule="evenodd"
+          d="M988 548c-19.9 0-36-16.1-36-36 0-59.4-11.6-117-34.6-171.3a440.45 440.45 0 00-94.3-139.9 437.71 437.71 0 00-139.9-94.3C629 83.6 571.4 72 512 72c-19.9 0-36-16.1-36-36s16.1-36 36-36c69.1 0 136.2 13.5 199.3 40.3C772.3 66 827 103 874 150c47 47 83.9 101.8 109.7 162.7 26.7 63.1 40.2 130.2 40.2 199.3.1 19.9-16 36-35.9 36z"
+          fill="currentColor"
+          fill-rule="evenodd"
         />
       </svg>
     </span>
