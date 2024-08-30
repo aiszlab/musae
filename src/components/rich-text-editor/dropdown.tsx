@@ -1,19 +1,17 @@
 import { Button } from "../button";
 import React, { type Key, useMemo, useRef } from "react";
 import { Popover, type PopoverRef } from "../popover";
-import { Menu, type MenuItem } from "../menu";
+import { Menu } from "../menu";
 import { Empty } from "../empty";
 import { useEvent } from "@aiszlab/relax";
+import { DropdownProps } from "./types";
 
 const Dropdown = <T extends Key = Key>({
   items: _items = new Map(),
   value,
   onChange,
-}: {
-  items?: Map<T, Omit<MenuItem, "key">>;
-  value: T;
-  onChange: (value: T) => void;
-}) => {
+  children,
+}: DropdownProps<T>) => {
   const popoverRef = useRef<PopoverRef>(null);
 
   const onClick = useEvent(async (key: Key) => {
@@ -45,7 +43,7 @@ const Dropdown = <T extends Key = Key>({
       ref={popoverRef}
     >
       <Button variant="text" size="small">
-        {_items.get(value)?.label}
+        {children ?? _items.get(value)?.label}
       </Button>
     </Popover>
   );

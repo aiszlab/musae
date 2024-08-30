@@ -260,6 +260,8 @@ const ToolbarPlugin = () => {
         >
           <Code />
         </Button>
+
+        <Dropdown items={blockFormats} value={blockFormat} onChange={formatBlock} />
       </div>
 
       <FloatingLinkEditorPlugin link={linkNode} />

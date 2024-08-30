@@ -1,5 +1,7 @@
 import { type Props as ContentEditableProps } from "@lexical/react/LexicalContentEditable";
 import { type EditorThemeClasses as _EditorThemeClasses } from "lexical";
+import type { MenuItem } from "../menu";
+import type { ReactNode } from "react";
 
 /**
  * @description
@@ -46,4 +48,15 @@ export type EditorThemeClasses = _EditorThemeClasses & {
       unchecked?: string;
     };
   };
+};
+
+/**
+ * @description
+ * dropdown items
+ */
+export type DropdownProps<T> = {
+  items?: Map<T, Omit<MenuItem, "key">>;
+  value: T;
+  onChange: (value: T) => void;
+  children?: ReactNode;
 };

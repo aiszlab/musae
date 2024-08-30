@@ -24,6 +24,7 @@ import { $patchStyleText, $setBlocksType } from "@lexical/selection";
 import { $createHeadingNode, type HeadingTagType } from "@lexical/rich-text";
 import { INSERT_CHECK_LIST_COMMAND } from "@lexical/list";
 import { $createCodeNode } from "@lexical/code";
+import { DropdownProps } from "../../types";
 
 type BlockFormat = HeadingTagType | "paragraph" | "check" | "code-block";
 
@@ -100,9 +101,9 @@ export const useHandlers = ({ isLink }: { isLink: boolean }) => {
 export const useBlockFormats = () => {
   const [editor] = useLexicalComposerContext();
 
-  const blockFormats = useMemo(
+  const blockFormats = useMemo<DropdownProps<BlockFormat>["items"]>(
     () =>
-      new Map<BlockFormat, Omit<MenuItem, "key">>([
+      new Map([
         [
           "paragraph",
           {
@@ -243,8 +244,8 @@ export const useFontSizes = () => {
   const [editor] = useLexicalComposerContext();
   const [fontSize, setFontSize] = useState(DEFAULT_FONT_SIZE);
 
-  const fontSizes = useMemo(() => {
-    return new Map<string, Omit<MenuItem, "key">>([
+  const fontSizes = useMemo<DropdownProps<string>["items"]>(() => {
+    return new Map([
       ["12px", { label: "12px" }],
       ["13px", { label: "13px" }],
       ["14px", { label: "14px" }],
@@ -284,5 +285,25 @@ export const useFontSizes = () => {
     fontSizes,
     setFontSize: _setFontSize,
     updateFontSize,
+  };
+};
+
+/**
+ * @description
+ * more font formats
+ */
+export const useFontFormats = () => {
+  const [isStrikethrough, setIsStrikethrough] = useState(false);
+  const [fontFormated, setFontFormated] = useState("");
+
+  const fontFormats = useMemo<DropdownProps<string>["items"]>(() => {
+    return new Map();
+  }, []);
+
+  const _setFontFormated = useCallback((value: string) => {
+  }, []);
+
+  return {
+    fontFormats,
   };
 };
