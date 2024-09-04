@@ -1,7 +1,7 @@
 import React, { type CSSProperties } from "react";
 import { Layout } from "../layout";
 import stylex from "@stylexjs/stylex";
-import { elevations, sizes, spacing } from "../theme/tokens.stylex";
+import { elevations, ElevationToken, sizes, spacing } from "../theme/tokens.stylex";
 import type { BenchProps } from "./types";
 import { Divider } from "../divider";
 import { useLogo, useNavigations } from "./hooks";
@@ -38,10 +38,10 @@ const styles = {
   }),
 
   header: stylex.create({
-    default: {
+    default: (props: { elevation: ElevationToken }) => ({
       gap: spacing.small,
-      boxShadow: elevations.small,
-    },
+      boxShadow: elevations[props.elevation],
+    }),
 
     navigation: {
       marginLeft: spacing.medium,
@@ -66,6 +66,7 @@ const Bench = ({
   location,
   defaultExpandedKeys,
   classNames: { main: mainClassName } = {},
+  elevation = "xsmall",
 }: BenchProps) => {
   const theme = useTheme();
   const _logo = useLogo(logo);
@@ -77,7 +78,7 @@ const Bench = ({
 
   const styled = {
     bench: stylex.props(styles.bench.default),
-    header: stylex.props(styles.header.default),
+    header: stylex.props(styles.header.default({ elevation })),
     main: stylex.props(styles.bench.main),
     sider: stylex.props(
       styles.bench.sider({ outlineColor: theme.colors[ColorToken.OutlineVariant] }),

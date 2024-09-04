@@ -1,5 +1,6 @@
-import { Key, ReactNode } from "react";
-import { ComponentProps } from "../../types/element";
+import type { Key, ReactNode } from "react";
+import type { ComponentProps } from "../../types/element";
+import type { ElevationToken } from "../theme/tokens.stylex";
 
 export type Logo = {
   /**
@@ -88,4 +89,11 @@ export type BenchProps = ComponentProps & {
    * class names
    */
   classNames?: Partial<Record<"main", string>>;
+
+  // TODO: add to docs
+  /**
+   * @description
+   * elevation
+   */
+  elevation?: ElevationToken;
 };
