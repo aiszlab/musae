@@ -61,7 +61,7 @@ importers:
         version: 11.3.28(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       lexical:
         specifier: ^0.17.0
-        version: 0.17.0
+        version: 0.17.1
       react-hook-form:
         specifier: ^7.52.2
         version: 7.52.2(react@18.3.1)
@@ -2931,6 +2931,9 @@ packages:
 
   lexical@0.17.0:
     resolution: {integrity: sha512-cCFmANO5rIf34NF0go/hxp5S3V5Z8G2Rsa1FJy50qF2WM5EJNJ/MqN75TApjfgMkfrbO6gau3X12nCqwsT7aDg==}
+
+  lexical@0.17.1:
+    resolution: {integrity: sha512-72/MhR7jqmyqD10bmJw8gztlCm4KDDT+TPtU4elqXrEvHoO5XENi34YAEUD9gIkPfqSwyLa9mwAX1nKzIr5xEA==}
 
   lib0@0.2.97:
     resolution: {integrity: sha512-Q4d1ekgvufi9FiHkkL46AhecfNjznSL9MRNoJRQ76gBHS9OqU2ArfQK0FvBpuxgWeJeNI0LVgAYMIpsGeX4gYg==}
@@ -7563,6 +7566,8 @@ snapshots:
       type-check: 0.4.0
 
   lexical@0.17.0: {}
+
+  lexical@0.17.1: {}
 
   lib0@0.2.97:
     dependencies:
