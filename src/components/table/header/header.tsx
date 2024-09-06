@@ -5,7 +5,7 @@ import type { HeaderProps } from "../types";
 import * as stylex from "@stylexjs/stylex";
 import { sizes, spacing } from "../../theme/tokens.stylex";
 import { useTheme } from "../../theme";
-import clsx from "clsx";
+import { clsx } from "@aiszlab/relax";
 import { ColorToken } from "../../../utils/colors";
 import { typography } from "../../theme/theme";
 

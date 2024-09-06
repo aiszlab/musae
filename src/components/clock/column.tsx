@@ -13,12 +13,11 @@ import { ColumnProps } from "./types";
 import { Menu, MenuRef } from "../menu";
 import { useClassNames } from "../../hooks/use-class-names";
 import { ClockClassToken } from "../../utils/class-name";
-import { isVoid } from "@aiszlab/relax";
+import { isVoid, clsx } from "@aiszlab/relax";
 import * as stylex from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
-import clsx from "clsx";
 import { ComponentToken } from "../../utils/component-token";
 
 const styles = stylex.create({

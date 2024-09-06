@@ -1,7 +1,7 @@
 import stylex from "@stylexjs/stylex";
 import { layers, sizes, spacing } from "../theme/tokens.stylex";
 
-export default {
+const styles = {
   checkbox: stylex.create({
     default: {
       display: "inline-flex",
@@ -100,3 +100,5 @@ export default {
     },
   }),
 };
+
+export default styles;

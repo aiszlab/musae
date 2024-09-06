@@ -4,7 +4,7 @@ import Item from "./item";
 import { useClassNames } from "../../hooks/use-class-names";
 import { StepsClassToken } from "../../utils/class-name";
 import stylex from "@stylexjs/stylex";
-import clsx from "clsx";
+import { clsx } from "@aiszlab/relax";
 import { Context } from "./context";
 import { spacing } from "../theme/tokens.stylex";
 import { ComponentToken } from "../../utils/component-token";

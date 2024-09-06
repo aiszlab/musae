@@ -4,7 +4,7 @@ import { useTheme } from "../theme";
 import * as stylex from "@stylexjs/stylex";
 import { ColorToken } from "../../utils/colors";
 import { positions, sizes, spacing } from "../theme/tokens.stylex";
-import clsx from "clsx";
+import { clsx } from "@aiszlab/relax";
 
 const styles = stylex.create({
   header: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({

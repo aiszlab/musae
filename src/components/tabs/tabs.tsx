@@ -3,7 +3,7 @@ import type { ContextValue, TabsProps } from "./types";
 import Context from "./context";
 import { useClassNames } from "../../hooks/use-class-names";
 import { TabsClassToken } from "../../utils/class-name";
-import clsx from "clsx";
+import { clsx } from "@aiszlab/relax";
 import { useTabs } from "./hooks";
 import Panels from "./panels";
 import Navigation from "./navigation";

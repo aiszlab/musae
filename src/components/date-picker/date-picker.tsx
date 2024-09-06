@@ -6,7 +6,7 @@ import { useValue } from "./hooks";
 import { useClassNames } from "../../hooks/use-class-names";
 import { DatePickerClassToken } from "../../utils/class-name";
 import * as stylex from "@stylexjs/stylex";
-import clsx from "clsx";
+import { clsx } from "@aiszlab/relax";
 import { spacing } from "../theme/tokens.stylex";
 import { styles as inputStyles } from "../input";
 import { ComponentToken } from "../../utils/component-token";

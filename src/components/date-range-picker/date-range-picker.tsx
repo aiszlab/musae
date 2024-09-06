@@ -7,7 +7,7 @@ import { SwapHoriz } from "../icon/icons";
 import { useClassNames } from "../../hooks/use-class-names";
 import { DateRangePickerClassToken } from "../../utils/class-name";
 import * as stylex from "@stylexjs/stylex";
-import clsx from "clsx";
+import { clsx } from "@aiszlab/relax";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { ComponentToken } from "../../utils/component-token";
 

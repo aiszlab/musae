@@ -6,6 +6,7 @@ import {
   useEvent,
   useFocus,
   useClickAway,
+  clsx,
 } from "@aiszlab/relax";
 import React, {
   cloneElement,
@@ -24,7 +25,6 @@ import { spacing } from "../theme/tokens.stylex";
 import { typography } from "../theme/theme";
 import { useClassNames } from "../../hooks/use-class-names";
 import { PopoverClassToken } from "../../utils/class-name";
-import clsx from "clsx";
 import { ComponentToken } from "../../utils/component-token";
 import { useIsOpen } from "./hooks";
 

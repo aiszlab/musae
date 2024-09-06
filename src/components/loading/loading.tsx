@@ -4,7 +4,7 @@ import type { LoadingProps } from "./types";
 import { sizes } from "../theme/tokens.stylex";
 import { useClassNames } from "../../hooks/use-class-names";
 import { LoadingClassToken } from "../../utils/class-name";
-import clsx from "clsx";
+import { clsx } from "@aiszlab/relax";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
 import { ComponentToken } from "../../utils/component-token";

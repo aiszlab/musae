@@ -5,7 +5,7 @@ import stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
 import { useClassNames } from "../../hooks/use-class-names";
 import { TransferClassToken } from "../../utils/class-name";
-import clsx from "clsx";
+import { clsx } from "@aiszlab/relax";
 import { ComponentToken } from "../../utils/component-token";
 
 const styles = stylex.create({

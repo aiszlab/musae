@@ -3,7 +3,7 @@ import type { RateProps } from "./types";
 import stylex from "@stylexjs/stylex";
 import { useClassNames } from "../../hooks/use-class-names";
 import { RateClassToken } from "../../utils/class-name";
-import clsx from "clsx";
+import { clsx } from "@aiszlab/relax";
 import { useHover, useValue } from "./hooks";
 import Star from "./star";
 import { ComponentToken } from "../../utils/component-token";

@@ -12,7 +12,7 @@ import { CalendarClassToken } from "../../utils/class-name";
 import * as stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
 import { typography } from "../theme/theme";
-import clsx from "clsx";
+import { clsx } from "@aiszlab/relax";
 import { Button } from "../button";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";

@@ -6,7 +6,7 @@ import { ColorToken } from "../../utils/colors";
 import { type BreadcrumbItemProps } from "./types";
 import { useClassNames } from "../../hooks/use-class-names";
 import { BreadcrumbClassToken } from "../../utils/class-name";
-import clsx from "clsx";
+import { clsx } from "@aiszlab/relax";
 import { ComponentToken } from "../../utils/component-token";
 
 const styles = {

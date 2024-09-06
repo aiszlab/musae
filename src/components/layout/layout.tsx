@@ -5,7 +5,7 @@ import { ChildToken, useChildren } from "./hooks";
 import stylex from "@stylexjs/stylex";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
-import clsx from "clsx";
+import { clsx } from "@aiszlab/relax";
 
 const styles = stylex.create({
   layout: (props: {

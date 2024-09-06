@@ -9,7 +9,7 @@ import { Menu } from "../menu";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
 import { typography } from "../theme/theme";
-import clsx from "clsx";
+import { clsx } from "@aiszlab/relax";
 
 const { Header, Main, Sider } = Layout;
 

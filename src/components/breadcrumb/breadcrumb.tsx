@@ -6,7 +6,7 @@ import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
 import { useClassNames } from "../../hooks/use-class-names";
 import { BreadcrumbClassToken } from "../../utils/class-name";
-import clsx from "clsx";
+import { clsx } from "@aiszlab/relax";
 import Item from "./item";
 import { ComponentToken } from "../../utils/component-token";
 

@@ -8,10 +8,9 @@ import { Select } from "../select";
 import type { Option } from "../../types/option";
 import { useClassNames } from "../../hooks/use-class-names";
 import { PaginationClassToken } from "../../utils/class-name";
-import clsx from "clsx";
 import { ComponentToken } from "../../utils/component-token";
 import { useLocale } from "../../locale";
-import { toFunction } from "@aiszlab/relax";
+import { toFunction, clsx } from "@aiszlab/relax";
 
 const styles = stylex.create({
   pagination: {

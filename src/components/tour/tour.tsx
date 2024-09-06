@@ -11,7 +11,7 @@ import { Space } from "../space";
 import { typography } from "../theme/theme";
 import { useClassNames } from "../../hooks/use-class-names";
 import { TourClassToken } from "../../utils/class-name";
-import clsx from "clsx";
+import { clsx } from "@aiszlab/relax";
 import { useStep } from "./hooks";
 import Spotlight from "./spotlight";
 import { useGutters } from "../../hooks/use-gutters";

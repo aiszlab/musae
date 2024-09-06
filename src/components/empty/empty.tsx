@@ -3,7 +3,7 @@ import { useClassNames } from "../../hooks/use-class-names";
 import { EmptyClassToken } from "../../utils/class-name";
 import * as stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
-import clsx from "clsx";
+import { clsx } from "@aiszlab/relax";
 import { typography } from "../theme/theme";
 import { useLocale } from "../../locale";
 import { ComponentToken } from "../../utils/component-token";

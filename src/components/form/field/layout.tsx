@@ -8,7 +8,7 @@ import { typography } from "../../theme/theme";
 import { spacing } from "../../theme/tokens.stylex";
 import { useTheme } from "../../theme";
 import { ColorToken } from "../../../utils/colors";
-import clsx from "clsx";
+import { clsx } from "@aiszlab/relax";
 
 const { Row, Col } = Grid;
 

@@ -1,9 +1,8 @@
 import React, { useEffect, useMemo, useRef } from "react";
-import { isFunction } from "@aiszlab/relax";
+import { isFunction, clsx } from "@aiszlab/relax";
 import { computePosition, size, autoUpdate, offset } from "@floating-ui/dom";
 import { Nullable } from "@aiszlab/relax/types";
 import stylex from "@stylexjs/stylex";
-import clsx from "clsx";
 import { useClassNames } from "../../hooks/use-class-names";
 import { TourClassToken } from "../../utils/class-name";
 import { SpotlightProps } from "./types";

@@ -3,7 +3,7 @@ import type { SkeletonProps } from "./types";
 import React from "react";
 import { useClassNames } from "../../hooks/use-class-names";
 import { SkeletonClassToken } from "../../utils/class-name";
-import clsx from "clsx";
+import { clsx } from "@aiszlab/relax";
 import { sizes } from "../theme/tokens.stylex";
 import { ComponentToken } from "../../utils/component-token";
 

@@ -1,13 +1,12 @@
 import React, { forwardRef, useImperativeHandle } from "react";
 import type { MenuProps, MenuRef } from "./types";
 import Context from "./context";
-import { useScrollable } from "@aiszlab/relax";
+import { useScrollable, clsx } from "@aiszlab/relax";
 import { useContextValue, useScrollOrientation } from "./hooks";
 import Group from "./group";
 import * as stylex from "@stylexjs/stylex";
 import { useClassNames } from "../../hooks/use-class-names";
 import { MenuClassToken } from "../../utils/class-name";
-import clsx from "clsx";
 import { ComponentToken } from "../../utils/component-token";
 
 const styles = stylex.create({

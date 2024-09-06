@@ -3,7 +3,7 @@ import { Picker, type PickerRef } from "../picker";
 import { useOptions, useValue } from "./hooks";
 import { SelectClassToken } from "../../utils/class-name";
 import type { SelectProps, SelectorRef, ValueOrValues } from "./types";
-import clsx from "clsx";
+import { clsx } from "@aiszlab/relax";
 import stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
 import Selector from "./selector";

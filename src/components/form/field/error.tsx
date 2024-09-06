@@ -2,7 +2,7 @@ import { type FieldError } from "react-hook-form";
 import type { ComponentProps } from "../../../types/element";
 import React, { type CSSProperties, useEffect } from "react";
 import { FormClassToken } from "../../../utils/class-name";
-import clsx from "clsx";
+import { clsx } from "@aiszlab/relax";
 import { useAnimate, usePresence } from "framer-motion";
 import stylex from "@stylexjs/stylex";
 import { spacing } from "../../theme/tokens.stylex";

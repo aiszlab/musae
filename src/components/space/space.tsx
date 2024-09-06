@@ -2,7 +2,7 @@ import React from "react";
 import type { SpaceProps } from "./types";
 import * as stylex from "@stylexjs/stylex";
 import { useGutters } from "../../hooks/use-gutters";
-import clsx from "clsx";
+import { clsx } from "@aiszlab/relax";
 
 const styles = stylex.create({
   space: (props: { columnGap: number; rowGap: number }) => ({

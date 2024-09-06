@@ -8,7 +8,7 @@ import * as stylex from "@stylexjs/stylex";
 import { positions, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
-import clsx from "clsx";
+import { clsx } from "@aiszlab/relax";
 import { typography } from "../theme/theme";
 import { contains } from "@aiszlab/relax/dom";
 import { useClosable } from "../../hooks/use-closable";

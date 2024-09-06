@@ -8,14 +8,13 @@ import React, {
   type FocusEvent,
 } from "react";
 import { Popper } from "../popper";
-import { useBoolean, useFocus, useEvent } from "@aiszlab/relax";
+import { useBoolean, useFocus, useEvent, clsx } from "@aiszlab/relax";
 import type { PickerProps, PickerRef } from "./types";
 import { PickerClassToken } from "../../utils/class-name";
 import { useClassNames } from "../../hooks/use-class-names";
 import * as stylex from "@stylexjs/stylex";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
-import clsx from "clsx";
 import { typography } from "../theme/theme";
 import { styles as inputStyles } from "../input";
 import { Context } from "./context";

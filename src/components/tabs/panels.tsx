@@ -4,7 +4,7 @@ import { spacing } from "../theme/tokens.stylex";
 import { useClassNames } from "../../hooks/use-class-names";
 import { TabsClassToken } from "../../utils/class-name";
 import { type PanelsProps } from "./types";
-import clsx from "clsx";
+import { clsx } from "@aiszlab/relax";
 import { isUndefined, isVoid } from "@aiszlab/relax";
 import { useTabsContext } from "./hooks";
 import { ComponentToken } from "../../utils/component-token";

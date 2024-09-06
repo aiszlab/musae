@@ -5,7 +5,7 @@ import { CollapseClassToken } from "../../utils/class-name";
 import Item from "./item";
 import stylex from "@stylexjs/stylex";
 import { sizes } from "../theme/tokens.stylex";
-import clsx from "clsx";
+import { clsx } from "@aiszlab/relax";
 import { useActiveKeys } from "./hooks";
 import { Context } from "./context";
 import { useTheme } from "../theme";

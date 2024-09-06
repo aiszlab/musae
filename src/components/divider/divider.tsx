@@ -8,7 +8,7 @@ import { sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
 import { typography } from "../theme/theme";
-import clsx from "clsx";
+import { clsx } from "@aiszlab/relax";
 import { ComponentToken } from "../../utils/component-token";
 
 const styles = {

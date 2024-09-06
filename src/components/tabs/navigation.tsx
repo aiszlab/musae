@@ -1,4 +1,3 @@
-import clsx from "clsx";
 import React, { useEffect, useRef, type CSSProperties, type Key } from "react";
 import stylex from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";
@@ -7,7 +6,7 @@ import { TabsClassToken } from "../../utils/class-name";
 import { type NavigationProps } from "./types";
 import Tab from "./tab";
 import { useAnimate } from "framer-motion";
-import { isUndefined } from "@aiszlab/relax";
+import { isUndefined, clsx } from "@aiszlab/relax";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
 import { useNavigation, useNavigatorScroll, useTabsContext } from "./hooks";

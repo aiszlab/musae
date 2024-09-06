@@ -1,11 +1,10 @@
 import React, { type CSSProperties } from "react";
 import type { SwitchProps } from "./types";
-import { useControlledState, useEvent } from "@aiszlab/relax";
+import { useControlledState, useEvent, clsx } from "@aiszlab/relax";
 import * as stylex from "@stylexjs/stylex";
 import { layers, sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
-import clsx from "clsx";
 import { useClassNames } from "../../hooks/use-class-names";
 import { SwitchClassToken } from "../../utils/class-name";
 import { Close, Check } from "../icon/icons";

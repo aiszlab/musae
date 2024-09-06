@@ -3,12 +3,11 @@ import { useClassNames } from "../../hooks/use-class-names";
 import { BadgeClassToken } from "../../utils/class-name";
 import type { BadgeProps } from "./types";
 import stylex from "@stylexjs/stylex";
-import clsx from "clsx";
 import { typography } from "../theme/theme";
 import { sizes } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
-import { isVoid } from "@aiszlab/relax";
+import { isVoid, clsx } from "@aiszlab/relax";
 import { ComponentToken } from "../../utils/component-token";
 
 const styles = {

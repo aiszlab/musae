@@ -9,7 +9,7 @@ import { Checkbox } from "../checkbox";
 import { Context } from "./context";
 import { useClassNames } from "../../hooks/use-class-names";
 import { TransferClassToken } from "../../utils/class-name";
-import clsx from "clsx";
+import { clsx } from "@aiszlab/relax";
 import { typography } from "../theme/theme";
 import { ComponentToken } from "../../utils/component-token";
 import { useLocale } from "../../locale";

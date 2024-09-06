@@ -1,8 +1,7 @@
 import React, { CSSProperties, createElement } from "react";
-import { useEvent, useHover } from "@aiszlab/relax";
+import { useEvent, useHover, clsx } from "@aiszlab/relax";
 import stylex from "@stylexjs/stylex";
 import { sizes } from "../theme/tokens.stylex";
-import clsx from "clsx";
 import { useClassNames } from "../../hooks/use-class-names";
 import { RateClassToken } from "../../utils/class-name";
 import { Star as _Star } from "../icon/icons";

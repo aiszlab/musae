@@ -1,5 +1,5 @@
 import React, { type CSSProperties } from "react";
-import clsx from "clsx";
+import { clsx } from "@aiszlab/relax";
 import type { TagProps } from "./types";
 import { useClassNames } from "../../hooks/use-class-names";
 import { TagClassToken } from "../../utils/class-name";

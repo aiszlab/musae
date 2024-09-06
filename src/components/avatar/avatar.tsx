@@ -7,9 +7,8 @@ import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
 import { useClassNames } from "../../hooks/use-class-names";
 import { AvatarClassToken } from "../../utils/class-name";
-import clsx from "clsx";
 import { typography } from "../theme/theme";
-import { useImageLoader } from "@aiszlab/relax";
+import { useImageLoader, clsx } from "@aiszlab/relax";
 import { ComponentToken } from "../../utils/component-token";
 
 const styles = stylex.create({

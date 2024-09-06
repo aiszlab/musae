@@ -3,7 +3,7 @@ import { useTable } from "./context";
 import { flexRender } from "@tanstack/react-table";
 import type { BodyProps } from "./types";
 import * as stylex from "@stylexjs/stylex";
-import clsx from "clsx";
+import { clsx } from "@aiszlab/relax";
 import { typography } from "../theme/theme";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";

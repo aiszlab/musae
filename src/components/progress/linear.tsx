@@ -3,7 +3,7 @@ import stylex from "@stylexjs/stylex";
 import { LinearProps } from "./types";
 import { useClassNames } from "../../hooks/use-class-names";
 import { ProgressClassToken } from "../../utils/class-name";
-import clsx from "clsx";
+import { clsx } from "@aiszlab/relax";
 import { sizes } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";

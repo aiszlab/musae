@@ -6,8 +6,8 @@ import { useClassNames } from "../../hooks/use-class-names";
 import { AvatarClassToken } from "../../utils/class-name";
 import { Popover } from "../popover";
 import Avatar from "./avatar";
-import clsx from "clsx";
 import { ComponentToken } from "../../utils/component-token";
+import { clsx } from "@aiszlab/relax";
 
 const styles = stylex.create({
   group: {

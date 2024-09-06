@@ -15,7 +15,7 @@ import dayjs from "dayjs";
 import * as stylex from "@stylexjs/stylex";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
-import clsx from "clsx";
+import { clsx } from "@aiszlab/relax";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { ComponentToken } from "../../utils/component-token";
 import { useLocale } from "../../locale";

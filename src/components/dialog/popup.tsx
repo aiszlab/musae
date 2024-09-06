@@ -9,7 +9,7 @@ import { positions, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
 import { typography } from "../theme/theme";
-import clsx from "clsx";
+import { clsx } from "@aiszlab/relax";
 import { contains } from "@aiszlab/relax/dom";
 import { useClosable } from "../../hooks/use-closable";
 import { ComponentToken } from "../../utils/component-token";
