@@ -9,7 +9,7 @@ import { createRequire } from "module";
 
 const require = createRequire(import.meta.url);
 const pkg = require("./package.json");
-const CSS_ASSET_FILENAME = "stylex.css";
+const CSS_ASSET_FILENAME = "styles.css";
 const ENTRY = "index";
 const EXTENSIONS = [".ts", ".tsx", ".js", ".jsx"];
 

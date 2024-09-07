@@ -20,6 +20,7 @@
       "types": "./dist/index.d.ts",
       "default": "./dist/index.js"
     },
+    "./styles.css": "./dist/styles.css",
     "./locales": {
       "types": "./dist/locale/locales/index.d.ts",
       "default": "./dist/locale/locales/index.js"
