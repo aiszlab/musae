@@ -49,4 +49,5 @@ export enum ComponentToken {
   VisuallyHidden,
   Highlight,
   I18nButton,
+  Quote,
 }

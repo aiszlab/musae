@@ -1,5 +1,11 @@
 # musae
 
+## 0.2.21
+
+### Patch Changes
+
+- - add `quote` component
+
 ## 0.2.19
 
 ### Patch Changes

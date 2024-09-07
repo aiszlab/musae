@@ -274,6 +274,9 @@ export enum HighlightClassToken {
   Highlight,
   Capture,
 }
+export enum QuoteClassToken {
+  Quote,
+}
 
 /**
  * @description
@@ -534,7 +537,11 @@ export const CLASS_NAMES = {
     [HighlightClassToken.Highlight]: "highlight",
     [HighlightClassToken.Capture]: "highlight__capture",
   },
+  // TODO
   [ComponentToken.I18nButton]: {},
+  [ComponentToken.Quote]: {
+    [QuoteClassToken.Quote]: "quote",
+  },
 };
 
 /**
