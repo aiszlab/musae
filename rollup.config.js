@@ -12,6 +12,7 @@ const pkg = require("./package.json");
 const CSS_ASSET_FILENAME = "styles.css";
 const ENTRY = "index";
 const EXTENSIONS = [".ts", ".tsx", ".js", ".jsx"];
+const STYLES_IMPORT = `${pkg.name}/${CSS_ASSET_FILENAME}`;
 
 /**
  * @type {import("rollup").RollupOptions["input"]}
@@ -51,12 +52,12 @@ const config = () => {
           // configuration readme: https://rollupjs.org/configuration-options/#output-banner-output-footer
           // update imports, importedBindings
           // add css to entry chunk
-          chunk.imports.push(CSS_ASSET_FILENAME);
+          chunk.imports.push(STYLES_IMPORT);
           Object.assign(chunk.importedBindings, {
-            [CSS_ASSET_FILENAME]: [],
+            [STYLES_IMPORT]: [],
           });
 
-          return `import "./${CSS_ASSET_FILENAME}";`;
+          return `import "${STYLES_IMPORT}";`;
         }
       },
       preserveModules: true,

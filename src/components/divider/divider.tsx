@@ -10,16 +10,21 @@ import { ColorToken } from "../../utils/colors";
 import { typography } from "../theme/theme";
 import { clsx } from "@aiszlab/relax";
 import { ComponentToken } from "../../utils/component-token";
+import { type Gutters, useGutters } from "../../hooks/use-gutters";
 
 const styles = {
   divider: stylex.create({
-    horizontal: {
+    horizontal: (props: { margins: Gutters }) => ({
       width: sizes.full,
-    },
+      marginBlockStart: props.margins[0],
+      marginBlockEnd: props.margins[1],
+    }),
 
-    vertical: {
+    vertical: (props: { margins: Gutters }) => ({
       height: sizes.full,
-    },
+      marginInlineStart: props.margins[0],
+      marginInlineEnd: props.margins[1],
+    }),
   }),
 
   simple: stylex.create({
@@ -95,15 +100,17 @@ const Divider = ({
   orientation = "horizontal",
   className,
   style,
+  margin = 0,
 }: DividerProps) => {
   const classNames = useClassNames(ComponentToken.Divider);
   const offset = useOffset({ align });
   const theme = useTheme();
   const isLabeled = !!children;
+  const margins = useGutters({ gutter: margin });
 
   const styled = {
     divider: stylex.props(
-      styles.divider[orientation],
+      styles.divider[orientation]({ margins }),
       !isLabeled &&
         styles.simple[orientation]({
           backgroundColor: theme.colors[ColorToken.OutlineVariant],

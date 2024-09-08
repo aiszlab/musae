@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
-import { ComponentProps } from "../../types/element";
+import type { ComponentProps } from "../../types/element";
+import type { Gutter } from "../../hooks/use-gutters";
 
 export type Align = "center" | "left" | "right";
 
@@ -24,11 +25,16 @@ export interface DividerProps extends ComponentProps {
    */
   align?: Align;
 
-  // TODO update to docs
   /**
    * @description
    * orientation
    * @default "horizontal"
    */
   orientation?: Orientation;
+
+  /**
+   * @description
+   * margin
+   */
+  margin?: Gutter;
 }
