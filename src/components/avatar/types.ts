@@ -1,4 +1,5 @@
 import type { ReactNode, RefAttributes } from "react";
+import { ComponentProps } from "../../types/element";
 
 type Size = "small" | "medium" | "large";
 
@@ -8,7 +9,7 @@ type Shape = "circular" | "squared";
  * @description
  * avatar props
  */
-export type AvatarProps = {
+export type AvatarProps = ComponentProps & {
   /**
    * @description
    * src

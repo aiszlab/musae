@@ -71,7 +71,10 @@ const styles = stylex.create({
  * `Avatar`
  */
 const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(
-  ({ src, alt, shape: _shape = "circular", size: _size = "medium", ...props }, ref) => {
+  (
+    { src, alt, shape: _shape = "circular", size: _size = "medium", className, style, ...props },
+    ref,
+  ) => {
     const theme = useTheme();
     const group = useContext(Context);
     const isInGroup = !!group;
@@ -100,8 +103,11 @@ const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(
     return (
       <span
         {...props}
-        className={clsx(classNames[AvatarClassToken.Avatar], styled.avatar.className)}
-        style={styled.avatar.style}
+        className={clsx(classNames[AvatarClassToken.Avatar], className, styled.avatar.className)}
+        style={{
+          ...styled.avatar.style,
+          ...style,
+        }}
         ref={ref}
       >
         {loadStatus === "loaded" ? (

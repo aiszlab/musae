@@ -1,5 +1,11 @@
 # musae
 
+## 0.2.24
+
+### Patch Changes
+
+- avatar add styles prop
+
 ## 0.2.21
 
 ### Patch Changes
