@@ -7,11 +7,10 @@ import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
 import { LinkPlugin } from "@lexical/react/LexicalLinkPlugin";
 import { ClickableLinkPlugin } from "@lexical/react/LexicalClickableLinkPlugin";
 import { ListPlugin } from "@lexical/react/LexicalListPlugin";
-import { OnChangePlugin } from "@lexical/react/LexicalOnChangePlugin";
 import CheckListPlugin from "./plugins/check-list";
 import ControlledStatePlugin from "./plugins/controlled-state";
 
-import { useDefault, useEvent, useIdentity } from "@aiszlab/relax";
+import { useDefault, useIdentity } from "@aiszlab/relax";
 import { useMessage } from "../message";
 import stylex from "@stylexjs/stylex";
 
@@ -32,10 +31,10 @@ import {
 } from "./nodes/checkable-list-item";
 
 import ToolbarPlugin from "./plugins/toolbar";
-import MarkdownShortcutPlugin from "./plugins/markdown-shortcut";
+import MarkdownShortcutPlugin, { TRANSFORMERS } from "./plugins/markdown-shortcut";
 import { typography } from "../theme/theme";
 import { styles as checkboxStyles } from "../checkbox";
-import { type EditorState } from "lexical";
+import { $convertFromMarkdownString } from "@lexical/markdown";
 
 const styles = stylex.create({
   shell: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
@@ -108,12 +107,16 @@ const styles = stylex.create({
 const RichTextEditor = ({
   placeholder,
   disabled = false,
+  defaultValue,
   value,
+  use: __use = "serialized",
   onChange,
+  ...props
 }: RichTextEditorProps) => {
   const [id] = useIdentity();
   const [messager, holder] = useMessage();
   const theme = useTheme();
+  const _use = useDefault(() => __use);
 
   const styled = {
     shell: stylex.props(
@@ -195,12 +198,14 @@ const RichTextEditor = ({
       ],
       theme,
       editable: !disabled,
+      editorState: () => {
+        const _value = value ?? defaultValue;
+        if (_use === "serialized")
+          return '{"root":{"children":[{"children":[],"direction":null,"format":"","indent":0,"type":"paragraph","version":1}],"direction":null,"format":"","indent":0,"type":"root","version":1}}';
+        if (!_value) return;
+        $convertFromMarkdownString(_value, TRANSFORMERS);
+      },
     };
-  });
-
-  const change = useEvent((state: EditorState) => {
-    const _value = JSON.stringify(state.toJSON());
-    onChange?.(_value);
   });
 
   return (
@@ -214,7 +219,7 @@ const RichTextEditor = ({
               className={styled.editor.className}
               style={styled.editor.style}
               placeholder={placeholder ?? (() => null)}
-              aria-placeholder="Enter text..."
+              aria-placeholder={props["aria-placeholder"] ?? ""}
             />
           }
           ErrorBoundary={LexicalErrorBoundary}
@@ -230,8 +235,7 @@ const RichTextEditor = ({
         <ListPlugin />
         <CheckListPlugin />
 
-        <ControlledStatePlugin value={value} />
-        <OnChangePlugin onChange={change} />
+        <ControlledStatePlugin value={value} use={_use} onChange={onChange} />
 
         {/* message holder */}
         {holder}

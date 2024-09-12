@@ -4,15 +4,18 @@ import {
   ELEMENT_TRANSFORMERS,
   TEXT_FORMAT_TRANSFORMERS,
   TEXT_MATCH_TRANSFORMERS,
+  type Transformer,
 } from "@lexical/markdown";
+
+export const TRANSFORMERS: Transformer[] = [
+  ...ELEMENT_TRANSFORMERS,
+  ...TEXT_FORMAT_TRANSFORMERS,
+  ...TEXT_MATCH_TRANSFORMERS,
+];
 
 const MarkdownShortcutPlugin = () => {
   return createElement(_MarkdownShortcutPlugin, {
-    transformers: [
-      ...ELEMENT_TRANSFORMERS,
-      ...TEXT_FORMAT_TRANSFORMERS,
-      ...TEXT_MATCH_TRANSFORMERS,
-    ],
+    transformers: TRANSFORMERS,
   });
 };
 

@@ -1,13 +1,15 @@
 import { type Props as ContentEditableProps } from "@lexical/react/LexicalContentEditable";
 import { type EditorThemeClasses as _EditorThemeClasses } from "lexical";
 import type { MenuItem } from "../menu";
-import type { ReactNode } from "react";
+import type { HTMLAttributes, ReactNode } from "react";
+
+export type Use = "markdown" | "serialized";
 
 /**
  * @description
  * rich text editor props
  */
-export type RichTextEditorProps = {
+export type RichTextEditorProps = Pick<HTMLAttributes<HTMLDivElement>, "aria-placeholder"> & {
   /**
    * @description
    * placeholder
@@ -22,9 +24,21 @@ export type RichTextEditorProps = {
 
   /**
    * @description
+   * default value
+   */
+  defaultValue?: string;
+
+  /**
+   * @description
    * value
    */
   value?: string;
+
+  /**
+   * @description
+   * use value type
+   */
+  use?: Use;
 
   /**
    * @description
