@@ -37,6 +37,7 @@ export type RichTextEditorProps = Pick<HTMLAttributes<HTMLDivElement>, "aria-pla
   /**
    * @description
    * use value type
+   * @default "serialized"
    */
   use?: Use;
 

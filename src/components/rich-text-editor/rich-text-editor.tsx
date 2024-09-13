@@ -109,14 +109,13 @@ const RichTextEditor = ({
   disabled = false,
   defaultValue,
   value,
-  use: __use = "serialized",
   onChange,
   ...props
 }: RichTextEditorProps) => {
   const [id] = useIdentity();
   const [messager, holder] = useMessage();
   const theme = useTheme();
-  const _use = useDefault(() => __use);
+  const _use = useDefault(() => props.use ?? "serialized");
 
   const styled = {
     shell: stylex.props(
@@ -198,12 +197,19 @@ const RichTextEditor = ({
       ],
       theme,
       editable: !disabled,
-      editorState: () => {
+      editorState: (editor) => {
         const _value = value ?? defaultValue;
-        if (_use === "serialized")
-          return '{"root":{"children":[{"children":[],"direction":null,"format":"","indent":0,"type":"paragraph","version":1}],"direction":null,"format":"","indent":0,"type":"root","version":1}}';
         if (!_value) return;
-        $convertFromMarkdownString(_value, TRANSFORMERS);
+
+        // different value usage, use different serialization
+        switch (_use) {
+          case "markdown":
+            $convertFromMarkdownString(_value, TRANSFORMERS);
+            break;
+          default:
+            editor.setEditorState(editor.parseEditorState(_value));
+            break;
+        }
       },
     };
   });
