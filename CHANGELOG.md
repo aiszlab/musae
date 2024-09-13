@@ -1,5 +1,12 @@
 # musae
 
+## 0.2.25
+
+### Patch Changes
+
+- - improve rich-text-editor component
+  - improve use controlled state api
+
 ## 0.2.24
 
 ### Patch Changes
