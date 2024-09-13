@@ -13,7 +13,7 @@ export const useValue = ([_value, _change, ref]: [
   DateRangePickerProps["onChange"],
   RefObject<PickerRef>,
 ]) => {
-  const [value, setValue] = useControlledState(_value!, {
+  const [value, setValue] = useControlledState(_value, {
     defaultState: [void 0, void 0],
   });
 
