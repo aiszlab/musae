@@ -1,5 +1,11 @@
 # musae
 
+## 0.2.26
+
+### Patch Changes
+
+- add components props
+
 ## 0.2.25
 
 ### Patch Changes
