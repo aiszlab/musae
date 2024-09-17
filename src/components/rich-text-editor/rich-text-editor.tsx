@@ -108,7 +108,6 @@ const RichTextEditor = ({
   placeholder,
   disabled = false,
   defaultValue,
-  value,
   onChange,
   ...props
 }: RichTextEditorProps) => {
@@ -197,20 +196,19 @@ const RichTextEditor = ({
       ],
       theme,
       editable: !disabled,
-      editorState: (editor) => {
-        const _value = value ?? defaultValue;
-        if (!_value) return;
-
-        // different value usage, use different serialization
-        switch (_use) {
-          case "markdown":
-            $convertFromMarkdownString(_value, TRANSFORMERS);
-            break;
-          default:
-            editor.setEditorState(editor.parseEditorState(_value));
-            break;
-        }
-      },
+      editorState:
+        defaultValue &&
+        ((editor) => {
+          // different value usage, use different serialization
+          switch (_use) {
+            case "markdown":
+              $convertFromMarkdownString(defaultValue, TRANSFORMERS);
+              break;
+            default:
+              editor.setEditorState(editor.parseEditorState(defaultValue));
+              break;
+          }
+        }),
     };
   });
 
@@ -241,7 +239,7 @@ const RichTextEditor = ({
         <ListPlugin />
         <CheckListPlugin />
 
-        <ControlledStatePlugin value={value} use={_use} onChange={onChange} />
+        <ControlledStatePlugin use={_use} onChange={onChange} />
 
         {/* message holder */}
         {holder}
