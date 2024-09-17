@@ -2,6 +2,8 @@ import type { Key, ReactNode } from "react";
 import type { ComponentProps } from "../../types/element";
 import type { ElevationToken } from "../theme/tokens.stylex";
 
+export type Guidance = "top-side" | "side";
+
 export type Logo = {
   /**
    * @description
@@ -96,4 +98,12 @@ export type BenchProps = ComponentProps & {
    * elevation
    */
   elevation?: ElevationToken;
+
+  // TODO: add to docs
+  /**
+   * @description
+   * guidance
+   * @default "top-side"
+   */
+  guidance?: Guidance;
 };

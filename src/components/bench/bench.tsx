@@ -67,6 +67,7 @@ const Bench = ({
   defaultExpandedKeys,
   classNames: { main: mainClassName } = {},
   elevation = "xsmall",
+  guidance = "top-side",
 }: BenchProps) => {
   const theme = useTheme();
   const _logo = useLogo(logo);
@@ -74,6 +75,7 @@ const Bench = ({
     navigations,
     onNavigate,
     location,
+    guidance,
   });
 
   const styled = {

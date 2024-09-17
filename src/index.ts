@@ -79,3 +79,4 @@ export type { TreeProps } from "./components/tree";
 export type { TourStep } from "./components/tour";
 export type { NavigationItem } from "./components/bench";
 export type { Locale } from "./locale";
+export type { TableProps } from "./components/table";

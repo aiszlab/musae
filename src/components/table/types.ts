@@ -126,12 +126,6 @@ export type HeaderProps = ComponentProps;
 
 /**
  * @description
- * body props
- */
-export type BodyProps = ComponentProps;
-
-/**
- * @description
  * header cell props
  */
 export type HeaderCellProps = {

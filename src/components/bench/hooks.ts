@@ -1,7 +1,7 @@
 import { type Key, useMemo } from "react";
-import type { BenchProps, Logo, NavigationItem } from "./types";
+import type { BenchProps, Guidance, Logo, NavigationItem } from "./types";
 import type { Partialable } from "@aiszlab/relax/types";
-import { MenuItem } from "../menu";
+import type { MenuItem } from "../menu";
 import { isUndefined, useEvent } from "@aiszlab/relax";
 
 /**
@@ -25,16 +25,15 @@ export const useLogo = (logo?: string | Logo) => {
 const toMenuItem = (
   { path, children, ...item }: NavigationItem,
   parentKeys: Key[],
-  paths: Map<Key, Key[]>,
 ): [MenuItem, Map<Key, Key[]>] => {
   // convert children
   const [_menuItems, _paths] = (children ?? []).reduce<[MenuItem[], Map<Key, Key[]>]>(
     ([_menuItems, _paths], child) => {
-      const [menuItem, paths] = toMenuItem(child, [...parentKeys, path], _paths);
+      const [menuItem, paths] = toMenuItem(child, [...parentKeys, path]);
       _menuItems.push(menuItem);
-      return [_menuItems, paths];
+      return [_menuItems, new Map([..._paths, ...paths])];
     },
-    [[], new Map(paths.set(path, parentKeys))],
+    [[], new Map([[path, parentKeys]])],
   );
 
   // return with paths
@@ -56,10 +55,12 @@ export const useNavigations = ({
   navigations,
   onNavigate,
   location,
+  guidance,
 }: {
   navigations: NavigationItem[];
   onNavigate: BenchProps["onNavigate"];
   location?: string;
+  guidance: Guidance;
 }) => {
   // menu click handler => jump link
   const navigate = useEvent((path: Key) => {
@@ -72,19 +73,26 @@ export const useNavigations = ({
   });
 
   // convert navigations into diff menus
-  const [topMenuItems, sideNavigations, paths] = useMemo(() => {
+  const [topNavigations, sideNavigations, paths] = useMemo(() => {
     return navigations.reduce<
       [Map<Key, MenuItem>, Map<Key, Partialable<MenuItem[]>>, Map<Key, Key[]>]
     >(
-      ([topMenuItems, sideNavigations, paths], item) => {
-        const [{ children, ..._menuItem }, _paths] = toMenuItem(item, [], paths);
-        topMenuItems.set(item.path, _menuItem);
-        sideNavigations.set(item.path, children);
-        return [topMenuItems, sideNavigations, _paths];
+      ([_topNavigations, _sideNavigations, _paths], item) => {
+        const [{ children, ..._menuItem }, ___paths] = toMenuItem(item, []);
+        const __paths = new Map([...___paths, ..._paths]);
+
+        if (guidance === "side") {
+          _sideNavigations.set(item.path, [{ ..._menuItem, children }]);
+          return [_topNavigations, _sideNavigations, __paths];
+        }
+
+        _topNavigations.set(item.path, _menuItem);
+        _sideNavigations.set(item.path, children);
+        return [_topNavigations, _sideNavigations, __paths];
       },
       [new Map(), new Map(), new Map()],
     );
-  }, [navigations]);
+  }, [guidance, navigations]);
 
   // menu selected keys
   const selectedKeys = useMemo<[Key?, Key?]>(() => {
@@ -92,16 +100,26 @@ export const useNavigations = ({
     return [paths.get(location)?.at(0) ?? location, location];
   }, [location, paths]);
 
+  // side menu
   const sideMenuItems = useMemo<MenuItem[]>(() => {
-    if (!selectedKeys[0]) {
-      return [];
+    // top menu items is empty, show all in side menu
+    if (topNavigations.size === 0) {
+      return Array.from(sideNavigations.values()).flatMap((items = []) => items, []);
     }
+
+    // top-side relation
+    if (!selectedKeys[0]) return [];
     return sideNavigations.get(selectedKeys[0]) ?? [];
-  }, [sideNavigations, selectedKeys]);
+  }, [selectedKeys, sideNavigations, topNavigations]);
+
+  // top menu items
+  const topMenuItems = useMemo(() => {
+    return Array.from(topNavigations.values());
+  }, [topNavigations]);
 
   return {
     selectedKeys,
-    topMenuItems: useMemo(() => Array.from(topMenuItems.values()), [topMenuItems]),
+    topMenuItems,
     sideMenuItems,
     navigate,
   };

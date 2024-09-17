@@ -71,7 +71,7 @@
     "pnpm": ">=9"
   },
   "dependencies": {
-    "@aiszlab/relax": "^1.3.10",
+    "@aiszlab/relax": "^1.3.13",
     "@babel/runtime": "^7.25.6",
     "@dnd-kit/core": "^6.1.0",
     "@dnd-kit/modifiers": "^7.0.0",
