@@ -77,9 +77,9 @@ const Checkbox = ({
   return (
     <label
       className={clsx(
-        styled.checkbox.className,
-        className,
         classNames[CheckboxClassToken.Checkbox],
+        className,
+        styled.checkbox.className,
       )}
       style={{
         ...styled.checkbox.style,

@@ -1,5 +1,5 @@
 import { type Key, useMemo } from "react";
-import type { BenchProps, Guidance, Logo, NavigationItem } from "./types";
+import type { BenchProps, Layout, Logo, NavigationItem } from "./types";
 import type { Partialable } from "@aiszlab/relax/types";
 import type { MenuItem } from "../menu";
 import { isUndefined, useEvent } from "@aiszlab/relax";
@@ -55,12 +55,12 @@ export const useNavigations = ({
   navigations,
   onNavigate,
   location,
-  guidance,
+  layout,
 }: {
   navigations: NavigationItem[];
   onNavigate: BenchProps["onNavigate"];
   location?: string;
-  guidance: Guidance;
+  layout: Layout;
 }) => {
   // menu click handler => jump link
   const navigate = useEvent((path: Key) => {
@@ -81,7 +81,7 @@ export const useNavigations = ({
         const [{ children, ..._menuItem }, ___paths] = toMenuItem(item, []);
         const __paths = new Map([...___paths, ..._paths]);
 
-        if (guidance === "side") {
+        if (layout === "side") {
           _sideNavigations.set(item.path, [{ ..._menuItem, children }]);
           return [_topNavigations, _sideNavigations, __paths];
         }
@@ -92,7 +92,7 @@ export const useNavigations = ({
       },
       [new Map(), new Map(), new Map()],
     );
-  }, [guidance, navigations]);
+  }, [layout, navigations]);
 
   // menu selected keys
   const selectedKeys = useMemo<[Key?, Key?]>(() => {

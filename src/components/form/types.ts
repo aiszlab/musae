@@ -67,7 +67,8 @@ export interface FormProps<T extends FieldValues> extends ComponentProps {
  * form item props
  */
 export interface FormItemProps<T extends FieldValues = FieldValues>
-  extends Pick<FormProps<T>, "labelCol" | "wrapperCol"> {
+  extends Pick<FormProps<T>, "labelCol" | "wrapperCol">,
+    ComponentProps {
   /**
    * @description
    * name

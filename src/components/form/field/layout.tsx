@@ -9,6 +9,7 @@ import { spacing } from "../../theme/tokens.stylex";
 import { useTheme } from "../../theme";
 import { ColorToken } from "../../../utils/colors";
 import { clsx } from "@aiszlab/relax";
+import { ComponentProps } from "../../../types/element";
 
 const { Row, Col } = Grid;
 
@@ -30,7 +31,7 @@ const styles = stylex.create({
  * @description
  * layout props
  */
-type Props = {
+type Props = ComponentProps & {
   /**
    * @description
    * children
@@ -72,7 +73,7 @@ type Props = {
  * @description
  * item layout
  */
-const Layout = ({ required, space, ...props }: Props) => {
+const Layout = ({ required, space, className, style, ...props }: Props) => {
   const contextValue = useContext(Context);
   const labelCol = props.labelCol ?? contextValue.labelCol;
   const wrapperCol = props.wrapperCol ?? contextValue.wrapperCol;
@@ -89,16 +90,29 @@ const Layout = ({ required, space, ...props }: Props) => {
     ),
   };
 
+  const isLabeled = !!labelCol && !!props.label;
+  const _className = clsx(className, styled.item.className);
+  const _style = {
+    ...styled.item.style,
+    ...style,
+  };
+
+  if (!isLabeled) {
+    return (
+      <div className={_className} style={_style}>
+        {props.children}
+      </div>
+    );
+  }
+
   return (
-    <Row gutter={[0, 8]} className={styled.item.className} style={styled.item.style}>
+    <Row gutter={[0, 8]} className={_className} style={_style}>
       {/* label */}
-      {!!labelCol && props.label && (
-        <Col span={labelCol}>
-          <span className={clsx(styled.label.className)} style={styled.label.style}>
-            {props.label}
-          </span>
-        </Col>
-      )}
+      <Col span={labelCol}>
+        <span className={clsx(styled.label.className)} style={styled.label.style}>
+          {props.label}
+        </span>
+      </Col>
 
       {/* input */}
       <Col span={wrapperCol}>{props.children}</Col>

@@ -7,6 +7,7 @@ const styles = {
       display: "inline-flex",
       alignItems: "center",
       cursor: "pointer",
+      userSelect: "none",
     },
 
     disabled: {

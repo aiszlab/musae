@@ -29,6 +29,8 @@ const styles = stylex.create({
 const Field = ({
   required,
   children: _children,
+  className,
+  style,
   ...props
 }: RequiredIn<FormItemProps, "name" | "required">) => {
   const classNames = useClassNames(ComponentToken.Form);
@@ -74,7 +76,7 @@ const Field = ({
   };
 
   return (
-    <div className={clsx(classNames[FormClassToken.Item])}>
+    <div className={clsx(classNames[FormClassToken.Item], className)} style={style}>
       <Layout label={props.label} required={required}>
         <div>{children}</div>
 

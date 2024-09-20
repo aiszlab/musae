@@ -19,6 +19,7 @@ const styles = stylex.create({
     overflow: "hidden",
     display: "inline-flex",
     alignItems: "center",
+    justifyContent: "center",
     gap: spacing.small,
     whiteSpace: "nowrap",
     transitionProperty: "all",
