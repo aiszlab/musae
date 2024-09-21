@@ -5,7 +5,7 @@ import { useClassNames } from "../../hooks/use-class-names";
 import { TimePickerClassToken } from "../../utils/class-name";
 import Panel from "./panel";
 import { useValue } from "./hooks";
-import * as stylex from "@stylexjs/stylex";
+import stylex from "@stylexjs/stylex";
 import { useEvent, clsx } from "@aiszlab/relax";
 import { styles as inputStyles } from "../input";
 import { ComponentToken } from "../../utils/component-token";

@@ -3,7 +3,7 @@ import { clsx } from "@aiszlab/relax";
 import type { TagProps } from "./types";
 import { useClassNames } from "../../hooks/use-class-names";
 import { TagClassToken } from "../../utils/class-name";
-import * as stylex from "@stylexjs/stylex";
+import stylex from "@stylexjs/stylex";
 import { useTheme } from "../theme";
 import { typography } from "../theme/theme";
 import { ColorToken } from "../../utils/colors";

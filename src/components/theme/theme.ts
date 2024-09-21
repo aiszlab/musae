@@ -1,4 +1,4 @@
-import * as stylex from "@stylexjs/stylex";
+import stylex from "@stylexjs/stylex";
 import { tracking } from "./tokens.stylex";
 
 /**

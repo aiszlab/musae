@@ -6,7 +6,7 @@ import { MenuClassToken } from "../../utils/class-name";
 import Item from "./item";
 import { useMenuContext } from "./hooks";
 import { useRefs, useUpdateEffect, clsx } from "@aiszlab/relax";
-import * as stylex from "@stylexjs/stylex";
+import stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
 import { useExpandable } from "../../hooks/use-expandable";
 import { useTheme } from "../theme";

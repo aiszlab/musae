@@ -2,7 +2,7 @@ import React, { type CSSProperties, forwardRef, useImperativeHandle } from "reac
 import type { DropdownProps, PopperRef } from "./types";
 import { PopperClassToken } from "../../utils/class-name";
 import { useClassNames } from "../../hooks/use-class-names";
-import * as stylex from "@stylexjs/stylex";
+import stylex from "@stylexjs/stylex";
 import { useRefs, clsx } from "@aiszlab/relax";
 import { useAnimation, useFloating } from "./hooks";
 import { elevations, positions, sizes } from "../theme/tokens.stylex";

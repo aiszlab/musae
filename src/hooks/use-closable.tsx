@@ -1,7 +1,7 @@
 import { isUndefined, useEvent } from "@aiszlab/relax";
 import React, { KeyboardEvent, useMemo } from "react";
 import { Button } from "../components/button";
-import * as stylex from "@stylexjs/stylex";
+import stylex from "@stylexjs/stylex";
 import { spacing } from "../components/theme/tokens.stylex";
 import { Close } from "../components/icon/icons";
 import { Keyboard } from "../utils/keyboard";

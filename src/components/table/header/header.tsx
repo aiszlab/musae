@@ -2,7 +2,7 @@ import React, { type CSSProperties } from "react";
 import { useTable } from "../context";
 import { flexRender } from "@tanstack/react-table";
 import type { HeaderProps } from "../types";
-import * as stylex from "@stylexjs/stylex";
+import stylex from "@stylexjs/stylex";
 import { sizes, spacing } from "../../theme/tokens.stylex";
 import { useTheme } from "../../theme";
 import { clsx } from "@aiszlab/relax";

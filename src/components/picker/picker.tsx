@@ -12,7 +12,7 @@ import { useBoolean, useFocus, useEvent, clsx } from "@aiszlab/relax";
 import type { PickerProps, PickerRef } from "./types";
 import { PickerClassToken } from "../../utils/class-name";
 import { useClassNames } from "../../hooks/use-class-names";
-import * as stylex from "@stylexjs/stylex";
+import stylex from "@stylexjs/stylex";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
 import { typography } from "../theme/theme";

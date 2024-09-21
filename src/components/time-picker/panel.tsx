@@ -12,7 +12,7 @@ import { Button } from "../button";
 import type { PanelProps, PanelRef } from "./types";
 import { ClockProps } from "../clock/types";
 import dayjs from "dayjs";
-import * as stylex from "@stylexjs/stylex";
+import stylex from "@stylexjs/stylex";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
 import { clsx } from "@aiszlab/relax";

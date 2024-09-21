@@ -9,7 +9,7 @@ import {
 } from "../icon/icons";
 import { useClassNames } from "../../hooks/use-class-names";
 import { CalendarClassToken } from "../../utils/class-name";
-import * as stylex from "@stylexjs/stylex";
+import stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
 import { typography } from "../theme/theme";
 import { clsx } from "@aiszlab/relax";

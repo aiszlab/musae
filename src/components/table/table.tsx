@@ -5,7 +5,7 @@ import type { TableProps } from "./types";
 import Header from "./header/header";
 import Context from "./context";
 import Body from "./body";
-import * as stylex from "@stylexjs/stylex";
+import stylex from "@stylexjs/stylex";
 
 const styles = stylex.create({
   table: {

@@ -2,7 +2,7 @@ import React, { useMemo } from "react";
 import type { PagiantionProps } from "./types";
 import { usePagiantion } from "./hooks";
 import Item from "./item";
-import * as stylex from "@stylexjs/stylex";
+import stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
 import { Select } from "../select";
 import type { Option } from "../../types/option";

@@ -6,7 +6,7 @@ import { Menu, type MenuProps } from "../menu";
 import type { CascaderProps } from "./types";
 import { useClassNames } from "../../hooks/use-class-names";
 import { CascaderClassToken } from "../../utils/class-name";
-import * as stylex from "@stylexjs/stylex";
+import stylex from "@stylexjs/stylex";
 import { clsx } from "@aiszlab/relax";
 import { spacing } from "../theme/tokens.stylex";
 import { ComponentToken } from "../../utils/component-token";

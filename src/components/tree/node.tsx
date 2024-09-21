@@ -5,7 +5,7 @@ import { TreeClassToken } from "../../utils/class-name";
 import Context from "./context";
 import { Checkbox } from "../checkbox";
 import { KeyboardArrowRight } from "../icon/icons";
-import * as stylex from "@stylexjs/stylex";
+import stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";

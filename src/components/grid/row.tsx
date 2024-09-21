@@ -3,7 +3,7 @@ import type { RowProps } from "./types";
 import { useClassNames } from "../../hooks/use-class-names";
 import { GridClassToken } from "../../utils/class-name";
 import { clsx } from "@aiszlab/relax";
-import * as stylex from "@stylexjs/stylex";
+import stylex from "@stylexjs/stylex";
 import { useGutters } from "../../hooks/use-gutters";
 import { ComponentToken } from "../../utils/component-token";
 

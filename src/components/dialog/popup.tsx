@@ -4,7 +4,7 @@ import { useFooter } from "./hooks";
 import { useAnimate } from "framer-motion";
 import { DialogClassToken } from "../../utils/class-name";
 import { useClassNames } from "../../hooks/use-class-names";
-import * as stylex from "@stylexjs/stylex";
+import stylex from "@stylexjs/stylex";
 import { positions, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";

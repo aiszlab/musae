@@ -1,11 +1,11 @@
-import React, { isValidElement, useMemo, cloneElement, ReactElement } from "react";
+import React, { isValidElement, useMemo, cloneElement, Children, ReactNode } from "react";
 import type { FormItemProps } from "../types";
 import { useController } from "react-hook-form";
 import { FieldRenderProps } from "../../../types/element";
 import type { RequiredIn } from "@aiszlab/relax/types";
 import { chain, isRefable, clsx } from "@aiszlab/relax";
 import { FormClassToken } from "../../../utils/class-name";
-import * as stylex from "@stylexjs/stylex";
+import stylex from "@stylexjs/stylex";
 import { sizes, spacing } from "../../theme/tokens.stylex";
 import Layout from "./layout";
 import Error from "./error";
@@ -49,26 +49,31 @@ const Field = ({
   });
 
   const children = useMemo(() => {
-    const _isValidElement = isValidElement<FieldRenderProps>(_children);
-    if (!_isValidElement) return _children;
-    const _child = _children as ReactElement<FieldRenderProps>;
+    return Children.toArray(_children).reduce<[ReactNode[], boolean]>(
+      ([_clonedChildren, isBound], _child) => {
+        if (isBound || !isValidElement<FieldRenderProps>(_child)) {
+          return [_clonedChildren.concat(_child), isBound];
+        }
 
-    /// rewrite change and blur handler
-    const handlers: Pick<FieldRenderProps, "onChange" | "onBlur"> = {
-      onChange: chain(_child.props.onChange, onChange),
-      onBlur: chain(_child.props.onBlur, onBlur),
-    };
-
-    /// registe react hook form
-    return cloneElement(_children as ReactElement<FieldRenderProps>, {
-      name,
-      value,
-      ...handlers,
-      invalid,
-      ...(isRefable(_children) && {
-        ref,
-      }),
-    });
+        // registe react hook form
+        return [
+          _clonedChildren.concat(
+            cloneElement<FieldRenderProps>(_child, {
+              name,
+              value,
+              invalid,
+              onChange: chain(_child.props.onChange, onChange),
+              onBlur: chain(_child.props.onBlur, onBlur),
+              ...(isRefable(_child) && {
+                ref,
+              }),
+            }),
+          ),
+          true,
+        ];
+      },
+      [[], false],
+    );
   }, [_children, name, value, invalid, ref, onChange, onBlur]);
 
   const styled = {
@@ -76,18 +81,18 @@ const Field = ({
   };
 
   return (
-    <div className={clsx(classNames[FormClassToken.Item], className)} style={style}>
-      <Layout label={props.label} required={required}>
-        <div>{children}</div>
+    <Layout label={props.label} required={required} className={classNames[FormClassToken.Item]}>
+      <div className={className} style={style}>
+        {children}
+      </div>
 
-        <div
-          className={clsx(classNames[FormClassToken.FieldSupporting], styled.supporting.className)}
-          style={styled.supporting.style}
-        >
-          <AnimatePresence mode="wait">{invalid && <Error error={error} />}</AnimatePresence>
-        </div>
-      </Layout>
-    </div>
+      <div
+        className={clsx(classNames[FormClassToken.FieldSupporting], styled.supporting.className)}
+        style={styled.supporting.style}
+      >
+        <AnimatePresence mode="wait">{invalid && <Error error={error} />}</AnimatePresence>
+      </div>
+    </Layout>
   );
 };
 

@@ -6,7 +6,7 @@ import { toArray, useControlledState } from "@aiszlab/relax";
 import { Timespan } from "../../utils/timespan";
 import { clsx } from "@aiszlab/relax";
 import type { CalendarProps } from "./types";
-import * as stylex from "@stylexjs/stylex";
+import stylex from "@stylexjs/stylex";
 import { positions, sizes, spacing } from "../theme/tokens.stylex";
 import { typography } from "../theme/theme";
 import { useTheme } from "../theme";

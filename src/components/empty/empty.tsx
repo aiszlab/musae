@@ -1,7 +1,7 @@
 import React from "react";
 import { useClassNames } from "../../hooks/use-class-names";
 import { EmptyClassToken } from "../../utils/class-name";
-import * as stylex from "@stylexjs/stylex";
+import stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
 import { clsx } from "@aiszlab/relax";
 import { typography } from "../theme/theme";

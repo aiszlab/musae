@@ -2,7 +2,7 @@ import React, { type Key, type ReactNode, useCallback, useContext, useMemo } fro
 import Context from "./context";
 import type { ContextValue, MenuProps, Mode } from "./types";
 import { useControlledState } from "@aiszlab/relax";
-import * as stylex from "@stylexjs/stylex";
+import stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
 import { KeyboardArrowUp } from "../icon/icons";
 import type { Size } from "../../types/element";

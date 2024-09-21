@@ -4,7 +4,7 @@ import type { RadioProps } from "./types";
 import { useControlledState, clsx } from "@aiszlab/relax";
 import { useClassNames } from "../../hooks/use-class-names";
 import { RadioClassToken } from "../../utils/class-name";
-import * as stylex from "@stylexjs/stylex";
+import stylex from "@stylexjs/stylex";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
 import { sizes, spacing } from "../theme/tokens.stylex";

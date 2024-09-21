@@ -8,7 +8,7 @@ import {
   KeyboardDoubleArrowLeft,
   KeyboardDoubleArrowRight,
 } from "../icon/icons";
-import * as stylex from "@stylexjs/stylex";
+import stylex from "@stylexjs/stylex";
 
 const styles = stylex.create({
   more: {

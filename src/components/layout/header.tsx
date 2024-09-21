@@ -1,7 +1,7 @@
 import { HeaderProps } from "./types";
 import React, { CSSProperties } from "react";
 import { useTheme } from "../theme";
-import * as stylex from "@stylexjs/stylex";
+import stylex from "@stylexjs/stylex";
 import { ColorToken } from "../../utils/colors";
 import { positions, sizes, spacing } from "../theme/tokens.stylex";
 import { clsx } from "@aiszlab/relax";

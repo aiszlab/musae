@@ -1,6 +1,6 @@
 import React, { type CSSProperties } from "react";
 import type { BreadcrumbProps } from "./types";
-import * as stylex from "@stylexjs/stylex";
+import stylex from "@stylexjs/stylex";
 import { typography } from "../theme/theme";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";

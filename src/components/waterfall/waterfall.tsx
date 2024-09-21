@@ -1,4 +1,4 @@
-import * as stylex from "@stylexjs/stylex";
+import stylex from "@stylexjs/stylex";
 import { sizes } from "../theme/tokens.stylex";
 import type { WaterfallProps } from "./types";
 import React from "react";

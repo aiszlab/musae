@@ -3,7 +3,7 @@ import type { HolderProps, NotificationWithoutKeyAndPlacement, HolderRef, Placem
 import { Portal } from "../portal";
 import { AnimatePresence } from "framer-motion";
 import Notification from "./notification";
-import * as stylex from "@stylexjs/stylex";
+import stylex from "@stylexjs/stylex";
 import { positions, spacing } from "../theme/tokens.stylex";
 import { useEvent, useIdentity } from "@aiszlab/relax";
 

@@ -2,7 +2,7 @@ import type { ButtonProps } from "./types";
 import React, { type CSSProperties, forwardRef } from "react";
 import { ButtonClassToken } from "../../utils/class-name";
 import { clsx } from "@aiszlab/relax";
-import * as stylex from "@stylexjs/stylex";
+import stylex from "@stylexjs/stylex";
 import { elevations, sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { useButton } from "./hooks";

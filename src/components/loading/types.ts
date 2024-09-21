@@ -1,4 +1,5 @@
 import { type ReactNode } from "react";
+import { ComponentProps } from "../../types/element";
 
 type Size = "small" | "medium" | "large";
 
@@ -8,7 +9,7 @@ type Size = "small" | "medium" | "large";
  * @description
  * loading props
  */
-export interface LoadingProps {
+export type LoadingProps = ComponentProps & {
   /**
    * @description
    * size
@@ -29,4 +30,4 @@ export interface LoadingProps {
    * @default void 0
    */
   children?: ReactNode;
-}
+};

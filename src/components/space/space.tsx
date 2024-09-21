@@ -1,6 +1,6 @@
 import React from "react";
 import type { SpaceProps } from "./types";
-import * as stylex from "@stylexjs/stylex";
+import stylex from "@stylexjs/stylex";
 import { useGutters } from "../../hooks/use-gutters";
 import { clsx } from "@aiszlab/relax";
 

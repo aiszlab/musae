@@ -1,6 +1,6 @@
 import type { WaterfallProps } from "./types";
 import React, { useMemo, type ReactNode } from "react";
-import * as stylex from "@stylexjs/stylex";
+import stylex from "@stylexjs/stylex";
 import type { RequiredIn } from "@aiszlab/relax/types";
 
 const styles = stylex.create({

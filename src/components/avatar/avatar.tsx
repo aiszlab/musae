@@ -1,6 +1,6 @@
 import React, { type CSSProperties, useContext, forwardRef } from "react";
 import type { AvatarProps } from "./types";
-import * as stylex from "@stylexjs/stylex";
+import stylex from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { Context } from "./context";
 import { useTheme } from "../theme";

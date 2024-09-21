@@ -2,7 +2,7 @@ import React, { type ReactNode, createElement, useMemo, type CSSProperties } fro
 import type { AsProps, IconProps } from "./types";
 import { isFunction, clsx } from "@aiszlab/relax";
 import { IconClassToken } from "../../utils/class-name";
-import * as stylex from "@stylexjs/stylex";
+import stylex from "@stylexjs/stylex";
 import { useClassNames } from "../../hooks/use-class-names";
 import { ComponentToken } from "../../utils/component-token";
 

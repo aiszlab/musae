@@ -1,5 +1,5 @@
 import React, { CSSProperties } from "react";
-import * as stylex from "@stylexjs/stylex";
+import stylex from "@stylexjs/stylex";
 import type { LoadingProps } from "./types";
 import { sizes } from "../theme/tokens.stylex";
 import { useClassNames } from "../../hooks/use-class-names";
@@ -327,7 +327,7 @@ const styles = stylex.create({
   },
 });
 
-const Loading = ({ size = "medium", overlay = true, children }: LoadingProps) => {
+const Loading = ({ size = "medium", overlay = true, children, className, style }: LoadingProps) => {
   const classNames = useClassNames(ComponentToken.Loading);
   const theme = useTheme();
   const circles = {
@@ -384,8 +384,11 @@ const Loading = ({ size = "medium", overlay = true, children }: LoadingProps) =>
       </svg>
 
       <div
-        className={(classNames[LoadingClassToken.Content], styled.content.className)}
-        style={styled.content.style}
+        className={(classNames[LoadingClassToken.Content], className, styled.content.className)}
+        style={{
+          ...styled.content.style,
+          ...style,
+        }}
       >
         {children}
       </div>

@@ -3,7 +3,7 @@ import { useContext, type ReactNode } from "react";
 import type { ContextValue } from "../types";
 import Context from "../context";
 import { Grid } from "../../grid";
-import * as stylex from "@stylexjs/stylex";
+import stylex from "@stylexjs/stylex";
 import { typography } from "../../theme/theme";
 import { spacing } from "../../theme/tokens.stylex";
 import { useTheme } from "../../theme";

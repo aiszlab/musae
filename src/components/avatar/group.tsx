@@ -1,5 +1,5 @@
 import React, { Children, cloneElement, useMemo } from "react";
-import * as stylex from "@stylexjs/stylex";
+import stylex from "@stylexjs/stylex";
 import { type AvatarGroupProps } from "./types";
 import { Context } from "./context";
 import { useClassNames } from "../../hooks/use-class-names";

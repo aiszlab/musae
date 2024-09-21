@@ -4,7 +4,7 @@ import { ClockClassToken } from "../../utils/class-name";
 import type { ClockProps } from "./types";
 import { TimeUnit } from "./types";
 import Column from "./column";
-import * as stylex from "@stylexjs/stylex";
+import stylex from "@stylexjs/stylex";
 import { clsx } from "@aiszlab/relax";
 import { Divider } from "../divider";
 import { spacing } from "../theme/tokens.stylex";
