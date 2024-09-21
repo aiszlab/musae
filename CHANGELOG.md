@@ -1,5 +1,11 @@
 # musae
 
+## 0.3.0
+
+### Minor Changes
+
+- refactor exports
+
 ## 0.2.26
 
 ### Patch Changes
