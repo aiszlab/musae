@@ -107,6 +107,12 @@ export type SelectorProps = Pick<
    * searched value
    */
   searched: string;
+
+  /**
+   * @description
+   * change
+   */
+  onChange: (key: Key) => void;
 };
 
 /**
@@ -136,7 +142,7 @@ export type SelectionsProps = {
    * @description
    * select menu item handler
    */
-  onSelect: MenuProps["onClick"];
+  onSelect: (key: Key) => void;
 
   /**
    * @description

@@ -1,6 +1,6 @@
 import { type Key, useMemo, useState } from "react";
-import type { Filter, Mode, ReadableOptions, SelectProps, ValueOrValues } from "./types";
-import { isFunction, isUndefined, useControlledState, useEvent } from "@aiszlab/relax";
+import type { Filter, Mode, ReadableOptions, SelectProps, ValueOrValues } from "../../types/select";
+import { isFunction, isNull, isUndefined, useControlledState, useEvent } from "@aiszlab/relax";
 import { readOptions, toKey, toMenuItems, toValues } from "./utils";
 import type { Option } from "musae/types/option";
 
@@ -26,9 +26,9 @@ export const useValue = <T extends ValueOrValues = ValueOrValues>({
   const isControlled = !isUndefined(props.value);
   const [value, setValue] = useControlledState(props.value);
 
-  /// convert prop value into a map
-  /// in this component, only use map for controlled state
-  /// only effect by value change
+  // convert prop value into a map
+  // in this component, only use map for controlled state
+  // only effect by value change
   const readableValues = useMemo(
     () =>
       toValues(value).reduce((prev, _value) => {
@@ -105,31 +105,30 @@ export const useValue = <T extends ValueOrValues = ValueOrValues>({
 export const useOptions = ({
   options,
   onSearch,
-  ...props
+  onFilter,
 }: {
   options: Option[];
   onFilter: SelectProps["onFilter"];
   onSearch: SelectProps["onSearch"];
 }) => {
   const [searched, setSearched] = useState("");
-  const onFilterGetter = useEvent(() => props.onFilter ?? true);
 
-  const filter = useMemo<Filter | null>(() => {
-    if (!searched) return null;
+  const filter = useEvent<Filter>((option) => {
+    if (!searched) return true;
+    if (isNull(onFilter) || onFilter === false) return true;
+    if (isFunction(onFilter)) return onFilter(searched, option);
 
-    const onFilter = onFilterGetter();
-    if (!onFilter) return null;
-    if (isFunction(onFilter)) return (option) => onFilter(searched, option);
-    return (option) => !!option.label?.includes(searched);
-  }, [searched, onFilterGetter]);
+    const regExp = new RegExp(searched, "i");
+    return regExp.test(option.value.toString()) || !!(option.label && regExp.test(option.label));
+  });
 
-  /// wrapper search handler, set react state
+  // wrapper search handler, set react state
   const search = useEvent<Required<SelectProps>["onSearch"]>((searched) => {
     setSearched(searched);
     onSearch?.(searched);
   });
 
-  /// reset search value
+  // reset search value
   const reset = useEvent(() => setSearched(""));
 
   const [menuItems, readableOptions] = useMemo(

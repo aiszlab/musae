@@ -2,7 +2,7 @@ import React, { useRef, useCallback } from "react";
 import { Picker, type PickerRef } from "../picker";
 import { useOptions, useValue } from "./hooks";
 import { SelectClassToken } from "../../utils/class-name";
-import type { SelectProps, SelectorRef, ValueOrValues } from "./types";
+import type { SelectProps, SelectorRef, ValueOrValues } from "musae/types/select";
 import { clsx } from "@aiszlab/relax";
 import stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
@@ -91,6 +91,7 @@ const Select = <T extends ValueOrValues = ValueOrValues>({
         ref={selectorRef}
         searched={searched}
         onSearch={search}
+        onChange={onChange}
       />
     </Picker>
   );

@@ -1,5 +1,5 @@
 import { isVoid, isArray } from "@aiszlab/relax";
-import type { Filter, ReadableOptions, ToMenuItem, Value, ValueOrValues } from "./types";
+import type { Filter, ReadableOptions, ToMenuItem, Value, ValueOrValues } from "../../types/select";
 import type { Option } from "musae/types/option";
 import type { MenuItem } from "musae/types/menu";
 

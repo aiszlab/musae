@@ -9,7 +9,7 @@ import React, {
   type PropsWithoutRef,
   type RefAttributes,
 } from "react";
-import type { SelectorProps, SelectorRef } from "./types";
+import type { SelectorProps, SelectorRef } from "../../types/select";
 import { Tag } from "../tag";
 import { styles as inputStyles } from "../input";
 import stylex from "@stylexjs/stylex";
@@ -26,68 +26,80 @@ const styles = stylex.create({
   }),
 });
 
-const Selector: ForwardRefExoticComponent<PropsWithoutRef<SelectorProps> & RefAttributes<SelectorRef>> = forwardRef(
-  ({ mode, searchable, value, onSearch, searched }, ref) => {
-    const inputRef = useRef<HTMLInputElement>(null);
-    const { isFocused, open } = useContext(Context);
-    const theme = useTheme();
+const Selector: ForwardRefExoticComponent<
+  PropsWithoutRef<SelectorProps> & RefAttributes<SelectorRef>
+> = forwardRef(({ mode, searchable, value, onSearch, searched, onChange }, ref) => {
+  const inputRef = useRef<HTMLInputElement>(null);
+  const { isFocused, open } = useContext(Context);
+  const theme = useTheme();
 
-    useImperativeHandle(ref, () => {
-      return {
-        focus: () => {
-          inputRef.current?.focus();
-        },
-      };
-    });
-
-    const search = (e: ChangeEvent<HTMLInputElement>) => {
-      open?.();
-      // on user search input, trigger the search callback
-      onSearch(e.target.value);
+  useImperativeHandle(ref, () => {
+    return {
+      focus: () => {
+        inputRef.current?.focus();
+      },
     };
+  });
 
-    /// multiple mode render
-    if (mode === "multiple") {
-      return [
-        ...Array.from(value.entries()).map(([key, label]) => {
+  // on user search input, trigger the search callback
+  const search = (e: ChangeEvent<HTMLInputElement>) => {
+    open?.();
+    onSearch(e.target.value);
+  };
+
+  const styled = stylex.props(
+    inputStyles.input,
+    styles.input({
+      color: (isFocused && searchable && theme.colors[ColorToken.OnSurface]) || void 0,
+    }),
+    typography.body.small,
+  );
+
+  // multiple mode render
+  if (mode === "multiple") {
+    return (
+      <>
+        {Array.from(value.entries()).map(([key, label]) => {
           return (
-            <Tag key={key} size="small">
+            <Tag key={key} size="small" closable onClose={() => onChange(key)}>
               {label}
             </Tag>
           );
-        }),
-        searchable && <input ref={inputRef} />,
-      ];
-    }
+        })}
 
-    const styled = stylex.props(
-      inputStyles.input,
-      styles.input({
-        color: (isFocused && searchable && theme.colors[ColorToken.OnSurface]) || void 0,
-      }),
-      typography.body.small,
+        {searchable && (
+          <input
+            key="select-selector"
+            ref={inputRef}
+            value={searched}
+            className={styled.className}
+            style={styled.style}
+            onChange={search}
+          />
+        )}
+      </>
     );
+  }
 
-    // single mode render
-    if (!searchable) {
-      return (
-        <span className={styled.className} style={styled.style}>
-          {Array.from(value.values()).join(",")}
-        </span>
-      );
-    }
-
+  // single mode render
+  if (!searchable) {
     return (
-      <input
-        ref={inputRef}
-        value={searched}
-        placeholder={Array.from(value.values()).join(",")}
-        className={styled.className}
-        style={styled.style}
-        onChange={search}
-      />
+      <span className={styled.className} style={styled.style}>
+        {Array.from(value.values()).join(",")}
+      </span>
     );
-  },
-);
+  }
+
+  return (
+    <input
+      ref={inputRef}
+      value={searched}
+      placeholder={Array.from(value.values()).join(",")}
+      className={styled.className}
+      style={styled.style}
+      onChange={search}
+    />
+  );
+});
 
 export default Selector;
