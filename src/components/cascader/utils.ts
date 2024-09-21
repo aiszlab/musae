@@ -9,8 +9,8 @@ import type {
   ValueOrValues,
 } from "./types";
 import { isArray, isVoid } from "@aiszlab/relax";
-import type { MenuItem } from "../menu";
-import type { Option } from "../../types/option";
+import type { MenuItem } from "musae/types/menu";
+import type { Option } from "musae/types/option";
 
 /**
  * @description
@@ -46,14 +46,16 @@ export const readOptions = ({ options, from = 1, paths = [] }: ReadBy) => {
       });
       // sum unique keys into one map
       prev[1] = (
-        readPaths.size === 0 ? collectedPaths : new Map([...collectedPaths.entries(), ...readPaths.entries()])
+        readPaths.size === 0
+          ? collectedPaths
+          : new Map([...collectedPaths.entries(), ...readPaths.entries()])
       ).set(currentId, currentPaths);
       // record the latest id
       prev[2] = currentId;
 
       return prev;
     },
-    [new Map(), new Map(), from]
+    [new Map(), new Map(), from],
   );
 };
 

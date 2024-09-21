@@ -1,6 +1,6 @@
 import type { Key, ReactNode } from "react";
-import type { Option } from "../../types/option";
-import { ComponentProps } from "../../types/element";
+import type { Option } from "musae/types/option";
+import { ComponentProps } from "musae/types/element";
 
 export type TransferOption = Omit<Option, "children">;
 

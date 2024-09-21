@@ -1,5 +1,5 @@
 import type { ReactNode, JSX, Key } from "react";
-import { ComponentProps } from "../../types/element";
+import { ComponentProps } from "musae/types/element";
 
 /**
  * @author murukal

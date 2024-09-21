@@ -10,7 +10,7 @@ import { Context } from "./context";
 import { useExpandable } from "../../hooks/use-expandable";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
-import { KeyboardArrowRight } from "../icon/icons";
+import { KeyboardArrowRight } from "musae/icons";
 import { ComponentToken } from "../../utils/component-token";
 
 const styles = {

@@ -19,53 +19,34 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "default": "./dist/index.js"
+      "require": "./dist/index.cjs",
+      "node": "./dist/index.cjs",
+      "import": "./dist/index.mjs",
+      "default": "./dist/index.mjs"
     },
     "./styles.css": "./dist/styles.css",
     "./locales": {
       "types": "./dist/locale/locales/index.d.ts",
-      "default": "./dist/locale/locales/index.js"
+      "require": "./dist/locale/locales/index.cjs",
+      "node": "./dist/locale/locales/index.cjs",
+      "import": "./dist/locale/locales/index.mjs",
+      "default": "./dist/locale/locales/index.mjs"
     },
     "./icons": {
       "types": "./dist/components/icon/icons/index.d.ts",
-      "default": "./dist/components/icon/icons/index.js"
+      "require": "./dist/components/icon/icons/index.cjs",
+      "node": "./dist/components/icon/icons/index.cjs",
+      "import": "./dist/components/icon/icons/index.mjs",
+      "default": "./dist/components/icon/icons/index.mjs"
     },
-    "./icons/action": {
-      "types": "./dist/components/icon/icons/action/index.d.ts",
-      "default": "./dist/components/icon/icons/action/index.js"
+    "./icons/*": {
+      "types": "./dist/components/icon/icons/*/index.d.ts",
+      "require": "./dist/components/icon/icons/*/index.cjs",
+      "node": "./dist/components/icon/icons/*/index.cjs",
+      "import": "./dist/components/icon/icons/*/index.mjs",
+      "default": "./dist/components/icon/icons/*/index.mjs"
     },
-    "./icons/alert": {
-      "types": "./dist/components/icon/icons/alert/index.d.ts",
-      "default": "./dist/components/icon/icons/alert/index.js"
-    },
-    "./icons/content": {
-      "types": "./dist/components/icon/icons/content/index.d.ts",
-      "default": "./dist/components/icon/icons/content/index.js"
-    },
-    "./icons/editor": {
-      "types": "./dist/components/icon/icons/editor/index.d.ts",
-      "default": "./dist/components/icon/icons/editor/index.js"
-    },
-    "./icons/hardware": {
-      "types": "./dist/components/icon/icons/hardware/index.d.ts",
-      "default": "./dist/components/icon/icons/hardware/index.js"
-    },
-    "./icons/image": {
-      "types": "./dist/components/icon/icons/image/index.d.ts",
-      "default": "./dist/components/icon/icons/image/index.js"
-    },
-    "./icons/mock": {
-      "types": "./dist/components/icon/icons/mock/index.d.ts",
-      "default": "./dist/components/icon/icons/mock/index.js"
-    },
-    "./icons/navigation": {
-      "types": "./dist/components/icon/icons/navigation/index.d.ts",
-      "default": "./dist/components/icon/icons/navigation/index.js"
-    },
-    "./icons/toggle": {
-      "types": "./dist/components/icon/icons/toggle/index.d.ts",
-      "default": "./dist/components/icon/icons/toggle/index.js"
-    }
+    "./types/*": "./dist/types/*.d.ts"
   },
   "engines": {
     "node": ">=18.0.0",

@@ -1,10 +1,10 @@
 import React, { type CSSProperties, useContext } from "react";
-import type { TreeNodeProps } from "./types";
+import type { TreeNodeProps } from "musae/types/tree";
 import { useClassNames } from "../../hooks/use-class-names";
 import { TreeClassToken } from "../../utils/class-name";
 import Context from "./context";
 import { Checkbox } from "../checkbox";
-import { KeyboardArrowRight } from "../icon/icons";
+import { KeyboardArrowRight } from "musae/icons";
 import stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";

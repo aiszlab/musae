@@ -18,7 +18,7 @@ export { Breadcrumb } from "./components/breadcrumb";
 export { Tabs } from "./components/tabs";
 export { ThemeProvider } from "./components/theme";
 export { ConfigProvider } from "./components/config";
-export { Form, FormRef } from "./components/form";
+export { Form } from "./components/form";
 export { Empty } from "./components/empty";
 export { Drawer } from "./components/drawer";
 export { Dialog } from "./components/dialog";
@@ -29,7 +29,7 @@ export { TimePicker } from "./components/time-picker";
 export { DateRangePicker } from "./components/date-range-picker";
 export { Icon } from "./components/icon";
 export { Clock } from "./components/clock";
-export { Tree, TreeNode } from "./components/tree";
+export { Tree } from "./components/tree";
 export { Table } from "./components/table";
 export { Layout } from "./components/layout";
 export { Pagination } from "./components/pagination";
@@ -68,15 +68,3 @@ export { Quote } from "./components/quote";
 export { useMessage, Message } from "./components/message";
 export { useNotification, Notification } from "./components/notification";
 export { useTheme } from "./components/theme";
-
-/**
- * @description
- * declarations
- */
-export type { Option } from "./types/option";
-export type { MenuItem, MenuRef } from "./components/menu";
-export type { TreeProps } from "./components/tree";
-export type { TourStep } from "./components/tour";
-export type { NavigationItem } from "./components/bench";
-export type { Locale } from "./locale";
-export type { TableProps } from "./components/table";

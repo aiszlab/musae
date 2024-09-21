@@ -1,6 +1,6 @@
 import type { Key, ReactNode } from "react";
-import type { ComponentProps, Size } from "../../types/element";
-import type { WithLevel } from "../../types/element";
+import type { ComponentProps, Size } from "./element";
+import type { WithLevel } from "./element";
 
 export type Mode = "vertical" | "horizontal" | "inline";
 

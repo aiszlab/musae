@@ -228,6 +228,7 @@ export enum PopoverClassToken {
 export enum LoadingClassToken {
   Loading,
   Spin,
+  Spinning,
   Content,
 }
 export enum CollapseClassToken {
@@ -491,6 +492,7 @@ export const CLASS_NAMES = {
   [ComponentToken.Loading]: {
     [LoadingClassToken.Loading]: "loading",
     [LoadingClassToken.Spin]: "loading__spin",
+    [LoadingClassToken.Spinning]: "loading__spin-spinning",
     [LoadingClassToken.Content]: "loading__content",
   },
   [ComponentToken.Collapse]: {

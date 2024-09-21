@@ -1,5 +1,5 @@
 import { RequiredIn } from "@aiszlab/relax/types";
-import { ComponentProps } from "../../types/element";
+import { ComponentProps } from "musae/types/element";
 
 type Variant = "linear" | "circular";
 

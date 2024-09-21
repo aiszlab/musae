@@ -5,7 +5,7 @@ import { getElementByNode } from "../../utils/get-element-by-node";
 import { $createLinkNode, TOGGLE_LINK_COMMAND, type LinkNode } from "@lexical/link";
 import { useBoolean, useEvent } from "@aiszlab/relax";
 import { Space } from "../../../space";
-import { OpenInNew, Edit, LinkOff } from "../../../icon/icons";
+import { OpenInNew, Edit, LinkOff } from "musae/icons";
 import stylex from "@stylexjs/stylex";
 import { spacing } from "../../../theme/tokens.stylex";
 import { Button } from "../../../button";

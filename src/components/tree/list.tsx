@@ -1,6 +1,6 @@
 import stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
-import type { TreeListProps } from "./types";
+import type { TreeListProps } from "musae/types/tree";
 import React, { useContext } from "react";
 import Node from "./node";
 import { useAnimate } from "framer-motion";

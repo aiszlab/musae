@@ -1,4 +1,4 @@
-import { ComponentProps } from "../../types/element";
+import { ComponentProps } from "musae/types/element";
 
 export enum TimeUnit {
   Hour = "hour",

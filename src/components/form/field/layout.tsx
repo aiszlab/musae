@@ -1,6 +1,6 @@
 import React, { type CSSProperties } from "react";
 import { useContext, type ReactNode } from "react";
-import type { ContextValue } from "../types";
+import type { ContextValue } from "musae/types/form";
 import Context from "../context";
 import { Grid } from "../../grid";
 import stylex from "@stylexjs/stylex";
@@ -9,7 +9,7 @@ import { spacing } from "../../theme/tokens.stylex";
 import { useTheme } from "../../theme";
 import { ColorToken } from "../../../utils/colors";
 import { clsx } from "@aiszlab/relax";
-import { ComponentProps } from "../../../types/element";
+import { ComponentProps } from "musae/types/element";
 
 const { Row, Col } = Grid;
 

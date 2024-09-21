@@ -4,8 +4,8 @@ import stylex from "@stylexjs/stylex";
 import { sizes, spacing } from "../../theme/tokens.stylex";
 import { useTheme } from "../../theme";
 import { ColorToken } from "../../../utils/colors";
-import { UnfoldMore } from "../../icon/icons";
-import type { HeaderCellProps, SortDirection } from "../types";
+import { UnfoldMore } from "musae/icons";
+import type { HeaderCellProps, SortDirection } from "musae/types/table";
 import Context from "../context";
 
 const styles = {
@@ -45,7 +45,12 @@ const styles = {
   }),
 };
 
-const Cell = ({ sortable = false, children: _children, value, sortDirections: _sortDirections }: HeaderCellProps) => {
+const Cell = ({
+  sortable = false,
+  children: _children,
+  value,
+  sortDirections: _sortDirections,
+}: HeaderCellProps) => {
   const { sortDescriptor, onSortChange } = useContext(Context);
   const children = toFunction(_children)();
   const theme = useTheme();
@@ -82,19 +87,21 @@ const Cell = ({ sortable = false, children: _children, value, sortDirections: _s
 
   const styled = {
     cell: stylex.props(styles.cell.default),
-    handlers: stylex.props(styles.cell.handlers({ color: theme.colors[ColorToken.SurfaceContainerHighest] })),
+    handlers: stylex.props(
+      styles.cell.handlers({ color: theme.colors[ColorToken.SurfaceContainerHighest] }),
+    ),
     sort: stylex.props(styles.sort.default),
 
     fullSort: stylex.props(
       sort === "descending" &&
         styles.sort.checked({
           color: theme.colors[ColorToken.Primary],
-        })
+        }),
     ),
 
     halfSort: stylex.props(
       styles.sort.half,
-      sort === "ascending" && styles.sort.checked({ color: theme.colors[ColorToken.Primary] })
+      sort === "ascending" && styles.sort.checked({ color: theme.colors[ColorToken.Primary] }),
     ),
   };
 

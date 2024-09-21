@@ -1,7 +1,7 @@
 import React, { type CSSProperties } from "react";
 import { useTable } from "../context";
 import { flexRender } from "@tanstack/react-table";
-import type { HeaderProps } from "../types";
+import type { HeaderProps } from "musae/types/table";
 import stylex from "@stylexjs/stylex";
 import { sizes, spacing } from "../../theme/tokens.stylex";
 import { useTheme } from "../../theme";
@@ -10,7 +10,10 @@ import { ColorToken } from "../../../utils/colors";
 import { typography } from "../../theme/theme";
 
 const styles = stylex.create({
-  cell: (props: { backgroundColor: CSSProperties["backgroundColor"]; borderColor: CSSProperties["borderColor"] }) => ({
+  cell: (props: {
+    backgroundColor: CSSProperties["backgroundColor"];
+    borderColor: CSSProperties["borderColor"];
+  }) => ({
     backgroundColor: props.backgroundColor,
     textAlign: "start",
     position: "relative",
@@ -57,7 +60,7 @@ const Header = <T,>(props: HeaderProps) => {
     !bordered &&
       styles.unbordered({
         backgroundColor: theme.colors[ColorToken.OutlineVariant],
-      })
+      }),
   );
 
   return (
@@ -67,7 +70,9 @@ const Header = <T,>(props: HeaderProps) => {
           {headerGroup.headers.map((header) => (
             <th key={header.id} className={clsx(styled.className)} style={styled.style}>
               {}
-              {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
+              {header.isPlaceholder
+                ? null
+                : flexRender(header.column.columnDef.header, header.getContext())}
             </th>
           ))}
         </tr>

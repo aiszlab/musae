@@ -7,7 +7,7 @@ import {
   MoreHoriz,
   KeyboardDoubleArrowLeft,
   KeyboardDoubleArrowRight,
-} from "../icon/icons";
+} from "musae/icons";
 import stylex from "@stylexjs/stylex";
 
 const styles = stylex.create({

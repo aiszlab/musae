@@ -1,10 +1,10 @@
 import { useCallback, useMemo, useState, type Dispatch, type SetStateAction } from "react";
 import { useControlledState } from "@aiszlab/relax";
 import { readOptions, toKey, toKeys, toMenuItem, toValues } from "./utils";
-import { type MenuItem } from "../menu";
+import type { MenuItem } from "musae/types/menu";
 import type { CascaderProps, Optionable, ReadableOptions, ReadablePaths } from "./types";
 import type { Partialable } from "@aiszlab/relax/types";
-import type { Option } from "../../types/option";
+import type { Option } from "musae/types/option";
 
 /**
  * @description

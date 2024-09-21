@@ -21,7 +21,7 @@ import {
   FormatStrikethrough,
   Subscript,
   Superscript,
-} from "../../../icon/icons";
+} from "musae/icons";
 import { $patchStyleText, $setBlocksType } from "@lexical/selection";
 import { $createHeadingNode, type HeadingTagType } from "@lexical/rich-text";
 import { INSERT_CHECK_LIST_COMMAND } from "@lexical/list";

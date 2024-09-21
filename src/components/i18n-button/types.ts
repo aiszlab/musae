@@ -1,4 +1,4 @@
-import type { Locale } from "../../locale";
+import type { Locale } from "musae/types/locale";
 import type { ButtonProps } from "../button/types";
 
 /**

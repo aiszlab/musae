@@ -1,6 +1,6 @@
 import React, { useContext, type CSSProperties } from "react";
 import stylex from "@stylexjs/stylex";
-import { Close, KeyboardArrowLeft, KeyboardArrowRight } from "../../icon/icons";
+import { Close, KeyboardArrowLeft, KeyboardArrowRight } from "musae/icons";
 import { Portal } from "../../portal";
 import { spacing, positions, sizes } from "../../theme/tokens.stylex";
 import { useTheme } from "../../theme";
@@ -108,7 +108,12 @@ const Operations = ({
             <Button variant="text" shape="circular" onClick={onSwitchLeft} disabled={!onSwitchLeft}>
               <KeyboardArrowLeft size={32} />
             </Button>
-            <Button variant="text" shape="circular" onClick={onSwitchRight} disabled={!onSwitchRight}>
+            <Button
+              variant="text"
+              shape="circular"
+              onClick={onSwitchRight}
+              disabled={!onSwitchRight}
+            >
               <KeyboardArrowRight size={32} />
             </Button>
           </div>

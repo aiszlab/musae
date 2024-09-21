@@ -1,5 +1,5 @@
 import { Key, createContext } from "react";
-import { ContextValue } from "./types";
+import { ContextValue } from "musae/types/tree";
 
 const Context = createContext<ContextValue>({
   checkedKeys: new Set<Key>(),

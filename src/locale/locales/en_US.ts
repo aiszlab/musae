@@ -1,8 +1,8 @@
 import { ComponentToken } from "../../utils/component-token";
-import { LocaleCode, type Locale } from "../types";
+import { type Locale } from "musae/types/locale";
 
 const en_US: Locale = {
-  locale: LocaleCode.en_US,
+  locale: "en_US",
 
   [ComponentToken.Dialog]: {
     confirm: "Confirm",

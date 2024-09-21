@@ -1,5 +1,5 @@
 import { type ReactNode } from "react";
-import { ComponentProps } from "../../types/element";
+import { ComponentProps } from "musae/types/element";
 
 type Size = "small" | "medium" | "large";
 
@@ -30,4 +30,11 @@ export type LoadingProps = ComponentProps & {
    * @default void 0
    */
   children?: ReactNode;
+
+  /**
+   * @description
+   * loading
+   * @default true
+   */
+  loading?: boolean;
 };

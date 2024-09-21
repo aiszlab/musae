@@ -1,7 +1,7 @@
 import React, { isValidElement, useMemo, cloneElement, Children, ReactNode } from "react";
-import type { FormItemProps } from "../types";
+import type { FormItemProps } from "musae/types/form";
 import { useController } from "react-hook-form";
-import { FieldRenderProps } from "../../../types/element";
+import { FieldRenderProps } from "musae/types/element";
 import type { RequiredIn } from "@aiszlab/relax/types";
 import { chain, isRefable, clsx } from "@aiszlab/relax";
 import { FormClassToken } from "../../../utils/class-name";

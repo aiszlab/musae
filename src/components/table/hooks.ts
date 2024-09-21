@@ -1,6 +1,6 @@
 import { type ColumnDef, createColumnHelper, CellContext } from "@tanstack/react-table";
 import { useMemo, useRef, createElement } from "react";
-import type { Column, ContextValue, SortDescriptor } from "./types";
+import type { Column, ContextValue, SortDescriptor } from "musae/types/table";
 import HeaderCell from "./header/cell";
 import { useControlledState, useEvent } from "@aiszlab/relax";
 

@@ -1,5 +1,5 @@
 import React, { forwardRef, useImperativeHandle } from "react";
-import type { MenuProps, MenuRef } from "./types";
+import type { MenuProps, MenuRef } from "musae/types/menu";
 import Context from "./context";
 import { useScrollable, clsx } from "@aiszlab/relax";
 import { useContextValue, useScrollOrientation } from "./hooks";

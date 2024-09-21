@@ -6,7 +6,7 @@ import { PopconfirmClassToken } from "../../utils/class-name";
 import { Space } from "../space";
 import { Button } from "../button";
 import { useBoolean, useClickAway, useEvent, useRefs, clsx } from "@aiszlab/relax";
-import { Warning } from "../icon/icons";
+import { Warning } from "musae/icons";
 import { Popper, type PopperRef } from "../popper";
 import { spacing } from "../theme/tokens.stylex";
 import { typography } from "../theme/theme";

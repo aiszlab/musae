@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import type { ContextValue, TreeProps } from "./types";
+import type { ContextValue, TreeProps } from "musae/types/tree";
 import List from "./list";
 import Context from "./context";
 import { useTogglable } from "@aiszlab/relax";

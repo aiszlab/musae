@@ -1,5 +1,5 @@
 import type { Key, ReactNode } from "react";
-import type { ComponentProps, WithLevel } from "../../types/element";
+import type { ComponentProps, WithLevel } from "./element";
 
 /**
  * @description

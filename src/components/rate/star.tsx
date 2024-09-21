@@ -4,7 +4,7 @@ import stylex from "@stylexjs/stylex";
 import { sizes } from "../theme/tokens.stylex";
 import { useClassNames } from "../../hooks/use-class-names";
 import { RateClassToken } from "../../utils/class-name";
-import { Star as _Star } from "../icon/icons";
+import { Star as _Star } from "musae/icons";
 import { StarProps } from "./types";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";

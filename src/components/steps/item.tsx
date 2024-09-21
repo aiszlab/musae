@@ -9,7 +9,7 @@ import { ColorToken } from "../../utils/colors";
 import { useEvent, clsx } from "@aiszlab/relax";
 import { Context } from "./context";
 import { typography } from "../theme/theme";
-import { Done } from "../icon/icons";
+import { Done } from "musae/icons";
 import { ComponentToken } from "../../utils/component-token";
 
 const styles = {

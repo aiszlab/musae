@@ -1,7 +1,7 @@
 import { isVoid, isArray } from "@aiszlab/relax";
 import type { Filter, ReadableOptions, ToMenuItem, Value, ValueOrValues } from "./types";
-import type { Option } from "../../types/option";
-import type { MenuItem } from "../menu";
+import type { Option } from "musae/types/option";
+import type { MenuItem } from "musae/types/menu";
 
 /**
  * @description
@@ -54,7 +54,9 @@ export const readOptions = (options: Option[], toMenuItem: ToMenuItem, filter: F
       }
 
       // has child, read deeply
-      const [_additions, _readableOptions] = option.children ? readOptions(option.children, toMenuItem, filter) : [];
+      const [_additions, _readableOptions] = option.children
+        ? readOptions(option.children, toMenuItem, filter)
+        : [];
 
       // convert with children
       prev[0].push({
@@ -70,7 +72,7 @@ export const readOptions = (options: Option[], toMenuItem: ToMenuItem, filter: F
 
       return prev;
     },
-    [[], new Map()]
+    [[], new Map()],
   );
 };
 

@@ -5,7 +5,7 @@ import Item from "./item";
 import stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
 import { Select } from "../select";
-import type { Option } from "../../types/option";
+import type { Option } from "musae/types/option";
 import { useClassNames } from "../../hooks/use-class-names";
 import { PaginationClassToken } from "../../utils/class-name";
 import { ComponentToken } from "../../utils/component-token";

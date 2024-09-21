@@ -2,7 +2,7 @@ import React, { type CSSProperties } from "react";
 import { Layout } from "../layout";
 import stylex from "@stylexjs/stylex";
 import { elevations, ElevationToken, sizes, spacing } from "../theme/tokens.stylex";
-import type { BenchProps } from "./types";
+import type { BenchProps } from "musae/types/bench";
 import { Divider } from "../divider";
 import { useLogo, useNavigations } from "./hooks";
 import { Menu } from "../menu";

@@ -1,5 +1,5 @@
 import React, { type CSSProperties } from "react";
-import type { TourProps } from "./types";
+import type { TourProps } from "musae/types/tour";
 import { Portal } from "../portal";
 import { Popper } from "../popper";
 import stylex from "@stylexjs/stylex";

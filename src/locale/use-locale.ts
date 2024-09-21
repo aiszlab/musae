@@ -1,4 +1,4 @@
-import type { Locale, LocaleCode } from "./types";
+import type { Locale, LocaleCode } from "../types/locale";
 import { LocaleContext } from "./context";
 import { useContext, useMemo } from "react";
 

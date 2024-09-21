@@ -1,5 +1,5 @@
 import type { ButtonHTMLAttributes, MouseEventHandler, ReactNode } from "react";
-import type { ComponentProps } from "../../types/element";
+import type { ComponentProps } from "musae/types/element";
 
 export type Variant = "filled" | "outlined" | "text";
 
@@ -17,7 +17,10 @@ type Shape = "rounded" | "circular";
  */
 export interface ButtonProps
   extends Partial<
-      Pick<ButtonHTMLAttributes<HTMLButtonElement>, "type" | "onPointerEnter" | "onPointerLeave" | "onContextMenu">
+      Pick<
+        ButtonHTMLAttributes<HTMLButtonElement>,
+        "type" | "onPointerEnter" | "onPointerLeave" | "onContextMenu"
+      >
     >,
     ComponentProps {
   /**

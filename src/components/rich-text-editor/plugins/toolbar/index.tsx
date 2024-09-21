@@ -8,7 +8,7 @@ import {
   FormatUnderlined,
   InsertLink,
   FontDownload,
-} from "../../../icon/icons";
+} from "musae/icons";
 import stylex from "@stylexjs/stylex";
 import { sizes, spacing } from "../../../theme/tokens.stylex";
 import { Divider } from "../../../divider";

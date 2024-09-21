@@ -9,7 +9,7 @@ import { useClassNames } from "../../hooks/use-class-names";
 import { NotificationClassToken } from "../../utils/class-name";
 import { elevations, sizes, spacing } from "../theme/tokens.stylex";
 import { Button } from "../button";
-import { CheckCircle, Close, Loading, Error, NotificationImportant, Warning } from "../icon/icons";
+import { CheckCircle, Close, Loading, Error, NotificationImportant, Warning } from "musae/icons";
 import { typography } from "../theme/theme";
 import type { IconProps } from "../icon";
 import { ComponentToken } from "../../utils/component-token";

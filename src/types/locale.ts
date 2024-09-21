@@ -1,9 +1,6 @@
 import type { ComponentToken } from "../utils/component-token";
 
-export enum LocaleCode {
-  zh_CN = "zh_CN",
-  en_US = "en_US",
-}
+export type LocaleCode = "zh_CN" | "en_US";
 
 export interface Locale {
   locale: LocaleCode;

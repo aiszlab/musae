@@ -2,7 +2,7 @@ import { type Key, useMemo, useState } from "react";
 import type { Filter, Mode, ReadableOptions, SelectProps, ValueOrValues } from "./types";
 import { isFunction, isUndefined, useControlledState, useEvent } from "@aiszlab/relax";
 import { readOptions, toKey, toMenuItems, toValues } from "./utils";
-import type { Option } from "../../types/option";
+import type { Option } from "musae/types/option";
 
 /**
  * @description

@@ -8,7 +8,7 @@ import { useTheme } from "../theme";
 import { typography } from "../theme/theme";
 import { ColorToken } from "../../utils/colors";
 import { spacing } from "../theme/tokens.stylex";
-import { Close } from "../icon/icons";
+import { Close } from "musae/icons";
 import { ComponentToken } from "../../utils/component-token";
 
 const styles = stylex.create({

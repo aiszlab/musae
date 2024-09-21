@@ -1,4 +1,4 @@
-import React, { CSSProperties } from "react";
+import React, { type CSSProperties } from "react";
 import { useDateCells, useHeadCells, useFocusedAt, useValue } from "./hooks";
 import type { CalendarProps } from "./types";
 import {
@@ -6,7 +6,7 @@ import {
   KeyboardDoubleArrowRight,
   KeyboardArrowLeft,
   KeyboardArrowRight,
-} from "../icon/icons";
+} from "musae/icons";
 import { useClassNames } from "../../hooks/use-class-names";
 import { CalendarClassToken } from "../../utils/class-name";
 import stylex from "@stylexjs/stylex";

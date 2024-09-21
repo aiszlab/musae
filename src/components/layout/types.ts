@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import type { ComponentProps } from "../../types/element";
+import type { ComponentProps } from "musae/types/element";
 
 /**
  * @description

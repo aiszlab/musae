@@ -1,6 +1,6 @@
 import type { DeepKeys } from "@tanstack/react-table";
 import type { Table } from "@tanstack/react-table";
-import type { ComponentProps } from "../../types/element";
+import type { ComponentProps } from "./element";
 import type { Key, ReactNode } from "react";
 
 export type SortDirection = "ascending" | "descending" | null;

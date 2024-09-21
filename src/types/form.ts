@@ -1,6 +1,6 @@
 import type { PropsWithoutRef, ReactNode, RefAttributes } from "react";
 import type { DeepPartial, FieldValues, UseFormReturn } from "react-hook-form";
-import type { ComponentProps } from "../../types/element";
+import type { ComponentProps } from "./element";
 
 /**
  * @author murukal
@@ -134,3 +134,9 @@ export interface TypedForm {
    */
   useForm: <R extends FieldValues = FieldValues>(usedForm?: UseFormReturn<R>) => UseFormReturn<R>;
 }
+
+/**
+ * @description
+ * form ref
+ */
+export type FormRef<T extends FieldValues = FieldValues> = UseFormReturn<T>;

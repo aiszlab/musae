@@ -1,5 +1,5 @@
 import React, { type CSSProperties, forwardRef, useRef } from "react";
-import { MenuItemProps } from "./types";
+import { MenuItemProps } from "musae/types/menu";
 import { useItemChildren, useMenuContext } from "./hooks";
 import { useClassNames } from "../../hooks/use-class-names";
 import { MenuClassToken } from "../../utils/class-name";

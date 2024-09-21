@@ -3,7 +3,7 @@ import React, { KeyboardEvent, useMemo } from "react";
 import { Button } from "../components/button";
 import stylex from "@stylexjs/stylex";
 import { spacing } from "../components/theme/tokens.stylex";
-import { Close } from "../components/icon/icons";
+import { Close } from "musae/icons";
 import { Keyboard } from "../utils/keyboard";
 
 export type Closable = "esc" | "overlay" | "close";
@@ -23,7 +23,13 @@ const styles = stylex.create({
  * by default, closable may be different type, like `false` | ['esc'] | undefined
  * resolve these types, we convert to `Set<Closable>`
  */
-export const useClosable = ({ onClose, closable }: { onClose?: VoidFunction; closable: boolean | Closable[] }) => {
+export const useClosable = ({
+  onClose,
+  closable,
+}: {
+  onClose?: VoidFunction;
+  closable: boolean | Closable[];
+}) => {
   // convert closable to enum sets
   const triggers = useMemo<Set<Closable>>(() => {
     if (isUndefined(closable) || closable === true) {

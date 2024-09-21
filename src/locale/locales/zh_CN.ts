@@ -1,10 +1,8 @@
-/* eslint-disable no-template-curly-in-string */
-
 import { ComponentToken } from "../../utils/component-token";
-import { LocaleCode, type Locale } from "../types";
+import type { Locale } from "musae/types/locale";
 
 const zh_CN: Locale = {
-  locale: LocaleCode.zh_CN,
+  locale: "zh_CN",
 
   [ComponentToken.Dialog]: {
     confirm: "确认",

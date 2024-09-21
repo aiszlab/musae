@@ -7,7 +7,7 @@ import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
 import { useClassNames } from "../../hooks/use-class-names";
 import { SwitchClassToken } from "../../utils/class-name";
-import { Close, Check } from "../icon/icons";
+import { Close, Check } from "musae/icons";
 import { layer } from "../../utils/layer";
 import { ComponentToken } from "../../utils/component-token";
 

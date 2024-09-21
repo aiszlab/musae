@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { ContextValue } from "./types";
+import { ContextValue } from "musae/types/form";
 
 export const CONTEXT_VALUE: Readonly<ContextValue> = {
   labelCol: 24,

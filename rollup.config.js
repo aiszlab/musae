@@ -15,6 +15,20 @@ const EXTENSIONS = [".ts", ".tsx", ".js", ".jsx"];
 const STYLES_IMPORT = `${pkg.name}/${CSS_ASSET_FILENAME}`;
 
 /**
+ * @type {import("rollup").OutputOptions[]}
+ */
+const OUTPUS = [
+  {
+    format: "esm",
+    entryFileNames: "[name].mjs",
+  },
+  {
+    format: "commonjs",
+    entryFileNames: "[name].cjs",
+  },
+];
+
+/**
  * @type {import("rollup").RollupOptions["input"]}
  */
 const input = {
@@ -44,9 +58,11 @@ const config = () => {
   return {
     input,
 
-    output: {
-      format: "es",
+    output: OUTPUS.map((_output) => ({
+      ..._output,
       dir: "./dist",
+      strict: false,
+      exports: "named",
       banner: (chunk) => {
         if (isProd && chunk.isEntry && chunk.name === ENTRY) {
           // configuration readme: https://rollupjs.org/configuration-options/#output-banner-output-footer
@@ -62,7 +78,7 @@ const config = () => {
       },
       preserveModules: true,
       preserveModulesRoot: "src",
-    },
+    })),
 
     treeshake: {
       moduleSideEffects: false,

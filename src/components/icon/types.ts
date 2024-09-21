@@ -1,5 +1,5 @@
 import type { CSSProperties, FC, HTMLAttributes, MouseEventHandler, ReactNode, ReactPortal } from "react";
-import { ComponentProps } from "../../types/element";
+import { ComponentProps } from "musae/types/element";
 
 export type AsProps = Required<Pick<IconProps, "size">>;
 

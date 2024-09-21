@@ -1,5 +1,5 @@
 import { createContext, useContext } from "react";
-import type { ContextValue } from "./types";
+import type { ContextValue } from "musae/types/table";
 
 const Context = createContext<ContextValue<unknown>>({
   bordered: false,

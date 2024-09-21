@@ -1,6 +1,6 @@
 import React, {
-  CSSProperties,
-  Key,
+  type CSSProperties,
+  type Key,
   forwardRef,
   useCallback,
   useEffect,
@@ -10,7 +10,7 @@ import React, {
 } from "react";
 import { useTimeUnit } from "./hooks";
 import { ColumnProps } from "./types";
-import { Menu, MenuRef } from "../menu";
+import { Menu } from "../menu";
 import { useClassNames } from "../../hooks/use-class-names";
 import { ClockClassToken } from "../../utils/class-name";
 import { isVoid, clsx } from "@aiszlab/relax";
@@ -19,6 +19,7 @@ import { sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
 import { ComponentToken } from "../../utils/component-token";
+import type { MenuRef } from "musae/types/menu";
 
 const styles = stylex.create({
   menu: (props: {

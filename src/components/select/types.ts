@@ -1,7 +1,7 @@
 import type { Key } from "react";
-import type { Option } from "../../types/option";
-import type { MenuItem, MenuProps } from "../menu";
-import type { ComponentProps } from "../../types/element";
+import type { Option } from "musae/types/option";
+import type { MenuItem, MenuProps } from "musae/types/menu";
+import type { ComponentProps } from "musae/types/element";
 import type { RequiredIn } from "@aiszlab/relax/types";
 
 export type Mode = "multiple";

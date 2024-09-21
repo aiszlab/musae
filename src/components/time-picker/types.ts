@@ -1,5 +1,5 @@
 import type { Dayjs } from "dayjs";
-import type { ComponentProps } from "../../types/element";
+import type { ComponentProps } from "musae/types/element";
 
 /**
  * @description

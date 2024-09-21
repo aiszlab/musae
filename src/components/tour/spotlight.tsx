@@ -5,7 +5,7 @@ import { Nullable } from "@aiszlab/relax/types";
 import stylex from "@stylexjs/stylex";
 import { useClassNames } from "../../hooks/use-class-names";
 import { TourClassToken } from "../../utils/class-name";
-import { SpotlightProps } from "./types";
+import { SpotlightProps } from "musae/types/tour";
 import { sizes } from "../theme/tokens.stylex";
 import { ComponentToken } from "../../utils/component-token";
 

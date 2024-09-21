@@ -1,5 +1,5 @@
 import { type FieldError } from "react-hook-form";
-import type { ComponentProps } from "../../../types/element";
+import type { ComponentProps } from "musae/types/element";
 import React, { type CSSProperties, useEffect } from "react";
 import { FormClassToken } from "../../../utils/class-name";
 import { clsx } from "@aiszlab/relax";

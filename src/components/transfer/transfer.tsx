@@ -3,7 +3,7 @@ import { useTransfer } from "./hooks";
 import type { ContextValue, TransferProps } from "./types";
 import List from "./list";
 import stylex from "@stylexjs/stylex";
-import { KeyboardArrowLeft, KeyboardArrowRight } from "../icon/icons";
+import { KeyboardArrowLeft, KeyboardArrowRight } from "musae/icons";
 import { Button } from "../button";
 import { spacing } from "../theme/tokens.stylex";
 import { Context } from "./context";
