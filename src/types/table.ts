@@ -14,12 +14,18 @@ export type SortDescriptor = {
  * @description
  * column def
  */
-export type Column<T, V = unknown> = {
+export type Column<T> = {
   /**
    * @description
    * key
    */
-  key: DeepKeys<T>;
+  key?: Key;
+
+  /**
+   * @description
+   * value at
+   */
+  valueAt?: DeepKeys<T>;
 
   /**
    * @description
@@ -31,7 +37,7 @@ export type Column<T, V = unknown> = {
    * @description
    * custom render, render is not provided, just render value
    */
-  render?: (value: V, record: T, index: number) => ReactNode | unknown;
+  render?: (value: any, record: T, index: number) => ReactNode | unknown;
 
   /**
    * @description
@@ -136,7 +142,7 @@ export type HeaderCellProps = {
   children: ReactNode | (() => ReactNode);
 
   // key
-  value: Key;
+  value?: Key;
 
   // sort dierctions
   sortDirections: SortDirection[];

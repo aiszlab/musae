@@ -4,7 +4,7 @@ import { Popover, type PopoverRef } from "../popover";
 import { Menu } from "../menu";
 import { Empty } from "../empty";
 import { toArray, useEvent } from "@aiszlab/relax";
-import { DropdownProps } from "./types";
+import { DropdownProps } from "../../types/rich-text-editor";
 
 const Dropdown = <T extends Key = Key>({
   items: _items = new Map(),

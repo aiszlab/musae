@@ -28,7 +28,7 @@ const styles = stylex.create({
 
 const Selector: ForwardRefExoticComponent<
   PropsWithoutRef<SelectorProps> & RefAttributes<SelectorRef>
-> = forwardRef(({ mode, searchable, value, onSearch, searched, onChange }, ref) => {
+> = forwardRef(({ mode, searchable, value, onSearch, searched, onChange, onBlur }, ref) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const { isFocused, open } = useContext(Context);
   const theme = useTheme();
@@ -75,6 +75,7 @@ const Selector: ForwardRefExoticComponent<
             className={styled.className}
             style={styled.style}
             onChange={search}
+            onBlur={onBlur}
           />
         )}
       </>
@@ -98,6 +99,7 @@ const Selector: ForwardRefExoticComponent<
       className={styled.className}
       style={styled.style}
       onChange={search}
+      onBlur={onBlur}
     />
   );
 });

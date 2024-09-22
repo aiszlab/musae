@@ -140,3 +140,9 @@ export interface TypedForm {
  * form ref
  */
 export type FormRef<T extends FieldValues = FieldValues> = UseFormReturn<T>;
+
+/**
+ * @description
+ * form instance
+ */
+export type UsedForm<T extends FieldValues = FieldValues> = UseFormReturn<T>;

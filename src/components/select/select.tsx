@@ -1,5 +1,5 @@
 import React, { useRef, useCallback } from "react";
-import { Picker, type PickerRef } from "../picker";
+import { Picker } from "../picker";
 import { useOptions, useValue } from "./hooks";
 import { SelectClassToken } from "../../utils/class-name";
 import type { SelectProps, SelectorRef, ValueOrValues } from "musae/types/select";
@@ -10,6 +10,7 @@ import Selector from "./selector";
 import Selections from "./selections";
 import { useClassNames } from "../../hooks/use-class-names";
 import { ComponentToken } from "../../utils/component-token";
+import type { PickerRef } from "musae/types/picker";
 
 const styles = stylex.create({
   picked: {
@@ -33,6 +34,7 @@ const Select = <T extends ValueOrValues = ValueOrValues>({
   complex = false,
   value,
   onChange: _onChange,
+  onBlur,
 }: SelectProps<T>) => {
   const ref = useRef<PickerRef>(null);
   const selectorRef = useRef<SelectorRef>(null);
@@ -83,6 +85,9 @@ const Select = <T extends ValueOrValues = ValueOrValues>({
       pickableClassName={styled.pickable.className}
       pickableStyle={styled.pickable.style}
       onPopperExite={reset}
+      {...(!searchable && {
+        onBlur,
+      })}
     >
       <Selector
         value={readableValues}
@@ -92,6 +97,7 @@ const Select = <T extends ValueOrValues = ValueOrValues>({
         searched={searched}
         onSearch={search}
         onChange={onChange}
+        {...(searchable && { onBlur })}
       />
     </Picker>
   );

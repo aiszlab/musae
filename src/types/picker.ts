@@ -1,4 +1,4 @@
-import type { CSSProperties, MouseEventHandler, ReactNode } from "react";
+import type { CSSProperties, HTMLAttributes, MouseEventHandler, ReactNode } from "react";
 import type { ComponentProps } from "musae/types/element";
 import type { Nullable } from "@aiszlab/relax/types";
 
@@ -6,7 +6,9 @@ import type { Nullable } from "@aiszlab/relax/types";
  * @description
  * picker props
  */
-export interface PickerProps extends ComponentProps {
+export interface PickerProps
+  extends ComponentProps,
+    Pick<HTMLAttributes<HTMLSpanElement>, "onBlur"> {
   /**
    * @description
    * children

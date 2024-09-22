@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { Picker, PickerRef } from "../picker";
+import { Picker } from "../picker";
 import { Calendar } from "../calendar";
 import type { DatePickerProps } from "./types";
 import { useValue } from "./hooks";
@@ -10,6 +10,8 @@ import { clsx } from "@aiszlab/relax";
 import { spacing } from "../theme/tokens.stylex";
 import { styles as inputStyles } from "../input";
 import { ComponentToken } from "../../utils/component-token";
+
+import type { PickerRef } from "musae/types/picker";
 
 const styles = stylex.create({
   calendar: {

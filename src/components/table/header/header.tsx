@@ -69,7 +69,6 @@ const Header = <T,>(props: HeaderProps) => {
         <tr key={headerGroup.id}>
           {headerGroup.headers.map((header) => (
             <th key={header.id} className={clsx(styled.className)} style={styled.style}>
-              {}
               {header.isPlaceholder
                 ? null
                 : flexRender(header.column.columnDef.header, header.getContext())}

@@ -1,4 +1,10 @@
-import { type ColumnDef, createColumnHelper, CellContext } from "@tanstack/react-table";
+import {
+  type ColumnDef,
+  createColumnHelper,
+  CellContext,
+  DeepValue,
+  DeepKeys,
+} from "@tanstack/react-table";
 import { useMemo, useRef, createElement } from "react";
 import type { Column, ContextValue, SortDescriptor } from "musae/types/table";
 import HeaderCell from "./header/cell";
@@ -11,18 +17,25 @@ import { useControlledState, useEvent } from "@aiszlab/relax";
 export const useColumns = <T>({ columns }: { columns: Column<T>[] }) => {
   const helper = useRef(createColumnHelper<T>());
 
-  return useMemo<ColumnDef<T, any>[]>(() => {
+  return useMemo<ColumnDef<T, DeepValue<T, DeepKeys<T>>>[]>(() => {
     return columns.map(
-      ({ key, render, title, sortable = false, sortDirections = ["ascending", "descending"] }) => {
+      ({
+        key,
+        render,
+        title,
+        sortable = false,
+        sortDirections = ["ascending", "descending"],
+        valueAt,
+      }) => {
         // @ts-ignore
-        return helper.current.accessor(key, {
+        return helper.current.accessor(valueAt ?? key, {
           header: createElement(HeaderCell, {
             children: title,
             sortable,
             value: key,
             sortDirections,
           }),
-          cell: (_context: CellContext<T, unknown>) => {
+          cell: (_context: CellContext<T, DeepValue<T, DeepKeys<T>>>) => {
             const value = _context.getValue();
             if (!render) {
               return value;

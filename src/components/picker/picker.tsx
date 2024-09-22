@@ -9,7 +9,7 @@ import React, {
 } from "react";
 import { Popper } from "../popper";
 import { useBoolean, useFocus, useEvent, clsx } from "@aiszlab/relax";
-import type { PickerProps, PickerRef } from "./types";
+import type { PickerProps, PickerRef } from "../../types/picker";
 import { PickerClassToken } from "../../utils/class-name";
 import { useClassNames } from "../../hooks/use-class-names";
 import stylex from "@stylexjs/stylex";
@@ -40,6 +40,7 @@ const Picker = forwardRef<PickerRef, PickerProps>(
       onPopperEntered,
       onPopperExited,
       onPopperExite,
+      onBlur: _onBlur,
     },
     ref,
   ) => {
@@ -64,14 +65,13 @@ const Picker = forwardRef<PickerRef, PickerProps>(
 
     const click = useEvent((event: MouseEvent<HTMLSpanElement>) => {
       event.stopPropagation();
-
-      toggle();
       onClick?.(event);
+      toggle();
     });
 
     const onBlur = useEvent((e: FocusEvent<HTMLSpanElement>) => {
       e.stopPropagation();
-
+      _onBlur?.(e);
       close();
     });
 

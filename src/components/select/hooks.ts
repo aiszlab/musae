@@ -1,6 +1,6 @@
 import { type Key, useMemo, useState } from "react";
 import type { Filter, Mode, ReadableOptions, SelectProps, ValueOrValues } from "../../types/select";
-import { isFunction, isNull, isUndefined, useControlledState, useEvent } from "@aiszlab/relax";
+import { isFunction, isNull, useControlledState, useEvent } from "@aiszlab/relax";
 import { readOptions, toKey, toMenuItems, toValues } from "./utils";
 import type { Option } from "musae/types/option";
 
@@ -13,6 +13,7 @@ export const useValue = <T extends ValueOrValues = ValueOrValues>({
   close,
   isComplex,
   readableOptions,
+  onChange: _onChange,
   ...props
 }: {
   value: ValueOrValues | undefined;
@@ -23,7 +24,6 @@ export const useValue = <T extends ValueOrValues = ValueOrValues>({
   onChange?: (value: T) => void;
   isComplex: boolean;
 }) => {
-  const isControlled = !isUndefined(props.value);
   const [value, setValue] = useControlledState(props.value);
 
   // convert prop value into a map
@@ -55,11 +55,7 @@ export const useValue = <T extends ValueOrValues = ValueOrValues>({
       // same value, do not toggle again
       if (readableValues.has(key)) return;
 
-      if (isControlled) {
-        props.onChange?.((isComplex ? _value : key) as T);
-        return;
-      }
-
+      _onChange?.((isComplex ? _value : key) as T);
       setValue(_value);
       return;
     }
@@ -71,24 +67,17 @@ export const useValue = <T extends ValueOrValues = ValueOrValues>({
     const isRemoved = prev.has(key) && prev.delete(key);
     const next = isRemoved ? prev : prev.set(key, _value.label);
 
-    if (isControlled) {
-      props.onChange?.(
-        (isComplex
-          ? Array.from(next.entries()).map(([value, label]) => ({
-              value,
-              label,
-            }))
-          : Array.from(next.keys())) as T,
-      );
-      return;
-    }
+    const _changedValues = (
+      isComplex
+        ? Array.from(next.entries()).map(([value, label]) => ({
+            value,
+            label,
+          }))
+        : Array.from(next.keys())
+    ) as T;
 
-    setValue(
-      Array.from(next.entries()).map(([value, label]) => ({
-        value,
-        label,
-      })),
-    );
+    _onChange?.(_changedValues);
+    setValue(_changedValues);
   });
 
   return {

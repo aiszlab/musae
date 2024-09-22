@@ -40,6 +40,12 @@ export type RichTextEditorProps = Pick<HTMLAttributes<HTMLDivElement>, "aria-pla
    * change handler
    */
   onChange?: (value: string) => void;
+
+  /**
+   * @description
+   * value
+   */
+  value?: string;
 };
 
 /**
@@ -68,4 +74,15 @@ export type DropdownProps<T> = {
   value: T | T[];
   onChange: (value: T) => void;
   children?: ReactNode;
+};
+
+/**
+ * @description
+ * editor ref
+ */
+export type RichTextEditorRef = {
+  /**
+   * value setter
+   */
+  setValue: (value: string) => void;
 };

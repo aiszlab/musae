@@ -3,6 +3,7 @@ import type { Option } from "musae/types/option";
 import type { MenuItem, MenuProps } from "musae/types/menu";
 import type { ComponentProps } from "musae/types/element";
 import type { RequiredIn } from "@aiszlab/relax/types";
+import type { PickerProps } from "musae/types/picker";
 
 export type Mode = "multiple";
 
@@ -16,63 +17,64 @@ export type ValueOrValues = Value[] | Value;
  * @description
  * select props
  */
-export type SelectProps<T extends ValueOrValues = ValueOrValues> = ComponentProps & {
-  /**
-   * @description
-   * options
-   * @default []
-   */
-  options?: Option[];
+export type SelectProps<T extends ValueOrValues = ValueOrValues> = ComponentProps &
+  Pick<PickerProps, "onBlur"> & {
+    /**
+     * @description
+     * options
+     * @default []
+     */
+    options?: Option[];
 
-  /**
-   * @description
-   * complex
-   * @default false
-   */
-  complex?: boolean;
+    /**
+     * @description
+     * complex
+     * @default false
+     */
+    complex?: boolean;
 
-  /**
-   * @description
-   * value
-   * @default void 0
-   */
-  value?: ValueOrValues;
+    /**
+     * @description
+     * value
+     * @default void 0
+     */
+    value?: ValueOrValues;
 
-  /**
-   * @description
-   * mode
-   * @default void 0
-   */
-  mode?: Mode;
+    /**
+     * @description
+     * mode
+     * @default void 0
+     */
+    mode?: Mode;
 
-  /**
-   * @description
-   * searchable
-   * @default false
-   */
-  searchable?: boolean;
+    /**
+     * @description
+     * searchable
+     * @default false
+     */
+    searchable?: boolean;
 
-  /**
-   * @description
-   * search handler
-   * @default void 0
-   */
-  onSearch?: (searched: string) => void;
+    /**
+     * @description
+     * search handler
+     * @default void 0
+     */
+    onSearch?: (searched: string) => void;
 
-  /**
-   * @description
-   * option filter, like array filter
-   * @default void 0
-   */
-  onFilter?: ((searched: string, option: Option) => boolean) | boolean;
+    /**
+     * @description
+     * option filter, like array filter
+     * @default void 0
+     */
+    onFilter?: ((searched: string, option: Option) => boolean) | boolean;
 
-  /**
-   * @description
-   * on value change, toggle
-   * @default void 0
-   */
-  onChange?: (value: T) => void;
-};
+    /**
+     * @description
+     * on value change, toggle
+     * @default void 0
+     */
+    onChange?: (value: T) => void;
+  };
 
 /**
  * @description
@@ -94,7 +96,7 @@ export type Filter = (option: Option) => boolean;
  */
 export type SelectorProps = Pick<
   RequiredIn<SelectProps, "searchable" | "onSearch">,
-  "searchable" | "mode" | "onSearch"
+  "searchable" | "mode" | "onSearch" | "onBlur"
 > & {
   /**
    * @description

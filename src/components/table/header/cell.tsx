@@ -1,5 +1,5 @@
 import React, { useContext, useMemo, type CSSProperties } from "react";
-import { isUndefined, toFunction, useEvent } from "@aiszlab/relax";
+import { toFunction, useEvent } from "@aiszlab/relax";
 import stylex from "@stylexjs/stylex";
 import { sizes, spacing } from "../../theme/tokens.stylex";
 import { useTheme } from "../../theme";
@@ -63,20 +63,18 @@ const Cell = ({
   }, [_sortDirections]);
 
   const sort = useMemo(() => {
-    if (sortDescriptor?.key === value) {
-      return sortDescriptor.direction;
-    }
-    return null;
+    if (!sortDescriptor) return null;
+    if (sortDescriptor.key !== value) return null;
+    return sortDescriptor.direction;
   }, [sortDescriptor, value]);
 
   // sort handler
   const onSort = useEvent(() => {
-    const _direction = sortDirections.get(sort);
-    const __direction: SortDirection = isUndefined(_direction) ? "ascending" : _direction;
+    if (!value) return;
 
     onSortChange?.({
       key: value,
-      direction: __direction,
+      direction: sortDirections.get(sort) ?? "ascending",
     });
   });
 

@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo, useRef, type ReactNode } from "react";
-import { Picker, type PickerRef } from "../picker";
+import { Picker } from "../picker";
 import { Tag } from "../tag";
 import { useOptions, useValue } from "./hooks";
 import { Menu } from "../menu";
@@ -12,6 +12,7 @@ import { spacing } from "../theme/tokens.stylex";
 import { ComponentToken } from "../../utils/component-token";
 
 import type { MenuProps } from "musae/types/menu";
+import type { PickerRef } from "musae/types/picker";
 import type { CascaderProps } from "./types";
 
 const styles = stylex.create({
