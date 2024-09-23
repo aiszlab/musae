@@ -30,8 +30,9 @@ const Pagination = ({
   boundaries = 1,
   pageSize: _pageSize,
   pageSizes = [10, 20, 50, 100],
-  at,
-  onChange,
+  at: _at,
+  onChange: _onChange,
+  onPageSizeChange: _onPageSizeChange,
 }: PagiantionProps) => {
   const classNames = useClassNames(ComponentToken.Pagination);
   const [locale] = useLocale(ComponentToken.Pagination);
@@ -40,8 +41,8 @@ const Pagination = ({
     paginationItems,
     add,
     subtract,
-    changePage,
-    page,
+    onChange,
+    at,
     hasNext,
     hasPrev,
     pageSize,
@@ -51,8 +52,9 @@ const Pagination = ({
     pageSize: _pageSize,
     siblings,
     total,
-    at,
-    onChange,
+    at: _at,
+    onChange: _onChange,
+    onPageSizeChange: _onPageSizeChange,
   });
 
   const styled = {
@@ -78,8 +80,8 @@ const Pagination = ({
               value={item}
               add={add}
               subtract={subtract}
-              onPageChange={changePage}
-              checked={page === item}
+              onClick={onChange}
+              checked={at === item}
               hasNext={hasNext}
               hasPrev={hasPrev}
             />

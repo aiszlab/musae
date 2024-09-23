@@ -1,5 +1,5 @@
 import React, { createElement } from "react";
-import { type PaginationItemProps, PaginationItemType } from "musae/types/pagination";
+import type { PaginationItemProps } from "musae/types/pagination";
 import { Button } from "../button";
 import {
   KeyboardArrowLeft,
@@ -24,14 +24,14 @@ const styles = stylex.create({
 
 const Item = ({
   value,
-  onPageChange,
+  onClick,
   add,
   subtract,
   checked,
   hasNext,
   hasPrev,
 }: PaginationItemProps) => {
-  if (value === PaginationItemType.Prev) {
+  if (value === "prev") {
     return (
       <Button
         onClick={() => subtract()}
@@ -45,7 +45,7 @@ const Item = ({
     );
   }
 
-  if (value === PaginationItemType.Next) {
+  if (value === "next") {
     return (
       <Button
         onClick={() => add()}
@@ -59,11 +59,13 @@ const Item = ({
     );
   }
 
-  if (value === PaginationItemType.MorePrev || value === PaginationItemType.MoreNext) {
+  const isMorePrev = value === "more-prev";
+  const isMoreNext = value === "more-next";
+
+  if (isMorePrev || isMoreNext) {
     const styled = {
       more: stylex.props(styles.more),
     };
-    const isNegative = value === PaginationItemType.MorePrev;
 
     return (
       <Button
@@ -73,13 +75,13 @@ const Item = ({
         className={styled.more.className}
         style={styled.more.style}
         onClick={() => {
-          isNegative ? subtract(5) : add(5);
+          isMorePrev ? subtract(5) : add(5);
         }}
       >
         <MoreHoriz role="separator" />
 
         {/* hovered icon */}
-        {createElement(isNegative ? KeyboardDoubleArrowLeft : KeyboardDoubleArrowRight, {
+        {createElement(isMorePrev ? KeyboardDoubleArrowLeft : KeyboardDoubleArrowRight, {
           role: "button",
         })}
       </Button>
@@ -92,7 +94,7 @@ const Item = ({
       color={checked ? "primary" : "secondary"}
       variant={checked ? "filled" : "text"}
       onClick={() => {
-        onPageChange(value);
+        onClick(value);
       }}
     >
       {value}

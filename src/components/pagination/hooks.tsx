@@ -1,6 +1,6 @@
-import { clamp, range, useControlledState, useCounter } from "@aiszlab/relax";
+import { clamp, range, useControlledState, useCounter, useEvent } from "@aiszlab/relax";
 import { useMemo } from "react";
-import { type PaginationItems, PaginationItemType } from "musae/types/pagination";
+import type { PaginationItems, PaginationItemType } from "musae/types/pagination";
 
 /**
  * @author murukal
@@ -13,8 +13,9 @@ export const usePagiantion = ({
   siblings,
   boundaries,
   pageSize: _pageSize,
-  at,
-  onChange,
+  at: _at,
+  onChange: _onChange,
+  onPageSizeChange: _onPageSizeChange,
 }: {
   total: number;
   siblings: number;
@@ -22,6 +23,7 @@ export const usePagiantion = ({
   pageSize?: number;
   at?: number;
   onChange?: (at: number) => void;
+  onPageSizeChange?: (pageSize: number) => void;
 }) => {
   const [pageSize, setPageSize] = useControlledState(_pageSize, { defaultState: 10 });
 
@@ -32,7 +34,7 @@ export const usePagiantion = ({
     [total, pageSize],
   );
 
-  const [page, { add, subtract, setCount }] = useCounter(at, {
+  const [at, { add, subtract, setCount }] = useCounter(_at, {
     min: 1,
     max: pages,
   });
@@ -42,41 +44,47 @@ export const usePagiantion = ({
     const renderable = siblings * 2 + 3 + boundaries * 2;
 
     if (renderable > pages) {
-      return [PaginationItemType.Prev, ...range(1, pages), PaginationItemType.Next];
+      return ["prev", ...range(1, pages), "next"];
     }
 
-    const focusedAt = clamp(page, boundaries + 3, pages - (boundaries + 2));
+    const focusedAt = clamp(at, boundaries + 3, pages - (boundaries + 2));
     const from = Math.max(focusedAt - siblings, boundaries);
     const to = Math.min(focusedAt + siblings, pages - (boundaries - 1));
     const hasPrevMore = from > boundaries + 2;
     const hasNextMore = to < pages - (boundaries + 1);
 
     return [
-      PaginationItemType.Prev,
+      "prev",
       ...range(1, boundaries),
-      ...(hasPrevMore ? [PaginationItemType.MorePrev] : [boundaries + 1]),
+      ...(hasPrevMore ? (["more-prev"] satisfies PaginationItemType[]) : [boundaries + 1]),
       ...range(from, to),
-      ...(hasNextMore ? [PaginationItemType.MoreNext] : [pages - boundaries]),
+      ...(hasNextMore ? (["more-next"] satisfies PaginationItemType[]) : [pages - boundaries]),
       ...range(pages - (boundaries - 1), pages),
-      PaginationItemType.Next,
+      "next",
     ];
-  }, [boundaries, page, pages, siblings]);
+  }, [boundaries, at, pages, siblings]);
 
   // whether prev button is usable
-  const hasPrev = page > 1;
+  const hasPrev = at > 1;
   // whether next button is usable
-  const hasNext = page < pages;
+  const hasNext = at < pages;
 
-  const onPageSizeChange = (pageSize: number) => {
+  const onChange = useEvent((at: number) => {
+    _onChange?.(at);
+    setCount(at);
+  });
+
+  const onPageSizeChange = useEvent((pageSize: number) => {
+    _onPageSizeChange?.(pageSize);
     setPageSize(pageSize);
-  };
+  });
 
   return {
     paginationItems,
     add,
     subtract,
-    changePage: setCount,
-    page,
+    onChange,
+    at,
     hasPrev,
     hasNext,
     pageSize,

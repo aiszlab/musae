@@ -6,12 +6,7 @@ type UsedCounter = ReturnType<typeof useCounter>;
  * @description
  * pagiantion item type
  */
-export enum PaginationItemType {
-  Prev = "prev",
-  Next = "next",
-  MorePrev = "more-prev",
-  MoreNext = "more-next",
-}
+export type PaginationItemType = "prev" | "next" | "more-prev" | "more-next";
 
 /**
  * @author murukal
@@ -64,16 +59,18 @@ export type PagiantionProps = {
 
   /**
    * @description
-   * change handler when `page` changed
+   * change handler when current page `at` changed
    */
   onChange?: (at: number) => void;
+
+  /**
+   * @description
+   * change handler when `pageSize` changed
+   */
+  onPageSizeChange?: (pageSize: number) => void;
 };
 
-export type PaginationItems = [
-  PaginationItemType.Prev,
-  ...(PaginationItemType | number)[],
-  PaginationItemType.Next,
-];
+export type PaginationItems = (PaginationItemType | number)[];
 
 /**
  * @description
@@ -100,9 +97,9 @@ export type PaginationItemProps = {
 
   /**
    * @description
-   * change
+   * click handler
    */
-  onPageChange: (page: number) => void;
+  onClick: (page: number) => void;
 
   /**
    * @description
