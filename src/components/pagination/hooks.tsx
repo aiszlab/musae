@@ -1,6 +1,6 @@
 import { clamp, range, useControlledState, useCounter } from "@aiszlab/relax";
 import { useMemo } from "react";
-import { type PaginationItems, PaginationItemType } from "./types";
+import { type PaginationItems, PaginationItemType } from "musae/types/pagination";
 
 /**
  * @author murukal
@@ -13,15 +13,26 @@ export const usePagiantion = ({
   siblings,
   boundaries,
   pageSize: _pageSize,
+  at,
+  onChange,
 }: {
   total: number;
   siblings: number;
   boundaries: number;
   pageSize?: number;
+  at?: number;
+  onChange?: (at: number) => void;
 }) => {
   const [pageSize, setPageSize] = useControlledState(_pageSize, { defaultState: 10 });
-  const pages = useMemo(() => Math.ceil(total / Math.max(1, pageSize)), [total, pageSize]);
-  const [page, { add, subtract, setCount }] = useCounter(1, {
+
+  // convert total into page count
+  // at least 1 page
+  const pages = useMemo(
+    () => Math.max(1, Math.ceil(total / Math.max(1, pageSize))),
+    [total, pageSize],
+  );
+
+  const [page, { add, subtract, setCount }] = useCounter(at, {
     min: 1,
     max: pages,
   });

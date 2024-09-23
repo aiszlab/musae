@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import type { PagiantionProps } from "./types";
+import type { PagiantionProps } from "musae/types/pagination";
 import { usePagiantion } from "./hooks";
 import Item from "./item";
 import stylex from "@stylexjs/stylex";
@@ -30,7 +30,12 @@ const Pagination = ({
   boundaries = 1,
   pageSize: _pageSize,
   pageSizes = [10, 20, 50, 100],
+  at,
+  onChange,
 }: PagiantionProps) => {
+  const classNames = useClassNames(ComponentToken.Pagination);
+  const [locale] = useLocale(ComponentToken.Pagination);
+
   const {
     paginationItems,
     add,
@@ -46,13 +51,14 @@ const Pagination = ({
     pageSize: _pageSize,
     siblings,
     total,
+    at,
+    onChange,
   });
+
   const styled = {
     pagination: stylex.props(styles.pagination),
     sizer: stylex.props(styles.sizer),
   };
-  const classNames = useClassNames(ComponentToken.Pagination);
-  const [locale] = useLocale(ComponentToken.Pagination);
 
   const sizeOptions = useMemo<Option[]>(
     () =>

@@ -1,5 +1,5 @@
 import React, { createElement } from "react";
-import { type PaginationItemProps, PaginationItemType } from "./types";
+import { type PaginationItemProps, PaginationItemType } from "musae/types/pagination";
 import { Button } from "../button";
 import {
   KeyboardArrowLeft,
@@ -22,10 +22,24 @@ const styles = stylex.create({
   },
 });
 
-const Item = ({ value, onPageChange, add, subtract, checked, hasNext, hasPrev }: PaginationItemProps) => {
+const Item = ({
+  value,
+  onPageChange,
+  add,
+  subtract,
+  checked,
+  hasNext,
+  hasPrev,
+}: PaginationItemProps) => {
   if (value === PaginationItemType.Prev) {
     return (
-      <Button onClick={() => subtract()} shape="circular" variant="text" color="secondary" disabled={!hasPrev}>
+      <Button
+        onClick={() => subtract()}
+        shape="circular"
+        variant="text"
+        color="secondary"
+        disabled={!hasPrev}
+      >
         <KeyboardArrowLeft />
       </Button>
     );
@@ -33,7 +47,13 @@ const Item = ({ value, onPageChange, add, subtract, checked, hasNext, hasPrev }:
 
   if (value === PaginationItemType.Next) {
     return (
-      <Button onClick={() => add()} shape="circular" variant="text" color="secondary" disabled={!hasNext}>
+      <Button
+        onClick={() => add()}
+        shape="circular"
+        variant="text"
+        color="secondary"
+        disabled={!hasNext}
+      >
         <KeyboardArrowRight />
       </Button>
     );

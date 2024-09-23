@@ -54,9 +54,26 @@ export type PagiantionProps = {
    * @default [10, 20, 50, 100]
    */
   pageSizes?: number[];
+
+  /**
+   * @description
+   * current page at
+   * @default 1
+   */
+  at?: number;
+
+  /**
+   * @description
+   * change handler when `page` changed
+   */
+  onChange?: (at: number) => void;
 };
 
-export type PaginationItems = [PaginationItemType.Prev, ...(PaginationItemType | number)[], PaginationItemType.Next];
+export type PaginationItems = [
+  PaginationItemType.Prev,
+  ...(PaginationItemType | number)[],
+  PaginationItemType.Next,
+];
 
 /**
  * @description
