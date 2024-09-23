@@ -1,5 +1,11 @@
 # musae
 
+## 0.3.2
+
+### Patch Changes
+
+- `pagination`.`API` adding
+
 ## 0.3.1
 
 ### Patch Changes
