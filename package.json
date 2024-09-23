@@ -24,7 +24,7 @@
       "import": "./dist/index.mjs",
       "default": "./dist/index.mjs"
     },
-    "./styles.css": "./dist/styles.css",
+    "./styles": "./dist/styles.css",
     "./locales": {
       "types": "./dist/locale/locales/index.d.ts",
       "require": "./dist/locale/locales/index.cjs",

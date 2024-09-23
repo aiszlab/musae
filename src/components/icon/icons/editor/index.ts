@@ -8,6 +8,19 @@ import Superscript from "./superscript";
 import Notes from "./notes";
 import Checklist from "./checklist";
 
+const _ = {
+  FormatBold,
+  FormatItalic,
+  FormatUnderlined,
+  InsertLink,
+  FormatStrikethrough,
+  Subscript,
+  Superscript,
+  Notes,
+  Checklist,
+};
+
+export default _;
 export {
   FormatBold,
   FormatItalic,

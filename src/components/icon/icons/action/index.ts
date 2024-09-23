@@ -12,6 +12,23 @@ import Translate from "./translate";
 import Code from "./code";
 import OpenInNew from "./open-in-new";
 
+const _ = {
+  Visibility,
+  VisibilityOff,
+  CheckCircleOutline,
+  Done,
+  CheckCircle,
+  SwapHoriz,
+  SwapVert,
+  ZoomOut,
+  ZoomIn,
+  DoneOutline,
+  Translate,
+  Code,
+  OpenInNew,
+};
+
+export default _;
 export {
   Visibility,
   VisibilityOff,

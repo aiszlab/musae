@@ -9,10 +9,39 @@ import { createRequire } from "module";
 
 const require = createRequire(import.meta.url);
 const pkg = require("./package.json");
-const CSS_ASSET_FILENAME = "styles.css";
+const STYLES_EXPORT = "styles";
+const STYLES_ASSET_FILENAME = `${STYLES_EXPORT}.css`;
 const ENTRY = "index";
 const EXTENSIONS = [".ts", ".tsx", ".js", ".jsx"];
-const STYLES_IMPORT = `${pkg.name}/${CSS_ASSET_FILENAME}`;
+const STYLES_IMPORT = [pkg.name, STYLES_EXPORT].join("/");
+
+/**
+ * @param {import("rollup").RenderedChunk} chunk
+ * @param {import("rollup").ModuleFormat} format
+ * @param {boolean} isProd
+ * @returns {string}
+ */
+const banner = (chunk, format, isProd) => {
+  if (!isProd) return;
+  if (!chunk.isEntry) return;
+  if (chunk.name !== ENTRY) return;
+
+  // configuration readme: https://rollupjs.org/configuration-options/#output-banner-output-footer
+  // update imports, importedBindings
+  // add css to entry chunk
+  chunk.imports.push(STYLES_IMPORT);
+  Object.assign(chunk.importedBindings, {
+    [STYLES_IMPORT]: [],
+  });
+
+  switch (format) {
+    case "esm":
+    case "es":
+      return `import "${STYLES_IMPORT}";`;
+    default:
+      return `require("${STYLES_IMPORT}")`;
+  }
+};
 
 /**
  * @type {import("rollup").OutputOptions[]}
@@ -63,21 +92,9 @@ const config = () => {
       dir: "./dist",
       strict: false,
       exports: "named",
-      banner: (chunk) => {
-        if (isProd && chunk.isEntry && chunk.name === ENTRY) {
-          // configuration readme: https://rollupjs.org/configuration-options/#output-banner-output-footer
-          // update imports, importedBindings
-          // add css to entry chunk
-          chunk.imports.push(STYLES_IMPORT);
-          Object.assign(chunk.importedBindings, {
-            [STYLES_IMPORT]: [],
-          });
-
-          return `import "${STYLES_IMPORT}";`;
-        }
-      },
       preserveModules: true,
       preserveModulesRoot: "src",
+      banner: (chunk) => banner(chunk, _output.format, isProd),
     })),
 
     treeshake: {
@@ -96,7 +113,7 @@ const config = () => {
       // bundler will generate when production mode
       isProd &&
         stylex({
-          fileName: CSS_ASSET_FILENAME,
+          fileName: STYLES_ASSET_FILENAME,
           classNamePrefix: "musaex-",
           unstable_moduleResolution: {
             type: "commonJS",
