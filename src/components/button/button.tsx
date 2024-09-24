@@ -1,4 +1,4 @@
-import type { ButtonProps } from "./types";
+import type { ButtonProps } from "musae/types/button";
 import React, { type CSSProperties, forwardRef } from "react";
 import { ButtonClassToken } from "../../utils/class-name";
 import { clsx } from "@aiszlab/relax";

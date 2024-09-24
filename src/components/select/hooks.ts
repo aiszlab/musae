@@ -1,5 +1,5 @@
 import { type Key, useMemo, useState } from "react";
-import type { Filter, Mode, ReadableOptions, SelectProps, ValueOrValues } from "../../types/select";
+import type { Filter, Mode, ReadableOptions, SelectProps, ValueOrValues } from "musae/types/select";
 import { isFunction, isNull, useControlledState, useEvent } from "@aiszlab/relax";
 import { readOptions, toKey, toMenuItems, toValues } from "./utils";
 import type { Option } from "musae/types/option";

@@ -1,7 +1,7 @@
 import React, { type ChangeEvent, useContext, useMemo } from "react";
 import { useControlledState, useEvent, clsx } from "@aiszlab/relax";
 import Context from "./context";
-import type { CheckboxProps } from "./types";
+import type { CheckboxProps } from "musae/types/checkbox";
 import { useClassNames } from "../../hooks/use-class-names";
 import { CheckboxClassToken } from "../../utils/class-name";
 import stylex from "@stylexjs/stylex";

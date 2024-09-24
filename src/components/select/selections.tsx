@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Menu } from "../menu";
 import { Context } from "../picker";
 import { useMemorable } from "@aiszlab/relax";
-import type { SelectionsProps } from "../../types/select";
+import type { SelectionsProps } from "musae/types/select";
 import { Empty } from "../empty";
 
 /**

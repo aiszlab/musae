@@ -5,7 +5,7 @@ import { Portal } from "../../portal";
 import { spacing, positions, sizes } from "../../theme/tokens.stylex";
 import { useTheme } from "../../theme";
 import { ColorToken } from "../../../utils/colors";
-import type { OperationsProps } from "../types";
+import type { OperationsProps } from "musae/types/image";
 import { useHandlers } from "../hooks";
 import { Button } from "../../button";
 import PreviewGroupContext from "./context";

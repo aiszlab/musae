@@ -3,7 +3,7 @@ import { isUndefined, useEvent, useUpdateEffect } from "@aiszlab/relax";
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
 import { OnChangePlugin } from "@lexical/react/LexicalOnChangePlugin";
 import type { EditorState, ElementNode, LexicalEditor } from "lexical";
-import type { Use } from "../../../../types/rich-text-editor";
+import type { Use } from "musae/types/rich-text-editor";
 import { $convertToMarkdownString } from "@lexical/markdown";
 import { TRANSFORMERS } from "../markdown-shortcut";
 

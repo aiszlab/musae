@@ -4,7 +4,7 @@ import { Button } from "../button";
 import { Popover, type PopoverRef } from "../popover";
 import { useLocales } from "./hooks";
 import { Menu } from "../menu";
-import type { I18nButtonProps } from "./types";
+import type { I18nButtonProps } from "musae/types/i18n-button";
 import { clsx, useEvent } from "@aiszlab/relax";
 import type { LocaleCode } from "musae/types/locale";
 import { useClassNames } from "../../hooks/use-class-names";

@@ -13,7 +13,7 @@ import { ComponentToken } from "../../utils/component-token";
 
 import type { MenuProps } from "musae/types/menu";
 import type { PickerRef } from "musae/types/picker";
-import type { CascaderProps } from "./types";
+import type { CascaderProps } from "musae/types/cascader";
 
 const styles = stylex.create({
   options: {

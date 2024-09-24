@@ -1,5 +1,5 @@
 import React, { type CSSProperties } from "react";
-import type { BreadcrumbProps } from "./types";
+import type { BreadcrumbProps } from "musae/types/breadcrumb";
 import stylex from "@stylexjs/stylex";
 import { typography } from "../theme/theme";
 import { useTheme } from "../theme";

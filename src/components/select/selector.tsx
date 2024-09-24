@@ -9,7 +9,7 @@ import React, {
   type PropsWithoutRef,
   type RefAttributes,
 } from "react";
-import type { SelectorProps, SelectorRef } from "../../types/select";
+import type { SelectorProps, SelectorRef } from "musae/types/select";
 import { Tag } from "../tag";
 import { styles as inputStyles } from "../input";
 import stylex from "@stylexjs/stylex";

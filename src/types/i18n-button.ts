@@ -1,6 +1,6 @@
 import type { Locale } from "musae/types/locale";
-import type { ButtonProps } from "../button/types";
-import { ComponentProps } from "../../types/element";
+import type { ButtonProps } from "./button";
+import { ComponentProps } from "musae/types/element";
 
 /**
  * @description

@@ -1,7 +1,7 @@
 import { $isListNode, ListItemNode, SerializedListItemNode } from "@lexical/list";
 import { addClassNamesToElement, removeClassNamesFromElement } from "@lexical/utils";
 import { type EditorConfig, type LexicalNodeReplacement } from "lexical";
-import type { EditorThemeClasses } from "../../../types/rich-text-editor";
+import type { EditorThemeClasses } from "musae/types/rich-text-editor";
 import { isHTMLElement } from "@aiszlab/relax";
 
 // toggle class names into checkbox element

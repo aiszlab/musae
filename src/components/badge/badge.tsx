@@ -1,7 +1,7 @@
 import React, { type CSSProperties } from "react";
 import { useClassNames } from "../../hooks/use-class-names";
 import { BadgeClassToken } from "../../utils/class-name";
-import type { BadgeProps } from "./types";
+import type { BadgeProps } from "musae/types/badge";
 import stylex from "@stylexjs/stylex";
 import { typography } from "../theme/theme";
 import { sizes } from "../theme/tokens.stylex";

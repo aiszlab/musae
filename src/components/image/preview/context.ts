@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import type { PreviewGroupContextValue } from "../types";
+import type { PreviewGroupContextValue } from "musae/types/image";
 
 const PreviewGroupContext = createContext<PreviewGroupContextValue | null>(null);
 

@@ -3,7 +3,7 @@ import stylex from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
-import { type BreadcrumbItemProps } from "./types";
+import type { BreadcrumbItemProps } from "musae/types/breadcrumb";
 import { useClassNames } from "../../hooks/use-class-names";
 import { BreadcrumbClassToken } from "../../utils/class-name";
 import { clsx } from "@aiszlab/relax";

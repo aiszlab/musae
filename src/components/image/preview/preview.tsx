@@ -1,7 +1,7 @@
 import React, { forwardRef, useImperativeHandle, useState } from "react";
 import { Dialog } from "../../dialog";
 import Operations from "./operations";
-import type { PreviewProps, PreviewRef } from "../types";
+import type { PreviewProps, PreviewRef } from "musae/types/image";
 import stylex from "@stylexjs/stylex";
 
 const styles = stylex.create({
@@ -61,7 +61,9 @@ const Preview = forwardRef<PreviewRef, PreviewProps>(({ onClose, src, alt }, ref
     [],
   );
 
-  const styled = stylex.props(styles.image({ scale, rotate, flipX: isFlipX ? -1 : 1, flipY: isFlipY ? -1 : 1 }));
+  const styled = stylex.props(
+    styles.image({ scale, rotate, flipX: isFlipX ? -1 : 1, flipY: isFlipY ? -1 : 1 }),
+  );
   const isSmallest = scale <= 1;
 
   return (

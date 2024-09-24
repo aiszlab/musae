@@ -1,6 +1,6 @@
 import React, { Children, cloneElement, useMemo } from "react";
 import stylex from "@stylexjs/stylex";
-import { type AvatarGroupProps } from "./types";
+import type { AvatarGroupProps } from "musae/types/avatar";
 import { Context } from "./context";
 import { useClassNames } from "../../hooks/use-class-names";
 import { AvatarClassToken } from "../../utils/class-name";

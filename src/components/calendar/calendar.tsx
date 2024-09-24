@@ -1,6 +1,6 @@
 import React, { type CSSProperties } from "react";
 import { useDateCells, useHeadCells, useFocusedAt, useValue } from "./hooks";
-import type { CalendarProps } from "./types";
+import type { CalendarProps } from "musae/types/calendar";
 import {
   KeyboardDoubleArrowLeft,
   KeyboardDoubleArrowRight,

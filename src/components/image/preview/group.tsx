@@ -1,5 +1,5 @@
 import PreviewGroupContext from "./context";
-import type { PreviewGroupProps, PreviewRef } from "../types";
+import type { PreviewGroupProps, PreviewRef } from "musae/types/image";
 import Preview from "./preview";
 import React, { useMemo, useRef } from "react";
 import { useBoolean, useCounter, useEvent } from "@aiszlab/relax";
@@ -7,7 +7,10 @@ import { useBoolean, useCounter, useEvent } from "@aiszlab/relax";
 const Group = ({ children, items }: PreviewGroupProps) => {
   const min = 0;
   const max = items.length - 1;
-  const [currentAt, { add, subtract, setCount: setCurrentAt }] = useCounter(0, { min: 0, max: items.length - 1 });
+  const [currentAt, { add, subtract, setCount: setCurrentAt }] = useCounter(0, {
+    min: 0,
+    max: items.length - 1,
+  });
   const [isOpen, { turnOff, turnOn }] = useBoolean();
   const ref = useRef<PreviewRef>(null);
 

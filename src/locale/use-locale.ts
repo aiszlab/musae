@@ -1,4 +1,4 @@
-import type { Locale, LocaleCode } from "../types/locale";
+import type { Locale, LocaleCode } from "musae/types/locale";
 import { LocaleContext } from "./context";
 import { useContext, useMemo } from "react";
 

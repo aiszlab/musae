@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import type { ImageProps } from "./types";
+import type { ImageProps } from "musae/types/image";
 import Preview from "./preview/preview";
 import PreviewGroupContext from "./preview/context";
 import { useBoolean, useEvent, useImageLoader } from "@aiszlab/relax";
@@ -24,7 +24,9 @@ const Image = ({ src, alt, width, height }: ImageProps) => {
 
   return (
     <>
-      {status === "loaded" && <img src={src} alt={alt} onClick={click} width={width} height={height} />}
+      {status === "loaded" && (
+        <img src={src} alt={alt} onClick={click} width={width} height={height} />
+      )}
       {isOpen && !contextValue && <Preview src={src} onClose={turnOff} alt={alt} />}
     </>
   );
