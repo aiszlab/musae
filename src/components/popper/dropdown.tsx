@@ -21,7 +21,6 @@ const styles = {
       insetInlineStart: 0,
       boxShadow: elevations.small,
       borderRadius: sizes.xxxxsmall,
-      overflow: "auto",
 
       // animation
       willChange: "translate",
