@@ -1,10 +1,6 @@
 import { ComponentProps } from "musae/types/element";
 
-export enum TimeUnit {
-  Hour = "hour",
-  Minute = "minute",
-  Second = "second",
-}
+export type TimeUnit = "hour" | "minute" | "second";
 
 type Value = [number, number, number];
 

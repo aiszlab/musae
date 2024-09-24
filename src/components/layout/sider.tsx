@@ -1,4 +1,4 @@
-import type { SiderProps } from "./types";
+import type { SiderProps } from "musae/types/layout";
 import { Grid } from "../grid";
 import React from "react";
 

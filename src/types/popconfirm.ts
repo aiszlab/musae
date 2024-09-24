@@ -1,6 +1,6 @@
 import type { DOMAttributes, RefAttributes } from "react";
-import type { PopoverProps } from "../popover";
-import { ComponentProps } from "musae/types/element";
+import type { PopoverProps } from "../components/popover";
+import type { ComponentProps } from "musae/types/element";
 
 export type ChildProps<T> = Pick<DOMAttributes<T>, "onClick"> & RefAttributes<T>;
 

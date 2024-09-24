@@ -3,7 +3,7 @@ import React, { type CSSProperties, useEffect, type FC, createElement, forwardRe
 import { useAnimate, usePresence } from "framer-motion";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
-import type { NotificationProps, Placement, Axis, Type } from "./types";
+import type { NotificationProps, Placement, Axis, Type } from "musae/types/notification";
 import { useRefs, useTimeout, clsx } from "@aiszlab/relax";
 import { useClassNames } from "../../hooks/use-class-names";
 import { NotificationClassToken } from "../../utils/class-name";
@@ -11,7 +11,7 @@ import { elevations, sizes, spacing } from "../theme/tokens.stylex";
 import { Button } from "../button";
 import { CheckCircle, Close, Loading, Error, NotificationImportant, Warning } from "musae/icons";
 import { typography } from "../theme/theme";
-import type { IconProps } from "../icon";
+import type { IconProps } from "musae/types/icon";
 import { ComponentToken } from "../../utils/component-token";
 
 const AXIS: Readonly<Record<Placement, Axis>> = {

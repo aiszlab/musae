@@ -3,7 +3,7 @@ import { useDndMonitor, useDraggable } from "@dnd-kit/core";
 import React, { forwardRef, useImperativeHandle, useRef, useState } from "react";
 import stylex from "@stylexjs/stylex";
 import { Button } from "../button";
-import type { FloatableProps, FloatableRef } from "./types";
+import type { FloatableProps, FloatableRef } from "../../types/fab";
 import { positions } from "../theme/tokens.stylex";
 import { Portal } from "../portal";
 import { useContainer } from "../../hooks/use-container";

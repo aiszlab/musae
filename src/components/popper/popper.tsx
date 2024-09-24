@@ -1,5 +1,5 @@
 import React, { forwardRef } from "react";
-import type { PopperProps, PopperRef } from "./types";
+import type { PopperProps, PopperRef } from "musae/types/popper";
 import { Portal } from "../portal";
 import Dropdown from "./dropdown";
 

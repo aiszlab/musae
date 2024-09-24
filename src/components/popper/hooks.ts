@@ -1,5 +1,5 @@
 import { useCallback, useLayoutEffect, useMemo, useRef } from "react";
-import type { DropdownProps, PopperProps } from "./types";
+import type { DropdownProps, PopperProps } from "musae/types/popper";
 import { useAnimate } from "framer-motion";
 import { useEvent } from "@aiszlab/relax";
 import { useContainer } from "../../hooks/use-container";

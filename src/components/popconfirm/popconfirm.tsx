@@ -1,5 +1,5 @@
 import React, { cloneElement, useRef, type MouseEvent, type CSSProperties } from "react";
-import type { PopconfirmProps, ChildProps } from "./types";
+import type { PopconfirmProps, ChildProps } from "musae/types/popconfirm";
 import stylex from "@stylexjs/stylex";
 import { useClassNames } from "../../hooks/use-class-names";
 import { PopconfirmClassToken } from "../../utils/class-name";

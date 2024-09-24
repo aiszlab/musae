@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { Picker } from "../picker";
 import { Calendar } from "../calendar";
-import type { DatePickerProps } from "./types";
+import type { DatePickerProps } from "musae/types/date-picker";
 import { useValue } from "./hooks";
 import { useClassNames } from "../../hooks/use-class-names";
 import { DatePickerClassToken } from "../../utils/class-name";

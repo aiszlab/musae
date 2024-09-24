@@ -1,6 +1,6 @@
 import { useControlledState, useEvent } from "@aiszlab/relax";
 import { useMemo, useState } from "react";
-import type { RateProps } from "./types";
+import type { RateProps } from "musae/types/rate";
 
 /**
  * @description

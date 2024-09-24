@@ -1,7 +1,7 @@
 import React, { forwardRef } from "react";
 import { KBD_KEYS, KBD_LABELS } from "./utils";
 import { toArray } from "@aiszlab/relax";
-import type { KbdProps } from "./types";
+import type { KbdProps } from "musae/types/kbd";
 
 const Kbd = forwardRef<HTMLElement, KbdProps>(({ keys, children }, ref) => {
   return (

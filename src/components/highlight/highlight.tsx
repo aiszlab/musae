@@ -1,5 +1,5 @@
 import React, { type CSSProperties, memo, type ReactNode, useMemo } from "react";
-import type { HighlightProps } from "./types";
+import type { HighlightProps } from "musae/types/highlight";
 import { useClassNames } from "../../hooks/use-class-names";
 import { HighlightClassToken } from "../../utils/class-name";
 import stylex from "@stylexjs/stylex";

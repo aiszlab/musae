@@ -1,4 +1,4 @@
-import { MainProps } from "./types";
+import type { MainProps } from "musae/types/layout";
 
 const Main = ({ children }: MainProps) => {
   return children;

@@ -1,5 +1,5 @@
 import type { Nullable } from "@aiszlab/relax/types";
-import type { PopperProps } from "../components/popper/types";
+import type { PopperProps } from "./popper";
 import type { ReactNode } from "react";
 
 /**

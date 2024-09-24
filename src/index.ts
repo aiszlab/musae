@@ -48,7 +48,7 @@ export { Progress } from "./components/progress";
 export { Popover } from "./components/popover";
 export { Watermark } from "./components/watermark";
 export { Collapse } from "./components/collapse";
-export { FloatingActionButton } from "./components/floating-action-button";
+export { Fab } from "./components/fab";
 export { Transfer } from "./components/transfer";
 export { Badge } from "./components/badge";
 export { Skeleton } from "./components/skeleton";

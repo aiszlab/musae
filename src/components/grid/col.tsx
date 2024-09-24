@@ -1,5 +1,5 @@
 import React from "react";
-import type { ColProps } from "./types";
+import type { ColProps } from "musae/types/grid";
 import { useClassNames } from "../../hooks/use-class-names";
 import { GridClassToken } from "../../utils/class-name";
 import { clsx } from "@aiszlab/relax";

@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import type { Closable } from "../../hooks/use-closable";
+import type { Closable } from "../hooks/use-closable";
 import type { ComponentProps } from "musae/types/element";
 
 export type Placement = "right" | "left" | "top" | "bottom";

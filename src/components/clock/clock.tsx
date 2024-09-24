@@ -1,8 +1,7 @@
 import React from "react";
 import { useClassNames } from "../../hooks/use-class-names";
 import { ClockClassToken } from "../../utils/class-name";
-import type { ClockProps } from "./types";
-import { TimeUnit } from "./types";
+import type { ClockProps, TimeUnit } from "musae/types/clock";
 import Column from "./column";
 import stylex from "@stylexjs/stylex";
 import { clsx } from "@aiszlab/relax";
@@ -21,7 +20,7 @@ const styles = stylex.create({
 const Clock = ({ value, onChange }: ClockProps) => {
   const classNames = useClassNames(ComponentToken.Clock);
   const styled = stylex.props(styles.clock);
-  const columns = [TimeUnit.Hour, TimeUnit.Minute, TimeUnit.Second];
+  const columns = ["hour", "minute", "second"] satisfies TimeUnit[];
 
   return (
     <div className={clsx(classNames[ClockClassToken.Clock], styled.className)} style={styled.style}>

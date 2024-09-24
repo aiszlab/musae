@@ -5,7 +5,7 @@ import stylex from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { useEvent, useUpdateEffect, clsx } from "@aiszlab/relax";
 import { useAnimate } from "framer-motion";
-import type { CollapseItemProps } from "./types";
+import type { CollapseItemProps } from "musae/types/collapse";
 import { Context } from "./context";
 import { useExpandable } from "../../hooks/use-expandable";
 import { useTheme } from "../theme";

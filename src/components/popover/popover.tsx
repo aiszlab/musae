@@ -18,8 +18,9 @@ import React, {
   useImperativeHandle,
   type ForwardedRef,
 } from "react";
-import type { ChildProps, PopoverProps, PopoverRef } from "./types";
-import { Popper, type PopperRef } from "../popper";
+import type { ChildProps, PopoverProps, PopoverRef } from "musae/types/popover";
+import { Popper } from "../popper";
+import type { PopperRef } from "musae/types/popper";
 import stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
 import { typography } from "../theme/theme";

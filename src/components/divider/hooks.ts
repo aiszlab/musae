@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { Align } from "./types";
+import type { Align } from "musae/types/divider";
 
 const OFFSET = new Map<Align, 5 | 50 | 95>([
   ["center", 50],

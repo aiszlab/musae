@@ -1,5 +1,5 @@
-import { FC, createElement } from "react";
-import { AsProps, IconProps } from "./types";
+import { type FC, createElement } from "react";
+import type { AsProps, IconProps } from "musae/types/icon";
 import Icon from "./icon";
 
 /**

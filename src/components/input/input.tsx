@@ -1,6 +1,6 @@
 import React, { forwardRef, useRef, useImperativeHandle, type CSSProperties } from "react";
 import { useInputEvents, useWrapperEvents } from "./hooks";
-import type { InputProps, InputRef } from "./types";
+import type { InputProps, InputRef } from "musae/types/input";
 import { useControlledState, useFocus, clsx } from "@aiszlab/relax";
 import { InputClassToken } from "../../utils/class-name";
 import stylex from "@stylexjs/stylex";

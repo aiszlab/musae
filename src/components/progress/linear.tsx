@@ -1,6 +1,6 @@
-import React, { CSSProperties } from "react";
+import React, { type CSSProperties } from "react";
 import stylex from "@stylexjs/stylex";
-import { LinearProps } from "./types";
+import type { LinearProps } from "musae/types/progress";
 import { useClassNames } from "../../hooks/use-class-names";
 import { ProgressClassToken } from "../../utils/class-name";
 import { clsx } from "@aiszlab/relax";

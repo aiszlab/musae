@@ -1,5 +1,5 @@
 import React from "react";
-import type { RateProps } from "./types";
+import type { RateProps } from "musae/types/rate";
 import stylex from "@stylexjs/stylex";
 import { useClassNames } from "../../hooks/use-class-names";
 import { RateClassToken } from "../../utils/class-name";

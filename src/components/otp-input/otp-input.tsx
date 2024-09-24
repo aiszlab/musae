@@ -1,7 +1,8 @@
 import React, { type FocusEvent, useRef, useState } from "react";
-import type { OtpInputProps } from "./types";
+import type { OtpInputProps } from "musae/types/otp-input";
 import { useInputEvents, useValue } from "./hooks";
-import { Input, type InputRef } from "../input";
+import { Input } from "../input";
+import type { InputRef } from "musae/types/input";
 import { clamp, useEvent } from "@aiszlab/relax";
 import stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";

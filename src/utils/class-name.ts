@@ -1,4 +1,4 @@
-import { ClassNames } from "../components/config/types";
+import { ClassNames } from "../types/config";
 import { ComponentToken } from "./component-token";
 
 /**

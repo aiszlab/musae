@@ -1,5 +1,5 @@
 import React, { type CSSProperties, forwardRef, useImperativeHandle } from "react";
-import type { DropdownProps, PopperRef } from "./types";
+import type { DropdownProps, PopperRef } from "musae/types/popper";
 import { PopperClassToken } from "../../utils/class-name";
 import { useClassNames } from "../../hooks/use-class-names";
 import stylex from "@stylexjs/stylex";

@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import type { Gutter } from "../../hooks/use-gutters";
+import type { Gutter } from "../hooks/use-gutters";
 import type { ComponentProps } from "musae/types/element";
 
 type Orientation = "horizontal" | "vertical";

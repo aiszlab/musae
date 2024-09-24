@@ -3,7 +3,7 @@ import stylex from "@stylexjs/stylex";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
 import { sizes } from "../theme/tokens.stylex";
-import { CircularProps } from "./types";
+import { CircularProps } from "musae/types/progress";
 import { useCircular, useValue } from "./hooks";
 
 const styles = stylex.create({
@@ -38,7 +38,7 @@ const Circular = ({ value: _value, className, style }: CircularProps) => {
     progress: stylex.props(styles.progress),
     segment: stylex.props(
       styles.shape({ radius }),
-      styles.segment({ perimeter: segmentPerimeter, offset: segmentOffset })
+      styles.segment({ perimeter: segmentPerimeter, offset: segmentOffset }),
     ),
     track: stylex.props(styles.shape({ radius })),
   };

@@ -1,5 +1,5 @@
 import { useControlledState } from "@aiszlab/relax";
-import type { DateRangePickerProps } from "./types";
+import type { DateRangePickerProps } from "musae/types/date-range-picker";
 import { type RefObject, useCallback } from "react";
 import { Dayjs } from "dayjs";
 import type { PickerRef } from "musae/types/picker";

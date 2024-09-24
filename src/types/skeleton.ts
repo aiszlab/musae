@@ -1,4 +1,4 @@
-import { ComponentProps } from "musae/types/element";
+import type { ComponentProps } from "musae/types/element";
 
 type Variant = "button" | "avatar" | "title";
 

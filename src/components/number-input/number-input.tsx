@@ -2,7 +2,7 @@ import React, { useMemo } from "react";
 import { Input } from "../input";
 import { useEvent, useFocus } from "@aiszlab/relax";
 import { useValue } from "./hooks";
-import { NumberInputProps } from "./types";
+import type { NumberInputProps } from "musae/types/number-input";
 
 const NumberInput = ({ value: __value, formatter: _formatter }: NumberInputProps) => {
   const [isFocused, focusProps] = useFocus();

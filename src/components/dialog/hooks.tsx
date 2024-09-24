@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import type { PopupProps } from "./types";
+import type { PopupProps } from "musae/types/dialog";
 import { Space } from "../space";
 import { Button } from "../button";
 import { useLocale } from "../../locale";

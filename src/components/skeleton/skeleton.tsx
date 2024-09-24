@@ -1,5 +1,5 @@
 import stylex from "@stylexjs/stylex";
-import type { SkeletonProps } from "./types";
+import type { SkeletonProps } from "musae/types/skeleton";
 import React, { CSSProperties } from "react";
 import { useClassNames } from "../../hooks/use-class-names";
 import { SkeletonClassToken } from "../../utils/class-name";

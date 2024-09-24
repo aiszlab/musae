@@ -7,8 +7,7 @@ import React, {
   useImperativeHandle,
   useRef,
 } from "react";
-import { useTimeUnit } from "./hooks";
-import { ColumnProps } from "./types";
+import { ColumnProps, TimeUnit } from "musae/types/clock";
 import { Menu } from "../menu";
 import { useClassNames } from "../../hooks/use-class-names";
 import { ClockClassToken } from "../../utils/class-name";
@@ -19,6 +18,12 @@ import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
 import { ComponentToken } from "../../utils/component-token";
 import type { MenuRef } from "musae/types/menu";
+
+const UNITS: Record<TimeUnit, number> = {
+  hour: 24,
+  minute: 60,
+  second: 60,
+};
 
 const styles = stylex.create({
   menu: (props: {
@@ -53,7 +58,7 @@ const styles = stylex.create({
 });
 
 const Column = forwardRef<{}, ColumnProps>(({ unit, value, onChange }, ref) => {
-  const timeUnit = useTimeUnit(unit);
+  const timeUnit = UNITS[unit];
   const classNames = useClassNames(ComponentToken.Clock);
   const menuRef = useRef<MenuRef>(null);
   const theme = useTheme();

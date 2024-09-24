@@ -1,5 +1,5 @@
 import React, { type CSSProperties, useEffect, useRef } from "react";
-import type { PopupProps } from "./types";
+import type { PopupProps } from "musae/types/dialog";
 import { useFooter } from "./hooks";
 import { useAnimate } from "framer-motion";
 import { DialogClassToken } from "../../utils/class-name";

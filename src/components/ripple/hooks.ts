@@ -1,5 +1,5 @@
 import { type MouseEvent, type Key, useCallback, useState, useMemo } from "react";
-import type { Ripple } from "./types";
+import type { Ripple } from "musae/types/ripple";
 import { useIdentity } from "@aiszlab/relax";
 
 export function useRipple() {

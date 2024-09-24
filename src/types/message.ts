@@ -1,4 +1,4 @@
-import type { NotificationConfig, Type } from "../notification";
+import type { NotificationConfig, Type } from "../components/notification";
 
 export type MessageConfig = Omit<NotificationConfig, "title" | "placement" | "closable">;
 

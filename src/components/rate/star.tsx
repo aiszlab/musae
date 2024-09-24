@@ -5,7 +5,7 @@ import { sizes } from "../theme/tokens.stylex";
 import { useClassNames } from "../../hooks/use-class-names";
 import { RateClassToken } from "../../utils/class-name";
 import { Star as _Star } from "musae/icons";
-import { StarProps } from "./types";
+import type { StarProps } from "musae/types/rate";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
 import { ComponentToken } from "../../utils/component-token";

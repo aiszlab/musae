@@ -3,10 +3,10 @@ import { DndContext, Modifier } from "@dnd-kit/core";
 import Floatable from "./floatable";
 import { restrictToParentElement } from "@dnd-kit/modifiers";
 import { useEvent, useIdentity } from "@aiszlab/relax";
-import type { FloatingActionButtonProps, FloatableRef } from "./types";
+import type { FabProps, FloatableRef } from "musae/types/fab";
 import { useContainer } from "../../hooks/use-container";
 
-const FloatingActionButton = ({ container, children }: FloatingActionButtonProps) => {
+const Fab = ({ container, children }: FabProps) => {
   const [id] = useIdentity();
   const floatableRef = useRef<FloatableRef>(null);
   const { container: _container } = useContainer({ container });
@@ -31,4 +31,4 @@ const FloatingActionButton = ({ container, children }: FloatingActionButtonProps
   );
 };
 
-export default FloatingActionButton;
+export default Fab;

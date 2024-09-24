@@ -1,5 +1,5 @@
 import React, { type ReactNode, createElement, useMemo, type CSSProperties } from "react";
-import type { AsProps, IconProps } from "./types";
+import type { AsProps, IconProps } from "musae/types/icon";
 import { isFunction, clsx } from "@aiszlab/relax";
 import { IconClassToken } from "../../utils/class-name";
 import stylex from "@stylexjs/stylex";

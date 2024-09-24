@@ -1,7 +1,7 @@
 import React, { useMemo, useRef } from "react";
 import { Picker } from "../picker";
 import { useValue } from "./hooks";
-import { DateRangePickerProps } from "./types";
+import type { DateRangePickerProps } from "musae/types/date-range-picker";
 import { Calendar } from "../calendar";
 import { SwapHoriz } from "musae/icons";
 import { useClassNames } from "../../hooks/use-class-names";

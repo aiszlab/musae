@@ -1,5 +1,5 @@
 import _Layout from "./layout";
-import { TypedLayout } from "./types";
+import type { TypedLayout } from "musae/types/layout";
 import Header from "./header";
 import Sider from "./sider";
 import Main from "./main";

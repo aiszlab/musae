@@ -1,5 +1,5 @@
 import React, { type CSSProperties } from "react";
-import type { CollapseProps } from "./types";
+import type { CollapseProps } from "musae/types/collapse";
 import { useClassNames } from "../../hooks/use-class-names";
 import { CollapseClassToken } from "../../utils/class-name";
 import Item from "./item";

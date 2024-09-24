@@ -1,11 +1,11 @@
 import { ComponentProps } from "musae/types/element";
-import { ButtonProps } from "../../types/button";
+import { ButtonProps } from "./button";
 
 /**
  * @description
- * countable props
+ * countdown props
  */
-export type CountableProps = Pick<
+export type CountdownProps = Pick<
   ButtonProps,
   "children" | "disabled" | "variant" | "color" | "size" | "shape" | "ripple"
 > &

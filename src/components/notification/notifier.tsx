@@ -1,7 +1,13 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
 import Holder from "./holder";
-import type { HolderRef, NotificationConfig, OpenHandler, Type, TypedNotification } from "./types";
+import type {
+  HolderRef,
+  NotificationConfig,
+  OpenHandler,
+  Type,
+  TypedNotification,
+} from "musae/types/notification";
 
 const METHODS: Type[] = ["error", "info", "success", "warning"];
 

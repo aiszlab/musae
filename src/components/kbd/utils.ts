@@ -1,4 +1,4 @@
-import type { KbdKey } from "./types";
+import type { KbdKey } from "musae/types/kbd";
 
 export const KBD_KEYS: Record<KbdKey, string> = {
   command: "⌘",

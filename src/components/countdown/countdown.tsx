@@ -1,7 +1,7 @@
 import React, { type MouseEvent, useRef, useState } from "react";
 import { Button } from "../button";
 import { Observable, Subscription, interval, map, switchAll, type Subscriber } from "rxjs";
-import { CountableProps } from "./types";
+import type { CountdownProps } from "musae/types/countdown";
 import { useEvent, useMounted } from "@aiszlab/relax";
 
 const Countdown = ({
@@ -16,7 +16,7 @@ const Countdown = ({
   ripple = true,
   className,
   style,
-}: CountableProps) => {
+}: CountdownProps) => {
   const trigger = useRef<Subscriber<MouseEvent<HTMLButtonElement>> | null>(null);
   const counter = useRef<Observable<number> | null>(null);
   const stopper = useRef<Subscription | null>(null);

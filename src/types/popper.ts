@@ -2,7 +2,7 @@ import type { Nullable } from "@aiszlab/relax/types";
 import type { DOMAttributes, ReactNode } from "react";
 import type { ComponentProps } from "musae/types/element";
 import type { Derivable, OffsetOptions, Placement } from "@floating-ui/dom";
-import type { PortalProps } from "../portal/types";
+import type { PortalProps } from "./portal";
 
 /**
  * @author murukal

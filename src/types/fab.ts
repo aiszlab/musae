@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import type { PortalProps } from "../portal/types";
+import type { PortalProps } from "./portal";
 
 /**
  * @description
@@ -17,7 +17,7 @@ export type FloatableRef = {
  * @description
  * props
  */
-export type FloatingActionButtonProps = {
+export type FabProps = {
   /**
    * @description
    * container
@@ -39,7 +39,7 @@ export type FloatableProps = {
   /**
    * @link {FloatingActionButtonProps.container}
    */
-  container?: FloatingActionButtonProps["container"];
+  container?: FabProps["container"];
 
   /**
    * @description

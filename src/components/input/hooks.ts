@@ -7,7 +7,7 @@ import {
   type RefObject,
   useCallback,
 } from "react";
-import type { InputProps } from "./types";
+import type { InputProps } from "musae/types/input";
 
 /**
  * @description
@@ -27,7 +27,7 @@ export const useInputEvents = ({
       onFocus?.(e);
       e.stopPropagation();
     },
-    [onFocus]
+    [onFocus],
   );
 
   const blur = useCallback<FocusEventHandler<HTMLInputElement>>(
@@ -35,7 +35,7 @@ export const useInputEvents = ({
       onBlur?.(e);
       e.stopPropagation();
     },
-    [onBlur]
+    [onBlur],
   );
 
   /// change handler
@@ -44,7 +44,7 @@ export const useInputEvents = ({
       setValue(e.target.value);
       onChange?.(e.target.value);
     },
-    [setValue, onChange]
+    [setValue, onChange],
   );
 
   /// click handler
@@ -53,7 +53,7 @@ export const useInputEvents = ({
       onClick?.(e);
       e.stopPropagation();
     },
-    [onClick]
+    [onClick],
   );
 
   return {

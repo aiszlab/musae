@@ -1,6 +1,6 @@
 import React, { type CSSProperties, useEffect, useRef } from "react";
 import { useAnimate } from "framer-motion";
-import type { PopupProps } from "./types";
+import type { PopupProps } from "musae/types/drawer";
 import { PLACEMENTS } from "./hooks";
 import { DrawerClassToken } from "../../utils/class-name";
 import { useClassNames } from "../../hooks/use-class-names";

@@ -1,5 +1,5 @@
 import React from "react";
-import type { ProgressProps } from "./types";
+import type { ProgressProps } from "musae/types/progress";
 import Linear from "./linear";
 import Circular from "./circular";
 

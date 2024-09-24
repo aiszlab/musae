@@ -1,5 +1,5 @@
 import React from "react";
-import { QuoteProps } from "./types";
+import { QuoteProps } from "musae/types/quote";
 import { useClassNames } from "../../hooks/use-class-names";
 import { ComponentToken } from "../../utils/component-token";
 import { clsx } from "@aiszlab/relax";

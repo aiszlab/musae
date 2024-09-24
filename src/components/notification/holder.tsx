@@ -1,5 +1,10 @@
 import React, { forwardRef, useEffect, useImperativeHandle, useState } from "react";
-import type { HolderProps, NotificationWithoutKeyAndPlacement, HolderRef, Placement } from "./types";
+import type {
+  HolderProps,
+  NotificationWithoutKeyAndPlacement,
+  HolderRef,
+  Placement,
+} from "musae/types/notification";
 import { Portal } from "../portal";
 import { AnimatePresence } from "framer-motion";
 import Notification from "./notification";
@@ -77,20 +82,22 @@ const Holder = forwardRef<HolderRef, HolderProps>(({ defaultNotifications }, ref
     });
   });
 
-  const add = useEvent<HolderRef["add"]>(({ placement = "top-right", key = unique(), ...configuration }) => {
-    // search with `placement` + `key`, already exitst, do nothing
-    if (!!placements.get(placement)?.has(key)) return;
+  const add = useEvent<HolderRef["add"]>(
+    ({ placement = "top-right", key = unique(), ...configuration }) => {
+      // search with `placement` + `key`, already exitst, do nothing
+      if (!!placements.get(placement)?.has(key)) return;
 
-    setPlacements((prev) => {
-      const next = new Map(prev);
-      const placed = new Map(next.get(placement));
+      setPlacements((prev) => {
+        const next = new Map(prev);
+        const placed = new Map(next.get(placement));
 
-      placed.set(key, configuration);
-      next.set(placement, placed);
+        placed.set(key, configuration);
+        next.set(placement, placed);
 
-      return next;
-    });
-  });
+        return next;
+      });
+    },
+  );
 
   useEffect(() => {
     defaultNotifications?.forEach((notification) => {
