@@ -7,13 +7,14 @@ import { Space } from "../space";
 import { Button } from "../button";
 import { useBoolean, useClickAway, useEvent, useRefs, clsx } from "@aiszlab/relax";
 import { Warning } from "musae/icons";
-import { Popper, type PopperRef } from "../popper";
+import { Popper } from "../popper";
 import { spacing } from "../theme/tokens.stylex";
 import { typography } from "../theme/theme";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
 import { ComponentToken } from "../../utils/component-token";
 import { useLocale } from "../../locale";
+import type { PopperRef } from "musae/types/popper";
 
 const styles = stylex.create({
   popconfirm: {

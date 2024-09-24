@@ -1,6 +1,6 @@
 import { useEvent } from "@aiszlab/relax";
 import { useLazyBoolean } from "../../hooks/use-lazy-boolean";
-import { type PopperRef } from "../popper";
+import type { PopperRef } from "musae/types/popper";
 import { useCallback } from "react";
 
 type UsedIsOpen = [
