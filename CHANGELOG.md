@@ -1,5 +1,11 @@
 # musae
 
+## 0.3.3
+
+### Patch Changes
+
+- button unit test snapshot reuse
+
 ## 0.3.2
 
 ### Patch Changes
