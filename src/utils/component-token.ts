@@ -50,4 +50,5 @@ export enum ComponentToken {
   Highlight,
   I18nButton,
   Quote,
+  RichTextEditor,
 }

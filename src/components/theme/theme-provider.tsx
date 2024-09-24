@@ -1,6 +1,7 @@
 import React, { useMemo } from "react";
 import type { Props, Theme } from "./types";
 import { Context, PALETTE, useSwitchable } from "./hooks";
+// TODO: rewrite deepmerge into relax utils
 import deepmerge from "deepmerge";
 
 /**

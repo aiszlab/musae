@@ -1,7 +1,7 @@
 import React, { type Key, type ReactNode, useCallback, useContext, useMemo } from "react";
 import Context from "./context";
 import type { ContextValue, MenuProps, Mode } from "musae/types/menu";
-import { useControlledState } from "@aiszlab/relax";
+import { toArray, useControlledState } from "@aiszlab/relax";
 import stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
 import { KeyboardArrowUp } from "musae/icons";
@@ -53,16 +53,16 @@ export const useItemChildren = ({
   isExpanded: boolean;
   isInline: boolean;
 }) => {
-  /// prefix
+  // prefix
   const _prefix = useMemo(
     () => prefix && <span {...stylex.props(styles.prefix)}>{prefix}</span>,
     [prefix],
   );
 
-  /// child
+  // child
   const _label = useMemo(() => label && <span>{label}</span>, [label]);
 
-  /// suffix
+  // suffix
   const _suffix = useMemo<ReactNode>(() => {
     if (!suffix && !hasChildren) return null;
 
@@ -115,10 +115,10 @@ export const useContextValue = ({
     defaultState: props.defaultExpandedKeys ?? [],
   });
 
-  const selectedKeys = useMemo(() => new Set(_selectedKeys), [_selectedKeys]);
+  const selectedKeys = useMemo(() => new Set(toArray(_selectedKeys)), [_selectedKeys]);
   const expandedKeys = useMemo(() => new Set(_expandedKeys), [_expandedKeys]);
 
-  /// click handler
+  // click handler
   const click = useCallback(
     async (key: Key) => {
       _setSelectedKeys([key]);
@@ -127,7 +127,7 @@ export const useContextValue = ({
     [onClick, _setSelectedKeys],
   );
 
-  /// toggle expand
+  // toggle expand
   const toggle = useCallback(
     (key: Key) => {
       const isExpanded = expandedKeys.has(key);
@@ -140,7 +140,7 @@ export const useContextValue = ({
     [expandedKeys, _setExpandedKeys],
   );
 
-  /// collect item
+  // collect item
   const collect = useCallback<ContextValue["collect"]>(
     (key, item) => {
       if (!item) return;

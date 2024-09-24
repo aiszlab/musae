@@ -121,15 +121,12 @@ const Bench = ({
           mode="horizontal"
           className={styled.headerNavigation.className}
           style={styled.headerNavigation.style}
-          {...(!!selectedKeys[0] && {
-            selectedKeys: [selectedKeys[0]],
-          })}
+          selectedKeys={selectedKeys[0]}
         />
 
         {/* trailing */}
         {trailing}
       </Header>
-
       {sideMenuItems.length > 0 && (
         <Sider className={styled.sider.className} style={styled.sider.style}>
           {/* side navigation */}
@@ -137,9 +134,7 @@ const Bench = ({
             items={sideMenuItems}
             onClick={navigate}
             defaultExpandedKeys={defaultExpandedKeys}
-            {...(!!selectedKeys[1] && {
-              selectedKeys: [selectedKeys[1]],
-            })}
+            selectedKeys={selectedKeys[1]}
           />
         </Sider>
       )}

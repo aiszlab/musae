@@ -2,13 +2,12 @@ import React, { type CSSProperties } from "react";
 import type { SwitchProps } from "./types";
 import { useControlledState, useEvent, clsx } from "@aiszlab/relax";
 import stylex from "@stylexjs/stylex";
-import { layers, sizes, spacing } from "../theme/tokens.stylex";
+import { OPACITY, opacity, sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
-import { ColorToken } from "../../utils/colors";
+import { ColorToken, toRgba } from "../../utils/colors";
 import { useClassNames } from "../../hooks/use-class-names";
 import { SwitchClassToken } from "../../utils/class-name";
 import { Close, Check } from "musae/icons";
-import { layer } from "../../utils/layer";
 import { ComponentToken } from "../../utils/component-token";
 
 const styles = {
@@ -77,9 +76,8 @@ const styles = {
       insetInlineStart: spacing.xxxsmall,
     },
 
-    // disabled: opacity: 0.38
     disabled: {
-      opacity: layers.thicker,
+      opacity: opacity.thicker,
     },
 
     checked: (props: {
@@ -185,9 +183,9 @@ const Switch = ({
         backgroundColor: theme.colors[ColorToken.SurfaceContainerHighest],
         color: theme.colors[ColorToken.OnSurfaceVariant],
         ...(disabled && {
-          borderColor: layer(theme.colors[ColorToken.OnSurface], "medium"),
-          backgroundColor: layer(theme.colors[ColorToken.SurfaceVariant], "medium"),
-          color: layer(theme.colors[ColorToken.OnSurface], "thicker"),
+          borderColor: toRgba(theme.colors[ColorToken.OnSurface], OPACITY.medium),
+          backgroundColor: toRgba(theme.colors[ColorToken.SurfaceVariant], OPACITY.medium),
+          color: toRgba(theme.colors[ColorToken.OnSurface], OPACITY.thicker),
         }),
       }),
       isChecked &&
@@ -195,7 +193,7 @@ const Switch = ({
           backgroundColor: theme.colors[ColorToken.Primary],
           color: theme.colors[ColorToken.OnPrimary],
           ...(disabled && {
-            backgroundColor: layer(theme.colors[ColorToken.OnSurface], "medium"),
+            backgroundColor: toRgba(theme.colors[ColorToken.OnSurface], OPACITY.medium),
             color: theme.colors[ColorToken.Surface],
           }),
         }),
@@ -206,7 +204,7 @@ const Switch = ({
         backgroundColor: theme.colors[ColorToken.OnSurfaceVariant],
         color: theme.colors[ColorToken.SurfaceContainerHighest],
         ...(disabled && {
-          backgroundColor: layer(theme.colors[ColorToken.OnSurface], "thicker"),
+          backgroundColor: toRgba(theme.colors[ColorToken.OnSurface], OPACITY.thicker),
           color: theme.colors[ColorToken.SurfaceContainerHighest],
         }),
       }),
@@ -218,7 +216,7 @@ const Switch = ({
           color: theme.colors[ColorToken.OnPrimaryContainer],
           ...(disabled && {
             backgroundColor: theme.colors[ColorToken.Surface],
-            color: layer(theme.colors[ColorToken.OnSurface], "thicker"),
+            color: toRgba(theme.colors[ColorToken.OnSurface], OPACITY.thicker),
           }),
         }),
     ),

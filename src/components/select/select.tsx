@@ -1,4 +1,4 @@
-import React, { useRef, useCallback } from "react";
+import React, { useRef, useCallback, useMemo } from "react";
 import { Picker } from "../picker";
 import { useOptions, useValue } from "./hooks";
 import { SelectClassToken } from "../../utils/class-name";
@@ -66,16 +66,12 @@ const Select = <T extends ValueOrValues = ValueOrValues>({
     pickable: stylex.props(styles.pickable),
   };
 
+  const selectedKeys = useMemo(() => Array.from(readableValues.keys()), [readableValues]);
+
   return (
     <Picker
       ref={ref}
-      pickable={
-        <Selections
-          items={menuItems}
-          onSelect={onChange}
-          selectedKeys={Array.from(readableValues.keys())}
-        />
-      }
+      pickable={<Selections items={menuItems} onSelect={onChange} selectedKeys={selectedKeys} />}
       className={clsx(classNames[SelectClassToken.Select], className, styled.picker.className)}
       style={{
         ...styled.picker.style,

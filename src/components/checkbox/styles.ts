@@ -1,5 +1,5 @@
 import stylex from "@stylexjs/stylex";
-import { layers, sizes, spacing } from "../theme/tokens.stylex";
+import { opacity, sizes, spacing } from "../theme/tokens.stylex";
 
 const styles = {
   checkbox: stylex.create({
@@ -11,7 +11,7 @@ const styles = {
     },
 
     disabled: {
-      opacity: layers.thicker,
+      opacity: opacity.thicker,
       cursor: "not-allowed",
     },
 

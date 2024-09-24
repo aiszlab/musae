@@ -4,7 +4,7 @@ import { Popover, type PopoverRef } from "../popover";
 import { Menu } from "../menu";
 import { Empty } from "../empty";
 import { toArray, useEvent } from "@aiszlab/relax";
-import { DropdownProps } from "../../types/rich-text-editor";
+import type { DropdownProps } from "musae/types/rich-text-editor";
 
 const Dropdown = <T extends Key = Key>({
   items: _items = new Map(),
@@ -32,7 +32,7 @@ const Dropdown = <T extends Key = Key>({
     if (items.length === 0) {
       return <Empty />;
     }
-    return <Menu items={items} onClick={onClick} selectedKeys={toArray(value)} />;
+    return <Menu items={items} onClick={onClick} selectedKeys={value} />;
   }, [items, onClick, value]);
 
   return (

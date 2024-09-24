@@ -12,7 +12,7 @@ import ControlledStatePlugin, {
   type Ref as ControlledStatePluginRef,
 } from "./plugins/controlled-state";
 
-import { useDefault, useIdentity } from "@aiszlab/relax";
+import { clsx, useDefault, useIdentity } from "@aiszlab/relax";
 import { useMessage } from "../message";
 import stylex from "@stylexjs/stylex";
 
@@ -66,7 +66,7 @@ const styles = stylex.create({
     paddingInline: spacing.large,
     paddingBlockStart: spacing.small,
     paddingBlockEnd: spacing.small,
-    minHeight: sizes.xxxxxlarge,
+    minHeight: sizes.xxxxxxlarge,
   },
 
   code: {
@@ -112,7 +112,10 @@ const styles = stylex.create({
 });
 
 const RichTextEditor = forwardRef<RichTextEditorRef, RichTextEditorProps>(
-  ({ placeholder, disabled = false, defaultValue, onChange, value, ...props }, ref) => {
+  (
+    { placeholder, disabled = false, defaultValue, onChange, value, className, style, ...props },
+    ref,
+  ) => {
     const [id] = useIdentity();
     const [messager, holder] = useMessage();
     const theme = useTheme();
@@ -225,7 +228,13 @@ const RichTextEditor = forwardRef<RichTextEditorRef, RichTextEditorProps>(
 
     return (
       <LexicalComposer initialConfig={initialConfig}>
-        <div className={styled.shell.className} style={styled.shell.style}>
+        <div
+          className={clsx(className, styled.shell.className)}
+          style={{
+            ...styled.shell.style,
+            ...style,
+          }}
+        >
           {!disabled && <ToolbarPlugin />}
 
           <RichTextPlugin

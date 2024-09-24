@@ -3,13 +3,12 @@ import React, { type CSSProperties, forwardRef } from "react";
 import { ButtonClassToken } from "../../utils/class-name";
 import { clsx } from "@aiszlab/relax";
 import stylex from "@stylexjs/stylex";
-import { elevations, sizes, spacing } from "../theme/tokens.stylex";
+import { elevations, OPACITY, sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { useButton } from "./hooks";
 import { Ripple } from "../ripple";
 import { typography } from "../theme/theme";
-import { ColorToken } from "../../utils/colors";
-import { layer } from "../../utils/layer";
+import { ColorToken, toRgba } from "../../utils/colors";
 import { useClassNames } from "../../hooks/use-class-names";
 import { ComponentToken } from "../../utils/component-token";
 
@@ -159,12 +158,12 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         variant === "outlined" &&
           styles.outlined({
             color: theme.colors[color],
-            hoveredBackgroundColor: layer(theme.colors[ColorToken.Primary], "thin"),
+            hoveredBackgroundColor: toRgba(theme.colors[ColorToken.Primary], OPACITY.thin),
           }),
         variant === "text" &&
           styles.text({
             color: theme.colors[color],
-            hoveredBackgroundColor: layer(theme.colors[ColorToken.Primary], "thin"),
+            hoveredBackgroundColor: toRgba(theme.colors[ColorToken.Primary], OPACITY.thin),
           }),
         // shape
         styles[shape],
@@ -173,11 +172,13 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           styles.disabled({
             backgroundColor:
               variant === "filled"
-                ? layer(theme.colors[ColorToken.OnSurface], "medium")
+                ? toRgba(theme.colors[ColorToken.OnSurface], OPACITY.medium)
                 : "transparent",
-            color: layer(theme.colors[ColorToken.OnSurface], "thicker"),
+            color: toRgba(theme.colors[ColorToken.OnSurface], OPACITY.thicker),
             outlineColor:
-              variant === "outlined" ? layer(theme.colors[ColorToken.OnSurface], "thicker") : null,
+              variant === "outlined"
+                ? toRgba(theme.colors[ColorToken.OnSurface], OPACITY.thicker)
+                : null,
           }),
       ),
     };

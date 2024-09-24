@@ -5,7 +5,6 @@ import React, {
   useCallback,
   useEffect,
   useImperativeHandle,
-  useMemo,
   useRef,
 } from "react";
 import { useTimeUnit } from "./hooks";
@@ -74,11 +73,6 @@ const Column = forwardRef<{}, ColumnProps>(({ unit, value, onChange }, ref) => {
     menuRef.current?.scrollTo(value || 0, 100);
   }, [value]);
 
-  const selectedKeys = useMemo(() => {
-    if (isVoid(value)) return void 0;
-    return [value];
-  }, [value]);
-
   const styled = {
     menu: stylex.props(
       styles.menu({
@@ -91,7 +85,7 @@ const Column = forwardRef<{}, ColumnProps>(({ unit, value, onChange }, ref) => {
 
   return (
     <Menu
-      selectedKeys={selectedKeys}
+      selectedKeys={value}
       ref={menuRef}
       className={clsx(styled.menu.className, classNames[ClockClassToken.Column])}
       style={styled.menu.style}

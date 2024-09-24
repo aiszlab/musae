@@ -71,7 +71,10 @@ export enum ColorToken {
  *
  * here, musae provide some easy usage
  */
-export const toColors = (palette: Palette, mode: ContextValue["mode"]): Record<ColorToken, string> => {
+export const toColors = (
+  palette: Palette,
+  mode: ContextValue["mode"],
+): Record<ColorToken, string> => {
   const isLight = mode === "light";
 
   return {
@@ -121,7 +124,9 @@ export const toColors = (palette: Palette, mode: ContextValue["mode"]): Record<C
     [ColorToken.SurfaceContainerHighest]: isLight ? palette.neutral[90] : palette.neutral[20],
 
     [ColorToken.OnSurface]: isLight ? palette.neutral[10] : palette.neutral[90],
-    [ColorToken.OnSurfaceVariant]: isLight ? palette.neutralVariant[30] : palette.neutralVariant[80],
+    [ColorToken.OnSurfaceVariant]: isLight
+      ? palette.neutralVariant[30]
+      : palette.neutralVariant[80],
 
     [ColorToken.InverseSurface]: isLight ? palette.neutral[20] : palette.neutral[90],
     [ColorToken.InverseOnSurface]: isLight ? palette.neutral[95] : palette.neutral[20],
@@ -136,4 +141,23 @@ export const toColors = (palette: Palette, mode: ContextValue["mode"]): Record<C
     [ColorToken.Success]: isLight ? palette.success[100] : palette.success[0],
     [ColorToken.Warning]: isLight ? palette.warning[100] : palette.warning[0],
   };
+};
+
+// TODO: add to relax
+export const isHexColor = (color: string) => {
+  return true;
+};
+
+// TODO: add to relax
+export const toHexColor = (color: string) => {
+  return color;
+};
+
+// TODO: add to relax
+export const toRgba = (color: string, alpha: number = 1) => {
+  const hex = color.slice(1);
+  const r = parseInt(hex.slice(0, 2), 16);
+  const g = parseInt(hex.slice(2, 4), 16);
+  const b = parseInt(hex.slice(4, 6), 16);
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
 };

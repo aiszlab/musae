@@ -71,12 +71,13 @@ export interface MenuProps extends ComponentProps {
    */
   size?: Size;
 
+  // TODO: update docs
   /**
    * @description
    * selected keys
    * @default void 0
    */
-  selectedKeys?: Key[];
+  selectedKeys?: Key[] | Key;
 
   /**
    * @description

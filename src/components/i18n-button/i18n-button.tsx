@@ -5,12 +5,16 @@ import { Popover, type PopoverRef } from "../popover";
 import { useLocales } from "./hooks";
 import { Menu } from "../menu";
 import type { I18nButtonProps } from "./types";
-import { useEvent } from "@aiszlab/relax";
+import { clsx, useEvent } from "@aiszlab/relax";
 import type { LocaleCode } from "musae/types/locale";
+import { useClassNames } from "../../hooks/use-class-names";
+import { ComponentToken } from "../../utils/component-token";
+import { I18nButtonClassToken } from "../../utils/class-name";
 
-const I18nButton = ({ onChange, variant }: I18nButtonProps) => {
+const I18nButton = ({ onChange, variant, className, style }: I18nButtonProps) => {
   const { selections, locales, localeCode } = useLocales();
   const popoverRef = useRef<PopoverRef>(null);
+  const classNames = useClassNames(ComponentToken.I18nButton);
 
   const change = useEvent(async (value: Key) => {
     await popoverRef.current?.close();
@@ -21,10 +25,15 @@ const I18nButton = ({ onChange, variant }: I18nButtonProps) => {
     <Popover
       ref={popoverRef}
       triggerBy="click"
-      content={<Menu selectedKeys={[localeCode]} items={selections} onClick={change} />}
+      content={<Menu selectedKeys={localeCode} items={selections} onClick={change} />}
       padding={8}
     >
-      <Button shape="circular" variant={variant}>
+      <Button
+        shape="circular"
+        variant={variant}
+        className={clsx(classNames[I18nButtonClassToken.I18nButton], className)}
+        style={style}
+      >
         <Translate />
       </Button>
     </Popover>

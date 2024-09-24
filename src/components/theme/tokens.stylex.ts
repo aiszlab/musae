@@ -103,11 +103,16 @@ export const positions = defineVars({
 
 /**
  * @description
- * layer
+ * opacity
  */
-export const layers = defineVars({
-  thin: "0.08",
-  medium: "0.12",
-  thick: "0.16",
-  thicker: "0.38",
-});
+
+export type OpacityToken = "thin" | "medium" | "thick" | "thicker";
+
+export const OPACITY: Record<OpacityToken, number> = {
+  thin: 0.08,
+  medium: 0.12,
+  thick: 0.16,
+  thicker: 0.38,
+};
+
+export const opacity = defineVars(OPACITY);

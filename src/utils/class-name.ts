@@ -278,6 +278,13 @@ export enum HighlightClassToken {
 export enum QuoteClassToken {
   Quote,
 }
+export enum RichTextEditorClassToken {
+  RichTextEditor,
+  Loading,
+}
+export enum I18nButtonClassToken {
+  I18nButton,
+}
 
 /**
  * @description
@@ -539,10 +546,15 @@ export const CLASS_NAMES = {
     [HighlightClassToken.Highlight]: "highlight",
     [HighlightClassToken.Capture]: "highlight__capture",
   },
-  // TODO
-  [ComponentToken.I18nButton]: {},
+  [ComponentToken.I18nButton]: {
+    [I18nButtonClassToken.I18nButton]: "i18n-button",
+  },
   [ComponentToken.Quote]: {
     [QuoteClassToken.Quote]: "quote",
+  },
+  [ComponentToken.RichTextEditor]: {
+    [RichTextEditorClassToken.RichTextEditor]: "rich-text-editor",
+    [RichTextEditorClassToken.Loading]: "rich-text-editor--loading",
   },
 };
 

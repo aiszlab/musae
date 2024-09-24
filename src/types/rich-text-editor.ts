@@ -2,6 +2,7 @@ import { type Props as ContentEditableProps } from "@lexical/react/LexicalConten
 import { type EditorThemeClasses as _EditorThemeClasses } from "lexical";
 import type { MenuItem } from "musae/types/menu";
 import type { HTMLAttributes, ReactNode } from "react";
+import { ComponentProps } from "./element";
 
 export type Use = "markdown" | "serialized";
 
@@ -9,44 +10,45 @@ export type Use = "markdown" | "serialized";
  * @description
  * rich text editor props
  */
-export type RichTextEditorProps = Pick<HTMLAttributes<HTMLDivElement>, "aria-placeholder"> & {
-  /**
-   * @description
-   * placeholder
-   */
-  placeholder?: ContentEditableProps["placeholder"];
+export type RichTextEditorProps = Pick<HTMLAttributes<HTMLDivElement>, "aria-placeholder"> &
+  ComponentProps & {
+    /**
+     * @description
+     * placeholder
+     */
+    placeholder?: ContentEditableProps["placeholder"];
 
-  /**
-   * @description
-   * disabled
-   */
-  disabled?: boolean;
+    /**
+     * @description
+     * disabled
+     */
+    disabled?: boolean;
 
-  /**
-   * @description
-   * default value
-   */
-  defaultValue?: string;
+    /**
+     * @description
+     * default value
+     */
+    defaultValue?: string;
 
-  /**
-   * @description
-   * use value type
-   * @default "serialized"
-   */
-  use?: Use;
+    /**
+     * @description
+     * use value type
+     * @default "serialized"
+     */
+    use?: Use;
 
-  /**
-   * @description
-   * change handler
-   */
-  onChange?: (value: string) => void;
+    /**
+     * @description
+     * change handler
+     */
+    onChange?: (value: string) => void;
 
-  /**
-   * @description
-   * value
-   */
-  value?: string;
-};
+    /**
+     * @description
+     * value
+     */
+    value?: string;
+  };
 
 /**
  * @description
