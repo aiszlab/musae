@@ -1,8 +1,16 @@
 import { toArray, useEvent } from "@aiszlab/relax";
 import { useState } from "react";
-import { WatermarkProps } from "./types";
+import type { WatermarkProps } from "musae/types/watermark";
 
-const painter = ({ width: _width, height: _height, ratio = 1 }: { width: number; height: number; ratio: number }) => {
+const painter = ({
+  width: _width,
+  height: _height,
+  ratio = 1,
+}: {
+  width: number;
+  height: number;
+  ratio: number;
+}) => {
   const canvas = document.createElement("canvas");
   const ctx = canvas.getContext("2d")!;
   const width = _width * ratio;
@@ -35,11 +43,13 @@ export const useWatermarks = () => {
   const isWatermarkRewritten = useEvent((mutation: MutationRecord) => {
     // check is watermark removed
     const isWatermarkRemoved =
-      mutation.removedNodes.length > 0 && Array.from(mutation.removedNodes).some((node) => isWatermarkElement(node));
+      mutation.removedNodes.length > 0 &&
+      Array.from(mutation.removedNodes).some((node) => isWatermarkElement(node));
     if (isWatermarkRemoved) return true;
 
     // check is watermark changed
-    const isWatermarkChanged = mutation.type === "attributes" && isWatermarkElement(mutation.target);
+    const isWatermarkChanged =
+      mutation.type === "attributes" && isWatermarkElement(mutation.target);
     return isWatermarkChanged;
   });
 
@@ -107,7 +117,7 @@ export const useClips = () => {
         fontFamily,
         textAlign,
         color,
-      }: { width: number; height: number; ratio: number } & Required<WatermarkProps["font"]>
+      }: { width: number; height: number; ratio: number } & Required<WatermarkProps["font"]>,
     ) => {
       const marked = painter({ width, height, ratio });
 
@@ -142,7 +152,7 @@ export const useClips = () => {
         dataURL: squareMark.canvas.toDataURL(),
         size: Math.max(squareMark.width / ratio, squareMark.height / ratio),
       };
-    }
+    },
   );
 
   return {

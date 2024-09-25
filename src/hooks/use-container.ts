@@ -1,5 +1,5 @@
 import { isDomUsable, isFunction } from "@aiszlab/relax";
-import type { PortalProps } from "../types/portal";
+import type { PortalProps } from "musae/types/portal";
 import { useMemo } from "react";
 
 /**

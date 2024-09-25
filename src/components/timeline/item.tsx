@@ -1,5 +1,5 @@
 import React, { type CSSProperties, useContext, useMemo } from "react";
-import { TimelineItemProps } from "./types";
+import type { TimelineItemProps } from "musae/types/timeline";
 import stylex from "@stylexjs/stylex";
 import { Context } from "./context";
 import { sizes, spacing } from "../theme/tokens.stylex";

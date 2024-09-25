@@ -1,4 +1,4 @@
-import type { WaterfallProps } from "./types";
+import type { WaterfallProps } from "musae/types/waterfall";
 import React, { useMemo, type ReactNode } from "react";
 import stylex from "@stylexjs/stylex";
 import type { RequiredIn } from "@aiszlab/relax/types";
@@ -33,7 +33,7 @@ const Sequential = ({
           const next = addedIndex + 1;
           return [grouped, next >= columns ? 0 : next];
         },
-        [Array.from({ length: columns }, () => []), 0]
+        [Array.from({ length: columns }, () => []), 0],
       )[0]
       .filter((column) => column.length > 0);
   }, [children, columns]);

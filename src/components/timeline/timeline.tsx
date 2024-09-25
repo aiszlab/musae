@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import Item from "./item";
-import type { ContextValue, TimelineProps } from "./types";
+import type { ContextValue, TimelineProps } from "musae/types/timeline";
 import stylex from "@stylexjs/stylex";
 import { Context } from "./context";
 import { useClassNames } from "../../hooks/use-class-names";

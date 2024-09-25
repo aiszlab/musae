@@ -3,7 +3,7 @@ import stylex from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { useClassNames } from "../../hooks/use-class-names";
 import { TabsClassToken } from "../../utils/class-name";
-import { type NavigationProps } from "./types";
+import { type NavigationProps } from "musae/types/tabs";
 import Tab from "./tab";
 import { useAnimate } from "framer-motion";
 import { isUndefined, clsx } from "@aiszlab/relax";

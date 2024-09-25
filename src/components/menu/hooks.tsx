@@ -1,11 +1,10 @@
 import React, { type Key, type ReactNode, useCallback, useContext, useMemo } from "react";
 import Context from "./context";
-import type { ContextValue, MenuProps, Mode } from "musae/types/menu";
+import type { ContextValue, MenuProps, Mode, Size } from "musae/types/menu";
 import { toArray, useControlledState } from "@aiszlab/relax";
 import stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
 import { KeyboardArrowUp } from "musae/icons";
-import type { Size } from "musae/types/element";
 
 const styles = stylex.create({
   prefix: {

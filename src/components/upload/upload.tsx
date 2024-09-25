@@ -1,5 +1,5 @@
 import React, { ChangeEvent, DragEvent, KeyboardEvent, cloneElement, useMemo, useRef } from "react";
-import { UploadProps, UploadedsRef } from "./types";
+import type { UploadProps, UploadedsRef } from "musae/types/upload";
 import stylex from "@stylexjs/stylex";
 import { useEvent } from "@aiszlab/relax";
 import { Keyboard } from "../../utils/keyboard";
@@ -11,7 +11,14 @@ const styles = stylex.create({
   },
 });
 
-const Upload = ({ onClick: _onClick, disabled, multiple, children: _children, uploader, onError }: UploadProps) => {
+const Upload = ({
+  onClick: _onClick,
+  disabled,
+  multiple,
+  children: _children,
+  uploader,
+  onError,
+}: UploadProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const uploadedsRef = useRef<UploadedsRef>(null);
 

@@ -1,4 +1,4 @@
-import { TooltipProps } from "./types";
+import type { TooltipProps } from "musae/types/tooltip";
 import React from "react";
 import { Popover } from "../popover";
 import { useClassNames } from "../../hooks/use-class-names";

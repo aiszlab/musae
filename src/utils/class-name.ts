@@ -1,4 +1,4 @@
-import { ClassNames } from "../types/config";
+import type { ClassNames } from "musae/types/config";
 import { ComponentToken } from "./component-token";
 
 /**

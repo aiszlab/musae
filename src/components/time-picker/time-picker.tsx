@@ -1,6 +1,6 @@
 import React, { useMemo, useRef } from "react";
 import { Picker } from "../picker";
-import type { PanelRef, TimePickerProps } from "./types";
+import type { PanelRef, TimePickerProps } from "musae/types/time-picker";
 import { useClassNames } from "../../hooks/use-class-names";
 import { TimePickerClassToken } from "../../utils/class-name";
 import Panel from "./panel";

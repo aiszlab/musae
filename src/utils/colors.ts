@@ -1,4 +1,4 @@
-import type { ContextValue, Palette } from "../components/theme/types";
+import type { ContextValue, Palette } from "../types/theme";
 
 /**
  * @description

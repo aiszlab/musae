@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import type { ContextValue, TabsProps } from "./types";
+import type { ContextValue, TabsProps } from "musae/types/tabs";
 import Context from "./context";
 import { useClassNames } from "../../hooks/use-class-names";
 import { TabsClassToken } from "../../utils/class-name";

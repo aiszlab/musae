@@ -3,7 +3,7 @@ import stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
 import { useClassNames } from "../../hooks/use-class-names";
 import { TabsClassToken } from "../../utils/class-name";
-import { type PanelsProps } from "./types";
+import { type PanelsProps } from "musae/types/tabs";
 import { clsx } from "@aiszlab/relax";
 import { isUndefined, isVoid } from "@aiszlab/relax";
 import { useTabsContext } from "./hooks";

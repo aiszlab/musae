@@ -1,6 +1,50 @@
-import type { PropsWithoutRef, ReactNode, RefAttributes } from "react";
+import type { PropsWithoutRef, ReactNode, RefAttributes, RefCallback } from "react";
 import type { DeepPartial, FieldValues, UseFormReturn } from "react-hook-form";
 import type { ComponentProps } from "./element";
+
+/**
+ * @author murukal
+ * @description
+ * field need pass some props
+ * use this props as common
+ */
+export interface FieldRenderProps<T = unknown> {
+  /**
+   * @description
+   * name
+   */
+  name: string;
+
+  /**
+   * @description
+   * value
+   */
+  value: unknown;
+
+  /**
+   * @description
+   * invalid
+   */
+  invalid?: boolean;
+
+  /**
+   * @description
+   * ref
+   */
+  ref?: RefCallback<T>;
+
+  /**
+   * @description
+   * change handler
+   */
+  onChange: (...args: unknown[]) => void;
+
+  /**
+   * @description
+   * blur handler
+   */
+  onBlur: (...args: unknown[]) => void;
+}
 
 /**
  * @author murukal

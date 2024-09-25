@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { ContextValue } from "./types";
+import type { ContextValue } from "musae/types/timeline";
 
 export const Context = createContext<ContextValue>({
   mode: "right",

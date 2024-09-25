@@ -1,5 +1,5 @@
 import React, { type CSSProperties } from "react";
-import type { SwitchProps } from "./types";
+import type { SwitchProps } from "musae/types/switch";
 import { useControlledState, useEvent, clsx } from "@aiszlab/relax";
 import stylex from "@stylexjs/stylex";
 import { OPACITY, opacity, sizes, spacing } from "../theme/tokens.stylex";

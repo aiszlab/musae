@@ -1,6 +1,6 @@
 import React, { forwardRef, useCallback, useContext } from "react";
 import { Button } from "../button";
-import type { TabItemProps } from "./types";
+import type { TabItemProps } from "musae/types/tabs";
 import Context from "./context";
 import { useClassNames } from "../../hooks/use-class-names";
 import { TabsClassToken } from "../../utils/class-name";

@@ -9,7 +9,7 @@ import {
   type RefObject,
   useContext,
 } from "react";
-import type { TabItem } from "./types";
+import type { TabItem } from "musae/types/tabs";
 import Context from "./context";
 import type { Partialable } from "@aiszlab/relax/types";
 

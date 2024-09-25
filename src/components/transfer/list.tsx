@@ -1,5 +1,5 @@
 import React, { useContext, type CSSProperties } from "react";
-import type { TransferListProps } from "./types";
+import type { TransferListProps } from "musae/types/transfer";
 import stylex from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";

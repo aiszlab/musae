@@ -1,5 +1,5 @@
 import { useControlledState } from "@aiszlab/relax";
-import type { TimePickerProps } from "./types";
+import type { TimePickerProps } from "musae/types/time-picker";
 import dayjs from "dayjs";
 import { type RefObject, useCallback } from "react";
 import type { PickerRef } from "musae/types/picker";

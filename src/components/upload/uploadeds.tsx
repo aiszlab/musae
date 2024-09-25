@@ -1,7 +1,7 @@
 import React, { forwardRef, useImperativeHandle, useRef, useState } from "react";
 import stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
-import type { UploadStatus, UploadedItem, UploadedsProps, UploadedsRef } from "./types";
+import type { UploadStatus, UploadedItem, UploadedsProps, UploadedsRef } from "musae/types/upload";
 import { Loading, Clear } from "musae/icons";
 import { useEvent } from "@aiszlab/relax";
 

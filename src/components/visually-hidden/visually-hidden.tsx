@@ -1,6 +1,6 @@
 import stylex from "@stylexjs/stylex";
 import React from "react";
-import type { VisuallyHiddenProps } from "./types";
+import type { VisuallyHiddenProps } from "musae/types/visually-hidden";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { useClassNames } from "../../hooks/use-class-names";
 import { VisuallyHiddenClassToken } from "../../utils/class-name";

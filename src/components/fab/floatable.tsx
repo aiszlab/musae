@@ -3,7 +3,7 @@ import { useDndMonitor, useDraggable } from "@dnd-kit/core";
 import React, { forwardRef, useImperativeHandle, useRef, useState } from "react";
 import stylex from "@stylexjs/stylex";
 import { Button } from "../button";
-import type { FloatableProps, FloatableRef } from "../../types/fab";
+import type { FloatableProps, FloatableRef } from "musae/types/fab";
 import { positions } from "../theme/tokens.stylex";
 import { Portal } from "../portal";
 import { useContainer } from "../../hooks/use-container";
@@ -54,12 +54,18 @@ const Floatable = forwardRef<FloatableRef, FloatableProps>(({ container, childre
 
   const styled = stylex.props(
     styles.floatable({ x: offsetX + (transform?.x ?? 0), y: offsetY + (transform?.y ?? 0) }),
-    isDocumentBody && styles.fixed
+    isDocumentBody && styles.fixed,
   );
 
   return (
     <Portal container={_container}>
-      <div ref={floatableRef} {...listeners} {...attributes} className={styled.className} style={styled.style}>
+      <div
+        ref={floatableRef}
+        {...listeners}
+        {...attributes}
+        className={styled.className}
+        style={styled.style}
+      >
         <Button shape="circular">{children}</Button>
       </div>
     </Portal>

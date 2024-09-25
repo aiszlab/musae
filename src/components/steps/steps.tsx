@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import type { StepsProps, ContextValue } from "./types";
+import type { StepsProps, ContextValue } from "musae/types/steps";
 import Item from "./item";
 import { useClassNames } from "../../hooks/use-class-names";
 import { StepsClassToken } from "../../utils/class-name";

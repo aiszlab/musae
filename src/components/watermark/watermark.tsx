@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import stylex from "@stylexjs/stylex";
 import { sizes } from "../theme/tokens.stylex";
-import { WatermarkProps } from "./types";
+import type { WatermarkProps } from "musae/types/watermark";
 import { useMutateObserver, useRaf, useDevicePixelRatio } from "@aiszlab/relax";
 import { useClips, useWatermarks } from "./hooks";
 import type { Nullable } from "@aiszlab/relax/types";
@@ -52,7 +52,19 @@ const Watermark = ({
     const ctx = canvas.getContext("2d");
 
     if (!ctx) return;
-    setMark(draw(_mark, { ratio, width, height, color, fontFamily, fontSize, fontStyle, fontWeight, textAlign }));
+    setMark(
+      draw(_mark, {
+        ratio,
+        width,
+        height,
+        color,
+        fontFamily,
+        fontSize,
+        fontStyle,
+        fontWeight,
+        textAlign,
+      }),
+    );
   });
 
   useMutateObserver(watermarkRef.current, (mutations) => {

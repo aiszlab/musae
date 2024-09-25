@@ -1,6 +1,7 @@
 import type { Key, ReactNode } from "react";
-import type { ComponentProps, Size } from "./element";
-import type { WithLevel } from "./element";
+import type { ComponentProps } from "./element";
+
+export type Size = "small" | "medium" | "large";
 
 export type Mode = "vertical" | "horizontal" | "inline";
 
@@ -150,7 +151,7 @@ export type MenuItem = ComponentProps & {
  * @description
  * menu item render props
  */
-export type MenuItemProps = WithLevel<Omit<MenuItem, "key" | "children">> &
+export type MenuItemProps = Omit<MenuItem, "key" | "children"> &
   ComponentProps & {
     /**
      * @description
@@ -182,6 +183,12 @@ export type MenuItemProps = WithLevel<Omit<MenuItem, "key" | "children">> &
      * mode
      */
     mode: Mode;
+
+    /**
+     * @description
+     * level
+     */
+    level: number;
   };
 
 /**

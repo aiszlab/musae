@@ -1,6 +1,6 @@
 import React, { type CSSProperties } from "react";
 import { clsx } from "@aiszlab/relax";
-import type { TagProps } from "./types";
+import type { TagProps } from "musae/types/tag";
 import { useClassNames } from "../../hooks/use-class-names";
 import { TagClassToken } from "../../utils/class-name";
 import stylex from "@stylexjs/stylex";

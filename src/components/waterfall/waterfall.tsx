@@ -1,6 +1,6 @@
 import stylex from "@stylexjs/stylex";
 import { sizes } from "../theme/tokens.stylex";
-import type { WaterfallProps } from "./types";
+import type { WaterfallProps } from "musae/types/waterfall";
 import React from "react";
 import { useRepaint } from "./hooks";
 import { useGutters } from "../../hooks/use-gutters";

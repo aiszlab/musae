@@ -1,5 +1,5 @@
 import type { MouseEvent, ReactNode } from "react";
-import type { toColors } from "../../utils/colors";
+import type { toColors } from "../utils/colors";
 
 export type Theme = {
   palette: Palette;

@@ -1,5 +1,5 @@
 import type { Key, ReactNode } from "react";
-import type { ComponentProps, WithLevel } from "./element";
+import type { ComponentProps } from "./element";
 
 /**
  * @description
@@ -112,7 +112,7 @@ export type TreeProps = ComponentProps & {
  * @description
  * tree node props
  */
-export type TreeNodeProps = WithLevel<Omit<TreeNode, "children" | "key">> & {
+export type TreeNodeProps = Omit<TreeNode, "children" | "key"> & {
   /**
    * @description
    * value
@@ -130,6 +130,12 @@ export type TreeNodeProps = WithLevel<Omit<TreeNode, "children" | "key">> & {
    * expand handler
    */
   onExpand?: (key: Key) => void;
+
+  /**
+   * @description
+   * level
+   */
+  level: number;
 };
 
 /**
@@ -175,6 +181,9 @@ export type ContextValue = {
  * @description
  * tree child render props
  */
-export type TreeChildRenderProps = Pick<TreeNodeProps, Extract<keyof TreeNodeProps, keyof TreeListProps>> & {
+export type TreeChildRenderProps = Pick<
+  TreeNodeProps,
+  Extract<keyof TreeNodeProps, keyof TreeListProps>
+> & {
   key: Key;
 };

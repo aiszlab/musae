@@ -1,6 +1,6 @@
-import { ReactNode } from "react";
-import { ComponentProps } from "musae/types/element";
-import { type Gutter } from "../../hooks/use-gutters";
+import type { ReactNode } from "react";
+import type { ComponentProps } from "musae/types/element";
+import type { Gutter } from "../hooks/use-gutters";
 
 /**
  * @description
