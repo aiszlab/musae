@@ -4,10 +4,20 @@ import stylex from "@stylexjs/stylex";
 import { useEvent } from "@aiszlab/relax";
 import { Keyboard } from "../../utils/keyboard";
 import Uploadeds from "./uploadeds";
+import { Button } from "../button";
+import { useLocale } from "../../locale";
+import { ComponentToken } from "../../utils/component-token";
+import { spacing } from "../theme/tokens.stylex";
 
 const styles = stylex.create({
   input: {
     display: "none",
+  },
+
+  upload: {
+    display: "flex",
+    flexDirection: "column",
+    gap: spacing.xsmall,
   },
 });
 
@@ -21,6 +31,7 @@ const Upload = ({
 }: UploadProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const uploadedsRef = useRef<UploadedsRef>(null);
+  const [_locale] = useLocale(ComponentToken.Upload);
 
   // file upload
   const upload = useEvent((files: File[]) => {
@@ -56,16 +67,21 @@ const Upload = ({
   };
 
   const styled = {
+    upload: stylex.props(styles.upload),
     input: stylex.props(styles.input),
   };
 
   const children = useMemo(() => {
+    if (!_children) {
+      return <Button disabled={disabled}>{_locale.upload}</Button>;
+    }
+
     // @ts-ignore
     return cloneElement(_children, { disabled });
-  }, [_children, disabled]);
+  }, [_children, disabled, _locale]);
 
   return (
-    <div>
+    <div className={styled.upload.className} style={styled.upload.style}>
       <div {...(!disabled && { onClick, onKeyDown, onDrop, onDragOver: onDrop })}>
         <input
           ref={inputRef}

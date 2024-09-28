@@ -45,6 +45,10 @@ const zh_CN: Locale = {
   [ComponentToken.Drawer]: {
     confirm: "确认",
   },
+
+  [ComponentToken.Upload]: {
+    upload: "上传",
+  },
 };
 
 export default zh_CN;

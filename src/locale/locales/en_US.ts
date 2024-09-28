@@ -45,6 +45,10 @@ const en_US: Locale = {
   [ComponentToken.Drawer]: {
     confirm: "Confirm",
   },
+
+  [ComponentToken.Upload]: {
+    upload: "Upload",
+  },
 };
 
 export default en_US;

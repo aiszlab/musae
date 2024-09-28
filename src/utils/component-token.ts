@@ -51,4 +51,5 @@ export enum ComponentToken {
   I18nButton,
   Quote,
   RichTextEditor,
+  Upload,
 }

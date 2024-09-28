@@ -2,8 +2,9 @@ import React, { forwardRef, useImperativeHandle, useRef, useState } from "react"
 import stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
 import type { UploadStatus, UploadedItem, UploadedsProps, UploadedsRef } from "musae/types/upload";
-import { Loading, Clear } from "musae/icons";
+import { Loading, Delete, AttachFile } from "musae/icons";
 import { useEvent } from "@aiszlab/relax";
+import { typography } from "../theme/theme";
 
 const styles = stylex.create({
   uploadeds: {
@@ -16,6 +17,12 @@ const styles = stylex.create({
     display: "flex",
     alignItems: "center",
     gap: spacing.small,
+  },
+
+  filename: {
+    flex: 1,
+    overflow: "hidden",
+    textOverflow: "ellipsis",
   },
 });
 
@@ -46,6 +53,7 @@ const Uploadeds = forwardRef<UploadedsRef, UploadedsProps>(({ uploader, onError 
 
         // call request by user provided
         if (!hasUploader) return;
+
         const url = await uploader(file).catch((error) => {
           loaded(id, "error");
           onError?.(error);
@@ -68,7 +76,8 @@ const Uploadeds = forwardRef<UploadedsRef, UploadedsProps>(({ uploader, onError 
 
   const styled = {
     uploadeds: stylex.props(styles.uploadeds),
-    item: stylex.props(styles.item),
+    item: stylex.props(styles.item, typography.body.small),
+    filename: stylex.props(styles.filename),
   };
 
   return (
@@ -76,11 +85,14 @@ const Uploadeds = forwardRef<UploadedsRef, UploadedsProps>(({ uploader, onError 
       {Array.from(items.entries()).map(([key, item]) => {
         return (
           <div key={key} className={styled.item.className} style={styled.item.style}>
-            <Loading />
+            {item.status === "loading" && <Loading />}
+            {item.status !== "loading" && <AttachFile />}
 
-            {item.file.name}
+            <span className={styled.filename.className} style={styled.filename.style}>
+              {item.file.name}
+            </span>
 
-            <Clear onClick={() => remove(key)} />
+            <Delete onClick={() => remove(key)} />
           </div>
         );
       })}

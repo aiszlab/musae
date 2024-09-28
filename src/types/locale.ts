@@ -43,4 +43,8 @@ export interface Locale {
   [ComponentToken.Drawer]: {
     confirm: string;
   };
+
+  [ComponentToken.Upload]: {
+    upload: string;
+  };
 }

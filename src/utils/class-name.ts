@@ -556,6 +556,8 @@ export const CLASS_NAMES = {
     [RichTextEditorClassToken.RichTextEditor]: "rich-text-editor",
     [RichTextEditorClassToken.Loading]: "rich-text-editor--loading",
   },
+  // TODO: add class names
+  [ComponentToken.Upload]: {},
 };
 
 /**

@@ -11,6 +11,8 @@ import DoneOutline from "./done-outline";
 import Translate from "./translate";
 import Code from "./code";
 import OpenInNew from "./open-in-new";
+import Delete from "./delete";
+import ThreeDRotation from "./three-d-rotation";
 
 const _ = {
   Visibility,
@@ -26,6 +28,8 @@ const _ = {
   Translate,
   Code,
   OpenInNew,
+  Delete,
+  ThreeDRotation,
 };
 
 export default _;
@@ -43,4 +47,6 @@ export {
   Translate,
   Code,
   OpenInNew,
+  Delete,
+  ThreeDRotation,
 };
