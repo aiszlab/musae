@@ -39,4 +39,8 @@ export interface Locale {
   };
 
   [ComponentToken.I18nButton]: Record<LocaleCode, string>;
+
+  [ComponentToken.Drawer]: {
+    confirm: string;
+  };
 }

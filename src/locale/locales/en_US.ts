@@ -41,6 +41,10 @@ const en_US: Locale = {
     zh_CN: "Chinese",
     en_US: "English",
   },
+
+  [ComponentToken.Drawer]: {
+    confirm: "Confirm",
+  },
 };
 
 export default en_US;

@@ -5,7 +5,7 @@ import { PLACEMENTS } from "./hooks";
 import { DrawerClassToken } from "../../utils/class-name";
 import { useClassNames } from "../../hooks/use-class-names";
 import stylex from "@stylexjs/stylex";
-import { positions, spacing } from "../theme/tokens.stylex";
+import { positions, sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
 import { clsx } from "@aiszlab/relax";
@@ -13,6 +13,9 @@ import { typography } from "../theme/theme";
 import { contains } from "@aiszlab/relax/dom";
 import { useClosable } from "../../hooks/use-closable";
 import { ComponentToken } from "../../utils/component-token";
+import { Space } from "../space";
+import { Button } from "../button";
+import { useLocale } from "../../locale";
 
 const styles = stylex.create({
   popup: {
@@ -73,15 +76,24 @@ const styles = stylex.create({
     height: props.size,
   }),
 
-  header: {
+  header: (props: { outlineColor: CSSProperties["borderColor"] }) => ({
     display: "flex",
     paddingInline: spacing.large,
-    paddingBlock: spacing.xlarge,
-  },
+    paddingBlock: spacing.large,
+    alignItems: "center",
+    gap: spacing.xsmall,
+    borderBottomWidth: sizes.smallest,
+    borderBottomStyle: "solid",
+    borderBottomColor: props.outlineColor,
+  }),
 
   body: {
     flex: 1,
     padding: spacing.xlarge,
+  },
+
+  actions: {
+    marginInlineStart: "auto",
   },
 });
 
@@ -93,6 +105,7 @@ const Popup = ({
   onClosed,
   size,
   className,
+  onConfirm,
   ...props
 }: PopupProps) => {
   const [scope, animate] = useAnimate<HTMLDivElement>();
@@ -102,7 +115,9 @@ const Popup = ({
   const panelRef = useRef<HTMLDivElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
 
-  /// children render hooks
+  const [locale] = useLocale(ComponentToken.Drawer);
+
+  // children render hooks
   const { closer, onKeyDown, onOverlayClick } = useClosable({ closable, onClose });
 
   useEffect(() => {
@@ -126,7 +141,7 @@ const Popup = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open, ..._placement]);
 
-  /// when open, try focus dialog
+  // when open, try focus dialog
   useEffect(() => {
     if (!open) return;
     if (contains(scope.current, document.activeElement)) return;
@@ -148,8 +163,12 @@ const Popup = ({
       }),
       styles[placement]({ size }),
     ),
-    header: stylex.props(typography.body.large, styles.header),
+    header: stylex.props(
+      typography.body.large,
+      styles.header({ outlineColor: theme.colors[ColorToken.Outline] }),
+    ),
     body: stylex.props(styles.body),
+    actions: stylex.props(styles.actions),
   };
 
   return (
@@ -174,14 +193,17 @@ const Popup = ({
         style={styled.panel.style}
         ref={panelRef}
       >
-        {closer}
-
         {/* header */}
         <div
           className={clsx(classNames[DrawerClassToken.Header], styled.header.className)}
           style={styled.header.style}
         >
+          {closer}
           {props.title}
+
+          <Space className={styled.actions.className} style={styled.actions.style}>
+            <Button onClick={onConfirm}>{locale.confirm}</Button>
+          </Space>
         </div>
 
         {/* body */}

@@ -1,19 +1,10 @@
 import { isUndefined, useEvent } from "@aiszlab/relax";
 import React, { KeyboardEvent, useMemo } from "react";
 import { Button } from "../components/button";
-import stylex from "@stylexjs/stylex";
-import { spacing } from "../components/theme/tokens.stylex";
 import { Close } from "musae/icons";
 import { Keyboard } from "../utils/keyboard";
 
 export type Closable = "esc" | "overlay" | "close";
-
-const styles = stylex.create({
-  closer: {
-    top: spacing.large,
-    right: spacing.large,
-  },
-});
 
 /**
  * @description
@@ -42,21 +33,8 @@ export const useClosable = ({
   const closer = useMemo(() => {
     if (!triggers.has("close")) return null;
 
-    const styled = stylex.props(styles.closer);
-
     return (
-      <Button
-        shape="circular"
-        variant="text"
-        prefix={<Close />}
-        onClick={onClose}
-        className={styled.className}
-        style={{
-          ...styled.style,
-          position: "absolute",
-        }}
-        size="small"
-      />
+      <Button shape="circular" variant="text" prefix={<Close />} onClick={onClose} size="small" />
     );
   }, [triggers, onClose]);
 

@@ -60,6 +60,12 @@ export type DrawerProps = Pick<ComponentProps, "className"> & {
    * @default void 0
    */
   onClose?: VoidFunction;
+
+  /**
+   * @description
+   * on confirm handler
+   */
+  onConfirm?: VoidFunction;
 };
 
 /**
