@@ -208,7 +208,7 @@ const RichTextEditor = forwardRef<RichTextEditorRef, RichTextEditorProps>(
             // different value usage, use different serialization
             switch (_use) {
               case "markdown":
-                $convertFromMarkdownString(defaultValue, TRANSFORMERS);
+                $convertFromMarkdownString(defaultValue, TRANSFORMERS, void 0, true);
                 break;
               default:
                 editor.setEditorState(editor.parseEditorState(defaultValue));

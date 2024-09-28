@@ -42,7 +42,7 @@ const Body = <T,>() => {
     <tbody>
       {_isEmpty && (
         <tr>
-          <td>
+          <td colSpan={table.getAllColumns().length}>
             <Empty />
           </td>
         </tr>
