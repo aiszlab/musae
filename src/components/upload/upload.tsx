@@ -28,6 +28,8 @@ const Upload = ({
   children: _children,
   uploader,
   onError,
+  value,
+  onChange,
 }: UploadProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const uploadedsRef = useRef<UploadedsRef>(null);
@@ -40,7 +42,7 @@ const Upload = ({
     });
   });
 
-  const onChange = useEvent((e: ChangeEvent<HTMLInputElement>) => {
+  const _onChange = useEvent((e: ChangeEvent<HTMLInputElement>) => {
     const { files } = e.target;
     if (!files) return;
     upload(Array.from(files));
@@ -90,12 +92,18 @@ const Upload = ({
           className={styled.input.className}
           style={styled.input.style}
           multiple={multiple}
-          onChange={onChange}
+          onChange={_onChange}
         />
         {children}
       </div>
 
-      <Uploadeds ref={uploadedsRef} uploader={uploader} onError={onError} />
+      <Uploadeds
+        ref={uploadedsRef}
+        value={value}
+        uploader={uploader}
+        onError={onError}
+        onChange={onChange}
+      />
     </div>
   );
 };

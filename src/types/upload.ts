@@ -1,4 +1,46 @@
-import type { ReactNode } from "react";
+import type { Key, ReactNode } from "react";
+
+/**
+ * @description
+ * status
+ */
+export type UploadStatus = "success" | "error" | "loading";
+
+export type ControlledValue = {
+  url: string;
+  key?: Key;
+};
+
+/**
+ * @description
+ * uploaded item
+ */
+export type UploadedItem = {
+  /**
+   * @description
+   * unique key
+   */
+  key: Key;
+
+  /**
+   * @description
+   * file
+   */
+  file?: File;
+
+  /**
+   * {@link UploadStatus}
+   */
+  status: UploadStatus;
+
+  /**
+   * @description
+   * url
+   */
+  url?: string;
+};
+
+export type Value = UploadedItem | ControlledValue;
 
 /**
  * @description
@@ -46,6 +88,18 @@ export type UploadProps = {
    * @default void 0
    */
   onError?: (error: unknown) => void;
+
+  /**
+   * @description
+   * value
+   */
+  value?: Value[];
+
+  /**
+   * @description
+   * value change handler
+   */
+  onChange?: (value: Value[]) => void;
 };
 
 /**
@@ -64,27 +118,4 @@ export type UploadedsRef = {
  * @description
  * uploaded list props
  */
-export type UploadedsProps = Pick<UploadProps, "uploader" | "onError">;
-
-/**
- * @description
- * status
- */
-export type UploadStatus = "success" | "error" | "loading";
-
-/**
- * @description
- * uploaded item
- */
-export type UploadedItem = {
-  /**
-   * @description
-   * file
-   */
-  file: File;
-
-  /**
-   * {@link UploadStatus}
-   */
-  status: UploadStatus;
-};
+export type UploadedsProps = Pick<UploadProps, "uploader" | "onError" | "value" | "onChange">;
