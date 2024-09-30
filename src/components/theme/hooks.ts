@@ -9,7 +9,7 @@ import { positions } from "./tokens.stylex";
 
 export const PALETTE: Readonly<Palette> = {
   primary: {
-    "0": "#000",
+    "0": "#000000",
     "10": "#21005D",
     "20": "#381E72",
     "30": "#4F378B",
@@ -24,7 +24,7 @@ export const PALETTE: Readonly<Palette> = {
     "100": "#FFF",
   },
   secondary: {
-    "0": "#000",
+    "0": "#000000",
     "10": "#1D192B",
     "20": "#332D41",
     "30": "#4A4458",
@@ -39,7 +39,7 @@ export const PALETTE: Readonly<Palette> = {
     "100": "#FFF",
   },
   tertiary: {
-    "0": "#000",
+    "0": "#000000",
     "10": "#31111D",
     "20": "#492532",
     "30": "#633B48",
@@ -54,7 +54,7 @@ export const PALETTE: Readonly<Palette> = {
     "100": "#FFF",
   },
   error: {
-    "0": "#000",
+    "0": "#000000",
     "10": "#410E0B",
     "20": "#601410",
     "30": "#8C1D18",
@@ -69,7 +69,7 @@ export const PALETTE: Readonly<Palette> = {
     "100": "#FFF",
   },
   neutral: {
-    "0": "#000",
+    "0": "#000000",
     "10": "#1D1B20",
     "20": "#48464C",
     "30": "#48464C",
@@ -84,7 +84,7 @@ export const PALETTE: Readonly<Palette> = {
     "100": "#FFF",
   },
   neutralVariant: {
-    "0": "#000",
+    "0": "#000000",
     "10": "#1D1A22",
     "20": "#322F37",
     "30": "#49454F",

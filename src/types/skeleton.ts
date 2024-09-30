@@ -1,7 +1,5 @@
 import type { ComponentProps } from "musae/types/element";
 
-type Variant = "button" | "avatar" | "title";
-
 /**
  * @description
  * skeleton props
@@ -12,10 +10,4 @@ export type SkeletonProps = ComponentProps & {
    * animation
    */
   animation?: boolean;
-
-  /**
-   * @description
-   * variant
-   */
-  variant?: Variant;
 };

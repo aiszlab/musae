@@ -1,10 +1,10 @@
 import stylex from "@stylexjs/stylex";
 import type { SkeletonProps } from "musae/types/skeleton";
-import React, { CSSProperties } from "react";
+import React, { type CSSProperties } from "react";
 import { useClassNames } from "../../hooks/use-class-names";
 import { SkeletonClassToken } from "../../utils/class-name";
 import { clsx } from "@aiszlab/relax";
-import { OPACITY, sizes } from "../theme/tokens.stylex";
+import { OPACITY } from "../theme/tokens.stylex";
 import { ComponentToken } from "../../utils/component-token";
 import { useTheme } from "../theme";
 import { toRgba } from "../../utils/colors";
@@ -28,24 +28,6 @@ const styles = stylex.create({
     "--lighter-shadow": props.lighterShadow,
   }),
 
-  title: {
-    width: sizes.xxxxxlarge,
-    height: sizes.xxsmall,
-    borderRadius: sizes.xxxxxsmall,
-  },
-
-  button: {
-    width: sizes.xxxlarge,
-    height: sizes.xxsmall,
-    borderRadius: sizes.infinity,
-  },
-
-  avatar: {
-    width: sizes.xxsmall,
-    height: sizes.xxsmall,
-    borderRadius: sizes.infinity,
-  },
-
   skeleton: {
     background: "var(--shadow)",
   },
@@ -61,7 +43,7 @@ const styles = stylex.create({
   },
 });
 
-const Skeleton = ({ animation = false, variant, className, style }: SkeletonProps) => {
+const Skeleton = ({ animation = true, className, style }: SkeletonProps) => {
   const classNames = useClassNames(ComponentToken.Skeleton);
   const theme = useTheme();
 
@@ -70,7 +52,7 @@ const Skeleton = ({ animation = false, variant, className, style }: SkeletonProp
       shadow: toRgba(theme.colors.shadow, OPACITY.thin),
       lighterShadow: toRgba(theme.colors.shadow, OPACITY.thick),
     }),
-    !!variant && styles[variant],
+    styles.skeleton,
     animation && styles.animation,
   );
 
