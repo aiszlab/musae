@@ -29,7 +29,7 @@ const styles = stylex.create({
 });
 
 const Uploadeds = forwardRef<UploadedsRef, UploadedsProps>(
-  ({ uploader, onError, value, onChange }, ref) => {
+  ({ uploader, onError, value, onChange, limit = Infinity }, ref) => {
     const [values, setValues] = useControlledState(value, { defaultState: [] });
     const [, identity] = useIdentity();
 
@@ -51,37 +51,48 @@ const Uploadeds = forwardRef<UploadedsRef, UploadedsProps>(
 
     // when loading status changed
     // use this func to set new status & callback
-    const onLoaded = useEvent((id: string, status: "success" | "error") => {
-      if (!items.has(id)) return;
+    const onLoaded = useEvent(
+      (
+        id: string,
+        status: "success" | "error",
+        { url, error }: { url?: string; error?: Error },
+      ) => {
+        if (!items.has(id)) return;
 
-      const _items = new Map(items);
-      const _values = Array.from(_items.set(id, { ..._items.get(id)!, status }).values());
-      setValues(_values);
-      // change handler
-      onChange?.(_values);
-    });
+        const _items = new Map(items);
+        const _values = Array.from(
+          _items.set(id, { ..._items.get(id)!, status, url, error }).values(),
+        );
+        setValues(_values);
+        // change handler
+        onChange?.(_values);
+      },
+    );
 
     useImperativeHandle(ref, () => {
       return {
         add: async (file: File) => {
-          // when no uploader, use original file
-          if (!uploader) {
-            const _key = identity();
-            const _values = Array.from(
-              new Map(items).set(_key, { key: _key, file, status: "success" }).values(),
-            );
-            setValues(_values);
-            onChange?.(_values);
+          const _hasUploader = !!uploader;
+          const _isOnlyOne = limit === 1;
+          const _isOverLimit = items.size >= limit;
+
+          // over `limit`
+          if (_isOverLimit && !_isOnlyOne) {
             return;
           }
 
           // show loading in `add` trigger
           const _key = identity();
           const _values = Array.from(
-            new Map(items).set(_key, { key: _key, file, status: "loading" }).values(),
+            new Map(_isOnlyOne ? [] : items)
+              .set(_key, { key: _key, file, status: _hasUploader ? "loading" : "success" })
+              .values(),
           );
           setValues(_values);
           onChange?.(_values);
+
+          // when no uploader, use original file
+          if (!_hasUploader) return;
 
           // use custom uploader to upload file
           // get remote url path
@@ -90,12 +101,12 @@ const Uploadeds = forwardRef<UploadedsRef, UploadedsProps>(
           });
 
           if (_url instanceof Error) {
-            onLoaded(_key, "error");
+            onLoaded(_key, "error", { error: _url });
             onError?.(_url);
             return;
           }
 
-          onLoaded(_key, "success");
+          onLoaded(_key, "success", { url: _url });
         },
       };
     });

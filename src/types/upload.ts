@@ -38,6 +38,12 @@ export type UploadedItem = {
    * url
    */
   url?: string;
+
+  /**
+   * @description
+   * error
+   */
+  error?: Error;
 };
 
 export type Value = UploadedItem | ControlledValue;
@@ -100,6 +106,15 @@ export type UploadProps = {
    * value change handler
    */
   onChange?: (value: Value[]) => void;
+
+  // TODO: add to docs
+  /**
+   * @description
+   * limit
+   * @default
+   * Infinity
+   */
+  limit?: number;
 };
 
 /**
@@ -118,4 +133,7 @@ export type UploadedsRef = {
  * @description
  * uploaded list props
  */
-export type UploadedsProps = Pick<UploadProps, "uploader" | "onError" | "value" | "onChange">;
+export type UploadedsProps = Pick<
+  UploadProps,
+  "uploader" | "onError" | "value" | "onChange" | "limit"
+>;

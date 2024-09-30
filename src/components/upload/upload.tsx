@@ -30,6 +30,7 @@ const Upload = ({
   onError,
   value,
   onChange,
+  limit,
 }: UploadProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const uploadedsRef = useRef<UploadedsRef>(null);
@@ -88,6 +89,7 @@ const Upload = ({
         <input
           ref={inputRef}
           type="file"
+          value=""
           onClick={(e) => e.stopPropagation()}
           className={styled.input.className}
           style={styled.input.style}
@@ -103,6 +105,7 @@ const Upload = ({
         uploader={uploader}
         onError={onError}
         onChange={onChange}
+        limit={limit}
       />
     </div>
   );
