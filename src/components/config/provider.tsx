@@ -4,7 +4,7 @@ import { Holder, type HolderRef } from "../notification";
 import type { ConfigProps } from "musae/types/config";
 import { CLASS_NAMES, DEFAULT_CLASS_NAMES, addPrefix } from "../../utils/class-name";
 import { LocaleContext, DEFAULT_LOCALE } from "../../locale";
-import deepmerge from "deepmerge";
+import { merge } from "@aiszlab/relax";
 
 const ConfigProvider = ({ children, prefix, locale: _locale }: ConfigProps) => {
   const notifierRef = useRef<HolderRef>(null);
@@ -15,7 +15,7 @@ const ConfigProvider = ({ children, prefix, locale: _locale }: ConfigProps) => {
   }, [prefix]);
 
   const locale = useMemo(() => {
-    return deepmerge(DEFAULT_LOCALE, _locale ?? {});
+    return merge(DEFAULT_LOCALE, _locale ?? {});
   }, [_locale]);
 
   return (

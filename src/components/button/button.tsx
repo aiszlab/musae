@@ -8,9 +8,10 @@ import { useTheme } from "../theme";
 import { useButton } from "./hooks";
 import { Ripple } from "../ripple";
 import { typography } from "../theme/theme";
-import { ColorToken, toRgba } from "../../utils/colors";
+import { ColorToken } from "../../utils/colors";
 import { useClassNames } from "../../hooks/use-class-names";
 import { ComponentToken } from "../../utils/component-token";
+import { hexToRgba } from "@aiszlab/fuzzy/color";
 
 const styles = stylex.create({
   button: {
@@ -158,12 +159,12 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         variant === "outlined" &&
           styles.outlined({
             color: theme.colors[color],
-            hoveredBackgroundColor: toRgba(theme.colors[ColorToken.Primary], OPACITY.thin),
+            hoveredBackgroundColor: hexToRgba(theme.colors[ColorToken.Primary], OPACITY.thin),
           }),
         variant === "text" &&
           styles.text({
             color: theme.colors[color],
-            hoveredBackgroundColor: toRgba(theme.colors[ColorToken.Primary], OPACITY.thin),
+            hoveredBackgroundColor: hexToRgba(theme.colors[ColorToken.Primary], OPACITY.thin),
           }),
         // shape
         styles[shape],
@@ -172,12 +173,12 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           styles.disabled({
             backgroundColor:
               variant === "filled"
-                ? toRgba(theme.colors[ColorToken.OnSurface], OPACITY.medium)
+                ? hexToRgba(theme.colors[ColorToken.OnSurface], OPACITY.medium)
                 : "transparent",
-            color: toRgba(theme.colors[ColorToken.OnSurface], OPACITY.thicker),
+            color: hexToRgba(theme.colors[ColorToken.OnSurface], OPACITY.thicker),
             outlineColor:
               variant === "outlined"
-                ? toRgba(theme.colors[ColorToken.OnSurface], OPACITY.thicker)
+                ? hexToRgba(theme.colors[ColorToken.OnSurface], OPACITY.thicker)
                 : null,
           }),
       ),

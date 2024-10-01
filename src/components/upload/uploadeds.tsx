@@ -6,7 +6,7 @@ import { Loading, Delete, AttachFile } from "musae/icons";
 import { useControlledState, useEvent, useIdentity } from "@aiszlab/relax";
 import { typography } from "../theme/theme";
 import { isControlled } from "./utils";
-import { leaf } from "@aiszlab/relax/path";
+import { leaf } from "@aiszlab/fuzzy/path";
 
 const styles = stylex.create({
   uploadeds: {

@@ -7,7 +7,7 @@ import { clsx } from "@aiszlab/relax";
 import { OPACITY } from "../theme/tokens.stylex";
 import { ComponentToken } from "../../utils/component-token";
 import { useTheme } from "../theme";
-import { toRgba } from "../../utils/colors";
+import { hexToRgba } from "@aiszlab/fuzzy/color";
 
 const animation = stylex.keyframes({
   from: {
@@ -49,8 +49,8 @@ const Skeleton = ({ animation = true, className, style }: SkeletonProps) => {
 
   const styled = stylex.props(
     styles.variables({
-      shadow: toRgba(theme.colors.shadow, OPACITY.thin),
-      lighterShadow: toRgba(theme.colors.shadow, OPACITY.thick),
+      shadow: hexToRgba(theme.colors.shadow, OPACITY.thin),
+      lighterShadow: hexToRgba(theme.colors.shadow, OPACITY.thick),
     }),
     styles.skeleton,
     animation && styles.animation,
