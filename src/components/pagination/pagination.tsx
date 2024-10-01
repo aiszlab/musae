@@ -10,7 +10,7 @@ import { useClassNames } from "../../hooks/use-class-names";
 import { PaginationClassToken } from "../../utils/class-name";
 import { ComponentToken } from "../../utils/component-token";
 import { useLocale } from "../../locale";
-import { toFunction, clsx } from "@aiszlab/relax";
+import { toFunction, clsx, unique } from "@aiszlab/relax";
 
 const styles = stylex.create({
   pagination: {
@@ -62,14 +62,12 @@ const Pagination = ({
     sizer: stylex.props(styles.sizer),
   };
 
-  const sizeOptions = useMemo<Option[]>(
-    () =>
-      Array.from(new Set(pageSizes)).map((size) => ({
-        value: size,
-        label: toFunction(locale.size)(size),
-      })),
-    [locale, pageSizes],
-  );
+  const sizeOptions = useMemo<Option[]>(() => {
+    return unique(pageSizes).map((size) => ({
+      value: size,
+      label: toFunction(locale.size)(size),
+    }));
+  }, [locale, pageSizes]);
 
   return (
     <nav aria-label="pagination navigation" className={classNames[PaginationClassToken.Pagination]}>

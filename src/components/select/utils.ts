@@ -1,4 +1,4 @@
-import { isVoid, isArray } from "@aiszlab/relax";
+import { isVoid, toArray } from "@aiszlab/relax";
 import type { Filter, ReadableOptions, ToMenuItem, Value, ValueOrValues } from "musae/types/select";
 import type { Option } from "musae/types/option";
 import type { MenuItem } from "musae/types/menu";
@@ -10,10 +10,8 @@ import type { MenuItem } from "musae/types/menu";
 export const toValues = (valueOrValues?: ValueOrValues) => {
   // empty
   if (isVoid(valueOrValues)) return [];
-  // already array
-  if (isArray(valueOrValues)) return valueOrValues;
   // convert to array
-  return [valueOrValues];
+  return toArray(valueOrValues);
 };
 
 /**

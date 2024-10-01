@@ -12,7 +12,7 @@ const styles = stylex.create({
   uploadeds: {
     display: "flex",
     flexDirection: "column",
-    gap: spacing.xsmall,
+    gap: spacing.small,
   },
 
   item: {
