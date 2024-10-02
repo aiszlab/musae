@@ -23,7 +23,7 @@ export { Empty } from "./components/empty";
 export { Drawer } from "./components/drawer";
 export { Dialog } from "./components/dialog";
 export { Tag } from "./components/tag";
-export { Calendar } from "./components/calendar";
+export { Calendar, ContributionCalendar } from "./components/calendar";
 export { DatePicker } from "./components/date-picker";
 export { TimePicker } from "./components/time-picker";
 export { DateRangePicker } from "./components/date-range-picker";

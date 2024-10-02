@@ -1,3 +1,4 @@
 import Calendar from "./calendar";
+import ContributionCalendar from "./contribution";
 
-export { Calendar };
+export { Calendar, ContributionCalendar };
