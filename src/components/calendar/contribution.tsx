@@ -18,14 +18,11 @@ const styles = {
     default: {
       borderCollapse: "separate",
       borderSpacing: spacing.xxsmall,
-      width: "fit-content",
-      height: "fit-content",
     },
 
     scrollable: {
       maxWidth: "100%",
-      overflowX: "auto",
-      overflowY: "hidden",
+      overflow: "auto",
     },
   }),
 
@@ -74,6 +71,7 @@ const styles = {
 interface Props {
   year: number;
   gaps?: number[];
+  dataSource?: [string, number][];
 }
 
 /**
@@ -81,7 +79,7 @@ interface Props {
  * contribution calendar
  * inspired by github
  */
-const ContributionCalendar = ({ year, gaps = [5, 10, 15] }: Props) => {
+const ContributionCalendar = ({ year, gaps = [5, 10, 15], dataSource = [] }: Props) => {
   const theme = useTheme();
 
   const [from, to] = useMemo(() => {
@@ -118,6 +116,12 @@ const ContributionCalendar = ({ year, gaps = [5, 10, 15] }: Props) => {
       [],
     );
   }, [from, start, columns]);
+
+  const heats = useMemo(() => {
+    return dataSource.reduce<Map<string, number>>((prev, [date, count]) => {
+      return prev.set(date, count);
+    }, new Map());
+  }, [dataSource]);
 
   const styled = {
     scrollable: stylex.props(styles.calendar.scrollable),
@@ -203,8 +207,14 @@ const ContributionCalendar = ({ year, gaps = [5, 10, 15] }: Props) => {
                     return <td key={column} />;
                   }
 
+                  const date = _at.format("YYYY-MM-DD");
+                  const count = heats.get(date);
+
                   return (
-                    <Tooltip key={column} title={`14 contributions at ${_at.format("YYYY-MM-DD")}`}>
+                    <Tooltip
+                      key={column}
+                      title={`${count} contributions at ${_at.format("YYYY-MM-DD")}`}
+                    >
                       <td className={styled.cell.className} style={styled.cell.style} />
                     </Tooltip>
                   );
