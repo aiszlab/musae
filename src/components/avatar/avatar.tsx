@@ -10,6 +10,7 @@ import { AvatarClassToken } from "../../utils/class-name";
 import { typography } from "../theme/theme";
 import { useImageLoader, clsx } from "@aiszlab/relax";
 import { ComponentToken } from "../../utils/component-token";
+import { Skeleton } from "../skeleton";
 
 const styles = stylex.create({
   avatar: (props: {
@@ -97,8 +98,13 @@ const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(
             outlineColor: theme.colors[ColorToken.OnPrimary],
           }),
       ),
+      loading: stylex.props(styles[shape], styles[size]),
       image: stylex.props(styles.image, styles[size]),
     };
+
+    if (loadStatus === "loading") {
+      return <Skeleton className={styled.loading.className} style={styled.loading.style} />;
+    }
 
     return (
       <span
@@ -110,7 +116,7 @@ const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(
         }}
         ref={ref}
       >
-        {loadStatus === "loaded" ? (
+        {loadStatus === "loaded" && (
           <img
             draggable={false}
             src={src}
@@ -118,9 +124,9 @@ const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(
             className={styled.image.className}
             style={styled.image.style}
           />
-        ) : (
-          alt?.slice(0, 2).toUpperCase()
         )}
+
+        {loadStatus !== "loaded" && alt?.slice(0, 2).toUpperCase()}
       </span>
     );
   },
