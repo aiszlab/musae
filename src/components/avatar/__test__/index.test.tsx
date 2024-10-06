@@ -20,6 +20,8 @@ describe("`Avatar` Component", () => {
   });
 
   test("with src, load error", () => {
+    jest.spyOn(relax, "useImageLoader").mockReturnValue("error");
+
     const { container, queryByText, asFragment } = render(
       <Avatar src="https://aiszlab.com" alt="RJ" />,
     );
