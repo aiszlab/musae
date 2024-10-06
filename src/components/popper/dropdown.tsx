@@ -12,19 +12,29 @@ import { ComponentToken } from "../../utils/component-token";
 import { contains } from "@aiszlab/relax/dom";
 
 const styles = {
+  portal: stylex.create({
+    default: {
+      position: "fixed",
+      overflow: "hidden",
+      pointerEvents: "none",
+      inset: 0,
+    },
+  }),
+
   dropdown: stylex.create({
     default: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
       zIndex: positions.popper,
-      position: "fixed",
+      position: "absolute",
       backgroundColor: props.backgroundColor,
       insetBlockStart: 0,
       insetInlineStart: 0,
       boxShadow: elevations.small,
       borderRadius: sizes.xxxxsmall,
+      pointerEvents: "auto",
 
       // animation
-      willChange: "inset-inline-start, inset-block-start, opacity",
-      transitionProperty: "inset-inline-start, inset-block-start, opacity",
+      willChange: "translate, opacity",
+      transitionProperty: "translate, opacity",
       transitionDuration: "0.1s",
 
       // default hidden
@@ -101,27 +111,30 @@ const Dropdown = forwardRef<PopperRef, DropdownProps>(
       arrow: stylex.props(
         styles.arrow.default({ backgroundColor: theme.colors[ColorToken.SurfaceContainer] }),
       ),
+      portal: stylex.props(styles.portal.default),
     };
 
     return (
-      <div
-        ref={floatableRef}
-        {...props}
-        className={clsx(
-          classNames[PopperClassToken.Dropdown],
-          className,
-          styled.dropdown.className,
-        )}
-        style={{
-          ...styled.dropdown.style,
-          ...style,
-        }}
-      >
-        {children}
+      <div className={styled.portal.className} style={styled.portal.style}>
+        <div
+          ref={floatableRef}
+          {...props}
+          className={clsx(
+            classNames[PopperClassToken.Dropdown],
+            className,
+            styled.dropdown.className,
+          )}
+          style={{
+            ...styled.dropdown.style,
+            ...style,
+          }}
+        >
+          {children}
 
-        {arrowable && (
-          <div ref={arrowRef} className={styled.arrow.className} style={styled.arrow.style} />
-        )}
+          {arrowable && (
+            <div ref={arrowRef} className={styled.arrow.className} style={styled.arrow.style} />
+          )}
+        </div>
       </div>
     );
   },

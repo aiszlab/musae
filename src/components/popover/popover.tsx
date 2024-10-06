@@ -83,9 +83,10 @@ const Popover = forwardRef(
       onLeave: (event) =>
         chain(_children.props.onMouseLeave, _children.props.onPointerLeave, disappear)(event),
     });
+
     const [, focusProps] = useFocus<T>({
       onFocus: (event) => chain(_children.props.onFocus, turnOn)(event),
-      onBlur: (event) => chain(_children.props.onBlur)(event),
+      onBlur: (event) => chain(_children.props.onBlur, disappear)(event),
     });
 
     // @ts-ignore
@@ -104,6 +105,7 @@ const Popover = forwardRef(
     const enterPopper = useCallback(() => {
       turnOn();
     }, [turnOn]);
+
     const leavePopper = useCallback(() => {
       disappear();
     }, [disappear]);

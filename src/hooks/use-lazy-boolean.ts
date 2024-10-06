@@ -13,7 +13,7 @@ type UsedLazyBoolean = [
 ];
 
 export const useLazyBoolean = (): UsedLazyBoolean => {
-  const [isTrue, { turnOn: _turnOn, turnOff: _turnOff, toggle: _toggle }] = useBoolean();
+  const [isTruthy, { turnOn: _turnOn, turnOff: _turnOff, toggle: _toggle }] = useBoolean();
   const { timeout } = useTimer();
 
   const turnOn = useCallback(() => {
@@ -58,7 +58,7 @@ export const useLazyBoolean = (): UsedLazyBoolean => {
   }, []);
 
   return [
-    isTrue,
+    isTruthy,
     {
       turnOn,
       turnOff,

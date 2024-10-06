@@ -12,7 +12,6 @@ import {
   shift,
   type Side,
   type Alignment,
-  autoPlacement,
 } from "@floating-ui/dom";
 
 /**
@@ -80,7 +79,6 @@ export const useFloating = ({
     _isOpen.current = true;
 
     floatableRef.current.style.display = "unset";
-    floatableRef.current.style.position = "absolute";
     await animate(floatableRef.current, { opacity: 1 }, { duration: 0.2 });
     await onEntered?.();
   });
@@ -97,7 +95,6 @@ export const useFloating = ({
     await Promise.all([
       onExit?.(),
       animate(floatableRef.current, { opacity: 0 }, { duration: 0.2 }).then(() => {
-        if (!floatableRef.current) return;
         floatableRef.current.style.display = "none";
       }),
     ]);
@@ -115,7 +112,6 @@ export const useFloating = ({
       computePosition(trigger, floatableRef.current, {
         placement,
         middleware: [
-          // autoPlacement(),
           flip(),
           shift(),
           offset(offsets),
@@ -126,8 +122,7 @@ export const useFloating = ({
           const [side] = _placement.split("-") as [Side, Alignment?];
 
           // set float element styles
-          floatableRef.current.style.insetInlineStart = `${x}px`;
-          floatableRef.current.style.insetBlockStart = `${y}px`;
+          floatableRef.current.style.translate = `${x}px ${y}px`;
 
           // set arrow styles
           if (middlewareData.arrow && !!arrowRef.current) {
@@ -138,11 +133,11 @@ export const useFloating = ({
             side === "top" && (arrowRef.current.style.insetBlockEnd = offsetY);
             side === "bottom" && (arrowRef.current.style.insetBlockStart = offsetY);
           }
-        })
-        .catch(() => null)
-        .finally(() => {
+
+          // use appear animation
           appear();
-        });
+        })
+        .catch(() => null);
     });
 
     return cleanup;
