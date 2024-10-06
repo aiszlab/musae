@@ -1,5 +1,13 @@
 # musae
 
+## 0.3.6
+
+### Patch Changes
+
+- `Avatar` add loading display
+- `Image` add `previewable` to disable preview
+- `Image` add `overlay` close api
+
 ## 0.3.5
 
 ### Patch Changes

@@ -285,6 +285,9 @@ export enum RichTextEditorClassToken {
 export enum I18nButtonClassToken {
   I18nButton,
 }
+export enum ImageClassToken {
+  Image,
+}
 
 /**
  * @description
@@ -558,6 +561,9 @@ export const CLASS_NAMES = {
   },
   // TODO: add class names
   [ComponentToken.Upload]: {},
+  [ComponentToken.Image]: {
+    [ImageClassToken.Image]: "image",
+  },
 };
 
 /**

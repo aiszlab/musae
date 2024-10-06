@@ -52,4 +52,5 @@ export enum ComponentToken {
   Quote,
   RichTextEditor,
   Upload,
+  Image,
 }
