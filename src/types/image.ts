@@ -14,6 +14,9 @@ export type ImageProps = ComponentProps &
      * @requires
      */
     src: string;
+
+    // TODO docs
+    previewable?: boolean;
   };
 
 /**

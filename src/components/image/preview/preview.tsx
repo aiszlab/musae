@@ -11,6 +11,7 @@ const styles = stylex.create({
     }, 1) rotate(${props.rotate}deg)`,
     willChange: "transform",
     transition: "transform 0.2s",
+    pointerEvents: "auto",
   }),
 });
 
@@ -72,19 +73,23 @@ const Preview = forwardRef<PreviewRef, PreviewProps>(({ onClose, src, alt }, ref
         open
         onClose={onClose}
         footer={false}
-        closable={["esc"]}
+        closable={["esc", "overlay"]}
         styles={{
           panel: {
             backgroundColor: "transparent",
             margin: 0,
             width: "100%",
             height: "100%",
+            maxWidth: "100%",
             maxHeight: "100%",
+            pointerEvents: "none",
           },
           body: {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
+            overflow: "hidden",
+            pointerEvents: "none",
           },
         }}
       >
