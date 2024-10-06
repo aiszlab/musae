@@ -1,4 +1,4 @@
-import { useCallback, useLayoutEffect, useMemo, useRef } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import type { DropdownProps, PopperProps } from "musae/types/popper";
 import { useAnimate } from "framer-motion";
 import { useEvent } from "@aiszlab/relax";
@@ -9,9 +9,10 @@ import {
   computePosition,
   flip,
   offset,
-  size,
+  shift,
   type Side,
   type Alignment,
+  autoPlacement,
 } from "@floating-ui/dom";
 
 /**
@@ -40,67 +41,6 @@ export const useOffsets = ({
 
 /**
  * @description
- * use animation
- */
-export const useAnimation = ({
-  open,
-  disappearable,
-  onEntered,
-  onExit,
-  onExited,
-}: { open: boolean; disappearable: boolean } & Pick<
-  PopperProps,
-  "onEntered" | "onExit" | "onExited"
->) => {
-  const [animatableRef, animate] = useAnimate<HTMLDivElement>();
-
-  const appear = useEvent(async () => {
-    animatableRef.current.style.display = "";
-    await animate(
-      animatableRef.current,
-      { opacity: 1, transform: "scale(1, 1)" },
-      { duration: 0.2 },
-    );
-    await onEntered?.();
-  });
-
-  const disappear = useEvent(async () => {
-    await Promise.all([
-      onExit?.(),
-      animate(
-        animatableRef.current,
-        { opacity: 0, transform: "scale(0, 0)" },
-        { duration: 0.2 },
-      ).then(() => {
-        if (!animatableRef.current) return;
-        animatableRef.current.style.display = "none";
-      }),
-    ]);
-    await onExited?.();
-  });
-
-  const _disappear = useCallback(() => {
-    if (!disappearable) return;
-    disappear();
-  }, [disappear, disappearable]);
-
-  useLayoutEffect(() => {
-    if (open) {
-      appear();
-      return;
-    }
-    _disappear();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [open]);
-
-  return {
-    animatableRef,
-    disappear,
-  };
-};
-
-/**
- * @description
  * floating position
  */
 export const useFloating = ({
@@ -109,48 +49,85 @@ export const useFloating = ({
   placement,
   arrowable,
   offset: _offset,
+  onEntered,
+  onExit,
+  onExited,
+  disappearable,
 }: {
   open: boolean;
   trigger: DropdownProps["trigger"];
   placement: DropdownProps["placement"];
   arrowable: boolean;
   offset: DropdownProps["offset"];
+  onEntered?: () => Promise<void> | void;
+  onExit?: () => Promise<void> | void;
+  onExited?: () => Promise<void> | void;
+  disappearable: boolean;
 }) => {
-  const floatableRef = useRef<HTMLDivElement>(null);
-  const { container: trigger } = useContainer({ container: _trigger, useBody: false }, [open]);
+  const [floatableRef, animate] = useAnimate<HTMLDivElement>();
   const arrowRef = useRef<HTMLDivElement>(null);
+
+  const { container: trigger } = useContainer({ container: _trigger, useBody: false }, [open]);
+  const _isOpen = useRef<boolean>(false);
+
+  // appear animation
+  // prevent open again when opened
+  // first remove `display: none` style
+  // then animate
+  const appear = useEvent(async () => {
+    if (_isOpen.current) return;
+
+    _isOpen.current = true;
+
+    floatableRef.current.style.display = "unset";
+    floatableRef.current.style.position = "absolute";
+    await animate(floatableRef.current, { opacity: 1 }, { duration: 0.2 });
+    await onEntered?.();
+  });
+
+  // disappear animation
+  // prevent disappear again when disappeared
+  // when using force disappear, it will be forced to disappear
+  const disappear = useEvent(async (force: boolean = false) => {
+    if (!_isOpen.current) return;
+    if (!force && !disappearable) return;
+
+    _isOpen.current = false;
+
+    await Promise.all([
+      onExit?.(),
+      animate(floatableRef.current, { opacity: 0 }, { duration: 0.2 }).then(() => {
+        if (!floatableRef.current) return;
+        floatableRef.current.style.display = "none";
+      }),
+    ]);
+    await onExited?.();
+  });
 
   // memorized offsets
   const offsets = useOffsets({ offset: _offset, arrowable });
 
-  // auto update: calc trigger dom to get position
-  // if trigger changed, re-relate
-  useLayoutEffect(() => {
-    const floatable = floatableRef.current;
-
+  // position listener
+  const position = useEvent(() => {
     if (!trigger) return;
-    if (!floatable) return;
 
-    const cleanup = autoUpdate(trigger, floatable, () => {
-      computePosition(trigger, floatable, {
+    const cleanup = autoUpdate(trigger, floatableRef.current, () => {
+      computePosition(trigger, floatableRef.current, {
         placement,
         middleware: [
+          // autoPlacement(),
           flip(),
+          shift(),
           offset(offsets),
           arrowable && !!arrowRef.current && arrow({ element: arrowRef.current, padding: 16 }),
-          size({
-            apply({ availableWidth, availableHeight, elements: { floating } }) {
-              floating.style.maxWidth = `${availableWidth}px`;
-              floating.style.maxHeight = `${availableHeight}px`;
-            },
-          }),
         ],
       })
         .then(({ x, y, middlewareData, placement: _placement }) => {
           const [side] = _placement.split("-") as [Side, Alignment?];
 
           // set float element styles
-          floatable.style.translate = `${x}px ${y}px`;
+          floatableRef.current.style.insetInlineStart = `${x}px`;
+          floatableRef.current.style.insetBlockStart = `${y}px`;
 
           // set arrow styles
           if (middlewareData.arrow && !!arrowRef.current) {
@@ -163,21 +140,30 @@ export const useFloating = ({
           }
         })
         .catch(() => null)
-        .then(() => {
-          requestAnimationFrame(() => {
-            floatable.style.transitionProperty = "translate";
-            floatable.style.transitionDuration = "0.1s";
-          });
+        .finally(() => {
+          appear();
         });
     });
 
-    return () => {
-      cleanup();
-    };
-  }, [placement, trigger, offsets, arrowable]);
+    return cleanup;
+  });
+
+  // auto update: calc trigger dom to get position
+  // if trigger changed, re-relate
+  useEffect(() => {
+    if (open) {
+      const cleanup = position();
+      return () => {
+        cleanup?.();
+      };
+    }
+
+    disappear();
+  }, [disappear, open, position]);
 
   return {
     floatableRef,
     arrowRef,
+    disappear,
   };
 };

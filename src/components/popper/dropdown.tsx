@@ -3,8 +3,8 @@ import type { DropdownProps, PopperRef } from "musae/types/popper";
 import { PopperClassToken } from "../../utils/class-name";
 import { useClassNames } from "../../hooks/use-class-names";
 import stylex from "@stylexjs/stylex";
-import { useRefs, clsx } from "@aiszlab/relax";
-import { useAnimation, useFloating } from "./hooks";
+import { clsx } from "@aiszlab/relax";
+import { useFloating } from "./hooks";
 import { elevations, positions, sizes } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
@@ -15,7 +15,7 @@ const styles = {
   dropdown: stylex.create({
     default: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
       zIndex: positions.popper,
-      position: "absolute",
+      position: "fixed",
       backgroundColor: props.backgroundColor,
       insetBlockStart: 0,
       insetInlineStart: 0,
@@ -23,7 +23,13 @@ const styles = {
       borderRadius: sizes.xxxxsmall,
 
       // animation
-      willChange: "translate",
+      willChange: "inset-inline-start, inset-block-start, opacity",
+      transitionProperty: "inset-inline-start, inset-block-start, opacity",
+      transitionDuration: "0.1s",
+
+      // default hidden
+      display: "none",
+      opacity: 0,
     }),
 
     overlay: {
@@ -55,7 +61,7 @@ const Dropdown = forwardRef<PopperRef, DropdownProps>(
       onExited,
       onEntered,
       trigger,
-      offset: _offset,
+      offset,
       overlay = false,
       arrow: arrowable = false,
       disappearable = true,
@@ -65,25 +71,22 @@ const Dropdown = forwardRef<PopperRef, DropdownProps>(
   ) => {
     const classNames = useClassNames(ComponentToken.Popper);
     const theme = useTheme();
-    const { floatableRef, arrowRef } = useFloating({
+
+    const { floatableRef, arrowRef, disappear } = useFloating({
       arrowable,
-      offset: _offset,
+      offset,
       placement,
       open,
       trigger,
-    });
-    const { disappear, animatableRef } = useAnimation({
-      open,
-      disappearable,
       onEntered,
       onExit,
       onExited,
+      disappearable,
     });
-    const refs = useRefs(floatableRef, animatableRef);
 
     useImperativeHandle(ref, () => {
       return {
-        disappear,
+        disappear: () => disappear(true),
         contains: (node) => {
           return contains(floatableRef.current, node);
         },
@@ -102,7 +105,7 @@ const Dropdown = forwardRef<PopperRef, DropdownProps>(
 
     return (
       <div
-        ref={refs}
+        ref={floatableRef}
         {...props}
         className={clsx(
           classNames[PopperClassToken.Dropdown],

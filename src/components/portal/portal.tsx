@@ -27,7 +27,7 @@ const Portal: FC<PortalProps> = ({
   if (!(shouldRender || open)) return null;
   if (!_container) return null;
 
-  return createPortal(<div>{children}</div>, _container);
+  return createPortal(children, _container);
 };
 
 export default Portal;

@@ -80,7 +80,7 @@ export interface PopperProps
    *
    * @default true
    *
-   * default case, popper will auto disappear after open change
+   * default case, popper will auto disappear after private `open` state change to `false`
    * but sometimes, you want to control popper disappear animation
    * set `disappearable` to false, and use popper.ref to disappear
    */
