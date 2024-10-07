@@ -13,6 +13,7 @@ import Code from "./code";
 import OpenInNew from "./open-in-new";
 import Delete from "./delete";
 import ThreeDRotation from "./three-d-rotation";
+import AccountCircle from "./account-circle";
 
 const _ = {
   Visibility,
@@ -30,6 +31,7 @@ const _ = {
   OpenInNew,
   Delete,
   ThreeDRotation,
+  AccountCircle,
 };
 
 export default _;
@@ -49,4 +51,5 @@ export {
   OpenInNew,
   Delete,
   ThreeDRotation,
+  AccountCircle,
 };
