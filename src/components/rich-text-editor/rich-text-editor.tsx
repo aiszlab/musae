@@ -42,6 +42,9 @@ import type {
   RichTextEditorRef,
   RichTextEditorProps,
 } from "musae/types/rich-text-editor";
+import { useClassNames } from "../../hooks/use-class-names";
+import { ComponentToken } from "../../utils/component-token";
+import { RichTextEditorClassToken } from "../../utils/class-name";
 
 const styles = stylex.create({
   shell: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
@@ -64,8 +67,7 @@ const styles = stylex.create({
   editor: {
     outline: "none",
     paddingInline: spacing.large,
-    paddingBlockStart: spacing.small,
-    paddingBlockEnd: spacing.small,
+    paddingBlock: spacing.medium,
     minHeight: sizes.xxxxxxlarge,
   },
 
@@ -121,10 +123,11 @@ const RichTextEditor = forwardRef<RichTextEditorRef, RichTextEditorProps>(
     const theme = useTheme();
     const _use = useDefault(() => props.use ?? "serialized");
     const controlledStatePluginRef = useRef<ControlledStatePluginRef>(null);
+    const classNames = useClassNames(ComponentToken.RichTextEditor);
 
     const styled = {
       shell: stylex.props(
-        styles.shell({ backgroundColor: theme.colors[ColorToken.SurfaceContainer] }),
+        !disabled && styles.shell({ backgroundColor: theme.colors[ColorToken.SurfaceContainer] }),
         styles.variables({
           primaryColor: theme.colors[ColorToken.Primary],
           onPrimaryColor: theme.colors[ColorToken.OnPrimary],
@@ -132,7 +135,7 @@ const RichTextEditor = forwardRef<RichTextEditorRef, RichTextEditorProps>(
           codeBackgroundColor: theme.colors[ColorToken.SurfaceContainerHighest],
         }),
       ),
-      editor: stylex.props(styles.editor),
+      editor: stylex.props(!disabled && styles.editor),
       h1: stylex.props(typography.display.large),
       h2: stylex.props(typography.display.medium),
       h3: stylex.props(typography.display.small),
@@ -229,7 +232,11 @@ const RichTextEditor = forwardRef<RichTextEditorRef, RichTextEditorProps>(
     return (
       <LexicalComposer initialConfig={initialConfig}>
         <div
-          className={clsx(className, styled.shell.className)}
+          className={clsx(
+            classNames[RichTextEditorClassToken.RichTextEditor],
+            className,
+            styled.shell.className,
+          )}
           style={{
             ...styled.shell.style,
             ...style,
@@ -240,7 +247,10 @@ const RichTextEditor = forwardRef<RichTextEditorRef, RichTextEditorProps>(
           <RichTextPlugin
             contentEditable={
               <ContentEditable
-                className={styled.editor.className}
+                className={clsx(
+                  classNames[RichTextEditorClassToken.Editable],
+                  styled.editor.className,
+                )}
                 style={styled.editor.style}
                 placeholder={placeholder ?? (() => null)}
                 aria-placeholder={props["aria-placeholder"] ?? ""}

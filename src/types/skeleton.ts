@@ -8,6 +8,7 @@ export type SkeletonProps = ComponentProps & {
   /**
    * @description
    * animation
+   * @default true
    */
   animation?: boolean;
 };

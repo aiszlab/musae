@@ -281,6 +281,7 @@ export enum QuoteClassToken {
 export enum RichTextEditorClassToken {
   RichTextEditor,
   Loading,
+  Editable,
 }
 export enum I18nButtonClassToken {
   I18nButton,
@@ -558,6 +559,7 @@ export const CLASS_NAMES = {
   [ComponentToken.RichTextEditor]: {
     [RichTextEditorClassToken.RichTextEditor]: "rich-text-editor",
     [RichTextEditorClassToken.Loading]: "rich-text-editor--loading",
+    [RichTextEditorClassToken.Editable]: "rich-text-editor__editable",
   },
   // TODO: add class names
   [ComponentToken.Upload]: {},

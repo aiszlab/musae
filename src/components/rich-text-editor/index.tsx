@@ -19,7 +19,7 @@ const styles = stylex.create({
 });
 
 const RichTextEditor = forwardRef<RichTextEditorRef, RichTextEditorProps>(
-  ({ className, ...props }, ref) => {
+  ({ className, style, ...props }, ref) => {
     const styled = stylex.props(styles.loading);
     const classNames = useClassNames(ComponentToken.RichTextEditor);
 
@@ -27,15 +27,22 @@ const RichTextEditor = forwardRef<RichTextEditorRef, RichTextEditorProps>(
       <Suspense
         fallback={
           <Skeleton
-            animation
-            className={clsx(classNames[RichTextEditorClassToken.Loading], styled.className)}
-            style={styled.style}
+            className={clsx(
+              classNames[RichTextEditorClassToken.Loading],
+              className,
+              styled.className,
+            )}
+            style={{
+              ...styled.style,
+              ...style,
+            }}
           />
         }
       >
         {createElement(_RichTextEditor, {
           ...props,
-          className: clsx(classNames[RichTextEditorClassToken.RichTextEditor], className),
+          className,
+          style,
           ref,
         })}
       </Suspense>
