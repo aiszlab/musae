@@ -1,5 +1,12 @@
 # musae
 
+## 0.3.7
+
+### Patch Changes
+
+- 4e1c676: - add `AccountCircle` icon
+  - `RichTextEditor` class name refactor
+
 ## 0.3.6
 
 ### Patch Changes
