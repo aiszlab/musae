@@ -1,6 +1,6 @@
 import { createPortal } from "react-dom";
 import type { PortalProps } from "musae/types/portal";
-import React, { type FC, useEffect, useState } from "react";
+import { type FC, useEffect, useState } from "react";
 import { isDomUsable, useScrollLocker } from "@aiszlab/relax";
 import { useContainer } from "../../hooks/use-container";
 
