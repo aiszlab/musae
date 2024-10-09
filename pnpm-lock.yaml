@@ -117,9 +117,6 @@ importers:
       '@testing-library/user-event':
         specifier: ^14.5.2
         version: 14.5.2(@testing-library/dom@10.4.0)
-      '@types/dom-view-transitions':
-        specifier: ^1.0.5
-        version: 1.0.5
       '@types/jest':
         specifier: ^29.5.13
         version: 29.5.13
@@ -1438,9 +1435,6 @@ packages:
 
   '@types/babel__traverse@7.20.6':
     resolution: {integrity: sha512-r1bzfrm0tomOI8g1SzvCaQHo6Lcv6zu0EA+W2kHrt8dyrHQxGzBBL4kdkzIS+jBMV+EYcMAEAqXqYaLJq5rOZg==}
-
-  '@types/dom-view-transitions@1.0.5':
-    resolution: {integrity: sha512-N2sILR7fxSMnaFaAPwGj4DtHCXjIyQTHt+xJyf9jATpzUsTkMNM0DWtqZB6W7f501B/Y0tq3uqat/VlbjuTpMA==}
 
   '@types/estree@1.0.6':
     resolution: {integrity: sha512-AYnb1nQyY49te+VRAVgmzfcgjYS91mY5P0TKUDCLEM+gNnA+3T6rWITXRLYCpahpqSQbN5cE+gHpnPyXjHWxcw==}
@@ -5567,8 +5561,6 @@ snapshots:
   '@types/babel__traverse@7.20.6':
     dependencies:
       '@babel/types': 7.25.7
-
-  '@types/dom-view-transitions@1.0.5': {}
 
   '@types/estree@1.0.6': {}
 

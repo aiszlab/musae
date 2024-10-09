@@ -173,9 +173,6 @@ export const useTheme = () => {
  * @description
  * inject css names and styles into html element
  * for animations
- *
- * u may ask: why add a single hook for this?
- * i will answer: because i want to keep the code clean.
  */
 export const useSwitchable = ({ theme }: { theme: Theme }) => {
   const [mode, setMode] = useState<Mode>("light");
@@ -189,13 +186,13 @@ export const useSwitchable = ({ theme }: { theme: Theme }) => {
     dark: stylex.props(styles.dark),
   };
 
-  const repaint = useEvent((_mode: Mode) => {
-    const _isDark = _mode === "dark";
+  const repaint = useEvent((nextMode: Mode) => {
+    const _isDark = nextMode === "dark";
+    const _usingMode: Mode = _isDark ? "light" : "dark";
 
-    document.documentElement.classList.remove(
-      ...toClassList((_isDark ? styled.light : styled.dark).className),
-    );
-    document.documentElement.classList.add(...toClassList(styled[_mode].className));
+    document.documentElement.classList.remove(...toClassList(styled[_usingMode].className));
+    document.documentElement.classList.add(...toClassList(styled[nextMode].className));
+
     document.documentElement.style.backgroundColor = _isDark
       ? theme.palette.neutral[0]
       : theme.palette.neutral[100];
@@ -217,16 +214,16 @@ export const useSwitchable = ({ theme }: { theme: Theme }) => {
 
   // dark, light mode switch
   const toggle = useEvent((event?: MouseEvent) => {
-    const modeSwitchTo = isDark ? "light" : "dark";
+    const _toMode = isDark ? "light" : "dark";
 
     // dom not support animation
     if (!isFunction(document.startViewTransition)) {
-      trigger.current?.next(modeSwitchTo);
+      trigger.current?.next(_toMode);
       return;
     }
 
     const animation = document.startViewTransition(() => {
-      trigger.current?.next(modeSwitchTo);
+      trigger.current?.next(_toMode);
     });
 
     animation.ready.then(() => {
