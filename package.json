@@ -60,6 +60,7 @@
     "@dnd-kit/modifiers": "^7.0.0",
     "@floating-ui/dom": "^1.6.11",
     "@lexical/code": "^0.18.0",
+    "@lexical/headless": "^0.18.0",
     "@lexical/link": "^0.18.0",
     "@lexical/list": "^0.18.0",
     "@lexical/markdown": "^0.18.0",
