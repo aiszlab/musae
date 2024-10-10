@@ -1,5 +1,12 @@
 # musae
 
+## 0.3.8
+
+### Patch Changes
+
+- dd78a71: - Update dependencies(devDependencies) patch version
+  - `Portal` remove no-use React import
+
 ## 0.3.7
 
 ### Patch Changes
