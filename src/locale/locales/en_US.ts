@@ -49,6 +49,10 @@ const en_US: Locale = {
   [ComponentToken.Upload]: {
     upload: "Upload",
   },
+
+  [ComponentToken.Form]: {
+    required: (name) => `${name} is required`,
+  },
 };
 
 export default en_US;

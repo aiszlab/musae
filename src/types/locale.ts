@@ -47,4 +47,8 @@ export interface Locale {
   [ComponentToken.Upload]: {
     upload: string;
   };
+
+  [ComponentToken.Form]: {
+    required: ((name: string) => string) | string;
+  };
 }

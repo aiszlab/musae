@@ -1,7 +1,11 @@
-import { FormItemProps } from "musae/types/form";
+import type { FormItemProps } from "musae/types/form";
 import React from "react";
 import { Field, Layout } from "./field";
 import type { FieldValues } from "react-hook-form";
+import { useClassNames } from "../../hooks/use-class-names";
+import { ComponentToken } from "../../utils/component-token";
+import { clsx } from "@aiszlab/relax";
+import { FormClassToken } from "../../utils/class-name";
 
 /**
  * @description
@@ -9,10 +13,22 @@ import type { FieldValues } from "react-hook-form";
  */
 const Item = <T extends FieldValues = FieldValues>({
   required = false,
+  className,
+  style,
   ...props
 }: FormItemProps<T>) => {
+  const classNames = useClassNames(ComponentToken.Form);
+
   if (props.name) {
-    return <Field {...props} name={props.name} required={required} />;
+    return (
+      <Field
+        {...props}
+        className={clsx(classNames[FormClassToken.Item], className)}
+        style={style}
+        name={props.name}
+        required={required}
+      />
+    );
   }
 
   return (
@@ -21,11 +37,12 @@ const Item = <T extends FieldValues = FieldValues>({
       labelCol={props.labelCol}
       wrapperCol={props.wrapperCol}
       required={required}
-      className={props.className}
-      style={props.style}
       space
+      className={classNames[FormClassToken.Item]}
     >
-      {props.children}
+      <div className={clsx(classNames[FormClassToken.Field], className)} style={style}>
+        {props.children}
+      </div>
     </Layout>
   );
 };

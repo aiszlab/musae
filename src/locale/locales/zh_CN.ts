@@ -49,6 +49,10 @@ const zh_CN: Locale = {
   [ComponentToken.Upload]: {
     upload: "上传",
   },
+
+  [ComponentToken.Form]: {
+    required: (name) => `${name} 是必填项`,
+  },
 };
 
 export default zh_CN;

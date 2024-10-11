@@ -2,7 +2,7 @@ import React, { isValidElement, useMemo, cloneElement, Children, type ReactNode 
 import type { FormItemProps, FieldRenderProps } from "musae/types/form";
 import { useController } from "react-hook-form";
 import type { RequiredIn } from "@aiszlab/relax/types";
-import { chain, isRefable, clsx } from "@aiszlab/relax";
+import { chain, isRefable, clsx, toFunction } from "@aiszlab/relax";
 import { FormClassToken } from "../../../utils/class-name";
 import stylex from "@stylexjs/stylex";
 import { sizes, spacing } from "../../theme/tokens.stylex";
@@ -12,6 +12,7 @@ import { AnimatePresence } from "framer-motion";
 import { typography } from "../../theme/theme";
 import { useClassNames } from "../../../hooks/use-class-names";
 import { ComponentToken } from "../../../utils/component-token";
+import { useLocale } from "../../../locale";
 
 const styles = stylex.create({
   supporting: {
@@ -33,6 +34,7 @@ const Field = ({
   ...props
 }: RequiredIn<FormItemProps, "name" | "required">) => {
   const classNames = useClassNames(ComponentToken.Form);
+  const [locale] = useLocale(ComponentToken.Form);
 
   const {
     field: { onBlur, onChange, name, value, ref },
@@ -42,7 +44,7 @@ const Field = ({
     rules: {
       required: {
         value: required,
-        message: `${props.name} is required`,
+        message: toFunction(locale)(props.label ?? props.name),
       },
     },
   });
@@ -80,8 +82,8 @@ const Field = ({
   };
 
   return (
-    <Layout label={props.label} required={required} className={classNames[FormClassToken.Item]}>
-      <div className={className} style={style}>
+    <Layout label={props.label} required={required} className={className}>
+      <div className={clsx(classNames[FormClassToken.Field], className)} style={style}>
         {children}
       </div>
 
