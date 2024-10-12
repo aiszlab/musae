@@ -1,7 +1,8 @@
-import { useEvent } from "@aiszlab/relax";
+import { toArray, useEvent } from "@aiszlab/relax";
 import { useLazyBoolean } from "../../hooks/use-lazy-boolean";
 import type { PopperRef } from "musae/types/popper";
-import { useCallback } from "react";
+import { useCallback, useMemo } from "react";
+import { TriggerBy } from "../../types/popover";
 
 type UsedIsOpen = [
   boolean,
@@ -46,4 +47,27 @@ export const useIsOpen = (popperRef: React.RefObject<PopperRef>): UsedIsOpen => 
       disappear,
     },
   ];
+};
+
+/**
+ * @description
+ * used triggers
+ */
+export const useTriggerBy = (triggerBy: TriggerBy | TriggerBy[]) => {
+  const _triggerBy = useMemo(() => new Set(toArray(triggerBy)), [triggerBy]);
+
+  const isHoverable = useMemo(() => _triggerBy.has("hover"), [_triggerBy]);
+
+  const isFocusable = useMemo(() => _triggerBy.has("focus"), [_triggerBy]);
+
+  const isClickable = useMemo(() => _triggerBy.has("click"), [_triggerBy]);
+
+  const isContextMenuable = useMemo(() => _triggerBy.has("contextMenu"), [_triggerBy]);
+
+  return {
+    isHoverable,
+    isFocusable,
+    isClickable,
+    isContextMenuable,
+  };
 };

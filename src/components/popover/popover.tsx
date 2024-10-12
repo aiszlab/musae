@@ -1,22 +1,17 @@
-import {
-  useRefs,
-  useHover,
-  chain,
-  toArray,
-  useEvent,
-  useFocus,
-  useClickAway,
-  clsx,
-} from "@aiszlab/relax";
+import { useHover, useEvent, useFocus, useClickAway, clsx } from "@aiszlab/relax";
 import React, {
   cloneElement,
   useMemo,
   useRef,
   useCallback,
-  type MouseEvent,
   forwardRef,
   useImperativeHandle,
+  isValidElement,
+  type MouseEvent,
   type ForwardedRef,
+  type HTMLAttributes,
+  type PointerEvent,
+  type FocusEvent,
 } from "react";
 import type { ChildProps, PopoverProps, PopoverRef } from "musae/types/popover";
 import { Popper } from "../popper";
@@ -27,7 +22,7 @@ import { typography } from "../theme/theme";
 import { useClassNames } from "../../hooks/use-class-names";
 import { PopoverClassToken } from "../../utils/class-name";
 import { ComponentToken } from "../../utils/component-token";
-import { useIsOpen } from "./hooks";
+import { useIsOpen, useTriggerBy } from "./hooks";
 
 const styles = {
   popover: stylex.create({
@@ -61,12 +56,11 @@ const Popover = forwardRef(
     }: PopoverProps<P, T>,
     ref: ForwardedRef<PopoverRef>,
   ) => {
-    const _ref = useRef<HTMLElement>(null);
+    const _ref = useRef<T>(null);
     const popperRef = useRef<PopperRef>(null);
     const [isOpen, { turnOn, turnOff, toggle, disappear }] = useIsOpen(popperRef);
-    const triggerBy = useMemo(() => new Set(toArray(_triggerBy)), [_triggerBy]);
     const classNames = useClassNames(ComponentToken.Popover);
-    const childRef = useRefs(_ref, _children.props.ref);
+    const { isClickable, isContextMenuable, isFocusable, isHoverable } = useTriggerBy(_triggerBy);
 
     const onClick = useEvent((event: MouseEvent<T>) => {
       event.stopPropagation();
@@ -77,30 +71,87 @@ const Popover = forwardRef(
       toggle();
     });
 
+    // hover enter callback
+    const onHoverEnter = useCallback(
+      (event: PointerEvent<T>) => {
+        turnOn();
+        if (!isValidElement<P>(_children)) return;
+        _children.props.onMouseEnter?.(event);
+        _children.props.onPointerEnter?.(event);
+      },
+      [_children, turnOn],
+    );
+
+    // hover leave callback
+    const onHoverLeave = useCallback(
+      (event: PointerEvent<T>) => {
+        turnOff();
+        if (!isValidElement<P>(_children)) return;
+        _children.props.onMouseLeave?.(event);
+        _children.props.onPointerLeave?.(event);
+      },
+      [_children, turnOff],
+    );
+
     const [, hoverProps] = useHover<T>({
-      onEnter: (event) =>
-        chain(_children.props.onMouseEnter, _children.props.onPointerEnter, turnOn)(event),
-      onLeave: (event) =>
-        chain(_children.props.onMouseLeave, _children.props.onPointerLeave, disappear)(event),
+      onEnter: onHoverEnter,
+      onLeave: onHoverLeave,
     });
+
+    const onFocus = useCallback(
+      (event: FocusEvent<T>) => {
+        turnOn();
+        if (!isValidElement<P>(_children)) return;
+        _children.props.onFocus?.(event);
+      },
+      [_children, turnOn],
+    );
+
+    const onBlur = useCallback(
+      (event: FocusEvent<T>) => {
+        turnOff();
+        if (!isValidElement<P>(_children)) return;
+        _children.props.onBlur?.(event);
+      },
+      [_children, turnOff],
+    );
 
     const [, focusProps] = useFocus<T>({
-      onFocus: (event) => chain(_children.props.onFocus, turnOn)(event),
-      onBlur: (event) => chain(_children.props.onBlur, disappear)(event),
+      onFocus,
+      onBlur,
     });
 
-    // @ts-ignore
-    const children = cloneElement<P>(_children, {
-      ref: childRef,
-      ...(triggerBy.has("hover") && hoverProps),
-      ...(triggerBy.has("focus") && focusProps),
-      ...(triggerBy.has("click") && {
-        onClick,
-      }),
-      ...(triggerBy.has("contextMenu") && {
-        onContextMenu,
-      }),
-    });
+    // valid elment, inject handlers
+    // else add `div` wrapper
+    const children = useMemo(() => {
+      const props: ChildProps<T> = {
+        ref: _ref,
+        ...(isHoverable && hoverProps),
+        ...(isFocusable && focusProps),
+        ...(isClickable && {
+          onClick,
+        }),
+        ...(isContextMenuable && {
+          onContextMenu,
+        }),
+      };
+
+      if (isValidElement(_children)) {
+        return cloneElement<ChildProps<T>>(_children, props);
+      }
+
+      return <div {...(props as HTMLAttributes<HTMLDivElement>)}>{_children}</div>;
+    }, [
+      _children,
+      focusProps,
+      hoverProps,
+      isClickable,
+      isContextMenuable,
+      isFocusable,
+      isHoverable,
+      onClick,
+      onContextMenu,
+    ]);
 
     const enterPopper = useCallback(() => {
       turnOn();
@@ -112,7 +163,7 @@ const Popover = forwardRef(
 
     useClickAway(() => {
       turnOff();
-    }, [popperRef, triggerBy.has("click") && _ref]);
+    }, [popperRef, isClickable && _ref]);
 
     useImperativeHandle(ref, () => ({
       close: turnOff,
@@ -136,7 +187,7 @@ const Popover = forwardRef(
           trigger={_ref.current}
           open={isOpen}
           arrow={arrow}
-          {...(triggerBy.has("hover") && {
+          {...(isHoverable && {
             onPointerEnter: enterPopper,
             onPointerLeave: leavePopper,
           })}

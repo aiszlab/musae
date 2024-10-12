@@ -15,7 +15,7 @@ export type ChildProps<T> = Pick<
 > &
   RefAttributes<T>;
 
-type TriggerBy = "hover" | "focus" | "click" | "contextMenu";
+export type TriggerBy = "hover" | "focus" | "click" | "contextMenu";
 
 /**
  * @description
@@ -27,7 +27,7 @@ export type PopoverProps<P extends ChildProps<T>, T extends HTMLElement> = Compo
    * a trigger element.
    * @requires
    */
-  children: ReactElement<P>;
+  children: ReactElement<P> | Exclude<ReactNode, ReactElement | Iterable<ReactNode>>;
 
   /**
    * @description

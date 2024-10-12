@@ -1,4 +1,4 @@
-import React, { Children, cloneElement, useMemo } from "react";
+import React, { Children, cloneElement, isValidElement, useMemo } from "react";
 import stylex from "@stylexjs/stylex";
 import type { AvatarGroupProps } from "musae/types/avatar";
 import { Context } from "./context";
@@ -30,14 +30,15 @@ const Group = ({
       [ReturnType<typeof Children.toArray>, ReturnType<typeof Children.toArray>]
     >(
       (prev, child, index) => {
-        // @ts-ignore
-        const element = cloneElement(child, { key: `avatars-${index}` });
+        const _child = isValidElement(child)
+          ? cloneElement(child, { key: `avatars-${index}` })
+          : child;
 
         // great than max, hide current node
         if (index >= max) {
-          prev[1].push(element);
+          prev[1].push(_child);
         } else {
-          prev[0].push(element);
+          prev[0].push(_child);
         }
         return prev;
       },

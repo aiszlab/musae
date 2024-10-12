@@ -1,11 +1,19 @@
-import React, { cloneElement, useRef, type MouseEvent, type CSSProperties } from "react";
+import React, {
+  cloneElement,
+  useRef,
+  useMemo,
+  isValidElement,
+  type MouseEvent,
+  type CSSProperties,
+  type RefObject,
+} from "react";
 import type { PopconfirmProps, ChildProps } from "musae/types/popconfirm";
 import stylex from "@stylexjs/stylex";
 import { useClassNames } from "../../hooks/use-class-names";
 import { PopconfirmClassToken } from "../../utils/class-name";
 import { Space } from "../space";
 import { Button } from "../button";
-import { useBoolean, useClickAway, useEvent, useRefs, clsx } from "@aiszlab/relax";
+import { useBoolean, useClickAway, useEvent, clsx } from "@aiszlab/relax";
 import { Warning } from "musae/icons";
 import { Popper } from "../popper";
 import { spacing } from "../theme/tokens.stylex";
@@ -58,10 +66,9 @@ const Popconfirm = <P extends ChildProps<T>, T extends HTMLElement>({
   children: _children,
   style,
 }: PopconfirmProps<P, T>) => {
-  const _ref = useRef<HTMLElement>(null);
+  const ref = useRef<T>(null);
   const [isOpen, { turnOff, toggle }] = useBoolean();
   const classNames = useClassNames(ComponentToken.Popconfirm);
-  const childRef = useRefs(_ref, _children.props.ref);
   const popperRef = useRef<PopperRef>(null);
   const theme = useTheme();
   const [locale] = useLocale(ComponentToken.Popconfirm);
@@ -81,15 +88,29 @@ const Popconfirm = <P extends ChildProps<T>, T extends HTMLElement>({
     turnOff();
   });
 
-  // @ts-ignore
-  const children = cloneElement<P>(_children, {
-    ref: childRef,
-    onClick,
-  });
+  const children = useMemo(() => {
+    const props: ChildProps<T> = {
+      ref,
+      onClick,
+    };
+
+    if (isValidElement<ChildProps<T>>(_children)) {
+      return cloneElement<ChildProps<T>>(_children, props);
+    }
+
+    return (
+      <div
+        ref={ref as unknown as RefObject<HTMLDivElement>}
+        onClick={onClick as unknown as (e: MouseEvent<HTMLDivElement>) => void}
+      >
+        {_children}
+      </div>
+    );
+  }, [ref, onClick, _children]);
 
   useClickAway(() => {
     turnOff();
-  }, [popperRef, _ref]);
+  }, [popperRef, ref]);
 
   const styled = {
     popconfirm: stylex.props(styles.popconfirm),
@@ -103,7 +124,7 @@ const Popconfirm = <P extends ChildProps<T>, T extends HTMLElement>({
     <>
       {children}
 
-      <Popper trigger={_ref.current} open={isOpen} arrow placement={placement} ref={popperRef}>
+      <Popper trigger={ref.current} open={isOpen} arrow placement={placement} ref={popperRef}>
         <div
           className={clsx(
             classNames[PopconfirmClassToken.Popconfirm],
