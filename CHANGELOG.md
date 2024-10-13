@@ -1,5 +1,11 @@
 # musae
 
+## 0.3.10
+
+### Patch Changes
+
+- refactor components
+
 ## 0.3.9
 
 ### Patch Changes
