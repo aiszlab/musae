@@ -16,6 +16,7 @@ const Countdown = ({
   ripple = true,
   className,
   style,
+  onClick,
 }: CountdownProps) => {
   const trigger = useRef<Subscriber<MouseEvent<HTMLButtonElement>> | null>(null);
   const counter = useRef<Observable<number> | null>(null);
@@ -57,7 +58,8 @@ const Countdown = ({
       }) ?? null;
   });
 
-  const start = useEvent((e: MouseEvent<HTMLButtonElement>) => {
+  const start = useEvent(async (e: MouseEvent<HTMLButtonElement>) => {
+    await Promise.resolve(onClick?.(e));
     countdown();
     trigger.current?.next(e);
   });
