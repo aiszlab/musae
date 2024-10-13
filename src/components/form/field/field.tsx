@@ -44,37 +44,39 @@ const Field = ({
     rules: {
       required: {
         value: required,
-        message: toFunction(locale)(props.label ?? props.name),
+        message: toFunction(locale.required)(props.label ?? props.name),
       },
     },
   });
 
   const children = useMemo(() => {
-    return Children.toArray(_children).reduce<[ReactNode[], boolean]>(
-      ([_clonedChildren, isBound], _child) => {
-        if (isBound || !isValidElement<FieldRenderProps>(_child)) {
-          return [_clonedChildren.concat(_child), isBound];
-        }
+    return Children.toArray(_children)
+      .reduce<[ReactNode[], boolean]>(
+        ([_clonedChildren, isBound], _child) => {
+          if (isBound || !isValidElement<FieldRenderProps>(_child)) {
+            return [_clonedChildren.concat(_child), isBound] as const;
+          }
 
-        // registe react hook form
-        return [
-          _clonedChildren.concat(
-            cloneElement<FieldRenderProps>(_child, {
-              name,
-              value,
-              invalid,
-              onChange: chain(_child.props.onChange, onChange),
-              onBlur: chain(_child.props.onBlur, onBlur),
-              ...(isRefable(_child) && {
-                ref,
+          // registe react hook form
+          return [
+            _clonedChildren.concat(
+              cloneElement<FieldRenderProps>(_child, {
+                name,
+                value,
+                invalid,
+                onChange: chain(_child.props.onChange, onChange),
+                onBlur: chain(_child.props.onBlur, onBlur),
+                ...(isRefable(_child) && {
+                  ref,
+                }),
               }),
-            }),
-          ),
-          true,
-        ];
-      },
-      [[], false],
-    );
+            ),
+            true,
+          ];
+        },
+        [[], false],
+      )
+      .at(0);
   }, [_children, name, value, invalid, ref, onChange, onBlur]);
 
   const styled = {
@@ -82,7 +84,7 @@ const Field = ({
   };
 
   return (
-    <Layout label={props.label} required={required} className={className}>
+    <Layout label={props.label} required={required} className={classNames[FormClassToken.Item]}>
       <div className={clsx(classNames[FormClassToken.Field], className)} style={style}>
         {children}
       </div>

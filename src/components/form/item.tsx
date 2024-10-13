@@ -21,13 +21,7 @@ const Item = <T extends FieldValues = FieldValues>({
 
   if (props.name) {
     return (
-      <Field
-        {...props}
-        className={clsx(classNames[FormClassToken.Item], className)}
-        style={style}
-        name={props.name}
-        required={required}
-      />
+      <Field {...props} className={className} style={style} name={props.name} required={required} />
     );
   }
 

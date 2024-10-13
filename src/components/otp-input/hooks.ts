@@ -1,4 +1,4 @@
-import { isUndefined, useControlledState, useEvent } from "@aiszlab/relax";
+import { useControlledState, useEvent } from "@aiszlab/relax";
 import { type KeyboardEvent, useMemo } from "react";
 import { Keyboard } from "../../utils/keyboard";
 import type { Partialable } from "@aiszlab/relax/types";
@@ -27,10 +27,7 @@ export const useValue = ({
     changed[index] = otp;
     const changedValue = changed.join("");
 
-    if (isUndefined(_value)) {
-      setValue(changedValue);
-      return;
-    }
+    setValue(changedValue);
     onChange?.(changedValue);
   });
 

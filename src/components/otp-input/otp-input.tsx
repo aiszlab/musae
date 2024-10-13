@@ -3,7 +3,7 @@ import type { OtpInputProps } from "musae/types/otp-input";
 import { useInputEvents, useValue } from "./hooks";
 import { Input } from "../input";
 import type { InputRef } from "musae/types/input";
-import { clamp, useEvent } from "@aiszlab/relax";
+import { clamp, clsx, useEvent } from "@aiszlab/relax";
 import stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
 
@@ -19,7 +19,7 @@ const styles = stylex.create({
   },
 });
 
-const OtpInput = ({ length = 6, onChange, value: _value }: OtpInputProps) => {
+const OtpInput = ({ length = 6, onChange, value: _value, className, style }: OtpInputProps) => {
   const { value, change: _change } = useValue({ length, onChange, value: _value });
   const inputRefs = useRef(Array.from<InputRef | null>({ length }).fill(null));
   const [focusedAt, setFocusedAt] = useState(0);
@@ -62,7 +62,13 @@ const OtpInput = ({ length = 6, onChange, value: _value }: OtpInputProps) => {
   };
 
   return (
-    <div className={styled.otp.className} style={styled.otp.style}>
+    <div
+      className={clsx(styled.otp.className, className)}
+      style={{
+        ...styled.otp.style,
+        ...style,
+      }}
+    >
       {value.map((item, index) => {
         return (
           <Input

@@ -1,8 +1,10 @@
+import { ComponentProps } from "./element";
+
 /**
  * @description
  * otp input props
  */
-export type OtpInputProps = {
+export type OtpInputProps = ComponentProps & {
   /**
    * @description
    * length

@@ -7,7 +7,7 @@ import { ButtonProps } from "./button";
  */
 export type CountdownProps = Pick<
   ButtonProps,
-  "children" | "disabled" | "variant" | "color" | "size" | "shape" | "ripple"
+  "children" | "disabled" | "variant" | "color" | "size" | "shape" | "ripple" | "onClick"
 > &
   ComponentProps & {
     /**
