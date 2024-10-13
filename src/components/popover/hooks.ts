@@ -35,7 +35,8 @@ export const useIsOpen = (popperRef: React.RefObject<PopperRef>): UsedIsOpen => 
   }, [isOpen, turnOff, turnOn]);
 
   const disappear = useCallback(async () => {
-    await Promise.all([_disappear(), popperRef.current?.disappear()]).catch(() => null);
+    await _disappear();
+    await popperRef.current?.disappear();
   }, [_disappear, popperRef]);
 
   return [

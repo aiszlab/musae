@@ -85,12 +85,12 @@ const Popover = forwardRef(
     // hover leave callback
     const onHoverLeave = useCallback(
       (event: PointerEvent<T>) => {
-        turnOff();
+        disappear();
         if (!isValidElement<P>(_children)) return;
         _children.props.onMouseLeave?.(event);
         _children.props.onPointerLeave?.(event);
       },
-      [_children, turnOff],
+      [_children, disappear],
     );
 
     const [, hoverProps] = useHover<T>({
@@ -153,11 +153,11 @@ const Popover = forwardRef(
       onContextMenu,
     ]);
 
-    const enterPopper = useCallback(() => {
+    const onPopperHoverEnter = useCallback(() => {
       turnOn();
     }, [turnOn]);
 
-    const leavePopper = useCallback(() => {
+    const onPopperHoverLeave = useCallback(() => {
       disappear();
     }, [disappear]);
 
@@ -188,8 +188,8 @@ const Popover = forwardRef(
           open={isOpen}
           arrow={arrow}
           {...(isHoverable && {
-            onPointerEnter: enterPopper,
-            onPointerLeave: leavePopper,
+            onPointerEnter: onPopperHoverEnter,
+            onPointerLeave: onPopperHoverLeave,
           })}
           placement={placement}
           ref={popperRef}

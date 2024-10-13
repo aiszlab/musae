@@ -1,4 +1,4 @@
-import React, { type CSSProperties, forwardRef, useRef } from "react";
+import React, { type CSSProperties, forwardRef, type MouseEventHandler, useRef } from "react";
 import { MenuItemProps } from "musae/types/menu";
 import { useItemChildren, useMenuContext } from "./hooks";
 import { useClassNames } from "../../hooks/use-class-names";
@@ -144,7 +144,7 @@ const styles = {
  * menu item
  */
 const Item = forwardRef<HTMLLIElement, MenuItemProps>(
-  ({ level, label, prefix, suffix, value, className, mode, ...props }, ref) => {
+  ({ level, label, prefix, suffix, value, className, mode, onClick, ...props }, ref) => {
     const { selectedKeys, expandedKeys, click: _click, toggle, size } = useMenuContext();
     const classNames = useClassNames(ComponentToken.Menu);
     const isSelected = selectedKeys.has(value);
@@ -163,7 +163,9 @@ const Item = forwardRef<HTMLLIElement, MenuItemProps>(
       onLeave: disappear,
     });
 
-    const click = useEvent(() => {
+    const click = useEvent<MouseEventHandler<HTMLDivElement>>((event) => {
+      onClick?.(event);
+
       // if item is a group, just trigger key
       if (hasChildren) {
         toggle(value);

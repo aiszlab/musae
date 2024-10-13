@@ -53,4 +53,5 @@ export enum ComponentToken {
   RichTextEditor,
   Upload,
   Image,
+  Table,
 }

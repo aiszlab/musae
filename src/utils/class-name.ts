@@ -289,6 +289,9 @@ export enum I18nButtonClassToken {
 export enum ImageClassToken {
   Image,
 }
+export enum TableClassToken {
+  Table,
+}
 
 /**
  * @description
@@ -565,6 +568,10 @@ export const CLASS_NAMES = {
   [ComponentToken.Upload]: {},
   [ComponentToken.Image]: {
     [ImageClassToken.Image]: "image",
+  },
+  // TODO docs
+  [ComponentToken.Table]: {
+    [TableClassToken.Table]: "table",
   },
 };
 

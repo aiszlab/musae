@@ -118,6 +118,7 @@ const Group = forwardRef<HTMLUListElement, MenuGroupProps>(
               style={item.style}
               label={item.label}
               prefix={item.prefix}
+              onClick={item.onClick}
               mode={mode}
               ref={(_ref) => {
                 if (!_ref) return;

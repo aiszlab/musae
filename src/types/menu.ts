@@ -1,4 +1,4 @@
-import type { Key, ReactNode } from "react";
+import type { Key, MouseEventHandler, ReactNode } from "react";
 import type { ComponentProps } from "./element";
 
 export type Size = "small" | "medium" | "large";
@@ -143,6 +143,14 @@ export type MenuItem = ComponentProps & {
    * @default void 0
    */
   children?: MenuItem[];
+
+  // TODO docs
+  /**
+   * @description
+   * click callback
+   * @default void 0
+   */
+  onClick?: MouseEventHandler<HTMLDivElement>;
 };
 
 /**
@@ -165,12 +173,6 @@ export type MenuItemProps = Omit<MenuItem, "key" | "children"> &
      * @default void 0
      */
     suffix?: ReactNode;
-
-    /**
-     * @description
-     * click handler
-     */
-    onClick?: ContextValue["click"];
 
     /**
      * @description

@@ -57,7 +57,7 @@ export type Column<T> = {
  * @description
  * table props
  */
-export type TableProps<T> = {
+export type TableProps<T> = ComponentProps & {
   /**
    * @description
    * data

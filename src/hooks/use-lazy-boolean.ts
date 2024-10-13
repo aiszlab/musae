@@ -20,15 +20,13 @@ export const useLazyBoolean = (): UsedLazyBoolean => {
     timeout(() => {
       _turnOn();
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [_turnOn, timeout]);
 
   const turnOff = useCallback(() => {
     timeout(() => {
       _turnOff();
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [_turnOff, timeout]);
 
   const appear = useCallback(() => {
     const { resolve, promise } = Promise.withResolvers<void>();
@@ -37,8 +35,7 @@ export const useLazyBoolean = (): UsedLazyBoolean => {
       resolve();
     }, 100);
     return promise;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [timeout, turnOn]);
 
   const disappear = useCallback(() => {
     const { resolve, promise } = Promise.withResolvers<void>();
@@ -47,15 +44,13 @@ export const useLazyBoolean = (): UsedLazyBoolean => {
       resolve();
     }, 100);
     return promise;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [timeout, turnOff]);
 
   const toggle = useCallback(() => {
     timeout(() => {
       _toggle();
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [_toggle, timeout]);
 
   return [
     isTruthy,

@@ -6,6 +6,10 @@ import Header from "./header/header";
 import Context from "./context";
 import Body from "./body";
 import stylex from "@stylexjs/stylex";
+import { clsx } from "@aiszlab/relax";
+import { useClassNames } from "../../hooks/use-class-names";
+import { ComponentToken } from "../../utils/component-token";
+import { TableClassToken } from "../../utils/class-name";
 
 const styles = stylex.create({
   table: {
@@ -19,7 +23,10 @@ const Table = <T,>({
   columns: _columns = [],
   sortDescriptor,
   onSortChange,
+  className,
+  style,
 }: TableProps<T>) => {
+  const classNames = useClassNames(ComponentToken.Table);
   const columns = useColumns<T>({ columns: _columns });
   const table = useReactTable({
     columns,
@@ -29,9 +36,17 @@ const Table = <T,>({
 
   const contextValue = useContextValue({ table, bordered, sortDescriptor, onSortChange });
 
+  const styled = stylex.props(styles.table);
+
   return (
     <Context.Provider value={contextValue}>
-      <table {...stylex.props(styles.table)}>
+      <table
+        className={clsx(classNames[TableClassToken.Table], className, styled.className)}
+        style={{
+          ...styled.style,
+          ...style,
+        }}
+      >
         <Header<T> />
         <Body<T> />
       </table>
