@@ -1,20 +1,29 @@
-<h1 align="center">Musae</h1>
+<h1 align="center">musae</h1>
 
-## ✨ Features
+## Introduction
 
-- 🌈 Enterprise-class UI designed for web applications.
-- 📦 A set of high-quality React components out of the box.
-- 🛡 Written in TypeScript with predictable static types.
-- ⚙️ Whole package of design resources and development tools.
-- 🎨 Powerful theme customization based on CSS-in-JS.
+Next-generation UI Component suite for `React`.
 
 ## 📦 Install
 
 ```bash
+## use npm
 npm install musae
-## pnpm add musae
-## yarn add musae
+
+## use pnpm
+pnpm add musae
+
+## use yarn
+yarn add musae
 ```
+
+## Overview
+
+`musae` is a complete UI suite for `React` consisting of a rich set of UI components, icons, blocks, and application templates.
+
+## Theming
+
+`musae` has powerful theme customization based on CSS-in-JS.
 
 ## 🔨 Usage
 
