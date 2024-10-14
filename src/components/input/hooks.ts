@@ -38,7 +38,7 @@ export const useInputEvents = ({
     [onBlur],
   );
 
-  /// change handler
+  // change handler
   const change = useCallback<ChangeEventHandler<HTMLInputElement>>(
     (e) => {
       setValue(e.target.value);
@@ -47,7 +47,7 @@ export const useInputEvents = ({
     [setValue, onChange],
   );
 
-  /// click handler
+  // click handler
   const click = useCallback<MouseEventHandler<HTMLInputElement>>(
     (e) => {
       onClick?.(e);
@@ -66,26 +66,23 @@ export const useInputEvents = ({
 
 /**
  * @description
- * wrapper events
+ * inputor events
  */
-export const useWrapperEvents = (props: { inputRef: RefObject<HTMLInputElement> }) => {
-  /// focus
+export const useInputorEvents = ({ inputRef }: { inputRef: RefObject<HTMLInputElement> }) => {
+  // focus
   const focus = useCallback(() => {
-    props.inputRef.current?.focus();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    inputRef.current?.focus();
+  }, [inputRef]);
 
-  /// blur
+  // blur
   const blur = useCallback(() => {
-    props.inputRef.current?.blur();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    inputRef.current?.blur();
+  }, [inputRef]);
 
-  /// click
+  // click
   const click = useCallback(() => {
-    props.inputRef.current?.click();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    inputRef.current?.click();
+  }, [inputRef]);
 
   return {
     focus,

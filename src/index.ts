@@ -60,6 +60,7 @@ export { Bench } from "./components/bench";
 export { I18nButton } from "./components/i18n-button";
 export { RichTextEditor } from "./components/rich-text-editor";
 export { Quote } from "./components/quote";
+export { Textarea } from "./components/textarea";
 
 /**
  * @description

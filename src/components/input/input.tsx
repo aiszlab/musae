@@ -1,5 +1,5 @@
 import React, { forwardRef, useRef, useImperativeHandle, type CSSProperties } from "react";
-import { useInputEvents, useWrapperEvents } from "./hooks";
+import { useInputEvents, useInputorEvents } from "./hooks";
 import type { InputProps, InputRef } from "musae/types/input";
 import { useControlledState, useFocus, clsx } from "@aiszlab/relax";
 import { InputClassToken } from "../../utils/class-name";
@@ -12,7 +12,7 @@ import { typography } from "../theme/theme";
 import { ComponentToken } from "../../utils/component-token";
 
 export const styles = stylex.create({
-  wrapper: (props: { outlineColor: CSSProperties["borderColor"] }) => ({
+  inputor: (props: { outlineColor: CSSProperties["borderColor"] }) => ({
     display: "inline-flex",
     alignItems: "center",
     cursor: "text",
@@ -84,7 +84,6 @@ const Input = forwardRef<InputRef, InputProps>(
     },
     ref,
   ) => {
-    const wrapperRef = useRef<HTMLDivElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
     const classNames = useClassNames(ComponentToken.Input);
     const theme = useTheme();
@@ -102,10 +101,10 @@ const Input = forwardRef<InputRef, InputProps>(
       [],
     );
 
-    /// controlled value
+    // controlled value
     const [_value, _setValue] = useControlledState(valueInProps, { defaultState: "" });
 
-    /// events
+    // events
     const inputEvents = useInputEvents({
       setValue: _setValue,
       onBlur,
@@ -113,18 +112,18 @@ const Input = forwardRef<InputRef, InputProps>(
       onClick,
       onFocus,
     });
-    const wrapperEvents = useWrapperEvents({ inputRef });
+    const inputorEvents = useInputorEvents({ inputRef });
 
-    /// is focused
+    // is focused
     const [isFocused, focusProps] = useFocus({
       onBlur: inputEvents.blur,
       onFocus: inputEvents.focus,
     });
 
     const styled = {
-      wrapper: stylex.props(
+      inputor: stylex.props(
         typography.body.medium,
-        styles.wrapper({
+        styles.inputor({
           outlineColor: theme.colors[ColorToken.Outline],
         }),
         isFocused &&
@@ -141,24 +140,23 @@ const Input = forwardRef<InputRef, InputProps>(
 
     return (
       <span
-        ref={wrapperRef}
         className={clsx(
-          classNames[InputClassToken.Wrapper],
+          classNames[InputClassToken.Inputor],
           {
             [classNames[InputClassToken.Focused]]: isFocused,
             [classNames[InputClassToken.Invalid]]: !!invalid,
           },
           className,
-          styled.wrapper.className,
+          styled.inputor.className,
         )}
         style={{
-          ...styled.wrapper.style,
+          ...styled.inputor.style,
           ...style,
         }}
         tabIndex={-1}
-        onFocus={wrapperEvents.focus}
-        onBlur={wrapperEvents.blur}
-        onClick={wrapperEvents.click}
+        onFocus={inputorEvents.focus}
+        onBlur={inputorEvents.blur}
+        onClick={inputorEvents.click}
       >
         {/* leading */}
         {leading}

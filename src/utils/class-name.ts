@@ -29,7 +29,7 @@ export enum PickerClassToken {
 }
 export enum InputClassToken {
   Input,
-  Wrapper,
+  Inputor,
   Focused,
   Invalid,
 }
@@ -314,9 +314,9 @@ export const CLASS_NAMES = {
   },
   [ComponentToken.Input]: {
     [InputClassToken.Input]: "input",
-    [InputClassToken.Wrapper]: "input__wrapper",
-    [InputClassToken.Focused]: "input__wrapper--focused",
-    [InputClassToken.Invalid]: "input__wrapper--invalid",
+    [InputClassToken.Inputor]: "input__inputor",
+    [InputClassToken.Focused]: "input__inputor--focused",
+    [InputClassToken.Invalid]: "input__inputor--invalid",
   },
   [ComponentToken.Select]: {
     [SelectClassToken.Select]: "select",
