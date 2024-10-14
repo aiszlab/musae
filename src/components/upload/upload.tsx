@@ -1,13 +1,23 @@
-import React, { ChangeEvent, DragEvent, KeyboardEvent, cloneElement, useMemo, useRef } from "react";
+import React, {
+  ChangeEvent,
+  DragEvent,
+  KeyboardEvent,
+  cloneElement,
+  isValidElement,
+  useMemo,
+  useRef,
+} from "react";
 import type { UploadProps, UploadedsRef } from "musae/types/upload";
 import stylex from "@stylexjs/stylex";
-import { useEvent } from "@aiszlab/relax";
+import { clsx, useEvent } from "@aiszlab/relax";
 import { Keyboard } from "../../utils/keyboard";
 import Uploadeds from "./uploadeds";
 import { Button } from "../button";
 import { useLocale } from "../../locale";
 import { ComponentToken } from "../../utils/component-token";
 import { spacing } from "../theme/tokens.stylex";
+import { useClassNames } from "../../hooks/use-class-names";
+import { UploadClassToken } from "../../utils/class-name";
 
 const styles = stylex.create({
   input: {
@@ -35,6 +45,7 @@ const Upload = ({
   const inputRef = useRef<HTMLInputElement>(null);
   const uploadedsRef = useRef<UploadedsRef>(null);
   const [_locale] = useLocale(ComponentToken.Upload);
+  const classNames = useClassNames(ComponentToken.Upload);
 
   // file upload
   const upload = useEvent((files: File[]) => {
@@ -79,12 +90,16 @@ const Upload = ({
       return <Button disabled={disabled}>{_locale.upload}</Button>;
     }
 
-    // @ts-ignore
+    if (!isValidElement<{ disabled?: boolean }>(_children)) return _children;
+
     return cloneElement(_children, { disabled });
   }, [_children, disabled, _locale]);
 
   return (
-    <div className={styled.upload.className} style={styled.upload.style}>
+    <div
+      className={clsx(classNames[UploadClassToken.Upload], styled.upload.className)}
+      style={styled.upload.style}
+    >
       <div {...(!disabled && { onClick, onKeyDown, onDrop, onDragOver: onDrop })}>
         <input
           ref={inputRef}

@@ -1,4 +1,4 @@
-import type { Key, ReactNode } from "react";
+import type { ReactNode } from "react";
 import type { ComponentProps } from "./element";
 import type { ElevationToken } from "../components/theme/tokens.stylex";
 
@@ -59,6 +59,7 @@ export type BenchProps = ComponentProps & {
   /**
    * @description
    * navigations
+   * @default []
    */
   navigations?: NavigationItem[];
 
@@ -84,7 +85,7 @@ export type BenchProps = ComponentProps & {
    * @description
    * default expanded keys
    */
-  defaultExpandedKeys?: Key[];
+  defaultExpandedKeys?: string[];
 
   /**
    * @description
@@ -92,18 +93,17 @@ export type BenchProps = ComponentProps & {
    */
   classNames?: Partial<Record<"main", string>>;
 
-  // TODO: add to docs
   /**
    * @description
    * elevation
+   * @default "xsmall"
    */
   elevation?: ElevationToken;
 
-  // TODO: add to docs
   /**
    * @description
    * layout
-   * @default "top-side"
+   * @default "mix"
    */
   layout?: Layout;
 };

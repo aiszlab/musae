@@ -8,6 +8,9 @@ import { sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { ColorToken } from "../../utils/colors";
 import { Empty } from "../empty";
+import { useClassNames } from "../../hooks/use-class-names";
+import { ComponentToken } from "../../utils/component-token";
+import { TableClassToken } from "../../utils/class-name";
 
 const styles = stylex.create({
   cell: (props: { borderColor: CSSProperties["borderColor"] }) => ({
@@ -26,6 +29,7 @@ const styles = stylex.create({
 const Body = <T,>() => {
   const { table, bordered } = useTable<T>();
   const theme = useTheme();
+  const classNames = useClassNames(ComponentToken.Table);
 
   if (!table) return null;
 
@@ -39,7 +43,7 @@ const Body = <T,>() => {
   const _isEmpty = isEmpty(rows);
 
   return (
-    <tbody>
+    <tbody className={classNames[TableClassToken.Body]}>
       {_isEmpty && (
         <tr>
           <td colSpan={table.getAllColumns().length}>

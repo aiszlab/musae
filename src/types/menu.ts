@@ -72,7 +72,6 @@ export interface MenuProps extends ComponentProps {
    */
   size?: Size;
 
-  // TODO: update docs
   /**
    * @description
    * selected keys
@@ -144,7 +143,6 @@ export type MenuItem = ComponentProps & {
    */
   children?: MenuItem[];
 
-  // TODO docs
   /**
    * @description
    * click callback

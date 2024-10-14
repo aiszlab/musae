@@ -8,6 +8,9 @@ import { useTheme } from "../../theme";
 import { clsx } from "@aiszlab/relax";
 import { ColorToken } from "../../../utils/colors";
 import { typography } from "../../theme/theme";
+import { useClassNames } from "../../../hooks/use-class-names";
+import { ComponentToken } from "../../../utils/component-token";
+import { TableClassToken } from "../../../utils/class-name";
 
 const styles = stylex.create({
   cell: (props: {
@@ -46,6 +49,7 @@ const styles = stylex.create({
 const Header = <T,>(props: HeaderProps) => {
   const { table, bordered } = useTable<T>();
   const theme = useTheme();
+  const classNames = useClassNames(ComponentToken.Table);
 
   if (!table) return null;
 
@@ -64,7 +68,7 @@ const Header = <T,>(props: HeaderProps) => {
   );
 
   return (
-    <thead className={props.className}>
+    <thead className={clsx(classNames[TableClassToken.Header], props.className)}>
       {headerGroups.map((headerGroup) => (
         <tr key={headerGroup.id}>
           {headerGroup.headers.map((header) => (

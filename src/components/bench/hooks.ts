@@ -24,10 +24,10 @@ export const useLogo = (logo?: string | Logo) => {
 
 const toMenuItem = (
   { path, children, ...item }: NavigationItem,
-  parentKeys: Key[],
-): [MenuItem, Map<Key, Key[]>] => {
+  parentKeys: string[],
+): [MenuItem, Map<string, string[]>] => {
   // convert children
-  const [_menuItems, _paths] = (children ?? []).reduce<[MenuItem[], Map<Key, Key[]>]>(
+  const [_menuItems, _paths] = (children ?? []).reduce<[MenuItem[], Map<string, string[]>]>(
     ([_menuItems, _paths], child) => {
       const [menuItem, paths] = toMenuItem(child, [...parentKeys, path]);
       _menuItems.push(menuItem);
@@ -75,7 +75,7 @@ export const useNavigations = ({
   // convert navigations into diff menus
   const [topNavigations, sideNavigations, paths] = useMemo(() => {
     return navigations.reduce<
-      [Map<Key, MenuItem>, Map<Key, Partialable<MenuItem[]>>, Map<Key, Key[]>]
+      [Map<string, MenuItem>, Map<string, Partialable<MenuItem[]>>, Map<string, string[]>]
     >(
       ([_topNavigations, _sideNavigations, _paths], item) => {
         const [{ children, ..._menuItem }, ___paths] = toMenuItem(item, []);
@@ -95,7 +95,7 @@ export const useNavigations = ({
   }, [layout, navigations]);
 
   // menu selected keys
-  const selectedKeys = useMemo<[Key?, Key?]>(() => {
+  const selectedKeys = useMemo<[string?, string?]>(() => {
     if (isUndefined(location)) return [];
     return [paths.get(location)?.at(0) ?? location, location];
   }, [location, paths]);

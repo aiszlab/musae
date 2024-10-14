@@ -35,8 +35,7 @@ export const useValue = <T extends ValueOrValues = ValueOrValues>({
         const key = toKey(_value);
         return prev.set(
           key,
-          // @ts-ignore
-          _value.label ?? readableOptions.get(key) ?? _value.toString(),
+          (_value as Pick<Option, "label">).label ?? readableOptions.get(key) ?? _value.toString(),
         );
       }, new Map<Key, string>()),
     [value, readableOptions],

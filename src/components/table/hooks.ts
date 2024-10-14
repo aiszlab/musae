@@ -1,14 +1,16 @@
 import {
-  type ColumnDef,
   createColumnHelper,
-  CellContext,
-  DeepValue,
-  DeepKeys,
+  type ColumnDef,
+  type CellContext,
+  type DeepValue,
+  type DeepKeys,
+  type Table,
 } from "@tanstack/react-table";
 import { useMemo, useRef, createElement } from "react";
 import type { Column, ContextValue, SortDescriptor } from "musae/types/table";
 import HeaderCell from "./header/cell";
 import { useControlledState, useEvent } from "@aiszlab/relax";
+import type { Partialable } from "@aiszlab/relax/types";
 
 /**
  * @description
@@ -27,7 +29,7 @@ export const useColumns = <T>({ columns }: { columns: Column<T>[] }) => {
         sortDirections = ["ascending", "descending"],
         valueAt,
       }) => {
-        // @ts-ignore
+        // @ts-expect-error
         return helper.current.accessor(valueAt ?? key, {
           header: createElement(HeaderCell, {
             children: title,
@@ -74,8 +76,7 @@ export const useContextValue = <T>({
 
   return useMemo<ContextValue<unknown>>(
     () => ({
-      // @ts-ignore
-      table: _table,
+      table: _table as Partialable<Table<unknown>>,
       bordered,
 
       // sort descriptor

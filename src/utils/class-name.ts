@@ -291,6 +291,11 @@ export enum ImageClassToken {
 }
 export enum TableClassToken {
   Table,
+  Header,
+  Body,
+}
+export enum UploadClassToken {
+  Upload,
 }
 
 /**
@@ -564,14 +569,16 @@ export const CLASS_NAMES = {
     [RichTextEditorClassToken.Loading]: "rich-text-editor--loading",
     [RichTextEditorClassToken.Editable]: "rich-text-editor__editable",
   },
-  // TODO: add class names
-  [ComponentToken.Upload]: {},
+  [ComponentToken.Upload]: {
+    [UploadClassToken.Upload]: "upload",
+  },
   [ComponentToken.Image]: {
     [ImageClassToken.Image]: "image",
   },
-  // TODO docs
   [ComponentToken.Table]: {
     [TableClassToken.Table]: "table",
+    [TableClassToken.Header]: "table__header",
+    [TableClassToken.Body]: "table__body",
   },
 };
 

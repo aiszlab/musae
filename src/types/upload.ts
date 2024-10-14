@@ -98,21 +98,21 @@ export type UploadProps = {
   /**
    * @description
    * value
+   * @default void 0
    */
   value?: Value[];
 
   /**
    * @description
    * value change handler
+   * @default void 0
    */
   onChange?: (value: Value[]) => void;
 
-  // TODO: add to docs
   /**
    * @description
    * limit
-   * @default
-   * Infinity
+   * @default Infinity
    */
   limit?: number;
 };

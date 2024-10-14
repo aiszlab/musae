@@ -15,7 +15,11 @@ export type ImageProps = ComponentProps &
      */
     src: string;
 
-    // TODO docs
+    /**
+     * @description
+     * if `true`, current image will mount preview dialog
+     * @default true
+     */
     previewable?: boolean;
   };
 

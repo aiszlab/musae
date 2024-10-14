@@ -21,7 +21,6 @@ export type TourStep = {
    */
   description?: ReactNode;
 
-  // TODO: update docs
   /**
    * @description
    * target
