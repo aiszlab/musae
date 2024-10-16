@@ -55,4 +55,5 @@ export enum ComponentToken {
   Image,
   Table,
   Fab,
+  Textarea,
 }

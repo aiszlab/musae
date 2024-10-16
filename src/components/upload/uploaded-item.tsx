@@ -69,7 +69,6 @@ const UploadedItem = ({
       typography.body.small,
       isPicture && styles.item.picture({ borderColor: theme.colors[ColorToken.Outline] }),
     ),
-    leading: stylex.props(isPicture && styles.leading.picture),
     filename: stylex.props(styles.filename.default),
   };
 
@@ -80,19 +79,19 @@ const UploadedItem = ({
   // render leading
   const leading = useMemo(() => {
     if (isRender) return null;
+
     if (isPicture) {
       if (item.url) {
-        return (
-          <Image src={item.url} className={styled.leading.className} style={styled.leading.style} />
-        );
+        return <Image src={item.url} {...stylex.props(styles.leading.picture)} />;
       }
-      return <AttachFile className={styled.leading.className} style={styled.leading.style} />;
+      return <AttachFile {...stylex.props(styles.leading.picture)} />;
     }
+
     if (isLoading) {
       return <Loading />;
     }
     return <AttachFile />;
-  }, [isLoading, isPicture, isRender, item.url, styled.leading.className, styled.leading.style]);
+  }, [isLoading, isPicture, isRender, item.url]);
 
   // render item function
   const _renderItem = useEvent(() => {

@@ -4,8 +4,11 @@ import { useTheme } from "../theme";
 import stylex from "@stylexjs/stylex";
 import { ColorToken } from "../../utils/colors";
 import { sizes } from "../theme/tokens.stylex";
-import { useControlledState, useEvent, useFocus } from "@aiszlab/relax";
+import { clsx, useControlledState, useEvent, useFocus } from "@aiszlab/relax";
 import { TextareaProps } from "musae/types/textarea";
+import { useClassNames } from "../../hooks/use-class-names";
+import { ComponentToken } from "../../utils/component-token";
+import { TextareaClassToken } from "../../utils/class-name";
 
 const styles = stylex.create({
   textarea: {
@@ -23,9 +26,10 @@ const styles = stylex.create({
   },
 });
 
-const Textarea = ({ onChange, value }: TextareaProps) => {
+const Textarea = ({ onChange, value, className, style }: TextareaProps) => {
   const theme = useTheme();
   const [isFocused, focusProps] = useFocus();
+  const classNames = useClassNames(ComponentToken.Textarea);
 
   const [_value, _setValue] = useControlledState(value, { defaultState: "" });
 
@@ -49,8 +53,15 @@ const Textarea = ({ onChange, value }: TextareaProps) => {
 
   return (
     <textarea
-      className={styled.textarea.className}
-      style={styled.textarea.style}
+      className={clsx(
+        classNames[TextareaClassToken.Textarea],
+        className,
+        styled.textarea.className,
+      )}
+      style={{
+        ...styled.textarea.style,
+        ...style,
+      }}
       {...focusProps}
       value={_value}
       onChange={_onChange}

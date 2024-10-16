@@ -1,8 +1,10 @@
+import { ComponentProps } from "./element";
+
 /**
  * @description
  * textarea props
  */
-export type TextareaProps = {
+export type TextareaProps = ComponentProps & {
   // TODO docs
   /**
    * @description

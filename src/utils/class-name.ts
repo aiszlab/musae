@@ -303,6 +303,9 @@ export enum UploadClassToken {
 export enum FabClassToken {
   Fab,
 }
+export enum TextareaClassToken {
+  Textarea,
+}
 
 /**
  * @description
@@ -591,6 +594,9 @@ export const CLASS_NAMES = {
   },
   [ComponentToken.Fab]: {
     [FabClassToken.Fab]: "fab",
+  },
+  [ComponentToken.Textarea]: {
+    [TextareaClassToken.Textarea]: "textarea",
   },
 };
 
