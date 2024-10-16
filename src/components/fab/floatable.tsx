@@ -23,53 +23,57 @@ const styles = stylex.create({
   },
 });
 
-const Floatable = forwardRef<FloatableRef, FloatableProps>(({ container, children }, ref) => {
-  const [id] = useIdentity();
-  const _ref = useRef<HTMLDivElement>(null);
-  const { attributes, listeners, setNodeRef, transform } = useDraggable({
-    id,
-  });
-  const floatableRef = useRefs<HTMLDivElement>(_ref, setNodeRef);
-  const { container: _container, isDocumentBody } = useContainer({ container });
+const Floatable = forwardRef<FloatableRef, FloatableProps>(
+  ({ container, children, onClick }, ref) => {
+    const [id] = useIdentity();
+    const _ref = useRef<HTMLDivElement>(null);
+    const { attributes, listeners, setNodeRef, transform } = useDraggable({
+      id,
+    });
+    const floatableRef = useRefs<HTMLDivElement>(_ref, setNodeRef);
+    const { container: _container, isDocumentBody } = useContainer({ container });
 
-  const [offsetX, setOffsetX] = useState(0);
-  const [offsetY, setOffsetY] = useState(0);
-  const [clientRect, setClientRect] = useState<DOMRect>();
+    const [offsetX, setOffsetX] = useState(0);
+    const [offsetY, setOffsetY] = useState(0);
+    const [clientRect, setClientRect] = useState<DOMRect>();
 
-  useDndMonitor({
-    onDragEnd: (event) => {
-      setOffsetX((_offsetX) => _offsetX + event.delta.x);
-      setOffsetY((_offsetY) => _offsetY + event.delta.y);
-      setClientRect(_ref.current?.getBoundingClientRect());
-    },
-  });
-
-  useImperativeHandle(ref, () => {
-    return {
-      getBoundingClientRect: () => {
-        return clientRect;
+    useDndMonitor({
+      onDragEnd: (event) => {
+        setOffsetX((_offsetX) => _offsetX + event.delta.x);
+        setOffsetY((_offsetY) => _offsetY + event.delta.y);
+        setClientRect(_ref.current?.getBoundingClientRect());
       },
-    };
-  });
+    });
 
-  const styled = stylex.props(
-    styles.floatable({ x: offsetX + (transform?.x ?? 0), y: offsetY + (transform?.y ?? 0) }),
-    isDocumentBody && styles.fixed,
-  );
+    useImperativeHandle(ref, () => {
+      return {
+        getBoundingClientRect: () => {
+          return clientRect;
+        },
+      };
+    });
 
-  return (
-    <Portal container={_container}>
-      <div
-        ref={floatableRef}
-        {...listeners}
-        {...attributes}
-        className={styled.className}
-        style={styled.style}
-      >
-        <Button shape="circular">{children}</Button>
-      </div>
-    </Portal>
-  );
-});
+    const styled = stylex.props(
+      styles.floatable({ x: offsetX + (transform?.x ?? 0), y: offsetY + (transform?.y ?? 0) }),
+      isDocumentBody && styles.fixed,
+    );
+
+    return (
+      <Portal container={_container}>
+        <div
+          ref={floatableRef}
+          {...listeners}
+          {...attributes}
+          className={styled.className}
+          style={styled.style}
+        >
+          <Button shape="circular" onClick={onClick}>
+            {children}
+          </Button>
+        </div>
+      </Portal>
+    );
+  },
+);
 
 export default Floatable;

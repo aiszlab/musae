@@ -53,8 +53,8 @@
     "pnpm": ">=9"
   },
   "dependencies": {
-    "@aiszlab/fuzzy": "^1.4.4",
-    "@aiszlab/relax": "^1.4.4",
+    "@aiszlab/fuzzy": "^1.4.6",
+    "@aiszlab/relax": "^1.4.6",
     "@babel/runtime": "^7.25.7",
     "@dnd-kit/core": "^6.1.0",
     "@dnd-kit/modifiers": "^7.0.0",
@@ -70,7 +70,7 @@
     "@lexical/utils": "^0.18.0",
     "@tanstack/react-table": "^8.20.5",
     "dayjs": "^1.11.13",
-    "framer-motion": "^11.11.7",
+    "framer-motion": "^11.11.9",
     "lexical": "^0.18.0",
     "react-hook-form": "^7.53.0",
     "rxjs": "^7.8.1"
@@ -95,7 +95,7 @@
     "@types/jest": "^29.5.13",
     "@types/node": "^22.7.5",
     "@types/react": "^18.3.11",
-    "@types/react-dom": "^18.3.0",
+    "@types/react-dom": "^18.3.1",
     "babel-jest": "^29.7.0",
     "babel-preset-react-app": "^10.0.1",
     "eslint": "^8.57.1",

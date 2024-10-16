@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import type { PortalProps } from "./portal";
+import type { ButtonProps } from "./button";
 
 /**
  * @description
@@ -29,6 +30,13 @@ export type FabProps = {
    * children
    */
   children?: ReactNode;
+
+  /**
+   * @description
+   * click handler
+   * @default void 0
+   */
+  onClick?: ButtonProps["onClick"];
 };
 
 /**
@@ -37,7 +45,7 @@ export type FabProps = {
  */
 export type FloatableProps = {
   /**
-   * @link {FloatingActionButtonProps.container}
+   * @link {FabProps.container}
    */
   container?: FabProps["container"];
 
@@ -46,4 +54,9 @@ export type FloatableProps = {
    * children
    */
   children?: ReactNode;
+
+  /**
+   * @link {FabProps.onClick}
+   */
+  onClick?: FabProps["onClick"];
 };
