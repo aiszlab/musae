@@ -23,7 +23,7 @@ const styles = stylex.create({
 });
 
 const Space = ({
-  gutter = 4,
+  gutter = 8,
   children,
   className,
   style,
