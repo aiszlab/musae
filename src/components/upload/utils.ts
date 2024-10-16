@@ -1,9 +1,9 @@
-import type { Value, ControlledValue, UploadedItem } from "musae/types/upload";
+import type { FileItem, RemoteFileItem, UploadedItem } from "musae/types/upload";
 
 /**
  * @description
  * check current value is provided by user
  */
-export const isControlled = (value: Value): value is ControlledValue => {
-  return !value.key || !(value as UploadedItem).file;
+export const isRemoteFile = (file: FileItem): file is RemoteFileItem => {
+  return !file.key || !(file as UploadedItem).file;
 };

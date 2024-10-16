@@ -7,17 +7,18 @@ import React, {
   useMemo,
   useRef,
 } from "react";
-import type { UploadProps, UploadedsRef } from "musae/types/upload";
+import type { UploadProps, UploadedListRef } from "musae/types/upload";
 import stylex from "@stylexjs/stylex";
 import { clsx, useEvent } from "@aiszlab/relax";
 import { Keyboard } from "../../utils/keyboard";
-import Uploadeds from "./uploadeds";
+import UploadedList from "./uploaded-list";
 import { Button } from "../button";
 import { useLocale } from "../../locale";
 import { ComponentToken } from "../../utils/component-token";
 import { spacing } from "../theme/tokens.stylex";
 import { useClassNames } from "../../hooks/use-class-names";
 import { UploadClassToken } from "../../utils/class-name";
+import { Context } from "./context";
 
 const styles = stylex.create({
   input: {
@@ -41,16 +42,17 @@ const Upload = ({
   value,
   onChange,
   limit,
+  renderItem,
 }: UploadProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
-  const uploadedsRef = useRef<UploadedsRef>(null);
+  const uploadedListRef = useRef<UploadedListRef>(null);
   const [_locale] = useLocale(ComponentToken.Upload);
   const classNames = useClassNames(ComponentToken.Upload);
 
   // file upload
   const upload = useEvent((files: File[]) => {
     files.forEach((file) => {
-      uploadedsRef.current?.add(file);
+      uploadedListRef.current?.add(file);
     });
   });
 
@@ -96,33 +98,35 @@ const Upload = ({
   }, [_children, disabled, _locale]);
 
   return (
-    <div
-      className={clsx(classNames[UploadClassToken.Upload], styled.upload.className)}
-      style={styled.upload.style}
-    >
-      <div {...(!disabled && { onClick, onKeyDown, onDrop, onDragOver: onDrop })}>
-        <input
-          ref={inputRef}
-          type="file"
-          value=""
-          onClick={(e) => e.stopPropagation()}
-          className={styled.input.className}
-          style={styled.input.style}
-          multiple={multiple}
-          onChange={_onChange}
-        />
-        {children}
-      </div>
+    <Context.Provider value={{ renderItem }}>
+      <div
+        className={clsx(classNames[UploadClassToken.Upload], styled.upload.className)}
+        style={styled.upload.style}
+      >
+        <div {...(!disabled && { onClick, onKeyDown, onDrop, onDragOver: onDrop })}>
+          <input
+            ref={inputRef}
+            type="file"
+            value=""
+            onClick={(e) => e.stopPropagation()}
+            className={styled.input.className}
+            style={styled.input.style}
+            multiple={multiple}
+            onChange={_onChange}
+          />
+          {children}
+        </div>
 
-      <Uploadeds
-        ref={uploadedsRef}
-        value={value}
-        uploader={uploader}
-        onError={onError}
-        onChange={onChange}
-        limit={limit}
-      />
-    </div>
+        <UploadedList
+          ref={uploadedListRef}
+          value={value}
+          uploader={uploader}
+          onError={onError}
+          onChange={onChange}
+          limit={limit}
+        />
+      </div>
+    </Context.Provider>
   );
 };
 

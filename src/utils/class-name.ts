@@ -296,6 +296,9 @@ export enum TableClassToken {
 }
 export enum UploadClassToken {
   Upload,
+  UploadedList,
+  UploadedItem,
+  UploadedPictureItem,
 }
 export enum FabClassToken {
   Fab,
@@ -574,6 +577,9 @@ export const CLASS_NAMES = {
   },
   [ComponentToken.Upload]: {
     [UploadClassToken.Upload]: "upload",
+    [UploadClassToken.UploadedList]: "upload__uploaded-list",
+    [UploadClassToken.UploadedItem]: "upload__uploaded-item",
+    [UploadClassToken.UploadedPictureItem]: "upload__uploaded-item--picture",
   },
   [ComponentToken.Image]: {
     [ImageClassToken.Image]: "image",

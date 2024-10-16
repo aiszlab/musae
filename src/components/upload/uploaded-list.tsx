@@ -1,15 +1,21 @@
 import React, { forwardRef, type Key, useImperativeHandle, useMemo } from "react";
 import stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
-import type { UploadedItem, UploadedsProps, UploadedsRef } from "musae/types/upload";
-import { Loading, Delete, AttachFile } from "musae/icons";
-import { useControlledState, useEvent, useIdentity } from "@aiszlab/relax";
+import type {
+  UploadedItem as UploadedItemType,
+  UploadedListProps,
+  UploadedListRef,
+} from "musae/types/upload";
+import { clsx, useControlledState, useEvent, useIdentity } from "@aiszlab/relax";
 import { typography } from "../theme/theme";
-import { isControlled } from "./utils";
-import { leaf } from "@aiszlab/fuzzy/path";
+import { isRemoteFile } from "./utils";
+import { useClassNames } from "../../hooks/use-class-names";
+import { ComponentToken } from "../../utils/component-token";
+import { UploadClassToken } from "../../utils/class-name";
+import UploadedItem from "./uploaded-item";
 
 const styles = stylex.create({
-  uploadeds: {
+  list: {
     display: "flex",
     flexDirection: "column",
     gap: spacing.small,
@@ -28,17 +34,18 @@ const styles = stylex.create({
   },
 });
 
-const Uploadeds = forwardRef<UploadedsRef, UploadedsProps>(
+const UploadedList = forwardRef<UploadedListRef, UploadedListProps>(
   ({ uploader, onError, value, onChange, limit = Infinity }, ref) => {
     const [values, setValues] = useControlledState(value, { defaultState: [] });
     const [, identity] = useIdentity();
+    const classNames = useClassNames(ComponentToken.Upload);
 
     // convert to map, for performance
     const items = useMemo(() => {
-      return values.reduce<Map<Key, UploadedItem>>((prev, _item) => {
-        const _isControlled = isControlled(_item);
+      return values.reduce<Map<Key, UploadedItemType>>((prev, _item) => {
+        const _isRemoteFile = isRemoteFile(_item);
 
-        if (_isControlled) {
+        if (_isRemoteFile) {
           const _id = _item.key ?? _item.url;
           prev.set(_id, { key: _id, status: "success", url: _item.url });
           return prev;
@@ -64,7 +71,6 @@ const Uploadeds = forwardRef<UploadedsRef, UploadedsProps>(
           _items.set(id, { ..._items.get(id)!, status, url, error }).values(),
         );
         setValues(_values);
-        // change handler
         onChange?.(_values);
       },
     );
@@ -121,30 +127,22 @@ const Uploadeds = forwardRef<UploadedsRef, UploadedsProps>(
     });
 
     const styled = {
-      uploadeds: stylex.props(styles.uploadeds),
+      list: stylex.props(styles.list),
       item: stylex.props(styles.item, typography.body.small),
       filename: stylex.props(styles.filename),
     };
 
     return (
-      <div className={styled.uploadeds.className} style={styled.uploadeds.style}>
-        {Array.from(items.values()).map(({ key, ...item }) => {
-          return (
-            <div key={key} className={styled.item.className} style={styled.item.style}>
-              {item.status === "loading" && <Loading />}
-              {item.status !== "loading" && <AttachFile />}
-
-              <span className={styled.filename.className} style={styled.filename.style}>
-                {item.file?.name ?? leaf(item.url ?? "")}
-              </span>
-
-              <Delete onClick={() => remove(key)} />
-            </div>
-          );
+      <div
+        className={clsx(classNames[UploadClassToken.UploadedList], styled.list.className)}
+        style={styled.list.style}
+      >
+        {Array.from(items.values()).map((item) => {
+          return <UploadedItem item={item} key={item.key} onRemove={remove} />;
         })}
       </div>
     );
   },
 );
 
-export default Uploadeds;
+export default UploadedList;

@@ -6,9 +6,18 @@ import type { Key, ReactNode } from "react";
  */
 export type UploadStatus = "success" | "error" | "loading";
 
-export type ControlledValue = {
-  url: string;
+export type RemoteFileItem = {
+  /**
+   * @description
+   * unique key
+   */
   key?: Key;
+
+  /**
+   * @description
+   * file url
+   */
+  url: string;
 };
 
 /**
@@ -46,7 +55,7 @@ export type UploadedItem = {
   error?: Error;
 };
 
-export type Value = UploadedItem | ControlledValue;
+export type FileItem = UploadedItem | RemoteFileItem;
 
 /**
  * @description
@@ -100,14 +109,14 @@ export type UploadProps = {
    * value
    * @default void 0
    */
-  value?: Value[];
+  value?: FileItem[];
 
   /**
    * @description
    * value change handler
    * @default void 0
    */
-  onChange?: (value: Value[]) => void;
+  onChange?: (files: FileItem[]) => void;
 
   /**
    * @description
@@ -115,13 +124,19 @@ export type UploadProps = {
    * @default Infinity
    */
   limit?: number;
+
+  /**
+   * @description
+   * item render
+   */
+  renderItem?: "picture" | ((item: FileItem) => ReactNode);
 };
 
 /**
  * @description
- * Uploadeds Ref
+ * Uploaded List Ref
  */
-export type UploadedsRef = {
+export type UploadedListRef = {
   /**
    * @description
    * add
@@ -133,7 +148,18 @@ export type UploadedsRef = {
  * @description
  * uploaded list props
  */
-export type UploadedsProps = Pick<
+export type UploadedListProps = Pick<
   UploadProps,
   "uploader" | "onError" | "value" | "onChange" | "limit"
 >;
+
+/**
+ * @description
+ * context value
+ */
+export type ContextValue = {
+  /**
+   * @link {UploadProps.renderItem}
+   */
+  renderItem: UploadProps["renderItem"];
+};
