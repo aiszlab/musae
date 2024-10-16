@@ -9,3 +9,4 @@ new `textarea` component
 add `password-input` component
 add func declaration
 `image` add `crossOrigin`、`referrerPolicy` props
+`upload` uploaded list render
