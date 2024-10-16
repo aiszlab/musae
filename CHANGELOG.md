@@ -1,5 +1,18 @@
 # musae
 
+## 0.3.11
+
+### Patch Changes
+
+- 7144eb6: - `fab` add click callback
+  - new `textarea` component
+  - `fab` add class name
+  - `space` change default gap to 8
+  - add `password-input` component
+  - add func declaration
+  - `image` add `crossOrigin`、`referrerPolicy` props
+  - `upload` uploaded list render
+
 ## 0.3.10
 
 ### Patch Changes
