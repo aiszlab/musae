@@ -16,12 +16,22 @@ const styles = stylex.create({
   }),
 });
 
-const Image = ({ src, alt, width, height, previewable = true, className, style }: ImageProps) => {
+const Image = ({
+  src,
+  alt,
+  width,
+  height,
+  previewable = true,
+  className,
+  style,
+  crossOrigin,
+  referrerPolicy,
+}: ImageProps) => {
   const [isOpen, { turnOn, turnOff }] = useBoolean(false);
   const contextValue = useContext(PreviewGroupContext);
   const classNames = useClassNames(ComponentToken.Image);
 
-  const status = useImageLoader({ src });
+  const status = useImageLoader({ src, crossOrigin, referrerPolicy });
 
   const click = useEvent(() => {
     if (!previewable) return;
@@ -61,6 +71,8 @@ const Image = ({ src, alt, width, height, previewable = true, className, style }
           width={width}
           height={height}
           draggable={false}
+          crossOrigin={crossOrigin}
+          referrerPolicy={referrerPolicy}
         />
       )}
       {isOpen && !contextValue && <Preview src={src} onClose={turnOff} alt={alt} />}

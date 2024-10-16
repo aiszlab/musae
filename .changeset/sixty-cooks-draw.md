@@ -8,3 +8,4 @@ new `textarea` component
 `space` change default gap to 8
 add `password-input` component
 add func declaration
+`image` add `crossOrigin`、`referrerPolicy` props
