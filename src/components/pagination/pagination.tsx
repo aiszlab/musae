@@ -65,7 +65,7 @@ const Pagination = ({
   const sizeOptions = useMemo<Option[]>(() => {
     return unique(pageSizes).map((size) => ({
       value: size,
-      label: toFunction(locale.size)(size),
+      label: toFunction<(size: number) => string>(locale.size)(size),
     }));
   }, [locale, pageSizes]);
 

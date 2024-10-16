@@ -44,7 +44,7 @@ const Field = ({
     rules: {
       required: {
         value: required,
-        message: toFunction(locale.required)(props.label ?? props.name),
+        message: toFunction<(name?: string) => string>(locale.required)(props.label ?? props.name),
       },
     },
   });
