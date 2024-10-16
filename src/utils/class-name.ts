@@ -297,6 +297,9 @@ export enum TableClassToken {
 export enum UploadClassToken {
   Upload,
 }
+export enum FabClassToken {
+  Fab,
+}
 
 /**
  * @description
@@ -579,6 +582,9 @@ export const CLASS_NAMES = {
     [TableClassToken.Table]: "table",
     [TableClassToken.Header]: "table__header",
     [TableClassToken.Body]: "table__body",
+  },
+  [ComponentToken.Fab]: {
+    [FabClassToken.Fab]: "fab",
   },
 };
 

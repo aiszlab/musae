@@ -54,4 +54,5 @@ export enum ComponentToken {
   Upload,
   Image,
   Table,
+  Fab,
 }

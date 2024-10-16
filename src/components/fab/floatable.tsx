@@ -1,4 +1,4 @@
-import { useIdentity, useRefs } from "@aiszlab/relax";
+import { clsx, useIdentity, useRefs } from "@aiszlab/relax";
 import { useDndMonitor, useDraggable } from "@dnd-kit/core";
 import React, { forwardRef, useImperativeHandle, useRef, useState } from "react";
 import stylex from "@stylexjs/stylex";
@@ -7,6 +7,9 @@ import type { FloatableProps, FloatableRef } from "musae/types/fab";
 import { positions } from "../theme/tokens.stylex";
 import { Portal } from "../portal";
 import { useContainer } from "../../hooks/use-container";
+import { useClassNames } from "../../hooks/use-class-names";
+import { ComponentToken } from "../../utils/component-token";
+import { FabClassToken } from "../../utils/class-name";
 
 const styles = stylex.create({
   floatable: (props: { x: number; y: number }) => ({
@@ -25,6 +28,7 @@ const styles = stylex.create({
 
 const Floatable = forwardRef<FloatableRef, FloatableProps>(
   ({ container, children, onClick }, ref) => {
+    const classNames = useClassNames(ComponentToken.Fab);
     const [id] = useIdentity();
     const _ref = useRef<HTMLDivElement>(null);
     const { attributes, listeners, setNodeRef, transform } = useDraggable({
@@ -64,7 +68,7 @@ const Floatable = forwardRef<FloatableRef, FloatableProps>(
           ref={floatableRef}
           {...listeners}
           {...attributes}
-          className={styled.className}
+          className={clsx(classNames[FabClassToken.Fab], styled.className)}
           style={styled.style}
         >
           <Button shape="circular" onClick={onClick}>
