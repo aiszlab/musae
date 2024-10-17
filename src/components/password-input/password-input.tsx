@@ -18,6 +18,8 @@ const PasswordInput = forwardRef<InputRef, PasswordInputProps>((props, ref) => {
       trailing={createElement(isVisible ? VisibilityOff : Visibility, {
         onClick: toggle,
         color: theme.colors.primary,
+        onMouseDown: (event) => event.preventDefault(),
+        onMouseUp: (event) => event.preventDefault(),
       })}
     />
   );

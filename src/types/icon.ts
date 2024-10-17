@@ -1,4 +1,11 @@
-import type { CSSProperties, FC, HTMLAttributes, MouseEventHandler, ReactNode, ReactPortal } from "react";
+import type {
+  CSSProperties,
+  FC,
+  HTMLAttributes,
+  MouseEventHandler,
+  ReactNode,
+  ReactPortal,
+} from "react";
 import { ComponentProps } from "musae/types/element";
 
 export type AsProps = Required<Pick<IconProps, "size">>;
@@ -9,7 +16,9 @@ type Size = "small" | "medium" | "large";
  * @description
  * icon props
  */
-export interface IconProps extends ComponentProps {
+export interface IconProps
+  extends ComponentProps,
+    Pick<HTMLAttributes<HTMLSpanElement>, "onMouseDown" | "onMouseUp"> {
   /**
    * @description
    * as render

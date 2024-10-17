@@ -83,8 +83,10 @@ const Picker = forwardRef<PickerRef, PickerProps>(
     const styled = {
       picker: stylex.props(
         typography.body.medium,
-        inputStyles.inputor({ outlineColor: theme.colors.outline }),
-        isFocused && inputStyles.focused({ outlineColor: theme.colors.primary }),
+        inputStyles.inputor({
+          outlineColor: theme.colors.outline,
+          focusedOutlineColor: theme.colors.primary,
+        }),
       ),
       pickable: stylex.props(
         styles.pickable({

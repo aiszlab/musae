@@ -14,7 +14,7 @@ export type Variant = "outlined" | "filled" | "standard";
 export interface InputProps
   extends Pick<
       InputHTMLAttributes<HTMLInputElement>,
-      "onFocus" | "onBlur" | "name" | "value" | "readOnly" | "onClick" | "maxLength" | "onKeyDown"
+      "onFocus" | "onBlur" | "name" | "value" | "disabled" | "onClick" | "maxLength" | "onKeyDown"
     >,
     ComponentProps {
   /**

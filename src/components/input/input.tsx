@@ -11,7 +11,10 @@ import { typography } from "../theme/theme";
 import { ComponentToken } from "../../utils/component-token";
 
 export const styles = stylex.create({
-  inputor: (props: { outlineColor: CSSProperties["borderColor"] }) => ({
+  inputor: (props: {
+    outlineColor: CSSProperties["borderColor"];
+    focusedOutlineColor: CSSProperties["borderColor"];
+  }) => ({
     display: "inline-flex",
     alignItems: "center",
     cursor: "text",
@@ -36,10 +39,10 @@ export const styles = stylex.create({
     transitionDuration: "0.2s",
     // fix: eliminate serrations, use gpu speed up by add `transform`
     willChange: "box-shadow, transform",
-  }),
 
-  focused: (props: { outlineColor: CSSProperties["borderColor"] }) => ({
-    boxShadow: `0px 0px 0px ${sizes.xxxxxxsmall} ${props.outlineColor}`,
+    ":focus-within": {
+      boxShadow: `0px 0px 0px ${sizes.xxxxxxsmall} ${props.focusedOutlineColor}`,
+    },
   }),
 
   invalid: (props: { outlineColor: CSSProperties["borderColor"] }) => ({
@@ -69,7 +72,7 @@ const Input = forwardRef<InputRef, InputProps>(
       style,
       type,
       invalid = false,
-      readOnly,
+      disabled,
       maxLength,
       value: valueInProps,
       onBlur,
@@ -87,23 +90,19 @@ const Input = forwardRef<InputRef, InputProps>(
     const classNames = useClassNames(ComponentToken.Input);
     const theme = useTheme();
 
-    useImperativeHandle<InputRef, InputRef>(
-      ref,
-      () => ({
-        focus: () => {
-          inputRef.current?.focus();
-        },
-        select: () => {
-          inputRef.current?.select();
-        },
-      }),
-      [],
-    );
+    useImperativeHandle<InputRef, InputRef>(ref, () => ({
+      focus: () => {
+        inputRef.current?.focus();
+      },
+      select: () => {
+        inputRef.current?.select();
+      },
+    }));
 
     // controlled value
     const [_value, _setValue] = useControlledState(valueInProps, { defaultState: "" });
 
-    // events
+    // input events
     const inputEvents = useInputEvents({
       setValue: _setValue,
       onBlur,
@@ -111,6 +110,7 @@ const Input = forwardRef<InputRef, InputProps>(
       onClick,
       onFocus,
     });
+    // inputor events
     const inputorEvents = useInputorEvents({ inputRef });
 
     // is focused
@@ -124,11 +124,8 @@ const Input = forwardRef<InputRef, InputProps>(
         typography.body.medium,
         styles.inputor({
           outlineColor: theme.colors.outline,
+          focusedOutlineColor: theme.colors.primary,
         }),
-        isFocused &&
-          styles.focused({
-            outlineColor: theme.colors.primary,
-          }),
         invalid &&
           styles.invalid({
             outlineColor: theme.colors.error,
@@ -153,8 +150,6 @@ const Input = forwardRef<InputRef, InputProps>(
           ...style,
         }}
         tabIndex={-1}
-        onFocus={inputorEvents.focus}
-        onBlur={inputorEvents.blur}
         onClick={inputorEvents.click}
       >
         {/* leading */}
@@ -168,7 +163,7 @@ const Input = forwardRef<InputRef, InputProps>(
           type={type}
           ref={inputRef}
           aria-invalid={invalid}
-          readOnly={readOnly}
+          disabled={disabled}
           onChange={inputEvents.change}
           onClick={inputEvents.click}
           maxLength={maxLength}

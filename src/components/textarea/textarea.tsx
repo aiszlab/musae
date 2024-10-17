@@ -3,7 +3,7 @@ import { styles as inputStyles } from "../input";
 import { useTheme } from "../theme";
 import stylex from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";
-import { clsx, useControlledState, useEvent, useFocus } from "@aiszlab/relax";
+import { clsx, useControlledState, useEvent } from "@aiszlab/relax";
 import type { TextareaProps } from "musae/types/textarea";
 import { useClassNames } from "../../hooks/use-class-names";
 import { ComponentToken } from "../../utils/component-token";
@@ -28,7 +28,6 @@ const styles = stylex.create({
 
 const Textarea = ({ onChange, value, className, style, invalid = false }: TextareaProps) => {
   const theme = useTheme();
-  const [isFocused, focusProps] = useFocus();
   const classNames = useClassNames(ComponentToken.Textarea);
 
   const [_value, _setValue] = useControlledState(value, { defaultState: "" });
@@ -42,12 +41,9 @@ const Textarea = ({ onChange, value, className, style, invalid = false }: Textar
     textarea: stylex.props(
       inputStyles.inputor({
         outlineColor: theme.colors.outline,
+        focusedOutlineColor: theme.colors.primary,
       }),
       styles.textarea,
-      isFocused &&
-        inputStyles.focused({
-          outlineColor: theme.colors.primary,
-        }),
       invalid &&
         inputStyles.invalid({
           outlineColor: theme.colors.error,
@@ -71,7 +67,6 @@ const Textarea = ({ onChange, value, className, style, invalid = false }: Textar
       <textarea
         className={clsx(classNames[TextareaClassToken.Input], styled.input.className)}
         style={styled.input.style}
-        {...focusProps}
         value={_value}
         onChange={_onChange}
       />
