@@ -24,7 +24,7 @@ export const styles = stylex.create({
 
     // border, for flexible, in musae, we use boxShadow replace border
     // box shadow is not added into layout
-    boxShadow: `inset 0px 0px 0px ${sizes.smallest} ${props.outlineColor}`,
+    boxShadow: `0px 0px 0px ${sizes.smallest} ${props.outlineColor}`,
 
     // layout
     margin: spacing.none,
@@ -39,11 +39,11 @@ export const styles = stylex.create({
   }),
 
   focused: (props: { outlineColor: CSSProperties["borderColor"] }) => ({
-    boxShadow: `inset 0px 0px 0px ${sizes.xxxxxxsmall} ${props.outlineColor}`,
+    boxShadow: `0px 0px 0px ${sizes.xxxxxxsmall} ${props.outlineColor}`,
   }),
 
   invalid: (props: { outlineColor: CSSProperties["borderColor"] }) => ({
-    boxShadow: `inset 0px 0px 0px ${sizes.xxxxxxsmall} ${props.outlineColor}`,
+    boxShadow: `0px 0px 0px ${sizes.xxxxxxsmall} ${props.outlineColor}`,
   }),
 
   input: {

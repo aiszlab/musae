@@ -1,10 +1,10 @@
-import React, { ChangeEvent } from "react";
+import React, { type ChangeEvent } from "react";
 import { styles as inputStyles } from "../input";
 import { useTheme } from "../theme";
 import stylex from "@stylexjs/stylex";
-import { sizes } from "../theme/tokens.stylex";
+import { sizes, spacing } from "../theme/tokens.stylex";
 import { clsx, useControlledState, useEvent, useFocus } from "@aiszlab/relax";
-import { TextareaProps } from "musae/types/textarea";
+import type { TextareaProps } from "musae/types/textarea";
 import { useClassNames } from "../../hooks/use-class-names";
 import { ComponentToken } from "../../utils/component-token";
 import { TextareaClassToken } from "../../utils/class-name";
@@ -12,16 +12,17 @@ import { TextareaClassToken } from "../../utils/class-name";
 const styles = stylex.create({
   textarea: {
     // reset
-    display: null,
-    alignItems: null,
-    cursor: null,
-    minHeight: null,
-    minWidth: null,
+    padding: null,
+    width: sizes.full,
+    overflow: "hidden",
+  },
 
-    // css
+  input: {
+    paddingBlock: spacing.xxsmall,
+    paddingInline: spacing.medium,
     outline: "none",
     border: "none",
-    width: sizes.full,
+    flex: 1,
   },
 });
 
@@ -52,16 +53,24 @@ const Textarea = ({ onChange, value, className, style, invalid = false }: Textar
           outlineColor: theme.colors.error,
         }),
     ),
+    input: stylex.props(styles.input),
   };
 
   return (
-    <div className={clsx(classNames[TextareaClassToken.Textarea])}>
+    <div
+      className={clsx(
+        classNames[TextareaClassToken.Textarea],
+        className,
+        styled.textarea.className,
+      )}
+      style={{
+        ...styled.textarea.style,
+        ...style,
+      }}
+    >
       <textarea
-        className={clsx(classNames[TextareaClassToken.Input], className, styled.textarea.className)}
-        style={{
-          ...styled.textarea.style,
-          ...style,
-        }}
+        className={clsx(classNames[TextareaClassToken.Input], styled.input.className)}
+        style={styled.input.style}
         {...focusProps}
         value={_value}
         onChange={_onChange}
