@@ -79,7 +79,11 @@ const Popup = ({ onClose, open, closable, onClosed, className, ...props }: Popup
 
   // children render hooks
   const footer = useFooter([props.footer, props.onConfirm, onClose]);
-  const { closer, onKeyDown, onOverlayClick } = useClosable({ closable, onClose });
+  const { closer, onKeyDown, onOverlayClick } = useClosable({
+    closable,
+    onClose,
+    placement: "top-right",
+  });
 
   useEffect(() => {
     (async () => {

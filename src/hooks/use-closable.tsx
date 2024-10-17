@@ -1,10 +1,21 @@
 import { isUndefined, useEvent } from "@aiszlab/relax";
 import React, { KeyboardEvent, useMemo } from "react";
 import { Button } from "../components/button";
+import stylex from "@stylexjs/stylex";
+import { spacing } from "../components/theme/tokens.stylex";
 import { Close } from "musae/icons";
 import { Keyboard } from "../utils/keyboard";
 
 export type Closable = "esc" | "overlay" | "close";
+
+const styles = stylex.create({
+  static: {},
+
+  "top-right": {
+    top: spacing.large,
+    right: spacing.large,
+  },
+});
 
 /**
  * @description
@@ -17,9 +28,11 @@ export type Closable = "esc" | "overlay" | "close";
 export const useClosable = ({
   onClose,
   closable,
+  placement = "static",
 }: {
   onClose?: VoidFunction;
   closable: boolean | Closable[];
+  placement?: "static" | "top-right";
 }) => {
   // convert closable to enum sets
   const triggers = useMemo<Set<Closable>>(() => {
@@ -33,10 +46,25 @@ export const useClosable = ({
   const closer = useMemo(() => {
     if (!triggers.has("close")) return null;
 
+    const styled = stylex.props(styles[placement]);
+
     return (
-      <Button shape="circular" variant="text" prefix={<Close />} onClick={onClose} size="small" />
+      <Button
+        shape="circular"
+        variant="text"
+        prefix={<Close />}
+        onClick={onClose}
+        size="small"
+        className={styled.className}
+        style={{
+          ...styled.style,
+          ...(placement !== "static" && {
+            position: "absolute",
+          }),
+        }}
+      />
     );
-  }, [triggers, onClose]);
+  }, [triggers, onClose, placement]);
 
   /// overlay click callback
   const onOverlayClick = useEvent(() => {

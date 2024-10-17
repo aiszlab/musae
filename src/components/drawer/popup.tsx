@@ -117,7 +117,10 @@ const Popup = ({
   const [locale] = useLocale(ComponentToken.Drawer);
 
   // children render hooks
-  const { closer, onKeyDown, onOverlayClick } = useClosable({ closable, onClose });
+  const { closer, onKeyDown, onOverlayClick } = useClosable({
+    closable,
+    onClose,
+  });
 
   useEffect(() => {
     (async () => {
