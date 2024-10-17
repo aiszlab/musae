@@ -1,5 +1,12 @@
 # musae
 
+## 0.3.12
+
+### Patch Changes
+
+- 536b0b3: - `textarea` use wrapper render
+  - `dialog` & `drawer` closer button placement
+
 ## 0.3.11
 
 ### Patch Changes
