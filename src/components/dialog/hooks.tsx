@@ -20,10 +20,10 @@ export const useFooter = ([footer, onConfirm, onClose]: [
     return (
       footer ?? (
         <Space>
-          <Button onClick={onClose} color="secondary" variant="text">
+          <Button onClick={onConfirm} variant="text">
             {locale.confirm}
           </Button>
-          <Button onClick={onConfirm} variant="text">
+          <Button onClick={onClose} color="secondary" variant="text">
             {locale.cancel}
           </Button>
         </Space>
