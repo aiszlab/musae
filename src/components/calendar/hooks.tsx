@@ -10,7 +10,6 @@ import stylex from "@stylexjs/stylex";
 import { positions, sizes, spacing } from "../theme/tokens.stylex";
 import { typography } from "../theme/theme";
 import { useTheme } from "../theme";
-import { ColorToken } from "../../utils/colors";
 import { Button } from "../button";
 import { ComponentToken } from "../../utils/component-token";
 
@@ -81,7 +80,7 @@ export const useHeadCells = () => {
     const styled = stylex.props(
       styles.cell,
       styles.header({
-        color: theme.colors[ColorToken.OnSurfaceVariant],
+        color: theme.colors["on-surface-variant"],
       }),
       typography.body.large,
     );
@@ -138,7 +137,7 @@ export const useDateCells = ({
           cell: stylex.props(
             styles.cell,
             styles.date({
-              backgroundColor: theme.colors[ColorToken.SecondaryContainer],
+              backgroundColor: theme.colors["secondary-container"],
             }),
             isDisabled && styles.hidden,
             isBetween && styles.range,

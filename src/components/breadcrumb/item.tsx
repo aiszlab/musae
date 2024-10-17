@@ -2,7 +2,6 @@ import React, { type CSSProperties } from "react";
 import stylex from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
-import { ColorToken } from "../../utils/colors";
 import type { BreadcrumbItemProps } from "musae/types/breadcrumb";
 import { useClassNames } from "../../hooks/use-class-names";
 import { BreadcrumbClassToken } from "../../utils/class-name";
@@ -50,11 +49,11 @@ const Item = ({ href, label, max, separator }: BreadcrumbItemProps) => {
 
   const styled = {
     navigation: stylex.props(
-      styles.navigation.default({ color: theme.colors[ColorToken.OnSurface] }),
+      styles.navigation.default({ color: theme.colors["on-surface"] }),
       isLink &&
         styles.navigation.link({
-          hoveredBackgroundColor: theme.colors[ColorToken.Surface],
-          hoveredColor: theme.colors[ColorToken.OnSurface],
+          hoveredBackgroundColor: theme.colors.surface,
+          hoveredColor: theme.colors["on-surface"],
         }),
     ),
     separator: stylex.props(styles.separator.default),

@@ -8,7 +8,6 @@ import { KeyboardArrowRight } from "musae/icons";
 import stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
-import { ColorToken } from "../../utils/colors";
 import { useEvent, clsx } from "@aiszlab/relax";
 import { ComponentToken } from "../../utils/component-token";
 
@@ -69,9 +68,9 @@ const Node = ({ value, children, level, onExpand, ...props }: TreeNodeProps) => 
     title: stylex.props(
       styles.title({
         isSelected,
-        backgroundColor: theme.colors[ColorToken.SurfaceContainer],
-        hoveredBackgroundColor: theme.colors[ColorToken.SurfaceContainer],
-        color: theme.colors[ColorToken.Primary],
+        backgroundColor: theme.colors["surface-container"],
+        hoveredBackgroundColor: theme.colors["surface-container"],
+        color: theme.colors.primary,
       }),
       selectable && styles.selectable,
     ),

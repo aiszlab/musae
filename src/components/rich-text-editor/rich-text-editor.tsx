@@ -18,7 +18,6 @@ import stylex from "@stylexjs/stylex";
 
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
-import { ColorToken } from "../../utils/colors";
 
 /* nodes */
 import { HeadingNode, QuoteNode } from "@lexical/rich-text";
@@ -127,12 +126,12 @@ const RichTextEditor = forwardRef<RichTextEditorRef, RichTextEditorProps>(
 
     const styled = {
       shell: stylex.props(
-        !disabled && styles.shell({ backgroundColor: theme.colors[ColorToken.SurfaceContainer] }),
+        !disabled && styles.shell({ backgroundColor: theme.colors["surface-container"] }),
         styles.variables({
-          primaryColor: theme.colors[ColorToken.Primary],
-          onPrimaryColor: theme.colors[ColorToken.OnPrimary],
-          outlineColor: theme.colors[ColorToken.Outline],
-          codeBackgroundColor: theme.colors[ColorToken.SurfaceContainerHighest],
+          primaryColor: theme.colors.primary,
+          onPrimaryColor: theme.colors["on-primary"],
+          outlineColor: theme.colors.outline,
+          codeBackgroundColor: theme.colors["surface-container-highest"],
         }),
       ),
       editor: stylex.props(!disabled && styles.editor),

@@ -305,6 +305,7 @@ export enum FabClassToken {
 }
 export enum TextareaClassToken {
   Textarea,
+  Input,
 }
 
 /**
@@ -597,6 +598,7 @@ export const CLASS_NAMES = {
   },
   [ComponentToken.Textarea]: {
     [TextareaClassToken.Textarea]: "textarea",
+    [TextareaClassToken.Input]: "textarea__input",
   },
 };
 

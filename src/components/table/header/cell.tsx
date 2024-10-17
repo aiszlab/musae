@@ -3,7 +3,6 @@ import { toFunction, useEvent } from "@aiszlab/relax";
 import stylex from "@stylexjs/stylex";
 import { sizes, spacing } from "../../theme/tokens.stylex";
 import { useTheme } from "../../theme";
-import { ColorToken } from "../../../utils/colors";
 import { UnfoldMore } from "musae/icons";
 import type { HeaderCellProps, SortDirection } from "musae/types/table";
 import Context from "../context";
@@ -86,20 +85,20 @@ const Cell = ({
   const styled = {
     cell: stylex.props(styles.cell.default),
     handlers: stylex.props(
-      styles.cell.handlers({ color: theme.colors[ColorToken.SurfaceContainerHighest] }),
+      styles.cell.handlers({ color: theme.colors["surface-container-highest"] }),
     ),
     sort: stylex.props(styles.sort.default),
 
     fullSort: stylex.props(
       sort === "descending" &&
         styles.sort.checked({
-          color: theme.colors[ColorToken.Primary],
+          color: theme.colors.primary,
         }),
     ),
 
     halfSort: stylex.props(
       styles.sort.half,
-      sort === "ascending" && styles.sort.checked({ color: theme.colors[ColorToken.Primary] }),
+      sort === "ascending" && styles.sort.checked({ color: theme.colors.primary }),
     ),
   };
 

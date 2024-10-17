@@ -4,7 +4,6 @@ import { Close, KeyboardArrowLeft, KeyboardArrowRight } from "musae/icons";
 import { Portal } from "../../portal";
 import { spacing, positions, sizes } from "../../theme/tokens.stylex";
 import { useTheme } from "../../theme";
-import { ColorToken } from "../../../utils/colors";
 import type { OperationsProps } from "musae/types/image";
 import { useHandlers } from "../hooks";
 import { Button } from "../../button";
@@ -70,8 +69,8 @@ const Operations = ({
     operations: stylex.props(styles.operations),
     closer: stylex.props(styles.closer),
     navigations: stylex.props(styles.navigations),
-    footer: stylex.props(styles.footer({ color: theme.colors[ColorToken.OnSurface] })),
-    handlers: stylex.props(styles.handlers({ backgroundColor: theme.colors[ColorToken.Surface] })),
+    footer: stylex.props(styles.footer({ color: theme.colors["on-surface"] })),
+    handlers: stylex.props(styles.handlers({ backgroundColor: theme.colors.surface })),
   };
 
   const handlers = useHandlers({

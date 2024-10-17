@@ -7,7 +7,6 @@ import stylex from "@stylexjs/stylex";
 import { typography } from "../../theme/theme";
 import { spacing } from "../../theme/tokens.stylex";
 import { useTheme } from "../../theme";
-import { ColorToken } from "../../../utils/colors";
 import { clsx } from "@aiszlab/relax";
 import { ComponentProps } from "musae/types/element";
 
@@ -84,7 +83,7 @@ const Layout = ({ required, space, className, style, ...props }: Props) => {
     label: stylex.props(
       required &&
         styles.required({
-          color: theme.colors[ColorToken.Error],
+          color: theme.colors.error,
         }),
       typography.label.small,
     ),

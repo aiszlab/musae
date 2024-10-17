@@ -6,7 +6,6 @@ import { TagClassToken } from "../../utils/class-name";
 import stylex from "@stylexjs/stylex";
 import { useTheme } from "../theme";
 import { typography } from "../theme/theme";
-import { ColorToken } from "../../utils/colors";
 import { spacing } from "../theme/tokens.stylex";
 import { Close } from "musae/icons";
 import { ComponentToken } from "../../utils/component-token";
@@ -60,8 +59,8 @@ const Tag = ({
   const styled = stylex.props(
     typography.label[size],
     styles.tag({
-      backgroundColor: theme.colors[ColorToken.PrimaryContainer],
-      color: theme.colors[ColorToken.OnPrimaryContainer],
+      backgroundColor: theme.colors["primary-container"],
+      color: theme.colors["on-primary-container"],
     }),
     styles[size],
   );

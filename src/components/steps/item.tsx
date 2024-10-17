@@ -5,7 +5,6 @@ import { useClassNames } from "../../hooks/use-class-names";
 import { StepsClassToken } from "../../utils/class-name";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
-import { ColorToken } from "../../utils/colors";
 import { useEvent, clsx } from "@aiszlab/relax";
 import { Context } from "./context";
 import { typography } from "../theme/theme";
@@ -133,25 +132,25 @@ const Item = ({ leading, title, description, value }: StepItemProps) => {
       isVertical &&
         !isMax &&
         styles.leading.tail({
-          color: theme.colors[ColorToken.Primary],
+          color: theme.colors.primary,
         }),
     ),
     sign: stylex.props(
       styles.sign.default({ size }),
       status === "doing" &&
         styles.sign.doing({
-          backgroundColor: theme.colors[ColorToken.Primary],
-          color: theme.colors[ColorToken.OnPrimary],
+          backgroundColor: theme.colors.primary,
+          color: theme.colors["on-primary"],
         }),
       status === "done" &&
         styles.sign.done({
-          backgroundColor: theme.colors[ColorToken.PrimaryContainer],
-          color: theme.colors[ColorToken.OnPrimaryContainer],
+          backgroundColor: theme.colors["primary-container"],
+          color: theme.colors["on-primary-container"],
         }),
       status === "todo" &&
         styles.sign.todo({
-          backgroundColor: theme.colors[ColorToken.Secondary],
-          color: theme.colors[ColorToken.OnSecondary],
+          backgroundColor: theme.colors.secondary,
+          color: theme.colors["on-secondary"],
         }),
     ),
     title: stylex.props(
@@ -160,7 +159,7 @@ const Item = ({ leading, title, description, value }: StepItemProps) => {
       isHorizontal &&
         !isMax &&
         styles.title.tail({
-          color: theme.colors[ColorToken.Primary],
+          color: theme.colors.primary,
         }),
     ),
     description: stylex.props(typography.body.medium, styles.description.default),

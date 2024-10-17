@@ -8,7 +8,6 @@ import Tab from "./tab";
 import { useAnimate } from "framer-motion";
 import { isUndefined, clsx } from "@aiszlab/relax";
 import { useTheme } from "../theme";
-import { ColorToken } from "../../utils/colors";
 import { useNavigation, useNavigatorScroll, useTabsContext } from "./hooks";
 import { ComponentToken } from "../../utils/component-token";
 
@@ -85,7 +84,7 @@ const Navigation = ({ onChange }: NavigationProps) => {
   const styled = {
     navigation: stylex.props(
       styles.navigation.default({
-        outlineColor: theme.colors[ColorToken.Outline],
+        outlineColor: theme.colors.outline,
       }),
     ),
     navigator: stylex.props(
@@ -96,7 +95,7 @@ const Navigation = ({ onChange }: NavigationProps) => {
     list: stylex.props(styles.list.default({ offset })),
     indicator: stylex.props(
       styles.indicator.default({
-        color: theme.colors[ColorToken.Primary],
+        color: theme.colors.primary,
       }),
     ),
   };

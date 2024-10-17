@@ -9,7 +9,6 @@ import { clsx } from "@aiszlab/relax";
 import { useActiveKeys } from "./hooks";
 import { Context } from "./context";
 import { useTheme } from "../theme";
-import { ColorToken } from "../../utils/colors";
 import { ComponentToken } from "../../utils/component-token";
 
 const styles = stylex.create({
@@ -37,9 +36,7 @@ const Collapse = ({
   // no need to render when items is empty
   if (items.length === 0) return null;
 
-  const styled = stylex.props(
-    styles.collapse({ outlineColor: theme.colors[ColorToken.OutlineVariant] }),
-  );
+  const styled = stylex.props(styles.collapse({ outlineColor: theme.colors["outline-variant"] }));
 
   return (
     <Context.Provider

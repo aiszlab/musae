@@ -3,7 +3,6 @@ import type { BreadcrumbProps } from "musae/types/breadcrumb";
 import stylex from "@stylexjs/stylex";
 import { typography } from "../theme/theme";
 import { useTheme } from "../theme";
-import { ColorToken } from "../../utils/colors";
 import { useClassNames } from "../../hooks/use-class-names";
 import { BreadcrumbClassToken } from "../../utils/class-name";
 import { clsx } from "@aiszlab/relax";
@@ -35,7 +34,7 @@ const Breadcrumb = ({ items = [], className, separator = "/", style }: Breadcrum
     breadcrumb: stylex.props(
       typography.label.large,
       styles.breadcrumb({
-        color: theme.colors[ColorToken.OnSurfaceVariant],
+        color: theme.colors["on-surface-variant"],
       }),
     ),
     navigations: stylex.props(styles.navigations),

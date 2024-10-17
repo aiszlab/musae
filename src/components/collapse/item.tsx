@@ -9,7 +9,6 @@ import type { CollapseItemProps } from "musae/types/collapse";
 import { Context } from "./context";
 import { useExpandable } from "../../hooks/use-expandable";
 import { useTheme } from "../theme";
-import { ColorToken } from "../../utils/colors";
 import { KeyboardArrowRight } from "musae/icons";
 import { ComponentToken } from "../../utils/component-token";
 
@@ -88,13 +87,11 @@ const CollapseItem = ({ children, label, value }: CollapseItemProps) => {
   }, [isExpanded]);
 
   const styled = {
-    item: stylex.props(
-      styles.item.default({ outlineColor: theme.colors[ColorToken.OutlineVariant] }),
-    ),
+    item: stylex.props(styles.item.default({ outlineColor: theme.colors["outline-variant"] })),
     header: stylex.props(styles.header.default),
     panel: stylex.props(styles.panel.default, !isExpanded && styles.panel.hidden),
     content: stylex.props(
-      styles.content.default({ outlineColor: theme.colors[ColorToken.OutlineVariant] }),
+      styles.content.default({ outlineColor: theme.colors["outline-variant"] }),
     ),
     collapser: stylex.props(styles.collapser.default, isExpanded && styles.collapser.expanded),
   };

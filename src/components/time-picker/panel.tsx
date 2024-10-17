@@ -14,7 +14,6 @@ import type { ClockProps } from "musae/types/clock";
 import dayjs from "dayjs";
 import stylex from "@stylexjs/stylex";
 import { useTheme } from "../theme";
-import { ColorToken } from "../../utils/colors";
 import { clsx } from "@aiszlab/relax";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { ComponentToken } from "../../utils/component-token";
@@ -75,7 +74,7 @@ const Panel = forwardRef<PanelRef, PanelProps>((props, ref) => {
     panel: stylex.props(styles.panel),
     footer: stylex.props(
       styles.footer({
-        borderTopColor: theme.colors[ColorToken.OutlineVariant],
+        borderTopColor: theme.colors["outline-variant"],
       }),
     ),
   };

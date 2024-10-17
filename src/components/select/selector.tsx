@@ -15,7 +15,6 @@ import { styles as inputStyles } from "../input";
 import stylex from "@stylexjs/stylex";
 import { Context } from "../picker";
 import { useTheme } from "../theme";
-import { ColorToken } from "../../utils/colors";
 import { typography } from "../theme/theme";
 
 const styles = stylex.create({
@@ -50,7 +49,7 @@ const Selector: ForwardRefExoticComponent<
   const styled = stylex.props(
     inputStyles.input,
     styles.input({
-      color: (isFocused && searchable && theme.colors[ColorToken.OnSurface]) || void 0,
+      color: (isFocused && searchable && theme.colors["on-surface"]) || void 0,
     }),
     typography.body.small,
   );

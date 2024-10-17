@@ -8,7 +8,6 @@ import { useTheme } from "../theme";
 import { useButton } from "./hooks";
 import { Ripple } from "../ripple";
 import { typography } from "../theme/theme";
-import { ColorToken } from "../../utils/colors";
 import { useClassNames } from "../../hooks/use-class-names";
 import { ComponentToken } from "../../utils/component-token";
 import { hexToRgba } from "@aiszlab/fuzzy/color";
@@ -159,12 +158,12 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         variant === "outlined" &&
           styles.outlined({
             color: theme.colors[color],
-            hoveredBackgroundColor: hexToRgba(theme.colors[ColorToken.Primary], OPACITY.thin),
+            hoveredBackgroundColor: hexToRgba(theme.colors.primary, OPACITY.thin),
           }),
         variant === "text" &&
           styles.text({
             color: theme.colors[color],
-            hoveredBackgroundColor: hexToRgba(theme.colors[ColorToken.Primary], OPACITY.thin),
+            hoveredBackgroundColor: hexToRgba(theme.colors.primary, OPACITY.thin),
           }),
         // shape
         styles[shape],
@@ -173,12 +172,12 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           styles.disabled({
             backgroundColor:
               variant === "filled"
-                ? hexToRgba(theme.colors[ColorToken.OnSurface], OPACITY.medium)
+                ? hexToRgba(theme.colors["on-surface"], OPACITY.medium)
                 : "transparent",
-            color: hexToRgba(theme.colors[ColorToken.OnSurface], OPACITY.thicker),
+            color: hexToRgba(theme.colors["on-surface"], OPACITY.thicker),
             outlineColor:
               variant === "outlined"
-                ? hexToRgba(theme.colors[ColorToken.OnSurface], OPACITY.thicker)
+                ? hexToRgba(theme.colors["on-surface"], OPACITY.thicker)
                 : null,
           }),
       ),

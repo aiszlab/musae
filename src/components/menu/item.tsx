@@ -6,7 +6,6 @@ import { MenuClassToken } from "../../utils/class-name";
 import stylex from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
-import { ColorToken } from "../../utils/colors";
 import { typography } from "../theme/theme";
 import { useEvent, useHover, clsx } from "@aiszlab/relax";
 import { Popper } from "../popper";
@@ -193,24 +192,24 @@ const Item = forwardRef<HTMLLIElement, MenuItemProps>(
 
         styles.mode.item[mode]({
           ...(isInline && {
-            backgroundColor: theme.colors[ColorToken.SurfaceContainerHighest],
+            backgroundColor: theme.colors["surface-container-highest"],
           }),
           ...(isVertical && {
-            backgroundColor: theme.colors[ColorToken.SurfaceContainerHighest],
+            backgroundColor: theme.colors["surface-container-highest"],
           }),
           ...(isHorizontal && {
-            outlineColor: theme.colors[ColorToken.Primary],
+            outlineColor: theme.colors.primary,
           }),
         }),
 
         isSelected &&
           styles.selected[mode]({
             ...((isInline || isVertical) && {
-              backgroundColor: theme.colors[ColorToken.SurfaceContainerHighest],
-              color: theme.colors[ColorToken.Primary],
+              backgroundColor: theme.colors["surface-container-highest"],
+              color: theme.colors.primary,
             }),
             ...(isHorizontal && {
-              color: theme.colors[ColorToken.Primary],
+              color: theme.colors.primary,
             }),
           }),
 

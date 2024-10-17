@@ -7,7 +7,6 @@ import { useClassNames } from "../../hooks/use-class-names";
 import stylex from "@stylexjs/stylex";
 import { positions, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
-import { ColorToken } from "../../utils/colors";
 import { typography } from "../theme/theme";
 import { clsx } from "@aiszlab/relax";
 import { contains } from "@aiszlab/relax/dom";
@@ -115,12 +114,12 @@ const Popup = ({ onClose, open, closable, onClosed, className, ...props }: Popup
     popup: stylex.props(styles.popup),
     overlay: stylex.props(
       styles.overlay({
-        backgroundColor: theme.colors[ColorToken.SurfaceDim],
+        backgroundColor: theme.colors["surface-dim"],
       }),
     ),
     panel: stylex.props(
       styles.panel({
-        backgroundColor: theme.colors[ColorToken.SurfaceContainerLowest],
+        backgroundColor: theme.colors["surface-container-lowest"],
       }),
     ),
     header: stylex.props(styles.header, typography.headline.small),

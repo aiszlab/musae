@@ -6,7 +6,6 @@ import { useClassNames } from "../../hooks/use-class-names";
 import { CheckboxClassToken } from "../../utils/class-name";
 import stylex from "@stylexjs/stylex";
 import { useTheme } from "../theme";
-import { ColorToken } from "../../utils/colors";
 import { typography } from "../theme/theme";
 import { ComponentToken } from "../../utils/component-token";
 import styles from "./styles";
@@ -56,9 +55,9 @@ const Checkbox = ({
       styles.checkbox.default,
       isDisabled && styles.checkbox.disabled,
       styles.checkbox.variables({
-        primaryColor: theme.colors[ColorToken.Primary],
-        onPrimaryColor: theme.colors[ColorToken.OnPrimary],
-        outlineColor: theme.colors[ColorToken.Outline],
+        primaryColor: theme.colors.primary,
+        onPrimaryColor: theme.colors["on-primary"],
+        outlineColor: theme.colors.outline,
       }),
     ),
     trigger: stylex.props(
@@ -66,8 +65,8 @@ const Checkbox = ({
       isChecked && styles.trigger.checked,
       isDisabled &&
         styles.trigger.disabled({
-          backgroundColor: theme.colors[ColorToken.OnSurface],
-          color: theme.colors[ColorToken.OnPrimary],
+          backgroundColor: theme.colors["on-surface"],
+          color: theme.colors["on-primary"],
         }),
       !isChecked && styles.trigger.unchecked,
     ),

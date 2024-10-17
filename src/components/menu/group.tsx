@@ -10,7 +10,6 @@ import stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
 import { useExpandable } from "../../hooks/use-expandable";
 import { useTheme } from "../theme";
-import { ColorToken } from "../../utils/colors";
 import { ComponentToken } from "../../utils/component-token";
 
 const styles = {
@@ -84,7 +83,7 @@ const Group = forwardRef<HTMLUListElement, MenuGroupProps>(
     const styled = {
       group: stylex.props(
         styles.group.default({
-          color: theme.colors[ColorToken.OnSurface],
+          color: theme.colors["on-surface"],
         }),
         styles.group[mode],
         !expanded && styles.group.hidden,

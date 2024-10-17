@@ -15,7 +15,6 @@ import { typography } from "../theme/theme";
 import { clsx } from "@aiszlab/relax";
 import { Button } from "../button";
 import { useTheme } from "../theme";
-import { ColorToken } from "../../utils/colors";
 import { ComponentToken } from "../../utils/component-token";
 
 const styles = stylex.create({
@@ -59,7 +58,7 @@ const Calendar = ({
     header: stylex.props(
       typography.label.large,
       styles.header({
-        color: theme.colors[ColorToken.OnSurfaceVariant],
+        color: theme.colors["on-surface-variant"],
       }),
     ),
     heading: stylex.props(styles.heading),

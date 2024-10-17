@@ -4,7 +4,6 @@ import stylex from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { Context } from "./context";
 import { useTheme } from "../theme";
-import { ColorToken } from "../../utils/colors";
 import { useClassNames } from "../../hooks/use-class-names";
 import { AvatarClassToken } from "../../utils/class-name";
 import { typography } from "../theme/theme";
@@ -88,14 +87,14 @@ const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(
       avatar: stylex.props(
         typography.label[size],
         styles.avatar({
-          backgroundColor: theme.colors[ColorToken.PrimaryContainer],
-          color: theme.colors[ColorToken.Primary],
+          backgroundColor: theme.colors["primary-container"],
+          color: theme.colors.primary,
         }),
         styles[size],
         styles[shape],
         isInGroup &&
           styles.overlapping({
-            outlineColor: theme.colors[ColorToken.OnPrimary],
+            outlineColor: theme.colors["on-primary"],
           }),
       ),
       loading: stylex.props(styles[shape], styles[size]),

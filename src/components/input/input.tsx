@@ -6,7 +6,6 @@ import { InputClassToken } from "../../utils/class-name";
 import stylex from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
-import { ColorToken } from "../../utils/colors";
 import { useClassNames } from "../../hooks/use-class-names";
 import { typography } from "../theme/theme";
 import { ComponentToken } from "../../utils/component-token";
@@ -124,15 +123,15 @@ const Input = forwardRef<InputRef, InputProps>(
       inputor: stylex.props(
         typography.body.medium,
         styles.inputor({
-          outlineColor: theme.colors[ColorToken.Outline],
+          outlineColor: theme.colors.outline,
         }),
         isFocused &&
           styles.focused({
-            outlineColor: theme.colors[ColorToken.Primary],
+            outlineColor: theme.colors.primary,
           }),
         invalid &&
           styles.invalid({
-            outlineColor: theme.colors[ColorToken.Error],
+            outlineColor: theme.colors.error,
           }),
       ),
       input: stylex.props(styles.input),

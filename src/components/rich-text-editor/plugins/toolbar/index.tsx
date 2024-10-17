@@ -24,7 +24,6 @@ import {
 import { chain, useEvent, useMounted } from "@aiszlab/relax";
 import { Button } from "../../../button";
 import { useTheme } from "../../../theme";
-import { ColorToken } from "../../../../utils/colors";
 import { useBlockFormats, useFontFormats, useFontSizes, useHandlers, FontFormat } from "./hooks";
 import { $isLinkNode, LinkNode } from "@lexical/link";
 import Dropdown from "../../dropdown";
@@ -154,9 +153,7 @@ const ToolbarPlugin = () => {
     };
   });
 
-  const styled = stylex.props(
-    styles.default({ outlineColor: theme.colors[ColorToken.OutlineVariant] }),
-  );
+  const styled = stylex.props(styles.default({ outlineColor: theme.colors["outline-variant"] }));
 
   return (
     <>

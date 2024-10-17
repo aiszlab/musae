@@ -19,7 +19,6 @@ import { Popper } from "../popper";
 import { spacing } from "../theme/tokens.stylex";
 import { typography } from "../theme/theme";
 import { useTheme } from "../theme";
-import { ColorToken } from "../../utils/colors";
 import { ComponentToken } from "../../utils/component-token";
 import { useLocale } from "../../locale";
 import type { PopperRef } from "musae/types/popper";
@@ -114,7 +113,7 @@ const Popconfirm = <P extends ChildProps<T>, T extends HTMLElement>({
 
   const styled = {
     popconfirm: stylex.props(styles.popconfirm),
-    leading: stylex.props(styles.leading({ color: theme.colors[ColorToken.Warning] })),
+    leading: stylex.props(styles.leading({ color: theme.colors.warning })),
     title: stylex.props(styles.title, typography.title.medium),
     content: stylex.props(styles.content, typography.body.medium),
     footer: stylex.props(styles.footer),

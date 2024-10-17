@@ -3,7 +3,6 @@ import type { TransferListProps } from "musae/types/transfer";
 import stylex from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
-import { ColorToken } from "../../utils/colors";
 import Item from "./item";
 import { Checkbox } from "../checkbox";
 import { Context } from "./context";
@@ -46,9 +45,9 @@ const List = ({ options, title, onChange, value }: TransferListProps) => {
   const { disabled } = useContext(Context);
   const classNames = useClassNames(ComponentToken.Transfer);
   const styled = {
-    list: stylex.props(styles.list({ outlineColor: theme.colors[ColorToken.Outline] })),
+    list: stylex.props(styles.list({ outlineColor: theme.colors.outline })),
     header: stylex.props(
-      styles.header({ outlineColor: theme.colors[ColorToken.Outline] }),
+      styles.header({ outlineColor: theme.colors.outline }),
       typography.body.medium,
     ),
     title: stylex.props(styles.title),

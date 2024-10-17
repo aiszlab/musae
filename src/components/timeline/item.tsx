@@ -7,7 +7,6 @@ import { useClassNames } from "../../hooks/use-class-names";
 import { TimelineClassToken } from "../../utils/class-name";
 import { clsx } from "@aiszlab/relax";
 import { useTheme } from "../theme";
-import { ColorToken } from "../../utils/colors";
 import { ComponentToken } from "../../utils/component-token";
 
 const styles = {
@@ -139,10 +138,10 @@ const Item = ({ description, label, value, dot }: TimelineItemProps) => {
     label: stylex.props(styles.label.default, styles.label[mode]),
     leading: stylex.props(
       styles.leading.default,
-      !isMax && styles.leading.tail({ color: theme.colors[ColorToken.Primary] }),
+      !isMax && styles.leading.tail({ color: theme.colors.primary }),
     ),
     sign: stylex.props(styles.sign.default({ size })),
-    dot: stylex.props(styles.dot.default({ color: theme.colors[ColorToken.Primary] })),
+    dot: stylex.props(styles.dot.default({ color: theme.colors.primary })),
     description: stylex.props(styles.description.default, styles.description[mode]),
   };
 

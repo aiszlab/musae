@@ -6,7 +6,6 @@ import { DividerClassToken } from "../../utils/class-name";
 import stylex from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
-import { ColorToken } from "../../utils/colors";
 import { typography } from "../theme/theme";
 import { clsx } from "@aiszlab/relax";
 import { ComponentToken } from "../../utils/component-token";
@@ -113,11 +112,11 @@ const Divider = ({
       styles.divider[orientation]({ margins }),
       !isLabeled &&
         styles.simple[orientation]({
-          backgroundColor: theme.colors[ColorToken.OutlineVariant],
+          backgroundColor: theme.colors["outline-variant"],
         }),
       isLabeled &&
         styles.labeled[orientation]({
-          backgroundColor: theme.colors[ColorToken.OutlineVariant],
+          backgroundColor: theme.colors["outline-variant"],
           offset,
         }),
     ),

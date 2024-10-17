@@ -4,7 +4,6 @@ import type { LayoutProps } from "musae/types/layout";
 import { ChildToken, useChildren } from "./hooks";
 import stylex from "@stylexjs/stylex";
 import { useTheme } from "../theme";
-import { ColorToken } from "../../utils/colors";
 import { clsx } from "@aiszlab/relax";
 
 const styles = stylex.create({
@@ -27,8 +26,8 @@ const Layout = ({ className, style, ...props }: LayoutProps) => {
 
   const styled = stylex.props(
     styles.layout({
-      backgroundColor: theme.colors[ColorToken.SurfaceContainerLowest],
-      color: theme.colors[ColorToken.OnSurface],
+      backgroundColor: theme.colors["surface-container-lowest"],
+      color: theme.colors["on-surface"],
     }),
   );
 

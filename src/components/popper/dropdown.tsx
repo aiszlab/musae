@@ -7,7 +7,6 @@ import { clsx } from "@aiszlab/relax";
 import { useFloating } from "./hooks";
 import { elevations, positions, sizes } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
-import { ColorToken } from "../../utils/colors";
 import { ComponentToken } from "../../utils/component-token";
 import { contains } from "@aiszlab/relax/dom";
 
@@ -105,11 +104,11 @@ const Dropdown = forwardRef<PopperRef, DropdownProps>(
 
     const styled = {
       dropdown: stylex.props(
-        styles.dropdown.default({ backgroundColor: theme.colors[ColorToken.SurfaceContainer] }),
+        styles.dropdown.default({ backgroundColor: theme.colors["surface-container"] }),
         overlay && styles.dropdown.overlay,
       ),
       arrow: stylex.props(
-        styles.arrow.default({ backgroundColor: theme.colors[ColorToken.SurfaceContainer] }),
+        styles.arrow.default({ backgroundColor: theme.colors["surface-container"] }),
       ),
       portal: stylex.props(styles.portal.default),
     };

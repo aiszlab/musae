@@ -12,7 +12,6 @@ import { Context } from "./context";
 import { Image } from "../image";
 import { typography } from "../theme/theme";
 import { useTheme } from "../theme";
-import { ColorToken } from "../../utils/colors";
 
 const styles = {
   item: stylex.create({
@@ -67,7 +66,7 @@ const UploadedItem = ({
     item: stylex.props(
       styles.item.default,
       typography.body.small,
-      isPicture && styles.item.picture({ borderColor: theme.colors[ColorToken.Outline] }),
+      isPicture && styles.item.picture({ borderColor: theme.colors.outline }),
     ),
     filename: stylex.props(styles.filename.default),
   };

@@ -4,7 +4,6 @@ import { useClassNames } from "../../hooks/use-class-names";
 import { HighlightClassToken } from "../../utils/class-name";
 import stylex from "@stylexjs/stylex";
 import { useTheme } from "../theme";
-import { ColorToken } from "../../utils/colors";
 import { clsx } from "@aiszlab/relax";
 import { ComponentToken } from "../../utils/component-token";
 
@@ -23,7 +22,7 @@ const Highlight = ({ children, capture }: HighlightProps) => {
 
     const styled = stylex.props(
       styles.capture({
-        color: theme.colors[ColorToken.Primary],
+        color: theme.colors.primary,
       }),
     );
 

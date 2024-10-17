@@ -5,7 +5,6 @@ import { Popper } from "../popper";
 import stylex from "@stylexjs/stylex";
 import { Button } from "../button";
 import { useTheme } from "../theme";
-import { ColorToken } from "../../utils/colors";
 import { elevations, positions, sizes, spacing } from "../theme/tokens.stylex";
 import { Space } from "../space";
 import { typography } from "../theme/theme";
@@ -65,10 +64,10 @@ const Tour = ({
   const [locale] = useLocale(ComponentToken.Tour);
 
   const styled = {
-    overlay: stylex.props(styles.overlay({ backgroundColor: theme.colors[ColorToken.SurfaceDim] })),
+    overlay: stylex.props(styles.overlay({ backgroundColor: theme.colors["surface-dim"] })),
     tour: stylex.props(
       styles.tour({
-        backgroundColor: theme.colors[ColorToken.OnPrimary],
+        backgroundColor: theme.colors["on-primary"],
       }),
     ),
     title: stylex.props(styles.title, typography.title.medium),

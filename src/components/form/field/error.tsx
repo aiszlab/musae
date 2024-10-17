@@ -8,7 +8,6 @@ import stylex from "@stylexjs/stylex";
 import { spacing } from "../../theme/tokens.stylex";
 import { useClassNames } from "../../../hooks/use-class-names";
 import { useTheme } from "../../theme";
-import { ColorToken } from "../../../utils/colors";
 import { ComponentToken } from "../../../utils/component-token";
 
 const styles = stylex.create({
@@ -48,7 +47,7 @@ const Error = ({ error, className, style }: Props) => {
 
   const styled = stylex.props(
     styles.error({
-      color: theme.colors[ColorToken.Error],
+      color: theme.colors.error,
     }),
   );
 

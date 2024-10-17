@@ -6,7 +6,6 @@ import stylex from "@stylexjs/stylex";
 import { typography } from "../theme/theme";
 import { sizes } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
-import { ColorToken } from "../../utils/colors";
 import { isVoid, clsx } from "@aiszlab/relax";
 import { ComponentToken } from "../../utils/component-token";
 
@@ -84,8 +83,8 @@ const Badge = ({
     badge: stylex.props(styles.badge.default),
     tail: stylex.props(
       styles.tail.default({
-        backgroundColor: theme.colors[ColorToken.Primary],
-        color: theme.colors[ColorToken.OnPrimary],
+        backgroundColor: theme.colors.primary,
+        color: theme.colors["on-primary"],
       }),
       isDot && styles.tail.dot,
       typography.label.small,

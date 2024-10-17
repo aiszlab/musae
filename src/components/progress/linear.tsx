@@ -6,7 +6,6 @@ import { ProgressClassToken } from "../../utils/class-name";
 import { clsx } from "@aiszlab/relax";
 import { sizes } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
-import { ColorToken } from "../../utils/colors";
 import { useValue } from "./hooks";
 import { ComponentToken } from "../../utils/component-token";
 
@@ -32,8 +31,8 @@ const Linear = ({ value: _value, className, style }: LinearProps) => {
   const { value } = useValue({ value: _value });
 
   const styled = {
-    progress: stylex.props(styles.progress({ color: theme.colors[ColorToken.PrimaryContainer] })),
-    segment: stylex.props(styles.segment({ flex: value, color: theme.colors[ColorToken.Primary] })),
+    progress: stylex.props(styles.progress({ color: theme.colors["primary-container"] })),
+    segment: stylex.props(styles.segment({ flex: value, color: theme.colors.primary })),
   };
 
   return (

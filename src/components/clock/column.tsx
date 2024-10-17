@@ -15,7 +15,6 @@ import { isVoid, clsx } from "@aiszlab/relax";
 import stylex from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
-import { ColorToken } from "../../utils/colors";
 import { ComponentToken } from "../../utils/component-token";
 import type { MenuRef } from "musae/types/menu";
 
@@ -81,8 +80,8 @@ const Column = forwardRef<{}, ColumnProps>(({ unit, value, onChange }, ref) => {
   const styled = {
     menu: stylex.props(
       styles.menu({
-        scrollbarThumbColor: theme.colors[ColorToken.Secondary],
-        outlineColor: theme.colors[ColorToken.OutlineVariant],
+        scrollbarThumbColor: theme.colors.secondary,
+        outlineColor: theme.colors["outline-variant"],
       }),
     ),
     item: stylex.props(styles.item),

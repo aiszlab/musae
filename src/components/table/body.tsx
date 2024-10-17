@@ -6,7 +6,6 @@ import { clsx, isEmpty } from "@aiszlab/relax";
 import { typography } from "../theme/theme";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
-import { ColorToken } from "../../utils/colors";
 import { Empty } from "../empty";
 import { useClassNames } from "../../hooks/use-class-names";
 import { ComponentToken } from "../../utils/component-token";
@@ -36,7 +35,7 @@ const Body = <T,>() => {
   const styled = stylex.props(
     bordered && styles.bordered,
     typography.body.small,
-    styles.cell({ borderColor: theme.colors[ColorToken.OutlineVariant] }),
+    styles.cell({ borderColor: theme.colors["outline-variant"] }),
   );
 
   const rows = table.getRowModel().rows;

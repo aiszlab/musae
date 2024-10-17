@@ -1,9 +1,8 @@
 import React from "react";
 import stylex from "@stylexjs/stylex";
 import { useTheme } from "../theme";
-import { ColorToken } from "../../utils/colors";
 import { sizes } from "../theme/tokens.stylex";
-import { CircularProps } from "musae/types/progress";
+import type { CircularProps } from "musae/types/progress";
 import { useCircular, useValue } from "./hooks";
 
 const styles = stylex.create({
@@ -56,14 +55,14 @@ const Circular = ({ value: _value, className, style }: CircularProps) => {
       <circle
         className={styled.track.className}
         style={styled.track.style}
-        stroke={theme.colors[ColorToken.PrimaryContainer]}
+        stroke={theme.colors["primary-container"]}
       />
 
       <circle
         ref={segmentRef}
         className={styled.segment.className}
         style={styled.segment.style}
-        stroke={theme.colors[ColorToken.Primary]}
+        stroke={theme.colors.primary}
       />
     </svg>
   );

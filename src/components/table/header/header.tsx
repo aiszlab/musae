@@ -6,7 +6,6 @@ import stylex from "@stylexjs/stylex";
 import { sizes, spacing } from "../../theme/tokens.stylex";
 import { useTheme } from "../../theme";
 import { clsx } from "@aiszlab/relax";
-import { ColorToken } from "../../../utils/colors";
 import { typography } from "../../theme/theme";
 import { useClassNames } from "../../../hooks/use-class-names";
 import { ComponentToken } from "../../../utils/component-token";
@@ -56,14 +55,14 @@ const Header = <T,>(props: HeaderProps) => {
   const headerGroups = table.getHeaderGroups();
   const styled = stylex.props(
     styles.cell({
-      backgroundColor: theme.colors[ColorToken.Surface],
-      borderColor: theme.colors[ColorToken.OutlineVariant],
+      backgroundColor: theme.colors.surface,
+      borderColor: theme.colors["outline-variant"],
     }),
     typography.label.small,
     bordered && styles.bordered,
     !bordered &&
       styles.unbordered({
-        backgroundColor: theme.colors[ColorToken.OutlineVariant],
+        backgroundColor: theme.colors["outline-variant"],
       }),
   );
 

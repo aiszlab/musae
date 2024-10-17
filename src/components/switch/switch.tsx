@@ -4,7 +4,6 @@ import { useControlledState, useEvent, clsx } from "@aiszlab/relax";
 import stylex from "@stylexjs/stylex";
 import { OPACITY, opacity, sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
-import { ColorToken } from "../../utils/colors";
 import { useClassNames } from "../../hooks/use-class-names";
 import { SwitchClassToken } from "../../utils/class-name";
 import { Close, Check } from "musae/icons";
@@ -180,44 +179,44 @@ const Switch = ({
   const styled = {
     switch: stylex.props(
       styles.switch.default({
-        borderColor: theme.colors[ColorToken.Outline],
-        backgroundColor: theme.colors[ColorToken.SurfaceContainerHighest],
-        color: theme.colors[ColorToken.OnSurfaceVariant],
+        borderColor: theme.colors.outline,
+        backgroundColor: theme.colors["surface-container-highest"],
+        color: theme.colors["on-surface-variant"],
         ...(disabled && {
-          borderColor: hexToRgba(theme.colors[ColorToken.OnSurface], OPACITY.medium),
-          backgroundColor: hexToRgba(theme.colors[ColorToken.SurfaceVariant], OPACITY.medium),
-          color: hexToRgba(theme.colors[ColorToken.OnSurface], OPACITY.thicker),
+          borderColor: hexToRgba(theme.colors["on-surface"], OPACITY.medium),
+          backgroundColor: hexToRgba(theme.colors["surface-variant"], OPACITY.medium),
+          color: hexToRgba(theme.colors["on-surface"], OPACITY.thicker),
         }),
       }),
       isChecked &&
         styles.switch.checked({
-          backgroundColor: theme.colors[ColorToken.Primary],
-          color: theme.colors[ColorToken.OnPrimary],
+          backgroundColor: theme.colors.primary,
+          color: theme.colors["on-primary"],
           ...(disabled && {
-            backgroundColor: hexToRgba(theme.colors[ColorToken.OnSurface], OPACITY.medium),
-            color: theme.colors[ColorToken.Surface],
+            backgroundColor: hexToRgba(theme.colors["on-surface"], OPACITY.medium),
+            color: theme.colors.surface,
           }),
         }),
       disabled && styles.switch.disabled,
     ),
     slider: stylex.props(
       styles.slider.normal({
-        backgroundColor: theme.colors[ColorToken.OnSurfaceVariant],
-        color: theme.colors[ColorToken.SurfaceContainerHighest],
+        backgroundColor: theme.colors["on-surface-variant"],
+        color: theme.colors["surface-container-highest"],
         ...(disabled && {
-          backgroundColor: hexToRgba(theme.colors[ColorToken.OnSurface], OPACITY.thicker),
-          color: theme.colors[ColorToken.SurfaceContainerHighest],
+          backgroundColor: hexToRgba(theme.colors["on-surface"], OPACITY.thicker),
+          color: theme.colors["surface-container-highest"],
         }),
       }),
       icon && styles.slider.icon,
       disabled && styles.slider.disabled,
       isChecked &&
         styles.slider.checked({
-          backgroundColor: theme.colors[ColorToken.OnPrimary],
-          color: theme.colors[ColorToken.OnPrimaryContainer],
+          backgroundColor: theme.colors["on-primary"],
+          color: theme.colors["on-primary-container"],
           ...(disabled && {
-            backgroundColor: theme.colors[ColorToken.Surface],
-            color: hexToRgba(theme.colors[ColorToken.OnSurface], OPACITY.thicker),
+            backgroundColor: theme.colors.surface,
+            color: hexToRgba(theme.colors["on-surface"], OPACITY.thicker),
           }),
         }),
     ),

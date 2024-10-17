@@ -2,7 +2,6 @@ import React, { ChangeEvent } from "react";
 import { styles as inputStyles } from "../input";
 import { useTheme } from "../theme";
 import stylex from "@stylexjs/stylex";
-import { ColorToken } from "../../utils/colors";
 import { sizes } from "../theme/tokens.stylex";
 import { clsx, useControlledState, useEvent, useFocus } from "@aiszlab/relax";
 import { TextareaProps } from "musae/types/textarea";
@@ -26,7 +25,7 @@ const styles = stylex.create({
   },
 });
 
-const Textarea = ({ onChange, value, className, style }: TextareaProps) => {
+const Textarea = ({ onChange, value, className, style, invalid = false }: TextareaProps) => {
   const theme = useTheme();
   const [isFocused, focusProps] = useFocus();
   const classNames = useClassNames(ComponentToken.Textarea);
@@ -41,31 +40,33 @@ const Textarea = ({ onChange, value, className, style }: TextareaProps) => {
   const styled = {
     textarea: stylex.props(
       inputStyles.inputor({
-        outlineColor: theme.colors[ColorToken.Outline],
+        outlineColor: theme.colors.outline,
       }),
       styles.textarea,
       isFocused &&
         inputStyles.focused({
-          outlineColor: theme.colors[ColorToken.Primary],
+          outlineColor: theme.colors.primary,
+        }),
+      invalid &&
+        inputStyles.invalid({
+          outlineColor: theme.colors.error,
         }),
     ),
   };
 
   return (
-    <textarea
-      className={clsx(
-        classNames[TextareaClassToken.Textarea],
-        className,
-        styled.textarea.className,
-      )}
-      style={{
-        ...styled.textarea.style,
-        ...style,
-      }}
-      {...focusProps}
-      value={_value}
-      onChange={_onChange}
-    />
+    <div className={clsx(classNames[TextareaClassToken.Textarea])}>
+      <textarea
+        className={clsx(classNames[TextareaClassToken.Input], className, styled.textarea.className)}
+        style={{
+          ...styled.textarea.style,
+          ...style,
+        }}
+        {...focusProps}
+        value={_value}
+        onChange={_onChange}
+      />
+    </div>
   );
 };
 

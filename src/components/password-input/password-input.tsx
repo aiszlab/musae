@@ -5,7 +5,6 @@ import { Visibility, VisibilityOff } from "../icon/icons";
 import type { InputRef } from "musae/types/input";
 import type { PasswordInputProps } from "musae/types/password-input";
 import { useTheme } from "../theme";
-import { ColorToken } from "../../utils/colors";
 
 const PasswordInput = forwardRef<InputRef, PasswordInputProps>((props, ref) => {
   const [isVisible, { toggle }] = useBoolean(false);
@@ -18,7 +17,7 @@ const PasswordInput = forwardRef<InputRef, PasswordInputProps>((props, ref) => {
       type={isVisible ? "text" : "password"}
       trailing={createElement(isVisible ? VisibilityOff : Visibility, {
         onClick: toggle,
-        color: theme.colors[ColorToken.Primary],
+        color: theme.colors.primary,
       })}
     />
   );

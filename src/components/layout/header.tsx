@@ -2,7 +2,6 @@ import type { HeaderProps } from "musae/types/layout";
 import React, { type CSSProperties } from "react";
 import { useTheme } from "../theme";
 import stylex from "@stylexjs/stylex";
-import { ColorToken } from "../../utils/colors";
 import { positions, sizes, spacing } from "../theme/tokens.stylex";
 import { clsx } from "@aiszlab/relax";
 
@@ -26,7 +25,7 @@ const Header = ({ className, style, children }: HeaderProps) => {
   const theme = useTheme();
   const styled = stylex.props(
     styles.header({
-      backgroundColor: theme.colors[ColorToken.SurfaceContainerLowest],
+      backgroundColor: theme.colors["surface-container-lowest"],
     }),
   );
 

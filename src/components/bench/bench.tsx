@@ -7,7 +7,6 @@ import { Divider } from "../divider";
 import { useLogo, useNavigations } from "./hooks";
 import { Menu } from "../menu";
 import { useTheme } from "../theme";
-import { ColorToken } from "../../utils/colors";
 import { typography } from "../theme/theme";
 import { clsx } from "@aiszlab/relax";
 
@@ -82,9 +81,7 @@ const Bench = ({
     bench: stylex.props(styles.bench.default),
     header: stylex.props(styles.header.default({ elevation })),
     main: stylex.props(styles.bench.main),
-    sider: stylex.props(
-      styles.bench.sider({ outlineColor: theme.colors[ColorToken.OutlineVariant] }),
-    ),
+    sider: stylex.props(styles.bench.sider({ outlineColor: theme.colors["outline-variant"] })),
     title: stylex.props(typography.title.large),
     divider: stylex.props(styles.header.divider),
     headerNavigation: stylex.props(styles.header.navigation),

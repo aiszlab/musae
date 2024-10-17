@@ -6,7 +6,6 @@ import { useClassNames } from "../../hooks/use-class-names";
 import { RadioClassToken } from "../../utils/class-name";
 import stylex from "@stylexjs/stylex";
 import { useTheme } from "../theme";
-import { ColorToken } from "../../utils/colors";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { typography } from "../theme/theme";
 import { ComponentToken } from "../../utils/component-token";
@@ -131,15 +130,15 @@ const Radio = ({ children, value, checked, disabled = false, ...props }: RadioPr
     radio: stylex.props(styles.radio.default, isDisabled && styles.radio.disabled),
     trigger: stylex.props(
       styles.trigger.default({
-        borderColor: theme.colors[ColorToken.Outline],
+        borderColor: theme.colors.outline,
       }),
       isChecked &&
         styles.trigger.checked({
-          borderColor: theme.colors[ColorToken.Primary],
+          borderColor: theme.colors.primary,
         }),
       isDisabled &&
         styles.trigger.disabled({
-          backgroundColor: theme.colors[ColorToken.InversePrimary],
+          backgroundColor: theme.colors["inverse-primary"],
         }),
       !isChecked && styles.trigger.unckecked,
     ),

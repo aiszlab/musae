@@ -1,4 +1,4 @@
-import { ComponentProps } from "./element";
+import type { ComponentProps } from "./element";
 
 /**
  * @description
@@ -11,6 +11,13 @@ export type TextareaProps = ComponentProps & {
    * value
    */
   value?: string;
+
+  /**
+   * @description
+   * invalid
+   * @default false
+   */
+  invalid?: boolean;
 
   /**
    * @description

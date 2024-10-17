@@ -7,7 +7,6 @@ import { RateClassToken } from "../../utils/class-name";
 import { Star as _Star } from "musae/icons";
 import type { StarProps } from "musae/types/rate";
 import { useTheme } from "../theme";
-import { ColorToken } from "../../utils/colors";
 import { ComponentToken } from "../../utils/component-token";
 
 const styles = {
@@ -92,19 +91,19 @@ const Star = ({ disabled, value, onEnter, at, onLeave, onClick }: StarProps) => 
 
   const styled = {
     star: stylex.props(
-      styles.star.default({ color: theme.colors[ColorToken.SurfaceContainerHighest] }),
+      styles.star.default({ color: theme.colors["surface-container-highest"] }),
       disabled && styles.star.disabled,
     ),
     half: stylex.props(
       styles.half.default,
       isHalf &&
         styles.half.checked({
-          color: theme.colors[ColorToken.Primary],
+          color: theme.colors.primary,
         }),
     ),
     full: stylex.props(
       styles.full.default,
-      isFull && styles.full.checked({ color: theme.colors[ColorToken.Primary] }),
+      isFull && styles.full.checked({ color: theme.colors.primary }),
     ),
   };
 

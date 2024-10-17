@@ -7,7 +7,6 @@ import { QuoteClassToken } from "../../utils/class-name";
 import styles from "./styles";
 import stylex from "@stylexjs/stylex";
 import { useTheme } from "../theme";
-import { ColorToken } from "../../utils/colors";
 import { typography } from "../theme/theme";
 
 const Quote = ({ className, children, style }: QuoteProps) => {
@@ -16,7 +15,7 @@ const Quote = ({ className, children, style }: QuoteProps) => {
 
   const styled = stylex.props(
     styles.variables({
-      outlineColor: theme.colors[ColorToken.Outline],
+      outlineColor: theme.colors.outline,
     }),
     styles.quote,
     typography.body.small,

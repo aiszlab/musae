@@ -14,7 +14,6 @@ import { PickerClassToken } from "../../utils/class-name";
 import { useClassNames } from "../../hooks/use-class-names";
 import stylex from "@stylexjs/stylex";
 import { useTheme } from "../theme";
-import { ColorToken } from "../../utils/colors";
 import { typography } from "../theme/theme";
 import { styles as inputStyles } from "../input";
 import { Context } from "./context";
@@ -84,8 +83,8 @@ const Picker = forwardRef<PickerRef, PickerProps>(
     const styled = {
       picker: stylex.props(
         typography.body.medium,
-        inputStyles.inputor({ outlineColor: theme.colors[ColorToken.Outline] }),
-        isFocused && inputStyles.focused({ outlineColor: theme.colors[ColorToken.Primary] }),
+        inputStyles.inputor({ outlineColor: theme.colors.outline }),
+        isFocused && inputStyles.focused({ outlineColor: theme.colors.primary }),
       ),
       pickable: stylex.props(
         styles.pickable({

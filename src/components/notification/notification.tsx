@@ -2,7 +2,6 @@ import stylex from "@stylexjs/stylex";
 import React, { type CSSProperties, useEffect, type FC, createElement, forwardRef } from "react";
 import { useAnimate, usePresence } from "framer-motion";
 import { useTheme } from "../theme";
-import { ColorToken } from "../../utils/colors";
 import type { NotificationProps, Placement, Axis, Type } from "musae/types/notification";
 import { useRefs, useTimeout, clsx } from "@aiszlab/relax";
 import { useClassNames } from "../../hooks/use-class-names";
@@ -144,8 +143,8 @@ const Notification = forwardRef<HTMLDivElement, NotificationProps>(
     const styled = {
       notification: stylex.props(
         styles.notification.default({
-          backgroundColor: theme.colors[ColorToken.SurfaceContainerLowest],
-          color: theme.colors[ColorToken.OnSurface],
+          backgroundColor: theme.colors["surface-container-lowest"],
+          color: theme.colors["on-surface"],
           transform: _placement[0],
         }),
         !title && styles.notification.simple,
@@ -154,12 +153,12 @@ const Notification = forwardRef<HTMLDivElement, NotificationProps>(
         styles.leading.default({
           color:
             type === "success"
-              ? theme.colors[ColorToken.Success]
+              ? theme.colors.success
               : type === "warning"
-              ? theme.colors[ColorToken.Warning]
+              ? theme.colors.warning
               : type === "error"
-              ? theme.colors[ColorToken.Error]
-              : theme.colors[ColorToken.Primary],
+              ? theme.colors.error
+              : theme.colors.primary,
         }),
       ),
       title: stylex.props(typography.title.medium, styles.title.default),
