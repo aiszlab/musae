@@ -5,7 +5,6 @@ import type { ComponentProps } from "./element";
  * textarea props
  */
 export type TextareaProps = ComponentProps & {
-  // TODO docs
   /**
    * @description
    * value
