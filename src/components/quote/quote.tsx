@@ -15,7 +15,7 @@ const Quote = ({ className, children, style }: QuoteProps) => {
 
   const styled = stylex.props(
     styles.variables({
-      outlineColor: theme.colors.outline,
+      outlineColor: theme.colors["outline-variant"],
     }),
     styles.quote,
     typography.body.small,

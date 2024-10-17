@@ -66,7 +66,7 @@ const UploadedItem = ({
     item: stylex.props(
       styles.item.default,
       typography.body.small,
-      isPicture && styles.item.picture({ borderColor: theme.colors.outline }),
+      isPicture && styles.item.picture({ borderColor: theme.colors["outline-variant"] }),
     ),
     filename: stylex.props(styles.filename.default),
   };

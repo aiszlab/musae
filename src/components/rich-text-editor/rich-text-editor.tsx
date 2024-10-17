@@ -54,12 +54,10 @@ const styles = stylex.create({
   variables: (props: {
     primaryColor: string;
     onPrimaryColor: string;
-    outlineColor: string;
     codeBackgroundColor: string;
   }) => ({
     "--primary-color": props.primaryColor,
     "--on-primary-color": props.onPrimaryColor,
-    "--outline-color": props.outlineColor,
     "--code-background-color": props.codeBackgroundColor,
   }),
 
@@ -130,7 +128,6 @@ const RichTextEditor = forwardRef<RichTextEditorRef, RichTextEditorProps>(
         styles.variables({
           primaryColor: theme.colors.primary,
           onPrimaryColor: theme.colors["on-primary"],
-          outlineColor: theme.colors.outline,
           codeBackgroundColor: theme.colors["surface-container-highest"],
         }),
       ),

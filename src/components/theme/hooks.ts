@@ -1,6 +1,6 @@
 import { MouseEvent, createContext, useContext, useMemo, useRef, useState } from "react";
 import type { Palette, ContextValue, Theme, Mode } from "musae/types/theme";
-import { toColors } from "../../utils/colors";
+import { toColorRoles } from "../../utils/color-role";
 import { isFunction, useEvent, useMounted } from "@aiszlab/relax";
 import stylex from "@stylexjs/stylex";
 import { toClassList } from "../../utils/styles";
@@ -151,7 +151,7 @@ const styles = stylex.create({
  * theme context
  */
 export const Context = createContext<ContextValue>({
-  colors: toColors(PALETTE, "light"),
+  colors: toColorRoles(PALETTE, "light"),
   mode: "light",
   toggle: () => void 0,
 });
@@ -178,7 +178,7 @@ export const useSwitchable = ({ theme }: { theme: Theme }) => {
   const [mode, setMode] = useState<Mode>("light");
   const isDark = mode === "dark";
   const trigger = useRef<Subscriber<Mode> | null>(null);
-  const colors = useMemo(() => toColors(theme.palette, mode), [mode, theme.palette]);
+  const colors = useMemo(() => toColorRoles(theme.palette, mode), [mode, theme.palette]);
 
   const styled = {
     default: stylex.props(styles.default),

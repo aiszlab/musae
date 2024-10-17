@@ -45,9 +45,9 @@ const List = ({ options, title, onChange, value }: TransferListProps) => {
   const { disabled } = useContext(Context);
   const classNames = useClassNames(ComponentToken.Transfer);
   const styled = {
-    list: stylex.props(styles.list({ outlineColor: theme.colors.outline })),
+    list: stylex.props(styles.list({ outlineColor: theme.colors["outline-variant"] })),
     header: stylex.props(
-      styles.header({ outlineColor: theme.colors.outline }),
+      styles.header({ outlineColor: theme.colors["outline-variant"] }),
       typography.body.medium,
     ),
     title: stylex.props(styles.title),

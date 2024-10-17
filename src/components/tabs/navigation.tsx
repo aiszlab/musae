@@ -84,7 +84,7 @@ const Navigation = ({ onChange }: NavigationProps) => {
   const styled = {
     navigation: stylex.props(
       styles.navigation.default({
-        outlineColor: theme.colors.outline,
+        outlineColor: theme.colors["outline-variant"],
       }),
     ),
     navigator: stylex.props(

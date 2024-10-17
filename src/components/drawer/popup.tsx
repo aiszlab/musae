@@ -167,7 +167,7 @@ const Popup = ({
     ),
     header: stylex.props(
       typography.body.large,
-      styles.header({ outlineColor: theme.colors.outline }),
+      styles.header({ outlineColor: theme.colors["outline-variant"] }),
     ),
     body: stylex.props(styles.body),
     actions: stylex.props(styles.actions),

@@ -1,5 +1,5 @@
 import type { MouseEvent, ReactNode } from "react";
-import type { toColors } from "../utils/colors";
+import type { toColorRoles } from "../utils/color-role";
 
 export type Theme = {
   palette: Palette;
@@ -61,7 +61,7 @@ export interface ContextValue {
    * @description
    * colors
    */
-  colors: ReturnType<typeof toColors>;
+  colors: ReturnType<typeof toColorRoles>;
 
   /**
    * @description

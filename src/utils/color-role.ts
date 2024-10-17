@@ -2,9 +2,10 @@ import type { ContextValue, Palette } from "../types/theme";
 
 /**
  * @description
- * theme color token
+ * theme color role
+ * material 3 design link: https://m3.material.io/styles/color/roles
  */
-type ColorToken =
+type ColorRole =
   // primary
   | "primary"
   | "on-primary"
@@ -67,17 +68,17 @@ type ColorToken =
 
 /**
  * @description
- * convert palette to colors
+ * convert palette to color roles
  *
  * you will always be confused, there are to many color roles
  * how do i use them
  *
  * here, musae provide some easy usage
  */
-export const toColors = (
+export const toColorRoles = (
   palette: Palette,
   mode: ContextValue["mode"],
-): Record<ColorToken, string> => {
+): Record<ColorRole, string> => {
   const isLight = mode === "light";
 
   return {
