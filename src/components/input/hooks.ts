@@ -69,24 +69,12 @@ export const useInputEvents = ({
  * inputor events
  */
 export const useInputorEvents = ({ inputRef }: { inputRef: RefObject<HTMLInputElement> }) => {
-  // focus
-  const focus = useCallback(() => {
+  // click
+  const click = useCallback(() => {
     inputRef.current?.focus();
   }, [inputRef]);
 
-  // blur
-  const blur = useCallback(() => {
-    inputRef.current?.blur();
-  }, [inputRef]);
-
-  // click
-  const click = useCallback(() => {
-    inputRef.current?.click();
-  }, [inputRef]);
-
   return {
-    focus,
-    blur,
     click,
   };
 };
