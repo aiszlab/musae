@@ -47,6 +47,10 @@ export const styles = stylex.create({
 
   invalid: (props: { outlineColor: CSSProperties["borderColor"] }) => ({
     boxShadow: `0px 0px 0px ${sizes.xxxxxxsmall} ${props.outlineColor}`,
+
+    ":focus-within": {
+      boxShadow: null,
+    },
   }),
 
   input: {

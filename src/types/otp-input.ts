@@ -1,4 +1,4 @@
-import { ComponentProps } from "./element";
+import type { ComponentProps } from "./element";
 
 /**
  * @description
@@ -25,4 +25,12 @@ export type OtpInputProps = ComponentProps & {
    * @default void 0
    */
   value?: string;
+
+  // TODO docs
+  /**
+   * @description
+   * invalid
+   * @default false
+   */
+  invalid?: boolean;
 };

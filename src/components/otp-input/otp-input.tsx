@@ -19,7 +19,14 @@ const styles = stylex.create({
   },
 });
 
-const OtpInput = ({ length = 6, onChange, value: _value, className, style }: OtpInputProps) => {
+const OtpInput = ({
+  length = 6,
+  onChange,
+  value: _value,
+  className,
+  style,
+  invalid,
+}: OtpInputProps) => {
   const { value, change: _change } = useValue({ length, onChange, value: _value });
   const inputRefs = useRef(Array.from<InputRef | null>({ length }).fill(null));
   const [focusedAt, setFocusedAt] = useState(0);
@@ -68,6 +75,7 @@ const OtpInput = ({ length = 6, onChange, value: _value, className, style }: Otp
         ...styled.otp.style,
         ...style,
       }}
+      tabIndex={-1}
     >
       {value.map((item, index) => {
         return (
@@ -86,6 +94,7 @@ const OtpInput = ({ length = 6, onChange, value: _value, className, style }: Otp
             onChange={change}
             onKeyDown={keyDown}
             onFocus={(e) => focus(e, index)}
+            invalid={invalid}
           />
         );
       })}

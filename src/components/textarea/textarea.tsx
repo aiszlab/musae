@@ -26,7 +26,14 @@ const styles = stylex.create({
   },
 });
 
-const Textarea = ({ onChange, value, className, style, invalid = false }: TextareaProps) => {
+const Textarea = ({
+  onChange,
+  value,
+  className,
+  style,
+  invalid = false,
+  onBlur,
+}: TextareaProps) => {
   const theme = useTheme();
   const classNames = useClassNames(ComponentToken.Textarea);
 
@@ -69,6 +76,8 @@ const Textarea = ({ onChange, value, className, style, invalid = false }: Textar
         style={styled.input.style}
         value={_value}
         onChange={_onChange}
+        aria-invalid={invalid}
+        onBlur={onBlur}
       />
     </div>
   );
