@@ -51,4 +51,9 @@ export interface Locale {
   [ComponentToken.Form]: {
     required: ((name: string) => string) | string;
   };
+
+  [ComponentToken.Guideline]: {
+    recommend: string;
+    oppose: string;
+  };
 }

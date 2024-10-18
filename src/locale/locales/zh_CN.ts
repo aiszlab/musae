@@ -53,6 +53,11 @@ const zh_CN: Locale = {
   [ComponentToken.Form]: {
     required: (name) => `${name} 是必填项`,
   },
+
+  [ComponentToken.Guideline]: {
+    recommend: "建议",
+    oppose: "禁止",
+  },
 };
 
 export default zh_CN;

@@ -56,4 +56,5 @@ export enum ComponentToken {
   Table,
   Fab,
   Textarea,
+  Guideline,
 }

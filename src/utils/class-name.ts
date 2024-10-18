@@ -307,6 +307,12 @@ export enum TextareaClassToken {
   Textarea,
   Input,
 }
+export enum GuidelineClassToken {
+  Guideline,
+  Figure,
+  Caption,
+  CaptionLabel,
+}
 
 /**
  * @description
@@ -599,6 +605,12 @@ export const CLASS_NAMES = {
   [ComponentToken.Textarea]: {
     [TextareaClassToken.Textarea]: "textarea",
     [TextareaClassToken.Input]: "textarea__input",
+  },
+  [ComponentToken.Guideline]: {
+    [GuidelineClassToken.Guideline]: "guideline",
+    [GuidelineClassToken.Figure]: "guideline__figure",
+    [GuidelineClassToken.CaptionLabel]: "guideline__caption-label",
+    [GuidelineClassToken.Caption]: "guideline__caption",
   },
 };
 

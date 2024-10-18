@@ -53,6 +53,11 @@ const en_US: Locale = {
   [ComponentToken.Form]: {
     required: (name) => `${name} is required`,
   },
+
+  [ComponentToken.Guideline]: {
+    recommend: "Do",
+    oppose: "Don’t",
+  },
 };
 
 export default en_US;
