@@ -1,5 +1,5 @@
 import React, { createElement, type FC } from "react";
-import * as icons from "../index";
+import * as icons from "..";
 import { render } from "@testing-library/react";
 
 const Icons = ({ children }: { children: Record<string, FC> }) => {

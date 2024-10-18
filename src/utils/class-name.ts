@@ -618,11 +618,19 @@ export const CLASS_NAMES = {
  * add prefix
  */
 export const addPrefix = (classNames: ClassNames, prefix: string) => {
-  return {
-    ...Object.values(classNames).map((_classNames) => ({
-      ...Object.values(_classNames).map((className) => withPrefix(className, prefix)),
-    })),
-  } as unknown as ClassNames;
+  return Object.fromEntries(
+    Object.entries(classNames).map(([token, _classNames]) => {
+      return [
+        token,
+        Object.fromEntries(
+          Object.entries(_classNames).map(([key, className]) => [
+            key,
+            withPrefix(className, prefix),
+          ]),
+        ),
+      ];
+    }),
+  ) as ClassNames;
 };
 
 /**
