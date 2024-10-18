@@ -7,7 +7,6 @@ import { RateClassToken } from "../../utils/class-name";
 import { Star as _Star } from "musae/icons";
 import type { StarProps } from "musae/types/rate";
 import { useTheme } from "../theme";
-import { ComponentToken } from "../../utils/component-token";
 
 const styles = {
   star: stylex.create({
@@ -61,7 +60,7 @@ const styles = {
 };
 
 const Star = ({ disabled, value, onEnter, at, onLeave, onClick }: StarProps) => {
-  const classNames = useClassNames(ComponentToken.Rate);
+  const classNames = useClassNames("rate");
   const theme = useTheme();
   const isHalf = value === 0.5;
   const isFull = value >= 1;

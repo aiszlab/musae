@@ -4,10 +4,9 @@ import { Popover } from "../popover";
 import { useClassNames } from "../../hooks/use-class-names";
 import { TooltipClassToken } from "../../utils/class-name";
 import { clsx } from "@aiszlab/relax";
-import { ComponentToken } from "../../utils/component-token";
 
 const Tooltip = ({ children, className, style, title }: TooltipProps) => {
-  const classNames = useClassNames(ComponentToken.Tooltip);
+  const classNames = useClassNames("tooltip");
 
   // `Tooltip` title is used into `Popover` content!!! not a bug!
   return (

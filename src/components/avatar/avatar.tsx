@@ -8,7 +8,6 @@ import { useClassNames } from "../../hooks/use-class-names";
 import { AvatarClassToken } from "../../utils/class-name";
 import { typography } from "../theme/theme";
 import { useImageLoader, clsx } from "@aiszlab/relax";
-import { ComponentToken } from "../../utils/component-token";
 import { Skeleton } from "../skeleton";
 
 const styles = stylex.create({
@@ -80,7 +79,7 @@ const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(
     const isInGroup = !!group;
     const size = group?.size ?? _size;
     const shape = group?.shape ?? _shape;
-    const classNames = useClassNames(ComponentToken.Avatar);
+    const classNames = useClassNames("avatar");
     const loadStatus = useImageLoader({ src });
 
     const styled = {

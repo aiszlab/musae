@@ -1,6 +1,5 @@
 import React, { type CSSProperties } from "react";
 import { useClassNames } from "../../hooks/use-class-names";
-import { ComponentToken } from "../../utils/component-token";
 import stylex from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { clsx } from "@aiszlab/relax";
@@ -45,9 +44,9 @@ const styles = stylex.create({
 });
 
 const Guideline = ({ figure, caption, recommend = true, className, style }: GuidelineProps) => {
-  const classNames = useClassNames(ComponentToken.Guideline);
+  const classNames = useClassNames("guideline");
   const theme = useTheme();
-  const [locale] = useLocale(ComponentToken.Guideline);
+  const [locale] = useLocale("guideline");
 
   const styled = {
     guideline: stylex.props(styles.guideline),

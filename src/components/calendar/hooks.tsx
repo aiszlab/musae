@@ -11,7 +11,6 @@ import { positions, sizes, spacing } from "../theme/tokens.stylex";
 import { typography } from "../theme/theme";
 import { useTheme } from "../theme";
 import { Button } from "../button";
-import { ComponentToken } from "../../utils/component-token";
 
 const styles = stylex.create({
   cell: {
@@ -73,7 +72,7 @@ const styles = stylex.create({
  * head cells
  */
 export const useHeadCells = () => {
-  const classNames = useClassNames(ComponentToken.Calendar);
+  const classNames = useClassNames("calendar");
   const theme = useTheme();
 
   return useMemo(() => {
@@ -110,7 +109,7 @@ export const useDateCells = ({
   focusedAt: Dayjs;
   click: Required<CalendarProps>["onClick"];
 }) => {
-  const classNames = useClassNames(ComponentToken.Calendar);
+  const classNames = useClassNames("calendar");
   const theme = useTheme();
 
   return useMemo(() => {

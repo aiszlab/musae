@@ -11,7 +11,6 @@ import { typography } from "../theme/theme";
 import { clsx } from "@aiszlab/relax";
 import { contains } from "@aiszlab/relax/dom";
 import { useClosable } from "../../hooks/use-closable";
-import { ComponentToken } from "../../utils/component-token";
 
 const styles = stylex.create({
   header: {
@@ -71,7 +70,7 @@ const styles = stylex.create({
 });
 
 const Popup = ({ onClose, open, closable, onClosed, className, ...props }: PopupProps) => {
-  const classNames = useClassNames(ComponentToken.Dialog);
+  const classNames = useClassNames("dialog");
   const [scope, animate] = useAnimate<HTMLDivElement>();
   const theme = useTheme();
   const panelRef = useRef<HTMLDivElement>(null);

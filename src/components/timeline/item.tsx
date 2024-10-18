@@ -7,7 +7,6 @@ import { useClassNames } from "../../hooks/use-class-names";
 import { TimelineClassToken } from "../../utils/class-name";
 import { clsx } from "@aiszlab/relax";
 import { useTheme } from "../theme";
-import { ComponentToken } from "../../utils/component-token";
 
 const styles = {
   item: stylex.create({
@@ -114,7 +113,7 @@ const styles = {
 };
 
 const Item = ({ description, label, value, dot }: TimelineItemProps) => {
-  const classNames = useClassNames(ComponentToken.Timeline);
+  const classNames = useClassNames("timeline");
   const { mode: _mode, max, size } = useContext(Context);
   const theme = useTheme();
   const isLabeled = !!label;

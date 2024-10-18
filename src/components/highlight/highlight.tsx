@@ -5,7 +5,6 @@ import { HighlightClassToken } from "../../utils/class-name";
 import stylex from "@stylexjs/stylex";
 import { useTheme } from "../theme";
 import { clsx } from "@aiszlab/relax";
-import { ComponentToken } from "../../utils/component-token";
 
 const styles = stylex.create({
   capture: (props: { color: CSSProperties["color"] }) => ({
@@ -14,7 +13,7 @@ const styles = stylex.create({
 });
 
 const Highlight = ({ children, capture }: HighlightProps) => {
-  const classNames = useClassNames(ComponentToken.Highlight);
+  const classNames = useClassNames("highlight");
   const theme = useTheme();
 
   const _children = useMemo<ReactNode>(() => {

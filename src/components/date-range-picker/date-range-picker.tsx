@@ -9,8 +9,6 @@ import { DateRangePickerClassToken } from "../../utils/class-name";
 import stylex from "@stylexjs/stylex";
 import { clsx } from "@aiszlab/relax";
 import { sizes, spacing } from "../theme/tokens.stylex";
-import { ComponentToken } from "../../utils/component-token";
-
 import type { PickerRef } from "musae/types/picker";
 
 const styles = stylex.create({
@@ -35,7 +33,7 @@ const styles = stylex.create({
 const DateRangePicker = (props: DateRangePickerProps) => {
   const ref = useRef<PickerRef>(null);
   const { onChange, value } = useValue([props.value, props.onChange, ref]);
-  const classNames = useClassNames(ComponentToken.DateRangePicker);
+  const classNames = useClassNames("date-range-picker");
 
   // picked date
   const picked = useMemo(() => {

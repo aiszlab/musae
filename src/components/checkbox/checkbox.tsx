@@ -7,7 +7,6 @@ import { CheckboxClassToken } from "../../utils/class-name";
 import stylex from "@stylexjs/stylex";
 import { useTheme } from "../theme";
 import { typography } from "../theme/theme";
-import { ComponentToken } from "../../utils/component-token";
 import styles from "./styles";
 
 const Checkbox = ({
@@ -20,7 +19,7 @@ const Checkbox = ({
   checked,
 }: CheckboxProps) => {
   const contextValue = useContext(Context);
-  const classNames = useClassNames(ComponentToken.Checkbox);
+  const classNames = useClassNames("checkbox");
   const theme = useTheme();
   const isDisabled = useMemo(() => contextValue?.isDisabled ?? disabled, [contextValue, disabled]);
 

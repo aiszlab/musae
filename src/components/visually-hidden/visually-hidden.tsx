@@ -5,7 +5,6 @@ import { sizes, spacing } from "../theme/tokens.stylex";
 import { useClassNames } from "../../hooks/use-class-names";
 import { VisuallyHiddenClassToken } from "../../utils/class-name";
 import { clsx } from "@aiszlab/relax";
-import { ComponentToken } from "../../utils/component-token";
 
 const styles = stylex.create({
   hidden: {
@@ -19,7 +18,7 @@ const styles = stylex.create({
 
 const VisuallyHidden = ({ children }: VisuallyHiddenProps) => {
   const styled = stylex.props(styles.hidden);
-  const classNames = useClassNames(ComponentToken.VisuallyHidden);
+  const classNames = useClassNames("visually-hidden");
 
   return (
     <span

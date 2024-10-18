@@ -15,7 +15,6 @@ import { isVoid, clsx } from "@aiszlab/relax";
 import stylex from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
-import { ComponentToken } from "../../utils/component-token";
 import type { MenuRef } from "musae/types/menu";
 
 const UNITS: Record<TimeUnit, number> = {
@@ -58,7 +57,7 @@ const styles = stylex.create({
 
 const Column = forwardRef<{}, ColumnProps>(({ unit, value, onChange }, ref) => {
   const timeUnit = UNITS[unit];
-  const classNames = useClassNames(ComponentToken.Clock);
+  const classNames = useClassNames("clock");
   const menuRef = useRef<MenuRef>(null);
   const theme = useTheme();
 

@@ -9,7 +9,6 @@ import { spacing } from "../theme/tokens.stylex";
 import Selector from "./selector";
 import Selections from "./selections";
 import { useClassNames } from "../../hooks/use-class-names";
-import { ComponentToken } from "../../utils/component-token";
 import type { PickerRef } from "musae/types/picker";
 
 const styles = stylex.create({
@@ -38,7 +37,7 @@ const Select = <T extends ValueOrValues = ValueOrValues>({
 }: SelectProps<T>) => {
   const ref = useRef<PickerRef>(null);
   const selectorRef = useRef<SelectorRef>(null);
-  const classNames = useClassNames(ComponentToken.Select);
+  const classNames = useClassNames("select");
   const close = useCallback(() => ref.current?.close(), []);
 
   const { menuItems, readableOptions, search, searched, reset } = useOptions({

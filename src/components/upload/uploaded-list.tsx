@@ -10,7 +10,6 @@ import { clsx, useControlledState, useEvent, useIdentity } from "@aiszlab/relax"
 import { typography } from "../theme/theme";
 import { isRemoteFile } from "./utils";
 import { useClassNames } from "../../hooks/use-class-names";
-import { ComponentToken } from "../../utils/component-token";
 import { UploadClassToken } from "../../utils/class-name";
 import UploadedItem from "./uploaded-item";
 
@@ -38,7 +37,7 @@ const UploadedList = forwardRef<UploadedListRef, UploadedListProps>(
   ({ uploader, onError, value, onChange, limit = Infinity }, ref) => {
     const [values, setValues] = useControlledState(value, { defaultState: [] });
     const [, identity] = useIdentity();
-    const classNames = useClassNames(ComponentToken.Upload);
+    const classNames = useClassNames("upload");
 
     // convert to map, for performance
     const items = useMemo(() => {

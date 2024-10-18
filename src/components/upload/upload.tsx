@@ -14,7 +14,6 @@ import { Keyboard } from "../../utils/keyboard";
 import UploadedList from "./uploaded-list";
 import { Button } from "../button";
 import { useLocale } from "../../locale";
-import { ComponentToken } from "../../utils/component-token";
 import { spacing } from "../theme/tokens.stylex";
 import { useClassNames } from "../../hooks/use-class-names";
 import { UploadClassToken } from "../../utils/class-name";
@@ -46,8 +45,8 @@ const Upload = ({
 }: UploadProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const uploadedListRef = useRef<UploadedListRef>(null);
-  const [_locale] = useLocale(ComponentToken.Upload);
-  const classNames = useClassNames(ComponentToken.Upload);
+  const [_locale] = useLocale("upload");
+  const classNames = useClassNames("upload");
 
   // file upload
   const upload = useEvent((files: File[]) => {

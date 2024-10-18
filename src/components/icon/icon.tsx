@@ -4,7 +4,6 @@ import { isFunction, clsx } from "@aiszlab/relax";
 import { IconClassToken } from "../../utils/class-name";
 import stylex from "@stylexjs/stylex";
 import { useClassNames } from "../../hooks/use-class-names";
-import { ComponentToken } from "../../utils/component-token";
 
 const styles = stylex.create({
   icon: (props: { color: CSSProperties["color"] }) => ({
@@ -20,7 +19,7 @@ const styles = stylex.create({
 });
 
 const Icon = ({ as, color, size, onClick, style, className, ...props }: IconProps) => {
-  const classNames = useClassNames(ComponentToken.Icon);
+  const classNames = useClassNames("icon");
 
   const asProps = useMemo<AsProps>(() => {
     return {

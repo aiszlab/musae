@@ -8,7 +8,6 @@ import { useTheme } from "../../theme";
 import { clsx } from "@aiszlab/relax";
 import { typography } from "../../theme/theme";
 import { useClassNames } from "../../../hooks/use-class-names";
-import { ComponentToken } from "../../../utils/component-token";
 import { TableClassToken } from "../../../utils/class-name";
 
 const styles = stylex.create({
@@ -48,7 +47,7 @@ const styles = stylex.create({
 const Header = <T,>(props: HeaderProps) => {
   const { table, bordered } = useTable<T>();
   const theme = useTheme();
-  const classNames = useClassNames(ComponentToken.Table);
+  const classNames = useClassNames("table");
 
   if (!table) return null;
 

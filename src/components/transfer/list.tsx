@@ -10,7 +10,6 @@ import { useClassNames } from "../../hooks/use-class-names";
 import { TransferClassToken } from "../../utils/class-name";
 import { clsx } from "@aiszlab/relax";
 import { typography } from "../theme/theme";
-import { ComponentToken } from "../../utils/component-token";
 import { useLocale } from "../../locale";
 
 const styles = stylex.create({
@@ -43,7 +42,7 @@ const styles = stylex.create({
 const List = ({ options, title, onChange, value }: TransferListProps) => {
   const theme = useTheme();
   const { disabled } = useContext(Context);
-  const classNames = useClassNames(ComponentToken.Transfer);
+  const classNames = useClassNames("transfer");
   const styled = {
     list: stylex.props(styles.list({ outlineColor: theme.colors["outline-variant"] })),
     header: stylex.props(
@@ -52,7 +51,7 @@ const List = ({ options, title, onChange, value }: TransferListProps) => {
     ),
     title: stylex.props(styles.title),
   };
-  const [locale] = useLocale(ComponentToken.Transfer);
+  const [locale] = useLocale("transfer");
 
   return (
     <div

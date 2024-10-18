@@ -1,5 +1,4 @@
 import type { ClassNames } from "musae/types/config";
-import { ComponentToken } from "./component-token";
 
 /**
  * @description
@@ -322,65 +321,65 @@ export enum GuidelineClassToken {
  * rule like: block__element--modifier
  */
 export const CLASS_NAMES = {
-  [ComponentToken.Picker]: {
+  picker: {
     [PickerClassToken.Picker]: "picker",
     [PickerClassToken.Focused]: "picker--focused",
     [PickerClassToken.Invalid]: "picker--invalid",
     [PickerClassToken.Dropdown]: "picker__dropdown",
   },
-  [ComponentToken.Input]: {
+  input: {
     [InputClassToken.Input]: "input",
     [InputClassToken.Inputor]: "input__inputor",
     [InputClassToken.Focused]: "input__inputor--focused",
     [InputClassToken.Invalid]: "input__inputor--invalid",
   },
-  [ComponentToken.Select]: {
+  select: {
     [SelectClassToken.Select]: "select",
   },
-  [ComponentToken.Popper]: {
+  popper: {
     [PopperClassToken.Dropdown]: "dropdown",
     [PopperClassToken.Arrow]: "arrow",
   },
-  [ComponentToken.Form]: {
+  form: {
     [FormClassToken.Item]: "form__item",
     [FormClassToken.Field]: "form__item-field",
     [FormClassToken.FieldSupporting]: "form__item-supporting",
     [FormClassToken.FieldError]: "form__item-field-error",
   },
-  [ComponentToken.Grid]: {
+  grid: {
     [GridClassToken.Row]: "grid__row",
     [GridClassToken.Col]: "grid__col",
   },
-  [ComponentToken.Radio]: {
+  radio: {
     [RadioClassToken.Radio]: "radio",
   },
-  [ComponentToken.Empty]: {
+  empty: {
     [EmptyClassToken.Empty]: "empty",
     [EmptyClassToken.Description]: "empty__description",
   },
-  [ComponentToken.Button]: {
+  button: {
     [ButtonClassToken.Button]: "button",
     [ButtonClassToken.Prefix]: "button__prefix",
   },
-  [ComponentToken.Drawer]: {
+  drawer: {
     [DrawerClassToken.Drawer]: "drawer",
     [DrawerClassToken.Overlay]: "drawer__overlay",
     [DrawerClassToken.Panel]: "drawer__panel",
     [DrawerClassToken.Header]: "drawer__header",
     [DrawerClassToken.Body]: "drawer__body",
   },
-  [ComponentToken.Divider]: {
+  divider: {
     [DividerClassToken.Divider]: "divider",
     [DividerClassToken.Label]: "divider__label",
   },
-  [ComponentToken.Tag]: {
+  tag: {
     [TagClassToken.Tag]: "tag",
   },
-  [ComponentToken.Cascader]: {
+  cascader: {
     [CascaderClassToken.Cascader]: "cascader",
     [CascaderClassToken.Options]: "cascader__options",
   },
-  [ComponentToken.Dialog]: {
+  dialog: {
     [DialogClassToken.Dialog]: "dialog",
     [DialogClassToken.Overlay]: "dialog__overlay",
     [DialogClassToken.Panel]: "dialog__panel",
@@ -388,7 +387,7 @@ export const CLASS_NAMES = {
     [DialogClassToken.Body]: "dialog__body",
     [DialogClassToken.Footer]: "dialog__footer",
   },
-  [ComponentToken.Calendar]: {
+  calendar: {
     [CalendarClassToken.Header]: "calendar__header",
     [CalendarClassToken.Heading]: "calendar__heading",
     [CalendarClassToken.HeadCell]: "calendar__head-cell",
@@ -399,29 +398,29 @@ export const CLASS_NAMES = {
     [CalendarClassToken.DateCellRangeTo]: "calendar__date--range-to",
     [CalendarClassToken.Date]: "calendar__date",
   },
-  [ComponentToken.Icon]: {
+  icon: {
     [IconClassToken.Icon]: "icon",
   },
-  [ComponentToken.DatePicker]: {
+  "date-picker": {
     [DatePickerClassToken.Picker]: "date-picker",
     [DatePickerClassToken.Input]: "date-picker__input",
   },
-  [ComponentToken.TimePicker]: {
+  "time-picker": {
     [TimePickerClassToken.Picker]: "time-picker",
     [TimePickerClassToken.Input]: "time-picker__input",
     [TimePickerClassToken.Panel]: "time-picker__panel",
     [TimePickerClassToken.PanelFooter]: "time-picker__panel-footer",
   },
-  [ComponentToken.DateRangePicker]: {
+  "date-range-picker": {
     [DateRangePickerClassToken.Picker]: "date-range-picker",
     [DateRangePickerClassToken.Input]: "date-range-picker__input",
     [DateRangePickerClassToken.Separator]: "date-range-picker__separator",
   },
-  [ComponentToken.Clock]: {
+  clock: {
     [ClockClassToken.Clock]: "clock",
     [ClockClassToken.Column]: "clock__column",
   },
-  [ComponentToken.Menu]: {
+  menu: {
     [MenuClassToken.Menu]: "menu",
     [MenuClassToken.MenuHorizontal]: "menu--horizontal",
     [MenuClassToken.Group]: "menu__group",
@@ -429,10 +428,10 @@ export const CLASS_NAMES = {
     [MenuClassToken.Collapser]: "menu__collapser",
     [MenuClassToken.Item]: "menu__item",
   },
-  [ComponentToken.Checkbox]: {
+  checkbox: {
     [CheckboxClassToken.Checkbox]: "checkbox",
   },
-  [ComponentToken.Tree]: {
+  tree: {
     [TreeClassToken.Tree]: "tree",
     [TreeClassToken.List]: "tree__list",
     [TreeClassToken.ListHidden]: "tree__list--hidden",
@@ -442,7 +441,7 @@ export const CLASS_NAMES = {
     [TreeClassToken.Expander]: "tree__node-expander",
     [TreeClassToken.Checkbox]: "tree__node-checkbox",
   },
-  [ComponentToken.Tabs]: {
+  tabs: {
     [TabsClassToken.Tabs]: "tabs",
     [TabsClassToken.TabsNavigation]: "tabs__navigation",
     [TabsClassToken.TabsNavigator]: "tabs__navigator",
@@ -452,24 +451,24 @@ export const CLASS_NAMES = {
     [TabsClassToken.Panels]: "tabs__panels",
     [TabsClassToken.Panel]: "tabs__panel",
   },
-  [ComponentToken.Pagination]: {
+  pagination: {
     [PaginationClassToken.Pagination]: "pagination",
     [PaginationClassToken.SizeSelector]: "pagination__size-selector",
   },
-  [ComponentToken.Switch]: {
+  switch: {
     [SwitchClassToken.Switch]: "switch",
     [SwitchClassToken.Slider]: "switch__slider",
     [SwitchClassToken.Supporting]: "switch__supporting",
     [SwitchClassToken.Leading]: "switch__supporting-leading",
     [SwitchClassToken.Trailing]: "switch__supporting-trailing",
   },
-  [ComponentToken.Rate]: {
+  rate: {
     [RateClassToken.Rate]: "rate",
     [RateClassToken.Star]: "rate__star",
     [RateClassToken.Half]: "rate__star-half",
     [RateClassToken.Full]: "rate__star-full",
   },
-  [ComponentToken.Tour]: {
+  tour: {
     [TourClassToken.Tour]: "tour",
     [TourClassToken.Overlay]: "rate__overlay",
     [TourClassToken.Spotlight]: "rate__spotlight",
@@ -477,7 +476,7 @@ export const CLASS_NAMES = {
     [TourClassToken.Description]: "rate__description",
     [TourClassToken.Footer]: "rate__footer",
   },
-  [ComponentToken.Steps]: {
+  steps: {
     [StepsClassToken.Steps]: "steps",
     [StepsClassToken.Item]: "steps__item",
     [StepsClassToken.Done]: "steps__item--done",
@@ -488,7 +487,7 @@ export const CLASS_NAMES = {
     [StepsClassToken.Title]: "steps__item-title",
     [StepsClassToken.Description]: "steps__item-description",
   },
-  [ComponentToken.Timeline]: {
+  timeline: {
     [TimelineClassToken.Timeline]: "timeline",
     [TimelineClassToken.Item]: "timeline__item",
     [TimelineClassToken.Leading]: "timeline__item-leading",
@@ -497,40 +496,40 @@ export const CLASS_NAMES = {
     [TimelineClassToken.Label]: "timeline__item-label",
     [TimelineClassToken.Description]: "timeline__item-description",
   },
-  [ComponentToken.Breadcrumb]: {
+  breadcrumb: {
     [BreadcrumbClassToken.Breadcrumb]: "breadcrumb",
     [BreadcrumbClassToken.Item]: "breadcrumb__item",
     [BreadcrumbClassToken.Separator]: "breadcrumb__separator",
   },
-  [ComponentToken.Avatar]: {
+  avatar: {
     [AvatarClassToken.Avatar]: "avatar",
     [AvatarClassToken.Group]: "avatar__group",
   },
-  [ComponentToken.Notification]: {
+  notification: {
     [NotificationClassToken.Notification]: "notification",
     [NotificationClassToken.Title]: "notification__title",
     [NotificationClassToken.Description]: "notification__description",
     [NotificationClassToken.Closer]: "notification__closer",
   },
-  [ComponentToken.Progress]: {
+  progress: {
     [ProgressClassToken.Progress]: "progress",
     [ProgressClassToken.Segment]: "progress__segment",
   },
-  [ComponentToken.Tooltip]: {
+  tooltip: {
     [TooltipClassToken.Tooltip]: "tooltip",
   },
-  [ComponentToken.Popover]: {
+  popover: {
     [PopoverClassToken.Popover]: "popover",
     [PopoverClassToken.Title]: "popover__title",
     [PopoverClassToken.Content]: "popover__content",
   },
-  [ComponentToken.Loading]: {
+  loading: {
     [LoadingClassToken.Loading]: "loading",
     [LoadingClassToken.Spin]: "loading__spin",
     [LoadingClassToken.Spinning]: "loading__spin-spinning",
     [LoadingClassToken.Content]: "loading__content",
   },
-  [ComponentToken.Collapse]: {
+  collapse: {
     [CollapseClassToken.Collapse]: "collapse",
     [CollapseClassToken.Item]: "collapse__item",
     [CollapseClassToken.ItemActive]: "collapse__item--active",
@@ -540,11 +539,11 @@ export const CLASS_NAMES = {
     [CollapseClassToken.PanelActive]: "collapse__item-panel--active",
     [CollapseClassToken.Content]: "collapse__item-content",
   },
-  [ComponentToken.Waterfall]: {
+  waterfall: {
     [WaterfallClassToken.Waterfall]: "waterfall",
     [WaterfallClassToken.Sequential]: "waterfall--sequential",
   },
-  [ComponentToken.Transfer]: {
+  transfer: {
     [TransferClassToken.Transfer]: "transfer",
     [TransferClassToken.Operation]: "transfer__operation",
     [TransferClassToken.List]: "transfer__list",
@@ -553,60 +552,60 @@ export const CLASS_NAMES = {
     [TransferClassToken.Header]: "transfer__list-header",
     [TransferClassToken.Body]: "transfer__list-body",
   },
-  [ComponentToken.Badge]: {
+  badge: {
     [BadgeClassToken.Badge]: "badge",
     [BadgeClassToken.Tail]: "badge__tail",
   },
-  [ComponentToken.Skeleton]: {
+  skeleton: {
     [SkeletonClassToken.Skeleton]: "skeleton",
     [SkeletonClassToken.Circular]: "skeleton--circular",
   },
-  [ComponentToken.VisuallyHidden]: {
+  "visually-hidden": {
     [VisuallyHiddenClassToken.VisuallyHidden]: "visually-hidden",
   },
-  [ComponentToken.Popconfirm]: {
+  popconfirm: {
     [PopconfirmClassToken.Popconfirm]: "popconfirm",
     [PopconfirmClassToken.Title]: "popconfirm__title",
     [PopconfirmClassToken.Description]: "popconfirm__description",
     [PopconfirmClassToken.Footer]: "popconfirm__footer",
   },
-  [ComponentToken.Highlight]: {
+  highlight: {
     [HighlightClassToken.Highlight]: "highlight",
     [HighlightClassToken.Capture]: "highlight__capture",
   },
-  [ComponentToken.I18nButton]: {
+  "i18n-button": {
     [I18nButtonClassToken.I18nButton]: "i18n-button",
   },
-  [ComponentToken.Quote]: {
+  quote: {
     [QuoteClassToken.Quote]: "quote",
   },
-  [ComponentToken.RichTextEditor]: {
+  "rich-text-editor": {
     [RichTextEditorClassToken.RichTextEditor]: "rich-text-editor",
     [RichTextEditorClassToken.Loading]: "rich-text-editor--loading",
     [RichTextEditorClassToken.Editable]: "rich-text-editor__editable",
   },
-  [ComponentToken.Upload]: {
+  upload: {
     [UploadClassToken.Upload]: "upload",
     [UploadClassToken.UploadedList]: "upload__uploaded-list",
     [UploadClassToken.UploadedItem]: "upload__uploaded-item",
     [UploadClassToken.UploadedPictureItem]: "upload__uploaded-item--picture",
   },
-  [ComponentToken.Image]: {
+  image: {
     [ImageClassToken.Image]: "image",
   },
-  [ComponentToken.Table]: {
+  table: {
     [TableClassToken.Table]: "table",
     [TableClassToken.Header]: "table__header",
     [TableClassToken.Body]: "table__body",
   },
-  [ComponentToken.Fab]: {
+  fab: {
     [FabClassToken.Fab]: "fab",
   },
-  [ComponentToken.Textarea]: {
+  textarea: {
     [TextareaClassToken.Textarea]: "textarea",
     [TextareaClassToken.Input]: "textarea__input",
   },
-  [ComponentToken.Guideline]: {
+  guideline: {
     [GuidelineClassToken.Guideline]: "guideline",
     [GuidelineClassToken.Figure]: "guideline__figure",
     [GuidelineClassToken.CaptionLabel]: "guideline__caption-label",

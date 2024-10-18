@@ -7,7 +7,6 @@ import { useClassNames } from "../../hooks/use-class-names";
 import { BreadcrumbClassToken } from "../../utils/class-name";
 import { clsx } from "@aiszlab/relax";
 import Item from "./item";
-import { ComponentToken } from "../../utils/component-token";
 
 const styles = stylex.create({
   breadcrumb: (props: { color: CSSProperties["color"] }) => ({
@@ -23,7 +22,7 @@ const styles = stylex.create({
 
 const Breadcrumb = ({ items = [], className, separator = "/", style }: BreadcrumbProps) => {
   const theme = useTheme();
-  const classNames = useClassNames(ComponentToken.Breadcrumb);
+  const classNames = useClassNames("breadcrumb");
 
   /// there is no need to render the breadcrumb when there is no items
   if (items.length === 0) {

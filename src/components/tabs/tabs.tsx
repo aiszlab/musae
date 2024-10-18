@@ -7,7 +7,6 @@ import { clsx } from "@aiszlab/relax";
 import { useTabs } from "./hooks";
 import Panels from "./panels";
 import Navigation from "./navigation";
-import { ComponentToken } from "../../utils/component-token";
 
 const Tabs = ({
   items = [],
@@ -24,7 +23,7 @@ const Tabs = ({
     defaultActiveKey,
   });
 
-  const classNames = useClassNames(ComponentToken.Tabs);
+  const classNames = useClassNames("tabs");
 
   /// context value
   const contextValue = useMemo<ContextValue>(() => {

@@ -6,7 +6,6 @@ import { useBoolean, useEvent, useImageLoader, clsx } from "@aiszlab/relax";
 import stylex from "@stylexjs/stylex";
 import { Skeleton } from "../skeleton";
 import { useClassNames } from "../../hooks/use-class-names";
-import { ComponentToken } from "../../utils/component-token";
 import { ImageClassToken } from "../../utils/class-name";
 
 const styles = stylex.create({
@@ -29,7 +28,7 @@ const Image = ({
 }: ImageProps) => {
   const [isOpen, { turnOn, turnOff }] = useBoolean(false);
   const contextValue = useContext(PreviewGroupContext);
-  const classNames = useClassNames(ComponentToken.Image);
+  const classNames = useClassNames("image");
 
   const status = useImageLoader({ src, crossOrigin, referrerPolicy });
 

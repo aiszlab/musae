@@ -5,7 +5,6 @@ import { GridClassToken } from "../../utils/class-name";
 import { clsx } from "@aiszlab/relax";
 import stylex from "@stylexjs/stylex";
 import { useGutters } from "../../hooks/use-gutters";
-import { ComponentToken } from "../../utils/component-token";
 
 const styles = stylex.create({
   row: (props: {
@@ -34,7 +33,7 @@ const Row = ({
 }: RowProps) => {
   /// col and row gap in grid
   const [columnGap, rowGap] = useGutters({ gutter });
-  const classNames = useClassNames(ComponentToken.Grid);
+  const classNames = useClassNames("grid");
   const styled = stylex.props(styles.row({ columnGap, rowGap, justify, align }));
 
   return (

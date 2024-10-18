@@ -7,7 +7,6 @@ import { clsx } from "@aiszlab/relax";
 import { sizes } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { useValue } from "./hooks";
-import { ComponentToken } from "../../utils/component-token";
 
 const styles = stylex.create({
   progress: (props: { color: CSSProperties["backgroundColor"] }) => ({
@@ -26,7 +25,7 @@ const styles = stylex.create({
 });
 
 const Linear = ({ value: _value, className, style }: LinearProps) => {
-  const classNames = useClassNames(ComponentToken.Progress);
+  const classNames = useClassNames("progress");
   const theme = useTheme();
   const { value } = useValue({ value: _value });
 

@@ -3,7 +3,6 @@ import React from "react";
 import { Field, Layout } from "./field";
 import type { FieldValues } from "react-hook-form";
 import { useClassNames } from "../../hooks/use-class-names";
-import { ComponentToken } from "../../utils/component-token";
 import { clsx } from "@aiszlab/relax";
 import { FormClassToken } from "../../utils/class-name";
 
@@ -17,7 +16,7 @@ const Item = <T extends FieldValues = FieldValues>({
   style,
   ...props
 }: FormItemProps<T>) => {
-  const classNames = useClassNames(ComponentToken.Form);
+  const classNames = useClassNames("form");
 
   if (props.name) {
     return (

@@ -6,7 +6,6 @@ import { RateClassToken } from "../../utils/class-name";
 import { clsx } from "@aiszlab/relax";
 import { useHover, useValue } from "./hooks";
 import Star from "./star";
-import { ComponentToken } from "../../utils/component-token";
 
 const styles = {
   rate: stylex.create({
@@ -26,7 +25,7 @@ const Rate = ({
   disabled = false,
   ...props
 }: RateProps) => {
-  const classNames = useClassNames(ComponentToken.Rate);
+  const classNames = useClassNames("rate");
   const { value, change } = useValue({ value: props.value, onChange: props.onChange, halfable });
   const { enter, hovered, leave } = useHover();
 

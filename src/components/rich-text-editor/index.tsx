@@ -4,7 +4,6 @@ import { Skeleton } from "../skeleton";
 import stylex from "@stylexjs/stylex";
 import { sizes } from "../theme/tokens.stylex";
 import { useClassNames } from "../../hooks/use-class-names";
-import { ComponentToken } from "../../utils/component-token";
 import { clsx } from "@aiszlab/relax";
 import { RichTextEditorClassToken } from "../../utils/class-name";
 
@@ -21,7 +20,7 @@ const styles = stylex.create({
 const RichTextEditor = forwardRef<RichTextEditorRef, RichTextEditorProps>(
   ({ className, style, ...props }, ref) => {
     const styled = stylex.props(styles.loading);
-    const classNames = useClassNames(ComponentToken.RichTextEditor);
+    const classNames = useClassNames("rich-text-editor");
 
     return (
       <Suspense

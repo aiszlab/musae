@@ -3,7 +3,6 @@ import stylex from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import type { UploadedItem as UploadedItemType } from "musae/types/upload";
 import { useClassNames } from "../../hooks/use-class-names";
-import { ComponentToken } from "../../utils/component-token";
 import { UploadClassToken } from "../../utils/class-name";
 import { clsx, isFunction, useEvent } from "@aiszlab/relax";
 import { AttachFile, Delete, Loading } from "../icon/icons";
@@ -54,7 +53,7 @@ const UploadedItem = ({
   item: UploadedItemType;
   onRemove: (key: Key) => void;
 }) => {
-  const classNames = useClassNames(ComponentToken.Upload);
+  const classNames = useClassNames("upload");
   const { renderItem } = useContext(Context);
   const theme = useTheme();
 

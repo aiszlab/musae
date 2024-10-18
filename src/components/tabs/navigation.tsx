@@ -9,7 +9,6 @@ import { useAnimate } from "framer-motion";
 import { isUndefined, clsx } from "@aiszlab/relax";
 import { useTheme } from "../theme";
 import { useNavigation, useNavigatorScroll, useTabsContext } from "./hooks";
-import { ComponentToken } from "../../utils/component-token";
 
 const styles = {
   navigation: stylex.create({
@@ -71,7 +70,7 @@ const styles = {
 
 const Navigation = ({ onChange }: NavigationProps) => {
   const { activeKey, items } = useTabsContext();
-  const classNames = useClassNames(ComponentToken.Tabs);
+  const classNames = useClassNames("tabs");
   const [indicatorRef, animateIndicator] = useAnimate<HTMLDivElement>();
   const tabRefs = useRef<Map<Key, HTMLButtonElement | null>>(new Map());
   const theme = useTheme();

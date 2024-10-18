@@ -4,7 +4,6 @@ import { useClassNames } from "../../hooks/use-class-names";
 import { GridClassToken } from "../../utils/class-name";
 import { clsx } from "@aiszlab/relax";
 import stylex from "@stylexjs/stylex";
-import { ComponentToken } from "../../utils/component-token";
 
 const styles = stylex.create({
   col: (props: { span: number }) => ({
@@ -15,7 +14,7 @@ const styles = stylex.create({
 
 const Col = ({ children, className, span = 8, as: As = "div", style }: ColProps) => {
   const styled = stylex.props(styles.col({ span }));
-  const classNames = useClassNames(ComponentToken.Grid);
+  const classNames = useClassNames("grid");
 
   return (
     <As

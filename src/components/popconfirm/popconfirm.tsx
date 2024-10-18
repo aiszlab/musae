@@ -19,7 +19,6 @@ import { Popper } from "../popper";
 import { spacing } from "../theme/tokens.stylex";
 import { typography } from "../theme/theme";
 import { useTheme } from "../theme";
-import { ComponentToken } from "../../utils/component-token";
 import { useLocale } from "../../locale";
 import type { PopperRef } from "musae/types/popper";
 
@@ -67,10 +66,10 @@ const Popconfirm = <P extends ChildProps<T>, T extends HTMLElement>({
 }: PopconfirmProps<P, T>) => {
   const ref = useRef<T>(null);
   const [isOpen, { turnOff, toggle }] = useBoolean();
-  const classNames = useClassNames(ComponentToken.Popconfirm);
+  const classNames = useClassNames("popconfirm");
   const popperRef = useRef<PopperRef>(null);
   const theme = useTheme();
-  const [locale] = useLocale(ComponentToken.Popconfirm);
+  const [locale] = useLocale("popconfirm");
 
   const onClick = useEvent((event: MouseEvent<T>) => {
     event.stopPropagation();

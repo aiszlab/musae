@@ -6,7 +6,6 @@ import { spacing } from "../theme/tokens.stylex";
 import { useClassNames } from "../../hooks/use-class-names";
 import { TransferClassToken } from "../../utils/class-name";
 import { clsx } from "@aiszlab/relax";
-import { ComponentToken } from "../../utils/component-token";
 
 const styles = stylex.create({
   item: {
@@ -19,7 +18,7 @@ const styles = stylex.create({
 });
 
 const Item = ({ value, label }: TransferItemProps) => {
-  const classNames = useClassNames(ComponentToken.Transfer);
+  const classNames = useClassNames("transfer");
   const styled = {
     item: stylex.props(styles.item),
   };

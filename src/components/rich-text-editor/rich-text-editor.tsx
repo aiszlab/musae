@@ -42,7 +42,6 @@ import type {
   RichTextEditorProps,
 } from "musae/types/rich-text-editor";
 import { useClassNames } from "../../hooks/use-class-names";
-import { ComponentToken } from "../../utils/component-token";
 import { RichTextEditorClassToken } from "../../utils/class-name";
 
 const styles = stylex.create({
@@ -120,7 +119,7 @@ const RichTextEditor = forwardRef<RichTextEditorRef, RichTextEditorProps>(
     const theme = useTheme();
     const _use = useDefault(() => props.use ?? "serialized");
     const controlledStatePluginRef = useRef<ControlledStatePluginRef>(null);
-    const classNames = useClassNames(ComponentToken.RichTextEditor);
+    const classNames = useClassNames("rich-text-editor");
 
     const styled = {
       shell: stylex.props(

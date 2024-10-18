@@ -1,7 +1,6 @@
 import { useMemo, useState } from "react";
 import { useMounted } from "@aiszlab/relax";
 import { useLocale } from "../../locale";
-import { ComponentToken } from "../../utils/component-token";
 import type { MenuItem } from "musae/types/menu";
 import type { Locale, LocaleCode } from "musae/types/locale";
 
@@ -10,7 +9,7 @@ import type { Locale, LocaleCode } from "musae/types/locale";
  * lazy load locales
  */
 export const useLocales = () => {
-  const [locale, localeCode] = useLocale(ComponentToken.I18nButton);
+  const [locale, localeCode] = useLocale("i18n-button");
   const [locales, setLocales] = useState<Map<LocaleCode, Locale>>(new Map());
 
   useMounted(async () => {

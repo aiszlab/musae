@@ -7,7 +7,6 @@ import Group from "./group";
 import stylex from "@stylexjs/stylex";
 import { useClassNames } from "../../hooks/use-class-names";
 import { MenuClassToken } from "../../utils/class-name";
-import { ComponentToken } from "../../utils/component-token";
 
 const styles = stylex.create({
   menu: {
@@ -39,7 +38,7 @@ const Menu = forwardRef<MenuRef, MenuProps>(
     },
     ref,
   ) => {
-    const classNames = useClassNames(ComponentToken.Menu);
+    const classNames = useClassNames("menu");
     const { targetRef, scrollTo, to, setTrigger } = useScrollable<HTMLUListElement, HTMLLIElement>({
       orientation: useScrollOrientation(mode),
     });

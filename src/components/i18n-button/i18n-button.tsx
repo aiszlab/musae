@@ -8,13 +8,12 @@ import type { I18nButtonProps } from "musae/types/i18n-button";
 import { clsx, useEvent } from "@aiszlab/relax";
 import type { LocaleCode } from "musae/types/locale";
 import { useClassNames } from "../../hooks/use-class-names";
-import { ComponentToken } from "../../utils/component-token";
 import { I18nButtonClassToken } from "../../utils/class-name";
 
 const I18nButton = ({ onChange, variant, className, style }: I18nButtonProps) => {
   const { selections, locales, localeCode } = useLocales();
   const popoverRef = useRef<PopoverRef>(null);
-  const classNames = useClassNames(ComponentToken.I18nButton);
+  const classNames = useClassNames("i18n-button");
 
   const change = useEvent(async (value: Key) => {
     await popoverRef.current?.close();

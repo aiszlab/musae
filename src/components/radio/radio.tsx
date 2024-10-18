@@ -8,7 +8,6 @@ import stylex from "@stylexjs/stylex";
 import { useTheme } from "../theme";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { typography } from "../theme/theme";
-import { ComponentToken } from "../../utils/component-token";
 
 const styles = {
   radio: stylex.create({
@@ -92,7 +91,7 @@ const styles = {
 const Radio = ({ children, value, checked, disabled = false, ...props }: RadioProps) => {
   const contextValue = useContext(Context);
   const [_isChecked, _setIsChecked] = useControlledState(checked);
-  const classNames = useClassNames(ComponentToken.Radio);
+  const classNames = useClassNames("radio");
   const theme = useTheme();
 
   const isDisabled = useMemo(

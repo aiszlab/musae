@@ -5,7 +5,6 @@ import { positions, sizes } from "../theme/tokens.stylex";
 import { useClassNames } from "../../hooks/use-class-names";
 import { LoadingClassToken } from "../../utils/class-name";
 import { clsx } from "@aiszlab/relax";
-import { ComponentToken } from "../../utils/component-token";
 
 const top = stylex.keyframes({
   from: {
@@ -328,7 +327,7 @@ const Loading = ({
   style,
   loading = true,
 }: LoadingProps) => {
-  const classNames = useClassNames(ComponentToken.Loading);
+  const classNames = useClassNames("loading");
   const circles = {
     top: {
       ...stylex.props(styles.circle, styles.top),

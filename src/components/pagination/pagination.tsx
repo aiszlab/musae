@@ -8,7 +8,6 @@ import { Select } from "../select";
 import type { Option } from "musae/types/option";
 import { useClassNames } from "../../hooks/use-class-names";
 import { PaginationClassToken } from "../../utils/class-name";
-import { ComponentToken } from "../../utils/component-token";
 import { useLocale } from "../../locale";
 import { toFunction, clsx, unique } from "@aiszlab/relax";
 
@@ -34,8 +33,8 @@ const Pagination = ({
   onChange: _onChange,
   onPageSizeChange: _onPageSizeChange,
 }: PagiantionProps) => {
-  const classNames = useClassNames(ComponentToken.Pagination);
-  const [locale] = useLocale(ComponentToken.Pagination);
+  const classNames = useClassNames("pagination");
+  const [locale] = useLocale("pagination");
 
   const {
     paginationItems,

@@ -11,7 +11,6 @@ import Error from "./error";
 import { AnimatePresence } from "framer-motion";
 import { typography } from "../../theme/theme";
 import { useClassNames } from "../../../hooks/use-class-names";
-import { ComponentToken } from "../../../utils/component-token";
 import { useLocale } from "../../../locale";
 
 const styles = stylex.create({
@@ -33,8 +32,8 @@ const Field = ({
   style,
   ...props
 }: RequiredIn<FormItemProps, "name" | "required">) => {
-  const classNames = useClassNames(ComponentToken.Form);
-  const [locale] = useLocale(ComponentToken.Form);
+  const classNames = useClassNames("form");
+  const [locale] = useLocale("form");
 
   const {
     field: { onBlur, onChange, name, value, ref },

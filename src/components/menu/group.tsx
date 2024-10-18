@@ -10,7 +10,6 @@ import stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
 import { useExpandable } from "../../hooks/use-expandable";
 import { useTheme } from "../theme";
-import { ComponentToken } from "../../utils/component-token";
 
 const styles = {
   group: stylex.create({
@@ -63,7 +62,7 @@ const styles = {
  */
 const Group = forwardRef<HTMLUListElement, MenuGroupProps>(
   ({ items, level = 0, expanded = true, className, style, mode }, ref) => {
-    const classNames = useClassNames(ComponentToken.Menu);
+    const classNames = useClassNames("menu");
     const [scope, animate] = useAnimate<HTMLUListElement>();
     const { collect, expandedKeys } = useMenuContext();
     const groupRef = useRefs<HTMLUListElement>(ref, scope);

@@ -6,7 +6,6 @@ import type { BreadcrumbItemProps } from "musae/types/breadcrumb";
 import { useClassNames } from "../../hooks/use-class-names";
 import { BreadcrumbClassToken } from "../../utils/class-name";
 import { clsx } from "@aiszlab/relax";
-import { ComponentToken } from "../../utils/component-token";
 
 const styles = {
   navigation: stylex.create({
@@ -45,7 +44,7 @@ const styles = {
 const Item = ({ href, label, max, separator }: BreadcrumbItemProps) => {
   const theme = useTheme();
   const isLink = !!href;
-  const classNames = useClassNames(ComponentToken.Breadcrumb);
+  const classNames = useClassNames("breadcrumb");
 
   const styled = {
     navigation: stylex.props(

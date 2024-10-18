@@ -8,7 +8,6 @@ import { sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { useClassNames } from "../../hooks/use-class-names";
 import { typography } from "../theme/theme";
-import { ComponentToken } from "../../utils/component-token";
 
 export const styles = stylex.create({
   inputor: (props: {
@@ -91,7 +90,7 @@ const Input = forwardRef<InputRef, InputProps>(
     ref,
   ) => {
     const inputRef = useRef<HTMLInputElement>(null);
-    const classNames = useClassNames(ComponentToken.Input);
+    const classNames = useClassNames("input");
     const theme = useTheme();
 
     useImperativeHandle<InputRef, InputRef>(ref, () => ({

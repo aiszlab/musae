@@ -9,7 +9,6 @@ import { useClassNames } from "../../hooks/use-class-names";
 import { TreeClassToken } from "../../utils/class-name";
 import { useExpandable } from "../../hooks/use-expandable";
 import { useUpdateEffect, clsx } from "@aiszlab/relax";
-import { ComponentToken } from "../../utils/component-token";
 
 const styles = stylex.create({
   list: {
@@ -27,7 +26,7 @@ const styles = stylex.create({
 const List = ({ nodes = [], expanded = true, level = 0, className, style }: TreeListProps) => {
   const [scope, animate] = useAnimate<HTMLUListElement>();
   const { expandedKeys, onExpand } = useContext(Context);
-  const classNames = useClassNames(ComponentToken.Tree);
+  const classNames = useClassNames("tree");
 
   const { expand, collapse } = useExpandable();
 

@@ -9,7 +9,6 @@ import { useButton } from "./hooks";
 import { Ripple } from "../ripple";
 import { typography } from "../theme/theme";
 import { useClassNames } from "../../hooks/use-class-names";
-import { ComponentToken } from "../../utils/component-token";
 import { hexToRgba } from "@aiszlab/fuzzy/color";
 
 const styles = stylex.create({
@@ -139,7 +138,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     },
     ref,
   ) => {
-    const classNames = useClassNames(ComponentToken.Button);
+    const classNames = useClassNames("button");
     const theme = useTheme();
     const { onClick, clear, ripples } = useButton({ onClick: _onClick });
 

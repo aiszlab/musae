@@ -15,7 +15,6 @@ import { typography } from "../theme/theme";
 import { clsx } from "@aiszlab/relax";
 import { Button } from "../button";
 import { useTheme } from "../theme";
-import { ComponentToken } from "../../utils/component-token";
 
 const styles = stylex.create({
   calendar: {
@@ -50,7 +49,7 @@ const Calendar = ({
   });
   const dateCells = useDateCells({ timespan, focusedAt, click: onClick });
   const headCells = useHeadCells();
-  const classNames = useClassNames(ComponentToken.Calendar);
+  const classNames = useClassNames("calendar");
   const theme = useTheme();
 
   const styled = {

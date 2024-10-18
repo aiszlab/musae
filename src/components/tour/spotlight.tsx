@@ -7,7 +7,6 @@ import { useClassNames } from "../../hooks/use-class-names";
 import { TourClassToken } from "../../utils/class-name";
 import { SpotlightProps } from "musae/types/tour";
 import { sizes } from "../theme/tokens.stylex";
-import { ComponentToken } from "../../utils/component-token";
 
 const styles = stylex.create({
   spotlight: {
@@ -21,7 +20,7 @@ const styles = stylex.create({
 
 const Spotlight = ({ trigger: _trigger, padding: [paddingY, paddingX] }: SpotlightProps) => {
   const floatable = useRef<HTMLDivElement>(null);
-  const classNames = useClassNames(ComponentToken.Tour);
+  const classNames = useClassNames("tour");
 
   /// how to get trigger
   const trigger = useMemo<Nullable<Element>>(() => {

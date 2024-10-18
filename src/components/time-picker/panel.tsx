@@ -16,7 +16,6 @@ import stylex from "@stylexjs/stylex";
 import { useTheme } from "../theme";
 import { clsx } from "@aiszlab/relax";
 import { sizes, spacing } from "../theme/tokens.stylex";
-import { ComponentToken } from "../../utils/component-token";
 import { useLocale } from "../../locale";
 
 const styles = stylex.create({
@@ -39,10 +38,10 @@ const styles = stylex.create({
 });
 
 const Panel = forwardRef<PanelRef, PanelProps>((props, ref) => {
-  const classNames = useClassNames(ComponentToken.TimePicker);
+  const classNames = useClassNames("time-picker");
   const [value, setValue] = useState<ClockProps["value"]>();
   const theme = useTheme();
-  const [locale] = useLocale(ComponentToken.TimePicker);
+  const [locale] = useLocale("time-picker");
 
   useImperativeHandle(ref, () => {
     return {

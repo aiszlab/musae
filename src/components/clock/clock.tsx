@@ -7,7 +7,6 @@ import stylex from "@stylexjs/stylex";
 import { clsx } from "@aiszlab/relax";
 import { Divider } from "../divider";
 import { spacing } from "../theme/tokens.stylex";
-import { ComponentToken } from "../../utils/component-token";
 
 const styles = stylex.create({
   clock: {
@@ -18,7 +17,7 @@ const styles = stylex.create({
 });
 
 const Clock = ({ value, onChange }: ClockProps) => {
-  const classNames = useClassNames(ComponentToken.Clock);
+  const classNames = useClassNames("clock");
   const styled = stylex.props(styles.clock);
   const columns = ["hour", "minute", "second"] satisfies TimeUnit[];
 

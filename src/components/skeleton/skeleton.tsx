@@ -5,7 +5,6 @@ import { useClassNames } from "../../hooks/use-class-names";
 import { SkeletonClassToken } from "../../utils/class-name";
 import { clsx } from "@aiszlab/relax";
 import { OPACITY } from "../theme/tokens.stylex";
-import { ComponentToken } from "../../utils/component-token";
 import { useTheme } from "../theme";
 import { hexToRgba } from "@aiszlab/fuzzy/color";
 
@@ -44,7 +43,7 @@ const styles = stylex.create({
 });
 
 const Skeleton = ({ animation = true, className, style }: SkeletonProps) => {
-  const classNames = useClassNames(ComponentToken.Skeleton);
+  const classNames = useClassNames("skeleton");
   const theme = useTheme();
 
   const styled = stylex.props(

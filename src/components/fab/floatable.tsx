@@ -8,7 +8,6 @@ import { positions } from "../theme/tokens.stylex";
 import { Portal } from "../portal";
 import { useContainer } from "../../hooks/use-container";
 import { useClassNames } from "../../hooks/use-class-names";
-import { ComponentToken } from "../../utils/component-token";
 import { FabClassToken } from "../../utils/class-name";
 
 const styles = stylex.create({
@@ -28,7 +27,7 @@ const styles = stylex.create({
 
 const Floatable = forwardRef<FloatableRef, FloatableProps>(
   ({ container, children, onClick }, ref) => {
-    const classNames = useClassNames(ComponentToken.Fab);
+    const classNames = useClassNames("fab");
     const [id] = useIdentity();
     const _ref = useRef<HTMLDivElement>(null);
     const { attributes, listeners, setNodeRef, transform } = useDraggable({

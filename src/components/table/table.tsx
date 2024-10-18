@@ -8,7 +8,6 @@ import Body from "./body";
 import stylex from "@stylexjs/stylex";
 import { clsx } from "@aiszlab/relax";
 import { useClassNames } from "../../hooks/use-class-names";
-import { ComponentToken } from "../../utils/component-token";
 import { TableClassToken } from "../../utils/class-name";
 
 const styles = stylex.create({
@@ -26,7 +25,7 @@ const Table = <T,>({
   className,
   style,
 }: TableProps<T>) => {
-  const classNames = useClassNames(ComponentToken.Table);
+  const classNames = useClassNames("table");
   const columns = useColumns<T>({ columns: _columns });
   const table = useReactTable({
     columns,

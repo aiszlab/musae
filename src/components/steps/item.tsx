@@ -9,7 +9,6 @@ import { useEvent, clsx } from "@aiszlab/relax";
 import { Context } from "./context";
 import { typography } from "../theme/theme";
 import { Done } from "musae/icons";
-import { ComponentToken } from "../../utils/component-token";
 
 const styles = {
   step: stylex.create({
@@ -115,7 +114,7 @@ const styles = {
 };
 
 const Item = ({ leading, title, description, value }: StepItemProps) => {
-  const classNames = useClassNames(ComponentToken.Steps);
+  const classNames = useClassNames("steps");
   const theme = useTheme();
   const { type, onChange, value: _value, max, size } = useContext(Context);
 

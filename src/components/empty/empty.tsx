@@ -6,7 +6,6 @@ import { spacing } from "../theme/tokens.stylex";
 import { clsx } from "@aiszlab/relax";
 import { typography } from "../theme/theme";
 import { useLocale } from "../../locale";
-import { ComponentToken } from "../../utils/component-token";
 
 const styles = stylex.create({
   empty: {
@@ -27,8 +26,8 @@ const styles = stylex.create({
  * empty component
  */
 const Empty = () => {
-  const classNames = useClassNames(ComponentToken.Empty);
-  const [locale] = useLocale(ComponentToken.Empty);
+  const classNames = useClassNames("empty");
+  const [locale] = useLocale("empty");
 
   const styled = {
     empty: stylex.props(styles.empty),

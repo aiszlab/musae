@@ -21,7 +21,6 @@ import { spacing } from "../theme/tokens.stylex";
 import { typography } from "../theme/theme";
 import { useClassNames } from "../../hooks/use-class-names";
 import { PopoverClassToken } from "../../utils/class-name";
-import { ComponentToken } from "../../utils/component-token";
 import { useIsOpen, useTriggerBy } from "./hooks";
 
 const styles = {
@@ -59,7 +58,7 @@ const Popover = forwardRef(
     const _ref = useRef<T>(null);
     const popperRef = useRef<PopperRef>(null);
     const [isOpen, { turnOn, turnOff, toggle, disappear }] = useIsOpen(popperRef);
-    const classNames = useClassNames(ComponentToken.Popover);
+    const classNames = useClassNames("popover");
     const { isClickable, isContextMenuable, isFocusable, isHoverable } = useTriggerBy(_triggerBy);
 
     const onClick = useEvent((event: MouseEvent<T>) => {

@@ -14,7 +14,6 @@ import { clsx } from "@aiszlab/relax";
 import { useStep } from "./hooks";
 import Spotlight from "./spotlight";
 import { useGutters } from "../../hooks/use-gutters";
-import { ComponentToken } from "../../utils/component-token";
 import { useLocale } from "../../locale";
 
 const styles = stylex.create({
@@ -58,10 +57,10 @@ const Tour = ({
   spotlightPadding = 8,
 }: TourProps) => {
   const theme = useTheme();
-  const classNames = useClassNames(ComponentToken.Tour);
+  const classNames = useClassNames("tour");
   const { step, next, prev, hasNext, hasPrev } = useStep({ steps, open });
   const paddings = useGutters({ gutter: spotlightPadding });
-  const [locale] = useLocale(ComponentToken.Tour);
+  const [locale] = useLocale("tour");
 
   const styled = {
     overlay: stylex.props(styles.overlay({ backgroundColor: theme.colors["surface-dim"] })),

@@ -11,7 +11,6 @@ import { Button } from "../button";
 import { CheckCircle, Close, Loading, Error, NotificationImportant, Warning } from "musae/icons";
 import { typography } from "../theme/theme";
 import type { IconProps } from "musae/types/icon";
-import { ComponentToken } from "../../utils/component-token";
 
 const AXIS: Readonly<Record<Placement, Axis>> = {
   top: "top",
@@ -116,7 +115,7 @@ const Notification = forwardRef<HTMLDivElement, NotificationProps>(
     const axis = AXIS[placement];
     const [scope, animate] = useAnimate<HTMLDivElement>();
     const _placement = PLACEMENTS[axis];
-    const classNames = useClassNames(ComponentToken.Notification);
+    const classNames = useClassNames("notification");
     const notificationRef = useRefs(scope, ref);
 
     // after duration, `Notification` will auto destroy

@@ -6,7 +6,6 @@ import { sizes, spacing } from "../theme/tokens.stylex";
 import { clsx, useControlledState, useEvent } from "@aiszlab/relax";
 import type { TextareaProps } from "musae/types/textarea";
 import { useClassNames } from "../../hooks/use-class-names";
-import { ComponentToken } from "../../utils/component-token";
 import { TextareaClassToken } from "../../utils/class-name";
 
 const styles = stylex.create({
@@ -35,7 +34,7 @@ const Textarea = ({
   onBlur,
 }: TextareaProps) => {
   const theme = useTheme();
-  const classNames = useClassNames(ComponentToken.Textarea);
+  const classNames = useClassNames("textarea");
 
   const [_value, _setValue] = useControlledState(value, { defaultState: "" });
 

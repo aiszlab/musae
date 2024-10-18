@@ -8,11 +8,10 @@ import { useValue } from "./hooks";
 import stylex from "@stylexjs/stylex";
 import { useEvent, clsx } from "@aiszlab/relax";
 import { styles as inputStyles } from "../input";
-import { ComponentToken } from "../../utils/component-token";
 import type { PickerRef } from "musae/types/picker";
 
 const TimePicker = ({ className, ...props }: TimePickerProps) => {
-  const classNames = useClassNames(ComponentToken.TimePicker);
+  const classNames = useClassNames("time-picker");
   const pickerRef = useRef<PickerRef>(null);
   const panelRef = useRef<PanelRef>(null);
   const { value, onChange } = useValue([props.value, pickerRef]);

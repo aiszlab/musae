@@ -9,7 +9,6 @@ import stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { useEvent, clsx } from "@aiszlab/relax";
-import { ComponentToken } from "../../utils/component-token";
 
 const styles = stylex.create({
   node: (props: { level: number }) => ({
@@ -55,7 +54,7 @@ const styles = stylex.create({
 });
 
 const Node = ({ value, children, level, onExpand, ...props }: TreeNodeProps) => {
-  const classNames = useClassNames(ComponentToken.Tree);
+  const classNames = useClassNames("tree");
   const { checkedKeys, onCheck, expandedKeys, onSelect, selectedKeys, selectable } =
     useContext(Context);
   const isChecked = checkedKeys.has(value);

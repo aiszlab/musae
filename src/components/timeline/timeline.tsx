@@ -6,7 +6,6 @@ import { Context } from "./context";
 import { useClassNames } from "../../hooks/use-class-names";
 import { TimelineClassToken } from "../../utils/class-name";
 import { clsx } from "@aiszlab/relax";
-import { ComponentToken } from "../../utils/component-token";
 
 const styles = stylex.create({
   timeline: {
@@ -17,7 +16,7 @@ const styles = stylex.create({
 
 const Timeline = ({ items, mode = "right", size }: TimelineProps) => {
   const styled = stylex.props(styles.timeline);
-  const classNames = useClassNames(ComponentToken.Timeline);
+  const classNames = useClassNames("timeline");
   const total = items.length;
 
   const contextValue = useMemo<ContextValue>(

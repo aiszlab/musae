@@ -7,7 +7,6 @@ import { type PanelsProps } from "musae/types/tabs";
 import { clsx } from "@aiszlab/relax";
 import { isUndefined, isVoid } from "@aiszlab/relax";
 import { useTabsContext } from "./hooks";
-import { ComponentToken } from "../../utils/component-token";
 
 const styles = {
   panels: stylex.create({
@@ -31,7 +30,7 @@ const styles = {
 
 const Panels = ({ forceRender, destroyable, activatedKeys }: PanelsProps) => {
   const { items, activeKey } = useTabsContext();
-  const classNames = useClassNames(ComponentToken.Tabs);
+  const classNames = useClassNames("tabs");
   const styled = {
     panels: stylex.props(styles.panels.default),
     panel: {

@@ -17,7 +17,6 @@ import { useTheme } from "../theme";
 import { typography } from "../theme/theme";
 import { styles as inputStyles } from "../input";
 import { Context } from "./context";
-import { ComponentToken } from "../../utils/component-token";
 
 const styles = stylex.create({
   pickable: (props: { minWidth: CSSProperties["minWidth"] }) => ({
@@ -45,7 +44,7 @@ const Picker = forwardRef<PickerRef, PickerProps>(
   ) => {
     const trigger = useRef<HTMLDivElement>(null);
     const [isOpen, { turnOff: close, toggle, turnOn: open }] = useBoolean();
-    const classNames = useClassNames(ComponentToken.Picker);
+    const classNames = useClassNames("picker");
     const theme = useTheme();
     const pickableRef = useRef<HTMLDivElement>(null);
 

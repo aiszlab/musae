@@ -8,7 +8,6 @@ import { sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { Empty } from "../empty";
 import { useClassNames } from "../../hooks/use-class-names";
-import { ComponentToken } from "../../utils/component-token";
 import { TableClassToken } from "../../utils/class-name";
 
 const styles = stylex.create({
@@ -28,7 +27,7 @@ const styles = stylex.create({
 const Body = <T,>() => {
   const { table, bordered } = useTable<T>();
   const theme = useTheme();
-  const classNames = useClassNames(ComponentToken.Table);
+  const classNames = useClassNames("table");
 
   if (!table) return null;
 

@@ -8,7 +8,6 @@ import { sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { typography } from "../theme/theme";
 import { clsx } from "@aiszlab/relax";
-import { ComponentToken } from "../../utils/component-token";
 import { type Gutters, useGutters } from "../../hooks/use-gutters";
 
 const styles = {
@@ -101,7 +100,7 @@ const Divider = ({
   style,
   margin = 0,
 }: DividerProps) => {
-  const classNames = useClassNames(ComponentToken.Divider);
+  const classNames = useClassNames("divider");
   const offset = useOffset({ align });
   const theme = useTheme();
   const isLabeled = !!children;

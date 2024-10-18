@@ -10,7 +10,6 @@ import { Context } from "./context";
 import { useExpandable } from "../../hooks/use-expandable";
 import { useTheme } from "../theme";
 import { KeyboardArrowRight } from "musae/icons";
-import { ComponentToken } from "../../utils/component-token";
 
 const styles = {
   item: stylex.create({
@@ -70,7 +69,7 @@ const styles = {
 };
 
 const CollapseItem = ({ children, label, value }: CollapseItemProps) => {
-  const classNames = useClassNames(ComponentToken.Collapse);
+  const classNames = useClassNames("collapse");
   const { activeKeys, toggle } = useContext(Context);
   const isExpanded = activeKeys.has(value);
   const [collapser, animate] = useAnimate<HTMLDivElement>();

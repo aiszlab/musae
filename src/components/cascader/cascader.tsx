@@ -3,13 +3,11 @@ import { Picker } from "../picker";
 import { Tag } from "../tag";
 import { useOptions, useValue } from "./hooks";
 import { Menu } from "../menu";
-
 import { useClassNames } from "../../hooks/use-class-names";
 import { CascaderClassToken } from "../../utils/class-name";
 import stylex from "@stylexjs/stylex";
 import { clsx } from "@aiszlab/relax";
 import { spacing } from "../theme/tokens.stylex";
-import { ComponentToken } from "../../utils/component-token";
 
 import type { MenuProps } from "musae/types/menu";
 import type { PickerRef } from "musae/types/picker";
@@ -32,7 +30,7 @@ const Cascader = ({
 }: CascaderProps) => {
   const ref = useRef<PickerRef>(null);
   const close = useCallback(() => ref.current?.close(), []);
-  const classNames = useClassNames(ComponentToken.Cascader);
+  const classNames = useClassNames("cascader");
 
   const {
     readableOptions,

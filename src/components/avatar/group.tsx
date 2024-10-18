@@ -6,7 +6,6 @@ import { useClassNames } from "../../hooks/use-class-names";
 import { AvatarClassToken } from "../../utils/class-name";
 import { Popover } from "../popover";
 import Avatar from "./avatar";
-import { ComponentToken } from "../../utils/component-token";
 import { clsx } from "@aiszlab/relax";
 
 const styles = stylex.create({
@@ -22,7 +21,7 @@ const Group = ({
   size = "medium",
   max = 3,
 }: AvatarGroupProps) => {
-  const classNames = useClassNames(ComponentToken.Avatar);
+  const classNames = useClassNames("avatar");
   const styled = stylex.props(styles.group);
 
   const children = useMemo(() => {

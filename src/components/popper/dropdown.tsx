@@ -7,7 +7,6 @@ import { clsx } from "@aiszlab/relax";
 import { useFloating } from "./hooks";
 import { elevations, positions, sizes } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
-import { ComponentToken } from "../../utils/component-token";
 import { contains } from "@aiszlab/relax/dom";
 
 const styles = {
@@ -78,7 +77,7 @@ const Dropdown = forwardRef<PopperRef, DropdownProps>(
     },
     ref,
   ) => {
-    const classNames = useClassNames(ComponentToken.Popper);
+    const classNames = useClassNames("popper");
     const theme = useTheme();
 
     const { floatableRef, arrowRef, disappear } = useFloating({

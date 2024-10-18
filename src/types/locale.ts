@@ -1,58 +1,56 @@
-import type { ComponentToken } from "../utils/component-token";
-
 export type LocaleCode = "zh_CN" | "en_US";
 
 export interface Locale {
   locale: LocaleCode;
 
-  [ComponentToken.Dialog]: {
+  dialog: {
     confirm: string;
     cancel: string;
   };
 
-  [ComponentToken.Empty]: {
+  empty: {
     placeholder: string;
   };
 
-  [ComponentToken.Pagination]: {
+  pagination: {
     size: string | ((size: number) => string);
   };
 
-  [ComponentToken.Popconfirm]: {
+  popconfirm: {
     confirm: string;
     cancel: string;
   };
 
-  [ComponentToken.TimePicker]: {
+  "time-picker": {
     now: string;
     confirm: string;
   };
 
-  [ComponentToken.Tour]: {
+  tour: {
     prev: string;
     next: string;
     finish: string;
   };
 
-  [ComponentToken.Transfer]: {
+  transfer: {
     unit: string;
   };
 
-  [ComponentToken.I18nButton]: Record<LocaleCode, string>;
+  "i18n-button": Record<LocaleCode, string>;
 
-  [ComponentToken.Drawer]: {
+  drawer: {
     confirm: string;
   };
 
-  [ComponentToken.Upload]: {
+  upload: {
     upload: string;
   };
 
-  [ComponentToken.Form]: {
+  form: {
     required: ((name: string) => string) | string;
   };
 
-  [ComponentToken.Guideline]: {
+  guideline: {
     recommend: string;
     oppose: string;
   };

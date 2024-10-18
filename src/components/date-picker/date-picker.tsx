@@ -9,7 +9,6 @@ import stylex from "@stylexjs/stylex";
 import { clsx } from "@aiszlab/relax";
 import { spacing } from "../theme/tokens.stylex";
 import { styles as inputStyles } from "../input";
-import { ComponentToken } from "../../utils/component-token";
 
 import type { PickerRef } from "musae/types/picker";
 
@@ -22,7 +21,7 @@ const styles = stylex.create({
 const DatePicker = (props: DatePickerProps) => {
   const ref = useRef<PickerRef>(null);
   const { onChange, value } = useValue([props.value, props.onChange, ref]);
-  const classNames = useClassNames(ComponentToken.DatePicker);
+  const classNames = useClassNames("date-picker");
 
   const styled = {
     input: stylex.props(inputStyles.input),

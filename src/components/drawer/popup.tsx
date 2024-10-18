@@ -11,7 +11,6 @@ import { clsx } from "@aiszlab/relax";
 import { typography } from "../theme/theme";
 import { contains } from "@aiszlab/relax/dom";
 import { useClosable } from "../../hooks/use-closable";
-import { ComponentToken } from "../../utils/component-token";
 import { Space } from "../space";
 import { Button } from "../button";
 import { useLocale } from "../../locale";
@@ -108,13 +107,12 @@ const Popup = ({
   ...props
 }: PopupProps) => {
   const [scope, animate] = useAnimate<HTMLDivElement>();
-  const classNames = useClassNames(ComponentToken.Drawer);
+  const classNames = useClassNames("drawer");
   const _placement = PLACEMENTS[placement];
   const theme = useTheme();
   const panelRef = useRef<HTMLDivElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
-
-  const [locale] = useLocale(ComponentToken.Drawer);
+  const [locale] = useLocale("drawer");
 
   // children render hooks
   const { closer, onKeyDown, onOverlayClick } = useClosable({

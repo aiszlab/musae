@@ -9,7 +9,6 @@ import { clsx } from "@aiszlab/relax";
 import { useActiveKeys } from "./hooks";
 import { Context } from "./context";
 import { useTheme } from "../theme";
-import { ComponentToken } from "../../utils/component-token";
 
 const styles = stylex.create({
   collapse: (props: { outlineColor: CSSProperties["borderColor"] }) => ({
@@ -29,7 +28,7 @@ const Collapse = ({
   style,
   accordion = false,
 }: CollapseProps) => {
-  const classNames = useClassNames(ComponentToken.Collapse);
+  const classNames = useClassNames("collapse");
   const [activeKeys, toggle] = useActiveKeys({ defaultActiveKey, activeKey, onChange, accordion });
   const theme = useTheme();
 

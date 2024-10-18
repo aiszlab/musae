@@ -7,7 +7,6 @@ import { typography } from "../theme/theme";
 import { sizes } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { isVoid, clsx } from "@aiszlab/relax";
-import { ComponentToken } from "../../utils/component-token";
 
 const styles = {
   badge: stylex.create({
@@ -75,7 +74,7 @@ const Badge = ({
   invisible = false,
   placement = "top-right",
 }: BadgeProps) => {
-  const classNames = useClassNames(ComponentToken.Badge);
+  const classNames = useClassNames("badge");
   const theme = useTheme();
   const isDot = isVoid(content);
 

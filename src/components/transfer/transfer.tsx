@@ -10,7 +10,6 @@ import { Context } from "./context";
 import { useClassNames } from "../../hooks/use-class-names";
 import { TransferClassToken } from "../../utils/class-name";
 import { clsx } from "@aiszlab/relax";
-import { ComponentToken } from "../../utils/component-token";
 
 const styles = stylex.create({
   transfer: {
@@ -49,7 +48,7 @@ const Transfer = ({
     value,
   });
 
-  const classNames = useClassNames(ComponentToken.Transfer);
+  const classNames = useClassNames("transfer");
 
   const styled = {
     transfer: stylex.props(styles.transfer),

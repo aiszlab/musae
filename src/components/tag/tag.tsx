@@ -8,7 +8,6 @@ import { useTheme } from "../theme";
 import { typography } from "../theme/theme";
 import { spacing } from "../theme/tokens.stylex";
 import { Close } from "musae/icons";
-import { ComponentToken } from "../../utils/component-token";
 
 const styles = stylex.create({
   tag: (props: {
@@ -53,7 +52,7 @@ const Tag = ({
   onClose,
   leading,
 }: TagProps) => {
-  const classNames = useClassNames(ComponentToken.Tag);
+  const classNames = useClassNames("tag");
   const theme = useTheme();
 
   const styled = stylex.props(

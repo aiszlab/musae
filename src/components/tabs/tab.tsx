@@ -4,12 +4,11 @@ import type { TabItemProps } from "musae/types/tabs";
 import Context from "./context";
 import { useClassNames } from "../../hooks/use-class-names";
 import { TabsClassToken } from "../../utils/class-name";
-import { ComponentToken } from "../../utils/component-token";
 
 const Tab = forwardRef<HTMLButtonElement, TabItemProps>(({ value, onClick, label }, ref) => {
   const { activeKey } = useContext(Context) ?? {};
   const isActive = activeKey === value;
-  const classNames = useClassNames(ComponentToken.Tabs);
+  const classNames = useClassNames("tabs");
 
   const click = useCallback(() => {
     onClick(value);

@@ -1,60 +1,59 @@
-import { ComponentToken } from "../../utils/component-token";
 import { type Locale } from "musae/types/locale";
 
 const en_US: Locale = {
   locale: "en_US",
 
-  [ComponentToken.Dialog]: {
+  dialog: {
     confirm: "Confirm",
     cancel: "Cancel",
   },
 
-  [ComponentToken.Empty]: {
+  empty: {
     placeholder: "No Data",
   },
 
-  [ComponentToken.Pagination]: {
+  pagination: {
     size: (size) => `${size} items/page`,
   },
 
-  [ComponentToken.Popconfirm]: {
+  popconfirm: {
     confirm: "Confirm",
     cancel: "Cancel",
   },
 
-  [ComponentToken.TimePicker]: {
+  "time-picker": {
     confirm: "Confirm",
     now: "Now",
   },
 
-  [ComponentToken.Tour]: {
+  tour: {
     finish: "Finish",
     prev: "Prev",
     next: "Next",
   },
 
-  [ComponentToken.Transfer]: {
+  transfer: {
     unit: "items",
   },
 
-  [ComponentToken.I18nButton]: {
+  "i18n-button": {
     zh_CN: "Chinese",
     en_US: "English",
   },
 
-  [ComponentToken.Drawer]: {
+  drawer: {
     confirm: "Confirm",
   },
 
-  [ComponentToken.Upload]: {
+  upload: {
     upload: "Upload",
   },
 
-  [ComponentToken.Form]: {
+  form: {
     required: (name) => `${name} is required`,
   },
 
-  [ComponentToken.Guideline]: {
+  guideline: {
     recommend: "Do",
     oppose: "Don’t",
   },

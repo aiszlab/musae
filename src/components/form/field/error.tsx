@@ -8,7 +8,6 @@ import stylex from "@stylexjs/stylex";
 import { spacing } from "../../theme/tokens.stylex";
 import { useClassNames } from "../../../hooks/use-class-names";
 import { useTheme } from "../../theme";
-import { ComponentToken } from "../../../utils/component-token";
 
 const styles = stylex.create({
   error: (props: { color: CSSProperties["color"] }) => ({
@@ -28,7 +27,7 @@ type Props = ComponentProps & {
 };
 
 const Error = ({ error, className, style }: Props) => {
-  const classNames = useClassNames(ComponentToken.Form);
+  const classNames = useClassNames("form");
   const [scope, animate] = useAnimate<HTMLDivElement>();
   const [isPresent, safeToRemove] = usePresence();
   const theme = useTheme();

@@ -1,7 +1,6 @@
 import React from "react";
 import { QuoteProps } from "musae/types/quote";
 import { useClassNames } from "../../hooks/use-class-names";
-import { ComponentToken } from "../../utils/component-token";
 import { clsx } from "@aiszlab/relax";
 import { QuoteClassToken } from "../../utils/class-name";
 import styles from "./styles";
@@ -10,7 +9,7 @@ import { useTheme } from "../theme";
 import { typography } from "../theme/theme";
 
 const Quote = ({ className, children, style }: QuoteProps) => {
-  const classNames = useClassNames(ComponentToken.Quote);
+  const classNames = useClassNames("quote");
   const theme = useTheme();
 
   const styled = stylex.props(

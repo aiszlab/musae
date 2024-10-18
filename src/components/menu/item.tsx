@@ -10,7 +10,6 @@ import { typography } from "../theme/theme";
 import { useEvent, useHover, clsx } from "@aiszlab/relax";
 import { Popper } from "../popper";
 import { useLazyBoolean } from "../../hooks/use-lazy-boolean";
-import { ComponentToken } from "../../utils/component-token";
 
 const styles = {
   default: stylex.create({
@@ -145,7 +144,7 @@ const styles = {
 const Item = forwardRef<HTMLLIElement, MenuItemProps>(
   ({ level, label, prefix, suffix, value, className, mode, onClick, ...props }, ref) => {
     const { selectedKeys, expandedKeys, click: _click, toggle, size } = useMenuContext();
-    const classNames = useClassNames(ComponentToken.Menu);
+    const classNames = useClassNames("menu");
     const isSelected = selectedKeys.has(value);
     const isExpanded = expandedKeys.has(value);
     const theme = useTheme();

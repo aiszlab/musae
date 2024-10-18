@@ -7,7 +7,6 @@ import { useTheme } from "../theme";
 import { useClassNames } from "../../hooks/use-class-names";
 import { SwitchClassToken } from "../../utils/class-name";
 import { Close, Check } from "musae/icons";
-import { ComponentToken } from "../../utils/component-token";
 import { hexToRgba } from "@aiszlab/fuzzy/color";
 
 const styles = {
@@ -166,7 +165,7 @@ const Switch = ({
   disabled = false,
   onChange,
 }: SwitchProps) => {
-  const classNames = useClassNames(ComponentToken.Switch);
+  const classNames = useClassNames("switch");
   const [isChecked, setIsChecked] = useControlledState(value);
   const theme = useTheme();
 

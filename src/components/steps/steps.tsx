@@ -7,7 +7,6 @@ import stylex from "@stylexjs/stylex";
 import { clsx } from "@aiszlab/relax";
 import { Context } from "./context";
 import { spacing } from "../theme/tokens.stylex";
-import { ComponentToken } from "../../utils/component-token";
 
 const styles = stylex.create({
   steps: {
@@ -42,7 +41,7 @@ const Steps = ({
   onChange,
   size,
 }: StepsProps) => {
-  const classNames = useClassNames(ComponentToken.Steps);
+  const classNames = useClassNames("steps");
 
   const styled = {
     steps: stylex.props(styles.steps, styles[type]),
