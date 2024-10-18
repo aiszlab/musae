@@ -1,6 +1,6 @@
 {
   "name": "musae",
-  "version": "0.3.13",
+  "version": "0.3.14-beta.1",
   "description": "musae-ui",
   "author": "tutu@fantufantu.com",
   "license": "MIT",
@@ -19,30 +19,26 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "require": "./dist/index.cjs",
-      "node": "./dist/index.cjs",
+      "require": "./dist/index.js",
       "import": "./dist/index.mjs",
       "default": "./dist/index.mjs"
     },
     "./styles": "./dist/styles.css",
     "./locales": {
       "types": "./dist/locale/locales/index.d.ts",
-      "require": "./dist/locale/locales/index.cjs",
-      "node": "./dist/locale/locales/index.cjs",
+      "require": "./dist/locale/locales/index.js",
       "import": "./dist/locale/locales/index.mjs",
       "default": "./dist/locale/locales/index.mjs"
     },
     "./icons": {
       "types": "./dist/components/icon/icons/index.d.ts",
-      "require": "./dist/components/icon/icons/index.cjs",
-      "node": "./dist/components/icon/icons/index.cjs",
+      "require": "./dist/components/icon/icons/index.js",
       "import": "./dist/components/icon/icons/index.mjs",
       "default": "./dist/components/icon/icons/index.mjs"
     },
     "./icons/*": {
       "types": "./dist/components/icon/icons/*/index.d.ts",
-      "require": "./dist/components/icon/icons/*/index.cjs",
-      "node": "./dist/components/icon/icons/*/index.cjs",
+      "require": "./dist/components/icon/icons/*/index.js",
       "import": "./dist/components/icon/icons/*/index.mjs",
       "default": "./dist/components/icon/icons/*/index.mjs"
     },
