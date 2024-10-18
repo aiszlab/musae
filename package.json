@@ -20,6 +20,7 @@
     ".": {
       "types": "./dist/index.d.ts",
       "require": "./dist/index.cjs",
+      "node": "./dist/index.cjs",
       "import": "./dist/index.mjs",
       "default": "./dist/index.mjs"
     },
@@ -27,18 +28,21 @@
     "./locales": {
       "types": "./dist/locale/locales/index.d.ts",
       "require": "./dist/locale/locales/index.cjs",
+      "node": "./dist/locale/locales/index.cjs",
       "import": "./dist/locale/locales/index.mjs",
       "default": "./dist/locale/locales/index.mjs"
     },
     "./icons": {
       "types": "./dist/components/icon/icons/index.d.ts",
       "require": "./dist/components/icon/icons/index.cjs",
+      "node": "./dist/components/icon/icons/index.cjs",
       "import": "./dist/components/icon/icons/index.mjs",
       "default": "./dist/components/icon/icons/index.mjs"
     },
     "./icons/*": {
       "types": "./dist/components/icon/icons/*/index.d.ts",
       "require": "./dist/components/icon/icons/*/index.cjs",
+      "node": "./dist/components/icon/icons/*/index.cjs",
       "import": "./dist/components/icon/icons/*/index.mjs",
       "default": "./dist/components/icon/icons/*/index.mjs"
     },
@@ -56,7 +60,6 @@
     "@dnd-kit/modifiers": "^7.0.0",
     "@floating-ui/dom": "^1.6.11",
     "@lexical/code": "^0.18.0",
-    "@lexical/headless": "^0.18.0",
     "@lexical/link": "^0.18.0",
     "@lexical/list": "^0.18.0",
     "@lexical/markdown": "^0.18.0",
