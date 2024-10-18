@@ -53,7 +53,7 @@ const OUTPUS = [
   },
   {
     format: "commonjs",
-    entryFileNames: "[name].js",
+    entryFileNames: "[name].cjs",
   },
 ];
 

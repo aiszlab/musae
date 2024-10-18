@@ -19,26 +19,26 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "require": "./dist/index.js",
+      "require": "./dist/index.cjs",
       "import": "./dist/index.mjs",
       "default": "./dist/index.mjs"
     },
     "./styles": "./dist/styles.css",
     "./locales": {
       "types": "./dist/locale/locales/index.d.ts",
-      "require": "./dist/locale/locales/index.js",
+      "require": "./dist/locale/locales/index.cjs",
       "import": "./dist/locale/locales/index.mjs",
       "default": "./dist/locale/locales/index.mjs"
     },
     "./icons": {
       "types": "./dist/components/icon/icons/index.d.ts",
-      "require": "./dist/components/icon/icons/index.js",
+      "require": "./dist/components/icon/icons/index.cjs",
       "import": "./dist/components/icon/icons/index.mjs",
       "default": "./dist/components/icon/icons/index.mjs"
     },
     "./icons/*": {
       "types": "./dist/components/icon/icons/*/index.d.ts",
-      "require": "./dist/components/icon/icons/*/index.js",
+      "require": "./dist/components/icon/icons/*/index.cjs",
       "import": "./dist/components/icon/icons/*/index.mjs",
       "default": "./dist/components/icon/icons/*/index.mjs"
     },
