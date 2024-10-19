@@ -157,12 +157,12 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         variant === "outlined" &&
           styles.outlined({
             color: theme.colors[color],
-            hoveredBackgroundColor: hexToRgba(theme.colors.primary, OPACITY.thin),
+            hoveredBackgroundColor: hexToRgba(theme.colors.primary, OPACITY.thin, true),
           }),
         variant === "text" &&
           styles.text({
             color: theme.colors[color],
-            hoveredBackgroundColor: hexToRgba(theme.colors.primary, OPACITY.thin),
+            hoveredBackgroundColor: hexToRgba(theme.colors.primary, OPACITY.thin, true),
           }),
         // shape
         styles[shape],
@@ -171,12 +171,12 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           styles.disabled({
             backgroundColor:
               variant === "filled"
-                ? hexToRgba(theme.colors["on-surface"], OPACITY.medium)
+                ? hexToRgba(theme.colors["on-surface"], OPACITY.medium, true)
                 : "transparent",
-            color: hexToRgba(theme.colors["on-surface"], OPACITY.thicker),
+            color: hexToRgba(theme.colors["on-surface"], OPACITY.thicker, true),
             outlineColor:
               variant === "outlined"
-                ? hexToRgba(theme.colors["on-surface"], OPACITY.thicker)
+                ? hexToRgba(theme.colors["on-surface"], OPACITY.thicker, true)
                 : null,
           }),
       ),

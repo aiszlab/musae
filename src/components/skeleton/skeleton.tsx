@@ -48,8 +48,8 @@ const Skeleton = ({ animation = true, className, style }: SkeletonProps) => {
 
   const styled = stylex.props(
     styles.variables({
-      shadow: hexToRgba(theme.colors.shadow, OPACITY.thin),
-      lighterShadow: hexToRgba(theme.colors.shadow, OPACITY.thick),
+      shadow: hexToRgba(theme.colors.shadow, OPACITY.thin, true),
+      lighterShadow: hexToRgba(theme.colors.shadow, OPACITY.thick, true),
     }),
     styles.skeleton,
     animation && styles.animation,

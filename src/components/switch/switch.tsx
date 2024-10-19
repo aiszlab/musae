@@ -182,9 +182,9 @@ const Switch = ({
         backgroundColor: theme.colors["surface-container-highest"],
         color: theme.colors["on-surface-variant"],
         ...(disabled && {
-          borderColor: hexToRgba(theme.colors["on-surface"], OPACITY.medium),
-          backgroundColor: hexToRgba(theme.colors["surface-variant"], OPACITY.medium),
-          color: hexToRgba(theme.colors["on-surface"], OPACITY.thicker),
+          borderColor: hexToRgba(theme.colors["on-surface"], OPACITY.medium, true),
+          backgroundColor: hexToRgba(theme.colors["surface-variant"], OPACITY.medium, true),
+          color: hexToRgba(theme.colors["on-surface"], OPACITY.thicker, true),
         }),
       }),
       isChecked &&
@@ -192,7 +192,7 @@ const Switch = ({
           backgroundColor: theme.colors.primary,
           color: theme.colors["on-primary"],
           ...(disabled && {
-            backgroundColor: hexToRgba(theme.colors["on-surface"], OPACITY.medium),
+            backgroundColor: hexToRgba(theme.colors["on-surface"], OPACITY.medium, true),
             color: theme.colors.surface,
           }),
         }),
@@ -203,7 +203,7 @@ const Switch = ({
         backgroundColor: theme.colors["on-surface-variant"],
         color: theme.colors["surface-container-highest"],
         ...(disabled && {
-          backgroundColor: hexToRgba(theme.colors["on-surface"], OPACITY.thicker),
+          backgroundColor: hexToRgba(theme.colors["on-surface"], OPACITY.thicker, true),
           color: theme.colors["surface-container-highest"],
         }),
       }),
@@ -215,7 +215,7 @@ const Switch = ({
           color: theme.colors["on-primary-container"],
           ...(disabled && {
             backgroundColor: theme.colors.surface,
-            color: hexToRgba(theme.colors["on-surface"], OPACITY.thicker),
+            color: hexToRgba(theme.colors["on-surface"], OPACITY.thicker, true),
           }),
         }),
     ),

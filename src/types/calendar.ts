@@ -28,3 +28,35 @@ export type CalendarProps = ComponentProps & {
    */
   onClick?: (value: Dayjs) => void;
 };
+
+export type Contribution = {
+  /**
+   * @description
+   * contributedAt
+   */
+  contributedAt: Dayjs;
+
+  /**
+   * @description
+   * count
+   */
+  count: number;
+};
+
+/**
+ * @description
+ * contribution calendar props
+ */
+export type ContributionCalendarProps = {
+  /**
+   * @description
+   * year
+   */
+  year: number;
+
+  /**
+   * @description
+   * contributions
+   */
+  contributions?: Contribution[];
+};

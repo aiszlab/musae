@@ -8,6 +8,11 @@ import { clsx } from "@aiszlab/relax";
 const Tooltip = ({ children, className, style, title }: TooltipProps) => {
   const classNames = useClassNames("tooltip");
 
+  // when `title` is invalid, use children only
+  if (!title) {
+    return children;
+  }
+
   // `Tooltip` title is used into `Popover` content!!! not a bug!
   return (
     <Popover

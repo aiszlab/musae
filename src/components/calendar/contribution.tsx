@@ -7,6 +7,7 @@ import { typography } from "../theme/theme";
 import { Tooltip } from "../tooltip";
 import { min } from "@aiszlab/relax";
 import { firstSundayInMonth } from "../../utils/date";
+import { ContributionCalendarProps } from "../../types/calendar";
 
 const styles = {
   calendar: stylex.create({
@@ -21,7 +22,7 @@ const styles = {
     },
 
     scrollable: {
-      maxWidth: "100%",
+      maxWidth: "max-content",
       overflow: "auto",
     },
   }),
@@ -66,25 +67,36 @@ const styles = {
       insetInlineStart: 0,
     },
   }),
-};
 
-interface Props {
-  year: number;
-  gaps?: number[];
-  dataSource?: [string, number][];
-}
+  legend: stylex.create({
+    default: {
+      paddingBlock: spacing.xxsmall,
+      paddingInline: spacing.xxlarge,
+      display: "flex",
+      justifyContent: "flex-end",
+    },
+  }),
+
+  levels: stylex.create({
+    default: {
+      display: "flex",
+      gap: spacing.xxsmall,
+    },
+  }),
+};
 
 /**
  * @description
  * contribution calendar
  * inspired by github
  */
-const ContributionCalendar = ({ year, gaps = [5, 10, 15], dataSource = [] }: Props) => {
+const ContributionCalendar = ({ year, contributions = [] }: ContributionCalendarProps) => {
   const theme = useTheme();
 
   const [from, to] = useMemo(() => {
-    const _to = min([dayjs().subtract(1, "day"), dayjs(`${year}-12-31`)], (_value) =>
-      _value.valueOf(),
+    const _to = min(
+      [dayjs().subtract(1, "days").startOf("days"), dayjs(`${year}-12-31`)],
+      (_value) => _value.valueOf(),
     );
     const _from = _to.subtract(1, "year").add(1, "day");
     return [_from, _to];
@@ -117,11 +129,11 @@ const ContributionCalendar = ({ year, gaps = [5, 10, 15], dataSource = [] }: Pro
     );
   }, [from, start, columns]);
 
-  const heats = useMemo(() => {
-    return dataSource.reduce<Map<string, number>>((prev, [date, count]) => {
-      return prev.set(date, count);
+  const _contributions = useMemo(() => {
+    return contributions.reduce<Map<string, number>>((prev, { contributedAt, count }) => {
+      return prev.set(contributedAt.format("YYYY-MM-DD"), count);
     }, new Map());
-  }, [dataSource]);
+  }, [contributions]);
 
   const styled = {
     scrollable: stylex.props(styles.calendar.scrollable),
@@ -139,6 +151,8 @@ const ContributionCalendar = ({ year, gaps = [5, 10, 15], dataSource = [] }: Pro
       default: stylex.props(styles.month.default),
       leading: stylex.props(styles.month.cell, typography.body.small, styles.month.leading),
     },
+    legend: stylex.props(styles.legend.default, typography.label.medium),
+    levels: stylex.props(styles.levels.default),
   };
 
   return (
@@ -199,7 +213,7 @@ const ContributionCalendar = ({ year, gaps = [5, 10, 15], dataSource = [] }: Pro
                   const gap = column * 7 + weekday;
                   const _at = start.add(gap, "day");
 
-                  if (column === 0 && !_at.isAfter(from)) {
+                  if (column === 0 && _at.isBefore(from)) {
                     return <td key={column} />;
                   }
 
@@ -208,13 +222,10 @@ const ContributionCalendar = ({ year, gaps = [5, 10, 15], dataSource = [] }: Pro
                   }
 
                   const date = _at.format("YYYY-MM-DD");
-                  const count = heats.get(date);
+                  const count = _contributions.get(date) ?? 0;
 
                   return (
-                    <Tooltip
-                      key={column}
-                      title={`${count} contributions at ${_at.format("YYYY-MM-DD")}`}
-                    >
+                    <Tooltip key={column} title={`${count} contributions at ${date}`}>
                       <td className={styled.cell.className} style={styled.cell.style} />
                     </Tooltip>
                   );
@@ -224,6 +235,14 @@ const ContributionCalendar = ({ year, gaps = [5, 10, 15], dataSource = [] }: Pro
           })}
         </tbody>
       </table>
+
+      {/* graph legend */}
+      <div className={styled.legend.className} style={styled.legend.style}>
+        <div className={styled.levels.className} style={styled.levels.style}>
+          <span>Less</span>
+          <span>More</span>
+        </div>
+      </div>
     </div>
   );
 };
