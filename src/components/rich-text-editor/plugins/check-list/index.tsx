@@ -41,12 +41,10 @@ const CheckListPlugin = () => {
       editor.registerRootListener((rootElement, prevRootElement) => {
         if (rootElement !== null) {
           rootElement.addEventListener("click", onEditorClick);
-          //   rootElement.addEventListener("pointerdown", handlePointerDown);
         }
 
         if (prevRootElement !== null) {
           prevRootElement.removeEventListener("click", onEditorClick);
-          //   prevRootElement.removeEventListener("pointerdown", handlePointerDown);
         }
       }),
     );

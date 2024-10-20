@@ -80,8 +80,16 @@ const UploadedItem = ({
 
     if (isPicture) {
       if (item.url) {
-        return <Image src={item.url} {...stylex.props(styles.leading.picture)} />;
+        return (
+          <Image
+            src={item.url}
+            {...stylex.props(styles.leading.picture)}
+            crossOrigin="anonymous"
+            referrerPolicy="strict-origin-when-cross-origin"
+          />
+        );
       }
+
       return <AttachFile {...stylex.props(styles.leading.picture)} />;
     }
 

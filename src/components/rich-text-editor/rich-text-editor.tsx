@@ -270,6 +270,8 @@ const RichTextEditor = forwardRef<RichTextEditorRef, RichTextEditorProps>(
             ...style,
           }}
         >
+          <MarkdownShortcutPlugin />
+
           {!disabled && <ToolbarPlugin />}
 
           <RichTextPlugin
@@ -285,8 +287,6 @@ const RichTextEditor = forwardRef<RichTextEditorRef, RichTextEditorProps>(
           />
 
           <HistoryPlugin />
-
-          <MarkdownShortcutPlugin />
 
           <LinkPlugin />
           <ClickableLinkPlugin disabled={!disabled} newTab />

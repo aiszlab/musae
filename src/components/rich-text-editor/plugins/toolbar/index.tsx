@@ -120,14 +120,6 @@ const ToolbarPlugin = () => {
   useMounted(() => {
     const unregister = chain(
       editor.registerCommand(
-        SELECTION_CHANGE_COMMAND,
-        () => {
-          updateToolbar();
-          return false;
-        },
-        COMMAND_PRIORITY_CRITICAL,
-      ),
-      editor.registerCommand(
         CAN_UNDO_COMMAND,
         (canUndo) => {
           setIsUndoable(canUndo);
@@ -139,6 +131,15 @@ const ToolbarPlugin = () => {
         CAN_REDO_COMMAND,
         (canRedo) => {
           setIsRedoable(canRedo);
+          return false;
+        },
+        COMMAND_PRIORITY_CRITICAL,
+      ),
+      // update toolbar listeners
+      editor.registerCommand(
+        SELECTION_CHANGE_COMMAND,
+        () => {
+          updateToolbar();
           return false;
         },
         COMMAND_PRIORITY_CRITICAL,

@@ -16,12 +16,12 @@ const styles = {
       overflow: "hidden",
       pointerEvents: "none",
       inset: 0,
+      zIndex: positions.popper,
     },
   }),
 
   dropdown: stylex.create({
     default: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
-      zIndex: positions.popper,
       position: "absolute",
       backgroundColor: props.backgroundColor,
       insetBlockStart: 0,

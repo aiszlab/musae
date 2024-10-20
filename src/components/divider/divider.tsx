@@ -19,7 +19,8 @@ const styles = {
     }),
 
     vertical: (props: { margins: Gutters }) => ({
-      height: sizes.full,
+      minHeight: sizes.xxxsmall,
+      maxHeight: sizes.full,
       marginInlineStart: props.margins[0],
       marginInlineEnd: props.margins[1],
     }),
