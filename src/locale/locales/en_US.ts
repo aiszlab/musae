@@ -57,6 +57,12 @@ const en_US: Locale = {
     recommend: "Do",
     oppose: "Don’t",
   },
+
+  "contribution-calendar": {
+    less: "Less",
+    more: "More",
+    contribution: (count, at) => `${count || "No"} contributions at ${at}`,
+  },
 };
 
 export default en_US;

@@ -57,6 +57,12 @@ const zh_CN: Locale = {
     recommend: "建议",
     oppose: "禁止",
   },
+
+  "contribution-calendar": {
+    less: "更少",
+    more: "更多",
+    contribution: (count, at) => `${count} 次贡献于 ${at}`,
+  },
 };
 
 export default zh_CN;

@@ -1,4 +1,4 @@
-import React, { type ReactNode, useContext, useMemo, type CSSProperties } from "react";
+import React, { useContext, useMemo, type CSSProperties } from "react";
 import { toFunction, useEvent } from "@aiszlab/relax";
 import stylex from "@stylexjs/stylex";
 import { sizes, spacing } from "../../theme/tokens.stylex";
@@ -51,7 +51,7 @@ const Cell = ({
   sortDirections: _sortDirections,
 }: HeaderCellProps) => {
   const { sortDescriptor, onSortChange } = useContext(Context);
-  const children = toFunction<() => ReactNode>(_children)();
+  const children = toFunction(_children)();
   const theme = useTheme();
 
   // convert sort directions to usable

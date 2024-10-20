@@ -54,4 +54,10 @@ export interface Locale {
     recommend: string;
     oppose: string;
   };
+
+  "contribution-calendar": {
+    less: string;
+    more: string;
+    contribution: ((count: number, at: string) => string) | string;
+  };
 }

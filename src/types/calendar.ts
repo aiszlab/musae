@@ -59,4 +59,18 @@ export type ContributionCalendarProps = {
    * contributions
    */
   contributions?: Contribution[];
+
+  /**
+   * @description
+   * gap
+   * @default 5
+   */
+  gap?: number;
+
+  /**
+   * @description
+   * levels
+   * @default 5
+   */
+  levels?: number;
 };

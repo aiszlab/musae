@@ -5,9 +5,13 @@ import { sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { typography } from "../theme/theme";
 import { Tooltip } from "../tooltip";
-import { min } from "@aiszlab/relax";
+import { clamp, min, toFunction } from "@aiszlab/relax";
 import { firstSundayInMonth } from "../../utils/date";
-import { ContributionCalendarProps } from "../../types/calendar";
+import { ContributionCalendarProps } from "musae/types/calendar";
+import { hexToHsla } from "@aiszlab/fuzzy/color";
+import { useLocale } from "../../locale";
+
+const FORMAT = "YYYY-MM-DD";
 
 const styles = {
   calendar: stylex.create({
@@ -81,6 +85,13 @@ const styles = {
     default: {
       display: "flex",
       gap: spacing.xxsmall,
+      alignItems: "center",
+    },
+
+    level: {
+      width: "var(--cell-size)",
+      height: "var(--cell-size)",
+      borderRadius: sizes.xxxxxxsmall,
     },
   }),
 };
@@ -90,8 +101,14 @@ const styles = {
  * contribution calendar
  * inspired by github
  */
-const ContributionCalendar = ({ year, contributions = [] }: ContributionCalendarProps) => {
+const ContributionCalendar = ({
+  year,
+  contributions = [],
+  levels = 5,
+  gap = 5,
+}: ContributionCalendarProps) => {
   const theme = useTheme();
+  const [locale] = useLocale("contribution-calendar");
 
   const [from, to] = useMemo(() => {
     const _to = min(
@@ -131,16 +148,16 @@ const ContributionCalendar = ({ year, contributions = [] }: ContributionCalendar
 
   const _contributions = useMemo(() => {
     return contributions.reduce<Map<string, number>>((prev, { contributedAt, count }) => {
-      return prev.set(contributedAt.format("YYYY-MM-DD"), count);
+      return prev.set(contributedAt.format(FORMAT), count);
     }, new Map());
   }, [contributions]);
 
   const styled = {
-    scrollable: stylex.props(styles.calendar.scrollable),
-    calendar: stylex.props(
+    scrollable: stylex.props(
       styles.calendar.variables({ color: theme.colors.primary }),
-      styles.calendar.default,
+      styles.calendar.scrollable,
     ),
+    calendar: stylex.props(styles.calendar.default),
     cell: stylex.props(styles.cell.default),
     weekday: {
       cell: stylex.props(styles.weekday.cell, typography.body.small),
@@ -153,7 +170,19 @@ const ContributionCalendar = ({ year, contributions = [] }: ContributionCalendar
     },
     legend: stylex.props(styles.legend.default, typography.label.medium),
     levels: stylex.props(styles.levels.default),
+    level: stylex.props(styles.levels.level),
   };
+
+  // how to get different levels
+  // convert primary color into hsla color
+  // use `s` change to get different levels
+  const { 0: h } = hexToHsla(theme.colors.primary);
+
+  const _levels = Array.from({ length: levels - 1 }).map((_, index) => gap * index);
+  const heatStep = Math.floor(100 / Math.max(_levels.length, 1));
+  const _heats = Array.from({ length: levels }).map((_, index) => {
+    return `hsl(${[h, index * heatStep + "%", `80%`].join(",")})`;
+  });
 
   return (
     <div className={styled.scrollable.className} style={styled.scrollable.style}>
@@ -221,12 +250,19 @@ const ContributionCalendar = ({ year, contributions = [] }: ContributionCalendar
                     return <td key={column} />;
                   }
 
-                  const date = _at.format("YYYY-MM-DD");
+                  const date = _at.format(FORMAT);
                   const count = _contributions.get(date) ?? 0;
+                  const levelAt = clamp(Math.ceil(count / gap), 0, levels);
 
                   return (
-                    <Tooltip key={column} title={`${count} contributions at ${date}`}>
-                      <td className={styled.cell.className} style={styled.cell.style} />
+                    <Tooltip key={column} title={toFunction(locale.contribution)(count, date)}>
+                      <td
+                        className={styled.cell.className}
+                        style={{
+                          ...styled.cell.style,
+                          backgroundColor: _heats[levelAt],
+                        }}
+                      />
                     </Tooltip>
                   );
                 })}
@@ -239,8 +275,20 @@ const ContributionCalendar = ({ year, contributions = [] }: ContributionCalendar
       {/* graph legend */}
       <div className={styled.legend.className} style={styled.legend.style}>
         <div className={styled.levels.className} style={styled.levels.style}>
-          <span>Less</span>
-          <span>More</span>
+          <span>{locale.less}</span>
+          {_heats.map((color) => {
+            return (
+              <div
+                className={styled.level.className}
+                key={color}
+                style={{
+                  ...styled.level.style,
+                  backgroundColor: color,
+                }}
+              />
+            );
+          })}
+          <span>{locale.more}</span>
         </div>
       </div>
     </div>
