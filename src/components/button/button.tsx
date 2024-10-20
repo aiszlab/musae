@@ -14,7 +14,7 @@ import { hexToRgba } from "@aiszlab/fuzzy/color";
 const styles = stylex.create({
   button: {
     // why add position?
-    position: "relative",
+    // position: "relative",
     overflow: "hidden",
     display: "inline-flex",
     alignItems: "center",
@@ -24,7 +24,6 @@ const styles = stylex.create({
     transitionProperty: "all",
     transitionDuration: "0.3s",
     willChange: "background-color, color, box-shadow",
-    flexShrink: 0,
   },
 
   small: {
