@@ -24,6 +24,12 @@ export interface ContextValue {
    * class names
    */
   classNames: ClassNames;
+
+  /**
+   * @description
+   * prefix
+   */
+  prefix: string;
 }
 
 /**

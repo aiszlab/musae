@@ -5,6 +5,7 @@ import type { ContextValue } from "musae/types/config";
 const Context = createContext<ContextValue>({
   notifier: null,
   classNames: DEFAULT_CLASS_NAMES,
+  prefix: "musae",
 });
 
 export default Context;

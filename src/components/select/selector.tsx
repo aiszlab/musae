@@ -60,7 +60,16 @@ const Selector: ForwardRefExoticComponent<
       <>
         {Array.from(value.entries()).map(([key, label]) => {
           return (
-            <Tag key={key} size="small" closable onClose={() => onChange(key)}>
+            <Tag
+              key={key}
+              size="small"
+              closable
+              onClose={(event) => {
+                // stop event: in `Select`, it will trigger and open the popup
+                event.stopPropagation();
+                onChange(key);
+              }}
+            >
               {label}
             </Tag>
           );

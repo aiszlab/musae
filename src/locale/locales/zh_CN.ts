@@ -63,6 +63,11 @@ const zh_CN: Locale = {
     more: "更多",
     contribution: (count, at) => `${count} 次贡献于 ${at}`,
   },
+
+  "rich-text-editor": {
+    checkList: "任务列表",
+    codeBlock: "代码块",
+  },
 };
 
 export default zh_CN;

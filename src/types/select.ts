@@ -74,6 +74,13 @@ export type SelectProps<T extends ValueOrValues = ValueOrValues> = ComponentProp
      * @default void 0
      */
     onChange?: (value: T) => void;
+
+    /**
+     * @description
+     * invalid
+     * @default false
+     */
+    invalid?: boolean;
   };
 
 /**

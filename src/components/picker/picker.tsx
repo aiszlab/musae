@@ -39,6 +39,7 @@ const Picker = forwardRef<PickerRef, PickerProps>(
       onPopperExited,
       onPopperExite,
       onBlur: _onBlur,
+      invalid = false,
     },
     ref,
   ) => {
@@ -86,6 +87,10 @@ const Picker = forwardRef<PickerRef, PickerProps>(
           outlineColor: theme.colors.outline,
           focusedOutlineColor: theme.colors.primary,
         }),
+        invalid &&
+          inputStyles.invalid({
+            outlineColor: theme.colors.error,
+          }),
       ),
       pickable: stylex.props(
         styles.pickable({

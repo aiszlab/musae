@@ -41,8 +41,7 @@ import type {
   RichTextEditorRef,
   RichTextEditorProps,
 } from "musae/types/rich-text-editor";
-import { useClassNames } from "../../hooks/use-class-names";
-import { RichTextEditorClassToken } from "../../utils/class-name";
+import { useClassNames } from "./hooks";
 
 const styles = stylex.create({
   shell: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
@@ -60,7 +59,7 @@ const styles = stylex.create({
     "--code-background-color": props.codeBackgroundColor,
   }),
 
-  editor: {
+  textarea: {
     outline: "none",
     paddingInline: spacing.large,
     paddingBlock: spacing.medium,
@@ -90,24 +89,51 @@ const styles = stylex.create({
     },
   },
 
-  list: {},
-
   checkbox: {
     position: "absolute",
     insetInlineStart: spacing.xxsmall,
     insetBlockStart: spacing.xxsmall,
   },
-
-  listItem: {
-    outline: "none",
-    position: "relative",
-    paddingInline: spacing.xlarge,
-  },
-
-  listItemChecked: {
-    textDecoration: "line-through",
-  },
 });
+
+const _styles = {
+  list: {
+    unordered: stylex.create({
+      default: {
+        listStyleType: "disc",
+        listStylePosition: "outside",
+      },
+
+      checkable: {
+        listStyleType: "none",
+      },
+    }),
+
+    ordered: stylex.create({
+      default: {
+        listStyleType: "decimal",
+        listStylePosition: "outside",
+      },
+    }),
+
+    item: stylex.create({
+      default: {
+        outline: "none",
+        position: "relative",
+        marginInline: spacing.xlarge,
+      },
+
+      checkable: {
+        marginInline: spacing.none,
+        paddingInline: spacing.xlarge,
+      },
+
+      checked: {
+        textDecoration: "line-through",
+      },
+    }),
+  },
+};
 
 const RichTextEditor = forwardRef<RichTextEditorRef, RichTextEditorProps>(
   (
@@ -119,7 +145,7 @@ const RichTextEditor = forwardRef<RichTextEditorRef, RichTextEditorProps>(
     const theme = useTheme();
     const _use = useDefault(() => props.use ?? "serialized");
     const controlledStatePluginRef = useRef<ControlledStatePluginRef>(null);
-    const classNames = useClassNames("rich-text-editor");
+    const classNames = useClassNames();
 
     const styled = {
       shell: stylex.props(
@@ -130,7 +156,7 @@ const RichTextEditor = forwardRef<RichTextEditorRef, RichTextEditorProps>(
           codeBackgroundColor: theme.colors["surface-container-highest"],
         }),
       ),
-      editor: stylex.props(!disabled && styles.editor),
+      textarea: stylex.props(!disabled && styles.textarea),
       h1: stylex.props(typography.display.large),
       h2: stylex.props(typography.display.medium),
       h3: stylex.props(typography.display.small),
@@ -140,10 +166,7 @@ const RichTextEditor = forwardRef<RichTextEditorRef, RichTextEditorProps>(
       code: stylex.props(styles.code),
       inlineCode: stylex.props(styles.inlineCode),
       link: stylex.props(styles.link),
-      listItem: {
-        default: stylex.props(styles.listItem),
-        checked: stylex.props(styles.listItemChecked),
-      },
+
       checkbox: {
         unchecked: stylex.props(checkboxStyles.trigger.default, styles.checkbox),
         checked: stylex.props(
@@ -151,6 +174,16 @@ const RichTextEditor = forwardRef<RichTextEditorRef, RichTextEditorProps>(
           checkboxStyles.trigger.checked,
           styles.checkbox,
         ),
+      },
+      list: {
+        unordered: stylex.props(_styles.list.unordered.default),
+        ordered: stylex.props(_styles.list.ordered.default),
+        checkable: stylex.props(_styles.list.unordered.checkable),
+        item: {
+          default: stylex.props(_styles.list.item.default),
+          unchecked: stylex.props(_styles.list.item.checkable),
+          checked: stylex.props(_styles.list.item.checkable, _styles.list.item.checked),
+        },
       },
     };
 
@@ -170,8 +203,12 @@ const RichTextEditor = forwardRef<RichTextEditorRef, RichTextEditorProps>(
         },
         link: styled.link.className,
         list: {
-          listitem: styled.listItem.default.className,
-          listitemChecked: styled.listItem.checked.className,
+          ul: styled.list.unordered.className,
+          ol: styled.list.ordered.className,
+          checklist: styled.list.checkable.className,
+          listitem: styled.list.item.default.className,
+          listitemUnchecked: styled.list.item.unchecked.className,
+          listitemChecked: styled.list.item.checked.className,
         },
         checkList: {
           checkbox: {
@@ -227,11 +264,7 @@ const RichTextEditor = forwardRef<RichTextEditorRef, RichTextEditorProps>(
     return (
       <LexicalComposer initialConfig={initialConfig}>
         <div
-          className={clsx(
-            classNames[RichTextEditorClassToken.RichTextEditor],
-            className,
-            styled.shell.className,
-          )}
+          className={clsx(classNames.default, className, styled.shell.className)}
           style={{
             ...styled.shell.style,
             ...style,
@@ -242,11 +275,8 @@ const RichTextEditor = forwardRef<RichTextEditorRef, RichTextEditorProps>(
           <RichTextPlugin
             contentEditable={
               <ContentEditable
-                className={clsx(
-                  classNames[RichTextEditorClassToken.Editable],
-                  styled.editor.className,
-                )}
-                style={styled.editor.style}
+                className={clsx(classNames.textarea, styled.textarea.className)}
+                style={styled.textarea.style}
                 placeholder={placeholder ?? (() => null)}
                 aria-placeholder={props["aria-placeholder"] ?? ""}
               />

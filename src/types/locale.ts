@@ -60,4 +60,9 @@ export interface Locale {
     more: string;
     contribution: ((count: number, at: string) => string) | string;
   };
+
+  "rich-text-editor": {
+    checkList: string;
+    codeBlock: string;
+  };
 }

@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import type { MouseEvent, ReactNode } from "react";
 import type { ComponentProps } from "musae/types/element";
 
 type Size = "small" | "medium" | "large";
@@ -33,7 +33,7 @@ export type TagProps = ComponentProps & {
    * @description
    * close handler
    */
-  onClose?: () => void;
+  onClose?: (event: MouseEvent<HTMLSpanElement>) => void;
 
   /**
    * @description

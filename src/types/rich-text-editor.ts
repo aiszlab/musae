@@ -76,6 +76,7 @@ export type DropdownProps<T> = {
   value: T | T[];
   onChange: (value: T) => void;
   children?: ReactNode;
+  width?: number;
 };
 
 /**

@@ -6,7 +6,7 @@ import { CLASS_NAMES, DEFAULT_CLASS_NAMES, addPrefix } from "../../utils/class-n
 import { LocaleContext, DEFAULT_LOCALE } from "../../locale";
 import { merge } from "@aiszlab/relax";
 
-const ConfigProvider = ({ children, prefix, locale: _locale }: ConfigProps) => {
+const ConfigProvider = ({ children, prefix = "musae", locale: _locale }: ConfigProps) => {
   const notifierRef = useRef<HolderRef>(null);
 
   const classNames = useMemo(() => {
@@ -23,6 +23,7 @@ const ConfigProvider = ({ children, prefix, locale: _locale }: ConfigProps) => {
       value={{
         notifier: notifierRef,
         classNames,
+        prefix,
       }}
     >
       <LocaleContext.Provider value={locale}>

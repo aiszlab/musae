@@ -3,9 +3,8 @@ import type { RichTextEditorProps, RichTextEditorRef } from "musae/types/rich-te
 import { Skeleton } from "../skeleton";
 import stylex from "@stylexjs/stylex";
 import { sizes } from "../theme/tokens.stylex";
-import { useClassNames } from "../../hooks/use-class-names";
+import { useClassNames } from "./hooks";
 import { clsx } from "@aiszlab/relax";
-import { RichTextEditorClassToken } from "../../utils/class-name";
 
 const _RichTextEditor = lazy(() => import("./rich-text-editor"));
 
@@ -20,17 +19,13 @@ const styles = stylex.create({
 const RichTextEditor = forwardRef<RichTextEditorRef, RichTextEditorProps>(
   ({ className, style, ...props }, ref) => {
     const styled = stylex.props(styles.loading);
-    const classNames = useClassNames("rich-text-editor");
+    const classNames = useClassNames();
 
     return (
       <Suspense
         fallback={
           <Skeleton
-            className={clsx(
-              classNames[RichTextEditorClassToken.Loading],
-              className,
-              styled.className,
-            )}
+            className={clsx(classNames.loading, className, styled.className)}
             style={{
               ...styled.style,
               ...style,

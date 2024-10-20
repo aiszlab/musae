@@ -46,6 +46,8 @@ const styles = stylex.create({
     borderBottomColor: props.outlineColor,
     borderBottomStyle: "solid",
     overflow: "auto",
+
+    paddingInline: spacing.xxsmall,
   }),
 });
 
@@ -180,11 +182,11 @@ const ToolbarPlugin = () => {
 
         <Divider orientation="vertical" />
 
-        <Dropdown items={blockFormats} value={blockFormat} onChange={formatBlock} />
+        <Dropdown items={blockFormats} value={blockFormat} onChange={formatBlock} width={80} />
 
         <Divider orientation="vertical" />
 
-        <Dropdown items={fontSizes} value={fontSize} onChange={updateFontSize} />
+        <Dropdown items={fontSizes} value={fontSize} onChange={updateFontSize} width={40} />
 
         <Divider orientation="vertical" />
 

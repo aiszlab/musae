@@ -21,14 +21,16 @@ import {
   FormatStrikethrough,
   Subscript,
   Superscript,
+  Code,
 } from "musae/icons";
 import { $patchStyleText, $setBlocksType } from "@lexical/selection";
 import { $createHeadingNode, type HeadingTagType } from "@lexical/rich-text";
 import { INSERT_CHECK_LIST_COMMAND } from "@lexical/list";
 import { $createCodeNode } from "@lexical/code";
 import type { DropdownProps } from "musae/types/rich-text-editor";
+import { useLocale } from "../../../../locale";
 
-type BlockFormat = HeadingTagType | "paragraph" | "check" | "code-block";
+type BlockFormat = HeadingTagType | "paragraph" | "check" | "code";
 export type FontFormat = "strikethrough" | "subscript" | "superscript";
 
 const DEFAULT_FONT_SIZE = "15px";
@@ -88,6 +90,7 @@ export const useHandlers = ({ isLink }: { isLink: boolean }) => {
  */
 export const useBlockFormats = () => {
   const [editor] = useLexicalComposerContext();
+  const [locale] = useLocale("rich-text-editor");
 
   const blockFormats = useMemo<DropdownProps<BlockFormat>["items"]>(
     () =>
@@ -144,19 +147,19 @@ export const useBlockFormats = () => {
         [
           "check",
           {
-            label: "Check List",
+            label: locale.checkList,
             prefix: <Checklist />,
           },
         ],
         [
-          "code-block",
+          "code",
           {
-            label: "Check List",
-            prefix: <Checklist />,
+            label: locale.codeBlock,
+            prefix: <Code />,
           },
         ],
       ]),
-    [],
+    [locale],
   );
 
   const [blockFormat, setBlockFormat] = useState<BlockFormat>("paragraph");
@@ -185,7 +188,7 @@ export const useBlockFormats = () => {
       return;
     }
 
-    if (_blockFormat === "code-block") {
+    if (_blockFormat === "code") {
       editor.update(() => {
         const selection = $getSelection();
         if (!selection) return;

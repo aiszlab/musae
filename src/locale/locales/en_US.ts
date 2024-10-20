@@ -63,6 +63,11 @@ const en_US: Locale = {
     more: "More",
     contribution: (count, at) => `${count || "No"} contributions at ${at}`,
   },
+
+  "rich-text-editor": {
+    checkList: "Check List",
+    codeBlock: "Code Block",
+  },
 };
 
 export default en_US;

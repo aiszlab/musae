@@ -579,11 +579,6 @@ export const CLASS_NAMES = {
   quote: {
     [QuoteClassToken.Quote]: "quote",
   },
-  "rich-text-editor": {
-    [RichTextEditorClassToken.RichTextEditor]: "rich-text-editor",
-    [RichTextEditorClassToken.Loading]: "rich-text-editor--loading",
-    [RichTextEditorClassToken.Editable]: "rich-text-editor__editable",
-  },
   upload: {
     [UploadClassToken.Upload]: "upload",
     [UploadClassToken.UploadedList]: "upload__uploaded-list",

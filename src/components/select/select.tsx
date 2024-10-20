@@ -34,6 +34,7 @@ const Select = <T extends ValueOrValues = ValueOrValues>({
   value,
   onChange: _onChange,
   onBlur,
+  invalid = false,
 }: SelectProps<T>) => {
   const ref = useRef<PickerRef>(null);
   const selectorRef = useRef<SelectorRef>(null);
@@ -80,6 +81,7 @@ const Select = <T extends ValueOrValues = ValueOrValues>({
       pickableClassName={styled.pickable.className}
       pickableStyle={styled.pickable.style}
       onPopperExite={reset}
+      invalid={invalid}
       {...(!searchable && {
         onBlur,
       })}

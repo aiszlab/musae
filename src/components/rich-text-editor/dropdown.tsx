@@ -5,12 +5,22 @@ import { Menu } from "../menu";
 import { Empty } from "../empty";
 import { toArray, useEvent } from "@aiszlab/relax";
 import type { DropdownProps } from "musae/types/rich-text-editor";
+import stylex from "@stylexjs/stylex";
+
+const _styles = stylex.create({
+  label: (props: { width?: number }) => ({
+    width: props.width,
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+  }),
+});
 
 const Dropdown = <T extends Key = Key>({
   items: _items = new Map(),
   value: _value,
   onChange,
   children,
+  width,
 }: DropdownProps<T>) => {
   const popoverRef = useRef<PopoverRef>(null);
 
@@ -45,7 +55,9 @@ const Dropdown = <T extends Key = Key>({
       ref={popoverRef}
     >
       <Button variant="text" size="small">
-        {children ?? _items.get(value[0])?.label}
+        <span {...stylex.props(_styles.label({ width }))}>
+          {children ?? _items.get(value[0])?.label}
+        </span>
       </Button>
     </Popover>
   );

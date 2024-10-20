@@ -62,6 +62,13 @@ export interface PickerProps
    * pickable style
    */
   pickableStyle?: CSSProperties;
+
+  /**
+   * @description
+   * invalid
+   * @default false
+   */
+  invalid?: boolean;
 }
 
 /**
