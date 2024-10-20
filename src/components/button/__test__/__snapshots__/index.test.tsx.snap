@@ -5,7 +5,7 @@ exports[`\`Button\` Component disabled variant render 1`] = `
   <button
     class="musae-button button__styles.button theme__label.medium button__styles.medium button__styles.filled button__styles.rounded button__styles.disabled"
     disabled=""
-    style="--backgroundColor: rgba(29, 27, 32, 0.12); --color: rgba(29, 27, 32, 0.38); --borderColor: initial;"
+    style="--backgroundColor: rgba(29,27,32,0.12); --color: rgba(29,27,32,0.38); --borderColor: initial;"
     type="button"
   >
     disabled filled
@@ -13,7 +13,7 @@ exports[`\`Button\` Component disabled variant render 1`] = `
   <button
     class="musae-button button__styles.button theme__label.medium button__styles.medium button__styles.outlined button__styles.rounded button__styles.disabled"
     disabled=""
-    style="--1e2mv7m: rgba(103, 80, 164, 0.08); --backgroundColor: transparent; --color: rgba(29, 27, 32, 0.38); --borderColor: rgba(29, 27, 32, 0.38);"
+    style="--1e2mv7m: rgba(103,80,164,0.08); --backgroundColor: transparent; --color: rgba(29,27,32,0.38); --borderColor: rgba(29,27,32,0.38);"
     type="button"
   >
     disabled outlined
@@ -21,7 +21,7 @@ exports[`\`Button\` Component disabled variant render 1`] = `
   <button
     class="musae-button button__styles.button theme__label.medium button__styles.medium button__styles.text button__styles.rounded button__styles.disabled"
     disabled=""
-    style="--1e2mv7m: rgba(103, 80, 164, 0.08); --backgroundColor: transparent; --color: rgba(29, 27, 32, 0.38); --borderColor: initial;"
+    style="--1e2mv7m: rgba(103,80,164,0.08); --backgroundColor: transparent; --color: rgba(29,27,32,0.38); --borderColor: initial;"
     type="button"
   >
     disabled text
@@ -40,14 +40,14 @@ exports[`\`Button\` Component variant render 1`] = `
   </button>
   <button
     class="musae-button button__styles.button theme__label.medium button__styles.medium button__styles.outlined button__styles.rounded"
-    style="--borderColor: #6750A4; --color: #6750A4; --1e2mv7m: rgba(103, 80, 164, 0.08);"
+    style="--borderColor: #6750A4; --color: #6750A4; --1e2mv7m: rgba(103,80,164,0.08);"
     type="button"
   >
     outlined
   </button>
   <button
     class="musae-button button__styles.button theme__label.medium button__styles.medium button__styles.text button__styles.rounded"
-    style="--color: #6750A4; --1e2mv7m: rgba(103, 80, 164, 0.08);"
+    style="--color: #6750A4; --1e2mv7m: rgba(103,80,164,0.08);"
     type="button"
   >
     text
