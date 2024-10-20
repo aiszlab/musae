@@ -1,6 +1,7 @@
 import type { DOMAttributes, ReactElement, ReactNode, RefAttributes } from "react";
 import type { ComponentProps } from "musae/types/element";
 import type { Placement } from "@floating-ui/dom";
+import type { PopperProps } from "./popper";
 
 export type ChildProps<T> = Pick<
   DOMAttributes<T>,
@@ -70,6 +71,12 @@ export type PopoverProps<P extends ChildProps<T>, T extends HTMLElement> = Compo
    * @default false
    */
   arrow?: boolean;
+
+  /**
+   * @description
+   * offset
+   */
+  offset?: PopperProps["offset"];
 };
 
 /**

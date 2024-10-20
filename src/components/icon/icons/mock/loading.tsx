@@ -10,7 +10,10 @@ const loading = stylex.keyframes({
 
 const styles = stylex.create({
   loading: {
-    animation: `${loading} 1s infinite linear`,
+    animationName: loading,
+    animationDuration: "1s",
+    animationTimingFunction: "linear",
+    animationIterationCount: "infinite",
   },
 });
 

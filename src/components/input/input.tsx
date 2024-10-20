@@ -4,10 +4,11 @@ import type { InputProps, InputRef } from "musae/types/input";
 import { useControlledState, useFocus, clsx } from "@aiszlab/relax";
 import { InputClassToken } from "../../utils/class-name";
 import stylex from "@stylexjs/stylex";
-import { sizes, spacing } from "../theme/tokens.stylex";
+import { OPACITY, sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { useClassNames } from "../../hooks/use-class-names";
 import { typography } from "../theme/theme";
+import { hexToRgba } from "@aiszlab/fuzzy/color";
 
 export const styles = stylex.create({
   inputor: (props: {
@@ -19,6 +20,7 @@ export const styles = stylex.create({
     cursor: "text",
     borderRadius: sizes.xxxxxsmall,
     verticalAlign: "bottom",
+    outline: sizes.none,
 
     minHeight: sizes.medium,
     minWidth: sizes.xxxxxxlarge,
@@ -55,11 +57,17 @@ export const styles = stylex.create({
   input: {
     backgroundColor: "transparent",
     outline: sizes.none,
-    border: sizes.none,
+    borderWidth: sizes.none,
     minWidth: sizes.none,
     height: sizes.auto,
     flex: 1,
   },
+
+  disabled: (props: { backgroundColor: string; color: string; outlineColor: string }) => ({
+    backgroundColor: props.backgroundColor,
+    color: props.color,
+    boxShadow: `0px 0px 0px ${sizes.smallest} ${props.outlineColor}`,
+  }),
 });
 
 /**
@@ -133,6 +141,12 @@ const Input = forwardRef<InputRef, InputProps>(
           styles.invalid({
             outlineColor: theme.colors.error,
           }),
+        disabled &&
+          styles.disabled({
+            backgroundColor: hexToRgba(theme.colors["on-surface"], OPACITY.thin, true),
+            color: hexToRgba(theme.colors["on-surface"], OPACITY.thicker, true),
+            outlineColor: hexToRgba(theme.colors["on-surface"], OPACITY.thicker, true),
+          }),
       ),
       input: stylex.props(styles.input),
     };
@@ -152,8 +166,10 @@ const Input = forwardRef<InputRef, InputProps>(
           ...styled.inputor.style,
           ...style,
         }}
-        tabIndex={-1}
         onClick={inputorEvents.click}
+        {...(!disabled && {
+          tabIndex: -1,
+        })}
       >
         {/* leading */}
         {leading}

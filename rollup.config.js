@@ -115,6 +115,7 @@ const config = () => {
         stylex({
           fileName: STYLES_ASSET_FILENAME,
           classNamePrefix: "musaex-",
+          styleResolution: "property-specificity",
           unstable_moduleResolution: {
             type: "commonJS",
             rootDir: dirname(fileURLToPath(import.meta.url)),

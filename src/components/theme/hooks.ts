@@ -111,12 +111,12 @@ export const PALETTE: Readonly<Palette> = {
 const styles = stylex.create({
   default: {
     "::view-transition-old(root)": {
-      animation: "none",
+      animationName: "none",
       mixBlendMode: "normal",
     },
 
     "::view-transition-new(root)": {
-      animation: "none",
+      animationName: "none",
       mixBlendMode: "normal",
     },
   },

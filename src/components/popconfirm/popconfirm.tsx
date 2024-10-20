@@ -5,7 +5,6 @@ import React, {
   isValidElement,
   type MouseEvent,
   type CSSProperties,
-  type RefObject,
 } from "react";
 import type { PopconfirmProps, ChildProps } from "musae/types/popconfirm";
 import stylex from "@stylexjs/stylex";
@@ -29,8 +28,12 @@ const styles = stylex.create({
 
     // layout
     display: "grid",
-    grid: "'leading title' '. content' 'footer footer'",
+    gridTemplateAreas: "'leading title' '. content' 'footer footer'",
     gap: spacing.small,
+  },
+
+  simple: {
+    gridTemplateAreas: "'leading content' 'footer footer'",
   },
 
   leading: (props: { color: CSSProperties["color"] }) => ({
@@ -54,7 +57,7 @@ const styles = stylex.create({
   },
 });
 
-const Popconfirm = <P extends ChildProps<T>, T extends HTMLElement>({
+const Popconfirm = ({
   content,
   title,
   onConfirm,
@@ -63,15 +66,16 @@ const Popconfirm = <P extends ChildProps<T>, T extends HTMLElement>({
   placement = "top",
   children: _children,
   style,
-}: PopconfirmProps<P, T>) => {
-  const ref = useRef<T>(null);
+  offset,
+}: PopconfirmProps) => {
+  const ref = useRef<HTMLDivElement>(null);
   const [isOpen, { turnOff, toggle }] = useBoolean();
   const classNames = useClassNames("popconfirm");
   const popperRef = useRef<PopperRef>(null);
   const theme = useTheme();
   const [locale] = useLocale("popconfirm");
 
-  const onClick = useEvent((event: MouseEvent<T>) => {
+  const onClick = useEvent((event: MouseEvent<HTMLDivElement>) => {
     event.stopPropagation();
     toggle();
   });
@@ -87,20 +91,17 @@ const Popconfirm = <P extends ChildProps<T>, T extends HTMLElement>({
   });
 
   const children = useMemo(() => {
-    const props: ChildProps<T> = {
+    const props: ChildProps<HTMLDivElement> = {
       ref,
       onClick,
     };
 
-    if (isValidElement<ChildProps<T>>(_children)) {
-      return cloneElement<ChildProps<T>>(_children, props);
+    if (isValidElement<ChildProps<HTMLDivElement>>(_children)) {
+      return cloneElement(_children, props);
     }
 
     return (
-      <div
-        ref={ref as unknown as RefObject<HTMLDivElement>}
-        onClick={onClick as unknown as (e: MouseEvent<HTMLDivElement>) => void}
-      >
+      <div ref={ref} onClick={onClick}>
         {_children}
       </div>
     );
@@ -111,7 +112,7 @@ const Popconfirm = <P extends ChildProps<T>, T extends HTMLElement>({
   }, [popperRef, ref]);
 
   const styled = {
-    popconfirm: stylex.props(styles.popconfirm),
+    popconfirm: stylex.props(styles.popconfirm, !title && styles.simple),
     leading: stylex.props(styles.leading({ color: theme.colors.warning })),
     title: stylex.props(styles.title, typography.title.medium),
     content: stylex.props(styles.content, typography.body.medium),
@@ -122,7 +123,14 @@ const Popconfirm = <P extends ChildProps<T>, T extends HTMLElement>({
     <>
       {children}
 
-      <Popper trigger={ref.current} open={isOpen} arrow placement={placement} ref={popperRef}>
+      <Popper
+        trigger={ref.current}
+        open={isOpen}
+        arrow
+        placement={placement}
+        ref={popperRef}
+        offset={offset}
+      >
         <div
           className={clsx(
             classNames[PopconfirmClassToken.Popconfirm],
@@ -138,12 +146,14 @@ const Popconfirm = <P extends ChildProps<T>, T extends HTMLElement>({
             <Warning />
           </div>
 
-          <div
-            className={clsx(classNames[PopconfirmClassToken.Title], styled.title.className)}
-            style={styled.title.style}
-          >
-            {title}
-          </div>
+          {!!title && (
+            <div
+              className={clsx(classNames[PopconfirmClassToken.Title], styled.title.className)}
+              style={styled.title.style}
+            >
+              {title}
+            </div>
+          )}
 
           <div
             className={clsx(classNames[PopconfirmClassToken.Description], styled.content.className)}

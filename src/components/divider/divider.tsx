@@ -104,8 +104,10 @@ const Divider = ({
   const classNames = useClassNames("divider");
   const offset = useOffset({ align });
   const theme = useTheme();
-  const isLabeled = !!children;
   const margins = useGutters({ gutter: margin });
+
+  // only in horizontal, divider will be labeled
+  const isLabeled = !!children && orientation === "horizontal";
 
   const styled = {
     divider: stylex.props(
@@ -131,7 +133,7 @@ const Divider = ({
         ...style,
       }}
     >
-      {!!children && (
+      {isLabeled && (
         <span
           className={clsx(classNames[DividerClassToken.Label], styled.label.className)}
           style={styled.label.style}

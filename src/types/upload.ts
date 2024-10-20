@@ -129,7 +129,7 @@ export type UploadProps = {
    * @description
    * item render
    */
-  renderItem?: "picture" | ((item: FileItem) => ReactNode);
+  renderItem?: "picture" | ((item: FileItem) => ReactNode) | false;
 };
 
 /**

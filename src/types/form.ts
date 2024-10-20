@@ -136,6 +136,12 @@ export interface FormItemProps<T extends FieldValues = FieldValues>
    * label
    */
   label?: string;
+
+  /**
+   * @description
+   * support
+   */
+  support?: ReactNode;
 }
 
 /**

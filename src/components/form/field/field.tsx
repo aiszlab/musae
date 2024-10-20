@@ -4,21 +4,12 @@ import { useController } from "react-hook-form";
 import type { RequiredIn } from "@aiszlab/relax/types";
 import { chain, isRefable, clsx, toFunction } from "@aiszlab/relax";
 import { FormClassToken } from "../../../utils/class-name";
-import stylex from "@stylexjs/stylex";
-import { sizes, spacing } from "../../theme/tokens.stylex";
 import Layout from "./layout";
 import Error from "./error";
 import { AnimatePresence } from "framer-motion";
-import { typography } from "../../theme/theme";
 import { useClassNames } from "../../../hooks/use-class-names";
 import { useLocale } from "../../../locale";
-
-const styles = stylex.create({
-  supporting: {
-    minHeight: sizes.xsmall,
-    paddingBlock: spacing.xxsmall,
-  },
-});
+import Support from "./support";
 
 /**
  * @description
@@ -30,6 +21,7 @@ const Field = ({
   children: _children,
   className,
   style,
+  support,
   ...props
 }: RequiredIn<FormItemProps, "name" | "required">) => {
   const classNames = useClassNames("form");
@@ -78,21 +70,20 @@ const Field = ({
       .at(0);
   }, [_children, name, value, invalid, ref, onChange, onBlur]);
 
-  const styled = {
-    supporting: stylex.props(styles.supporting, typography.body.small),
-  };
-
   return (
-    <Layout label={props.label} required={required} className={classNames[FormClassToken.Item]}>
+    <Layout
+      label={props.label}
+      required={required}
+      className={classNames[FormClassToken.Item]}
+      supporting={
+        <>
+          <Support>{support}</Support>
+          <AnimatePresence mode="wait">{invalid && <Error error={error} />}</AnimatePresence>
+        </>
+      }
+    >
       <div className={clsx(classNames[FormClassToken.Field], className)} style={style}>
         {children}
-      </div>
-
-      <div
-        className={clsx(classNames[FormClassToken.FieldSupporting], styled.supporting.className)}
-        style={styled.supporting.style}
-      >
-        <AnimatePresence mode="wait">{invalid && <Error error={error} />}</AnimatePresence>
       </div>
     </Layout>
   );

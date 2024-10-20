@@ -125,6 +125,11 @@ const UploadedList = forwardRef<UploadedListRef, UploadedListProps>(
       onChange?.(_values);
     });
 
+    // no uploaded file, no render!
+    if (items.size === 0) {
+      return null;
+    }
+
     const styled = {
       list: stylex.props(styles.list),
       item: stylex.props(styles.item, typography.body.small),

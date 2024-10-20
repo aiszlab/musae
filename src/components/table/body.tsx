@@ -20,7 +20,7 @@ const styles = stylex.create({
   }),
 
   bordered: {
-    borderInline: sizes.smallest,
+    borderInlineWidth: sizes.smallest,
   },
 });
 

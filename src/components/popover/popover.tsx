@@ -52,6 +52,7 @@ const Popover = forwardRef(
       children: _children,
       padding = true,
       arrow = true,
+      offset,
     }: PopoverProps<P, T>,
     ref: ForwardedRef<PopoverRef>,
   ) => {
@@ -193,6 +194,7 @@ const Popover = forwardRef(
           placement={placement}
           ref={popperRef}
           disappearable={false}
+          offset={offset}
         >
           <div
             className={clsx(

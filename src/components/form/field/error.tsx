@@ -5,13 +5,11 @@ import { FormClassToken } from "../../../utils/class-name";
 import { clsx } from "@aiszlab/relax";
 import { useAnimate, usePresence } from "framer-motion";
 import stylex from "@stylexjs/stylex";
-import { spacing } from "../../theme/tokens.stylex";
 import { useClassNames } from "../../../hooks/use-class-names";
 import { useTheme } from "../../theme";
 
 const styles = stylex.create({
   error: (props: { color: CSSProperties["color"] }) => ({
-    paddingInline: spacing.large,
     color: props.color,
     height: 0,
     overflow: "hidden",

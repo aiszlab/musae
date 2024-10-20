@@ -5,6 +5,7 @@ import type { FieldValues } from "react-hook-form";
 import { useClassNames } from "../../hooks/use-class-names";
 import { clsx } from "@aiszlab/relax";
 import { FormClassToken } from "../../utils/class-name";
+import Support from "./field/support";
 
 /**
  * @description
@@ -29,6 +30,7 @@ const Item = <T extends FieldValues = FieldValues>({
       label={props.label}
       labelCol={props.labelCol}
       wrapperCol={props.wrapperCol}
+      supporting={<Support>{props.support}</Support>}
       required={required}
       space
       className={classNames[FormClassToken.Item]}

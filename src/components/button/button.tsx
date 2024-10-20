@@ -13,6 +13,7 @@ import { hexToRgba } from "@aiszlab/fuzzy/color";
 
 const styles = stylex.create({
   button: {
+    // why add position?
     position: "relative",
     overflow: "hidden",
     display: "inline-flex",
@@ -64,7 +65,7 @@ const styles = stylex.create({
     backgroundColor: CSSProperties["backgroundColor"];
     color: CSSProperties["color"];
   }) => ({
-    border: "none",
+    borderWidth: sizes.none,
     backgroundColor: props.backgroundColor,
     color: props.color,
     boxShadow: {

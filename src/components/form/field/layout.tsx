@@ -5,10 +5,12 @@ import Context from "../context";
 import { Grid } from "../../grid";
 import stylex from "@stylexjs/stylex";
 import { typography } from "../../theme/theme";
-import { spacing } from "../../theme/tokens.stylex";
+import { sizes, spacing } from "../../theme/tokens.stylex";
 import { useTheme } from "../../theme";
 import { clsx } from "@aiszlab/relax";
 import { ComponentProps } from "musae/types/element";
+import { useClassNames } from "../../../hooks/use-class-names";
+import { FormClassToken } from "../../../utils/class-name";
 
 const { Row, Col } = Grid;
 
@@ -24,6 +26,15 @@ const styles = stylex.create({
       marginRight: spacing.xxsmall,
     },
   }),
+
+  supporting: {
+    minHeight: sizes.xsmall,
+    paddingInline: spacing.large,
+    paddingBlock: spacing.xxsmall,
+    gap: spacing.xxsmall,
+    display: "flex",
+    flexDirection: "column",
+  },
 });
 
 /**
@@ -66,20 +77,27 @@ type Props = ComponentProps & {
    * if this item has margin space
    */
   space?: boolean;
+
+  /**
+   * @description
+   * supporting
+   */
+  supporting?: ReactNode;
 };
 
 /**
  * @description
  * item layout
  */
-const Layout = ({ required, space, className, style, ...props }: Props) => {
+const Layout = ({ required, space = false, className, style, supporting, ...props }: Props) => {
   const contextValue = useContext(Context);
   const labelCol = props.labelCol ?? contextValue.labelCol;
   const wrapperCol = props.wrapperCol ?? contextValue.wrapperCol;
   const theme = useTheme();
+  const classNames = useClassNames("form");
 
   const styled = {
-    item: stylex.props(!!space && styles.space),
+    item: stylex.props(space && !supporting && styles.space),
     label: stylex.props(
       required &&
         styles.required({
@@ -87,6 +105,7 @@ const Layout = ({ required, space, className, style, ...props }: Props) => {
         }),
       typography.label.small,
     ),
+    supporting: stylex.props(styles.supporting, typography.body.small),
   };
 
   const isLabeled = !!labelCol && !!props.label;
@@ -115,6 +134,21 @@ const Layout = ({ required, space, className, style, ...props }: Props) => {
 
       {/* input */}
       <Col span={wrapperCol}>{props.children}</Col>
+
+      {/* supporting */}
+      {!!supporting && (
+        <Col span={24}>
+          <div
+            className={clsx(
+              classNames[FormClassToken.FieldSupporting],
+              styled.supporting.className,
+            )}
+            style={styled.supporting.style}
+          >
+            {supporting}
+          </div>
+        </Col>
+      )}
     </Row>
   );
 };

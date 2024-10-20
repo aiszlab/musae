@@ -28,11 +28,12 @@ const styles = stylex.create({
   }),
 
   skeleton: {
-    background: "var(--shadow)",
+    backgroundColor: "var(--shadow)",
   },
 
   animation: {
-    background:
+    backgroundColor: null,
+    backgroundImage:
       "linear-gradient(90deg, var(--shadow) 25%, var(--lighter-shadow) 37%, var(--shadow) 63%)",
     backgroundSize: "400% 100%",
     animationName: animation,
