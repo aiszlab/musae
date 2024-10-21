@@ -24,6 +24,7 @@ const config = (api) => {
         {
           dev: isDev,
           test: isTest,
+          useCSSLayers: "true",
           unstable_moduleResolution: {
             type: "commonJS",
             rootDir: __dirname,
