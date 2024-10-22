@@ -52,7 +52,15 @@ const Image = ({
   };
 
   if (status === "loading") {
-    return <Skeleton className={styled.loading.className} style={styled.loading.style} />;
+    return (
+      <Skeleton
+        className={clsx(className, styled.loading.className)}
+        style={{
+          ...styled.loading.style,
+          ...style,
+        }}
+      />
+    );
   }
 
   return (
