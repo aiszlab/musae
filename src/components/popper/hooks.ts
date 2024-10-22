@@ -95,6 +95,8 @@ export const useFloating = ({
     await Promise.all([
       onExit?.(),
       animate(floatableRef.current, { opacity: 0 }, { duration: 0.2 }).then(() => {
+        // Popper is unmounted
+        if (!floatableRef.current) return;
         floatableRef.current.style.display = "none";
       }),
     ]);

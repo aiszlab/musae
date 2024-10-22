@@ -1,10 +1,12 @@
 import React, { type ReactNode, type CSSProperties } from "react";
 import stylex from "@stylexjs/stylex";
 import { useTheme } from "../../theme";
+import { spacing } from "../../theme/tokens.stylex";
 
 const styles = stylex.create({
   support: (props: { color: CSSProperties["color"] }) => ({
     color: props.color,
+    marginBlock: spacing.xxsmall,
   }),
 });
 

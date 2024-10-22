@@ -17,7 +17,7 @@ const styles = {
       /// reset ul styles
       margin: spacing.none,
       padding: spacing.none,
-      listStyle: "none",
+      listStyleType: "none",
       color: props.color,
       overflow: "auto",
     }),

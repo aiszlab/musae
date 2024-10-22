@@ -6,6 +6,7 @@ import { RateClassToken } from "../../utils/class-name";
 import { clsx } from "@aiszlab/relax";
 import { useHover, useValue } from "./hooks";
 import Star from "./star";
+import { spacing } from "../theme/tokens.stylex";
 
 const styles = {
   rate: stylex.create({
@@ -13,6 +14,11 @@ const styles = {
       display: "flex",
       flexDirection: "row",
       alignItems: "center",
+
+      // reset styles
+      listStyleType: "none",
+      margin: spacing.none,
+      padding: spacing.none,
     },
   }),
 };

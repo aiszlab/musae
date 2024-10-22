@@ -22,6 +22,9 @@ const styles = {
       willChange: "background-color, border, color",
       transitionProperty: "background-color, border, color",
       transitionDuration: "0.2s",
+
+      // reset styles
+      boxSizing: "border-box",
     },
   }),
 
@@ -55,6 +58,7 @@ const styles = {
           insetInline: 0,
           insetBlockEnd: 0,
           borderBottomWidth: sizes.xxxxxxsmall,
+          borderBottomStyle: "solid",
           willChange: "border-color",
           transitionProperty: "border-color",
           transitionDuration: "0.2s",
@@ -184,7 +188,6 @@ const Item = forwardRef<HTMLLIElement, MenuItemProps>(
 
     const styled = {
       menuItem: stylex.props(styles.mode.menuitem[mode]),
-
       item: stylex.props(
         styles.default.item,
         styles.size[size]({ level }),

@@ -30,8 +30,6 @@ const styles = stylex.create({
   supporting: {
     minHeight: sizes.xsmall,
     paddingInline: spacing.large,
-    paddingBlock: spacing.xxsmall,
-    gap: spacing.xxsmall,
     display: "flex",
     flexDirection: "column",
   },
@@ -95,6 +93,7 @@ const Layout = ({ required, space = false, className, style, supporting, ...prop
   const wrapperCol = props.wrapperCol ?? contextValue.wrapperCol;
   const theme = useTheme();
   const classNames = useClassNames("form");
+  const isLabeled = labelCol > 0 && !!props.label;
 
   const styled = {
     item: stylex.props(space && !supporting && styles.space),
@@ -108,29 +107,23 @@ const Layout = ({ required, space = false, className, style, supporting, ...prop
     supporting: stylex.props(styles.supporting, typography.body.small),
   };
 
-  const isLabeled = !!labelCol && !!props.label;
-  const _className = clsx(className, styled.item.className);
-  const _style = {
-    ...styled.item.style,
-    ...style,
-  };
-
-  if (!isLabeled) {
-    return (
-      <div className={_className} style={_style}>
-        {props.children}
-      </div>
-    );
-  }
-
   return (
-    <Row gutter={[0, 8]} className={_className} style={_style}>
+    <Row
+      gutter={[0, 8]}
+      className={clsx(className, styled.item.className)}
+      style={{
+        ...styled.item.style,
+        ...style,
+      }}
+    >
       {/* label */}
-      <Col span={labelCol}>
-        <span className={clsx(styled.label.className)} style={styled.label.style}>
-          {props.label}
-        </span>
-      </Col>
+      {isLabeled && (
+        <Col span={labelCol}>
+          <span className={clsx(styled.label.className)} style={styled.label.style}>
+            {props.label}
+          </span>
+        </Col>
+      )}
 
       {/* input */}
       <Col span={wrapperCol}>{props.children}</Col>

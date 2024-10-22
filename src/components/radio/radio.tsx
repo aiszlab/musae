@@ -22,7 +22,7 @@ const styles = {
     },
   }),
 
-  trigger: stylex.create({
+  input: stylex.create({
     default: (props: { borderColor: CSSProperties["borderColor"] }) => ({
       visibility: "hidden",
       height: sizes.xxxsmall,
@@ -31,6 +31,9 @@ const styles = {
       justifyContent: "center",
       alignItems: "center",
       cursor: "inherit",
+
+      // reset styles
+      margin: spacing.none,
 
       "::after": {
         content: "''",
@@ -127,19 +130,19 @@ const Radio = ({ children, value, checked, disabled = false, ...props }: RadioPr
 
   const styled = {
     radio: stylex.props(styles.radio.default, isDisabled && styles.radio.disabled),
-    trigger: stylex.props(
-      styles.trigger.default({
+    input: stylex.props(
+      styles.input.default({
         borderColor: theme.colors.outline,
       }),
       isChecked &&
-        styles.trigger.checked({
+        styles.input.checked({
           borderColor: theme.colors.primary,
         }),
       isDisabled &&
-        styles.trigger.disabled({
+        styles.input.disabled({
           backgroundColor: theme.colors["inverse-primary"],
         }),
-      !isChecked && styles.trigger.unckecked,
+      !isChecked && styles.input.unckecked,
     ),
     label: stylex.props(typography.body.medium, styles.label.default),
   };
@@ -154,8 +157,8 @@ const Radio = ({ children, value, checked, disabled = false, ...props }: RadioPr
         checked={isChecked}
         onChange={change}
         disabled={isDisabled}
-        className={styled.trigger.className}
-        style={styled.trigger.style}
+        className={styled.input.className}
+        style={styled.input.style}
       />
 
       {children && (

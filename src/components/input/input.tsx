@@ -30,6 +30,9 @@ export const styles = stylex.create({
     // box shadow is not added into layout
     boxShadow: `0px 0px 0px ${sizes.smallest} ${props.outlineColor}`,
 
+    // reset styles
+    boxSizing: "border-box",
+
     // layout
     margin: spacing.none,
     paddingBlock: spacing.xxsmall,
@@ -55,9 +58,12 @@ export const styles = stylex.create({
   }),
 
   input: {
+    // reset styles
+    lineHeight: "inherit",
+    padding: spacing.none,
+    borderWidth: sizes.none,
     backgroundColor: "transparent",
     outline: sizes.none,
-    borderWidth: sizes.none,
     minWidth: sizes.none,
     height: sizes.auto,
     flex: 1,

@@ -34,6 +34,10 @@ const styles = stylex.create({
     display: "flex",
     justifyContent: "center",
   },
+
+  body: {
+    borderCollapse: "collapse",
+  },
 });
 
 const Calendar = ({
@@ -61,6 +65,7 @@ const Calendar = ({
       }),
     ),
     heading: stylex.props(styles.heading),
+    body: stylex.props(styles.body),
   };
 
   return (
@@ -109,7 +114,7 @@ const Calendar = ({
         />
       </header>
 
-      <table>
+      <table className={styled.body.className} style={styled.body.style}>
         <thead>
           <tr>{headCells}</tr>
         </thead>

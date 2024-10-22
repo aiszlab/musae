@@ -7,6 +7,7 @@ import { useClassNames } from "../../hooks/use-class-names";
 import { BreadcrumbClassToken } from "../../utils/class-name";
 import { clsx } from "@aiszlab/relax";
 import Item from "./item";
+import { spacing } from "../theme/tokens.stylex";
 
 const styles = stylex.create({
   breadcrumb: (props: { color: CSSProperties["color"] }) => ({
@@ -14,7 +15,9 @@ const styles = stylex.create({
   }),
 
   navigations: {
-    listStyle: "none",
+    margin: spacing.none,
+    padding: spacing.none,
+    listStyleType: "none",
     display: "flex",
     flexWrap: "wrap",
   },

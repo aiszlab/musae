@@ -15,6 +15,9 @@ const styles = stylex.create({
   pagination: {
     display: "flex",
     columnGap: spacing.xxsmall,
+    listStyleType: "none",
+    margin: spacing.none,
+    padding: spacing.none,
   },
 
   sizer: {

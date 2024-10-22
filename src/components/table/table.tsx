@@ -13,6 +13,9 @@ import { TableClassToken } from "../../utils/class-name";
 const styles = stylex.create({
   table: {
     width: "100%",
+
+    // reset styles
+    borderCollapse: "collapse",
   },
 });
 

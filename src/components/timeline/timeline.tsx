@@ -6,16 +6,21 @@ import { Context } from "./context";
 import { useClassNames } from "../../hooks/use-class-names";
 import { TimelineClassToken } from "../../utils/class-name";
 import { clsx } from "@aiszlab/relax";
+import { spacing } from "../theme/tokens.stylex";
 
 const styles = stylex.create({
   timeline: {
+    // reset styles
+    margin: spacing.none,
+    padding: spacing.none,
+
+    // apply styles
     display: "flex",
     flexDirection: "column",
   },
 });
 
 const Timeline = ({ items, mode = "right", size }: TimelineProps) => {
-  const styled = stylex.props(styles.timeline);
   const classNames = useClassNames("timeline");
   const total = items.length;
 
@@ -27,6 +32,8 @@ const Timeline = ({ items, mode = "right", size }: TimelineProps) => {
     }),
     [mode, total, size],
   );
+
+  const styled = stylex.props(styles.timeline);
 
   return (
     <Context.Provider value={contextValue}>

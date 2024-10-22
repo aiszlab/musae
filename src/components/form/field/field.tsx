@@ -77,7 +77,7 @@ const Field = ({
       className={classNames[FormClassToken.Item]}
       supporting={
         <>
-          <Support>{support}</Support>
+          {!!support && <Support>{support}</Support>}
           <AnimatePresence mode="wait">{invalid && <Error error={error} />}</AnimatePresence>
         </>
       }

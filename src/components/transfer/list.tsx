@@ -37,12 +37,19 @@ const styles = stylex.create({
     textAlign: "end",
     flex: "auto",
   },
+
+  body: {
+    padding: spacing.none,
+    margin: spacing.none,
+  },
 });
 
 const List = ({ options, title, onChange, value }: TransferListProps) => {
   const theme = useTheme();
   const { disabled } = useContext(Context);
   const classNames = useClassNames("transfer");
+  const [locale] = useLocale("transfer");
+
   const styled = {
     list: stylex.props(styles.list({ outlineColor: theme.colors["outline-variant"] })),
     header: stylex.props(
@@ -50,8 +57,8 @@ const List = ({ options, title, onChange, value }: TransferListProps) => {
       typography.body.medium,
     ),
     title: stylex.props(styles.title),
+    body: stylex.props(styles.body),
   };
-  const [locale] = useLocale("transfer");
 
   return (
     <div
@@ -75,7 +82,10 @@ const List = ({ options, title, onChange, value }: TransferListProps) => {
       </div>
 
       <Checkbox.Group value={value} onChange={onChange} disabled={disabled}>
-        <ul className={classNames[TransferClassToken.Body]}>
+        <ul
+          className={clsx(classNames[TransferClassToken.Body], styled.body.className)}
+          style={styled.body.style}
+        >
           {options.map((option) => {
             return <Item key={option.value} label={option.label} value={option.value} />;
           })}

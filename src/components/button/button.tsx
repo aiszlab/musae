@@ -13,17 +13,27 @@ import { hexToRgba } from "@aiszlab/fuzzy/color";
 
 const styles = stylex.create({
   button: {
-    // why add position?
-    // position: "relative",
-    overflow: "hidden",
     display: "inline-flex",
     alignItems: "center",
     justifyContent: "center",
     gap: spacing.small,
-    whiteSpace: "nowrap",
     transitionProperty: "all",
     transitionDuration: "0.3s",
     willChange: "background-color, color, box-shadow",
+
+    // reset styles
+    borderWidth: sizes.none,
+    backgroundColor: "transparent",
+    overflow: "hidden",
+    whiteSpace: "nowrap",
+    textOverflow: "ellipsis",
+    cursor: "pointer",
+    fontFamily: "inherit",
+  },
+
+  // ripple
+  ripple: {
+    position: "relative",
   },
 
   small: {
@@ -67,9 +77,9 @@ const styles = stylex.create({
     borderWidth: sizes.none,
     backgroundColor: props.backgroundColor,
     color: props.color,
-    boxShadow: {
-      default: null,
-      ":hover": elevations.xsmall,
+
+    ":hover": {
+      boxShadow: elevations.xsmall,
     },
   }),
 
@@ -81,9 +91,9 @@ const styles = stylex.create({
     borderStyle: "solid",
     borderColor: props.color,
     color: props.color,
-    backgroundColor: {
-      default: null,
-      ":hover": props.hoveredBackgroundColor,
+
+    ":hover": {
+      backgroundColor: props.hoveredBackgroundColor,
     },
   }),
 
@@ -92,9 +102,9 @@ const styles = stylex.create({
     hoveredBackgroundColor: CSSProperties["backgroundColor"];
   }) => ({
     color: props.color,
-    backgroundColor: {
-      default: null,
-      ":hover": props.hoveredBackgroundColor,
+
+    ":hover": {
+      backgroundColor: props.hoveredBackgroundColor,
     },
   }),
 
@@ -145,6 +155,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     const styled = {
       button: stylex.props(
         styles.button,
+        ripple && styles.ripple,
         typography.label[size],
         // size
         styles[size],

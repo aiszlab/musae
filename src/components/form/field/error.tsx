@@ -7,10 +7,12 @@ import { useAnimate, usePresence } from "framer-motion";
 import stylex from "@stylexjs/stylex";
 import { useClassNames } from "../../../hooks/use-class-names";
 import { useTheme } from "../../theme";
+import { spacing } from "../../theme/tokens.stylex";
 
 const styles = stylex.create({
   error: (props: { color: CSSProperties["color"] }) => ({
     color: props.color,
+    marginBlock: spacing.xxsmall,
     height: 0,
     overflow: "hidden",
   }),
@@ -57,7 +59,7 @@ const Error = ({ error, className, style }: Props) => {
       }}
       ref={scope}
     >
-      <p>{error?.message}</p>
+      {error?.message}
     </div>
   );
 };

@@ -15,10 +15,13 @@ const styles = stylex.create({
     backgroundColor: CSSProperties["backgroundColor"];
     borderColor: CSSProperties["borderColor"];
   }) => ({
+    // reset styles
+    borderWidth: sizes.none,
+
+    // apply styles
     backgroundColor: props.backgroundColor,
     textAlign: "start",
     position: "relative",
-
     paddingInline: spacing.small,
     paddingBlock: spacing.medium,
     borderColor: props.borderColor,

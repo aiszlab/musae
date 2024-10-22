@@ -7,6 +7,10 @@ const styles = stylex.create({
   }),
 
   quote: {
+    // reset styles
+    margin: spacing.none,
+
+    // apply styles
     position: "relative",
     paddingInlineStart: spacing.medium,
 

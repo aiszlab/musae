@@ -15,6 +15,7 @@ const Item = <T extends FieldValues = FieldValues>({
   required = false,
   className,
   style,
+  support,
   ...props
 }: FormItemProps<T>) => {
   const classNames = useClassNames("form");
@@ -30,7 +31,7 @@ const Item = <T extends FieldValues = FieldValues>({
       label={props.label}
       labelCol={props.labelCol}
       wrapperCol={props.wrapperCol}
-      supporting={<Support>{props.support}</Support>}
+      supporting={!!support && <Support>{support}</Support>}
       required={required}
       space
       className={classNames[FormClassToken.Item]}

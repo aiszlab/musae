@@ -70,6 +70,8 @@ const styles = {
         transformOrigin: "50% 50%",
         transform: "translate(50%, 75%) rotate(-45deg)",
 
+        borderTopWidth: sizes.none,
+        borderRightWidth: sizes.none,
         borderBottomWidth: sizes.xxxxxxsmall,
         borderLeftWidth: sizes.xxxxxxsmall,
         borderStyle: "solid",

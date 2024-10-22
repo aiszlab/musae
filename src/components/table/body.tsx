@@ -12,11 +12,16 @@ import { TableClassToken } from "../../utils/class-name";
 
 const styles = stylex.create({
   cell: (props: { borderColor: CSSProperties["borderColor"] }) => ({
+    // reset styles
+    borderInlineWidth: sizes.none,
+    borderBlockStartWidth: sizes.none,
+
+    // apply styles
     paddingInline: spacing.small,
     paddingBlock: spacing.medium,
     borderColor: props.borderColor,
     borderStyle: "solid",
-    borderBottomWidth: sizes.smallest,
+    borderBlockEndWidth: sizes.smallest,
   }),
 
   bordered: {
@@ -32,9 +37,9 @@ const Body = <T,>() => {
   if (!table) return null;
 
   const styled = stylex.props(
+    styles.cell({ borderColor: theme.colors["outline-variant"] }),
     bordered && styles.bordered,
     typography.body.small,
-    styles.cell({ borderColor: theme.colors["outline-variant"] }),
   );
 
   const rows = table.getRowModel().rows;

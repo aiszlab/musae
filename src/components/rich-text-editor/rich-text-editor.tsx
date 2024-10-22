@@ -92,16 +92,23 @@ const styles = stylex.create({
   checkbox: {
     position: "absolute",
     insetInlineStart: spacing.xxsmall,
-    insetBlockStart: spacing.xxsmall,
+    insetBlockStart: spacing.xxxsmall,
   },
 });
 
 const _styles = {
   list: {
+    default: stylex.create({
+      default: {
+        padding: spacing.none,
+        margin: spacing.none,
+        listStylePosition: "outside",
+      },
+    }),
+
     unordered: stylex.create({
       default: {
         listStyleType: "disc",
-        listStylePosition: "outside",
       },
 
       checkable: {
@@ -112,7 +119,6 @@ const _styles = {
     ordered: stylex.create({
       default: {
         listStyleType: "decimal",
-        listStylePosition: "outside",
       },
     }),
 
@@ -176,11 +182,11 @@ const RichTextEditor = forwardRef<RichTextEditorRef, RichTextEditorProps>(
         ),
       },
       list: {
-        unordered: stylex.props(_styles.list.unordered.default),
-        ordered: stylex.props(_styles.list.ordered.default),
+        unordered: stylex.props(_styles.list.default.default, _styles.list.unordered.default),
+        ordered: stylex.props(_styles.list.default.default, _styles.list.ordered.default),
         checkable: stylex.props(_styles.list.unordered.checkable),
         item: {
-          default: stylex.props(_styles.list.item.default),
+          default: stylex.props(_styles.list.item.default, typography.body.medium),
           unchecked: stylex.props(_styles.list.item.checkable),
           checked: stylex.props(_styles.list.item.checkable, _styles.list.item.checked),
         },

@@ -74,7 +74,7 @@ const Tour = ({
     footer: stylex.props(styles.footer),
   };
 
-  /// close handler
+  // close handler
   const close = () => {
     onClose?.();
   };

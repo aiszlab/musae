@@ -470,11 +470,11 @@ export const CLASS_NAMES = {
   },
   tour: {
     [TourClassToken.Tour]: "tour",
-    [TourClassToken.Overlay]: "rate__overlay",
-    [TourClassToken.Spotlight]: "rate__spotlight",
-    [TourClassToken.Title]: "rate__title",
-    [TourClassToken.Description]: "rate__description",
-    [TourClassToken.Footer]: "rate__footer",
+    [TourClassToken.Overlay]: "tour__overlay",
+    [TourClassToken.Spotlight]: "tour__spotlight",
+    [TourClassToken.Title]: "tour__title",
+    [TourClassToken.Description]: "tour__description",
+    [TourClassToken.Footer]: "tour__footer",
   },
   steps: {
     [StepsClassToken.Steps]: "steps",

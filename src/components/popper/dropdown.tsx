@@ -18,6 +18,10 @@ const styles = {
       inset: 0,
       zIndex: positions.popper,
     },
+
+    overlay: {
+      zIndex: positions.overlay,
+    },
   }),
 
   dropdown: stylex.create({
@@ -39,10 +43,6 @@ const styles = {
       display: "none",
       opacity: 0,
     }),
-
-    overlay: {
-      zIndex: positions.overlay,
-    },
   }),
 
   arrow: stylex.create({
@@ -104,12 +104,11 @@ const Dropdown = forwardRef<PopperRef, DropdownProps>(
     const styled = {
       dropdown: stylex.props(
         styles.dropdown.default({ backgroundColor: theme.colors["surface-container"] }),
-        overlay && styles.dropdown.overlay,
       ),
       arrow: stylex.props(
         styles.arrow.default({ backgroundColor: theme.colors["surface-container"] }),
       ),
-      portal: stylex.props(styles.portal.default),
+      portal: stylex.props(styles.portal.default, overlay && styles.portal.overlay),
     };
 
     return (

@@ -31,6 +31,9 @@ const styles = {
       borderColor: props.borderColor,
       backgroundColor: props.backgroundColor,
       color: props.color,
+
+      // reset styles
+      padding: spacing.none,
     }),
 
     checked: (props: {
