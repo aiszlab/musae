@@ -9,8 +9,7 @@ import { createRequire } from "module";
 
 const require = createRequire(import.meta.url);
 const pkg = require("./package.json");
-const STYLES_EXPORT = "styles";
-const STYLES_ASSET_FILENAME = `${STYLES_EXPORT}.css`;
+const STYLES_EXPORT = "styles.css";
 const ENTRY = "index";
 const EXTENSIONS = [".ts", ".tsx", ".js", ".jsx"];
 const STYLES_IMPORT = [pkg.name, STYLES_EXPORT].join("/");
@@ -113,7 +112,7 @@ const config = () => {
       // bundler will generate when production mode
       isProd &&
         stylex({
-          fileName: STYLES_ASSET_FILENAME,
+          fileName: STYLES_EXPORT,
           classNamePrefix: "musaex-",
           useCSSLayers: true,
           unstable_moduleResolution: {
