@@ -3,7 +3,7 @@
 exports[`\`Button\` Component disabled variant render 1`] = `
 <DocumentFragment>
   <button
-    class="musae-button button__styles.button theme__label.medium button__styles.medium button__styles.filled button__styles.rounded button__styles.disabled"
+    class="musae-button button__styles.button button__styles.ripple theme__label.medium button__styles.medium button__styles.filled button__styles.rounded button__styles.disabled"
     disabled=""
     style="--backgroundColor: rgba(29,27,32,0.12); --color: rgba(29,27,32,0.38); --borderColor: initial;"
     type="button"
@@ -11,17 +11,17 @@ exports[`\`Button\` Component disabled variant render 1`] = `
     disabled filled
   </button>
   <button
-    class="musae-button button__styles.button theme__label.medium button__styles.medium button__styles.outlined button__styles.rounded button__styles.disabled"
+    class="musae-button button__styles.button button__styles.ripple theme__label.medium button__styles.medium button__styles.outlined button__styles.rounded button__styles.disabled"
     disabled=""
-    style="--1e2mv7m: rgba(103,80,164,0.08); --backgroundColor: transparent; --color: rgba(29,27,32,0.38); --borderColor: rgba(29,27,32,0.38);"
+    style="--b6ve2z: rgba(103,80,164,0.08); --backgroundColor: transparent; --color: rgba(29,27,32,0.38); --borderColor: rgba(29,27,32,0.38);"
     type="button"
   >
     disabled outlined
   </button>
   <button
-    class="musae-button button__styles.button theme__label.medium button__styles.medium button__styles.text button__styles.rounded button__styles.disabled"
+    class="musae-button button__styles.button button__styles.ripple theme__label.medium button__styles.medium button__styles.text button__styles.rounded button__styles.disabled"
     disabled=""
-    style="--1e2mv7m: rgba(103,80,164,0.08); --backgroundColor: transparent; --color: rgba(29,27,32,0.38); --borderColor: initial;"
+    style="--b6ve2z: rgba(103,80,164,0.08); --backgroundColor: transparent; --color: rgba(29,27,32,0.38); --borderColor: initial;"
     type="button"
   >
     disabled text
@@ -32,22 +32,22 @@ exports[`\`Button\` Component disabled variant render 1`] = `
 exports[`\`Button\` Component variant render 1`] = `
 <DocumentFragment>
   <button
-    class="musae-button button__styles.button theme__label.medium button__styles.medium button__styles.filled button__styles.rounded"
+    class="musae-button button__styles.button button__styles.ripple theme__label.medium button__styles.medium button__styles.filled button__styles.rounded"
     style="--backgroundColor: #6750A4; --color: #FFF;"
     type="button"
   >
     filled
   </button>
   <button
-    class="musae-button button__styles.button theme__label.medium button__styles.medium button__styles.outlined button__styles.rounded"
-    style="--borderColor: #6750A4; --color: #6750A4; --1e2mv7m: rgba(103,80,164,0.08);"
+    class="musae-button button__styles.button button__styles.ripple theme__label.medium button__styles.medium button__styles.outlined button__styles.rounded"
+    style="--borderColor: #6750A4; --color: #6750A4; --b6ve2z: rgba(103,80,164,0.08);"
     type="button"
   >
     outlined
   </button>
   <button
-    class="musae-button button__styles.button theme__label.medium button__styles.medium button__styles.text button__styles.rounded"
-    style="--color: #6750A4; --1e2mv7m: rgba(103,80,164,0.08);"
+    class="musae-button button__styles.button button__styles.ripple theme__label.medium button__styles.medium button__styles.text button__styles.rounded"
+    style="--color: #6750A4; --b6ve2z: rgba(103,80,164,0.08);"
     type="button"
   >
     text
