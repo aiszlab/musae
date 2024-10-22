@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef } from "react";
 import type { DropdownProps, PopperProps } from "musae/types/popper";
 import { useAnimate } from "framer-motion";
-import { useEvent } from "@aiszlab/relax";
+import { useComposedRef, useEvent } from "@aiszlab/relax";
 import { useContainer } from "../../hooks/use-container";
 import {
   arrow,
@@ -63,8 +63,10 @@ export const useFloating = ({
   onExited?: () => Promise<void> | void;
   disappearable: boolean;
 }) => {
-  const [floatableRef, animate] = useAnimate<HTMLDivElement>();
+  const [_scope, animate] = useAnimate<HTMLDivElement>();
+  const floatableRef = useRef<HTMLDivElement>(null);
   const arrowRef = useRef<HTMLDivElement>(null);
+  const composedRef = useComposedRef(_scope, floatableRef);
 
   const { container: trigger } = useContainer({ container: _trigger, useBody: false }, [open]);
   const _isOpen = useRef<boolean>(false);
@@ -75,11 +77,13 @@ export const useFloating = ({
   // then animate
   const appear = useEvent(async () => {
     if (_isOpen.current) return;
+    const _floatable = floatableRef.current;
+    if (!_floatable) return;
 
     _isOpen.current = true;
 
-    floatableRef.current.style.display = "unset";
-    await animate(floatableRef.current, { opacity: 1 }, { duration: 0.2 });
+    _floatable.style.display = "unset";
+    await animate(_scope.current, { opacity: 1 }, { duration: 0.2 });
     await onEntered?.();
   });
 
@@ -89,15 +93,15 @@ export const useFloating = ({
   const disappear = useEvent(async (force: boolean = false) => {
     if (!_isOpen.current) return;
     if (!force && !disappearable) return;
+    const _floatable = floatableRef.current;
+    if (!_floatable) return;
 
     _isOpen.current = false;
 
     await Promise.all([
       onExit?.(),
-      animate(floatableRef.current, { opacity: 0 }, { duration: 0.2 }).then(() => {
-        // Popper is unmounted
-        if (!floatableRef.current) return;
-        floatableRef.current.style.display = "none";
+      animate(_scope.current, { opacity: 0 }, { duration: 0.2 }).then(() => {
+        _floatable.style.display = "none";
       }),
     ]);
     await onExited?.();
@@ -109,9 +113,11 @@ export const useFloating = ({
   // position listener
   const position = useEvent(() => {
     if (!trigger) return;
+    const _floatable = floatableRef.current;
+    if (!_floatable) return;
 
-    const cleanup = autoUpdate(trigger, floatableRef.current, () => {
-      computePosition(trigger, floatableRef.current, {
+    const cleanup = autoUpdate(trigger, _floatable, () => {
+      computePosition(trigger, _floatable, {
         placement,
         middleware: [
           flip(),
@@ -124,7 +130,7 @@ export const useFloating = ({
           const [side] = _placement.split("-") as [Side, Alignment?];
 
           // set float element styles
-          floatableRef.current.style.translate = `${x}px ${y}px`;
+          _floatable.style.translate = `${x}px ${y}px`;
 
           // set arrow styles
           if (middlewareData.arrow && !!arrowRef.current) {
@@ -160,6 +166,7 @@ export const useFloating = ({
 
   return {
     floatableRef,
+    composedRef,
     arrowRef,
     disappear,
   };

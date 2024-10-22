@@ -80,7 +80,7 @@ const Dropdown = forwardRef<PopperRef, DropdownProps>(
     const classNames = useClassNames("popper");
     const theme = useTheme();
 
-    const { floatableRef, arrowRef, disappear } = useFloating({
+    const { floatableRef, arrowRef, disappear, composedRef } = useFloating({
       arrowable,
       offset,
       placement,
@@ -114,7 +114,7 @@ const Dropdown = forwardRef<PopperRef, DropdownProps>(
     return (
       <div className={styled.portal.className} style={styled.portal.style}>
         <div
-          ref={floatableRef}
+          ref={composedRef}
           {...props}
           className={clsx(
             classNames[PopperClassToken.Dropdown],

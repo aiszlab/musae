@@ -3,7 +3,7 @@ import React, { type CSSProperties, useEffect, type FC, createElement, forwardRe
 import { useAnimate, usePresence } from "framer-motion";
 import { useTheme } from "../theme";
 import type { NotificationProps, Placement, Axis, Type } from "musae/types/notification";
-import { useRefs, useTimeout, clsx } from "@aiszlab/relax";
+import { useComposedRef, useTimeout, clsx } from "@aiszlab/relax";
 import { useClassNames } from "../../hooks/use-class-names";
 import { NotificationClassToken } from "../../utils/class-name";
 import { elevations, sizes, spacing } from "../theme/tokens.stylex";
@@ -116,7 +116,7 @@ const Notification = forwardRef<HTMLDivElement, NotificationProps>(
     const [scope, animate] = useAnimate<HTMLDivElement>();
     const _placement = PLACEMENTS[axis];
     const classNames = useClassNames("notification");
-    const notificationRef = useRefs(scope, ref);
+    const notificationRef = useComposedRef(scope, ref);
 
     // after duration, `Notification` will auto destroy
     useTimeout(async () => {

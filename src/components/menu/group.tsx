@@ -5,7 +5,7 @@ import { useClassNames } from "../../hooks/use-class-names";
 import { MenuClassToken } from "../../utils/class-name";
 import Item from "./item";
 import { useMenuContext } from "./hooks";
-import { useRefs, useUpdateEffect, clsx } from "@aiszlab/relax";
+import { useComposedRef, useUpdateEffect, clsx } from "@aiszlab/relax";
 import stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
 import { useExpandable } from "../../hooks/use-expandable";
@@ -65,7 +65,7 @@ const Group = forwardRef<HTMLUListElement, MenuGroupProps>(
     const classNames = useClassNames("menu");
     const [scope, animate] = useAnimate<HTMLUListElement>();
     const { collect, expandedKeys } = useMenuContext();
-    const groupRef = useRefs<HTMLUListElement>(ref, scope);
+    const groupRef = useComposedRef<HTMLUListElement>(ref, scope);
     const theme = useTheme();
     const isInline = mode === "inline";
 

@@ -1,4 +1,4 @@
-import { clsx, useIdentity, useRefs } from "@aiszlab/relax";
+import { clsx, useIdentity, useComposedRef } from "@aiszlab/relax";
 import { useDndMonitor, useDraggable } from "@dnd-kit/core";
 import React, { forwardRef, useImperativeHandle, useRef, useState } from "react";
 import stylex from "@stylexjs/stylex";
@@ -33,7 +33,7 @@ const Floatable = forwardRef<FloatableRef, FloatableProps>(
     const { attributes, listeners, setNodeRef, transform } = useDraggable({
       id,
     });
-    const floatableRef = useRefs<HTMLDivElement>(_ref, setNodeRef);
+    const floatableRef = useComposedRef<HTMLDivElement>(_ref, setNodeRef);
     const { container: _container, isDocumentBody } = useContainer({ container });
 
     const [offsetX, setOffsetX] = useState(0);

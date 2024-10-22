@@ -149,9 +149,9 @@ const Input = forwardRef<InputRef, InputProps>(
           }),
         disabled &&
           styles.disabled({
-            backgroundColor: hexToRgba(theme.colors["on-surface"], OPACITY.thin, true),
-            color: hexToRgba(theme.colors["on-surface"], OPACITY.thicker, true),
-            outlineColor: hexToRgba(theme.colors["on-surface"], OPACITY.thicker, true),
+            backgroundColor: hexToRgba(theme.colors["on-surface"], OPACITY.thin, "style"),
+            color: hexToRgba(theme.colors["on-surface"], OPACITY.thicker, "style"),
+            outlineColor: hexToRgba(theme.colors["on-surface"], OPACITY.thicker, "style"),
           }),
       ),
       input: stylex.props(styles.input),

@@ -123,6 +123,7 @@ const styles = {
       display: "flex",
       flexDirection: "row",
       alignItems: "center",
+      justifyContent: "center",
       color: "inherit",
 
       transitionProperty: "margin-inline-start, margin-inline-end",
@@ -185,9 +186,9 @@ const Switch = ({
         backgroundColor: theme.colors["surface-container-highest"],
         color: theme.colors["on-surface-variant"],
         ...(disabled && {
-          borderColor: hexToRgba(theme.colors["on-surface"], OPACITY.medium, true),
-          backgroundColor: hexToRgba(theme.colors["surface-variant"], OPACITY.medium, true),
-          color: hexToRgba(theme.colors["on-surface"], OPACITY.thicker, true),
+          borderColor: hexToRgba(theme.colors["on-surface"], OPACITY.medium, "style"),
+          backgroundColor: hexToRgba(theme.colors["surface-variant"], OPACITY.medium, "style"),
+          color: hexToRgba(theme.colors["on-surface"], OPACITY.thicker, "style"),
         }),
       }),
       isChecked &&
@@ -195,7 +196,7 @@ const Switch = ({
           backgroundColor: theme.colors.primary,
           color: theme.colors["on-primary"],
           ...(disabled && {
-            backgroundColor: hexToRgba(theme.colors["on-surface"], OPACITY.medium, true),
+            backgroundColor: hexToRgba(theme.colors["on-surface"], OPACITY.medium, "style"),
             color: theme.colors.surface,
           }),
         }),
@@ -206,7 +207,7 @@ const Switch = ({
         backgroundColor: theme.colors["on-surface-variant"],
         color: theme.colors["surface-container-highest"],
         ...(disabled && {
-          backgroundColor: hexToRgba(theme.colors["on-surface"], OPACITY.thicker, true),
+          backgroundColor: hexToRgba(theme.colors["on-surface"], OPACITY.thicker, "style"),
           color: theme.colors["surface-container-highest"],
         }),
       }),
@@ -218,7 +219,7 @@ const Switch = ({
           color: theme.colors["on-primary-container"],
           ...(disabled && {
             backgroundColor: theme.colors.surface,
-            color: hexToRgba(theme.colors["on-surface"], OPACITY.thicker, true),
+            color: hexToRgba(theme.colors["on-surface"], OPACITY.thicker, "style"),
           }),
         }),
     ),
