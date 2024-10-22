@@ -1,5 +1,6 @@
 import type { ReactNode, RefAttributes } from "react";
-import { ComponentProps } from "musae/types/element";
+import type { ComponentProps } from "musae/types/element";
+import type { ImageProps } from "./image";
 
 type Size = "small" | "medium" | "large";
 
@@ -9,37 +10,38 @@ type Shape = "circular" | "squared";
  * @description
  * avatar props
  */
-export type AvatarProps = ComponentProps & {
-  /**
-   * @description
-   * src
-   * @default void 0
-   */
-  src?: string;
+export type AvatarProps = ComponentProps &
+  Pick<ImageProps, "crossOrigin" | "referrerPolicy"> & {
+    /**
+     * @description
+     * src
+     * @default void 0
+     */
+    src?: string;
 
-  /**
-   * @description
-   * alt, (fallback usage)
-   * if user do not provide `src`, or `src` is invalid
-   * show `alt`
-   * @default void 0
-   */
-  alt?: string;
+    /**
+     * @description
+     * alt, (fallback usage)
+     * if user do not provide `src`, or `src` is invalid
+     * show `alt`
+     * @default void 0
+     */
+    alt?: string;
 
-  /**
-   * @description
-   * size
-   * @default "medium"
-   */
-  size?: Size;
+    /**
+     * @description
+     * size
+     * @default "medium"
+     */
+    size?: Size;
 
-  /**
-   * @description
-   * shape
-   * @default "circular"
-   */
-  shape?: Shape;
-};
+    /**
+     * @description
+     * shape
+     * @default "circular"
+     */
+    shape?: Shape;
+  };
 
 /**
  * @description

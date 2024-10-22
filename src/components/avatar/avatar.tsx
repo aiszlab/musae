@@ -71,7 +71,17 @@ const styles = stylex.create({
  */
 const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(
   (
-    { src, alt, shape: _shape = "circular", size: _size = "medium", className, style, ...props },
+    {
+      src,
+      alt,
+      shape: _shape = "circular",
+      size: _size = "medium",
+      className,
+      style,
+      crossOrigin,
+      referrerPolicy,
+      ...props
+    },
     ref,
   ) => {
     const theme = useTheme();
@@ -80,7 +90,7 @@ const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(
     const size = group?.size ?? _size;
     const shape = group?.shape ?? _shape;
     const classNames = useClassNames("avatar");
-    const loadStatus = useImageLoader({ src });
+    const loadStatus = useImageLoader({ src, crossOrigin, referrerPolicy });
 
     const styled = {
       avatar: stylex.props(
@@ -121,6 +131,8 @@ const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(
             alt={alt}
             className={styled.image.className}
             style={styled.image.style}
+            crossOrigin={crossOrigin}
+            referrerPolicy={referrerPolicy}
           />
         )}
 
