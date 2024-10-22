@@ -116,16 +116,14 @@ const Upload = ({
           {children}
         </div>
 
-        {renderItem !== false && (
-          <UploadedList
-            ref={uploadedListRef}
-            value={value}
-            uploader={uploader}
-            onError={onError}
-            onChange={onChange}
-            limit={limit}
-          />
-        )}
+        <UploadedList
+          ref={uploadedListRef}
+          value={value}
+          uploader={uploader}
+          onError={onError}
+          onChange={onChange}
+          limit={limit}
+        />
       </div>
     </Context.Provider>
   );

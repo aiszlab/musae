@@ -1,4 +1,4 @@
-import React, { forwardRef, type Key, useImperativeHandle, useMemo } from "react";
+import React, { forwardRef, type Key, useContext, useImperativeHandle, useMemo } from "react";
 import stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
 import type {
@@ -12,6 +12,7 @@ import { isRemoteFile } from "./utils";
 import { useClassNames } from "../../hooks/use-class-names";
 import { UploadClassToken } from "../../utils/class-name";
 import UploadedItem from "./uploaded-item";
+import { Context } from "./context";
 
 const styles = stylex.create({
   list: {
@@ -38,6 +39,7 @@ const UploadedList = forwardRef<UploadedListRef, UploadedListProps>(
     const [values, setValues] = useControlledState(value, { defaultState: [] });
     const [, identity] = useIdentity();
     const classNames = useClassNames("upload");
+    const { renderItem } = useContext(Context);
 
     // convert to map, for performance
     const items = useMemo(() => {
@@ -59,13 +61,14 @@ const UploadedList = forwardRef<UploadedListRef, UploadedListProps>(
     // use this func to set new status & callback
     const onLoaded = useEvent(
       (
+        uploadeds: Map<React.Key, UploadedItemType>,
         id: string,
         status: "success" | "error",
         { url, error }: { url?: string; error?: Error },
       ) => {
-        if (!items.has(id)) return;
+        if (!uploadeds.has(id)) return;
 
-        const _items = new Map(items);
+        const _items = new Map(uploadeds);
         const _values = Array.from(
           _items.set(id, { ..._items.get(id)!, status, url, error }).values(),
         );
@@ -88,11 +91,12 @@ const UploadedList = forwardRef<UploadedListRef, UploadedListProps>(
 
           // show loading in `add` trigger
           const _key = identity();
-          const _values = Array.from(
-            new Map(_isOnlyOne ? [] : items)
-              .set(_key, { key: _key, file, status: _hasUploader ? "loading" : "success" })
-              .values(),
-          );
+          const _items = new Map(_isOnlyOne ? [] : items).set(_key, {
+            key: _key,
+            file,
+            status: _hasUploader ? "loading" : "success",
+          });
+          const _values = Array.from(_items.values());
           setValues(_values);
           onChange?.(_values);
 
@@ -106,12 +110,12 @@ const UploadedList = forwardRef<UploadedListRef, UploadedListProps>(
           });
 
           if (_url instanceof Error) {
-            onLoaded(_key, "error", { error: _url });
+            onLoaded(_items, _key, "error", { error: _url });
             onError?.(_url);
             return;
           }
 
-          onLoaded(_key, "success", { url: _url });
+          onLoaded(_items, _key, "success", { url: _url });
         },
       };
     });
@@ -126,7 +130,8 @@ const UploadedList = forwardRef<UploadedListRef, UploadedListProps>(
     });
 
     // no uploaded file, no render!
-    if (items.size === 0) {
+    // no item render, no render!
+    if (items.size === 0 || !renderItem) {
       return null;
     }
 
