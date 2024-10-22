@@ -1,5 +1,11 @@
 # musae
 
+## 0.4.0
+
+### Minor Changes
+
+- use layer css & add reset styles
+
 ## 0.3.14
 
 ### Patch Changes
