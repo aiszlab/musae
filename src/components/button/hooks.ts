@@ -1,25 +1,23 @@
-import { type MouseEvent, useCallback } from "react";
+import { type MouseEvent } from "react";
 import { useRipple } from "../ripple";
 import type { ButtonProps } from "musae/types/button";
-import { chain } from "@aiszlab/relax";
+import { useEvent } from "@aiszlab/relax";
 
 /**
  * @description
  * hooks for button component
  */
-export const useButton = (props: Pick<ButtonProps, "onClick">) => {
+export const useButton = ({ onClick: click }: Pick<ButtonProps, "onClick">) => {
   const { ripples, add, clear } = useRipple();
 
-  const ripple = useCallback(
-    (e: MouseEvent<HTMLButtonElement>) => {
-      add(e);
-    },
-    [add],
-  );
+  const onClick = useEvent((event: MouseEvent<HTMLButtonElement>) => {
+    click?.(event);
+    add(event);
+  });
 
   return {
     ripples,
-    onClick: chain(props.onClick, ripple),
+    onClick,
     clear,
   };
 };

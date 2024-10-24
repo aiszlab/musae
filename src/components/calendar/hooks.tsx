@@ -10,7 +10,7 @@ import stylex from "@stylexjs/stylex";
 import { positions, sizes, spacing } from "../theme/tokens.stylex";
 import { typography } from "../theme/theme";
 import { useTheme } from "../theme";
-import { Button } from "../button";
+import { IconButton } from "../icon-button";
 
 const styles = stylex.create({
   cell: {
@@ -167,7 +167,7 @@ export const useDateCells = ({
             aria-selected={isSelected}
             aria-hidden={isDisabled}
           >
-            <Button
+            <IconButton
               variant={isSelected ? "filled" : "text"}
               color={isSelected ? "primary" : "secondary"}
               className={clsx(classNames[CalendarClassToken.Date], styled.trigger.className)}
@@ -175,10 +175,9 @@ export const useDateCells = ({
               onClick={() => {
                 click(currentAt);
               }}
-              shape="circular"
             >
               {currentAt.date()}
-            </Button>
+            </IconButton>
           </td>,
         );
 

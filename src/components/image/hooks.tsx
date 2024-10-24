@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import type { OperationsProps, OperationEvent } from "musae/types/image";
 import { SwapHoriz, SwapVert, RotateLeft, RotateRight, ZoomOut, ZoomIn } from "musae/icons";
-import { Button } from "../button";
+import { IconButton } from "../icon-button";
 
 /**
  * @description
@@ -53,9 +53,9 @@ export const useHandlers = ({
   const handlers = useMemo(() => {
     return events.map(({ type, onClick, child }) => {
       return (
-        <Button onClick={onClick} key={type} variant="text" shape="circular" disabled={!onClick}>
+        <IconButton onClick={onClick} key={type} variant="text" disabled={!onClick}>
           {child}
-        </Button>
+        </IconButton>
       );
     });
   }, [events]);

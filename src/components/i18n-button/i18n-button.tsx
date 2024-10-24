@@ -1,6 +1,5 @@
 import React, { useRef, type Key } from "react";
 import { Translate } from "musae/icons";
-import { Button } from "../button";
 import { Popover, type PopoverRef } from "../popover";
 import { useLocales } from "./hooks";
 import { Menu } from "../menu";
@@ -9,6 +8,7 @@ import { clsx, useEvent } from "@aiszlab/relax";
 import type { LocaleCode } from "musae/types/locale";
 import { useClassNames } from "../../hooks/use-class-names";
 import { I18nButtonClassToken } from "../../utils/class-name";
+import { IconButton } from "../icon-button";
 
 const I18nButton = ({ onChange, variant, className, style }: I18nButtonProps) => {
   const { selections, locales, localeCode } = useLocales();
@@ -27,14 +27,13 @@ const I18nButton = ({ onChange, variant, className, style }: I18nButtonProps) =>
       content={<Menu selectedKeys={localeCode} items={selections} onClick={change} />}
       padding={8}
     >
-      <Button
-        shape="circular"
+      <IconButton
         variant={variant}
         className={clsx(classNames[I18nButtonClassToken.I18nButton], className)}
         style={style}
       >
         <Translate />
-      </Button>
+      </IconButton>
     </Popover>
   );
 };

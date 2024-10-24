@@ -7,7 +7,6 @@ import { useComposedRef, useTimeout, clsx } from "@aiszlab/relax";
 import { useClassNames } from "../../hooks/use-class-names";
 import { NotificationClassToken } from "../../utils/class-name";
 import { elevations, sizes, spacing } from "../theme/tokens.stylex";
-import { Button } from "../button";
 import { CheckCircle, Close, Loading, Error, NotificationImportant, Warning } from "musae/icons";
 import { typography } from "../theme/theme";
 import type { IconProps } from "musae/types/icon";
@@ -103,6 +102,7 @@ const styles = {
   closer: stylex.create({
     default: {
       gridArea: "closer",
+      alignSelf: "center",
       justifySelf: "flex-end",
     },
   }),
@@ -215,13 +215,10 @@ const Notification = forwardRef<HTMLDivElement, NotificationProps>(
         </div>
 
         {closable && (
-          <Button
+          <Close
             className={clsx(classNames[NotificationClassToken.Closer], styled.closer.className)}
-            shape="circular"
-            variant="text"
-            prefix={<Close />}
             onClick={onClose}
-            size="small"
+            color={theme.colors.primary}
           />
         )}
       </div>

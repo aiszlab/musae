@@ -13,6 +13,7 @@ import { Form } from "../../../form";
 import { Input } from "../../../input";
 import { useForm } from "../../../form/hooks";
 import { $createTextNode } from "lexical";
+import { IconButton } from "../../../icon-button";
 
 interface Props {
   link: LinkNode | null;
@@ -86,17 +87,17 @@ const FloatingLinkEditorPlugin = ({ link }: Props) => {
     >
       {!isEditable && (
         <Space>
-          <Button variant="text" shape="circular" size="small" onClick={openLink}>
+          <IconButton variant="text" size="small" onClick={openLink}>
             <OpenInNew />
-          </Button>
+          </IconButton>
 
-          <Button variant="text" shape="circular" size="small" onClick={edit}>
+          <IconButton variant="text" size="small" onClick={edit}>
             <Edit />
-          </Button>
+          </IconButton>
 
-          <Button variant="text" shape="circular" size="small" onClick={linkOff}>
+          <IconButton variant="text" size="small" onClick={linkOff}>
             <LinkOff />
-          </Button>
+          </IconButton>
         </Space>
       )}
 

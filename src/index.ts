@@ -62,6 +62,7 @@ export { RichTextEditor } from "./components/rich-text-editor";
 export { Quote } from "./components/quote";
 export { Textarea } from "./components/textarea";
 export { PasswordInput } from "./components/password-input";
+export { IconButton } from "./components/icon-button";
 
 /**
  * @description

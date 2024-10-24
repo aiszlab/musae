@@ -13,8 +13,8 @@ import stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
 import { typography } from "../theme/theme";
 import { clsx } from "@aiszlab/relax";
-import { Button } from "../button";
 import { useTheme } from "../theme";
+import { IconButton } from "../icon-button";
 
 const styles = stylex.create({
   calendar: {
@@ -80,18 +80,13 @@ const Calendar = ({
         className={clsx(classNames[CalendarClassToken.Header], styled.header.className)}
         style={styled.header.style}
       >
-        <Button
-          variant="text"
-          prefix={<KeyboardDoubleArrowLeft />}
-          onClick={toPrevYear}
-          shape="circular"
-        />
-        <Button
-          variant="text"
-          prefix={<KeyboardArrowLeft />}
-          onClick={toPrevMonth}
-          shape="circular"
-        />
+        <IconButton variant="text" onClick={toPrevYear}>
+          <KeyboardDoubleArrowLeft />
+        </IconButton>
+
+        <IconButton variant="text" onClick={toPrevMonth}>
+          <KeyboardArrowLeft />
+        </IconButton>
 
         <span
           className={clsx(classNames[CalendarClassToken.Heading], styled.heading.className)}
@@ -100,18 +95,13 @@ const Calendar = ({
           {focusedAt.format("YYYY-MM")}
         </span>
 
-        <Button
-          variant="text"
-          prefix={<KeyboardArrowRight />}
-          onClick={toNextMonth}
-          shape="circular"
-        />
-        <Button
-          variant="text"
-          prefix={<KeyboardDoubleArrowRight />}
-          onClick={toNextYear}
-          shape="circular"
-        />
+        <IconButton variant="text" onClick={toNextMonth}>
+          <KeyboardArrowRight />
+        </IconButton>
+
+        <IconButton variant="text" onClick={toNextYear}>
+          <KeyboardDoubleArrowRight />
+        </IconButton>
       </header>
 
       <table className={styled.body.className} style={styled.body.style}>

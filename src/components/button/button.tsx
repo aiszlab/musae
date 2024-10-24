@@ -1,6 +1,5 @@
 import type { ButtonProps } from "musae/types/button";
-import React, { type CSSProperties, forwardRef } from "react";
-import { ButtonClassToken } from "../../utils/class-name";
+import React, { forwardRef } from "react";
 import { clsx } from "@aiszlab/relax";
 import stylex from "@stylexjs/stylex";
 import { elevations, OPACITY, sizes, spacing } from "../theme/tokens.stylex";
@@ -8,8 +7,9 @@ import { useTheme } from "../theme";
 import { useButton } from "./hooks";
 import { Ripple } from "../ripple";
 import { typography } from "../theme/theme";
-import { useClassNames } from "../../hooks/use-class-names";
 import { hexToRgba } from "@aiszlab/fuzzy/color";
+import { useClassNames } from "../../hooks/use-class-names.component";
+import { CLASS_NAMES } from "./context";
 
 const styles = stylex.create({
   button: {
@@ -38,36 +38,20 @@ const styles = stylex.create({
   },
 
   small: {
-    paddingBlock: spacing.none,
+    paddingBlock: spacing.xxxsmall,
     paddingInline: spacing.xsmall,
   },
 
   medium: {
-    paddingBlock: spacing.xsmall,
+    paddingBlock: spacing.small,
     paddingInline: spacing.xlarge,
-  },
-
-  large: {
-    paddingBlock: spacing.medium,
-    paddingInline: spacing.xxlarge,
-  },
-
-  circular: {
-    borderRadius: sizes.infinity,
-    aspectRatio: 1,
-    // circular shape, always center layout
-    justifyContent: "center",
   },
 
   rounded: {
     borderRadius: sizes.infinity,
-    minWidth: null,
   },
 
-  filled: (props: {
-    backgroundColor: CSSProperties["backgroundColor"];
-    color: CSSProperties["color"];
-  }) => ({
+  filled: (props: { backgroundColor: string; color: string }) => ({
     borderWidth: sizes.none,
     backgroundColor: props.backgroundColor,
     color: props.color,
@@ -77,10 +61,7 @@ const styles = stylex.create({
     },
   }),
 
-  outlined: (props: {
-    color: CSSProperties["color"];
-    hoveredBackgroundColor: CSSProperties["backgroundColor"];
-  }) => ({
+  outlined: (props: { color: string; hoveredBackgroundColor: string }) => ({
     borderWidth: sizes.smallest,
     borderStyle: "solid",
     borderColor: props.color,
@@ -91,10 +72,7 @@ const styles = stylex.create({
     },
   }),
 
-  text: (props: {
-    color: CSSProperties["color"];
-    hoveredBackgroundColor: CSSProperties["backgroundColor"];
-  }) => ({
+  text: (props: { color: string; hoveredBackgroundColor: string }) => ({
     color: props.color,
 
     ":hover": {
@@ -102,11 +80,7 @@ const styles = stylex.create({
     },
   }),
 
-  disabled: (props: {
-    color: CSSProperties["color"];
-    backgroundColor: CSSProperties["backgroundColor"];
-    outlineColor: CSSProperties["borderColor"] | null;
-  }) => ({
+  disabled: (props: { color: string; backgroundColor: string; outlineColor: string | null }) => ({
     backgroundColor: props.backgroundColor,
     color: props.color,
     cursor: "not-allowed",
@@ -142,15 +116,14 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     },
     ref,
   ) => {
-    const classNames = useClassNames("button");
     const theme = useTheme();
     const { onClick, clear, ripples } = useButton({ onClick: _onClick });
+    const classNames = useClassNames(CLASS_NAMES);
 
     const styled = {
       button: stylex.props(
         styles.button,
         ripple && styles.ripple,
-        typography.label[size],
         // size
         styles[size],
         // variant
@@ -184,6 +157,9 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
                 ? hexToRgba(theme.colors["on-surface"], OPACITY.thicker, "style")
                 : null,
           }),
+        // text font
+        size === "small" && typography.label.medium,
+        size !== "small" && typography.label.large,
       ),
     };
 
@@ -192,7 +168,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         onClick={onClick}
         ref={ref}
         disabled={disabled}
-        className={clsx(classNames[ButtonClassToken.Button], className, styled.button.className)}
+        className={clsx(classNames.button, className, styled.button.className)}
         style={{
           ...styled.button.style,
           ...style,
@@ -210,3 +186,4 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 );
 
 export default Button;
+export { styles };

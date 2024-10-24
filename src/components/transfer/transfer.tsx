@@ -4,12 +4,12 @@ import type { ContextValue, TransferProps } from "musae/types/transfer";
 import List from "./list";
 import stylex from "@stylexjs/stylex";
 import { KeyboardArrowLeft, KeyboardArrowRight } from "musae/icons";
-import { Button } from "../button";
 import { spacing } from "../theme/tokens.stylex";
 import { Context } from "./context";
 import { useClassNames } from "../../hooks/use-class-names";
 import { TransferClassToken } from "../../utils/class-name";
 import { clsx } from "@aiszlab/relax";
+import { IconButton } from "../icon-button";
 
 const styles = stylex.create({
   transfer: {
@@ -85,23 +85,21 @@ const Transfer = ({
           className={clsx(classNames[TransferClassToken.Operation], styled.operation.className)}
           style={styled.operation.style}
         >
-          <Button
-            shape="circular"
+          <IconButton
             size="small"
             onClick={transfer}
             disabled={disabled || transferKeys.length === 0}
           >
             <KeyboardArrowRight />
-          </Button>
+          </IconButton>
 
-          <Button
-            shape="circular"
+          <IconButton
             size="small"
             onClick={untransfer}
             disabled={disabled || untransferKeys.length === 0}
           >
             <KeyboardArrowLeft />
-          </Button>
+          </IconButton>
         </div>
 
         <List

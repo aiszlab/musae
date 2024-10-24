@@ -1,6 +1,5 @@
 import React, { createElement } from "react";
 import type { PaginationItemProps } from "musae/types/pagination";
-import { Button } from "../button";
 import {
   KeyboardArrowLeft,
   KeyboardArrowRight,
@@ -9,6 +8,7 @@ import {
   KeyboardDoubleArrowRight,
 } from "musae/icons";
 import stylex from "@stylexjs/stylex";
+import { IconButton } from "../icon-button";
 
 const styles = stylex.create({
   more: {
@@ -33,29 +33,29 @@ const Item = ({
 }: PaginationItemProps) => {
   if (value === "prev") {
     return (
-      <Button
+      <IconButton
         onClick={() => subtract()}
-        shape="circular"
         variant="text"
         color="secondary"
         disabled={!hasPrev}
+        size="small"
       >
         <KeyboardArrowLeft />
-      </Button>
+      </IconButton>
     );
   }
 
   if (value === "next") {
     return (
-      <Button
+      <IconButton
         onClick={() => add()}
-        shape="circular"
         variant="text"
         color="secondary"
         disabled={!hasNext}
+        size="small"
       >
         <KeyboardArrowRight />
-      </Button>
+      </IconButton>
     );
   }
 
@@ -68,8 +68,7 @@ const Item = ({
     };
 
     return (
-      <Button
-        shape="circular"
+      <IconButton
         variant="text"
         color="secondary"
         className={styled.more.className}
@@ -77,6 +76,7 @@ const Item = ({
         onClick={() => {
           isMorePrev ? subtract(5) : add(5);
         }}
+        size="small"
       >
         <MoreHoriz role="separator" />
 
@@ -84,21 +84,21 @@ const Item = ({
         {createElement(isMorePrev ? KeyboardDoubleArrowLeft : KeyboardDoubleArrowRight, {
           role: "button",
         })}
-      </Button>
+      </IconButton>
     );
   }
 
   return (
-    <Button
-      shape="circular"
+    <IconButton
       color={checked ? "primary" : "secondary"}
       variant={checked ? "filled" : "text"}
       onClick={() => {
         onClick(value);
       }}
+      size="small"
     >
       {value}
-    </Button>
+    </IconButton>
   );
 };
 

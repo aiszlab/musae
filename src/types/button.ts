@@ -5,9 +5,9 @@ export type Variant = "filled" | "outlined" | "text";
 
 export type Color = "primary" | "secondary" | "tertiary";
 
-type Size = "small" | "medium" | "large";
+type Size = "small" | "medium";
 
-type Shape = "rounded" | "circular";
+type Shape = "rounded";
 
 /**
  * @author murukal

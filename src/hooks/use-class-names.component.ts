@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { useConfiguration } from "../components/config";
+import { useConfiguration } from "../components/config/hooks";
 
 /**
  * @description

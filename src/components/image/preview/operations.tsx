@@ -6,8 +6,8 @@ import { spacing, positions, sizes } from "../../theme/tokens.stylex";
 import { useTheme } from "../../theme";
 import type { OperationsProps } from "musae/types/image";
 import { useHandlers } from "../hooks";
-import { Button } from "../../button";
 import PreviewGroupContext from "./context";
+import { IconButton } from "../../icon-button";
 
 const styles = stylex.create({
   operations: {
@@ -16,8 +16,11 @@ const styles = stylex.create({
   },
 
   closer: {
-    top: spacing.xxlarge,
-    right: spacing.xxlarge,
+    ":not(#\\#)": {
+      top: spacing.xxlarge,
+      right: spacing.xxlarge,
+      position: "fixed",
+    },
   },
 
   navigations: {
@@ -88,7 +91,7 @@ const Operations = ({
   return (
     <Portal lockable>
       <div className={styled.operations.className} style={styled.operations.style}>
-        <Button
+        <IconButton
           className={styled.closer.className}
           style={{
             ...styled.closer.style,
@@ -96,25 +99,20 @@ const Operations = ({
           }}
           variant="text"
           onClick={onClose}
-          shape="circular"
         >
           <Close size={32} />
-        </Button>
+        </IconButton>
 
         {/* navigations */}
         {isMultiple && (
           <div className={styled.navigations.className} style={styled.navigations.style}>
-            <Button variant="text" shape="circular" onClick={onSwitchLeft} disabled={!onSwitchLeft}>
+            <IconButton variant="text" onClick={onSwitchLeft} disabled={!onSwitchLeft}>
               <KeyboardArrowLeft size={32} />
-            </Button>
-            <Button
-              variant="text"
-              shape="circular"
-              onClick={onSwitchRight}
-              disabled={!onSwitchRight}
-            >
+            </IconButton>
+
+            <IconButton variant="text" onClick={onSwitchRight} disabled={!onSwitchRight}>
               <KeyboardArrowRight size={32} />
-            </Button>
+            </IconButton>
           </div>
         )}
 

@@ -1,6 +1,6 @@
 import { isUndefined, useEvent } from "@aiszlab/relax";
 import React, { KeyboardEvent, useMemo } from "react";
-import { Button } from "../components/button";
+import { IconButton } from "../components/icon-button";
 import stylex from "@stylexjs/stylex";
 import { spacing } from "../components/theme/tokens.stylex";
 import { Close } from "musae/icons";
@@ -12,8 +12,11 @@ const styles = stylex.create({
   static: {},
 
   "top-right": {
-    top: spacing.large,
-    right: spacing.large,
+    ":not(#\\#)": {
+      top: spacing.xxxsmall,
+      right: spacing.xxxsmall,
+      position: "absolute",
+    },
   },
 });
 
@@ -49,20 +52,15 @@ export const useClosable = ({
     const styled = stylex.props(styles[placement]);
 
     return (
-      <Button
-        shape="circular"
+      <IconButton
         variant="text"
-        prefix={<Close />}
         onClick={onClose}
         size="small"
         className={styled.className}
-        style={{
-          ...styled.style,
-          ...(placement !== "static" && {
-            position: "absolute",
-          }),
-        }}
-      />
+        style={styled.style}
+      >
+        <Close />
+      </IconButton>
     );
   }, [triggers, onClose, placement]);
 

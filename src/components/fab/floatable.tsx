@@ -2,13 +2,13 @@ import { clsx, useIdentity, useComposedRef } from "@aiszlab/relax";
 import { useDndMonitor, useDraggable } from "@dnd-kit/core";
 import React, { forwardRef, useImperativeHandle, useRef, useState } from "react";
 import stylex from "@stylexjs/stylex";
-import { Button } from "../button";
 import type { FloatableProps, FloatableRef } from "musae/types/fab";
 import { positions } from "../theme/tokens.stylex";
 import { Portal } from "../portal";
 import { useContainer } from "../../hooks/use-container";
 import { useClassNames } from "../../hooks/use-class-names";
 import { FabClassToken } from "../../utils/class-name";
+import { IconButton } from "../icon-button";
 
 const styles = stylex.create({
   floatable: (props: { x: number; y: number }) => ({
@@ -70,9 +70,7 @@ const Floatable = forwardRef<FloatableRef, FloatableProps>(
           className={clsx(classNames[FabClassToken.Fab], styled.className)}
           style={styled.style}
         >
-          <Button shape="circular" onClick={onClick}>
-            {children}
-          </Button>
+          <IconButton onClick={onClick}>{children}</IconButton>
         </div>
       </Portal>
     );

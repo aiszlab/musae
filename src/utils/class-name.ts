@@ -56,10 +56,6 @@ export enum EmptyClassToken {
   Empty,
   Description,
 }
-export enum ButtonClassToken {
-  Button,
-  Prefix,
-}
 export enum DrawerClassToken {
   Drawer,
   Overlay,
@@ -348,10 +344,6 @@ export const CLASS_NAMES = {
   empty: {
     [EmptyClassToken.Empty]: "empty",
     [EmptyClassToken.Description]: "empty__description",
-  },
-  button: {
-    [ButtonClassToken.Button]: "button",
-    [ButtonClassToken.Prefix]: "button__prefix",
   },
   drawer: {
     [DrawerClassToken.Drawer]: "drawer",
