@@ -46,7 +46,7 @@ const Spotlight = ({ trigger, padding: [paddingY, paddingX] }: SpotlightProps) =
       })
         .then(({ x, y }) => {
           _floatable.style.transform = `translate(${x}px, ${y}px)`;
-          _floatable.style.display = "initial";
+          _floatable.style.display = "block";
         })
         .catch(() => null);
     });

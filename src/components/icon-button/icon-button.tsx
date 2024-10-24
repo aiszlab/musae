@@ -1,4 +1,4 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import stylex from "@stylexjs/stylex";
 import { sizes } from "../theme/tokens.stylex";
 import { Button } from "../button";
@@ -24,26 +24,24 @@ const styles = stylex.create({
   },
 });
 
-const IconButton = ({
-  className,
-  style,
-  size = "medium",
-  ...props
-}: Omit<ButtonProps, "shape" | "prefix" | "suffix">) => {
-  const styled = stylex.props(styles.default, styles[size]);
+const IconButton = forwardRef<HTMLButtonElement, Omit<ButtonProps, "shape" | "prefix" | "suffix">>(
+  ({ className, style, size = "medium", ...props }, ref) => {
+    const styled = stylex.props(styles.default, styles[size]);
 
-  return (
-    <Button
-      className={clsx(className, styled.className)}
-      style={{
-        ...styled.style,
-        ...style,
-      }}
-      size={size}
-      shape="rounded"
-      {...props}
-    />
-  );
-};
+    return (
+      <Button
+        className={clsx(className, styled.className)}
+        style={{
+          ...styled.style,
+          ...style,
+        }}
+        size={size}
+        shape="rounded"
+        ref={ref}
+        {...props}
+      />
+    );
+  },
+);
 
 export default IconButton;

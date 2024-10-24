@@ -55,7 +55,6 @@ export const useClosable = ({
       <IconButton
         variant="text"
         onClick={onClose}
-        size="small"
         className={styled.className}
         style={styled.style}
       >

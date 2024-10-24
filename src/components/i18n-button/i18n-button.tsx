@@ -10,7 +10,7 @@ import { useClassNames } from "../../hooks/use-class-names";
 import { I18nButtonClassToken } from "../../utils/class-name";
 import { IconButton } from "../icon-button";
 
-const I18nButton = ({ onChange, variant, className, style }: I18nButtonProps) => {
+const I18nButton = ({ onChange, variant, className, style, size }: I18nButtonProps) => {
   const { selections, locales, localeCode } = useLocales();
   const popoverRef = useRef<PopoverRef>(null);
   const classNames = useClassNames("i18n-button");
@@ -31,6 +31,7 @@ const I18nButton = ({ onChange, variant, className, style }: I18nButtonProps) =>
         variant={variant}
         className={clsx(classNames[I18nButtonClassToken.I18nButton], className)}
         style={style}
+        size={size}
       >
         <Translate />
       </IconButton>
