@@ -18,7 +18,7 @@ const styles = {
     handlers: (props: { color: CSSProperties["color"] }) => ({
       display: "inline-flex",
       flexDirection: "row",
-      gap: spacing.xxsmall,
+      gap: spacing.xxxsmall,
       color: props.color,
       userSelect: "none",
     }),

@@ -22,7 +22,7 @@ const styles = {
 
     default: {
       borderCollapse: "separate",
-      borderSpacing: spacing.xxsmall,
+      borderSpacing: spacing.xxxsmall,
     },
 
     scrollable: {
@@ -74,7 +74,7 @@ const styles = {
 
   legend: stylex.create({
     default: {
-      paddingBlock: spacing.xxsmall,
+      paddingBlock: spacing.xxxsmall,
       paddingInline: spacing.xxlarge,
       display: "flex",
       justifyContent: "flex-end",
@@ -84,7 +84,7 @@ const styles = {
   levels: stylex.create({
     default: {
       display: "flex",
-      gap: spacing.xxsmall,
+      gap: spacing.xxxsmall,
       alignItems: "center",
     },
 

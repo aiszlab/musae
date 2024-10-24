@@ -39,7 +39,7 @@ const styles = {
         boxSizing: "border-box",
         width: sizes.xxxsmall,
         height: sizes.xxxsmall,
-        borderRadius: spacing.xxsmall,
+        borderRadius: spacing.xxxsmall,
         transitionProperty: "all",
         transitionDuration: "0.2s",
 

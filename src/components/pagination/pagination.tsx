@@ -14,7 +14,7 @@ import { toFunction, clsx, unique } from "@aiszlab/relax";
 const styles = stylex.create({
   pagination: {
     display: "flex",
-    columnGap: spacing.xxsmall,
+    columnGap: spacing.xxxsmall,
     listStyleType: "none",
     margin: spacing.none,
     padding: spacing.none,

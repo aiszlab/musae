@@ -13,12 +13,12 @@ import type { PickerRef } from "musae/types/picker";
 
 const styles = stylex.create({
   picked: {
-    gap: spacing.xxsmall,
+    gap: spacing.xxxsmall,
     flexWrap: "wrap",
   },
 
   pickable: {
-    padding: spacing.xxsmall,
+    padding: spacing.xxxsmall,
   },
 });
 

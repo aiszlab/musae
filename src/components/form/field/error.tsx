@@ -12,7 +12,7 @@ import { spacing } from "../../theme/tokens.stylex";
 const styles = stylex.create({
   error: (props: { color: CSSProperties["color"] }) => ({
     color: props.color,
-    marginBlock: spacing.xxsmall,
+    marginBlock: spacing.xxxsmall,
     height: 0,
     overflow: "hidden",
   }),

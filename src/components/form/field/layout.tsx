@@ -23,7 +23,7 @@ const styles = stylex.create({
     "::before": {
       content: '"*"',
       color: props.color,
-      marginRight: spacing.xxsmall,
+      marginRight: spacing.xxxsmall,
     },
   }),
 

@@ -14,7 +14,7 @@ import type { PickerRef } from "musae/types/picker";
 
 const styles = stylex.create({
   calendar: {
-    padding: spacing.xxsmall,
+    padding: spacing.xxxsmall,
   },
 });
 

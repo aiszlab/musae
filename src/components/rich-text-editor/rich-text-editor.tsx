@@ -74,16 +74,16 @@ const styles = stylex.create({
 
   code: {
     backgroundColor: "var(--code-background-color)",
-    padding: spacing.xxsmall,
-    borderRadius: spacing.xxsmall,
+    padding: spacing.xxxsmall,
+    borderRadius: spacing.xxxsmall,
     display: "block",
     overflow: "auto",
   },
 
   inlineCode: {
-    padding: spacing.xxsmall,
+    padding: spacing.xxxsmall,
     backgroundColor: "var(--code-background-color)",
-    borderRadius: spacing.xxsmall,
+    borderRadius: spacing.xxxsmall,
   },
 
   link: {
@@ -97,7 +97,7 @@ const styles = stylex.create({
 
   checkbox: {
     position: "absolute",
-    insetInlineStart: spacing.xxsmall,
+    insetInlineStart: spacing.xxxsmall,
     insetBlockStart: spacing.xxxxsmall,
   },
 });

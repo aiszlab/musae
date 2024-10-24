@@ -35,7 +35,7 @@ const styles = stylex.create({
     },
 
     width: sizes.xxlarge,
-    marginBlock: spacing.xxsmall,
+    marginBlock: spacing.xxxsmall,
 
     "::-webkit-scrollbar": {
       width: spacing.small,

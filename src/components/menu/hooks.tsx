@@ -11,7 +11,7 @@ const styles = stylex.create({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    marginRight: spacing.xxsmall,
+    marginRight: spacing.xxxsmall,
   },
 
   suffix: {

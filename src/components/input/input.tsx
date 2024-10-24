@@ -35,7 +35,7 @@ export const styles = stylex.create({
 
     // layout
     margin: spacing.none,
-    paddingBlock: spacing.xxsmall,
+    paddingBlock: spacing.xxxsmall,
     paddingInline: spacing.medium,
 
     // animation

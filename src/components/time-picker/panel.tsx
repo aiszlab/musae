@@ -20,7 +20,7 @@ import { useLocale } from "../../locale";
 
 const styles = stylex.create({
   panel: {
-    marginInline: spacing.xxsmall,
+    marginInline: spacing.xxxsmall,
   },
 
   footer: (props: { borderTopColor: CSSProperties["borderTopColor"] }) => ({
@@ -31,7 +31,7 @@ const styles = stylex.create({
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
-    paddingBlock: spacing.xxsmall,
+    paddingBlock: spacing.xxxsmall,
     paddingInline: spacing.medium,
     minHeight: sizes.xlarge,
   }),

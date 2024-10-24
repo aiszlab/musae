@@ -16,8 +16,8 @@ import type { CascaderProps } from "musae/types/cascader";
 const styles = stylex.create({
   options: {
     display: "flex",
-    columnGap: spacing.xxsmall,
-    marginInline: spacing.xxsmall,
+    columnGap: spacing.xxxsmall,
+    marginInline: spacing.xxxsmall,
   },
 });
 

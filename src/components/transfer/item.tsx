@@ -12,7 +12,7 @@ const styles = stylex.create({
     display: "flex",
     alignItems: "center",
     paddingInline: spacing.medium,
-    paddingBlock: spacing.xxsmall,
+    paddingBlock: spacing.xxxsmall,
     gap: spacing.small,
   },
 });
