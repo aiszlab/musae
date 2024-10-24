@@ -25,7 +25,7 @@ const styles = {
     horizontal: {
       display: "flex",
       flexDirection: "row",
-      gap: spacing.small,
+      gap: spacing.xsmall,
     },
 
     vertical: {},

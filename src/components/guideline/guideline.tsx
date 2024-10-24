@@ -36,8 +36,8 @@ const styles = stylex.create({
   }),
 
   caption: {
-    marginBlockStart: spacing.small,
-    marginInline: spacing.small,
+    marginBlockStart: spacing.xsmall,
+    marginInline: spacing.xsmall,
     paddingBlock: spacing.large,
     paddingInline: spacing.xxxxsmall,
   },

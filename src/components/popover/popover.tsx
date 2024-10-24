@@ -31,7 +31,7 @@ const styles = {
       // layout
       display: "flex",
       flexDirection: "column",
-      gap: spacing.small,
+      gap: spacing.xsmall,
     },
 
     padding: (padding: number | true) => ({

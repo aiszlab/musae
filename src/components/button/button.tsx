@@ -16,7 +16,7 @@ const styles = stylex.create({
     display: "inline-flex",
     alignItems: "center",
     justifyContent: "center",
-    gap: spacing.small,
+    gap: spacing.xsmall,
     transitionProperty: "all",
     transitionDuration: "0.3s",
     willChange: "background-color, color, box-shadow",
@@ -39,11 +39,11 @@ const styles = stylex.create({
 
   small: {
     paddingBlock: spacing.none,
-    paddingInline: spacing.small,
+    paddingInline: spacing.xsmall,
   },
 
   medium: {
-    paddingBlock: spacing.small,
+    paddingBlock: spacing.xsmall,
     paddingInline: spacing.xlarge,
   },
 

@@ -17,7 +17,7 @@ const styles = stylex.create({
     borderBlockStartWidth: sizes.none,
 
     // apply styles
-    paddingInline: spacing.small,
+    paddingInline: spacing.xsmall,
     paddingBlock: spacing.medium,
     borderColor: props.borderColor,
     borderStyle: "solid",

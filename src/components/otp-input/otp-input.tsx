@@ -11,7 +11,7 @@ const styles = stylex.create({
   otp: {
     display: "flex",
     flexDirection: "row",
-    gap: spacing.small,
+    gap: spacing.xsmall,
   },
 
   input: {

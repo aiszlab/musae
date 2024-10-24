@@ -17,7 +17,7 @@ const styles = {
     default: {
       display: "flex",
       alignItems: "center",
-      gap: spacing.small,
+      gap: spacing.xsmall,
     },
 
     picture: (props: { borderColor: CSSProperties["borderColor"] }) => ({

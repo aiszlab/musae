@@ -22,7 +22,7 @@ const styles = stylex.create({
   }),
 
   small: {
-    paddingInline: spacing.small,
+    paddingInline: spacing.xsmall,
     paddingBlock: spacing.xxxsmall,
     borderRadius: spacing.xxxsmall,
     gap: spacing.xxxsmall,
@@ -37,9 +37,9 @@ const styles = stylex.create({
 
   large: {
     paddingInline: spacing.large,
-    paddingBlock: spacing.small,
-    borderRadius: spacing.small,
-    gap: spacing.small,
+    paddingBlock: spacing.xsmall,
+    borderRadius: spacing.xsmall,
+    gap: spacing.xsmall,
   },
 });
 

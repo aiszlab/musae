@@ -16,7 +16,7 @@ const styles = stylex.create({
     alignItems: "center",
     gap: spacing.xxxsmall,
 
-    paddingBlock: spacing.small,
+    paddingBlock: spacing.xsmall,
     paddingLeft: 12 + props.level * 24,
   }),
 

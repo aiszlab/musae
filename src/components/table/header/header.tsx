@@ -22,7 +22,7 @@ const styles = stylex.create({
     backgroundColor: props.backgroundColor,
     textAlign: "start",
     position: "relative",
-    paddingInline: spacing.small,
+    paddingInline: spacing.xsmall,
     paddingBlock: spacing.medium,
     borderColor: props.borderColor,
     borderStyle: "solid",

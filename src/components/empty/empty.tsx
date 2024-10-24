@@ -13,11 +13,11 @@ const styles = stylex.create({
     flexDirection: "column",
     alignItems: "center",
     marginBlock: spacing.xxlarge,
-    marginInline: spacing.small,
+    marginInline: spacing.xsmall,
   },
 
   label: {
-    marginBlockStart: spacing.small,
+    marginBlockStart: spacing.xsmall,
   },
 });
 

@@ -24,7 +24,7 @@ const styles = stylex.create({
   header: (props: { color: CSSProperties["color"] }) => ({
     display: "flex",
     alignItems: "center",
-    columnGap: spacing.small,
+    columnGap: spacing.xsmall,
     paddingInline: spacing.medium,
     color: props.color,
   }),

@@ -92,13 +92,13 @@ const styles = {
   size: stylex.create({
     small: (props: { level: number }) => ({
       paddingBlock: spacing.xxxsmall,
-      paddingRight: spacing.small,
-      paddingLeft: `calc(${spacing.small} + ${props.level} * ${spacing.large})`,
+      paddingRight: spacing.xsmall,
+      paddingLeft: `calc(${spacing.xsmall} + ${props.level} * ${spacing.large})`,
       borderRadius: sizes.xxxxxsmall,
     }),
 
     medium: (props: { level: number }) => ({
-      paddingBlock: spacing.small,
+      paddingBlock: spacing.xsmall,
       paddingRight: spacing.medium,
       paddingLeft: `calc(${spacing.medium} + ${props.level} * ${spacing.xlarge})`,
       borderRadius: sizes.xxxxsmall,

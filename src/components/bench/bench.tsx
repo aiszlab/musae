@@ -21,7 +21,7 @@ const styles = {
       borderRightStyle: "solid",
       borderRightColor: props.outlineColor,
       paddingInline: spacing.medium,
-      paddingBlockEnd: spacing.small,
+      paddingBlockEnd: spacing.xsmall,
 
       position: "sticky",
       height: `calc(100vh - ${sizes.xxxlarge} - ${spacing.xxlarge})`,
@@ -38,7 +38,7 @@ const styles = {
 
   header: stylex.create({
     default: (props: { elevation: ElevationToken }) => ({
-      gap: spacing.small,
+      gap: spacing.xsmall,
       boxShadow: elevations[props.elevation],
     }),
 

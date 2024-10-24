@@ -38,7 +38,7 @@ const styles = stylex.create({
     marginBlock: spacing.xxxsmall,
 
     "::-webkit-scrollbar": {
-      width: spacing.small,
+      width: spacing.xsmall,
       backgroundColor: "transparent",
     },
 

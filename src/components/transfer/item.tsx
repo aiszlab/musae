@@ -13,7 +13,7 @@ const styles = stylex.create({
     alignItems: "center",
     paddingInline: spacing.medium,
     paddingBlock: spacing.xxxsmall,
-    gap: spacing.small,
+    gap: spacing.xsmall,
   },
 });
 

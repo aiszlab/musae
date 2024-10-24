@@ -16,13 +16,13 @@ const styles = stylex.create({
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
-    gap: spacing.small,
+    gap: spacing.xsmall,
   },
 
   operation: {
     display: "flex",
     flexDirection: "column",
-    gap: spacing.small,
+    gap: spacing.xsmall,
   },
 });
 

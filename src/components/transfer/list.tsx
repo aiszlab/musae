@@ -25,7 +25,7 @@ const styles = stylex.create({
   header: (props: { outlineColor: CSSProperties["borderColor"] }) => ({
     display: "flex",
     alignItems: "center",
-    paddingBlock: spacing.small,
+    paddingBlock: spacing.xsmall,
     paddingInline: spacing.medium,
     borderBottomWidth: sizes.smallest,
     borderBottomColor: props.outlineColor,

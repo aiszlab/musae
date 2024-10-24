@@ -82,12 +82,12 @@ const styles = {
 
   label: stylex.create({
     horizontal: {
-      marginInline: spacing.small,
+      marginInline: spacing.xsmall,
       whiteSpace: "nowrap",
     },
 
     vertical: {
-      marginBlock: spacing.small,
+      marginBlock: spacing.xsmall,
       whiteSpace: "nowrap",
     },
   }),

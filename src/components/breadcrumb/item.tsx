@@ -36,7 +36,7 @@ const styles = {
 
   separator: stylex.create({
     default: {
-      marginInline: spacing.small,
+      marginInline: spacing.xsmall,
     },
   }),
 };
