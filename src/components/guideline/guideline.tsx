@@ -39,7 +39,7 @@ const styles = stylex.create({
     marginBlockStart: spacing.small,
     marginInline: spacing.small,
     paddingBlock: spacing.large,
-    paddingInline: spacing.xxxsmall,
+    paddingInline: spacing.xxxxsmall,
   },
 });
 

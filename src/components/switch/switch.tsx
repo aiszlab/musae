@@ -75,7 +75,7 @@ const styles = {
     icon: {
       height: sizes.xsmall,
       width: sizes.xsmall,
-      insetInlineStart: spacing.xxxsmall,
+      insetInlineStart: spacing.xxxxsmall,
     },
 
     disabled: {
@@ -92,7 +92,7 @@ const styles = {
       width: sizes.xsmall,
       opacity: null,
       // `switch width` - `slider width` - `slider padding width`
-      insetInlineStart: `calc(100% - ${sizes.xsmall} - ${spacing.xxxsmall})`,
+      insetInlineStart: `calc(100% - ${sizes.xsmall} - ${spacing.xxxxsmall})`,
     }),
   }),
 

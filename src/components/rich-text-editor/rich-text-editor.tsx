@@ -98,7 +98,7 @@ const styles = stylex.create({
   checkbox: {
     position: "absolute",
     insetInlineStart: spacing.xxsmall,
-    insetBlockStart: spacing.xxxsmall,
+    insetBlockStart: spacing.xxxxsmall,
   },
 });
 
