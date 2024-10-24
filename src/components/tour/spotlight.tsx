@@ -9,10 +9,11 @@ import { Context } from "./context";
 const styles = stylex.create({
   spotlight: {
     backgroundColor: "#808080",
-    borderRadius: sizes.xxxxxsmall,
+    borderRadius: sizes.xxxxsmall,
     transitionProperty: "transform",
     transitionDuration: "0.2s",
     willChange: "transform",
+    display: "none",
   },
 });
 
@@ -45,6 +46,7 @@ const Spotlight = ({ trigger, padding: [paddingY, paddingX] }: SpotlightProps) =
       })
         .then(({ x, y }) => {
           _floatable.style.transform = `translate(${x}px, ${y}px)`;
+          _floatable.style.display = "initial";
         })
         .catch(() => null);
     });

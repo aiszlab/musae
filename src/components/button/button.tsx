@@ -29,9 +29,10 @@ const styles = stylex.create({
     textOverflow: "ellipsis",
     cursor: "pointer",
     fontFamily: "inherit",
+    boxSizing: "border-box",
   },
 
-  // ripple
+  // with ripple
   ripple: {
     position: "relative",
   },
@@ -39,27 +40,20 @@ const styles = stylex.create({
   small: {
     paddingBlock: spacing.none,
     paddingInline: spacing.small,
-    minHeight: sizes.xsmall,
-    minWidth: sizes.xsmall,
   },
 
   medium: {
     paddingBlock: spacing.small,
     paddingInline: spacing.xlarge,
-    minHeight: sizes.xlarge,
-    minWidth: sizes.xlarge,
   },
 
   large: {
     paddingBlock: spacing.medium,
     paddingInline: spacing.xxlarge,
-    minHeight: sizes.xxlarge,
-    minWidth: sizes.xxlarge,
   },
 
   circular: {
     borderRadius: sizes.infinity,
-    padding: null,
     aspectRatio: 1,
     // circular shape, always center layout
     justifyContent: "center",
