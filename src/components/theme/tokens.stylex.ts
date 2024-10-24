@@ -29,7 +29,7 @@ export const spacing = defineVars({
   smallest: "1px",
   xxxxsmall: "2px",
   xxxsmall: "4px",
-  xsmall: "6px",
+  xxsmall: "6px",
   small: "8px",
   medium: "12px",
   large: "16px",

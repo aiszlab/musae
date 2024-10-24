@@ -79,7 +79,7 @@ const styles = stylex.create({
     paddingInline: spacing.large,
     paddingBlock: spacing.large,
     alignItems: "center",
-    gap: spacing.xsmall,
+    gap: spacing.xxsmall,
     borderBottomWidth: sizes.smallest,
     borderBottomStyle: "solid",
     borderBottomColor: props.outlineColor,

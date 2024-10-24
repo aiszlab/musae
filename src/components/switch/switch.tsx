@@ -63,7 +63,7 @@ const styles = {
       color: props.color,
       height: sizes.xxxsmall,
       width: sizes.xxxsmall,
-      insetInlineStart: spacing.xsmall,
+      insetInlineStart: spacing.xxsmall,
 
       // layout
       display: "flex",

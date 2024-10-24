@@ -16,7 +16,7 @@ const styles = {
       flex: 1,
       display: "grid",
       alignItems: "center",
-      columnGap: spacing.xsmall,
+      columnGap: spacing.xxsmall,
       overflow: "hidden",
 
       gridTemplateAreas: "'leading title' '. description'",

@@ -30,9 +30,9 @@ const styles = stylex.create({
 
   medium: {
     paddingInline: spacing.medium,
-    paddingBlock: spacing.xsmall,
-    borderRadius: spacing.xsmall,
-    gap: spacing.xsmall,
+    paddingBlock: spacing.xxsmall,
+    borderRadius: spacing.xxsmall,
+    gap: spacing.xxsmall,
   },
 
   large: {
