@@ -3,7 +3,7 @@ import { useConfiguration } from "../components/config";
 
 /**
  * @description
- * in component, inject prefix class name
+ * in component, inject prefix class names
  */
 export const useClassNames = <C extends Record<string, string>>(classNames: C): C => {
   const { prefix } = useConfiguration();
@@ -12,6 +12,5 @@ export const useClassNames = <C extends Record<string, string>>(classNames: C): 
     return Object.fromEntries(
       Object.entries(classNames).map(([key, value]) => [key, `${prefix}-${value}`]),
     ) as C;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [prefix]);
+  }, [classNames, prefix]);
 };

@@ -8,13 +8,14 @@ import { useTheme } from "../theme";
 import { elevations, positions, sizes, spacing } from "../theme/tokens.stylex";
 import { Space } from "../space";
 import { typography } from "../theme/theme";
-import { useClassNames } from "../../hooks/use-class-names";
-import { TourClassToken } from "../../utils/class-name";
 import { clsx } from "@aiszlab/relax";
 import { useStep } from "./hooks";
 import Spotlight from "./spotlight";
 import { useGutters } from "../../hooks/use-gutters";
 import { useLocale } from "../../locale";
+import { CLASS_NAMES, Context } from "./context";
+import { useClassNames } from "../../hooks/use-class-names.component";
+import { useContainer } from "../../hooks/use-container";
 
 const styles = stylex.create({
   overlay: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
@@ -57,10 +58,13 @@ const Tour = ({
   spotlightPadding = 8,
 }: TourProps) => {
   const theme = useTheme();
-  const classNames = useClassNames("tour");
   const { step, next, prev, hasNext, hasPrev } = useStep({ steps, open });
   const paddings = useGutters({ gutter: spotlightPadding });
   const [locale] = useLocale("tour");
+  const classNames = useClassNames(CLASS_NAMES);
+
+  // every step should have a target
+  const { container: trigger } = useContainer({ container: step.target, useBody: false });
 
   const styled = {
     overlay: stylex.props(styles.overlay({ backgroundColor: theme.colors["surface-dim"] })),
@@ -80,35 +84,32 @@ const Tour = ({
   };
 
   return (
-    <>
+    <Context.Provider value={{ classNames }}>
       <Portal open={overlay && open} destroyable lockable>
         <div
-          className={clsx(classNames[TourClassToken.Overlay], styled.overlay.className)}
+          className={clsx(classNames.overlay, styled.overlay.className)}
           style={styled.overlay.style}
         >
-          <Spotlight trigger={step.target} padding={paddings} />
+          <Spotlight trigger={trigger} padding={paddings} />
         </div>
       </Portal>
 
       <Popper
-        trigger={step.target}
+        trigger={trigger}
         open={open}
-        className={clsx(classNames[TourClassToken.Tour], styled.tour.className)}
+        className={clsx(classNames.tour, styled.tour.className)}
         style={styled.tour.style}
         offset={paddings[0]}
         placement="bottom"
         overlay={overlay}
         destroyable
       >
-        <div
-          className={clsx(classNames[TourClassToken.Title], styled.title.className)}
-          style={styled.title.style}
-        >
+        <div className={clsx(classNames.title, styled.title.className)} style={styled.title.style}>
           {step.title}
         </div>
 
         <div
-          className={clsx(classNames[TourClassToken.Description], styled.description.className)}
+          className={clsx(classNames.description, styled.description.className)}
           style={styled.description.style}
         >
           {step.description}
@@ -116,7 +117,7 @@ const Tour = ({
 
         <Space
           gutter={6}
-          className={clsx(classNames[TourClassToken.Footer], styled.footer.className)}
+          className={clsx(classNames.footer, styled.footer.className)}
           style={styled.footer.style}
         >
           {/* prev */}
@@ -141,7 +142,7 @@ const Tour = ({
           )}
         </Space>
       </Popper>
-    </>
+    </Context.Provider>
   );
 };
 

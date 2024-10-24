@@ -1,4 +1,10 @@
-import React, { forwardRef, useImperativeHandle, useRef, type CSSProperties } from "react";
+import React, {
+  forwardRef,
+  useContext,
+  useImperativeHandle,
+  useRef,
+  type CSSProperties,
+} from "react";
 import { LexicalComposer, type InitialConfigType } from "@lexical/react/LexicalComposer";
 import { ContentEditable } from "@lexical/react/LexicalContentEditable";
 import { LexicalErrorBoundary } from "@lexical/react/LexicalErrorBoundary";
@@ -41,7 +47,7 @@ import type {
   RichTextEditorRef,
   RichTextEditorProps,
 } from "musae/types/rich-text-editor";
-import { useClassNames } from "./hooks";
+import { Context } from "./context";
 
 const styles = stylex.create({
   shell: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
@@ -151,7 +157,7 @@ const RichTextEditor = forwardRef<RichTextEditorRef, RichTextEditorProps>(
     const theme = useTheme();
     const _use = useDefault(() => props.use ?? "serialized");
     const controlledStatePluginRef = useRef<ControlledStatePluginRef>(null);
-    const classNames = useClassNames();
+    const { classNames } = useContext(Context);
 
     const styled = {
       shell: stylex.props(

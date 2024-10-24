@@ -167,14 +167,6 @@ export enum RateClassToken {
   Half,
   Full,
 }
-export enum TourClassToken {
-  Tour,
-  Overlay,
-  Spotlight,
-  Title,
-  Description,
-  Footer,
-}
 export enum StepsClassToken {
   Steps,
   Item,
@@ -467,14 +459,6 @@ export const CLASS_NAMES = {
     [RateClassToken.Star]: "rate__star",
     [RateClassToken.Half]: "rate__star-half",
     [RateClassToken.Full]: "rate__star-full",
-  },
-  tour: {
-    [TourClassToken.Tour]: "tour",
-    [TourClassToken.Overlay]: "tour__overlay",
-    [TourClassToken.Spotlight]: "tour__spotlight",
-    [TourClassToken.Title]: "tour__title",
-    [TourClassToken.Description]: "tour__description",
-    [TourClassToken.Footer]: "tour__footer",
   },
   steps: {
     [StepsClassToken.Steps]: "steps",

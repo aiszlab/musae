@@ -162,7 +162,7 @@ export const useFloating = ({
     }
 
     disappear();
-  }, [disappear, open, position]);
+  }, [disappear, open, position, trigger]);
 
   return {
     floatableRef,

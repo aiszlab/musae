@@ -1,5 +1,4 @@
-import type { Nullable } from "@aiszlab/relax/types";
-import type { PopperProps } from "./popper";
+import type { Nullable, Voidable } from "@aiszlab/relax/types";
 import type { ReactNode } from "react";
 
 /**
@@ -83,7 +82,7 @@ export type SpotlightProps = {
 
   /**
    * @description
-   * trigger
+   * trigger element
    */
-  trigger: PopperProps["trigger"];
+  trigger: Voidable<HTMLElement>;
 };

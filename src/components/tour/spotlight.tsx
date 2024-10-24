@@ -1,12 +1,10 @@
-import React, { useEffect, useMemo, useRef } from "react";
-import { isFunction, clsx } from "@aiszlab/relax";
+import React, { useContext, useEffect, useRef } from "react";
+import { clsx } from "@aiszlab/relax";
 import { computePosition, size, autoUpdate, offset } from "@floating-ui/dom";
-import { Nullable } from "@aiszlab/relax/types";
 import stylex from "@stylexjs/stylex";
-import { useClassNames } from "../../hooks/use-class-names";
-import { TourClassToken } from "../../utils/class-name";
 import { SpotlightProps } from "musae/types/tour";
 import { sizes } from "../theme/tokens.stylex";
+import { Context } from "./context";
 
 const styles = stylex.create({
   spotlight: {
@@ -18,18 +16,12 @@ const styles = stylex.create({
   },
 });
 
-const Spotlight = ({ trigger: _trigger, padding: [paddingY, paddingX] }: SpotlightProps) => {
+const Spotlight = ({ trigger, padding: [paddingY, paddingX] }: SpotlightProps) => {
   const floatable = useRef<HTMLDivElement>(null);
-  const classNames = useClassNames("tour");
+  const { classNames } = useContext(Context);
 
-  /// how to get trigger
-  const trigger = useMemo<Nullable<Element>>(() => {
-    if (isFunction(_trigger)) return _trigger();
-    return _trigger ?? null;
-  }, [_trigger]);
-
-  /// auto update: calc trigger dom to get position
-  /// if trigger changed, re-relate
+  // auto update: calc trigger dom to get position
+  // if trigger changed, re-relate
   useEffect(() => {
     const _floatable = floatable.current;
 
@@ -67,7 +59,7 @@ const Spotlight = ({ trigger: _trigger, padding: [paddingY, paddingX] }: Spotlig
   return (
     <div
       ref={floatable}
-      className={clsx(classNames[TourClassToken.Spotlight], styled.className)}
+      className={clsx(classNames.spotlight, styled.className)}
       style={styled.style}
     />
   );
