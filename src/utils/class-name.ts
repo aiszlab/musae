@@ -123,9 +123,6 @@ export enum MenuClassToken {
   Collapser,
   Item,
 }
-export enum CheckboxClassToken {
-  Checkbox,
-}
 export enum TreeClassToken {
   Tree,
   List,
@@ -245,10 +242,7 @@ export enum BadgeClassToken {
   Badge,
   Tail,
 }
-export enum SkeletonClassToken {
-  Skeleton,
-  Circular,
-}
+
 export enum VisuallyHiddenClassToken {
   VisuallyHidden,
 }
@@ -412,9 +406,6 @@ export const CLASS_NAMES = {
     [MenuClassToken.Collapser]: "menu__collapser",
     [MenuClassToken.Item]: "menu__item",
   },
-  checkbox: {
-    [CheckboxClassToken.Checkbox]: "checkbox",
-  },
   tree: {
     [TreeClassToken.Tree]: "tree",
     [TreeClassToken.List]: "tree__list",
@@ -531,10 +522,6 @@ export const CLASS_NAMES = {
   badge: {
     [BadgeClassToken.Badge]: "badge",
     [BadgeClassToken.Tail]: "badge__tail",
-  },
-  skeleton: {
-    [SkeletonClassToken.Skeleton]: "skeleton",
-    [SkeletonClassToken.Circular]: "skeleton--circular",
   },
   "visually-hidden": {
     [VisuallyHiddenClassToken.VisuallyHidden]: "visually-hidden",

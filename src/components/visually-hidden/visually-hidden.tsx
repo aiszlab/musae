@@ -2,9 +2,9 @@ import stylex from "@stylexjs/stylex";
 import React from "react";
 import type { VisuallyHiddenProps } from "musae/types/visually-hidden";
 import { sizes, spacing } from "../theme/tokens.stylex";
-import { useClassNames } from "../../hooks/use-class-names";
-import { VisuallyHiddenClassToken } from "../../utils/class-name";
 import { clsx } from "@aiszlab/relax";
+import { useClassNames } from "../../hooks/use-class-names.component";
+import { CLASS_NAMES } from "./context";
 
 const styles = stylex.create({
   hidden: {
@@ -16,17 +16,18 @@ const styles = stylex.create({
   },
 });
 
-const VisuallyHidden = ({ children }: VisuallyHiddenProps) => {
+const VisuallyHidden = ({ children, dangerouslySetInnerHTML }: VisuallyHiddenProps) => {
   const styled = stylex.props(styles.hidden);
-  const classNames = useClassNames("visually-hidden");
+  const classNames = useClassNames(CLASS_NAMES);
 
   return (
-    <span
-      className={clsx(classNames[VisuallyHiddenClassToken.VisuallyHidden], styled.className)}
+    <div
+      className={clsx(classNames.visuallyHidden, styled.className)}
       style={styled.style}
+      dangerouslySetInnerHTML={dangerouslySetInnerHTML}
     >
       {children}
-    </span>
+    </div>
   );
 };
 

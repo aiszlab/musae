@@ -1,12 +1,12 @@
 import stylex from "@stylexjs/stylex";
 import type { SkeletonProps } from "musae/types/skeleton";
 import React, { type CSSProperties } from "react";
-import { useClassNames } from "../../hooks/use-class-names";
-import { SkeletonClassToken } from "../../utils/class-name";
 import { clsx } from "@aiszlab/relax";
 import { OPACITY } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { hexToRgba } from "@aiszlab/fuzzy/color";
+import { useClassNames } from "../../hooks/use-class-names.component";
+import { CLASS_NAMES } from "./context";
 
 const animation = stylex.keyframes({
   from: {
@@ -43,8 +43,8 @@ const styles = stylex.create({
   },
 });
 
-const Skeleton = ({ animation = true, className, style }: SkeletonProps) => {
-  const classNames = useClassNames("skeleton");
+const Skeleton = ({ animation = true, className, style, children }: SkeletonProps) => {
+  const classNames = useClassNames(CLASS_NAMES);
   const theme = useTheme();
 
   const styled = stylex.props(
@@ -58,12 +58,14 @@ const Skeleton = ({ animation = true, className, style }: SkeletonProps) => {
 
   return (
     <div
-      className={clsx(classNames[SkeletonClassToken.Skeleton], className, styled.className)}
+      className={clsx(classNames.skeleton, className, styled.className)}
       style={{
         ...styled.style,
         ...style,
       }}
-    />
+    >
+      {children}
+    </div>
   );
 };
 

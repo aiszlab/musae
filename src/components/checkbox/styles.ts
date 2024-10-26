@@ -3,6 +3,18 @@ import { opacity, sizes, spacing } from "../theme/tokens.stylex";
 
 const styles = {
   checkbox: stylex.create({
+    variables: (props: {
+      primary: string;
+      onPrimary: string;
+      outline: string;
+      onSurface: string;
+    }) => ({
+      "--primary": props.primary,
+      "--on-primary": props.onPrimary,
+      "--outline": props.outline,
+      "--on-surface": props.onSurface,
+    }),
+
     default: {
       display: "inline-flex",
       alignItems: "center",
@@ -14,15 +26,9 @@ const styles = {
       opacity: opacity.thicker,
       cursor: "not-allowed",
     },
-
-    variables: (props: { primaryColor: string; onPrimaryColor: string; outlineColor: string }) => ({
-      "--primary-color": props.primaryColor,
-      "--on-primary-color": props.onPrimaryColor,
-      "--outline-color": props.outlineColor,
-    }),
   }),
 
-  trigger: stylex.create({
+  input: stylex.create({
     default: {
       margin: spacing.none,
       visibility: "hidden",
@@ -45,17 +51,10 @@ const styles = {
 
         borderWidth: sizes.smallest,
         borderStyle: "solid",
-        borderColor: "var(--outline-color)",
-      },
-    },
-
-    checked: {
-      "::before": {
-        backgroundColor: "var(--primary-color)",
-        borderColor: "var(--primary-color)",
       },
 
-      "::after": {
+      // if current node is checked, show checkmark
+      ':not([aria-checked="false"])::after': {
         content: "",
         position: "absolute",
         insetBlockStart: sizes.none,
@@ -75,24 +74,29 @@ const styles = {
         borderBottomWidth: sizes.xxxxxxsmall,
         borderLeftWidth: sizes.xxxxxxsmall,
         borderStyle: "solid",
-        borderColor: "var(--on-primary-color)",
-      },
-    },
-
-    disabled: (props: { backgroundColor: string; color: string }) => ({
-      "::before": {
-        backgroundColor: props.backgroundColor,
-        borderColor: props.backgroundColor,
+        borderColor: "var(--on-primary)",
       },
 
-      "::after": {
-        borderColor: props.color,
+      // when node is disabled and checked, wrapper appear like disabled
+      ':not([aria-disabled="false"])[aria-checked="true"]::before': {
+        borderColor: "var(--on-surface)",
+        backgroundColor: "var(--on-surface)",
       },
-    }),
 
-    unchecked: {
-      "::before": {
-        backgroundColor: null,
+      // when node is disabled and unchecked, wrapper appear only border like disabled
+      ':not([aria-disabled="false"])[aria-checked="false"]::before': {
+        borderColor: "var(--on-surface)",
+      },
+
+      // when node is editable and checked, fill background
+      ':not([aria-disabled="true"])[aria-checked="true"]::before': {
+        backgroundColor: "var(--primary)",
+        borderColor: "var(--primary)",
+      },
+
+      // when node is editable and unchecked, show only border
+      ':not([aria-disabled="true"])[aria-checked="false"]::before': {
+        borderColor: "var(--outline)",
       },
     },
   }),

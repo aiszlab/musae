@@ -1,4 +1,5 @@
 import type { ComponentProps } from "musae/types/element";
+import type { ReactNode } from "react";
 
 /**
  * @description
@@ -11,4 +12,10 @@ export type SkeletonProps = ComponentProps & {
    * @default true
    */
   animation?: boolean;
+
+  /**
+   * @description
+   * children
+   */
+  children?: ReactNode;
 };
