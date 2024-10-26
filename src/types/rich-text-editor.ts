@@ -57,14 +57,9 @@ export type RichTextEditorProps = Pick<HTMLAttributes<HTMLDivElement>, "aria-pla
 export type EditorThemeClasses = _EditorThemeClasses & {
   /**
    * @description
-   * check list class names
+   * checkbox class names
    */
-  checkList?: {
-    checkbox?: {
-      checked?: string;
-      unchecked?: string;
-    };
-  };
+  checkbox?: string;
 };
 
 /**

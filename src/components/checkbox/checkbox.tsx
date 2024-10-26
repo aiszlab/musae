@@ -1,13 +1,12 @@
 import React, { type ChangeEvent, useContext, useMemo } from "react";
 import { useControlledState, useEvent, clsx } from "@aiszlab/relax";
-import Context from "./context";
+import Context, { CLASS_NAMES } from "./context";
 import type { CheckboxProps } from "musae/types/checkbox";
-import { useClassNames } from "../../hooks/use-class-names";
-import { CheckboxClassToken } from "../../utils/class-name";
 import stylex from "@stylexjs/stylex";
 import { useTheme } from "../theme";
 import { typography } from "../theme/theme";
 import styles from "./styles";
+import { useClassNames } from "../../hooks/use-class-names.component";
 
 const Checkbox = ({
   value,
@@ -19,7 +18,7 @@ const Checkbox = ({
   checked,
 }: CheckboxProps) => {
   const contextValue = useContext(Context);
-  const classNames = useClassNames("checkbox");
+  const classNames = useClassNames(CLASS_NAMES);
   const theme = useTheme();
   const isDisabled = useMemo(() => contextValue?.isDisabled ?? disabled, [contextValue, disabled]);
 
@@ -51,51 +50,42 @@ const Checkbox = ({
 
   const styled = {
     checkbox: stylex.props(
+      styles.checkbox.variables({
+        primary: theme.colors.primary,
+        onPrimary: theme.colors["on-primary"],
+        outline: theme.colors.outline,
+        onSurface: theme.colors["on-surface"],
+      }),
       styles.checkbox.default,
       isDisabled && styles.checkbox.disabled,
-      styles.checkbox.variables({
-        primaryColor: theme.colors.primary,
-        onPrimaryColor: theme.colors["on-primary"],
-        outlineColor: theme.colors.outline,
-      }),
     ),
-    trigger: stylex.props(
-      styles.trigger.default,
-      isChecked && styles.trigger.checked,
-      isDisabled &&
-        styles.trigger.disabled({
-          backgroundColor: theme.colors["on-surface"],
-          color: theme.colors["on-primary"],
-        }),
-      !isChecked && styles.trigger.unchecked,
-    ),
+    input: stylex.props(styles.input.default),
     label: stylex.props(styles.label.default, typography.label.small),
   };
 
   return (
     <label
-      className={clsx(
-        classNames[CheckboxClassToken.Checkbox],
-        className,
-        styled.checkbox.className,
-      )}
+      className={clsx(classNames.check, className, styled.checkbox.className)}
       style={{
         ...styled.checkbox.style,
         ...style,
       }}
+      aria-checked={isChecked}
+      aria-disabled={isDisabled}
     >
       <input
         type="checkbox"
-        className={styled.trigger.className}
-        style={styled.trigger.style}
+        className={clsx(classNames.input, styled.input.className)}
+        style={styled.input.style}
         checked={isChecked}
-        aria-checked={isChecked}
         disabled={isDisabled}
         onChange={change}
+        aria-checked={isChecked}
+        aria-disabled={isDisabled}
       />
 
       {children && (
-        <span className={styled.label.className} style={styled.label.style}>
+        <span className={clsx(classNames.label, styled.label.className)} style={styled.label.style}>
           {children}
         </span>
       )}

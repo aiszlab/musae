@@ -2,7 +2,7 @@ import React, { forwardRef, useCallback, useImperativeHandle, type ReactNode } f
 import { isUndefined, useEvent, useUpdateEffect } from "@aiszlab/relax";
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
 import { OnChangePlugin } from "@lexical/react/LexicalOnChangePlugin";
-import type { EditorState, ElementNode, LexicalEditor } from "lexical";
+import type { EditorState, LexicalEditor } from "lexical";
 import type { Use } from "musae/types/rich-text-editor";
 import { $convertToMarkdownString } from "@lexical/markdown";
 import { TRANSFORMERS } from "../markdown-shortcut";
@@ -49,10 +49,7 @@ const ControlledStatePlugin = forwardRef<Ref, Props>(
           return;
         }
 
-        const markdown = $convertToMarkdownString(
-          TRANSFORMERS,
-          state._nodeMap.get("root") as ElementNode,
-        );
+        const markdown = $convertToMarkdownString(TRANSFORMERS, void 0, true);
         onChange?.(markdown);
       });
     });

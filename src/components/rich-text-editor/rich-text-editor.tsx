@@ -1,10 +1,4 @@
-import React, {
-  forwardRef,
-  useContext,
-  useImperativeHandle,
-  useRef,
-  type CSSProperties,
-} from "react";
+import React, { forwardRef, useImperativeHandle, useRef, type CSSProperties } from "react";
 import { LexicalComposer, type InitialConfigType } from "@lexical/react/LexicalComposer";
 import { ContentEditable } from "@lexical/react/LexicalContentEditable";
 import { LexicalErrorBoundary } from "@lexical/react/LexicalErrorBoundary";
@@ -13,16 +7,18 @@ import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
 import { LinkPlugin } from "@lexical/react/LexicalLinkPlugin";
 import { ClickableLinkPlugin } from "@lexical/react/LexicalClickableLinkPlugin";
 import { ListPlugin } from "@lexical/react/LexicalListPlugin";
+
 import CheckListPlugin from "./plugins/check-list";
 import ControlledStatePlugin, {
   type Ref as ControlledStatePluginRef,
 } from "./plugins/controlled-state";
+import EditablePlugin from "./plugins/editable";
 
 import { clsx, useDefault, useIdentity } from "@aiszlab/relax";
 import { useMessage } from "../message";
 import stylex from "@stylexjs/stylex";
 
-import { sizes, spacing } from "../theme/tokens.stylex";
+import { opacity, sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 
 /* nodes */
@@ -47,7 +43,8 @@ import type {
   RichTextEditorRef,
   RichTextEditorProps,
 } from "musae/types/rich-text-editor";
-import { Context } from "./context";
+import { CLASS_NAMES, Context } from "./context";
+import { useClassNames } from "../../hooks/use-class-names.component";
 
 const styles = stylex.create({
   shell: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
@@ -56,13 +53,17 @@ const styles = stylex.create({
   }),
 
   variables: (props: {
-    primaryColor: string;
-    onPrimaryColor: string;
-    codeBackgroundColor: string;
+    primary: string;
+    onPrimary: string;
+    onSurface: string;
+    surfaceContainerHighest: string;
+    outline: string;
   }) => ({
-    "--primary-color": props.primaryColor,
-    "--on-primary-color": props.onPrimaryColor,
-    "--code-background-color": props.codeBackgroundColor,
+    "--primary": props.primary,
+    "--on-primary": props.onPrimary,
+    "--on-surface": props.onSurface,
+    "--surface-container-highest": props.surfaceContainerHighest,
+    "--outline": props.outline,
   }),
 
   textarea: {
@@ -99,6 +100,12 @@ const styles = stylex.create({
     position: "absolute",
     insetInlineStart: spacing.xxxsmall,
     insetBlockStart: spacing.xxxxsmall,
+
+    // if node is disabled, show disabled style
+    ':not([aria-disabled="false"])': {
+      opacity: opacity.thicker,
+      cursor: "not-allowed",
+    },
   },
 });
 
@@ -157,15 +164,17 @@ const RichTextEditor = forwardRef<RichTextEditorRef, RichTextEditorProps>(
     const theme = useTheme();
     const _use = useDefault(() => props.use ?? "serialized");
     const controlledStatePluginRef = useRef<ControlledStatePluginRef>(null);
-    const { classNames } = useContext(Context);
+    const classNames = useClassNames(CLASS_NAMES);
 
     const styled = {
       shell: stylex.props(
         !disabled && styles.shell({ backgroundColor: theme.colors["surface-container"] }),
         styles.variables({
-          primaryColor: theme.colors.primary,
-          onPrimaryColor: theme.colors["on-primary"],
-          codeBackgroundColor: theme.colors["surface-container-highest"],
+          primary: theme.colors.primary,
+          onPrimary: theme.colors["on-primary"],
+          onSurface: theme.colors["on-surface"],
+          surfaceContainerHighest: theme.colors["surface-container-highest"],
+          outline: theme.colors.outline,
         }),
       ),
       textarea: stylex.props(!disabled && styles.textarea),
@@ -179,14 +188,8 @@ const RichTextEditor = forwardRef<RichTextEditorRef, RichTextEditorProps>(
       inlineCode: stylex.props(styles.inlineCode),
       link: stylex.props(styles.link),
 
-      checkbox: {
-        unchecked: stylex.props(checkboxStyles.trigger.default, styles.checkbox),
-        checked: stylex.props(
-          checkboxStyles.trigger.default,
-          checkboxStyles.trigger.checked,
-          styles.checkbox,
-        ),
-      },
+      checkbox: stylex.props(checkboxStyles.input.default, styles.checkbox),
+
       list: {
         unordered: stylex.props(_styles.list.default.default, _styles.list.unordered.default),
         ordered: stylex.props(_styles.list.default.default, _styles.list.ordered.default),
@@ -222,12 +225,7 @@ const RichTextEditor = forwardRef<RichTextEditorRef, RichTextEditorProps>(
           listitemUnchecked: styled.list.item.unchecked.className,
           listitemChecked: styled.list.item.checked.className,
         },
-        checkList: {
-          checkbox: {
-            checked: styled.checkbox.checked.className,
-            unchecked: styled.checkbox.unchecked.className,
-          },
-        },
+        checkbox: styled.checkbox.className,
       };
 
       return {
@@ -244,7 +242,7 @@ const RichTextEditor = forwardRef<RichTextEditorRef, RichTextEditorProps>(
           LinkNode,
           ListNode,
           CheckableListItemNode,
-          listItemNodeReplacement,
+          listItemNodeReplacement(disabled),
           HorizontalRuleNode,
         ],
         theme,
@@ -274,44 +272,52 @@ const RichTextEditor = forwardRef<RichTextEditorRef, RichTextEditorProps>(
     });
 
     return (
-      <LexicalComposer initialConfig={initialConfig}>
-        <div
-          className={clsx(classNames.default, className, styled.shell.className)}
-          style={{
-            ...styled.shell.style,
-            ...style,
-          }}
-        >
-          <MarkdownShortcutPlugin />
+      <Context.Provider
+        value={{
+          classNames,
+        }}
+      >
+        <LexicalComposer initialConfig={initialConfig}>
+          <div
+            className={clsx(classNames.default, className, styled.shell.className)}
+            style={{
+              ...styled.shell.style,
+              ...style,
+            }}
+          >
+            <MarkdownShortcutPlugin />
 
-          {!disabled && <ToolbarPlugin />}
+            {!disabled && <ToolbarPlugin />}
 
-          <RichTextPlugin
-            contentEditable={
-              <ContentEditable
-                className={clsx(classNames.textarea, styled.textarea.className)}
-                style={styled.textarea.style}
-                placeholder={placeholder ?? (() => null)}
-                aria-placeholder={props["aria-placeholder"] ?? ""}
-              />
-            }
-            ErrorBoundary={LexicalErrorBoundary}
-          />
+            <RichTextPlugin
+              contentEditable={
+                <ContentEditable
+                  className={clsx(classNames.textarea, styled.textarea.className)}
+                  style={styled.textarea.style}
+                  placeholder={placeholder ?? (() => null)}
+                  aria-placeholder={props["aria-placeholder"] ?? ""}
+                />
+              }
+              ErrorBoundary={LexicalErrorBoundary}
+            />
 
-          <HistoryPlugin />
+            <HistoryPlugin />
 
-          <LinkPlugin />
-          <ClickableLinkPlugin disabled={!disabled} newTab />
+            <LinkPlugin />
+            <ClickableLinkPlugin disabled={!disabled} newTab />
 
-          <ListPlugin />
-          <CheckListPlugin />
+            <ListPlugin />
+            <CheckListPlugin />
 
-          <ControlledStatePlugin ref={controlledStatePluginRef} use={_use} onChange={onChange} />
+            <ControlledStatePlugin ref={controlledStatePluginRef} use={_use} onChange={onChange} />
 
-          {/* message holder */}
-          {holder}
-        </div>
-      </LexicalComposer>
+            <EditablePlugin isEditable={!disabled} />
+
+            {/* message holder */}
+            {holder}
+          </div>
+        </LexicalComposer>
+      </Context.Provider>
     );
   },
 );
