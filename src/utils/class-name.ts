@@ -281,9 +281,6 @@ export enum UploadClassToken {
   UploadedItem,
   UploadedPictureItem,
 }
-export enum FabClassToken {
-  Fab,
-}
 export enum TextareaClassToken {
   Textarea,
   Input,
@@ -555,9 +552,6 @@ export const CLASS_NAMES = {
     [TableClassToken.Table]: "table",
     [TableClassToken.Header]: "table__header",
     [TableClassToken.Body]: "table__body",
-  },
-  fab: {
-    [FabClassToken.Fab]: "fab",
   },
   textarea: {
     [TextareaClassToken.Textarea]: "textarea",

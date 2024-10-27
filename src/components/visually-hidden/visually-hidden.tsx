@@ -13,6 +13,7 @@ const styles = stylex.create({
     margin: spacing.smallest,
     position: "absolute",
     clip: "rect(0, 0, 0, 0)",
+    overflow: "hidden",
   },
 });
 

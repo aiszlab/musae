@@ -74,22 +74,26 @@ const styles = stylex.create({
   },
 
   code: {
-    backgroundColor: "var(--code-background-color)",
-    padding: spacing.xxxsmall,
-    borderRadius: spacing.xxxsmall,
+    backgroundColor: "var(--surface-container-highest)",
     display: "block",
     overflow: "auto",
+    borderRadius: spacing.xxsmall,
+    paddingBlock: spacing.xsmall,
+    paddingInline: spacing.xsmall,
+    marginBlock: spacing.xxsmall,
   },
 
   inlineCode: {
-    padding: spacing.xxxsmall,
-    backgroundColor: "var(--code-background-color)",
+    backgroundColor: "var(--surface-container-highest)",
     borderRadius: spacing.xxxsmall,
+    paddingBlock: spacing.xxxsmall,
+    paddingInline: spacing.xxxsmall,
+    marginInline: spacing.xxxsmall,
   },
 
   link: {
-    color: "var(--primary-color)",
-    cursor: "text",
+    color: "var(--primary)",
+    cursor: "pointer",
     textDecoration: {
       default: "none",
       ":hover": "underline",

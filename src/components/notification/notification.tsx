@@ -47,7 +47,7 @@ const styles = {
       borderRadius: sizes.xxxxxsmall,
       boxShadow: elevations.xsmall,
       maxWidth: sizes.full,
-      pointerEvents: "all",
+      pointerEvents: "auto",
       overflow: "hidden",
       transitionProperty: "margin-top, transform",
       transitionDuration: "0.2s",

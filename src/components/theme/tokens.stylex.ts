@@ -92,7 +92,7 @@ export const positions = defineVars({
   min: "1",
   header: "50",
   popper: "60",
-  floatable: "990",
+  fab: "990",
   dialog: "1080",
   drawer: "1080",
   tour: "1080",

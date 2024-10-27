@@ -17,7 +17,7 @@ const styles = stylex.create({
     alignItems: "center",
     justifyContent: "center",
     gap: spacing.xsmall,
-    transitionProperty: "all",
+    transitionProperty: "background-color, color, box-shadow",
     transitionDuration: "0.3s",
     willChange: "background-color, color, box-shadow",
 

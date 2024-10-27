@@ -236,7 +236,7 @@ export const useSwitchable = ({ theme }: { theme: Theme }) => {
       const clipPath = [`circle(0px at ${x}px ${y}px)`, `circle(${radius}px at ${x}px ${y}px)`];
 
       document.documentElement.animate(
-        { clipPath: isDark ? [...clipPath].reverse() : clipPath },
+        { clipPath: isDark ? clipPath.reverse() : clipPath },
         {
           duration: 300,
           easing: "ease-in",
