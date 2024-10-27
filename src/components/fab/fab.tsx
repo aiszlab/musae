@@ -1,5 +1,5 @@
 import React, { type MouseEvent as _MouseEvent, useCallback, useRef } from "react";
-import { clsx, useDrag, useEvent } from "@aiszlab/relax";
+import { clsx, useDrag, useEvent, useRaf } from "@aiszlab/relax";
 import { contains } from "@aiszlab/relax/dom";
 import type { FabProps } from "musae/types/fab";
 import { useContainer } from "../../hooks/use-container";
@@ -60,9 +60,10 @@ const Fab = ({ container, children, onClick: click }: FabProps) => {
   const { container: _container } = useContainer({ container });
   const [
     { isDragging, offsetX, offsetY, x, y, movementX, movementY, isDragged },
-    { onDragEnd, onDragMove, onDragStart: dragStart },
+    { onDragEnd: dragEnd, onDragMove: dragMove, onDragStart: dragStart },
   ] = useDrag();
   const classNames = useClassNames(CLASS_NAMES);
+  const isMoved = useRef(false);
 
   const styled = {
     portal: stylex.props(styles.fixed, styles.portal, !isDragging && styles.disable),
@@ -88,10 +89,22 @@ const Fab = ({ container, children, onClick: click }: FabProps) => {
   );
 
   const onClick = useEvent((event: _MouseEvent<HTMLButtonElement>) => {
-    console.log("11111");
-
-    if (isDragging) return;
+    if (isMoved.current) return;
     click?.(event);
+  });
+
+  const onDragMove = useCallback(
+    (event: _MouseEvent<HTMLDivElement>) => {
+      isMoved.current = true;
+      event.stopPropagation();
+      dragMove(event);
+    },
+    [dragMove],
+  );
+
+  const onDragEnd = useRaf((event: _MouseEvent<HTMLDivElement>) => {
+    dragEnd(event);
+    isMoved.current = false;
   });
 
   return (
@@ -99,20 +112,15 @@ const Fab = ({ container, children, onClick: click }: FabProps) => {
       <div
         ref={portalRef}
         onMouseDown={onDragStart}
-        onMouseUp={(e) => {
-          console.log("uuuuuuuuu");
-          e.preventDefault();
-          e.stopPropagation();
-          onDragEnd(e);
-        }}
         onMouseMove={isDragging ? onDragMove : void 0}
-        className={clsx(classNames.fab, styled.portal.className)}
+        onMouseUp={onDragEnd}
+        className={clsx(classNames.overlay, styled.portal.className)}
         style={styled.portal.style}
       >
         <IconButton
           ref={buttonRef}
           onClick={onClick}
-          className={styled.button.className}
+          className={clsx(classNames.fab, styled.button.className)}
           style={styled.button.style}
         >
           <span className={styled.icon.className} style={styled.icon.style}>
