@@ -6,7 +6,7 @@ import { useContainer } from "../../hooks/use-container";
 import { Portal } from "../portal";
 import { IconButton } from "../icon-button";
 import stylex from "@stylexjs/stylex";
-import { positions } from "../theme/tokens.stylex";
+import { positions, spacing } from "../theme/tokens.stylex";
 import { useClassNames } from "../../hooks/use-class-names.component";
 import { CLASS_NAMES } from "./context";
 
@@ -37,8 +37,8 @@ const styles = stylex.create({
     bottom: 20,
     pointerEvents: "auto",
     transform: `translateX(${props.movementX}px) translateY(${props.movementY}px)`,
-    insetInlineEnd: props.isDragged ? void 0 : 20,
-    insetBlockEnd: props.isDragged ? void 0 : 20,
+    insetInlineEnd: props.isDragged ? void 0 : spacing.xlarge,
+    insetBlockEnd: props.isDragged ? void 0 : spacing.xlarge,
     insetInlineStart: props.isDragged ? props.insetInlineStart : void 0,
     insetBlockStart: props.isDragged ? props.insetBlockStart : void 0,
 
@@ -122,6 +122,7 @@ const Fab = ({ container, children, onClick: click }: FabProps) => {
           onClick={onClick}
           className={clsx(classNames.fab, styled.button.className)}
           style={styled.button.style}
+          ripple={false}
         >
           <span className={styled.icon.className} style={styled.icon.style}>
             {children}
