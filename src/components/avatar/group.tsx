@@ -6,7 +6,7 @@ import { useClassNames } from "../../hooks/use-class-names";
 import { AvatarClassToken } from "../../utils/class-name";
 import { Popover } from "../popover";
 import Avatar from "./avatar";
-import { clsx } from "@aiszlab/relax";
+import { stringify } from "@aiszlab/relax/class-name";
 
 const styles = stylex.create({
   group: {
@@ -68,7 +68,7 @@ const Group = ({
       }}
     >
       <div
-        className={clsx(classNames[AvatarClassToken.Group], styled.className)}
+        className={stringify(classNames[AvatarClassToken.Group], styled.className)}
         style={styled.style}
       >
         {children}

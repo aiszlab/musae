@@ -3,10 +3,11 @@ import { styles as inputStyles } from "../input";
 import { useTheme } from "../theme";
 import stylex from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";
-import { clsx, useControlledState, useEvent } from "@aiszlab/relax";
+import { useControlledState, useEvent } from "@aiszlab/relax";
 import type { TextareaProps } from "musae/types/textarea";
 import { useClassNames } from "../../hooks/use-class-names";
 import { TextareaClassToken } from "../../utils/class-name";
+import { stringify } from "@aiszlab/relax/class-name";
 
 const styles = stylex.create({
   textarea: {
@@ -60,7 +61,7 @@ const Textarea = ({
 
   return (
     <div
-      className={clsx(
+      className={stringify(
         classNames[TextareaClassToken.Textarea],
         className,
         styled.textarea.className,
@@ -71,7 +72,7 @@ const Textarea = ({
       }}
     >
       <textarea
-        className={clsx(classNames[TextareaClassToken.Input], styled.input.className)}
+        className={stringify(classNames[TextareaClassToken.Input], styled.input.className)}
         style={styled.input.style}
         value={_value}
         onChange={_onChange}

@@ -3,9 +3,10 @@ import type { OtpInputProps } from "musae/types/otp-input";
 import { useInputEvents, useValue } from "./hooks";
 import { Input } from "../input";
 import type { InputRef } from "musae/types/input";
-import { clamp, clsx, useEvent } from "@aiszlab/relax";
+import { clamp, useEvent } from "@aiszlab/relax";
 import stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
+import { stringify } from "@aiszlab/relax/class-name";
 
 const styles = stylex.create({
   otp: {
@@ -70,7 +71,7 @@ const OtpInput = ({
 
   return (
     <div
-      className={clsx(styled.otp.className, className)}
+      className={stringify(styled.otp.className, className)}
       style={{
         ...styled.otp.style,
         ...style,

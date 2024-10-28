@@ -3,7 +3,7 @@ import React from "react";
 import { Field, Layout } from "./field";
 import type { FieldValues } from "react-hook-form";
 import { useClassNames } from "../../hooks/use-class-names";
-import { clsx } from "@aiszlab/relax";
+import { stringify } from "@aiszlab/relax/class-name";
 import { FormClassToken } from "../../utils/class-name";
 import Support from "./field/support";
 
@@ -36,7 +36,7 @@ const Item = <T extends FieldValues = FieldValues>({
       space
       className={classNames[FormClassToken.Item]}
     >
-      <div className={clsx(classNames[FormClassToken.Field], className)} style={style}>
+      <div className={stringify(classNames[FormClassToken.Field], className)} style={style}>
         {props.children}
       </div>
     </Layout>

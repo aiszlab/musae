@@ -4,7 +4,7 @@ import type { LoadingProps } from "musae/types/loading";
 import { positions, sizes } from "../theme/tokens.stylex";
 import { useClassNames } from "../../hooks/use-class-names";
 import { LoadingClassToken } from "../../utils/class-name";
-import { clsx } from "@aiszlab/relax";
+import { stringify } from "@aiszlab/relax/class-name";
 
 const top = stylex.keyframes({
   from: {
@@ -364,17 +364,17 @@ const Loading = ({
 
   return (
     <div
-      className={clsx(classNames[LoadingClassToken.Loading], styled.loading.className)}
+      className={stringify(classNames[LoadingClassToken.Loading], styled.loading.className)}
       style={styled.loading.style}
     >
       {loading && (
         <div
-          className={clsx(classNames[LoadingClassToken.Spin], styled.spin.className)}
+          className={stringify(classNames[LoadingClassToken.Spin], styled.spin.className)}
           style={styled.spin.style}
         >
           <svg
             viewBox="0 0 240 240"
-            className={clsx(classNames[LoadingClassToken.Spinning], styled.spinning.className)}
+            className={stringify(classNames[LoadingClassToken.Spinning], styled.spinning.className)}
             style={styled.spinning.style}
           >
             {Array.from(Object.entries(circles)).map(([key, props]) => {
@@ -385,7 +385,11 @@ const Loading = ({
       )}
 
       <div
-        className={clsx(classNames[LoadingClassToken.Content], className, styled.content.className)}
+        className={stringify(
+          classNames[LoadingClassToken.Content],
+          className,
+          styled.content.className,
+        )}
         style={{
           ...styled.content.style,
           ...style,

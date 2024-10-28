@@ -1,12 +1,13 @@
 import React, { forwardRef, useImperativeHandle } from "react";
 import type { MenuProps, MenuRef } from "musae/types/menu";
 import Context from "./context";
-import { useScrollable, clsx } from "@aiszlab/relax";
+import { useScrollable } from "@aiszlab/relax";
 import { useContextValue, useScrollOrientation } from "./hooks";
 import Group from "./group";
 import stylex from "@stylexjs/stylex";
 import { useClassNames } from "../../hooks/use-class-names";
 import { MenuClassToken } from "../../utils/class-name";
+import { stringify } from "@aiszlab/relax/class-name";
 
 const styles = stylex.create({
   menu: {
@@ -68,7 +69,7 @@ const Menu = forwardRef<MenuRef, MenuProps>(
           ref={targetRef}
           items={items}
           mode={mode}
-          className={clsx(
+          className={stringify(
             classNames[MenuClassToken.Menu],
             {
               [classNames[MenuClassToken.MenuHorizontal]]: mode === "horizontal",

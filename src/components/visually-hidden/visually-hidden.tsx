@@ -2,7 +2,7 @@ import stylex from "@stylexjs/stylex";
 import React from "react";
 import type { VisuallyHiddenProps } from "musae/types/visually-hidden";
 import { sizes, spacing } from "../theme/tokens.stylex";
-import { clsx } from "@aiszlab/relax";
+import { stringify } from "@aiszlab/relax/class-name";
 import { useClassNames } from "../../hooks/use-class-names.component";
 import { CLASS_NAMES } from "./context";
 
@@ -23,7 +23,7 @@ const VisuallyHidden = ({ children, dangerouslySetInnerHTML }: VisuallyHiddenPro
 
   return (
     <div
-      className={clsx(classNames.visuallyHidden, styled.className)}
+      className={stringify(classNames.visuallyHidden, styled.className)}
       style={styled.style}
       dangerouslySetInnerHTML={dangerouslySetInnerHTML}
     >

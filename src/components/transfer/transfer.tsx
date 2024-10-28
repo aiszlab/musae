@@ -8,7 +8,7 @@ import { spacing } from "../theme/tokens.stylex";
 import { Context } from "./context";
 import { useClassNames } from "../../hooks/use-class-names";
 import { TransferClassToken } from "../../utils/class-name";
-import { clsx } from "@aiszlab/relax";
+import { stringify } from "@aiszlab/relax/class-name";
 import { IconButton } from "../icon-button";
 
 const styles = stylex.create({
@@ -64,7 +64,7 @@ const Transfer = ({
   return (
     <Context.Provider value={contextValue}>
       <div
-        className={clsx(
+        className={stringify(
           classNames[TransferClassToken.Transfer],
           className,
           styled.transfer.className,
@@ -82,7 +82,10 @@ const Transfer = ({
         />
 
         <div
-          className={clsx(classNames[TransferClassToken.Operation], styled.operation.className)}
+          className={stringify(
+            classNames[TransferClassToken.Operation],
+            styled.operation.className,
+          )}
           style={styled.operation.style}
         >
           <IconButton

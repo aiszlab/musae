@@ -6,7 +6,8 @@ import stylex from "@stylexjs/stylex";
 import { typography } from "../theme/theme";
 import { sizes } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
-import { isVoid, clsx } from "@aiszlab/relax";
+import { isVoid } from "@aiszlab/relax";
+import { stringify } from "@aiszlab/relax/class-name";
 
 const styles = {
   badge: stylex.create({
@@ -94,7 +95,7 @@ const Badge = ({
 
   return (
     <span
-      className={clsx(classNames[BadgeClassToken.Badge], className, styled.badge.className)}
+      className={stringify(classNames[BadgeClassToken.Badge], className, styled.badge.className)}
       style={{
         ...styled.badge.style,
         ...style,
@@ -103,7 +104,7 @@ const Badge = ({
       {children}
 
       <span
-        className={clsx(classNames[BadgeClassToken.Tail], styled.tail.className)}
+        className={stringify(classNames[BadgeClassToken.Tail], styled.tail.className)}
         style={styled.tail.style}
       >
         {content}

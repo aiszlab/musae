@@ -2,7 +2,7 @@ import { type FieldError } from "react-hook-form";
 import type { ComponentProps } from "musae/types/element";
 import React, { type CSSProperties, useEffect } from "react";
 import { FormClassToken } from "../../../utils/class-name";
-import { clsx } from "@aiszlab/relax";
+import { stringify } from "@aiszlab/relax/class-name";
 import { useAnimate, usePresence } from "framer-motion";
 import stylex from "@stylexjs/stylex";
 import { useClassNames } from "../../../hooks/use-class-names";
@@ -52,7 +52,7 @@ const Error = ({ error, className, style }: Props) => {
 
   return (
     <div
-      className={clsx(classNames[FormClassToken.FieldError], className, styled.className)}
+      className={stringify(classNames[FormClassToken.FieldError], className, styled.className)}
       style={{
         ...styled.style,
         ...style,

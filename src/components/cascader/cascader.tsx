@@ -6,7 +6,7 @@ import { Menu } from "../menu";
 import { useClassNames } from "../../hooks/use-class-names";
 import { CascaderClassToken } from "../../utils/class-name";
 import stylex from "@stylexjs/stylex";
-import { clsx } from "@aiszlab/relax";
+import { stringify } from "@aiszlab/relax/class-name";
 import { spacing } from "../theme/tokens.stylex";
 
 import type { MenuProps } from "musae/types/menu";
@@ -72,7 +72,7 @@ const Cascader = ({
 
     return (
       <div
-        className={clsx(classNames[CascaderClassToken.Options], styled.className)}
+        className={stringify(classNames[CascaderClassToken.Options], styled.className)}
         style={styled.style}
       >
         {[presetedMenuItems, ...additionalMenusItems].map((menuItems, index) => {

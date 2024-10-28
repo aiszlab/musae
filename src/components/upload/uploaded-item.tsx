@@ -4,13 +4,14 @@ import { sizes, spacing } from "../theme/tokens.stylex";
 import type { UploadedItem as UploadedItemType } from "musae/types/upload";
 import { useClassNames } from "../../hooks/use-class-names";
 import { UploadClassToken } from "../../utils/class-name";
-import { clsx, isFunction, useEvent } from "@aiszlab/relax";
+import { isFunction, useEvent } from "@aiszlab/relax";
 import { AttachFile, Delete, Loading } from "../icon/icons";
 import { leaf } from "@aiszlab/fuzzy/path";
 import { Context } from "./context";
 import { Image } from "../image";
 import { typography } from "../theme/theme";
 import { useTheme } from "../theme";
+import { stringify } from "@aiszlab/relax/class-name";
 
 const styles = {
   item: stylex.create({
@@ -117,7 +118,7 @@ const UploadedItem = ({
   return (
     <div
       key={item.key}
-      className={clsx(
+      className={stringify(
         classNames[UploadClassToken.UploadedItem],
         {
           [classNames[UploadClassToken.UploadedPictureItem]]: isPicture,

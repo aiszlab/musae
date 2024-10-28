@@ -1,5 +1,5 @@
 import React, { type ChangeEvent, useContext, useMemo } from "react";
-import { useControlledState, useEvent, clsx } from "@aiszlab/relax";
+import { useControlledState, useEvent } from "@aiszlab/relax";
 import Context, { CLASS_NAMES } from "./context";
 import type { CheckboxProps } from "musae/types/checkbox";
 import stylex from "@stylexjs/stylex";
@@ -7,6 +7,7 @@ import { useTheme } from "../theme";
 import { typography } from "../theme/theme";
 import styles from "./styles";
 import { useClassNames } from "../../hooks/use-class-names.component";
+import { stringify } from "@aiszlab/relax/class-name";
 
 const Checkbox = ({
   value,
@@ -65,7 +66,7 @@ const Checkbox = ({
 
   return (
     <label
-      className={clsx(classNames.check, className, styled.checkbox.className)}
+      className={stringify(classNames.check, className, styled.checkbox.className)}
       style={{
         ...styled.checkbox.style,
         ...style,
@@ -75,7 +76,7 @@ const Checkbox = ({
     >
       <input
         type="checkbox"
-        className={clsx(classNames.input, styled.input.className)}
+        className={stringify(classNames.input, styled.input.className)}
         style={styled.input.style}
         checked={isChecked}
         disabled={isDisabled}
@@ -85,7 +86,10 @@ const Checkbox = ({
       />
 
       {children && (
-        <span className={clsx(classNames.label, styled.label.className)} style={styled.label.style}>
+        <span
+          className={stringify(classNames.label, styled.label.className)}
+          style={styled.label.style}
+        >
           {children}
         </span>
       )}

@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useRef } from "react";
-import { clsx } from "@aiszlab/relax";
+import { stringify } from "@aiszlab/relax/class-name";
 import { computePosition, size, autoUpdate, offset } from "@floating-ui/dom";
 import stylex from "@stylexjs/stylex";
 import { SpotlightProps } from "musae/types/tour";
@@ -61,7 +61,7 @@ const Spotlight = ({ trigger, padding: [paddingY, paddingX] }: SpotlightProps) =
   return (
     <div
       ref={floatable}
-      className={clsx(classNames.spotlight, styled.className)}
+      className={stringify(classNames.spotlight, styled.className)}
       style={styled.style}
     />
   );

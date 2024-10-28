@@ -4,10 +4,11 @@ import type { WaterfallProps } from "musae/types/waterfall";
 import React from "react";
 import { useRepaint } from "./hooks";
 import { useGutters } from "../../hooks/use-gutters";
-import { useMounted, useUpdateEffect, clsx } from "@aiszlab/relax";
+import { useMounted, useUpdateEffect } from "@aiszlab/relax";
 import Sequential from "./sequential";
 import { useClassNames } from "../../hooks/use-class-names";
 import { WaterfallClassToken } from "../../utils/class-name";
+import { stringify } from "@aiszlab/relax/class-name";
 
 const styles = stylex.create({
   waterfall: (props: { columnGap: number; rowGap: number }) => ({
@@ -86,7 +87,11 @@ const Waterfall = ({
         columns={columns}
         children={children}
         rowGap={rowGap}
-        className={clsx(classNames[WaterfallClassToken.Sequential], className, styled.className)}
+        className={stringify(
+          classNames[WaterfallClassToken.Sequential],
+          className,
+          styled.className,
+        )}
         style={{
           ...styled.style,
           ...style,
@@ -97,7 +102,7 @@ const Waterfall = ({
 
   return (
     <div
-      className={clsx(classNames[WaterfallClassToken.Waterfall], className, styled.className)}
+      className={stringify(classNames[WaterfallClassToken.Waterfall], className, styled.className)}
       style={{
         ...styled.style,
         ...style,

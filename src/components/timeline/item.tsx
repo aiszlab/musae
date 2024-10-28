@@ -5,7 +5,7 @@ import { Context } from "./context";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { useClassNames } from "../../hooks/use-class-names";
 import { TimelineClassToken } from "../../utils/class-name";
-import { clsx } from "@aiszlab/relax";
+import { stringify } from "@aiszlab/relax/class-name";
 import { useTheme } from "../theme";
 
 const styles = {
@@ -146,12 +146,12 @@ const Item = ({ description, label, value, dot }: TimelineItemProps) => {
 
   return (
     <li
-      className={clsx(classNames[TimelineClassToken.Item], styled.item.className)}
+      className={stringify(classNames[TimelineClassToken.Item], styled.item.className)}
       style={styled.item.style}
     >
       {isLabeled && (
         <div
-          className={clsx(classNames[TimelineClassToken.Label], styled.label.className)}
+          className={stringify(classNames[TimelineClassToken.Label], styled.label.className)}
           style={styled.label.style}
         >
           {label}
@@ -159,16 +159,16 @@ const Item = ({ description, label, value, dot }: TimelineItemProps) => {
       )}
 
       <div
-        className={clsx(classNames[TimelineClassToken.Leading], styled.leading.className)}
+        className={stringify(classNames[TimelineClassToken.Leading], styled.leading.className)}
         style={styled.leading.style}
       >
         <div
-          className={clsx(classNames[TimelineClassToken.Sign], styled.sign.className)}
+          className={stringify(classNames[TimelineClassToken.Sign], styled.sign.className)}
           style={styled.sign.style}
         >
           {dot ?? (
             <span
-              className={clsx(classNames[TimelineClassToken.Dot], styled.dot.className)}
+              className={stringify(classNames[TimelineClassToken.Dot], styled.dot.className)}
               style={styled.dot.style}
             />
           )}
@@ -176,7 +176,10 @@ const Item = ({ description, label, value, dot }: TimelineItemProps) => {
       </div>
 
       <div
-        className={clsx(classNames[TimelineClassToken.Description], styled.description.className)}
+        className={stringify(
+          classNames[TimelineClassToken.Description],
+          styled.description.className,
+        )}
         style={styled.description.style}
       >
         {description}

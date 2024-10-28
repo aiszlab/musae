@@ -1,4 +1,4 @@
-import { useHover, useEvent, useFocus, useClickAway, clsx } from "@aiszlab/relax";
+import { useHover, useEvent, useFocus, useClickAway } from "@aiszlab/relax";
 import React, {
   cloneElement,
   useMemo,
@@ -22,6 +22,7 @@ import { typography } from "../theme/theme";
 import { useClassNames } from "../../hooks/use-class-names";
 import { PopoverClassToken } from "../../utils/class-name";
 import { useIsOpen, useTriggerBy } from "./hooks";
+import { stringify } from "@aiszlab/relax/class-name";
 
 const styles = {
   popover: stylex.create({
@@ -197,7 +198,7 @@ const Popover = forwardRef(
           offset={offset}
         >
           <div
-            className={clsx(
+            className={stringify(
               classNames[PopoverClassToken.Popover],
               className,
               styled.popover.className,
@@ -209,7 +210,7 @@ const Popover = forwardRef(
           >
             {!!title && (
               <div
-                className={clsx(classNames[PopoverClassToken.Title], styled.title.className)}
+                className={stringify(classNames[PopoverClassToken.Title], styled.title.className)}
                 style={styled.title.style}
               >
                 {title}
@@ -217,7 +218,7 @@ const Popover = forwardRef(
             )}
 
             <div
-              className={clsx(classNames[PopoverClassToken.Content], styled.content.className)}
+              className={stringify(classNames[PopoverClassToken.Content], styled.content.className)}
               style={styled.content.style}
             >
               {content}

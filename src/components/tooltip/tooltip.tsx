@@ -3,7 +3,7 @@ import React from "react";
 import { Popover } from "../popover";
 import { useClassNames } from "../../hooks/use-class-names";
 import { TooltipClassToken } from "../../utils/class-name";
-import { clsx } from "@aiszlab/relax";
+import { stringify } from "@aiszlab/relax/class-name";
 
 const Tooltip = ({ children, className, style, title }: TooltipProps) => {
   const classNames = useClassNames("tooltip");
@@ -17,7 +17,7 @@ const Tooltip = ({ children, className, style, title }: TooltipProps) => {
   return (
     <Popover
       content={title}
-      className={clsx(classNames[TooltipClassToken.Tooltip], className)}
+      className={stringify(classNames[TooltipClassToken.Tooltip], className)}
       style={style}
     >
       {children}

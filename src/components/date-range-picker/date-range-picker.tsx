@@ -7,7 +7,7 @@ import { SwapHoriz } from "musae/icons";
 import { useClassNames } from "../../hooks/use-class-names";
 import { DateRangePickerClassToken } from "../../utils/class-name";
 import stylex from "@stylexjs/stylex";
-import { clsx } from "@aiszlab/relax";
+import { stringify } from "@aiszlab/relax/class-name";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import type { PickerRef } from "musae/types/picker";
 
@@ -45,11 +45,14 @@ const DateRangePicker = (props: DateRangePickerProps) => {
 
     return (
       <div
-        className={clsx(styled.picker.className, classNames[DateRangePickerClassToken.Picker])}
+        className={stringify(styled.picker.className, classNames[DateRangePickerClassToken.Picker])}
         style={styled.picker.style}
       >
         <span
-          className={clsx(styled.trigger.className, classNames[DateRangePickerClassToken.Input])}
+          className={stringify(
+            styled.trigger.className,
+            classNames[DateRangePickerClassToken.Input],
+          )}
           style={styled.trigger.style}
         >
           {from?.format("YYYY-MM-DD")}
@@ -58,7 +61,10 @@ const DateRangePicker = (props: DateRangePickerProps) => {
         <SwapHoriz className={classNames[DateRangePickerClassToken.Separator]} />
 
         <span
-          className={clsx(styled.trigger.className, classNames[DateRangePickerClassToken.Input])}
+          className={stringify(
+            styled.trigger.className,
+            classNames[DateRangePickerClassToken.Input],
+          )}
           style={styled.trigger.style}
         >
           {to?.format("YYYY-MM-DD")}

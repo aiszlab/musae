@@ -2,7 +2,7 @@ import React from "react";
 import type { ColProps } from "musae/types/grid";
 import { useClassNames } from "../../hooks/use-class-names";
 import { GridClassToken } from "../../utils/class-name";
-import { clsx } from "@aiszlab/relax";
+import { stringify } from "@aiszlab/relax/class-name";
 import stylex from "@stylexjs/stylex";
 
 const styles = stylex.create({
@@ -18,7 +18,7 @@ const Col = ({ children, className, span = 8, as: As = "div", style }: ColProps)
 
   return (
     <As
-      className={clsx(classNames[GridClassToken.Col], className, styled.className)}
+      className={stringify(classNames[GridClassToken.Col], className, styled.className)}
       style={{
         ...styled.style,
         ...style,

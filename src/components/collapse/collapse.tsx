@@ -5,7 +5,7 @@ import { CollapseClassToken } from "../../utils/class-name";
 import Item from "./item";
 import stylex from "@stylexjs/stylex";
 import { sizes } from "../theme/tokens.stylex";
-import { clsx } from "@aiszlab/relax";
+import { stringify } from "@aiszlab/relax/class-name";
 import { useActiveKeys } from "./hooks";
 import { Context } from "./context";
 import { useTheme } from "../theme";
@@ -45,7 +45,7 @@ const Collapse = ({
       }}
     >
       <div
-        className={clsx(classNames[CollapseClassToken.Collapse], className, styled.className)}
+        className={stringify(classNames[CollapseClassToken.Collapse], className, styled.className)}
         style={{
           ...styled.style,
           ...style,

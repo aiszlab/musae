@@ -1,7 +1,7 @@
 import stylex from "@stylexjs/stylex";
 import type { SkeletonProps } from "musae/types/skeleton";
 import React, { type CSSProperties } from "react";
-import { clsx } from "@aiszlab/relax";
+import { stringify } from "@aiszlab/relax/class-name";
 import { OPACITY } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { hexToRgba } from "@aiszlab/fuzzy/color";
@@ -58,7 +58,7 @@ const Skeleton = ({ animation = true, className, style, children }: SkeletonProp
 
   return (
     <div
-      className={clsx(classNames.skeleton, className, styled.className)}
+      className={stringify(classNames.skeleton, className, styled.className)}
       style={{
         ...styled.style,
         ...style,

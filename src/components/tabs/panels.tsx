@@ -4,7 +4,7 @@ import { spacing } from "../theme/tokens.stylex";
 import { useClassNames } from "../../hooks/use-class-names";
 import { TabsClassToken } from "../../utils/class-name";
 import { type PanelsProps } from "musae/types/tabs";
-import { clsx } from "@aiszlab/relax";
+import { stringify } from "@aiszlab/relax/class-name";
 import { isUndefined, isVoid } from "@aiszlab/relax";
 import { useTabsContext } from "./hooks";
 
@@ -57,7 +57,7 @@ const Panels = ({ forceRender, destroyable, activatedKeys }: PanelsProps) => {
 
   return (
     <div
-      className={clsx(classNames[TabsClassToken.Panels], styled.panels.className)}
+      className={stringify(classNames[TabsClassToken.Panels], styled.panels.className)}
       style={styled.panels.style}
     >
       {panels.map(([key, children]) => {
@@ -70,7 +70,7 @@ const Panels = ({ forceRender, destroyable, activatedKeys }: PanelsProps) => {
         return (
           <div
             key={key}
-            className={clsx(classNames[TabsClassToken.Panel], className)}
+            className={stringify(classNames[TabsClassToken.Panel], className)}
             style={style}
           >
             {children}

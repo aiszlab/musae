@@ -3,7 +3,7 @@ import type { DropdownProps, PopperRef } from "musae/types/popper";
 import { PopperClassToken } from "../../utils/class-name";
 import { useClassNames } from "../../hooks/use-class-names";
 import stylex from "@stylexjs/stylex";
-import { clsx } from "@aiszlab/relax";
+import { stringify } from "@aiszlab/relax/class-name";
 import { useFloating } from "./hooks";
 import { elevations, positions, sizes } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
@@ -116,7 +116,7 @@ const Dropdown = forwardRef<PopperRef, DropdownProps>(
         <div
           ref={composedRef}
           {...props}
-          className={clsx(
+          className={stringify(
             classNames[PopperClassToken.Dropdown],
             className,
             styled.dropdown.className,

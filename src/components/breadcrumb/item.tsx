@@ -5,7 +5,7 @@ import { useTheme } from "../theme";
 import type { BreadcrumbItemProps } from "musae/types/breadcrumb";
 import { useClassNames } from "../../hooks/use-class-names";
 import { BreadcrumbClassToken } from "../../utils/class-name";
-import { clsx } from "@aiszlab/relax";
+import { stringify } from "@aiszlab/relax/class-name";
 
 const styles = {
   navigation: stylex.create({
@@ -67,7 +67,10 @@ const Item = ({ href, label, max, separator }: BreadcrumbItemProps) => {
       {!max && (
         <li
           role="separator"
-          className={clsx(classNames[BreadcrumbClassToken.Separator], styled.separator.className)}
+          className={stringify(
+            classNames[BreadcrumbClassToken.Separator],
+            styled.separator.className,
+          )}
           style={styled.separator.style}
         >
           {separator}

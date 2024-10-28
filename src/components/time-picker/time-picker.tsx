@@ -6,9 +6,10 @@ import { TimePickerClassToken } from "../../utils/class-name";
 import Panel from "./panel";
 import { useValue } from "./hooks";
 import stylex from "@stylexjs/stylex";
-import { useEvent, clsx } from "@aiszlab/relax";
+import { useEvent } from "@aiszlab/relax";
 import { styles as inputStyles } from "../input";
 import type { PickerRef } from "musae/types/picker";
+import { stringify } from "@aiszlab/relax/class-name";
 
 const TimePicker = ({ className, ...props }: TimePickerProps) => {
   const classNames = useClassNames("time-picker");
@@ -22,7 +23,7 @@ const TimePicker = ({ className, ...props }: TimePickerProps) => {
 
     return (
       <input
-        className={clsx(classNames[TimePickerClassToken.Input], className)}
+        className={stringify(classNames[TimePickerClassToken.Input], className)}
         style={style}
         value={value.format("HH:mm:ss")}
         readOnly
@@ -37,7 +38,7 @@ const TimePicker = ({ className, ...props }: TimePickerProps) => {
   return (
     <Picker
       ref={pickerRef}
-      className={clsx(classNames[TimePickerClassToken.Picker], className)}
+      className={stringify(classNames[TimePickerClassToken.Picker], className)}
       pickable={<Panel value={value} onChange={onChange} ref={panelRef} />}
       popupWidth={false}
       onPopperEntered={popperEntered}

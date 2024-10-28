@@ -8,7 +8,7 @@ import { useLogo, useNavigations } from "./hooks";
 import { Menu } from "../menu";
 import { useTheme } from "../theme";
 import { typography } from "../theme/theme";
-import { clsx } from "@aiszlab/relax";
+import { stringify } from "@aiszlab/relax/class-name";
 
 const { Header, Main, Sider } = Layout;
 
@@ -89,7 +89,7 @@ const Bench = ({
 
   return (
     <Layout
-      className={clsx(styled.bench.className, className)}
+      className={stringify(styled.bench.className, className)}
       style={{
         ...styled.bench.style,
         ...style,
@@ -136,7 +136,7 @@ const Bench = ({
         </Sider>
       )}
 
-      <Main className={clsx(mainClassName, styled.main.className)} style={styled.main.style}>
+      <Main className={stringify(mainClassName, styled.main.className)} style={styled.main.style}>
         {children}
       </Main>
     </Layout>

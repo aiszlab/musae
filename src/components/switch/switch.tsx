@@ -1,6 +1,6 @@
 import React, { type CSSProperties } from "react";
 import type { SwitchProps } from "musae/types/switch";
-import { useControlledState, useEvent, clsx } from "@aiszlab/relax";
+import { useControlledState, useEvent } from "@aiszlab/relax";
 import stylex from "@stylexjs/stylex";
 import { OPACITY, opacity, sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
@@ -8,6 +8,7 @@ import { useClassNames } from "../../hooks/use-class-names";
 import { SwitchClassToken } from "../../utils/class-name";
 import { Close, Check } from "musae/icons";
 import { hexToRgba } from "@aiszlab/fuzzy/color";
+import { stringify } from "@aiszlab/relax/class-name";
 
 const styles = {
   switch: stylex.create({
@@ -243,31 +244,31 @@ const Switch = ({
       disabled={disabled}
       aria-checked={isChecked}
       onClick={toggle}
-      className={clsx(classNames[SwitchClassToken.Switch], className, styled.switch.className)}
+      className={stringify(classNames[SwitchClassToken.Switch], className, styled.switch.className)}
       style={{
         ...styled.switch.style,
         ...style,
       }}
     >
       <div
-        className={clsx(classNames[SwitchClassToken.Slider], styled.slider.className)}
+        className={stringify(classNames[SwitchClassToken.Slider], styled.slider.className)}
         style={styled.slider.style}
       >
         {icon && (isChecked ? <Check /> : <Close />)}
       </div>
 
       <span
-        className={clsx(classNames[SwitchClassToken.Supporting], styled.supporting.className)}
+        className={stringify(classNames[SwitchClassToken.Supporting], styled.supporting.className)}
         style={styled.supporting.style}
       >
         <span
-          className={clsx(classNames[SwitchClassToken.Leading], styled.leading.className)}
+          className={stringify(classNames[SwitchClassToken.Leading], styled.leading.className)}
           style={styled.leading.style}
         >
           {checkedChildren}
         </span>
         <span
-          className={clsx(classNames[SwitchClassToken.Trailing], styled.trailing.className)}
+          className={stringify(classNames[SwitchClassToken.Trailing], styled.trailing.className)}
           style={styled.trailing.style}
         >
           {uncheckedChildren}

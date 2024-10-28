@@ -12,7 +12,7 @@ import { useClassNames } from "../../hooks/use-class-names";
 import { PopconfirmClassToken } from "../../utils/class-name";
 import { Space } from "../space";
 import { Button } from "../button";
-import { useBoolean, useClickAway, useEvent, clsx } from "@aiszlab/relax";
+import { useBoolean, useClickAway, useEvent } from "@aiszlab/relax";
 import { Warning } from "musae/icons";
 import { Popper } from "../popper";
 import { spacing } from "../theme/tokens.stylex";
@@ -20,6 +20,7 @@ import { typography } from "../theme/theme";
 import { useTheme } from "../theme";
 import { useLocale } from "../../locale";
 import type { PopperRef } from "musae/types/popper";
+import { stringify } from "@aiszlab/relax/class-name";
 
 const styles = stylex.create({
   popconfirm: {
@@ -132,7 +133,7 @@ const Popconfirm = ({
         offset={offset}
       >
         <div
-          className={clsx(
+          className={stringify(
             classNames[PopconfirmClassToken.Popconfirm],
             className,
             styled.popconfirm.className,
@@ -148,7 +149,7 @@ const Popconfirm = ({
 
           {!!title && (
             <div
-              className={clsx(classNames[PopconfirmClassToken.Title], styled.title.className)}
+              className={stringify(classNames[PopconfirmClassToken.Title], styled.title.className)}
               style={styled.title.style}
             >
               {title}
@@ -156,14 +157,17 @@ const Popconfirm = ({
           )}
 
           <div
-            className={clsx(classNames[PopconfirmClassToken.Description], styled.content.className)}
+            className={stringify(
+              classNames[PopconfirmClassToken.Description],
+              styled.content.className,
+            )}
             style={styled.content.style}
           >
             {content}
           </div>
 
           <Space
-            className={clsx(classNames[PopconfirmClassToken.Footer], styled.footer.className)}
+            className={stringify(classNames[PopconfirmClassToken.Footer], styled.footer.className)}
             style={styled.footer.style}
           >
             <Button variant="filled" size="small" onClick={confirm}>

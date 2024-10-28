@@ -9,7 +9,7 @@ import React, {
 } from "react";
 import type { UploadProps, UploadedListRef } from "musae/types/upload";
 import stylex from "@stylexjs/stylex";
-import { clsx, useEvent } from "@aiszlab/relax";
+import { useEvent } from "@aiszlab/relax";
 import { Keyboard } from "../../utils/keyboard";
 import UploadedList from "./uploaded-list";
 import { Button } from "../button";
@@ -18,6 +18,7 @@ import { spacing } from "../theme/tokens.stylex";
 import { useClassNames } from "../../hooks/use-class-names";
 import { UploadClassToken } from "../../utils/class-name";
 import { Context } from "./context";
+import { stringify } from "@aiszlab/relax/class-name";
 
 const styles = stylex.create({
   input: {
@@ -99,7 +100,7 @@ const Upload = ({
   return (
     <Context.Provider value={{ renderItem }}>
       <div
-        className={clsx(classNames[UploadClassToken.Upload], styled.upload.className)}
+        className={stringify(classNames[UploadClassToken.Upload], styled.upload.className)}
         style={styled.upload.style}
       >
         <div {...(!disabled && { onClick, onKeyDown, onDrop, onDragOver: onDrop })}>

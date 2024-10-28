@@ -3,7 +3,7 @@ import { Picker } from "../picker";
 import { useOptions, useValue } from "./hooks";
 import { SelectClassToken } from "../../utils/class-name";
 import type { SelectProps, SelectorRef, ValueOrValues } from "musae/types/select";
-import { clsx } from "@aiszlab/relax";
+import { stringify } from "@aiszlab/relax/class-name";
 import stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
 import Selector from "./selector";
@@ -72,7 +72,7 @@ const Select = <T extends ValueOrValues = ValueOrValues>({
     <Picker
       ref={ref}
       pickable={<Selections items={menuItems} onSelect={onChange} selectedKeys={selectedKeys} />}
-      className={clsx(classNames[SelectClassToken.Select], className, styled.picker.className)}
+      className={stringify(classNames[SelectClassToken.Select], className, styled.picker.className)}
       style={{
         ...styled.picker.style,
         ...style,

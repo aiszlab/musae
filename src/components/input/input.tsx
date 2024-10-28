@@ -1,7 +1,7 @@
 import React, { forwardRef, useRef, useImperativeHandle, type CSSProperties } from "react";
 import { useInputEvents, useInputorEvents } from "./hooks";
 import type { InputProps, InputRef } from "musae/types/input";
-import { useControlledState, useFocus, clsx } from "@aiszlab/relax";
+import { useControlledState, useFocus } from "@aiszlab/relax";
 import { InputClassToken } from "../../utils/class-name";
 import stylex from "@stylexjs/stylex";
 import { OPACITY, sizes, spacing } from "../theme/tokens.stylex";
@@ -9,6 +9,7 @@ import { useTheme } from "../theme";
 import { useClassNames } from "../../hooks/use-class-names";
 import { typography } from "../theme/theme";
 import { hexToRgba } from "@aiszlab/fuzzy/color";
+import { stringify } from "@aiszlab/relax/class-name";
 
 export const styles = stylex.create({
   inputor: (props: {
@@ -159,7 +160,7 @@ const Input = forwardRef<InputRef, InputProps>(
 
     return (
       <span
-        className={clsx(
+        className={stringify(
           classNames[InputClassToken.Inputor],
           {
             [classNames[InputClassToken.Focused]]: isFocused,
@@ -183,7 +184,7 @@ const Input = forwardRef<InputRef, InputProps>(
         {/* input */}
         <input
           value={_value}
-          className={clsx(classNames[InputClassToken.Input], styled.input.className)}
+          className={stringify(classNames[InputClassToken.Input], styled.input.className)}
           style={styled.input.style}
           type={type}
           ref={inputRef}

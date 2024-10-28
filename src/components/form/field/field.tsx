@@ -2,7 +2,7 @@ import React, { isValidElement, useMemo, cloneElement, Children, type ReactNode 
 import type { FormItemProps, FieldRenderProps } from "musae/types/form";
 import { useController } from "react-hook-form";
 import type { RequiredIn } from "@aiszlab/relax/types";
-import { chain, isRefable, clsx, toFunction } from "@aiszlab/relax";
+import { chain, isRefable, toFunction } from "@aiszlab/relax";
 import { FormClassToken } from "../../../utils/class-name";
 import Layout from "./layout";
 import Error from "./error";
@@ -10,6 +10,7 @@ import { AnimatePresence } from "framer-motion";
 import { useClassNames } from "../../../hooks/use-class-names";
 import { useLocale } from "../../../locale";
 import Support from "./support";
+import { stringify } from "@aiszlab/relax/class-name";
 
 /**
  * @description
@@ -82,7 +83,7 @@ const Field = ({
         </>
       }
     >
-      <div className={clsx(classNames[FormClassToken.Field], className)} style={style}>
+      <div className={stringify(classNames[FormClassToken.Field], className)} style={style}>
         {children}
       </div>
     </Layout>

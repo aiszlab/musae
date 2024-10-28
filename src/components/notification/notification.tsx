@@ -3,13 +3,14 @@ import React, { type CSSProperties, useEffect, type FC, createElement, forwardRe
 import { useAnimate, usePresence } from "framer-motion";
 import { useTheme } from "../theme";
 import type { NotificationProps, Placement, Axis, Type } from "musae/types/notification";
-import { useComposedRef, useTimeout, clsx } from "@aiszlab/relax";
+import { useComposedRef, useTimeout } from "@aiszlab/relax";
 import { useClassNames } from "../../hooks/use-class-names";
 import { NotificationClassToken } from "../../utils/class-name";
 import { elevations, sizes, spacing } from "../theme/tokens.stylex";
 import { CheckCircle, Close, Loading, Error, NotificationImportant, Warning } from "musae/icons";
 import { typography } from "../theme/theme";
 import type { IconProps } from "musae/types/icon";
+import { stringify } from "@aiszlab/relax/class-name";
 
 const AXIS: Readonly<Record<Placement, Axis>> = {
   top: "top",
@@ -182,7 +183,7 @@ const Notification = forwardRef<HTMLDivElement, NotificationProps>(
 
     return (
       <div
-        className={clsx(
+        className={stringify(
           classNames[NotificationClassToken.Notification],
           styled.notification.className,
         )}
@@ -197,7 +198,7 @@ const Notification = forwardRef<HTMLDivElement, NotificationProps>(
 
         {!!title && (
           <div
-            className={clsx(classNames[NotificationClassToken.Title], styled.title.className)}
+            className={stringify(classNames[NotificationClassToken.Title], styled.title.className)}
             style={styled.title.style}
           >
             {title}
@@ -205,7 +206,7 @@ const Notification = forwardRef<HTMLDivElement, NotificationProps>(
         )}
 
         <div
-          className={clsx(
+          className={stringify(
             classNames[NotificationClassToken.Description],
             styled.description.className,
           )}
@@ -216,7 +217,10 @@ const Notification = forwardRef<HTMLDivElement, NotificationProps>(
 
         {closable && (
           <Close
-            className={clsx(classNames[NotificationClassToken.Closer], styled.closer.className)}
+            className={stringify(
+              classNames[NotificationClassToken.Closer],
+              styled.closer.className,
+            )}
             onClick={onClose}
             color={theme.colors.primary}
           />

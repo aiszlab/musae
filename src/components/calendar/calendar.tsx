@@ -12,7 +12,7 @@ import { CalendarClassToken } from "../../utils/class-name";
 import stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
 import { typography } from "../theme/theme";
-import { clsx } from "@aiszlab/relax";
+import { stringify } from "@aiszlab/relax/class-name";
 import { useTheme } from "../theme";
 import { IconButton } from "../icon-button";
 
@@ -70,14 +70,14 @@ const Calendar = ({
 
   return (
     <div
-      className={clsx(styled.calendar.className, className)}
+      className={stringify(styled.calendar.className, className)}
       style={{
         ...styled.calendar.style,
         ...style,
       }}
     >
       <header
-        className={clsx(classNames[CalendarClassToken.Header], styled.header.className)}
+        className={stringify(classNames[CalendarClassToken.Header], styled.header.className)}
         style={styled.header.style}
       >
         <IconButton variant="text" onClick={toPrevYear}>
@@ -89,7 +89,7 @@ const Calendar = ({
         </IconButton>
 
         <span
-          className={clsx(classNames[CalendarClassToken.Heading], styled.heading.className)}
+          className={stringify(classNames[CalendarClassToken.Heading], styled.heading.className)}
           style={styled.heading.style}
         >
           {focusedAt.format("YYYY-MM")}

@@ -7,7 +7,7 @@ import { useClassNames } from "../../hooks/use-class-names";
 import stylex from "@stylexjs/stylex";
 import { positions, sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
-import { clsx } from "@aiszlab/relax";
+import { stringify } from "@aiszlab/relax/class-name";
 import { typography } from "../theme/theme";
 import { contains } from "@aiszlab/relax/dom";
 import { useClosable } from "../../hooks/use-closable";
@@ -175,13 +175,13 @@ const Popup = ({
     <div
       tabIndex={-1}
       ref={scope}
-      className={clsx(classNames[DrawerClassToken.Drawer], className, styled.popup.className)}
+      className={stringify(classNames[DrawerClassToken.Drawer], className, styled.popup.className)}
       style={styled.popup.style}
       onKeyDown={onKeyDown}
     >
       {/* overlay */}
       <div
-        className={clsx(classNames[DrawerClassToken.Overlay], styled.overlay.className)}
+        className={stringify(classNames[DrawerClassToken.Overlay], styled.overlay.className)}
         onClick={onOverlayClick}
         style={styled.overlay.style}
         ref={overlayRef}
@@ -189,13 +189,13 @@ const Popup = ({
 
       {/* panel */}
       <div
-        className={clsx(classNames[DrawerClassToken.Panel], styled.panel.className)}
+        className={stringify(classNames[DrawerClassToken.Panel], styled.panel.className)}
         style={styled.panel.style}
         ref={panelRef}
       >
         {/* header */}
         <div
-          className={clsx(classNames[DrawerClassToken.Header], styled.header.className)}
+          className={stringify(classNames[DrawerClassToken.Header], styled.header.className)}
           style={styled.header.style}
         >
           {closer}
@@ -208,7 +208,7 @@ const Popup = ({
 
         {/* body */}
         <div
-          className={clsx(classNames[DrawerClassToken.Body], styled.body.className)}
+          className={stringify(classNames[DrawerClassToken.Body], styled.body.className)}
           style={styled.body.style}
         >
           {props.children}

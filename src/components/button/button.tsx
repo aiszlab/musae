@@ -1,6 +1,6 @@
 import type { ButtonProps } from "musae/types/button";
 import React, { forwardRef } from "react";
-import { clsx } from "@aiszlab/relax";
+import { stringify } from "@aiszlab/relax/class-name";
 import stylex from "@stylexjs/stylex";
 import { elevations, OPACITY, sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
@@ -168,7 +168,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         onClick={onClick}
         ref={ref}
         disabled={disabled}
-        className={clsx(classNames.button, className, styled.button.className)}
+        className={stringify(classNames.button, className, styled.button.className)}
         style={{
           ...styled.button.style,
           ...style,

@@ -3,7 +3,7 @@ import { useClassNames } from "../../hooks/use-class-names";
 import { EmptyClassToken } from "../../utils/class-name";
 import stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
-import { clsx } from "@aiszlab/relax";
+import { stringify } from "@aiszlab/relax/class-name";
 import { typography } from "../theme/theme";
 import { useLocale } from "../../locale";
 
@@ -36,7 +36,7 @@ const Empty = () => {
 
   return (
     <div
-      className={clsx(classNames[EmptyClassToken.Empty], styled.empty.className)}
+      className={stringify(classNames[EmptyClassToken.Empty], styled.empty.className)}
       style={styled.empty.style}
     >
       <svg width="64" height="41" viewBox="0 0 64 41" xmlns="http://www.w3.org/2000/svg">
@@ -53,7 +53,7 @@ const Empty = () => {
       </svg>
 
       <div
-        className={clsx(classNames[EmptyClassToken.Description], styled.label.className)}
+        className={stringify(classNames[EmptyClassToken.Description], styled.label.className)}
         style={styled.label.style}
       >
         {locale.placeholder}

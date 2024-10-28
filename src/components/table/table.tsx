@@ -6,7 +6,7 @@ import Header from "./header/header";
 import Context from "./context";
 import Body from "./body";
 import stylex from "@stylexjs/stylex";
-import { clsx } from "@aiszlab/relax";
+import { stringify } from "@aiszlab/relax/class-name";
 import { useClassNames } from "../../hooks/use-class-names";
 import { TableClassToken } from "../../utils/class-name";
 
@@ -43,7 +43,7 @@ const Table = <T,>({
   return (
     <Context.Provider value={contextValue}>
       <table
-        className={clsx(classNames[TableClassToken.Table], className, styled.className)}
+        className={stringify(classNames[TableClassToken.Table], className, styled.className)}
         style={{
           ...styled.style,
           ...style,

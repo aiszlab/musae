@@ -2,7 +2,7 @@ import React, { type CSSProperties } from "react";
 import { useClassNames } from "../../hooks/use-class-names";
 import stylex from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";
-import { clsx } from "@aiszlab/relax";
+import { stringify } from "@aiszlab/relax/class-name";
 import { GuidelineClassToken } from "../../utils/class-name";
 import { Image } from "../image";
 import type { GuidelineProps } from "../../types/guideline";
@@ -62,7 +62,7 @@ const Guideline = ({ figure, caption, recommend = true, className, style }: Guid
 
   return (
     <div
-      className={clsx(
+      className={stringify(
         classNames[GuidelineClassToken.Guideline],
         className,
         styled.guideline.className,
@@ -74,12 +74,12 @@ const Guideline = ({ figure, caption, recommend = true, className, style }: Guid
     >
       <Image
         src={figure}
-        className={clsx(classNames[GuidelineClassToken.Figure], styled.figure.className)}
+        className={stringify(classNames[GuidelineClassToken.Figure], styled.figure.className)}
         style={styled.figure.style}
       />
 
       <span
-        className={clsx(classNames[GuidelineClassToken.CaptionLabel], styled.label.className)}
+        className={stringify(classNames[GuidelineClassToken.CaptionLabel], styled.label.className)}
         style={styled.label.style}
       >
         {recommend ? locale.recommend : locale.oppose}
@@ -87,7 +87,7 @@ const Guideline = ({ figure, caption, recommend = true, className, style }: Guid
 
       {!!caption && (
         <span
-          className={clsx(classNames[GuidelineClassToken.Caption], styled.caption.className)}
+          className={stringify(classNames[GuidelineClassToken.Caption], styled.caption.className)}
           style={styled.caption.style}
         >
           {caption}

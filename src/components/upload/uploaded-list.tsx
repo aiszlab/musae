@@ -6,13 +6,14 @@ import type {
   UploadedListProps,
   UploadedListRef,
 } from "musae/types/upload";
-import { clsx, useControlledState, useEvent, useIdentity } from "@aiszlab/relax";
+import { useControlledState, useEvent, useIdentity } from "@aiszlab/relax";
 import { typography } from "../theme/theme";
 import { isRemoteFile } from "./utils";
 import { useClassNames } from "../../hooks/use-class-names";
 import { UploadClassToken } from "../../utils/class-name";
 import UploadedItem from "./uploaded-item";
 import { Context } from "./context";
+import { stringify } from "@aiszlab/relax/class-name";
 
 const styles = stylex.create({
   list: {
@@ -143,7 +144,7 @@ const UploadedList = forwardRef<UploadedListRef, UploadedListProps>(
 
     return (
       <div
-        className={clsx(classNames[UploadClassToken.UploadedList], styled.list.className)}
+        className={stringify(classNames[UploadClassToken.UploadedList], styled.list.className)}
         style={styled.list.style}
       >
         {Array.from(items.values()).map((item) => {

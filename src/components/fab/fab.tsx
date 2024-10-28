@@ -1,5 +1,6 @@
 import React, { type MouseEvent as _MouseEvent, useCallback, useRef } from "react";
-import { clsx, useDrag, useEvent, useRaf } from "@aiszlab/relax";
+import { useDrag, useEvent, useRaf } from "@aiszlab/relax";
+import { stringify } from "@aiszlab/relax/class-name";
 import { contains } from "@aiszlab/relax/dom";
 import type { FabProps } from "musae/types/fab";
 import { useContainer } from "../../hooks/use-container";
@@ -114,13 +115,13 @@ const Fab = ({ container, children, onClick: click }: FabProps) => {
         onMouseDown={onDragStart}
         onMouseMove={isDragging ? onDragMove : void 0}
         onMouseUp={onDragEnd}
-        className={clsx(classNames.overlay, styled.portal.className)}
+        className={stringify(classNames.overlay, styled.portal.className)}
         style={styled.portal.style}
       >
         <IconButton
           ref={buttonRef}
           onClick={onClick}
-          className={clsx(classNames.fab, styled.button.className)}
+          className={stringify(classNames.fab, styled.button.className)}
           style={styled.button.style}
           ripple={false}
         >

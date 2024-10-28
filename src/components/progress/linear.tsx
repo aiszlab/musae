@@ -3,7 +3,7 @@ import stylex from "@stylexjs/stylex";
 import type { LinearProps } from "musae/types/progress";
 import { useClassNames } from "../../hooks/use-class-names";
 import { ProgressClassToken } from "../../utils/class-name";
-import { clsx } from "@aiszlab/relax";
+import { stringify } from "@aiszlab/relax/class-name";
 import { sizes } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { useValue } from "./hooks";
@@ -36,7 +36,7 @@ const Linear = ({ value: _value, className, style }: LinearProps) => {
 
   return (
     <div
-      className={clsx(
+      className={stringify(
         classNames[ProgressClassToken.Progress],
         className,
         styled.progress.className,
@@ -47,7 +47,7 @@ const Linear = ({ value: _value, className, style }: LinearProps) => {
       }}
     >
       <div
-        className={clsx(classNames[ProgressClassToken.Segment], styled.segment.className)}
+        className={stringify(classNames[ProgressClassToken.Segment], styled.segment.className)}
         style={styled.segment.style}
       />
     </div>

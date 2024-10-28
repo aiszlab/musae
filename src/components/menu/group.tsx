@@ -5,11 +5,12 @@ import { useClassNames } from "../../hooks/use-class-names";
 import { MenuClassToken } from "../../utils/class-name";
 import Item from "./item";
 import { useMenuContext } from "./hooks";
-import { useComposedRef, useUpdateEffect, clsx } from "@aiszlab/relax";
+import { useComposedRef, useUpdateEffect } from "@aiszlab/relax";
 import stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
 import { useExpandable } from "../../hooks/use-expandable";
 import { useTheme } from "../theme";
+import { stringify } from "@aiszlab/relax/class-name";
 
 const styles = {
   group: stylex.create({
@@ -93,7 +94,7 @@ const Group = forwardRef<HTMLUListElement, MenuGroupProps>(
     return (
       <ul
         ref={groupRef}
-        className={clsx(
+        className={stringify(
           classNames[MenuClassToken.Group],
           {
             [classNames[MenuClassToken.GroupHidden]]: !expanded,

@@ -2,7 +2,7 @@ import React from "react";
 import type { SpaceProps } from "musae/types/space";
 import stylex from "@stylexjs/stylex";
 import { useGutters } from "../../hooks/use-gutters";
-import { clsx } from "@aiszlab/relax";
+import { stringify } from "@aiszlab/relax/class-name";
 
 const styles = stylex.create({
   space: (props: { columnGap: number; rowGap: number }) => ({
@@ -40,7 +40,7 @@ const Space = ({
 
   return (
     <div
-      className={clsx(className, styled.className)}
+      className={stringify(className, styled.className)}
       style={{
         ...styled.style,
         ...style,

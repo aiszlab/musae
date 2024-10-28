@@ -8,7 +8,7 @@ import stylex from "@stylexjs/stylex";
 import { positions, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { typography } from "../theme/theme";
-import { clsx } from "@aiszlab/relax";
+import { stringify } from "@aiszlab/relax/class-name";
 import { contains } from "@aiszlab/relax/dom";
 import { useClosable } from "../../hooks/use-closable";
 
@@ -133,14 +133,14 @@ const Popup = ({ onClose, open, closable, onClosed, className, ...props }: Popup
   return (
     <div
       ref={scope}
-      className={clsx(classNames[DialogClassToken.Dialog], className, styled.popup.className)}
+      className={stringify(classNames[DialogClassToken.Dialog], className, styled.popup.className)}
       style={styled.popup.style}
       tabIndex={-1}
       onKeyDown={onKeyDown}
     >
       {/* overlay */}
       <div
-        className={clsx(classNames[DialogClassToken.Overlay], styled.overlay.className)}
+        className={stringify(classNames[DialogClassToken.Overlay], styled.overlay.className)}
         style={styled.overlay.style}
         onClick={onOverlayClick}
         ref={overlayRef}
@@ -148,7 +148,7 @@ const Popup = ({ onClose, open, closable, onClosed, className, ...props }: Popup
 
       {/* panel */}
       <div
-        className={clsx(classNames[DialogClassToken.Panel], styled.panel.className)}
+        className={stringify(classNames[DialogClassToken.Panel], styled.panel.className)}
         style={{
           ...styled.panel.style,
           ...props.styles?.panel,
@@ -160,7 +160,7 @@ const Popup = ({ onClose, open, closable, onClosed, className, ...props }: Popup
         {/* header */}
         {!!props.title && (
           <div
-            className={clsx(classNames[DialogClassToken.Header], styled.header.className)}
+            className={stringify(classNames[DialogClassToken.Header], styled.header.className)}
             style={styled.header.style}
           >
             {props.title}
@@ -169,7 +169,7 @@ const Popup = ({ onClose, open, closable, onClosed, className, ...props }: Popup
 
         {/* body */}
         <div
-          className={clsx(classNames[DialogClassToken.Body], styled.body.className)}
+          className={stringify(classNames[DialogClassToken.Body], styled.body.className)}
           style={{
             ...styled.body.style,
             ...props.styles?.body,
@@ -181,7 +181,7 @@ const Popup = ({ onClose, open, closable, onClosed, className, ...props }: Popup
         {/* footer */}
         {!!footer && (
           <div
-            className={clsx(classNames[DialogClassToken.Footer], styled.footer.className)}
+            className={stringify(classNames[DialogClassToken.Footer], styled.footer.className)}
             style={styled.footer.style}
           >
             {footer}

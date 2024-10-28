@@ -7,9 +7,10 @@ import stylex from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { typography } from "../theme/theme";
-import { useEvent, useHover, clsx } from "@aiszlab/relax";
+import { useEvent, useHover } from "@aiszlab/relax";
 import { Popper } from "../popper";
 import { useLazyBoolean } from "../../hooks/use-lazy-boolean";
+import { stringify } from "@aiszlab/relax/class-name";
 
 const styles = {
   default: stylex.create({
@@ -223,7 +224,7 @@ const Item = forwardRef<HTMLLIElement, MenuItemProps>(
       <li role="menuitem" ref={ref} {...styled.menuItem}>
         <div
           ref={itemRef}
-          className={clsx(classNames[MenuClassToken.Item], className, styled.item.className)}
+          className={stringify(classNames[MenuClassToken.Item], className, styled.item.className)}
           style={styled.item.style}
           onClick={click}
           {...hoverProps}

@@ -14,9 +14,10 @@ import ControlledStatePlugin, {
 } from "./plugins/controlled-state";
 import EditablePlugin from "./plugins/editable";
 
-import { clsx, useDefault, useIdentity } from "@aiszlab/relax";
+import { useDefault, useIdentity } from "@aiszlab/relax";
 import { useMessage } from "../message";
 import stylex from "@stylexjs/stylex";
+import { stringify } from "@aiszlab/relax/class-name";
 
 import { opacity, sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
@@ -283,7 +284,7 @@ const RichTextEditor = forwardRef<RichTextEditorRef, RichTextEditorProps>(
       >
         <LexicalComposer initialConfig={initialConfig}>
           <div
-            className={clsx(classNames.default, className, styled.shell.className)}
+            className={stringify(classNames.default, className, styled.shell.className)}
             style={{
               ...styled.shell.style,
               ...style,
@@ -296,7 +297,7 @@ const RichTextEditor = forwardRef<RichTextEditorRef, RichTextEditorProps>(
             <RichTextPlugin
               contentEditable={
                 <ContentEditable
-                  className={clsx(classNames.textarea, styled.textarea.className)}
+                  className={stringify(classNames.textarea, styled.textarea.className)}
                   style={styled.textarea.style}
                   placeholder={placeholder ?? (() => null)}
                   aria-placeholder={props["aria-placeholder"] ?? ""}

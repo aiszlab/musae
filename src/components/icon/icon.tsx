@@ -1,9 +1,10 @@
 import React, { type ReactNode, createElement, useMemo, type CSSProperties } from "react";
 import type { AsProps, IconProps } from "musae/types/icon";
-import { isFunction, clsx } from "@aiszlab/relax";
+import { isFunction } from "@aiszlab/relax";
 import { IconClassToken } from "../../utils/class-name";
 import stylex from "@stylexjs/stylex";
 import { useClassNames } from "../../hooks/use-class-names";
+import { stringify } from "@aiszlab/relax/class-name";
 
 const styles = stylex.create({
   icon: (props: { color: CSSProperties["color"] }) => ({
@@ -43,7 +44,7 @@ const Icon = ({ as, color, size, onClick, style, className, ...props }: IconProp
 
   return (
     <span
-      className={clsx(classNames[IconClassToken.Icon], className, styled.className)}
+      className={stringify(classNames[IconClassToken.Icon], className, styled.className)}
       style={{
         ...styled.style,
         ...style,

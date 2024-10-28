@@ -3,13 +3,14 @@ import { useClassNames } from "../../hooks/use-class-names";
 import { CollapseClassToken } from "../../utils/class-name";
 import stylex from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";
-import { useEvent, useUpdateEffect, clsx } from "@aiszlab/relax";
+import { useEvent, useUpdateEffect } from "@aiszlab/relax";
 import { useAnimate } from "framer-motion";
 import type { CollapseItemProps } from "musae/types/collapse";
 import { Context } from "./context";
 import { useExpandable } from "../../hooks/use-expandable";
 import { useTheme } from "../theme";
 import { KeyboardArrowRight } from "musae/icons";
+import { stringify } from "@aiszlab/relax/class-name";
 
 const styles = {
   item: stylex.create({
@@ -101,7 +102,7 @@ const CollapseItem = ({ children, label, value }: CollapseItemProps) => {
 
   return (
     <div
-      className={clsx(
+      className={stringify(
         classNames[CollapseClassToken.Item],
         {
           [classNames[CollapseClassToken.ItemActive]]: isExpanded,
@@ -111,12 +112,15 @@ const CollapseItem = ({ children, label, value }: CollapseItemProps) => {
       style={styled.item.style}
     >
       <div
-        className={clsx(classNames[CollapseClassToken.Header], styled.header.className)}
+        className={stringify(classNames[CollapseClassToken.Header], styled.header.className)}
         style={styled.header.style}
         onClick={onClick}
       >
         <KeyboardArrowRight
-          className={clsx(classNames[CollapseClassToken.Collapser], styled.collapser.className)}
+          className={stringify(
+            classNames[CollapseClassToken.Collapser],
+            styled.collapser.className,
+          )}
           style={styled.collapser.style}
         />
 
@@ -125,7 +129,7 @@ const CollapseItem = ({ children, label, value }: CollapseItemProps) => {
 
       <div
         ref={collapser}
-        className={clsx(
+        className={stringify(
           classNames[CollapseClassToken.Panel],
           {
             [classNames[CollapseClassToken.PanelActive]]: isExpanded,
@@ -135,7 +139,7 @@ const CollapseItem = ({ children, label, value }: CollapseItemProps) => {
         style={styled.panel.style}
       >
         <div
-          className={clsx(classNames[CollapseClassToken.Content], styled.content.className)}
+          className={stringify(classNames[CollapseClassToken.Content], styled.content.className)}
           style={styled.content.style}
         >
           {children}

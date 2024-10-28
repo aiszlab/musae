@@ -4,7 +4,7 @@ import { useClassNames } from "../../hooks/use-class-names";
 import { CalendarClassToken } from "../../utils/class-name";
 import { toArray, useControlledState } from "@aiszlab/relax";
 import { Timespan } from "../../utils/timespan";
-import { clsx } from "@aiszlab/relax";
+import { stringify } from "@aiszlab/relax/class-name";
 import type { CalendarProps } from "musae/types/calendar";
 import stylex from "@stylexjs/stylex";
 import { positions, sizes, spacing } from "../theme/tokens.stylex";
@@ -87,7 +87,7 @@ export const useHeadCells = () => {
     return dayjs.Ls[dayjs.locale()].weekdays?.map((weekday, index) => (
       <th
         key={index}
-        className={clsx(classNames[CalendarClassToken.HeadCell], styled.className)}
+        className={stringify(classNames[CalendarClassToken.HeadCell], styled.className)}
         style={styled.style}
       >
         {weekday.charAt(0)}
@@ -151,7 +151,7 @@ export const useDateCells = ({
           <td
             title={formatted}
             key={formatted}
-            className={clsx(
+            className={stringify(
               classNames[CalendarClassToken.DateCell],
               {
                 [classNames[CalendarClassToken.DateCellSelected]]: isSelected,
@@ -170,7 +170,7 @@ export const useDateCells = ({
             <IconButton
               variant={isSelected ? "filled" : "text"}
               color={isSelected ? "primary" : "secondary"}
-              className={clsx(classNames[CalendarClassToken.Date], styled.trigger.className)}
+              className={stringify(classNames[CalendarClassToken.Date], styled.trigger.className)}
               style={styled.trigger.style}
               onClick={() => {
                 click(currentAt);

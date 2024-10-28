@@ -1,13 +1,14 @@
 import React, { type CSSProperties, useCallback, useContext, useMemo } from "react";
 import Context from "./context";
 import type { RadioProps } from "musae/types/radio";
-import { useControlledState, clsx } from "@aiszlab/relax";
+import { useControlledState } from "@aiszlab/relax";
 import { useClassNames } from "../../hooks/use-class-names";
 import { RadioClassToken } from "../../utils/class-name";
 import stylex from "@stylexjs/stylex";
 import { useTheme } from "../theme";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { typography } from "../theme/theme";
+import { stringify } from "@aiszlab/relax/class-name";
 
 const styles = {
   radio: stylex.create({
@@ -149,7 +150,11 @@ const Radio = ({ children, value, checked, disabled = false, ...props }: RadioPr
 
   return (
     <label
-      className={clsx(classNames[RadioClassToken.Radio], props.className, styled.radio.className)}
+      className={stringify(
+        classNames[RadioClassToken.Radio],
+        props.className,
+        styled.radio.className,
+      )}
     >
       <input
         type="radio"

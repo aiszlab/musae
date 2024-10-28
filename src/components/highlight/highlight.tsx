@@ -4,7 +4,7 @@ import { useClassNames } from "../../hooks/use-class-names";
 import { HighlightClassToken } from "../../utils/class-name";
 import stylex from "@stylexjs/stylex";
 import { useTheme } from "../theme";
-import { clsx } from "@aiszlab/relax";
+import { stringify } from "@aiszlab/relax/class-name";
 
 const styles = stylex.create({
   capture: (props: { color: CSSProperties["color"] }) => ({
@@ -34,7 +34,7 @@ const Highlight = ({ children, capture }: HighlightProps) => {
         prev[0].push(children.slice(prev[1], item.index));
         prev[0].push(
           <span
-            className={clsx(classNames[HighlightClassToken.Capture], styled.className)}
+            className={stringify(classNames[HighlightClassToken.Capture], styled.className)}
             style={styled.style}
             key={item.index}
           >

@@ -8,7 +8,7 @@ import { useTheme } from "../theme";
 import { elevations, positions, sizes, spacing } from "../theme/tokens.stylex";
 import { Space } from "../space";
 import { typography } from "../theme/theme";
-import { clsx } from "@aiszlab/relax";
+import { stringify } from "@aiszlab/relax/class-name";
 import { useStep } from "./hooks";
 import Spotlight from "./spotlight";
 import { useGutters } from "../../hooks/use-gutters";
@@ -87,7 +87,7 @@ const Tour = ({
     <Context.Provider value={{ classNames }}>
       <Portal open={overlay && open} destroyable lockable>
         <div
-          className={clsx(classNames.overlay, styled.overlay.className)}
+          className={stringify(classNames.overlay, styled.overlay.className)}
           style={styled.overlay.style}
         >
           <Spotlight trigger={trigger} padding={paddings} />
@@ -97,19 +97,22 @@ const Tour = ({
       <Popper
         trigger={trigger}
         open={open}
-        className={clsx(classNames.tour, styled.tour.className)}
+        className={stringify(classNames.tour, styled.tour.className)}
         style={styled.tour.style}
         offset={paddings[0]}
         placement="bottom"
         overlay={overlay}
         destroyable
       >
-        <div className={clsx(classNames.title, styled.title.className)} style={styled.title.style}>
+        <div
+          className={stringify(classNames.title, styled.title.className)}
+          style={styled.title.style}
+        >
           {step.title}
         </div>
 
         <div
-          className={clsx(classNames.description, styled.description.className)}
+          className={stringify(classNames.description, styled.description.className)}
           style={styled.description.style}
         >
           {step.description}
@@ -117,7 +120,7 @@ const Tour = ({
 
         <Space
           gutter={6}
-          className={clsx(classNames.footer, styled.footer.className)}
+          className={stringify(classNames.footer, styled.footer.className)}
           style={styled.footer.style}
         >
           {/* prev */}

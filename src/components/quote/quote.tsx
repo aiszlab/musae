@@ -1,7 +1,7 @@
 import React from "react";
 import { QuoteProps } from "musae/types/quote";
 import { useClassNames } from "../../hooks/use-class-names";
-import { clsx } from "@aiszlab/relax";
+import { stringify } from "@aiszlab/relax/class-name";
 import { QuoteClassToken } from "../../utils/class-name";
 import styles from "./styles";
 import stylex from "@stylexjs/stylex";
@@ -22,7 +22,7 @@ const Quote = ({ className, children, style }: QuoteProps) => {
 
   return (
     <blockquote
-      className={clsx(classNames[QuoteClassToken.Quote], className, styled.className)}
+      className={stringify(classNames[QuoteClassToken.Quote], className, styled.className)}
       style={{
         ...styled.style,
         ...style,

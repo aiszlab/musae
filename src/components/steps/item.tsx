@@ -5,10 +5,11 @@ import { useClassNames } from "../../hooks/use-class-names";
 import { StepsClassToken } from "../../utils/class-name";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
-import { useEvent, clsx } from "@aiszlab/relax";
+import { useEvent } from "@aiszlab/relax";
 import { Context } from "./context";
 import { typography } from "../theme/theme";
 import { Done } from "musae/icons";
+import { stringify } from "@aiszlab/relax/class-name";
 
 const styles = {
   step: stylex.create({
@@ -171,7 +172,7 @@ const Item = ({ leading, title, description, value }: StepItemProps) => {
 
   return (
     <li
-      className={clsx(
+      className={stringify(
         classNames[StepsClassToken.Item],
         {
           [classNames[StepsClassToken.Done]]: status === "done",
@@ -184,24 +185,24 @@ const Item = ({ leading, title, description, value }: StepItemProps) => {
       onClick={click}
     >
       <div
-        className={clsx(classNames[StepsClassToken.Leading], styled.leading.className)}
+        className={stringify(classNames[StepsClassToken.Leading], styled.leading.className)}
         style={styled.leading.style}
       >
         <div
-          className={clsx(classNames[StepsClassToken.Sign], styled.sign.className)}
+          className={stringify(classNames[StepsClassToken.Sign], styled.sign.className)}
           style={styled.sign.style}
         >
           {leading ?? (status === "done" ? <Done /> : value)}
         </div>
       </div>
       <div
-        className={clsx(classNames[StepsClassToken.Title], styled.title.className)}
+        className={stringify(classNames[StepsClassToken.Title], styled.title.className)}
         style={styled.title.style}
       >
         {title}
       </div>
       <div
-        className={clsx(classNames[StepsClassToken.Description], styled.description.className)}
+        className={stringify(classNames[StepsClassToken.Description], styled.description.className)}
         style={styled.description.style}
       >
         {description}

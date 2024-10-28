@@ -7,7 +7,7 @@ import stylex from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { typography } from "../theme/theme";
-import { clsx } from "@aiszlab/relax";
+import { stringify } from "@aiszlab/relax/class-name";
 import { type Gutters, useGutters } from "../../hooks/use-gutters";
 
 const styles = {
@@ -127,7 +127,11 @@ const Divider = ({
 
   return (
     <div
-      className={clsx(classNames[DividerClassToken.Divider], className, styled.divider.className)}
+      className={stringify(
+        classNames[DividerClassToken.Divider],
+        className,
+        styled.divider.className,
+      )}
       style={{
         ...styled.divider.style,
         ...style,
@@ -135,7 +139,7 @@ const Divider = ({
     >
       {isLabeled && (
         <span
-          className={clsx(classNames[DividerClassToken.Label], styled.label.className)}
+          className={stringify(classNames[DividerClassToken.Label], styled.label.className)}
           style={styled.label.style}
         >
           {children}

@@ -5,7 +5,7 @@ import type { HeaderProps } from "musae/types/table";
 import stylex from "@stylexjs/stylex";
 import { sizes, spacing } from "../../theme/tokens.stylex";
 import { useTheme } from "../../theme";
-import { clsx } from "@aiszlab/relax";
+import { stringify } from "@aiszlab/relax/class-name";
 import { typography } from "../../theme/theme";
 import { useClassNames } from "../../../hooks/use-class-names";
 import { TableClassToken } from "../../../utils/class-name";
@@ -69,11 +69,11 @@ const Header = <T,>(props: HeaderProps) => {
   );
 
   return (
-    <thead className={clsx(classNames[TableClassToken.Header], props.className)}>
+    <thead className={stringify(classNames[TableClassToken.Header], props.className)}>
       {headerGroups.map((headerGroup) => (
         <tr key={headerGroup.id}>
           {headerGroup.headers.map((header) => (
-            <th key={header.id} className={clsx(styled.className)} style={styled.style}>
+            <th key={header.id} className={stringify(styled.className)} style={styled.style}>
               {header.isPlaceholder
                 ? null
                 : flexRender(header.column.columnDef.header, header.getContext())}

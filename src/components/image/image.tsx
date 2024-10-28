@@ -2,11 +2,12 @@ import React, { useContext } from "react";
 import type { ImageProps } from "musae/types/image";
 import Preview from "./preview/preview";
 import PreviewGroupContext from "./preview/context";
-import { useBoolean, useEvent, useImageLoader, clsx } from "@aiszlab/relax";
+import { useBoolean, useEvent, useImageLoader } from "@aiszlab/relax";
 import stylex from "@stylexjs/stylex";
 import { Skeleton } from "../skeleton";
 import { useClassNames } from "../../hooks/use-class-names";
 import { ImageClassToken } from "../../utils/class-name";
+import { stringify } from "@aiszlab/relax/class-name";
 
 const styles = stylex.create({
   size: (props: { width?: number | string; height?: number | string }) => ({
@@ -54,7 +55,7 @@ const Image = ({
   if (status === "loading") {
     return (
       <Skeleton
-        className={clsx(className, styled.loading.className)}
+        className={stringify(className, styled.loading.className)}
         style={{
           ...styled.loading.style,
           ...style,
@@ -67,7 +68,11 @@ const Image = ({
     <>
       {status === "loaded" && (
         <img
-          className={clsx(classNames[ImageClassToken.Image], className, styled.image.className)}
+          className={stringify(
+            classNames[ImageClassToken.Image],
+            className,
+            styled.image.className,
+          )}
           style={{
             ...styled.image.style,
             ...style,

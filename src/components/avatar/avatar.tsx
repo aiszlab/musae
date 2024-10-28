@@ -7,7 +7,8 @@ import { useTheme } from "../theme";
 import { useClassNames } from "../../hooks/use-class-names";
 import { AvatarClassToken } from "../../utils/class-name";
 import { typography } from "../theme/theme";
-import { useImageLoader, clsx } from "@aiszlab/relax";
+import { useImageLoader } from "@aiszlab/relax";
+import { stringify } from "@aiszlab/relax/class-name";
 import { Skeleton } from "../skeleton";
 
 const styles = stylex.create({
@@ -117,7 +118,11 @@ const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(
     return (
       <span
         {...props}
-        className={clsx(classNames[AvatarClassToken.Avatar], className, styled.avatar.className)}
+        className={stringify(
+          classNames[AvatarClassToken.Avatar],
+          className,
+          styled.avatar.className,
+        )}
         style={{
           ...styled.avatar.style,
           ...style,

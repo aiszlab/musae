@@ -4,7 +4,7 @@ import type { LayoutProps } from "musae/types/layout";
 import { ChildToken, useChildren } from "./hooks";
 import stylex from "@stylexjs/stylex";
 import { useTheme } from "../theme";
-import { clsx } from "@aiszlab/relax";
+import { stringify } from "@aiszlab/relax/class-name";
 import { positions } from "../theme/tokens.stylex";
 
 const styles = stylex.create({
@@ -41,7 +41,7 @@ const Layout = ({ className, style, ...props }: LayoutProps) => {
 
   return (
     <div
-      className={clsx(className, styled.layout.className)}
+      className={stringify(className, styled.layout.className)}
       style={{
         ...styled.layout.style,
         ...style,
@@ -63,7 +63,7 @@ const Layout = ({ className, style, ...props }: LayoutProps) => {
       {!hasSider && (
         <main
           {...mainProps}
-          className={clsx(mainProps.className, styled.main.className)}
+          className={stringify(mainProps.className, styled.main.className)}
           style={{ ...styled.main.style, ...mainProps.style }}
         >
           {children.get(ChildToken.Main)}

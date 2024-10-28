@@ -8,7 +8,7 @@ import { Checkbox } from "../checkbox";
 import { Context } from "./context";
 import { useClassNames } from "../../hooks/use-class-names";
 import { TransferClassToken } from "../../utils/class-name";
-import { clsx } from "@aiszlab/relax";
+import { stringify } from "@aiszlab/relax/class-name";
 import { typography } from "../theme/theme";
 import { useLocale } from "../../locale";
 
@@ -62,11 +62,11 @@ const List = ({ options, title, onChange, value }: TransferListProps) => {
 
   return (
     <div
-      className={clsx(classNames[TransferClassToken.List], styled.list.className)}
+      className={stringify(classNames[TransferClassToken.List], styled.list.className)}
       style={styled.list.style}
     >
       <div
-        className={clsx(classNames[TransferClassToken.Header], styled.header.className)}
+        className={stringify(classNames[TransferClassToken.Header], styled.header.className)}
         style={styled.header.style}
       >
         <span>
@@ -74,7 +74,7 @@ const List = ({ options, title, onChange, value }: TransferListProps) => {
           {locale.unit}
         </span>
         <span
-          className={clsx(classNames[TransferClassToken.Title], styled.title.className)}
+          className={stringify(classNames[TransferClassToken.Title], styled.title.className)}
           style={styled.title.style}
         >
           {title}
@@ -83,7 +83,7 @@ const List = ({ options, title, onChange, value }: TransferListProps) => {
 
       <Checkbox.Group value={value} onChange={onChange} disabled={disabled}>
         <ul
-          className={clsx(classNames[TransferClassToken.Body], styled.body.className)}
+          className={stringify(classNames[TransferClassToken.Body], styled.body.className)}
           style={styled.body.style}
         >
           {options.map((option) => {

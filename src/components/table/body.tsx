@@ -2,13 +2,14 @@ import React, { type CSSProperties } from "react";
 import { useTable } from "./context";
 import { flexRender } from "@tanstack/react-table";
 import stylex from "@stylexjs/stylex";
-import { clsx, isEmpty } from "@aiszlab/relax";
+import { isEmpty } from "@aiszlab/relax";
 import { typography } from "../theme/theme";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { Empty } from "../empty";
 import { useClassNames } from "../../hooks/use-class-names";
 import { TableClassToken } from "../../utils/class-name";
+import { stringify } from "@aiszlab/relax/class-name";
 
 const styles = stylex.create({
   cell: (props: { borderColor: CSSProperties["borderColor"] }) => ({
@@ -59,7 +60,7 @@ const Body = <T,>() => {
         table.getRowModel().rows.map((row) => (
           <tr key={row.id}>
             {row.getVisibleCells().map((cell) => (
-              <td key={cell.id} className={clsx(styled.className)} style={styled.style}>
+              <td key={cell.id} className={stringify(styled.className)} style={styled.style}>
                 {flexRender(cell.column.columnDef.cell, cell.getContext())}
               </td>
             ))}

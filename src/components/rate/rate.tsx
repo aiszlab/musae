@@ -3,7 +3,7 @@ import type { RateProps } from "musae/types/rate";
 import stylex from "@stylexjs/stylex";
 import { useClassNames } from "../../hooks/use-class-names";
 import { RateClassToken } from "../../utils/class-name";
-import { clsx } from "@aiszlab/relax";
+import { stringify } from "@aiszlab/relax/class-name";
 import { useHover, useValue } from "./hooks";
 import Star from "./star";
 import { spacing } from "../theme/tokens.stylex";
@@ -41,7 +41,7 @@ const Rate = ({
 
   return (
     <ul
-      className={clsx(classNames[RateClassToken.Rate], className, styled.rate.className)}
+      className={stringify(classNames[RateClassToken.Rate], className, styled.rate.className)}
       style={{
         ...styled.rate.style,
         ...style,

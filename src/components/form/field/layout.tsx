@@ -7,7 +7,7 @@ import stylex from "@stylexjs/stylex";
 import { typography } from "../../theme/theme";
 import { sizes, spacing } from "../../theme/tokens.stylex";
 import { useTheme } from "../../theme";
-import { clsx } from "@aiszlab/relax";
+import { stringify } from "@aiszlab/relax/class-name";
 import { ComponentProps } from "musae/types/element";
 import { useClassNames } from "../../../hooks/use-class-names";
 import { FormClassToken } from "../../../utils/class-name";
@@ -110,7 +110,7 @@ const Layout = ({ required, space = false, className, style, supporting, ...prop
   return (
     <Row
       gutter={[0, 8]}
-      className={clsx(className, styled.item.className)}
+      className={stringify(className, styled.item.className)}
       style={{
         ...styled.item.style,
         ...style,
@@ -119,7 +119,7 @@ const Layout = ({ required, space = false, className, style, supporting, ...prop
       {/* label */}
       {isLabeled && (
         <Col span={labelCol}>
-          <span className={clsx(styled.label.className)} style={styled.label.style}>
+          <span className={stringify(styled.label.className)} style={styled.label.style}>
             {props.label}
           </span>
         </Col>
@@ -132,7 +132,7 @@ const Layout = ({ required, space = false, className, style, supporting, ...prop
       {!!supporting && (
         <Col span={24}>
           <div
-            className={clsx(
+            className={stringify(
               classNames[FormClassToken.FieldSupporting],
               styled.supporting.className,
             )}

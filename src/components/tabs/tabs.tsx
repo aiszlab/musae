@@ -3,7 +3,7 @@ import type { ContextValue, TabsProps } from "musae/types/tabs";
 import Context from "./context";
 import { useClassNames } from "../../hooks/use-class-names";
 import { TabsClassToken } from "../../utils/class-name";
-import { clsx } from "@aiszlab/relax";
+import { stringify } from "@aiszlab/relax/class-name";
 import { useTabs } from "./hooks";
 import Panels from "./panels";
 import Navigation from "./navigation";
@@ -38,7 +38,7 @@ const Tabs = ({
 
   return (
     <Context.Provider value={contextValue}>
-      <div className={clsx(classNames[TabsClassToken.Tabs], className)} style={style}>
+      <div className={stringify(classNames[TabsClassToken.Tabs], className)} style={style}>
         <Navigation onChange={changeActiveKey} />
         <Panels activatedKeys={activatedKeys} destroyable={destroyable} forceRender={forceRender} />
       </div>

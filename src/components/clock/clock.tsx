@@ -4,7 +4,7 @@ import { ClockClassToken } from "../../utils/class-name";
 import type { ClockProps, TimeUnit } from "musae/types/clock";
 import Column from "./column";
 import stylex from "@stylexjs/stylex";
-import { clsx } from "@aiszlab/relax";
+import { stringify } from "@aiszlab/relax/class-name";
 import { Divider } from "../divider";
 import { spacing } from "../theme/tokens.stylex";
 
@@ -22,7 +22,10 @@ const Clock = ({ value, onChange }: ClockProps) => {
   const columns = ["hour", "minute", "second"] satisfies TimeUnit[];
 
   return (
-    <div className={clsx(classNames[ClockClassToken.Clock], styled.className)} style={styled.style}>
+    <div
+      className={stringify(classNames[ClockClassToken.Clock], styled.className)}
+      style={styled.style}
+    >
       {columns.map((unit, index) => {
         return [
           <Column

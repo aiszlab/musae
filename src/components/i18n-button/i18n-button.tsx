@@ -4,11 +4,12 @@ import { Popover, type PopoverRef } from "../popover";
 import { useLocales } from "./hooks";
 import { Menu } from "../menu";
 import type { I18nButtonProps } from "musae/types/i18n-button";
-import { clsx, useEvent } from "@aiszlab/relax";
+import { useEvent } from "@aiszlab/relax";
 import type { LocaleCode } from "musae/types/locale";
 import { useClassNames } from "../../hooks/use-class-names";
 import { I18nButtonClassToken } from "../../utils/class-name";
 import { IconButton } from "../icon-button";
+import { stringify } from "@aiszlab/relax/class-name";
 
 const I18nButton = ({ onChange, variant, className, style, size }: I18nButtonProps) => {
   const { selections, locales, localeCode } = useLocales();
@@ -29,7 +30,7 @@ const I18nButton = ({ onChange, variant, className, style, size }: I18nButtonPro
     >
       <IconButton
         variant={variant}
-        className={clsx(classNames[I18nButtonClassToken.I18nButton], className)}
+        className={stringify(classNames[I18nButtonClassToken.I18nButton], className)}
         style={style}
         size={size}
       >

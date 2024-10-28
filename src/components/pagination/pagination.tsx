@@ -9,7 +9,8 @@ import type { Option } from "musae/types/option";
 import { useClassNames } from "../../hooks/use-class-names";
 import { PaginationClassToken } from "../../utils/class-name";
 import { useLocale } from "../../locale";
-import { toFunction, clsx, unique } from "@aiszlab/relax";
+import { toFunction, unique } from "@aiszlab/relax";
+import { stringify } from "@aiszlab/relax/class-name";
 
 const styles = stylex.create({
   pagination: {
@@ -89,7 +90,10 @@ const Pagination = ({
         ))}
 
         <li
-          className={clsx(classNames[PaginationClassToken.SizeSelector], styled.sizer.className)}
+          className={stringify(
+            classNames[PaginationClassToken.SizeSelector],
+            styled.sizer.className,
+          )}
           style={styled.sizer.style}
         >
           <Select

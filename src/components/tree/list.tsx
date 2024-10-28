@@ -8,7 +8,8 @@ import Context from "./context";
 import { useClassNames } from "../../hooks/use-class-names";
 import { TreeClassToken } from "../../utils/class-name";
 import { useExpandable } from "../../hooks/use-expandable";
-import { useUpdateEffect, clsx } from "@aiszlab/relax";
+import { useUpdateEffect } from "@aiszlab/relax";
+import { stringify } from "@aiszlab/relax/class-name";
 
 const styles = stylex.create({
   list: {
@@ -42,7 +43,7 @@ const List = ({ nodes = [], expanded = true, level = 0, className, style }: Tree
 
   return (
     <ul
-      className={clsx(
+      className={stringify(
         {
           [classNames[TreeClassToken.Tree]]: level === 0,
           [classNames[TreeClassToken.List]]: level > 0,

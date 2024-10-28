@@ -8,7 +8,7 @@ import React, {
   type FocusEvent,
 } from "react";
 import { Popper } from "../popper";
-import { useBoolean, useFocus, useEvent, clsx } from "@aiszlab/relax";
+import { useBoolean, useFocus, useEvent } from "@aiszlab/relax";
 import type { PickerProps, PickerRef } from "musae/types/picker";
 import { PickerClassToken } from "../../utils/class-name";
 import { useClassNames } from "../../hooks/use-class-names";
@@ -17,6 +17,7 @@ import { useTheme } from "../theme";
 import { typography } from "../theme/theme";
 import { styles as inputStyles } from "../input";
 import { Context } from "./context";
+import { stringify } from "@aiszlab/relax/class-name";
 
 const styles = stylex.create({
   pickable: (props: { minWidth: CSSProperties["minWidth"] }) => ({
@@ -102,7 +103,7 @@ const Picker = forwardRef<PickerRef, PickerProps>(
     return (
       <Context.Provider value={{ open, isFocused, isOpen }}>
         <span
-          className={clsx(
+          className={stringify(
             classNames[PickerClassToken.Picker],
             {
               [classNames[PickerClassToken.Focused]]: isFocused,
@@ -134,7 +135,7 @@ const Picker = forwardRef<PickerRef, PickerProps>(
         >
           <div
             ref={pickableRef}
-            className={clsx(pickableClassName, styled.pickable.className)}
+            className={stringify(pickableClassName, styled.pickable.className)}
             style={{
               ...styled.pickable.style,
               ...pickableStyle,

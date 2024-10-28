@@ -6,9 +6,10 @@ import { TabsClassToken } from "../../utils/class-name";
 import { type NavigationProps } from "musae/types/tabs";
 import Tab from "./tab";
 import { useAnimate } from "framer-motion";
-import { isUndefined, clsx } from "@aiszlab/relax";
+import { isUndefined } from "@aiszlab/relax";
 import { useTheme } from "../theme";
 import { useNavigation, useNavigatorScroll, useTabsContext } from "./hooks";
+import { stringify } from "@aiszlab/relax/class-name";
 
 const styles = {
   navigation: stylex.create({
@@ -116,17 +117,17 @@ const Navigation = ({ onChange }: NavigationProps) => {
   return (
     <div
       role="tablist"
-      className={clsx(classNames[TabsClassToken.TabsNavigation], styled.navigation.className)}
+      className={stringify(classNames[TabsClassToken.TabsNavigation], styled.navigation.className)}
       style={styled.navigation.style}
     >
       <div
         ref={navigatorRef}
-        className={clsx(classNames[TabsClassToken.TabsNavigator], styled.navigator.className)}
+        className={stringify(classNames[TabsClassToken.TabsNavigator], styled.navigator.className)}
         style={styled.navigator.style}
       >
         <div
           ref={tabsRef}
-          className={clsx(classNames[TabsClassToken.TabList], styled.list.className)}
+          className={stringify(classNames[TabsClassToken.TabList], styled.list.className)}
           style={styled.list.style}
         >
           {items.map((item) => {
@@ -145,7 +146,7 @@ const Navigation = ({ onChange }: NavigationProps) => {
 
           <div
             ref={indicatorRef}
-            className={clsx(classNames[TabsClassToken.Indicator], styled.indicator.className)}
+            className={stringify(classNames[TabsClassToken.Indicator], styled.indicator.className)}
             style={styled.indicator.style}
           />
         </div>

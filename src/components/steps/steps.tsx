@@ -4,7 +4,7 @@ import Item from "./item";
 import { useClassNames } from "../../hooks/use-class-names";
 import { StepsClassToken } from "../../utils/class-name";
 import stylex from "@stylexjs/stylex";
-import { clsx } from "@aiszlab/relax";
+import { stringify } from "@aiszlab/relax/class-name";
 import { Context } from "./context";
 import { spacing } from "../theme/tokens.stylex";
 
@@ -61,7 +61,7 @@ const Steps = ({
   return (
     <Context.Provider value={contextValue}>
       <ol
-        className={clsx(classNames[StepsClassToken.Steps], className, styled.steps.className)}
+        className={stringify(classNames[StepsClassToken.Steps], className, styled.steps.className)}
         style={{
           ...styled.steps.style,
           ...style,

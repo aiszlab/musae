@@ -6,7 +6,7 @@ import { useValue } from "./hooks";
 import { useClassNames } from "../../hooks/use-class-names";
 import { DatePickerClassToken } from "../../utils/class-name";
 import stylex from "@stylexjs/stylex";
-import { clsx } from "@aiszlab/relax";
+import { stringify } from "@aiszlab/relax/class-name";
 import { spacing } from "../theme/tokens.stylex";
 import { styles as inputStyles } from "../input";
 
@@ -43,7 +43,7 @@ const DatePicker = (props: DatePickerProps) => {
       popupWidth={false}
     >
       <input
-        className={clsx(classNames[DatePickerClassToken.Input], styled.input.className)}
+        className={stringify(classNames[DatePickerClassToken.Input], styled.input.className)}
         style={styled.input.style}
         value={value?.format("YYYY-MM-DD") ?? ""}
         readOnly

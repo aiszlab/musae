@@ -5,7 +5,7 @@ import stylex from "@stylexjs/stylex";
 import { Context } from "./context";
 import { useClassNames } from "../../hooks/use-class-names";
 import { TimelineClassToken } from "../../utils/class-name";
-import { clsx } from "@aiszlab/relax";
+import { stringify } from "@aiszlab/relax/class-name";
 import { spacing } from "../theme/tokens.stylex";
 
 const styles = stylex.create({
@@ -38,7 +38,7 @@ const Timeline = ({ items, mode = "right", size }: TimelineProps) => {
   return (
     <Context.Provider value={contextValue}>
       <ol
-        className={clsx(classNames[TimelineClassToken.Timeline], styled.className)}
+        className={stringify(classNames[TimelineClassToken.Timeline], styled.className)}
         style={styled.style}
       >
         {items.map((item, index) => {

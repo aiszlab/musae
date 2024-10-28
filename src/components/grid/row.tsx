@@ -2,7 +2,7 @@ import React from "react";
 import type { RowProps } from "musae/types/grid";
 import { useClassNames } from "../../hooks/use-class-names";
 import { GridClassToken } from "../../utils/class-name";
-import { clsx } from "@aiszlab/relax";
+import { stringify } from "@aiszlab/relax/class-name";
 import stylex from "@stylexjs/stylex";
 import { useGutters } from "../../hooks/use-gutters";
 
@@ -38,7 +38,7 @@ const Row = ({
 
   return (
     <As
-      className={clsx(classNames[GridClassToken.Row], className, styled.className)}
+      className={stringify(classNames[GridClassToken.Row], className, styled.className)}
       style={{
         ...styled.style,
         ...style,

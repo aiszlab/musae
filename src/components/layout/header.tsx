@@ -3,7 +3,7 @@ import React, { type CSSProperties } from "react";
 import { useTheme } from "../theme";
 import stylex from "@stylexjs/stylex";
 import { positions, sizes, spacing } from "../theme/tokens.stylex";
-import { clsx } from "@aiszlab/relax";
+import { stringify } from "@aiszlab/relax/class-name";
 
 const styles = stylex.create({
   header: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
@@ -31,7 +31,7 @@ const Header = ({ className, style, children }: HeaderProps) => {
 
   return (
     <header
-      className={clsx(className, styled.className)}
+      className={stringify(className, styled.className)}
       style={{
         ...styled.style,
         ...style,

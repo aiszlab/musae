@@ -11,11 +11,12 @@ import { ColumnProps, TimeUnit } from "musae/types/clock";
 import { Menu } from "../menu";
 import { useClassNames } from "../../hooks/use-class-names";
 import { ClockClassToken } from "../../utils/class-name";
-import { isVoid, clsx } from "@aiszlab/relax";
+import { isVoid } from "@aiszlab/relax";
 import stylex from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import type { MenuRef } from "musae/types/menu";
+import { stringify } from "@aiszlab/relax/class-name";
 
 const UNITS: Record<TimeUnit, number> = {
   hour: 24,
@@ -90,7 +91,7 @@ const Column = forwardRef<{}, ColumnProps>(({ unit, value, onChange }, ref) => {
     <Menu
       selectedKeys={value}
       ref={menuRef}
-      className={clsx(styled.menu.className, classNames[ClockClassToken.Column])}
+      className={stringify(styled.menu.className, classNames[ClockClassToken.Column])}
       style={styled.menu.style}
       items={Array.from(Array(timeUnit).keys()).map((step) => ({
         key: step,

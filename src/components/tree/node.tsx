@@ -8,7 +8,8 @@ import { KeyboardArrowRight } from "musae/icons";
 import stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
-import { useEvent, clsx } from "@aiszlab/relax";
+import { useEvent } from "@aiszlab/relax";
+import { stringify } from "@aiszlab/relax/class-name";
 
 const styles = stylex.create({
   node: (props: { level: number }) => ({
@@ -97,11 +98,11 @@ const Node = ({ value, children, level, onExpand, ...props }: TreeNodeProps) => 
   return (
     <li className={classNames[TreeClassToken.Holder]}>
       <div
-        className={clsx(classNames[TreeClassToken.Node], styled.node.className)}
+        className={stringify(classNames[TreeClassToken.Node], styled.node.className)}
         style={styled.node.style}
       >
         <span
-          className={clsx(classNames[TreeClassToken.Expander], styled.expander.className)}
+          className={stringify(classNames[TreeClassToken.Expander], styled.expander.className)}
           style={styled.expander.style}
           onClick={expand}
         >
@@ -109,13 +110,13 @@ const Node = ({ value, children, level, onExpand, ...props }: TreeNodeProps) => 
         </span>
 
         <Checkbox
-          className={clsx(classNames[TreeClassToken.Checkbox])}
+          className={stringify(classNames[TreeClassToken.Checkbox])}
           checked={isChecked}
           onChange={check}
         />
 
         <span
-          className={clsx(classNames[TreeClassToken.Title], styled.title.className)}
+          className={stringify(classNames[TreeClassToken.Title], styled.title.className)}
           style={styled.title.style}
           onClick={select}
         >

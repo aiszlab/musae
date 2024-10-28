@@ -14,7 +14,7 @@ import type { ClockProps } from "musae/types/clock";
 import dayjs from "dayjs";
 import stylex from "@stylexjs/stylex";
 import { useTheme } from "../theme";
-import { clsx } from "@aiszlab/relax";
+import { stringify } from "@aiszlab/relax/class-name";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { useLocale } from "../../locale";
 
@@ -80,13 +80,13 @@ const Panel = forwardRef<PanelRef, PanelProps>((props, ref) => {
 
   return (
     <div
-      className={clsx(classNames[TimePickerClassToken.Panel], styled.panel.className)}
+      className={stringify(classNames[TimePickerClassToken.Panel], styled.panel.className)}
       style={styled.panel.style}
     >
       <Clock value={value} onChange={change} />
 
       <div
-        className={clsx(classNames[TimePickerClassToken.PanelFooter], styled.footer.className)}
+        className={stringify(classNames[TimePickerClassToken.PanelFooter], styled.footer.className)}
         style={styled.footer.style}
       >
         <Button variant="text" size="small" color="secondary" onClick={reset}>

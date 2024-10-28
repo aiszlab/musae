@@ -1,5 +1,5 @@
 import React, { type CSSProperties } from "react";
-import { clsx } from "@aiszlab/relax";
+import { stringify } from "@aiszlab/relax/class-name";
 import type { TagProps } from "musae/types/tag";
 import { useClassNames } from "../../hooks/use-class-names";
 import { TagClassToken } from "../../utils/class-name";
@@ -66,7 +66,7 @@ const Tag = ({
 
   return (
     <span
-      className={clsx(classNames[TagClassToken.Tag], className, styled.className)}
+      className={stringify(classNames[TagClassToken.Tag], className, styled.className)}
       style={{
         ...styled.style,
         ...style,
