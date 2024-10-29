@@ -1,6 +1,4 @@
 import React, { type CSSProperties, useContext } from "react";
-import { useClassNames } from "../../hooks/use-class-names";
-import { CollapseClassToken } from "../../utils/class-name";
 import stylex from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { useEvent, useUpdateEffect } from "@aiszlab/relax";
@@ -70,8 +68,7 @@ const styles = {
 };
 
 const CollapseItem = ({ children, label, value }: CollapseItemProps) => {
-  const classNames = useClassNames("collapse");
-  const { activeKeys, toggle } = useContext(Context);
+  const { activeKeys, toggle, classNames } = useContext(Context);
   const isExpanded = activeKeys.has(value);
   const [collapser, animate] = useAnimate<HTMLDivElement>();
   const theme = useTheme();
@@ -103,24 +100,19 @@ const CollapseItem = ({ children, label, value }: CollapseItemProps) => {
   return (
     <div
       className={stringify(
-        classNames[CollapseClassToken.Item],
-        {
-          [classNames[CollapseClassToken.ItemActive]]: isExpanded,
-        },
+        classNames.item,
+        isExpanded && classNames.itemActive,
         styled.item.className,
       )}
       style={styled.item.style}
     >
       <div
-        className={stringify(classNames[CollapseClassToken.Header], styled.header.className)}
+        className={stringify(classNames.header, styled.header.className)}
         style={styled.header.style}
         onClick={onClick}
       >
         <KeyboardArrowRight
-          className={stringify(
-            classNames[CollapseClassToken.Collapser],
-            styled.collapser.className,
-          )}
+          className={stringify(classNames.collapser, styled.collapser.className)}
           style={styled.collapser.style}
         />
 
@@ -130,16 +122,14 @@ const CollapseItem = ({ children, label, value }: CollapseItemProps) => {
       <div
         ref={collapser}
         className={stringify(
-          classNames[CollapseClassToken.Panel],
-          {
-            [classNames[CollapseClassToken.PanelActive]]: isExpanded,
-          },
+          classNames.panel,
+          isExpanded && classNames.panelActive,
           styled.panel.className,
         )}
         style={styled.panel.style}
       >
         <div
-          className={stringify(classNames[CollapseClassToken.Content], styled.content.className)}
+          className={stringify(classNames.content, styled.content.className)}
           style={styled.content.style}
         >
           {children}

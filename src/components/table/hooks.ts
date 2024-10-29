@@ -11,6 +11,7 @@ import type { Column, ContextValue, SortDescriptor } from "musae/types/table";
 import HeaderCell from "./header/cell";
 import { useControlledState, useEvent } from "@aiszlab/relax";
 import type { Partialable } from "@aiszlab/relax/types";
+import type { CLASS_NAMES } from "./context";
 
 /**
  * @description
@@ -60,11 +61,13 @@ export const useContextValue = <T>({
   bordered,
   sortDescriptor: _sortDescriptor,
   onSortChange: _onSortChange,
+  classNames,
 }: {
   table: ContextValue<T>["table"];
   bordered: boolean;
   sortDescriptor?: SortDescriptor;
   onSortChange?: (sortDescriptor: SortDescriptor) => void;
+  classNames: typeof CLASS_NAMES;
 }) => {
   const [sortDescriptor, setSortDescriptor] = useControlledState(_sortDescriptor);
 
@@ -74,7 +77,7 @@ export const useContextValue = <T>({
     _onSortChange?.(sortDescriptor);
   });
 
-  return useMemo<ContextValue<unknown>>(
+  return useMemo<ContextValue<unknown> & { classNames: typeof CLASS_NAMES }>(
     () => ({
       table: _table as Partialable<Table<unknown>>,
       bordered,
@@ -82,7 +85,9 @@ export const useContextValue = <T>({
       // sort descriptor
       sortDescriptor,
       onSortChange,
+
+      classNames,
     }),
-    [_table, bordered, sortDescriptor, onSortChange],
+    [_table, bordered, sortDescriptor, onSortChange, classNames],
   );
 };

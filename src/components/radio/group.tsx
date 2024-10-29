@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo } from "react";
-import Context from "./context";
+import { Context } from "./context";
 import type { ContextValue, RadioGroupProps } from "musae/types/radio";
 import { useControlledState } from "@aiszlab/relax";
 

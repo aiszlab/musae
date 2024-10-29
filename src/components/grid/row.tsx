@@ -1,10 +1,10 @@
 import React from "react";
 import type { RowProps } from "musae/types/grid";
-import { useClassNames } from "../../hooks/use-class-names";
-import { GridClassToken } from "../../utils/class-name";
+import { useClassNames } from "../../hooks/use-class-names.component";
 import { stringify } from "@aiszlab/relax/class-name";
 import stylex from "@stylexjs/stylex";
 import { useGutters } from "../../hooks/use-gutters";
+import { CLASS_NAMES, Context } from "./context";
 
 const styles = stylex.create({
   row: (props: {
@@ -31,21 +31,23 @@ const Row = ({
   as: As = "div",
   style,
 }: RowProps) => {
-  /// col and row gap in grid
+  // col and row gap in grid
   const [columnGap, rowGap] = useGutters({ gutter });
-  const classNames = useClassNames("grid");
+  const classNames = useClassNames(CLASS_NAMES);
   const styled = stylex.props(styles.row({ columnGap, rowGap, justify, align }));
 
   return (
-    <As
-      className={stringify(classNames[GridClassToken.Row], className, styled.className)}
-      style={{
-        ...styled.style,
-        ...style,
-      }}
-    >
-      {children}
-    </As>
+    <Context.Provider value={{ classNames }}>
+      <As
+        className={stringify(classNames.row, className, styled.className)}
+        style={{
+          ...styled.style,
+          ...style,
+        }}
+      >
+        {children}
+      </As>
+    </Context.Provider>
   );
 };
 

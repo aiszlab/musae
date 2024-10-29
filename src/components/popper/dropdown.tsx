@@ -1,13 +1,13 @@
 import React, { type CSSProperties, forwardRef, useImperativeHandle } from "react";
 import type { DropdownProps, PopperRef } from "musae/types/popper";
-import { PopperClassToken } from "../../utils/class-name";
-import { useClassNames } from "../../hooks/use-class-names";
+import { useClassNames } from "../../hooks/use-class-names.component";
 import stylex from "@stylexjs/stylex";
 import { stringify } from "@aiszlab/relax/class-name";
 import { useFloating } from "./hooks";
 import { elevations, positions, sizes } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { contains } from "@aiszlab/relax/dom";
+import { CLASS_NAMES } from "./context";
 
 const styles = {
   portal: stylex.create({
@@ -77,7 +77,7 @@ const Dropdown = forwardRef<PopperRef, DropdownProps>(
     },
     ref,
   ) => {
-    const classNames = useClassNames("popper");
+    const classNames = useClassNames(CLASS_NAMES);
     const theme = useTheme();
 
     const { floatableRef, arrowRef, disappear, composedRef } = useFloating({
@@ -116,11 +116,7 @@ const Dropdown = forwardRef<PopperRef, DropdownProps>(
         <div
           ref={composedRef}
           {...props}
-          className={stringify(
-            classNames[PopperClassToken.Dropdown],
-            className,
-            styled.dropdown.className,
-          )}
+          className={stringify(classNames.dropdown, className, styled.dropdown.className)}
           style={{
             ...styled.dropdown.style,
             ...style,
@@ -129,7 +125,11 @@ const Dropdown = forwardRef<PopperRef, DropdownProps>(
           {children}
 
           {arrowable && (
-            <div ref={arrowRef} className={styled.arrow.className} style={styled.arrow.style} />
+            <div
+              ref={arrowRef}
+              className={stringify(classNames.arrow, styled.arrow.className)}
+              style={styled.arrow.style}
+            />
           )}
         </div>
       </div>

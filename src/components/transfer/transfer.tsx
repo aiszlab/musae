@@ -1,13 +1,12 @@
 import React, { useMemo } from "react";
 import { useTransfer } from "./hooks";
-import type { ContextValue, TransferProps } from "musae/types/transfer";
+import type { TransferProps } from "musae/types/transfer";
 import List from "./list";
 import stylex from "@stylexjs/stylex";
 import { KeyboardArrowLeft, KeyboardArrowRight } from "musae/icons";
 import { spacing } from "../theme/tokens.stylex";
-import { Context } from "./context";
-import { useClassNames } from "../../hooks/use-class-names";
-import { TransferClassToken } from "../../utils/class-name";
+import { CLASS_NAMES, Context } from "./context";
+import { useClassNames } from "../../hooks/use-class-names.component";
 import { stringify } from "@aiszlab/relax/class-name";
 import { IconButton } from "../icon-button";
 
@@ -48,27 +47,24 @@ const Transfer = ({
     value,
   });
 
-  const classNames = useClassNames("transfer");
+  const classNames = useClassNames(CLASS_NAMES);
 
   const styled = {
     transfer: stylex.props(styles.transfer),
     operation: stylex.props(styles.operation),
   };
 
-  const contextValue = useMemo<ContextValue>(() => {
+  const contextValue = useMemo(() => {
     return {
       disabled,
+      classNames,
     };
-  }, [disabled]);
+  }, [disabled, classNames]);
 
   return (
     <Context.Provider value={contextValue}>
       <div
-        className={stringify(
-          classNames[TransferClassToken.Transfer],
-          className,
-          styled.transfer.className,
-        )}
+        className={stringify(classNames.transfer, className, styled.transfer.className)}
         style={{
           ...styled.transfer.style,
           ...style,
@@ -82,10 +78,7 @@ const Transfer = ({
         />
 
         <div
-          className={stringify(
-            classNames[TransferClassToken.Operation],
-            styled.operation.className,
-          )}
+          className={stringify(classNames.operation, styled.operation.className)}
           style={styled.operation.style}
         >
           <IconButton

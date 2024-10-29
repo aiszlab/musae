@@ -1,9 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import type { ColProps } from "musae/types/grid";
-import { useClassNames } from "../../hooks/use-class-names";
-import { GridClassToken } from "../../utils/class-name";
 import { stringify } from "@aiszlab/relax/class-name";
 import stylex from "@stylexjs/stylex";
+import { Context } from "./context";
 
 const styles = stylex.create({
   col: (props: { span: number }) => ({
@@ -14,11 +13,11 @@ const styles = stylex.create({
 
 const Col = ({ children, className, span = 8, as: As = "div", style }: ColProps) => {
   const styled = stylex.props(styles.col({ span }));
-  const classNames = useClassNames("grid");
+  const { classNames } = useContext(Context);
 
   return (
     <As
-      className={stringify(classNames[GridClassToken.Col], className, styled.className)}
+      className={stringify(classNames.col, className, styled.className)}
       style={{
         ...styled.style,
         ...style,

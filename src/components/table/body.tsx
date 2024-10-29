@@ -7,8 +7,6 @@ import { typography } from "../theme/theme";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { Empty } from "../empty";
-import { useClassNames } from "../../hooks/use-class-names";
-import { TableClassToken } from "../../utils/class-name";
 import { stringify } from "@aiszlab/relax/class-name";
 
 const styles = stylex.create({
@@ -31,9 +29,8 @@ const styles = stylex.create({
 });
 
 const Body = <T,>() => {
-  const { table, bordered } = useTable<T>();
+  const { table, bordered, classNames } = useTable<T>();
   const theme = useTheme();
-  const classNames = useClassNames("table");
 
   if (!table) return null;
 
@@ -47,7 +44,7 @@ const Body = <T,>() => {
   const _isEmpty = isEmpty(rows);
 
   return (
-    <tbody className={classNames[TableClassToken.Body]}>
+    <tbody className={classNames.body}>
       {_isEmpty && (
         <tr>
           <td colSpan={table.getAllColumns().length}>

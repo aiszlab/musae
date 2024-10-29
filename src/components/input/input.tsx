@@ -2,14 +2,14 @@ import React, { forwardRef, useRef, useImperativeHandle, type CSSProperties } fr
 import { useInputEvents, useInputorEvents } from "./hooks";
 import type { InputProps, InputRef } from "musae/types/input";
 import { useControlledState, useFocus } from "@aiszlab/relax";
-import { InputClassToken } from "../../utils/class-name";
 import stylex from "@stylexjs/stylex";
 import { OPACITY, sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
-import { useClassNames } from "../../hooks/use-class-names";
+import { useClassNames } from "../../hooks/use-class-names.component";
 import { typography } from "../theme/theme";
 import { hexToRgba } from "@aiszlab/fuzzy/color";
 import { stringify } from "@aiszlab/relax/class-name";
+import { CLASS_NAMES } from "./context";
 
 export const styles = stylex.create({
   inputor: (props: {
@@ -105,7 +105,7 @@ const Input = forwardRef<InputRef, InputProps>(
     ref,
   ) => {
     const inputRef = useRef<HTMLInputElement>(null);
-    const classNames = useClassNames("input");
+    const classNames = useClassNames(CLASS_NAMES);
     const theme = useTheme();
 
     useImperativeHandle<InputRef, InputRef>(ref, () => ({
@@ -161,10 +161,10 @@ const Input = forwardRef<InputRef, InputProps>(
     return (
       <span
         className={stringify(
-          classNames[InputClassToken.Inputor],
+          classNames.inputor,
           {
-            [classNames[InputClassToken.Focused]]: isFocused,
-            [classNames[InputClassToken.Invalid]]: !!invalid,
+            [classNames.focused]: isFocused,
+            [classNames.invalid]: !!invalid,
           },
           className,
           styled.inputor.className,
@@ -184,7 +184,7 @@ const Input = forwardRef<InputRef, InputProps>(
         {/* input */}
         <input
           value={_value}
-          className={stringify(classNames[InputClassToken.Input], styled.input.className)}
+          className={stringify(classNames.input, styled.input.className)}
           style={styled.input.style}
           type={type}
           ref={inputRef}

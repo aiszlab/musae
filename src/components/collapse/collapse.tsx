@@ -1,13 +1,12 @@
 import React, { type CSSProperties } from "react";
 import type { CollapseProps } from "musae/types/collapse";
-import { useClassNames } from "../../hooks/use-class-names";
-import { CollapseClassToken } from "../../utils/class-name";
+import { useClassNames } from "../../hooks/use-class-names.component";
 import Item from "./item";
 import stylex from "@stylexjs/stylex";
 import { sizes } from "../theme/tokens.stylex";
 import { stringify } from "@aiszlab/relax/class-name";
 import { useActiveKeys } from "./hooks";
-import { Context } from "./context";
+import { CLASS_NAMES, Context } from "./context";
 import { useTheme } from "../theme";
 
 const styles = stylex.create({
@@ -28,7 +27,7 @@ const Collapse = ({
   style,
   accordion = false,
 }: CollapseProps) => {
-  const classNames = useClassNames("collapse");
+  const classNames = useClassNames(CLASS_NAMES);
   const [activeKeys, toggle] = useActiveKeys({ defaultActiveKey, activeKey, onChange, accordion });
   const theme = useTheme();
 
@@ -42,10 +41,11 @@ const Collapse = ({
       value={{
         activeKeys,
         toggle,
+        classNames,
       }}
     >
       <div
-        className={stringify(classNames[CollapseClassToken.Collapse], className, styled.className)}
+        className={stringify(classNames.collapse, className, styled.className)}
         style={{
           ...styled.style,
           ...style,

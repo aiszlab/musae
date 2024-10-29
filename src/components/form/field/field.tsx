@@ -1,16 +1,22 @@
-import React, { isValidElement, useMemo, cloneElement, Children, type ReactNode } from "react";
+import React, {
+  isValidElement,
+  useMemo,
+  cloneElement,
+  Children,
+  type ReactNode,
+  useContext,
+} from "react";
 import type { FormItemProps, FieldRenderProps } from "musae/types/form";
 import { useController } from "react-hook-form";
 import type { RequiredIn } from "@aiszlab/relax/types";
 import { chain, isRefable, toFunction } from "@aiszlab/relax";
-import { FormClassToken } from "../../../utils/class-name";
 import Layout from "./layout";
 import Error from "./error";
 import { AnimatePresence } from "framer-motion";
-import { useClassNames } from "../../../hooks/use-class-names";
 import { useLocale } from "../../../locale";
 import Support from "./support";
 import { stringify } from "@aiszlab/relax/class-name";
+import { Context } from "../context";
 
 /**
  * @description
@@ -25,7 +31,7 @@ const Field = ({
   support,
   ...props
 }: RequiredIn<FormItemProps, "name" | "required">) => {
-  const classNames = useClassNames("form");
+  const { classNames } = useContext(Context);
   const [locale] = useLocale("form");
 
   const {
@@ -75,7 +81,7 @@ const Field = ({
     <Layout
       label={props.label}
       required={required}
-      className={classNames[FormClassToken.Item]}
+      className={classNames.item}
       supporting={
         <>
           {!!support && <Support>{support}</Support>}
@@ -83,7 +89,7 @@ const Field = ({
         </>
       }
     >
-      <div className={stringify(classNames[FormClassToken.Field], className)} style={style}>
+      <div className={stringify(classNames.field, className)} style={style}>
         {children}
       </div>
     </Layout>

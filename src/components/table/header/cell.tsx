@@ -1,11 +1,11 @@
-import React, { useContext, useMemo, type CSSProperties } from "react";
+import React, { useMemo, type CSSProperties } from "react";
 import { toFunction, useEvent } from "@aiszlab/relax";
 import stylex from "@stylexjs/stylex";
 import { sizes, spacing } from "../../theme/tokens.stylex";
 import { useTheme } from "../../theme";
 import { UnfoldMore } from "musae/icons";
 import type { HeaderCellProps, SortDirection } from "musae/types/table";
-import Context from "../context";
+import { useTable } from "../context";
 
 const styles = {
   cell: stylex.create({
@@ -50,7 +50,7 @@ const Cell = ({
   value,
   sortDirections: _sortDirections,
 }: HeaderCellProps) => {
-  const { sortDescriptor, onSortChange } = useContext(Context);
+  const { sortDescriptor, onSortChange } = useTable();
   const children = toFunction(_children)();
   const theme = useTheme();
 

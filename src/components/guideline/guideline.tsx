@@ -1,13 +1,13 @@
 import React, { type CSSProperties } from "react";
-import { useClassNames } from "../../hooks/use-class-names";
+import { useClassNames } from "../../hooks/use-class-names.component";
 import stylex from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { stringify } from "@aiszlab/relax/class-name";
-import { GuidelineClassToken } from "../../utils/class-name";
 import { Image } from "../image";
 import type { GuidelineProps } from "../../types/guideline";
 import { useTheme } from "../theme";
 import { useLocale } from "../../locale";
+import { CLASS_NAMES } from "./context";
 
 const styles = stylex.create({
   guideline: {
@@ -44,7 +44,7 @@ const styles = stylex.create({
 });
 
 const Guideline = ({ figure, caption, recommend = true, className, style }: GuidelineProps) => {
-  const classNames = useClassNames("guideline");
+  const classNames = useClassNames(CLASS_NAMES);
   const theme = useTheme();
   const [locale] = useLocale("guideline");
 
@@ -62,11 +62,7 @@ const Guideline = ({ figure, caption, recommend = true, className, style }: Guid
 
   return (
     <div
-      className={stringify(
-        classNames[GuidelineClassToken.Guideline],
-        className,
-        styled.guideline.className,
-      )}
+      className={stringify(classNames.guideline, className, styled.guideline.className)}
       style={{
         ...styled.guideline.style,
         ...style,
@@ -74,12 +70,12 @@ const Guideline = ({ figure, caption, recommend = true, className, style }: Guid
     >
       <Image
         src={figure}
-        className={stringify(classNames[GuidelineClassToken.Figure], styled.figure.className)}
+        className={stringify(classNames.figure, styled.figure.className)}
         style={styled.figure.style}
       />
 
       <span
-        className={stringify(classNames[GuidelineClassToken.CaptionLabel], styled.label.className)}
+        className={stringify(classNames.label, styled.label.className)}
         style={styled.label.style}
       >
         {recommend ? locale.recommend : locale.oppose}
@@ -87,7 +83,7 @@ const Guideline = ({ figure, caption, recommend = true, className, style }: Guid
 
       {!!caption && (
         <span
-          className={stringify(classNames[GuidelineClassToken.Caption], styled.caption.className)}
+          className={stringify(classNames.caption, styled.caption.className)}
           style={styled.caption.style}
         >
           {caption}

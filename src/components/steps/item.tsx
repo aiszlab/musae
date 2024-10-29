@@ -1,8 +1,6 @@
 import React, { useContext, type CSSProperties } from "react";
 import type { Status, StepItemProps } from "musae/types/steps";
 import stylex from "@stylexjs/stylex";
-import { useClassNames } from "../../hooks/use-class-names";
-import { StepsClassToken } from "../../utils/class-name";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { useEvent } from "@aiszlab/relax";
@@ -115,9 +113,8 @@ const styles = {
 };
 
 const Item = ({ leading, title, description, value }: StepItemProps) => {
-  const classNames = useClassNames("steps");
   const theme = useTheme();
-  const { type, onChange, value: _value, max, size } = useContext(Context);
+  const { type, onChange, value: _value, max, size, classNames } = useContext(Context);
 
   const status: Status = _value < value ? "todo" : _value === value ? "doing" : "done";
   const isClickable = !!onChange && status !== "doing";
@@ -173,11 +170,11 @@ const Item = ({ leading, title, description, value }: StepItemProps) => {
   return (
     <li
       className={stringify(
-        classNames[StepsClassToken.Item],
+        classNames.item,
         {
-          [classNames[StepsClassToken.Done]]: status === "done",
-          [classNames[StepsClassToken.Doing]]: status === "doing",
-          [classNames[StepsClassToken.Todo]]: status === "todo",
+          [classNames.done]: status === "done",
+          [classNames.doing]: status === "doing",
+          [classNames.todo]: status === "todo",
         },
         styled.step.className,
       )}
@@ -185,24 +182,24 @@ const Item = ({ leading, title, description, value }: StepItemProps) => {
       onClick={click}
     >
       <div
-        className={stringify(classNames[StepsClassToken.Leading], styled.leading.className)}
+        className={stringify(classNames.leading, styled.leading.className)}
         style={styled.leading.style}
       >
         <div
-          className={stringify(classNames[StepsClassToken.Sign], styled.sign.className)}
+          className={stringify(classNames.sign, styled.sign.className)}
           style={styled.sign.style}
         >
           {leading ?? (status === "done" ? <Done /> : value)}
         </div>
       </div>
       <div
-        className={stringify(classNames[StepsClassToken.Title], styled.title.className)}
+        className={stringify(classNames.title, styled.title.className)}
         style={styled.title.style}
       >
         {title}
       </div>
       <div
-        className={stringify(classNames[StepsClassToken.Description], styled.description.className)}
+        className={stringify(classNames.description, styled.description.className)}
         style={styled.description.style}
       >
         {description}

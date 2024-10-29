@@ -6,8 +6,6 @@ import { useTheme } from "../theme";
 import Item from "./item";
 import { Checkbox } from "../checkbox";
 import { Context } from "./context";
-import { useClassNames } from "../../hooks/use-class-names";
-import { TransferClassToken } from "../../utils/class-name";
 import { stringify } from "@aiszlab/relax/class-name";
 import { typography } from "../theme/theme";
 import { useLocale } from "../../locale";
@@ -46,8 +44,7 @@ const styles = stylex.create({
 
 const List = ({ options, title, onChange, value }: TransferListProps) => {
   const theme = useTheme();
-  const { disabled } = useContext(Context);
-  const classNames = useClassNames("transfer");
+  const { disabled, classNames } = useContext(Context);
   const [locale] = useLocale("transfer");
 
   const styled = {
@@ -61,12 +58,9 @@ const List = ({ options, title, onChange, value }: TransferListProps) => {
   };
 
   return (
-    <div
-      className={stringify(classNames[TransferClassToken.List], styled.list.className)}
-      style={styled.list.style}
-    >
+    <div className={stringify(classNames.list, styled.list.className)} style={styled.list.style}>
       <div
-        className={stringify(classNames[TransferClassToken.Header], styled.header.className)}
+        className={stringify(classNames.header, styled.header.className)}
         style={styled.header.style}
       >
         <span>
@@ -74,7 +68,7 @@ const List = ({ options, title, onChange, value }: TransferListProps) => {
           {locale.unit}
         </span>
         <span
-          className={stringify(classNames[TransferClassToken.Title], styled.title.className)}
+          className={stringify(classNames.title, styled.title.className)}
           style={styled.title.style}
         >
           {title}
@@ -82,10 +76,7 @@ const List = ({ options, title, onChange, value }: TransferListProps) => {
       </div>
 
       <Checkbox.Group value={value} onChange={onChange} disabled={disabled}>
-        <ul
-          className={stringify(classNames[TransferClassToken.Body], styled.body.className)}
-          style={styled.body.style}
-        >
+        <ul className={stringify(classNames.body, styled.body.className)} style={styled.body.style}>
           {options.map((option) => {
             return <Item key={option.value} label={option.label} value={option.value} />;
           })}

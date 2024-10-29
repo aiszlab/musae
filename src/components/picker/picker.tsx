@@ -10,13 +10,12 @@ import React, {
 import { Popper } from "../popper";
 import { useBoolean, useFocus, useEvent } from "@aiszlab/relax";
 import type { PickerProps, PickerRef } from "musae/types/picker";
-import { PickerClassToken } from "../../utils/class-name";
-import { useClassNames } from "../../hooks/use-class-names";
+import { useClassNames } from "../../hooks/use-class-names.component";
 import stylex from "@stylexjs/stylex";
 import { useTheme } from "../theme";
 import { typography } from "../theme/theme";
 import { styles as inputStyles } from "../input";
-import { Context } from "./context";
+import { CLASS_NAMES, Context } from "./context";
 import { stringify } from "@aiszlab/relax/class-name";
 
 const styles = stylex.create({
@@ -46,7 +45,7 @@ const Picker = forwardRef<PickerRef, PickerProps>(
   ) => {
     const trigger = useRef<HTMLDivElement>(null);
     const [isOpen, { turnOff: close, toggle, turnOn: open }] = useBoolean();
-    const classNames = useClassNames("picker");
+    const classNames = useClassNames(CLASS_NAMES);
     const theme = useTheme();
     const pickableRef = useRef<HTMLDivElement>(null);
 
@@ -104,10 +103,8 @@ const Picker = forwardRef<PickerRef, PickerProps>(
       <Context.Provider value={{ open, isFocused, isOpen }}>
         <span
           className={stringify(
-            classNames[PickerClassToken.Picker],
-            {
-              [classNames[PickerClassToken.Focused]]: isFocused,
-            },
+            classNames.picker,
+            isFocused && classNames.focused,
             className,
             styled.picker.className,
           )}
@@ -126,7 +123,7 @@ const Picker = forwardRef<PickerRef, PickerProps>(
         <Popper
           trigger={trigger.current}
           open={isOpen}
-          className={classNames[PickerClassToken.Dropdown]}
+          className={classNames.dropdown}
           onEntered={onPopperEntered}
           onExit={onPopperExite}
           onExited={onPopperExited}

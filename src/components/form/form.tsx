@@ -1,9 +1,11 @@
 import React, { type ForwardedRef, forwardRef, useImperativeHandle, useMemo } from "react";
-import type { ContextValue, FormProps } from "musae/types/form";
+import type { FormProps } from "musae/types/form";
 import { type FieldValues, FormProvider, UseFormReturn } from "react-hook-form";
 import { useMounted } from "@aiszlab/relax";
-import Context, { CONTEXT_VALUE } from "./context";
+import { CLASS_NAMES, CONTEXT_VALUE, Context } from "./context";
 import { useForm } from "./hooks";
+import { useClassNames } from "../../hooks/use-class-names.component";
+import { stringify } from "@aiszlab/relax/class-name";
 
 const Form = forwardRef(
   <T extends FieldValues>(
@@ -19,7 +21,8 @@ const Form = forwardRef(
     }: FormProps<T>,
     ref: ForwardedRef<UseFormReturn<T>>,
   ) => {
-    /// use react hook form
+    const classNames = useClassNames(CLASS_NAMES);
+    // use react hook form
     const form = useForm(props.form);
 
     useImperativeHandle(ref, () => {
@@ -40,8 +43,8 @@ const Form = forwardRef(
       };
     });
 
-    /// context value
-    const contextValue = useMemo<ContextValue>(() => {
+    // context value
+    const contextValue = useMemo(() => {
       return {
         ...CONTEXT_VALUE,
         ...(!!labelCol && {
@@ -50,13 +53,14 @@ const Form = forwardRef(
         ...(!!wrapperCol && {
           wrapperCol,
         }),
+        classNames,
       };
-    }, [labelCol, wrapperCol]);
+    }, [labelCol, wrapperCol, classNames]);
 
     return (
       <Context.Provider value={contextValue}>
         <FormProvider {...form}>
-          <form className={className} style={style} onSubmit={submit}>
+          <form className={stringify(classNames.form, className)} style={style} onSubmit={submit}>
             {children}
           </form>
         </FormProvider>

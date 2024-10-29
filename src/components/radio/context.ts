@@ -1,6 +1,12 @@
 import { createContext } from "react";
 import type { ContextValue } from "musae/types/radio";
 
-const Context = createContext<ContextValue | null>(null);
+/**
+ * @description
+ * class name
+ */
+export const CLASS_NAMES = {
+  radio: "radio",
+};
 
-export default Context;
+export const Context = createContext<ContextValue | null>(null);

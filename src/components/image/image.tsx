@@ -5,9 +5,10 @@ import PreviewGroupContext from "./preview/context";
 import { useBoolean, useEvent, useImageLoader } from "@aiszlab/relax";
 import stylex from "@stylexjs/stylex";
 import { Skeleton } from "../skeleton";
-import { useClassNames } from "../../hooks/use-class-names";
-import { ImageClassToken } from "../../utils/class-name";
+import { useClassNames } from "../../hooks/use-class-names.component";
 import { stringify } from "@aiszlab/relax/class-name";
+import { CLASS_NAMES } from "./context";
+import { Empty } from "../empty";
 
 const styles = stylex.create({
   size: (props: { width?: number | string; height?: number | string }) => ({
@@ -29,7 +30,7 @@ const Image = ({
 }: ImageProps) => {
   const [isOpen, { turnOn, turnOff }] = useBoolean(false);
   const contextValue = useContext(PreviewGroupContext);
-  const classNames = useClassNames("image");
+  const classNames = useClassNames(CLASS_NAMES);
 
   const status = useImageLoader({ src, crossOrigin, referrerPolicy });
 
@@ -64,15 +65,23 @@ const Image = ({
     );
   }
 
+  if (status === "error") {
+    return (
+      <Empty
+        className={stringify(className, styled.image.className)}
+        style={{
+          ...styled.image.style,
+          ...style,
+        }}
+      />
+    );
+  }
+
   return (
     <>
       {status === "loaded" && (
         <img
-          className={stringify(
-            classNames[ImageClassToken.Image],
-            className,
-            styled.image.className,
-          )}
+          className={stringify(classNames.image, className, styled.image.className)}
           style={{
             ...styled.image.style,
             ...style,

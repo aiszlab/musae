@@ -15,9 +15,8 @@ import UploadedList from "./uploaded-list";
 import { Button } from "../button";
 import { useLocale } from "../../locale";
 import { spacing } from "../theme/tokens.stylex";
-import { useClassNames } from "../../hooks/use-class-names";
-import { UploadClassToken } from "../../utils/class-name";
-import { Context } from "./context";
+import { useClassNames } from "../../hooks/use-class-names.component";
+import { CLASS_NAMES, Context } from "./context";
 import { stringify } from "@aiszlab/relax/class-name";
 
 const styles = stylex.create({
@@ -43,11 +42,13 @@ const Upload = ({
   onChange,
   limit,
   renderItem,
+  className,
+  style,
 }: UploadProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const uploadedListRef = useRef<UploadedListRef>(null);
   const [_locale] = useLocale("upload");
-  const classNames = useClassNames("upload");
+  const classNames = useClassNames(CLASS_NAMES);
 
   // file upload
   const upload = useEvent((files: File[]) => {
@@ -98,10 +99,13 @@ const Upload = ({
   }, [_children, disabled, _locale]);
 
   return (
-    <Context.Provider value={{ renderItem }}>
+    <Context.Provider value={{ renderItem, classNames }}>
       <div
-        className={stringify(classNames[UploadClassToken.Upload], styled.upload.className)}
-        style={styled.upload.style}
+        className={stringify(classNames.upload, className, styled.upload.className)}
+        style={{
+          ...styled.upload.style,
+          ...style,
+        }}
       >
         <div {...(!disabled && { onClick, onKeyDown, onDrop, onDragOver: onDrop })}>
           <input

@@ -12,6 +12,7 @@ const styles = stylex.create({
 
 const Support = ({ children }: { children?: ReactNode }) => {
   const theme = useTheme();
+
   const styled = stylex.props(
     styles.support({
       color: theme.colors.secondary,

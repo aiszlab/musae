@@ -9,8 +9,6 @@ import type {
 import { useControlledState, useEvent, useIdentity } from "@aiszlab/relax";
 import { typography } from "../theme/theme";
 import { isRemoteFile } from "./utils";
-import { useClassNames } from "../../hooks/use-class-names";
-import { UploadClassToken } from "../../utils/class-name";
 import UploadedItem from "./uploaded-item";
 import { Context } from "./context";
 import { stringify } from "@aiszlab/relax/class-name";
@@ -39,8 +37,7 @@ const UploadedList = forwardRef<UploadedListRef, UploadedListProps>(
   ({ uploader, onError, value, onChange, limit = Infinity }, ref) => {
     const [values, setValues] = useControlledState(value, { defaultState: [] });
     const [, identity] = useIdentity();
-    const classNames = useClassNames("upload");
-    const { renderItem } = useContext(Context);
+    const { renderItem, classNames } = useContext(Context);
 
     // convert to map, for performance
     const items = useMemo(() => {
@@ -144,7 +141,7 @@ const UploadedList = forwardRef<UploadedListRef, UploadedListProps>(
 
     return (
       <div
-        className={stringify(classNames[UploadClassToken.UploadedList], styled.list.className)}
+        className={stringify(classNames.uploadedList, styled.list.className)}
         style={styled.list.style}
       >
         {Array.from(items.values()).map((item) => {

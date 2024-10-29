@@ -1,15 +1,15 @@
 import React, { useRef, useCallback, useMemo } from "react";
 import { Picker } from "../picker";
 import { useOptions, useValue } from "./hooks";
-import { SelectClassToken } from "../../utils/class-name";
 import type { SelectProps, SelectorRef, ValueOrValues } from "musae/types/select";
 import { stringify } from "@aiszlab/relax/class-name";
 import stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
 import Selector from "./selector";
 import Selections from "./selections";
-import { useClassNames } from "../../hooks/use-class-names";
+import { useClassNames } from "../../hooks/use-class-names.component";
 import type { PickerRef } from "musae/types/picker";
+import { CLASS_NAMES } from "./context";
 
 const styles = stylex.create({
   picked: {
@@ -38,8 +38,8 @@ const Select = <T extends ValueOrValues = ValueOrValues>({
 }: SelectProps<T>) => {
   const ref = useRef<PickerRef>(null);
   const selectorRef = useRef<SelectorRef>(null);
-  const classNames = useClassNames("select");
   const close = useCallback(() => ref.current?.close(), []);
+  const classNames = useClassNames(CLASS_NAMES);
 
   const { menuItems, readableOptions, search, searched, reset } = useOptions({
     options,
@@ -72,7 +72,7 @@ const Select = <T extends ValueOrValues = ValueOrValues>({
     <Picker
       ref={ref}
       pickable={<Selections items={menuItems} onSelect={onChange} selectedKeys={selectedKeys} />}
-      className={stringify(classNames[SelectClassToken.Select], className, styled.picker.className)}
+      className={stringify(classNames.select, className, styled.picker.className)}
       style={{
         ...styled.picker.style,
         ...style,

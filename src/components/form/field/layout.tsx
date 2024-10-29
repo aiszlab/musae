@@ -1,7 +1,7 @@
 import React, { type CSSProperties } from "react";
 import { useContext, type ReactNode } from "react";
 import type { ContextValue } from "musae/types/form";
-import Context from "../context";
+import { Context } from "../context";
 import { Grid } from "../../grid";
 import stylex from "@stylexjs/stylex";
 import { typography } from "../../theme/theme";
@@ -9,8 +9,6 @@ import { sizes, spacing } from "../../theme/tokens.stylex";
 import { useTheme } from "../../theme";
 import { stringify } from "@aiszlab/relax/class-name";
 import { ComponentProps } from "musae/types/element";
-import { useClassNames } from "../../../hooks/use-class-names";
-import { FormClassToken } from "../../../utils/class-name";
 
 const { Row, Col } = Grid;
 
@@ -88,11 +86,10 @@ type Props = ComponentProps & {
  * item layout
  */
 const Layout = ({ required, space = false, className, style, supporting, ...props }: Props) => {
-  const contextValue = useContext(Context);
+  const { classNames, ...contextValue } = useContext(Context);
   const labelCol = props.labelCol ?? contextValue.labelCol;
   const wrapperCol = props.wrapperCol ?? contextValue.wrapperCol;
   const theme = useTheme();
-  const classNames = useClassNames("form");
   const isLabeled = labelCol > 0 && !!props.label;
 
   const styled = {
@@ -132,10 +129,7 @@ const Layout = ({ required, space = false, className, style, supporting, ...prop
       {!!supporting && (
         <Col span={24}>
           <div
-            className={stringify(
-              classNames[FormClassToken.FieldSupporting],
-              styled.supporting.className,
-            )}
+            className={stringify(classNames.fieldSupporting, styled.supporting.className)}
             style={styled.supporting.style}
           >
             {supporting}

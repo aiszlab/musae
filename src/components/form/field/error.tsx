@@ -1,13 +1,12 @@
 import { type FieldError } from "react-hook-form";
 import type { ComponentProps } from "musae/types/element";
-import React, { type CSSProperties, useEffect } from "react";
-import { FormClassToken } from "../../../utils/class-name";
+import React, { type CSSProperties, useContext, useEffect } from "react";
 import { stringify } from "@aiszlab/relax/class-name";
 import { useAnimate, usePresence } from "framer-motion";
 import stylex from "@stylexjs/stylex";
-import { useClassNames } from "../../../hooks/use-class-names";
 import { useTheme } from "../../theme";
 import { spacing } from "../../theme/tokens.stylex";
+import { Context } from "../context";
 
 const styles = stylex.create({
   error: (props: { color: CSSProperties["color"] }) => ({
@@ -27,7 +26,7 @@ type Props = ComponentProps & {
 };
 
 const Error = ({ error, className, style }: Props) => {
-  const classNames = useClassNames("form");
+  const { classNames } = useContext(Context);
   const [scope, animate] = useAnimate<HTMLDivElement>();
   const [isPresent, safeToRemove] = usePresence();
   const theme = useTheme();
@@ -52,7 +51,7 @@ const Error = ({ error, className, style }: Props) => {
 
   return (
     <div
-      className={stringify(classNames[FormClassToken.FieldError], className, styled.className)}
+      className={stringify(classNames.fieldError, className, styled.className)}
       style={{
         ...styled.style,
         ...style,

@@ -46,6 +46,13 @@
       "import": "./dist/components/icon/icons/*/index.mjs",
       "default": "./dist/components/icon/icons/*/index.mjs"
     },
+    "./rich-text-editor": {
+      "types": "./dist/components/rich-text-editor/rich-text-editor.d.ts",
+      "require": "./dist/components/rich-text-editor/rich-text-editor.cjs",
+      "node": "./dist/components/rich-text-editor/rich-text-editor.cjs",
+      "import": "./dist/components/rich-text-editor/rich-text-editor.mjs",
+      "default": "./dist/components/rich-text-editor/rich-text-editor.mjs"
+    },
     "./types/*": "./dist/types/*.d.ts"
   },
   "engines": {

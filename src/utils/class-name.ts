@@ -20,42 +20,7 @@ export const withPrefix = (className: string, prefix: string) =>
  * @description
  * class role
  */
-export enum PickerClassToken {
-  Picker,
-  Focused,
-  Invalid,
-  Dropdown,
-}
-export enum InputClassToken {
-  Input,
-  Inputor,
-  Focused,
-  Invalid,
-}
-export enum SelectClassToken {
-  Select,
-}
-export enum PopperClassToken {
-  Dropdown,
-  Arrow,
-}
-export enum FormClassToken {
-  Item,
-  Field,
-  FieldSupporting,
-  FieldError,
-}
-export enum GridClassToken {
-  Row,
-  Col,
-}
-export enum RadioClassToken {
-  Radio,
-}
-export enum EmptyClassToken {
-  Empty,
-  Description,
-}
+
 export enum DrawerClassToken {
   Drawer,
   Overlay,
@@ -74,14 +39,7 @@ export enum CascaderClassToken {
   Cascader,
   Options,
 }
-export enum DialogClassToken {
-  Dialog,
-  Overlay,
-  Panel,
-  Header,
-  Body,
-  Footer,
-}
+
 export enum CalendarClassToken {
   Header,
   Heading,
@@ -160,17 +118,7 @@ export enum RateClassToken {
   Half,
   Full,
 }
-export enum StepsClassToken {
-  Steps,
-  Item,
-  Leading,
-  Sign,
-  Title,
-  Description,
-  Done,
-  Doing,
-  Todo,
-}
+
 export enum TimelineClassToken {
   Timeline,
   Item,
@@ -215,29 +163,12 @@ export enum LoadingClassToken {
   Spinning,
   Content,
 }
-export enum CollapseClassToken {
-  Collapse,
-  Item,
-  ItemActive,
-  Header,
-  Panel,
-  PanelActive,
-  Content,
-  Collapser,
-}
+
 export enum WaterfallClassToken {
   Waterfall,
   Sequential,
 }
-export enum TransferClassToken {
-  Transfer,
-  List,
-  Header,
-  Title,
-  Body,
-  Item,
-  Operation,
-}
+
 export enum BadgeClassToken {
   Badge,
   Tail,
@@ -267,29 +198,9 @@ export enum RichTextEditorClassToken {
 export enum I18nButtonClassToken {
   I18nButton,
 }
-export enum ImageClassToken {
-  Image,
-}
-export enum TableClassToken {
-  Table,
-  Header,
-  Body,
-}
-export enum UploadClassToken {
-  Upload,
-  UploadedList,
-  UploadedItem,
-  UploadedPictureItem,
-}
 export enum TextareaClassToken {
   Textarea,
   Input,
-}
-export enum GuidelineClassToken {
-  Guideline,
-  Figure,
-  Caption,
-  CaptionLabel,
 }
 
 /**
@@ -300,42 +211,6 @@ export enum GuidelineClassToken {
  * rule like: block__element--modifier
  */
 export const CLASS_NAMES = {
-  picker: {
-    [PickerClassToken.Picker]: "picker",
-    [PickerClassToken.Focused]: "picker--focused",
-    [PickerClassToken.Invalid]: "picker--invalid",
-    [PickerClassToken.Dropdown]: "picker__dropdown",
-  },
-  input: {
-    [InputClassToken.Input]: "input",
-    [InputClassToken.Inputor]: "input__inputor",
-    [InputClassToken.Focused]: "input__inputor--focused",
-    [InputClassToken.Invalid]: "input__inputor--invalid",
-  },
-  select: {
-    [SelectClassToken.Select]: "select",
-  },
-  popper: {
-    [PopperClassToken.Dropdown]: "dropdown",
-    [PopperClassToken.Arrow]: "arrow",
-  },
-  form: {
-    [FormClassToken.Item]: "form__item",
-    [FormClassToken.Field]: "form__item-field",
-    [FormClassToken.FieldSupporting]: "form__item-supporting",
-    [FormClassToken.FieldError]: "form__item-field-error",
-  },
-  grid: {
-    [GridClassToken.Row]: "grid__row",
-    [GridClassToken.Col]: "grid__col",
-  },
-  radio: {
-    [RadioClassToken.Radio]: "radio",
-  },
-  empty: {
-    [EmptyClassToken.Empty]: "empty",
-    [EmptyClassToken.Description]: "empty__description",
-  },
   drawer: {
     [DrawerClassToken.Drawer]: "drawer",
     [DrawerClassToken.Overlay]: "drawer__overlay",
@@ -354,14 +229,7 @@ export const CLASS_NAMES = {
     [CascaderClassToken.Cascader]: "cascader",
     [CascaderClassToken.Options]: "cascader__options",
   },
-  dialog: {
-    [DialogClassToken.Dialog]: "dialog",
-    [DialogClassToken.Overlay]: "dialog__overlay",
-    [DialogClassToken.Panel]: "dialog__panel",
-    [DialogClassToken.Header]: "dialog__header",
-    [DialogClassToken.Body]: "dialog__body",
-    [DialogClassToken.Footer]: "dialog__footer",
-  },
+
   calendar: {
     [CalendarClassToken.Header]: "calendar__header",
     [CalendarClassToken.Heading]: "calendar__heading",
@@ -440,17 +308,7 @@ export const CLASS_NAMES = {
     [RateClassToken.Half]: "rate__star-half",
     [RateClassToken.Full]: "rate__star-full",
   },
-  steps: {
-    [StepsClassToken.Steps]: "steps",
-    [StepsClassToken.Item]: "steps__item",
-    [StepsClassToken.Done]: "steps__item--done",
-    [StepsClassToken.Doing]: "steps__item--doing",
-    [StepsClassToken.Todo]: "steps__item--todo",
-    [StepsClassToken.Leading]: "steps__item-leading",
-    [StepsClassToken.Sign]: "steps__item-leading-sign",
-    [StepsClassToken.Title]: "steps__item-title",
-    [StepsClassToken.Description]: "steps__item-description",
-  },
+
   timeline: {
     [TimelineClassToken.Timeline]: "timeline",
     [TimelineClassToken.Item]: "timeline__item",
@@ -493,29 +351,12 @@ export const CLASS_NAMES = {
     [LoadingClassToken.Spinning]: "loading__spin-spinning",
     [LoadingClassToken.Content]: "loading__content",
   },
-  collapse: {
-    [CollapseClassToken.Collapse]: "collapse",
-    [CollapseClassToken.Item]: "collapse__item",
-    [CollapseClassToken.ItemActive]: "collapse__item--active",
-    [CollapseClassToken.Header]: "collapse__item-header",
-    [CollapseClassToken.Collapser]: "collapse__header-collapser",
-    [CollapseClassToken.Panel]: "collapse__item-panel",
-    [CollapseClassToken.PanelActive]: "collapse__item-panel--active",
-    [CollapseClassToken.Content]: "collapse__item-content",
-  },
+
   waterfall: {
     [WaterfallClassToken.Waterfall]: "waterfall",
     [WaterfallClassToken.Sequential]: "waterfall--sequential",
   },
-  transfer: {
-    [TransferClassToken.Transfer]: "transfer",
-    [TransferClassToken.Operation]: "transfer__operation",
-    [TransferClassToken.List]: "transfer__list",
-    [TransferClassToken.Title]: "transfer__list-title",
-    [TransferClassToken.Item]: "transfer__list-item",
-    [TransferClassToken.Header]: "transfer__list-header",
-    [TransferClassToken.Body]: "transfer__list-body",
-  },
+
   badge: {
     [BadgeClassToken.Badge]: "badge",
     [BadgeClassToken.Tail]: "badge__tail",
@@ -539,29 +380,10 @@ export const CLASS_NAMES = {
   quote: {
     [QuoteClassToken.Quote]: "quote",
   },
-  upload: {
-    [UploadClassToken.Upload]: "upload",
-    [UploadClassToken.UploadedList]: "upload__uploaded-list",
-    [UploadClassToken.UploadedItem]: "upload__uploaded-item",
-    [UploadClassToken.UploadedPictureItem]: "upload__uploaded-item--picture",
-  },
-  image: {
-    [ImageClassToken.Image]: "image",
-  },
-  table: {
-    [TableClassToken.Table]: "table",
-    [TableClassToken.Header]: "table__header",
-    [TableClassToken.Body]: "table__body",
-  },
+
   textarea: {
     [TextareaClassToken.Textarea]: "textarea",
     [TextareaClassToken.Input]: "textarea__input",
-  },
-  guideline: {
-    [GuidelineClassToken.Guideline]: "guideline",
-    [GuidelineClassToken.Figure]: "guideline__figure",
-    [GuidelineClassToken.CaptionLabel]: "guideline__caption-label",
-    [GuidelineClassToken.Caption]: "guideline__caption",
   },
 };
 

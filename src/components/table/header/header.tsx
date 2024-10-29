@@ -7,8 +7,6 @@ import { sizes, spacing } from "../../theme/tokens.stylex";
 import { useTheme } from "../../theme";
 import { stringify } from "@aiszlab/relax/class-name";
 import { typography } from "../../theme/theme";
-import { useClassNames } from "../../../hooks/use-class-names";
-import { TableClassToken } from "../../../utils/class-name";
 
 const styles = stylex.create({
   cell: (props: {
@@ -48,9 +46,8 @@ const styles = stylex.create({
 });
 
 const Header = <T,>(props: HeaderProps) => {
-  const { table, bordered } = useTable<T>();
+  const { table, bordered, classNames } = useTable<T>();
   const theme = useTheme();
-  const classNames = useClassNames("table");
 
   if (!table) return null;
 
@@ -69,7 +66,7 @@ const Header = <T,>(props: HeaderProps) => {
   );
 
   return (
-    <thead className={stringify(classNames[TableClassToken.Header], props.className)}>
+    <thead className={stringify(classNames.header, props.className)}>
       {headerGroups.map((headerGroup) => (
         <tr key={headerGroup.id}>
           {headerGroup.headers.map((header) => (

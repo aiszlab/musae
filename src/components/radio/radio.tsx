@@ -1,9 +1,8 @@
 import React, { type CSSProperties, useCallback, useContext, useMemo } from "react";
-import Context from "./context";
+import { Context, CLASS_NAMES } from "./context";
 import type { RadioProps } from "musae/types/radio";
 import { useControlledState } from "@aiszlab/relax";
-import { useClassNames } from "../../hooks/use-class-names";
-import { RadioClassToken } from "../../utils/class-name";
+import { useClassNames } from "../../hooks/use-class-names.component";
 import stylex from "@stylexjs/stylex";
 import { useTheme } from "../theme";
 import { sizes, spacing } from "../theme/tokens.stylex";
@@ -95,7 +94,7 @@ const styles = {
 const Radio = ({ children, value, checked, disabled = false, ...props }: RadioProps) => {
   const contextValue = useContext(Context);
   const [_isChecked, _setIsChecked] = useControlledState(checked);
-  const classNames = useClassNames("radio");
+  const classNames = useClassNames(CLASS_NAMES);
   const theme = useTheme();
 
   const isDisabled = useMemo(
@@ -149,13 +148,7 @@ const Radio = ({ children, value, checked, disabled = false, ...props }: RadioPr
   };
 
   return (
-    <label
-      className={stringify(
-        classNames[RadioClassToken.Radio],
-        props.className,
-        styled.radio.className,
-      )}
-    >
+    <label className={stringify(classNames.radio, props.className, styled.radio.className)}>
       <input
         type="radio"
         aria-checked={isChecked}

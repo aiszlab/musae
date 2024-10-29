@@ -1,11 +1,10 @@
 import React, { useMemo } from "react";
-import type { StepsProps, ContextValue } from "musae/types/steps";
+import type { StepsProps } from "musae/types/steps";
 import Item from "./item";
-import { useClassNames } from "../../hooks/use-class-names";
-import { StepsClassToken } from "../../utils/class-name";
+import { useClassNames } from "../../hooks/use-class-names.component";
 import stylex from "@stylexjs/stylex";
 import { stringify } from "@aiszlab/relax/class-name";
-import { Context } from "./context";
+import { CLASS_NAMES, Context } from "./context";
 import { spacing } from "../theme/tokens.stylex";
 
 const styles = stylex.create({
@@ -41,27 +40,28 @@ const Steps = ({
   onChange,
   size,
 }: StepsProps) => {
-  const classNames = useClassNames("steps");
+  const classNames = useClassNames(CLASS_NAMES);
 
   const styled = {
     steps: stylex.props(styles.steps, styles[type]),
   };
 
-  const contextValue = useMemo<ContextValue>(
+  const contextValue = useMemo(
     () => ({
       type,
       onChange,
       max: items.length - 1,
       value,
       size,
+      classNames,
     }),
-    [type, onChange, items.length, value, size],
+    [type, onChange, items.length, value, size, classNames],
   );
 
   return (
     <Context.Provider value={contextValue}>
       <ol
-        className={stringify(classNames[StepsClassToken.Steps], className, styled.steps.className)}
+        className={stringify(classNames.steps, className, styled.steps.className)}
         style={{
           ...styled.steps.style,
           ...style,

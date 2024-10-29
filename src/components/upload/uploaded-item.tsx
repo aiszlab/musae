@@ -2,8 +2,6 @@ import React, { type CSSProperties, useContext, type Key, useMemo } from "react"
 import stylex from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import type { UploadedItem as UploadedItemType } from "musae/types/upload";
-import { useClassNames } from "../../hooks/use-class-names";
-import { UploadClassToken } from "../../utils/class-name";
 import { isFunction, useEvent } from "@aiszlab/relax";
 import { AttachFile, Delete, Loading } from "../icon/icons";
 import { leaf } from "@aiszlab/fuzzy/path";
@@ -54,8 +52,7 @@ const UploadedItem = ({
   item: UploadedItemType;
   onRemove: (key: Key) => void;
 }) => {
-  const classNames = useClassNames("upload");
-  const { renderItem } = useContext(Context);
+  const { renderItem, classNames } = useContext(Context);
   const theme = useTheme();
 
   const isPicture = renderItem === "picture";
@@ -119,10 +116,8 @@ const UploadedItem = ({
     <div
       key={item.key}
       className={stringify(
-        classNames[UploadClassToken.UploadedItem],
-        {
-          [classNames[UploadClassToken.UploadedPictureItem]]: isPicture,
-        },
+        classNames.uploadedItem,
+        isPicture && classNames.uploadedPictureItem,
         styled.item.className,
       )}
       style={styled.item.style}

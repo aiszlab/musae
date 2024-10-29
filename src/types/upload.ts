@@ -1,4 +1,5 @@
 import type { Key, ReactNode } from "react";
+import { ComponentProps } from "./element";
 
 /**
  * @description
@@ -61,7 +62,7 @@ export type FileItem = UploadedItem | RemoteFileItem;
  * @description
  * `Upload` props
  */
-export type UploadProps = {
+export type UploadProps = ComponentProps & {
   /**
    * @description
    * on upload wrapper click handler
@@ -161,5 +162,5 @@ export type ContextValue = {
   /**
    * @link {UploadProps.renderItem}
    */
-  renderItem: UploadProps["renderItem"];
+  renderItem?: UploadProps["renderItem"];
 };

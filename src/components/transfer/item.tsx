@@ -1,11 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import type { TransferItemProps } from "musae/types/transfer";
 import { Checkbox } from "../checkbox";
 import stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
-import { useClassNames } from "../../hooks/use-class-names";
-import { TransferClassToken } from "../../utils/class-name";
 import { stringify } from "@aiszlab/relax/class-name";
+import { Context } from "./context";
 
 const styles = stylex.create({
   item: {
@@ -18,16 +17,14 @@ const styles = stylex.create({
 });
 
 const Item = ({ value, label }: TransferItemProps) => {
-  const classNames = useClassNames("transfer");
+  const { classNames } = useContext(Context);
+
   const styled = {
     item: stylex.props(styles.item),
   };
 
   return (
-    <li
-      className={stringify(classNames[TransferClassToken.Item], styled.item.className)}
-      style={styled.item.style}
-    >
+    <li className={stringify(classNames.item, styled.item.className)} style={styled.item.style}>
       <Checkbox value={value} />
       {label}
     </li>

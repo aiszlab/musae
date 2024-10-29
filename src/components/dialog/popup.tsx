@@ -2,8 +2,7 @@ import React, { type CSSProperties, useEffect, useRef } from "react";
 import type { PopupProps } from "musae/types/dialog";
 import { useFooter } from "./hooks";
 import { useAnimate } from "framer-motion";
-import { DialogClassToken } from "../../utils/class-name";
-import { useClassNames } from "../../hooks/use-class-names";
+import { useClassNames } from "../../hooks/use-class-names.component";
 import stylex from "@stylexjs/stylex";
 import { positions, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
@@ -11,6 +10,7 @@ import { typography } from "../theme/theme";
 import { stringify } from "@aiszlab/relax/class-name";
 import { contains } from "@aiszlab/relax/dom";
 import { useClosable } from "../../hooks/use-closable";
+import { CLASS_NAMES } from "./context";
 
 const styles = stylex.create({
   header: {
@@ -70,7 +70,7 @@ const styles = stylex.create({
 });
 
 const Popup = ({ onClose, open, closable, onClosed, className, ...props }: PopupProps) => {
-  const classNames = useClassNames("dialog");
+  const classNames = useClassNames(CLASS_NAMES);
   const [scope, animate] = useAnimate<HTMLDivElement>();
   const theme = useTheme();
   const panelRef = useRef<HTMLDivElement>(null);
@@ -133,14 +133,14 @@ const Popup = ({ onClose, open, closable, onClosed, className, ...props }: Popup
   return (
     <div
       ref={scope}
-      className={stringify(classNames[DialogClassToken.Dialog], className, styled.popup.className)}
+      className={stringify(classNames.dialog, className, styled.popup.className)}
       style={styled.popup.style}
       tabIndex={-1}
       onKeyDown={onKeyDown}
     >
       {/* overlay */}
       <div
-        className={stringify(classNames[DialogClassToken.Overlay], styled.overlay.className)}
+        className={stringify(classNames.overlay, styled.overlay.className)}
         style={styled.overlay.style}
         onClick={onOverlayClick}
         ref={overlayRef}
@@ -148,7 +148,7 @@ const Popup = ({ onClose, open, closable, onClosed, className, ...props }: Popup
 
       {/* panel */}
       <div
-        className={stringify(classNames[DialogClassToken.Panel], styled.panel.className)}
+        className={stringify(classNames.panel, styled.panel.className)}
         style={{
           ...styled.panel.style,
           ...props.styles?.panel,
@@ -160,7 +160,7 @@ const Popup = ({ onClose, open, closable, onClosed, className, ...props }: Popup
         {/* header */}
         {!!props.title && (
           <div
-            className={stringify(classNames[DialogClassToken.Header], styled.header.className)}
+            className={stringify(classNames.header, styled.header.className)}
             style={styled.header.style}
           >
             {props.title}
@@ -169,7 +169,7 @@ const Popup = ({ onClose, open, closable, onClosed, className, ...props }: Popup
 
         {/* body */}
         <div
-          className={stringify(classNames[DialogClassToken.Body], styled.body.className)}
+          className={stringify(classNames.body, styled.body.className)}
           style={{
             ...styled.body.style,
             ...props.styles?.body,
@@ -181,7 +181,7 @@ const Popup = ({ onClose, open, closable, onClosed, className, ...props }: Popup
         {/* footer */}
         {!!footer && (
           <div
-            className={stringify(classNames[DialogClassToken.Footer], styled.footer.className)}
+            className={stringify(classNames.footer, styled.footer.className)}
             style={styled.footer.style}
           >
             {footer}

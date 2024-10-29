@@ -1,11 +1,12 @@
 import React from "react";
-import { useClassNames } from "../../hooks/use-class-names";
-import { EmptyClassToken } from "../../utils/class-name";
+import { useClassNames } from "../../hooks/use-class-names.component";
 import stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
 import { stringify } from "@aiszlab/relax/class-name";
 import { typography } from "../theme/theme";
 import { useLocale } from "../../locale";
+import type { EmptyProps } from "../../types/empty";
+import { CLASS_NAMES } from "./context";
 
 const styles = stylex.create({
   empty: {
@@ -25,8 +26,8 @@ const styles = stylex.create({
  * @description
  * empty component
  */
-const Empty = () => {
-  const classNames = useClassNames("empty");
+const Empty = ({ className, style }: EmptyProps) => {
+  const classNames = useClassNames(CLASS_NAMES);
   const [locale] = useLocale("empty");
 
   const styled = {
@@ -36,8 +37,11 @@ const Empty = () => {
 
   return (
     <div
-      className={stringify(classNames[EmptyClassToken.Empty], styled.empty.className)}
-      style={styled.empty.style}
+      className={stringify(classNames.empty, className, styled.empty.className)}
+      style={{
+        ...styled.empty.style,
+        ...style,
+      }}
     >
       <svg width="64" height="41" viewBox="0 0 64 41" xmlns="http://www.w3.org/2000/svg">
         <g transform="translate(0 1)" fill="none" fillRule="evenodd">
@@ -53,7 +57,7 @@ const Empty = () => {
       </svg>
 
       <div
-        className={stringify(classNames[EmptyClassToken.Description], styled.label.className)}
+        className={stringify(classNames.description, styled.label.className)}
         style={styled.label.style}
       >
         {locale.placeholder}
