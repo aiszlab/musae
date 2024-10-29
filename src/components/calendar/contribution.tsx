@@ -176,13 +176,19 @@ const ContributionCalendar = ({
   // how to get different levels
   // convert primary color into hsla color
   // use `s` change to get different levels
-  const { 0: h } = hexToHsla(theme.colors.primary);
+  const heats = useMemo(() => {
+    const { 0: h } = hexToHsla(theme.colors.primary);
+    const _levels = Array.from({ length: levels - 1 }).map((_, index) => gap * index);
 
-  const _levels = Array.from({ length: levels - 1 }).map((_, index) => gap * index);
-  const heatStep = Math.floor(100 / Math.max(_levels.length, 1));
-  const _heats = Array.from({ length: levels }).map((_, index) => {
-    return `hsl(${[h, index * heatStep + "%", `80%`].join(",")})`;
-  });
+    const heatStep = Math.min(Math.floor(100 / Math.max(_levels.length, 1)), 10);
+
+    return Array.from({ length: levels }).map((_, index) => {
+      if (index === 0) {
+        return `hsl(${h}, 0%, 80%)`;
+      }
+      return `hsl(${[h, 100 - (levels - 1 - index) * heatStep + "%", `80%`].join(",")})`;
+    });
+  }, [theme.colors.primary, levels, gap]);
 
   return (
     <div className={styled.scrollable.className} style={styled.scrollable.style}>
@@ -239,8 +245,8 @@ const ContributionCalendar = ({
                   </div>
                 </td>
                 {Array.from({ length: columns }).map((_, column) => {
-                  const gap = column * 7 + weekday;
-                  const _at = start.add(gap, "day");
+                  // get cell date: `start` plus `x * 7 + y`
+                  const _at = start.add(column * 7 + weekday, "day");
 
                   if (column === 0 && _at.isBefore(from)) {
                     return <td key={column} />;
@@ -252,7 +258,7 @@ const ContributionCalendar = ({
 
                   const date = _at.format(FORMAT);
                   const count = _contributions.get(date) ?? 0;
-                  const levelAt = clamp(Math.ceil(count / gap), 0, levels);
+                  const levelAt = clamp(Math.ceil(count / gap), 0, levels - 1);
 
                   return (
                     <Tooltip key={column} title={toFunction(locale.contribution)(count, date)}>
@@ -260,7 +266,7 @@ const ContributionCalendar = ({
                         className={styled.cell.className}
                         style={{
                           ...styled.cell.style,
-                          backgroundColor: _heats[levelAt],
+                          backgroundColor: heats[levelAt],
                         }}
                       />
                     </Tooltip>
@@ -276,7 +282,7 @@ const ContributionCalendar = ({
       <div className={styled.legend.className} style={styled.legend.style}>
         <div className={styled.levels.className} style={styled.levels.style}>
           <span>{locale.less}</span>
-          {_heats.map((color) => {
+          {heats.map((color) => {
             return (
               <div
                 className={styled.level.className}

@@ -213,7 +213,7 @@ const ToolbarPlugin = () => {
           variant={isUnderline ? "filled" : "text"}
           shape="rounded"
           size="small"
-          onClick={handlers.italic}
+          onClick={handlers.underline}
         >
           <FormatUnderlined />
         </Button>
