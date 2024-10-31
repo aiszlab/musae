@@ -9,20 +9,6 @@ import Notes from "./notes";
 import Checklist from "./checklist";
 import AttachFile from "./attch-file";
 
-const _ = {
-  FormatBold,
-  FormatItalic,
-  FormatUnderlined,
-  InsertLink,
-  FormatStrikethrough,
-  Subscript,
-  Superscript,
-  Notes,
-  Checklist,
-  AttachFile,
-};
-
-export default _;
 export {
   FormatBold,
   FormatItalic,

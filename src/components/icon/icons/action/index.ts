@@ -15,26 +15,6 @@ import Delete from "./delete";
 import ThreeDRotation from "./three-d-rotation";
 import AccountCircle from "./account-circle";
 
-const _ = {
-  Visibility,
-  VisibilityOff,
-  CheckCircleOutline,
-  Done,
-  CheckCircle,
-  SwapHoriz,
-  SwapVert,
-  ZoomOut,
-  ZoomIn,
-  DoneOutline,
-  Translate,
-  Code,
-  OpenInNew,
-  Delete,
-  ThreeDRotation,
-  AccountCircle,
-};
-
-export default _;
 export {
   Visibility,
   VisibilityOff,

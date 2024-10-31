@@ -10,21 +10,6 @@ import LooksFive from "./looks-five";
 import LooksSix from "./looks-six";
 import Edit from "./edit";
 
-const _ = {
-  Bedtime,
-  RotateLeft,
-  RotateRight,
-  WbSunny,
-  LooksOne,
-  LooksTwo,
-  LooksThree,
-  LooksFour,
-  LooksFive,
-  LooksSix,
-  Edit,
-};
-
-export default _;
 export {
   Bedtime,
   RotateLeft,

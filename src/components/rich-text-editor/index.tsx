@@ -4,7 +4,6 @@ import { Skeleton } from "../skeleton";
 import stylex from "@stylexjs/stylex";
 import { sizes } from "../theme/tokens.stylex";
 import { stringify } from "@aiszlab/relax/class-name";
-import { FALLBACK_CLASS_NAMES } from "./context";
 import { useClassNames } from "../../hooks/use-class-names.component";
 
 const _RichTextEditor = lazy(() => import("./rich-text-editor"));
@@ -17,12 +16,16 @@ const styles = stylex.create({
   },
 });
 
+export const CLASS_NAMES = {
+  loading: "rich-text-editor__loading",
+};
+
 const RichTextEditor = forwardRef<
   RichTextEditorRef,
   RichTextEditorProps & { fallback?: React.ReactNode }
 >(({ className, style, fallback, ...props }, ref) => {
   const styled = stylex.props(styles.loading);
-  const classNames = useClassNames(FALLBACK_CLASS_NAMES);
+  const classNames = useClassNames(CLASS_NAMES);
 
   return (
     <Suspense
