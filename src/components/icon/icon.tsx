@@ -1,10 +1,10 @@
 import React, { type ReactNode, createElement, useMemo, type CSSProperties } from "react";
 import type { AsProps, IconProps } from "musae/types/icon";
 import { isFunction } from "@aiszlab/relax";
-import { IconClassToken } from "../../utils/class-name";
 import stylex from "@stylexjs/stylex";
-import { useClassNames } from "../../hooks/use-class-names";
+import { useClassNames } from "../../hooks/use-class-names.component";
 import { stringify } from "@aiszlab/relax/class-name";
+import { CLASS_NAMES } from "./context";
 
 const styles = stylex.create({
   icon: (props: { color: CSSProperties["color"] }) => ({
@@ -20,7 +20,7 @@ const styles = stylex.create({
 });
 
 const Icon = ({ as, color, size, onClick, style, className, ...props }: IconProps) => {
-  const classNames = useClassNames("icon");
+  const classNames = useClassNames(CLASS_NAMES);
 
   const asProps = useMemo<AsProps>(() => {
     return {
@@ -44,7 +44,7 @@ const Icon = ({ as, color, size, onClick, style, className, ...props }: IconProp
 
   return (
     <span
-      className={stringify(classNames[IconClassToken.Icon], className, styled.className)}
+      className={stringify(classNames.icon, className, styled.className)}
       style={{
         ...styled.style,
         ...style,

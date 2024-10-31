@@ -7,14 +7,14 @@ import {
   KeyboardArrowLeft,
   KeyboardArrowRight,
 } from "musae/icons";
-import { useClassNames } from "../../hooks/use-class-names";
-import { CalendarClassToken } from "../../utils/class-name";
+import { useClassNames } from "../../hooks/use-class-names.component";
 import stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
 import { typography } from "../theme/theme";
 import { stringify } from "@aiszlab/relax/class-name";
 import { useTheme } from "../theme";
 import { IconButton } from "../icon-button";
+import { CLASS_NAMES } from "./context";
 
 const styles = stylex.create({
   calendar: {
@@ -47,13 +47,13 @@ const Calendar = ({
   onClick: _onClick,
   focusedAt: _focusedAt,
 }: CalendarProps) => {
+  const classNames = useClassNames(CLASS_NAMES);
   const { timespan, onClick } = useValue({ onClick: _onClick, value });
   const { focusedAt, toPrevYear, toPrevMonth, toNextYear, toNextMonth } = useFocusedAt({
     focusedAt: _focusedAt,
   });
-  const dateCells = useDateCells({ timespan, focusedAt, click: onClick });
-  const headCells = useHeadCells();
-  const classNames = useClassNames("calendar");
+  const dateCells = useDateCells({ timespan, focusedAt, click: onClick, classNames });
+  const headCells = useHeadCells({ classNames });
   const theme = useTheme();
 
   const styled = {
@@ -70,14 +70,14 @@ const Calendar = ({
 
   return (
     <div
-      className={stringify(styled.calendar.className, className)}
+      className={stringify(classNames.calendar, styled.calendar.className, className)}
       style={{
         ...styled.calendar.style,
         ...style,
       }}
     >
       <header
-        className={stringify(classNames[CalendarClassToken.Header], styled.header.className)}
+        className={stringify(classNames.header, styled.header.className)}
         style={styled.header.style}
       >
         <IconButton variant="text" onClick={toPrevYear}>
@@ -89,7 +89,7 @@ const Calendar = ({
         </IconButton>
 
         <span
-          className={stringify(classNames[CalendarClassToken.Heading], styled.heading.className)}
+          className={stringify(classNames.heading, styled.heading.className)}
           style={styled.heading.style}
         >
           {focusedAt.format("YYYY-MM")}

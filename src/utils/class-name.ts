@@ -21,25 +21,6 @@ export const withPrefix = (className: string, prefix: string) =>
  * class role
  */
 
-export enum DrawerClassToken {
-  Drawer,
-  Overlay,
-  Panel,
-  Header,
-  Body,
-}
-export enum DividerClassToken {
-  Divider,
-  Label,
-}
-export enum TagClassToken {
-  Tag,
-}
-export enum CascaderClassToken {
-  Cascader,
-  Options,
-}
-
 export enum CalendarClassToken {
   Header,
   Heading,
@@ -51,9 +32,7 @@ export enum CalendarClassToken {
   DateCellRangeTo,
   Date,
 }
-export enum IconClassToken {
-  Icon,
-}
+
 export enum DatePickerClassToken {
   Picker,
   Input,
@@ -119,15 +98,6 @@ export enum RateClassToken {
   Full,
 }
 
-export enum TimelineClassToken {
-  Timeline,
-  Item,
-  Leading,
-  Sign,
-  Dot,
-  Label,
-  Description,
-}
 export enum BreadcrumbClassToken {
   Breadcrumb,
   Item,
@@ -155,12 +125,6 @@ export enum TooltipClassToken {
 export enum PopoverClassToken {
   Popover,
   Title,
-  Content,
-}
-export enum LoadingClassToken {
-  Loading,
-  Spin,
-  Spinning,
   Content,
 }
 
@@ -211,39 +175,6 @@ export enum TextareaClassToken {
  * rule like: block__element--modifier
  */
 export const CLASS_NAMES = {
-  drawer: {
-    [DrawerClassToken.Drawer]: "drawer",
-    [DrawerClassToken.Overlay]: "drawer__overlay",
-    [DrawerClassToken.Panel]: "drawer__panel",
-    [DrawerClassToken.Header]: "drawer__header",
-    [DrawerClassToken.Body]: "drawer__body",
-  },
-  divider: {
-    [DividerClassToken.Divider]: "divider",
-    [DividerClassToken.Label]: "divider__label",
-  },
-  tag: {
-    [TagClassToken.Tag]: "tag",
-  },
-  cascader: {
-    [CascaderClassToken.Cascader]: "cascader",
-    [CascaderClassToken.Options]: "cascader__options",
-  },
-
-  calendar: {
-    [CalendarClassToken.Header]: "calendar__header",
-    [CalendarClassToken.Heading]: "calendar__heading",
-    [CalendarClassToken.HeadCell]: "calendar__head-cell",
-    [CalendarClassToken.DateCell]: "calendar__date-cell",
-    [CalendarClassToken.DateCellSelected]: "calendar__date-cell--selected",
-    [CalendarClassToken.DateCellInRange]: "calendar__date--in-range",
-    [CalendarClassToken.DateCellRangeFrom]: "calendar__date--range-from",
-    [CalendarClassToken.DateCellRangeTo]: "calendar__date--range-to",
-    [CalendarClassToken.Date]: "calendar__date",
-  },
-  icon: {
-    [IconClassToken.Icon]: "icon",
-  },
   "date-picker": {
     [DatePickerClassToken.Picker]: "date-picker",
     [DatePickerClassToken.Input]: "date-picker__input",
@@ -309,15 +240,6 @@ export const CLASS_NAMES = {
     [RateClassToken.Full]: "rate__star-full",
   },
 
-  timeline: {
-    [TimelineClassToken.Timeline]: "timeline",
-    [TimelineClassToken.Item]: "timeline__item",
-    [TimelineClassToken.Leading]: "timeline__item-leading",
-    [TimelineClassToken.Sign]: "timeline__item-leading-sign",
-    [TimelineClassToken.Dot]: "timeline__item-leading-dot",
-    [TimelineClassToken.Label]: "timeline__item-label",
-    [TimelineClassToken.Description]: "timeline__item-description",
-  },
   breadcrumb: {
     [BreadcrumbClassToken.Breadcrumb]: "breadcrumb",
     [BreadcrumbClassToken.Item]: "breadcrumb__item",
@@ -344,12 +266,6 @@ export const CLASS_NAMES = {
     [PopoverClassToken.Popover]: "popover",
     [PopoverClassToken.Title]: "popover__title",
     [PopoverClassToken.Content]: "popover__content",
-  },
-  loading: {
-    [LoadingClassToken.Loading]: "loading",
-    [LoadingClassToken.Spin]: "loading__spin",
-    [LoadingClassToken.Spinning]: "loading__spin-spinning",
-    [LoadingClassToken.Content]: "loading__content",
   },
 
   waterfall: {

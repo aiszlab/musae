@@ -1,14 +1,14 @@
 import type { DividerProps } from "musae/types/divider";
 import React, { type CSSProperties } from "react";
 import { useOffset } from "./hooks";
-import { useClassNames } from "../../hooks/use-class-names";
-import { DividerClassToken } from "../../utils/class-name";
+import { useClassNames } from "../../hooks/use-class-names.component";
 import stylex from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { typography } from "../theme/theme";
 import { stringify } from "@aiszlab/relax/class-name";
 import { type Gutters, useGutters } from "../../hooks/use-gutters";
+import { CLASS_NAMES } from "./context";
 
 const styles = {
   divider: stylex.create({
@@ -101,7 +101,7 @@ const Divider = ({
   style,
   margin = 0,
 }: DividerProps) => {
-  const classNames = useClassNames("divider");
+  const classNames = useClassNames(CLASS_NAMES);
   const offset = useOffset({ align });
   const theme = useTheme();
   const margins = useGutters({ gutter: margin });
@@ -127,11 +127,7 @@ const Divider = ({
 
   return (
     <div
-      className={stringify(
-        classNames[DividerClassToken.Divider],
-        className,
-        styled.divider.className,
-      )}
+      className={stringify(classNames.divider, className, styled.divider.className)}
       style={{
         ...styled.divider.style,
         ...style,
@@ -139,7 +135,7 @@ const Divider = ({
     >
       {isLabeled && (
         <span
-          className={stringify(classNames[DividerClassToken.Label], styled.label.className)}
+          className={stringify(classNames.label, styled.label.className)}
           style={styled.label.style}
         >
           {children}

@@ -1,13 +1,13 @@
 import React, { type CSSProperties } from "react";
 import { stringify } from "@aiszlab/relax/class-name";
 import type { TagProps } from "musae/types/tag";
-import { useClassNames } from "../../hooks/use-class-names";
-import { TagClassToken } from "../../utils/class-name";
+import { useClassNames } from "../../hooks/use-class-names.component";
 import stylex from "@stylexjs/stylex";
 import { useTheme } from "../theme";
 import { typography } from "../theme/theme";
 import { spacing } from "../theme/tokens.stylex";
 import { Close } from "musae/icons";
+import { CLASS_NAMES } from "./context";
 
 const styles = stylex.create({
   tag: (props: {
@@ -52,7 +52,7 @@ const Tag = ({
   onClose,
   leading,
 }: TagProps) => {
-  const classNames = useClassNames("tag");
+  const classNames = useClassNames(CLASS_NAMES);
   const theme = useTheme();
 
   const styled = stylex.props(
@@ -66,7 +66,7 @@ const Tag = ({
 
   return (
     <span
-      className={stringify(classNames[TagClassToken.Tag], className, styled.className)}
+      className={stringify(classNames.tag, className, styled.className)}
       style={{
         ...styled.style,
         ...style,

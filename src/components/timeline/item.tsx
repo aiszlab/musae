@@ -3,8 +3,6 @@ import type { TimelineItemProps } from "musae/types/timeline";
 import stylex from "@stylexjs/stylex";
 import { Context } from "./context";
 import { sizes, spacing } from "../theme/tokens.stylex";
-import { useClassNames } from "../../hooks/use-class-names";
-import { TimelineClassToken } from "../../utils/class-name";
 import { stringify } from "@aiszlab/relax/class-name";
 import { useTheme } from "../theme";
 
@@ -113,8 +111,7 @@ const styles = {
 };
 
 const Item = ({ description, label, value, dot }: TimelineItemProps) => {
-  const classNames = useClassNames("timeline");
-  const { mode: _mode, max, size } = useContext(Context);
+  const { mode: _mode, max, size, classNames } = useContext(Context);
   const theme = useTheme();
   const isLabeled = !!label;
   const isMax = max === value;
@@ -145,13 +142,10 @@ const Item = ({ description, label, value, dot }: TimelineItemProps) => {
   };
 
   return (
-    <li
-      className={stringify(classNames[TimelineClassToken.Item], styled.item.className)}
-      style={styled.item.style}
-    >
+    <li className={stringify(classNames.item, styled.item.className)} style={styled.item.style}>
       {isLabeled && (
         <div
-          className={stringify(classNames[TimelineClassToken.Label], styled.label.className)}
+          className={stringify(classNames.label, styled.label.className)}
           style={styled.label.style}
         >
           {label}
@@ -159,16 +153,16 @@ const Item = ({ description, label, value, dot }: TimelineItemProps) => {
       )}
 
       <div
-        className={stringify(classNames[TimelineClassToken.Leading], styled.leading.className)}
+        className={stringify(classNames.leading, styled.leading.className)}
         style={styled.leading.style}
       >
         <div
-          className={stringify(classNames[TimelineClassToken.Sign], styled.sign.className)}
+          className={stringify(classNames.sign, styled.sign.className)}
           style={styled.sign.style}
         >
           {dot ?? (
             <span
-              className={stringify(classNames[TimelineClassToken.Dot], styled.dot.className)}
+              className={stringify(classNames.dot, styled.dot.className)}
               style={styled.dot.style}
             />
           )}
@@ -176,10 +170,7 @@ const Item = ({ description, label, value, dot }: TimelineItemProps) => {
       </div>
 
       <div
-        className={stringify(
-          classNames[TimelineClassToken.Description],
-          styled.description.className,
-        )}
+        className={stringify(classNames.description, styled.description.className)}
         style={styled.description.style}
       >
         {description}

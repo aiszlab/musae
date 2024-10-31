@@ -2,8 +2,7 @@ import React, { type CSSProperties, useEffect, useRef } from "react";
 import { useAnimate } from "framer-motion";
 import type { PopupProps } from "musae/types/drawer";
 import { PLACEMENTS } from "./hooks";
-import { DrawerClassToken } from "../../utils/class-name";
-import { useClassNames } from "../../hooks/use-class-names";
+import { useClassNames } from "../../hooks/use-class-names.component";
 import stylex from "@stylexjs/stylex";
 import { positions, sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
@@ -14,6 +13,7 @@ import { useClosable } from "../../hooks/use-closable";
 import { Space } from "../space";
 import { Button } from "../button";
 import { useLocale } from "../../locale";
+import { CLASS_NAMES } from "./context";
 
 const styles = stylex.create({
   popup: {
@@ -107,7 +107,7 @@ const Popup = ({
   ...props
 }: PopupProps) => {
   const [scope, animate] = useAnimate<HTMLDivElement>();
-  const classNames = useClassNames("drawer");
+  const classNames = useClassNames(CLASS_NAMES);
   const _placement = PLACEMENTS[placement];
   const theme = useTheme();
   const panelRef = useRef<HTMLDivElement>(null);
@@ -175,13 +175,13 @@ const Popup = ({
     <div
       tabIndex={-1}
       ref={scope}
-      className={stringify(classNames[DrawerClassToken.Drawer], className, styled.popup.className)}
+      className={stringify(classNames.drawer, className, styled.popup.className)}
       style={styled.popup.style}
       onKeyDown={onKeyDown}
     >
       {/* overlay */}
       <div
-        className={stringify(classNames[DrawerClassToken.Overlay], styled.overlay.className)}
+        className={stringify(classNames.overlay, styled.overlay.className)}
         onClick={onOverlayClick}
         style={styled.overlay.style}
         ref={overlayRef}
@@ -189,13 +189,13 @@ const Popup = ({
 
       {/* panel */}
       <div
-        className={stringify(classNames[DrawerClassToken.Panel], styled.panel.className)}
+        className={stringify(classNames.panel, styled.panel.className)}
         style={styled.panel.style}
         ref={panelRef}
       >
         {/* header */}
         <div
-          className={stringify(classNames[DrawerClassToken.Header], styled.header.className)}
+          className={stringify(classNames.header, styled.header.className)}
           style={styled.header.style}
         >
           {closer}
@@ -208,7 +208,7 @@ const Popup = ({
 
         {/* body */}
         <div
-          className={stringify(classNames[DrawerClassToken.Body], styled.body.className)}
+          className={stringify(classNames.body, styled.body.className)}
           style={styled.body.style}
         >
           {props.children}

@@ -1,10 +1,9 @@
 import React, { useMemo } from "react";
 import Item from "./item";
-import type { ContextValue, TimelineProps } from "musae/types/timeline";
+import type { TimelineProps } from "musae/types/timeline";
 import stylex from "@stylexjs/stylex";
-import { Context } from "./context";
-import { useClassNames } from "../../hooks/use-class-names";
-import { TimelineClassToken } from "../../utils/class-name";
+import { CLASS_NAMES, Context } from "./context";
+import { useClassNames } from "../../hooks/use-class-names.component";
 import { stringify } from "@aiszlab/relax/class-name";
 import { spacing } from "../theme/tokens.stylex";
 
@@ -21,26 +20,24 @@ const styles = stylex.create({
 });
 
 const Timeline = ({ items, mode = "right", size }: TimelineProps) => {
-  const classNames = useClassNames("timeline");
+  const classNames = useClassNames(CLASS_NAMES);
   const total = items.length;
 
-  const contextValue = useMemo<ContextValue>(
+  const contextValue = useMemo(
     () => ({
       mode,
       max: total - 1,
       size,
+      classNames,
     }),
-    [mode, total, size],
+    [mode, total, size, classNames],
   );
 
   const styled = stylex.props(styles.timeline);
 
   return (
     <Context.Provider value={contextValue}>
-      <ol
-        className={stringify(classNames[TimelineClassToken.Timeline], styled.className)}
-        style={styled.style}
-      >
+      <ol className={stringify(classNames.timeline, styled.className)} style={styled.style}>
         {items.map((item, index) => {
           return (
             <Item

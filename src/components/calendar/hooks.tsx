@@ -1,7 +1,5 @@
 import dayjs, { type Dayjs } from "dayjs";
 import React, { type CSSProperties, type ReactNode, useCallback, useMemo } from "react";
-import { useClassNames } from "../../hooks/use-class-names";
-import { CalendarClassToken } from "../../utils/class-name";
 import { toArray, useControlledState } from "@aiszlab/relax";
 import { Timespan } from "../../utils/timespan";
 import { stringify } from "@aiszlab/relax/class-name";
@@ -11,6 +9,7 @@ import { positions, sizes, spacing } from "../theme/tokens.stylex";
 import { typography } from "../theme/theme";
 import { useTheme } from "../theme";
 import { IconButton } from "../icon-button";
+import type { CLASS_NAMES } from "./context";
 
 const styles = stylex.create({
   cell: {
@@ -71,8 +70,7 @@ const styles = stylex.create({
  * @description
  * head cells
  */
-export const useHeadCells = () => {
-  const classNames = useClassNames("calendar");
+export const useHeadCells = ({ classNames }: { classNames: typeof CLASS_NAMES }) => {
   const theme = useTheme();
 
   return useMemo(() => {
@@ -87,7 +85,7 @@ export const useHeadCells = () => {
     return dayjs.Ls[dayjs.locale()].weekdays?.map((weekday, index) => (
       <th
         key={index}
-        className={stringify(classNames[CalendarClassToken.HeadCell], styled.className)}
+        className={stringify(classNames.headCell, styled.className)}
         style={styled.style}
       >
         {weekday.charAt(0)}
@@ -104,12 +102,13 @@ export const useDateCells = ({
   timespan,
   focusedAt,
   click,
+  classNames,
 }: {
   timespan: Timespan;
   focusedAt: Dayjs;
   click: Required<CalendarProps>["onClick"];
+  classNames: typeof CLASS_NAMES;
 }) => {
-  const classNames = useClassNames("calendar");
   const theme = useTheme();
 
   return useMemo(() => {
@@ -152,13 +151,13 @@ export const useDateCells = ({
             title={formatted}
             key={formatted}
             className={stringify(
-              classNames[CalendarClassToken.DateCell],
+              classNames.dateCell,
               {
-                [classNames[CalendarClassToken.DateCellSelected]]: isSelected,
+                [classNames.dateCellSelected]: isSelected,
                 ...(timespan.isRange && {
-                  [classNames[CalendarClassToken.DateCellInRange]]: isBetween,
-                  [classNames[CalendarClassToken.DateCellRangeFrom]]: isFrom,
-                  [classNames[CalendarClassToken.DateCellRangeTo]]: isTo,
+                  [classNames.dateCellInRange]: isBetween,
+                  [classNames.dateCellRangeFrom]: isFrom,
+                  [classNames.dateCellRangeTo]: isTo,
                 }),
               },
               styled.cell.className,
@@ -170,7 +169,7 @@ export const useDateCells = ({
             <IconButton
               variant={isSelected ? "filled" : "text"}
               color={isSelected ? "primary" : "secondary"}
-              className={stringify(classNames[CalendarClassToken.Date], styled.trigger.className)}
+              className={stringify(classNames.date, styled.trigger.className)}
               style={styled.trigger.style}
               onClick={() => {
                 click(currentAt);

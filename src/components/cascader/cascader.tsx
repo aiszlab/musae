@@ -3,8 +3,7 @@ import { Picker } from "../picker";
 import { Tag } from "../tag";
 import { useOptions, useValue } from "./hooks";
 import { Menu } from "../menu";
-import { useClassNames } from "../../hooks/use-class-names";
-import { CascaderClassToken } from "../../utils/class-name";
+import { useClassNames } from "../../hooks/use-class-names.component";
 import stylex from "@stylexjs/stylex";
 import { stringify } from "@aiszlab/relax/class-name";
 import { spacing } from "../theme/tokens.stylex";
@@ -12,6 +11,7 @@ import { spacing } from "../theme/tokens.stylex";
 import type { MenuProps } from "musae/types/menu";
 import type { PickerRef } from "musae/types/picker";
 import type { CascaderProps } from "musae/types/cascader";
+import { CLASS_NAMES } from "./context";
 
 const styles = stylex.create({
   options: {
@@ -30,7 +30,7 @@ const Cascader = ({
 }: CascaderProps) => {
   const ref = useRef<PickerRef>(null);
   const close = useCallback(() => ref.current?.close(), []);
-  const classNames = useClassNames("cascader");
+  const classNames = useClassNames(CLASS_NAMES);
 
   const {
     readableOptions,
@@ -71,10 +71,7 @@ const Cascader = ({
     const styled = stylex.props(styles.options);
 
     return (
-      <div
-        className={stringify(classNames[CascaderClassToken.Options], styled.className)}
-        style={styled.style}
-      >
+      <div className={stringify(classNames.options, styled.className)} style={styled.style}>
         {[presetedMenuItems, ...additionalMenusItems].map((menuItems, index) => {
           return <Menu items={menuItems} key={index} onClick={onChange as MenuProps["onClick"]} />;
         })}
@@ -83,12 +80,7 @@ const Cascader = ({
   }, [additionalMenusItems, classNames, onChange, presetedMenuItems]);
 
   return (
-    <Picker
-      ref={ref}
-      pickable={menus}
-      className={classNames[CascaderClassToken.Cascader]}
-      popupWidth={false}
-    >
+    <Picker ref={ref} pickable={menus} className={classNames.cascader} popupWidth={false}>
       {inputed}
     </Picker>
   );
