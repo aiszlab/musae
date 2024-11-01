@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { createElement, type ReactNode, useContext } from "react";
 import type { ColProps } from "musae/types/grid";
 import { stringify } from "@aiszlab/relax/class-name";
 import stylex from "@stylexjs/stylex";
@@ -11,20 +11,28 @@ const styles = stylex.create({
   }),
 });
 
-const Col = ({ children, className, span = 8, as: As = "div", style }: ColProps) => {
+const Col = <E extends "aside" | "div" = "div">({
+  children,
+  className,
+  span = 8,
+  as: As = "div" as E,
+  style,
+  onClick,
+}: ColProps<E>): ReactNode => {
   const styled = stylex.props(styles.col({ span }));
   const { classNames } = useContext(Context);
 
-  return (
-    <As
-      className={stringify(classNames.col, className, styled.className)}
-      style={{
+  return createElement(
+    As,
+    {
+      className: stringify(classNames.col, className, styled.className),
+      style: {
         ...styled.style,
         ...style,
-      }}
-    >
-      {children}
-    </As>
+      },
+      onClick,
+    },
+    children,
   );
 };
 

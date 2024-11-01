@@ -1,4 +1,4 @@
-import type { CSSProperties, ReactNode } from "react";
+import type { CSSProperties, MouseEvent, ReactNode } from "react";
 import type { ComponentProps } from "musae/types/element";
 import type { Gutter } from "../hooks/use-gutters";
 
@@ -39,7 +39,7 @@ export interface RowProps extends ComponentProps {
   as?: "div" | "main";
 }
 
-export interface ColProps extends ComponentProps {
+export interface ColProps<T extends "div" | "aside" = "div"> extends ComponentProps {
   /**
    * @description
    * span
@@ -59,5 +59,12 @@ export interface ColProps extends ComponentProps {
    * as
    * @default "div"
    */
-  as?: "div" | "aside";
+  as?: T;
+
+  /**
+   * @description
+   * click handler
+   * @default void 0
+   */
+  onClick?: (e: MouseEvent<T extends "div" ? HTMLDivElement : HTMLElement>) => void;
 }
