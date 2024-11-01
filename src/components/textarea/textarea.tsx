@@ -1,4 +1,4 @@
-import React, { type ChangeEvent } from "react";
+import React, { forwardRef, type ChangeEvent } from "react";
 import { styles as inputStyles } from "../input";
 import { useTheme } from "../theme";
 import stylex from "@stylexjs/stylex";
@@ -26,61 +26,57 @@ const styles = stylex.create({
   },
 });
 
-const Textarea = ({
-  onChange,
-  value,
-  className,
-  style,
-  invalid = false,
-  onBlur,
-}: TextareaProps) => {
-  const theme = useTheme();
-  const classNames = useClassNames("textarea");
+const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
+  ({ onChange, value, className, style, invalid = false, onBlur }, ref) => {
+    const theme = useTheme();
+    const classNames = useClassNames("textarea");
 
-  const [_value, _setValue] = useControlledState(value, { defaultState: "" });
+    const [_value, _setValue] = useControlledState(value, { defaultState: "" });
 
-  const _onChange = useEvent((event: ChangeEvent<HTMLTextAreaElement>) => {
-    _setValue(event.target.value);
-    onChange?.(event.target.value);
-  });
+    const _onChange = useEvent((event: ChangeEvent<HTMLTextAreaElement>) => {
+      _setValue(event.target.value);
+      onChange?.(event.target.value);
+    });
 
-  const styled = {
-    textarea: stylex.props(
-      inputStyles.inputor({
-        outlineColor: theme.colors.outline,
-        focusedOutlineColor: theme.colors.primary,
-      }),
-      styles.textarea,
-      invalid &&
-        inputStyles.invalid({
-          outlineColor: theme.colors.error,
+    const styled = {
+      textarea: stylex.props(
+        inputStyles.inputor({
+          outlineColor: theme.colors.outline,
+          focusedOutlineColor: theme.colors.primary,
         }),
-    ),
-    input: stylex.props(styles.input),
-  };
+        styles.textarea,
+        invalid &&
+          inputStyles.invalid({
+            outlineColor: theme.colors.error,
+          }),
+      ),
+      input: stylex.props(styles.input),
+    };
 
-  return (
-    <div
-      className={stringify(
-        classNames[TextareaClassToken.Textarea],
-        className,
-        styled.textarea.className,
-      )}
-      style={{
-        ...styled.textarea.style,
-        ...style,
-      }}
-    >
-      <textarea
-        className={stringify(classNames[TextareaClassToken.Input], styled.input.className)}
-        style={styled.input.style}
-        value={_value}
-        onChange={_onChange}
-        aria-invalid={invalid}
-        onBlur={onBlur}
-      />
-    </div>
-  );
-};
+    return (
+      <div
+        className={stringify(
+          classNames[TextareaClassToken.Textarea],
+          className,
+          styled.textarea.className,
+        )}
+        style={{
+          ...styled.textarea.style,
+          ...style,
+        }}
+      >
+        <textarea
+          className={stringify(classNames[TextareaClassToken.Input], styled.input.className)}
+          style={styled.input.style}
+          value={_value}
+          onChange={_onChange}
+          aria-invalid={invalid}
+          onBlur={onBlur}
+          ref={ref}
+        />
+      </div>
+    );
+  },
+);
 
 export default Textarea;

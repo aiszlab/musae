@@ -3,6 +3,9 @@ import { Button } from "../button";
 import { Observable, Subscription, interval, map, switchAll, type Subscriber } from "rxjs";
 import type { CountdownProps } from "musae/types/countdown";
 import { useEvent, useMounted } from "@aiszlab/relax";
+import { useClassNames } from "../../hooks/use-class-names.component";
+import { CLASS_NAMES } from "./context";
+import { stringify } from "@aiszlab/relax/class-name";
 
 const Countdown = ({
   count = 60,
@@ -20,7 +23,8 @@ const Countdown = ({
 }: CountdownProps) => {
   const trigger = useRef<Subscriber<MouseEvent<HTMLButtonElement>> | null>(null);
   const counter = useRef<Observable<number> | null>(null);
-  const stopper = useRef<Subscription | null>(null);
+  const stopper = useRef<Subscription | null | undefined>(null);
+  const classNames = useClassNames(CLASS_NAMES);
 
   const [counted, setCounted] = useState(0);
   const isCounting = counted > 0;
@@ -45,22 +49,19 @@ const Countdown = ({
     };
   });
 
-  const countdown = useEvent(() => {
-    setCounted(count);
-
-    stopper.current =
-      counter.current?.subscribe((value) => {
-        const _counted = Math.max(count - value - 1, 0);
-        setCounted(_counted);
-        if (_counted === 0) {
-          stop();
-        }
-      }) ?? null;
-  });
-
   const start = useEvent(async (e: MouseEvent<HTMLButtonElement>) => {
     await Promise.resolve(onClick?.(e));
-    countdown();
+
+    setCounted(count);
+
+    stopper.current = counter.current?.subscribe((value) => {
+      const _counted = Math.max(count - value - 1, 0);
+      setCounted(_counted);
+
+      if (_counted > 0) return;
+      stop();
+    });
+
     trigger.current?.next(e);
   });
 
@@ -72,7 +73,7 @@ const Countdown = ({
       color={color}
       size={size}
       shape={shape}
-      className={className}
+      className={stringify(classNames.countdown, className)}
       style={style}
       ripple={ripple}
     >

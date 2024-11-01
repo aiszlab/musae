@@ -1,8 +1,7 @@
 import React, { useMemo, useRef } from "react";
 import { Picker } from "../picker";
 import type { PanelRef, TimePickerProps } from "musae/types/time-picker";
-import { useClassNames } from "../../hooks/use-class-names";
-import { TimePickerClassToken } from "../../utils/class-name";
+import { useClassNames } from "../../hooks/use-class-names.component";
 import Panel from "./panel";
 import { useValue } from "./hooks";
 import stylex from "@stylexjs/stylex";
@@ -10,9 +9,10 @@ import { useEvent } from "@aiszlab/relax";
 import { styles as inputStyles } from "../input";
 import type { PickerRef } from "musae/types/picker";
 import { stringify } from "@aiszlab/relax/class-name";
+import { CLASS_NAMES, Context } from "./context";
 
 const TimePicker = ({ className, ...props }: TimePickerProps) => {
-  const classNames = useClassNames("time-picker");
+  const classNames = useClassNames(CLASS_NAMES);
   const pickerRef = useRef<PickerRef>(null);
   const panelRef = useRef<PanelRef>(null);
   const { value, onChange } = useValue([props.value, pickerRef]);
@@ -23,7 +23,7 @@ const TimePicker = ({ className, ...props }: TimePickerProps) => {
 
     return (
       <input
-        className={stringify(classNames[TimePickerClassToken.Input], className)}
+        className={stringify(classNames.input, className)}
         style={style}
         value={value.format("HH:mm:ss")}
         readOnly
@@ -36,15 +36,17 @@ const TimePicker = ({ className, ...props }: TimePickerProps) => {
   });
 
   return (
-    <Picker
-      ref={pickerRef}
-      className={stringify(classNames[TimePickerClassToken.Picker], className)}
-      pickable={<Panel value={value} onChange={onChange} ref={panelRef} />}
-      popupWidth={false}
-      onPopperEntered={popperEntered}
-    >
-      {picked}
-    </Picker>
+    <Context.Provider value={{ classNames }}>
+      <Picker
+        ref={pickerRef}
+        className={stringify(classNames.picker, className)}
+        pickable={<Panel value={value} onChange={onChange} ref={panelRef} />}
+        popupWidth={false}
+        onPopperEntered={popperEntered}
+      >
+        {picked}
+      </Picker>
+    </Context.Provider>
   );
 };
 

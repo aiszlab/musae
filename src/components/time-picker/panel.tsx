@@ -2,12 +2,11 @@ import React, {
   type CSSProperties,
   forwardRef,
   useCallback,
+  useContext,
   useImperativeHandle,
   useState,
 } from "react";
 import { Clock } from "../clock";
-import { useClassNames } from "../../hooks/use-class-names";
-import { TimePickerClassToken } from "../../utils/class-name";
 import { Button } from "../button";
 import type { PanelProps, PanelRef } from "musae/types/time-picker";
 import type { ClockProps } from "musae/types/clock";
@@ -17,6 +16,7 @@ import { useTheme } from "../theme";
 import { stringify } from "@aiszlab/relax/class-name";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { useLocale } from "../../locale";
+import { Context } from "./context";
 
 const styles = stylex.create({
   panel: {
@@ -38,7 +38,7 @@ const styles = stylex.create({
 });
 
 const Panel = forwardRef<PanelRef, PanelProps>((props, ref) => {
-  const classNames = useClassNames("time-picker");
+  const { classNames } = useContext(Context);
   const [value, setValue] = useState<ClockProps["value"]>();
   const theme = useTheme();
   const [locale] = useLocale("time-picker");
@@ -79,14 +79,11 @@ const Panel = forwardRef<PanelRef, PanelProps>((props, ref) => {
   };
 
   return (
-    <div
-      className={stringify(classNames[TimePickerClassToken.Panel], styled.panel.className)}
-      style={styled.panel.style}
-    >
+    <div className={stringify(classNames.panel, styled.panel.className)} style={styled.panel.style}>
       <Clock value={value} onChange={change} />
 
       <div
-        className={stringify(classNames[TimePickerClassToken.PanelFooter], styled.footer.className)}
+        className={stringify(classNames.panelFooter, styled.footer.className)}
         style={styled.footer.style}
       >
         <Button variant="text" size="small" color="secondary" onClick={reset}>

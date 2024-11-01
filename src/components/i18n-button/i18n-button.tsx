@@ -6,15 +6,15 @@ import { Menu } from "../menu";
 import type { I18nButtonProps } from "musae/types/i18n-button";
 import { useEvent } from "@aiszlab/relax";
 import type { LocaleCode } from "musae/types/locale";
-import { useClassNames } from "../../hooks/use-class-names";
-import { I18nButtonClassToken } from "../../utils/class-name";
+import { useClassNames } from "../../hooks/use-class-names.component";
 import { IconButton } from "../icon-button";
 import { stringify } from "@aiszlab/relax/class-name";
+import { CLASS_NAMES } from "./context";
 
 const I18nButton = ({ onChange, variant, className, style, size }: I18nButtonProps) => {
   const { selections, locales, localeCode } = useLocales();
   const popoverRef = useRef<PopoverRef>(null);
-  const classNames = useClassNames("i18n-button");
+  const classNames = useClassNames(CLASS_NAMES);
 
   const change = useEvent(async (value: Key) => {
     await popoverRef.current?.close();
@@ -30,7 +30,7 @@ const I18nButton = ({ onChange, variant, className, style, size }: I18nButtonPro
     >
       <IconButton
         variant={variant}
-        className={stringify(classNames[I18nButtonClassToken.I18nButton], className)}
+        className={stringify(classNames.i18nButton, className)}
         style={style}
         size={size}
       >

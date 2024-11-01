@@ -21,37 +21,12 @@ export const withPrefix = (className: string, prefix: string) =>
  * class role
  */
 
-export enum CalendarClassToken {
-  Header,
-  Heading,
-  HeadCell,
-  DateCell,
-  DateCellSelected,
-  DateCellInRange,
-  DateCellRangeFrom,
-  DateCellRangeTo,
-  Date,
-}
-
-export enum DatePickerClassToken {
-  Picker,
-  Input,
-}
-export enum TimePickerClassToken {
-  Picker,
-  Input,
-  Panel,
-  PanelFooter,
-}
 export enum DateRangePickerClassToken {
   Picker,
   Input,
   Separator,
 }
-export enum ClockClassToken {
-  Clock,
-  Column,
-}
+
 export enum MenuClassToken {
   Menu,
   MenuHorizontal,
@@ -159,9 +134,7 @@ export enum RichTextEditorClassToken {
   Loading,
   Editable,
 }
-export enum I18nButtonClassToken {
-  I18nButton,
-}
+
 export enum TextareaClassToken {
   Textarea,
   Input,
@@ -175,25 +148,12 @@ export enum TextareaClassToken {
  * rule like: block__element--modifier
  */
 export const CLASS_NAMES = {
-  "date-picker": {
-    [DatePickerClassToken.Picker]: "date-picker",
-    [DatePickerClassToken.Input]: "date-picker__input",
-  },
-  "time-picker": {
-    [TimePickerClassToken.Picker]: "time-picker",
-    [TimePickerClassToken.Input]: "time-picker__input",
-    [TimePickerClassToken.Panel]: "time-picker__panel",
-    [TimePickerClassToken.PanelFooter]: "time-picker__panel-footer",
-  },
   "date-range-picker": {
     [DateRangePickerClassToken.Picker]: "date-range-picker",
     [DateRangePickerClassToken.Input]: "date-range-picker__input",
     [DateRangePickerClassToken.Separator]: "date-range-picker__separator",
   },
-  clock: {
-    [ClockClassToken.Clock]: "clock",
-    [ClockClassToken.Column]: "clock__column",
-  },
+
   menu: {
     [MenuClassToken.Menu]: "menu",
     [MenuClassToken.MenuHorizontal]: "menu--horizontal",
@@ -290,9 +250,7 @@ export const CLASS_NAMES = {
     [HighlightClassToken.Highlight]: "highlight",
     [HighlightClassToken.Capture]: "highlight__capture",
   },
-  "i18n-button": {
-    [I18nButtonClassToken.I18nButton]: "i18n-button",
-  },
+
   quote: {
     [QuoteClassToken.Quote]: "quote",
   },
