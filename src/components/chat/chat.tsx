@@ -1,18 +1,38 @@
-import React, { useCallback, useRef } from "react";
+import React, { useCallback, useState } from "react";
 import { Textarea } from "../textarea";
 import { Button } from "../button";
+import { useIdentity } from "@aiszlab/relax";
+import Item from "./item";
 
 const Chat = () => {
-  const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const [, id] = useIdentity();
+  const [message, setMessage] = useState("");
+
+  const [items, setItems] = useState(
+    new Map<
+      string,
+      {
+        message: string;
+      }
+    >(),
+  );
 
   const submit = useCallback(() => {
-    const message = textareaRef.current?.value;
+    setMessage("");
+    setItems((_items) => new Map(_items).set(id(), { message }));
   }, []);
 
   return (
     <div>
-      <Textarea ref={textareaRef} />
-      <Button onClick={submit}>submit</Button>
+      {items.entries().map(([key, item]) => {
+        return <Item key={key} message={item.message} />;
+      })}
+
+      <Textarea />
+
+      <Button onClick={submit} disabled={!!message}>
+        submit
+      </Button>
     </div>
   );
 };
