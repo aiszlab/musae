@@ -91,7 +91,7 @@
     "@rollup/plugin-commonjs": "^28.0.1",
     "@rollup/plugin-node-resolve": "^15.3.0",
     "@rollup/plugin-typescript": "^12.1.1",
-    "@stylexjs/babel-plugin": "^0.8.0",
+    "@stylexjs/babel-plugin": "^0.9.3",
     "@stylexjs/rollup-plugin": "^0.8.0",
     "@stylexjs/stylex": "^0.8.0",
     "@testing-library/jest-dom": "^6.6.2",
