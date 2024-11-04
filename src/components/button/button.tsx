@@ -30,6 +30,7 @@ const styles = stylex.create({
     cursor: "pointer",
     fontFamily: "inherit",
     boxSizing: "border-box",
+    height: "fit-content",
   },
 
   // with ripple
@@ -86,6 +87,10 @@ const styles = stylex.create({
     cursor: "not-allowed",
     boxShadow: null,
     borderColor: props.outlineColor,
+
+    ":hover": {
+      boxShadow: null,
+    },
   }),
 });
 
