@@ -37,6 +37,13 @@ export type FabProps = {
    * @default void 0
    */
   onClick?: ButtonProps["onClick"];
+
+  /**
+   * @description
+   * draggable
+   * @default true
+   */
+  draggable?: boolean;
 };
 
 /**

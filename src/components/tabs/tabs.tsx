@@ -25,7 +25,7 @@ const Tabs = ({
 
   const classNames = useClassNames("tabs");
 
-  /// context value
+  // context value
   const contextValue = useMemo<ContextValue>(() => {
     return {
       activeKey,

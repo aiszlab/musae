@@ -27,7 +27,7 @@ const Breadcrumb = ({ items = [], className, separator = "/", style }: Breadcrum
   const theme = useTheme();
   const classNames = useClassNames("breadcrumb");
 
-  /// there is no need to render the breadcrumb when there is no items
+  // there is no need to render the breadcrumb when there is no items
   if (items.length === 0) {
     return null;
   }

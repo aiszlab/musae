@@ -11,8 +11,8 @@ import { stringify } from "@aiszlab/relax/class-name";
 
 const styles = stylex.create({
   menu: {
-    /// add position reason: when read li offsetTop, if parent is not relative, then it will read wrong value
-    /// https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetTop
+    // add position reason: when read li offsetTop, if parent is not relative, then it will read wrong value
+    // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetTop
     position: "relative",
   },
 });

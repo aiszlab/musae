@@ -13,7 +13,7 @@ import { stringify } from "@aiszlab/relax/class-name";
 
 const styles = stylex.create({
   list: {
-    /// reset ul styles
+    // reset ul styles
     margin: spacing.none,
     padding: spacing.none,
     listStyleType: "none",

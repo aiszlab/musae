@@ -1,4 +1,4 @@
-import { Observable } from "rxjs";
+import { ComponentProps } from "./element";
 
 /**
  * @description
@@ -10,15 +10,57 @@ export interface ChatItemProps {
    * message
    */
   message: string;
+
+  /**
+   * @description
+   * content
+   */
+  content?: string;
+}
+
+interface MessageReceiver {
+  (
+    send: string,
+    receiver: {
+      next: (content: string) => void;
+      complete: () => void;
+      error: (error: Error) => void;
+    },
+  ): void;
+
+  /**
+   * @description
+   * override
+   */
+  override?: boolean;
 }
 
 /**
  * @description
  * chat props
  */
-export interface ChatProps {
+export interface ChatProps extends ComponentProps {
   /**
-   * @description onMessage
+   * @description
+   * message handler
    */
-  onMessage: (message: string) => string;
+  onMessage?: MessageReceiver;
+
+  /**
+   * @description
+   * history messages
+   */
+  defaultValue?: Required<ChatItemProps>[];
+}
+
+/**
+ * @description
+ * message handler like `rxjs`
+ */
+export interface ContextValue {
+  /**
+   * @description
+   * message handler
+   */
+  onMessage?: MessageReceiver;
 }

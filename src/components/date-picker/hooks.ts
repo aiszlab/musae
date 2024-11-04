@@ -14,7 +14,7 @@ export const useValue = ([_value, _change, _ref]: [
 ]) => {
   const [value, setValue] = useControlledState(_value);
 
-  /// change handler
+  // change handler
   const onChange = useCallback<Required<DatePickerProps>["onChange"]>(
     (_value) => {
       setValue(_value);

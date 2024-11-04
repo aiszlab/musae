@@ -35,7 +35,7 @@ export const useValue = ([
   // convert value
   const values = useMemo(() => {
     return toValues(_value).reduce<Map<number, Optionable[]>>((prev, keysOrOptions) => {
-      /// read item id for menu
+      // read item id for menu
       const [id, options] = keysOrOptions.reduce<
         [Partialable<number>, Optionable[], Partialable<ReadableOptions>]
       >(
@@ -125,9 +125,9 @@ export const useOptions = ([options]: [options: Option[]]) => {
     });
   }, [options]);
 
-  /// menus split into 2 parts
-  /// 1. preseted menu items
-  /// 2. dynamic menu items
+  // menus split into 2 parts
+  // 1. preseted menu items
+  // 2. dynamic menu items
   const presetedMenuItems = useMemo(() => {
     return [...readableOptions.values()].map((option) => toMenuItem(option));
   }, [readableOptions]);

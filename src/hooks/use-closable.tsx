@@ -63,13 +63,13 @@ export const useClosable = ({
     );
   }, [triggers, onClose, placement]);
 
-  /// overlay click callback
+  // overlay click callback
   const onOverlayClick = useEvent(() => {
     if (!triggers.has("overlay")) return;
     onClose?.();
   });
 
-  /// esc key press callback
+  // esc key press callback
   const onKeyDown = useEvent((e: KeyboardEvent<HTMLDivElement>) => {
     if (e.key !== Keyboard.Escape) return;
     onClose?.();

@@ -202,7 +202,7 @@ export const useValue = ({
   value: CalendarProps["value"];
   onClick: CalendarProps["onClick"];
 }) => {
-  /// change handler
+  // change handler
   const onClick = useCallback(
     (_value: Dayjs) => {
       _click?.(_value);
@@ -210,7 +210,7 @@ export const useValue = ({
     [_click],
   );
 
-  /// time span
+  // time span
   const timespan = useMemo(() => {
     const [from, to] = toArray(value);
     return new Timespan({ from, to });
@@ -235,22 +235,22 @@ export const useFocusedAt = ({
     defaultState: dayjs(),
   });
 
-  /// next year
+  // next year
   const toNextYear = useCallback(() => {
     setFocusedAt((prev) => prev.add(1, "year"));
   }, [setFocusedAt]);
 
-  /// prev year
+  // prev year
   const toPrevYear = useCallback(() => {
     setFocusedAt((prev) => prev.subtract(1, "year"));
   }, [setFocusedAt]);
 
-  /// next month
+  // next month
   const toNextMonth = useCallback(() => {
     setFocusedAt((prev) => prev.add(1, "month"));
   }, [setFocusedAt]);
 
-  /// prev month
+  // prev month
   const toPrevMonth = useCallback(() => {
     setFocusedAt((prev) => prev.subtract(1, "month"));
   }, [setFocusedAt]);

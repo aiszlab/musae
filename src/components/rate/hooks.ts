@@ -14,13 +14,13 @@ export const useValue = ({
 }) => {
   const [_value, setValue] = useControlledState(props.value, { defaultState: 0 });
 
-  /// convert value into valid number like `0` `0.5` `1.5` `2`
+  // convert value into valid number like `0` `0.5` `1.5` `2`
   const value = useMemo(() => {
     if (!halfable) return Math.floor(_value);
     return Math.floor(_value * 2) / 2;
   }, [_value, halfable]);
 
-  /// change handler
+  // change handler
   const change = useEvent((changed: number) => {
     setValue(changed);
     props.onChange?.(changed);

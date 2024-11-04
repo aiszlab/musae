@@ -18,7 +18,7 @@ const Group = ({ children, items }: PreviewGroupProps) => {
     return items[currentAt];
   }, [currentAt, items]);
 
-  /// when image is changed, reset styles
+  // when image is changed, reset styles
   const prev = useEvent(() => {
     ref.current?.reset();
     subtract();

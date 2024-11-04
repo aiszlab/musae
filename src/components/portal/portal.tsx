@@ -14,8 +14,8 @@ const Portal: FC<PortalProps> = ({
   const [shouldRender, setShouldRender] = useState(false);
   const { container: _container } = useContainer({ container });
 
-  /// if render once, and is not destroyable
-  /// anyway render
+  // if render once, and is not destroyable
+  // anyway render
   useEffect(() => {
     if (destroyable || open) {
       setShouldRender(open);

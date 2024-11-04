@@ -48,7 +48,7 @@ const Cascader = ({
     setAdditionalMenusItems,
   ]);
 
-  /// inputde value
+  // inputde value
   const inputed = useMemo<ReactNode>(() => {
     // multiple value
     if (mode === "multiple") {
@@ -66,7 +66,7 @@ const Cascader = ({
       .join(` ${separator} `);
   }, [mode, values, separator]);
 
-  /// options render
+  // options render
   const menus = useMemo(() => {
     const styled = stylex.props(styles.options);
 

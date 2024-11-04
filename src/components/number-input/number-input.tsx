@@ -8,7 +8,7 @@ const NumberInput = ({ value: __value, formatter: _formatter }: NumberInputProps
   const [isFocused, focusProps] = useFocus();
   const { value: _value, change } = useValue({ value: __value });
 
-  /// formatter
+  // formatter
   const formatter = useEvent((value?: string) => {
     if (!_formatter) return _value;
     formatter(value);

@@ -55,7 +55,7 @@ const styles = stylex.create({
   },
 });
 
-const Fab = ({ container, children, onClick: click }: FabProps) => {
+const Fab = ({ container, children, onClick: click, draggable = true }: FabProps) => {
   const portalRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const { container: _container } = useContainer({ container });
@@ -82,11 +82,12 @@ const Fab = ({ container, children, onClick: click }: FabProps) => {
 
   const onDragStart = useCallback(
     (event: _MouseEvent<HTMLDivElement>) => {
+      if (!draggable) return;
       if (!contains(buttonRef.current, event.target)) return;
       event.stopPropagation();
       dragStart(event);
     },
-    [dragStart],
+    [dragStart, draggable],
   );
 
   const onClick = useEvent((event: _MouseEvent<HTMLButtonElement>) => {
@@ -96,14 +97,16 @@ const Fab = ({ container, children, onClick: click }: FabProps) => {
 
   const onDragMove = useCallback(
     (event: _MouseEvent<HTMLDivElement>) => {
+      if (!draggable) return;
       isMoved.current = true;
       event.stopPropagation();
       dragMove(event);
     },
-    [dragMove],
+    [dragMove, draggable],
   );
 
   const onDragEnd = useRaf((event: _MouseEvent<HTMLDivElement>) => {
+    if (!draggable) return;
     dragEnd(event);
     isMoved.current = false;
   });

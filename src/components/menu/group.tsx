@@ -15,7 +15,7 @@ import { stringify } from "@aiszlab/relax/class-name";
 const styles = {
   group: stylex.create({
     default: (props: { color: CSSProperties["color"] }) => ({
-      /// reset ul styles
+      // reset ul styles
       margin: spacing.none,
       padding: spacing.none,
       listStyleType: "none",

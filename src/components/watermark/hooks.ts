@@ -35,7 +35,7 @@ const painter = ({
 export const useWatermarks = () => {
   const [watermarks, setWatermarks] = useState(() => new Map<HTMLElement, HTMLDivElement>());
 
-  /// isWatermarkElement
+  // isWatermarkElement
   const isWatermarkElement = useEvent((element: Node) => {
     return Array.from<Node>(watermarks.values()).includes(element);
   });
@@ -53,7 +53,7 @@ export const useWatermarks = () => {
     return isWatermarkChanged;
   });
 
-  /// add
+  // add
   const add = useEvent((container: HTMLElement | null, dataURL: string, size: number) => {
     if (!container) return null;
 
@@ -81,7 +81,7 @@ export const useWatermarks = () => {
     return watermarkElement;
   });
 
-  /// remove
+  // remove
   const remove = (container: HTMLElement) => {
     const watermarkElement = watermarks.get(container);
     if (!watermarkElement) return;

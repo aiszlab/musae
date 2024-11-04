@@ -1,13 +1,25 @@
-import { useMounted } from "@aiszlab/relax";
+import { useEvent, useMounted } from "@aiszlab/relax";
 import React, { useContext, useState } from "react";
-import { fetchEventSource } from "@aiszlab/relax/fetch-event-source";
 import type { ChatItemProps } from "../../types/chat";
 import { Context } from "./context";
-import stylex from "@stylexjs/stylex";
+import stylex, { keyframes } from "@stylexjs/stylex";
 import { useTheme } from "../theme";
 import { stringify } from "@aiszlab/relax/class-name";
 import { sizes, spacing } from "../theme/tokens.stylex";
-import { typography } from "../theme/theme";
+
+const blink = keyframes({
+  from: {
+    color: "inherit",
+  },
+
+  "50%": {
+    color: "transparent",
+  },
+
+  to: {
+    color: "inherit",
+  },
+});
 
 const styles = stylex.create({
   item: {
@@ -18,8 +30,6 @@ const styles = stylex.create({
 
   send: (props: { backgroundColor: string; color: string }) => ({
     alignSelf: "flex-end",
-    display: "flex",
-    justifyContent: "flex-end",
     width: "fit-content",
     paddingInline: spacing.large,
     paddingBlock: spacing.xsmall,
@@ -28,26 +38,57 @@ const styles = stylex.create({
     borderRadius: sizes.xxxxsmall,
   }),
 
-  message: {},
+  receive: (props: { backgroundColor: string; color: string }) => ({
+    alignSelf: "flex-start",
+    paddingInline: spacing.large,
+    paddingBlock: spacing.xsmall,
+    backgroundColor: props.backgroundColor,
+    color: props.color,
+    borderRadius: sizes.xxxxsmall,
+  }),
 
-  content: {},
+  receiving: {
+    "::after": {
+      content: "|",
+      animationName: blink,
+      animationDuration: "1s",
+      animationTimingFunction: "linear",
+      animationIterationCount: "infinite",
+    },
+  },
 });
 
-const Item = ({ message }: ChatItemProps) => {
-  const [content, setContent] = useState("");
-  const { classNames } = useContext(Context);
+const Item = ({ message, content: _content }: ChatItemProps) => {
+  const [content, setContent] = useState(_content ?? "");
+  const { classNames, onMessage } = useContext(Context);
   const theme = useTheme();
+  const isOverride = !!onMessage?.override;
+  const [status, setStatus] = useState<"complete" | "error" | "loading">(() => {
+    if (!!_content) return "complete";
+    return "loading";
+  });
 
-  console.log("message======", message);
+  // use callback way to receive stream like message
+  const receive = useEvent((_content: string) => {
+    if (isOverride) {
+      setContent(_content);
+      return;
+    }
+    setContent((prev) => prev + _content);
+  });
 
+  // on component mounted, callback
   useMounted(() => {
-    if (!message) return;
+    // already `complete` status, mean it is a history message
+    // ignore it
+    if (status === "complete") return;
 
-    // fetchEventSource("http://localhost:3100/api/chat", {
-    //   body: JSON.stringify({
-    //     message,
-    //   }),
-    // });
+    // listen message
+    onMessage?.(message, {
+      next: receive,
+      complete: () => setStatus("complete"),
+      error: () => setStatus("error"),
+    });
   });
 
   const styled = {
@@ -58,6 +99,13 @@ const Item = ({ message }: ChatItemProps) => {
         color: theme.colors["on-surface"],
       }),
     ),
+    receive: stylex.props(
+      styles.receive({
+        backgroundColor: theme.colors["surface-container"],
+        color: theme.colors["on-surface"],
+      }),
+      status === "loading" && styles.receiving,
+    ),
   };
 
   return (
@@ -65,8 +113,11 @@ const Item = ({ message }: ChatItemProps) => {
       <div className={stringify(classNames.send, styled.send.className)} style={styled.send.style}>
         {message}
       </div>
-      <div className={classNames.receive}>
-        <div>{content}</div>
+      <div
+        className={stringify(classNames.receive, styled.receive.className)}
+        style={styled.receive.style}
+      >
+        {content}
       </div>
     </div>
   );

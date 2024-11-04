@@ -17,7 +17,7 @@ const TimePicker = ({ className, ...props }: TimePickerProps) => {
   const panelRef = useRef<PanelRef>(null);
   const { value, onChange } = useValue([props.value, pickerRef]);
 
-  /// picked date
+  // picked date
   const picked = useMemo(() => {
     const { className, style } = stylex.props(inputStyles.input);
 
