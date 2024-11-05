@@ -4,13 +4,13 @@ import { useAnimate, usePresence } from "framer-motion";
 import { useTheme } from "../theme";
 import type { NotificationProps, Placement, Axis, Type } from "musae/types/notification";
 import { useComposedRef, useTimeout } from "@aiszlab/relax";
-import { useClassNames } from "../../hooks/use-class-names";
-import { NotificationClassToken } from "../../utils/class-name";
+import { useClassNames } from "../../hooks/use-class-names.component";
 import { elevations, sizes, spacing } from "../theme/tokens.stylex";
 import { CheckCircle, Close, Loading, Error, NotificationImportant, Warning } from "musae/icons";
 import { typography } from "../theme/theme";
 import type { IconProps } from "musae/types/icon";
 import { stringify } from "@aiszlab/relax/class-name";
+import { CLASS_NAMES } from "./context";
 
 const AXIS: Readonly<Record<Placement, Axis>> = {
   top: "top",
@@ -116,7 +116,7 @@ const Notification = forwardRef<HTMLDivElement, NotificationProps>(
     const axis = AXIS[placement];
     const [scope, animate] = useAnimate<HTMLDivElement>();
     const _placement = PLACEMENTS[axis];
-    const classNames = useClassNames("notification");
+    const classNames = useClassNames(CLASS_NAMES);
     const notificationRef = useComposedRef(scope, ref);
 
     // after duration, `Notification` will auto destroy
@@ -183,10 +183,7 @@ const Notification = forwardRef<HTMLDivElement, NotificationProps>(
 
     return (
       <div
-        className={stringify(
-          classNames[NotificationClassToken.Notification],
-          styled.notification.className,
-        )}
+        className={stringify(classNames.notification, styled.notification.className)}
         style={styled.notification.style}
         ref={notificationRef}
       >
@@ -198,7 +195,7 @@ const Notification = forwardRef<HTMLDivElement, NotificationProps>(
 
         {!!title && (
           <div
-            className={stringify(classNames[NotificationClassToken.Title], styled.title.className)}
+            className={stringify(classNames.title, styled.title.className)}
             style={styled.title.style}
           >
             {title}
@@ -206,10 +203,7 @@ const Notification = forwardRef<HTMLDivElement, NotificationProps>(
         )}
 
         <div
-          className={stringify(
-            classNames[NotificationClassToken.Description],
-            styled.description.className,
-          )}
+          className={stringify(classNames.description, styled.description.className)}
           style={styled.description.style}
         >
           {description}
@@ -217,10 +211,7 @@ const Notification = forwardRef<HTMLDivElement, NotificationProps>(
 
         {closable && (
           <Close
-            className={stringify(
-              classNames[NotificationClassToken.Closer],
-              styled.closer.className,
-            )}
+            className={stringify(classNames.closer, styled.closer.className)}
             onClick={onClose}
             color={theme.colors.primary}
           />

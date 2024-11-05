@@ -82,12 +82,7 @@ export enum AvatarClassToken {
   Avatar,
   Group,
 }
-export enum NotificationClassToken {
-  Notification,
-  Title,
-  Description,
-  Closer,
-}
+
 export enum ProgressClassToken {
   Progress,
   Segment,
@@ -96,11 +91,6 @@ export enum ProgressClassToken {
 }
 export enum TooltipClassToken {
   Tooltip,
-}
-export enum PopoverClassToken {
-  Popover,
-  Title,
-  Content,
 }
 
 export enum WaterfallClassToken {
@@ -209,23 +199,13 @@ export const CLASS_NAMES = {
     [AvatarClassToken.Avatar]: "avatar",
     [AvatarClassToken.Group]: "avatar__group",
   },
-  notification: {
-    [NotificationClassToken.Notification]: "notification",
-    [NotificationClassToken.Title]: "notification__title",
-    [NotificationClassToken.Description]: "notification__description",
-    [NotificationClassToken.Closer]: "notification__closer",
-  },
+
   progress: {
     [ProgressClassToken.Progress]: "progress",
     [ProgressClassToken.Segment]: "progress__segment",
   },
   tooltip: {
     [TooltipClassToken.Tooltip]: "tooltip",
-  },
-  popover: {
-    [PopoverClassToken.Popover]: "popover",
-    [PopoverClassToken.Title]: "popover__title",
-    [PopoverClassToken.Content]: "popover__content",
   },
 
   waterfall: {
