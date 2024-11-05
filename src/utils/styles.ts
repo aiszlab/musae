@@ -6,5 +6,5 @@ import { toArray, exclude } from "@aiszlab/relax";
  * in some case, i usally need an array of class names
  */
 export const toClassList = (className = "") => {
-  return exclude(toArray(className, { separator: " " }), [""]);
+  return exclude(toArray(className, { separator: " " }), [""] as const);
 };
