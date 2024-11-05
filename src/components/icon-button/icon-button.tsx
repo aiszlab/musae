@@ -15,11 +15,13 @@ const styles = stylex.create({
 
   medium: {
     width: sizes.xxlarge,
+    minWidth: sizes.xxlarge,
     height: sizes.xxlarge,
   },
 
   small: {
     width: sizes.medium,
+    minWidth: sizes.medium,
     height: sizes.medium,
   },
 });

@@ -1,6 +1,5 @@
 import React, { useCallback, useMemo, useState } from "react";
 import { Textarea } from "../textarea";
-import { Button } from "../button";
 import { useIdentity } from "@aiszlab/relax";
 import Item from "./item";
 import { useClassNames } from "../../hooks/use-class-names.component";
@@ -10,6 +9,8 @@ import stylex from "@stylexjs/stylex";
 import { typography } from "../theme/theme";
 import { stringify } from "@aiszlab/relax/class-name";
 import { spacing } from "../theme/tokens.stylex";
+import { IconButton } from "../icon-button";
+import { RocketLaunch } from "../icon/icons";
 
 const styles = stylex.create({
   chat: {
@@ -35,7 +36,7 @@ const styles = stylex.create({
   },
 });
 
-const Chat = ({ onMessage, className, style, defaultValue }: ChatProps) => {
+const Chat = ({ onMessage, className, style, defaultValue, placeholder }: ChatProps) => {
   const classNames = useClassNames(CLASS_NAMES);
   const [, id] = useIdentity();
   const [message, setMessage] = useState("");
@@ -85,11 +86,11 @@ const Chat = ({ onMessage, className, style, defaultValue }: ChatProps) => {
           className={stringify(classNames.footer, styled.footer.className)}
           style={styled.footer.style}
         >
-          <Textarea value={message} onChange={setMessage} />
+          <Textarea value={message} onChange={setMessage} placeholder={placeholder} />
 
-          <Button onClick={submit} disabled={!message}>
-            submit
-          </Button>
+          <IconButton onClick={submit} disabled={!message} size="small">
+            <RocketLaunch />
+          </IconButton>
         </div>
       </div>
     </Context.Provider>

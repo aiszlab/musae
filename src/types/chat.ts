@@ -1,4 +1,5 @@
-import { ComponentProps } from "./element";
+import type { ComponentProps } from "./element";
+import type { TextareaProps } from "./textarea";
 
 /**
  * @description
@@ -39,7 +40,7 @@ interface MessageReceiver {
  * @description
  * chat props
  */
-export interface ChatProps extends ComponentProps {
+export interface ChatProps extends ComponentProps, Pick<TextareaProps, "placeholder"> {
   /**
    * @description
    * message handler

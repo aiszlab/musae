@@ -129,6 +129,8 @@ export const useFloating = ({
         .then(({ x, y, middlewareData, placement: _placement }) => {
           const [side] = _placement.split("-") as [Side, Alignment?];
 
+          console.log("_placement====", _placement);
+
           // set float element styles
           _floatable.style.translate = `${x}px ${y}px`;
 
@@ -138,8 +140,8 @@ export const useFloating = ({
             const offsetX = `${middlewareData.arrow.x ?? 0}px`;
 
             arrowRef.current.style.insetInlineStart = offsetX;
-            side === "top" && (arrowRef.current.style.insetBlockEnd = offsetY);
-            side === "bottom" && (arrowRef.current.style.insetBlockStart = offsetY);
+            arrowRef.current.style.insetBlockEnd = side === "top" ? offsetY : "";
+            arrowRef.current.style.insetBlockStart = side === "bottom" ? offsetY : "";
           }
 
           // use appear animation

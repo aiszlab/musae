@@ -14,6 +14,7 @@ import OpenInNew from "./open-in-new";
 import Delete from "./delete";
 import ThreeDRotation from "./three-d-rotation";
 import AccountCircle from "./account-circle";
+import RocketLaunch from "./rocket-launch";
 
 export {
   Visibility,
@@ -32,4 +33,5 @@ export {
   Delete,
   ThreeDRotation,
   AccountCircle,
+  RocketLaunch,
 };

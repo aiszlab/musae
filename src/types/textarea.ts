@@ -1,4 +1,4 @@
-import type { DOMAttributes } from "react";
+import type { TextareaHTMLAttributes } from "react";
 import type { ComponentProps } from "./element";
 
 /**
@@ -6,7 +6,7 @@ import type { ComponentProps } from "./element";
  * textarea props
  */
 export type TextareaProps = ComponentProps &
-  Pick<DOMAttributes<HTMLTextAreaElement>, "onBlur"> & {
+  Pick<TextareaHTMLAttributes<HTMLTextAreaElement>, "onBlur" | "placeholder"> & {
     /**
      * @description
      * value

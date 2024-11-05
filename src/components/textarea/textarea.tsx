@@ -23,11 +23,12 @@ const styles = stylex.create({
     outline: sizes.none,
     borderWidth: sizes.none,
     flex: 1,
+    backgroundColor: "transparent",
   },
 });
 
 const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
-  ({ onChange, value, className, style, invalid = false, onBlur }, ref) => {
+  ({ onChange, value, className, style, invalid = false, onBlur, placeholder }, ref) => {
     const theme = useTheme();
     const classNames = useClassNames("textarea");
 
@@ -73,6 +74,7 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           aria-invalid={invalid}
           onBlur={onBlur}
           ref={ref}
+          placeholder={placeholder}
         />
       </div>
     );

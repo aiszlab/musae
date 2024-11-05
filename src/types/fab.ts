@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import type { ButtonHTMLAttributes, ReactNode } from "react";
 import type { PortalProps } from "./portal";
 import type { ButtonProps } from "./button";
 
@@ -18,7 +18,10 @@ export type FloatableRef = {
  * @description
  * props
  */
-export type FabProps = {
+export type FabProps = Pick<
+  ButtonHTMLAttributes<HTMLButtonElement>,
+  "onPointerEnter" | "onPointerLeave" | "onMouseEnter" | "onMouseLeave"
+> & {
   /**
    * @description
    * container
