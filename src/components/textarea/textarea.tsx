@@ -24,11 +24,19 @@ const styles = stylex.create({
     borderWidth: sizes.none,
     flex: 1,
     backgroundColor: "transparent",
+    resize: "none",
+  },
+
+  resize: {
+    resize: null,
   },
 });
 
 const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
-  ({ onChange, value, className, style, invalid = false, onBlur, placeholder }, ref) => {
+  (
+    { onChange, value, className, style, invalid = false, onBlur, placeholder, resize = true },
+    ref,
+  ) => {
     const theme = useTheme();
     const classNames = useClassNames("textarea");
 
@@ -51,7 +59,7 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
             outlineColor: theme.colors.error,
           }),
       ),
-      input: stylex.props(styles.input),
+      input: stylex.props(styles.input, resize && styles.resize),
     };
 
     return (

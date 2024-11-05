@@ -25,4 +25,12 @@ export type TextareaProps = ComponentProps &
      * value change handler
      */
     onChange?: (value: string) => void;
+
+    /**
+     * @description
+     * resize
+     * when `true`, show `resize`
+     * @default true
+     */
+    resize?: boolean;
   };
