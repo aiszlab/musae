@@ -5,7 +5,7 @@ exports[`\`Button\` Component disabled variant render 1`] = `
   <button
     class="musae-button button__styles.button button__styles.ripple button__styles.medium button__styles.filled button__styles.rounded button__styles.disabled theme__label.large"
     disabled=""
-    style="--backgroundColor: rgba(29,27,32,0.12); --color: rgba(29,27,32,0.38); --borderColor: initial;"
+    style="--backgroundColor: rgba(29,27,32,0.12); --color: rgba(29,27,32,0.38);"
     type="button"
   >
     disabled filled
@@ -21,7 +21,7 @@ exports[`\`Button\` Component disabled variant render 1`] = `
   <button
     class="musae-button button__styles.button button__styles.ripple button__styles.medium button__styles.text button__styles.rounded button__styles.disabled theme__label.large"
     disabled=""
-    style="--b6ve2z: rgba(103,80,164,0.08); --backgroundColor: transparent; --color: rgba(29,27,32,0.38); --borderColor: initial;"
+    style="--b6ve2z: rgba(103,80,164,0.08); --backgroundColor: transparent; --color: rgba(29,27,32,0.38);"
     type="button"
   >
     disabled text
