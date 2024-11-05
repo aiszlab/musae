@@ -17,7 +17,7 @@ const styles = {
   calendar: stylex.create({
     variables: (props: { color: CSSProperties["color"] }) => ({
       "--cell-size": `calc(${sizes.xxsmall} / 2)`,
-      "--cell-color": props.color,
+      "--primary": props.color,
     }),
 
     default: {
@@ -38,7 +38,7 @@ const styles = {
       padding: 0,
       borderRadius: sizes.xxxxxxsmall,
       cursor: "pointer",
-      backgroundColor: "var(--cell-color)",
+      backgroundColor: "var(--primary)",
     },
   }),
 
