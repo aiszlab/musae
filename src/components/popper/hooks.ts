@@ -129,8 +129,6 @@ export const useFloating = ({
         .then(({ x, y, middlewareData, placement: _placement }) => {
           const [side] = _placement.split("-") as [Side, Alignment?];
 
-          console.log("_placement====", _placement);
-
           // set float element styles
           _floatable.style.translate = `${x}px ${y}px`;
 

@@ -1,4 +1,4 @@
-import { useHover, useEvent, useFocus, useClickAway } from "@aiszlab/relax";
+import { useHover, useEvent, useFocus, useClickAway, isRefable } from "@aiszlab/relax";
 import React, {
   cloneElement,
   useMemo,
@@ -9,7 +9,6 @@ import React, {
   isValidElement,
   type MouseEvent,
   type ForwardedRef,
-  type HTMLAttributes,
   type PointerEvent,
   type FocusEvent,
 } from "react";
@@ -19,10 +18,10 @@ import type { PopperRef } from "musae/types/popper";
 import stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
 import { typography } from "../theme/theme";
-import { useClassNames } from "../../hooks/use-class-names";
-import { PopoverClassToken } from "../../utils/class-name";
+import { useClassNames } from "../../hooks/use-class-names.component";
 import { useIsOpen, useTriggerBy } from "./hooks";
 import { stringify } from "@aiszlab/relax/class-name";
+import { CLASS_NAMES } from "./context";
 
 const styles = {
   popover: stylex.create({
@@ -60,13 +59,14 @@ const Popover = forwardRef(
     const _ref = useRef<T>(null);
     const popperRef = useRef<PopperRef>(null);
     const [isOpen, { turnOn, turnOff, toggle, disappear }] = useIsOpen(popperRef);
-    const classNames = useClassNames("popover");
+    const classNames = useClassNames(CLASS_NAMES);
     const { isClickable, isContextMenuable, isFocusable, isHoverable } = useTriggerBy(_triggerBy);
 
     const onClick = useEvent((event: MouseEvent<T>) => {
       event.stopPropagation();
       toggle();
     });
+
     const onContextMenu = useEvent((event: MouseEvent<T>) => {
       event.preventDefault();
       toggle();
@@ -123,10 +123,11 @@ const Popover = forwardRef(
     });
 
     // valid elment, inject handlers
-    // else add `div` wrapper
+    // else add `div` wrapper, inject handlers to `div` wrapper
     const children = useMemo(() => {
+      const _child = isValidElement(_children) ? _children : <div>{_children}</div>;
+
       const props: ChildProps<T> = {
-        ref: _ref,
         ...(isHoverable && hoverProps),
         ...(isFocusable && focusProps),
         ...(isClickable && {
@@ -135,13 +136,12 @@ const Popover = forwardRef(
         ...(isContextMenuable && {
           onContextMenu,
         }),
+        ...(isRefable(_child) && {
+          ref: _ref,
+        }),
       };
 
-      if (isValidElement(_children)) {
-        return cloneElement<ChildProps<T>>(_children, props);
-      }
-
-      return <div {...(props as HTMLAttributes<HTMLDivElement>)}>{_children}</div>;
+      return cloneElement<ChildProps<T>>(_child, props);
     }, [
       _children,
       focusProps,
@@ -198,11 +198,7 @@ const Popover = forwardRef(
           offset={offset}
         >
           <div
-            className={stringify(
-              classNames[PopoverClassToken.Popover],
-              className,
-              styled.popover.className,
-            )}
+            className={stringify(classNames.popover, className, styled.popover.className)}
             style={{
               ...styled.popover.style,
               ...style,
@@ -210,7 +206,7 @@ const Popover = forwardRef(
           >
             {!!title && (
               <div
-                className={stringify(classNames[PopoverClassToken.Title], styled.title.className)}
+                className={stringify(classNames.title, styled.title.className)}
                 style={styled.title.style}
               >
                 {title}
@@ -218,7 +214,7 @@ const Popover = forwardRef(
             )}
 
             <div
-              className={stringify(classNames[PopoverClassToken.Content], styled.content.className)}
+              className={stringify(classNames.content, styled.content.className)}
               style={styled.content.style}
             >
               {content}
