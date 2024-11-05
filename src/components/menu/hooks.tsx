@@ -1,5 +1,5 @@
 import React, { type Key, type ReactNode, useCallback, useContext, useMemo } from "react";
-import Context from "./context";
+import { Context, type CLASS_NAMES } from "./context";
 import type { ContextValue, MenuProps, Mode, Size } from "musae/types/menu";
 import { toArray, useControlledState } from "@aiszlab/relax";
 import stylex from "@stylexjs/stylex";
@@ -98,11 +98,13 @@ export const useContextValue = ({
   onClick,
   setTrigger,
   size,
+  classNames,
   ...props
 }: {
   onClick: MenuProps["onClick"];
   setTrigger: ContextValue["collect"];
   size: Size;
+  classNames: typeof CLASS_NAMES;
 } & Pick<
   MenuProps,
   "defaultExpandedKeys" | "defaultSelectedKeys" | "expandedKeys" | "selectedKeys"
@@ -148,7 +150,7 @@ export const useContextValue = ({
     [setTrigger],
   );
 
-  return useMemo<ContextValue>(
+  return useMemo(
     () => ({
       selectedKeys,
       expandedKeys,
@@ -156,8 +158,9 @@ export const useContextValue = ({
       toggle,
       collect,
       size,
+      classNames,
     }),
-    [selectedKeys, expandedKeys, click, toggle, collect, size],
+    [selectedKeys, expandedKeys, click, toggle, collect, size, classNames],
   );
 };
 

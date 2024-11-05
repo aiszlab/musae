@@ -5,9 +5,9 @@ import stylex from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { useControlledState, useEvent } from "@aiszlab/relax";
 import type { TextareaProps } from "musae/types/textarea";
-import { useClassNames } from "../../hooks/use-class-names";
-import { TextareaClassToken } from "../../utils/class-name";
+import { useClassNames } from "../../hooks/use-class-names.component";
 import { stringify } from "@aiszlab/relax/class-name";
+import { CLASS_NAMES } from "./context";
 
 const styles = stylex.create({
   textarea: {
@@ -38,7 +38,7 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
     ref,
   ) => {
     const theme = useTheme();
-    const classNames = useClassNames("textarea");
+    const classNames = useClassNames(CLASS_NAMES);
 
     const [_value, _setValue] = useControlledState(value, { defaultState: "" });
 
@@ -64,18 +64,14 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
 
     return (
       <div
-        className={stringify(
-          classNames[TextareaClassToken.Textarea],
-          className,
-          styled.textarea.className,
-        )}
+        className={stringify(classNames.textarea, className, styled.textarea.className)}
         style={{
           ...styled.textarea.style,
           ...style,
         }}
       >
         <textarea
-          className={stringify(classNames[TextareaClassToken.Input], styled.input.className)}
+          className={stringify(classNames.input, styled.input.className)}
           style={styled.input.style}
           value={_value}
           onChange={_onChange}

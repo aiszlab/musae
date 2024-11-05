@@ -1,8 +1,6 @@
 import React, { type CSSProperties, forwardRef, type MouseEventHandler, useRef } from "react";
 import { MenuItemProps } from "musae/types/menu";
 import { useItemChildren, useMenuContext } from "./hooks";
-import { useClassNames } from "../../hooks/use-class-names";
-import { MenuClassToken } from "../../utils/class-name";
 import stylex from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
@@ -148,8 +146,14 @@ const styles = {
  */
 const Item = forwardRef<HTMLLIElement, MenuItemProps>(
   ({ level, label, prefix, suffix, value, className, mode, onClick, ...props }, ref) => {
-    const { selectedKeys, expandedKeys, click: _click, toggle, size } = useMenuContext();
-    const classNames = useClassNames("menu");
+    const {
+      selectedKeys,
+      expandedKeys,
+      click: _click,
+      toggle,
+      size,
+      classNames,
+    } = useMenuContext();
     const isSelected = selectedKeys.has(value);
     const isExpanded = expandedKeys.has(value);
     const theme = useTheme();
@@ -224,7 +228,7 @@ const Item = forwardRef<HTMLLIElement, MenuItemProps>(
       <li role="menuitem" ref={ref} {...styled.menuItem}>
         <div
           ref={itemRef}
-          className={stringify(classNames[MenuClassToken.Item], className, styled.item.className)}
+          className={stringify(classNames.item, className, styled.item.className)}
           style={styled.item.style}
           onClick={click}
           {...hoverProps}

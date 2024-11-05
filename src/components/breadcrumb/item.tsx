@@ -1,11 +1,10 @@
-import React, { type CSSProperties } from "react";
+import React, { useContext, type CSSProperties } from "react";
 import stylex from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import type { BreadcrumbItemProps } from "musae/types/breadcrumb";
-import { useClassNames } from "../../hooks/use-class-names";
-import { BreadcrumbClassToken } from "../../utils/class-name";
 import { stringify } from "@aiszlab/relax/class-name";
+import { Context } from "./context";
 
 const styles = {
   navigation: stylex.create({
@@ -44,7 +43,7 @@ const styles = {
 const Item = ({ href, label, max, separator }: BreadcrumbItemProps) => {
   const theme = useTheme();
   const isLink = !!href;
-  const classNames = useClassNames("breadcrumb");
+  const { classNames } = useContext(Context);
 
   const styled = {
     navigation: stylex.props(
@@ -60,17 +59,14 @@ const Item = ({ href, label, max, separator }: BreadcrumbItemProps) => {
 
   return (
     <>
-      <li className={classNames[BreadcrumbClassToken.Item]}>
+      <li className={classNames.item}>
         {isLink && <a href={href}>{label}</a>}
         {!isLink && label}
       </li>
       {!max && (
         <li
           role="separator"
-          className={stringify(
-            classNames[BreadcrumbClassToken.Separator],
-            styled.separator.className,
-          )}
+          className={stringify(classNames.separator, styled.separator.className)}
           style={styled.separator.style}
         >
           {separator}

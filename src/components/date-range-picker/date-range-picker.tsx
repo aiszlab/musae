@@ -4,12 +4,12 @@ import { useValue } from "./hooks";
 import type { DateRangePickerProps } from "musae/types/date-range-picker";
 import { Calendar } from "../calendar";
 import { SwapHoriz } from "musae/icons";
-import { useClassNames } from "../../hooks/use-class-names";
-import { DateRangePickerClassToken } from "../../utils/class-name";
+import { useClassNames } from "../../hooks/use-class-names.component";
 import stylex from "@stylexjs/stylex";
 import { stringify } from "@aiszlab/relax/class-name";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import type { PickerRef } from "musae/types/picker";
+import { CLASS_NAMES } from "./context";
 
 const styles = stylex.create({
   picker: {
@@ -33,7 +33,7 @@ const styles = stylex.create({
 const DateRangePicker = (props: DateRangePickerProps) => {
   const ref = useRef<PickerRef>(null);
   const { onChange, value } = useValue([props.value, props.onChange, ref]);
-  const classNames = useClassNames("date-range-picker");
+  const classNames = useClassNames(CLASS_NAMES);
 
   // picked date
   const picked = useMemo(() => {
@@ -45,26 +45,20 @@ const DateRangePicker = (props: DateRangePickerProps) => {
 
     return (
       <div
-        className={stringify(styled.picker.className, classNames[DateRangePickerClassToken.Picker])}
+        className={stringify(styled.picker.className, classNames.picker)}
         style={styled.picker.style}
       >
         <span
-          className={stringify(
-            styled.trigger.className,
-            classNames[DateRangePickerClassToken.Input],
-          )}
+          className={stringify(styled.trigger.className, classNames.input)}
           style={styled.trigger.style}
         >
           {from?.format("YYYY-MM-DD")}
         </span>
 
-        <SwapHoriz className={classNames[DateRangePickerClassToken.Separator]} />
+        <SwapHoriz className={classNames.separator} />
 
         <span
-          className={stringify(
-            styled.trigger.className,
-            classNames[DateRangePickerClassToken.Input],
-          )}
+          className={stringify(styled.trigger.className, classNames.input)}
           style={styled.trigger.style}
         >
           {to?.format("YYYY-MM-DD")}

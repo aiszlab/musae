@@ -1,8 +1,6 @@
 import React, { type CSSProperties, forwardRef } from "react";
 import type { MenuGroupProps } from "musae/types/menu";
 import { useAnimate } from "framer-motion";
-import { useClassNames } from "../../hooks/use-class-names";
-import { MenuClassToken } from "../../utils/class-name";
 import Item from "./item";
 import { useMenuContext } from "./hooks";
 import { useComposedRef, useUpdateEffect } from "@aiszlab/relax";
@@ -63,9 +61,8 @@ const styles = {
  */
 const Group = forwardRef<HTMLUListElement, MenuGroupProps>(
   ({ items, level = 0, expanded = true, className, style, mode }, ref) => {
-    const classNames = useClassNames("menu");
     const [scope, animate] = useAnimate<HTMLUListElement>();
-    const { collect, expandedKeys } = useMenuContext();
+    const { collect, expandedKeys, classNames } = useMenuContext();
     const groupRef = useComposedRef<HTMLUListElement>(ref, scope);
     const theme = useTheme();
     const isInline = mode === "inline";
@@ -95,10 +92,8 @@ const Group = forwardRef<HTMLUListElement, MenuGroupProps>(
       <ul
         ref={groupRef}
         className={stringify(
-          classNames[MenuClassToken.Group],
-          {
-            [classNames[MenuClassToken.GroupHidden]]: !expanded,
-          },
+          classNames.group,
+          !expand && classNames.hidden,
           className,
           styled.group.className,
         )}

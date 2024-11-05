@@ -6,9 +6,9 @@ import { useRepaint } from "./hooks";
 import { useGutters } from "../../hooks/use-gutters";
 import { useMounted, useUpdateEffect } from "@aiszlab/relax";
 import Sequential from "./sequential";
-import { useClassNames } from "../../hooks/use-class-names";
-import { WaterfallClassToken } from "../../utils/class-name";
+import { useClassNames } from "../../hooks/use-class-names.component";
 import { stringify } from "@aiszlab/relax/class-name";
+import { CLASS_NAMES } from "./context";
 
 const styles = stylex.create({
   waterfall: (props: { columnGap: number; rowGap: number }) => ({
@@ -45,7 +45,7 @@ const Waterfall = ({
 }: WaterfallProps) => {
   const [columnGap, rowGap] = useGutters({ gutter });
   const { collect, maxHeight, order, items, repaint } = useRepaint({ columns, rowGap });
-  const classNames = useClassNames("waterfall");
+  const classNames = useClassNames(CLASS_NAMES);
 
   const styled = stylex.props(
     styles.waterfall({ rowGap, columnGap }),
@@ -87,11 +87,7 @@ const Waterfall = ({
         columns={columns}
         children={children}
         rowGap={rowGap}
-        className={stringify(
-          classNames[WaterfallClassToken.Sequential],
-          className,
-          styled.className,
-        )}
+        className={stringify(classNames.sequential, className, styled.className)}
         style={{
           ...styled.style,
           ...style,
@@ -102,7 +98,7 @@ const Waterfall = ({
 
   return (
     <div
-      className={stringify(classNames[WaterfallClassToken.Waterfall], className, styled.className)}
+      className={stringify(classNames.waterfall, className, styled.className)}
       style={{
         ...styled.style,
         ...style,

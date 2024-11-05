@@ -1,8 +1,6 @@
 import React, { type Key, type ReactNode, useMemo } from "react";
 import stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
-import { useClassNames } from "../../hooks/use-class-names";
-import { TabsClassToken } from "../../utils/class-name";
 import { type PanelsProps } from "musae/types/tabs";
 import { stringify } from "@aiszlab/relax/class-name";
 import { isUndefined, isVoid } from "@aiszlab/relax";
@@ -29,8 +27,7 @@ const styles = {
 };
 
 const Panels = ({ forceRender, destroyable, activatedKeys }: PanelsProps) => {
-  const { items, activeKey } = useTabsContext();
-  const classNames = useClassNames("tabs");
+  const { items, activeKey, classNames } = useTabsContext();
   const styled = {
     panels: stylex.props(styles.panels.default),
     panel: {
@@ -57,7 +54,7 @@ const Panels = ({ forceRender, destroyable, activatedKeys }: PanelsProps) => {
 
   return (
     <div
-      className={stringify(classNames[TabsClassToken.Panels], styled.panels.className)}
+      className={stringify(classNames.panels, styled.panels.className)}
       style={styled.panels.style}
     >
       {panels.map(([key, children]) => {
@@ -68,11 +65,7 @@ const Panels = ({ forceRender, destroyable, activatedKeys }: PanelsProps) => {
         }
 
         return (
-          <div
-            key={key}
-            className={stringify(classNames[TabsClassToken.Panel], className)}
-            style={style}
-          >
+          <div key={key} className={stringify(classNames.panel, className)} style={style}>
             {children}
           </div>
         );

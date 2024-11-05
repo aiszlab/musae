@@ -1,12 +1,11 @@
 import React, { forwardRef, useImperativeHandle } from "react";
 import type { MenuProps, MenuRef } from "musae/types/menu";
-import Context from "./context";
+import { Context, CLASS_NAMES } from "./context";
 import { useScrollable } from "@aiszlab/relax";
 import { useContextValue, useScrollOrientation } from "./hooks";
 import Group from "./group";
 import stylex from "@stylexjs/stylex";
-import { useClassNames } from "../../hooks/use-class-names";
-import { MenuClassToken } from "../../utils/class-name";
+import { useClassNames } from "../../hooks/use-class-names.component";
 import { stringify } from "@aiszlab/relax/class-name";
 
 const styles = stylex.create({
@@ -39,7 +38,7 @@ const Menu = forwardRef<MenuRef, MenuProps>(
     },
     ref,
   ) => {
-    const classNames = useClassNames("menu");
+    const classNames = useClassNames(CLASS_NAMES);
     const { targetRef, scrollTo, to, setTrigger } = useScrollable<HTMLUListElement, HTMLLIElement>({
       orientation: useScrollOrientation(mode),
     });
@@ -53,6 +52,7 @@ const Menu = forwardRef<MenuRef, MenuProps>(
       onClick,
       setTrigger,
       size,
+      classNames,
     });
 
     useImperativeHandle(ref, () => ({
@@ -70,10 +70,8 @@ const Menu = forwardRef<MenuRef, MenuProps>(
           items={items}
           mode={mode}
           className={stringify(
-            classNames[MenuClassToken.Menu],
-            {
-              [classNames[MenuClassToken.MenuHorizontal]]: mode === "horizontal",
-            },
+            classNames.menu,
+            mode === "horizontal" && classNames.horizontal,
             className,
             styled.className,
           )}

@@ -3,11 +3,11 @@ import type { BreadcrumbProps } from "musae/types/breadcrumb";
 import stylex from "@stylexjs/stylex";
 import { typography } from "../theme/theme";
 import { useTheme } from "../theme";
-import { useClassNames } from "../../hooks/use-class-names";
-import { BreadcrumbClassToken } from "../../utils/class-name";
+import { useClassNames } from "../../hooks/use-class-names.component";
 import { stringify } from "@aiszlab/relax/class-name";
 import Item from "./item";
 import { spacing } from "../theme/tokens.stylex";
+import { CLASS_NAMES, Context } from "./context";
 
 const styles = stylex.create({
   breadcrumb: (props: { color: CSSProperties["color"] }) => ({
@@ -25,7 +25,7 @@ const styles = stylex.create({
 
 const Breadcrumb = ({ items = [], className, separator = "/", style }: BreadcrumbProps) => {
   const theme = useTheme();
-  const classNames = useClassNames("breadcrumb");
+  const classNames = useClassNames(CLASS_NAMES);
 
   // there is no need to render the breadcrumb when there is no items
   if (items.length === 0) {
@@ -43,31 +43,29 @@ const Breadcrumb = ({ items = [], className, separator = "/", style }: Breadcrum
   };
 
   return (
-    <nav
-      className={stringify(
-        classNames[BreadcrumbClassToken.Breadcrumb],
-        className,
-        styled.breadcrumb.className,
-      )}
-      style={{
-        ...styled.breadcrumb.style,
-        ...style,
-      }}
-    >
-      <ol {...styled.navigations}>
-        {items.map((item, index) => {
-          return (
-            <Item
-              key={index}
-              label={item.label}
-              max={index === items.length - 1}
-              href={item.href}
-              separator={separator}
-            />
-          );
-        })}
-      </ol>
-    </nav>
+    <Context.Provider value={{ classNames }}>
+      <nav
+        className={stringify(classNames.breadcrumb, className, styled.breadcrumb.className)}
+        style={{
+          ...styled.breadcrumb.style,
+          ...style,
+        }}
+      >
+        <ol {...styled.navigations}>
+          {items.map((item, index) => {
+            return (
+              <Item
+                key={index}
+                label={item.label}
+                max={index === items.length - 1}
+                href={item.href}
+                separator={separator}
+              />
+            );
+          })}
+        </ol>
+      </nav>
+    </Context.Provider>
   );
 };
 

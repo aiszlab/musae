@@ -1,8 +1,6 @@
 import React, { useEffect, useRef, type CSSProperties, type Key } from "react";
 import stylex from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";
-import { useClassNames } from "../../hooks/use-class-names";
-import { TabsClassToken } from "../../utils/class-name";
 import { type NavigationProps } from "musae/types/tabs";
 import Tab from "./tab";
 import { useAnimate } from "framer-motion";
@@ -70,8 +68,7 @@ const styles = {
 };
 
 const Navigation = ({ onChange }: NavigationProps) => {
-  const { activeKey, items } = useTabsContext();
-  const classNames = useClassNames("tabs");
+  const { activeKey, items, classNames } = useTabsContext();
   const [indicatorRef, animateIndicator] = useAnimate<HTMLDivElement>();
   const tabRefs = useRef<Map<Key, HTMLButtonElement | null>>(new Map());
   const theme = useTheme();
@@ -111,23 +108,22 @@ const Navigation = ({ onChange }: NavigationProps) => {
       left: tab?.offsetLeft,
       width: tab?.clientWidth,
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [activeKey]);
+  }, [activeKey, animateIndicator, indicatorRef]);
 
   return (
     <div
       role="tablist"
-      className={stringify(classNames[TabsClassToken.TabsNavigation], styled.navigation.className)}
+      className={stringify(classNames.navigation, styled.navigation.className)}
       style={styled.navigation.style}
     >
       <div
         ref={navigatorRef}
-        className={stringify(classNames[TabsClassToken.TabsNavigator], styled.navigator.className)}
+        className={stringify(classNames.navigator, styled.navigator.className)}
         style={styled.navigator.style}
       >
         <div
           ref={tabsRef}
-          className={stringify(classNames[TabsClassToken.TabList], styled.list.className)}
+          className={stringify(classNames.list, styled.list.className)}
           style={styled.list.style}
         >
           {items.map((item) => {
@@ -146,14 +142,14 @@ const Navigation = ({ onChange }: NavigationProps) => {
 
           <div
             ref={indicatorRef}
-            className={stringify(classNames[TabsClassToken.Indicator], styled.indicator.className)}
+            className={stringify(classNames.indicator, styled.indicator.className)}
             style={styled.indicator.style}
           />
         </div>
       </div>
 
-      {/* extra */}
-      <div></div>
+      {/* TODO: extra */}
+      {/* <div></div> */}
     </div>
   );
 };

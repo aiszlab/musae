@@ -1,8 +1,7 @@
 import React, { useMemo } from "react";
-import type { ContextValue, TabsProps } from "musae/types/tabs";
-import Context from "./context";
-import { useClassNames } from "../../hooks/use-class-names";
-import { TabsClassToken } from "../../utils/class-name";
+import type { TabsProps } from "musae/types/tabs";
+import { Context, CLASS_NAMES } from "./context";
+import { useClassNames } from "../../hooks/use-class-names.component";
 import { stringify } from "@aiszlab/relax/class-name";
 import { useTabs } from "./hooks";
 import Panels from "./panels";
@@ -23,22 +22,23 @@ const Tabs = ({
     defaultActiveKey,
   });
 
-  const classNames = useClassNames("tabs");
+  const classNames = useClassNames(CLASS_NAMES);
 
   // context value
-  const contextValue = useMemo<ContextValue>(() => {
+  const contextValue = useMemo(() => {
     return {
       activeKey,
       items,
+      classNames,
     };
-  }, [activeKey, items]);
+  }, [activeKey, items, classNames]);
 
   // if there is not any item, return null
   if (items.length === 0) return null;
 
   return (
     <Context.Provider value={contextValue}>
-      <div className={stringify(classNames[TabsClassToken.Tabs], className)} style={style}>
+      <div className={stringify(classNames.tabs, className)} style={style}>
         <Navigation onChange={changeActiveKey} />
         <Panels activatedKeys={activatedKeys} destroyable={destroyable} forceRender={forceRender} />
       </div>

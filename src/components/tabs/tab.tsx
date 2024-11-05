@@ -1,18 +1,27 @@
-import React, { forwardRef, useCallback, useContext } from "react";
+import React, { forwardRef, useCallback } from "react";
 import { Button } from "../button";
 import type { TabItemProps } from "musae/types/tabs";
-import Context from "./context";
-import { useClassNames } from "../../hooks/use-class-names";
-import { TabsClassToken } from "../../utils/class-name";
+import { useTabsContext } from "./hooks";
+import stylex from "@stylexjs/stylex";
+import { stringify } from "@aiszlab/relax/class-name";
+
+const styles = stylex.create({
+  button: {
+    ":not(#\\#)": {
+      borderRadius: "10% 10% 0 0",
+    },
+  },
+});
 
 const Tab = forwardRef<HTMLButtonElement, TabItemProps>(({ value, onClick, label }, ref) => {
-  const { activeKey } = useContext(Context) ?? {};
+  const { activeKey, classNames } = useTabsContext();
   const isActive = activeKey === value;
-  const classNames = useClassNames("tabs");
 
   const click = useCallback(() => {
     onClick(value);
   }, [onClick, value]);
+
+  const styled = stylex.props(styles.button);
 
   return (
     <Button
@@ -20,11 +29,9 @@ const Tab = forwardRef<HTMLButtonElement, TabItemProps>(({ value, onClick, label
       color={isActive ? "primary" : "secondary"}
       ref={ref}
       onClick={click}
-      className={classNames[TabsClassToken.Tab]}
+      className={stringify(classNames.tab, styled.className)}
       ripple={false}
-      style={{
-        borderRadius: "10% 10% 0 0",
-      }}
+      style={styled.style}
     >
       {label}
     </Button>

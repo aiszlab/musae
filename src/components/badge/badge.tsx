@@ -1,6 +1,5 @@
 import React, { type CSSProperties } from "react";
-import { useClassNames } from "../../hooks/use-class-names";
-import { BadgeClassToken } from "../../utils/class-name";
+import { useClassNames } from "../../hooks/use-class-names.component";
 import type { BadgeProps } from "musae/types/badge";
 import stylex from "@stylexjs/stylex";
 import { typography } from "../theme/theme";
@@ -8,6 +7,7 @@ import { sizes } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { isVoid } from "@aiszlab/relax";
 import { stringify } from "@aiszlab/relax/class-name";
+import { CLASS_NAMES } from "./context";
 
 const styles = {
   badge: stylex.create({
@@ -75,7 +75,7 @@ const Badge = ({
   invisible = false,
   placement = "top-right",
 }: BadgeProps) => {
-  const classNames = useClassNames("badge");
+  const classNames = useClassNames(CLASS_NAMES);
   const theme = useTheme();
   const isDot = isVoid(content);
 
@@ -95,7 +95,7 @@ const Badge = ({
 
   return (
     <span
-      className={stringify(classNames[BadgeClassToken.Badge], className, styled.badge.className)}
+      className={stringify(classNames.badge, className, styled.badge.className)}
       style={{
         ...styled.badge.style,
         ...style,
@@ -103,10 +103,7 @@ const Badge = ({
     >
       {children}
 
-      <span
-        className={stringify(classNames[BadgeClassToken.Tail], styled.tail.className)}
-        style={styled.tail.style}
-      >
+      <span className={stringify(classNames.tail, styled.tail.className)} style={styled.tail.style}>
         {content}
       </span>
     </span>
