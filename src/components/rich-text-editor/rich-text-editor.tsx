@@ -48,7 +48,7 @@ import { CLASS_NAMES, Context } from "./context";
 import { useClassNames } from "../../hooks/use-class-names.component";
 
 const styles = stylex.create({
-  shell: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
+  editor: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
     backgroundColor: props.backgroundColor,
     borderRadius: sizes.xxxxsmall,
   }),
@@ -172,8 +172,8 @@ const RichTextEditor = forwardRef<RichTextEditorRef, RichTextEditorProps>(
     const classNames = useClassNames(CLASS_NAMES);
 
     const styled = {
-      shell: stylex.props(
-        !disabled && styles.shell({ backgroundColor: theme.colors["surface-container"] }),
+      editor: stylex.props(
+        !disabled && styles.editor({ backgroundColor: theme.colors["surface-container"] }),
         styles.variables({
           primary: theme.colors.primary,
           onPrimary: theme.colors["on-primary"],
@@ -181,6 +181,7 @@ const RichTextEditor = forwardRef<RichTextEditorRef, RichTextEditorProps>(
           surfaceContainerHighest: theme.colors["surface-container-highest"],
           outline: theme.colors.outline,
         }),
+        typography.body.medium,
       ),
       textarea: stylex.props(!disabled && styles.textarea),
       h1: stylex.props(typography.display.large),
@@ -200,7 +201,7 @@ const RichTextEditor = forwardRef<RichTextEditorRef, RichTextEditorProps>(
         ordered: stylex.props(_styles.list.default.default, _styles.list.ordered.default),
         checkable: stylex.props(_styles.list.unordered.checkable),
         item: {
-          default: stylex.props(_styles.list.item.default, typography.body.medium),
+          default: stylex.props(_styles.list.item.default),
           unchecked: stylex.props(_styles.list.item.checkable),
           checked: stylex.props(_styles.list.item.checkable, _styles.list.item.checked),
         },
@@ -284,9 +285,9 @@ const RichTextEditor = forwardRef<RichTextEditorRef, RichTextEditorProps>(
       >
         <LexicalComposer initialConfig={initialConfig}>
           <div
-            className={stringify(classNames.default, className, styled.shell.className)}
+            className={stringify(classNames.default, className, styled.editor.className)}
             style={{
-              ...styled.shell.style,
+              ...styled.editor.style,
               ...style,
             }}
           >
