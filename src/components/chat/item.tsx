@@ -35,7 +35,7 @@ const styles = stylex.create({
     paddingBlock: spacing.xsmall,
     backgroundColor: props.backgroundColor,
     color: props.color,
-    borderRadius: sizes.xxxxsmall,
+    borderRadius: sizes.xxxxxsmall,
   }),
 
   receive: (props: { backgroundColor: string; color: string }) => ({
@@ -44,7 +44,7 @@ const styles = stylex.create({
     paddingBlock: spacing.xsmall,
     backgroundColor: props.backgroundColor,
     color: props.color,
-    borderRadius: sizes.xxxxsmall,
+    borderRadius: sizes.xxxxxsmall,
   }),
 
   receiving: {

@@ -19,7 +19,7 @@ const styles = {
       hoveredColor: CSSProperties["color"];
     }) => ({
       paddingInline: spacing.xxxsmall,
-      borderRadius: sizes.xxxxxsmall,
+      borderRadius: sizes.xxxxxxsmall,
       backgroundColor: {
         default: null,
         ":hover": props.hoveredBackgroundColor,

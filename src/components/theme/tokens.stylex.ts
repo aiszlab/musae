@@ -27,7 +27,7 @@ export const elevations = defineVars<Record<ElevationToken, string>>({
 export const spacing = defineVars({
   none: "0px",
   smallest: "1px",
-  xxxxsmall: "2px",
+  xxxxxsmall: "2px",
   xxxsmall: "4px",
   xxsmall: "6px",
   xsmall: "8px",
@@ -47,9 +47,10 @@ export const spacing = defineVars({
 export const sizes = defineVars({
   none: "0px",
   smallest: "1px",
-  xxxxxxsmall: "2px",
-  xxxxxsmall: "4px",
-  xxxxsmall: "8px",
+  xxxxxxxsmall: "2px",
+  xxxxxxsmall: "4px",
+  xxxxxsmall: "8px",
+  xxxxsmall: "10px",
   xxxsmall: "16px",
   xxsmall: "20px",
   xsmall: "24px",

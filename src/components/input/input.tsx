@@ -19,7 +19,7 @@ export const styles = stylex.create({
     display: "inline-flex",
     alignItems: "center",
     cursor: "text",
-    borderRadius: sizes.xxxxxsmall,
+    borderRadius: sizes.xxxxxxsmall,
     verticalAlign: "bottom",
     outline: sizes.none,
 
@@ -46,12 +46,12 @@ export const styles = stylex.create({
     willChange: "box-shadow, transform",
 
     ":focus-within": {
-      boxShadow: `0px 0px 0px ${sizes.xxxxxxsmall} ${props.focusedOutlineColor}`,
+      boxShadow: `0px 0px 0px ${sizes.xxxxxxxsmall} ${props.focusedOutlineColor}`,
     },
   }),
 
   invalid: (props: { outlineColor: CSSProperties["borderColor"] }) => ({
-    boxShadow: `0px 0px 0px ${sizes.xxxxxxsmall} ${props.outlineColor}`,
+    boxShadow: `0px 0px 0px ${sizes.xxxxxxxsmall} ${props.outlineColor}`,
 
     ":focus-within": {
       boxShadow: null,

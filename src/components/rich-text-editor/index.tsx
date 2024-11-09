@@ -12,7 +12,7 @@ const styles = stylex.create({
   loading: {
     height: sizes.xxxxxxlarge,
     width: sizes.full,
-    borderRadius: sizes.xxxxsmall,
+    borderRadius: sizes.xxxxxsmall,
   },
 });
 

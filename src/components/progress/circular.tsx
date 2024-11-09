@@ -12,9 +12,9 @@ const styles = stylex.create({
 
   shape: (props: { radius: number }) => ({
     r: props.radius,
-    cx: `calc(${props.radius}px + (${sizes.xxxxxsmall} / 2))`,
-    cy: `calc(${props.radius}px + (${sizes.xxxxxsmall} / 2))`,
-    strokeWidth: sizes.xxxxxsmall,
+    cx: `calc(${props.radius}px + (${sizes.xxxxxxsmall} / 2))`,
+    cy: `calc(${props.radius}px + (${sizes.xxxxxxsmall} / 2))`,
+    strokeWidth: sizes.xxxxxxsmall,
     strokeLinecap: "round",
   }),
 

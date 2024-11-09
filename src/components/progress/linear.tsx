@@ -11,7 +11,7 @@ import { useValue } from "./hooks";
 const styles = stylex.create({
   progress: (props: { color: CSSProperties["backgroundColor"] }) => ({
     width: sizes.full,
-    height: sizes.xxxxxsmall,
+    height: sizes.xxxxxxsmall,
     backgroundColor: props.color,
     borderRadius: sizes.infinity,
   }),

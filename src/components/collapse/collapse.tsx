@@ -14,7 +14,7 @@ const styles = stylex.create({
     borderWidth: sizes.smallest,
     borderStyle: "solid",
     borderColor: props.outlineColor,
-    borderRadius: sizes.xxxxsmall,
+    borderRadius: sizes.xxxxxsmall,
   }),
 });
 

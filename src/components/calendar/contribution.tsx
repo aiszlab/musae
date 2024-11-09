@@ -16,7 +16,6 @@ const FORMAT = "YYYY-MM-DD";
 const styles = {
   calendar: stylex.create({
     variables: (props: { color: CSSProperties["color"] }) => ({
-      "--cell-size": `calc(${sizes.xxsmall} / 2)`,
       "--primary": props.color,
     }),
 
@@ -33,10 +32,10 @@ const styles = {
 
   cell: stylex.create({
     default: {
-      minWidth: "var(--cell-size)",
-      minHeight: "var(--cell-size)",
-      padding: 0,
-      borderRadius: sizes.xxxxxxsmall,
+      minWidth: sizes.xxxxsmall,
+      minHeight: sizes.xxxxsmall,
+      padding: spacing.none,
+      borderRadius: sizes.xxxxxxxsmall,
       cursor: "pointer",
       backgroundColor: "var(--primary)",
     },
@@ -48,7 +47,7 @@ const styles = {
     },
 
     default: {
-      height: "var(--cell-size)",
+      height: sizes.xxxxsmall,
       overflow: "visible",
       display: "flex",
       alignItems: "center",
@@ -89,9 +88,9 @@ const styles = {
     },
 
     level: {
-      width: "var(--cell-size)",
-      height: "var(--cell-size)",
-      borderRadius: sizes.xxxxxxsmall,
+      width: sizes.xxxxsmall,
+      height: sizes.xxxxsmall,
+      borderRadius: sizes.xxxxxxxsmall,
     },
   }),
 };

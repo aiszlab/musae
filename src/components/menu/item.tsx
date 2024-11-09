@@ -56,7 +56,7 @@ const styles = {
           position: "absolute",
           insetInline: 0,
           insetBlockEnd: 0,
-          borderBottomWidth: sizes.xxxxxxsmall,
+          borderBottomWidth: sizes.xxxxxxxsmall,
           borderBottomStyle: "solid",
           willChange: "border-color",
           transitionProperty: "border-color",
@@ -93,14 +93,14 @@ const styles = {
       paddingBlock: spacing.xxxsmall,
       paddingRight: spacing.xsmall,
       paddingLeft: `calc(${spacing.xsmall} + ${props.level} * ${spacing.large})`,
-      borderRadius: sizes.xxxxxsmall,
+      borderRadius: sizes.xxxxxxsmall,
     }),
 
     medium: (props: { level: number }) => ({
       paddingBlock: spacing.xsmall,
       paddingRight: spacing.medium,
       paddingLeft: `calc(${spacing.medium} + ${props.level} * ${spacing.xlarge})`,
-      borderRadius: sizes.xxxxsmall,
+      borderRadius: sizes.xxxxxsmall,
     }),
 
     large: (props: { level: number }) => ({

@@ -31,7 +31,7 @@ const styles = {
       insetBlockStart: 0,
       insetInlineStart: 0,
       boxShadow: elevations.small,
-      borderRadius: sizes.xxxxsmall,
+      borderRadius: sizes.xxxxxsmall,
       pointerEvents: "auto",
 
       // animation

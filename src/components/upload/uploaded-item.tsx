@@ -24,7 +24,7 @@ const styles = {
       borderStyle: "solid",
       borderColor: props.borderColor,
       padding: spacing.medium,
-      borderRadius: sizes.xxxxxsmall,
+      borderRadius: sizes.xxxxxxsmall,
       height: sizes.xxxlarge,
     }),
   }),

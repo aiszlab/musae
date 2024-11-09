@@ -17,7 +17,7 @@ const styles = stylex.create({
     borderWidth: sizes.smallest,
     borderColor: props.outlineColor,
     borderStyle: "solid",
-    borderRadius: sizes.xxxxsmall,
+    borderRadius: sizes.xxxxxsmall,
   }),
 
   header: (props: { outlineColor: CSSProperties["borderColor"] }) => ({

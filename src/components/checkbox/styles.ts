@@ -71,8 +71,8 @@ const styles = {
 
         borderTopWidth: sizes.none,
         borderRightWidth: sizes.none,
-        borderBottomWidth: sizes.xxxxxxsmall,
-        borderLeftWidth: sizes.xxxxxxsmall,
+        borderBottomWidth: sizes.xxxxxxxsmall,
+        borderLeftWidth: sizes.xxxxxxxsmall,
         borderStyle: "solid",
         borderColor: "var(--on-primary)",
       },

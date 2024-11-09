@@ -9,7 +9,7 @@ import { Context } from "./context";
 const styles = stylex.create({
   spotlight: {
     backgroundColor: "#808080",
-    borderRadius: sizes.xxxxsmall,
+    borderRadius: sizes.xxxxxsmall,
     transitionProperty: "transform",
     transitionDuration: "0.2s",
     willChange: "transform",

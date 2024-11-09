@@ -29,7 +29,7 @@ const styles = stylex.create({
   tour: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
     backgroundColor: props.backgroundColor,
     boxShadow: elevations.small,
-    borderRadius: sizes.xxxxxsmall,
+    borderRadius: sizes.xxxxxxsmall,
     transition: "all 0.2s",
   }),
 

@@ -50,7 +50,7 @@ import { useClassNames } from "../../hooks/use-class-names.component";
 const styles = stylex.create({
   editor: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
     backgroundColor: props.backgroundColor,
-    borderRadius: sizes.xxxxsmall,
+    borderRadius: sizes.xxxxxsmall,
   }),
 
   variables: (props: {
@@ -104,7 +104,7 @@ const styles = stylex.create({
   checkbox: {
     position: "absolute",
     insetInlineStart: spacing.xxxsmall,
-    insetBlockStart: spacing.xxxxsmall,
+    insetBlockStart: spacing.xxxxxsmall,
 
     // if node is disabled, show disabled style
     ':not([aria-disabled="false"])': {
