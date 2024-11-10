@@ -86,7 +86,7 @@ const styles = stylex.create({
   checkbox: {
     position: "absolute",
     insetInlineStart: spacing.xxxsmall,
-    insetBlockStart: spacing.xxxxxsmall,
+    insetBlockStart: spacing.xxxxsmall,
 
     // if node is disabled, show disabled style
     ':not([aria-disabled="false"])': {
@@ -126,12 +126,12 @@ const _styles = {
       default: {
         outline: "none",
         position: "relative",
-        marginInline: spacing.xlarge,
+        marginInline: spacing.xxlarge,
       },
 
       checkable: {
         marginInline: spacing.none,
-        paddingInline: spacing.xlarge,
+        paddingInline: spacing.xxlarge,
       },
 
       checked: {
@@ -154,7 +154,7 @@ const _styles = {
     inline: {
       backgroundColor: "var(--surface-container-highest)",
       borderRadius: spacing.xxxsmall,
-      paddingBlock: spacing.xxxxxsmall,
+      paddingBlock: spacing.xxxxsmall,
       paddingInline: spacing.xxxsmall,
       marginInline: spacing.xxxsmall,
     },
@@ -164,32 +164,32 @@ const _styles = {
     default: { fontWeight: 700 },
 
     h1: {
-      marginBlockStart: spacing.xsmall,
-      marginBlockEnd: spacing.xxxsmall,
+      marginBlockStart: spacing.xxlarge,
+      marginBlockEnd: spacing.small,
     },
 
     h2: {
       marginBlockStart: spacing.xlarge,
-      marginBlockEnd: spacing.xxxsmall,
+      marginBlockEnd: spacing.xxsmall,
     },
 
     h3: {
       marginBlockStart: spacing.large,
-      marginBlockEnd: spacing.xxxsmall,
+      marginBlockEnd: spacing.xxsmall,
     },
 
     h4: {
       marginBlockStart: spacing.small,
-      marginBlockEnd: spacing.xxxsmall,
+      marginBlockEnd: spacing.xxsmall,
     },
 
     h5: {
       marginBlockStart: spacing.xsmall,
-      marginBlockEnd: spacing.xxxsmall,
+      marginBlockEnd: spacing.xxsmall,
     },
 
     h6: {
-      marginBlockEnd: spacing.xxxsmall,
+      marginBlockEnd: spacing.xxsmall,
     },
   }),
 };
@@ -218,16 +218,20 @@ const RichTextEditor = forwardRef<RichTextEditorRef, RichTextEditorProps>(
         }),
         typography.body.medium,
       ),
+
       textarea: stylex.props(!disabled && styles.textarea),
-      h1: stylex.props(typography.headline.large),
-      h2: stylex.props(typography.headline.medium),
-      h3: stylex.props(typography.headline.small),
-      h4: stylex.props(typography.title.large),
+
+      h1: stylex.props(typography.headline.large, _styles.heading.default, _styles.heading.h1),
+      h2: stylex.props(typography.headline.medium, _styles.heading.default, _styles.heading.h2),
+      h3: stylex.props(typography.headline.small, _styles.heading.default, _styles.heading.h3),
+      h4: stylex.props(typography.title.large, _styles.heading.default, _styles.heading.h4),
       h5: stylex.props(typography.title.medium, _styles.heading.default, _styles.heading.h5),
       h6: stylex.props(typography.title.medium, _styles.heading.default, _styles.heading.h6),
-      code: stylex.props(_styles.code.block),
-      inlineCode: stylex.props(_styles.code.inline, typography.label.medium),
-      link: stylex.props(styles.link, typography.label.medium),
+
+      code: stylex.props(typography.label.medium, _styles.code.block),
+      inlineCode: stylex.props(typography.label.medium, _styles.code.inline),
+
+      link: stylex.props(styles.link),
 
       checkbox: stylex.props(checkboxStyles.input.default, styles.checkbox),
 

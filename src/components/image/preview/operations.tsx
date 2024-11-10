@@ -17,8 +17,8 @@ const styles = stylex.create({
 
   closer: {
     ":not(#\\#)": {
-      top: spacing.xxlarge,
-      right: spacing.xxlarge,
+      top: spacing.xxxlarge,
+      right: spacing.xxxlarge,
       position: "fixed",
     },
   },
@@ -39,7 +39,7 @@ const styles = stylex.create({
     position: "fixed",
     left: 0,
     right: 0,
-    bottom: spacing.xxlarge,
+    bottom: spacing.xxxlarge,
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -53,7 +53,7 @@ const styles = stylex.create({
     alignItems: "center",
     backgroundColor: props.backgroundColor,
     borderRadius: sizes.infinity,
-    paddingInline: spacing.xlarge,
+    paddingInline: spacing.xxlarge,
     paddingBlock: spacing.xxxsmall,
   }),
 });

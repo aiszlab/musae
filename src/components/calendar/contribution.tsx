@@ -74,7 +74,7 @@ const styles = {
   legend: stylex.create({
     default: {
       paddingBlock: spacing.xxxsmall,
-      paddingInline: spacing.xxlarge,
+      paddingInline: spacing.xxxlarge,
       display: "flex",
       justifyContent: "flex-end",
     },

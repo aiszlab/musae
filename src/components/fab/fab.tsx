@@ -38,8 +38,8 @@ const styles = stylex.create({
     bottom: 20,
     pointerEvents: "auto",
     transform: `translateX(${props.movementX}px) translateY(${props.movementY}px)`,
-    insetInlineEnd: props.isDragged ? void 0 : spacing.xlarge,
-    insetBlockEnd: props.isDragged ? void 0 : spacing.xlarge,
+    insetInlineEnd: props.isDragged ? void 0 : spacing.xxlarge,
+    insetBlockEnd: props.isDragged ? void 0 : spacing.xxlarge,
     insetInlineStart: props.isDragged ? props.insetInlineStart : void 0,
     insetBlockStart: props.isDragged ? props.insetBlockStart : void 0,
 

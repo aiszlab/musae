@@ -14,7 +14,7 @@ import { CLASS_NAMES } from "./context";
 
 const styles = stylex.create({
   header: {
-    paddingInline: spacing.xlarge,
+    paddingInline: spacing.xxlarge,
     paddingBlockStart: spacing.large,
   },
 
@@ -48,8 +48,8 @@ const styles = stylex.create({
     flexDirection: "column",
     gap: spacing.large,
     minWidth: 480,
-    maxHeight: `calc(100% - ${spacing.xxlarge} * 2)`,
-    margin: spacing.xxlarge,
+    maxHeight: `calc(100% - ${spacing.xxxlarge} * 2)`,
+    margin: spacing.xxxlarge,
     borderRadius: 8,
     pointerEvents: "auto",
     backgroundColor: props.backgroundColor,
@@ -58,11 +58,11 @@ const styles = stylex.create({
     position: "relative",
   }),
 
-  body: { paddingInline: spacing.xlarge, flex: 1, wordBreak: "break-word", overflow: "auto" },
+  body: { paddingInline: spacing.xxlarge, flex: 1, wordBreak: "break-word", overflow: "auto" },
 
   footer: {
-    paddingInline: spacing.xlarge,
-    paddingBlockEnd: spacing.xlarge,
+    paddingInline: spacing.xxlarge,
+    paddingBlockEnd: spacing.xxlarge,
     display: "flex",
     flexDirection: "column",
     alignItems: "flex-end",

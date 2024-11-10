@@ -76,7 +76,7 @@ const styles = {
     icon: {
       height: sizes.xsmall,
       width: sizes.xsmall,
-      insetInlineStart: spacing.xxxxxsmall,
+      insetInlineStart: spacing.xxxxsmall,
     },
 
     disabled: {
@@ -93,7 +93,7 @@ const styles = {
       width: sizes.xsmall,
       opacity: null,
       // `switch width` - `slider width` - `slider padding width`
-      insetInlineStart: `calc(100% - ${sizes.xsmall} - ${spacing.xxxxxsmall})`,
+      insetInlineStart: `calc(100% - ${sizes.xsmall} - ${spacing.xxxxsmall})`,
     }),
   }),
 
@@ -110,12 +110,12 @@ const styles = {
       transitionDuration: "0.2s",
 
       paddingInlineStart: `calc(${sizes.xsmall} + ${sizes.xxxxxxxsmall} * 4)`,
-      paddingInlineEnd: `calc(${spacing.xxlarge} / 2 - ${sizes.xxxxxxxsmall})`,
+      paddingInlineEnd: `calc(${spacing.xxxlarge} / 2 - ${sizes.xxxxxxxsmall})`,
     },
 
     // if checked, change padding styles, for slider has been right
     checked: {
-      paddingInlineStart: `calc(${spacing.xxlarge} / 2 - ${sizes.xxxxxxxsmall})`,
+      paddingInlineStart: `calc(${spacing.xxxlarge} / 2 - ${sizes.xxxxxxxsmall})`,
       paddingInlineEnd: `calc(${sizes.xsmall} + ${sizes.xxxxxxxsmall} * 4)`,
     },
 

@@ -45,7 +45,7 @@ const styles = stylex.create({
 
   medium: {
     paddingBlock: spacing.small,
-    paddingInline: spacing.xlarge,
+    paddingInline: spacing.xxlarge,
   },
 
   rounded: {

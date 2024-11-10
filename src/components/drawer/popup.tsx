@@ -87,7 +87,7 @@ const styles = stylex.create({
 
   body: {
     flex: 1,
-    padding: spacing.xlarge,
+    padding: spacing.xxlarge,
   },
 
   actions: {

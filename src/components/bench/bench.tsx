@@ -24,8 +24,8 @@ const styles = {
       paddingBlockEnd: spacing.xsmall,
 
       position: "sticky",
-      height: `calc(100vh - ${sizes.xxxlarge} - ${spacing.xxlarge})`,
-      top: `calc(${sizes.xxxlarge} + ${spacing.xxlarge})`,
+      height: `calc(100vh - ${sizes.xxxlarge} - ${spacing.xxxlarge})`,
+      top: `calc(${sizes.xxxlarge} + ${spacing.xxxlarge})`,
 
       overflowY: {
         default: "hidden",

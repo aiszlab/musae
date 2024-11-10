@@ -13,7 +13,7 @@ const styles = stylex.create({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    marginBlock: spacing.xxlarge,
+    marginBlock: spacing.xxxlarge,
     marginInline: spacing.xsmall,
   },
 

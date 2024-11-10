@@ -99,14 +99,14 @@ const styles = {
     medium: (props: { level: number }) => ({
       paddingBlock: spacing.xsmall,
       paddingRight: spacing.medium,
-      paddingLeft: `calc(${spacing.medium} + ${props.level} * ${spacing.xlarge})`,
+      paddingLeft: `calc(${spacing.medium} + ${props.level} * ${spacing.xxlarge})`,
       borderRadius: sizes.xxxxxsmall,
     }),
 
     large: (props: { level: number }) => ({
       paddingBlock: spacing.medium,
       paddingRight: spacing.large,
-      paddingLeft: `calc(${spacing.large} + ${props.level} * ${spacing.xxlarge})`,
+      paddingLeft: `calc(${spacing.large} + ${props.level} * ${spacing.xxxlarge})`,
       borderRadius: sizes.xxxsmall,
     }),
   }),

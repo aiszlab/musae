@@ -14,7 +14,7 @@ const { Row, Col } = Grid;
 
 const styles = stylex.create({
   space: {
-    marginBlockEnd: spacing.xlarge,
+    marginBlockEnd: spacing.xxlarge,
   },
 
   required: (props: { color: CSSProperties["color"] }) => ({
