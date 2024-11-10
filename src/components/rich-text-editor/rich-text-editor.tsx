@@ -74,24 +74,6 @@ const styles = stylex.create({
     minHeight: sizes.xxxxxxlarge,
   },
 
-  code: {
-    backgroundColor: "var(--surface-container-highest)",
-    display: "block",
-    overflow: "auto",
-    borderRadius: spacing.xxsmall,
-    paddingBlock: spacing.xsmall,
-    paddingInline: spacing.xsmall,
-    marginBlock: spacing.xxsmall,
-  },
-
-  inlineCode: {
-    backgroundColor: "var(--surface-container-highest)",
-    borderRadius: spacing.xxxsmall,
-    paddingBlock: spacing.xxxsmall,
-    paddingInline: spacing.xxxsmall,
-    marginInline: spacing.xxxsmall,
-  },
-
   link: {
     color: "var(--primary)",
     cursor: "pointer",
@@ -157,6 +139,59 @@ const _styles = {
       },
     }),
   },
+
+  code: stylex.create({
+    block: {
+      backgroundColor: "var(--surface-container-highest)",
+      display: "block",
+      overflow: "auto",
+      borderRadius: spacing.xxsmall,
+      paddingBlock: spacing.xsmall,
+      paddingInline: spacing.xsmall,
+      marginBlock: spacing.xxsmall,
+    },
+
+    inline: {
+      backgroundColor: "var(--surface-container-highest)",
+      borderRadius: spacing.xxxsmall,
+      paddingBlock: spacing.xxxxxsmall,
+      paddingInline: spacing.xxxsmall,
+      marginInline: spacing.xxxsmall,
+    },
+  }),
+
+  heading: stylex.create({
+    default: { fontWeight: 700 },
+
+    h1: {
+      marginBlockStart: spacing.xsmall,
+      marginBlockEnd: spacing.xxxsmall,
+    },
+
+    h2: {
+      marginBlockStart: spacing.xlarge,
+      marginBlockEnd: spacing.xxxsmall,
+    },
+
+    h3: {
+      marginBlockStart: spacing.large,
+      marginBlockEnd: spacing.xxxsmall,
+    },
+
+    h4: {
+      marginBlockStart: spacing.small,
+      marginBlockEnd: spacing.xxxsmall,
+    },
+
+    h5: {
+      marginBlockStart: spacing.xsmall,
+      marginBlockEnd: spacing.xxxsmall,
+    },
+
+    h6: {
+      marginBlockEnd: spacing.xxxsmall,
+    },
+  }),
 };
 
 const RichTextEditor = forwardRef<RichTextEditorRef, RichTextEditorProps>(
@@ -184,15 +219,15 @@ const RichTextEditor = forwardRef<RichTextEditorRef, RichTextEditorProps>(
         typography.body.medium,
       ),
       textarea: stylex.props(!disabled && styles.textarea),
-      h1: stylex.props(typography.display.large),
-      h2: stylex.props(typography.display.medium),
-      h3: stylex.props(typography.display.small),
-      h4: stylex.props(typography.headline.large),
-      h5: stylex.props(typography.headline.medium),
-      h6: stylex.props(typography.headline.small),
-      code: stylex.props(styles.code),
-      inlineCode: stylex.props(styles.inlineCode),
-      link: stylex.props(styles.link),
+      h1: stylex.props(typography.headline.large),
+      h2: stylex.props(typography.headline.medium),
+      h3: stylex.props(typography.headline.small),
+      h4: stylex.props(typography.title.large),
+      h5: stylex.props(typography.title.medium, _styles.heading.default, _styles.heading.h5),
+      h6: stylex.props(typography.title.medium, _styles.heading.default, _styles.heading.h6),
+      code: stylex.props(_styles.code.block),
+      inlineCode: stylex.props(_styles.code.inline, typography.label.medium),
+      link: stylex.props(styles.link, typography.label.medium),
 
       checkbox: stylex.props(checkboxStyles.input.default, styles.checkbox),
 
