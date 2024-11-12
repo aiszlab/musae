@@ -33,11 +33,6 @@ class CheckableListItemNode extends ListItemNode {
     return this.#disabled;
   }
 
-  splice(start: number, deleteCount: number, nodesToInsert: Array<LexicalNode>): this {
-    debugger;
-    return super.splice(start, deleteCount, nodesToInsert);
-  }
-
   toggleDisabled() {
     this.#disabled = !this.#disabled;
     this.#checkboxElement?.setAttribute("aria-disabled", String(this.#disabled));
