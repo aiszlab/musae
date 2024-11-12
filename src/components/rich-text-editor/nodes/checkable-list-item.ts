@@ -1,10 +1,11 @@
 import { $isListNode, ListItemNode, SerializedListItemNode } from "@lexical/list";
-import { type EditorConfig, type LexicalNodeReplacement } from "lexical";
+import { LexicalNode, type EditorConfig, type LexicalNodeReplacement } from "lexical";
 import type { EditorThemeClasses } from "musae/types/rich-text-editor";
 import { Partialable } from "@aiszlab/relax/types";
 
 class CheckableListItemNode extends ListItemNode {
   #disabled: boolean;
+  #checkboxElement: HTMLInputElement | null = null;
 
   static getType(): string {
     return "checkable-list-item";
@@ -32,12 +33,14 @@ class CheckableListItemNode extends ListItemNode {
     return this.#disabled;
   }
 
-  toggleDisabled(dom: HTMLElement) {
-    this.#disabled = !this.#disabled;
+  splice(start: number, deleteCount: number, nodesToInsert: Array<LexicalNode>): this {
+    debugger;
+    return super.splice(start, deleteCount, nodesToInsert);
+  }
 
-    const checkbox = dom.firstElementChild;
-    if (!checkbox) return;
-    checkbox.setAttribute("aria-disabled", String(this.#disabled));
+  toggleDisabled() {
+    this.#disabled = !this.#disabled;
+    this.#checkboxElement?.setAttribute("aria-disabled", String(this.#disabled));
   }
 
   exportJSON(): SerializedListItemNode {
@@ -53,33 +56,27 @@ class CheckableListItemNode extends ListItemNode {
   createDOM(config: EditorConfig): HTMLElement {
     const listItem = super.createDOM(config);
 
-    const parent = this.getParent();
-    const isCheckList = $isListNode(parent) && parent.getListType() === "check";
-    if (!isCheckList) return listItem;
+    if (!this.#isCheckList) return listItem;
 
+    this.#checkboxElement = document.createElement("input");
     const isChecked = this.getChecked();
-    const checkbox = document.createElement("input");
-
-    checkbox.setAttribute("type", "checkbox");
-    checkbox.setAttribute("aria-disabled", String(this.#disabled));
-    checkbox.setAttribute("aria-checked", String(isChecked));
-    checkbox.className = (config.theme as EditorThemeClasses).checkbox ?? "";
-
-    listItem.appendChild(checkbox);
+    this.#checkboxElement.setAttribute("type", "checkbox");
+    this.#checkboxElement.setAttribute("aria-disabled", String(this.#disabled));
+    this.#checkboxElement.setAttribute("aria-checked", String(isChecked));
+    this.#checkboxElement.className = (config.theme as EditorThemeClasses).checkbox ?? "";
+    listItem.appendChild(this.#checkboxElement);
     return listItem;
   }
 
   updateDOM(prevNode: CheckableListItemNode, dom: HTMLElement, config: EditorConfig): boolean {
-    super.updateDOM(prevNode, dom, config);
-    const checkbox = dom.firstElementChild;
+    const isReplace = super.updateDOM(prevNode, dom, config);
+    this.#checkboxElement?.setAttribute("aria-checked", String(this.getChecked() ?? false));
+    return isReplace;
+  }
 
-    if (checkbox) {
-      checkbox.setAttribute("aria-disabled", String(this.#disabled));
-      checkbox.setAttribute("aria-checked", String(this.getChecked() ?? false));
-      checkbox.className = (config.theme as EditorThemeClasses).checkbox ?? "";
-    }
-
-    return true;
+  get #isCheckList() {
+    const parent = this.getParent();
+    return $isListNode(parent) && parent.getListType() === "check";
   }
 }
 

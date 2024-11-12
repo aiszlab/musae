@@ -22,7 +22,7 @@ const EditablePlugin = ({ isEditable }: Props) => {
       editor._keyToDOMMap.entries().forEach(([key, dom]) => {
         const node = $getNodeByKey(key);
         if (!(node instanceof CheckableListItemNode)) return;
-        node.toggleDisabled(dom);
+        node.toggleDisabled();
       });
     });
   }, [isEditable, editor]);

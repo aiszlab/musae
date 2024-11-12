@@ -35,8 +35,8 @@ const styles = {
       pointerEvents: "auto",
 
       // animation
-      willChange: "translate, opacity",
-      transitionProperty: "translate, opacity",
+      willChange: "opacity",
+      transitionProperty: "opacity",
       transitionDuration: "0.1s",
 
       // default hidden

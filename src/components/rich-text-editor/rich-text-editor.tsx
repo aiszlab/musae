@@ -292,9 +292,8 @@ const RichTextEditor = forwardRef<RichTextEditorRef, RichTextEditorProps>(
         ],
         theme,
         editable: !disabled,
-        editorState:
-          defaultValue &&
-          ((editor) => {
+        ...(defaultValue && {
+          editorState: (editor) => {
             // different value usage, use different serialization
             switch (_use) {
               case "markdown":
@@ -304,7 +303,8 @@ const RichTextEditor = forwardRef<RichTextEditorRef, RichTextEditorProps>(
                 editor.setEditorState(editor.parseEditorState(defaultValue));
                 break;
             }
-          }),
+          },
+        }),
       };
     });
 
