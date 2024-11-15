@@ -34,8 +34,6 @@ const styles = stylex.create({
     isDragged: boolean;
   }) => ({
     cursor: "pointer",
-    right: 20,
-    bottom: 20,
     pointerEvents: "auto",
     transform: `translateX(${props.movementX}px) translateY(${props.movementY}px)`,
     insetInlineEnd: props.isDragged ? void 0 : spacing.xxlarge,
