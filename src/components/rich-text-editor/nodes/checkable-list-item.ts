@@ -1,5 +1,5 @@
 import { $isListNode, ListItemNode, SerializedListItemNode } from "@lexical/list";
-import { LexicalNode, type EditorConfig, type LexicalNodeReplacement } from "lexical";
+import { type EditorConfig, type LexicalNodeReplacement } from "lexical";
 import type { EditorThemeClasses } from "musae/types/rich-text-editor";
 import { Partialable } from "@aiszlab/relax/types";
 
@@ -34,8 +34,9 @@ class CheckableListItemNode extends ListItemNode {
   }
 
   toggleDisabled() {
-    this.#disabled = !this.#disabled;
-    this.#checkboxElement?.setAttribute("aria-disabled", String(this.#disabled));
+    const _node = this.getWritable();
+    _node.#disabled = !_node.#disabled;
+    _node.#checkboxElement?.setAttribute("aria-disabled", String(this.#disabled));
   }
 
   exportJSON(): SerializedListItemNode {
@@ -66,7 +67,9 @@ class CheckableListItemNode extends ListItemNode {
   updateDOM(prevNode: CheckableListItemNode, dom: HTMLElement, config: EditorConfig): boolean {
     const isReplace = super.updateDOM(prevNode, dom, config);
     this.#checkboxElement?.setAttribute("aria-checked", String(this.getChecked() ?? false));
-    return isReplace;
+
+    // if user clear all text, just replace new item node
+    return isReplace || this.getTextContentSize() === 0;
   }
 
   get #isCheckList() {
