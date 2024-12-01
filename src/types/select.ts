@@ -81,6 +81,21 @@ export type SelectProps<T extends ValueOrValues = ValueOrValues> = ComponentProp
      * @default false
      */
     invalid?: boolean;
+
+    // TODO: docs
+    /**
+     * @description
+     * placeholder
+     * @default void 0
+     */
+    placeholder?: string;
+
+    /**
+     * @description
+     * clear handler
+     * @default void 0
+     */
+    onClear?: () => void;
   };
 
 /**
@@ -103,7 +118,7 @@ export type Filter = (option: Option) => boolean;
  */
 export type SelectorProps = Pick<
   RequiredIn<SelectProps, "searchable" | "onSearch">,
-  "searchable" | "mode" | "onSearch" | "onBlur"
+  "searchable" | "mode" | "onSearch" | "onBlur" | "placeholder"
 > & {
   /**
    * @description

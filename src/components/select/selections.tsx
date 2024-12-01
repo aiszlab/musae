@@ -20,7 +20,7 @@ const Selections = ({ onSelect, selectedKeys, ...props }: SelectionsProps) => {
   const items = useMemorable(
     () => props.items,
     [isOpen, props.items] satisfies [boolean, SelectionsProps["items"]],
-    (prev, next) => next[0] && next[1] !== prev[1],
+    ({ 1: prevItems }, { 0: isNextOpen, 1: nextItems }) => isNextOpen && nextItems !== prevItems,
   );
 
   if (items.length === 0) {

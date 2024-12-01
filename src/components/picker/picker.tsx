@@ -17,6 +17,7 @@ import { typography } from "../theme/theme";
 import { styles as inputStyles } from "../input";
 import { CLASS_NAMES, Context } from "./context";
 import { stringify } from "@aiszlab/relax/class-name";
+import { Close } from "../icon/icons";
 
 const styles = stylex.create({
   pickable: (props: { minWidth: CSSProperties["minWidth"] }) => ({
@@ -40,6 +41,7 @@ const Picker = forwardRef<PickerRef, PickerProps>(
       onPopperExite,
       onBlur: _onBlur,
       invalid = false,
+      onClear,
     },
     ref,
   ) => {
@@ -80,6 +82,11 @@ const Picker = forwardRef<PickerRef, PickerProps>(
 
     const onDropdownClick = useCallback((e: MouseEvent<HTMLDivElement>) => e.preventDefault(), []);
 
+    const clear = useEvent((event: MouseEvent) => {
+      event.stopPropagation();
+      onClear?.();
+    });
+
     const styled = {
       picker: stylex.props(
         typography.body.medium,
@@ -118,6 +125,8 @@ const Picker = forwardRef<PickerRef, PickerProps>(
           {...focusProps}
         >
           {children}
+
+          {!!onClear && <Close onClick={clear} />}
         </span>
 
         <Popper

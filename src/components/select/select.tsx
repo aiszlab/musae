@@ -35,6 +35,8 @@ const Select = <T extends ValueOrValues = ValueOrValues>({
   onChange: _onChange,
   onBlur,
   invalid = false,
+  placeholder,
+  onClear,
 }: SelectProps<T>) => {
   const ref = useRef<PickerRef>(null);
   const selectorRef = useRef<SelectorRef>(null);
@@ -47,7 +49,11 @@ const Select = <T extends ValueOrValues = ValueOrValues>({
     onSearch,
   });
 
-  const { readableValues, onChange } = useValue({
+  const {
+    readableValues,
+    onChange,
+    onClear: _onClear,
+  } = useValue({
     value,
     readableOptions,
     mode,
@@ -55,6 +61,7 @@ const Select = <T extends ValueOrValues = ValueOrValues>({
     reset,
     onChange: _onChange,
     isComplex: complex,
+    onClear,
   });
 
   const click = () => {
@@ -82,6 +89,7 @@ const Select = <T extends ValueOrValues = ValueOrValues>({
       pickableStyle={styled.pickable.style}
       onPopperExite={reset}
       invalid={invalid}
+      onClear={_onClear}
       {...(!searchable && {
         onBlur,
       })}
@@ -95,6 +103,7 @@ const Select = <T extends ValueOrValues = ValueOrValues>({
         onSearch={search}
         onChange={onChange}
         {...(searchable && { onBlur })}
+        placeholder={placeholder}
       />
     </Picker>
   );

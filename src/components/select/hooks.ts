@@ -1,8 +1,9 @@
-import { type Key, useMemo, useState } from "react";
+import { type Key, useCallback, useMemo, useState } from "react";
 import type { Filter, Mode, ReadableOptions, SelectProps, ValueOrValues } from "musae/types/select";
 import { isFunction, isNull, useControlledState, useEvent } from "@aiszlab/relax";
-import { readOptions, toKey, toMenuItems, toValues } from "./utils";
+import { readOptions, toKey, toMenuItem, toValues } from "./utils";
 import type { Option } from "musae/types/option";
+import { Partialable } from "@aiszlab/relax/types";
 
 /**
  * @description
@@ -14,15 +15,17 @@ export const useValue = <T extends ValueOrValues = ValueOrValues>({
   isComplex,
   readableOptions,
   onChange: _onChange,
+  onClear: _onClear,
   ...props
 }: {
   value: ValueOrValues | undefined;
   readableOptions: ReadableOptions;
   mode: Mode | undefined;
+  isComplex: boolean;
   close: () => void;
   reset: () => void;
   onChange?: (value: T) => void;
-  isComplex: boolean;
+  onClear?: () => void;
 }) => {
   const [value, setValue] = useControlledState(props.value);
 
@@ -54,8 +57,8 @@ export const useValue = <T extends ValueOrValues = ValueOrValues>({
       // same value, do not toggle again
       if (readableValues.has(key)) return;
 
-      _onChange?.((isComplex ? _value : key) as T);
       setValue(_value);
+      _onChange?.((isComplex ? _value : key) as T);
       return;
     }
 
@@ -75,14 +78,22 @@ export const useValue = <T extends ValueOrValues = ValueOrValues>({
         : Array.from(next.keys())
     ) as T;
 
-    _onChange?.(_changedValues);
     setValue(_changedValues);
+    _onChange?.(_changedValues);
+  });
+
+  // clear handler
+  const onClear = useEvent(() => {
+    const _emptyValue = (isComplex ? [] : void 0) as Partialable<T>;
+    setValue(_emptyValue);
+    _onClear?.();
   });
 
   return {
     value,
     readableValues,
     onChange,
+    onClear,
   };
 };
 
@@ -120,7 +131,7 @@ export const useOptions = ({
   const reset = useEvent(() => setSearched(""));
 
   const [menuItems, readableOptions] = useMemo(
-    () => readOptions(options, toMenuItems, filter ?? (() => true)),
+    () => readOptions(options, toMenuItem, filter ?? (() => true)),
     [options, filter],
   );
 

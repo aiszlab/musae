@@ -78,9 +78,9 @@ export const readOptions = (options: Option[], toMenuItem: ToMenuItem, filter: F
  * @description
  * convert select option into menu item
  */
-export const toMenuItems: ToMenuItem = (option) => {
+export const toMenuItem: ToMenuItem = (option) => {
   return {
     key: option.value,
-    label: option.label,
+    label: option.label ?? option.value.toString(),
   };
 };

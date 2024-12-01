@@ -69,6 +69,13 @@ export interface PickerProps
    * @default false
    */
   invalid?: boolean;
+
+  /**
+   * @description
+   * clear handler
+   * @default void 0
+   */
+  onClear?: () => void;
 }
 
 /**
