@@ -6,11 +6,11 @@ import stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
 import { Select } from "../select";
 import type { Option } from "musae/types/option";
-import { useClassNames } from "../../hooks/use-class-names";
-import { PaginationClassToken } from "../../utils/class-name";
 import { useLocale } from "../../locale";
 import { toFunction, unique } from "@aiszlab/relax";
 import { stringify } from "@aiszlab/relax/class-name";
+import { useClassNames } from "../../hooks/use-class-names.component";
+import { CLASS_NAMES } from "./context";
 
 const styles = stylex.create({
   pagination: {
@@ -37,7 +37,7 @@ const Pagination = ({
   onChange: _onChange,
   onPageSizeChange: _onPageSizeChange,
 }: PagiantionProps) => {
-  const classNames = useClassNames("pagination");
+  const classNames = useClassNames(CLASS_NAMES);
   const [locale] = useLocale("pagination");
 
   const {
@@ -73,7 +73,7 @@ const Pagination = ({
   }, [locale, pageSizes]);
 
   return (
-    <nav aria-label="pagination navigation" className={classNames[PaginationClassToken.Pagination]}>
+    <nav aria-label="pagination navigation" className={classNames.pagination}>
       <ul className={styled.pagination.className} style={styled.pagination.style}>
         {paginationItems.map((item) => (
           <li key={item}>
@@ -90,10 +90,7 @@ const Pagination = ({
         ))}
 
         <li
-          className={stringify(
-            classNames[PaginationClassToken.SizeSelector],
-            styled.sizer.className,
-          )}
+          className={stringify(classNames.sizeSelector, styled.sizer.className)}
           style={styled.sizer.style}
         >
           <Select

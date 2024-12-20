@@ -5,8 +5,6 @@ import React, { useContext } from "react";
 import Node from "./node";
 import { useAnimate } from "framer-motion";
 import Context from "./context";
-import { useClassNames } from "../../hooks/use-class-names";
-import { TreeClassToken } from "../../utils/class-name";
 import { useExpandable } from "../../hooks/use-expandable";
 import { useUpdateEffect } from "@aiszlab/relax";
 import { stringify } from "@aiszlab/relax/class-name";
@@ -26,8 +24,7 @@ const styles = stylex.create({
 
 const List = ({ nodes = [], expanded = true, level = 0, className, style }: TreeListProps) => {
   const [scope, animate] = useAnimate<HTMLUListElement>();
-  const { expandedKeys, onExpand } = useContext(Context);
-  const classNames = useClassNames("tree");
+  const { expandedKeys, onExpand, classNames } = useContext(Context);
 
   const { expand, collapse } = useExpandable();
 
@@ -45,9 +42,9 @@ const List = ({ nodes = [], expanded = true, level = 0, className, style }: Tree
     <ul
       className={stringify(
         {
-          [classNames[TreeClassToken.Tree]]: level === 0,
-          [classNames[TreeClassToken.List]]: level > 0,
-          [classNames[TreeClassToken.ListHidden]]: !expanded,
+          [classNames.tree]: level === 0,
+          [classNames.list]: level > 0,
+          [classNames.listHidden]: !expanded,
         },
         className,
         styled.className,

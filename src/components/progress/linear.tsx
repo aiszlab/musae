@@ -1,12 +1,11 @@
-import React, { type CSSProperties } from "react";
+import React, { useContext, type CSSProperties } from "react";
 import stylex from "@stylexjs/stylex";
 import type { LinearProps } from "musae/types/progress";
-import { useClassNames } from "../../hooks/use-class-names";
-import { ProgressClassToken } from "../../utils/class-name";
 import { stringify } from "@aiszlab/relax/class-name";
 import { sizes } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { useValue } from "./hooks";
+import Context from "./context";
 
 const styles = stylex.create({
   progress: (props: { color: CSSProperties["backgroundColor"] }) => ({
@@ -25,7 +24,7 @@ const styles = stylex.create({
 });
 
 const Linear = ({ value: _value, className, style }: LinearProps) => {
-  const classNames = useClassNames("progress");
+  const { classNames } = useContext(Context);
   const theme = useTheme();
   const { value } = useValue({ value: _value });
 
@@ -36,18 +35,14 @@ const Linear = ({ value: _value, className, style }: LinearProps) => {
 
   return (
     <div
-      className={stringify(
-        classNames[ProgressClassToken.Progress],
-        className,
-        styled.progress.className,
-      )}
+      className={stringify(classNames.progress, className, styled.progress.className)}
       style={{
         ...styled.progress.style,
         ...style,
       }}
     >
       <div
-        className={stringify(classNames[ProgressClassToken.Segment], styled.segment.className)}
+        className={stringify(classNames.segment, styled.segment.className)}
         style={styled.segment.style}
       />
     </div>

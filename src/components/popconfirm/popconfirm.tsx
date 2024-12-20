@@ -8,8 +8,6 @@ import React, {
 } from "react";
 import type { PopconfirmProps, ChildProps } from "musae/types/popconfirm";
 import stylex from "@stylexjs/stylex";
-import { useClassNames } from "../../hooks/use-class-names";
-import { PopconfirmClassToken } from "../../utils/class-name";
 import { Space } from "../space";
 import { Button } from "../button";
 import { useBoolean, useClickAway, useEvent } from "@aiszlab/relax";
@@ -21,6 +19,8 @@ import { useTheme } from "../theme";
 import { useLocale } from "../../locale";
 import type { PopperRef } from "musae/types/popper";
 import { stringify } from "@aiszlab/relax/class-name";
+import { useClassNames } from "../../hooks/use-class-names.component";
+import { CLASS_NAMES } from "./context";
 
 const styles = stylex.create({
   popconfirm: {
@@ -71,7 +71,7 @@ const Popconfirm = ({
 }: PopconfirmProps) => {
   const ref = useRef<HTMLDivElement>(null);
   const [isOpen, { turnOff, toggle }] = useBoolean();
-  const classNames = useClassNames("popconfirm");
+  const classNames = useClassNames(CLASS_NAMES);
   const popperRef = useRef<PopperRef>(null);
   const theme = useTheme();
   const [locale] = useLocale("popconfirm");
@@ -133,11 +133,7 @@ const Popconfirm = ({
         offset={offset}
       >
         <div
-          className={stringify(
-            classNames[PopconfirmClassToken.Popconfirm],
-            className,
-            styled.popconfirm.className,
-          )}
+          className={stringify(classNames.popconfirm, className, styled.popconfirm.className)}
           style={{
             ...styled.popconfirm.style,
             ...style,
@@ -149,7 +145,7 @@ const Popconfirm = ({
 
           {!!title && (
             <div
-              className={stringify(classNames[PopconfirmClassToken.Title], styled.title.className)}
+              className={stringify(classNames.title, styled.title.className)}
               style={styled.title.style}
             >
               {title}
@@ -157,17 +153,14 @@ const Popconfirm = ({
           )}
 
           <div
-            className={stringify(
-              classNames[PopconfirmClassToken.Description],
-              styled.content.className,
-            )}
+            className={stringify(classNames.description, styled.content.className)}
             style={styled.content.style}
           >
             {content}
           </div>
 
           <Space
-            className={stringify(classNames[PopconfirmClassToken.Footer], styled.footer.className)}
+            className={stringify(classNames.footer, styled.footer.className)}
             style={styled.footer.style}
           >
             <Button variant="filled" size="small" onClick={confirm}>

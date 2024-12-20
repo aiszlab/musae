@@ -1,15 +1,15 @@
 import React from "react";
 import { QuoteProps } from "musae/types/quote";
-import { useClassNames } from "../../hooks/use-class-names";
 import { stringify } from "@aiszlab/relax/class-name";
-import { QuoteClassToken } from "../../utils/class-name";
 import styles from "./styles";
 import stylex from "@stylexjs/stylex";
 import { useTheme } from "../theme";
 import { typography } from "../theme/theme";
+import { CLASS_NAMES } from "./context";
+import { useClassNames } from "../../hooks/use-class-names.component";
 
 const Quote = ({ className, children, style }: QuoteProps) => {
-  const classNames = useClassNames("quote");
+  const classNames = useClassNames(CLASS_NAMES);
   const theme = useTheme();
 
   const styled = stylex.props(
@@ -22,7 +22,7 @@ const Quote = ({ className, children, style }: QuoteProps) => {
 
   return (
     <blockquote
-      className={stringify(classNames[QuoteClassToken.Quote], className, styled.className)}
+      className={stringify(classNames.quote, className, styled.className)}
       style={{
         ...styled.style,
         ...style,

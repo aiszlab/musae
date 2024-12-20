@@ -1,9 +1,10 @@
 import React, { useMemo } from "react";
-import type { ContextValue, TreeProps } from "musae/types/tree";
+import type { TreeProps } from "musae/types/tree";
 import List from "./list";
-import Context from "./context";
+import Context, { CLASS_NAMES } from "./context";
 import { useTogglable } from "@aiszlab/relax";
 import { useExpandedKeys, useSelectedKeys } from "./hooks";
+import { useClassNames } from "../../hooks/use-class-names.component";
 
 const Tree = ({
   className,
@@ -37,7 +38,9 @@ const Tree = ({
     onSelect,
   });
 
-  const contextValue = useMemo<ContextValue>(() => {
+  const classNames = useClassNames(CLASS_NAMES);
+
+  const contextValue = useMemo(() => {
     return {
       checkedKeys,
       onCheck: check,
@@ -46,8 +49,9 @@ const Tree = ({
       selectedKeys,
       onSelect: select,
       selectable,
+      classNames,
     };
-  }, [check, checkedKeys, expand, expandedKeys, select, selectedKeys, selectable]);
+  }, [check, checkedKeys, expand, expandedKeys, select, selectedKeys, selectable, classNames]);
 
   return (
     <Context.Provider value={contextValue}>

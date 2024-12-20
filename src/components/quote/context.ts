@@ -3,7 +3,7 @@
  * class names
  */
 const CLASS_NAMES = {
-  visuallyHidden: "visually-hidden",
+  quote: "quote",
 };
 
 export { CLASS_NAMES };

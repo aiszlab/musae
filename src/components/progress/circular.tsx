@@ -24,7 +24,7 @@ const styles = stylex.create({
   }),
 });
 
-const Circular = ({ value: _value, className, style }: CircularProps) => {
+const Circular = ({ value: _value }: CircularProps) => {
   const theme = useTheme();
   const radius = 22;
 

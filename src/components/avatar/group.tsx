@@ -1,12 +1,11 @@
 import React, { Children, cloneElement, isValidElement, useMemo } from "react";
 import stylex from "@stylexjs/stylex";
 import type { AvatarGroupProps } from "musae/types/avatar";
-import { Context } from "./context";
-import { useClassNames } from "../../hooks/use-class-names";
-import { AvatarClassToken } from "../../utils/class-name";
+import Context, { CLASS_NAMES } from "./context";
 import { Popover } from "../popover";
 import Avatar from "./avatar";
 import { stringify } from "@aiszlab/relax/class-name";
+import { useClassNames } from "../../hooks/use-class-names.component";
 
 const styles = stylex.create({
   group: {
@@ -21,7 +20,7 @@ const Group = ({
   size = "medium",
   max = 3,
 }: AvatarGroupProps) => {
-  const classNames = useClassNames("avatar");
+  const classNames = useClassNames(CLASS_NAMES);
   const styled = stylex.props(styles.group);
 
   const children = useMemo(() => {
@@ -67,10 +66,7 @@ const Group = ({
         size,
       }}
     >
-      <div
-        className={stringify(classNames[AvatarClassToken.Group], styled.className)}
-        style={styled.style}
-      >
+      <div className={stringify(classNames.group, styled.className)} style={styled.style}>
         {children}
       </div>
     </Context.Provider>

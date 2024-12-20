@@ -1,13 +1,12 @@
-import React, { CSSProperties, createElement } from "react";
+import React, { CSSProperties, createElement, useContext } from "react";
 import { useEvent, useHover } from "@aiszlab/relax";
 import stylex from "@stylexjs/stylex";
 import { sizes } from "../theme/tokens.stylex";
-import { useClassNames } from "../../hooks/use-class-names";
-import { RateClassToken } from "../../utils/class-name";
 import { Star as _Star } from "musae/icons";
 import type { StarProps } from "musae/types/rate";
 import { useTheme } from "../theme";
 import { stringify } from "@aiszlab/relax/class-name";
+import Context from "./context";
 
 const styles = {
   star: stylex.create({
@@ -61,7 +60,7 @@ const styles = {
 };
 
 const Star = ({ disabled, value, onEnter, at, onLeave, onClick }: StarProps) => {
-  const classNames = useClassNames("rate");
+  const { classNames } = useContext(Context);
   const theme = useTheme();
   const isHalf = value === 0.5;
   const isFull = value >= 1;
@@ -108,13 +107,10 @@ const Star = ({ disabled, value, onEnter, at, onLeave, onClick }: StarProps) => 
   };
 
   return (
-    <li
-      className={stringify(classNames[RateClassToken.Star], styled.star.className)}
-      style={styled.star.style}
-    >
+    <li className={stringify(classNames.star, styled.star.className)} style={styled.star.style}>
       {/* half */}
       <div
-        className={stringify(classNames[RateClassToken.Half], styled.half.className)}
+        className={stringify(classNames.half, styled.half.className)}
         style={styled.half.style}
         {...(!disabled && {
           ...halfHoverProps,
@@ -126,7 +122,7 @@ const Star = ({ disabled, value, onEnter, at, onLeave, onClick }: StarProps) => 
 
       {/* full */}
       <div
-        className={stringify(classNames[RateClassToken.Full], styled.full.className)}
+        className={stringify(classNames.full, styled.full.className)}
         style={styled.full.style}
         {...(!disabled && {
           ...fullHoverProps,

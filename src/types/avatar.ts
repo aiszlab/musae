@@ -104,11 +104,11 @@ export type ContextValue = {
    * @description
    * shape
    */
-  shape: Shape;
+  shape?: Shape;
 
   /**
    * @description
    * size
    */
-  size: Size;
+  size?: Size;
 };

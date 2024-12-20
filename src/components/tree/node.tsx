@@ -1,7 +1,5 @@
 import React, { type CSSProperties, useContext } from "react";
 import type { TreeNodeProps } from "musae/types/tree";
-import { useClassNames } from "../../hooks/use-class-names";
-import { TreeClassToken } from "../../utils/class-name";
 import Context from "./context";
 import { Checkbox } from "../checkbox";
 import { KeyboardArrowRight } from "musae/icons";
@@ -55,8 +53,7 @@ const styles = stylex.create({
 });
 
 const Node = ({ value, children, level, onExpand, ...props }: TreeNodeProps) => {
-  const classNames = useClassNames("tree");
-  const { checkedKeys, onCheck, expandedKeys, onSelect, selectedKeys, selectable } =
+  const { checkedKeys, onCheck, expandedKeys, onSelect, selectedKeys, selectable, classNames } =
     useContext(Context);
   const isChecked = checkedKeys.has(value);
   const isExpanded = expandedKeys.has(value);
@@ -96,27 +93,20 @@ const Node = ({ value, children, level, onExpand, ...props }: TreeNodeProps) => 
   });
 
   return (
-    <li className={classNames[TreeClassToken.Holder]}>
-      <div
-        className={stringify(classNames[TreeClassToken.Node], styled.node.className)}
-        style={styled.node.style}
-      >
+    <li className={classNames.holder}>
+      <div className={stringify(classNames.node, styled.node.className)} style={styled.node.style}>
         <span
-          className={stringify(classNames[TreeClassToken.Expander], styled.expander.className)}
+          className={stringify(classNames.expander, styled.expander.className)}
           style={styled.expander.style}
           onClick={expand}
         >
           {!!children && <KeyboardArrowRight />}
         </span>
 
-        <Checkbox
-          className={stringify(classNames[TreeClassToken.Checkbox])}
-          checked={isChecked}
-          onChange={check}
-        />
+        <Checkbox className={stringify(classNames.checkbox)} checked={isChecked} onChange={check} />
 
         <span
-          className={stringify(classNames[TreeClassToken.Title], styled.title.className)}
+          className={stringify(classNames.title, styled.title.className)}
           style={styled.title.style}
           onClick={select}
         >

@@ -1,9 +1,6 @@
 import type { ReactNode, RefObject } from "react";
-import type { CLASS_NAMES } from "../utils/class-name";
 import type { HolderRef } from "./notification";
 import type { Locale } from "musae/types/locale";
-
-export type ClassNames = typeof CLASS_NAMES;
 
 /**
  * @description
@@ -18,12 +15,6 @@ export interface ContextValue {
    * so users will not need to declare anymore
    */
   notifier?: RefObject<HolderRef> | null;
-
-  /**
-   * @description
-   * class names
-   */
-  classNames: ClassNames;
 
   /**
    * @description

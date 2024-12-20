@@ -1,12 +1,12 @@
 import React from "react";
 import type { RateProps } from "musae/types/rate";
 import stylex from "@stylexjs/stylex";
-import { useClassNames } from "../../hooks/use-class-names";
-import { RateClassToken } from "../../utils/class-name";
 import { stringify } from "@aiszlab/relax/class-name";
 import { useHover, useValue } from "./hooks";
 import Star from "./star";
 import { spacing } from "../theme/tokens.stylex";
+import Context, { CLASS_NAMES } from "./context";
+import { useClassNames } from "../../hooks/use-class-names.component";
 
 const styles = {
   rate: stylex.create({
@@ -31,7 +31,7 @@ const Rate = ({
   disabled = false,
   ...props
 }: RateProps) => {
-  const classNames = useClassNames("rate");
+  const classNames = useClassNames(CLASS_NAMES);
   const { value, change } = useValue({ value: props.value, onChange: props.onChange, halfable });
   const { enter, hovered, leave } = useHover();
 
@@ -40,27 +40,29 @@ const Rate = ({
   };
 
   return (
-    <ul
-      className={stringify(classNames[RateClassToken.Rate], className, styled.rate.className)}
-      style={{
-        ...styled.rate.style,
-        ...style,
-      }}
-    >
-      {new Array(count).fill(0).map((_, index) => {
-        return (
-          <Star
-            at={index}
-            value={(hovered ?? value) - index}
-            disabled={disabled}
-            key={index}
-            onEnter={enter}
-            onLeave={leave}
-            onClick={change}
-          />
-        );
-      })}
-    </ul>
+    <Context.Provider value={{ classNames }}>
+      <ul
+        className={stringify(classNames.rate, className, styled.rate.className)}
+        style={{
+          ...styled.rate.style,
+          ...style,
+        }}
+      >
+        {new Array(count).fill(0).map((_, index) => {
+          return (
+            <Star
+              at={index}
+              value={(hovered ?? value) - index}
+              disabled={disabled}
+              key={index}
+              onEnter={enter}
+              onLeave={leave}
+              onClick={change}
+            />
+          );
+        })}
+      </ul>
+    </Context.Provider>
   );
 };
 
