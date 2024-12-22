@@ -137,15 +137,8 @@ const _styles = {
   }),
 };
 
-/**
- * @description
- * in musae
- * rich text always use same configuration
- */
-export const usingEditor = ({
-  disabled = false,
-}: { disabled?: boolean } = {}): CreateEditorArgs => {
-  const styled = {
+export const usingStyles = () => {
+  return {
     h1: stylex.props(typography.headline.large, _styles.heading.default, _styles.heading.h1),
     h2: stylex.props(typography.headline.medium, _styles.heading.default, _styles.heading.h2),
     h3: stylex.props(typography.headline.small, _styles.heading.default, _styles.heading.h3),
@@ -171,6 +164,17 @@ export const usingEditor = ({
       },
     },
   };
+};
+
+/**
+ * @description
+ * in musae
+ * rich text always use same configuration
+ */
+export const usingEditor = ({
+  disabled = false,
+}: { disabled?: boolean } = {}): CreateEditorArgs => {
+  const styled = usingStyles();
 
   const theme: EditorThemeClasses = {
     heading: {
