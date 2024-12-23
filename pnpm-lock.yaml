@@ -64,7 +64,7 @@ importers:
         version: 0.21.0
       react-hook-form:
         specifier: ^7.54.1
-        version: 7.54.1(react@18.3.1)
+        version: 7.54.2(react@18.3.1)
       rehype-sanitize:
         specifier: ^6.0.0
         version: 6.0.0
@@ -3495,8 +3495,8 @@ packages:
     peerDependencies:
       react: '>=16.13.1'
 
-  react-hook-form@7.54.1:
-    resolution: {integrity: sha512-PUNzFwQeQ5oHiiTUO7GO/EJXGEtuun2Y1A59rLnZBBj+vNEOWt/3ERTiG1/zt7dVeJEM+4vDX/7XQ/qanuvPMg==}
+  react-hook-form@7.54.2:
+    resolution: {integrity: sha512-eHpAUgUjWbZocoQYUHposymRb4ZP6d0uwUnooL2uOybA9/3tPUvoAKqEWK1WaSiTxxOfTpffNZP7QwlnM3/gEg==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
       react: ^16.8.0 || ^17 || ^18 || ^19
@@ -8367,7 +8367,7 @@ snapshots:
       '@babel/runtime': 7.26.0
       react: 18.3.1
 
-  react-hook-form@7.54.1(react@18.3.1):
+  react-hook-form@7.54.2(react@18.3.1):
     dependencies:
       react: 18.3.1
 
