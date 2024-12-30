@@ -84,7 +84,7 @@
     "@tanstack/react-table": "^8.20.6",
     "dayjs": "^1.11.13",
     "framer-motion": "^11.14.4",
-    "lexical": "^0.21.0",
+    "lexical": "^0.22.0",
     "react-hook-form": "^7.54.1",
     "rehype-sanitize": "^6.0.0",
     "rehype-stringify": "^10.0.1",

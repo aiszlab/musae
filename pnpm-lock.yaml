@@ -60,8 +60,8 @@ importers:
         specifier: ^11.14.4
         version: 11.14.4(@emotion/is-prop-valid@1.3.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       lexical:
-        specifier: ^0.21.0
-        version: 0.21.0
+        specifier: ^0.22.0
+        version: 0.22.0
       react-hook-form:
         specifier: ^7.54.1
         version: 7.54.1(react@18.3.1)
@@ -2979,6 +2979,9 @@ packages:
 
   lexical@0.21.0:
     resolution: {integrity: sha512-Dxc5SCG4kB+wF+Rh55ism3SuecOKeOtCtGHFGKd6pj2QKVojtjkxGTQPMt7//2z5rMSue4R+hmRM0pCEZflupA==}
+
+  lexical@0.22.0:
+    resolution: {integrity: sha512-EquENoJZdhwAzsZ+Dz8dGZprlpPY1zez6Gk9yhGkPzmIVPRIGY4aEAmfKQCep1dZgkUUQB8Flr0xK0+u5TrFhw==}
 
   lib0@0.2.99:
     resolution: {integrity: sha512-vwztYuUf1uf/1zQxfzRfO5yzfNKhTtgOByCruuiQQxWQXnPb8Itaube5ylofcV0oM0aKal9Mv+S1s1Ky0UYP1w==}
@@ -7735,6 +7738,8 @@ snapshots:
       type-check: 0.4.0
 
   lexical@0.21.0: {}
+
+  lexical@0.22.0: {}
 
   lib0@0.2.99:
     dependencies:
