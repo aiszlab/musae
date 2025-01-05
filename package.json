@@ -1,6 +1,6 @@
 {
   "name": "musae",
-  "version": "0.5.10",
+  "version": "0.5.11",
   "description": "musae-ui",
   "author": "tutu@fantufantu.com",
   "license": "MIT",
@@ -53,17 +53,10 @@
       "import": "./dist/components/rich-text-editor/rich-text-editor.mjs",
       "default": "./dist/components/rich-text-editor/rich-text-editor.mjs"
     },
-    "./markdown": {
-      "types": "./dist/components/markdown/markdown.d.ts",
-      "require": "./dist/components/markdown/markdown.cjs",
-      "node": "./dist/components/markdown/markdown.cjs",
-      "import": "./dist/components/markdown/markdown.mjs",
-      "default": "./dist/components/markdown/markdown.mjs"
-    },
     "./types/*": "./dist/types/*.d.ts"
   },
   "engines": {
-    "node": ">=18.0.0",
+    "node": ">=20.0.0",
     "pnpm": ">=9"
   },
   "dependencies": {
@@ -114,7 +107,7 @@
     "@testing-library/user-event": "^14.5.2",
     "@types/jest": "^29.5.14",
     "@types/node": "^22.10.5",
-    "@types/react": "^18.3.16",
+    "@types/react": "^18.3.18",
     "@types/react-dom": "^18.3.5",
     "@types/unist": "^3.0.3",
     "babel-jest": "^29.7.0",
