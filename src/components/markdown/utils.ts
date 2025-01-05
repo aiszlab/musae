@@ -1,5 +1,3 @@
-import rehypeShiki from "@shikijs/rehype";
-
 /**
  * @description
  * to html
@@ -10,13 +8,15 @@ const toHTML = async (markdown: string, isDark: boolean) => {
     1: remarkRehype,
     2: remarkGfm,
     3: rehypeSanitize,
-    4: rehypeStringify,
-    5: { unified },
+    4: rehypeShiki,
+    5: rehypeStringify,
+    6: { unified },
   } = await Promise.all([
     import("remark-parse"),
     import("remark-rehype"),
     import("remark-gfm"),
     import("rehype-sanitize"),
+    import("@shikijs/rehype"),
     import("rehype-stringify"),
     import("unified"),
   ]);
@@ -27,7 +27,7 @@ const toHTML = async (markdown: string, isDark: boolean) => {
     // mdast -> hast
     .use(remarkRehype.default)
     .use(rehypeSanitize.default)
-    .use(rehypeShiki, {
+    .use(rehypeShiki.default, {
       theme: isDark ? "vitesse-dark" : "vitesse-light",
     })
     .use(rehypeStringify.default);
