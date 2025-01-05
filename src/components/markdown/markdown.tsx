@@ -1,18 +1,32 @@
-import React from "react";
-import { toHTML } from "./util";
+import React, { useMemo } from "react";
+import { toHTML } from "./utils";
 import stylex from "@stylexjs/stylex";
 import { typography } from "../theme/theme";
 import type { MarkdownProps } from "../../types/markdown";
 import { stringify } from "@aiszlab/relax/class-name";
+import { spacing } from "../theme/tokens.stylex";
 
 const styles = stylex.create({
   markdown: {
-    overflow: "auto",
+    width: "fit-content",
+    minWidth: "100%",
+
+    // use higher selector
+    ":not(#\\#) pre": {
+      padding: spacing.medium,
+    },
   },
 });
 
-const Markdown = async ({ value, className, style }: MarkdownProps) => {
-  const __html = await toHTML(value);
+const Markdown = async ({
+  value,
+  className,
+  style,
+  dark = false,
+}: MarkdownProps & {
+  dark?: boolean;
+}) => {
+  const __html = await toHTML(value, dark);
 
   const styled = stylex.props(styles.markdown, typography.body.medium);
 
