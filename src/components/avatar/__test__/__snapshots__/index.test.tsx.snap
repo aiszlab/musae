@@ -101,8 +101,8 @@ exports[`\`Avatar.Group\` Component in group, but is more than limit 1`] = `
 exports[`\`Avatar\` Component mock image is loaded 1`] = `
 <DocumentFragment>
   <span
-    class="musae-avatar theme__label.medium avatar__styles.avatar avatar__styles.medium avatar__styles.circular"
-    style="--backgroundColor: #EADDFF; --color: #6750A4;"
+    class="musae-avatar theme__label.medium avatar__styles.avatar avatar__styles.medium avatar__styles.circular avatar__styles.overlapping"
+    style="--backgroundColor: #EADDFF; --color: #6750A4; --borderColor: #FFF;"
   >
     <img
       alt="RJ"
@@ -117,8 +117,8 @@ exports[`\`Avatar\` Component mock image is loaded 1`] = `
 exports[`\`Avatar\` Component with src, load error 1`] = `
 <DocumentFragment>
   <span
-    class="musae-avatar theme__label.medium avatar__styles.avatar avatar__styles.medium avatar__styles.circular"
-    style="--backgroundColor: #EADDFF; --color: #6750A4;"
+    class="musae-avatar theme__label.medium avatar__styles.avatar avatar__styles.medium avatar__styles.circular avatar__styles.overlapping"
+    style="--backgroundColor: #EADDFF; --color: #6750A4; --borderColor: #FFF;"
   >
     RJ
   </span>
@@ -128,8 +128,8 @@ exports[`\`Avatar\` Component with src, load error 1`] = `
 exports[`\`Avatar\` Component without src 1`] = `
 <DocumentFragment>
   <span
-    class="musae-avatar theme__label.medium avatar__styles.avatar avatar__styles.medium avatar__styles.circular"
-    style="--backgroundColor: #EADDFF; --color: #6750A4;"
+    class="musae-avatar theme__label.medium avatar__styles.avatar avatar__styles.medium avatar__styles.circular avatar__styles.overlapping"
+    style="--backgroundColor: #EADDFF; --color: #6750A4; --borderColor: #FFF;"
   />
 </DocumentFragment>
 `;

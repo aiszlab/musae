@@ -1,5 +1,3 @@
-import { unified } from "unified";
-
 /**
  * @description
  * to html
@@ -12,6 +10,7 @@ const toHTML = async (markdown: string, isDark: boolean) => {
     3: rehypeSanitize,
     4: rehypeStringify,
     5: rehypeShiki,
+    6: { unified },
   } = await Promise.all([
     import("remark-parse"),
     import("remark-rehype"),
@@ -19,6 +18,7 @@ const toHTML = async (markdown: string, isDark: boolean) => {
     import("rehype-sanitize"),
     import("rehype-stringify"),
     import("@shikijs/rehype"),
+    import("unified"),
   ]);
 
   const processor = unified()
