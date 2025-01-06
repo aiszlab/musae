@@ -27,8 +27,8 @@ importers:
         specifier: ^0.22.0
         version: 0.22.0
       '@lexical/headless':
-        specifier: ^0.22.0
-        version: 0.22.0
+        specifier: ^0.23.0
+        version: 0.23.0
       '@lexical/link':
         specifier: ^0.22.0
         version: 0.22.0
@@ -1140,8 +1140,8 @@ packages:
   '@lexical/hashtag@0.22.0':
     resolution: {integrity: sha512-W6Wrz0+ClezZQavjCjYso+LzRP/rWNUIM6cLwnf7oFXsmIXeaLHXecIbRwZ+SChnj4eUlSlnlknMVi3bJKaOjw==}
 
-  '@lexical/headless@0.22.0':
-    resolution: {integrity: sha512-/eccU4ongtsa5yw0GOsI2GyRhFol5EtpeMOBYO4BYHT7yhFGJcjXKNacC9qEXgtJS4zOVM4ASI3RSPwlR5EVqw==}
+  '@lexical/headless@0.23.0':
+    resolution: {integrity: sha512-pauKTHSSaEEePsvUFjox8pq4ja8rbOcPDllO5SsbE0CPO9L5GQtXLMvh6mGekOZujWd+H1DaHmGMw4P9ohixtw==}
 
   '@lexical/history@0.22.0':
     resolution: {integrity: sha512-4e/xL7CtYvsv8X4iGH1tPL8J6jthDpzh0a1WWZfL9ipeOYN9Btctq6o1Obdth5DfbMR7ELq7PSN2FK6+jZ4EQQ==}
@@ -3010,6 +3010,9 @@ packages:
 
   lexical@0.22.0:
     resolution: {integrity: sha512-EquENoJZdhwAzsZ+Dz8dGZprlpPY1zez6Gk9yhGkPzmIVPRIGY4aEAmfKQCep1dZgkUUQB8Flr0xK0+u5TrFhw==}
+
+  lexical@0.23.0:
+    resolution: {integrity: sha512-xkRJqPrdcAkUKP9NiJcmOayKpvou9C8H9y2O8fIWM9tW0KAJub1gkuw9q9VexwvqgCZbf2ep2ufFwC1rY7caSw==}
 
   lib0@0.2.99:
     resolution: {integrity: sha512-vwztYuUf1uf/1zQxfzRfO5yzfNKhTtgOByCruuiQQxWQXnPb8Itaube5ylofcV0oM0aKal9Mv+S1s1Ky0UYP1w==}
@@ -5465,9 +5468,9 @@ snapshots:
       '@lexical/utils': 0.22.0
       lexical: 0.22.0
 
-  '@lexical/headless@0.22.0':
+  '@lexical/headless@0.23.0':
     dependencies:
-      lexical: 0.22.0
+      lexical: 0.23.0
 
   '@lexical/history@0.22.0':
     dependencies:
@@ -7863,6 +7866,8 @@ snapshots:
       type-check: 0.4.0
 
   lexical@0.22.0: {}
+
+  lexical@0.23.0: {}
 
   lib0@0.2.99:
     dependencies:
