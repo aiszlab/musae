@@ -2,7 +2,7 @@ import stylex from "@stylexjs/stylex";
 import type { SkeletonProps } from "musae/types/skeleton";
 import React, { type CSSProperties } from "react";
 import { stringify } from "@aiszlab/relax/class-name";
-import { OPACITY, sizes } from "../theme/tokens.stylex";
+import { OPACITY } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { hexToRgba } from "@aiszlab/fuzzy/color";
 import { useClassNames } from "../../hooks/use-class-names.component";
@@ -29,7 +29,6 @@ const styles = stylex.create({
 
   skeleton: {
     backgroundColor: "var(--shadow)",
-    borderRadius: sizes.xxxxxxsmall,
   },
 
   animation: {

@@ -25,7 +25,12 @@ const styles = stylex.create({
     alignItems: "center",
     justifyContent: "center",
     userSelect: "none",
+    verticalAlign: "middle",
   }),
+
+  loading: {
+    boxSizing: "border-box",
+  },
 
   image: {
     objectFit: "cover",
@@ -106,7 +111,15 @@ const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(
             outlineColor: theme.colors["on-primary"],
           }),
       ),
-      loading: stylex.props(styles[shape], styles[size]),
+      loading: stylex.props(
+        typography.label[size],
+        styles[size],
+        styles[shape],
+        isInGroup &&
+          styles.overlapping({
+            outlineColor: theme.colors["on-primary"],
+          }),
+      ),
       image: stylex.props(styles.image, styles[size]),
     };
 

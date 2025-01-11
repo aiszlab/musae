@@ -14,7 +14,7 @@ const CLASS_NAMES = {
  * @description
  * context
  */
-const Context = createContext<ContextValue>({});
+const Context = createContext<ContextValue | null>(null);
 
 export default Context;
 export { CLASS_NAMES };

@@ -12,30 +12,30 @@ import { CLASS_NAMES } from "./context";
 
 const styles = {
   divider: stylex.create({
-    horizontal: (props: { margins: Gutters }) => ({
+    horizontal: {
       width: sizes.full,
-      marginBlockStart: props.margins[0],
-      marginBlockEnd: props.margins[1],
-    }),
+      marginBlockStart: "var(--margin-start)",
+      marginBlockEnd: "var(--margin-end)",
+    },
 
-    vertical: (props: { margins: Gutters }) => ({
+    vertical: {
       minHeight: sizes.xxxsmall,
       maxHeight: sizes.full,
-      marginInlineStart: props.margins[0],
-      marginInlineEnd: props.margins[1],
-    }),
+      marginInlineStart: "var(--margin-start)",
+      marginInlineEnd: "var(--margin-end)",
+    },
   }),
 
   simple: stylex.create({
-    horizontal: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
+    horizontal: {
       height: sizes.smallest,
-      backgroundColor: props.backgroundColor,
-    }),
+      backgroundColor: "var(--outline-variant)",
+    },
 
-    vertical: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
+    vertical: {
       width: sizes.smallest,
-      backgroundColor: props.backgroundColor,
-    }),
+      backgroundColor: "var(--outline-variant)",
+    },
   }),
 
   labeled: stylex.create({
@@ -111,11 +111,8 @@ const Divider = ({
 
   const styled = {
     divider: stylex.props(
-      styles.divider[orientation]({ margins }),
-      !isLabeled &&
-        styles.simple[orientation]({
-          backgroundColor: theme.colors["outline-variant"],
-        }),
+      styles.divider[orientation],
+      !isLabeled && styles.simple[orientation],
       isLabeled && styles.labeled[orientation],
     ),
     label: stylex.props(styles.label[orientation], typography.body.small),
