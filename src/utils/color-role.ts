@@ -137,8 +137,8 @@ export const toColorRoles = (
     outline: isLight ? palette.neutralVariant[50] : palette.neutralVariant[60],
     "outline-variant": isLight ? palette.neutralVariant[80] : palette.neutralVariant[30],
 
-    shadow: palette.neutral[0],
-    scrim: palette.neutral[0],
+    shadow: isLight ? palette.neutral[0] : palette.neutral[100],
+    scrim: isLight ? palette.neutral[0] : palette.neutral[100],
 
     success: isLight ? palette.success[100] : palette.success[0],
     warning: isLight ? palette.warning[100] : palette.warning[0],
