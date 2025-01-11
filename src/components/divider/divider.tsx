@@ -39,45 +39,45 @@ const styles = {
   }),
 
   labeled: stylex.create({
-    horizontal: (props: { backgroundColor: CSSProperties["backgroundColor"]; offset: number }) => ({
+    horizontal: {
       display: "flex",
       flexDirection: "row",
       alignItems: "center",
 
       "::before": {
         height: sizes.smallest,
-        width: `${props.offset}%`,
-        backgroundColor: props.backgroundColor,
+        width: "var(--offset)",
+        backgroundColor: "var(--outline-variant)",
         content: "''",
       },
 
       "::after": {
         height: sizes.smallest,
-        width: `${100 - props.offset}%`,
-        backgroundColor: props.backgroundColor,
+        width: "calc(100% - var(--offset))",
+        backgroundColor: "var(--outline-variant)",
         content: "''",
       },
-    }),
+    },
 
-    vertical: (props: { backgroundColor: CSSProperties["backgroundColor"]; offset: number }) => ({
+    vertical: {
       display: "flex",
       flexDirection: "row",
       alignItems: "center",
 
       "::before": {
         width: sizes.smallest,
-        height: `${props.offset}%`,
-        backgroundColor: props.backgroundColor,
+        height: "var(--offset)",
+        backgroundColor: "var(--outline-variant)",
         content: "''",
       },
 
       "::after": {
         width: sizes.smallest,
-        height: `${100 - props.offset}%`,
-        backgroundColor: props.backgroundColor,
+        height: "calc(100% - var(--offset))",
+        backgroundColor: "var(--outline-variant)",
         content: "''",
       },
-    }),
+    },
   }),
 
   label: stylex.create({
@@ -116,11 +116,7 @@ const Divider = ({
         styles.simple[orientation]({
           backgroundColor: theme.colors["outline-variant"],
         }),
-      isLabeled &&
-        styles.labeled[orientation]({
-          backgroundColor: theme.colors["outline-variant"],
-          offset,
-        }),
+      isLabeled && styles.labeled[orientation],
     ),
     label: stylex.props(styles.label[orientation], typography.body.small),
   };
@@ -131,6 +127,11 @@ const Divider = ({
       style={{
         ...styled.divider.style,
         ...style,
+        // @ts-expect-error
+        "--offset": `${offset}%`,
+        "--outline-variant": theme.colors["outline-variant"],
+        "--margin-start": margins[0],
+        "--margin-end": margins[1],
       }}
     >
       {isLabeled && (

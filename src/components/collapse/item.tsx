@@ -9,6 +9,7 @@ import { useExpandable } from "../../hooks/use-expandable";
 import { useTheme } from "../theme";
 import { KeyboardArrowRight } from "musae/icons";
 import { stringify } from "@aiszlab/relax/class-name";
+import { typography } from "../theme/theme";
 
 const styles = {
   item: stylex.create({
@@ -85,10 +86,11 @@ const CollapseItem = ({ children, label, value }: CollapseItemProps) => {
 
   const styled = {
     item: stylex.props(styles.item.default({ outlineColor: theme.colors["outline-variant"] })),
-    header: stylex.props(styles.header.default),
+    header: stylex.props(styles.header.default, typography.title.medium),
     panel: stylex.props(styles.panel.default, !isExpanded && styles.panel.hidden),
     content: stylex.props(
       styles.content.default({ outlineColor: theme.colors["outline-variant"] }),
+      typography.body.medium,
     ),
     collapser: stylex.props(styles.collapser.default, isExpanded && styles.collapser.expanded),
   };
