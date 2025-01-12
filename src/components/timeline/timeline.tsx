@@ -6,6 +6,7 @@ import { CLASS_NAMES, Context } from "./context";
 import { useClassNames } from "../../hooks/use-class-names.component";
 import { stringify } from "@aiszlab/relax/class-name";
 import { spacing } from "../theme/tokens.stylex";
+import { useTheme } from "../theme";
 
 const styles = stylex.create({
   timeline: {
@@ -22,6 +23,7 @@ const styles = stylex.create({
 const Timeline = ({ items, mode = "right", size }: TimelineProps) => {
   const classNames = useClassNames(CLASS_NAMES);
   const total = items.length;
+  const theme = useTheme();
 
   const contextValue = useMemo(
     () => ({
@@ -37,7 +39,14 @@ const Timeline = ({ items, mode = "right", size }: TimelineProps) => {
 
   return (
     <Context.Provider value={contextValue}>
-      <ol className={stringify(classNames.timeline, styled.className)} style={styled.style}>
+      <ol
+        className={stringify(classNames.timeline, styled.className)}
+        style={{
+          ...styled.style,
+          // @ts-expect-error
+          "--primary": theme.colors.primary,
+        }}
+      >
         {items.map((item, index) => {
           return (
             <Item

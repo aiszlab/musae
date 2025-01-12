@@ -47,7 +47,7 @@ const styles = {
       alignSelf: "flex-start",
     },
 
-    tail: (props: { color: CSSProperties["color"] }) => ({
+    tail: {
       position: "relative",
 
       "::after": {
@@ -55,11 +55,11 @@ const styles = {
         position: "absolute",
         height: sizes.infinity,
         width: sizes.smallest,
-        backgroundColor: props.color,
+        backgroundColor: "var(--primary)",
         insetBlockStart: "100%",
         insetInlineStart: `calc((100% - ${sizes.smallest}) / 2)`,
       },
-    }),
+    },
   }),
 
   sign: stylex.create({
@@ -73,12 +73,12 @@ const styles = {
   }),
 
   dot: stylex.create({
-    default: (props: { color: CSSProperties["color"] }) => ({
+    default: {
       width: sizes.xxxxxxsmall,
       height: sizes.xxxxxxsmall,
       borderRadius: sizes.infinity,
-      backgroundColor: props.color,
-    }),
+      backgroundColor: "var(--primary)",
+    },
   }),
 
   label: stylex.create({
@@ -132,12 +132,9 @@ const Item = ({ description, label, value, dot }: TimelineItemProps) => {
       isLabeled && styles.labeled[mode],
     ),
     label: stylex.props(styles.label.default, styles.label[mode]),
-    leading: stylex.props(
-      styles.leading.default,
-      !isMax && styles.leading.tail({ color: theme.colors.primary }),
-    ),
+    leading: stylex.props(styles.leading.default, !isMax && styles.leading.tail),
     sign: stylex.props(styles.sign.default({ size })),
-    dot: stylex.props(styles.dot.default({ color: theme.colors.primary })),
+    dot: stylex.props(styles.dot.default),
     description: stylex.props(styles.description.default, styles.description[mode]),
   };
 

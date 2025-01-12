@@ -1,10 +1,12 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useMemo, useRef } from "react";
 import stylex from "@stylexjs/stylex";
-import { sizes } from "../theme/tokens.stylex";
+import { OPACITY, sizes } from "../theme/tokens.stylex";
 import type { WatermarkProps } from "musae/types/watermark";
 import { useMutateObserver, useRaf, useDevicePixelRatio } from "@aiszlab/relax";
 import { useClips, useWatermarks } from "./hooks";
 import type { Nullable } from "@aiszlab/relax/types";
+import { useTheme } from "../theme";
+import { hexToRgba } from "@aiszlab/fuzzy/color";
 
 const styles = stylex.create({
   watermark: {
@@ -24,7 +26,7 @@ const Watermark = ({
   width = 120,
   height = 64,
   font: {
-    color = "rgba(0, 0, 0, 0.15)",
+    color,
     fontSize = 16,
     fontFamily = "sans-serif",
     fontStyle = "normal",
@@ -46,6 +48,12 @@ const Watermark = ({
     }>
   >(null);
   const ratio = useDevicePixelRatio();
+  const theme = useTheme();
+
+  // font color
+  const fontColor = useMemo(() => {
+    return color ?? hexToRgba(theme.colors.shadow, OPACITY.thick, "style");
+  }, [theme.colors.primary]);
 
   const sync = useRaf(() => {
     const canvas = document.createElement("canvas");
@@ -57,7 +65,7 @@ const Watermark = ({
         ratio,
         width,
         height,
-        color,
+        color: fontColor,
         fontFamily,
         fontSize,
         fontStyle,
@@ -83,7 +91,18 @@ const Watermark = ({
   useEffect(() => {
     sync();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [_mark, width, height, ratio, color, fontFamily, fontSize, fontStyle, fontWeight, textAlign]);
+  }, [
+    _mark,
+    width,
+    height,
+    ratio,
+    fontColor,
+    fontFamily,
+    fontSize,
+    fontStyle,
+    fontWeight,
+    textAlign,
+  ]);
 
   return (
     <div className={styled.watermark.className} style={styled.watermark.style} ref={watermarkRef}>

@@ -7,6 +7,7 @@ import { stringify } from "@aiszlab/relax/class-name";
 import { Divider } from "../divider";
 import { spacing } from "../theme/tokens.stylex";
 import { CLASS_NAMES, Context } from "./context";
+import { useTheme } from "../theme";
 
 const styles = stylex.create({
   clock: {
@@ -16,14 +17,23 @@ const styles = stylex.create({
   },
 });
 
-const Clock = ({ value, onChange }: ClockProps) => {
+const Clock = ({ value, onChange, className, style }: ClockProps) => {
   const classNames = useClassNames(CLASS_NAMES);
   const styled = stylex.props(styles.clock);
   const columns = ["hour", "minute", "second"] satisfies TimeUnit[];
+  const theme = useTheme();
 
   return (
     <Context.Provider value={{ classNames }}>
-      <div className={stringify(classNames.clock, styled.className)} style={styled.style}>
+      <div
+        className={stringify(classNames.clock, className, styled.className)}
+        style={{
+          ...styled.style,
+          ...style,
+          // @ts-expect-error
+          "--secondary": theme.colors.secondary,
+        }}
+      >
         {columns.map((unit, index) => {
           return [
             <Column

@@ -25,10 +25,7 @@ const UNITS: Record<TimeUnit, number> = {
 };
 
 const styles = stylex.create({
-  menu: (props: {
-    scrollbarThumbColor: CSSProperties["backgroundColor"];
-    outlineColor: CSSProperties["borderLeftColor"];
-  }) => ({
+  menu: {
     overflowX: "hidden",
     overflowY: {
       default: "hidden",
@@ -45,9 +42,9 @@ const styles = stylex.create({
 
     "::-webkit-scrollbar-thumb": {
       borderRadius: 4,
-      backgroundColor: props.scrollbarThumbColor,
+      backgroundColor: "var(--secondary)",
     },
-  }),
+  },
 
   item: {
     width: sizes.xxlarge,
@@ -78,12 +75,7 @@ const Column = forwardRef<{}, ColumnProps>(({ unit, value, onChange }, ref) => {
   }, [value]);
 
   const styled = {
-    menu: stylex.props(
-      styles.menu({
-        scrollbarThumbColor: theme.colors.secondary,
-        outlineColor: theme.colors["outline-variant"],
-      }),
-    ),
+    menu: stylex.props(styles.menu),
     item: stylex.props(styles.item),
   };
 

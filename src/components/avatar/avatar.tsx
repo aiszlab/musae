@@ -19,17 +19,19 @@ const styles = stylex.create({
     borderStyle: "solid",
     borderColor: "transparent",
     boxSizing: "border-box",
-    display: "inline-flex",
     backgroundColor: props.backgroundColor,
     color: props.color,
     alignItems: "center",
     justifyContent: "center",
     userSelect: "none",
+
+    display: "inline-flex",
     verticalAlign: "middle",
   }),
 
   loading: {
-    boxSizing: "border-box",
+    display: "inline-block",
+    verticalAlign: "middle",
   },
 
   image: {
@@ -113,6 +115,7 @@ const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(
       ),
       loading: stylex.props(
         typography.label[size],
+        styles.loading,
         styles[size],
         styles[shape],
         isInGroup &&

@@ -8,7 +8,6 @@ type Font = {
   /**
    * @description
    * fill color
-   * @default "rgba(0, 0, 0, 0.15)"
    */
   color?: CanvasFillStrokeStyles["fillStyle"];
 
