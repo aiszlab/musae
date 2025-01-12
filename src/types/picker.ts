@@ -23,6 +23,12 @@ export interface PickerProps
 
   /**
    * @description
+   * when trigger on popper entering
+   */
+  onPopperEnter?: () => Promise<void> | void;
+
+  /**
+   * @description
    * when trigger on popper entered
    */
   onPopperEntered?: () => Promise<void> | void;

@@ -1,5 +1,5 @@
 import dayjs, { type Dayjs } from "dayjs";
-import React, { type CSSProperties, type ReactNode, useCallback, useMemo } from "react";
+import React, { type CSSProperties, type ReactNode, useCallback, useMemo, useState } from "react";
 import { toArray, useControlledState } from "@aiszlab/relax";
 import { Timespan } from "../../utils/timespan";
 import { stringify } from "@aiszlab/relax/class-name";
@@ -10,11 +10,12 @@ import { typography } from "../theme/theme";
 import { useTheme } from "../theme";
 import { IconButton } from "../icon-button";
 import type { CLASS_NAMES } from "./context";
+import { Partialable } from "@aiszlab/relax/types";
 
 const styles = stylex.create({
   cell: {
-    height: sizes.xxlarge,
-    width: sizes.xxlarge,
+    height: sizes.large,
+    width: sizes.large,
     padding: spacing.none,
     textAlign: "center",
   },
@@ -79,7 +80,7 @@ export const useHeadCells = ({ classNames }: { classNames: typeof CLASS_NAMES })
       styles.header({
         color: theme.colors["on-surface-variant"],
       }),
-      typography.body.large,
+      typography.body.medium,
     );
 
     return dayjs.Ls[dayjs.locale()].weekdays?.map((weekday, index) => (
@@ -168,6 +169,7 @@ export const useDateCells = ({
           >
             <IconButton
               variant={isSelected ? "filled" : "text"}
+              size="small"
               color={isSelected ? "primary" : "secondary"}
               className={stringify(classNames.date, styled.trigger.className)}
               style={styled.trigger.style}
@@ -227,39 +229,38 @@ export const useValue = ({
  * point at
  */
 export const useFocusedAt = ({
-  focusedAt: _focusedAt,
+  focusedAt: _focusedAt = dayjs(),
 }: {
-  focusedAt: CalendarProps["focusedAt"];
+  focusedAt: Partialable<Dayjs>;
 }) => {
-  const [focusedAt, setFocusedAt] = useControlledState(_focusedAt, {
-    defaultState: dayjs(),
-  });
+  const [focusedAt, setFocusedAt] = useState(_focusedAt);
 
-  // next year
-  const toNextYear = useCallback(() => {
+  const addYear = useCallback(() => {
     setFocusedAt((prev) => prev.add(1, "year"));
   }, [setFocusedAt]);
 
-  // prev year
-  const toPrevYear = useCallback(() => {
+  const subtractYear = useCallback(() => {
     setFocusedAt((prev) => prev.subtract(1, "year"));
   }, [setFocusedAt]);
 
-  // next month
-  const toNextMonth = useCallback(() => {
+  const addMonth = useCallback(() => {
     setFocusedAt((prev) => prev.add(1, "month"));
   }, [setFocusedAt]);
 
-  // prev month
-  const toPrevMonth = useCallback(() => {
+  const subtractMonth = useCallback(() => {
     setFocusedAt((prev) => prev.subtract(1, "month"));
   }, [setFocusedAt]);
 
+  const reset = useCallback(() => {
+    setFocusedAt(_focusedAt ?? dayjs());
+  }, [_focusedAt]);
+
   return {
     focusedAt,
-    toNextYear,
-    toPrevYear,
-    toNextMonth,
-    toPrevMonth,
+    addMonth,
+    subtractMonth,
+    addYear,
+    subtractYear,
+    reset,
   };
 };

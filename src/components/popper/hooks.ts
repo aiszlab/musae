@@ -48,6 +48,7 @@ export const useFloating = ({
   placement,
   arrowable,
   offset: _offset,
+  onEnter,
   onEntered,
   onExit,
   onExited,
@@ -58,6 +59,7 @@ export const useFloating = ({
   placement: DropdownProps["placement"];
   arrowable: boolean;
   offset: DropdownProps["offset"];
+  onEnter?: () => Promise<void> | void;
   onEntered?: () => Promise<void> | void;
   onExit?: () => Promise<void> | void;
   onExited?: () => Promise<void> | void;
@@ -83,7 +85,12 @@ export const useFloating = ({
     _isOpen.current = true;
 
     _floatable.style.display = "unset";
-    await animate(_scope.current, { opacity: 1 }, { duration: 0.2 });
+    await Promise.all([
+      Promise.resolve()
+        .then(onEnter)
+        .catch(() => null),
+      animate(_scope.current, { opacity: 1 }, { duration: 0.2 }),
+    ]);
     await onEntered?.();
   });
 
@@ -99,7 +106,7 @@ export const useFloating = ({
     _isOpen.current = false;
 
     await Promise.all([
-      onExit?.(),
+      Promise.resolve(onExit).catch(() => null),
       animate(_scope.current, { opacity: 0 }, { duration: 0.2 }).then(() => {
         _floatable.style.display = "none";
       }),

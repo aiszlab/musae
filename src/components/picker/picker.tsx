@@ -36,6 +36,7 @@ const Picker = forwardRef<PickerRef, PickerProps>(
       onClick,
       pickableClassName,
       pickableStyle,
+      onPopperEnter,
       onPopperEntered,
       onPopperExited,
       onPopperExite,
@@ -133,6 +134,7 @@ const Picker = forwardRef<PickerRef, PickerProps>(
           trigger={trigger.current}
           open={isOpen}
           className={classNames.dropdown}
+          onEnter={onPopperEnter}
           onEntered={onPopperEntered}
           onExit={onPopperExite}
           onExited={onPopperExited}

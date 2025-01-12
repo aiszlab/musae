@@ -17,6 +17,7 @@ const styles = {
       alignItems: "center",
       columnGap: spacing.xxsmall,
       overflow: "hidden",
+      pointerEvents: "none",
 
       gridTemplateAreas: "'leading title' '. description'",
       gridTemplateColumns: "auto 1fr",
@@ -24,6 +25,7 @@ const styles = {
 
     clickable: {
       cursor: "pointer",
+      pointerEvents: null,
     },
   }),
 
@@ -32,7 +34,7 @@ const styles = {
       gridArea: "leading",
     },
 
-    tail: (props: { color: CSSProperties["color"] }) => ({
+    tail: {
       position: "relative",
 
       "::after": {
@@ -40,12 +42,12 @@ const styles = {
         position: "absolute",
         height: sizes.infinity,
         width: sizes.smallest,
-        backgroundColor: props.color,
+        backgroundColor: "var(--primary)",
         insetBlockStart: "100%",
         insetInlineStart: `calc((100% - ${sizes.smallest}) / 2)`,
         marginBlockStart: spacing.xsmall,
       },
-    }),
+    },
   }),
 
   sign: stylex.create({
@@ -59,29 +61,20 @@ const styles = {
       height: props.size ?? sizes.xsmall,
     }),
 
-    doing: (props: {
-      backgroundColor: CSSProperties["backgroundColor"];
-      color: CSSProperties["color"];
-    }) => ({
-      backgroundColor: props.backgroundColor,
-      color: props.color,
-    }),
+    doing: {
+      backgroundColor: "var(--primary)",
+      color: "var(--on-primary)",
+    },
 
-    done: (props: {
-      backgroundColor: CSSProperties["backgroundColor"];
-      color: CSSProperties["color"];
-    }) => ({
-      backgroundColor: props.backgroundColor,
-      color: props.color,
-    }),
+    done: {
+      backgroundColor: "var(--primary-container)",
+      color: "var(--on-primary-container)",
+    },
 
-    todo: (props: {
-      backgroundColor: CSSProperties["backgroundColor"];
-      color: CSSProperties["color"];
-    }) => ({
-      backgroundColor: props.backgroundColor,
-      color: props.color,
-    }),
+    todo: {
+      backgroundColor: "var(--secondary)",
+      color: "var(--on-secondary)",
+    },
   }),
 
   title: stylex.create({
@@ -90,7 +83,7 @@ const styles = {
       alignItems: "center",
     },
 
-    tail: (props: { color: CSSProperties["color"] }) => ({
+    tail: {
       position: "relative",
 
       "::after": {
@@ -98,11 +91,11 @@ const styles = {
         position: "absolute",
         height: sizes.smallest,
         width: sizes.infinity,
-        backgroundColor: props.color,
+        backgroundColor: "var(--primary)",
         marginInlineStart: spacing.xsmall,
         insetBlockStart: `calc((100% - ${sizes.smallest}) / 2)`,
       },
-    }),
+    },
   }),
 
   description: stylex.create({
@@ -113,7 +106,6 @@ const styles = {
 };
 
 const Item = ({ leading, title, description, value }: StepItemProps) => {
-  const theme = useTheme();
   const { type, onChange, value: _value, max, size, classNames } = useContext(Context);
 
   const status: Status = _value < value ? "todo" : _value === value ? "doing" : "done";
@@ -124,47 +116,23 @@ const Item = ({ leading, title, description, value }: StepItemProps) => {
 
   const styled = {
     step: stylex.props(styles.step.default, isClickable && styles.step.clickable),
-    leading: stylex.props(
-      styles.leading.default,
-      isVertical &&
-        !isMax &&
-        styles.leading.tail({
-          color: theme.colors.primary,
-        }),
-    ),
+    leading: stylex.props(styles.leading.default, isVertical && !isMax && styles.leading.tail),
     sign: stylex.props(
       styles.sign.default({ size }),
-      status === "doing" &&
-        styles.sign.doing({
-          backgroundColor: theme.colors.primary,
-          color: theme.colors["on-primary"],
-        }),
-      status === "done" &&
-        styles.sign.done({
-          backgroundColor: theme.colors["primary-container"],
-          color: theme.colors["on-primary-container"],
-        }),
-      status === "todo" &&
-        styles.sign.todo({
-          backgroundColor: theme.colors.secondary,
-          color: theme.colors["on-secondary"],
-        }),
+      status === "doing" && styles.sign.doing,
+      status === "done" && styles.sign.done,
+      status === "todo" && styles.sign.todo,
     ),
     title: stylex.props(
       typography.title.medium,
       styles.title.default,
-      isHorizontal &&
-        !isMax &&
-        styles.title.tail({
-          color: theme.colors.primary,
-        }),
+      isHorizontal && !isMax && styles.title.tail,
     ),
     description: stylex.props(typography.body.medium, styles.description.default),
   };
 
   const click = useEvent(() => {
-    if (!isClickable) return;
-    onChange(value);
+    onChange?.(value);
   });
 
   return (

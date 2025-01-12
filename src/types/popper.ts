@@ -46,6 +46,12 @@ export interface PopperProps
 
   /**
    * @description
+   * when trigger on popper entering, this function will be called
+   */
+  onEnter?: () => Promise<void> | void;
+
+  /**
+   * @description
    * when trigger on popper entered, this function will be called
    */
   onEntered?: () => Promise<void> | void;

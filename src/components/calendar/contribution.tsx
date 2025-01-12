@@ -15,10 +15,6 @@ const FORMAT = "YYYY-MM-DD";
 
 const styles = {
   calendar: stylex.create({
-    variables: (props: { color: CSSProperties["color"] }) => ({
-      "--primary": props.color,
-    }),
-
     default: {
       borderCollapse: "separate",
       borderSpacing: spacing.xxxsmall,
@@ -152,10 +148,7 @@ const ContributionCalendar = ({
   }, [contributions]);
 
   const styled = {
-    scrollable: stylex.props(
-      styles.calendar.variables({ color: theme.colors.primary }),
-      styles.calendar.scrollable,
-    ),
+    scrollable: stylex.props(styles.calendar.scrollable),
     calendar: stylex.props(styles.calendar.default),
     cell: stylex.props(styles.cell.default),
     weekday: {
@@ -190,7 +183,14 @@ const ContributionCalendar = ({
   }, [theme.colors.primary, levels, gap]);
 
   return (
-    <div className={styled.scrollable.className} style={styled.scrollable.style}>
+    <div
+      className={styled.scrollable.className}
+      style={{
+        ...styled.scrollable.style,
+        // @ts-expect-error
+        "--primary": theme.colors.primary,
+      }}
+    >
       <table className={styled.calendar.className} style={styled.calendar.style}>
         <thead>
           <tr>

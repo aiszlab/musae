@@ -16,13 +16,6 @@ export type CalendarProps = ComponentProps & {
 
   /**
    * @description
-   * focused at
-   * @default void 0
-   */
-  focusedAt?: Dayjs;
-
-  /**
-   * @description
    * click date handler
    * @default void 0
    */
@@ -74,3 +67,13 @@ export type ContributionCalendarProps = {
    */
   levels?: number;
 };
+
+/**
+ * @description calendar ref
+ */
+export interface CalendarRef {
+  /**
+   * @description reset
+   */
+  reset: () => void;
+}

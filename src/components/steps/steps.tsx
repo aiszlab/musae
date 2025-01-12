@@ -6,6 +6,7 @@ import stylex from "@stylexjs/stylex";
 import { stringify } from "@aiszlab/relax/class-name";
 import { CLASS_NAMES, Context } from "./context";
 import { spacing } from "../theme/tokens.stylex";
+import { useTheme } from "../theme";
 
 const styles = stylex.create({
   steps: {
@@ -41,6 +42,7 @@ const Steps = ({
   size,
 }: StepsProps) => {
   const classNames = useClassNames(CLASS_NAMES);
+  const theme = useTheme();
 
   const styled = {
     steps: stylex.props(styles.steps, styles[type]),
@@ -65,6 +67,13 @@ const Steps = ({
         style={{
           ...styled.steps.style,
           ...style,
+          // @ts-expect-error
+          "--primary": theme.colors.primary,
+          "--on-primary": theme.colors["on-primary"],
+          "--primary-container": theme.colors["primary-container"],
+          "--on-primary-container": theme.colors["on-primary-container"],
+          "--secondary": theme.colors.secondary,
+          "--on-secondary": theme.colors["on-secondary"],
         }}
       >
         {items.map((item, index) => (
