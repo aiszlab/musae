@@ -68,7 +68,7 @@
     "@lexical/code": "^0.22.0",
     "@lexical/headless": "^0.22.0",
     "@lexical/link": "^0.22.0",
-    "@lexical/list": "^0.22.0",
+    "@lexical/list": "^0.23.1",
     "@lexical/markdown": "^0.22.0",
     "@lexical/react": "^0.22.0",
     "@lexical/rich-text": "^0.22.0",
