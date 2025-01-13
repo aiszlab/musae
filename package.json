@@ -70,7 +70,7 @@
     "@lexical/link": "^0.22.0",
     "@lexical/list": "^0.22.0",
     "@lexical/markdown": "^0.22.0",
-    "@lexical/react": "^0.22.0",
+    "@lexical/react": "^0.23.1",
     "@lexical/rich-text": "^0.22.0",
     "@lexical/selection": "^0.22.0",
     "@lexical/utils": "^0.22.0",
