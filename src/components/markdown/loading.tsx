@@ -5,7 +5,7 @@ import { sizes, spacing } from "../theme/tokens.stylex";
 import { Space } from "../space";
 
 const styles = stylex.create({
-  wrapper: {
+  loading: {
     padding: spacing.medium,
   },
 
@@ -27,16 +27,24 @@ const styles = stylex.create({
 
 const Loading = () => {
   const styled = {
-    wrapper: stylex.props(styles.wrapper),
+    loading: stylex.props(styles.loading),
     heading: stylex.props(styles.heading),
     content: stylex.props(styles.content),
     footer: stylex.props(styles.footer),
   };
 
   return (
-    <Space orientation="vertical" gutter={8} {...styled.wrapper}>
+    <Space orientation="vertical" gutter={8} {...styled.loading}>
       <Skeleton {...styled.heading} />
-      <Skeleton {...styled.content} />
+
+      <Space orientation="vertical" gutter={8}>
+        <Skeleton {...styled.content} />
+        <Skeleton {...styled.content} />
+        <Skeleton {...styled.content} />
+        <Skeleton {...styled.content} />
+        <Skeleton {...styled.content} />
+      </Space>
+
       <Skeleton {...styled.footer} />
     </Space>
   );
