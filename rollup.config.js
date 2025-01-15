@@ -107,7 +107,9 @@ const config = () => {
       resolve({
         extensions: EXTENSIONS,
       }),
-      typescript(),
+      typescript({
+        rootDir: "./src",
+      }),
 
       // bundler will generate when production mode
       isProd &&
