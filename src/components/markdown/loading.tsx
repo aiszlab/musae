@@ -11,17 +11,20 @@ const styles = stylex.create({
 
   heading: {
     width: sizes.xxxxxlarge,
-    height: sizes.xxsmall,
+    height: sizes.xsmall,
+    borderRadius: sizes.xxxxxsmall,
   },
 
   content: {
     width: sizes.xxxxxxlarge,
-    height: sizes.xxxxxxlarge,
+    height: sizes.xsmall,
+    borderRadius: sizes.xxxxxsmall,
   },
 
   footer: {
     width: sizes.xxxxxlarge,
-    height: sizes.xxsmall,
+    height: sizes.xsmall,
+    borderRadius: sizes.xxxxxsmall,
   },
 });
 
