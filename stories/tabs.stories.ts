@@ -7,23 +7,14 @@ const meta: Meta<typeof Tabs> = {
   component: Tabs,
   parameters: {},
   tags: ["autodocs"],
-  args: {
-    items: range(0, 10).map((key) => {
-      return {
-        key,
-        label: key.toString(),
-        children: `panel ${key}`,
-      };
-    }),
-  },
 };
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Loading: Story = {
+export const Scrollable: Story = {
   args: {
-    items: range(0, 10).map((key) => {
+    items: range(0, 30).map((key) => {
       return {
         key,
         label: key.toString(),

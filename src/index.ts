@@ -65,6 +65,7 @@ export { PasswordInput } from "./components/password-input";
 export { IconButton } from "./components/icon-button";
 export { Chat } from "./components/chat";
 export { Markdown } from "./components/markdown";
+export { Ellipsis } from "./components/ellipsis";
 
 /**
  * @description

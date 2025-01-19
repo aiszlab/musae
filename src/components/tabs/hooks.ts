@@ -2,20 +2,13 @@ import {
   clamp,
   isUndefined,
   useControlledState,
+  useDebounceCallback,
   useEvent,
   useMount,
   useMounted,
+  useResize,
 } from "@aiszlab/relax";
-import {
-  useLayoutEffect,
-  useMemo,
-  useRef,
-  useState,
-  useEffect,
-  type Key,
-  type RefObject,
-  useContext,
-} from "react";
+import { useMemo, useRef, useState, useEffect, type Key, type RefObject, useContext } from "react";
 import type { TabItem } from "musae/types/tabs";
 import { Context } from "./context";
 import type { Partialable } from "@aiszlab/relax/types";
@@ -81,6 +74,7 @@ export const useNavigation = () => {
 
     setNavigatorSize(_navigatorSize);
     setTabsSize(_tabsSize);
+    scroll(0);
   });
 
   const { maxOffset, minOffset } = useMemo(() => {
@@ -97,6 +91,7 @@ export const useNavigation = () => {
     };
   }, [minOffset, maxOffset, offset]);
 
+  // handle scroll
   const scroll = useEvent((delta: number) => {
     setOffset((prev) => {
       return clamp(prev + delta, minOffset, maxOffset);
@@ -105,13 +100,7 @@ export const useNavigation = () => {
 
   // if window resize
   // re-calculate offsets range
-  useMounted(() => {
-    window.addEventListener("resize", resize);
-
-    return () => {
-      window.removeEventListener("resize", resize);
-    };
-  });
+  useResize(resize);
 
   // calculate size once at mounting step
   useMount(() => {

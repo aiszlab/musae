@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Skeleton } from "../skeleton";
 import stylex from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { Space } from "../space";
+import Context from "./context";
+import { stringify } from "@aiszlab/relax/class-name";
 
 const styles = stylex.create({
   loading: {
@@ -29,6 +31,8 @@ const styles = stylex.create({
 });
 
 const Loading = () => {
+  const { classNames } = useContext(Context);
+
   const styled = {
     loading: stylex.props(styles.loading),
     heading: stylex.props(styles.heading),
@@ -37,7 +41,12 @@ const Loading = () => {
   };
 
   return (
-    <Space orientation="vertical" gutter={8} {...styled.loading}>
+    <Space
+      className={(stringify(classNames.loading), styled.loading.className)}
+      style={styled.loading.style}
+      orientation="vertical"
+      gutter={8}
+    >
       <Skeleton {...styled.heading} />
 
       <Space orientation="vertical" gutter={8}>

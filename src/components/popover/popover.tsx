@@ -1,4 +1,5 @@
 import { useHover, useEvent, useFocus, useClickAway, isRefable } from "@aiszlab/relax";
+import { mountRef } from "@aiszlab/relax/react";
 import React, {
   cloneElement,
   useMemo,
@@ -137,7 +138,11 @@ const Popover = forwardRef(
           onContextMenu,
         }),
         ...(isRefable(_child) && {
-          ref: _ref,
+          ref: (_reference) => {
+            mountRef(_ref, _reference);
+            //@ts-expect-error
+            mountRef(_child.ref, _reference);
+          },
         }),
       };
 

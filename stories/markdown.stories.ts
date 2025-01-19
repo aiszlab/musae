@@ -8,12 +8,16 @@ const meta: Meta<typeof Markdown> = {
     layout: "centered",
   },
   tags: ["autodocs"],
-  args: { value: "# Markdown" },
 };
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Loading: Story = {
-  args: {},
+export const RichText: Story = {
+  args: {
+    value: `# Heading1
+## Heading2
+### Heading3
+#### Heading4`,
+  },
 };
