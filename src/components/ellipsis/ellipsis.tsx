@@ -26,8 +26,6 @@ const Ellipsis = ({ value = "", textOverflow = "...", className, style }: Ellips
   };
 
   useEffect(() => {
-    console.log("ref=====", ref);
-
     const _container = ref.current;
     if (!_container) return;
 
@@ -42,14 +40,8 @@ const Ellipsis = ({ value = "", textOverflow = "...", className, style }: Ellips
       textOverflow,
     });
 
-    console.log("_exceedAt====", _exceedAt);
-
-    _setValue(value.substring(0, _exceedAt + 1 || void 0).concat(textOverflow));
+    _setValue(value.substring(0, _exceedAt).concat(textOverflow));
   }, [value, textOverflow]);
-
-  useEffect(() => {
-    console.log("ref2222222=====", ref);
-  }, []);
 
   return (
     <Tooltip title={value}>
