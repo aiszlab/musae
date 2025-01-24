@@ -9,64 +9,66 @@ export const exceedAt = (
     width: number;
     height: number;
     textOverflow: string;
+    lineClamp: number;
   },
 ) => {
   const _container = document.createElement("div");
 
   _container.className = props.className ?? "";
   _container.style.cssText = props.style ?? "";
-  _container.style.width = `${props.width}px`;
-  _container.style.height = `${props.height}px`;
   _container.innerText = value;
 
   document.body.appendChild(_container);
-  const _overflowAt = overflowAt(_container, value, props.textOverflow);
+  const _overflowAt = overflowAt(_container, value, {
+    lineClamp: props.lineClamp,
+    textOverflow: props.textOverflow,
+    maxWidth: props.width,
+    maxHeight: props.height,
+  });
   document.body.removeChild(_container);
 
   return Math.max(1, _overflowAt);
 };
 
 /**
- * @description
- * is overflow
- */
-const isOverflow = (
-  element: HTMLElement,
-  {
-    height = element.clientHeight,
-    width = element.clientWidth,
-  }: { height?: number; width?: number } = {},
-) => {
-  return element.scrollHeight > height || element.scrollWidth > width;
-};
-
-/**
  * @description _isOverflow
  */
-const overflowAt = (element: HTMLElement, text: string, textOverflow: string) => {
-  element.innerText = text;
-
-  if (!isOverflow(element)) {
-    return text.length;
-  }
-
+const overflowAt = (
+  element: HTMLElement,
+  text: string,
+  {
+    textOverflow,
+    lineClamp,
+    maxHeight,
+    maxWidth,
+  }: { textOverflow: string; lineClamp: number; maxWidth: number; maxHeight: number },
+) => {
   // record line height / char width
-  let lineHeight = 0;
-  let charWidth = 0;
+  let _lineClamp = 0;
+  let _lineHeight = 0;
+  let _charWidth = 0;
+  let _maxHeight = 0;
 
   for (let _charAt = 0; _charAt < text.length; _charAt++) {
     element.innerText = text.substring(0, _charAt + 1).concat(textOverflow);
 
     // height should contain 1 line at least
-    if (lineHeight === 0) {
-      lineHeight = element.scrollHeight;
-    }
-    // width should contain 1 char at least
-    if (charWidth === 0) {
-      charWidth = element.scrollWidth;
+    if (_charAt === 0) {
+      _maxHeight = Math.max(element.scrollHeight, maxHeight);
     }
 
-    const _isOverflow = isOverflow(element, { height: lineHeight, width: charWidth });
+    if (element.scrollHeight > _lineHeight) {
+      _lineHeight = element.scrollHeight;
+      _lineClamp = _lineClamp + 1;
+    }
+
+    // width should contain 1 char at least
+    if (_charWidth === 0) {
+      _charWidth = element.scrollWidth;
+    }
+
+    const _isOverflow =
+      _lineHeight > _maxHeight || element.scrollWidth > maxWidth || _lineClamp > lineClamp;
 
     if (_isOverflow) {
       return _charAt;

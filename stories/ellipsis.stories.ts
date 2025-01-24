@@ -14,10 +14,42 @@ type Story = StoryObj<typeof meta>;
 export const Normal: Story = {
   args: {
     value:
-      "测试长文本测试长文本测试长文本测试长文本测试长文本测试长文本测试长文本测试长文本测试长文本测试长文本测试长文本测试长文本测试长文本测试长文本测试长文本测试长文本测试长文本",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     style: {
-      width: 100,
-      height: 20,
+      width: 300,
+    },
+  },
+};
+
+export const LineClamp: Story = {
+  args: {
+    value:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    lineClamp: 2,
+    style: {
+      width: 300,
+    },
+  },
+};
+
+export const TextOverflow: Story = {
+  args: {
+    value:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    textOverflow: "!!!",
+    style: {
+      width: 300,
+    },
+  },
+};
+
+export const Unellipsis: Story = {
+  args: {
+    value:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    lineClamp: Infinity,
+    style: {
+      width: 300,
     },
   },
 };

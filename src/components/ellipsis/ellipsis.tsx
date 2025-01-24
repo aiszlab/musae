@@ -16,7 +16,13 @@ const styles = stylex.create({
   },
 });
 
-const Ellipsis = ({ value = "", textOverflow = "...", className, style }: EllipsisProps) => {
+const Ellipsis = ({
+  value = "",
+  textOverflow = "...",
+  lineClamp = 1,
+  className,
+  style,
+}: EllipsisProps) => {
   const ref = useRef<HTMLDivElement>(null);
   const [_value, _setValue] = useState(value);
 
@@ -38,13 +44,16 @@ const Ellipsis = ({ value = "", textOverflow = "...", className, style }: Ellips
       className: stringify(_container.className, styled.virtual.class),
       style: stringify(_container.style.cssText, styled.virtual.style),
       textOverflow,
+      lineClamp,
     });
 
-    _setValue(value.substring(0, _exceedAt).concat(textOverflow));
-  }, [value, textOverflow]);
+    _setValue(
+      _exceedAt === value.length ? value : value.substring(0, _exceedAt).concat(textOverflow),
+    );
+  }, [value, textOverflow, lineClamp]);
 
   return (
-    <Tooltip title={value}>
+    <Tooltip title={_value === value ? "" : value}>
       <div
         ref={ref}
         className={stringify(className, styled.ellipsis.className)}

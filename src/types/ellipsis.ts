@@ -17,4 +17,11 @@ export interface EllipsisProps extends ComponentProps {
    * @default "..."
    */
   textOverflow?: string;
+
+  /**
+   * @description line clamp
+   *
+   * @default 1
+   */
+  lineClamp?: number;
 }
