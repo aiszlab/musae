@@ -1,4 +1,4 @@
-import type { TooltipProps } from "musae/types/tooltip";
+import type { TooltipProps } from "../../types/tooltip";
 import React from "react";
 import { Popover } from "../popover";
 import { stringify } from "@aiszlab/relax/class-name";

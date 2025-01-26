@@ -4,6 +4,8 @@ import { Tooltip } from "../tooltip";
 import React, { useLayoutEffect, useRef, useState } from "react";
 import { exceedAt } from "./utils";
 import { stringify } from "@aiszlab/relax/class-name";
+import { useClassNames } from "../../hooks/use-class-names.component";
+import { CLASS_NAMES } from "./context";
 
 const styles = stylex.create({
   ellipsis: {
@@ -25,6 +27,7 @@ const Ellipsis = ({
 }: EllipsisProps) => {
   const ref = useRef<HTMLDivElement>(null);
   const [_value, _setValue] = useState(value);
+  const classNames = useClassNames(CLASS_NAMES);
 
   const styled = {
     ellipsis: stylex.props(styles.ellipsis),
@@ -53,10 +56,10 @@ const Ellipsis = ({
   }, [value, textOverflow, lineClamp]);
 
   return (
-    <Tooltip title={_value === value ? "" : value}>
+    <Tooltip title={_value !== value && value}>
       <div
         ref={ref}
-        className={stringify(className, styled.ellipsis.className)}
+        className={stringify(classNames.ellipsis, className, styled.ellipsis.className)}
         style={{
           ...styled.ellipsis.style,
           ...style,

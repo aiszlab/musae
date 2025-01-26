@@ -18,6 +18,12 @@ const styles = stylex.create({
   },
 
   content: {
+    width: 600,
+    height: sizes.xsmall,
+    borderRadius: sizes.xxxxxsmall,
+  },
+
+  newline: {
     width: sizes.xxxxxxlarge,
     height: sizes.xsmall,
     borderRadius: sizes.xxxxxsmall,
@@ -37,6 +43,7 @@ const Loading = () => {
     loading: stylex.props(styles.loading),
     heading: stylex.props(styles.heading),
     content: stylex.props(styles.content),
+    newline: stylex.props(styles.newline),
     footer: stylex.props(styles.footer),
   };
 
@@ -52,9 +59,11 @@ const Loading = () => {
       <Space orientation="vertical" gutter={8}>
         <Skeleton {...styled.content} />
         <Skeleton {...styled.content} />
+        <Skeleton {...styled.newline} />
+
         <Skeleton {...styled.content} />
         <Skeleton {...styled.content} />
-        <Skeleton {...styled.content} />
+        <Skeleton {...styled.newline} />
       </Space>
 
       <Skeleton {...styled.footer} />
