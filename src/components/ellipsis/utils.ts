@@ -1,30 +1,41 @@
+import { props } from "@stylexjs/stylex";
+
 /**
  * @description get exceed index
  */
 export const exceedAt = (
   value: string,
-  props: {
+  {
+    maxHeight,
+    maxWidth,
+    textOverflow,
+    lineClamp,
+    className,
+    style,
+  }: {
     className?: string;
     style?: string;
-    width: number;
-    height: number;
+    maxWidth: number;
+    maxHeight: number;
     textOverflow: string;
     lineClamp: number;
   },
 ) => {
   const _container = document.createElement("div");
 
-  _container.className = props.className ?? "";
-  _container.style.cssText = props.style ?? "";
+  _container.className = className ?? "";
+  _container.style.cssText = style ?? "";
   _container.innerText = value;
 
   document.body.appendChild(_container);
+
   const _overflowAt = overflowAt(_container, value, {
-    lineClamp: props.lineClamp,
-    textOverflow: props.textOverflow,
-    maxWidth: props.width,
-    maxHeight: props.height,
+    lineClamp,
+    textOverflow,
+    maxWidth,
+    maxHeight,
   });
+
   document.body.removeChild(_container);
 
   return Math.max(1, _overflowAt);

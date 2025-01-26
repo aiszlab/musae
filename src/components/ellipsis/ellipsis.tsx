@@ -1,7 +1,7 @@
 import stylex from "@stylexjs/stylex";
 import { EllipsisProps } from "../../types/ellipsis";
 import { Tooltip } from "../tooltip";
-import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
+import React, { useLayoutEffect, useRef, useState } from "react";
 import { exceedAt } from "./utils";
 import { stringify } from "@aiszlab/relax/class-name";
 
@@ -31,7 +31,7 @@ const Ellipsis = ({
     virtual: stylex.attrs(styles.virtual),
   };
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const _container = ref.current;
     if (!_container) return;
 
@@ -39,8 +39,8 @@ const Ellipsis = ({
     const height = _container.clientHeight;
 
     const _exceedAt = exceedAt(value, {
-      height,
-      width,
+      maxHeight: height,
+      maxWidth: width,
       className: stringify(_container.className, styled.virtual.class),
       style: stringify(_container.style.cssText, styled.virtual.style),
       textOverflow,

@@ -25,7 +25,7 @@ export const LineClamp: Story = {
   args: {
     value:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    lineClamp: 2,
+    lineClamp: 3,
     style: {
       width: 300,
     },
