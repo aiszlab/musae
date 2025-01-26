@@ -13,7 +13,7 @@ const styles = stylex.create({
 
   heading: {
     width: sizes.xxxxxlarge,
-    height: sizes.xsmall,
+    height: sizes.medium,
     borderRadius: sizes.xxxxxsmall,
   },
 
@@ -31,7 +31,7 @@ const styles = stylex.create({
 
   footer: {
     width: sizes.xxxxxlarge,
-    height: sizes.xsmall,
+    height: sizes.small,
     borderRadius: sizes.xxxxxsmall,
   },
 });
