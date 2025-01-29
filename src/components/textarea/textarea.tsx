@@ -18,7 +18,7 @@ const styles = stylex.create({
   },
 
   input: {
-    paddingBlock: spacing.xxxsmall,
+    paddingBlock: spacing.xxxxsmall,
     paddingInline: spacing.medium,
     outline: sizes.none,
     borderWidth: sizes.none,

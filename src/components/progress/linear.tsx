@@ -10,7 +10,7 @@ import Context from "./context";
 const styles = stylex.create({
   progress: (props: { color: CSSProperties["backgroundColor"] }) => ({
     width: sizes.full,
-    height: sizes.xxxxxxsmall,
+    height: sizes.xxxxxxxsmall,
     backgroundColor: props.color,
     borderRadius: sizes.infinity,
   }),

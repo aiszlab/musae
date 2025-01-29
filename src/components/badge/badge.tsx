@@ -24,7 +24,7 @@ const styles = {
     }) => ({
       position: "absolute",
       borderRadius: sizes.infinity,
-      minWidth: sizes.xxxsmall,
+      minWidth: sizes.xxxxsmall,
       textAlign: "center",
       boxShadow: `0 0 0 ${sizes.smallest} ${props.color}`,
       backgroundColor: props.backgroundColor,
@@ -33,8 +33,8 @@ const styles = {
 
     dot: {
       minWidth: null,
-      width: sizes.xxxxxsmall,
-      height: sizes.xxxxxsmall,
+      width: sizes.xxxxxxsmall,
+      height: sizes.xxxxxxsmall,
     },
 
     invisible: {

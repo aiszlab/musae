@@ -5,7 +5,7 @@ import { Popper } from "../popper";
 import stylex from "@stylexjs/stylex";
 import { Button } from "../button";
 import { useTheme } from "../theme";
-import { elevations, positions, sizes, spacing } from "../theme/tokens.stylex";
+import { duration, elevations, positions, sizes, spacing } from "../theme/tokens.stylex";
 import { Space } from "../space";
 import { typography } from "../theme/theme";
 import { stringify } from "@aiszlab/relax/class-name";
@@ -29,8 +29,9 @@ const styles = stylex.create({
   tour: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
     backgroundColor: props.backgroundColor,
     boxShadow: elevations.small,
-    borderRadius: sizes.xxxxxxsmall,
-    transition: "all 0.2s",
+    borderRadius: sizes.xxxxxxxsmall,
+    transitionProperty: "all",
+    transitionDuration: duration.short,
   }),
 
   title: {

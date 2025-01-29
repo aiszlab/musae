@@ -1,11 +1,10 @@
-import { $isListNode, ListItemNode, SerializedListItemNode } from "@lexical/list";
-import { type EditorConfig, type LexicalNodeReplacement } from "lexical";
-import type { EditorThemeClasses } from "musae/types/rich-text-editor";
+import { ListItemNode, SerializedListItemNode } from "@lexical/list";
+import { type LexicalNodeReplacement } from "lexical";
 import { Partialable } from "@aiszlab/relax/types";
 
 class CheckableListItemNode extends ListItemNode {
   #disabled: boolean;
-  #checkboxElement: HTMLInputElement | null = null;
+  #checkboxElement: HTMLDivElement | null = null;
 
   static getType(): string {
     return "checkable-list-item";
@@ -26,6 +25,7 @@ class CheckableListItemNode extends ListItemNode {
     disabled: boolean,
   ) {
     super(value, checked, key);
+
     this.#disabled = disabled;
   }
 
@@ -48,40 +48,13 @@ class CheckableListItemNode extends ListItemNode {
       version: 1,
     };
   }
-
-  createDOM(config: EditorConfig): HTMLElement {
-    const listItem = super.createDOM(config);
-
-    if (!this.#isCheckList) return listItem;
-
-    this.#checkboxElement = document.createElement("input");
-    const isChecked = this.getChecked();
-    this.#checkboxElement.setAttribute("type", "checkbox");
-    this.#checkboxElement.setAttribute("aria-disabled", String(this.#disabled));
-    this.#checkboxElement.setAttribute("aria-checked", String(isChecked));
-    this.#checkboxElement.className = (config.theme as EditorThemeClasses).checkbox ?? "";
-    listItem.appendChild(this.#checkboxElement);
-    return listItem;
-  }
-
-  updateDOM(prevNode: CheckableListItemNode, dom: HTMLElement, config: EditorConfig): boolean {
-    const isReplace = super.updateDOM(prevNode, dom, config);
-    this.#checkboxElement?.setAttribute("aria-checked", String(this.getChecked() ?? false));
-
-    // if user clear all text, just replace new item node
-    return isReplace || this.getTextContentSize() === 0;
-  }
-
-  get #isCheckList() {
-    const parent = this.getParent();
-    return $isListNode(parent) && parent.getListType() === "check";
-  }
 }
 
 export const replacement = (disabled: boolean): LexicalNodeReplacement => ({
   replace: ListItemNode,
   with: (node: ListItemNode) =>
-    new CheckableListItemNode(node.getValue(), node.getChecked(), undefined, disabled),
+    new CheckableListItemNode(node.getValue(), node.getChecked(), void 0, disabled),
+  withKlass: CheckableListItemNode,
 });
 
 export { CheckableListItemNode };

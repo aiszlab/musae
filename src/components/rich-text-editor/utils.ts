@@ -71,10 +71,10 @@ const _styles = {
 
     inline: {
       backgroundColor: "var(--surface-container-highest)",
-      borderRadius: spacing.xxxsmall,
-      paddingBlock: spacing.xxxxsmall,
-      paddingInline: spacing.xxxsmall,
-      marginInline: spacing.xxxsmall,
+      borderRadius: spacing.xxxxsmall,
+      paddingBlock: spacing.xxxxxsmall,
+      paddingInline: spacing.xxxxsmall,
+      marginInline: spacing.xxxxsmall,
     },
   }),
 
@@ -125,8 +125,8 @@ const _styles = {
   checkbox: stylex.create({
     default: {
       position: "absolute",
-      insetInlineStart: spacing.xxxsmall,
-      insetBlockStart: spacing.xxxxsmall,
+      insetInlineStart: spacing.xxxxsmall,
+      insetBlockStart: spacing.xxxxxsmall,
 
       // if node is disabled, show disabled style
       ':not([aria-disabled="false"])': {
@@ -171,9 +171,7 @@ export const usingStyles = () => {
  * in musae
  * rich text always use same configuration
  */
-export const usingEditor = ({
-  disabled = false,
-}: { disabled?: boolean } = {}): CreateEditorArgs => {
+export const usingEditor = ({ disabled = false }: { disabled?: boolean }): CreateEditorArgs => {
   const styled = usingStyles();
 
   const theme: EditorThemeClasses = {

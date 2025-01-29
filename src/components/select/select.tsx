@@ -13,12 +13,12 @@ import { CLASS_NAMES } from "./context";
 
 const styles = stylex.create({
   picked: {
-    gap: spacing.xxxsmall,
+    gap: spacing.xxxxsmall,
     flexWrap: "wrap",
   },
 
   pickable: {
-    padding: spacing.xxxsmall,
+    padding: spacing.xxxxsmall,
   },
 });
 

@@ -53,7 +53,7 @@ const styles = stylex.create({
   },
 
   squared: {
-    borderRadius: sizes.xxxxxxsmall,
+    borderRadius: sizes.xxxxxxxsmall,
   },
 
   small: {

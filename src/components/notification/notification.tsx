@@ -5,7 +5,7 @@ import { useTheme } from "../theme";
 import type { NotificationProps, Placement, Axis, Type } from "musae/types/notification";
 import { useComposedRef, useTimeout } from "@aiszlab/relax";
 import { useClassNames } from "../../hooks/use-class-names.component";
-import { elevations, sizes, spacing } from "../theme/tokens.stylex";
+import { duration, elevations, sizes, spacing } from "../theme/tokens.stylex";
 import { CheckCircle, Close, Loading, Error, NotificationImportant, Warning } from "musae/icons";
 import { typography } from "../theme/theme";
 import type { IconProps } from "musae/types/icon";
@@ -45,13 +45,13 @@ const styles = {
     }) => ({
       backgroundColor: props.backgroundColor,
       color: props.color,
-      borderRadius: sizes.xxxxxxsmall,
+      borderRadius: sizes.xxxxxxxsmall,
       boxShadow: elevations.xsmall,
       maxWidth: sizes.full,
       pointerEvents: "auto",
       overflow: "hidden",
       transitionProperty: "margin-top, transform",
-      transitionDuration: "0.2s",
+      transitionDuration: duration.short,
       // hidden styles
       transform: props.transform,
       opacity: 0,

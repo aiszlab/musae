@@ -14,25 +14,25 @@ const styles = stylex.create({
   heading: {
     width: sizes.xxxxxlarge,
     height: sizes.medium,
-    borderRadius: sizes.xxxxxsmall,
+    borderRadius: sizes.xxxxxxsmall,
   },
 
   content: {
     width: 600,
     height: sizes.xsmall,
-    borderRadius: sizes.xxxxxsmall,
+    borderRadius: sizes.xxxxxxsmall,
   },
 
   newline: {
     width: sizes.xxxxxxlarge,
     height: sizes.xsmall,
-    borderRadius: sizes.xxxxxsmall,
+    borderRadius: sizes.xxxxxxsmall,
   },
 
   footer: {
     width: sizes.xxxxxlarge,
     height: sizes.small,
-    borderRadius: sizes.xxxxxsmall,
+    borderRadius: sizes.xxxxxxsmall,
   },
 });
 

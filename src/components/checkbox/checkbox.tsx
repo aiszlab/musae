@@ -1,13 +1,15 @@
-import React, { type ChangeEvent, useContext, useMemo } from "react";
+import React, { type ChangeEvent, useContext, useMemo, useRef } from "react";
 import { useControlledState, useEvent } from "@aiszlab/relax";
 import Context, { CLASS_NAMES } from "./context";
-import type { CheckboxProps } from "musae/types/checkbox";
+import type { CheckboxProps } from "../../types/checkbox";
 import stylex from "@stylexjs/stylex";
 import { useTheme } from "../theme";
 import { typography } from "../theme/theme";
 import styles from "./styles";
 import { useClassNames } from "../../hooks/use-class-names.component";
 import { stringify } from "@aiszlab/relax/class-name";
+import Check from "./check";
+import Indeterminate from "./Indeterminate";
 
 const Checkbox = ({
   value,
@@ -17,6 +19,7 @@ const Checkbox = ({
   onChange,
   disabled = false,
   checked,
+  indeterminate = false,
 }: CheckboxProps) => {
   const contextValue = useContext(Context);
   const classNames = useClassNames(CLASS_NAMES);
@@ -51,16 +54,16 @@ const Checkbox = ({
 
   const styled = {
     checkbox: stylex.props(
-      styles.checkbox.variables({
-        primary: theme.colors.primary,
-        onPrimary: theme.colors["on-primary"],
-        outline: theme.colors.outline,
-        onSurface: theme.colors["on-surface"],
-      }),
       styles.checkbox.default,
+      styles.checkbox.medium,
       isDisabled && styles.checkbox.disabled,
     ),
+    inputer: stylex.props(
+      styles.inputer.default,
+      (isChecked || indeterminate) && styles.inputer.checked,
+    ),
     input: stylex.props(styles.input.default),
+    check: stylex.props(styles.check.default),
     label: stylex.props(styles.label.default, typography.label.small),
   };
 
@@ -70,20 +73,31 @@ const Checkbox = ({
       style={{
         ...styled.checkbox.style,
         ...style,
+        // @ts-expect-error
+        "--on-surface-variant": theme.colors["on-surface-variant"],
+        "--primary": theme.colors.primary,
       }}
       aria-checked={isChecked}
       aria-disabled={isDisabled}
     >
-      <input
-        type="checkbox"
-        className={stringify(classNames.input, styled.input.className)}
-        style={styled.input.style}
-        checked={isChecked}
-        disabled={isDisabled}
-        onChange={change}
-        aria-checked={isChecked}
-        aria-disabled={isDisabled}
-      />
+      <span className={styled.inputer.className} style={styled.inputer.style}>
+        <input
+          type="checkbox"
+          className={stringify(classNames.input, styled.input.className)}
+          style={styled.input.style}
+          checked={isChecked}
+          disabled={isDisabled}
+          onChange={change}
+          aria-checked={isChecked}
+          aria-disabled={isDisabled}
+        />
+
+        {isChecked && <Check className={styled.check.className} style={styled.check.style} />}
+
+        {!isChecked && indeterminate && (
+          <Indeterminate className={styled.check.className} style={styled.check.style} />
+        )}
+      </span>
 
       {children && (
         <span

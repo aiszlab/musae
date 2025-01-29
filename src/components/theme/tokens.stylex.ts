@@ -27,8 +27,8 @@ export const elevations = defineVars<Record<ElevationToken, string>>({
 export const spacing = defineVars({
   none: "0px",
   smallest: "1px",
-  xxxxsmall: "2px",
-  xxxsmall: "4px",
+  xxxxxsmall: "2px",
+  xxxxsmall: "4px",
   xxsmall: "6px",
   xsmall: "8px",
   small: "10px",
@@ -47,11 +47,12 @@ export const spacing = defineVars({
 export const sizes = defineVars({
   none: "0px",
   smallest: "1px",
-  xxxxxxxsmall: "2px",
-  xxxxxxsmall: "4px",
-  xxxxxsmall: "8px",
-  xxxxsmall: "10px",
-  xxxsmall: "16px",
+  xxxxxxxxsmall: "2px",
+  xxxxxxxsmall: "4px",
+  xxxxxxsmall: "8px",
+  xxxxxsmall: "10px",
+  xxxxsmall: "16px",
+  xxxsmall: "18px",
   xxsmall: "20px",
   xsmall: "24px",
   small: "28px",
@@ -118,3 +119,15 @@ export const OPACITY: Record<OpacityToken, number> = {
 };
 
 export const opacity = defineVars(OPACITY);
+
+/**
+ * @description duration
+ */
+export const duration = defineVars({
+  none: "0s",
+  shortest: "0.1s",
+  short: "0.2s",
+  medium: "0.3s",
+  long: "0.5s",
+  longest: "1s",
+});

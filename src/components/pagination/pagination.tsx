@@ -15,7 +15,7 @@ import { CLASS_NAMES } from "./context";
 const styles = stylex.create({
   pagination: {
     display: "flex",
-    columnGap: spacing.xxxsmall,
+    columnGap: spacing.xxxxsmall,
     listStyleType: "none",
     margin: spacing.none,
     padding: spacing.none,

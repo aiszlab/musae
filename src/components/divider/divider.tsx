@@ -19,7 +19,7 @@ const styles = {
     },
 
     vertical: {
-      minHeight: sizes.xxxsmall,
+      minHeight: sizes.xxxxsmall,
       maxHeight: sizes.full,
       marginInlineStart: "var(--margin-start)",
       marginInlineEnd: "var(--margin-end)",

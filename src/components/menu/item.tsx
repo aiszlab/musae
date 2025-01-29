@@ -2,7 +2,7 @@ import React, { type CSSProperties, forwardRef, type MouseEventHandler, useRef }
 import { MenuItemProps } from "musae/types/menu";
 import { useItemChildren, useMenuContext } from "./hooks";
 import stylex from "@stylexjs/stylex";
-import { sizes, spacing } from "../theme/tokens.stylex";
+import { duration, sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { typography } from "../theme/theme";
 import { useEvent, useHover } from "@aiszlab/relax";
@@ -20,7 +20,7 @@ const styles = {
 
       willChange: "background-color, border, color",
       transitionProperty: "background-color, border, color",
-      transitionDuration: "0.2s",
+      transitionDuration: duration.short,
 
       // reset styles
       boxSizing: "border-box",
@@ -33,14 +33,14 @@ const styles = {
 
       vertical: {
         marginBlockStart: {
-          default: spacing.xxxsmall,
+          default: spacing.xxxxsmall,
           ":first-of-type": spacing.none,
         },
       },
 
       inline: {
         marginBlockStart: {
-          default: spacing.xxxsmall,
+          default: spacing.xxxxsmall,
           ":first-of-type": spacing.none,
         },
       },
@@ -56,11 +56,11 @@ const styles = {
           position: "absolute",
           insetInline: 0,
           insetBlockEnd: 0,
-          borderBottomWidth: sizes.xxxxxxxsmall,
+          borderBottomWidth: sizes.xxxxxxxxsmall,
           borderBottomStyle: "solid",
           willChange: "border-color",
           transitionProperty: "border-color",
-          transitionDuration: "0.2s",
+          transitionDuration: duration.short,
         },
 
         ":not(:hover)::after": {
@@ -90,24 +90,24 @@ const styles = {
 
   size: stylex.create({
     small: (props: { level: number }) => ({
-      paddingBlock: spacing.xxxsmall,
+      paddingBlock: spacing.xxxxsmall,
       paddingRight: spacing.xsmall,
       paddingLeft: `calc(${spacing.xsmall} + ${props.level} * ${spacing.large})`,
-      borderRadius: sizes.xxxxxxsmall,
+      borderRadius: sizes.xxxxxxxsmall,
     }),
 
     medium: (props: { level: number }) => ({
       paddingBlock: spacing.xsmall,
       paddingRight: spacing.medium,
       paddingLeft: `calc(${spacing.medium} + ${props.level} * ${spacing.xxlarge})`,
-      borderRadius: sizes.xxxxxsmall,
+      borderRadius: sizes.xxxxxxsmall,
     }),
 
     large: (props: { level: number }) => ({
       paddingBlock: spacing.medium,
       paddingRight: spacing.large,
       paddingLeft: `calc(${spacing.large} + ${props.level} * ${spacing.xxxlarge})`,
-      borderRadius: sizes.xxxsmall,
+      borderRadius: sizes.xxxxsmall,
     }),
   }),
 

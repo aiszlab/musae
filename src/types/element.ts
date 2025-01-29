@@ -1,7 +1,7 @@
 import type { CSSProperties } from "react";
 
 /**
- * @author
+ * @author murukal
  * @description
  * component always has foundation props
  * like class name, style

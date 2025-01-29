@@ -31,7 +31,7 @@ const styles = {
       insetBlockStart: 0,
       insetInlineStart: 0,
       boxShadow: elevations.small,
-      borderRadius: sizes.xxxxxsmall,
+      borderRadius: sizes.xxxxxxsmall,
       pointerEvents: "auto",
 
       // animation
@@ -48,8 +48,8 @@ const styles = {
   arrow: stylex.create({
     default: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
       position: "absolute",
-      width: sizes.xxxsmall,
-      height: sizes.xxxsmall,
+      width: sizes.xxxxsmall,
+      height: sizes.xxxxsmall,
       backgroundColor: props.backgroundColor,
       transform: "rotate(45deg)",
       zIndex: positions.background,

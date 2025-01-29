@@ -49,12 +49,12 @@ const styles = stylex.create({
   handlers: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
     display: "flex",
     flexDirection: "row",
-    gap: spacing.xxxsmall,
+    gap: spacing.xxxxsmall,
     alignItems: "center",
     backgroundColor: props.backgroundColor,
     borderRadius: sizes.infinity,
     paddingInline: spacing.xxlarge,
-    paddingBlock: spacing.xxxsmall,
+    paddingBlock: spacing.xxxxsmall,
   }),
 });
 

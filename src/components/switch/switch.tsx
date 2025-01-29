@@ -2,7 +2,7 @@ import React, { type CSSProperties } from "react";
 import type { SwitchProps } from "musae/types/switch";
 import { useControlledState, useEvent } from "@aiszlab/relax";
 import stylex from "@stylexjs/stylex";
-import { OPACITY, opacity, sizes, spacing } from "../theme/tokens.stylex";
+import { duration, OPACITY, opacity, sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { Close, Check } from "musae/icons";
 import { hexToRgba } from "@aiszlab/fuzzy/color";
@@ -25,9 +25,9 @@ const styles = {
       position: "relative",
 
       transitionProperty: "all",
-      transitionDuration: "0.2s",
+      transitionDuration: duration.short,
       borderRadius: sizes.infinity,
-      borderWidth: sizes.xxxxxxxsmall,
+      borderWidth: sizes.xxxxxxxxsmall,
       borderStyle: "solid",
       borderColor: props.borderColor,
       backgroundColor: props.backgroundColor,
@@ -58,12 +58,13 @@ const styles = {
     }) => ({
       borderRadius: sizes.infinity,
       position: "absolute",
-      transition: "all 0.2s",
+      transitionProperty: "all",
+      transitionDuration: duration.short,
 
       backgroundColor: props.backgroundColor,
       color: props.color,
-      height: sizes.xxxsmall,
-      width: sizes.xxxsmall,
+      height: sizes.xxxxsmall,
+      width: sizes.xxxxsmall,
       insetInlineStart: spacing.xxsmall,
 
       // layout
@@ -76,7 +77,7 @@ const styles = {
     icon: {
       height: sizes.xsmall,
       width: sizes.xsmall,
-      insetInlineStart: spacing.xxxxsmall,
+      insetInlineStart: spacing.xxxxxsmall,
     },
 
     disabled: {
@@ -93,7 +94,7 @@ const styles = {
       width: sizes.xsmall,
       opacity: null,
       // `switch width` - `slider width` - `slider padding width`
-      insetInlineStart: `calc(100% - ${sizes.xsmall} - ${spacing.xxxxsmall})`,
+      insetInlineStart: `calc(100% - ${sizes.xsmall} - ${spacing.xxxxxsmall})`,
     }),
   }),
 
@@ -107,16 +108,16 @@ const styles = {
       flexDirection: "column",
       color: "inherit",
       transitionProperty: "padding-inline-start, padding-inline-end",
-      transitionDuration: "0.2s",
+      transitionDuration: duration.short,
 
-      paddingInlineStart: `calc(${sizes.xsmall} + ${sizes.xxxxxxxsmall} * 4)`,
-      paddingInlineEnd: `calc(${spacing.xxxlarge} / 2 - ${sizes.xxxxxxxsmall})`,
+      paddingInlineStart: `calc(${sizes.xsmall} + ${sizes.xxxxxxxxsmall} * 4)`,
+      paddingInlineEnd: `calc(${spacing.xxxlarge} / 2 - ${sizes.xxxxxxxxsmall})`,
     },
 
     // if checked, change padding styles, for slider has been right
     checked: {
-      paddingInlineStart: `calc(${spacing.xxxlarge} / 2 - ${sizes.xxxxxxxsmall})`,
-      paddingInlineEnd: `calc(${sizes.xsmall} + ${sizes.xxxxxxxsmall} * 4)`,
+      paddingInlineStart: `calc(${spacing.xxxlarge} / 2 - ${sizes.xxxxxxxxsmall})`,
+      paddingInlineEnd: `calc(${sizes.xsmall} + ${sizes.xxxxxxxxsmall} * 4)`,
     },
 
     child: {
@@ -128,15 +129,15 @@ const styles = {
       color: "inherit",
 
       transitionProperty: "margin-inline-start, margin-inline-end",
-      transitionDuration: "0.2s",
+      transitionDuration: duration.short,
     },
   }),
 
   leading: stylex.create({
     default: {
       // - `self width` - `slider width` - `slider padding width * 4` - `border width`
-      marginInlineStart: `calc(-100% - ${sizes.xsmall} - ${sizes.xxxxxxxsmall} * 4 - ${sizes.xxxxxxxsmall})`,
-      marginInlineEnd: `calc(100% + ${sizes.xsmall} + ${sizes.xxxxxxxsmall} * 4 + ${sizes.xxxxxxxsmall})`,
+      marginInlineStart: `calc(-100% - ${sizes.xsmall} - ${sizes.xxxxxxxxsmall} * 4 - ${sizes.xxxxxxxxsmall})`,
+      marginInlineEnd: `calc(100% + ${sizes.xsmall} + ${sizes.xxxxxxxxsmall} * 4 + ${sizes.xxxxxxxxsmall})`,
     },
 
     checked: {
@@ -154,8 +155,8 @@ const styles = {
 
     checked: {
       // + `self width` + `slider width` + `slider padding width * 2` + `border width`
-      marginInlineEnd: `calc(-100% - ${sizes.xsmall} - ${sizes.xxxxxxxsmall} * 4 - ${sizes.xxxxxxxsmall})`,
-      marginInlineStart: `calc(100% + ${sizes.xsmall} + ${sizes.xxxxxxxsmall} * 4 + ${sizes.xxxxxxxsmall})`,
+      marginInlineEnd: `calc(-100% - ${sizes.xsmall} - ${sizes.xxxxxxxxsmall} * 4 - ${sizes.xxxxxxxxsmall})`,
+      marginInlineStart: `calc(100% + ${sizes.xsmall} + ${sizes.xxxxxxxxsmall} * 4 + ${sizes.xxxxxxxxsmall})`,
     },
   }),
 };

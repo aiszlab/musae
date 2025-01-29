@@ -39,7 +39,7 @@ const styles = stylex.create({
   },
 
   small: {
-    paddingBlock: spacing.xxxsmall,
+    paddingBlock: spacing.xxxxsmall,
     paddingInline: spacing.xsmall,
   },
 

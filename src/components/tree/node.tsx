@@ -13,7 +13,7 @@ const styles = stylex.create({
   node: (props: { level: number }) => ({
     display: "flex",
     alignItems: "center",
-    gap: spacing.xxxsmall,
+    gap: spacing.xxxxsmall,
 
     paddingBlock: spacing.xsmall,
     paddingLeft: 12 + props.level * 24,
@@ -37,7 +37,7 @@ const styles = stylex.create({
     hoveredBackgroundColor: CSSProperties["backgroundColor"];
     color: CSSProperties["color"];
   }) => ({
-    paddingInline: spacing.xxxsmall,
+    paddingInline: spacing.xxxxsmall,
     borderRadius: 4,
     backgroundColor: {
       default: props.isSelected ? props.backgroundColor : null,

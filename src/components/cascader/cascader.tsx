@@ -16,8 +16,8 @@ import { CLASS_NAMES } from "./context";
 const styles = stylex.create({
   options: {
     display: "flex",
-    columnGap: spacing.xxxsmall,
-    marginInline: spacing.xxxsmall,
+    columnGap: spacing.xxxxsmall,
+    marginInline: spacing.xxxxsmall,
   },
 });
 

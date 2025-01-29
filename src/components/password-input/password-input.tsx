@@ -6,13 +6,14 @@ import type { InputRef } from "musae/types/input";
 import type { PasswordInputProps } from "musae/types/password-input";
 import { useTheme } from "../theme";
 import stylex from "@stylexjs/stylex";
+import { duration } from "../theme/tokens.stylex";
 
 const styles = stylex.create({
   visibility: (props: { color: CSSProperties["color"]; hoveredColor: CSSProperties["color"] }) => ({
     color: props.color,
-    transitionDuration: "0.2s",
-    transitionProperty: "color",
     willChange: "color",
+    transitionProperty: "color",
+    transitionDuration: duration.short,
 
     ":hover": {
       color: props.hoveredColor,

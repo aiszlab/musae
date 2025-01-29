@@ -108,6 +108,12 @@ export interface CheckboxProps extends ComponentProps {
    * @default false
    */
   disabled?: boolean;
+
+  /**
+   * @description indeterminate
+   * @default false
+   */
+  indeterminate?: boolean;
 }
 
 /**

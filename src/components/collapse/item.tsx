@@ -1,6 +1,6 @@
 import React, { type CSSProperties, useContext } from "react";
 import stylex from "@stylexjs/stylex";
-import { sizes, spacing } from "../theme/tokens.stylex";
+import { duration, sizes, spacing } from "../theme/tokens.stylex";
 import { useEvent, useUpdateEffect } from "@aiszlab/relax";
 import { useAnimate } from "framer-motion";
 import type { CollapseItemProps } from "musae/types/collapse";
@@ -59,7 +59,7 @@ const styles = {
     default: {
       willChange: "transform",
       transitionProperty: "transform",
-      transitionDuration: "0.2s",
+      transitionDuration: duration.short,
     },
 
     expanded: {

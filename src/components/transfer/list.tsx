@@ -1,7 +1,7 @@
 import React, { useContext, type CSSProperties } from "react";
 import type { TransferListProps } from "musae/types/transfer";
 import stylex from "@stylexjs/stylex";
-import { sizes, spacing } from "../theme/tokens.stylex";
+import { elevations, sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import Item from "./item";
 import { Checkbox } from "../checkbox";
@@ -11,24 +11,23 @@ import { typography } from "../theme/theme";
 import { useLocale } from "../../locale";
 
 const styles = stylex.create({
-  list: (props: { outlineColor: CSSProperties["borderColor"] }) => ({
-    width: sizes.xxxxxxlarge,
-    height: sizes.xxxxxxlarge,
-    borderWidth: sizes.smallest,
-    borderColor: props.outlineColor,
-    borderStyle: "solid",
-    borderRadius: sizes.xxxxxsmall,
-  }),
+  list: {
+    minWidth: sizes.xxxxxxlarge,
+    display: "flex",
+    flexDirection: "column",
+    gap: spacing.xxxxsmall,
+  },
 
-  header: (props: { outlineColor: CSSProperties["borderColor"] }) => ({
+  header: {
     display: "flex",
     alignItems: "center",
-    paddingBlock: spacing.xsmall,
-    paddingInline: spacing.medium,
-    borderBottomWidth: sizes.smallest,
-    borderBottomColor: props.outlineColor,
-    borderBottomStyle: "solid",
-  }),
+    padding: spacing.xsmall,
+    borderTopLeftRadius: sizes.xxxxsmall,
+    borderTopRightRadius: sizes.xxxxsmall,
+    borderBottomLeftRadius: sizes.xxxxxxxxsmall,
+    borderBottomRightRadius: sizes.xxxxxxxxsmall,
+    boxShadow: elevations.xsmall,
+  },
 
   title: {
     overflow: "hidden",
@@ -37,8 +36,14 @@ const styles = stylex.create({
   },
 
   body: {
+    minHeight: sizes.xxxxxxlarge,
     padding: spacing.none,
     margin: spacing.none,
+    borderTopLeftRadius: sizes.xxxxxxxxsmall,
+    borderTopRightRadius: sizes.xxxxxxxxsmall,
+    borderBottomLeftRadius: sizes.xxxxsmall,
+    borderBottomRightRadius: sizes.xxxxsmall,
+    boxShadow: elevations.xsmall,
   },
 });
 
@@ -48,13 +53,10 @@ const List = ({ options, title, onChange, value }: TransferListProps) => {
   const [locale] = useLocale("transfer");
 
   const styled = {
-    list: stylex.props(styles.list({ outlineColor: theme.colors["outline-variant"] })),
-    header: stylex.props(
-      styles.header({ outlineColor: theme.colors["outline-variant"] }),
-      typography.body.medium,
-    ),
+    list: stylex.props(styles.list),
+    header: stylex.props(styles.header, typography.label.large),
     title: stylex.props(styles.title),
-    body: stylex.props(styles.body),
+    body: stylex.props(styles.body, typography.body.medium),
   };
 
   return (
@@ -64,9 +66,9 @@ const List = ({ options, title, onChange, value }: TransferListProps) => {
         style={styled.header.style}
       >
         <span>
-          {options.length}
-          {locale.unit}
+          {options.length} {locale.unit}
         </span>
+
         <span
           className={stringify(classNames.title, styled.title.className)}
           style={styled.title.style}

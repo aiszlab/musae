@@ -3,7 +3,7 @@ import { Context, type CLASS_NAMES } from "./context";
 import type { ContextValue, MenuProps, Mode, Size } from "musae/types/menu";
 import { toArray, useControlledState } from "@aiszlab/relax";
 import stylex from "@stylexjs/stylex";
-import { spacing } from "../theme/tokens.stylex";
+import { duration, spacing } from "../theme/tokens.stylex";
 import { KeyboardArrowUp } from "musae/icons";
 
 const styles = stylex.create({
@@ -11,7 +11,7 @@ const styles = stylex.create({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    marginRight: spacing.xxxsmall,
+    marginRight: spacing.xxxxsmall,
   },
 
   suffix: {
@@ -23,7 +23,8 @@ const styles = stylex.create({
     alignItems: "center",
     justifyContent: "center",
     transform: props.isExpanded ? "rotateX(0)" : "rotateX(180deg)",
-    transition: "transform 0.2s",
+    transitionProperty: "transform",
+    transitionDuration: duration.short,
   }),
 });
 

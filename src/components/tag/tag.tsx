@@ -23,9 +23,9 @@ const styles = stylex.create({
 
   small: {
     paddingInline: spacing.xsmall,
-    paddingBlock: spacing.xxxsmall,
-    borderRadius: spacing.xxxsmall,
-    gap: spacing.xxxsmall,
+    paddingBlock: spacing.xxxxsmall,
+    borderRadius: spacing.xxxxsmall,
+    gap: spacing.xxxxsmall,
   },
 
   medium: {

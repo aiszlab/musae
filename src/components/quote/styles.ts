@@ -19,7 +19,7 @@ const styles = stylex.create({
       position: "absolute",
       insetBlock: 0,
       insetInlineStart: 0,
-      width: sizes.xxxxxxxsmall,
+      width: sizes.xxxxxxxxsmall,
       backgroundColor: "var(--outline)",
     },
   },

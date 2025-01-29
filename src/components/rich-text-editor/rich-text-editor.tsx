@@ -35,7 +35,7 @@ import { usingEditor } from "./utils";
 const styles = stylex.create({
   editor: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
     backgroundColor: props.backgroundColor,
-    borderRadius: sizes.xxxxxsmall,
+    borderRadius: sizes.xxxxxxsmall,
   }),
 
   variables: (props: {

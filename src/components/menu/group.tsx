@@ -38,17 +38,17 @@ const styles = {
 
   submenu: stylex.create({
     inline: {
-      marginBlockStart: spacing.xxxsmall,
+      marginBlockStart: spacing.xxxxsmall,
     },
 
     horizontal: {
       minWidth: 200,
-      paddingInline: spacing.xxxsmall,
+      paddingInline: spacing.xxxxsmall,
     },
 
     vertical: {
       minWidth: 200,
-      paddingInline: spacing.xxxsmall,
+      paddingInline: spacing.xxxxsmall,
     },
   }),
 };

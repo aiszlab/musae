@@ -74,8 +74,8 @@ const styles = {
 
   dot: stylex.create({
     default: {
-      width: sizes.xxxxxxsmall,
-      height: sizes.xxxxxxsmall,
+      width: sizes.xxxxxxxsmall,
+      height: sizes.xxxxxxxsmall,
       borderRadius: sizes.infinity,
       backgroundColor: "var(--primary)",
     },

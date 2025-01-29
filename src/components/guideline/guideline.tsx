@@ -16,19 +16,19 @@ const styles = stylex.create({
   },
 
   figure: {
-    borderStartStartRadius: sizes.xxxsmall,
-    borderStartEndRadius: sizes.xxxsmall,
-    borderEndStartRadius: sizes.xxxxxxxsmall,
-    borderEndEndRadius: sizes.xxxxxxxsmall,
+    borderStartStartRadius: sizes.xxxxsmall,
+    borderStartEndRadius: sizes.xxxxsmall,
+    borderEndStartRadius: sizes.xxxxxxxxsmall,
+    borderEndEndRadius: sizes.xxxxxxxxsmall,
   },
 
   label: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
-    marginBlockStart: spacing.xxxsmall,
+    marginBlockStart: spacing.xxxxsmall,
     backgroundColor: props.backgroundColor,
-    borderStartStartRadius: sizes.xxxxxxxsmall,
-    borderStartEndRadius: sizes.xxxxxxxsmall,
-    borderEndStartRadius: sizes.xxxsmall,
-    borderEndEndRadius: sizes.xxxsmall,
+    borderStartStartRadius: sizes.xxxxxxxxsmall,
+    borderStartEndRadius: sizes.xxxxxxxxsmall,
+    borderEndStartRadius: sizes.xxxxsmall,
+    borderEndEndRadius: sizes.xxxxsmall,
   }),
 
   recommend: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
@@ -39,7 +39,7 @@ const styles = stylex.create({
     marginBlockStart: spacing.xsmall,
     marginInline: spacing.xsmall,
     paddingBlock: spacing.large,
-    paddingInline: spacing.xxxxsmall,
+    paddingInline: spacing.xxxxxsmall,
   },
 });
 
