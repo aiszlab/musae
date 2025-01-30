@@ -84,7 +84,7 @@ export const useFloating = ({
 
     _isOpen.current = true;
 
-    _floatable.style.display = "unset";
+    _floatable.style.display = "flex";
     await Promise.all([
       Promise.resolve()
         .then(onEnter)

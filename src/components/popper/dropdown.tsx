@@ -1,5 +1,5 @@
-import React, { type CSSProperties, forwardRef, useImperativeHandle } from "react";
-import type { DropdownProps, PopperRef } from "musae/types/popper";
+import React, { forwardRef, useImperativeHandle } from "react";
+import type { DropdownProps, PopperRef } from "../../types/popper";
 import { useClassNames } from "../../hooks/use-class-names.component";
 import stylex from "@stylexjs/stylex";
 import { stringify } from "@aiszlab/relax/class-name";
@@ -25,12 +25,12 @@ const styles = {
   }),
 
   dropdown: stylex.create({
-    default: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
+    default: {
       position: "absolute",
-      backgroundColor: props.backgroundColor,
+      backgroundColor: "var(--surface-container)",
       insetBlockStart: 0,
       insetInlineStart: 0,
-      boxShadow: elevations.small,
+
       borderRadius: sizes.xxxxxxsmall,
       pointerEvents: "auto",
 
@@ -42,18 +42,22 @@ const styles = {
       // default hidden
       display: "none",
       opacity: 0,
-    }),
+    },
+
+    elevation: {
+      boxShadow: elevations.small,
+    },
   }),
 
   arrow: stylex.create({
-    default: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
+    default: {
       position: "absolute",
       width: sizes.xxxxsmall,
       height: sizes.xxxxsmall,
-      backgroundColor: props.backgroundColor,
+      backgroundColor: "var(--surface-container)",
       transform: "rotate(45deg)",
       zIndex: positions.background,
-    }),
+    },
   }),
 };
 
@@ -74,6 +78,7 @@ const Dropdown = forwardRef<PopperRef, DropdownProps>(
       overlay = false,
       arrow: arrowable = false,
       disappearable = true,
+      elevation = true,
       ...props
     },
     ref,
@@ -104,17 +109,20 @@ const Dropdown = forwardRef<PopperRef, DropdownProps>(
     });
 
     const styled = {
-      dropdown: stylex.props(
-        styles.dropdown.default({ backgroundColor: theme.colors["surface-container"] }),
-      ),
-      arrow: stylex.props(
-        styles.arrow.default({ backgroundColor: theme.colors["surface-container"] }),
-      ),
+      dropdown: stylex.props(styles.dropdown.default, elevation && styles.dropdown.elevation),
+      arrow: stylex.props(styles.arrow.default),
       portal: stylex.props(styles.portal.default, overlay && styles.portal.overlay),
     };
 
     return (
-      <div className={styled.portal.className} style={styled.portal.style}>
+      <div
+        className={styled.portal.className}
+        style={{
+          ...styled.portal.style,
+          // @ts-expect-error
+          "--surface-container": theme.colors["surface-container"],
+        }}
+      >
         <div
           ref={composedRef}
           {...props}
