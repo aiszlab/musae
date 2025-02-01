@@ -15,13 +15,13 @@ const styles = stylex.create({
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
-    gap: spacing.xsmall,
+    gap: spacing.xxsmall,
   },
 
   operation: {
     display: "flex",
     flexDirection: "column",
-    gap: spacing.xsmall,
+    gap: spacing.xxsmall,
   },
 });
 

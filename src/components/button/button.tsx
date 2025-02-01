@@ -16,7 +16,7 @@ const styles = stylex.create({
     display: "inline-flex",
     alignItems: "center",
     justifyContent: "center",
-    gap: spacing.xsmall,
+    gap: spacing.xxsmall,
     transitionProperty: "background-color, color, box-shadow",
     transitionDuration: "0.3s",
     willChange: "background-color, color, box-shadow",
@@ -39,12 +39,12 @@ const styles = stylex.create({
   },
 
   small: {
-    paddingBlock: spacing.xxxxsmall,
-    paddingInline: spacing.xsmall,
+    paddingBlock: spacing.xxxxxsmall,
+    paddingInline: spacing.xxsmall,
   },
 
   medium: {
-    paddingBlock: spacing.small,
+    paddingBlock: spacing.xsmall,
     paddingInline: spacing.xxlarge,
   },
 
@@ -156,10 +156,10 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
               variant === "filled"
                 ? hexToRgba(theme.colors["on-surface"], OPACITY.medium, "style")
                 : "transparent",
-            color: hexToRgba(theme.colors["on-surface"], OPACITY.thicker, "style"),
+            color: hexToRgba(theme.colors["on-surface"], OPACITY.thickest, "style"),
             outlineColor:
               variant === "outlined"
-                ? hexToRgba(theme.colors["on-surface"], OPACITY.thicker, "style")
+                ? hexToRgba(theme.colors["on-surface"], OPACITY.thickest, "style")
                 : null,
           }),
         // text font

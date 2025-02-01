@@ -42,7 +42,7 @@ const styles = stylex.create({
 
   overlapping: (props: { outlineColor: CSSProperties["borderColor"] }) => ({
     ":not(:first-child)": {
-      marginInlineStart: `calc(${spacing.xsmall} * -1)`,
+      marginInlineStart: `calc(${spacing.xxsmall} * -1)`,
     },
 
     borderColor: props.outlineColor,

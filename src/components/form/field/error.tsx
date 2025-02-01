@@ -11,7 +11,7 @@ import { Context } from "../context";
 const styles = stylex.create({
   error: (props: { color: CSSProperties["color"] }) => ({
     color: props.color,
-    marginBlock: spacing.xxxxsmall,
+    marginBlock: spacing.xxxxxsmall,
     height: 0,
     overflow: "hidden",
   }),

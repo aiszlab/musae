@@ -6,6 +6,17 @@ class CheckableListItemNode extends ListItemNode {
   #disabled: boolean;
   #checkboxElement: HTMLDivElement | null = null;
 
+  constructor(
+    value: number,
+    checked: Partialable<boolean>,
+    key: Partialable<string>,
+    disabled: boolean,
+  ) {
+    super(value, checked, key);
+
+    this.#disabled = disabled;
+  }
+
   static getType(): string {
     return "checkable-list-item";
   }
@@ -16,17 +27,6 @@ class CheckableListItemNode extends ListItemNode {
 
   static importJSON(serializedNode: SerializedListItemNode) {
     return super.importJSON(serializedNode);
-  }
-
-  constructor(
-    value: number,
-    checked: Partialable<boolean>,
-    key: Partialable<string>,
-    disabled: boolean,
-  ) {
-    super(value, checked, key);
-
-    this.#disabled = disabled;
   }
 
   get disabled() {
@@ -45,7 +45,6 @@ class CheckableListItemNode extends ListItemNode {
       checked: this.getChecked(),
       type: this.getType(),
       value: this.getValue(),
-      version: 1,
     };
   }
 }

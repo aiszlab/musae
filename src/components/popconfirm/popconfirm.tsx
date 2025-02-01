@@ -30,7 +30,7 @@ const styles = stylex.create({
     // layout
     display: "grid",
     gridTemplateAreas: "'leading title' '. content' 'footer footer'",
-    gap: spacing.xsmall,
+    gap: spacing.xxsmall,
   },
 
   simple: {

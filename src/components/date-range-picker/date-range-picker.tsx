@@ -15,7 +15,7 @@ const styles = stylex.create({
   picker: {
     flex: 1,
     display: "flex",
-    columnGap: spacing.xsmall,
+    columnGap: spacing.xxsmall,
     alignItems: "center",
   },
 

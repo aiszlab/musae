@@ -24,7 +24,7 @@ const styles = stylex.create({
   header: {
     display: "flex",
     alignItems: "center",
-    columnGap: spacing.xsmall,
+    columnGap: spacing.xxsmall,
     paddingInline: spacing.medium,
     color: "var(--on-surface-variant)",
   },

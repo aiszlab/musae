@@ -11,8 +11,8 @@ const styles = stylex.create({
     display: "flex",
     alignItems: "center",
     paddingInline: spacing.medium,
-    paddingBlock: spacing.xxxxsmall,
-    gap: spacing.xsmall,
+    paddingBlock: spacing.xxxxxsmall,
+    gap: spacing.xxsmall,
   },
 });
 

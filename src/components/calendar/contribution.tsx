@@ -17,7 +17,7 @@ const styles = {
   calendar: stylex.create({
     default: {
       borderCollapse: "separate",
-      borderSpacing: spacing.xxxxsmall,
+      borderSpacing: spacing.xxxxxsmall,
     },
 
     scrollable: {
@@ -69,7 +69,7 @@ const styles = {
 
   legend: stylex.create({
     default: {
-      paddingBlock: spacing.xxxxsmall,
+      paddingBlock: spacing.xxxxxsmall,
       paddingInline: spacing.xxxlarge,
       display: "flex",
       justifyContent: "flex-end",
@@ -79,7 +79,7 @@ const styles = {
   levels: stylex.create({
     default: {
       display: "flex",
-      gap: spacing.xxxxsmall,
+      gap: spacing.xxxxxsmall,
       alignItems: "center",
     },
 

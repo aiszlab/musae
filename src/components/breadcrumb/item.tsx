@@ -18,7 +18,7 @@ const styles = {
       hoveredBackgroundColor: CSSProperties["backgroundColor"];
       hoveredColor: CSSProperties["color"];
     }) => ({
-      paddingInline: spacing.xxxxsmall,
+      paddingInline: spacing.xxxxxsmall,
       borderRadius: sizes.xxxxxxxsmall,
       backgroundColor: {
         default: null,
@@ -35,7 +35,7 @@ const styles = {
 
   separator: stylex.create({
     default: {
-      marginInline: spacing.xsmall,
+      marginInline: spacing.xxsmall,
     },
   }),
 };

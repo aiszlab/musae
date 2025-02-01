@@ -58,7 +58,7 @@ const styles = {
       marginBlockStart: spacing.none,
       // layout
       display: "grid",
-      gap: spacing.xsmall,
+      gap: spacing.xxsmall,
       grid: "'leading title closer' '. description description'",
       // padding
       paddingBlock: spacing.large,
@@ -68,7 +68,7 @@ const styles = {
     simple: {
       grid: "'leading description closer'",
       // padding
-      paddingBlock: spacing.xsmall,
+      paddingBlock: spacing.xxsmall,
       paddingInline: spacing.medium,
     },
   }),

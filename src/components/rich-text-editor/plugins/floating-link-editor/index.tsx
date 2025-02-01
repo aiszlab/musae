@@ -26,7 +26,7 @@ interface FormValues {
 
 const styles = stylex.create({
   popper: {
-    padding: spacing.xsmall,
+    padding: spacing.xxsmall,
   },
 });
 

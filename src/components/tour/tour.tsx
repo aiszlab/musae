@@ -37,7 +37,7 @@ const styles = stylex.create({
   title: {
     paddingInline: spacing.large,
     paddingBlockStart: spacing.large,
-    paddingBlockEnd: spacing.xsmall,
+    paddingBlockEnd: spacing.xxsmall,
   },
 
   description: {
@@ -46,7 +46,7 @@ const styles = stylex.create({
 
   footer: {
     paddingInline: spacing.large,
-    paddingBlockStart: spacing.xsmall,
+    paddingBlockStart: spacing.xxsmall,
     paddingBlockEnd: spacing.large,
   },
 });

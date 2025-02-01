@@ -41,13 +41,13 @@ const styles = stylex.create({
     flexDirection: "row",
     alignItems: "center",
 
-    gap: spacing.xxxxsmall,
+    gap: spacing.xxxxxsmall,
     borderBottomWidth: sizes.smallest,
     borderBottomColor: props.outlineColor,
     borderBottomStyle: "solid",
     overflow: "auto",
 
-    paddingInline: spacing.xxxxsmall,
+    paddingInline: spacing.xxxxxsmall,
   }),
 });
 

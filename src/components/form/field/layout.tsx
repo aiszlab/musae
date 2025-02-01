@@ -21,7 +21,7 @@ const styles = stylex.create({
     "::before": {
       content: '"*"',
       color: props.color,
-      marginRight: spacing.xxxxsmall,
+      marginRight: spacing.xxxxxsmall,
     },
   }),
 

@@ -27,7 +27,7 @@ const styles = stylex.create({
   upload: {
     display: "flex",
     flexDirection: "column",
-    gap: spacing.xsmall,
+    gap: spacing.xxsmall,
   },
 });
 

@@ -17,13 +17,13 @@ const styles = stylex.create({
   list: {
     display: "flex",
     flexDirection: "column",
-    gap: spacing.xsmall,
+    gap: spacing.xxsmall,
   },
 
   item: {
     display: "flex",
     alignItems: "center",
-    gap: spacing.xsmall,
+    gap: spacing.xxsmall,
   },
 
   filename: {

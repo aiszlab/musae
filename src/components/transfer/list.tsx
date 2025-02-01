@@ -15,13 +15,13 @@ const styles = stylex.create({
     minWidth: sizes.xxxxxxlarge,
     display: "flex",
     flexDirection: "column",
-    gap: spacing.xxxxsmall,
+    gap: spacing.xxxxxsmall,
   },
 
   header: {
     display: "flex",
     alignItems: "center",
-    padding: spacing.xsmall,
+    padding: spacing.xxsmall,
     borderTopLeftRadius: sizes.xxxxsmall,
     borderTopRightRadius: sizes.xxxxsmall,
     borderBottomLeftRadius: sizes.xxxxxxxxsmall,

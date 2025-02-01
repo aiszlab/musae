@@ -33,24 +33,14 @@ import { useClassNames } from "../../hooks/use-class-names.component";
 import { usingEditor } from "./utils";
 
 const styles = stylex.create({
-  editor: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
-    backgroundColor: props.backgroundColor,
+  editor: {
+    backgroundColor: "var(--surface-container)",
     borderRadius: sizes.xxxxxxsmall,
-  }),
+  },
 
-  variables: (props: {
-    primary: string;
-    onPrimary: string;
-    onSurface: string;
-    surfaceContainerHighest: string;
-    outline: string;
-  }) => ({
-    "--primary": props.primary,
-    "--on-primary": props.onPrimary,
-    "--on-surface": props.onSurface,
-    "--surface-container-highest": props.surfaceContainerHighest,
-    "--outline": props.outline,
-  }),
+  disabled: {
+    backgroundColor: null,
+  },
 
   textarea: {
     outline: "none",
@@ -82,18 +72,7 @@ const RichTextEditor = forwardRef<RichTextEditorRef, RichTextEditorProps>(
     const classNames = useClassNames(CLASS_NAMES);
 
     const styled = {
-      editor: stylex.props(
-        !disabled && styles.editor({ backgroundColor: theme.colors["surface-container"] }),
-        styles.variables({
-          primary: theme.colors.primary,
-          onPrimary: theme.colors["on-primary"],
-          onSurface: theme.colors["on-surface"],
-          surfaceContainerHighest: theme.colors["surface-container-highest"],
-          outline: theme.colors.outline,
-        }),
-        typography.body.medium,
-      ),
-
+      editor: stylex.props(styles.editor, disabled && styles.disabled, typography.body.medium),
       textarea: stylex.props(!disabled && styles.textarea),
     };
 
@@ -142,6 +121,13 @@ const RichTextEditor = forwardRef<RichTextEditorRef, RichTextEditorProps>(
             style={{
               ...styled.editor.style,
               ...style,
+              // @ts-expect-error
+              "--primary": theme.colors.primary,
+              "--on-primary": theme.colors["on-primary"],
+              "--on-surface": theme.colors["on-surface"],
+              "--surface-container": theme.colors["surface-container"],
+              "--surface-container-highest": theme.colors["surface-container-highest"],
+              "--outline": theme.colors.outline,
             }}
           >
             <MarkdownShortcutPlugin />

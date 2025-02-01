@@ -21,7 +21,7 @@ const styles = stylex.create({
 
   messages: {
     flex: 1,
-    padding: spacing.xsmall,
+    padding: spacing.xxsmall,
     display: "flex",
     flexDirection: "column",
     gap: spacing.medium,
@@ -29,7 +29,7 @@ const styles = stylex.create({
   },
 
   footer: {
-    padding: spacing.xsmall,
+    padding: spacing.xxsmall,
     display: "flex",
     flexDirection: "row",
     gap: spacing.medium,

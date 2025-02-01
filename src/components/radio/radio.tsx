@@ -86,7 +86,7 @@ const styles = {
 
   label: stylex.create({
     default: {
-      paddingInline: spacing.xxsmall,
+      paddingInline: spacing.xxxsmall,
     },
   }),
 };

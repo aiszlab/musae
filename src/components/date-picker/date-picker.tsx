@@ -15,7 +15,7 @@ import { useEvent } from "@aiszlab/relax";
 
 const styles = stylex.create({
   calendar: {
-    padding: spacing.xxxxsmall,
+    padding: spacing.xxxxxsmall,
   },
 });
 

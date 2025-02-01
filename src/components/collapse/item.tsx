@@ -31,7 +31,7 @@ const styles = {
       display: "flex",
       flexDirection: "row",
       alignItems: "center",
-      gap: spacing.xsmall,
+      gap: spacing.xxsmall,
       cursor: "pointer",
     },
   }),

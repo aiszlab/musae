@@ -24,7 +24,7 @@ const styles = {
     horizontal: {
       display: "flex",
       flexDirection: "row",
-      gap: spacing.xsmall,
+      gap: spacing.xxsmall,
     },
 
     vertical: {},
@@ -38,17 +38,17 @@ const styles = {
 
   submenu: stylex.create({
     inline: {
-      marginBlockStart: spacing.xxxxsmall,
+      marginBlockStart: spacing.xxxxxsmall,
     },
 
     horizontal: {
       minWidth: 200,
-      paddingInline: spacing.xxxxsmall,
+      paddingInline: spacing.xxxxxsmall,
     },
 
     vertical: {
       minWidth: 200,
-      paddingInline: spacing.xxxxsmall,
+      paddingInline: spacing.xxxxxsmall,
     },
   }),
 };

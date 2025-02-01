@@ -23,6 +23,29 @@ const styles = {
     },
   }),
 
+  layer: stylex.create({
+    default: {
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+    },
+
+    rippleable: (props: { color: string; backgroundColor: string }) => ({
+      position: "relative",
+      overflow: "hidden",
+      padding: spacing.small,
+      borderRadius: sizes.infinity,
+      color: props.color,
+
+      transitionProperty: "background-color",
+      transitionDuration: duration.short,
+
+      ":hover": {
+        backgroundColor: props.backgroundColor,
+      },
+    }),
+  }),
+
   inputer: stylex.create({
     default: {
       width: "var(--size)",
@@ -61,7 +84,7 @@ const styles = {
 
   label: stylex.create({
     default: {
-      paddingInline: spacing.xxsmall,
+      paddingInline: spacing.xxxsmall,
     },
   }),
 };

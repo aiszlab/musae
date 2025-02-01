@@ -27,11 +27,12 @@ export const elevations = defineVars<Record<ElevationToken, string>>({
 export const spacing = defineVars({
   none: "0px",
   smallest: "1px",
-  xxxxxsmall: "2px",
-  xxxxsmall: "4px",
-  xxsmall: "6px",
-  xsmall: "8px",
-  small: "10px",
+  xxxxxxsmall: "2px",
+  xxxxxsmall: "4px",
+  xxxsmall: "6px",
+  xxsmall: "8px",
+  xsmall: "10px",
+  small: "11px",
   medium: "12px",
   large: "16px",
   xlarge: "20px",
@@ -109,13 +110,14 @@ export const positions = defineVars({
  * opacity
  */
 
-export type OpacityToken = "thin" | "medium" | "thick" | "thicker";
+export type OpacityToken = "thin" | "medium" | "thick" | "thicker" | "thickest";
 
 export const OPACITY: Record<OpacityToken, number> = {
   thin: 0.08,
   medium: 0.12,
   thick: 0.16,
-  thicker: 0.38,
+  thicker: 0.2,
+  thickest: 0.38,
 };
 
 export const opacity = defineVars(OPACITY);

@@ -33,10 +33,10 @@ const styles = stylex.create({
     },
 
     width: sizes.xxlarge,
-    marginBlock: spacing.xxxxsmall,
+    marginBlock: spacing.xxxxxsmall,
 
     "::-webkit-scrollbar": {
-      width: spacing.xsmall,
+      width: spacing.xxsmall,
       backgroundColor: "transparent",
     },
 

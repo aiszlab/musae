@@ -7,6 +7,8 @@ import type { ContextValue } from "musae/types/checkbox";
  */
 export const CLASS_NAMES = {
   check: "checkbox",
+  layer: "checkbox__layer",
+  inputer: "checkbox__inputer",
   input: "checkbox__input",
   label: "checkbox__label",
 };

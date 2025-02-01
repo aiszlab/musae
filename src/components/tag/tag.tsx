@@ -22,24 +22,24 @@ const styles = stylex.create({
   }),
 
   small: {
-    paddingInline: spacing.xsmall,
-    paddingBlock: spacing.xxxxsmall,
-    borderRadius: spacing.xxxxsmall,
-    gap: spacing.xxxxsmall,
+    paddingInline: spacing.xxsmall,
+    paddingBlock: spacing.xxxxxsmall,
+    borderRadius: spacing.xxxxxsmall,
+    gap: spacing.xxxxxsmall,
   },
 
   medium: {
     paddingInline: spacing.medium,
-    paddingBlock: spacing.xxsmall,
-    borderRadius: spacing.xxsmall,
-    gap: spacing.xxsmall,
+    paddingBlock: spacing.xxxsmall,
+    borderRadius: spacing.xxxsmall,
+    gap: spacing.xxxsmall,
   },
 
   large: {
     paddingInline: spacing.large,
-    paddingBlock: spacing.xsmall,
-    borderRadius: spacing.xsmall,
-    gap: spacing.xsmall,
+    paddingBlock: spacing.xxsmall,
+    borderRadius: spacing.xxsmall,
+    gap: spacing.xxsmall,
   },
 });
 

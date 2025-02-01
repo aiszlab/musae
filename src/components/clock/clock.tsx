@@ -13,7 +13,7 @@ const styles = stylex.create({
   clock: {
     display: "flex",
     height: 200,
-    columnGap: spacing.xxxxsmall,
+    columnGap: spacing.xxxxxsmall,
   },
 });
 

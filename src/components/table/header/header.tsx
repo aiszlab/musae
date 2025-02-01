@@ -20,7 +20,7 @@ const styles = stylex.create({
     backgroundColor: props.backgroundColor,
     textAlign: "start",
     position: "relative",
-    paddingInline: spacing.xsmall,
+    paddingInline: spacing.xxsmall,
     paddingBlock: spacing.medium,
     borderColor: props.borderColor,
     borderStyle: "solid",

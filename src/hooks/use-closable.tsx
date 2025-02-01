@@ -13,8 +13,8 @@ const styles = stylex.create({
 
   "top-right": {
     ":not(#\\#)": {
-      top: spacing.xxxxsmall,
-      right: spacing.xxxxsmall,
+      top: spacing.xxxxxsmall,
+      right: spacing.xxxxxsmall,
       position: "absolute",
     },
   },

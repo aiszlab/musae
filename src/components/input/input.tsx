@@ -36,7 +36,7 @@ export const styles = stylex.create({
 
     // layout
     margin: spacing.none,
-    paddingBlock: spacing.xxxxsmall,
+    paddingBlock: spacing.xxxxxsmall,
     paddingInline: spacing.medium,
 
     // animation
@@ -151,8 +151,8 @@ const Input = forwardRef<InputRef, InputProps>(
         disabled &&
           styles.disabled({
             backgroundColor: hexToRgba(theme.colors["on-surface"], OPACITY.thin, "style"),
-            color: hexToRgba(theme.colors["on-surface"], OPACITY.thicker, "style"),
-            outlineColor: hexToRgba(theme.colors["on-surface"], OPACITY.thicker, "style"),
+            color: hexToRgba(theme.colors["on-surface"], OPACITY.thickest, "style"),
+            outlineColor: hexToRgba(theme.colors["on-surface"], OPACITY.thickest, "style"),
           }),
       ),
       input: stylex.props(styles.input),

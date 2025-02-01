@@ -23,7 +23,7 @@ const styles = stylex.create({
   },
 
   label: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
-    marginBlockStart: spacing.xxxxsmall,
+    marginBlockStart: spacing.xxxxxsmall,
     backgroundColor: props.backgroundColor,
     borderStartStartRadius: sizes.xxxxxxxxsmall,
     borderStartEndRadius: sizes.xxxxxxxxsmall,
@@ -36,10 +36,10 @@ const styles = stylex.create({
   }),
 
   caption: {
-    marginBlockStart: spacing.xsmall,
-    marginInline: spacing.xsmall,
+    marginBlockStart: spacing.xxsmall,
+    marginInline: spacing.xxsmall,
     paddingBlock: spacing.large,
-    paddingInline: spacing.xxxxxsmall,
+    paddingInline: spacing.xxxxxxsmall,
   },
 });
 

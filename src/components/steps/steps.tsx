@@ -12,7 +12,7 @@ const styles = stylex.create({
   steps: {
     display: "flex",
     alignItems: "flex-start",
-    gap: spacing.xsmall,
+    gap: spacing.xxsmall,
   },
 
   horizontal: {

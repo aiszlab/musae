@@ -1,4 +1,4 @@
-import React, { type ChangeEvent, useContext, useMemo, useRef } from "react";
+import React, { type ChangeEvent, useContext, useMemo } from "react";
 import { useControlledState, useEvent } from "@aiszlab/relax";
 import Context, { CLASS_NAMES } from "./context";
 import type { CheckboxProps } from "../../types/checkbox";
@@ -10,6 +10,9 @@ import { useClassNames } from "../../hooks/use-class-names.component";
 import { stringify } from "@aiszlab/relax/class-name";
 import Check from "./check";
 import Indeterminate from "./Indeterminate";
+import { Ripple, useRipple } from "../ripple";
+import { hexToRgba } from "@aiszlab/fuzzy/color";
+import { OPACITY } from "../theme/tokens.stylex";
 
 const Checkbox = ({
   value,
@@ -20,11 +23,13 @@ const Checkbox = ({
   disabled = false,
   checked,
   indeterminate = false,
+  ripple = true,
 }: CheckboxProps) => {
   const contextValue = useContext(Context);
   const classNames = useClassNames(CLASS_NAMES);
   const theme = useTheme();
   const isDisabled = useMemo(() => contextValue?.isDisabled ?? disabled, [contextValue, disabled]);
+  const { ripples, add, clear } = useRipple();
 
   const [_isChecked, _setIsChecked] = useControlledState(checked, {
     defaultState: false,
@@ -58,6 +63,18 @@ const Checkbox = ({
       styles.checkbox.medium,
       isDisabled && styles.checkbox.disabled,
     ),
+    layer: stylex.props(
+      styles.layer.default,
+      ripple &&
+        styles.layer.rippleable({
+          color: isChecked
+            ? hexToRgba(theme.colors["on-surface"], OPACITY.thicker, "style")
+            : hexToRgba(theme.colors.primary, OPACITY.thicker, "style"),
+          backgroundColor: isChecked
+            ? hexToRgba(theme.colors.primary, OPACITY.thin, "style")
+            : hexToRgba(theme.colors["on-surface"], OPACITY.thin, "style"),
+        }),
+    ),
     inputer: stylex.props(
       styles.inputer.default,
       (isChecked || indeterminate) && styles.inputer.checked,
@@ -80,23 +97,34 @@ const Checkbox = ({
       aria-checked={isChecked}
       aria-disabled={isDisabled}
     >
-      <span className={styled.inputer.className} style={styled.inputer.style}>
-        <input
-          type="checkbox"
-          className={stringify(classNames.input, styled.input.className)}
-          style={styled.input.style}
-          checked={isChecked}
-          disabled={isDisabled}
-          onChange={change}
-          aria-checked={isChecked}
-          aria-disabled={isDisabled}
-        />
+      <span
+        className={stringify(classNames.layer, styled.layer.className)}
+        style={styled.layer.style}
+        onClick={add}
+      >
+        <span
+          className={stringify(classNames.inputer, styled.inputer.className)}
+          style={styled.inputer.style}
+        >
+          <input
+            type="checkbox"
+            className={stringify(classNames.input, styled.input.className)}
+            style={styled.input.style}
+            checked={isChecked}
+            disabled={isDisabled}
+            onChange={change}
+            aria-checked={isChecked}
+            aria-disabled={isDisabled}
+          />
 
-        {isChecked && <Check className={styled.check.className} style={styled.check.style} />}
+          {isChecked && <Check className={styled.check.className} style={styled.check.style} />}
 
-        {!isChecked && indeterminate && (
-          <Indeterminate className={styled.check.className} style={styled.check.style} />
-        )}
+          {!isChecked && indeterminate && (
+            <Indeterminate className={styled.check.className} style={styled.check.style} />
+          )}
+        </span>
+
+        {ripple && <Ripple ripples={ripples} onClear={clear} />}
       </span>
 
       {children && (

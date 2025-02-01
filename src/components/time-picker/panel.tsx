@@ -20,7 +20,7 @@ import { Context } from "./context";
 
 const styles = stylex.create({
   panel: {
-    marginInline: spacing.xxxxsmall,
+    marginInline: spacing.xxxxxsmall,
   },
 
   footer: (props: { borderTopColor: CSSProperties["borderTopColor"] }) => ({
@@ -31,7 +31,7 @@ const styles = stylex.create({
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
-    paddingBlock: spacing.xxxxsmall,
+    paddingBlock: spacing.xxxxxsmall,
     paddingInline: spacing.medium,
     minHeight: sizes.xlarge,
   }),

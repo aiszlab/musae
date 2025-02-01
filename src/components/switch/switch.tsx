@@ -65,7 +65,7 @@ const styles = {
       color: props.color,
       height: sizes.xxxxsmall,
       width: sizes.xxxxsmall,
-      insetInlineStart: spacing.xxsmall,
+      insetInlineStart: spacing.xxxsmall,
 
       // layout
       display: "flex",
@@ -77,7 +77,7 @@ const styles = {
     icon: {
       height: sizes.xsmall,
       width: sizes.xsmall,
-      insetInlineStart: spacing.xxxxxsmall,
+      insetInlineStart: spacing.xxxxxxsmall,
     },
 
     disabled: {
@@ -94,7 +94,7 @@ const styles = {
       width: sizes.xsmall,
       opacity: null,
       // `switch width` - `slider width` - `slider padding width`
-      insetInlineStart: `calc(100% - ${sizes.xsmall} - ${spacing.xxxxxsmall})`,
+      insetInlineStart: `calc(100% - ${sizes.xsmall} - ${spacing.xxxxxxsmall})`,
     }),
   }),
 
@@ -190,7 +190,7 @@ const Switch = ({
         ...(disabled && {
           borderColor: hexToRgba(theme.colors["on-surface"], OPACITY.medium, "style"),
           backgroundColor: hexToRgba(theme.colors["surface-variant"], OPACITY.medium, "style"),
-          color: hexToRgba(theme.colors["on-surface"], OPACITY.thicker, "style"),
+          color: hexToRgba(theme.colors["on-surface"], OPACITY.thickest, "style"),
         }),
       }),
       isChecked &&
@@ -209,7 +209,7 @@ const Switch = ({
         backgroundColor: theme.colors["on-surface-variant"],
         color: theme.colors["surface-container-highest"],
         ...(disabled && {
-          backgroundColor: hexToRgba(theme.colors["on-surface"], OPACITY.thicker, "style"),
+          backgroundColor: hexToRgba(theme.colors["on-surface"], OPACITY.thickest, "style"),
           color: theme.colors["surface-container-highest"],
         }),
       }),
@@ -221,7 +221,7 @@ const Switch = ({
           color: theme.colors["on-primary-container"],
           ...(disabled && {
             backgroundColor: theme.colors.surface,
-            color: hexToRgba(theme.colors["on-surface"], OPACITY.thicker, "style"),
+            color: hexToRgba(theme.colors["on-surface"], OPACITY.thickest, "style"),
           }),
         }),
     ),

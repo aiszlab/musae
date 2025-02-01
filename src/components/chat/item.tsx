@@ -32,7 +32,7 @@ const styles = stylex.create({
     alignSelf: "flex-end",
     width: "fit-content",
     paddingInline: spacing.large,
-    paddingBlock: spacing.xsmall,
+    paddingBlock: spacing.xxsmall,
     backgroundColor: props.backgroundColor,
     color: props.color,
     borderRadius: sizes.xxxxxxsmall,
@@ -41,7 +41,7 @@ const styles = stylex.create({
   receive: (props: { backgroundColor: string; color: string }) => ({
     alignSelf: "flex-start",
     paddingInline: spacing.large,
-    paddingBlock: spacing.xsmall,
+    paddingBlock: spacing.xxsmall,
     backgroundColor: props.backgroundColor,
     color: props.color,
     borderRadius: sizes.xxxxxxsmall,

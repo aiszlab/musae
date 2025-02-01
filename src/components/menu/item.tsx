@@ -33,14 +33,14 @@ const styles = {
 
       vertical: {
         marginBlockStart: {
-          default: spacing.xxxxsmall,
+          default: spacing.xxxxxsmall,
           ":first-of-type": spacing.none,
         },
       },
 
       inline: {
         marginBlockStart: {
-          default: spacing.xxxxsmall,
+          default: spacing.xxxxxsmall,
           ":first-of-type": spacing.none,
         },
       },
@@ -90,14 +90,14 @@ const styles = {
 
   size: stylex.create({
     small: (props: { level: number }) => ({
-      paddingBlock: spacing.xxxxsmall,
-      paddingRight: spacing.xsmall,
-      paddingLeft: `calc(${spacing.xsmall} + ${props.level} * ${spacing.large})`,
+      paddingBlock: spacing.xxxxxsmall,
+      paddingRight: spacing.xxsmall,
+      paddingLeft: `calc(${spacing.xxsmall} + ${props.level} * ${spacing.large})`,
       borderRadius: sizes.xxxxxxxsmall,
     }),
 
     medium: (props: { level: number }) => ({
-      paddingBlock: spacing.xsmall,
+      paddingBlock: spacing.xxsmall,
       paddingRight: spacing.medium,
       paddingLeft: `calc(${spacing.medium} + ${props.level} * ${spacing.xxlarge})`,
       borderRadius: sizes.xxxxxxsmall,
