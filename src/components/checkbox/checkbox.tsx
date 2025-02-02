@@ -20,17 +20,19 @@ const Checkbox = ({
   style,
   children,
   onChange,
-  disabled = false,
+  disabled: _disabled = false,
   checked,
   indeterminate = false,
   ripple = true,
+  invalid = false,
 }: CheckboxProps) => {
   const contextValue = useContext(Context);
   const classNames = useClassNames(CLASS_NAMES);
   const theme = useTheme();
-  const isDisabled = useMemo(() => contextValue?.isDisabled ?? disabled, [contextValue, disabled]);
-  const { ripples, add, clear } = useRipple();
 
+  const isDisabled = contextValue?.isDisabled ?? _disabled;
+
+  const { ripples, add, clear } = useRipple({ isDisabled: !ripple || isDisabled });
   const [_isChecked, _setIsChecked] = useControlledState(checked, {
     defaultState: false,
   });
@@ -39,9 +41,7 @@ const Checkbox = ({
   // if there is context value, use context value
   // else use controlled state
   const isChecked = useMemo<boolean>(() => {
-    if (!contextValue || !value) {
-      return _isChecked;
-    }
+    if (!contextValue || !value) return _isChecked;
     return contextValue.value.has(value);
   }, [_isChecked, contextValue, value]);
 
@@ -64,24 +64,34 @@ const Checkbox = ({
       isDisabled && styles.checkbox.disabled,
     ),
     layer: stylex.props(
-      styles.layer.default,
-      ripple &&
-        styles.layer.rippleable({
-          color: isChecked
-            ? hexToRgba(theme.colors["on-surface"], OPACITY.thicker, "style")
-            : hexToRgba(theme.colors.primary, OPACITY.thicker, "style"),
-          backgroundColor: isChecked
-            ? hexToRgba(theme.colors.primary, OPACITY.thin, "style")
-            : hexToRgba(theme.colors["on-surface"], OPACITY.thin, "style"),
-        }),
+      styles.layer.default.default,
+      ripple && [
+        styles.layer.rippleable.default,
+        (isChecked || indeterminate) && styles.layer.rippleable.checked,
+        invalid && styles.layer.rippleable.invalid,
+        isDisabled && styles.layer.rippleable.disabled,
+      ],
     ),
     inputer: stylex.props(
-      styles.inputer.default,
-      (isChecked || indeterminate) && styles.inputer.checked,
+      styles.inputer.default.default,
+      isDisabled && styles.inputer.default.disabled,
+      (isChecked || indeterminate) && [
+        styles.inputer.checked.default,
+        isDisabled && styles.inputer.checked.disabled,
+      ],
+      invalid && [
+        styles.inputer.invalid.default,
+        (isChecked || indeterminate) && styles.inputer.invalid.checked,
+        isDisabled && styles.inputer.invalid.disabled,
+      ],
     ),
     input: stylex.props(styles.input.default),
     check: stylex.props(styles.check.default),
-    label: stylex.props(styles.label.default, typography.label.small),
+    label: stylex.props(
+      styles.label.default,
+      invalid && styles.label.invalid,
+      typography.label.small,
+    ),
   };
 
   return (
@@ -91,8 +101,21 @@ const Checkbox = ({
         ...styled.checkbox.style,
         ...style,
         // @ts-expect-error
-        "--on-surface-variant": theme.colors["on-surface-variant"],
         "--primary": theme.colors.primary,
+        "--primary-opacity-08": hexToRgba(theme.colors.primary, OPACITY.thin, "style"),
+        "--primary-opacity-12": hexToRgba(theme.colors.primary, OPACITY.medium, "style"),
+        "--primary-opacity-20": hexToRgba(theme.colors.primary, OPACITY.thicker, "style"),
+        "--on-primary": theme.colors["on-primary"],
+        "--on-surface": theme.colors["on-surface"],
+        "--on-surface-opacity-08": hexToRgba(theme.colors["on-surface"], OPACITY.thin, "style"),
+        "--on-surface-opacity-12": hexToRgba(theme.colors["on-surface"], OPACITY.medium, "style"),
+        "--on-surface-opacity-20": hexToRgba(theme.colors["on-surface"], OPACITY.thicker, "style"),
+        "--on-surface-variant": theme.colors["on-surface-variant"],
+        "--error": theme.colors.error,
+        "--error-opacity-08": hexToRgba(theme.colors.error, OPACITY.thin, "style"),
+        "--error-opacity-12": hexToRgba(theme.colors.error, OPACITY.medium, "style"),
+        "--error-opacity-20": hexToRgba(theme.colors.error, OPACITY.thicker, "style"),
+        "--on-error": theme.colors["on-error"],
       }}
       aria-checked={isChecked}
       aria-disabled={isDisabled}
@@ -115,6 +138,7 @@ const Checkbox = ({
             onChange={change}
             aria-checked={isChecked}
             aria-disabled={isDisabled}
+            onClick={(e) => e.stopPropagation()}
           />
 
           {isChecked && <Check className={styled.check.className} style={styled.check.style} />}

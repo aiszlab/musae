@@ -1,10 +1,7 @@
 import React from "react";
-import { useTheme } from "../theme";
 import { ComponentProps } from "../../types/element";
 
 const Check = ({ className, style }: ComponentProps) => {
-  const theme = useTheme();
-
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -15,7 +12,7 @@ const Check = ({ className, style }: ComponentProps) => {
     >
       <path
         d="M10 16.4001L6 12.4001L7.4 11.0001L10 13.6001L16.6 7.00006L18 8.40006L10 16.4001Z"
-        fill={theme.colors["on-primary"]}
+        fill="currentColor"
       />
     </svg>
   );

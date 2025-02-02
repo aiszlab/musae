@@ -11,8 +11,8 @@ const styles = {
     },
 
     disabled: {
-      opacity: opacity.thicker,
       cursor: "not-allowed",
+      opacity: opacity.thickest,
     },
 
     medium: {
@@ -23,49 +23,119 @@ const styles = {
     },
   }),
 
-  layer: stylex.create({
-    default: {
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-    },
-
-    rippleable: (props: { color: string; backgroundColor: string }) => ({
-      position: "relative",
-      overflow: "hidden",
-      padding: spacing.small,
-      borderRadius: sizes.infinity,
-      color: props.color,
-
-      transitionProperty: "background-color",
-      transitionDuration: duration.short,
-
-      ":hover": {
-        backgroundColor: props.backgroundColor,
+  layer: {
+    default: stylex.create({
+      default: {
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
       },
     }),
-  }),
 
-  inputer: stylex.create({
-    default: {
-      width: "var(--size)",
-      height: "var(--size)",
-      position: "relative",
-      boxSizing: "border-box",
-      borderRadius: sizes.xxxxxxxxsmall,
-      borderWidth: "var(--border-width)",
-      borderStyle: "solid",
-      borderColor: "var(--on-surface-variant)",
+    rippleable: stylex.create({
+      default: {
+        position: "relative",
+        overflow: "hidden",
+        padding: spacing.small,
+        borderRadius: sizes.infinity,
 
-      transitionProperty: "background-color, border-color",
-      transitionDuration: duration.short,
-    },
+        transitionProperty: "background-color",
+        transitionDuration: duration.short,
 
-    checked: {
-      backgroundColor: "var(--primary)",
-      borderColor: "var(--primary)",
-    },
-  }),
+        color: "var(--primary-opacity-20)",
+        ":hover": {
+          backgroundColor: "var(--on-surface-opacity-08)",
+        },
+        ":focus": {
+          backgroundColor: "var(--on-surface-opacity-12)",
+        },
+      },
+
+      checked: {
+        color: "var(--on-surface-opacity-20)",
+        ":hover": {
+          backgroundColor: "var(--primary-opacity-08)",
+        },
+        ":focus": {
+          backgroundColor: "var(--primary-opacity-12)",
+        },
+      },
+
+      invalid: {
+        color: "var(--error-opacity-20)",
+        ":hover": {
+          backgroundColor: "var(--error-opacity-08)",
+        },
+        ":focus": {
+          backgroundColor: "var(--error-opacity-12)",
+        },
+      },
+
+      disabled: {
+        color: null,
+        ":hover": {
+          backgroundColor: null,
+        },
+        ":focus": {
+          backgroundColor: null,
+        },
+      },
+    }),
+  },
+
+  inputer: {
+    default: stylex.create({
+      default: {
+        width: "var(--size)",
+        height: "var(--size)",
+        position: "relative",
+        boxSizing: "border-box",
+        borderRadius: sizes.xxxxxxxxsmall,
+
+        borderWidth: "var(--border-width)",
+        borderStyle: "solid",
+        borderColor: "var(--on-surface-variant)",
+
+        transitionProperty: "background-color, border-color",
+        transitionDuration: duration.short,
+      },
+
+      disabled: {
+        borderColor: "var(--on-surface)",
+      },
+    }),
+
+    checked: stylex.create({
+      default: {
+        color: "var(--on-primary)",
+        borderColor: "var(--primary)",
+        backgroundColor: "var(--primary)",
+      },
+
+      disabled: {
+        color: "var(--surface)",
+        borderColor: "var(--on-surface)",
+        backgroundColor: "var(--on-surface)",
+      },
+    }),
+
+    invalid: stylex.create({
+      default: {
+        borderColor: "var(--error)",
+      },
+
+      checked: {
+        color: "var(--on-error)",
+        backgroundColor: "var(--error)",
+      },
+
+      disabled: {
+        color: "var(--surface)",
+        borderColor: "var(--on-surface)",
+        backgroundColor: "var(--on-surface)",
+      },
+    }),
+  },
 
   input: stylex.create({
     default: {
@@ -85,6 +155,10 @@ const styles = {
   label: stylex.create({
     default: {
       paddingInline: spacing.xxxsmall,
+    },
+
+    invalid: {
+      color: "var(--error)",
     },
   }),
 };

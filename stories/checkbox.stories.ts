@@ -15,6 +15,14 @@ const meta: Meta<typeof Checkbox> = {
       type: "boolean",
       table: { defaultValue: { summary: "false" } },
     },
+    invalid: {
+      type: "boolean",
+      table: { defaultValue: { summary: "false" } },
+    },
+    disabled: {
+      type: "boolean",
+      table: { defaultValue: { summary: "false" } },
+    },
   },
 };
 
@@ -23,8 +31,20 @@ type Story = StoryObj<typeof meta>;
 
 export const Normal: Story = {
   args: {
-    checked: void 0,
-    indeterminate: void 0,
-    children: "Checkbox",
+    children: "Normal",
+  },
+};
+
+export const Disabled: Story = {
+  args: {
+    disabled: true,
+    children: "Disabled",
+  },
+};
+
+export const Invalid: Story = {
+  args: {
+    invalid: true,
+    children: "Invalid",
   },
 };
