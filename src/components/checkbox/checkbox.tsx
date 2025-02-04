@@ -25,6 +25,7 @@ const Checkbox = ({
   indeterminate = false,
   ripple = true,
   invalid = false,
+  defaultChecked = false,
 }: CheckboxProps) => {
   const contextValue = useContext(Context);
   const classNames = useClassNames(CLASS_NAMES);
@@ -34,7 +35,7 @@ const Checkbox = ({
 
   const { ripples, add, clear } = useRipple({ isDisabled: !ripple || isDisabled });
   const [_isChecked, _setIsChecked] = useControlledState(checked, {
-    defaultState: false,
+    defaultState: defaultChecked,
   });
 
   // check current checkbox is checked

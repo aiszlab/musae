@@ -83,6 +83,12 @@ export interface CheckboxProps extends ComponentProps {
 
   /**
    * @description
+   * if is default checked
+   */
+  defaultChecked?: boolean;
+
+  /**
+   * @description
    * value
    * @default void 0
    */

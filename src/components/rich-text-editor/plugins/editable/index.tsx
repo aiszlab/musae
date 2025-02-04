@@ -12,21 +12,6 @@ interface Props {
  * editable plugin
  */
 const EditablePlugin = ({ isEditable }: Props) => {
-  const [editor] = useLexicalComposerContext();
-
-  useUpdateEffect(() => {
-    editor.setEditable(isEditable);
-
-    // editable state changed, change nodes status
-    editor.update(() => {
-      editor._keyToDOMMap.entries().forEach(([key, dom]) => {
-        const node = $getNodeByKey(key);
-        if (!(node instanceof CheckableListItemNode)) return;
-        node.toggleDisabled();
-      });
-    });
-  }, [isEditable, editor]);
-
   return null;
 };
 

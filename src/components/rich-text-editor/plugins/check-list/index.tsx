@@ -21,19 +21,38 @@ const CheckListPlugin = () => {
       ),
 
       // listen check list item mutation
-      editor.registerMutationListener(CheckableListItemNode, (mutatedNodes) => {
-        for (const { 0: nodeKey, "1": mutation } of mutatedNodes) {
-          if (mutation === "created") {
-            editor.update(() => {
-              const listItem = $getNodeByKey<CheckableListItemNode>(nodeKey);
-              if (!listItem) return;
+      editor.registerMutationListener(
+        CheckableListItemNode,
+        (mutatedNodes, { prevEditorState }) => {
+          for (const { 0: nodeKey, "1": mutation } of mutatedNodes) {
+            switch (mutation) {
+              case "created":
+              case "updated":
+                editor.update(() => {
+                  const listItem = $getNodeByKey<CheckableListItemNode>(nodeKey);
+                  listItem?.renderCheckbox();
+                });
 
-              listItem.append(new CheckboxNode());
-            });
-            continue;
+                break;
+              case "destroyed":
+                editor.update(() => {
+                  const checkboxNodeKey = $getNodeByKey<CheckableListItemNode>(
+                    nodeKey,
+                    prevEditorState,
+                  )?.checkbox;
+
+                  if (!checkboxNodeKey) return;
+
+                  $getNodeByKey(checkboxNodeKey)?.remove();
+                });
+
+                break;
+              default:
+                break;
+            }
           }
-        }
-      }),
+        },
+      ),
     );
 
     return () => {
