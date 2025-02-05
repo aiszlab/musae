@@ -1,5 +1,5 @@
 import { Notification, type Type } from "../notification";
-import type { TypedMessage, MessageConfig, OpenHandler } from "musae/types/message";
+import type { TypedMessage, MessageConfig, OpenHandler } from "../../types/message";
 
 const METHODS: Type[] = ["error", "info", "loading", "success", "warning"];
 

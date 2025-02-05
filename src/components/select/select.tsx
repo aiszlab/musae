@@ -1,14 +1,14 @@
 import React, { useRef, useCallback, useMemo } from "react";
 import { Picker } from "../picker";
 import { useOptions, useValue } from "./hooks";
-import type { SelectProps, SelectorRef, ValueOrValues } from "musae/types/select";
+import type { SelectProps, SelectorRef, ValueOrValues } from "../../types/select";
 import { stringify } from "@aiszlab/relax/class-name";
 import stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
 import Selector from "./selector";
 import Selections from "./selections";
 import { useClassNames } from "../../hooks/use-class-names.component";
-import type { PickerRef } from "musae/types/picker";
+import type { PickerRef } from "../../types/picker";
 import { CLASS_NAMES } from "./context";
 
 const styles = stylex.create({

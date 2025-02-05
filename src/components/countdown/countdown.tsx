@@ -1,7 +1,7 @@
 import React, { type MouseEvent, useRef, useState } from "react";
 import { Button } from "../button";
 import { Observable, Subscription, interval, map, switchAll, type Subscriber } from "rxjs";
-import type { CountdownProps } from "musae/types/countdown";
+import type { CountdownProps } from "../../types/countdown";
 import { useEvent, useMounted } from "@aiszlab/relax";
 import { useClassNames } from "../../hooks/use-class-names.component";
 import { CLASS_NAMES } from "./context";

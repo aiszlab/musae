@@ -7,7 +7,7 @@ import type {
   OpenHandler,
   Type,
   TypedNotification,
-} from "musae/types/notification";
+} from "../../types/notification";
 
 const METHODS: Type[] = ["error", "info", "success", "warning"];
 

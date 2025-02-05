@@ -7,7 +7,7 @@ import React, {
   useMemo,
   useRef,
 } from "react";
-import type { UploadProps, UploadedListRef } from "musae/types/upload";
+import type { UploadProps, UploadedListRef } from "../../types/upload";
 import stylex from "@stylexjs/stylex";
 import { useEvent } from "@aiszlab/relax";
 import { Keyboard } from "../../utils/keyboard";

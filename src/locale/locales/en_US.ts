@@ -1,4 +1,4 @@
-import { type Locale } from "musae/types/locale";
+import { type Locale } from "../../types/locale";
 
 const en_US: Locale = {
   locale: "en_US",

@@ -1,5 +1,5 @@
 import React, { type CSSProperties, useContext, forwardRef } from "react";
-import type { AvatarProps } from "musae/types/avatar";
+import type { AvatarProps } from "../../types/avatar";
 import stylex from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import Context, { CLASS_NAMES } from "./context";

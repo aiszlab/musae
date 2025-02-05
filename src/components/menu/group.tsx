@@ -1,5 +1,5 @@
 import React, { type CSSProperties, forwardRef } from "react";
-import type { MenuGroupProps } from "musae/types/menu";
+import type { MenuGroupProps } from "../../types/menu";
 import { useAnimate } from "framer-motion";
 import Item from "./item";
 import { useMenuContext } from "./hooks";

@@ -1,5 +1,5 @@
 import React from "react";
-import type { SpaceProps } from "musae/types/space";
+import type { SpaceProps } from "../../types/space";
 import stylex from "@stylexjs/stylex";
 import { useGutters } from "../../hooks/use-gutters";
 import { stringify } from "@aiszlab/relax/class-name";

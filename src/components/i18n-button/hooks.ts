@@ -1,8 +1,8 @@
 import { useMemo, useState } from "react";
 import { useMounted } from "@aiszlab/relax";
 import { useLocale } from "../../locale";
-import type { MenuItem } from "musae/types/menu";
-import type { Locale, LocaleCode } from "musae/types/locale";
+import type { MenuItem } from "../../types/menu";
+import type { Locale, LocaleCode } from "../../types/locale";
 
 /**
  * @description

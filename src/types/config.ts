@@ -1,6 +1,6 @@
 import type { ReactNode, RefObject } from "react";
 import type { HolderRef } from "./notification";
-import type { Locale } from "musae/types/locale";
+import type { Locale } from "./locale";
 
 /**
  * @description

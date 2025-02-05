@@ -1,7 +1,7 @@
 import { useControlledState } from "@aiszlab/relax";
-import type { DatePickerProps } from "musae/types/date-picker";
+import type { DatePickerProps } from "../../types/date-picker";
 import { type RefObject, useCallback } from "react";
-import type { PickerRef } from "musae/types/picker";
+import type { PickerRef } from "../../types/picker";
 
 /**
  * @description

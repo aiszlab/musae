@@ -1,5 +1,5 @@
 import React, { useContext, type CSSProperties } from "react";
-import type { Status, StepItemProps } from "musae/types/steps";
+import type { Status, StepItemProps } from "../../types/steps";
 import stylex from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";

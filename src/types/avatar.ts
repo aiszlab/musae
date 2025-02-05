@@ -1,5 +1,5 @@
 import type { ReactNode, RefAttributes } from "react";
-import type { ComponentProps } from "musae/types/element";
+import type { ComponentProps } from "../types/element";
 import type { ImageProps } from "./image";
 
 type Size = "small" | "medium" | "large";

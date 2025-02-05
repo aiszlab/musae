@@ -1,6 +1,6 @@
 import React from "react";
 import stylex from "@stylexjs/stylex";
-import type { LoadingProps } from "musae/types/loading";
+import type { LoadingProps } from "../../types/loading";
 import { positions, sizes } from "../theme/tokens.stylex";
 import { useClassNames } from "../../hooks/use-class-names.component";
 import { stringify } from "@aiszlab/relax/class-name";

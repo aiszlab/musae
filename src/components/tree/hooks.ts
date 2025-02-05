@@ -1,6 +1,6 @@
 import { useControlledState, useEvent } from "@aiszlab/relax";
 import { useMemo, useCallback, Key } from "react";
-import type { TreeProps } from "musae/types/tree";
+import type { TreeProps } from "../../types/tree";
 
 /**
  * @description

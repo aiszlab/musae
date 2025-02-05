@@ -6,7 +6,7 @@ import type {
   ReactNode,
   ReactPortal,
 } from "react";
-import { ComponentProps } from "musae/types/element";
+import type { ComponentProps } from "./element";
 
 export type AsProps = Required<Pick<IconProps, "size">>;
 

@@ -4,7 +4,7 @@ import { Popover, type PopoverRef } from "../popover";
 import { Menu } from "../menu";
 import { Empty } from "../empty";
 import { toArray, useEvent } from "@aiszlab/relax";
-import type { DropdownProps } from "musae/types/rich-text-editor";
+import type { DropdownProps } from "../../types/rich-text-editor";
 import stylex from "@stylexjs/stylex";
 
 const _styles = stylex.create({

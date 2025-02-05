@@ -1,5 +1,5 @@
 import type { DOMAttributes, ReactElement, ReactNode, RefAttributes } from "react";
-import type { ComponentProps } from "musae/types/element";
+import type { ComponentProps } from "./element";
 import type { Placement } from "@floating-ui/dom";
 import type { PopperProps } from "./popper";
 

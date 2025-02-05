@@ -27,7 +27,7 @@ import MarkdownShortcutPlugin, { TRANSFORMERS } from "./plugins/markdown-shortcu
 import { typography } from "../theme/theme";
 import { $convertFromMarkdownString } from "@lexical/markdown";
 
-import type { RichTextEditorRef, RichTextEditorProps } from "musae/types/rich-text-editor";
+import type { RichTextEditorRef, RichTextEditorProps } from "../../types/rich-text-editor";
 import { CLASS_NAMES, Context } from "./context";
 import { useClassNames } from "../../hooks/use-class-names.component";
 import { usingEditor } from "./utils";

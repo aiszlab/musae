@@ -1,5 +1,5 @@
 import { type MouseEvent, type Key, useCallback, useState, useMemo } from "react";
-import type { Ripple } from "musae/types/ripple";
+import type { Ripple } from "../../types/ripple";
 import { useIdentity } from "@aiszlab/relax";
 
 type Ripples = Map<Key, Omit<Ripple, "key">>;

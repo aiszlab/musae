@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import type { ComponentProps } from "musae/types/element";
+import type { ComponentProps } from "./element";
 import type { Gutter } from "../hooks/use-gutters";
 
 export type Align = "center" | "left" | "right";

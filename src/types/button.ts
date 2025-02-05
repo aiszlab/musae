@@ -1,5 +1,5 @@
 import type { ButtonHTMLAttributes, MouseEventHandler, ReactNode } from "react";
-import type { ComponentProps } from "musae/types/element";
+import type { ComponentProps } from "./element";
 
 export type Variant = "filled" | "outlined" | "text";
 

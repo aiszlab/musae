@@ -3,7 +3,7 @@ import React, { type CSSProperties, type ReactNode, useCallback, useMemo, useSta
 import { toArray, useControlledState } from "@aiszlab/relax";
 import { Timespan } from "../../utils/timespan";
 import { stringify } from "@aiszlab/relax/class-name";
-import type { CalendarProps } from "musae/types/calendar";
+import type { CalendarProps } from "../../types/calendar";
 import stylex from "@stylexjs/stylex";
 import { positions, sizes, spacing } from "../theme/tokens.stylex";
 import { typography } from "../theme/theme";

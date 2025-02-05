@@ -1,6 +1,6 @@
 import React, { Children, cloneElement, isValidElement, useMemo } from "react";
 import stylex from "@stylexjs/stylex";
-import type { AvatarGroupProps } from "musae/types/avatar";
+import type { AvatarGroupProps } from "../../types/avatar";
 import Context, { CLASS_NAMES } from "./context";
 import { Popover } from "../popover";
 import Avatar from "./avatar";

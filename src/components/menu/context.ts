@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { type ContextValue } from "musae/types/menu";
+import { type ContextValue } from "../../types/menu";
 
 /**
  * @description

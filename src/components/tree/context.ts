@@ -1,5 +1,5 @@
 import { Key, createContext } from "react";
-import { ContextValue } from "musae/types/tree";
+import { ContextValue } from "../../types/tree";
 
 /**
  * @description

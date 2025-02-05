@@ -1,4 +1,4 @@
-import type { ButtonProps } from "musae/types/button";
+import type { ButtonProps } from "../../types/button";
 import React, { forwardRef } from "react";
 import { stringify } from "@aiszlab/relax/class-name";
 import stylex from "@stylexjs/stylex";

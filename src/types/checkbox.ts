@@ -1,5 +1,5 @@
 import type { ChangeEvent, Key, ReactNode } from "react";
-import type { ComponentProps } from "musae/types/element";
+import type { ComponentProps } from "./element";
 
 /**
  * @author murukal

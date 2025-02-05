@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import type { DrawerProps } from "musae/types/drawer";
+import type { DrawerProps } from "../../types/drawer";
 import { Portal } from "../portal";
 import Popup from "./popup";
 import { useBoolean } from "@aiszlab/relax";

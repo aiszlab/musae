@@ -4,7 +4,7 @@ import { useTheme } from "../theme";
 import stylex from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { useControlledState, useEvent } from "@aiszlab/relax";
-import type { TextareaProps } from "musae/types/textarea";
+import type { TextareaProps } from "../../types/textarea";
 import { useClassNames } from "../../hooks/use-class-names.component";
 import { stringify } from "@aiszlab/relax/class-name";
 import { CLASS_NAMES } from "./context";

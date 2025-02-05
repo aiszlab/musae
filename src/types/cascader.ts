@@ -1,5 +1,5 @@
 import type { Key, ReactNode } from "react";
-import type { Option } from "musae/types/option";
+import type { Option } from "./option";
 
 export type KeyOrOption = Key | Option;
 

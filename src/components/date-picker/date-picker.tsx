@@ -1,14 +1,14 @@
 import React, { useRef } from "react";
 import { Picker } from "../picker";
 import { Calendar } from "../calendar";
-import type { DatePickerProps } from "musae/types/date-picker";
+import type { DatePickerProps } from "../../types/date-picker";
 import { useValue } from "./hooks";
 import { useClassNames } from "../../hooks/use-class-names.component";
 import stylex from "@stylexjs/stylex";
 import { stringify } from "@aiszlab/relax/class-name";
 import { spacing } from "../theme/tokens.stylex";
 import { styles as inputStyles } from "../input";
-import type { PickerRef } from "musae/types/picker";
+import type { PickerRef } from "../../types/picker";
 import { CLASS_NAMES } from "./context";
 import type { CalendarRef } from "../../types/calendar";
 import { useEvent } from "@aiszlab/relax";

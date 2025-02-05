@@ -1,11 +1,11 @@
 import React, { useMemo } from "react";
-import type { PagiantionProps } from "musae/types/pagination";
+import type { PagiantionProps } from "../../types/pagination";
 import { usePagiantion } from "./hooks";
 import Item from "./item";
 import stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
 import { Select } from "../select";
-import type { Option } from "musae/types/option";
+import type { Option } from "../../types/option";
 import { useLocale } from "../../locale";
 import { toFunction, unique } from "@aiszlab/relax";
 import { stringify } from "@aiszlab/relax/class-name";

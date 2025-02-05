@@ -1,6 +1,6 @@
 import React, { type CSSProperties } from "react";
 import { Grid } from "../grid";
-import type { LayoutProps } from "musae/types/layout";
+import type { LayoutProps } from "../../types/layout";
 import { ChildToken, useChildren } from "./hooks";
 import stylex from "@stylexjs/stylex";
 import { useTheme } from "../theme";

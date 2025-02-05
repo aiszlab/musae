@@ -66,6 +66,7 @@ export { IconButton } from "./components/icon-button";
 export { Chat } from "./components/chat";
 export { Markdown } from "./components/markdown";
 export { Ellipsis } from "./components/ellipsis";
+export { SplitPanel } from "./components/split-panel";
 
 /**
  * @description

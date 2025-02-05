@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import { useTransfer } from "./hooks";
-import type { TransferProps } from "musae/types/transfer";
+import type { TransferProps } from "../../types/transfer";
 import List from "./list";
 import stylex from "@stylexjs/stylex";
 import { KeyboardArrowLeft, KeyboardArrowRight } from "musae/icons";

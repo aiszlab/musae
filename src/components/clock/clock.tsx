@@ -1,6 +1,6 @@
 import React from "react";
 import { useClassNames } from "../../hooks/use-class-names.component";
-import type { ClockProps, TimeUnit } from "musae/types/clock";
+import type { ClockProps, TimeUnit } from "../../types/clock";
 import Column from "./column";
 import stylex from "@stylexjs/stylex";
 import { stringify } from "@aiszlab/relax/class-name";

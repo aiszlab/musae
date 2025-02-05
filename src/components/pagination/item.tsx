@@ -1,5 +1,5 @@
 import React, { createElement } from "react";
-import type { PaginationItemProps } from "musae/types/pagination";
+import type { PaginationItemProps } from "../../types/pagination";
 import {
   KeyboardArrowLeft,
   KeyboardArrowRight,

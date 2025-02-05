@@ -1,6 +1,6 @@
 import React, { type CSSProperties, useCallback, useContext, useMemo } from "react";
 import { Context, CLASS_NAMES } from "./context";
-import type { RadioProps } from "musae/types/radio";
+import type { RadioProps } from "../../types/radio";
 import { useControlledState } from "@aiszlab/relax";
 import { useClassNames } from "../../hooks/use-class-names.component";
 import stylex from "@stylexjs/stylex";

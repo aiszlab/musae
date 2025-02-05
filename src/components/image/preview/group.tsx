@@ -1,5 +1,5 @@
 import PreviewGroupContext from "./context";
-import type { PreviewGroupProps, PreviewRef } from "musae/types/image";
+import type { PreviewGroupProps, PreviewRef } from "../../../types/image";
 import Preview from "./preview";
 import React, { useMemo, useRef } from "react";
 import { useBoolean, useCounter, useEvent } from "@aiszlab/relax";

@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import type { TransferItemProps } from "musae/types/transfer";
+import type { TransferItemProps } from "../../types/transfer";
 import { Checkbox } from "../checkbox";
 import stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";

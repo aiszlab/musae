@@ -1,6 +1,6 @@
 import { Portal } from "../portal";
 import React, { useEffect } from "react";
-import type { DialogProps } from "musae/types/dialog";
+import type { DialogProps } from "../../types/dialog";
 import Popup from "./popup";
 import { useBoolean } from "@aiszlab/relax";
 

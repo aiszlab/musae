@@ -2,7 +2,7 @@ import React from "react";
 import stylex from "@stylexjs/stylex";
 import { useTheme } from "../theme";
 import { sizes } from "../theme/tokens.stylex";
-import type { CircularProps } from "musae/types/progress";
+import type { CircularProps } from "../../types/progress";
 import { useCircular, useValue } from "./hooks";
 
 const styles = stylex.create({

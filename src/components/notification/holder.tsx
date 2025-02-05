@@ -4,7 +4,7 @@ import type {
   NotificationWithoutKeyAndPlacement,
   HolderRef,
   Placement,
-} from "musae/types/notification";
+} from "../../types/notification";
 import { Portal } from "../portal";
 import { AnimatePresence } from "framer-motion";
 import Notification from "./notification";

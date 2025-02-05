@@ -9,7 +9,7 @@ import React, {
 } from "react";
 import { Popper } from "../popper";
 import { useBoolean, useFocus, useEvent } from "@aiszlab/relax";
-import type { PickerProps, PickerRef } from "musae/types/picker";
+import type { PickerProps, PickerRef } from "../../types/picker";
 import { useClassNames } from "../../hooks/use-class-names.component";
 import stylex from "@stylexjs/stylex";
 import { useTheme } from "../theme";

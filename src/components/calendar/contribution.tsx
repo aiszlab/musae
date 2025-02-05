@@ -7,7 +7,7 @@ import { typography } from "../theme/theme";
 import { Tooltip } from "../tooltip";
 import { clamp, min, toFunction } from "@aiszlab/relax";
 import { firstSundayInMonth } from "../../utils/date";
-import { ContributionCalendarProps } from "musae/types/calendar";
+import { ContributionCalendarProps } from "../../types/calendar";
 import { hexToHsla } from "@aiszlab/fuzzy/color";
 import { useLocale } from "../../locale";
 

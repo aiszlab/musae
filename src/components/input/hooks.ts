@@ -7,7 +7,7 @@ import {
   type RefObject,
   useCallback,
 } from "react";
-import type { InputProps } from "musae/types/input";
+import type { InputProps } from "../../types/input";
 
 /**
  * @description

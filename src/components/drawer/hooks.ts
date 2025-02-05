@@ -1,4 +1,4 @@
-import type { Placement } from "musae/types/drawer";
+import type { Placement } from "../../types/drawer";
 
 export const PLACEMENTS: Record<Placement, [hidden: string, appeared: string]> = {
   right: ["translateX(100%)", "translateX(0)"],

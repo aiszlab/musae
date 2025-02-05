@@ -1,4 +1,4 @@
-import type { HeaderProps } from "musae/types/layout";
+import type { HeaderProps } from "../../types/layout";
 import React, { type CSSProperties } from "react";
 import { useTheme } from "../theme";
 import stylex from "@stylexjs/stylex";

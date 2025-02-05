@@ -1,5 +1,5 @@
 import React, { type CSSProperties, memo, type ReactNode, useMemo } from "react";
-import type { HighlightProps } from "musae/types/highlight";
+import type { HighlightProps } from "../../types/highlight";
 import stylex from "@stylexjs/stylex";
 import { useTheme } from "../theme";
 import { stringify } from "@aiszlab/relax/class-name";

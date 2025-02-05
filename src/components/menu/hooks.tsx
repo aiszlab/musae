@@ -1,6 +1,6 @@
 import React, { type Key, type ReactNode, useCallback, useContext, useMemo } from "react";
 import { Context, type CLASS_NAMES } from "./context";
-import type { ContextValue, MenuProps, Mode, Size } from "musae/types/menu";
+import type { ContextValue, MenuProps, Mode, Size } from "../../types/menu";
 import { toArray, useControlledState } from "@aiszlab/relax";
 import stylex from "@stylexjs/stylex";
 import { duration, spacing } from "../theme/tokens.stylex";

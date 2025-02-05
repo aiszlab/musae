@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import type { ImageProps } from "musae/types/image";
+import type { ImageProps } from "../../types/image";
 import Preview from "./preview/preview";
 import PreviewGroupContext from "./preview/context";
 import { useBoolean, useEvent, useImageLoader } from "@aiszlab/relax";

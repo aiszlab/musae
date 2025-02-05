@@ -1,7 +1,7 @@
 import React, { forwardRef, useImperativeHandle, useState } from "react";
 import { Dialog } from "../../dialog";
 import Operations from "./operations";
-import type { PreviewProps, PreviewRef } from "musae/types/image";
+import type { PreviewProps, PreviewRef } from "../../../types/image";
 import stylex from "@stylexjs/stylex";
 import { duration } from "../../theme/tokens.stylex";
 

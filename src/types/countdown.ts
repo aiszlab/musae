@@ -1,5 +1,5 @@
-import { ComponentProps } from "musae/types/element";
-import { ButtonProps } from "./button";
+import type { ComponentProps } from "./element";
+import type { ButtonProps } from "./button";
 
 /**
  * @description

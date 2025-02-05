@@ -1,5 +1,5 @@
 import { createContext, useContext } from "react";
-import type { ContextValue } from "musae/types/table";
+import type { ContextValue } from "../../types/table";
 
 export const CLASS_NAMES = {
   table: "table",

@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import type { StepsProps } from "musae/types/steps";
+import type { StepsProps } from "../../types/steps";
 import Item from "./item";
 import { useClassNames } from "../../hooks/use-class-names.component";
 import stylex from "@stylexjs/stylex";

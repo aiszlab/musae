@@ -1,5 +1,5 @@
 import React from "react";
-import { QuoteProps } from "musae/types/quote";
+import { QuoteProps } from "../../types/quote";
 import { stringify } from "@aiszlab/relax/class-name";
 import styles from "./styles";
 import stylex from "@stylexjs/stylex";

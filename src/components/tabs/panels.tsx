@@ -1,7 +1,7 @@
 import React, { type Key, type ReactNode, useMemo } from "react";
 import stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
-import { type PanelsProps } from "musae/types/tabs";
+import { type PanelsProps } from "../../types/tabs";
 import { stringify } from "@aiszlab/relax/class-name";
 import { isUndefined, isVoid } from "@aiszlab/relax";
 import { useTabsContext } from "./hooks";

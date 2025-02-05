@@ -3,7 +3,7 @@ import { useEvent, useHover } from "@aiszlab/relax";
 import stylex from "@stylexjs/stylex";
 import { duration, sizes } from "../theme/tokens.stylex";
 import { Star as _Star } from "musae/icons";
-import type { StarProps } from "musae/types/rate";
+import type { StarProps } from "../../types/rate";
 import { useTheme } from "../theme";
 import { stringify } from "@aiszlab/relax/class-name";
 import Context from "./context";

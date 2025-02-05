@@ -1,5 +1,5 @@
-import { type ReactNode } from "react";
-import { ComponentProps } from "musae/types/element";
+import type { ReactNode } from "react";
+import type { ComponentProps } from "./element";
 
 type Size = "small" | "medium" | "large";
 

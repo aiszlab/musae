@@ -2,7 +2,7 @@ import React, { useContext, type CSSProperties } from "react";
 import stylex from "@stylexjs/stylex";
 import { duration, sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
-import type { BreadcrumbItemProps } from "musae/types/breadcrumb";
+import type { BreadcrumbItemProps } from "../../types/breadcrumb";
 import { stringify } from "@aiszlab/relax/class-name";
 import { Context } from "./context";
 

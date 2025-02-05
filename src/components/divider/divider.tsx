@@ -1,4 +1,4 @@
-import type { DividerProps } from "musae/types/divider";
+import type { DividerProps } from "../../types/divider";
 import React, { type CSSProperties } from "react";
 import { useOffset } from "./hooks";
 import { useClassNames } from "../../hooks/use-class-names.component";

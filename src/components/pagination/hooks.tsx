@@ -1,6 +1,6 @@
 import { clamp, range, useControlledState, useCounter, useEvent } from "@aiszlab/relax";
 import { useMemo } from "react";
-import type { PaginationItems, PaginationItemType } from "musae/types/pagination";
+import type { PaginationItems, PaginationItemType } from "../../types/pagination";
 
 /**
  * @author murukal

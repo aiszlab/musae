@@ -1,5 +1,5 @@
 import type { CSSProperties, HTMLAttributes, MouseEventHandler, ReactNode } from "react";
-import type { ComponentProps } from "musae/types/element";
+import type { ComponentProps } from "./element";
 import type { Nullable } from "@aiszlab/relax/types";
 
 /**

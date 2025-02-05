@@ -1,4 +1,4 @@
-import type { ContextValue } from "musae/types/upload";
+import type { ContextValue } from "../../types/upload";
 import { createContext } from "react";
 
 /**

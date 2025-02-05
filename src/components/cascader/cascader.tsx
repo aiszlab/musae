@@ -8,9 +8,9 @@ import stylex from "@stylexjs/stylex";
 import { stringify } from "@aiszlab/relax/class-name";
 import { spacing } from "../theme/tokens.stylex";
 
-import type { MenuProps } from "musae/types/menu";
-import type { PickerRef } from "musae/types/picker";
-import type { CascaderProps } from "musae/types/cascader";
+import type { MenuProps } from "../../types/menu";
+import type { PickerRef } from "../../types/picker";
+import type { CascaderProps } from "../../types/cascader";
 import { CLASS_NAMES } from "./context";
 
 const styles = stylex.create({

@@ -1,5 +1,5 @@
 import React from "react";
-import type { RowProps } from "musae/types/grid";
+import type { RowProps } from "../../types/grid";
 import { useClassNames } from "../../hooks/use-class-names.component";
 import { stringify } from "@aiszlab/relax/class-name";
 import stylex from "@stylexjs/stylex";

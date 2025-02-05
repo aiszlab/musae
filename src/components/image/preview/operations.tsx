@@ -4,7 +4,7 @@ import { Close, KeyboardArrowLeft, KeyboardArrowRight } from "musae/icons";
 import { Portal } from "../../portal";
 import { spacing, positions, sizes } from "../../theme/tokens.stylex";
 import { useTheme } from "../../theme";
-import type { OperationsProps } from "musae/types/image";
+import type { OperationsProps } from "../../../types/image";
 import { useHandlers } from "../hooks";
 import PreviewGroupContext from "./context";
 import { IconButton } from "../../icon-button";

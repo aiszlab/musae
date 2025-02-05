@@ -1,5 +1,5 @@
 import React, { type CSSProperties, useContext } from "react";
-import type { TreeNodeProps } from "musae/types/tree";
+import type { TreeNodeProps } from "../../types/tree";
 import Context from "./context";
 import { Checkbox } from "../checkbox";
 import { KeyboardArrowRight } from "musae/icons";

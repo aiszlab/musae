@@ -7,7 +7,7 @@ import {
   type Table,
 } from "@tanstack/react-table";
 import { useMemo, useRef, createElement } from "react";
-import type { Column, ContextValue, SortDescriptor } from "musae/types/table";
+import type { Column, ContextValue, SortDescriptor } from "../../types/table";
 import HeaderCell from "./header/cell";
 import { useControlledState, useEvent } from "@aiszlab/relax";
 import type { Partialable } from "@aiszlab/relax/types";

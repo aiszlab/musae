@@ -1,5 +1,5 @@
 import React, { createElement, forwardRef, lazy, Suspense } from "react";
-import type { RichTextEditorProps, RichTextEditorRef } from "musae/types/rich-text-editor";
+import type { RichTextEditorProps, RichTextEditorRef } from "../../types/rich-text-editor";
 import { Skeleton } from "../skeleton";
 import stylex from "@stylexjs/stylex";
 import { sizes } from "../theme/tokens.stylex";

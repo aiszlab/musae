@@ -1,4 +1,4 @@
-import type { FileItem, RemoteFileItem, UploadedItem } from "musae/types/upload";
+import type { FileItem, RemoteFileItem, UploadedItem } from "../../types/upload";
 
 /**
  * @description

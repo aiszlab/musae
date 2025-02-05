@@ -1,8 +1,8 @@
 import { type Key, useMemo } from "react";
 import type { Partialable } from "@aiszlab/relax/types";
 import { isUndefined, useEvent } from "@aiszlab/relax";
-import type { BenchProps, Layout, Logo, NavigationItem } from "musae/types/bench";
-import type { MenuItem } from "musae/types/menu";
+import type { BenchProps, Layout, Logo, NavigationItem } from "../../types/bench";
+import type { MenuItem } from "../../types/menu";
 
 /**
  * @description

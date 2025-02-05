@@ -1,5 +1,5 @@
 import stylex from "@stylexjs/stylex";
-import type { SkeletonProps } from "musae/types/skeleton";
+import type { SkeletonProps } from "../../types/skeleton";
 import React, { type CSSProperties } from "react";
 import { stringify } from "@aiszlab/relax/class-name";
 import { OPACITY } from "../theme/tokens.stylex";

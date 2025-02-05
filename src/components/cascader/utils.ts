@@ -7,10 +7,10 @@ import type {
   ReadablePaths,
   Value,
   ValueOrValues,
-} from "musae/types/cascader";
+} from "../../types/cascader";
 import { isArray, isVoid } from "@aiszlab/relax";
-import type { MenuItem } from "musae/types/menu";
-import type { Option } from "musae/types/option";
+import type { MenuItem } from "../../types/menu";
+import type { Option } from "../../types/option";
 
 /**
  * @description

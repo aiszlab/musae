@@ -1,5 +1,5 @@
 import React, { type ForwardedRef, forwardRef, useImperativeHandle, useMemo } from "react";
-import type { FormProps } from "musae/types/form";
+import type { FormProps } from "../../types/form";
 import { type FieldValues, FormProvider, UseFormReturn } from "react-hook-form";
 import { useMounted } from "@aiszlab/relax";
 import { CLASS_NAMES, CONTEXT_VALUE, Context } from "./context";

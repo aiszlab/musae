@@ -5,7 +5,7 @@ import type {
   UploadedItem as UploadedItemType,
   UploadedListProps,
   UploadedListRef,
-} from "musae/types/upload";
+} from "../../types/upload";
 import { useControlledState, useEvent, useIdentity } from "@aiszlab/relax";
 import { typography } from "../theme/theme";
 import { isRemoteFile } from "./utils";

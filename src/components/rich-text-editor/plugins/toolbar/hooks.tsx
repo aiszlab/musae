@@ -27,7 +27,7 @@ import { $patchStyleText, $setBlocksType } from "@lexical/selection";
 import { $createHeadingNode, type HeadingTagType } from "@lexical/rich-text";
 import { INSERT_CHECK_LIST_COMMAND } from "@lexical/list";
 import { $createCodeNode } from "@lexical/code";
-import type { DropdownProps } from "musae/types/rich-text-editor";
+import type { DropdownProps } from "../../../../types/rich-text-editor";
 import { useLocale } from "../../../../locale";
 
 type BlockFormat = HeadingTagType | "paragraph" | "check" | "code";

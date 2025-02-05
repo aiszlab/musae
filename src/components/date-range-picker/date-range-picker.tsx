@@ -1,14 +1,14 @@
 import React, { useMemo, useRef } from "react";
 import { Picker } from "../picker";
 import { useValue } from "./hooks";
-import type { DateRangePickerProps } from "musae/types/date-range-picker";
+import type { DateRangePickerProps } from "../../types/date-range-picker";
 import { Calendar } from "../calendar";
 import { SwapHoriz } from "musae/icons";
 import { useClassNames } from "../../hooks/use-class-names.component";
 import stylex from "@stylexjs/stylex";
 import { stringify } from "@aiszlab/relax/class-name";
 import { sizes, spacing } from "../theme/tokens.stylex";
-import type { PickerRef } from "musae/types/picker";
+import type { PickerRef } from "../../types/picker";
 import { CLASS_NAMES } from "./context";
 
 const styles = stylex.create({

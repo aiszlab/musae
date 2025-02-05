@@ -13,9 +13,9 @@ import React, {
   type PointerEvent,
   type FocusEvent,
 } from "react";
-import type { ChildProps, PopoverProps, PopoverRef } from "musae/types/popover";
+import type { ChildProps, PopoverProps, PopoverRef } from "../../types/popover";
 import { Popper } from "../popper";
-import type { PopperRef } from "musae/types/popper";
+import type { PopperRef } from "../../types/popper";
 import stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
 import { typography } from "../theme/theme";

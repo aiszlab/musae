@@ -1,6 +1,6 @@
 import { type ContentEditableProps } from "@lexical/react/LexicalContentEditable";
 import { type EditorThemeClasses as _EditorThemeClasses } from "lexical";
-import type { MenuItem } from "musae/types/menu";
+import type { MenuItem } from "./menu";
 import type { HTMLAttributes, ReactNode } from "react";
 import type { ComponentProps } from "./element";
 

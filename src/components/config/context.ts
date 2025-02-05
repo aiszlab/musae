@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import type { ContextValue } from "musae/types/config";
+import type { ContextValue } from "../../types/config";
 
 const Context = createContext<ContextValue>({
   notifier: null,

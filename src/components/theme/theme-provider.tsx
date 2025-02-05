@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import type { Props, Theme } from "musae/types/theme";
+import type { Props, Theme } from "../../types/theme";
 import { Context, PALETTE, useSwitchable } from "./hooks";
 import { merge } from "@aiszlab/relax";
 

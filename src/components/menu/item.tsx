@@ -1,5 +1,5 @@
 import React, { type CSSProperties, forwardRef, type MouseEventHandler, useRef } from "react";
-import { MenuItemProps } from "musae/types/menu";
+import { MenuItemProps } from "../../types/menu";
 import { useItemChildren, useMenuContext } from "./hooks";
 import stylex from "@stylexjs/stylex";
 import { duration, sizes, spacing } from "../theme/tokens.stylex";
