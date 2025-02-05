@@ -2,7 +2,7 @@ import React, { type MouseEvent as _MouseEvent, forwardRef, useCallback, useRef 
 import { useComposedRef, useDrag, useEvent, useRaf } from "@aiszlab/relax";
 import { stringify } from "@aiszlab/relax/class-name";
 import { contains } from "@aiszlab/relax/dom";
-import type { FabProps } from "musae/types/fab";
+import type { FabProps } from "../../types/fab";
 import { useContainer } from "../../hooks/use-container";
 import { Portal } from "../portal";
 import { IconButton } from "../icon-button";
