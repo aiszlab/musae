@@ -1,6 +1,6 @@
 import React, { forwardRef, useImperativeHandle } from "react";
 import type { DropdownProps, PopperRef } from "../../types/popper";
-import { useClassNames } from "../../hooks/use-class-names.component";
+import { useClassNames } from "../../hooks/use-class-names";
 import stylex from "@stylexjs/stylex";
 import { stringify } from "@aiszlab/relax/class-name";
 import { useFloating } from "./hooks";

@@ -1,7 +1,7 @@
 import React, { type CSSProperties } from "react";
 import { stringify } from "@aiszlab/relax/class-name";
 import type { TagProps } from "../../types/tag";
-import { useClassNames } from "../../hooks/use-class-names.component";
+import { useClassNames } from "../../hooks/use-class-names";
 import stylex from "@stylexjs/stylex";
 import { useTheme } from "../theme";
 import { typography } from "../theme/theme";

@@ -1,5 +1,5 @@
 import React, { type CSSProperties } from "react";
-import { useClassNames } from "../../hooks/use-class-names.component";
+import { useClassNames } from "../../hooks/use-class-names";
 import type { BadgeProps } from "../../types/badge";
 import stylex from "@stylexjs/stylex";
 import { typography } from "../theme/theme";

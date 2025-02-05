@@ -1,6 +1,6 @@
 import React from "react";
 import stylex from "@stylexjs/stylex";
-import { useClassNames } from "../../hooks/use-class-names.component";
+import { useClassNames } from "../../hooks/use-class-names";
 import Context, { CLASS_NAMES } from "./context";
 import { stringify } from "@aiszlab/relax/class-name";
 import { sizes, spacing } from "../theme/tokens.stylex";

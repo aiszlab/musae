@@ -5,7 +5,7 @@ import { stringify } from "@aiszlab/relax/class-name";
 import { OPACITY } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { hexToRgba } from "@aiszlab/fuzzy/color";
-import { useClassNames } from "../../hooks/use-class-names.component";
+import { useClassNames } from "../../hooks/use-class-names";
 import { CLASS_NAMES } from "./context";
 
 const animation = stylex.keyframes({

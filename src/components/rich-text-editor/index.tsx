@@ -4,7 +4,7 @@ import { Skeleton } from "../skeleton";
 import stylex from "@stylexjs/stylex";
 import { sizes } from "../theme/tokens.stylex";
 import { stringify } from "@aiszlab/relax/class-name";
-import { useClassNames } from "../../hooks/use-class-names.component";
+import { useClassNames } from "../../hooks/use-class-names";
 import { usingStyles } from "./utils";
 
 const _RichTextEditor = lazy(() => import("./rich-text-editor"));

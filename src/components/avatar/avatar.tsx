@@ -8,7 +8,7 @@ import { typography } from "../theme/theme";
 import { useImageLoader } from "@aiszlab/relax";
 import { stringify } from "@aiszlab/relax/class-name";
 import { Skeleton } from "../skeleton";
-import { useClassNames } from "../../hooks/use-class-names.component";
+import { useClassNames } from "../../hooks/use-class-names";
 
 const styles = stylex.create({
   avatar: (props: {

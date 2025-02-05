@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import type { StepsProps } from "../../types/steps";
 import Item from "./item";
-import { useClassNames } from "../../hooks/use-class-names.component";
+import { useClassNames } from "../../hooks/use-class-names";
 import stylex from "@stylexjs/stylex";
 import { stringify } from "@aiszlab/relax/class-name";
 import { CLASS_NAMES, Context } from "./context";

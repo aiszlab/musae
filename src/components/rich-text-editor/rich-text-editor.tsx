@@ -29,7 +29,7 @@ import { $convertFromMarkdownString } from "@lexical/markdown";
 
 import type { RichTextEditorRef, RichTextEditorProps } from "../../types/rich-text-editor";
 import { CLASS_NAMES, Context } from "./context";
-import { useClassNames } from "../../hooks/use-class-names.component";
+import { useClassNames } from "../../hooks/use-class-names";
 import { usingEditor } from "./utils";
 
 const styles = stylex.create({

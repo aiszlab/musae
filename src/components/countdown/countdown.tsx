@@ -3,7 +3,7 @@ import { Button } from "../button";
 import { Observable, Subscription, interval, map, switchAll, type Subscriber } from "rxjs";
 import type { CountdownProps } from "../../types/countdown";
 import { useEvent, useMounted } from "@aiszlab/relax";
-import { useClassNames } from "../../hooks/use-class-names.component";
+import { useClassNames } from "../../hooks/use-class-names";
 import { CLASS_NAMES } from "./context";
 import { stringify } from "@aiszlab/relax/class-name";
 

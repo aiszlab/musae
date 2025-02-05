@@ -1,6 +1,6 @@
 import React from "react";
 import type { RowProps } from "../../types/grid";
-import { useClassNames } from "../../hooks/use-class-names.component";
+import { useClassNames } from "../../hooks/use-class-names";
 import { stringify } from "@aiszlab/relax/class-name";
 import stylex from "@stylexjs/stylex";
 import { useGutters } from "../../hooks/use-gutters";

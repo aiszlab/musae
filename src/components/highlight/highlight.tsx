@@ -4,7 +4,7 @@ import stylex from "@stylexjs/stylex";
 import { useTheme } from "../theme";
 import { stringify } from "@aiszlab/relax/class-name";
 import { CLASS_NAMES } from "./context";
-import { useClassNames } from "../../hooks/use-class-names.component";
+import { useClassNames } from "../../hooks/use-class-names";
 
 const styles = stylex.create({
   capture: (props: { color: CSSProperties["color"] }) => ({

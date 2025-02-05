@@ -1,6 +1,6 @@
 import React, { type CSSProperties } from "react";
 import type { CollapseProps } from "../../types/collapse";
-import { useClassNames } from "../../hooks/use-class-names.component";
+import { useClassNames } from "../../hooks/use-class-names";
 import Item from "./item";
 import stylex from "@stylexjs/stylex";
 import { sizes } from "../theme/tokens.stylex";

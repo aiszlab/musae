@@ -1,5 +1,5 @@
 import React from "react";
-import { useClassNames } from "../../hooks/use-class-names.component";
+import { useClassNames } from "../../hooks/use-class-names";
 import type { ClockProps, TimeUnit } from "../../types/clock";
 import Column from "./column";
 import stylex from "@stylexjs/stylex";

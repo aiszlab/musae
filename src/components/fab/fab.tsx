@@ -8,7 +8,7 @@ import { Portal } from "../portal";
 import { IconButton } from "../icon-button";
 import stylex from "@stylexjs/stylex";
 import { positions, spacing } from "../theme/tokens.stylex";
-import { useClassNames } from "../../hooks/use-class-names.component";
+import { useClassNames } from "../../hooks/use-class-names";
 import { CLASS_NAMES } from "./context";
 
 const styles = stylex.create({

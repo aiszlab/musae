@@ -2,7 +2,7 @@ import type { TooltipProps } from "../../types/tooltip";
 import React from "react";
 import { Popover } from "../popover";
 import { stringify } from "@aiszlab/relax/class-name";
-import { useClassNames } from "../../hooks/use-class-names.component";
+import { useClassNames } from "../../hooks/use-class-names";
 import { CLASS_NAMES } from "./context";
 
 const Tooltip = ({ children, className, style, title }: TooltipProps) => {

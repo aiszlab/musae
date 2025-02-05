@@ -4,7 +4,7 @@ import List from "./list";
 import Context, { CLASS_NAMES } from "./context";
 import { useTogglable } from "@aiszlab/relax";
 import { useExpandedKeys, useSelectedKeys } from "./hooks";
-import { useClassNames } from "../../hooks/use-class-names.component";
+import { useClassNames } from "../../hooks/use-class-names";
 
 const Tree = ({
   className,

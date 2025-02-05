@@ -5,7 +5,7 @@ import { useControlledState, useFocus } from "@aiszlab/relax";
 import stylex from "@stylexjs/stylex";
 import { duration, OPACITY, sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
-import { useClassNames } from "../../hooks/use-class-names.component";
+import { useClassNames } from "../../hooks/use-class-names";
 import { typography } from "../theme/theme";
 import { hexToRgba } from "@aiszlab/fuzzy/color";
 import { stringify } from "@aiszlab/relax/class-name";

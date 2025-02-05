@@ -7,7 +7,7 @@ import stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
 import Selector from "./selector";
 import Selections from "./selections";
-import { useClassNames } from "../../hooks/use-class-names.component";
+import { useClassNames } from "../../hooks/use-class-names";
 import type { PickerRef } from "../../types/picker";
 import { CLASS_NAMES } from "./context";
 

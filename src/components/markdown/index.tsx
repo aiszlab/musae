@@ -4,7 +4,7 @@ import type { MarkdownProps } from "../../types/markdown";
 import { useTheme } from "../theme";
 import Loading from "./loading";
 import Context, { CLASS_NAMES } from "./context";
-import { useClassNames } from "../../hooks/use-class-names.component";
+import { useClassNames } from "../../hooks/use-class-names";
 import { stringify } from "@aiszlab/relax/class-name";
 
 const _SRC = import("./markdown");

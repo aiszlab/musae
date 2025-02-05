@@ -3,7 +3,7 @@ import React from "react";
 import type { VisuallyHiddenProps } from "../../types/visually-hidden";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { stringify } from "@aiszlab/relax/class-name";
-import { useClassNames } from "../../hooks/use-class-names.component";
+import { useClassNames } from "../../hooks/use-class-names";
 import { CLASS_NAMES } from "./context";
 
 const styles = stylex.create({

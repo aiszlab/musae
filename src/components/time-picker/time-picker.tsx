@@ -1,7 +1,7 @@
 import React, { useMemo, useRef } from "react";
 import { Picker } from "../picker";
 import type { PanelRef, TimePickerProps } from "../../types/time-picker";
-import { useClassNames } from "../../hooks/use-class-names.component";
+import { useClassNames } from "../../hooks/use-class-names";
 import Panel from "./panel";
 import { useValue } from "./hooks";
 import stylex from "@stylexjs/stylex";

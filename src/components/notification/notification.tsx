@@ -4,7 +4,7 @@ import { useAnimate, usePresence } from "framer-motion";
 import { useTheme } from "../theme";
 import type { NotificationProps, Placement, Axis, Type } from "../../types/notification";
 import { useComposedRef, useTimeout } from "@aiszlab/relax";
-import { useClassNames } from "../../hooks/use-class-names.component";
+import { useClassNames } from "../../hooks/use-class-names";
 import { duration, elevations, sizes, spacing } from "../theme/tokens.stylex";
 import { CheckCircle, Close, Loading, Error, NotificationImportant, Warning } from "musae/icons";
 import { typography } from "../theme/theme";

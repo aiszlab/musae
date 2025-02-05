@@ -3,7 +3,7 @@ import Item from "./item";
 import type { TimelineProps } from "../../types/timeline";
 import stylex from "@stylexjs/stylex";
 import { CLASS_NAMES, Context } from "./context";
-import { useClassNames } from "../../hooks/use-class-names.component";
+import { useClassNames } from "../../hooks/use-class-names";
 import { stringify } from "@aiszlab/relax/class-name";
 import { spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";

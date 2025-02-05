@@ -6,7 +6,7 @@ import { useHover, useValue } from "./hooks";
 import Star from "./star";
 import { spacing } from "../theme/tokens.stylex";
 import Context, { CLASS_NAMES } from "./context";
-import { useClassNames } from "../../hooks/use-class-names.component";
+import { useClassNames } from "../../hooks/use-class-names";
 
 const styles = {
   rate: stylex.create({

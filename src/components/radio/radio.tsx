@@ -2,7 +2,7 @@ import React, { type CSSProperties, useCallback, useContext, useMemo } from "rea
 import { Context, CLASS_NAMES } from "./context";
 import type { RadioProps } from "../../types/radio";
 import { useControlledState } from "@aiszlab/relax";
-import { useClassNames } from "../../hooks/use-class-names.component";
+import { useClassNames } from "../../hooks/use-class-names";
 import stylex from "@stylexjs/stylex";
 import { useTheme } from "../theme";
 import { duration, sizes, spacing } from "../theme/tokens.stylex";

@@ -6,7 +6,7 @@ import { Menu } from "../menu";
 import type { I18nButtonProps } from "../../types/i18n-button";
 import { useEvent } from "@aiszlab/relax";
 import type { LocaleCode } from "../../types/locale";
-import { useClassNames } from "../../hooks/use-class-names.component";
+import { useClassNames } from "../../hooks/use-class-names";
 import { IconButton } from "../icon-button";
 import { stringify } from "@aiszlab/relax/class-name";
 import { CLASS_NAMES } from "./context";

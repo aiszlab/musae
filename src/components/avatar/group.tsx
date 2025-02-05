@@ -5,7 +5,7 @@ import Context, { CLASS_NAMES } from "./context";
 import { Popover } from "../popover";
 import Avatar from "./avatar";
 import { stringify } from "@aiszlab/relax/class-name";
-import { useClassNames } from "../../hooks/use-class-names.component";
+import { useClassNames } from "../../hooks/use-class-names";
 
 const styles = stylex.create({
   group: {

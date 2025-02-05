@@ -14,7 +14,7 @@ import Spotlight from "./spotlight";
 import { useGutters } from "../../hooks/use-gutters";
 import { useLocale } from "../../locale";
 import { CLASS_NAMES, Context } from "./context";
-import { useClassNames } from "../../hooks/use-class-names.component";
+import { useClassNames } from "../../hooks/use-class-names";
 import { useContainer } from "../../hooks/use-container";
 
 const styles = stylex.create({

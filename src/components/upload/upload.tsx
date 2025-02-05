@@ -15,7 +15,7 @@ import UploadedList from "./uploaded-list";
 import { Button } from "../button";
 import { useLocale } from "../../locale";
 import { spacing } from "../theme/tokens.stylex";
-import { useClassNames } from "../../hooks/use-class-names.component";
+import { useClassNames } from "../../hooks/use-class-names";
 import { CLASS_NAMES, Context } from "./context";
 import { stringify } from "@aiszlab/relax/class-name";
 
