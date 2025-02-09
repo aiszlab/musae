@@ -1,4 +1,5 @@
 import { createContext } from "react";
+import { ContextValue } from "../../types/split-panel";
 
 /**
  * @description class names
@@ -13,8 +14,9 @@ export const CLASS_NAMES = {
 /**
  * @description context
  */
-const Context = createContext<{ classNames: typeof CLASS_NAMES }>({
+const Context = createContext<{ classNames: typeof CLASS_NAMES } & ContextValue>({
   classNames: CLASS_NAMES,
+  orientation: "horizontal",
 });
 
 export default Context;

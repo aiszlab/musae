@@ -6,61 +6,96 @@ import { stringify } from "@aiszlab/relax/class-name";
 import { useTheme } from "../theme";
 import { useDraggable } from "@aiszlab/relax";
 
-const styles = stylex.create({
-  default: {
-    position: "relative",
-  },
+const styles = {
+  divider: stylex.create({
+    default: {
+      position: "relative",
+    },
 
-  horizontal: {
-    width: sizes.none,
-  },
+    horizontal: {
+      width: sizes.none,
+    },
 
-  dragger: {
-    width: sizes.xxxxxxsmall,
-    height: sizes.full,
+    vertical: {
+      height: sizes.none,
+    },
+  }),
 
-    cursor: "col-resize",
-    position: "absolute",
-    insetInlineStart: sizes.half,
-    transform: "translateX(-50%)",
-
-    "::before": {
-      content: "''",
-
-      display: "block",
-      height: sizes.full,
-      width: sizes.xxxxxxxxsmall,
-      backgroundColor: "var(--outline-variant)",
-
+  dragger: stylex.create({
+    default: {
       position: "absolute",
+
+      "::before": {
+        content: "''",
+        display: "block",
+        position: "absolute",
+        backgroundColor: "var(--outline-variant)",
+      },
+
+      "::after": {
+        content: "''",
+        display: "block",
+        position: "absolute",
+        backgroundColor: "var(--outline)",
+      },
+    },
+
+    horizontal: {
+      width: sizes.xxxxxxsmall,
+      height: sizes.full,
+      cursor: "col-resize",
       insetInlineStart: sizes.half,
       transform: "translateX(-50%)",
+
+      "::before": {
+        width: sizes.xxxxxxxxsmall,
+        height: sizes.full,
+        insetInlineStart: sizes.half,
+        transform: "translateX(-50%)",
+      },
+
+      "::after": {
+        width: sizes.xxxxxxxxsmall,
+        height: sizes.xxsmall,
+        insetInlineStart: sizes.half,
+        insetBlockStart: sizes.half,
+        transform: "translate(-50%, -50%)",
+      },
     },
 
-    "::after": {
-      content: "''",
-
-      display: "block",
-      height: sizes.xxsmall,
-      width: sizes.xxxxxxxxsmall,
-      backgroundColor: "var(--outline)",
-
-      position: "absolute",
-      insetInlineStart: sizes.half,
+    vertical: {
+      width: sizes.full,
+      height: sizes.xxxxxxsmall,
+      cursor: "row-resize",
       insetBlockStart: sizes.half,
-      transform: "translate(-50%, -50%)",
+      transform: "translateY(-50%)",
+
+      "::before": {
+        width: sizes.full,
+        height: sizes.xxxxxxxxsmall,
+        insetBlockStart: sizes.half,
+        transform: "translateY(-50%)",
+      },
+
+      "::after": {
+        width: sizes.xxsmall,
+        height: sizes.xxxxxxxxsmall,
+        insetInlineStart: sizes.half,
+        insetBlockStart: sizes.half,
+        transform: "translate(-50%, -50%)",
+      },
     },
-  },
-});
+  }),
+};
 
 const Divider = () => {
-  const { classNames } = useContext(Context);
+  const { classNames, orientation } = useContext(Context);
   const theme = useTheme();
   const [draggerRef, dragState] = useDraggable<HTMLDivElement>();
 
   const styled = {
-    divider: stylex.props(styles.default, styles.horizontal),
-    dragger: stylex.props(styles.dragger),
+    divider: stylex.props(styles.divider.default, styles.divider[orientation]),
+    dragger: stylex.props(styles.dragger.default, styles.dragger[orientation]),
   };
 
   return (

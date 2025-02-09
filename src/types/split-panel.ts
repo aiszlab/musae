@@ -1,6 +1,8 @@
 import type { ReactNode } from "react";
 import type { ComponentProps } from "./element";
 
+export type Orientation = "horizontal" | "vertical";
+
 /**
  * @description panel item
  */
@@ -34,6 +36,13 @@ export interface SplitPanelProps extends ComponentProps {
    * @description items
    */
   items: [...PanelItem[], Omit<PanelItem, "defaultSize">];
+
+  /**
+   * @description
+   * orientation
+   * @default "horizontal"
+   */
+  orientation?: Orientation;
 }
 
 /**
@@ -54,4 +63,14 @@ export interface PanelProps {
    * @description default size
    */
   defaultSize?: string;
+}
+
+/**
+ * @description context value
+ */
+export interface ContextValue {
+  /**
+   * @description orientation
+   */
+  orientation: Orientation;
 }

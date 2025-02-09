@@ -20,9 +20,17 @@ const styles = stylex.create({
     margin: spacing.none,
     padding: spacing.none,
   },
+
+  horizontal: {
+    flexDirection: "row",
+  },
+
+  vertical: {
+    flexDirection: "column",
+  },
 });
 
-const SplitPanel = ({ className, style, items }: SplitPanelProps) => {
+const SplitPanel = ({ className, style, items, orientation = "horizontal" }: SplitPanelProps) => {
   const classNames = useClassNames(CLASS_NAMES);
   const { panels, unsizedItemSpace, lastItemSpace } = usePanels({ items });
 
@@ -30,16 +38,14 @@ const SplitPanel = ({ className, style, items }: SplitPanelProps) => {
     return null;
   }
 
-  const styled = {
-    default: stylex.props(styles.default, typography.body.medium),
-  };
+  const styled = stylex.props(styles.default, styles[orientation], typography.body.medium);
 
   return (
-    <Context.Provider value={{ classNames }}>
+    <Context.Provider value={{ classNames, orientation }}>
       <div
-        className={stringify(classNames.splitPanel, className, styled.default.className)}
+        className={stringify(classNames.splitPanel, className, styled.className)}
         style={{
-          ...styled.default.style,
+          ...styled.style,
           ...style,
           // @ts-expect-error
           "--unsized-item-space": unsizedItemSpace,
