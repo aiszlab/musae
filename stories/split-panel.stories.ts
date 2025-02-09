@@ -34,3 +34,11 @@ export const Sized: Story = {
     style: { height: 300 },
   },
 };
+
+export const Vertical: Story = {
+  args: {
+    items: [{ children: "1" }, { children: "2" }, { children: "3" }],
+    style: { height: 300 },
+    orientation: "vertical",
+  },
+};
