@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import stylex from "@stylexjs/stylex";
 import { useClassNames } from "../../hooks/use-class-names";
 import Context, { CLASS_NAMES } from "./context";
@@ -33,7 +33,7 @@ const SplitPanel = ({ className, style, items }: SplitPanelProps) => {
   };
 
   return (
-    <Context.Provider value={{ classNames }}>
+    <Context.Provider value={{ classNames, count: items.length }}>
       <div
         className={stringify(classNames.splitPanel, className, styled.default.className)}
         style={{
@@ -43,10 +43,10 @@ const SplitPanel = ({ className, style, items }: SplitPanelProps) => {
       >
         {items.map((item, _index) => {
           return (
-            <>
-              <Panel key={_index}>{item}</Panel>
+            <Fragment key={_index}>
+              <Panel>{item}</Panel>
               {_index !== items.length - 1 && <Divider />}
-            </>
+            </Fragment>
           );
         })}
       </div>

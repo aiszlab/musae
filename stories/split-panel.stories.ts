@@ -16,6 +16,6 @@ type Story = StoryObj<typeof meta>;
 
 export const Normal: Story = {
   args: {
-    items: ["1", "2"],
+    items: ["1", "2", "3"],
   },
 };

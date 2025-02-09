@@ -1,27 +1,34 @@
-import React, { ReactNode, useContext } from 'react'
-import Context from './context'
-import { stringify } from '@aiszlab/relax/class-name'
-import stylex from '@stylexjs/stylex'
+import React, { ReactNode, useContext } from "react";
+import Context from "./context";
+import { stringify } from "@aiszlab/relax/class-name";
+import stylex from "@stylexjs/stylex";
 
 const styles = stylex.create({
-    default: {
-        flex: 1
-    }
-})
+  default: {
+    flexBasis: "calc(var(--basis) - 10px)",
+    flexGrow: 0,
+  },
+});
 
 const Panel = ({ children }: { children?: ReactNode }) => {
+  const { classNames, count } = useContext(Context);
 
-    const { classNames } = useContext(Context)
+  const styled = {
+    default: stylex.props(styles.default),
+  };
 
-    const styled = {
-        default: stylex.props(styles.default)
-    }
+  return (
+    <div
+      className={stringify(classNames.panel, styled.default.className)}
+      style={{
+        ...styled.default.style,
+        // @ts-expect-error
+        "--basis": `${100 / count}%`,
+      }}
+    >
+      {children}
+    </div>
+  );
+};
 
-    return (
-        <div className={stringify(classNames.panel, styled.default.className)} style={styled.default.style}>
-            {children}
-        </div>
-    )
-}
-
-export default Panel
+export default Panel;

@@ -4,6 +4,7 @@ import { sizes } from "../theme/tokens.stylex";
 import Context from "./context";
 import { stringify } from "@aiszlab/relax/class-name";
 import { useTheme } from "../theme";
+import { useDraggable } from "@aiszlab/relax";
 
 const styles = stylex.create({
   default: {
@@ -18,6 +19,7 @@ const styles = stylex.create({
     width: sizes.xxxxxxsmall,
     height: sizes.full,
 
+    cursor: "col-resize",
     position: "absolute",
     insetInlineStart: sizes.half,
     transform: "translateX(-50%)",
@@ -54,6 +56,7 @@ const styles = stylex.create({
 const Divider = () => {
   const { classNames } = useContext(Context);
   const theme = useTheme();
+  const [draggerRef, dragState] = useDraggable<HTMLDivElement>();
 
   const styled = {
     divider: stylex.props(styles.default, styles.horizontal),
@@ -73,6 +76,7 @@ const Divider = () => {
       <div
         className={stringify(classNames.dragger, styled.dragger.className)}
         style={styled.dragger.style}
+        ref={draggerRef}
       />
     </div>
   );
