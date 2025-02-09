@@ -1,5 +1,5 @@
 import type { DividerProps } from "../../types/divider";
-import React, { type CSSProperties } from "react";
+import React from "react";
 import { useOffset } from "./hooks";
 import { useClassNames } from "../../hooks/use-class-names";
 import stylex from "@stylexjs/stylex";
@@ -7,7 +7,7 @@ import { sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { typography } from "../theme/theme";
 import { stringify } from "@aiszlab/relax/class-name";
-import { type Gutters, useGutters } from "../../hooks/use-gutters";
+import { useGutters } from "../../hooks/use-gutters";
 import { CLASS_NAMES } from "./context";
 
 const styles = {

@@ -1,7 +1,5 @@
 import { useMemo } from "react";
-import { PanelItem, PanelProps, SplitPanelProps } from "../../types/split-panel";
-import { last } from "@aiszlab/relax";
-import { Partialable } from "@aiszlab/relax/types";
+import type { PanelItem, PanelProps } from "../../types/split-panel";
 
 /**
  * @description panels hooks
