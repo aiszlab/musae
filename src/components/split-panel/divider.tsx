@@ -4,7 +4,10 @@ import { sizes } from "../theme/tokens.stylex";
 import Context from "./context";
 import { stringify } from "@aiszlab/relax/class-name";
 import { useTheme } from "../theme";
-import { useDraggable } from "@aiszlab/relax";
+import { useDraggable, useEvent } from "@aiszlab/relax";
+import { DividerProps } from "../../types/split-panel";
+import { UsingDrag } from "../../../../relax/packages/relax/dist/hooks/use-drag";
+import { RequiredTo } from "@aiszlab/relax/types";
 
 const styles = {
   divider: stylex.create({
@@ -85,10 +88,15 @@ const styles = {
   }),
 };
 
-const Divider = () => {
+const Divider = ({ onDragMove, onDragEnd }: DividerProps) => {
   const { classNames, orientation } = useContext(Context);
   const theme = useTheme();
-  const [draggerRef, dragState] = useDraggable<HTMLDivElement>();
+  const [draggerRef] = useDraggable<HTMLDivElement>({
+    onDragMove: useEvent<RequiredTo<UsingDrag["onDragMove"]>>(({ movementX, movementY }) =>
+      onDragMove(orientation === "horizontal" ? movementX : movementY),
+    ),
+    onDragEnd,
+  });
 
   const styled = {
     divider: stylex.props(styles.divider.default, styles.divider[orientation]),

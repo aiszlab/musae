@@ -1,5 +1,7 @@
-import { useMemo } from "react";
-import type { PanelItem, PanelProps } from "../../types/split-panel";
+import { useMemo, useRef } from "react";
+import type { PanelItem, PanelProps, PanelRef } from "../../types/split-panel";
+import { useEvent } from "@aiszlab/relax";
+import type { Nullable } from "@aiszlab/relax/types";
 
 /**
  * @description panels hooks
@@ -9,6 +11,7 @@ import type { PanelItem, PanelProps } from "../../types/split-panel";
  */
 export const usePanels = ({ items }: { items: PanelItem[] }) => {
   const count = items.length;
+  const ref = useRef(Array.from<Nullable<PanelRef>>({ length: count }).fill(null));
 
   const { panels, unsizedItemSpace, lastItemSpace } = useMemo(() => {
     // if default size, mean sized
@@ -28,6 +31,7 @@ export const usePanels = ({ items }: { items: PanelItem[] }) => {
           children: null,
           defaultSize: defaultSize > 0 ? `${defaultSize}${defaultSizeUnit}` : void 0,
           last: items.length - 1 === index,
+          at: index,
         };
 
         prev[2].push(_panelProps);
@@ -55,10 +59,17 @@ export const usePanels = ({ items }: { items: PanelItem[] }) => {
     };
   }, [items.length]);
 
+  // when panel render, collect panel ref
+  const collect = useEvent((reference: Nullable<PanelRef>, at: number) => {
+    ref.current[at] = reference;
+  });
+
   return {
     panels,
     unsizedItemSpace,
     lastItemSpace,
     count,
+    collect,
+    ref,
   };
 };

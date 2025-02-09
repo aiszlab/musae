@@ -32,7 +32,7 @@ const styles = stylex.create({
 
 const SplitPanel = ({ className, style, items, orientation = "horizontal" }: SplitPanelProps) => {
   const classNames = useClassNames(CLASS_NAMES);
-  const { panels, unsizedItemSpace, lastItemSpace } = usePanels({ items });
+  const { panels, unsizedItemSpace, lastItemSpace, collect, ref: panelsRef } = usePanels({ items });
 
   if (panels.length === 0) {
     return null;
@@ -41,7 +41,7 @@ const SplitPanel = ({ className, style, items, orientation = "horizontal" }: Spl
   const styled = stylex.props(styles.default, styles[orientation], typography.body.medium);
 
   return (
-    <Context.Provider value={{ classNames, orientation }}>
+    <Context.Provider value={{ classNames, orientation, panelsRef }}>
       <div
         className={stringify(classNames.splitPanel, className, styled.className)}
         style={{
@@ -54,7 +54,7 @@ const SplitPanel = ({ className, style, items, orientation = "horizontal" }: Spl
       >
         {panels.map((panelProps, index) => {
           return (
-            <Panel {...panelProps} key={index}>
+            <Panel {...panelProps} key={index} ref={(_ref) => collect(_ref, index)}>
               {panelProps.children ?? items[index].children}
             </Panel>
           );

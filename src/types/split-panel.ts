@@ -1,5 +1,6 @@
-import type { ReactNode } from "react";
+import type { MutableRefObject, ReactNode } from "react";
 import type { ComponentProps } from "./element";
+import type { Nullable } from "@aiszlab/relax/types";
 
 export type Orientation = "horizontal" | "vertical";
 
@@ -63,6 +64,11 @@ export interface PanelProps {
    * @description default size
    */
   defaultSize?: string;
+
+  /**
+   * @description at index
+   */
+  at: number;
 }
 
 /**
@@ -73,4 +79,44 @@ export interface ContextValue {
    * @description orientation
    */
   orientation: Orientation;
+
+  /**
+   * @description panel refs
+   */
+  panelsRef?: MutableRefObject<Nullable<PanelRef>[]>;
+}
+
+/**
+ * @description panel ref
+ */
+export interface PanelRef {
+  /**
+   * @description offset setter
+   */
+  offset: (offset: number) => void;
+
+  /**
+   * @description reset
+   */
+  reset: () => void;
+
+  /**
+   * @description size
+   */
+  size: () => number;
+}
+
+/**
+ * @description divider props
+ */
+export interface DividerProps {
+  /**
+   * @description drag move handler
+   */
+  onDragMove: (offset: number) => void;
+
+  /**
+   * @description drag end handler
+   */
+  onDragEnd: () => void;
 }
