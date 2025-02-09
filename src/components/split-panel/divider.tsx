@@ -37,6 +37,9 @@ const styles = {
         display: "block",
         position: "absolute",
         backgroundColor: "var(--outline)",
+        insetInlineStart: sizes.half,
+        insetBlockStart: sizes.half,
+        transform: "translate(-50%, -50%)",
       },
     },
 
@@ -57,9 +60,6 @@ const styles = {
       "::after": {
         width: sizes.xxxxxxxxsmall,
         height: sizes.xxsmall,
-        insetInlineStart: sizes.half,
-        insetBlockStart: sizes.half,
-        transform: "translate(-50%, -50%)",
       },
     },
 
@@ -80,9 +80,6 @@ const styles = {
       "::after": {
         width: sizes.xxsmall,
         height: sizes.xxxxxxxxsmall,
-        insetInlineStart: sizes.half,
-        insetBlockStart: sizes.half,
-        transform: "translate(-50%, -50%)",
       },
     },
   }),
