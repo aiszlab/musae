@@ -7,7 +7,10 @@ const meta: Meta<typeof SplitPanel> = {
   parameters: {},
   tags: ["autodocs"],
   argTypes: {
-    items: [],
+    style: { control: { type: "object" } },
+  },
+  args: {
+    style: { height: 300 },
   },
 };
 
@@ -16,6 +19,18 @@ type Story = StoryObj<typeof meta>;
 
 export const Normal: Story = {
   args: {
-    items: ["1", "2", "3"],
+    items: [{ children: "1" }, { children: "2" }, { children: "3" }],
+    style: { height: 300 },
+  },
+};
+
+export const Sized: Story = {
+  args: {
+    items: [
+      { children: "1", defaultSize: 20, defaultSizeUnit: "%" },
+      { children: "2", defaultSize: 100, defaultSizeUnit: "px" },
+      { children: "3" },
+    ],
+    style: { height: 300 },
   },
 };

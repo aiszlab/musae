@@ -1,33 +1,51 @@
-import React, { ReactNode, useContext } from "react";
+import React, { useContext } from "react";
 import Context from "./context";
 import { stringify } from "@aiszlab/relax/class-name";
 import stylex from "@stylexjs/stylex";
+import type { PanelProps } from "../../types/split-panel";
+import Divider from "./divider";
 
 const styles = stylex.create({
   default: {
-    flexBasis: "calc(var(--basis) - 10px)",
+    flexBasis: "calc(var(--unsized-item-space))",
     flexGrow: 0,
+  },
+
+  sized: {
+    flexBasis: "var(--sized-item-space)",
+  },
+
+  last: {
+    flexBasis: "calc(var(--last-item-space))",
   },
 });
 
-const Panel = ({ children }: { children?: ReactNode }) => {
-  const { classNames, count } = useContext(Context);
+const Panel = ({ children, last, defaultSize }: PanelProps) => {
+  const { classNames } = useContext(Context);
+  const isSized = !!defaultSize;
 
   const styled = {
-    default: stylex.props(styles.default),
+    default: stylex.props(styles.default, isSized && styles.sized, last && styles.last),
   };
 
   return (
-    <div
-      className={stringify(classNames.panel, styled.default.className)}
-      style={{
-        ...styled.default.style,
+    <>
+      <div
+        className={stringify(classNames.panel, styled.default.className)}
         // @ts-expect-error
-        "--basis": `${100 / count}%`,
-      }}
-    >
-      {children}
-    </div>
+        style={{
+          ...styled.default.style,
+          ...(isSized && {
+            "--sized-item-space": defaultSize,
+          }),
+        }}
+      >
+        {children}
+      </div>
+
+      {/* split bar */}
+      {!last && <Divider />}
+    </>
   );
 };
 

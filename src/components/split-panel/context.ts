@@ -13,9 +13,8 @@ export const CLASS_NAMES = {
 /**
  * @description context
  */
-const Context = createContext<{ classNames: typeof CLASS_NAMES } & { count: number }>({
+const Context = createContext<{ classNames: typeof CLASS_NAMES }>({
   classNames: CLASS_NAMES,
-  count: 0,
 });
 
 export default Context;
