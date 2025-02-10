@@ -1,6 +1,6 @@
 import { useMemo, useRef } from "react";
 import type { PanelItem, PanelProps, PanelRef } from "../../types/split-panel";
-import { useEvent } from "@aiszlab/relax";
+import { useEvent, useMounted } from "@aiszlab/relax";
 import type { Nullable } from "@aiszlab/relax/types";
 
 /**
@@ -72,4 +72,21 @@ export const usePanels = ({ items }: { items: PanelItem[] }) => {
     collect,
     ref,
   };
+};
+
+/**
+ * @description bounding react
+ */
+export const useBoundingClientRect = <T extends HTMLElement = HTMLElement>() => {
+  const ref = useRef<T>(null);
+  const boundingClientRect = useRef<DOMRect | null>(null);
+
+  useMounted(() => {
+    const _element = ref.current;
+    if (!_element) return;
+
+    boundingClientRect.current = _element.getBoundingClientRect();
+  });
+
+  return [ref, boundingClientRect] as const;
 };

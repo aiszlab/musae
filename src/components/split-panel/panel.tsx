@@ -11,7 +11,7 @@ import { stringify } from "@aiszlab/relax/class-name";
 import stylex from "@stylexjs/stylex";
 import type { PanelProps, PanelRef } from "../../types/split-panel";
 import Divider from "./divider";
-import { clamp } from "@aiszlab/relax";
+import { useBoundingClientRect } from "./hooks";
 
 const styles = stylex.create({
   default: {
@@ -20,19 +20,22 @@ const styles = stylex.create({
     userSelect: "none",
     overflow: "hidden",
   },
+
+  unsized: {
+    flexBasis: "calc(var(--unsized-item-space) + var(--offset))",
+  },
+
+  last: {
+    flexBasis: "calc(var(--last-item-space) + var(--offset))",
+  },
 });
 
 const Panel = forwardRef<PanelRef, PanelProps>(({ children, last, defaultSize, at }, ref) => {
   const { classNames, panelsRef, orientation } = useContext(Context);
-  const containerRef = useRef<HTMLDivElement>(null);
   const isSized = !!defaultSize;
   const [offset, setOffset] = useState(0);
   const [offseted, setOffseted] = useState(0);
-
-  const getSize = useCallback(() => {
-    const rect = containerRef.current?.getBoundingClientRect();
-    return (orientation === "horizontal" ? rect?.width : rect?.height) ?? 0;
-  }, [orientation]);
+  const [containerRef, boundingClientRect] = useBoundingClientRect<HTMLDivElement>();
 
   useImperativeHandle(ref, () => {
     return {
@@ -43,27 +46,33 @@ const Panel = forwardRef<PanelRef, PanelProps>(({ children, last, defaultSize, a
         setOffseted((offseted) => offseted + offset);
         setOffset(0);
       },
-      size: getSize,
+      size: () => {
+        return (
+          (orientation === "horizontal"
+            ? boundingClientRect.current?.width
+            : boundingClientRect.current?.height) ?? 0
+        );
+      },
     };
   });
 
-  const styled = stylex.props(styles.default);
+  const styled = stylex.props(styles.default, !isSized && styles.unsized, last && styles.last);
 
   // drag move handler
-  const onDragMove = useCallback((offset: number) => {
+  const onDragMove = useCallback((movement: number) => {
     const leading = panelsRef?.current[at];
     const trailing = panelsRef?.current[at + 1];
 
     // can not overflow any item
-    let _offset = 0;
-    if (offset > 0) {
-      _offset = Math.min(offset, trailing?.size() ?? 0);
-    } else {
-      _offset = Math.min(Math.abs(offset), leading?.size() ?? 0);
-    }
+    const _offseted = Math.abs(offseted);
+    const isNegative = movement < 0;
+    const maxSize = Math.max((isNegative ? leading?.size() : trailing?.size()) ?? 0, _offseted);
+    const validOffset = maxSize - _offseted;
+    const _offset = Math.min(Math.abs(movement), validOffset);
+    const offset = movement >= 0 ? _offset : _offset * -1;
 
-    leading?.offset(_offset);
-    trailing?.offset(_offset * -1);
+    leading?.offset(offset);
+    trailing?.offset(offset * -1);
   }, []);
 
   // drag end handler
@@ -82,12 +91,8 @@ const Panel = forwardRef<PanelRef, PanelProps>(({ children, last, defaultSize, a
         className={stringify(classNames.panel, styled.className)}
         style={{
           ...styled.style,
-          // @ts-expect-error
-          "--item-space": isSized
-            ? defaultSize
-            : last
-            ? "var(--last-item-space)"
-            : "var(--unsized-item-space)",
+          // @ts-expect-error style vars
+          "--item-space": defaultSize ?? "0%",
           "--offset": `${offset + offseted}px`,
         }}
       >
