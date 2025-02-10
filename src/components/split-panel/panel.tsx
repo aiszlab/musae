@@ -1,11 +1,4 @@
-import React, {
-  forwardRef,
-  useCallback,
-  useContext,
-  useImperativeHandle,
-  useRef,
-  useState,
-} from "react";
+import React, { forwardRef, useCallback, useContext, useImperativeHandle, useState } from "react";
 import Context from "./context";
 import { stringify } from "@aiszlab/relax/class-name";
 import stylex from "@stylexjs/stylex";
@@ -15,7 +8,6 @@ import { useBoundingClientRect } from "./hooks";
 
 const styles = stylex.create({
   default: {
-    flexBasis: "calc(var(--item-space) + var(--offset))",
     flexGrow: 0,
     userSelect: "none",
     overflow: "hidden",
@@ -28,14 +20,19 @@ const styles = stylex.create({
   last: {
     flexBasis: "calc(var(--last-item-space) + var(--offset))",
   },
+
+  sized: {
+    flexBasis: "calc(var(--item-space) + var(--offset))",
+  },
 });
 
 const Panel = forwardRef<PanelRef, PanelProps>(({ children, last, defaultSize, at }, ref) => {
   const { classNames, panelsRef, orientation } = useContext(Context);
-  const isSized = !!defaultSize;
   const [offset, setOffset] = useState(0);
-  const [offseted, setOffseted] = useState(0);
-  const [containerRef, boundingClientRect] = useBoundingClientRect<HTMLDivElement>();
+  const { ref: _ref, boundingClientRect, resize } = useBoundingClientRect<HTMLDivElement>();
+
+  const [size, setSize] = useState(defaultSize);
+  const isSized = !!size;
 
   useImperativeHandle(ref, () => {
     return {
@@ -43,7 +40,9 @@ const Panel = forwardRef<PanelRef, PanelProps>(({ children, last, defaultSize, a
         setOffset(_offset);
       },
       reset: () => {
-        setOffseted((offseted) => offseted + offset);
+        const rect = resize();
+        const size = orientation === "horizontal" ? rect?.width : rect?.height;
+        setSize(`${size ?? 0}px`);
         setOffset(0);
       },
       size: () => {
@@ -56,7 +55,12 @@ const Panel = forwardRef<PanelRef, PanelProps>(({ children, last, defaultSize, a
     };
   });
 
-  const styled = stylex.props(styles.default, !isSized && styles.unsized, last && styles.last);
+  const styled = stylex.props(
+    styles.default,
+    !isSized && styles.unsized,
+    last && styles.last,
+    isSized && styles.sized,
+  );
 
   // drag move handler
   const onDragMove = useCallback((movement: number) => {
@@ -64,12 +68,12 @@ const Panel = forwardRef<PanelRef, PanelProps>(({ children, last, defaultSize, a
     const trailing = panelsRef?.current[at + 1];
 
     // can not overflow any item
-    const _offseted = Math.abs(offseted);
     const isNegative = movement < 0;
-    const maxSize = Math.max((isNegative ? leading?.size() : trailing?.size()) ?? 0, _offseted);
-    const validOffset = maxSize - _offseted;
-    const _offset = Math.min(Math.abs(movement), validOffset);
-    const offset = movement >= 0 ? _offset : _offset * -1;
+    const _offset = Math.min(
+      Math.abs(movement),
+      (isNegative ? leading?.size() : trailing?.size()) ?? 0,
+    );
+    const offset = isNegative ? _offset * -1 : _offset;
 
     leading?.offset(offset);
     trailing?.offset(offset * -1);
@@ -87,13 +91,14 @@ const Panel = forwardRef<PanelRef, PanelProps>(({ children, last, defaultSize, a
   return (
     <>
       <div
-        ref={containerRef}
+        ref={_ref}
         className={stringify(classNames.panel, styled.className)}
+        draggable={false}
         style={{
           ...styled.style,
           // @ts-expect-error style vars
-          "--item-space": defaultSize ?? "0%",
-          "--offset": `${offset + offseted}px`,
+          "--item-space": size,
+          "--offset": `${offset}px`,
         }}
       >
         {children}

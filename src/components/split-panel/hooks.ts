@@ -81,12 +81,21 @@ export const useBoundingClientRect = <T extends HTMLElement = HTMLElement>() => 
   const ref = useRef<T>(null);
   const boundingClientRect = useRef<DOMRect | null>(null);
 
-  useMounted(() => {
+  const resize = useEvent(() => {
     const _element = ref.current;
-    if (!_element) return;
+    if (!_element) return null;
 
     boundingClientRect.current = _element.getBoundingClientRect();
+    return boundingClientRect.current;
   });
 
-  return [ref, boundingClientRect] as const;
+  useMounted(() => {
+    resize();
+  });
+
+  return {
+    ref,
+    boundingClientRect,
+    resize,
+  };
 };
