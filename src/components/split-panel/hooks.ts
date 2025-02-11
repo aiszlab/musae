@@ -13,25 +13,26 @@ export const usePanels = ({ items }: { items: PanelItem[] }) => {
   const count = items.length;
   const ref = useRef(Array.from<Nullable<PanelRef>>({ length: count }).fill(null));
 
-  const { panels, unsizedItemSpace, lastItemSpace } = useMemo(() => {
+  const { panels, unsizedItemSpace } = useMemo(() => {
     // if default size, mean sized
     const {
       0: unsizedItems,
       1: sizes,
       2: panels,
     } = items.reduce<[PanelItem[], string[], PanelProps[]]>(
-      (prev, { defaultSize = 0, defaultSizeUnit = "%", ...item }, index) => {
+      (prev, { defaultSize = 0, ...item }, index) => {
         const _item: PanelItem = {
           defaultSize,
-          defaultSizeUnit,
           ...item,
         };
 
         const _panelProps: PanelProps = {
           children: null,
-          defaultSize: defaultSize > 0 ? `${defaultSize}${defaultSizeUnit}` : void 0,
+          defaultSize: defaultSize > 0 ? `${defaultSize}%` : void 0,
           last: items.length - 1 === index,
           at: index,
+          className: item.className,
+          style: item.style,
         };
 
         prev[2].push(_panelProps);
@@ -48,14 +49,10 @@ export const usePanels = ({ items }: { items: PanelItem[] }) => {
 
     const sizedSpace = sizes.join(" + ") || "0%";
     const unsizedItemSpace = `(100% - (${sizedSpace})) / ${unsizedItems.length}`;
-    const lastItemSpace = `100% - (${sizedSpace}) - ${unsizedItemSpace} * ${
-      unsizedItems.length - 1
-    }`;
 
     return {
       panels,
       unsizedItemSpace,
-      lastItemSpace,
     };
   }, [items.length]);
 
@@ -67,7 +64,6 @@ export const usePanels = ({ items }: { items: PanelItem[] }) => {
   return {
     panels,
     unsizedItemSpace,
-    lastItemSpace,
     count,
     collect,
     ref,
@@ -77,9 +73,13 @@ export const usePanels = ({ items }: { items: PanelItem[] }) => {
 /**
  * @description bounding react
  */
-export const useBoundingClientRect = <T extends HTMLElement = HTMLElement>() => {
+export const useBoundingClientRect = <T extends HTMLElement = HTMLElement>({
+  onMounted,
+}: {
+  onMounted?: (rect: Nullable<DOMRect>) => void;
+} = {}) => {
   const ref = useRef<T>(null);
-  const boundingClientRect = useRef<DOMRect | null>(null);
+  const boundingClientRect = useRef<Nullable<DOMRect>>(null);
 
   const resize = useEvent(() => {
     const _element = ref.current;
@@ -90,7 +90,8 @@ export const useBoundingClientRect = <T extends HTMLElement = HTMLElement>() => 
   });
 
   useMounted(() => {
-    resize();
+    const _size = resize();
+    onMounted?.(_size);
   });
 
   return {

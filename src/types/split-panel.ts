@@ -7,7 +7,7 @@ export type Orientation = "horizontal" | "vertical";
 /**
  * @description panel item
  */
-export interface PanelItem {
+export interface PanelItem extends ComponentProps {
   /**
    * @description children
    */
@@ -21,12 +21,6 @@ export interface PanelItem {
    * @default 0
    */
   defaultSize?: number;
-
-  /**
-   * @description default size unit
-   * @default '%'
-   */
-  defaultSizeUnit?: "px" | "%";
 }
 
 /**
@@ -49,7 +43,7 @@ export interface SplitPanelProps extends ComponentProps {
 /**
  * @description panel props
  */
-export interface PanelProps {
+export interface PanelProps extends ComponentProps {
   /**
    * @description children
    */

@@ -32,7 +32,7 @@ const styles = stylex.create({
 
 const SplitPanel = ({ className, style, items, orientation = "horizontal" }: SplitPanelProps) => {
   const classNames = useClassNames(CLASS_NAMES);
-  const { panels, unsizedItemSpace, lastItemSpace, collect, ref: panelsRef } = usePanels({ items });
+  const { panels, unsizedItemSpace, collect, ref: panelsRef } = usePanels({ items });
 
   if (panels.length === 0) {
     return null;
@@ -49,7 +49,6 @@ const SplitPanel = ({ className, style, items, orientation = "horizontal" }: Spl
           ...style,
           // @ts-expect-error
           "--unsized-item-space": unsizedItemSpace,
-          "--last-item-space": lastItemSpace,
         }}
       >
         {panels.map((panelProps, index) => {

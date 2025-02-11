@@ -27,8 +27,8 @@ export const Normal: Story = {
 export const Sized: Story = {
   args: {
     items: [
-      { children: "1", defaultSize: 20, defaultSizeUnit: "%" },
-      { children: "2", defaultSize: 100, defaultSizeUnit: "px" },
+      { children: "1", defaultSize: 20 },
+      { children: "2", defaultSize: 15 },
       { children: "3" },
     ],
     style: { height: 300 },
@@ -40,5 +40,16 @@ export const Vertical: Story = {
     items: [{ children: "1" }, { children: "2" }, { children: "3" }],
     style: { height: 300 },
     orientation: "vertical",
+  },
+};
+
+export const StyledItems: Story = {
+  args: {
+    items: [
+      { children: "1", style: { maxWidth: "50%" } },
+      { children: "2", style: { minWidth: 100 } },
+      { children: "3" },
+    ],
+    style: { height: 300 },
   },
 };
