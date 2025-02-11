@@ -1,13 +1,13 @@
-import type { DividerProps } from "musae/types/divider";
-import React, { type CSSProperties } from "react";
+import type { DividerProps } from "../../types/divider";
+import React from "react";
 import { useOffset } from "./hooks";
-import { useClassNames } from "../../hooks/use-class-names.component";
+import { useClassNames } from "../../hooks/use-class-names";
 import stylex from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { typography } from "../theme/theme";
 import { stringify } from "@aiszlab/relax/class-name";
-import { type Gutters, useGutters } from "../../hooks/use-gutters";
+import { useGutters } from "../../hooks/use-gutters";
 import { CLASS_NAMES } from "./context";
 
 const styles = {
@@ -19,7 +19,7 @@ const styles = {
     },
 
     vertical: {
-      minHeight: sizes.xxxsmall,
+      minHeight: sizes.xxxxsmall,
       maxHeight: sizes.full,
       marginInlineStart: "var(--margin-start)",
       marginInlineEnd: "var(--margin-end)",
@@ -82,12 +82,12 @@ const styles = {
 
   label: stylex.create({
     horizontal: {
-      marginInline: spacing.xsmall,
+      marginInline: spacing.xxsmall,
       whiteSpace: "nowrap",
     },
 
     vertical: {
-      marginBlock: spacing.xsmall,
+      marginBlock: spacing.xxsmall,
       whiteSpace: "nowrap",
     },
   }),

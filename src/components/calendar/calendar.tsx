@@ -1,13 +1,13 @@
 import React, { forwardRef, useImperativeHandle, type CSSProperties } from "react";
 import { useDateCells, useHeadCells, useFocusedAt, useValue } from "./hooks";
-import type { CalendarProps, CalendarRef } from "musae/types/calendar";
+import type { CalendarProps, CalendarRef } from "../../types/calendar";
 import {
   KeyboardDoubleArrowLeft,
   KeyboardDoubleArrowRight,
   KeyboardArrowLeft,
   KeyboardArrowRight,
 } from "musae/icons";
-import { useClassNames } from "../../hooks/use-class-names.component";
+import { useClassNames } from "../../hooks/use-class-names";
 import stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
 import { typography } from "../theme/theme";
@@ -24,7 +24,7 @@ const styles = stylex.create({
   header: {
     display: "flex",
     alignItems: "center",
-    columnGap: spacing.xsmall,
+    columnGap: spacing.xxsmall,
     paddingInline: spacing.medium,
     color: "var(--on-surface-variant)",
   },

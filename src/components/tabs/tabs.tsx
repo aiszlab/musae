@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
-import type { TabsProps } from "musae/types/tabs";
+import type { TabsProps } from "../../types/tabs";
 import { Context, CLASS_NAMES } from "./context";
-import { useClassNames } from "../../hooks/use-class-names.component";
+import { useClassNames } from "../../hooks/use-class-names";
 import { stringify } from "@aiszlab/relax/class-name";
 import { useTabs } from "./hooks";
 import Panels from "./panels";

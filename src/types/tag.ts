@@ -1,5 +1,5 @@
 import type { MouseEvent, ReactNode } from "react";
-import type { ComponentProps } from "musae/types/element";
+import type { ComponentProps } from "./element";
 
 type Size = "small" | "medium" | "large";
 

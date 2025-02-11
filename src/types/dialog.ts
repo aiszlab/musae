@@ -2,7 +2,7 @@ import type { CSSProperties, ReactNode } from "react";
 import type { Closable } from "../hooks/use-closable";
 import type { RequiredIn } from "@aiszlab/relax/types";
 import type { PortalProps } from "./portal";
-import type { ComponentProps } from "musae/types/element";
+import type { ComponentProps } from "./element";
 
 /**
  * @description

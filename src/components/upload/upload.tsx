@@ -7,7 +7,7 @@ import React, {
   useMemo,
   useRef,
 } from "react";
-import type { UploadProps, UploadedListRef } from "musae/types/upload";
+import type { UploadProps, UploadedListRef } from "../../types/upload";
 import stylex from "@stylexjs/stylex";
 import { useEvent } from "@aiszlab/relax";
 import { Keyboard } from "../../utils/keyboard";
@@ -15,7 +15,7 @@ import UploadedList from "./uploaded-list";
 import { Button } from "../button";
 import { useLocale } from "../../locale";
 import { spacing } from "../theme/tokens.stylex";
-import { useClassNames } from "../../hooks/use-class-names.component";
+import { useClassNames } from "../../hooks/use-class-names";
 import { CLASS_NAMES, Context } from "./context";
 import { stringify } from "@aiszlab/relax/class-name";
 
@@ -27,7 +27,7 @@ const styles = stylex.create({
   upload: {
     display: "flex",
     flexDirection: "column",
-    gap: spacing.xsmall,
+    gap: spacing.xxsmall,
   },
 });
 

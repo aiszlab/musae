@@ -1,20 +1,8 @@
 import stylex from "@stylexjs/stylex";
-import { opacity, sizes, spacing } from "../theme/tokens.stylex";
+import { duration, opacity, sizes, spacing } from "../theme/tokens.stylex";
 
 const styles = {
   checkbox: stylex.create({
-    variables: (props: {
-      primary: string;
-      onPrimary: string;
-      outline: string;
-      onSurface: string;
-    }) => ({
-      "--primary": props.primary,
-      "--on-primary": props.onPrimary,
-      "--outline": props.outline,
-      "--on-surface": props.onSurface,
-    }),
-
     default: {
       display: "inline-flex",
       alignItems: "center",
@@ -23,87 +11,154 @@ const styles = {
     },
 
     disabled: {
-      opacity: opacity.thicker,
       cursor: "not-allowed",
+      opacity: opacity.thickest,
+    },
+
+    medium: {
+      "--size": sizes.xxxsmall,
+      "--check-size": sizes.xsmall,
+      "--border-width": sizes.xxxxxxxxsmall,
+      "--check-offset": "calc(((var(--check-size) - var(--size)) / 2 + var(--border-width)) * -1)",
     },
   }),
 
-  input: stylex.create({
-    default: {
-      margin: spacing.none,
-      visibility: "hidden",
-      cursor: "inherit",
-      width: spacing.large,
-      height: spacing.large,
-      position: "relative",
+  layer: {
+    default: stylex.create({
+      default: {
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      },
+    }),
 
-      "::before": {
-        content: "''",
-        visibility: "visible",
-        display: "inline-block",
-        verticalAlign: "super",
-        boxSizing: "border-box",
-        width: sizes.xxxsmall,
-        height: sizes.xxxsmall,
-        borderRadius: spacing.xxxsmall,
-        transitionProperty: "all",
-        transitionDuration: "0.2s",
+    rippleable: stylex.create({
+      default: {
+        position: "relative",
+        overflow: "hidden",
+        padding: spacing.small,
+        borderRadius: sizes.infinity,
 
-        borderWidth: sizes.smallest,
-        borderStyle: "solid",
+        transitionProperty: "background-color",
+        transitionDuration: duration.short,
+
+        color: "var(--primary-opacity-20)",
+        ":hover": {
+          backgroundColor: "var(--on-surface-opacity-08)",
+        },
+        ":focus": {
+          backgroundColor: "var(--on-surface-opacity-12)",
+        },
       },
 
-      // if current node is checked, show checkmark
-      ':not([aria-checked="false"])::after': {
-        content: "",
-        position: "absolute",
-        insetBlockStart: sizes.none,
-        insetInlineStart: sizes.none,
-
-        visibility: "visible",
-        boxSizing: "border-box",
-        display: "block",
-        width: `calc(${sizes.xxxsmall} / 2)`,
-        height: `calc(${sizes.xxxsmall} / 3)`,
-
-        transformOrigin: "50% 50%",
-        transform: "translate(50%, 75%) rotate(-45deg)",
-
-        borderTopWidth: sizes.none,
-        borderRightWidth: sizes.none,
-        borderBottomWidth: sizes.xxxxxxxsmall,
-        borderLeftWidth: sizes.xxxxxxxsmall,
-        borderStyle: "solid",
-        borderColor: "var(--on-primary)",
+      checked: {
+        color: "var(--on-surface-opacity-20)",
+        ":hover": {
+          backgroundColor: "var(--primary-opacity-08)",
+        },
+        ":focus": {
+          backgroundColor: "var(--primary-opacity-12)",
+        },
       },
 
-      // when node is disabled and checked, wrapper appear like disabled
-      ':not([aria-disabled="false"])[aria-checked="true"]::before': {
+      invalid: {
+        color: "var(--error-opacity-20)",
+        ":hover": {
+          backgroundColor: "var(--error-opacity-08)",
+        },
+        ":focus": {
+          backgroundColor: "var(--error-opacity-12)",
+        },
+      },
+
+      disabled: {
+        color: null,
+        ":hover": {
+          backgroundColor: null,
+        },
+        ":focus": {
+          backgroundColor: null,
+        },
+      },
+    }),
+  },
+
+  inputer: {
+    default: stylex.create({
+      default: {
+        width: "var(--size)",
+        height: "var(--size)",
+        position: "relative",
+        boxSizing: "border-box",
+        borderRadius: sizes.xxxxxxxxsmall,
+
+        borderWidth: "var(--border-width)",
+        borderStyle: "solid",
+        borderColor: "var(--on-surface-variant)",
+
+        transitionProperty: "background-color, border-color",
+        transitionDuration: duration.short,
+      },
+
+      disabled: {
+        borderColor: "var(--on-surface)",
+      },
+    }),
+
+    checked: stylex.create({
+      default: {
+        color: "var(--on-primary)",
+        borderColor: "var(--primary)",
+        backgroundColor: "var(--primary)",
+      },
+
+      disabled: {
+        color: "var(--surface)",
         borderColor: "var(--on-surface)",
         backgroundColor: "var(--on-surface)",
       },
+    }),
 
-      // when node is disabled and unchecked, wrapper appear only border like disabled
-      ':not([aria-disabled="false"])[aria-checked="false"]::before': {
+    invalid: stylex.create({
+      default: {
+        borderColor: "var(--error)",
+      },
+
+      checked: {
+        color: "var(--on-error)",
+        backgroundColor: "var(--error)",
+      },
+
+      disabled: {
+        color: "var(--surface)",
         borderColor: "var(--on-surface)",
+        backgroundColor: "var(--on-surface)",
       },
+    }),
+  },
 
-      // when node is editable and checked, fill background
-      ':not([aria-disabled="true"])[aria-checked="true"]::before': {
-        backgroundColor: "var(--primary)",
-        borderColor: "var(--primary)",
-      },
+  input: stylex.create({
+    default: {
+      display: "none",
+    },
+  }),
 
-      // when node is editable and unchecked, show only border
-      ':not([aria-disabled="true"])[aria-checked="false"]::before': {
-        borderColor: "var(--outline)",
-      },
+  check: stylex.create({
+    default: {
+      position: "absolute",
+      width: "var(--check-size)",
+      height: "var(--check-size)",
+      transform: "translate(var(--check-offset), var(--check-offset))",
     },
   }),
 
   label: stylex.create({
     default: {
-      paddingInline: spacing.xxsmall,
+      paddingInline: spacing.xxxsmall,
+    },
+
+    invalid: {
+      color: "var(--error)",
     },
   }),
 };

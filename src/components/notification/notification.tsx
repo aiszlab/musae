@@ -2,13 +2,13 @@ import stylex from "@stylexjs/stylex";
 import React, { type CSSProperties, useEffect, type FC, createElement, forwardRef } from "react";
 import { useAnimate, usePresence } from "framer-motion";
 import { useTheme } from "../theme";
-import type { NotificationProps, Placement, Axis, Type } from "musae/types/notification";
+import type { NotificationProps, Placement, Axis, Type } from "../../types/notification";
 import { useComposedRef, useTimeout } from "@aiszlab/relax";
-import { useClassNames } from "../../hooks/use-class-names.component";
-import { elevations, sizes, spacing } from "../theme/tokens.stylex";
+import { useClassNames } from "../../hooks/use-class-names";
+import { duration, elevations, sizes, spacing } from "../theme/tokens.stylex";
 import { CheckCircle, Close, Loading, Error, NotificationImportant, Warning } from "musae/icons";
 import { typography } from "../theme/theme";
-import type { IconProps } from "musae/types/icon";
+import type { IconProps } from "../../types/icon";
 import { stringify } from "@aiszlab/relax/class-name";
 import { CLASS_NAMES } from "./context";
 
@@ -45,20 +45,20 @@ const styles = {
     }) => ({
       backgroundColor: props.backgroundColor,
       color: props.color,
-      borderRadius: sizes.xxxxxxsmall,
+      borderRadius: sizes.xxxxxxxsmall,
       boxShadow: elevations.xsmall,
       maxWidth: sizes.full,
       pointerEvents: "auto",
       overflow: "hidden",
       transitionProperty: "margin-top, transform",
-      transitionDuration: "0.2s",
+      transitionDuration: duration.short,
       // hidden styles
       transform: props.transform,
       opacity: 0,
       marginBlockStart: spacing.none,
       // layout
       display: "grid",
-      gap: spacing.xsmall,
+      gap: spacing.xxsmall,
       grid: "'leading title closer' '. description description'",
       // padding
       paddingBlock: spacing.large,
@@ -68,7 +68,7 @@ const styles = {
     simple: {
       grid: "'leading description closer'",
       // padding
-      paddingBlock: spacing.xsmall,
+      paddingBlock: spacing.xxsmall,
       paddingInline: spacing.medium,
     },
   }),

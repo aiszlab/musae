@@ -1,5 +1,5 @@
 import type { FC, ImgHTMLAttributes, MouseEvent, ReactNode } from "react";
-import type { ComponentProps } from "musae/types/element";
+import type { ComponentProps } from "./element";
 import type { Partialable } from "@aiszlab/relax/types";
 
 /**

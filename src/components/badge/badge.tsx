@@ -1,6 +1,6 @@
 import React, { type CSSProperties } from "react";
-import { useClassNames } from "../../hooks/use-class-names.component";
-import type { BadgeProps } from "musae/types/badge";
+import { useClassNames } from "../../hooks/use-class-names";
+import type { BadgeProps } from "../../types/badge";
 import stylex from "@stylexjs/stylex";
 import { typography } from "../theme/theme";
 import { sizes } from "../theme/tokens.stylex";
@@ -24,7 +24,7 @@ const styles = {
     }) => ({
       position: "absolute",
       borderRadius: sizes.infinity,
-      minWidth: sizes.xxxsmall,
+      minWidth: sizes.xxxxsmall,
       textAlign: "center",
       boxShadow: `0 0 0 ${sizes.smallest} ${props.color}`,
       backgroundColor: props.backgroundColor,
@@ -33,8 +33,8 @@ const styles = {
 
     dot: {
       minWidth: null,
-      width: sizes.xxxxxsmall,
-      height: sizes.xxxxxsmall,
+      width: sizes.xxxxxxsmall,
+      height: sizes.xxxxxxsmall,
     },
 
     invisible: {

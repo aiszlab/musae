@@ -1,11 +1,11 @@
 import React, { type CSSProperties, useCallback, useContext, useMemo } from "react";
 import { Context, CLASS_NAMES } from "./context";
-import type { RadioProps } from "musae/types/radio";
+import type { RadioProps } from "../../types/radio";
 import { useControlledState } from "@aiszlab/relax";
-import { useClassNames } from "../../hooks/use-class-names.component";
+import { useClassNames } from "../../hooks/use-class-names";
 import stylex from "@stylexjs/stylex";
 import { useTheme } from "../theme";
-import { sizes, spacing } from "../theme/tokens.stylex";
+import { duration, sizes, spacing } from "../theme/tokens.stylex";
 import { typography } from "../theme/theme";
 import { stringify } from "@aiszlab/relax/class-name";
 
@@ -25,8 +25,8 @@ const styles = {
   input: stylex.create({
     default: (props: { borderColor: CSSProperties["borderColor"] }) => ({
       visibility: "hidden",
-      height: sizes.xxxsmall,
-      width: sizes.xxxsmall,
+      height: sizes.xxxxsmall,
+      width: sizes.xxxxsmall,
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
@@ -49,14 +49,14 @@ const styles = {
 
         willChange: "border-color, border-width",
         transitionProperty: "border-color, border-width",
-        transitionDuration: "0.2s",
+        transitionDuration: duration.short,
       },
     }),
 
     checked: (props: { borderColor: CSSProperties["borderColor"] }) => ({
       "::after": {
         borderColor: props.borderColor,
-        borderWidth: sizes.xxxxxxsmall,
+        borderWidth: sizes.xxxxxxxsmall,
       },
     }),
 
@@ -70,8 +70,8 @@ const styles = {
         content: "''",
         position: "absolute",
         visibility: "visible",
-        height: sizes.xxxxxsmall,
-        width: sizes.xxxxxsmall,
+        height: sizes.xxxxxxsmall,
+        width: sizes.xxxxxxsmall,
         backgroundColor: props.backgroundColor,
         borderRadius: sizes.infinity,
       },
@@ -86,7 +86,7 @@ const styles = {
 
   label: stylex.create({
     default: {
-      paddingInline: spacing.xxsmall,
+      paddingInline: spacing.xxxsmall,
     },
   }),
 };

@@ -1,8 +1,8 @@
 import React, { type CSSProperties, useEffect, useRef } from "react";
 import { useAnimate } from "framer-motion";
-import type { PopupProps } from "musae/types/drawer";
+import type { PopupProps } from "../../types/drawer";
 import { PLACEMENTS } from "./hooks";
-import { useClassNames } from "../../hooks/use-class-names.component";
+import { useClassNames } from "../../hooks/use-class-names";
 import stylex from "@stylexjs/stylex";
 import { positions, sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
@@ -79,7 +79,7 @@ const styles = stylex.create({
     paddingInline: spacing.large,
     paddingBlock: spacing.large,
     alignItems: "center",
-    gap: spacing.xxsmall,
+    gap: spacing.xxxsmall,
     borderBottomWidth: sizes.smallest,
     borderBottomStyle: "solid",
     borderBottomColor: props.outlineColor,

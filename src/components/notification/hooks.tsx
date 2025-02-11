@@ -5,7 +5,7 @@ import type {
   Notifier,
   HolderRef,
   UseNotificationProps,
-} from "musae/types/notification";
+} from "../../types/notification";
 import { isDomUsable, useEvent } from "@aiszlab/relax";
 import { useConfiguration } from "../config/hooks";
 

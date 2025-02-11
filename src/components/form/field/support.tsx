@@ -6,7 +6,7 @@ import { spacing } from "../../theme/tokens.stylex";
 const styles = stylex.create({
   support: (props: { color: CSSProperties["color"] }) => ({
     color: props.color,
-    marginBlock: spacing.xxxsmall,
+    marginBlock: spacing.xxxxxsmall,
   }),
 });
 

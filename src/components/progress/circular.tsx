@@ -2,7 +2,7 @@ import React from "react";
 import stylex from "@stylexjs/stylex";
 import { useTheme } from "../theme";
 import { sizes } from "../theme/tokens.stylex";
-import type { CircularProps } from "musae/types/progress";
+import type { CircularProps } from "../../types/progress";
 import { useCircular, useValue } from "./hooks";
 
 const styles = stylex.create({
@@ -12,9 +12,9 @@ const styles = stylex.create({
 
   shape: (props: { radius: number }) => ({
     r: props.radius,
-    cx: `calc(${props.radius}px + (${sizes.xxxxxxsmall} / 2))`,
-    cy: `calc(${props.radius}px + (${sizes.xxxxxxsmall} / 2))`,
-    strokeWidth: sizes.xxxxxxsmall,
+    cx: `calc(${props.radius}px + (${sizes.xxxxxxxsmall} / 2))`,
+    cy: `calc(${props.radius}px + (${sizes.xxxxxxxsmall} / 2))`,
+    strokeWidth: sizes.xxxxxxxsmall,
     strokeLinecap: "round",
   }),
 

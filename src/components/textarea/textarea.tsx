@@ -4,8 +4,8 @@ import { useTheme } from "../theme";
 import stylex from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { useControlledState, useEvent } from "@aiszlab/relax";
-import type { TextareaProps } from "musae/types/textarea";
-import { useClassNames } from "../../hooks/use-class-names.component";
+import type { TextareaProps } from "../../types/textarea";
+import { useClassNames } from "../../hooks/use-class-names";
 import { stringify } from "@aiszlab/relax/class-name";
 import { CLASS_NAMES } from "./context";
 
@@ -18,7 +18,7 @@ const styles = stylex.create({
   },
 
   input: {
-    paddingBlock: spacing.xxxsmall,
+    paddingBlock: spacing.xxxxxsmall,
     paddingInline: spacing.medium,
     outline: sizes.none,
     borderWidth: sizes.none,

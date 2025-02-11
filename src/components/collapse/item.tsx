@@ -1,9 +1,9 @@
 import React, { type CSSProperties, useContext } from "react";
 import stylex from "@stylexjs/stylex";
-import { sizes, spacing } from "../theme/tokens.stylex";
+import { duration, sizes, spacing } from "../theme/tokens.stylex";
 import { useEvent, useUpdateEffect } from "@aiszlab/relax";
 import { useAnimate } from "framer-motion";
-import type { CollapseItemProps } from "musae/types/collapse";
+import type { CollapseItemProps } from "../../types/collapse";
 import { Context } from "./context";
 import { useExpandable } from "../../hooks/use-expandable";
 import { useTheme } from "../theme";
@@ -31,7 +31,7 @@ const styles = {
       display: "flex",
       flexDirection: "row",
       alignItems: "center",
-      gap: spacing.xsmall,
+      gap: spacing.xxsmall,
       cursor: "pointer",
     },
   }),
@@ -59,7 +59,7 @@ const styles = {
     default: {
       willChange: "transform",
       transitionProperty: "transform",
-      transitionDuration: "0.2s",
+      transitionDuration: duration.short,
     },
 
     expanded: {

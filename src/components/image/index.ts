@@ -1,5 +1,5 @@
 import _Image from "./image";
-import type { TypedImage } from "musae/types/image";
+import type { TypedImage } from "../../types/image";
 import Group from "./preview/group";
 
 const Image = Object.assign(_Image, {

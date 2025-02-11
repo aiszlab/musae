@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import type { ContextValue } from "musae/types/picker";
+import type { ContextValue } from "../../types/picker";
 
 export const CLASS_NAMES = {
   picker: "picker",

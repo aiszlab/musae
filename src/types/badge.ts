@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import type { ComponentProps } from "musae/types/element";
+import type { ComponentProps } from "../types/element";
 
 type Placement = "top-right" | "top-left" | "bottom-right" | "bottom-left";
 

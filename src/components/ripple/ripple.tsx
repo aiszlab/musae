@@ -1,6 +1,6 @@
 import React from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { Ripple as RippleType, RippleProps } from "musae/types/ripple";
+import { Ripple as RippleType, RippleProps } from "../../types/ripple";
 import stylex from "@stylexjs/stylex";
 import { sizes } from "../theme/tokens.stylex";
 

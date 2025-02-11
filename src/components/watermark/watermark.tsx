@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useRef } from "react";
 import stylex from "@stylexjs/stylex";
 import { OPACITY, sizes } from "../theme/tokens.stylex";
-import type { WatermarkProps } from "musae/types/watermark";
+import type { WatermarkProps } from "../../types/watermark";
 import { useMutateObserver, useRaf, useDevicePixelRatio } from "@aiszlab/relax";
 import { useClips, useWatermarks } from "./hooks";
 import type { Nullable } from "@aiszlab/relax/types";

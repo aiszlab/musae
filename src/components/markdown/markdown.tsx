@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useContext, useMemo } from "react";
 import { toHTML } from "./utils";
 import stylex from "@stylexjs/stylex";
 import { typography } from "../theme/theme";
@@ -9,6 +9,7 @@ import { spacing } from "../theme/tokens.stylex";
 const styles = stylex.create({
   markdown: {
     width: "fit-content",
+    overflow: "auto",
     minWidth: "100%",
 
     // use higher selector

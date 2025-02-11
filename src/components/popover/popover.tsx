@@ -1,4 +1,5 @@
 import { useHover, useEvent, useFocus, useClickAway, isRefable } from "@aiszlab/relax";
+import { mountRef } from "@aiszlab/relax/react";
 import React, {
   cloneElement,
   useMemo,
@@ -12,13 +13,13 @@ import React, {
   type PointerEvent,
   type FocusEvent,
 } from "react";
-import type { ChildProps, PopoverProps, PopoverRef } from "musae/types/popover";
+import type { ChildProps, PopoverProps, PopoverRef } from "../../types/popover";
 import { Popper } from "../popper";
-import type { PopperRef } from "musae/types/popper";
+import type { PopperRef } from "../../types/popper";
 import stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
 import { typography } from "../theme/theme";
-import { useClassNames } from "../../hooks/use-class-names.component";
+import { useClassNames } from "../../hooks/use-class-names";
 import { useIsOpen, useTriggerBy } from "./hooks";
 import { stringify } from "@aiszlab/relax/class-name";
 import { CLASS_NAMES } from "./context";
@@ -31,7 +32,7 @@ const styles = {
       // layout
       display: "flex",
       flexDirection: "column",
-      gap: spacing.xsmall,
+      gap: spacing.xxsmall,
     },
 
     padding: (padding: number | true) => ({
@@ -137,7 +138,11 @@ const Popover = forwardRef(
           onContextMenu,
         }),
         ...(isRefable(_child) && {
-          ref: _ref,
+          ref: (_reference) => {
+            mountRef(_ref, _reference);
+            //@ts-expect-error
+            mountRef(_child.ref, _reference);
+          },
         }),
       };
 

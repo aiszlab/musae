@@ -1,5 +1,5 @@
 import { useCounter } from "@aiszlab/relax";
-import type { TourStep } from "musae/types/tour";
+import type { TourStep } from "../../types/tour";
 import { useEffect } from "react";
 
 /**

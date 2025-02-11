@@ -1,8 +1,9 @@
 import React, { forwardRef, useImperativeHandle, useState } from "react";
 import { Dialog } from "../../dialog";
 import Operations from "./operations";
-import type { PreviewProps, PreviewRef } from "musae/types/image";
+import type { PreviewProps, PreviewRef } from "../../../types/image";
 import stylex from "@stylexjs/stylex";
+import { duration } from "../../theme/tokens.stylex";
 
 const styles = stylex.create({
   image: (props: { scale: number; rotate: number; flipX: number; flipY: number }) => ({
@@ -10,7 +11,8 @@ const styles = stylex.create({
       props.scale * props.flipY
     }, 1) rotate(${props.rotate}deg)`,
     willChange: "transform",
-    transition: "transform 0.2s",
+    transitionProperty: "transform",
+    transitionDuration: duration.short,
     pointerEvents: "auto",
   }),
 });

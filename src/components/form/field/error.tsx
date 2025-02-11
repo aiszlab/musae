@@ -1,5 +1,5 @@
 import { type FieldError } from "react-hook-form";
-import type { ComponentProps } from "musae/types/element";
+import type { ComponentProps } from "../../../types/element";
 import React, { type CSSProperties, useContext, useEffect } from "react";
 import { stringify } from "@aiszlab/relax/class-name";
 import { useAnimate, usePresence } from "framer-motion";
@@ -11,7 +11,7 @@ import { Context } from "../context";
 const styles = stylex.create({
   error: (props: { color: CSSProperties["color"] }) => ({
     color: props.color,
-    marginBlock: spacing.xxxsmall,
+    marginBlock: spacing.xxxxxsmall,
     height: 0,
     overflow: "hidden",
   }),

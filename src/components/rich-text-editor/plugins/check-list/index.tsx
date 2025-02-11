@@ -1,34 +1,16 @@
-import { $isListItemNode, INSERT_CHECK_LIST_COMMAND, insertList } from "@lexical/list";
+import { INSERT_CHECK_LIST_COMMAND, insertList } from "@lexical/list";
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
-import { $getNearestNodeFromDOMNode, COMMAND_PRIORITY_LOW } from "lexical";
-import { chain, useMounted, isHTMLInputElement, useEvent } from "@aiszlab/relax";
+import { $getNodeByKey, COMMAND_PRIORITY_LOW } from "lexical";
+import { chain, useMounted } from "@aiszlab/relax";
+import { CheckableListItemNode } from "../../nodes/checkable-list-item";
+import { CheckboxNode } from "../../nodes/checkbox";
 
 const CheckListPlugin = () => {
   const [editor] = useLexicalComposerContext();
 
-  const onEditorClick = useEvent((event: MouseEvent) => {
-    if (!editor.isEditable()) return;
-
-    const target = event.target;
-
-    // skip when target is not checkbox
-    if (!target) return;
-    if (!isHTMLInputElement(target)) return;
-
-    const isCheckbox = target.getAttribute("type") === "checkbox";
-    if (!isCheckbox) return;
-
-    editor.update(() => {
-      const node = $getNearestNodeFromDOMNode(target);
-
-      if (!$isListItemNode(node)) return;
-      target.focus();
-      node.toggleChecked();
-    });
-  });
-
   useMounted(() => {
     const unregister = chain(
+      // register command
       editor.registerCommand(
         INSERT_CHECK_LIST_COMMAND,
         () => {
@@ -38,15 +20,39 @@ const CheckListPlugin = () => {
         COMMAND_PRIORITY_LOW,
       ),
 
-      editor.registerRootListener((rootElement, prevRootElement) => {
-        if (rootElement !== null) {
-          rootElement.addEventListener("click", onEditorClick);
-        }
+      // listen check list item mutation
+      editor.registerMutationListener(
+        CheckableListItemNode,
+        (mutatedNodes, { prevEditorState }) => {
+          for (const { 0: nodeKey, "1": mutation } of mutatedNodes) {
+            switch (mutation) {
+              case "created":
+              case "updated":
+                editor.update(() => {
+                  const listItem = $getNodeByKey<CheckableListItemNode>(nodeKey);
+                  listItem?.renderCheckbox();
+                });
 
-        if (prevRootElement !== null) {
-          prevRootElement.removeEventListener("click", onEditorClick);
-        }
-      }),
+                break;
+              case "destroyed":
+                editor.update(() => {
+                  const checkboxNodeKey = $getNodeByKey<CheckableListItemNode>(
+                    nodeKey,
+                    prevEditorState,
+                  )?.checkbox;
+
+                  if (!checkboxNodeKey) return;
+
+                  $getNodeByKey(checkboxNodeKey)?.remove();
+                });
+
+                break;
+              default:
+                break;
+            }
+          }
+        },
+      ),
     );
 
     return () => {

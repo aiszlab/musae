@@ -8,8 +8,8 @@ import React, {
 } from "react";
 import { Clock } from "../clock";
 import { Button } from "../button";
-import type { PanelProps, PanelRef } from "musae/types/time-picker";
-import type { ClockProps } from "musae/types/clock";
+import type { PanelProps, PanelRef } from "../../types/time-picker";
+import type { ClockProps } from "../../types/clock";
 import dayjs from "dayjs";
 import stylex from "@stylexjs/stylex";
 import { useTheme } from "../theme";
@@ -20,7 +20,7 @@ import { Context } from "./context";
 
 const styles = stylex.create({
   panel: {
-    marginInline: spacing.xxxsmall,
+    marginInline: spacing.xxxxxsmall,
   },
 
   footer: (props: { borderTopColor: CSSProperties["borderTopColor"] }) => ({
@@ -31,7 +31,7 @@ const styles = stylex.create({
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
-    paddingBlock: spacing.xxxsmall,
+    paddingBlock: spacing.xxxxxsmall,
     paddingInline: spacing.medium,
     minHeight: sizes.xlarge,
   }),

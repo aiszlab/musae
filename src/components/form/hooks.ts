@@ -1,5 +1,5 @@
 import { useForm as _useForm, type FieldValues } from "react-hook-form";
-import type { UsedForm } from "musae/types/form";
+import type { UsedForm } from "../../types/form";
 
 /**
  * @description

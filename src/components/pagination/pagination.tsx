@@ -1,21 +1,21 @@
 import React, { useMemo } from "react";
-import type { PagiantionProps } from "musae/types/pagination";
+import type { PagiantionProps } from "../../types/pagination";
 import { usePagiantion } from "./hooks";
 import Item from "./item";
 import stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
 import { Select } from "../select";
-import type { Option } from "musae/types/option";
+import type { Option } from "../../types/option";
 import { useLocale } from "../../locale";
 import { toFunction, unique } from "@aiszlab/relax";
 import { stringify } from "@aiszlab/relax/class-name";
-import { useClassNames } from "../../hooks/use-class-names.component";
+import { useClassNames } from "../../hooks/use-class-names";
 import { CLASS_NAMES } from "./context";
 
 const styles = stylex.create({
   pagination: {
     display: "flex",
-    columnGap: spacing.xxxsmall,
+    columnGap: spacing.xxxxxsmall,
     listStyleType: "none",
     margin: spacing.none,
     padding: spacing.none,

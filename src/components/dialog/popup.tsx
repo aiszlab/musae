@@ -1,8 +1,8 @@
 import React, { type CSSProperties, useEffect, useRef } from "react";
-import type { PopupProps } from "musae/types/dialog";
+import type { PopupProps } from "../../types/dialog";
 import { useFooter } from "./hooks";
 import { useAnimate } from "framer-motion";
-import { useClassNames } from "../../hooks/use-class-names.component";
+import { useClassNames } from "../../hooks/use-class-names";
 import stylex from "@stylexjs/stylex";
 import { positions, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
@@ -13,11 +13,6 @@ import { useClosable } from "../../hooks/use-closable";
 import { CLASS_NAMES } from "./context";
 
 const styles = stylex.create({
-  header: {
-    paddingInline: spacing.xxlarge,
-    paddingBlockStart: spacing.large,
-  },
-
   popup: {
     position: "fixed",
     top: 0,
@@ -31,7 +26,7 @@ const styles = stylex.create({
     alignItems: "center",
   },
 
-  overlay: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
+  overlay: {
     position: "absolute",
     top: 0,
     left: 0,
@@ -39,11 +34,11 @@ const styles = stylex.create({
     height: "100vh",
     pointerEvents: "auto",
     zIndex: positions.dialog,
-    backgroundColor: props.backgroundColor,
+    backgroundColor: "var(--surface-dim)",
     opacity: 0,
-  }),
+  },
 
-  panel: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
+  panel: {
     display: "flex",
     flexDirection: "column",
     gap: spacing.large,
@@ -52,17 +47,18 @@ const styles = stylex.create({
     margin: spacing.xxxlarge,
     borderRadius: 8,
     pointerEvents: "auto",
-    backgroundColor: props.backgroundColor,
+    backgroundColor: "var(--surface-container-lowest)",
     zIndex: positions.dialog,
     opacity: 0,
     position: "relative",
-  }),
 
-  body: { paddingInline: spacing.xxlarge, flex: 1, wordBreak: "break-word", overflow: "auto" },
+    padding: spacing.xxlarge,
+  },
+
+  body: { flex: 1, wordBreak: "break-word", overflow: "auto" },
 
   footer: {
-    paddingInline: spacing.xxlarge,
-    paddingBlockEnd: spacing.xxlarge,
+    marginBlockStart: spacing.xxsmall,
     display: "flex",
     flexDirection: "column",
     alignItems: "flex-end",
@@ -115,17 +111,9 @@ const Popup = ({ onClose, open, closable, onClosed, className, ...props }: Popup
 
   const styled = {
     popup: stylex.props(styles.popup),
-    overlay: stylex.props(
-      styles.overlay({
-        backgroundColor: theme.colors["surface-dim"],
-      }),
-    ),
-    panel: stylex.props(
-      styles.panel({
-        backgroundColor: theme.colors["surface-container-lowest"],
-      }),
-    ),
-    header: stylex.props(styles.header, typography.headline.small),
+    overlay: stylex.props(styles.overlay),
+    panel: stylex.props(styles.panel),
+    header: stylex.props(typography.headline.small),
     body: stylex.props(typography.body.medium, styles.body),
     footer: stylex.props(styles.footer),
   };
@@ -134,7 +122,12 @@ const Popup = ({ onClose, open, closable, onClosed, className, ...props }: Popup
     <div
       ref={scope}
       className={stringify(classNames.dialog, className, styled.popup.className)}
-      style={styled.popup.style}
+      style={{
+        ...styled.popup.style,
+        // @ts-expect-error
+        "--surface-dim": theme.colors["surface-dim"],
+        "--surface-container-lowest": theme.colors["surface-container-lowest"],
+      }}
       tabIndex={-1}
       onKeyDown={onKeyDown}
     >

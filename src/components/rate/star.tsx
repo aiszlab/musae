@@ -1,9 +1,9 @@
 import React, { CSSProperties, createElement, useContext } from "react";
 import { useEvent, useHover } from "@aiszlab/relax";
 import stylex from "@stylexjs/stylex";
-import { sizes } from "../theme/tokens.stylex";
+import { duration, sizes } from "../theme/tokens.stylex";
 import { Star as _Star } from "musae/icons";
-import type { StarProps } from "musae/types/rate";
+import type { StarProps } from "../../types/rate";
 import { useTheme } from "../theme";
 import { stringify } from "@aiszlab/relax/class-name";
 import Context from "./context";
@@ -12,7 +12,8 @@ const styles = {
   star: stylex.create({
     default: (props: { color: CSSProperties["color"] }) => ({
       position: "relative",
-      transition: "all 0.2s",
+      transitionProperty: "all",
+      transitionDuration: duration.short,
       cursor: "pointer",
       color: props.color,
 

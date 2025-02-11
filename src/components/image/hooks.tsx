@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import type { OperationsProps, OperationEvent } from "musae/types/image";
+import type { OperationsProps, OperationEvent } from "../../types/image";
 import { SwapHoriz, SwapVert, RotateLeft, RotateRight, ZoomOut, ZoomIn } from "musae/icons";
 import { IconButton } from "../icon-button";
 

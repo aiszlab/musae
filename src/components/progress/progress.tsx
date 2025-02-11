@@ -1,8 +1,8 @@
 import React from "react";
-import type { ProgressProps } from "musae/types/progress";
+import type { ProgressProps } from "../../types/progress";
 import Linear from "./linear";
 import Circular from "./circular";
-import { useClassNames } from "../../hooks/use-class-names.component";
+import { useClassNames } from "../../hooks/use-class-names";
 import Context, { CLASS_NAMES } from "./context";
 
 const Progress = ({ variant = "linear", value = 0 }: ProgressProps) => {

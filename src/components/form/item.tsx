@@ -1,4 +1,4 @@
-import type { FormItemProps } from "musae/types/form";
+import type { FormItemProps } from "../../types/form";
 import React, { useContext } from "react";
 import { Field, Layout } from "./field";
 import type { FieldValues } from "react-hook-form";

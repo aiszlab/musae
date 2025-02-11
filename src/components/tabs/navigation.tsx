@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, type CSSProperties, type Key } from "react";
 import stylex from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";
-import { type NavigationProps } from "musae/types/tabs";
+import { type NavigationProps } from "../../types/tabs";
 import Tab from "./tab";
 import { useAnimate } from "framer-motion";
 import { isUndefined } from "@aiszlab/relax";
@@ -59,7 +59,7 @@ const styles = {
 
   indicator: stylex.create({
     default: (props: { color: CSSProperties["backgroundColor"] }) => ({
-      height: sizes.xxxxxxxsmall,
+      height: sizes.xxxxxxxxsmall,
       backgroundColor: props.color,
       position: "absolute",
       bottom: spacing.none,

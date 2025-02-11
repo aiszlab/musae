@@ -1,6 +1,6 @@
 import React, { forwardRef, useCallback } from "react";
 import { Button } from "../button";
-import type { TabItemProps } from "musae/types/tabs";
+import type { TabItemProps } from "../../types/tabs";
 import { useTabsContext } from "./hooks";
 import stylex from "@stylexjs/stylex";
 import { stringify } from "@aiszlab/relax/class-name";

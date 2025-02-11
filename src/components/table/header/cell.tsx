@@ -4,7 +4,7 @@ import stylex from "@stylexjs/stylex";
 import { sizes, spacing } from "../../theme/tokens.stylex";
 import { useTheme } from "../../theme";
 import { UnfoldMore } from "musae/icons";
-import type { HeaderCellProps, SortDirection } from "musae/types/table";
+import type { HeaderCellProps, SortDirection } from "../../../types/table";
 import { useTable } from "../context";
 
 const styles = {
@@ -18,7 +18,7 @@ const styles = {
     handlers: (props: { color: CSSProperties["color"] }) => ({
       display: "inline-flex",
       flexDirection: "row",
-      gap: spacing.xxxsmall,
+      gap: spacing.xxxxxsmall,
       color: props.color,
       userSelect: "none",
     }),

@@ -1,4 +1,4 @@
-import type { WaterfallProps } from "musae/types/waterfall";
+import type { WaterfallProps } from "../../types/waterfall";
 import React, { useMemo, type ReactNode } from "react";
 import stylex from "@stylexjs/stylex";
 import type { RequiredIn } from "@aiszlab/relax/types";

@@ -1,5 +1,5 @@
 import React, { type CSSProperties, forwardRef } from "react";
-import type { MenuGroupProps } from "musae/types/menu";
+import type { MenuGroupProps } from "../../types/menu";
 import { useAnimate } from "framer-motion";
 import Item from "./item";
 import { useMenuContext } from "./hooks";
@@ -24,7 +24,7 @@ const styles = {
     horizontal: {
       display: "flex",
       flexDirection: "row",
-      gap: spacing.xsmall,
+      gap: spacing.xxsmall,
     },
 
     vertical: {},
@@ -38,17 +38,17 @@ const styles = {
 
   submenu: stylex.create({
     inline: {
-      marginBlockStart: spacing.xxxsmall,
+      marginBlockStart: spacing.xxxxxsmall,
     },
 
     horizontal: {
       minWidth: 200,
-      paddingInline: spacing.xxxsmall,
+      paddingInline: spacing.xxxxxsmall,
     },
 
     vertical: {
       minWidth: 200,
-      paddingInline: spacing.xxxsmall,
+      paddingInline: spacing.xxxxxsmall,
     },
   }),
 };

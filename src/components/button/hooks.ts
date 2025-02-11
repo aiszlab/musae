@@ -1,6 +1,6 @@
 import { type MouseEvent } from "react";
 import { useRipple } from "../ripple";
-import type { ButtonProps } from "musae/types/button";
+import type { ButtonProps } from "../../types/button";
 import { useEvent } from "@aiszlab/relax";
 
 /**

@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import type { ContextValue } from "musae/types/collapse";
+import type { ContextValue } from "../../types/collapse";
 
 export const CLASS_NAMES = {
   collapse: "collapse",

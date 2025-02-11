@@ -6,7 +6,7 @@ import React, {
   type ReactNode,
   useContext,
 } from "react";
-import type { FormItemProps, FieldRenderProps } from "musae/types/form";
+import type { FormItemProps, FieldRenderProps } from "../../../types/form";
 import { useController } from "react-hook-form";
 import type { RequiredIn } from "@aiszlab/relax/types";
 import { chain, isRefable, toFunction } from "@aiszlab/relax";

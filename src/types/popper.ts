@@ -1,6 +1,6 @@
 import type { Nullable } from "@aiszlab/relax/types";
 import type { DOMAttributes, ReactNode } from "react";
-import type { ComponentProps } from "musae/types/element";
+import type { ComponentProps } from "./element";
 import type { Derivable, OffsetOptions, Placement } from "@floating-ui/dom";
 import type { PortalProps } from "./portal";
 
@@ -91,6 +91,13 @@ export interface PopperProps
    * set `disappearable` to false, and use popper.ref to disappear
    */
   disappearable?: boolean;
+
+  /**
+   * @description elevation
+   *
+   * @default true
+   */
+  elevation?: boolean;
 }
 
 export type DropdownProps = Omit<PopperProps, "portal" | "placement" | "container"> & {

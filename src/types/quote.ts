@@ -1,4 +1,4 @@
-import type { ComponentProps } from "musae/types/element";
+import type { ComponentProps } from "./element";
 
 /**
  * @description

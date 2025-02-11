@@ -1,6 +1,6 @@
 import { toArray, useEvent } from "@aiszlab/relax";
 import { useState } from "react";
-import type { WatermarkProps } from "musae/types/watermark";
+import type { WatermarkProps } from "../../types/watermark";
 
 const painter = ({
   width: _width,

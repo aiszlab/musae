@@ -1,5 +1,5 @@
 import { type ReactNode } from "react";
-import type { Messager } from "musae/types/message";
+import type { Messager } from "../../types/message";
 import { useNotification } from "../notification";
 
 /**

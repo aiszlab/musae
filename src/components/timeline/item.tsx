@@ -1,5 +1,5 @@
 import React, { type CSSProperties, useContext, useMemo } from "react";
-import type { TimelineItemProps } from "musae/types/timeline";
+import type { TimelineItemProps } from "../../types/timeline";
 import stylex from "@stylexjs/stylex";
 import { Context } from "./context";
 import { sizes, spacing } from "../theme/tokens.stylex";
@@ -74,8 +74,8 @@ const styles = {
 
   dot: stylex.create({
     default: {
-      width: sizes.xxxxxxsmall,
-      height: sizes.xxxxxxsmall,
+      width: sizes.xxxxxxxsmall,
+      height: sizes.xxxxxxxsmall,
       borderRadius: sizes.infinity,
       backgroundColor: "var(--primary)",
     },

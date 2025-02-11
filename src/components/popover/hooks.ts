@@ -1,6 +1,6 @@
 import { toArray, useEvent } from "@aiszlab/relax";
 import { useLazyBoolean } from "../../hooks/use-lazy-boolean";
-import type { PopperRef } from "musae/types/popper";
+import type { PopperRef } from "../../types/popper";
 import { useCallback, useMemo } from "react";
 import { TriggerBy } from "../../types/popover";
 

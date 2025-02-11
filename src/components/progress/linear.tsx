@@ -1,6 +1,6 @@
 import React, { useContext, type CSSProperties } from "react";
 import stylex from "@stylexjs/stylex";
-import type { LinearProps } from "musae/types/progress";
+import type { LinearProps } from "../../types/progress";
 import { stringify } from "@aiszlab/relax/class-name";
 import { sizes } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
@@ -10,7 +10,7 @@ import Context from "./context";
 const styles = stylex.create({
   progress: (props: { color: CSSProperties["backgroundColor"] }) => ({
     width: sizes.full,
-    height: sizes.xxxxxxsmall,
+    height: sizes.xxxxxxxsmall,
     backgroundColor: props.color,
     borderRadius: sizes.infinity,
   }),

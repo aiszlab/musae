@@ -1,9 +1,9 @@
 import React, { type CSSProperties } from "react";
-import type { BreadcrumbProps } from "musae/types/breadcrumb";
+import type { BreadcrumbProps } from "../../types/breadcrumb";
 import stylex from "@stylexjs/stylex";
 import { typography } from "../theme/theme";
 import { useTheme } from "../theme";
-import { useClassNames } from "../../hooks/use-class-names.component";
+import { useClassNames } from "../../hooks/use-class-names";
 import { stringify } from "@aiszlab/relax/class-name";
 import Item from "./item";
 import { spacing } from "../theme/tokens.stylex";

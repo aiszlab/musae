@@ -7,7 +7,7 @@ import { typography } from "../theme/theme";
 import { Tooltip } from "../tooltip";
 import { clamp, min, toFunction } from "@aiszlab/relax";
 import { firstSundayInMonth } from "../../utils/date";
-import { ContributionCalendarProps } from "musae/types/calendar";
+import { ContributionCalendarProps } from "../../types/calendar";
 import { hexToHsla } from "@aiszlab/fuzzy/color";
 import { useLocale } from "../../locale";
 
@@ -17,7 +17,7 @@ const styles = {
   calendar: stylex.create({
     default: {
       borderCollapse: "separate",
-      borderSpacing: spacing.xxxsmall,
+      borderSpacing: spacing.xxxxxsmall,
     },
 
     scrollable: {
@@ -28,10 +28,10 @@ const styles = {
 
   cell: stylex.create({
     default: {
-      minWidth: sizes.xxxxsmall,
-      minHeight: sizes.xxxxsmall,
+      minWidth: sizes.xxxxxsmall,
+      minHeight: sizes.xxxxxsmall,
       padding: spacing.none,
-      borderRadius: sizes.xxxxxxxsmall,
+      borderRadius: sizes.xxxxxxxxsmall,
       cursor: "pointer",
       backgroundColor: "var(--primary)",
     },
@@ -43,7 +43,7 @@ const styles = {
     },
 
     default: {
-      height: sizes.xxxxsmall,
+      height: sizes.xxxxxsmall,
       overflow: "visible",
       display: "flex",
       alignItems: "center",
@@ -69,7 +69,7 @@ const styles = {
 
   legend: stylex.create({
     default: {
-      paddingBlock: spacing.xxxsmall,
+      paddingBlock: spacing.xxxxxsmall,
       paddingInline: spacing.xxxlarge,
       display: "flex",
       justifyContent: "flex-end",
@@ -79,14 +79,14 @@ const styles = {
   levels: stylex.create({
     default: {
       display: "flex",
-      gap: spacing.xxxsmall,
+      gap: spacing.xxxxxsmall,
       alignItems: "center",
     },
 
     level: {
-      width: sizes.xxxxsmall,
-      height: sizes.xxxxsmall,
-      borderRadius: sizes.xxxxxxxsmall,
+      width: sizes.xxxxxsmall,
+      height: sizes.xxxxxsmall,
+      borderRadius: sizes.xxxxxxxxsmall,
     },
   }),
 };

@@ -8,13 +8,13 @@ import React, {
   useImperativeHandle,
   useRef,
 } from "react";
-import { ColumnProps, TimeUnit } from "musae/types/clock";
+import { ColumnProps, TimeUnit } from "../../types/clock";
 import { Menu } from "../menu";
 import { isVoid } from "@aiszlab/relax";
 import stylex from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
-import type { MenuRef } from "musae/types/menu";
+import type { MenuRef } from "../../types/menu";
 import { stringify } from "@aiszlab/relax/class-name";
 import { Context } from "./context";
 
@@ -33,10 +33,10 @@ const styles = stylex.create({
     },
 
     width: sizes.xxlarge,
-    marginBlock: spacing.xxxsmall,
+    marginBlock: spacing.xxxxxsmall,
 
     "::-webkit-scrollbar": {
-      width: spacing.xsmall,
+      width: spacing.xxsmall,
       backgroundColor: "transparent",
     },
 

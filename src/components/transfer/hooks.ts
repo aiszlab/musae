@@ -1,5 +1,5 @@
 import { type Key, useCallback, useMemo, useState } from "react";
-import type { TransferOption } from "musae/types/transfer";
+import type { TransferOption } from "../../types/transfer";
 import { useControlledState } from "@aiszlab/relax";
 
 /**

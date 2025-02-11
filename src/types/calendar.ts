@@ -1,6 +1,6 @@
 import type { Dayjs } from "dayjs";
 import type { Partialable } from "@aiszlab/relax/types";
-import { ComponentProps } from "musae/types/element";
+import type { ComponentProps } from "./element";
 
 /**
  * @description

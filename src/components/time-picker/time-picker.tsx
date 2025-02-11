@@ -1,13 +1,13 @@
 import React, { useMemo, useRef } from "react";
 import { Picker } from "../picker";
-import type { PanelRef, TimePickerProps } from "musae/types/time-picker";
-import { useClassNames } from "../../hooks/use-class-names.component";
+import type { PanelRef, TimePickerProps } from "../../types/time-picker";
+import { useClassNames } from "../../hooks/use-class-names";
 import Panel from "./panel";
 import { useValue } from "./hooks";
 import stylex from "@stylexjs/stylex";
 import { useEvent } from "@aiszlab/relax";
 import { styles as inputStyles } from "../input";
-import type { PickerRef } from "musae/types/picker";
+import type { PickerRef } from "../../types/picker";
 import { stringify } from "@aiszlab/relax/class-name";
 import { CLASS_NAMES, Context } from "./context";
 

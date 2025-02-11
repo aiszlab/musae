@@ -11,3 +11,5 @@ yarn-error.log
 
 # unit test
 coverage
+
+*storybook.log

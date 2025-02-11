@@ -1,5 +1,5 @@
 import React, { type CSSProperties, useContext, forwardRef } from "react";
-import type { AvatarProps } from "musae/types/avatar";
+import type { AvatarProps } from "../../types/avatar";
 import stylex from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import Context, { CLASS_NAMES } from "./context";
@@ -8,7 +8,7 @@ import { typography } from "../theme/theme";
 import { useImageLoader } from "@aiszlab/relax";
 import { stringify } from "@aiszlab/relax/class-name";
 import { Skeleton } from "../skeleton";
-import { useClassNames } from "../../hooks/use-class-names.component";
+import { useClassNames } from "../../hooks/use-class-names";
 
 const styles = stylex.create({
   avatar: (props: {
@@ -42,7 +42,7 @@ const styles = stylex.create({
 
   overlapping: (props: { outlineColor: CSSProperties["borderColor"] }) => ({
     ":not(:first-child)": {
-      marginInlineStart: `calc(${spacing.xsmall} * -1)`,
+      marginInlineStart: `calc(${spacing.xxsmall} * -1)`,
     },
 
     borderColor: props.outlineColor,
@@ -53,7 +53,7 @@ const styles = stylex.create({
   },
 
   squared: {
-    borderRadius: sizes.xxxxxxsmall,
+    borderRadius: sizes.xxxxxxxsmall,
   },
 
   small: {

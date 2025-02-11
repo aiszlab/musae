@@ -1,12 +1,12 @@
 import React from "react";
-import type { RateProps } from "musae/types/rate";
+import type { RateProps } from "../../types/rate";
 import stylex from "@stylexjs/stylex";
 import { stringify } from "@aiszlab/relax/class-name";
 import { useHover, useValue } from "./hooks";
 import Star from "./star";
 import { spacing } from "../theme/tokens.stylex";
 import Context, { CLASS_NAMES } from "./context";
-import { useClassNames } from "../../hooks/use-class-names.component";
+import { useClassNames } from "../../hooks/use-class-names";
 
 const styles = {
   rate: stylex.create({

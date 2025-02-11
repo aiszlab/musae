@@ -1,8 +1,8 @@
 import React, { useContext, type CSSProperties } from "react";
 import stylex from "@stylexjs/stylex";
-import { sizes, spacing } from "../theme/tokens.stylex";
+import { duration, sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
-import type { BreadcrumbItemProps } from "musae/types/breadcrumb";
+import type { BreadcrumbItemProps } from "../../types/breadcrumb";
 import { stringify } from "@aiszlab/relax/class-name";
 import { Context } from "./context";
 
@@ -18,8 +18,8 @@ const styles = {
       hoveredBackgroundColor: CSSProperties["backgroundColor"];
       hoveredColor: CSSProperties["color"];
     }) => ({
-      paddingInline: spacing.xxxsmall,
-      borderRadius: sizes.xxxxxxsmall,
+      paddingInline: spacing.xxxxxsmall,
+      borderRadius: sizes.xxxxxxxsmall,
       backgroundColor: {
         default: null,
         ":hover": props.hoveredBackgroundColor,
@@ -29,13 +29,13 @@ const styles = {
         ":hover": props.hoveredColor,
       },
       transitionProperty: "all",
-      transitionDuration: "0.2s",
+      transitionDuration: duration.short,
     }),
   }),
 
   separator: stylex.create({
     default: {
-      marginInline: spacing.xsmall,
+      marginInline: spacing.xxsmall,
     },
   }),
 };

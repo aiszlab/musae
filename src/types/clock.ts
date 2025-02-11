@@ -1,4 +1,4 @@
-import { ComponentProps } from "musae/types/element";
+import type { ComponentProps } from "./element";
 
 export type TimeUnit = "hour" | "minute" | "second";
 

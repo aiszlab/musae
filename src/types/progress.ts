@@ -1,5 +1,5 @@
-import { RequiredIn } from "@aiszlab/relax/types";
-import { ComponentProps } from "musae/types/element";
+import type { RequiredIn } from "@aiszlab/relax/types";
+import type { ComponentProps } from "./element";
 
 type Variant = "linear" | "circular";
 
@@ -25,7 +25,10 @@ export type ProgressProps = ComponentProps & {
  * @description
  * `Circular` Props
  */
-export type CircularProps = RequiredIn<Pick<ProgressProps, "value" | "style" | "className">, "value">;
+export type CircularProps = RequiredIn<
+  Pick<ProgressProps, "value" | "style" | "className">,
+  "value"
+>;
 
 /**
  * @description

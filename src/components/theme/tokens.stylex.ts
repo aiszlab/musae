@@ -27,11 +27,12 @@ export const elevations = defineVars<Record<ElevationToken, string>>({
 export const spacing = defineVars({
   none: "0px",
   smallest: "1px",
-  xxxxsmall: "2px",
-  xxxsmall: "4px",
-  xxsmall: "6px",
-  xsmall: "8px",
-  small: "10px",
+  xxxxxxsmall: "2px",
+  xxxxxsmall: "4px",
+  xxxsmall: "6px",
+  xxsmall: "8px",
+  xsmall: "10px",
+  small: "11px",
   medium: "12px",
   large: "16px",
   xlarge: "20px",
@@ -47,11 +48,12 @@ export const spacing = defineVars({
 export const sizes = defineVars({
   none: "0px",
   smallest: "1px",
-  xxxxxxxsmall: "2px",
-  xxxxxxsmall: "4px",
-  xxxxxsmall: "8px",
-  xxxxsmall: "10px",
-  xxxsmall: "16px",
+  xxxxxxxxsmall: "2px",
+  xxxxxxxsmall: "4px",
+  xxxxxxsmall: "8px",
+  xxxxxsmall: "10px",
+  xxxxsmall: "16px",
+  xxxsmall: "18px",
   xxsmall: "20px",
   xsmall: "24px",
   small: "28px",
@@ -108,13 +110,26 @@ export const positions = defineVars({
  * opacity
  */
 
-export type OpacityToken = "thin" | "medium" | "thick" | "thicker";
+export type OpacityToken = "thin" | "medium" | "thick" | "thicker" | "thickest";
 
 export const OPACITY: Record<OpacityToken, number> = {
   thin: 0.08,
   medium: 0.12,
   thick: 0.16,
-  thicker: 0.38,
+  thicker: 0.2,
+  thickest: 0.38,
 };
 
 export const opacity = defineVars(OPACITY);
+
+/**
+ * @description duration
+ */
+export const duration = defineVars({
+  none: "0s",
+  shortest: "0.1s",
+  short: "0.2s",
+  medium: "0.3s",
+  long: "0.5s",
+  longest: "1s",
+});

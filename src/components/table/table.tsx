@@ -1,13 +1,13 @@
 import { useReactTable, getCoreRowModel } from "@tanstack/react-table";
 import React from "react";
 import { useColumns, useContextValue } from "./hooks";
-import type { TableProps } from "musae/types/table";
+import type { TableProps } from "../../types/table";
 import Header from "./header/header";
 import { Context, CLASS_NAMES } from "./context";
 import Body from "./body";
 import stylex from "@stylexjs/stylex";
 import { stringify } from "@aiszlab/relax/class-name";
-import { useClassNames } from "../../hooks/use-class-names.component";
+import { useClassNames } from "../../hooks/use-class-names";
 
 const styles = stylex.create({
   table: {

@@ -1,12 +1,12 @@
 import React from "react";
-import { QuoteProps } from "musae/types/quote";
+import { QuoteProps } from "../../types/quote";
 import { stringify } from "@aiszlab/relax/class-name";
 import styles from "./styles";
 import stylex from "@stylexjs/stylex";
 import { useTheme } from "../theme";
 import { typography } from "../theme/theme";
 import { CLASS_NAMES } from "./context";
-import { useClassNames } from "../../hooks/use-class-names.component";
+import { useClassNames } from "../../hooks/use-class-names";
 
 const Quote = ({ className, children, style }: QuoteProps) => {
   const classNames = useClassNames(CLASS_NAMES);

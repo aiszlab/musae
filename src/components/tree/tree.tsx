@@ -1,10 +1,10 @@
 import React, { useMemo } from "react";
-import type { TreeProps } from "musae/types/tree";
+import type { TreeProps } from "../../types/tree";
 import List from "./list";
 import Context, { CLASS_NAMES } from "./context";
 import { useTogglable } from "@aiszlab/relax";
 import { useExpandedKeys, useSelectedKeys } from "./hooks";
-import { useClassNames } from "../../hooks/use-class-names.component";
+import { useClassNames } from "../../hooks/use-class-names";
 
 const Tree = ({
   className,

@@ -1,11 +1,11 @@
 import React, { forwardRef, useRef, useImperativeHandle, type CSSProperties } from "react";
 import { useInputEvents, useInputorEvents } from "./hooks";
-import type { InputProps, InputRef } from "musae/types/input";
+import type { InputProps, InputRef } from "../../types/input";
 import { useControlledState, useFocus } from "@aiszlab/relax";
 import stylex from "@stylexjs/stylex";
-import { OPACITY, sizes, spacing } from "../theme/tokens.stylex";
+import { duration, OPACITY, sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
-import { useClassNames } from "../../hooks/use-class-names.component";
+import { useClassNames } from "../../hooks/use-class-names";
 import { typography } from "../theme/theme";
 import { hexToRgba } from "@aiszlab/fuzzy/color";
 import { stringify } from "@aiszlab/relax/class-name";
@@ -19,7 +19,7 @@ export const styles = stylex.create({
     display: "inline-flex",
     alignItems: "center",
     cursor: "text",
-    borderRadius: sizes.xxxxxxsmall,
+    borderRadius: sizes.xxxxxxxsmall,
     verticalAlign: "bottom",
     outline: sizes.none,
 
@@ -36,22 +36,22 @@ export const styles = stylex.create({
 
     // layout
     margin: spacing.none,
-    paddingBlock: spacing.xxxsmall,
+    paddingBlock: spacing.xxxxxsmall,
     paddingInline: spacing.medium,
 
     // animation
     transitionProperty: "box-shadow",
-    transitionDuration: "0.2s",
+    transitionDuration: duration.short,
     // fix: eliminate serrations, use gpu speed up by add `transform`
     willChange: "box-shadow, transform",
 
     ":focus-within": {
-      boxShadow: `0px 0px 0px ${sizes.xxxxxxxsmall} ${props.focusedOutlineColor}`,
+      boxShadow: `0px 0px 0px ${sizes.xxxxxxxxsmall} ${props.focusedOutlineColor}`,
     },
   }),
 
   invalid: (props: { outlineColor: CSSProperties["borderColor"] }) => ({
-    boxShadow: `0px 0px 0px ${sizes.xxxxxxxsmall} ${props.outlineColor}`,
+    boxShadow: `0px 0px 0px ${sizes.xxxxxxxxsmall} ${props.outlineColor}`,
 
     ":focus-within": {
       boxShadow: null,
@@ -151,8 +151,8 @@ const Input = forwardRef<InputRef, InputProps>(
         disabled &&
           styles.disabled({
             backgroundColor: hexToRgba(theme.colors["on-surface"], OPACITY.thin, "style"),
-            color: hexToRgba(theme.colors["on-surface"], OPACITY.thicker, "style"),
-            outlineColor: hexToRgba(theme.colors["on-surface"], OPACITY.thicker, "style"),
+            color: hexToRgba(theme.colors["on-surface"], OPACITY.thickest, "style"),
+            outlineColor: hexToRgba(theme.colors["on-surface"], OPACITY.thickest, "style"),
           }),
       ),
       input: stylex.props(styles.input),

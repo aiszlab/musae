@@ -1,5 +1,5 @@
 import React, { type CSSProperties } from "react";
-import { useClassNames } from "../../hooks/use-class-names.component";
+import { useClassNames } from "../../hooks/use-class-names";
 import stylex from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { stringify } from "@aiszlab/relax/class-name";
@@ -16,19 +16,19 @@ const styles = stylex.create({
   },
 
   figure: {
-    borderStartStartRadius: sizes.xxxsmall,
-    borderStartEndRadius: sizes.xxxsmall,
-    borderEndStartRadius: sizes.xxxxxxxsmall,
-    borderEndEndRadius: sizes.xxxxxxxsmall,
+    borderStartStartRadius: sizes.xxxxsmall,
+    borderStartEndRadius: sizes.xxxxsmall,
+    borderEndStartRadius: sizes.xxxxxxxxsmall,
+    borderEndEndRadius: sizes.xxxxxxxxsmall,
   },
 
   label: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
-    marginBlockStart: spacing.xxxsmall,
+    marginBlockStart: spacing.xxxxxsmall,
     backgroundColor: props.backgroundColor,
-    borderStartStartRadius: sizes.xxxxxxxsmall,
-    borderStartEndRadius: sizes.xxxxxxxsmall,
-    borderEndStartRadius: sizes.xxxsmall,
-    borderEndEndRadius: sizes.xxxsmall,
+    borderStartStartRadius: sizes.xxxxxxxxsmall,
+    borderStartEndRadius: sizes.xxxxxxxxsmall,
+    borderEndStartRadius: sizes.xxxxsmall,
+    borderEndEndRadius: sizes.xxxxsmall,
   }),
 
   recommend: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
@@ -36,10 +36,10 @@ const styles = stylex.create({
   }),
 
   caption: {
-    marginBlockStart: spacing.xsmall,
-    marginInline: spacing.xsmall,
+    marginBlockStart: spacing.xxsmall,
+    marginInline: spacing.xxsmall,
     paddingBlock: spacing.large,
-    paddingInline: spacing.xxxxsmall,
+    paddingInline: spacing.xxxxxxsmall,
   },
 });
 

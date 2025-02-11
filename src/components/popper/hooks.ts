@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef } from "react";
-import type { DropdownProps, PopperProps } from "musae/types/popper";
+import type { DropdownProps, PopperProps } from "../../types/popper";
 import { useAnimate } from "framer-motion";
 import { useComposedRef, useEvent } from "@aiszlab/relax";
 import { useContainer } from "../../hooks/use-container";
@@ -84,7 +84,7 @@ export const useFloating = ({
 
     _isOpen.current = true;
 
-    _floatable.style.display = "unset";
+    _floatable.style.display = "flex";
     await Promise.all([
       Promise.resolve()
         .then(onEnter)

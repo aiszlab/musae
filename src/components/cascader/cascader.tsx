@@ -3,21 +3,21 @@ import { Picker } from "../picker";
 import { Tag } from "../tag";
 import { useOptions, useValue } from "./hooks";
 import { Menu } from "../menu";
-import { useClassNames } from "../../hooks/use-class-names.component";
+import { useClassNames } from "../../hooks/use-class-names";
 import stylex from "@stylexjs/stylex";
 import { stringify } from "@aiszlab/relax/class-name";
 import { spacing } from "../theme/tokens.stylex";
 
-import type { MenuProps } from "musae/types/menu";
-import type { PickerRef } from "musae/types/picker";
-import type { CascaderProps } from "musae/types/cascader";
+import type { MenuProps } from "../../types/menu";
+import type { PickerRef } from "../../types/picker";
+import type { CascaderProps } from "../../types/cascader";
 import { CLASS_NAMES } from "./context";
 
 const styles = stylex.create({
   options: {
     display: "flex",
-    columnGap: spacing.xxxsmall,
-    marginInline: spacing.xxxsmall,
+    columnGap: spacing.xxxxxsmall,
+    marginInline: spacing.xxxxxsmall,
   },
 });
 

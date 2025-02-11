@@ -1,6 +1,6 @@
 import React from "react";
-import { useClassNames } from "../../hooks/use-class-names.component";
-import type { ClockProps, TimeUnit } from "musae/types/clock";
+import { useClassNames } from "../../hooks/use-class-names";
+import type { ClockProps, TimeUnit } from "../../types/clock";
 import Column from "./column";
 import stylex from "@stylexjs/stylex";
 import { stringify } from "@aiszlab/relax/class-name";
@@ -13,7 +13,7 @@ const styles = stylex.create({
   clock: {
     display: "flex",
     height: 200,
-    columnGap: spacing.xxxsmall,
+    columnGap: spacing.xxxxxsmall,
   },
 });
 

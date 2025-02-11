@@ -1,8 +1,8 @@
 import React, { type FocusEvent, useRef, useState } from "react";
-import type { OtpInputProps } from "musae/types/otp-input";
+import type { OtpInputProps } from "../../types/otp-input";
 import { useInputEvents, useValue } from "./hooks";
 import { Input } from "../input";
-import type { InputRef } from "musae/types/input";
+import type { InputRef } from "../../types/input";
 import { clamp, useEvent } from "@aiszlab/relax";
 import stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
@@ -12,7 +12,7 @@ const styles = stylex.create({
   otp: {
     display: "flex",
     flexDirection: "row",
-    gap: spacing.xsmall,
+    gap: spacing.xxsmall,
   },
 
   input: {

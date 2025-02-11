@@ -1,7 +1,7 @@
 import React, { type CSSProperties } from "react";
 import { useTable } from "../context";
 import { flexRender } from "@tanstack/react-table";
-import type { HeaderProps } from "musae/types/table";
+import type { HeaderProps } from "../../../types/table";
 import stylex from "@stylexjs/stylex";
 import { sizes, spacing } from "../../theme/tokens.stylex";
 import { useTheme } from "../../theme";
@@ -20,7 +20,7 @@ const styles = stylex.create({
     backgroundColor: props.backgroundColor,
     textAlign: "start",
     position: "relative",
-    paddingInline: spacing.xsmall,
+    paddingInline: spacing.xxsmall,
     paddingBlock: spacing.medium,
     borderColor: props.borderColor,
     borderStyle: "solid",

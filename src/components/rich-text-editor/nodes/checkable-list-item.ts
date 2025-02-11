@@ -1,42 +1,41 @@
-import { $isListNode, ListItemNode, SerializedListItemNode } from "@lexical/list";
-import { type EditorConfig, type LexicalNodeReplacement } from "lexical";
-import type { EditorThemeClasses } from "musae/types/rich-text-editor";
-import { Partialable } from "@aiszlab/relax/types";
+import { ListItemNode, SerializedListItemNode } from "@lexical/list";
+import { LexicalNode, type NodeKey, type LexicalNodeReplacement, EditorConfig } from "lexical";
+import type { Partialable } from "@aiszlab/relax/types";
+import { CheckboxNode } from "./checkbox";
 
 class CheckableListItemNode extends ListItemNode {
   #disabled: boolean;
-  #checkboxElement: HTMLInputElement | null = null;
-
-  static getType(): string {
-    return "checkable-list-item";
-  }
-
-  static clone(node: CheckableListItemNode) {
-    return new CheckableListItemNode(node.__value, node.__checked, node.__key, node.disabled);
-  }
-
-  static importJSON(serializedNode: SerializedListItemNode) {
-    return super.importJSON(serializedNode);
-  }
+  #checkbox?: NodeKey;
 
   constructor(
     value: number,
     checked: Partialable<boolean>,
     key: Partialable<string>,
     disabled: boolean,
+    checkbox?: NodeKey,
   ) {
     super(value, checked, key);
+
     this.#disabled = disabled;
+    this.#checkbox = checkbox;
   }
 
-  get disabled() {
-    return this.#disabled;
+  static getType(): string {
+    return "checkable-list-item";
   }
 
-  toggleDisabled() {
-    const _node = this.getWritable();
-    _node.#disabled = !_node.#disabled;
-    _node.#checkboxElement?.setAttribute("aria-disabled", String(this.#disabled));
+  static clone(node: CheckableListItemNode) {
+    return new CheckableListItemNode(
+      node.__value,
+      node.__checked,
+      node.__key,
+      node.#disabled,
+      node.#checkbox,
+    );
+  }
+
+  static importJSON(serializedNode: SerializedListItemNode) {
+    return super.importJSON(serializedNode);
   }
 
   exportJSON(): SerializedListItemNode {
@@ -45,43 +44,35 @@ class CheckableListItemNode extends ListItemNode {
       checked: this.getChecked(),
       type: this.getType(),
       value: this.getValue(),
-      version: 1,
     };
   }
 
-  createDOM(config: EditorConfig): HTMLElement {
-    const listItem = super.createDOM(config);
+  renderCheckbox() {
+    // if checkbox already render, do nothing
+    const children = this.getChildren();
+    const hasCheckbox = children.some((child) => child instanceof CheckboxNode);
+    if (hasCheckbox) return;
 
-    if (!this.#isCheckList) return listItem;
-
-    this.#checkboxElement = document.createElement("input");
-    const isChecked = this.getChecked();
-    this.#checkboxElement.setAttribute("type", "checkbox");
-    this.#checkboxElement.setAttribute("aria-disabled", String(this.#disabled));
-    this.#checkboxElement.setAttribute("aria-checked", String(isChecked));
-    this.#checkboxElement.className = (config.theme as EditorThemeClasses).checkbox ?? "";
-    listItem.appendChild(this.#checkboxElement);
-    return listItem;
+    const checkboxNode = new CheckboxNode(void 0, this.__checked);
+    this.#checkbox = checkboxNode.getKey();
+    this.append(checkboxNode);
   }
 
-  updateDOM(prevNode: CheckableListItemNode, dom: HTMLElement, config: EditorConfig): boolean {
-    const isReplace = super.updateDOM(prevNode, dom, config);
-    this.#checkboxElement?.setAttribute("aria-checked", String(this.getChecked() ?? false));
-
-    // if user clear all text, just replace new item node
-    return isReplace || this.getTextContentSize() === 0;
+  get disabled() {
+    return this.#disabled;
   }
 
-  get #isCheckList() {
-    const parent = this.getParent();
-    return $isListNode(parent) && parent.getListType() === "check";
+  get checkbox() {
+    return this.#checkbox;
   }
 }
 
 export const replacement = (disabled: boolean): LexicalNodeReplacement => ({
   replace: ListItemNode,
-  with: (node: ListItemNode) =>
-    new CheckableListItemNode(node.getValue(), node.getChecked(), undefined, disabled),
+  with: (node: ListItemNode) => {
+    return new CheckableListItemNode(node.__value, node.__checked, void 0, disabled);
+  },
+  withKlass: CheckableListItemNode,
 });
 
 export { CheckableListItemNode };

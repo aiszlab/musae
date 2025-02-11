@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo } from "react";
 import { Context } from "./context";
-import type { ContextValue, RadioGroupProps } from "musae/types/radio";
+import type { ContextValue, RadioGroupProps } from "../../types/radio";
 import { useControlledState } from "@aiszlab/relax";
 
 const Group = ({ disabled = false, children, ...props }: RadioGroupProps) => {

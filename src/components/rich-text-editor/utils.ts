@@ -13,6 +13,7 @@ import {
   CheckableListItemNode,
   replacement as listItemNodeReplacement,
 } from "./nodes/checkable-list-item";
+import { CheckboxNode } from "./nodes/checkbox";
 
 const _styles = {
   list: {
@@ -63,18 +64,18 @@ const _styles = {
       backgroundColor: "var(--surface-container-highest)",
       display: "block",
       overflow: "auto",
-      borderRadius: spacing.xxsmall,
-      paddingBlock: spacing.xsmall,
-      paddingInline: spacing.xsmall,
-      marginBlock: spacing.xxsmall,
+      borderRadius: spacing.xxxsmall,
+      paddingBlock: spacing.xxsmall,
+      paddingInline: spacing.xxsmall,
+      marginBlock: spacing.xxxsmall,
     },
 
     inline: {
       backgroundColor: "var(--surface-container-highest)",
-      borderRadius: spacing.xxxsmall,
-      paddingBlock: spacing.xxxxsmall,
-      paddingInline: spacing.xxxsmall,
-      marginInline: spacing.xxxsmall,
+      borderRadius: spacing.xxxxxsmall,
+      paddingBlock: spacing.xxxxxxsmall,
+      paddingInline: spacing.xxxxxsmall,
+      marginInline: spacing.xxxxxsmall,
     },
   }),
 
@@ -83,31 +84,31 @@ const _styles = {
 
     h1: {
       marginBlockStart: spacing.xxlarge,
-      marginBlockEnd: spacing.small,
+      marginBlockEnd: spacing.xsmall,
     },
 
     h2: {
       marginBlockStart: spacing.xlarge,
-      marginBlockEnd: spacing.xxsmall,
+      marginBlockEnd: spacing.xxxsmall,
     },
 
     h3: {
       marginBlockStart: spacing.large,
-      marginBlockEnd: spacing.xxsmall,
+      marginBlockEnd: spacing.xxxsmall,
     },
 
     h4: {
-      marginBlockStart: spacing.small,
-      marginBlockEnd: spacing.xxsmall,
+      marginBlockStart: spacing.xsmall,
+      marginBlockEnd: spacing.xxxsmall,
     },
 
     h5: {
-      marginBlockStart: spacing.xsmall,
-      marginBlockEnd: spacing.xxsmall,
+      marginBlockStart: spacing.xxsmall,
+      marginBlockEnd: spacing.xxxsmall,
     },
 
     h6: {
-      marginBlockEnd: spacing.xxsmall,
+      marginBlockEnd: spacing.xxxsmall,
     },
   }),
 
@@ -121,46 +122,30 @@ const _styles = {
       },
     },
   }),
-
-  checkbox: stylex.create({
-    default: {
-      position: "absolute",
-      insetInlineStart: spacing.xxxsmall,
-      insetBlockStart: spacing.xxxxsmall,
-
-      // if node is disabled, show disabled style
-      ':not([aria-disabled="false"])': {
-        opacity: opacity.thicker,
-        cursor: "not-allowed",
-      },
-    },
-  }),
 };
 
 export const usingStyles = () => {
   return {
-    h1: stylex.props(typography.headline.large, _styles.heading.default, _styles.heading.h1),
-    h2: stylex.props(typography.headline.medium, _styles.heading.default, _styles.heading.h2),
-    h3: stylex.props(typography.headline.small, _styles.heading.default, _styles.heading.h3),
-    h4: stylex.props(typography.title.large, _styles.heading.default, _styles.heading.h4),
-    h5: stylex.props(typography.title.medium, _styles.heading.default, _styles.heading.h5),
-    h6: stylex.props(typography.title.medium, _styles.heading.default, _styles.heading.h6),
+    h1: stylex.attrs(typography.headline.large, _styles.heading.default, _styles.heading.h1),
+    h2: stylex.attrs(typography.headline.medium, _styles.heading.default, _styles.heading.h2),
+    h3: stylex.attrs(typography.headline.small, _styles.heading.default, _styles.heading.h3),
+    h4: stylex.attrs(typography.title.large, _styles.heading.default, _styles.heading.h4),
+    h5: stylex.attrs(typography.title.medium, _styles.heading.default, _styles.heading.h5),
+    h6: stylex.attrs(typography.title.medium, _styles.heading.default, _styles.heading.h6),
 
-    code: stylex.props(typography.label.medium, _styles.code.block),
-    inlineCode: stylex.props(typography.label.medium, _styles.code.inline),
+    code: stylex.attrs(typography.label.medium, _styles.code.block),
+    inlineCode: stylex.attrs(typography.label.medium, _styles.code.inline),
 
-    link: stylex.props(_styles.link.default),
-
-    checkbox: stylex.props(checkboxStyles.input.default, _styles.checkbox.default),
+    link: stylex.attrs(_styles.link.default),
 
     list: {
-      unordered: stylex.props(_styles.list.default.default, _styles.list.unordered.default),
-      ordered: stylex.props(_styles.list.default.default, _styles.list.ordered.default),
-      checkable: stylex.props(_styles.list.unordered.checkable),
+      unordered: stylex.attrs(_styles.list.default.default, _styles.list.unordered.default),
+      ordered: stylex.attrs(_styles.list.default.default, _styles.list.ordered.default),
+      checkable: stylex.attrs(_styles.list.unordered.checkable),
       item: {
-        default: stylex.props(_styles.list.item.default),
-        unchecked: stylex.props(_styles.list.item.checkable),
-        checked: stylex.props(_styles.list.item.checkable, _styles.list.item.checked),
+        default: stylex.attrs(_styles.list.item.default),
+        unchecked: stylex.attrs(_styles.list.item.checkable),
+        checked: stylex.attrs(_styles.list.item.checkable, _styles.list.item.checked),
       },
     },
   };
@@ -171,34 +156,31 @@ export const usingStyles = () => {
  * in musae
  * rich text always use same configuration
  */
-export const usingEditor = ({
-  disabled = false,
-}: { disabled?: boolean } = {}): CreateEditorArgs => {
+export const usingEditor = ({ disabled = false }: { disabled?: boolean }): CreateEditorArgs => {
   const styled = usingStyles();
 
   const theme: EditorThemeClasses = {
     heading: {
-      h1: styled.h1.className,
-      h2: styled.h2.className,
-      h3: styled.h3.className,
-      h4: styled.h4.className,
-      h5: styled.h5.className,
-      h6: styled.h6.className,
+      h1: styled.h1.class,
+      h2: styled.h2.class,
+      h3: styled.h3.class,
+      h4: styled.h4.class,
+      h5: styled.h5.class,
+      h6: styled.h6.class,
     },
-    code: styled.code.className,
+    code: styled.code.class,
     text: {
-      code: styled.inlineCode.className,
+      code: styled.inlineCode.class,
     },
-    link: styled.link.className,
+    link: styled.link.class,
     list: {
-      ul: styled.list.unordered.className,
-      ol: styled.list.ordered.className,
-      checklist: styled.list.checkable.className,
-      listitem: styled.list.item.default.className,
-      listitemUnchecked: styled.list.item.unchecked.className,
-      listitemChecked: styled.list.item.checked.className,
+      ul: styled.list.unordered.class,
+      ol: styled.list.ordered.class,
+      checklist: styled.list.checkable.class,
+      listitem: styled.list.item.default.class,
+      listitemUnchecked: styled.list.item.unchecked.class,
+      listitemChecked: styled.list.item.checked.class,
     },
-    checkbox: styled.checkbox.className,
   };
 
   return {
@@ -211,6 +193,7 @@ export const usingEditor = ({
       CheckableListItemNode,
       listItemNodeReplacement(disabled),
       HorizontalRuleNode,
+      CheckboxNode,
     ],
     theme,
     editable: !disabled,

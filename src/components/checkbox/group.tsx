@@ -1,6 +1,6 @@
 import Context from "./context";
 import React, { useCallback, useMemo } from "react";
-import type { ContextValue, CheckboxGroupProps } from "musae/types/checkbox";
+import type { ContextValue, CheckboxGroupProps } from "../../types/checkbox";
 import { useControlledState } from "@aiszlab/relax";
 
 const Group = ({

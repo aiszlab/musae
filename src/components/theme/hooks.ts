@@ -1,5 +1,5 @@
 import { MouseEvent, createContext, useContext, useMemo, useRef, useState } from "react";
-import type { Palette, ContextValue, Theme, Mode } from "musae/types/theme";
+import type { Palette, ContextValue, Theme, Mode } from "../../types/theme";
 import { toColorRoles } from "../../utils/color-role";
 import { isFunction, useEvent, useMounted } from "@aiszlab/relax";
 import stylex from "@stylexjs/stylex";

@@ -1,11 +1,11 @@
 import React, { type CSSProperties } from "react";
-import type { TourProps } from "musae/types/tour";
+import type { TourProps } from "../../types/tour";
 import { Portal } from "../portal";
 import { Popper } from "../popper";
 import stylex from "@stylexjs/stylex";
 import { Button } from "../button";
 import { useTheme } from "../theme";
-import { elevations, positions, sizes, spacing } from "../theme/tokens.stylex";
+import { duration, elevations, positions, sizes, spacing } from "../theme/tokens.stylex";
 import { Space } from "../space";
 import { typography } from "../theme/theme";
 import { stringify } from "@aiszlab/relax/class-name";
@@ -14,7 +14,7 @@ import Spotlight from "./spotlight";
 import { useGutters } from "../../hooks/use-gutters";
 import { useLocale } from "../../locale";
 import { CLASS_NAMES, Context } from "./context";
-import { useClassNames } from "../../hooks/use-class-names.component";
+import { useClassNames } from "../../hooks/use-class-names";
 import { useContainer } from "../../hooks/use-container";
 
 const styles = stylex.create({
@@ -29,14 +29,15 @@ const styles = stylex.create({
   tour: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
     backgroundColor: props.backgroundColor,
     boxShadow: elevations.small,
-    borderRadius: sizes.xxxxxxsmall,
-    transition: "all 0.2s",
+    borderRadius: sizes.xxxxxxxsmall,
+    transitionProperty: "all",
+    transitionDuration: duration.short,
   }),
 
   title: {
     paddingInline: spacing.large,
     paddingBlockStart: spacing.large,
-    paddingBlockEnd: spacing.xsmall,
+    paddingBlockEnd: spacing.xxsmall,
   },
 
   description: {
@@ -45,7 +46,7 @@ const styles = stylex.create({
 
   footer: {
     paddingInline: spacing.large,
-    paddingBlockStart: spacing.xsmall,
+    paddingBlockStart: spacing.xxsmall,
     paddingBlockEnd: spacing.large,
   },
 });

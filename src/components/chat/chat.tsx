@@ -2,7 +2,7 @@ import React, { useCallback, useMemo, useState } from "react";
 import { Textarea } from "../textarea";
 import { useIdentity } from "@aiszlab/relax";
 import Item from "./item";
-import { useClassNames } from "../../hooks/use-class-names.component";
+import { useClassNames } from "../../hooks/use-class-names";
 import { CLASS_NAMES, Context } from "./context";
 import type { ChatItemProps, ChatProps } from "../../types/chat";
 import stylex from "@stylexjs/stylex";
@@ -21,7 +21,7 @@ const styles = stylex.create({
 
   messages: {
     flex: 1,
-    padding: spacing.xsmall,
+    padding: spacing.xxsmall,
     display: "flex",
     flexDirection: "column",
     gap: spacing.medium,
@@ -29,7 +29,7 @@ const styles = stylex.create({
   },
 
   footer: {
-    padding: spacing.xsmall,
+    padding: spacing.xxsmall,
     display: "flex",
     flexDirection: "row",
     gap: spacing.medium,

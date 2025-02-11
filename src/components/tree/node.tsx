@@ -1,5 +1,5 @@
 import React, { type CSSProperties, useContext } from "react";
-import type { TreeNodeProps } from "musae/types/tree";
+import type { TreeNodeProps } from "../../types/tree";
 import Context from "./context";
 import { Checkbox } from "../checkbox";
 import { KeyboardArrowRight } from "musae/icons";
@@ -13,9 +13,9 @@ const styles = stylex.create({
   node: (props: { level: number }) => ({
     display: "flex",
     alignItems: "center",
-    gap: spacing.xxxsmall,
+    gap: spacing.xxxxxsmall,
 
-    paddingBlock: spacing.xsmall,
+    paddingBlock: spacing.xxsmall,
     paddingLeft: 12 + props.level * 24,
   }),
 
@@ -37,7 +37,7 @@ const styles = stylex.create({
     hoveredBackgroundColor: CSSProperties["backgroundColor"];
     color: CSSProperties["color"];
   }) => ({
-    paddingInline: spacing.xxxsmall,
+    paddingInline: spacing.xxxxxsmall,
     borderRadius: 4,
     backgroundColor: {
       default: props.isSelected ? props.backgroundColor : null,

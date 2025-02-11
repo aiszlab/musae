@@ -1,6 +1,6 @@
 import { useControlledState, useEvent, toArray, exclude } from "@aiszlab/relax";
 import { useMemo, type Key } from "react";
-import type { Value } from "musae/types/collapse";
+import type { Value } from "../../types/collapse";
 
 /**
  * @description

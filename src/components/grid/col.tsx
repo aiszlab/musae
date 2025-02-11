@@ -1,5 +1,5 @@
 import { createElement, type ReactNode, useContext } from "react";
-import type { ColProps } from "musae/types/grid";
+import type { ColProps } from "../../types/grid";
 import { stringify } from "@aiszlab/relax/class-name";
 import stylex from "@stylexjs/stylex";
 import { Context } from "./context";

@@ -6,7 +6,7 @@ import React, {
   type MouseEvent,
   type CSSProperties,
 } from "react";
-import type { PopconfirmProps, ChildProps } from "musae/types/popconfirm";
+import type { PopconfirmProps, ChildProps } from "../../types/popconfirm";
 import stylex from "@stylexjs/stylex";
 import { Space } from "../space";
 import { Button } from "../button";
@@ -17,9 +17,9 @@ import { spacing } from "../theme/tokens.stylex";
 import { typography } from "../theme/theme";
 import { useTheme } from "../theme";
 import { useLocale } from "../../locale";
-import type { PopperRef } from "musae/types/popper";
+import type { PopperRef } from "../../types/popper";
 import { stringify } from "@aiszlab/relax/class-name";
-import { useClassNames } from "../../hooks/use-class-names.component";
+import { useClassNames } from "../../hooks/use-class-names";
 import { CLASS_NAMES } from "./context";
 
 const styles = stylex.create({
@@ -30,7 +30,7 @@ const styles = stylex.create({
     // layout
     display: "grid",
     gridTemplateAreas: "'leading title' '. content' 'footer footer'",
-    gap: spacing.xsmall,
+    gap: spacing.xxsmall,
   },
 
   simple: {

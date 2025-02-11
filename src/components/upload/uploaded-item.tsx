@@ -1,7 +1,7 @@
 import React, { type CSSProperties, useContext, type Key, useMemo } from "react";
 import stylex from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";
-import type { UploadedItem as UploadedItemType } from "musae/types/upload";
+import type { UploadedItem as UploadedItemType } from "../../types/upload";
 import { isFunction, useEvent } from "@aiszlab/relax";
 import { AttachFile, Delete, Loading } from "../icon/icons";
 import { leaf } from "@aiszlab/fuzzy/path";
@@ -16,7 +16,7 @@ const styles = {
     default: {
       display: "flex",
       alignItems: "center",
-      gap: spacing.xsmall,
+      gap: spacing.xxsmall,
     },
 
     picture: (props: { borderColor: CSSProperties["borderColor"] }) => ({
@@ -24,7 +24,7 @@ const styles = {
       borderStyle: "solid",
       borderColor: props.borderColor,
       padding: spacing.medium,
-      borderRadius: sizes.xxxxxxsmall,
+      borderRadius: sizes.xxxxxxxsmall,
       height: sizes.xxxlarge,
     }),
   }),

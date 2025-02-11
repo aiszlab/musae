@@ -2,16 +2,16 @@ import React, { useContext, useEffect, useRef } from "react";
 import { stringify } from "@aiszlab/relax/class-name";
 import { computePosition, size, autoUpdate, offset } from "@floating-ui/dom";
 import stylex from "@stylexjs/stylex";
-import { SpotlightProps } from "musae/types/tour";
-import { sizes } from "../theme/tokens.stylex";
+import { SpotlightProps } from "../../types/tour";
+import { duration, sizes } from "../theme/tokens.stylex";
 import { Context } from "./context";
 
 const styles = stylex.create({
   spotlight: {
     backgroundColor: "#808080",
-    borderRadius: sizes.xxxxxsmall,
+    borderRadius: sizes.xxxxxxsmall,
     transitionProperty: "transform",
-    transitionDuration: "0.2s",
+    transitionDuration: duration.short,
     willChange: "transform",
     display: "none",
   },

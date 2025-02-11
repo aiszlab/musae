@@ -1,5 +1,5 @@
 import React, { useContext, type CSSProperties } from "react";
-import type { Status, StepItemProps } from "musae/types/steps";
+import type { Status, StepItemProps } from "../../types/steps";
 import stylex from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
@@ -15,7 +15,7 @@ const styles = {
       flex: 1,
       display: "grid",
       alignItems: "center",
-      columnGap: spacing.xxsmall,
+      columnGap: spacing.xxxsmall,
       overflow: "hidden",
       pointerEvents: "none",
 
@@ -45,7 +45,7 @@ const styles = {
         backgroundColor: "var(--primary)",
         insetBlockStart: "100%",
         insetInlineStart: `calc((100% - ${sizes.smallest}) / 2)`,
-        marginBlockStart: spacing.xsmall,
+        marginBlockStart: spacing.xxsmall,
       },
     },
   }),
@@ -92,7 +92,7 @@ const styles = {
         height: sizes.smallest,
         width: sizes.infinity,
         backgroundColor: "var(--primary)",
-        marginInlineStart: spacing.xsmall,
+        marginInlineStart: spacing.xxsmall,
         insetBlockStart: `calc((100% - ${sizes.smallest}) / 2)`,
       },
     },

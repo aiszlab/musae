@@ -5,7 +5,7 @@ import { useConfiguration } from "../components/config/hooks";
  * @description
  * in component, inject prefix class names
  */
-export const useClassNames = <C extends Record<string, string>>(classNames: C): C => {
+export const useClassNames = <C extends Record<string, string>>(classNames: C) => {
   const { prefix } = useConfiguration();
 
   return useMemo(() => {

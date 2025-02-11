@@ -2,7 +2,7 @@ import React, { type CSSProperties } from "react";
 import { Layout } from "../layout";
 import stylex from "@stylexjs/stylex";
 import { elevations, ElevationToken, sizes, spacing } from "../theme/tokens.stylex";
-import type { BenchProps } from "musae/types/bench";
+import type { BenchProps } from "../../types/bench";
 import { Divider } from "../divider";
 import { useLogo, useNavigations } from "./hooks";
 import { Menu } from "../menu";
@@ -21,7 +21,7 @@ const styles = {
       borderRightStyle: "solid",
       borderRightColor: props.outlineColor,
       paddingInline: spacing.medium,
-      paddingBlockEnd: spacing.xsmall,
+      paddingBlockEnd: spacing.xxsmall,
 
       position: "sticky",
       height: `calc(100vh - ${sizes.xxxlarge} - ${spacing.xxxlarge})`,
@@ -38,7 +38,7 @@ const styles = {
 
   header: stylex.create({
     default: (props: { elevation: ElevationToken }) => ({
-      gap: spacing.xsmall,
+      gap: spacing.xxsmall,
       boxShadow: elevations[props.elevation],
     }),
 

@@ -1,5 +1,5 @@
 import { type ReactNode, Children, isValidElement, useMemo } from "react";
-import type { ComponentProps } from "musae/types/element";
+import type { ComponentProps } from "../../types/element";
 import Header from "./header";
 import Sider from "./sider";
 import Footer from "./footer";
@@ -47,7 +47,7 @@ export const useChildren = ([children]: [ReactNode]) => {
 
         return prev;
       },
-      [new Map(), {}]
+      [new Map(), {}],
     );
   }, [_children]);
 

@@ -1,5 +1,5 @@
 import type { ChangeEvent, Key, ReactNode } from "react";
-import type { ComponentProps } from "musae/types/element";
+import type { ComponentProps } from "./element";
 
 /**
  * @author murukal
@@ -83,6 +83,12 @@ export interface CheckboxProps extends ComponentProps {
 
   /**
    * @description
+   * if is default checked
+   */
+  defaultChecked?: boolean;
+
+  /**
+   * @description
    * value
    * @default void 0
    */
@@ -108,6 +114,25 @@ export interface CheckboxProps extends ComponentProps {
    * @default false
    */
   disabled?: boolean;
+
+  /**
+   * @description indeterminate
+   * @default false
+   */
+  indeterminate?: boolean;
+
+  /**
+   * @description ripple
+   * @default true
+   */
+  ripple?: boolean;
+
+  /**
+   * @description
+   * invalid
+   * @default false
+   */
+  invalid?: boolean;
 }
 
 /**

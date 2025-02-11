@@ -1,12 +1,12 @@
 import React, { useMemo } from "react";
 import { useTransfer } from "./hooks";
-import type { TransferProps } from "musae/types/transfer";
+import type { TransferProps } from "../../types/transfer";
 import List from "./list";
 import stylex from "@stylexjs/stylex";
 import { KeyboardArrowLeft, KeyboardArrowRight } from "musae/icons";
 import { spacing } from "../theme/tokens.stylex";
 import { CLASS_NAMES, Context } from "./context";
-import { useClassNames } from "../../hooks/use-class-names.component";
+import { useClassNames } from "../../hooks/use-class-names";
 import { stringify } from "@aiszlab/relax/class-name";
 import { IconButton } from "../icon-button";
 
@@ -15,13 +15,13 @@ const styles = stylex.create({
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
-    gap: spacing.xsmall,
+    gap: spacing.xxsmall,
   },
 
   operation: {
     display: "flex",
     flexDirection: "column",
-    gap: spacing.xsmall,
+    gap: spacing.xxsmall,
   },
 });
 

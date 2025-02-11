@@ -32,19 +32,19 @@ const styles = stylex.create({
     alignSelf: "flex-end",
     width: "fit-content",
     paddingInline: spacing.large,
-    paddingBlock: spacing.xsmall,
+    paddingBlock: spacing.xxsmall,
     backgroundColor: props.backgroundColor,
     color: props.color,
-    borderRadius: sizes.xxxxxsmall,
+    borderRadius: sizes.xxxxxxsmall,
   }),
 
   receive: (props: { backgroundColor: string; color: string }) => ({
     alignSelf: "flex-start",
     paddingInline: spacing.large,
-    paddingBlock: spacing.xsmall,
+    paddingBlock: spacing.xxsmall,
     backgroundColor: props.backgroundColor,
     color: props.color,
-    borderRadius: sizes.xxxxxsmall,
+    borderRadius: sizes.xxxxxxsmall,
   }),
 
   receiving: {
