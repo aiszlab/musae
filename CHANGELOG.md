@@ -1,5 +1,11 @@
 # musae
 
+## 0.5.13
+
+### Patch Changes
+
+- feature: split panel component
+
 ## 0.4.0
 
 ### Minor Changes
