@@ -12,35 +12,6 @@ const pkg = require("./package.json");
 const STYLES_EXPORT = "styles.css";
 const ENTRY = "index";
 const EXTENSIONS = [".ts", ".tsx", ".js", ".jsx"];
-const STYLES_IMPORT = [pkg.name, STYLES_EXPORT].join("/");
-
-/**
- * @param {import("rollup").RenderedChunk} chunk
- * @param {import("rollup").ModuleFormat} format
- * @param {boolean} isProd
- * @returns {string}
- */
-const banner = (chunk, format, isProd) => {
-  if (!isProd) return;
-  if (!chunk.isEntry) return;
-  if (chunk.name !== ENTRY) return;
-
-  // configuration readme: https://rollupjs.org/configuration-options/#output-banner-output-footer
-  // update imports, importedBindings
-  // add css to entry chunk
-  chunk.imports.push(STYLES_IMPORT);
-  Object.assign(chunk.importedBindings, {
-    [STYLES_IMPORT]: [],
-  });
-
-  switch (format) {
-    case "esm":
-    case "es":
-      return `import "${STYLES_IMPORT}";`;
-    default:
-      return `require("${STYLES_IMPORT}")`;
-  }
-};
 
 /**
  * @type {import("rollup").OutputOptions[]}
@@ -89,11 +60,9 @@ const config = () => {
     output: OUTPUS.map((_output) => ({
       ..._output,
       dir: "./dist",
-      strict: false,
       exports: "named",
       preserveModules: true,
       preserveModulesRoot: "src",
-      banner: (chunk) => banner(chunk, _output.format, isProd),
     })),
 
     treeshake: {

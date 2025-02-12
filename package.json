@@ -20,13 +20,13 @@
   },
   "exports": {
     ".": {
+      "style": "./dist/styles.css",
       "types": "./dist/index.d.ts",
       "require": "./dist/index.cjs",
       "node": "./dist/index.cjs",
       "import": "./dist/index.mjs",
       "default": "./dist/index.mjs"
     },
-    "./styles.css": "./dist/styles.css",
     "./locales": {
       "types": "./dist/locale/locales/index.d.ts",
       "require": "./dist/locale/locales/index.cjs",
