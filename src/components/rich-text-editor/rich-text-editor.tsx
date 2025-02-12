@@ -34,7 +34,7 @@ import { usingEditor } from "./utils";
 
 const styles = stylex.create({
   editor: {
-    backgroundColor: "var(--surface-container)",
+    backgroundColor: "var(--color-surface-container)",
     borderRadius: sizes.xxxxxxsmall,
   },
 
@@ -122,12 +122,12 @@ const RichTextEditor = forwardRef<RichTextEditorRef, RichTextEditorProps>(
               ...styled.editor.style,
               ...style,
               // @ts-expect-error
-              "--primary": theme.colors.primary,
-              "--on-primary": theme.colors["on-primary"],
-              "--on-surface": theme.colors["on-surface"],
-              "--surface-container": theme.colors["surface-container"],
-              "--surface-container-highest": theme.colors["surface-container-highest"],
-              "--outline": theme.colors.outline,
+              "--color-primary": theme.colors.primary,
+              "--color-on-primary": theme.colors["on-primary"],
+              "--color-on-surface": theme.colors["on-surface"],
+              "--color-surface-container": theme.colors["surface-container"],
+              "--color-surface-container-highest": theme.colors["surface-container-highest"],
+              "--color-outline": theme.colors.outline,
             }}
           >
             <MarkdownShortcutPlugin />

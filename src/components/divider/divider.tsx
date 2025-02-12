@@ -29,12 +29,12 @@ const styles = {
   simple: stylex.create({
     horizontal: {
       height: sizes.smallest,
-      backgroundColor: "var(--outline-variant)",
+      backgroundColor: "var(--color-outline-variant)",
     },
 
     vertical: {
       width: sizes.smallest,
-      backgroundColor: "var(--outline-variant)",
+      backgroundColor: "var(--color-outline-variant)",
     },
   }),
 
@@ -47,14 +47,14 @@ const styles = {
       "::before": {
         height: sizes.smallest,
         width: "var(--offset)",
-        backgroundColor: "var(--outline-variant)",
+        backgroundColor: "var(--color-outline-variant)",
         content: "''",
       },
 
       "::after": {
         height: sizes.smallest,
         width: "calc(100% - var(--offset))",
-        backgroundColor: "var(--outline-variant)",
+        backgroundColor: "var(--color-outline-variant)",
         content: "''",
       },
     },
@@ -67,14 +67,14 @@ const styles = {
       "::before": {
         width: sizes.smallest,
         height: "var(--offset)",
-        backgroundColor: "var(--outline-variant)",
+        backgroundColor: "var(--color-outline-variant)",
         content: "''",
       },
 
       "::after": {
         width: sizes.smallest,
         height: "calc(100% - var(--offset))",
-        backgroundColor: "var(--outline-variant)",
+        backgroundColor: "var(--color-outline-variant)",
         content: "''",
       },
     },
@@ -126,7 +126,7 @@ const Divider = ({
         ...style,
         // @ts-expect-error
         "--offset": `${offset}%`,
-        "--outline-variant": theme.colors["outline-variant"],
+        "--color-outline-variant": theme.colors["outline-variant"],
         "--margin-start": margins[0],
         "--margin-end": margins[1],
       }}

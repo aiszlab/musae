@@ -61,7 +61,7 @@ const _styles = {
 
   code: stylex.create({
     block: {
-      backgroundColor: "var(--surface-container-highest)",
+      backgroundColor: "var(--color-surface-container-highest)",
       display: "block",
       overflow: "auto",
       borderRadius: spacing.xxxsmall,
@@ -71,7 +71,7 @@ const _styles = {
     },
 
     inline: {
-      backgroundColor: "var(--surface-container-highest)",
+      backgroundColor: "var(--color-surface-container-highest)",
       borderRadius: spacing.xxxxxsmall,
       paddingBlock: spacing.xxxxxxsmall,
       paddingInline: spacing.xxxxxsmall,
@@ -114,7 +114,7 @@ const _styles = {
 
   link: stylex.create({
     default: {
-      color: "var(--primary)",
+      color: "var(--color-primary)",
       cursor: "pointer",
       textDecoration: {
         default: "none",

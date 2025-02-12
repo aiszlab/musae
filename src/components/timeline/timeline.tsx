@@ -44,7 +44,7 @@ const Timeline = ({ items, mode = "right", size }: TimelineProps) => {
         style={{
           ...styled.style,
           // @ts-expect-error
-          "--primary": theme.colors.primary,
+          "--color-primary": theme.colors.primary,
         }}
       >
         {items.map((item, index) => {
