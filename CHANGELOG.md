@@ -1,5 +1,11 @@
 # musae
 
+## 0.5.14
+
+### Patch Changes
+
+- chore: update package.json exports and remove unused banner function from rollup.config.js
+
 ## 0.5.13
 
 ### Patch Changes
