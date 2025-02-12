@@ -67,7 +67,7 @@ const Steps = ({
         style={{
           ...styled.steps.style,
           ...style,
-          // @ts-expect-error
+          // @ts-expect-error style vars
           "--color-primary": theme.colors.primary,
           "--color-on-primary": theme.colors["on-primary"],
           "--color-primary-container": theme.colors["primary-container"],

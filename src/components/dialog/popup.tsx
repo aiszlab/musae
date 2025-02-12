@@ -124,7 +124,7 @@ const Popup = ({ onClose, open, closable, onClosed, className, ...props }: Popup
       className={stringify(classNames.dialog, className, styled.popup.className)}
       style={{
         ...styled.popup.style,
-        // @ts-expect-error
+        // @ts-expect-error style vars
         "--color-surface-dim": theme.colors["surface-dim"],
         "--color-surface-container-lowest": theme.colors["surface-container-lowest"],
       }}

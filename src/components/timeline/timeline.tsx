@@ -43,7 +43,7 @@ const Timeline = ({ items, mode = "right", size }: TimelineProps) => {
         className={stringify(classNames.timeline, styled.className)}
         style={{
           ...styled.style,
-          // @ts-expect-error
+          // @ts-expect-error style vars
           "--color-primary": theme.colors.primary,
         }}
       >

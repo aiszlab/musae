@@ -30,7 +30,7 @@ export const useColumns = <T>({ columns }: { columns: Column<T>[] }) => {
         sortDirections = ["ascending", "descending"],
         valueAt,
       }) => {
-        // @ts-expect-error
+        // @ts-expect-error valueAt or key is always exist
         return helper.current.accessor(valueAt ?? key, {
           header: createElement(HeaderCell, {
             children: title,

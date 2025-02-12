@@ -187,7 +187,7 @@ const ContributionCalendar = ({
       className={styled.scrollable.className}
       style={{
         ...styled.scrollable.style,
-        // @ts-expect-error
+        // @ts-expect-error style vars
         "--color-primary": theme.colors.primary,
       }}
     >

@@ -137,10 +137,11 @@ const Popover = forwardRef(
         ...(isContextMenuable && {
           onContextMenu,
         }),
+        // TODO enhance `isRefable` check
         ...(isRefable(_child) && {
           ref: (_reference) => {
             mountRef(_ref, _reference);
-            //@ts-expect-error
+            //@ts-expect-error child ref could be any value
             mountRef(_child.ref, _reference);
           },
         }),

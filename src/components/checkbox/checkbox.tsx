@@ -101,7 +101,7 @@ const Checkbox = ({
       style={{
         ...styled.checkbox.style,
         ...style,
-        // @ts-expect-error
+        // @ts-expect-error style vars
         "--color-primary": theme.colors.primary,
         "--color-primary-opacity-08": hexToRgba(theme.colors.primary, OPACITY.thin, "style"),
         "--color-primary-opacity-12": hexToRgba(theme.colors.primary, OPACITY.medium, "style"),

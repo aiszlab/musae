@@ -124,7 +124,7 @@ const Divider = ({
       style={{
         ...styled.divider.style,
         ...style,
-        // @ts-expect-error
+        // @ts-expect-error style vars
         "--offset": `${offset}%`,
         "--color-outline-variant": theme.colors["outline-variant"],
         "--margin-start": margins[0],
