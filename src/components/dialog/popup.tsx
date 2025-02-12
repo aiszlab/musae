@@ -34,7 +34,7 @@ const styles = stylex.create({
     height: "100vh",
     pointerEvents: "auto",
     zIndex: positions.dialog,
-    backgroundColor: "var(--surface-dim)",
+    backgroundColor: "var(--color-surface-dim)",
     opacity: 0,
   },
 
@@ -47,7 +47,7 @@ const styles = stylex.create({
     margin: spacing.xxxlarge,
     borderRadius: 8,
     pointerEvents: "auto",
-    backgroundColor: "var(--surface-container-lowest)",
+    backgroundColor: "var(--color-surface-container-lowest)",
     zIndex: positions.dialog,
     opacity: 0,
     position: "relative",
@@ -124,9 +124,9 @@ const Popup = ({ onClose, open, closable, onClosed, className, ...props }: Popup
       className={stringify(classNames.dialog, className, styled.popup.className)}
       style={{
         ...styled.popup.style,
-        // @ts-expect-error
-        "--surface-dim": theme.colors["surface-dim"],
-        "--surface-container-lowest": theme.colors["surface-container-lowest"],
+        // @ts-expect-error style vars
+        "--color-surface-dim": theme.colors["surface-dim"],
+        "--color-surface-container-lowest": theme.colors["surface-container-lowest"],
       }}
       tabIndex={-1}
       onKeyDown={onKeyDown}

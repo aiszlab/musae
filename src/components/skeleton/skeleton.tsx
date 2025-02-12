@@ -23,18 +23,18 @@ const styles = stylex.create({
     shadow: CSSProperties["color"];
     lighterShadow: CSSProperties["color"];
   }) => ({
-    "--shadow": props.shadow,
+    "--color-shadow": props.shadow,
     "--lighter-shadow": props.lighterShadow,
   }),
 
   skeleton: {
-    backgroundColor: "var(--shadow)",
+    backgroundColor: "var(--color-shadow)",
   },
 
   animation: {
     backgroundColor: null,
     backgroundImage:
-      "linear-gradient(90deg, var(--shadow) 25%, var(--lighter-shadow) 37%, var(--shadow) 63%)",
+      "linear-gradient(90deg, var(--color-shadow) 25%, var(--lighter-shadow) 37%, var(--color-shadow) 63%)",
     backgroundSize: "400% 100%",
     animationName: animation,
     animationDuration: "1.5s",

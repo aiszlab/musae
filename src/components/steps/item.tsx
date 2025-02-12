@@ -42,7 +42,7 @@ const styles = {
         position: "absolute",
         height: sizes.infinity,
         width: sizes.smallest,
-        backgroundColor: "var(--primary)",
+        backgroundColor: "var(--color-primary)",
         insetBlockStart: "100%",
         insetInlineStart: `calc((100% - ${sizes.smallest}) / 2)`,
         marginBlockStart: spacing.xxsmall,
@@ -62,17 +62,17 @@ const styles = {
     }),
 
     doing: {
-      backgroundColor: "var(--primary)",
-      color: "var(--on-primary)",
+      backgroundColor: "var(--color-primary)",
+      color: "var(--color-on-primary)",
     },
 
     done: {
-      backgroundColor: "var(--primary-container)",
-      color: "var(--on-primary-container)",
+      backgroundColor: "var(--color-primary-container)",
+      color: "var(--color-on-primary-container)",
     },
 
     todo: {
-      backgroundColor: "var(--secondary)",
+      backgroundColor: "var(--color-secondary)",
       color: "var(--on-secondary)",
     },
   }),
@@ -91,7 +91,7 @@ const styles = {
         position: "absolute",
         height: sizes.smallest,
         width: sizes.infinity,
-        backgroundColor: "var(--primary)",
+        backgroundColor: "var(--color-primary)",
         marginInlineStart: spacing.xxsmall,
         insetBlockStart: `calc((100% - ${sizes.smallest}) / 2)`,
       },

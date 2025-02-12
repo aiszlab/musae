@@ -33,7 +33,7 @@ const styles = {
       padding: spacing.none,
       borderRadius: sizes.xxxxxxxxsmall,
       cursor: "pointer",
-      backgroundColor: "var(--primary)",
+      backgroundColor: "var(--color-primary)",
     },
   }),
 
@@ -187,8 +187,8 @@ const ContributionCalendar = ({
       className={styled.scrollable.className}
       style={{
         ...styled.scrollable.style,
-        // @ts-expect-error
-        "--primary": theme.colors.primary,
+        // @ts-expect-error style vars
+        "--color-primary": theme.colors.primary,
       }}
     >
       <table className={styled.calendar.className} style={styled.calendar.style}>

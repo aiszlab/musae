@@ -3,7 +3,7 @@ import { sizes, spacing } from "../theme/tokens.stylex";
 
 const styles = stylex.create({
   variables: (props: { outlineColor: string }) => ({
-    "--outline": props.outlineColor,
+    "--color-outline": props.outlineColor,
   }),
 
   quote: {
@@ -20,7 +20,7 @@ const styles = stylex.create({
       insetBlock: 0,
       insetInlineStart: 0,
       width: sizes.xxxxxxxxsmall,
-      backgroundColor: "var(--outline)",
+      backgroundColor: "var(--color-outline)",
     },
   },
 });

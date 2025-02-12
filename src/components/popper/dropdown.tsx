@@ -27,7 +27,7 @@ const styles = {
   dropdown: stylex.create({
     default: {
       position: "absolute",
-      backgroundColor: "var(--surface-container)",
+      backgroundColor: "var(--color-surface-container)",
       insetBlockStart: 0,
       insetInlineStart: 0,
 
@@ -54,7 +54,7 @@ const styles = {
       position: "absolute",
       width: sizes.xxxxsmall,
       height: sizes.xxxxsmall,
-      backgroundColor: "var(--surface-container)",
+      backgroundColor: "var(--color-surface-container)",
       transform: "rotate(45deg)",
       zIndex: positions.background,
     },
@@ -119,8 +119,8 @@ const Dropdown = forwardRef<PopperRef, DropdownProps>(
         className={styled.portal.className}
         style={{
           ...styled.portal.style,
-          // @ts-expect-error
-          "--surface-container": theme.colors["surface-container"],
+          // @ts-expect-error style vars
+          "--color-surface-container": theme.colors["surface-container"],
         }}
       >
         <div

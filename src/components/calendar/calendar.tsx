@@ -26,7 +26,7 @@ const styles = stylex.create({
     alignItems: "center",
     columnGap: spacing.xxsmall,
     paddingInline: spacing.medium,
-    color: "var(--on-surface-variant)",
+    color: "var(--color-on-surface-variant)",
   },
 
   heading: {
@@ -79,8 +79,8 @@ const Calendar = forwardRef<CalendarRef, CalendarProps>(
         style={{
           ...styled.calendar.style,
           ...style,
-          // @ts-expect-error
-          "--on-surface-variant": theme.colors["on-surface-variant"],
+          // @ts-expect-error style vars
+          "--color-on-surface-variant": theme.colors["on-surface-variant"],
         }}
       >
         <header

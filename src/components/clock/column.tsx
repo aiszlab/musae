@@ -42,7 +42,7 @@ const styles = stylex.create({
 
     "::-webkit-scrollbar-thumb": {
       borderRadius: 4,
-      backgroundColor: "var(--secondary)",
+      backgroundColor: "var(--color-secondary)",
     },
   },
 

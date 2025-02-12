@@ -30,8 +30,8 @@ const Clock = ({ value, onChange, className, style }: ClockProps) => {
         style={{
           ...styled.style,
           ...style,
-          // @ts-expect-error
-          "--secondary": theme.colors.secondary,
+          // @ts-expect-error style vars
+          "--color-secondary": theme.colors.secondary,
         }}
       >
         {columns.map((unit, index) => {

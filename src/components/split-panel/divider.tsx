@@ -32,14 +32,14 @@ const styles = {
         content: "''",
         display: "block",
         position: "absolute",
-        backgroundColor: "var(--outline-variant)",
+        backgroundColor: "var(--color-outline-variant)",
       },
 
       "::after": {
         content: "''",
         display: "block",
         position: "absolute",
-        backgroundColor: "var(--outline)",
+        backgroundColor: "var(--color-outline)",
         insetInlineStart: sizes.half,
         insetBlockStart: sizes.half,
         transform: "translate(-50%, -50%)",
@@ -108,9 +108,9 @@ const Divider = ({ onDragMove, onDragEnd }: DividerProps) => {
       className={stringify(classNames.divider, styled.divider.className)}
       style={{
         ...styled.divider.style,
-        // @ts-expect-error
-        "--outline": theme.colors.outline,
-        "--outline-variant": theme.colors["outline-variant"],
+        // @ts-expect-error style vars
+        "--color-outline": theme.colors.outline,
+        "--color-outline-variant": theme.colors["outline-variant"],
       }}
     >
       <div

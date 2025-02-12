@@ -47,7 +47,7 @@ const SplitPanel = ({ className, style, items, orientation = "horizontal" }: Spl
         style={{
           ...styled.style,
           ...style,
-          // @ts-expect-error
+          // @ts-expect-error style vars
           "--unsized-item-space": unsizedItemSpace,
         }}
       >

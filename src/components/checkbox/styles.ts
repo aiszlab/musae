@@ -42,32 +42,32 @@ const styles = {
         transitionProperty: "background-color",
         transitionDuration: duration.short,
 
-        color: "var(--primary-opacity-20)",
+        color: "var(--color-primary-opacity-20)",
         ":hover": {
-          backgroundColor: "var(--on-surface-opacity-08)",
+          backgroundColor: "var(--color-on-surface-opacity-08)",
         },
         ":focus": {
-          backgroundColor: "var(--on-surface-opacity-12)",
+          backgroundColor: "var(--color-on-surface-opacity-12)",
         },
       },
 
       checked: {
-        color: "var(--on-surface-opacity-20)",
+        color: "var(--color-on-surface-opacity-20)",
         ":hover": {
-          backgroundColor: "var(--primary-opacity-08)",
+          backgroundColor: "var(--color-primary-opacity-08)",
         },
         ":focus": {
-          backgroundColor: "var(--primary-opacity-12)",
+          backgroundColor: "var(--color-primary-opacity-12)",
         },
       },
 
       invalid: {
-        color: "var(--error-opacity-20)",
+        color: "var(--color-error-opacity-20)",
         ":hover": {
-          backgroundColor: "var(--error-opacity-08)",
+          backgroundColor: "var(--color-error-opacity-08)",
         },
         ":focus": {
-          backgroundColor: "var(--error-opacity-12)",
+          backgroundColor: "var(--color-error-opacity-12)",
         },
       },
 
@@ -94,45 +94,45 @@ const styles = {
 
         borderWidth: "var(--border-width)",
         borderStyle: "solid",
-        borderColor: "var(--on-surface-variant)",
+        borderColor: "var(--color-on-surface-variant)",
 
         transitionProperty: "background-color, border-color",
         transitionDuration: duration.short,
       },
 
       disabled: {
-        borderColor: "var(--on-surface)",
+        borderColor: "var(--color-on-surface)",
       },
     }),
 
     checked: stylex.create({
       default: {
-        color: "var(--on-primary)",
-        borderColor: "var(--primary)",
-        backgroundColor: "var(--primary)",
+        color: "var(--color-on-primary)",
+        borderColor: "var(--color-primary)",
+        backgroundColor: "var(--color-primary)",
       },
 
       disabled: {
-        color: "var(--surface)",
-        borderColor: "var(--on-surface)",
-        backgroundColor: "var(--on-surface)",
+        color: "var(--color-surface)",
+        borderColor: "var(--color-on-surface)",
+        backgroundColor: "var(--color-on-surface)",
       },
     }),
 
     invalid: stylex.create({
       default: {
-        borderColor: "var(--error)",
+        borderColor: "var(--color-error)",
       },
 
       checked: {
-        color: "var(--on-error)",
-        backgroundColor: "var(--error)",
+        color: "var(--color-on-error)",
+        backgroundColor: "var(--color-error)",
       },
 
       disabled: {
-        color: "var(--surface)",
-        borderColor: "var(--on-surface)",
-        backgroundColor: "var(--on-surface)",
+        color: "var(--color-surface)",
+        borderColor: "var(--color-on-surface)",
+        backgroundColor: "var(--color-on-surface)",
       },
     }),
   },
@@ -158,7 +158,7 @@ const styles = {
     },
 
     invalid: {
-      color: "var(--error)",
+      color: "var(--color-error)",
     },
   }),
 };

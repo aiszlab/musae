@@ -55,7 +55,7 @@ const styles = {
         position: "absolute",
         height: sizes.infinity,
         width: sizes.smallest,
-        backgroundColor: "var(--primary)",
+        backgroundColor: "var(--color-primary)",
         insetBlockStart: "100%",
         insetInlineStart: `calc((100% - ${sizes.smallest}) / 2)`,
       },
@@ -77,7 +77,7 @@ const styles = {
       width: sizes.xxxxxxxsmall,
       height: sizes.xxxxxxxsmall,
       borderRadius: sizes.infinity,
-      backgroundColor: "var(--primary)",
+      backgroundColor: "var(--color-primary)",
     },
   }),
 

@@ -67,12 +67,12 @@ const Steps = ({
         style={{
           ...styled.steps.style,
           ...style,
-          // @ts-expect-error
-          "--primary": theme.colors.primary,
-          "--on-primary": theme.colors["on-primary"],
-          "--primary-container": theme.colors["primary-container"],
-          "--on-primary-container": theme.colors["on-primary-container"],
-          "--secondary": theme.colors.secondary,
+          // @ts-expect-error style vars
+          "--color-primary": theme.colors.primary,
+          "--color-on-primary": theme.colors["on-primary"],
+          "--color-primary-container": theme.colors["primary-container"],
+          "--color-on-primary-container": theme.colors["on-primary-container"],
+          "--color-secondary": theme.colors.secondary,
           "--on-secondary": theme.colors["on-secondary"],
         }}
       >
