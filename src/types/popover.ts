@@ -22,13 +22,16 @@ export type TriggerBy = "hover" | "focus" | "click" | "contextMenu";
  * @description
  * popover props
  */
-export type PopoverProps<P extends ChildProps<T>, T extends HTMLElement> = ComponentProps & {
+export type PopoverProps<
+  T extends HTMLElement = HTMLElement,
+  P extends ChildProps<T> = ChildProps<T>,
+> = ComponentProps & {
   /**
    * @description
    * a trigger element.
    * @requires
    */
-  children: ReactElement<P> | Exclude<ReactNode, ReactElement | Iterable<ReactNode>>;
+  children: ReactElement<P> | Exclude<ReactNode, ReactElement | Iterable<ReactNode>> | string;
 
   /**
    * @description
