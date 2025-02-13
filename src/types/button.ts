@@ -3,11 +3,11 @@ import type { ComponentProps } from "./element";
 
 export type Variant = "filled" | "outlined" | "text";
 
-export type Color = "primary" | "secondary" | "tertiary";
+export type Color = "primary" | "secondary" | "tertiary" | "error";
 
 type Size = "small" | "medium";
 
-type Shape = "rounded";
+type Shape = "rounded" | "rectangular";
 
 /**
  * @author murukal

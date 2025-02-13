@@ -2,7 +2,7 @@ import type { ButtonProps } from "../../types/button";
 import React, { forwardRef } from "react";
 import { stringify } from "@aiszlab/relax/class-name";
 import stylex from "@stylexjs/stylex";
-import { elevations, OPACITY, sizes, spacing } from "../theme/tokens.stylex";
+import { duration, elevations, OPACITY, sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { useButton } from "./hooks";
 import { Ripple } from "../ripple";
@@ -11,88 +11,111 @@ import { hexToRgba } from "@aiszlab/fuzzy/color";
 import { useClassNames } from "../../hooks/use-class-names";
 import { CLASS_NAMES } from "./context";
 
-const styles = stylex.create({
-  button: {
-    display: "inline-flex",
-    alignItems: "center",
-    justifyContent: "center",
-    gap: spacing.xxsmall,
-    transitionProperty: "background-color, color, box-shadow",
-    transitionDuration: "0.3s",
-    willChange: "background-color, color, box-shadow",
+const styles = {
+  button: stylex.create({
+    default: {
+      display: "inline-flex",
+      alignItems: "center",
+      justifyContent: "center",
+      gap: spacing.xxsmall,
+      transitionProperty: "background-color, color, box-shadow",
+      transitionDuration: duration.medium,
+      willChange: "background-color, color, box-shadow",
 
-    // reset styles
-    borderWidth: sizes.none,
-    backgroundColor: "transparent",
-    overflow: "hidden",
-    whiteSpace: "nowrap",
-    textOverflow: "ellipsis",
-    cursor: "pointer",
-    fontFamily: "inherit",
-    boxSizing: "border-box",
-    height: "fit-content",
-  },
+      // reset styles
+      borderWidth: sizes.none,
+      backgroundColor: "transparent",
+      overflow: "hidden",
+      whiteSpace: "nowrap",
+      textOverflow: "ellipsis",
+      cursor: "pointer",
+      fontFamily: "inherit",
+      boxSizing: "border-box",
+      height: "fit-content",
+    },
 
-  // with ripple
-  ripple: {
-    position: "relative",
-  },
-
-  small: {
-    paddingBlock: spacing.xxxxxsmall,
-    paddingInline: spacing.xxsmall,
-  },
-
-  medium: {
-    paddingBlock: spacing.xsmall,
-    paddingInline: spacing.xxlarge,
-  },
-
-  rounded: {
-    borderRadius: sizes.infinity,
-  },
-
-  filled: (props: { backgroundColor: string; color: string }) => ({
-    borderWidth: sizes.none,
-    backgroundColor: props.backgroundColor,
-    color: props.color,
-
-    ":hover": {
-      boxShadow: elevations.xsmall,
+    rippleable: {
+      position: "relative",
     },
   }),
 
-  outlined: (props: { color: string; hoveredBackgroundColor: string }) => ({
-    borderWidth: sizes.smallest,
-    borderStyle: "solid",
-    borderColor: props.color,
-    color: props.color,
+  variant: stylex.create({
+    filled: {
+      borderWidth: sizes.none,
+      backgroundColor: "var(--color-button)",
+      color: "var(--color-on-button)",
 
-    ":hover": {
-      backgroundColor: props.hoveredBackgroundColor,
+      ":hover": {
+        boxShadow: elevations.xsmall,
+      },
+    },
+
+    outlined: {
+      borderWidth: sizes.smallest,
+      borderStyle: "solid",
+      borderColor: "var(--color-button)",
+      color: "var(--color-button)",
+
+      ":hover": {
+        backgroundColor: "var(--color-button-opacity-08)",
+      },
+    },
+
+    text: {
+      color: "var(--color-button)",
+
+      ":hover": {
+        backgroundColor: "var(--color-button-opacity-08)",
+      },
     },
   }),
 
-  text: (props: { color: string; hoveredBackgroundColor: string }) => ({
-    color: props.color,
+  shape: stylex.create({
+    rounded: {
+      borderRadius: sizes.infinity,
+    },
 
-    ":hover": {
-      backgroundColor: props.hoveredBackgroundColor,
+    rectangular: {
+      borderRadius: sizes.xxxxxxxsmall,
     },
   }),
 
-  disabled: (props: { color: string; backgroundColor: string; outlineColor: string | null }) => ({
-    backgroundColor: props.backgroundColor,
-    color: props.color,
-    cursor: "not-allowed",
-    boxShadow: null,
-    borderColor: props.outlineColor,
+  size: stylex.create({
+    small: {
+      paddingBlock: spacing.xxxxxsmall,
+      paddingInline: spacing.xxsmall,
+    },
 
-    ":hover": {
+    medium: {
+      paddingBlock: spacing.xsmall,
+      paddingInline: spacing.xxlarge,
+    },
+  }),
+
+  disabled: stylex.create({
+    default: {
+      color: "var(--color-on-surface-opacity-38)",
+      cursor: "not-allowed",
       boxShadow: null,
+      borderColor: null,
+      backgroundColor: null,
+
+      ":hover": {
+        boxShadow: null,
+      },
     },
+
+    filled: {
+      backgroundColor: "var(--color-on-surface-opacity-12)",
+    },
+
+    outlined: {
+      borderColor: "var(--color-on-surface-opacity-38)",
+    },
+
+    text: {},
   }),
-});
+};
 
 /**
  * @author murukal
@@ -127,42 +150,12 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 
     const styled = {
       button: stylex.props(
-        styles.button,
-        ripple && styles.ripple,
-        // size
-        styles[size],
-        // variant
-        variant === "filled" &&
-          styles.filled({
-            backgroundColor: theme.colors[color],
-            color: theme.colors[`on-${color}`],
-          }),
-        variant === "outlined" &&
-          styles.outlined({
-            color: theme.colors[color],
-            hoveredBackgroundColor: hexToRgba(theme.colors.primary, OPACITY.thin, "style"),
-          }),
-        variant === "text" &&
-          styles.text({
-            color: theme.colors[color],
-            hoveredBackgroundColor: hexToRgba(theme.colors.primary, OPACITY.thin, "style"),
-          }),
-        // shape
-        styles[shape],
-        // disabled
-        disabled &&
-          styles.disabled({
-            backgroundColor:
-              variant === "filled"
-                ? hexToRgba(theme.colors["on-surface"], OPACITY.medium, "style")
-                : "transparent",
-            color: hexToRgba(theme.colors["on-surface"], OPACITY.thickest, "style"),
-            outlineColor:
-              variant === "outlined"
-                ? hexToRgba(theme.colors["on-surface"], OPACITY.thickest, "style")
-                : null,
-          }),
-        // text font
+        styles.button.default,
+        ripple && styles.button.rippleable,
+        styles.size[size],
+        styles.variant[variant],
+        styles.shape[shape],
+        disabled && [styles.disabled.default, styles.disabled[variant]],
         size === "small" && typography.label.medium,
         size !== "small" && typography.label.large,
       ),
@@ -177,6 +170,20 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         style={{
           ...styled.button.style,
           ...style,
+          // @ts-expect-error style vars
+          "--color-button": theme.colors[color],
+          "--color-on-button": theme.colors[`on-${color}`],
+          "--color-button-opacity-08": hexToRgba(theme.colors[color], OPACITY.thin, "style"),
+          "--color-on-surface-opacity-12": hexToRgba(
+            theme.colors["on-surface"],
+            OPACITY.medium,
+            "style",
+          ),
+          "--color-on-surface-opacity-38": hexToRgba(
+            theme.colors["on-surface"],
+            OPACITY.thickest,
+            "style",
+          ),
         }}
         type={type}
         {...props}
@@ -191,4 +198,3 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 );
 
 export default Button;
-export { styles };
