@@ -69,7 +69,7 @@
     "@floating-ui/dom": "^1.6.13",
     "@lexical/code": "^0.22.0",
     "@lexical/headless": "^0.22.0",
-    "@lexical/link": "^0.22.0",
+    "@lexical/link": "^0.24.0",
     "@lexical/list": "^0.22.0",
     "@lexical/markdown": "^0.22.0",
     "@lexical/react": "^0.22.0",
