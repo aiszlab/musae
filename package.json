@@ -139,9 +139,7 @@
     "react-dom": "^18"
   },
   "files": [
-    "dist/",
-    "typings/",
-    "styles/"
+    "dist/"
   ],
   "publishConfig": {
     "access": "public",
