@@ -1,5 +1,15 @@
 # musae
 
+## 0.5.15
+
+### Patch Changes
+
+- 2991257: add styles.css exports
+- d2e5401: refactor: update TypeScript error comments to specify style variable context
+- 266eff5: `Button` shape enhancement
+- 4723c76: refactor: update CSS variable names to include 'color-' prefix for consistency
+- 9572414: refactor: update Popover and Tooltip types for improved type safety and consistency
+
 ## 0.5.14
 
 ### Patch Changes

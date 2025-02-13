@@ -3,25 +3,25 @@
 exports[`\`Button\` Component disabled variant render 1`] = `
 <DocumentFragment>
   <button
-    class="musae-button button__styles.button button__styles.ripple button__styles.medium button__styles.filled button__styles.rounded button__styles.disabled theme__label.large"
+    class="musae-button button__rippleable button__medium button__rounded button__default button__filled theme__label.large"
     disabled=""
-    style="--backgroundColor: rgba(29,27,32,0.12); --color: rgba(29,27,32,0.38);"
+    style="--color-button: #6750A4; --color-on-button: #FFF; --color-button-opacity-08: rgba(103,80,164,0.08); --color-on-surface-opacity-12: rgba(29,27,32,0.12); --color-on-surface-opacity-38: rgba(29,27,32,0.38);"
     type="button"
   >
     disabled filled
   </button>
   <button
-    class="musae-button button__styles.button button__styles.ripple button__styles.medium button__styles.outlined button__styles.rounded button__styles.disabled theme__label.large"
+    class="musae-button button__rippleable button__medium button__rounded button__default button__outlined theme__label.large"
     disabled=""
-    style="--b6ve2z: rgba(103,80,164,0.08); --backgroundColor: transparent; --color: rgba(29,27,32,0.38); --borderColor: rgba(29,27,32,0.38);"
+    style="--color-button: #6750A4; --color-on-button: #FFF; --color-button-opacity-08: rgba(103,80,164,0.08); --color-on-surface-opacity-12: rgba(29,27,32,0.12); --color-on-surface-opacity-38: rgba(29,27,32,0.38);"
     type="button"
   >
     disabled outlined
   </button>
   <button
-    class="musae-button button__styles.button button__styles.ripple button__styles.medium button__styles.text button__styles.rounded button__styles.disabled theme__label.large"
+    class="musae-button button__rippleable button__medium button__rounded button__default button__text theme__label.large"
     disabled=""
-    style="--b6ve2z: rgba(103,80,164,0.08); --backgroundColor: transparent; --color: rgba(29,27,32,0.38);"
+    style="--color-button: #6750A4; --color-on-button: #FFF; --color-button-opacity-08: rgba(103,80,164,0.08); --color-on-surface-opacity-12: rgba(29,27,32,0.12); --color-on-surface-opacity-38: rgba(29,27,32,0.38);"
     type="button"
   >
     disabled text
@@ -32,22 +32,22 @@ exports[`\`Button\` Component disabled variant render 1`] = `
 exports[`\`Button\` Component variant render 1`] = `
 <DocumentFragment>
   <button
-    class="musae-button button__styles.button button__styles.ripple button__styles.medium button__styles.filled button__styles.rounded theme__label.large"
-    style="--backgroundColor: #6750A4; --color: #FFF;"
+    class="musae-button button__default button__rippleable button__medium button__filled button__rounded theme__label.large"
+    style="--color-button: #6750A4; --color-on-button: #FFF; --color-button-opacity-08: rgba(103,80,164,0.08); --color-on-surface-opacity-12: rgba(29,27,32,0.12); --color-on-surface-opacity-38: rgba(29,27,32,0.38);"
     type="button"
   >
     filled
   </button>
   <button
-    class="musae-button button__styles.button button__styles.ripple button__styles.medium button__styles.outlined button__styles.rounded theme__label.large"
-    style="--borderColor: #6750A4; --color: #6750A4; --b6ve2z: rgba(103,80,164,0.08);"
+    class="musae-button button__default button__rippleable button__medium button__outlined button__rounded theme__label.large"
+    style="--color-button: #6750A4; --color-on-button: #FFF; --color-button-opacity-08: rgba(103,80,164,0.08); --color-on-surface-opacity-12: rgba(29,27,32,0.12); --color-on-surface-opacity-38: rgba(29,27,32,0.38);"
     type="button"
   >
     outlined
   </button>
   <button
-    class="musae-button button__styles.button button__styles.ripple button__styles.medium button__styles.text button__styles.rounded theme__label.large"
-    style="--color: #6750A4; --b6ve2z: rgba(103,80,164,0.08);"
+    class="musae-button button__default button__rippleable button__medium button__text button__rounded theme__label.large"
+    style="--color-button: #6750A4; --color-on-button: #FFF; --color-button-opacity-08: rgba(103,80,164,0.08); --color-on-surface-opacity-12: rgba(29,27,32,0.12); --color-on-surface-opacity-38: rgba(29,27,32,0.38);"
     type="button"
   >
     text
