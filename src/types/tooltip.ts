@@ -1,5 +1,6 @@
-import type { ReactElement, ReactNode } from "react";
+import type { ReactNode } from "react";
 import type { ComponentProps } from "./element";
+import type { PopoverProps } from "./popover";
 
 /**
  * @description
@@ -18,5 +19,5 @@ export type TooltipProps = ComponentProps & {
    * a trigger element.
    * @requires
    */
-  children: ReactElement;
+  children: PopoverProps["children"];
 };

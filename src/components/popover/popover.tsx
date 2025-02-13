@@ -39,6 +39,13 @@ const styles = {
       padding: padding === true ? spacing.medium : padding,
     }),
   }),
+
+  virtual: stylex.create({
+    default: {
+      width: "fit-content",
+      height: "fit-content",
+    },
+  }),
 };
 
 const Popover = forwardRef(
@@ -54,7 +61,7 @@ const Popover = forwardRef(
       padding = true,
       arrow = true,
       offset,
-    }: PopoverProps<P, T>,
+    }: PopoverProps<T, P>,
     ref: ForwardedRef<PopoverRef>,
   ) => {
     const _ref = useRef<T>(null);
@@ -126,7 +133,14 @@ const Popover = forwardRef(
     // valid elment, inject handlers
     // else add `div` wrapper, inject handlers to `div` wrapper
     const children = useMemo(() => {
-      const _child = isValidElement(_children) ? _children : <div>{_children}</div>;
+      const styled = stylex.props(styles.virtual.default);
+      const _child = isValidElement(_children) ? (
+        _children
+      ) : (
+        <div className={styled.className} style={styled.style}>
+          {_children}
+        </div>
+      );
 
       const props: ChildProps<T> = {
         ...(isHoverable && hoverProps),
@@ -137,11 +151,9 @@ const Popover = forwardRef(
         ...(isContextMenuable && {
           onContextMenu,
         }),
-        // TODO enhance `isRefable` check
         ...(isRefable(_child) && {
           ref: (_reference) => {
             mountRef(_ref, _reference);
-            //@ts-expect-error child ref could be any value
             mountRef(_child.ref, _reference);
           },
         }),
