@@ -15,8 +15,8 @@
     "authors": "zx scripts/contributors.mjs",
     "changesets": "z cs",
     "version": "z cs version",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "storybook": "rollup -c --environment NODE_ENV:production && storybook dev -p 6006",
+    "build-storybook": "rollup -c --environment NODE_ENV:production && storybook build"
   },
   "exports": {
     ".": {
@@ -27,6 +27,7 @@
       "import": "./dist/index.mjs",
       "default": "./dist/index.mjs"
     },
+    "./styles.css": "./dist/styles.css",
     "./locales": {
       "types": "./dist/locale/locales/index.d.ts",
       "require": "./dist/locale/locales/index.cjs",
