@@ -294,8 +294,8 @@ const styles = stylex.create({
 
   loading: {
     position: "relative",
-    minWidth: sizes.xxxxlarge,
-    minHeight: sizes.xxxxlarge,
+    minWidth: sizes.xxxxxlarge,
+    minHeight: sizes.xxxxxlarge,
   },
 
   spin: {

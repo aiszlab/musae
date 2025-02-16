@@ -152,5 +152,10 @@
       "plugin:storybook/recommended"
     ]
   },
-  "homepage": "https://aisz.dev/"
+  "homepage": "https://aisz.dev/",
+  "prettier": {
+    "singleQuote": false,
+    "printWidth": 100,
+    "trailingComma": "all"
+  }
 }

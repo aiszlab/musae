@@ -46,7 +46,7 @@ const styles = stylex.create({
     outline: "none",
     paddingInline: spacing.large,
     paddingBlock: spacing.medium,
-    minHeight: sizes.xxxxxxlarge,
+    minHeight: sizes.xxxxxxxlarge,
   },
 });
 

@@ -1,55 +1,89 @@
-import React, { type CSSProperties } from "react";
-import { Layout } from "../layout";
+import React from "react";
 import stylex from "@stylexjs/stylex";
-import { elevations, ElevationToken, sizes, spacing } from "../theme/tokens.stylex";
+import { duration, sizes, spacing } from "../theme/tokens.stylex";
 import type { BenchProps } from "../../types/bench";
-import { Divider } from "../divider";
-import { useLogo, useNavigations } from "./hooks";
-import { Menu } from "../menu";
+import { useLogo, useMenuItems, useNavigations, useSelectedKeys } from "./hooks";
 import { useTheme } from "../theme";
 import { typography } from "../theme/theme";
 import { stringify } from "@aiszlab/relax/class-name";
-
-const { Header, Main, Sider } = Layout;
+import { Menu } from "../menu";
+import { MenuOpen as MenuOpenIcon, Menu as MenuIcon } from "../icon/icons";
+import { useBoolean } from "@aiszlab/relax";
 
 const styles = {
   bench: stylex.create({
-    default: {},
+    default: {
+      width: "100vw",
+      height: "100vh",
+      display: "grid",
+      gridTemplateAreas: "'heading header' 'sider main'",
+      gridTemplateRows: `${sizes.xxxxlarge} ${sizes.fr}`,
+      gridTemplateColumns: `${sizes.xxxxxxxxlarge} ${sizes.fr}`,
 
-    sider: (props: { outlineColor: CSSProperties["borderColor"] }) => ({
-      borderRightWidth: sizes.smallest,
-      borderRightStyle: "solid",
-      borderRightColor: props.outlineColor,
-      paddingInline: spacing.medium,
-      paddingBlockEnd: spacing.xxsmall,
+      transitionProperty: "grid-template-columns",
+      transitionDuration: duration.medium,
+    },
 
-      position: "sticky",
-      height: `calc(100vh - ${sizes.xxxlarge} - ${spacing.xxxlarge})`,
-      top: `calc(${sizes.xxxlarge} + ${spacing.xxxlarge})`,
+    collapsed: {
+      gridTemplateColumns: `${sizes.xxxxlarge} ${sizes.fr}`,
+    },
+  }),
 
-      overflowY: {
-        default: "hidden",
-        ":hover": "auto",
-      },
-    }),
+  heading: stylex.create({
+    default: {
+      paddingInline: spacing.xxxxlarge,
+      gridArea: "heading",
+      fontWeight: 700,
 
-    main: {},
+      display: "flex",
+      alignItems: "center",
+      gap: spacing.xxsmall,
+      overflow: "hidden",
+      whiteSpace: "nowrap",
+    },
+
+    collapsed: {
+      justifyContent: "center",
+      paddingInline: spacing.none,
+    },
+
+    collapser: {
+      marginInlineStart: "auto",
+    },
   }),
 
   header: stylex.create({
-    default: (props: { elevation: ElevationToken }) => ({
-      gap: spacing.xxsmall,
-      boxShadow: elevations[props.elevation],
-    }),
+    default: {
+      display: "flex",
+      alignItems: "center",
 
-    navigation: {
-      marginLeft: spacing.medium,
-      marginRight: "auto",
-      height: sizes.full,
+      paddingInline: spacing.xxxxxlarge,
+
+      borderLeftWidth: sizes.smallest,
+      borderStyle: "solid",
+      borderColor: "var(--color-outline-variant)",
     },
+  }),
 
-    divider: {
-      height: sizes.xsmall,
+  sidebar: stylex.create({
+    default: {
+      padding: spacing.xxxxlarge,
+
+      borderTopWidth: sizes.smallest,
+      borderStyle: "solid",
+      borderColor: "var(--color-outline-variant)",
+    },
+  }),
+
+  main: stylex.create({
+    default: {
+      overflow: "auto",
+      padding: spacing.xxxxxlarge,
+
+      borderTopWidth: sizes.smallest,
+      borderLeftWidth: sizes.smallest,
+      borderStyle: "solid",
+      borderColor: "var(--color-outline-variant)",
     },
   }),
 };
@@ -60,86 +94,106 @@ const Bench = ({
   navigations = [],
   className,
   style,
+  // TODO
   trailing,
   onNavigate,
-  location,
+  location = window.location.pathname,
   defaultExpandedKeys,
   classNames: { main: mainClassName } = {},
-  elevation = "xsmall",
   layout = "mix",
 }: BenchProps) => {
   const theme = useTheme();
+  const [isCollapsed, { turnOn, turnOff }] = useBoolean();
   const _logo = useLogo(logo);
-  const { navigate, topMenuItems, sideMenuItems, selectedKeys } = useNavigations({
+
+  const { navigate, menuItems } = useNavigations({
     navigations,
     onNavigate,
+  });
+  const { header: headerSelectedKeys, sidebar: sidebarSelectedKeys } = useSelectedKeys({
     location,
+    menuItems,
+  });
+  const { header: headerMenuItems, sidebar: sidebarMenuItems } = useMenuItems({
     layout,
+    menuItems,
+    headerSelectedKeys,
   });
 
+  console.log("headerMenuItems===", headerMenuItems);
+  console.log("sidebarMenuItems===", sidebarMenuItems);
+  console.log("headerSelectedKeys===", headerSelectedKeys);
+  console.log("sidebarSelectedKeys===", sidebarSelectedKeys);
+
   const styled = {
-    bench: stylex.props(styles.bench.default),
-    header: stylex.props(styles.header.default({ elevation })),
-    main: stylex.props(styles.bench.main),
-    sider: stylex.props(styles.bench.sider({ outlineColor: theme.colors["outline-variant"] })),
-    title: stylex.props(typography.title.large),
-    divider: stylex.props(styles.header.divider),
-    headerNavigation: stylex.props(styles.header.navigation),
+    bench: stylex.props(styles.bench.default, isCollapsed && styles.bench.collapsed),
+    heading: {
+      default: stylex.props(
+        typography.title.large,
+        styles.heading.default,
+        isCollapsed && styles.heading.collapsed,
+      ),
+      title: stylex.props(typography.title.large),
+      collapser: stylex.props(styles.heading.collapser),
+    },
+    header: {
+      default: stylex.props(styles.header.default),
+    },
+    sidebar: stylex.props(styles.sidebar.default),
+    main: stylex.props(styles.main.default),
   };
 
   return (
-    <Layout
+    <div
       className={stringify(styled.bench.className, className)}
       style={{
         ...styled.bench.style,
         ...style,
+        // @ts-expect-error style vars
+        "--color-outline-variant": theme.colors["outline-variant"],
       }}
     >
-      <Header className={styled.header.className} style={styled.header.style}>
-        {/* logo */}
-        {!!_logo && <img src={_logo?.url} alt="logo" />}
+      <div
+        className={stringify(styled.heading.default.className)}
+        style={styled.heading.default.style}
+      >
+        {_logo}
 
-        {/* divider */}
-        {!!_logo && (
-          <div className={styled.divider.className} style={styled.divider.style}>
-            <Divider orientation="vertical" />
-          </div>
+        {!isCollapsed && (
+          <>
+            {title}
+
+            <MenuOpenIcon
+              size={24}
+              onClick={turnOn}
+              className={styled.heading.collapser.className}
+              style={styled.heading.collapser.style}
+            />
+          </>
         )}
+      </div>
 
-        {/* title */}
-        <span className={styled.title.className} style={styled.title.style}>
-          {title}
-        </span>
+      <header
+        className={stringify(styled.header.default.className)}
+        style={styled.header.default.style}
+      >
+        <Menu items={headerMenuItems} selectedKeys={headerSelectedKeys} onClick={navigate} />
+      </header>
 
-        {/* top navigation */}
+      <aside className={stringify(styled.sidebar.className)} style={styled.sidebar.style}>
+        {isCollapsed && <MenuIcon size={24} onClick={turnOff} />}
         <Menu
-          items={topMenuItems}
+          items={sidebarMenuItems}
+          selectedKeys={sidebarSelectedKeys}
           onClick={navigate}
-          mode="horizontal"
-          className={styled.headerNavigation.className}
-          style={styled.headerNavigation.style}
-          selectedKeys={selectedKeys[0]}
+          defaultExpandedKeys={defaultExpandedKeys}
         />
+      </aside>
 
-        {/* trailing */}
-        {trailing}
-      </Header>
-      {sideMenuItems.length > 0 && (
-        <Sider className={styled.sider.className} style={styled.sider.style}>
-          {/* side navigation */}
-          <Menu
-            items={sideMenuItems}
-            onClick={navigate}
-            defaultExpandedKeys={defaultExpandedKeys}
-            selectedKeys={selectedKeys[1]}
-          />
-        </Sider>
-      )}
-
-      <Main className={stringify(mainClassName, styled.main.className)} style={styled.main.style}>
+      <main className={stringify(mainClassName, styled.main.className)} style={styled.main.style}>
         {children}
-      </Main>
-    </Layout>
+      </main>
+    </div>
   );
 };
 

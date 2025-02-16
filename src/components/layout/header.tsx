@@ -10,8 +10,8 @@ const styles = stylex.create({
     display: "flex",
     alignItems: "center",
     height: sizes.xxxlarge,
-    paddingInline: spacing.xxxlarge,
-    marginBlockEnd: spacing.xxxlarge,
+    paddingInline: spacing.xxxxlarge,
+    marginBlockEnd: spacing.xxxxlarge,
 
     position: "sticky",
     top: 0,

@@ -59,14 +59,14 @@ const styles = {
       // layout
       display: "grid",
       gap: spacing.xxsmall,
-      grid: "'leading title closer' '. description description'",
+      gridTemplateAreas: "'leading title closer' '. description description'",
       // padding
       paddingBlock: spacing.large,
       paddingInline: spacing.large,
     }),
 
     simple: {
-      grid: "'leading description closer'",
+      gridTemplateAreas: "'leading description closer'",
       // padding
       paddingBlock: spacing.xxsmall,
       paddingInline: spacing.medium,

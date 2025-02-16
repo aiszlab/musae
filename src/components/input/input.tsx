@@ -24,7 +24,7 @@ export const styles = stylex.create({
     outline: sizes.none,
 
     minHeight: sizes.medium,
-    minWidth: sizes.xxxxxxlarge,
+    minWidth: sizes.xxxxxxxlarge,
     maxWidth: sizes.full,
 
     // border, for flexible, in musae, we use boxShadow replace border

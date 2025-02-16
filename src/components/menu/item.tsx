@@ -106,7 +106,7 @@ const styles = {
     large: (props: { level: number }) => ({
       paddingBlock: spacing.medium,
       paddingRight: spacing.large,
-      paddingLeft: `calc(${spacing.large} + ${props.level} * ${spacing.xxxlarge})`,
+      paddingLeft: `calc(${spacing.large} + ${props.level} * ${spacing.xxxxlarge})`,
       borderRadius: sizes.xxxxsmall,
     }),
   }),

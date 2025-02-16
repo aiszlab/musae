@@ -111,12 +111,12 @@ const styles = {
       transitionDuration: duration.short,
 
       paddingInlineStart: `calc(${sizes.xsmall} + ${sizes.xxxxxxxxsmall} * 4)`,
-      paddingInlineEnd: `calc(${spacing.xxxlarge} / 2 - ${sizes.xxxxxxxxsmall})`,
+      paddingInlineEnd: `calc(${spacing.xxxxlarge} / 2 - ${sizes.xxxxxxxxsmall})`,
     },
 
     // if checked, change padding styles, for slider has been right
     checked: {
-      paddingInlineStart: `calc(${spacing.xxxlarge} / 2 - ${sizes.xxxxxxxxsmall})`,
+      paddingInlineStart: `calc(${spacing.xxxxlarge} / 2 - ${sizes.xxxxxxxxsmall})`,
       paddingInlineEnd: `calc(${sizes.xsmall} + ${sizes.xxxxxxxxsmall} * 4)`,
     },
 
