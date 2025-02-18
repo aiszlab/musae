@@ -75,7 +75,7 @@
     "@lexical/markdown": "^0.24.0",
     "@lexical/react": "^0.24.0",
     "@lexical/rich-text": "^0.24.0",
-    "@lexical/selection": "^0.22.0",
+    "@lexical/selection": "^0.24.0",
     "@lexical/utils": "^0.22.0",
     "@shikijs/rehype": "^1.29.2",
     "@tanstack/react-table": "^8.21.2",

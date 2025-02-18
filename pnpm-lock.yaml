@@ -45,8 +45,8 @@ importers:
         specifier: ^0.24.0
         version: 0.24.0
       '@lexical/selection':
-        specifier: ^0.22.0
-        version: 0.22.0
+        specifier: ^0.24.0
+        version: 0.24.0
       '@lexical/utils':
         specifier: ^0.22.0
         version: 0.22.0
