@@ -42,8 +42,8 @@ importers:
         specifier: ^0.22.0
         version: 0.22.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(yjs@13.6.20)
       '@lexical/rich-text':
-        specifier: ^0.22.0
-        version: 0.22.0
+        specifier: ^0.24.0
+        version: 0.24.0
       '@lexical/selection':
         specifier: ^0.22.0
         version: 0.22.0
@@ -1393,6 +1393,9 @@ packages:
 
   '@lexical/rich-text@0.22.0':
     resolution: {integrity: sha512-ILN/tht6emxbVK12Hp86y50fk0MGHMHg6Ivt/5OncoDPXfLMicuJRgLgLxLl5dCf7UVQOfa7z8eKEWnE83M5Mg==}
+
+  '@lexical/rich-text@0.24.0':
+    resolution: {integrity: sha512-pOqI13Rwekujc+eUAJ2LUvp9Lv2gFiwLcIYrk1B1JpY/rT0s2U1RRwIgt2YEAPK4sedF5twcFsJvf2tswEIpIw==}
 
   '@lexical/selection@0.22.0':
     resolution: {integrity: sha512-DdRh8bHijQGV1OxeaywulaLRxgYtn1B7miS0I4pP04KkRXVxrlWRP5dGzQoMDghTh+W1QD9GiUSAyz4L9R3zxQ==}
@@ -6596,6 +6599,13 @@ snapshots:
       '@lexical/selection': 0.22.0
       '@lexical/utils': 0.22.0
       lexical: 0.22.0
+
+  '@lexical/rich-text@0.24.0':
+    dependencies:
+      '@lexical/clipboard': 0.24.0
+      '@lexical/selection': 0.24.0
+      '@lexical/utils': 0.24.0
+      lexical: 0.24.0
 
   '@lexical/selection@0.22.0':
     dependencies:
