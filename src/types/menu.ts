@@ -106,6 +106,12 @@ export interface MenuProps extends ComponentProps {
    * @default void 0
    */
   onClick?: ContextValue["click"];
+
+  /**
+   * @description expand handler
+   * @default void 0
+   */
+  onExpandedKeysChange?: (expandedKeys: Key[]) => void;
 }
 
 /**

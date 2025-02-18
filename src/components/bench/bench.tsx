@@ -2,13 +2,15 @@ import React from "react";
 import stylex from "@stylexjs/stylex";
 import { duration, sizes, spacing } from "../theme/tokens.stylex";
 import type { BenchProps } from "../../types/bench";
-import { useLogo, useMenuItems, useNavigations, useSelectedKeys } from "./hooks";
+import { useLogo, useMenuItems, useNavigations, useMenuKeys } from "./hooks";
 import { useTheme } from "../theme";
 import { typography } from "../theme/theme";
 import { stringify } from "@aiszlab/relax/class-name";
 import { Menu } from "../menu";
 import { MenuOpen as MenuOpenIcon, Menu as MenuIcon } from "../icon/icons";
-import { useBoolean } from "@aiszlab/relax";
+import { first, last, useBoolean } from "@aiszlab/relax";
+import { useClassNames } from "../../hooks/use-class-names";
+import { CLASS_NAMES } from "./context";
 
 const styles = {
   bench: stylex.create({
@@ -16,7 +18,7 @@ const styles = {
       width: "100vw",
       height: "100vh",
       display: "grid",
-      gridTemplateAreas: "'heading header' 'sider main'",
+      gridTemplateAreas: "'heading header' 'sidebar main'",
       gridTemplateRows: `${sizes.xxxxlarge} ${sizes.fr}`,
       gridTemplateColumns: `${sizes.xxxxxxxxlarge} ${sizes.fr}`,
 
@@ -25,14 +27,15 @@ const styles = {
     },
 
     collapsed: {
+      gridTemplateAreas: "'heading header' 'sidebar main' 'expander main'",
       gridTemplateColumns: `${sizes.xxxxlarge} ${sizes.fr}`,
     },
   }),
 
   heading: stylex.create({
     default: {
-      paddingInline: spacing.xxxxlarge,
       gridArea: "heading",
+      paddingInline: spacing.xxxxlarge,
       fontWeight: 700,
 
       display: "flex",
@@ -54,11 +57,13 @@ const styles = {
 
   header: stylex.create({
     default: {
+      gridArea: "header",
       display: "flex",
       alignItems: "center",
 
       paddingInline: spacing.xxxxxlarge,
 
+      borderWidth: sizes.none,
       borderLeftWidth: sizes.smallest,
       borderStyle: "solid",
       borderColor: "var(--color-outline-variant)",
@@ -67,8 +72,49 @@ const styles = {
 
   sidebar: stylex.create({
     default: {
+      gridArea: "sidebar",
       padding: spacing.xxxxlarge,
+      overflow: "hidden",
 
+      borderWidth: sizes.none,
+      borderTopWidth: sizes.smallest,
+      borderStyle: "solid",
+      borderColor: "var(--color-outline-variant)",
+
+      ":focus": {
+        overflow: "auto",
+      },
+    },
+
+    collapsed: {
+      padding: null,
+      paddingBlockStart: spacing.xxxxlarge,
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+    },
+  }),
+
+  menu: stylex.create({
+    default: {
+      overflow: "hidden",
+    },
+
+    collapsed: {
+      width: "fit-content",
+    },
+  }),
+
+  expander: stylex.create({
+    default: {
+      gridArea: "expander",
+      width: sizes.full,
+      display: "flex",
+      justifyContent: "center",
+      paddingBlock: spacing.xxlarge,
+      marginBlockStart: spacing.auto,
+
+      borderWidth: sizes.none,
       borderTopWidth: sizes.smallest,
       borderStyle: "solid",
       borderColor: "var(--color-outline-variant)",
@@ -77,9 +123,11 @@ const styles = {
 
   main: stylex.create({
     default: {
+      gridArea: "main",
       overflow: "auto",
       padding: spacing.xxxxxlarge,
 
+      borderWidth: sizes.none,
       borderTopWidth: sizes.smallest,
       borderLeftWidth: sizes.smallest,
       borderStyle: "solid",
@@ -87,6 +135,7 @@ const styles = {
     },
   }),
 };
+
 const Bench = ({
   children,
   title,
@@ -102,6 +151,7 @@ const Bench = ({
   classNames: { main: mainClassName } = {},
   layout = "mix",
 }: BenchProps) => {
+  const classNames = useClassNames(CLASS_NAMES);
   const theme = useTheme();
   const [isCollapsed, { turnOn, turnOff }] = useBoolean();
   const _logo = useLogo(logo);
@@ -110,20 +160,19 @@ const Bench = ({
     navigations,
     onNavigate,
   });
-  const { header: headerSelectedKeys, sidebar: sidebarSelectedKeys } = useSelectedKeys({
+
+  const { selectedKeys, expandedKeys, onExpandedKeysChange } = useMenuKeys({
     location,
     menuItems,
+    defaultExpandedKeys,
   });
+
   const { header: headerMenuItems, sidebar: sidebarMenuItems } = useMenuItems({
     layout,
     menuItems,
-    headerSelectedKeys,
+    selectedKeys,
+    isCollapsed,
   });
-
-  console.log("headerMenuItems===", headerMenuItems);
-  console.log("sidebarMenuItems===", sidebarMenuItems);
-  console.log("headerSelectedKeys===", headerSelectedKeys);
-  console.log("sidebarSelectedKeys===", sidebarSelectedKeys);
 
   const styled = {
     bench: stylex.props(styles.bench.default, isCollapsed && styles.bench.collapsed),
@@ -139,13 +188,17 @@ const Bench = ({
     header: {
       default: stylex.props(styles.header.default),
     },
-    sidebar: stylex.props(styles.sidebar.default),
+    sidebar: {
+      default: stylex.props(styles.sidebar.default, isCollapsed && styles.sidebar.collapsed),
+      menu: stylex.props(styles.menu.default, isCollapsed && styles.menu.collapsed),
+    },
+    expander: stylex.props(styles.expander.default),
     main: stylex.props(styles.main.default),
   };
 
   return (
     <div
-      className={stringify(styled.bench.className, className)}
+      className={stringify(classNames.bench, styled.bench.className, className)}
       style={{
         ...styled.bench.style,
         ...style,
@@ -154,7 +207,7 @@ const Bench = ({
       }}
     >
       <div
-        className={stringify(styled.heading.default.className)}
+        className={stringify(classNames.benchHeading, styled.heading.default.className)}
         style={styled.heading.default.style}
       >
         {_logo}
@@ -174,23 +227,46 @@ const Bench = ({
       </div>
 
       <header
-        className={stringify(styled.header.default.className)}
+        className={stringify(classNames.benchHeader, styled.header.default.className)}
         style={styled.header.default.style}
       >
-        <Menu items={headerMenuItems} selectedKeys={headerSelectedKeys} onClick={navigate} />
+        <Menu
+          items={headerMenuItems}
+          selectedKeys={first(selectedKeys)}
+          onClick={navigate}
+          mode="horizontal"
+        />
       </header>
 
-      <aside className={stringify(styled.sidebar.className)} style={styled.sidebar.style}>
-        {isCollapsed && <MenuIcon size={24} onClick={turnOff} />}
+      <aside
+        className={stringify(classNames.benchSidebar, styled.sidebar.default.className)}
+        style={styled.sidebar.default.style}
+      >
         <Menu
+          mode={isCollapsed ? "vertical" : "inline"}
           items={sidebarMenuItems}
-          selectedKeys={sidebarSelectedKeys}
+          selectedKeys={last(selectedKeys)}
           onClick={navigate}
-          defaultExpandedKeys={defaultExpandedKeys}
+          expandedKeys={expandedKeys}
+          onExpandedKeysChange={onExpandedKeysChange}
+          className={styled.sidebar.menu.className}
+          style={styled.sidebar.menu.style}
         />
       </aside>
 
-      <main className={stringify(mainClassName, styled.main.className)} style={styled.main.style}>
+      {isCollapsed && (
+        <div
+          className={stringify(classNames.benchSidebarExpander, styled.expander.className)}
+          style={styled.expander.style}
+        >
+          <MenuIcon size={24} onClick={turnOff} />
+        </div>
+      )}
+
+      <main
+        className={stringify(classNames.benchMain, mainClassName, styled.main.className)}
+        style={styled.main.style}
+      >
         {children}
       </main>
     </div>

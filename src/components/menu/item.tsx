@@ -17,6 +17,7 @@ const styles = {
       alignItems: "center",
       cursor: "pointer",
       userSelect: "none",
+      whiteSpace: "nowrap",
 
       willChange: "background-color, border, color",
       transitionProperty: "background-color, border, color",
@@ -47,7 +48,7 @@ const styles = {
     }),
 
     item: stylex.create({
-      horizontal: (props: { outlineColor?: CSSProperties["borderColor"] }) => ({
+      horizontal: {
         height: sizes.full,
         position: "relative",
 
@@ -68,23 +69,23 @@ const styles = {
         },
 
         ":hover::after": {
-          borderBottomColor: props.outlineColor,
+          borderBottomColor: "var(--color-primary)",
         },
-      }),
+      },
 
-      vertical: (props: { backgroundColor?: CSSProperties["backgroundColor"] }) => ({
+      vertical: {
         backgroundColor: {
           default: null,
-          ":hover": props.backgroundColor,
+          ":hover": "var(--color-surface-container-highest)",
         },
-      }),
+      },
 
-      inline: (props: { backgroundColor?: CSSProperties["backgroundColor"] }) => ({
+      inline: {
         backgroundColor: {
           default: null,
-          ":hover": props.backgroundColor,
+          ":hover": "var(--color-surface-container-highest)",
         },
-      }),
+      },
     }),
   },
 
@@ -196,18 +197,8 @@ const Item = forwardRef<HTMLLIElement, MenuItemProps>(
       item: stylex.props(
         styles.default.item,
         styles.size[size]({ level }),
-
-        styles.mode.item[mode]({
-          ...(isInline && {
-            backgroundColor: theme.colors["surface-container-highest"],
-          }),
-          ...(isVertical && {
-            backgroundColor: theme.colors["surface-container-highest"],
-          }),
-          ...(isHorizontal && {
-            outlineColor: theme.colors.primary,
-          }),
-        }),
+        // mode
+        styles.mode.item[mode],
 
         isSelected &&
           styles.selected[mode]({
@@ -225,7 +216,17 @@ const Item = forwardRef<HTMLLIElement, MenuItemProps>(
     };
 
     return (
-      <li role="menuitem" ref={ref} {...styled.menuItem}>
+      <li
+        role="menuitem"
+        ref={ref}
+        className={styled.menuItem.className}
+        style={{
+          ...styled.menuItem.style,
+          // @ts-expect-error style vars
+          "--color-primary": theme.colors.primary,
+          "--color-surface-container-highest": theme.colors["surface-container-highest"],
+        }}
+      >
         <div
           ref={itemRef}
           className={stringify(classNames.item, className, styled.item.className)}

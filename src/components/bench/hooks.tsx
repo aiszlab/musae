@@ -1,11 +1,10 @@
-import { isValidElement, type Key, type ReactNode, useMemo } from "react";
-import type { Partialable } from "@aiszlab/relax/types";
-import { isObject, isUndefined, useEvent } from "@aiszlab/relax";
+import React, { Children, type Key, type ReactNode, useCallback, useMemo, useState } from "react";
+import { first, isUndefined, useEvent } from "@aiszlab/relax";
 import type { BenchProps, Layout, Logo, NavigationItem } from "../../types/bench";
 import type { MenuItem } from "../../types/menu";
 import { Image } from "../image";
 import type { Voidable } from "@aiszlab/relax/types";
-import React from "react";
+import { toReactNodeText } from "../../utils/react";
 
 /**
  * @description check logo type
@@ -78,36 +77,42 @@ const addPath = (
 };
 
 /**
- * @description get selected keys
+ * @description get menu keys
  */
-export const useSelectedKeys = ({
+export const useMenuKeys = ({
   menuItems,
   location,
+  defaultExpandedKeys,
 }: {
   menuItems: MenuItem[];
   location?: string;
+  defaultExpandedKeys?: Key[];
 }) => {
-  const keyWithParents = useMemo(() => {
+  const keysWithParents = useMemo(() => {
     return menuItems.reduce((prev, item) => addPath(prev, item), new Map<Key, Key[]>());
   }, [menuItems]);
 
-  return useMemo<{
-    header: Key[];
-    sidebar: Key[];
-  }>(() => {
-    if (isUndefined(location)) {
-      return {
-        header: [],
-        sidebar: [],
-      };
-    }
+  const selectedKeys = useMemo<Key[]>(() => {
+    if (isUndefined(location)) return [];
+    return (keysWithParents.get(location) ?? []).concat(location);
+  }, [keysWithParents, location]);
 
-    const paths = keyWithParents.get(location);
-    return {
-      header: [paths?.[0] ?? location],
-      sidebar: [location],
-    };
-  }, [keyWithParents, location]);
+  const [expandedKeys, setExpandedKeys] = useState<Key[]>(() => {
+    return Array.from(new Set([...selectedKeys, ...(defaultExpandedKeys ?? [])]));
+  });
+
+  const onExpandedKeysChange = useCallback(
+    (expandingKeys: Key[]) => {
+      setExpandedKeys(expandingKeys);
+    },
+    [setExpandedKeys],
+  );
+
+  return {
+    selectedKeys,
+    expandedKeys,
+    onExpandedKeysChange,
+  };
 };
 
 /**
@@ -116,45 +121,62 @@ export const useSelectedKeys = ({
 export const useMenuItems = ({
   menuItems,
   layout,
-  headerSelectedKeys,
+  selectedKeys,
+  isCollapsed,
 }: {
   menuItems: MenuItem[];
   layout: Layout;
-  headerSelectedKeys: Key[];
+  selectedKeys: Key[];
+  isCollapsed: boolean;
 }) => {
-  const {
-    header,
-    sidebar: _sidebar,
-    sidebars,
-  } = useMemo(() => {
-    if (layout === "side") {
-      return {
-        header: [] as MenuItem[],
-        sidebar: menuItems,
-      };
+  const _menuItems = useMemo(() => {
+    return menuItems.reduce((prev, item) => prev.set(item.key, item), new Map<Key, MenuItem>());
+  }, [menuItems]);
+
+  // split menu items to sidebar
+  const _sidebar = useMemo<MenuItem[]>(() => {
+    switch (layout) {
+      case "side":
+        return Array.from(_menuItems.values());
+      case "mix":
+        // when header menu is not located, just use first menu`s children
+        const _root = first(selectedKeys);
+        return (
+          (isUndefined(_root)
+            ? _menuItems.values().next().value?.children
+            : _menuItems.get(_root)?.children) ?? []
+        );
+      default:
+        return [];
     }
+  }, [_menuItems, layout, selectedKeys]);
 
-    const { header, sidebars } = menuItems.reduce(
-      (prev, { children, ...item }) => {
-        prev.header.push(item);
-        prev.sidebars.set(item.key, children);
-        return prev;
-      },
-      { header: [] as MenuItem[], sidebars: new Map<Key, Partialable<MenuItem[]>>() },
-    );
+  // split menu items to header
+  const header = useMemo(() => {
+    switch (layout) {
+      case "top":
+        return Array.from(_menuItems.values());
+      case "mix":
+        return Array.from(_menuItems.values()).map((item) => ({ ...item, children: void 0 }));
+      default:
+        return [];
+    }
+  }, [_menuItems, layout]);
 
-    return {
-      header,
-      sidebars,
-    };
-  }, [menuItems, layout]);
+  // in `Bench`, sidebar could be collapsed
+  // when collapsed, sidebar menu items should be flattened
+  const sidebar = useMemo<MenuItem[]>(() => {
+    if (!isCollapsed) return _sidebar;
 
-  const sidebar = useMemo(() => {
-    const _key = headerSelectedKeys[0];
-    if (_key) return _sidebar ?? [];
-
-    return sidebars?.get(_key) ?? _sidebar ?? [];
-  }, [headerSelectedKeys, sidebars, _sidebar]);
+    // if `item` has prefix, use prefix as label
+    // if not, get label first char to show
+    return _sidebar.map(({ prefix, label, ...item }) => {
+      return {
+        ...item,
+        label: !!prefix ? prefix : toReactNodeText(label)?.charAt(0),
+      };
+    });
+  }, [isCollapsed]);
 
   return {
     header,
