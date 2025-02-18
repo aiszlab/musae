@@ -27,8 +27,8 @@ importers:
         specifier: ^0.22.0
         version: 0.22.0
       '@lexical/headless':
-        specifier: ^0.22.0
-        version: 0.22.0
+        specifier: ^0.24.0
+        version: 0.24.0
       '@lexical/link':
         specifier: ^0.24.0
         version: 0.24.0
@@ -1346,8 +1346,8 @@ packages:
   '@lexical/hashtag@0.22.0':
     resolution: {integrity: sha512-W6Wrz0+ClezZQavjCjYso+LzRP/rWNUIM6cLwnf7oFXsmIXeaLHXecIbRwZ+SChnj4eUlSlnlknMVi3bJKaOjw==}
 
-  '@lexical/headless@0.22.0':
-    resolution: {integrity: sha512-/eccU4ongtsa5yw0GOsI2GyRhFol5EtpeMOBYO4BYHT7yhFGJcjXKNacC9qEXgtJS4zOVM4ASI3RSPwlR5EVqw==}
+  '@lexical/headless@0.24.0':
+    resolution: {integrity: sha512-yIaw/EzUV9KgEggg4UHK/Q5NGZBWKCJj+MYLiT6/XoboD0cbf+O4FLPS8/eZ0oyhyRnDdFHakf6ZlvM2vLcBeA==}
 
   '@lexical/history@0.22.0':
     resolution: {integrity: sha512-4e/xL7CtYvsv8X4iGH1tPL8J6jthDpzh0a1WWZfL9ipeOYN9Btctq6o1Obdth5DfbMR7ELq7PSN2FK6+jZ4EQQ==}
@@ -6492,9 +6492,9 @@ snapshots:
       '@lexical/utils': 0.22.0
       lexical: 0.22.0
 
-  '@lexical/headless@0.22.0':
+  '@lexical/headless@0.24.0':
     dependencies:
-      lexical: 0.22.0
+      lexical: 0.24.0
 
   '@lexical/history@0.22.0':
     dependencies:
