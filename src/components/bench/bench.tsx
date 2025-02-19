@@ -3,14 +3,14 @@ import stylex from "@stylexjs/stylex";
 import { duration, sizes, spacing } from "../theme/tokens.stylex";
 import type { BenchProps } from "../../types/bench";
 import { useLogo, useMenuItems, useNavigations, useMenuKeys } from "./hooks";
-import { useTheme } from "../theme";
 import { typography } from "../theme/theme";
 import { stringify } from "@aiszlab/relax/class-name";
 import { Menu } from "../menu";
 import { MenuOpen as MenuOpenIcon, Menu as MenuIcon } from "../icon/icons";
-import { first, last, useBoolean } from "@aiszlab/relax";
+import { first, last } from "@aiszlab/relax";
 import { useClassNames } from "../../hooks/use-class-names";
-import { CLASS_NAMES } from "./context";
+import { CLASS_NAMES, useStore } from "./context";
+import { Layout } from "../layout";
 
 const styles = {
   bench: stylex.create({
@@ -18,76 +18,49 @@ const styles = {
       width: "100vw",
       height: "100vh",
       display: "grid",
-      gridTemplateAreas: "'heading header' 'sidebar main'",
-      gridTemplateRows: `${sizes.xxxxlarge} ${sizes.fr}`,
+      gridTemplateRows: `${sizes.xxxxlarge} ${sizes.fr} ${sizes.auto}`,
       gridTemplateColumns: `${sizes.xxxxxxxxlarge} ${sizes.fr}`,
-
       transitionProperty: "grid-template-columns",
       transitionDuration: duration.medium,
     },
 
     collapsed: {
-      gridTemplateAreas: "'heading header' 'sidebar main' 'expander main'",
+      // gridTemplateAreas: "'heading header' 'sidebar main' 'expander main'",
       gridTemplateColumns: `${sizes.xxxxlarge} ${sizes.fr}`,
     },
   }),
 
   heading: stylex.create({
-    default: {
-      gridArea: "heading",
-      paddingInline: spacing.xxxxlarge,
-      fontWeight: 700,
-
-      display: "flex",
-      alignItems: "center",
-      gap: spacing.xxsmall,
-      overflow: "hidden",
-      whiteSpace: "nowrap",
-    },
+    default: {},
 
     collapsed: {
       justifyContent: "center",
       paddingInline: spacing.none,
     },
+  }),
 
-    collapser: {
+  collapser: stylex.create({
+    default: {
       marginInlineStart: "auto",
     },
   }),
 
   header: stylex.create({
+    default: {},
+  }),
+
+  trailing: stylex.create({
     default: {
-      gridArea: "header",
-      display: "flex",
-      alignItems: "center",
-
-      paddingInline: spacing.xxxxxlarge,
-
-      borderWidth: sizes.none,
-      borderLeftWidth: sizes.smallest,
-      borderStyle: "solid",
-      borderColor: "var(--color-outline-variant)",
+      marginInlineStart: spacing.auto,
     },
   }),
 
   sidebar: stylex.create({
-    default: {
-      gridArea: "sidebar",
-      padding: spacing.xxxxlarge,
-      overflow: "hidden",
-
-      borderWidth: sizes.none,
-      borderTopWidth: sizes.smallest,
-      borderStyle: "solid",
-      borderColor: "var(--color-outline-variant)",
-
-      ":focus": {
-        overflow: "auto",
-      },
-    },
+    default: {},
 
     collapsed: {
-      padding: null,
+      paddingInline: spacing.none,
+      paddingBlockEnd: spacing.none,
       paddingBlockStart: spacing.xxxxlarge,
       display: "flex",
       flexDirection: "column",
@@ -122,17 +95,7 @@ const styles = {
   }),
 
   main: stylex.create({
-    default: {
-      gridArea: "main",
-      overflow: "auto",
-      padding: spacing.xxxxxlarge,
-
-      borderWidth: sizes.none,
-      borderTopWidth: sizes.smallest,
-      borderLeftWidth: sizes.smallest,
-      borderStyle: "solid",
-      borderColor: "var(--color-outline-variant)",
-    },
+    default: {},
   }),
 };
 
@@ -143,7 +106,6 @@ const Bench = ({
   navigations = [],
   className,
   style,
-  // TODO
   trailing,
   onNavigate,
   location = window.location.pathname,
@@ -152,8 +114,7 @@ const Bench = ({
   layout = "mix",
 }: BenchProps) => {
   const classNames = useClassNames(CLASS_NAMES);
-  const theme = useTheme();
-  const [isCollapsed, { turnOn, turnOff }] = useBoolean();
+  const { collapse, expand, isCollapsed } = useStore();
   const _logo = useLogo(logo);
 
   const { navigate, menuItems } = useNavigations({
@@ -176,39 +137,32 @@ const Bench = ({
 
   const styled = {
     bench: stylex.props(styles.bench.default, isCollapsed && styles.bench.collapsed),
-    heading: {
-      default: stylex.props(
-        typography.title.large,
-        styles.heading.default,
-        isCollapsed && styles.heading.collapsed,
-      ),
-      title: stylex.props(typography.title.large),
-      collapser: stylex.props(styles.heading.collapser),
-    },
-    header: {
-      default: stylex.props(styles.header.default),
-    },
-    sidebar: {
-      default: stylex.props(styles.sidebar.default, isCollapsed && styles.sidebar.collapsed),
-      menu: stylex.props(styles.menu.default, isCollapsed && styles.menu.collapsed),
-    },
-    expander: stylex.props(styles.expander.default),
+    heading: stylex.props(
+      typography.title.large,
+      styles.heading.default,
+      isCollapsed && styles.heading.collapsed,
+    ),
+    header: stylex.props(styles.header.default),
+    sidebar: stylex.props(styles.sidebar.default, isCollapsed && styles.sidebar.collapsed),
+    menu: stylex.props(styles.menu.default, isCollapsed && styles.menu.collapsed),
+    trailing: stylex.props(styles.trailing.default),
     main: stylex.props(styles.main.default),
+    collapser: stylex.props(styles.collapser.default),
+    expander: stylex.props(styles.expander.default),
+    title: stylex.props(typography.title.large),
   };
 
   return (
-    <div
+    <Layout
       className={stringify(classNames.bench, styled.bench.className, className)}
       style={{
         ...styled.bench.style,
         ...style,
-        // @ts-expect-error style vars
-        "--color-outline-variant": theme.colors["outline-variant"],
       }}
     >
-      <div
-        className={stringify(classNames.benchHeading, styled.heading.default.className)}
-        style={styled.heading.default.style}
+      <Layout.Heading
+        className={stringify(classNames.heading, styled.heading.className)}
+        style={styled.heading.style}
       >
         {_logo}
 
@@ -218,17 +172,17 @@ const Bench = ({
 
             <MenuOpenIcon
               size={24}
-              onClick={turnOn}
-              className={styled.heading.collapser.className}
-              style={styled.heading.collapser.style}
+              onClick={collapse}
+              className={styled.collapser.className}
+              style={styled.collapser.style}
             />
           </>
         )}
-      </div>
+      </Layout.Heading>
 
-      <header
-        className={stringify(classNames.benchHeader, styled.header.default.className)}
-        style={styled.header.default.style}
+      <Layout.Header
+        className={stringify(classNames.header, styled.header.className)}
+        style={styled.header.style}
       >
         <Menu
           items={headerMenuItems}
@@ -236,11 +190,18 @@ const Bench = ({
           onClick={navigate}
           mode="horizontal"
         />
-      </header>
 
-      <aside
-        className={stringify(classNames.benchSidebar, styled.sidebar.default.className)}
-        style={styled.sidebar.default.style}
+        <div
+          className={stringify(classNames.trailing, styled.trailing.className)}
+          style={styled.trailing.style}
+        >
+          {trailing}
+        </div>
+      </Layout.Header>
+
+      <Layout.Sidebar
+        className={stringify(classNames.sidebar, styled.sidebar.className)}
+        style={styled.sidebar.style}
       >
         <Menu
           mode={isCollapsed ? "vertical" : "inline"}
@@ -249,27 +210,27 @@ const Bench = ({
           onClick={navigate}
           expandedKeys={expandedKeys}
           onExpandedKeysChange={onExpandedKeysChange}
-          className={styled.sidebar.menu.className}
-          style={styled.sidebar.menu.style}
+          className={styled.menu.className}
+          style={styled.menu.style}
         />
-      </aside>
 
-      {isCollapsed && (
-        <div
-          className={stringify(classNames.benchSidebarExpander, styled.expander.className)}
-          style={styled.expander.style}
-        >
-          <MenuIcon size={24} onClick={turnOff} />
-        </div>
-      )}
+        {isCollapsed && (
+          <div
+            className={stringify(classNames.expander, styled.expander.className)}
+            style={styled.expander.style}
+          >
+            <MenuIcon size={24} onClick={expand} />
+          </div>
+        )}
+      </Layout.Sidebar>
 
-      <main
-        className={stringify(classNames.benchMain, mainClassName, styled.main.className)}
+      <Layout.Main
+        className={stringify(classNames.main, mainClassName, styled.main.className)}
         style={styled.main.style}
       >
         {children}
-      </main>
-    </div>
+      </Layout.Main>
+    </Layout>
   );
 };
 

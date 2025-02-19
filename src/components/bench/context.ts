@@ -1,11 +1,27 @@
+import { using } from "@aiszlab/relax/react";
+
 /**
  * @description class names
  */
 export const CLASS_NAMES = {
   bench: "bench",
-  benchHeading: "bench__heading",
-  benchHeader: "bench__header",
-  benchSidebar: "bench__sidebar",
-  benchSidebarExpander: "bench__sidebar-expander",
-  benchMain: "bench__main",
+  heading: "bench__heading",
+  header: "bench__header",
+  trailing: "bench__header-trailing",
+  sidebar: "bench__sidebar",
+  expander: "bench__expander",
+  main: "bench__main",
 };
+
+/**
+ * @description global store
+ */
+export const useStore = using<{
+  isCollapsed: boolean;
+  collapse: VoidFunction;
+  expand: VoidFunction;
+}>((setState) => ({
+  isCollapsed: false,
+  collapse: () => setState((prev) => ({ ...prev, isCollapsed: true })),
+  expand: () => setState((prev) => ({ ...prev, isCollapsed: false })),
+}));

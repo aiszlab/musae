@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Bench } from "../dist";
+import { Avatar, Bench } from "../dist";
 import React from "react";
-import { URLSearchParams } from "url";
 
 const meta: Meta<typeof Bench> = {
   title: "bench",
@@ -45,5 +44,6 @@ export const Normal: Story = {
         ],
       },
     ],
+    trailing: <Avatar alt="M" />,
   },
 };

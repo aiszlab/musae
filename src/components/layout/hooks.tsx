@@ -1,58 +1,62 @@
-import { type ReactNode, Children, isValidElement, useMemo } from "react";
+import { type ReactNode, Children, isValidElement, ReactElement, useMemo } from "react";
 import type { ComponentProps } from "../../types/element";
 import Header from "./header";
-import Sider from "./sider";
+import Sidebar from "./sidebar";
 import Footer from "./footer";
 import Main from "./main";
-
-export enum ChildToken {
-  Header = "header",
-  Sider = "sider",
-  Footer = "footer",
-  Main = "main",
-}
+import Heading from "./heading";
 
 /**
  * @description
  * children node
  */
-export const useChildren = ([children]: [ReactNode]) => {
-  const _children = useMemo(() => Children.toArray(children), [children]);
-
-  const [groupedChildren, mainProps] = useMemo(() => {
-    return _children.reduce<[Map<ChildToken, ReactNode>, ComponentProps]>(
-      (prev, current) => {
-        // invalid element, just ignore
-        if (!isValidElement<ComponentProps>(current)) return prev;
-
-        // valid element, check which type
-        switch (current.type) {
-          case Header:
-            prev[0].set(ChildToken.Header, current);
-            break;
-          case Sider:
-            prev[0].set(ChildToken.Sider, current);
-            break;
-          case Footer:
-            prev[0].set(ChildToken.Footer, current);
-            break;
-          case Main:
-            prev[0].set(ChildToken.Main, current);
-            prev[1] = {
-              className: current.props.className,
-              style: current.props.style,
-            };
-            break;
-        }
-
+export const useChildren = ({ children }: { children: ReactNode }) => {
+  const _children = useMemo(() => {
+    return Children.toArray(children).reduce((prev, child) => {
+      if (!isValidElement(child)) {
         return prev;
-      },
-      [new Map(), {}],
-    );
+      }
+
+      switch (child.type) {
+        case Header:
+        case Sidebar:
+        case Footer:
+        case Main:
+        case Heading:
+          prev.set(child.type, child);
+          break;
+        default:
+          break;
+      }
+
+      return prev;
+    }, new WeakMap<Function, ReactElement>());
+  }, [children]);
+
+  const { gridTemplateAreas, hasFooter, hasHeading, hasSidebar } = useMemo(() => {
+    const hasHeading = _children.has(Heading);
+    const hasSidebar = _children.has(Sidebar);
+    const hasFooter = _children.has(Footer);
+
+    const _gridTemplateAreas = [
+      [hasHeading ? "heading" : "header", "header"],
+      [hasSidebar ? "sidebar" : "main", "main"],
+      [hasSidebar ? "sidebar" : hasFooter ? "footer" : "main", hasFooter ? "footer" : "main"],
+    ];
+
+    return {
+      hasFooter,
+      hasHeading,
+      hasSidebar,
+      gridTemplateAreas: `'${_gridTemplateAreas.map((row) => row.join(" ")).join("' '")}'`,
+    };
   }, [_children]);
 
   return {
-    children: groupedChildren,
-    mainProps,
+    children: _children,
+    gridTemplateAreas,
+    hasFooter,
+    hasHeading,
+    hasSidebar,
   };
 };

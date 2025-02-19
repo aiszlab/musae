@@ -30,6 +30,7 @@ yarn add musae
 ```tsx
 import React from "react";
 import { Button } from "musae";
+import "musae/styles.css";
 
 const App = () => <Button>PRESS ME</Button>;
 

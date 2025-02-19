@@ -3,7 +3,7 @@ import type { ComponentProps } from "./element";
 
 /**
  * @description
- * shell header props
+ * header props
  */
 export type HeaderProps = ComponentProps & {
   /**
@@ -27,6 +27,11 @@ export interface TypedLayout {
   (props: LayoutProps): ReactNode;
 
   /**
+   * @description heading
+   */
+  Heading: (props: HeadingProps) => ReactNode;
+
+  /**
    * @description
    * header
    */
@@ -34,9 +39,9 @@ export interface TypedLayout {
 
   /**
    * @description
-   * sider
+   * sidebar
    */
-  Sider: (props: SiderProps) => ReactNode;
+  Sidebar: (props: SidebarProps) => ReactNode;
 
   /**
    * @description
@@ -77,12 +82,32 @@ export type MainProps = ComponentProps & {
 
 /**
  * @description
- * sider props
+ * sidebar props
  */
-export type SiderProps = ComponentProps & {
+export type SidebarProps = ComponentProps & {
   /**
    * @description
    * children
    */
   children: ReactNode;
 };
+
+/**
+ * @description heading props
+ */
+export interface HeadingProps extends ComponentProps {
+  /**
+   * @description children
+   */
+  children: ReactNode;
+}
+
+/**
+ * @description footer props
+ */
+export interface FooterProps extends ComponentProps {
+  /**
+   * @description children
+   */
+  children: ReactNode;
+}
