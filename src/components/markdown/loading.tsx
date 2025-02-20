@@ -12,7 +12,7 @@ const styles = stylex.create({
   },
 
   heading: {
-    width: sizes.xxxxxlarge,
+    width: sizes.xxxxxxlarge,
     height: sizes.medium,
     borderRadius: sizes.xxxxxxsmall,
   },
@@ -24,13 +24,13 @@ const styles = stylex.create({
   },
 
   newline: {
-    width: sizes.xxxxxxlarge,
+    width: sizes.xxxxxxxlarge,
     height: sizes.xsmall,
     borderRadius: sizes.xxxxxxsmall,
   },
 
   footer: {
-    width: sizes.xxxxxlarge,
+    width: sizes.xxxxxxlarge,
     height: sizes.small,
     borderRadius: sizes.xxxxxxsmall,
   },

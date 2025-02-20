@@ -1,76 +1,55 @@
-import React, { type CSSProperties } from "react";
-import { Grid } from "../grid";
+import React from "react";
 import type { LayoutProps } from "../../types/layout";
-import { ChildToken, useChildren } from "./hooks";
+import { useChildren } from "./hooks";
 import stylex from "@stylexjs/stylex";
 import { useTheme } from "../theme";
 import { stringify } from "@aiszlab/relax/class-name";
-import { positions } from "../theme/tokens.stylex";
+import Context, { CLASS_NAMES } from "./context";
+import { useClassNames } from "../../hooks/use-class-names";
+import Heading from "./heading";
+import Header from "./header";
+import Sidebar from "./sidebar";
+import Main from "./main";
+import Footer from "./footer";
 
-const styles = stylex.create({
-  layout: (props: {
-    backgroundColor: CSSProperties["backgroundColor"];
-    color: CSSProperties["color"];
-  }) => ({
-    backgroundColor: props.backgroundColor,
-    color: props.color,
-    display: "flex",
-    flexDirection: "column",
+const styles = {
+  layout: stylex.create({
+    default: (props: { gridTemplateAreas: string }) => ({
+      display: "grid",
+      gridTemplateAreas: props.gridTemplateAreas,
+    }),
   }),
-
-  main: {
-    zIndex: positions.min,
-  },
-});
+};
 
 const Layout = ({ className, style, ...props }: LayoutProps) => {
   const theme = useTheme();
-  const { children, mainProps } = useChildren([props.children]);
-  const sider = children.get(ChildToken.Sider);
-  const hasSider = !!sider;
+  const classNames = useClassNames(CLASS_NAMES);
+  const { children, gridTemplateAreas } = useChildren({
+    children: props.children,
+  });
 
   const styled = {
-    layout: stylex.props(
-      styles.layout({
-        backgroundColor: theme.colors["surface-container-lowest"],
-        color: theme.colors["on-surface"],
-      }),
-    ),
-    main: stylex.props(styles.main),
+    layout: stylex.props(styles.layout.default({ gridTemplateAreas })),
   };
 
   return (
-    <div
-      className={stringify(className, styled.layout.className)}
-      style={{
-        ...styled.layout.style,
-        ...style,
-      }}
-    >
-      {children.get(ChildToken.Header)}
-
-      {hasSider && (
-        <Grid.Row as="main" className={styled.main.className} style={styled.main.style}>
-          {sider}
-
-          <Grid.Col {...mainProps} span={19}>
-            {children.get(ChildToken.Main)}
-            {children.get(ChildToken.Footer)}
-          </Grid.Col>
-        </Grid.Row>
-      )}
-
-      {!hasSider && (
-        <main
-          {...mainProps}
-          className={stringify(mainProps.className, styled.main.className)}
-          style={{ ...styled.main.style, ...mainProps.style }}
-        >
-          {children.get(ChildToken.Main)}
-          {children.get(ChildToken.Footer)}
-        </main>
-      )}
-    </div>
+    <Context.Provider value={{ classNames }}>
+      <div
+        className={stringify(className, classNames.layout, styled.layout.className)}
+        style={{
+          ...styled.layout.style,
+          ...style,
+          // @ts-expect-error style vars
+          "--color-outline-variant": theme.colors["outline-variant"],
+        }}
+      >
+        {children.get(Heading)}
+        {children.get(Header)}
+        {children.get(Sidebar)}
+        {children.get(Main)}
+        {children.get(Footer)}
+      </div>
+    </Context.Provider>
   );
 };
 

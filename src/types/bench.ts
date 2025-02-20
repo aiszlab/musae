@@ -6,8 +6,7 @@ export type Layout = "side" | "top" | "mix";
 
 export type Logo = {
   /**
-   * @description
-   * url
+   * @description url
    */
   url: string;
 };
@@ -39,10 +38,9 @@ export type NavigationItem = {
  */
 export type BenchProps = ComponentProps & {
   /**
-   * @description
-   * logo
+   * @description logo
    */
-  logo?: string | Logo;
+  logo?: ReactNode | Logo;
 
   /**
    * @description
@@ -92,13 +90,6 @@ export type BenchProps = ComponentProps & {
    * class names
    */
   classNames?: Partial<Record<"main", string>>;
-
-  /**
-   * @description
-   * elevation
-   * @default "xsmall"
-   */
-  elevation?: ElevationToken;
 
   /**
    * @description

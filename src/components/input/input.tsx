@@ -24,7 +24,7 @@ export const styles = stylex.create({
     outline: sizes.none,
 
     minHeight: sizes.medium,
-    minWidth: sizes.xxxxxxlarge,
+    minWidth: sizes.xxxxxxxlarge,
     maxWidth: sizes.full,
 
     // border, for flexible, in musae, we use boxShadow replace border
@@ -150,9 +150,9 @@ const Input = forwardRef<InputRef, InputProps>(
           }),
         disabled &&
           styles.disabled({
-            backgroundColor: hexToRgba(theme.colors["on-surface"], OPACITY.thin, "style"),
-            color: hexToRgba(theme.colors["on-surface"], OPACITY.thickest, "style"),
-            outlineColor: hexToRgba(theme.colors["on-surface"], OPACITY.thickest, "style"),
+            backgroundColor: hexToRgba(theme.colors["on-surface"], OPACITY.thin).toString(),
+            color: hexToRgba(theme.colors["on-surface"], OPACITY.thickest).toString(),
+            outlineColor: hexToRgba(theme.colors["on-surface"], OPACITY.thickest).toString(),
           }),
       ),
       input: stylex.props(styles.input),

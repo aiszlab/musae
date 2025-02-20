@@ -1,7 +1,7 @@
 import { type ContentEditableProps } from "@lexical/react/LexicalContentEditable";
 import { type EditorThemeClasses as _EditorThemeClasses } from "lexical";
 import type { MenuItem } from "./menu";
-import type { HTMLAttributes, ReactNode } from "react";
+import type { HTMLAttributes, Key, ReactNode } from "react";
 import type { ComponentProps } from "./element";
 
 export type Use = "markdown" | "serialized";
@@ -66,10 +66,10 @@ export type EditorThemeClasses = _EditorThemeClasses & {
  * @description
  * dropdown items
  */
-export type DropdownProps<T> = {
-  items?: Map<T, Omit<MenuItem, "key">>;
-  value: T | T[];
-  onChange: (value: T) => void;
+export type DropdownProps = {
+  items?: Map<Key, Omit<MenuItem, "key">>;
+  value: Key | Key[];
+  onChange: (value: Key) => void;
   children?: ReactNode;
   width?: number;
 };

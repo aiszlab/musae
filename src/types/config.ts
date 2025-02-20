@@ -1,6 +1,7 @@
 import type { ReactNode, RefObject } from "react";
 import type { HolderRef } from "./notification";
 import type { Locale } from "./locale";
+import type { Nullable } from "@aiszlab/relax/types";
 
 /**
  * @description
@@ -14,7 +15,7 @@ export interface ContextValue {
    * in musae, we can declare global notifier
    * so users will not need to declare anymore
    */
-  notifier?: RefObject<HolderRef> | null;
+  notifier?: RefObject<Nullable<HolderRef>> | null;
 
   /**
    * @description

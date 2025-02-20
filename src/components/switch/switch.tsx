@@ -111,12 +111,12 @@ const styles = {
       transitionDuration: duration.short,
 
       paddingInlineStart: `calc(${sizes.xsmall} + ${sizes.xxxxxxxxsmall} * 4)`,
-      paddingInlineEnd: `calc(${spacing.xxxlarge} / 2 - ${sizes.xxxxxxxxsmall})`,
+      paddingInlineEnd: `calc(${spacing.xxxxlarge} / 2 - ${sizes.xxxxxxxxsmall})`,
     },
 
     // if checked, change padding styles, for slider has been right
     checked: {
-      paddingInlineStart: `calc(${spacing.xxxlarge} / 2 - ${sizes.xxxxxxxxsmall})`,
+      paddingInlineStart: `calc(${spacing.xxxxlarge} / 2 - ${sizes.xxxxxxxxsmall})`,
       paddingInlineEnd: `calc(${sizes.xsmall} + ${sizes.xxxxxxxxsmall} * 4)`,
     },
 
@@ -188,9 +188,9 @@ const Switch = ({
         backgroundColor: theme.colors["surface-container-highest"],
         color: theme.colors["on-surface-variant"],
         ...(disabled && {
-          borderColor: hexToRgba(theme.colors["on-surface"], OPACITY.medium, "style"),
-          backgroundColor: hexToRgba(theme.colors["surface-variant"], OPACITY.medium, "style"),
-          color: hexToRgba(theme.colors["on-surface"], OPACITY.thickest, "style"),
+          borderColor: hexToRgba(theme.colors["on-surface"], OPACITY.medium).toString(),
+          backgroundColor: hexToRgba(theme.colors["surface-variant"], OPACITY.medium).toString(),
+          color: hexToRgba(theme.colors["on-surface"], OPACITY.thickest).toString(),
         }),
       }),
       isChecked &&
@@ -198,7 +198,7 @@ const Switch = ({
           backgroundColor: theme.colors.primary,
           color: theme.colors["on-primary"],
           ...(disabled && {
-            backgroundColor: hexToRgba(theme.colors["on-surface"], OPACITY.medium, "style"),
+            backgroundColor: hexToRgba(theme.colors["on-surface"], OPACITY.medium).toString(),
             color: theme.colors.surface,
           }),
         }),
@@ -209,7 +209,7 @@ const Switch = ({
         backgroundColor: theme.colors["on-surface-variant"],
         color: theme.colors["surface-container-highest"],
         ...(disabled && {
-          backgroundColor: hexToRgba(theme.colors["on-surface"], OPACITY.thickest, "style"),
+          backgroundColor: hexToRgba(theme.colors["on-surface"], OPACITY.thickest).toString(),
           color: theme.colors["surface-container-highest"],
         }),
       }),
@@ -221,7 +221,7 @@ const Switch = ({
           color: theme.colors["on-primary-container"],
           ...(disabled && {
             backgroundColor: theme.colors.surface,
-            color: hexToRgba(theme.colors["on-surface"], OPACITY.thickest, "style"),
+            color: hexToRgba(theme.colors["on-surface"], OPACITY.thickest).toString(),
           }),
         }),
     ),

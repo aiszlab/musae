@@ -1,13 +1,15 @@
 import _Layout from "./layout";
 import type { TypedLayout } from "../../types/layout";
 import Header from "./header";
-import Sider from "./sider";
+import Sidebar from "./sidebar";
 import Main from "./main";
-import Footer from "./header";
+import Footer from "./footer";
+import Heading from "./heading";
 
 export const Layout: TypedLayout = Object.assign(_Layout, {
   Header,
-  Sider,
+  Sidebar,
   Main,
   Footer,
+  Heading,
 });

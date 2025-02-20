@@ -37,7 +37,9 @@ export const spacing = defineVars({
   large: "16px",
   xlarge: "20px",
   xxlarge: "24px",
-  xxxlarge: "32px",
+  xxxlarge: "30px",
+  xxxxlarge: "32px",
+  xxxxxlarge: "36px",
   auto: "auto",
 });
 
@@ -62,13 +64,16 @@ export const sizes = defineVars({
   xlarge: "40px",
   xxlarge: "48px",
   xxxlarge: "64px",
-  xxxxlarge: "96px",
-  xxxxxlarge: "120px",
-  xxxxxxlarge: "190px",
+  xxxxlarge: "88px",
+  xxxxxlarge: "96px",
+  xxxxxxlarge: "120px",
+  xxxxxxxlarge: "190px",
+  xxxxxxxxlarge: "300px",
   infinity: `calc(${Infinity} * 1px)`,
   full: "100%",
   half: "50%",
   auto: "auto",
+  fr: "1fr",
 });
 
 /**

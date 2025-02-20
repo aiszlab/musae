@@ -92,7 +92,7 @@ export const useBlockFormats = () => {
   const [editor] = useLexicalComposerContext();
   const [locale] = useLocale("rich-text-editor");
 
-  const blockFormats = useMemo<DropdownProps<BlockFormat>["items"]>(
+  const blockFormats = useMemo<DropdownProps["items"]>(
     () =>
       new Map([
         [
@@ -235,7 +235,7 @@ export const useFontSizes = () => {
   const [editor] = useLexicalComposerContext();
   const [fontSize, setFontSize] = useState(DEFAULT_FONT_SIZE);
 
-  const fontSizes = useMemo<DropdownProps<string>["items"]>(() => {
+  const fontSizes = useMemo<DropdownProps["items"]>(() => {
     return new Map([
       ["12px", { label: "12px" }],
       ["13px", { label: "13px" }],
@@ -294,7 +294,7 @@ export const useFontFormats = () => {
     [editor],
   );
 
-  const fontFormats = useMemo<DropdownProps<FontFormat>["items"]>(() => {
+  const fontFormats = useMemo<DropdownProps["items"]>(() => {
     return new Map([
       [
         "strikethrough",

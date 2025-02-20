@@ -12,7 +12,7 @@ import { useLocale } from "../../locale";
 
 const styles = stylex.create({
   list: {
-    minWidth: sizes.xxxxxxlarge,
+    minWidth: sizes.xxxxxxxlarge,
     display: "flex",
     flexDirection: "column",
     gap: spacing.xxxxxsmall,
@@ -36,7 +36,7 @@ const styles = stylex.create({
   },
 
   body: {
-    minHeight: sizes.xxxxxxlarge,
+    minHeight: sizes.xxxxxxxlarge,
     padding: spacing.none,
     margin: spacing.none,
     borderTopLeftRadius: sizes.xxxxxxxxsmall,

@@ -1,5 +1,11 @@
 # musae
 
+## 1.0.0
+
+### Major Changes
+
+- version release
+
 ## 0.5.15
 
 ### Patch Changes

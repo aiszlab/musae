@@ -142,6 +142,6 @@ export interface CheckboxProps extends ComponentProps {
  * typed Checkbox, with group property
  */
 export interface TypedCheckbox {
-  (props: CheckboxProps): JSX.Element;
-  Group: (props: CheckboxGroupProps) => JSX.Element;
+  (props: CheckboxProps): ReactNode;
+  Group: (props: CheckboxGroupProps) => ReactNode;
 }

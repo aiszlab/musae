@@ -2,16 +2,14 @@ import {
   clamp,
   isUndefined,
   useControlledState,
-  useDebounceCallback,
   useEvent,
   useMount,
-  useMounted,
   useResize,
 } from "@aiszlab/relax";
 import { useMemo, useRef, useState, useEffect, type Key, type RefObject, useContext } from "react";
 import type { TabItem } from "../../types/tabs";
 import { Context } from "./context";
-import type { Partialable } from "@aiszlab/relax/types";
+import type { Nullable, Partialable } from "@aiszlab/relax/types";
 
 /**
  * @description
@@ -125,7 +123,7 @@ export const useNavigatorScroll = ({
   navigatorRef,
   scroll,
 }: {
-  navigatorRef: RefObject<HTMLDivElement>;
+  navigatorRef: RefObject<Nullable<HTMLDivElement>>;
   scroll: (delta: number) => void;
 }) => {
   // mouse wheel

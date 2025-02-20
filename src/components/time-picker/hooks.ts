@@ -3,6 +3,7 @@ import type { TimePickerProps } from "../../types/time-picker";
 import dayjs from "dayjs";
 import { type RefObject, useCallback } from "react";
 import type { PickerRef } from "../../types/picker";
+import type { Nullable } from "@aiszlab/relax/types";
 
 /**
  * @description
@@ -10,7 +11,7 @@ import type { PickerRef } from "../../types/picker";
  */
 export const useValue = ([valueInProps, pickerRef]: [
   TimePickerProps["value"],
-  RefObject<PickerRef>,
+  RefObject<Nullable<PickerRef>>,
 ]) => {
   const [value, setValue] = useControlledState(valueInProps, { defaultState: dayjs() });
 

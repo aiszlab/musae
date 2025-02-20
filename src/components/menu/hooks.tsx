@@ -1,7 +1,7 @@
 import React, { type Key, type ReactNode, useCallback, useContext, useMemo } from "react";
 import { Context, type CLASS_NAMES } from "./context";
 import type { ContextValue, MenuProps, Mode, Size } from "../../types/menu";
-import { toArray, useControlledState } from "@aiszlab/relax";
+import { toArray, useControlledState, useEvent } from "@aiszlab/relax";
 import stylex from "@stylexjs/stylex";
 import { duration, spacing } from "../theme/tokens.stylex";
 import { KeyboardArrowUp } from "musae/icons";
@@ -100,6 +100,7 @@ export const useContextValue = ({
   setTrigger,
   size,
   classNames,
+  onExpandedKeysChange,
   ...props
 }: {
   onClick: MenuProps["onClick"];
@@ -108,7 +109,11 @@ export const useContextValue = ({
   classNames: typeof CLASS_NAMES;
 } & Pick<
   MenuProps,
-  "defaultExpandedKeys" | "defaultSelectedKeys" | "expandedKeys" | "selectedKeys"
+  | "defaultExpandedKeys"
+  | "defaultSelectedKeys"
+  | "expandedKeys"
+  | "selectedKeys"
+  | "onExpandedKeysChange"
 >) => {
   const [_selectedKeys, _setSelectedKeys] = useControlledState(props.selectedKeys, {
     defaultState: props.defaultSelectedKeys ?? [],
@@ -130,17 +135,14 @@ export const useContextValue = ({
   );
 
   // toggle expand
-  const toggle = useCallback(
-    (key: Key) => {
-      const isExpanded = expandedKeys.has(key);
-      _setExpandedKeys((prev) => {
-        const expanded = new Set(prev);
-        isExpanded ? expanded.delete(key) : expanded.add(key);
-        return Array.from(expanded);
-      });
-    },
-    [expandedKeys, _setExpandedKeys],
-  );
+  const toggle = useEvent((key: Key) => {
+    const expandingKeys = new Set(_expandedKeys);
+    expandingKeys.has(key) ? expandingKeys.delete(key) : expandingKeys.add(key);
+    const _expandingKeys = Array.from(expandingKeys);
+
+    _setExpandedKeys(_expandingKeys);
+    onExpandedKeysChange?.(_expandingKeys);
+  });
 
   // collect item
   const collect = useCallback<ContextValue["collect"]>(

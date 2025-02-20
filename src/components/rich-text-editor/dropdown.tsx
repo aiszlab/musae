@@ -15,18 +15,18 @@ const _styles = stylex.create({
   }),
 });
 
-const Dropdown = <T extends Key = Key>({
+const Dropdown = ({
   items: _items = new Map(),
   value: _value,
   onChange,
   children,
   width,
-}: DropdownProps<T>) => {
+}: DropdownProps) => {
   const popoverRef = useRef<PopoverRef>(null);
 
   const onClick = useEvent(async (key: Key) => {
     await popoverRef.current?.close().catch(() => null);
-    onChange(key as T);
+    onChange(key);
   });
 
   const items = useMemo(() => {
