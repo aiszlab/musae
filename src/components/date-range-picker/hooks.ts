@@ -3,6 +3,7 @@ import type { DateRangePickerProps } from "../../types/date-range-picker";
 import { type RefObject, useCallback } from "react";
 import { Dayjs } from "dayjs";
 import type { PickerRef } from "../../types/picker";
+import type { Nullable } from "@aiszlab/relax/types";
 
 /**
  * @description
@@ -11,7 +12,7 @@ import type { PickerRef } from "../../types/picker";
 export const useValue = ([_value, _change, ref]: [
   DateRangePickerProps["value"],
   DateRangePickerProps["onChange"],
-  RefObject<PickerRef>,
+  RefObject<Nullable<PickerRef>>,
 ]) => {
   const [value, setValue] = useControlledState(_value, {
     defaultState: [void 0, void 0],

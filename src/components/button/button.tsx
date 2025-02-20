@@ -173,17 +173,15 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           // @ts-expect-error style vars
           "--color-button": theme.colors[color],
           "--color-on-button": theme.colors[`on-${color}`],
-          "--color-button-opacity-08": hexToRgba(theme.colors[color], OPACITY.thin, "style"),
+          "--color-button-opacity-08": hexToRgba(theme.colors[color], OPACITY.thin).toString(),
           "--color-on-surface-opacity-12": hexToRgba(
             theme.colors["on-surface"],
             OPACITY.medium,
-            "style",
-          ),
+          ).toString(),
           "--color-on-surface-opacity-38": hexToRgba(
             theme.colors["on-surface"],
             OPACITY.thickest,
-            "style",
-          ),
+          ).toString(),
         }}
         type={type}
         {...props}

@@ -92,7 +92,7 @@ export type TypedAvatar = {
    * @description
    * group
    */
-  Group: (props: AvatarGroupProps) => JSX.Element;
+  Group: (props: AvatarGroupProps) => ReactNode;
 };
 
 /**

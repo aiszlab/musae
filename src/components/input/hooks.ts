@@ -8,6 +8,7 @@ import {
   useCallback,
 } from "react";
 import type { InputProps } from "../../types/input";
+import type { Nullable } from "@aiszlab/relax/types";
 
 /**
  * @description
@@ -68,7 +69,11 @@ export const useInputEvents = ({
  * @description
  * inputor events
  */
-export const useInputorEvents = ({ inputRef }: { inputRef: RefObject<HTMLInputElement> }) => {
+export const useInputorEvents = ({
+  inputRef,
+}: {
+  inputRef: RefObject<Nullable<HTMLInputElement>>;
+}) => {
   // click
   const click = useCallback(() => {
     inputRef.current?.focus();

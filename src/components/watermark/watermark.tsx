@@ -52,7 +52,7 @@ const Watermark = ({
 
   // font color
   const fontColor = useMemo(() => {
-    return color ?? hexToRgba(theme.colors.shadow, OPACITY.thick, "style");
+    return color ?? hexToRgba(theme.colors.shadow, OPACITY.thick).toString();
   }, [theme.colors.primary]);
 
   const sync = useRaf(() => {
