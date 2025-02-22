@@ -35,6 +35,7 @@ const Menu = forwardRef<MenuRef, MenuProps>(
       expandedKeys,
       defaultExpandedKeys,
       defaultSelectedKeys,
+      onExpandedKeysChange,
     },
     ref,
   ) => {
@@ -53,6 +54,7 @@ const Menu = forwardRef<MenuRef, MenuProps>(
       setTrigger,
       size,
       classNames,
+      onExpandedKeysChange,
     });
 
     useImperativeHandle(ref, () => ({

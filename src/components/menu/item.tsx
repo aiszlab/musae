@@ -137,6 +137,12 @@ const styles = {
       },
     }),
   }),
+
+  popper: stylex.create({
+    default: {
+      padding: spacing.xxxxxsmall,
+    },
+  }),
 };
 
 /**
@@ -213,6 +219,7 @@ const Item = forwardRef<HTMLLIElement, MenuItemProps>(
 
         typography.label[size],
       ),
+      popper: stylex.props(styles.popper.default),
     };
 
     return (
@@ -247,7 +254,9 @@ const Item = forwardRef<HTMLLIElement, MenuItemProps>(
           <Popper
             trigger={itemRef.current}
             open={isOpen}
-            placement={mode === "vertical" ? "top-start" : "bottom-start"}
+            placement={mode === "vertical" ? "left-start" : "bottom-start"}
+            className={styled.popper.className}
+            style={styled.popper.style}
             {...hoverProps}
           >
             {props.children}

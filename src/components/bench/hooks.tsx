@@ -102,9 +102,7 @@ export const useMenuKeys = ({
   });
 
   const onExpandedKeysChange = useCallback(
-    (expandingKeys: Key[]) => {
-      setExpandedKeys(expandingKeys);
-    },
+    (expandingKeys: Key[]) => setExpandedKeys(expandingKeys),
     [setExpandedKeys],
   );
 

@@ -35,22 +35,6 @@ const styles = {
       display: "none",
     },
   }),
-
-  submenu: stylex.create({
-    inline: {
-      marginBlockStart: spacing.xxxxxsmall,
-    },
-
-    horizontal: {
-      minWidth: 200,
-      paddingInline: spacing.xxxxxsmall,
-    },
-
-    vertical: {
-      minWidth: 200,
-      paddingInline: spacing.xxxxxsmall,
-    },
-  }),
 };
 
 /**
@@ -85,7 +69,6 @@ const Group = forwardRef<HTMLUListElement, MenuGroupProps>(
         styles.group[mode],
         !expanded && styles.group.hidden,
       ),
-      submenu: stylex.props(styles.submenu[mode]),
     };
 
     return (
@@ -102,11 +85,11 @@ const Group = forwardRef<HTMLUListElement, MenuGroupProps>(
           ...style,
         }}
       >
-        {items.map(({ children = [], ...item }) => {
+        {items.map(({ children = [], key, ...item }) => {
           return (
             <Item
-              key={item.key}
-              value={item.key}
+              key={key}
+              value={key}
               level={level}
               className={item.className}
               style={item.style}
@@ -116,17 +99,15 @@ const Group = forwardRef<HTMLUListElement, MenuGroupProps>(
               mode={mode}
               ref={(_ref) => {
                 if (!_ref) return;
-                collect(item.key, _ref);
+                collect(key, _ref);
               }}
             >
               {children.length > 0 && (
                 <Group
                   items={children}
-                  expanded={!isInline || expandedKeys.has(item.key)}
+                  expanded={!isInline || expandedKeys.has(key)}
                   level={!isInline ? 0 : level + 1}
                   mode="inline"
-                  className={styled.submenu.className}
-                  style={styled.submenu.style}
                 />
               )}
             </Item>

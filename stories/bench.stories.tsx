@@ -36,6 +36,16 @@ export const Normal: Story = {
           {
             path: "/menus/1",
             label: "Menu 1",
+            children: [
+              {
+                path: "/menus/1/1",
+                label: "Menu Items 1",
+              },
+              {
+                path: "/menus/1/2",
+                label: "Menu Items 2",
+              },
+            ],
           },
           {
             path: "/menus/2",
