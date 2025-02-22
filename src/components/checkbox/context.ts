@@ -6,7 +6,7 @@ import type { ContextValue } from "../../types/checkbox";
  * checkbox class names
  */
 export const CLASS_NAMES = {
-  check: "checkbox",
+  checkbox: "checkbox",
   layer: "checkbox__layer",
   inputer: "checkbox__inputer",
   input: "checkbox__input",

@@ -1,5 +1,5 @@
-import React, { type ChangeEvent, useContext, useMemo } from "react";
-import { useControlledState, useEvent } from "@aiszlab/relax";
+import React, { type ChangeEvent, type CSSProperties, useContext, useMemo } from "react";
+import { isUndefined, useControlledState, useEvent } from "@aiszlab/relax";
 import Context, { CLASS_NAMES } from "./context";
 import type { CheckboxProps } from "../../types/checkbox";
 import stylex from "@stylexjs/stylex";
@@ -13,6 +13,7 @@ import Indeterminate from "./Indeterminate";
 import { Ripple, useRipple } from "../ripple";
 import { hexToRgba } from "@aiszlab/fuzzy/color";
 import { OPACITY } from "../theme/tokens.stylex";
+import { stopPropagation } from "@aiszlab/relax/dom";
 
 const Checkbox = ({
   value,
@@ -20,7 +21,7 @@ const Checkbox = ({
   style,
   children,
   onChange,
-  disabled: _disabled = false,
+  disabled = false,
   checked,
   indeterminate = false,
   ripple = true,
@@ -30,8 +31,7 @@ const Checkbox = ({
   const contextValue = useContext(Context);
   const classNames = useClassNames(CLASS_NAMES);
   const theme = useTheme();
-
-  const isDisabled = contextValue?.isDisabled ?? _disabled;
+  const isDisabled = contextValue?.isDisabled ?? disabled;
 
   const { ripples, add, clear } = useRipple({ isDisabled: !ripple || isDisabled });
   const [_isChecked, _setIsChecked] = useControlledState(checked, {
@@ -42,7 +42,7 @@ const Checkbox = ({
   // if there is context value, use context value
   // else use controlled state
   const isChecked = useMemo<boolean>(() => {
-    if (!contextValue || !value) return _isChecked;
+    if (!contextValue || isUndefined(value)) return _isChecked;
     return contextValue.value.has(value);
   }, [_isChecked, contextValue, value]);
 
@@ -53,10 +53,44 @@ const Checkbox = ({
     if (isDisabled) return;
 
     const checked = event.target.checked;
-    !!value && contextValue?.change(value, checked);
+
+    if (!isUndefined(value)) {
+      contextValue?.change(value, checked);
+    }
+
     _setIsChecked(checked);
     onChange?.(event);
   });
+
+  // style vars
+  const styleVars = useMemo(() => {
+    return {
+      "--color-primary": theme.colors.primary,
+      "--color-primary-opacity-08": hexToRgba(theme.colors.primary, OPACITY.thin).toString(),
+      "--color-primary-opacity-12": hexToRgba(theme.colors.primary, OPACITY.medium).toString(),
+      "--color-primary-opacity-20": hexToRgba(theme.colors.primary, OPACITY.thicker).toString(),
+      "--color-on-primary": theme.colors["on-primary"],
+      "--color-on-surface": theme.colors["on-surface"],
+      "--color-on-surface-opacity-08": hexToRgba(
+        theme.colors["on-surface"],
+        OPACITY.thin,
+      ).toString(),
+      "--color-on-surface-opacity-12": hexToRgba(
+        theme.colors["on-surface"],
+        OPACITY.medium,
+      ).toString(),
+      "--color-on-surface-opacity-20": hexToRgba(
+        theme.colors["on-surface"],
+        OPACITY.thicker,
+      ).toString(),
+      "--color-on-surface-variant": theme.colors["on-surface-variant"],
+      "--color-error": theme.colors.error,
+      "--color-error-opacity-08": hexToRgba(theme.colors.error, OPACITY.thin).toString(),
+      "--color-error-opacity-12": hexToRgba(theme.colors.error, OPACITY.medium).toString(),
+      "--color-error-opacity-20": hexToRgba(theme.colors.error, OPACITY.thicker).toString(),
+      "--color-on-error": theme.colors["on-error"],
+    } as CSSProperties;
+  }, [theme]);
 
   const styled = {
     checkbox: stylex.props(
@@ -89,43 +123,19 @@ const Checkbox = ({
     input: stylex.props(styles.input.default),
     check: stylex.props(styles.check.default),
     label: stylex.props(
+      typography.label.small,
       styles.label.default,
       invalid && styles.label.invalid,
-      typography.label.small,
     ),
   };
 
   return (
     <label
-      className={stringify(classNames.check, className, styled.checkbox.className)}
+      className={stringify(classNames.checkbox, className, styled.checkbox.className)}
       style={{
         ...styled.checkbox.style,
         ...style,
-        // @ts-expect-error style vars
-        "--color-primary": theme.colors.primary,
-        "--color-primary-opacity-08": hexToRgba(theme.colors.primary, OPACITY.thin).toString(),
-        "--color-primary-opacity-12": hexToRgba(theme.colors.primary, OPACITY.medium).toString(),
-        "--color-primary-opacity-20": hexToRgba(theme.colors.primary, OPACITY.thicker).toString(),
-        "--color-on-primary": theme.colors["on-primary"],
-        "--color-on-surface": theme.colors["on-surface"],
-        "--color-on-surface-opacity-08": hexToRgba(
-          theme.colors["on-surface"],
-          OPACITY.thin,
-        ).toString(),
-        "--color-on-surface-opacity-12": hexToRgba(
-          theme.colors["on-surface"],
-          OPACITY.medium,
-        ).toString(),
-        "--color-on-surface-opacity-20": hexToRgba(
-          theme.colors["on-surface"],
-          OPACITY.thicker,
-        ).toString(),
-        "--color-on-surface-variant": theme.colors["on-surface-variant"],
-        "--color-error": theme.colors.error,
-        "--color-error-opacity-08": hexToRgba(theme.colors.error, OPACITY.thin).toString(),
-        "--color-error-opacity-12": hexToRgba(theme.colors.error, OPACITY.medium).toString(),
-        "--color-error-opacity-20": hexToRgba(theme.colors.error, OPACITY.thicker).toString(),
-        "--color-on-error": theme.colors["on-error"],
+        ...styleVars,
       }}
       aria-checked={isChecked}
       aria-disabled={isDisabled}
@@ -148,7 +158,7 @@ const Checkbox = ({
             onChange={change}
             aria-checked={isChecked}
             aria-disabled={isDisabled}
-            onClick={(e) => e.stopPropagation()}
+            onClick={stopPropagation}
           />
 
           {isChecked && <Check className={styled.check.className} style={styled.check.style} />}

@@ -13,6 +13,7 @@ import { useLocale } from "../../locale";
 const styles = stylex.create({
   list: {
     minWidth: sizes.xxxxxxxlarge,
+    maxHeight: sizes.xxxxxxxxlarge,
     display: "flex",
     flexDirection: "column",
     gap: spacing.xxxxxsmall,
@@ -37,18 +38,21 @@ const styles = stylex.create({
 
   body: {
     minHeight: sizes.xxxxxxxlarge,
-    padding: spacing.none,
+
     margin: spacing.none,
     borderTopLeftRadius: sizes.xxxxxxxxsmall,
     borderTopRightRadius: sizes.xxxxxxxxsmall,
     borderBottomLeftRadius: sizes.xxxxsmall,
     borderBottomRightRadius: sizes.xxxxsmall,
     boxShadow: elevations.xsmall,
+    overflow: "auto",
+
+    paddingInline: spacing.none,
+    paddingBlock: spacing.xxxxxsmall,
   },
 });
 
 const List = ({ options, title, onChange, value }: TransferListProps) => {
-  const theme = useTheme();
   const { disabled, classNames } = useContext(Context);
   const [locale] = useLocale("transfer");
 

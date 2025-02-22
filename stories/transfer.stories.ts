@@ -13,9 +13,11 @@ type Story = StoryObj<typeof meta>;
 
 export const Normal: Story = {
   args: {
-    options: [
-      { value: 1, label: "1" },
-      { value: 2, label: "2" },
-    ],
+    options: Array.from({ length: 30 }).map((_, pos) => {
+      return {
+        value: pos,
+        label: `Option ${pos}`,
+      };
+    }),
   },
 };

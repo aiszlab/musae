@@ -9,6 +9,7 @@ import { CLASS_NAMES, Context } from "./context";
 import { useClassNames } from "../../hooks/use-class-names";
 import { stringify } from "@aiszlab/relax/class-name";
 import { IconButton } from "../icon-button";
+import { at } from "@aiszlab/relax";
 
 const styles = stylex.create({
   transfer: {
@@ -72,7 +73,7 @@ const Transfer = ({
       >
         <List
           options={Array.from(untransferred.values())}
-          title={titles[0]}
+          title={at(titles, 0)}
           value={transferKeys}
           onChange={setTransferKeys}
         />
@@ -100,7 +101,7 @@ const Transfer = ({
 
         <List
           options={Array.from(transferred.values())}
-          title={titles[1]}
+          title={at(titles, 1)}
           value={untransferKeys}
           onChange={setUntransferKeys}
         />
