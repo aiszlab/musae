@@ -1,5 +1,5 @@
 import { useEvent } from "@aiszlab/relax";
-import { animate } from "motion/react";
+import { animate } from "motion/mini";
 import type { RefObject } from "react";
 
 /**
