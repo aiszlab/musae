@@ -25,7 +25,7 @@ const Item = ({ value, label }: TransferItemProps) => {
 
   return (
     <li className={stringify(classNames.item, styled.item.className)} style={styled.item.style}>
-      <Checkbox value={value} />
+      <Checkbox value={value} ripple={false} />
       {label}
     </li>
   );

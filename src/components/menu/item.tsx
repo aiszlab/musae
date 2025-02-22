@@ -199,7 +199,7 @@ const Item = forwardRef<HTMLLIElement, MenuItemProps>(
     });
 
     const styled = {
-      menuItem: stylex.props(styles.mode.menuitem[mode]),
+      menuitem: stylex.props(styles.mode.menuitem[mode]),
       item: stylex.props(
         styles.default.item,
         styles.size[size]({ level }),
@@ -226,9 +226,9 @@ const Item = forwardRef<HTMLLIElement, MenuItemProps>(
       <li
         role="menuitem"
         ref={ref}
-        className={styled.menuItem.className}
+        className={styled.menuitem.className}
         style={{
-          ...styled.menuItem.style,
+          ...styled.menuitem.style,
           // @ts-expect-error style vars
           "--color-primary": theme.colors.primary,
           "--color-surface-container-highest": theme.colors["surface-container-highest"],
