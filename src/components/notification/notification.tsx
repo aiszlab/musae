@@ -1,9 +1,17 @@
 import stylex from "@stylexjs/stylex";
-import React, { type CSSProperties, useEffect, type FC, createElement, forwardRef } from "react";
-import { useAnimate, usePresence } from "framer-motion";
+import React, {
+  type CSSProperties,
+  useEffect,
+  type FC,
+  createElement,
+  forwardRef,
+  useRef,
+} from "react";
+import { usePresence } from "motion/react";
+import { animate } from "motion/mini";
 import { useTheme } from "../theme";
 import type { NotificationProps, Placement, Axis, Type } from "../../types/notification";
-import { useComposedRef, useTimeout } from "@aiszlab/relax";
+import { useAsyncEffect, useComposedRef, useTimeout } from "@aiszlab/relax";
 import { useClassNames } from "../../hooks/use-class-names";
 import { duration, elevations, sizes, spacing } from "../theme/tokens.stylex";
 import { CheckCircle, Close, Loading, Error, NotificationImportant, Warning } from "musae/icons";
@@ -114,26 +122,29 @@ const Notification = forwardRef<HTMLDivElement, NotificationProps>(
     const theme = useTheme();
     const [isPresent, safeToRemove] = usePresence();
     const axis = AXIS[placement];
-    const [scope, animate] = useAnimate<HTMLDivElement>();
     const _placement = PLACEMENTS[axis];
     const classNames = useClassNames(CLASS_NAMES);
-    const notificationRef = useComposedRef(scope, ref);
+    const notificationRef = useRef<HTMLDivElement>(null);
+    const _composedRef = useComposedRef(ref, notificationRef);
 
     // after duration, `Notification` will auto destroy
     useTimeout(async () => {
+      const _notification = notificationRef.current;
+      if (!_notification) return;
+
       switch (placement) {
         case "bottom":
         case "bottom-left":
         case "bottom-right":
-          await animate(scope.current, {
+          await animate(_notification, {
             opacity: 0,
-            marginBlockEnd: scope.current.getBoundingClientRect().height * -1,
+            marginBlockEnd: _notification.getBoundingClientRect().height * -1,
           });
           break;
         default:
-          await animate(scope.current, {
+          await animate(_notification, {
             opacity: 0,
-            marginBlockStart: scope.current.getBoundingClientRect().height * -1,
+            marginBlockStart: _notification.getBoundingClientRect().height * -1,
           });
           break;
       }
@@ -170,22 +181,24 @@ const Notification = forwardRef<HTMLDivElement, NotificationProps>(
       closer: stylex.props(styles.closer.default),
     };
 
-    useEffect(() => {
+    useAsyncEffect(async () => {
       if (!isPresent) {
         safeToRemove();
         return;
       }
 
       // appear animation
-      animate(scope.current, { opacity: 1, transform: _placement[1] });
-      // eslint-disable-next-line react-hooks/exhaustive-deps
+      const _notification = notificationRef.current;
+      if (!_notification) return;
+
+      animate(_notification, { opacity: 1, transform: _placement[1] });
     }, [isPresent]);
 
     return (
       <div
         className={stringify(classNames.notification, styled.notification.className)}
         style={styled.notification.style}
-        ref={notificationRef}
+        ref={_composedRef}
       >
         {LEADINGS.has(type) && (
           <div className={styled.leading.className} style={styled.leading.style}>

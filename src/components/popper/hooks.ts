@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef } from "react";
 import type { DropdownProps, PopperProps } from "../../types/popper";
-import { useAnimate } from "framer-motion";
-import { useComposedRef, useEvent } from "@aiszlab/relax";
+import { animate } from "motion/mini";
+import { useEvent } from "@aiszlab/relax";
 import { useContainer } from "../../hooks/use-container";
 import {
   arrow,
@@ -65,10 +65,8 @@ export const useFloating = ({
   onExited?: () => Promise<void> | void;
   disappearable: boolean;
 }) => {
-  const [_scope, animate] = useAnimate<HTMLDivElement>();
   const floatableRef = useRef<HTMLDivElement>(null);
   const arrowRef = useRef<HTMLDivElement>(null);
-  const composedRef = useComposedRef(_scope, floatableRef);
 
   const { container: trigger } = useContainer({ container: _trigger, useBody: false }, [open]);
   const _isOpen = useRef<boolean>(false);
@@ -78,18 +76,18 @@ export const useFloating = ({
   // first remove `display: none` style
   // then animate
   const appear = useEvent(async () => {
-    if (_isOpen.current) return;
     const _floatable = floatableRef.current;
     if (!_floatable) return;
+    if (_isOpen.current) return;
 
     _isOpen.current = true;
-
     _floatable.style.display = "flex";
+
     await Promise.all([
       Promise.resolve()
         .then(onEnter)
         .catch(() => null),
-      animate(_scope.current, { opacity: 1 }, { duration: 0.2 }),
+      animate(_floatable, { opacity: 1 }, { duration: 0.2 }),
     ]);
     await onEntered?.();
   });
@@ -98,16 +96,16 @@ export const useFloating = ({
   // prevent disappear again when disappeared
   // when using force disappear, it will be forced to disappear
   const disappear = useEvent(async (force: boolean = false) => {
-    if (!_isOpen.current) return;
-    if (!force && !disappearable) return;
     const _floatable = floatableRef.current;
     if (!_floatable) return;
+    if (!_isOpen.current) return;
+    if (!force && !disappearable) return;
 
     _isOpen.current = false;
 
     await Promise.all([
       Promise.resolve(onExit).catch(() => null),
-      animate(_scope.current, { opacity: 0 }, { duration: 0.2 }).then(() => {
+      animate(_floatable, { opacity: 0 }, { duration: 0.2 }).then(() => {
         _floatable.style.display = "none";
       }),
     ]);
@@ -173,7 +171,6 @@ export const useFloating = ({
 
   return {
     floatableRef,
-    composedRef,
     arrowRef,
     disappear,
   };

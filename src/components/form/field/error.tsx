@@ -1,12 +1,14 @@
 import { type FieldError } from "react-hook-form";
 import type { ComponentProps } from "../../../types/element";
-import React, { type CSSProperties, useContext, useEffect } from "react";
+import React, { type CSSProperties, useContext, useEffect, useRef } from "react";
 import { stringify } from "@aiszlab/relax/class-name";
-import { useAnimate, usePresence } from "framer-motion";
+import { usePresence } from "motion/react";
+import { animate } from "motion/mini";
 import stylex from "@stylexjs/stylex";
 import { useTheme } from "../../theme";
 import { spacing } from "../../theme/tokens.stylex";
 import { Context } from "../context";
+import { useAsyncEffect } from "@aiszlab/relax";
 
 const styles = stylex.create({
   error: (props: { color: CSSProperties["color"] }) => ({
@@ -27,20 +29,22 @@ type Props = ComponentProps & {
 
 const Error = ({ error, className, style }: Props) => {
   const { classNames } = useContext(Context);
-  const [scope, animate] = useAnimate<HTMLDivElement>();
   const [isPresent, safeToRemove] = usePresence();
   const theme = useTheme();
+  const ref = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
+  useAsyncEffect(async () => {
+    const _element = ref.current;
+    if (!_element) return;
+
     if (isPresent) {
-      animate(scope.current, { height: "auto" }, { duration: 0.2 });
+      animate(_element, { height: "auto" }, { duration: 0.2 });
       return;
     }
 
-    animate(scope.current, { height: 0 }).then(() => {
+    animate(_element, { height: 0 }).then(() => {
       safeToRemove();
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isPresent]);
 
   const styled = stylex.props(
@@ -56,7 +60,7 @@ const Error = ({ error, className, style }: Props) => {
         ...styled.style,
         ...style,
       }}
-      ref={scope}
+      ref={ref}
     >
       {error?.message}
     </div>

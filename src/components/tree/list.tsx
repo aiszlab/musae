@@ -1,9 +1,9 @@
 import stylex from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
 import type { TreeListProps } from "../../types/tree";
-import React, { useContext } from "react";
+import React, { useContext, useRef } from "react";
 import Node from "./node";
-import { useAnimate } from "framer-motion";
+import { animate } from "motion/mini";
 import Context from "./context";
 import { useExpandable } from "../../hooks/use-expandable";
 import { useUpdateEffect } from "@aiszlab/relax";
@@ -23,17 +23,17 @@ const styles = stylex.create({
 });
 
 const List = ({ nodes = [], expanded = true, level = 0, className, style }: TreeListProps) => {
-  const [scope, animate] = useAnimate<HTMLUListElement>();
+  const ref = useRef<HTMLUListElement>(null);
   const { expandedKeys, onExpand, classNames } = useContext(Context);
 
   const { expand, collapse } = useExpandable();
 
   useUpdateEffect(async () => {
     if (expanded) {
-      await expand([scope, animate]);
+      await expand(ref);
       return;
     }
-    await collapse([scope, animate]);
+    await collapse(ref);
   }, [expanded]);
 
   const styled = stylex.props(styles.list, !expanded && styles.hidden);
@@ -53,7 +53,7 @@ const List = ({ nodes = [], expanded = true, level = 0, className, style }: Tree
         ...styled.style,
         ...style,
       }}
-      ref={scope}
+      ref={ref}
     >
       {nodes.map(({ children = [], ...node }) => {
         return (

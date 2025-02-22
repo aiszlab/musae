@@ -6,7 +6,7 @@ import type {
   Placement,
 } from "../../types/notification";
 import { Portal } from "../portal";
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence } from "motion/react";
 import Notification from "./notification";
 import stylex from "@stylexjs/stylex";
 import { positions, spacing } from "../theme/tokens.stylex";

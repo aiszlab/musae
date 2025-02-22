@@ -12,7 +12,7 @@ import type { RequiredIn } from "@aiszlab/relax/types";
 import { chain, isRefable, toFunction } from "@aiszlab/relax";
 import Layout from "./layout";
 import Error from "./error";
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence } from "motion/react";
 import { useLocale } from "../../../locale";
 import Support from "./support";
 import { stringify } from "@aiszlab/relax/class-name";

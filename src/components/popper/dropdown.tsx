@@ -86,7 +86,7 @@ const Dropdown = forwardRef<PopperRef, DropdownProps>(
     const classNames = useClassNames(CLASS_NAMES);
     const theme = useTheme();
 
-    const { floatableRef, arrowRef, disappear, composedRef } = useFloating({
+    const { floatableRef, arrowRef, disappear } = useFloating({
       arrowable,
       offset,
       placement,
@@ -124,7 +124,7 @@ const Dropdown = forwardRef<PopperRef, DropdownProps>(
         }}
       >
         <div
-          ref={composedRef}
+          ref={floatableRef}
           {...props}
           className={stringify(classNames.dropdown, className, styled.dropdown.className)}
           style={{

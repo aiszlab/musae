@@ -1,6 +1,6 @@
-import React, { type CSSProperties, forwardRef } from "react";
+import React, { type CSSProperties, forwardRef, useRef } from "react";
 import type { MenuGroupProps } from "../../types/menu";
-import { useAnimate } from "framer-motion";
+import { animate } from "motion/mini";
 import Item from "./item";
 import { useMenuContext } from "./hooks";
 import { useComposedRef, useUpdateEffect } from "@aiszlab/relax";
@@ -45,9 +45,9 @@ const styles = {
  */
 const Group = forwardRef<HTMLUListElement, MenuGroupProps>(
   ({ items, level = 0, expanded = true, className, style, mode }, ref) => {
-    const [scope, animate] = useAnimate<HTMLUListElement>();
     const { collect, expandedKeys, classNames } = useMenuContext();
-    const groupRef = useComposedRef<HTMLUListElement>(ref, scope);
+    const _groupRef = useRef<HTMLUListElement>(null);
+    const groupRef = useComposedRef(ref, _groupRef);
     const theme = useTheme();
     const isInline = mode === "inline";
 
@@ -55,10 +55,10 @@ const Group = forwardRef<HTMLUListElement, MenuGroupProps>(
 
     useUpdateEffect(async () => {
       if (expanded) {
-        await expand([scope, animate]);
+        await expand(_groupRef);
         return;
       }
-      await collapse([scope, animate]);
+      await collapse(_groupRef);
     }, [expanded]);
 
     const styled = {

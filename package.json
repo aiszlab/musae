@@ -79,9 +79,10 @@
     "@lexical/utils": "^0.24.0",
     "@shikijs/rehype": "^3.0.0",
     "@tanstack/react-table": "^8.21.2",
+    "aisz.dev": "link:../relax",
     "dayjs": "^1.11.13",
-    "framer-motion": "^11.18.2",
     "lexical": "^0.24.0",
+    "motion": "^12.4.7",
     "react-hook-form": "^7.54.2",
     "rehype-sanitize": "^6.0.0",
     "rehype-stringify": "^10.0.1",
@@ -157,5 +158,11 @@
     "singleQuote": false,
     "printWidth": 100,
     "trailingComma": "all"
+  },
+  "pnpm": {
+    "overrides": {
+      "aisz.dev": "link:../relax",
+      "@aiszlab/relax": "link:../relax/packages/relax"
+    }
   }
 }

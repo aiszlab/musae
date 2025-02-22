@@ -1,5 +1,5 @@
 import React, { type CSSProperties, useEffect, useRef } from "react";
-import { useAnimate } from "framer-motion";
+import { animate } from "motion/mini";
 import type { PopupProps } from "../../types/drawer";
 import { PLACEMENTS } from "./hooks";
 import { useClassNames } from "../../hooks/use-class-names";
@@ -14,6 +14,7 @@ import { Space } from "../space";
 import { Button } from "../button";
 import { useLocale } from "../../locale";
 import { CLASS_NAMES } from "./context";
+import { useAsyncEffect } from "@aiszlab/relax";
 
 const styles = stylex.create({
   popup: {
@@ -106,13 +107,13 @@ const Popup = ({
   onConfirm,
   ...props
 }: PopupProps) => {
-  const [scope, animate] = useAnimate<HTMLDivElement>();
   const classNames = useClassNames(CLASS_NAMES);
   const _placement = PLACEMENTS[placement];
   const theme = useTheme();
   const panelRef = useRef<HTMLDivElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
   const [locale] = useLocale("drawer");
+  const ref = useRef<HTMLDivElement>(null);
 
   // children render hooks
   const { closer, onKeyDown, onOverlayClick } = useClosable({
@@ -120,32 +121,32 @@ const Popup = ({
     onClose,
   });
 
-  useEffect(() => {
-    (async () => {
-      if (open) {
-        scope.current.style.display = "block";
-        await Promise.all([
-          panelRef.current && animate(panelRef.current, { transform: _placement.at(1) }),
-          overlayRef.current && animate(overlayRef.current, { opacity: 0.8 }),
-        ]);
-        return;
-      }
+  useAsyncEffect(async () => {
+    const _popup = ref.current;
+    if (!_popup) return;
 
+    if (open) {
+      _popup.style.display = "block";
       await Promise.all([
-        panelRef.current && animate(panelRef.current, { transform: _placement.at(0) }),
-        overlayRef.current && animate(overlayRef.current, { opacity: 0 }),
+        panelRef.current && animate(panelRef.current, { transform: _placement.at(1) }),
+        overlayRef.current && animate(overlayRef.current, { opacity: 0.8 }),
       ]);
-      scope.current.style.display = "none";
-      onClosed?.();
-    })();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+      return;
+    }
+
+    await Promise.all([
+      panelRef.current && animate(panelRef.current, { transform: _placement.at(0) }),
+      overlayRef.current && animate(overlayRef.current, { opacity: 0 }),
+    ]);
+    _popup.style.display = "none";
+    onClosed?.();
   }, [open, ..._placement]);
 
   // when open, try focus dialog
   useEffect(() => {
     if (!open) return;
-    if (contains(scope.current, document.activeElement)) return;
-    scope.current.focus();
+    if (contains(ref.current, document.activeElement)) return;
+    ref.current?.focus();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open]);
 
@@ -174,7 +175,7 @@ const Popup = ({
   return (
     <div
       tabIndex={-1}
-      ref={scope}
+      ref={ref}
       className={stringify(classNames.drawer, className, styled.popup.className)}
       style={styled.popup.style}
       onKeyDown={onKeyDown}

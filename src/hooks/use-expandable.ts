@@ -1,36 +1,41 @@
 import { useEvent } from "@aiszlab/relax";
-import { useAnimate } from "framer-motion";
-
-type UsedAnimate = ReturnType<typeof useAnimate<HTMLElement>>;
+import { animate } from "motion/react";
+import type { RefObject } from "react";
 
 /**
  * @description
  * expand handler
  */
 export const useExpandable = () => {
-  const expand = useEvent(async ([element, animate]: UsedAnimate) => {
+  const expand = useEvent(async (ref: RefObject<HTMLElement | null>) => {
+    const _element = ref.current;
+    if (!_element) return;
+
     // style play like display: none
-    element.current.style.height = "0";
-    element.current.style.overflow = "hidden";
-    element.current.style.display = "inherit";
-    await animate(element.current, {
+    _element.style.height = "0";
+    _element.style.overflow = "hidden";
+    _element.style.display = "inherit";
+    await animate(_element, {
       height: "auto",
     });
-    element.current.style.height = "";
-    element.current.style.overflow = "";
-    element.current.style.display = "";
+    _element.style.height = "";
+    _element.style.overflow = "";
+    _element.style.display = "";
   });
 
-  const collapse = useEvent(async ([element, animate]: UsedAnimate) => {
-    element.current.style.overflow = "hidden";
-    element.current.style.height = "auto";
-    element.current.style.display = "inherit";
-    await animate(element.current, {
+  const collapse = useEvent(async (ref: RefObject<HTMLElement | null>) => {
+    const _element = ref.current;
+    if (!_element) return;
+
+    _element.style.overflow = "hidden";
+    _element.style.height = "auto";
+    _element.style.display = "inherit";
+    await animate(_element, {
       height: 0,
     });
-    element.current.style.height = "";
-    element.current.style.overflow = "";
-    element.current.style.display = "none";
+    _element.style.height = "";
+    _element.style.overflow = "";
+    _element.style.display = "none";
   });
 
   return {

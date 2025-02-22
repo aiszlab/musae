@@ -3,7 +3,7 @@ import stylex from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { type NavigationProps } from "../../types/tabs";
 import Tab from "./tab";
-import { useAnimate } from "framer-motion";
+import { animate } from "motion/mini";
 import { isUndefined } from "@aiszlab/relax";
 import { useTheme } from "../theme";
 import { useNavigation, useNavigatorScroll, useTabsContext } from "./hooks";
@@ -69,7 +69,7 @@ const styles = {
 
 const Navigation = ({ onChange }: NavigationProps) => {
   const { activeKey, items, classNames } = useTabsContext();
-  const [indicatorRef, animateIndicator] = useAnimate<HTMLDivElement>();
+  const indicatorRef = useRef<HTMLDivElement>(null);
   const tabRefs = useRef<Map<Key, HTMLButtonElement | null>>(new Map());
   const theme = useTheme();
   const { navigatorRef, tabsRef, scroll, offset, isLeadingOverflow, isTrailingOverflow } =
@@ -100,15 +100,17 @@ const Navigation = ({ onChange }: NavigationProps) => {
   // repaint indicator when activeKey changed
   // animate indicator to correct position & width
   useEffect(() => {
+    const _indicator = indicatorRef.current;
+    if (!_indicator) return;
     if (isUndefined(activeKey)) return;
 
     const tab = tabRefs.current.get(activeKey);
 
-    animateIndicator(indicatorRef.current, {
+    animate(_indicator, {
       left: tab?.offsetLeft,
       width: tab?.clientWidth,
     });
-  }, [activeKey, animateIndicator, indicatorRef]);
+  }, [activeKey]);
 
   return (
     <div

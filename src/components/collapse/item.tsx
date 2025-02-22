@@ -1,8 +1,8 @@
-import React, { type CSSProperties, useContext } from "react";
+import React, { type CSSProperties, useContext, useRef } from "react";
 import stylex from "@stylexjs/stylex";
 import { duration, sizes, spacing } from "../theme/tokens.stylex";
 import { useEvent, useUpdateEffect } from "@aiszlab/relax";
-import { useAnimate } from "framer-motion";
+import { animate } from "motion/mini";
 import type { CollapseItemProps } from "../../types/collapse";
 import { Context } from "./context";
 import { useExpandable } from "../../hooks/use-expandable";
@@ -71,17 +71,17 @@ const styles = {
 const CollapseItem = ({ children, label, value }: CollapseItemProps) => {
   const { activeKeys, toggle, classNames } = useContext(Context);
   const isExpanded = activeKeys.has(value);
-  const [collapser, animate] = useAnimate<HTMLDivElement>();
+  const ref = useRef<HTMLDivElement>(null);
   const theme = useTheme();
 
   const { expand, collapse } = useExpandable();
 
   useUpdateEffect(async () => {
     if (isExpanded) {
-      await expand([collapser, animate]);
+      await expand(ref);
       return;
     }
-    await collapse([collapser, animate]);
+    await collapse(ref);
   }, [isExpanded]);
 
   const styled = {
@@ -122,7 +122,7 @@ const CollapseItem = ({ children, label, value }: CollapseItemProps) => {
       </div>
 
       <div
-        ref={collapser}
+        ref={ref}
         className={stringify(
           classNames.panel,
           isExpanded && classNames.panelActive,
