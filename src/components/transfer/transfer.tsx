@@ -15,7 +15,7 @@ const styles = stylex.create({
   transfer: {
     display: "flex",
     flexDirection: "row",
-    alignItems: "center",
+    alignItems: "stretch",
     gap: spacing.xxsmall,
   },
 
@@ -23,6 +23,7 @@ const styles = stylex.create({
     display: "flex",
     flexDirection: "column",
     gap: spacing.xxsmall,
+    alignSelf: "center",
   },
 });
 

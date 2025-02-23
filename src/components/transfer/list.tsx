@@ -1,8 +1,7 @@
-import React, { useContext, type CSSProperties } from "react";
+import React, { useContext } from "react";
 import type { TransferListProps } from "../../types/transfer";
 import stylex from "@stylexjs/stylex";
 import { elevations, sizes, spacing } from "../theme/tokens.stylex";
-import { useTheme } from "../theme";
 import Item from "./item";
 import { Checkbox } from "../checkbox";
 import { Context } from "./context";
@@ -38,6 +37,7 @@ const styles = stylex.create({
 
   body: {
     minHeight: sizes.xxxxxxxlarge,
+    flexGrow: 1,
 
     margin: spacing.none,
     borderTopLeftRadius: sizes.xxxxxxxxsmall,
