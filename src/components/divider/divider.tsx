@@ -23,6 +23,7 @@ const styles = {
       maxHeight: sizes.full,
       marginInlineStart: "var(--margin-start)",
       marginInlineEnd: "var(--margin-end)",
+      alignSelf: "stretch",
     },
   }),
 

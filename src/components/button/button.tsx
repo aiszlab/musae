@@ -120,9 +120,8 @@ const styles = {
 /**
  * @author murukal
  *
- * @description
- * button
- * 1. diff from normal html button, this button is default type `button`, not `submit`
+ * @description button
+ * diff from normal html button, this button is default type `button`, not `submit`
  */
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
