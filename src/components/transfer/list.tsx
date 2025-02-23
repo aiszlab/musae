@@ -6,7 +6,7 @@ import Item from "./item";
 import { Checkbox } from "../checkbox";
 import { Context } from "./context";
 import { stringify } from "@aiszlab/relax/class-name";
-import { typography } from "../theme/theme";
+import { scrollbar, typography } from "../theme/theme";
 import { useLocale } from "../../locale";
 
 const styles = stylex.create({
@@ -42,8 +42,8 @@ const styles = stylex.create({
     margin: spacing.none,
     borderTopLeftRadius: sizes.xxxxxxxxsmall,
     borderTopRightRadius: sizes.xxxxxxxxsmall,
-    borderBottomLeftRadius: sizes.xxxxsmall,
-    borderBottomRightRadius: sizes.xxxxsmall,
+    borderBottomLeftRadius: sizes.xxxxxxsmall,
+    borderBottomRightRadius: sizes.xxxxxxsmall,
     boxShadow: elevations.xsmall,
     overflow: "auto",
 
@@ -57,7 +57,7 @@ const List = ({ options, title, onChange, value }: TransferListProps) => {
   const [locale] = useLocale("transfer");
 
   const styled = {
-    list: stylex.props(styles.list),
+    list: stylex.props(scrollbar.default, styles.list),
     header: stylex.props(styles.header, typography.label.large),
     title: stylex.props(styles.title),
     body: stylex.props(styles.body, typography.body.medium),

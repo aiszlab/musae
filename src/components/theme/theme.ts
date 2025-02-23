@@ -133,3 +133,13 @@ export const typography = {
   display,
   title,
 };
+
+/**
+ * @description scrollbar
+ */
+export const scrollbar = stylex.create({
+  default: {
+    scrollbarWidth: "thin",
+    scrollbarColor: "var(--color-scrollbar, #eaeaea) transparent",
+  },
+});
