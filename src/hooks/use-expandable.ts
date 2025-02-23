@@ -1,13 +1,15 @@
 import { useEvent } from "@aiszlab/relax";
-import { animate } from "motion/mini";
-import type { RefObject } from "react";
+import { animate } from "motion/react";
+import { useRef } from "react";
 
 /**
  * @description
  * expand handler
  */
-export const useExpandable = () => {
-  const expand = useEvent(async (ref: RefObject<HTMLElement | null>) => {
+export const useExpandable = <E extends HTMLElement>() => {
+  const ref = useRef<E>(null);
+
+  const expand = useEvent(async () => {
     const _element = ref.current;
     if (!_element) return;
 
@@ -23,7 +25,7 @@ export const useExpandable = () => {
     _element.style.display = "";
   });
 
-  const collapse = useEvent(async (ref: RefObject<HTMLElement | null>) => {
+  const collapse = useEvent(async () => {
     const _element = ref.current;
     if (!_element) return;
 
@@ -41,5 +43,6 @@ export const useExpandable = () => {
   return {
     expand,
     collapse,
+    ref,
   };
 };

@@ -1,6 +1,5 @@
-import React, { type CSSProperties, forwardRef, useRef } from "react";
+import React, { forwardRef } from "react";
 import type { MenuGroupProps } from "../../types/menu";
-import { animate } from "motion/mini";
 import Item from "./item";
 import { useMenuContext } from "./hooks";
 import { useComposedRef, useUpdateEffect } from "@aiszlab/relax";
@@ -12,14 +11,14 @@ import { stringify } from "@aiszlab/relax/class-name";
 
 const styles = {
   group: stylex.create({
-    default: (props: { color: CSSProperties["color"] }) => ({
+    default: {
       // reset ul styles
       margin: spacing.none,
       padding: spacing.none,
       listStyleType: "none",
-      color: props.color,
+      color: "var(--color-on-surface)",
       overflow: "auto",
-    }),
+    },
 
     horizontal: {
       display: "flex",
@@ -46,26 +45,23 @@ const styles = {
 const Group = forwardRef<HTMLUListElement, MenuGroupProps>(
   ({ items, level = 0, expanded = true, className, style, mode }, ref) => {
     const { collect, expandedKeys, classNames } = useMenuContext();
-    const _groupRef = useRef<HTMLUListElement>(null);
-    const groupRef = useComposedRef(ref, _groupRef);
     const theme = useTheme();
     const isInline = mode === "inline";
 
-    const { expand, collapse } = useExpandable();
+    const { ref: _groupRef, expand, collapse } = useExpandable<HTMLUListElement>();
+    const groupRef = useComposedRef(ref, _groupRef);
 
     useUpdateEffect(async () => {
       if (expanded) {
-        await expand(_groupRef);
+        await expand();
         return;
       }
-      await collapse(_groupRef);
+      await collapse();
     }, [expanded]);
 
     const styled = {
       group: stylex.props(
-        styles.group.default({
-          color: theme.colors["on-surface"],
-        }),
+        styles.group.default,
         styles.group[mode],
         !expanded && styles.group.hidden,
       ),
@@ -83,6 +79,8 @@ const Group = forwardRef<HTMLUListElement, MenuGroupProps>(
         style={{
           ...styled.group.style,
           ...style,
+          // @ts-expect-error style vars
+          "--color-on-surface": theme.colors["on-surface"],
         }}
       >
         {items.map(({ children = [], key, ...item }) => {
@@ -98,7 +96,6 @@ const Group = forwardRef<HTMLUListElement, MenuGroupProps>(
               onClick={item.onClick}
               mode={mode}
               ref={(_ref) => {
-                if (!_ref) return;
                 collect(key, _ref);
               }}
             >

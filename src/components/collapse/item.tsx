@@ -71,17 +71,15 @@ const styles = {
 const CollapseItem = ({ children, label, value }: CollapseItemProps) => {
   const { activeKeys, toggle, classNames } = useContext(Context);
   const isExpanded = activeKeys.has(value);
-  const ref = useRef<HTMLDivElement>(null);
   const theme = useTheme();
-
-  const { expand, collapse } = useExpandable();
+  const { ref, expand, collapse } = useExpandable<HTMLDivElement>();
 
   useUpdateEffect(async () => {
     if (isExpanded) {
-      await expand(ref);
+      await expand();
       return;
     }
-    await collapse(ref);
+    await collapse();
   }, [isExpanded]);
 
   const styled = {

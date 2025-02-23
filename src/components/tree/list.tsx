@@ -23,17 +23,15 @@ const styles = stylex.create({
 });
 
 const List = ({ nodes = [], expanded = true, level = 0, className, style }: TreeListProps) => {
-  const ref = useRef<HTMLUListElement>(null);
   const { expandedKeys, onExpand, classNames } = useContext(Context);
-
-  const { expand, collapse } = useExpandable();
+  const { ref, expand, collapse } = useExpandable<HTMLUListElement>();
 
   useUpdateEffect(async () => {
     if (expanded) {
-      await expand(ref);
+      await expand();
       return;
     }
-    await collapse(ref);
+    await collapse();
   }, [expanded]);
 
   const styled = stylex.props(styles.list, !expanded && styles.hidden);

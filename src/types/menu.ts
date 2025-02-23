@@ -1,5 +1,6 @@
 import type { Key, MouseEventHandler, ReactNode } from "react";
 import type { ComponentProps } from "./element";
+import type { Nullable } from "@aiszlab/relax/types";
 
 export type Size = "small" | "medium" | "large";
 
@@ -28,7 +29,7 @@ export interface ContextValue {
    * @description
    * collect
    */
-  collect: (key: Key, item: HTMLLIElement) => void;
+  collect: (key: Key, item: Nullable<HTMLLIElement>) => void;
 
   /**
    * @description
