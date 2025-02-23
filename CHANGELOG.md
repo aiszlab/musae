@@ -1,5 +1,11 @@
 # musae
 
+## 1.0.1
+
+### Patch Changes
+
+- refactor
+
 ## 1.0.0
 
 ### Major Changes
