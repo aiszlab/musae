@@ -81,7 +81,7 @@
     "@tanstack/react-table": "^8.21.2",
     "aisz.dev": "link:../relax",
     "dayjs": "^1.11.13",
-    "lexical": "^0.24.0",
+    "lexical": "^0.25.0",
     "motion": "^12.4.7",
     "react-hook-form": "^7.54.2",
     "rehype-sanitize": "^6.0.0",
