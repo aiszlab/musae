@@ -10,13 +10,13 @@ const styles = stylex.create({
     transform: "rotate(-90deg)",
   },
 
-  shape: (props: { radius: number }) => ({
-    r: props.radius,
-    cx: `calc(${props.radius}px + (${sizes.xxxxxxxsmall} / 2))`,
-    cy: `calc(${props.radius}px + (${sizes.xxxxxxxsmall} / 2))`,
+  shape: {
+    r: "var(--radius)",
+    cx: `calc(var(--radius) + (${sizes.xxxxxxxsmall} / 2))`,
+    cy: `calc(var(--radius) + (${sizes.xxxxxxxsmall} / 2))`,
     strokeWidth: sizes.xxxxxxxsmall,
     strokeLinecap: "round",
-  }),
+  },
 
   segment: (props: { perimeter: number; offset: number }) => ({
     strokeDasharray: `${props.perimeter} ${props.perimeter}`,
@@ -36,10 +36,10 @@ const Circular = ({ value: _value }: CircularProps) => {
   const styled = {
     progress: stylex.props(styles.progress),
     segment: stylex.props(
-      styles.shape({ radius }),
+      styles.shape,
       styles.segment({ perimeter: segmentPerimeter, offset: segmentOffset }),
     ),
-    track: stylex.props(styles.shape({ radius })),
+    track: stylex.props(styles.shape),
   };
 
   return (
@@ -50,7 +50,11 @@ const Circular = ({ value: _value }: CircularProps) => {
       viewBox="0 0 48 48"
       fill="none"
       className={styled.progress.className}
-      style={styled.progress.style}
+      style={{
+        ...styled.progress.style,
+        // @ts-expect-error style vars
+        "--radius": `${radius}px`,
+      }}
     >
       <circle
         className={styled.track.className}
