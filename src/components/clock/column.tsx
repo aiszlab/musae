@@ -1,5 +1,5 @@
 import React, { type Key, useCallback, useContext, useEffect, useRef } from "react";
-import { ColumnProps, TimeUnit } from "../../types/clock";
+import type { ColumnProps, TimeUnit } from "../../types/clock";
 import { Menu } from "../menu";
 import { isVoid } from "@aiszlab/relax";
 import stylex from "@stylexjs/stylex";
