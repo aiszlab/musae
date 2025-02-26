@@ -1,5 +1,11 @@
 # musae
 
+## 1.0.2
+
+### Patch Changes
+
+- fix(progress): radius var invalid
+
 ## 1.0.1
 
 ### Patch Changes
