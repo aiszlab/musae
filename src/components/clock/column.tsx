@@ -51,7 +51,7 @@ const Column = ({ unit, value, onChange }: ColumnProps) => {
 
   useEffect(() => {
     if (isVoid(value)) return;
-    menuRef.current?.scrollTo(value || 0, 100);
+    menuRef.current?.scrollTo(value ?? 0, 100);
   }, [value]);
 
   const styled = {
