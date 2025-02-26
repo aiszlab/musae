@@ -140,6 +140,6 @@ export const typography = {
 export const scrollbar = stylex.create({
   default: {
     scrollbarWidth: "thin",
-    scrollbarColor: "var(--color-scrollbar, #eaeaea) transparent",
+    scrollbarColor: "var(--color-scrollbar-thumb, #eaeaea) transparent",
   },
 });

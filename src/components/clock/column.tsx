@@ -1,13 +1,4 @@
-import React, {
-  type CSSProperties,
-  type Key,
-  forwardRef,
-  useCallback,
-  useContext,
-  useEffect,
-  useImperativeHandle,
-  useRef,
-} from "react";
+import React, { type Key, useCallback, useContext, useEffect, useRef } from "react";
 import { ColumnProps, TimeUnit } from "../../types/clock";
 import { Menu } from "../menu";
 import { isVoid } from "@aiszlab/relax";
@@ -17,6 +8,7 @@ import { useTheme } from "../theme";
 import type { MenuRef } from "../../types/menu";
 import { stringify } from "@aiszlab/relax/class-name";
 import { Context } from "./context";
+import { scrollbar } from "../theme/theme";
 
 const UNITS: Record<TimeUnit, number> = {
   hour: 24,
@@ -34,16 +26,6 @@ const styles = stylex.create({
 
     width: sizes.xxlarge,
     marginBlock: spacing.xxxxxsmall,
-
-    "::-webkit-scrollbar": {
-      width: spacing.xxsmall,
-      backgroundColor: "transparent",
-    },
-
-    "::-webkit-scrollbar-thumb": {
-      borderRadius: 4,
-      backgroundColor: "var(--color-secondary)",
-    },
   },
 
   item: {
@@ -53,7 +35,7 @@ const styles = stylex.create({
   },
 });
 
-const Column = forwardRef<{}, ColumnProps>(({ unit, value, onChange }, ref) => {
+const Column = ({ unit, value, onChange }: ColumnProps) => {
   const timeUnit = UNITS[unit];
   const { classNames } = useContext(Context);
   const menuRef = useRef<MenuRef>(null);
@@ -67,15 +49,13 @@ const Column = forwardRef<{}, ColumnProps>(({ unit, value, onChange }, ref) => {
     [onChange],
   );
 
-  useImperativeHandle(ref, () => ({}), []);
-
   useEffect(() => {
     if (isVoid(value)) return;
     menuRef.current?.scrollTo(value || 0, 100);
   }, [value]);
 
   const styled = {
-    menu: stylex.props(styles.menu),
+    menu: stylex.props(scrollbar.default, styles.menu),
     item: stylex.props(styles.item),
   };
 
@@ -84,7 +64,11 @@ const Column = forwardRef<{}, ColumnProps>(({ unit, value, onChange }, ref) => {
       selectedKeys={value}
       ref={menuRef}
       className={stringify(styled.menu.className, classNames.column)}
-      style={styled.menu.style}
+      style={{
+        ...styled.menu.style,
+        // @ts-expect-error style vars
+        "--color-scrollbar-thumb": theme.colors.secondary,
+      }}
       items={Array.from(Array(timeUnit).keys()).map((step) => ({
         key: step,
         label: step.toString().padStart(2, "0"),
@@ -94,6 +78,6 @@ const Column = forwardRef<{}, ColumnProps>(({ unit, value, onChange }, ref) => {
       onClick={onClick}
     />
   );
-});
+};
 
 export default Column;
