@@ -1,5 +1,5 @@
-import React, { useContext, useMemo } from "react";
-import { toHTML } from "./utils";
+import React from "react";
+import { toHtml } from "./utils";
 import stylex from "@stylexjs/stylex";
 import { typography } from "../theme/theme";
 import type { MarkdownProps } from "../../types/markdown";
@@ -27,7 +27,9 @@ const Markdown = async ({
 }: MarkdownProps & {
   dark?: boolean;
 }) => {
-  const __html = await toHTML(value, dark);
+  const __html = await toHtml(value);
+
+  console.log("__html===", __html);
 
   const styled = stylex.props(styles.markdown, typography.body.medium);
 
