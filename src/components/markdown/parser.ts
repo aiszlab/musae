@@ -24,7 +24,7 @@ self.onmessage = function (event) {
  *
  * @param {string} markdown
  */
-async function toHtml(markdown) {
+async function toHtml(markdown: string) {
   if (!markdown) return null;
 
   const {

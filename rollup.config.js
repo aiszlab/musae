@@ -46,6 +46,8 @@ const input = {
   "components/icon/icons/mock/index": "./src/components/icon/icons/mock/index",
   "components/icon/icons/navigation/index": "./src/components/icon/icons/navigation/index",
   "components/icon/icons/toggle/index": "./src/components/icon/icons/toggle/index",
+  // md parser
+  "components/markdown/parser": "./src/components/markdown/parser",
 };
 
 /**

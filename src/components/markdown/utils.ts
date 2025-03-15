@@ -3,7 +3,9 @@
  * to html
  */
 const toHtml = async (markdown: string) => {
-  const worker = new Worker("./parser.ts");
+  const worker = new Worker("./parser.mjs");
+
+  console.log("worker====", worker);
 
   return await new Promise<string>((resolve, reject) => {
     worker.postMessage(markdown);
