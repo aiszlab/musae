@@ -1,7 +1,7 @@
 import React, { forwardRef, type ChangeEvent } from "react";
 import { styles as inputStyles } from "../input";
 import { useTheme } from "../theme";
-import stylex from "@stylexjs/stylex";
+import { $create, $props } from "../../utils/styles";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { useControlledState, useEvent } from "@aiszlab/relax";
 import type { TextareaProps } from "../../types/textarea";
@@ -9,7 +9,7 @@ import { useClassNames } from "../../hooks/use-class-names";
 import { stringify } from "@aiszlab/relax/class-name";
 import { CLASS_NAMES } from "./context";
 
-const styles = stylex.create({
+const styles = $create({
   textarea: {
     // reset
     padding: null,
@@ -48,7 +48,7 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
     });
 
     const styled = {
-      textarea: stylex.props(
+      textarea: $props(
         inputStyles.inputor({
           outlineColor: theme.colors.outline,
           focusedOutlineColor: theme.colors.primary,
@@ -59,7 +59,7 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
             outlineColor: theme.colors.error,
           }),
       ),
-      input: stylex.props(styles.input, resize && styles.resize),
+      input: $props(styles.input, resize && styles.resize),
     };
 
     return (

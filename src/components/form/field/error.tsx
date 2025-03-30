@@ -4,13 +4,13 @@ import React, { type CSSProperties, useContext, useEffect, useRef } from "react"
 import { stringify } from "@aiszlab/relax/class-name";
 import { usePresence } from "motion/react";
 import { animate } from "motion/mini";
-import stylex from "@stylexjs/stylex";
+import { $create, $props } from "../../../utils/styles";
 import { useTheme } from "../../theme";
 import { spacing } from "../../theme/tokens.stylex";
 import { Context } from "../context";
 import { useAsyncEffect } from "@aiszlab/relax";
 
-const styles = stylex.create({
+const styles = $create({
   error: (props: { color: CSSProperties["color"] }) => ({
     color: props.color,
     marginBlock: spacing.xxxxxsmall,
@@ -47,7 +47,7 @@ const Error = ({ error, className, style }: Props) => {
     });
   }, [isPresent]);
 
-  const styled = stylex.props(
+  const styled = $props(
     styles.error({
       color: theme.colors.error,
     }),

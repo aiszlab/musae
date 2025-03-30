@@ -1,17 +1,17 @@
 import React, { type CSSProperties } from "react";
 import type { SwitchProps } from "../../types/switch";
 import { useControlledState, useEvent } from "@aiszlab/relax";
-import stylex from "@stylexjs/stylex";
+import { $create, $props } from "../../utils/styles";
 import { duration, OPACITY, opacity, sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
-import { Close, Check } from "musae/icons";
+import { Close, Check } from "../icon/icons";
 import { hexToRgba } from "@aiszlab/fuzzy/color";
 import { stringify } from "@aiszlab/relax/class-name";
 import { useClassNames } from "../../hooks/use-class-names";
 import { CLASS_NAMES } from "./context";
 
 const styles = {
-  switch: stylex.create({
+  switch: $create({
     default: (props: {
       borderColor: CSSProperties["borderColor"];
       backgroundColor: CSSProperties["backgroundColor"];
@@ -51,7 +51,7 @@ const styles = {
     },
   }),
 
-  slider: stylex.create({
+  slider: $create({
     normal: (props: {
       backgroundColor: CSSProperties["backgroundColor"];
       color: CSSProperties["color"];
@@ -99,7 +99,7 @@ const styles = {
   }),
 
   // supporting container styles
-  supporting: stylex.create({
+  supporting: $create({
     default: {
       height: sizes.full,
       width: sizes.full,
@@ -133,7 +133,7 @@ const styles = {
     },
   }),
 
-  leading: stylex.create({
+  leading: $create({
     default: {
       // - `self width` - `slider width` - `slider padding width * 4` - `border width`
       marginInlineStart: `calc(-100% - ${sizes.xsmall} - ${sizes.xxxxxxxxsmall} * 4 - ${sizes.xxxxxxxxsmall})`,
@@ -146,7 +146,7 @@ const styles = {
     },
   }),
 
-  trailing: stylex.create({
+  trailing: $create({
     default: {
       marginBlockStart: `calc(-1 * ${sizes.small})`,
       marginInlineEnd: 0,
@@ -182,7 +182,7 @@ const Switch = ({
   });
 
   const styled = {
-    switch: stylex.props(
+    switch: $props(
       styles.switch.default({
         borderColor: theme.colors.outline,
         backgroundColor: theme.colors["surface-container-highest"],
@@ -204,7 +204,7 @@ const Switch = ({
         }),
       disabled && styles.switch.disabled,
     ),
-    slider: stylex.props(
+    slider: $props(
       styles.slider.normal({
         backgroundColor: theme.colors["on-surface-variant"],
         color: theme.colors["surface-container-highest"],
@@ -225,13 +225,13 @@ const Switch = ({
           }),
         }),
     ),
-    supporting: stylex.props(styles.supporting.default, isChecked && styles.supporting.checked),
-    leading: stylex.props(
+    supporting: $props(styles.supporting.default, isChecked && styles.supporting.checked),
+    leading: $props(
       styles.supporting.child,
       styles.leading.default,
       isChecked && styles.leading.checked,
     ),
-    trailing: stylex.props(
+    trailing: $props(
       styles.supporting.child,
       styles.trailing.default,
       isChecked && styles.trailing.checked,

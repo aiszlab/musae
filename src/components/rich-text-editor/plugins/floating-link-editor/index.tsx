@@ -6,7 +6,7 @@ import { $createLinkNode, TOGGLE_LINK_COMMAND, type LinkNode } from "@lexical/li
 import { useBoolean, useEvent } from "@aiszlab/relax";
 import { Space } from "../../../space";
 import { OpenInNew, Edit, LinkOff } from "musae/icons";
-import stylex from "@stylexjs/stylex";
+import { $create, $props } from "../../../../utils/styles";
 import { spacing } from "../../../theme/tokens.stylex";
 import { Button } from "../../../button";
 import { Form } from "../../../form";
@@ -24,7 +24,7 @@ interface FormValues {
   href: string;
 }
 
-const styles = stylex.create({
+const styles = $create({
   popper: {
     padding: spacing.xxsmall,
   },
@@ -39,7 +39,7 @@ const FloatingLinkEditorPlugin = ({ link }: Props) => {
     return getElementByNode(editor, link);
   }, [editor, link]);
 
-  const styled = stylex.props(styles.popper);
+  const styled = $props(styles.popper);
 
   const updateLink = useEvent(async () => {
     const isValid = await form.trigger().catch(() => false);

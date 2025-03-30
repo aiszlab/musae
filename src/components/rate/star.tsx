@@ -1,15 +1,15 @@
 import React, { CSSProperties, createElement, useContext } from "react";
 import { useEvent, useHover } from "@aiszlab/relax";
-import stylex from "@stylexjs/stylex";
+import { $create, $props } from "../../utils/styles";
 import { duration, sizes } from "../theme/tokens.stylex";
-import { Star as _Star } from "musae/icons";
+import { Star as _Star } from "../icon/icons";
 import type { StarProps } from "../../types/rate";
 import { useTheme } from "../theme";
 import { stringify } from "@aiszlab/relax/class-name";
 import Context from "./context";
 
 const styles = {
-  star: stylex.create({
+  star: $create({
     default: (props: { color: CSSProperties["color"] }) => ({
       position: "relative",
       transitionProperty: "all",
@@ -31,7 +31,7 @@ const styles = {
     },
   }),
 
-  half: stylex.create({
+  half: $create({
     default: {
       position: "absolute",
       width: sizes.half,
@@ -49,7 +49,7 @@ const styles = {
     }),
   }),
 
-  full: stylex.create({
+  full: $create({
     default: {
       userSelect: "none",
     },
@@ -90,18 +90,18 @@ const Star = ({ disabled, value, onEnter, at, onLeave, onClick }: StarProps) => 
   });
 
   const styled = {
-    star: stylex.props(
+    star: $props(
       styles.star.default({ color: theme.colors["surface-container-highest"] }),
       disabled && styles.star.disabled,
     ),
-    half: stylex.props(
+    half: $props(
       styles.half.default,
       isHalf &&
         styles.half.checked({
           color: theme.colors.primary,
         }),
     ),
-    full: stylex.props(
+    full: $props(
       styles.full.default,
       isFull && styles.full.checked({ color: theme.colors.primary }),
     ),

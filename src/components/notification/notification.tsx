@@ -1,12 +1,5 @@
-import stylex from "@stylexjs/stylex";
-import React, {
-  type CSSProperties,
-  useEffect,
-  type FC,
-  createElement,
-  forwardRef,
-  useRef,
-} from "react";
+import { $create, $props } from "../../utils/styles";
+import React, { type CSSProperties, type FC, createElement, forwardRef, useRef } from "react";
 import { usePresence } from "motion/react";
 import { animate } from "motion/mini";
 import { useTheme } from "../theme";
@@ -14,7 +7,7 @@ import type { NotificationProps, Placement, Axis, Type } from "../../types/notif
 import { useAsyncEffect, useComposedRef, useTimeout } from "@aiszlab/relax";
 import { useClassNames } from "../../hooks/use-class-names";
 import { duration, elevations, sizes, spacing } from "../theme/tokens.stylex";
-import { CheckCircle, Close, Loading, Error, NotificationImportant, Warning } from "musae/icons";
+import { CheckCircle, Close, Loading, Error, NotificationImportant, Warning } from "../icon/icons";
 import { typography } from "../theme/theme";
 import type { IconProps } from "../../types/icon";
 import { stringify } from "@aiszlab/relax/class-name";
@@ -45,7 +38,7 @@ const LEADINGS = new Map<Type, FC<IconProps>>([
 ]);
 
 const styles = {
-  notification: stylex.create({
+  notification: $create({
     default: (props: {
       backgroundColor: CSSProperties["backgroundColor"];
       color: CSSProperties["color"];
@@ -81,7 +74,7 @@ const styles = {
     },
   }),
 
-  leading: stylex.create({
+  leading: $create({
     default: (props: { color: CSSProperties["color"] }) => ({
       gridArea: "leading",
       alignSelf: "center",
@@ -90,13 +83,13 @@ const styles = {
     }),
   }),
 
-  title: stylex.create({
+  title: $create({
     default: {
       gridArea: "title",
     },
   }),
 
-  description: stylex.create({
+  description: $create({
     default: {
       gridArea: "description",
       display: "inline-block",
@@ -108,7 +101,7 @@ const styles = {
     },
   }),
 
-  closer: stylex.create({
+  closer: $create({
     default: {
       gridArea: "closer",
       alignSelf: "center",
@@ -152,7 +145,7 @@ const Notification = forwardRef<HTMLDivElement, NotificationProps>(
     }, duration);
 
     const styled = {
-      notification: stylex.props(
+      notification: $props(
         styles.notification.default({
           backgroundColor: theme.colors["surface-container-lowest"],
           color: theme.colors["on-surface"],
@@ -160,7 +153,7 @@ const Notification = forwardRef<HTMLDivElement, NotificationProps>(
         }),
         !title && styles.notification.simple,
       ),
-      leading: stylex.props(
+      leading: $props(
         styles.leading.default({
           color:
             type === "success"
@@ -172,13 +165,13 @@ const Notification = forwardRef<HTMLDivElement, NotificationProps>(
               : theme.colors.primary,
         }),
       ),
-      title: stylex.props(typography.title.medium, styles.title.default),
-      description: stylex.props(
+      title: $props(typography.title.medium, styles.title.default),
+      description: $props(
         typography.body.medium,
         styles.description.default,
         !title && styles.description.simple,
       ),
-      closer: stylex.props(styles.closer.default),
+      closer: $props(styles.closer.default),
     };
 
     useAsyncEffect(async () => {

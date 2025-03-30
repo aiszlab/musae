@@ -1,6 +1,6 @@
 import React, { type CSSProperties, useContext, forwardRef } from "react";
 import type { AvatarProps } from "../../types/avatar";
-import stylex from "@stylexjs/stylex";
+import { $props, $create } from "../../utils/styles";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import Context, { CLASS_NAMES } from "./context";
 import { useTheme } from "../theme";
@@ -10,7 +10,7 @@ import { stringify } from "@aiszlab/relax/class-name";
 import { Skeleton } from "../skeleton";
 import { useClassNames } from "../../hooks/use-class-names";
 
-const styles = stylex.create({
+const styles = $create({
   avatar: (props: {
     backgroundColor: CSSProperties["backgroundColor"];
     color: CSSProperties["color"];
@@ -100,7 +100,7 @@ const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(
     const loadStatus = useImageLoader({ src, crossOrigin, referrerPolicy });
 
     const styled = {
-      avatar: stylex.props(
+      avatar: $props(
         typography.label[size],
         styles.avatar({
           backgroundColor: theme.colors["primary-container"],
@@ -113,7 +113,7 @@ const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(
             outlineColor: theme.colors["on-primary"],
           }),
       ),
-      loading: stylex.props(
+      loading: $props(
         typography.label[size],
         styles.loading,
         styles[size],
@@ -123,7 +123,7 @@ const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(
             outlineColor: theme.colors["on-primary"],
           }),
       ),
-      image: stylex.props(styles.image, styles[size]),
+      image: $props(styles.image, styles[size]),
     };
 
     if (loadStatus === "loading") {

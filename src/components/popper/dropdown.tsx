@@ -1,16 +1,16 @@
 import React, { forwardRef, useImperativeHandle } from "react";
 import type { DropdownProps, PopperRef } from "../../types/popper";
 import { useClassNames } from "../../hooks/use-class-names";
-import stylex from "@stylexjs/stylex";
 import { stringify } from "@aiszlab/relax/class-name";
 import { useFloating } from "./hooks";
 import { elevations, positions, sizes } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { contains } from "@aiszlab/relax/dom";
 import { CLASS_NAMES } from "./context";
+import { $create, $props } from "../../utils/styles";
 
 const styles = {
-  portal: stylex.create({
+  portal: $create({
     default: {
       position: "fixed",
       overflow: "hidden",
@@ -24,7 +24,7 @@ const styles = {
     },
   }),
 
-  dropdown: stylex.create({
+  dropdown: $create({
     default: {
       position: "absolute",
       backgroundColor: "var(--color-surface-container)",
@@ -49,7 +49,7 @@ const styles = {
     },
   }),
 
-  arrow: stylex.create({
+  arrow: $create({
     default: {
       position: "absolute",
       width: sizes.xxxxsmall,
@@ -109,9 +109,9 @@ const Dropdown = forwardRef<PopperRef, DropdownProps>(
     });
 
     const styled = {
-      dropdown: stylex.props(styles.dropdown.default, elevation && styles.dropdown.elevation),
-      arrow: stylex.props(styles.arrow.default),
-      portal: stylex.props(styles.portal.default, overlay && styles.portal.overlay),
+      dropdown: $props(styles.dropdown.default, elevation && styles.dropdown.elevation),
+      arrow: $props(styles.arrow.default),
+      portal: $props(styles.portal.default, overlay && styles.portal.overlay),
     };
 
     return (

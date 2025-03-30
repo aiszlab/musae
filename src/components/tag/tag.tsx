@@ -2,14 +2,14 @@ import React, { type CSSProperties } from "react";
 import { stringify } from "@aiszlab/relax/class-name";
 import type { TagProps } from "../../types/tag";
 import { useClassNames } from "../../hooks/use-class-names";
-import stylex from "@stylexjs/stylex";
+import { $create, $props } from "../../utils/styles";
 import { useTheme } from "../theme";
 import { typography } from "../theme/theme";
 import { spacing } from "../theme/tokens.stylex";
-import { Close } from "musae/icons";
+import { Close } from "../icon/icons";
 import { CLASS_NAMES } from "./context";
 
-const styles = stylex.create({
+const styles = $create({
   tag: (props: {
     backgroundColor: CSSProperties["backgroundColor"];
     color: CSSProperties["color"];
@@ -55,7 +55,7 @@ const Tag = ({
   const classNames = useClassNames(CLASS_NAMES);
   const theme = useTheme();
 
-  const styled = stylex.props(
+  const styled = $props(
     typography.label[size],
     styles.tag({
       backgroundColor: theme.colors["primary-container"],

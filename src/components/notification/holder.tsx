@@ -8,11 +8,11 @@ import type {
 import { Portal } from "../portal";
 import { AnimatePresence } from "motion/react";
 import Notification from "./notification";
-import stylex from "@stylexjs/stylex";
+import { $create, $props } from "../../utils/styles";
 import { positions, spacing } from "../theme/tokens.stylex";
 import { useEvent, useIdentity } from "@aiszlab/relax";
 
-const styles = stylex.create({
+const styles = $create({
   holder: {
     position: "fixed",
     zIndex: positions.notification,
@@ -117,7 +117,7 @@ const Holder = forwardRef<HolderRef, HolderProps>(({ defaultNotifications }, ref
   );
 
   return Array.from(placements.entries()).map(([placement, notifications]) => {
-    const styled = stylex.props(styles.holder, styles[placement]);
+    const styled = $props(styles.holder, styles[placement]);
 
     return (
       <Portal destroyable open={notifications.size > 0} key={placement}>

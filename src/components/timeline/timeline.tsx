@@ -1,14 +1,14 @@
 import React, { useMemo } from "react";
 import Item from "./item";
 import type { TimelineProps } from "../../types/timeline";
-import stylex from "@stylexjs/stylex";
+import { $create, $props } from "../../utils/styles";
 import { CLASS_NAMES, Context } from "./context";
 import { useClassNames } from "../../hooks/use-class-names";
 import { stringify } from "@aiszlab/relax/class-name";
 import { spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 
-const styles = stylex.create({
+const styles = $create({
   timeline: {
     // reset styles
     margin: spacing.none,
@@ -35,7 +35,7 @@ const Timeline = ({ items, mode = "right", size }: TimelineProps) => {
     [mode, total, size, classNames],
   );
 
-  const styled = stylex.props(styles.timeline);
+  const styled = $props(styles.timeline);
 
   return (
     <Context.Provider value={contextValue}>

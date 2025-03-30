@@ -1,6 +1,6 @@
 import React from "react";
 import { useClassNames } from "../../hooks/use-class-names";
-import stylex from "@stylexjs/stylex";
+import { $create, $props } from "../../utils/styles";
 import { spacing } from "../theme/tokens.stylex";
 import { stringify } from "@aiszlab/relax/class-name";
 import { typography } from "../theme/theme";
@@ -8,7 +8,7 @@ import { useLocale } from "../../locale";
 import type { EmptyProps } from "../../types/empty";
 import { CLASS_NAMES } from "./context";
 
-const styles = stylex.create({
+const styles = $create({
   empty: {
     display: "flex",
     flexDirection: "column",
@@ -31,8 +31,8 @@ const Empty = ({ className, style }: EmptyProps) => {
   const [locale] = useLocale("empty");
 
   const styled = {
-    empty: stylex.props(styles.empty),
-    label: stylex.props(typography.body.small, styles.label),
+    empty: $props(styles.empty),
+    label: $props(typography.body.small, styles.label),
   };
 
   return (

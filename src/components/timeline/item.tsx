@@ -1,13 +1,13 @@
-import React, { type CSSProperties, useContext, useMemo } from "react";
+import React, { useContext, useMemo } from "react";
 import type { TimelineItemProps } from "../../types/timeline";
-import stylex from "@stylexjs/stylex";
+import { $create, $props } from "../../utils/styles";
 import { Context } from "./context";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { stringify } from "@aiszlab/relax/class-name";
 import { useTheme } from "../theme";
 
 const styles = {
-  item: stylex.create({
+  item: $create({
     default: {
       display: "grid",
       justifyContent: "flex-start",
@@ -27,7 +27,7 @@ const styles = {
     },
   }),
 
-  labeled: stylex.create({
+  labeled: $create({
     default: {
       gridTemplateColumns: "1fr auto 1fr",
     },
@@ -41,7 +41,7 @@ const styles = {
     },
   }),
 
-  leading: stylex.create({
+  leading: $create({
     default: {
       gridArea: "leading",
       alignSelf: "flex-start",
@@ -62,7 +62,7 @@ const styles = {
     },
   }),
 
-  sign: stylex.create({
+  sign: $create({
     default: (props: { size?: number }) => ({
       display: "flex",
       justifyContent: "center",
@@ -72,7 +72,7 @@ const styles = {
     }),
   }),
 
-  dot: stylex.create({
+  dot: $create({
     default: {
       width: sizes.xxxxxxxsmall,
       height: sizes.xxxxxxxsmall,
@@ -81,7 +81,7 @@ const styles = {
     },
   }),
 
-  label: stylex.create({
+  label: $create({
     default: {
       gridArea: "label",
     },
@@ -95,7 +95,7 @@ const styles = {
     },
   }),
 
-  description: stylex.create({
+  description: $create({
     default: {
       gridArea: "description",
     },
@@ -125,17 +125,17 @@ const Item = ({ description, label, value, dot }: TimelineItemProps) => {
   }, [_mode, value]);
 
   const styled = {
-    item: stylex.props(
+    item: $props(
       styles.item.default,
       styles.item[mode],
       isLabeled && styles.labeled.default,
       isLabeled && styles.labeled[mode],
     ),
-    label: stylex.props(styles.label.default, styles.label[mode]),
-    leading: stylex.props(styles.leading.default, !isMax && styles.leading.tail),
-    sign: stylex.props(styles.sign.default({ size })),
-    dot: stylex.props(styles.dot.default),
-    description: stylex.props(styles.description.default, styles.description[mode]),
+    label: $props(styles.label.default, styles.label[mode]),
+    leading: $props(styles.leading.default, !isMax && styles.leading.tail),
+    sign: $props(styles.sign.default({ size })),
+    dot: $props(styles.dot.default),
+    description: $props(styles.description.default, styles.description[mode]),
   };
 
   return (

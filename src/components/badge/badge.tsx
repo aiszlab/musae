@@ -1,7 +1,7 @@
 import React, { type CSSProperties } from "react";
 import { useClassNames } from "../../hooks/use-class-names";
 import type { BadgeProps } from "../../types/badge";
-import stylex from "@stylexjs/stylex";
+import { $create, $props } from "../../utils/styles";
 import { typography } from "../theme/theme";
 import { sizes } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
@@ -10,14 +10,14 @@ import { stringify } from "@aiszlab/relax/class-name";
 import { CLASS_NAMES } from "./context";
 
 const styles = {
-  badge: stylex.create({
+  badge: $create({
     default: {
       position: "relative",
       display: "inline-flex",
     },
   }),
 
-  tail: stylex.create({
+  tail: $create({
     default: (props: {
       backgroundColor: CSSProperties["backgroundColor"];
       color: CSSProperties["color"];
@@ -80,8 +80,8 @@ const Badge = ({
   const isDot = isVoid(content);
 
   const styled = {
-    badge: stylex.props(styles.badge.default),
-    tail: stylex.props(
+    badge: $props(styles.badge.default),
+    tail: $props(
       styles.tail.default({
         backgroundColor: theme.colors.primary,
         color: theme.colors["on-primary"],

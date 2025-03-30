@@ -3,14 +3,14 @@ import type { ImageProps } from "../../types/image";
 import Preview from "./preview/preview";
 import PreviewGroupContext from "./preview/context";
 import { useBoolean, useEvent, useImageLoader } from "@aiszlab/relax";
-import stylex from "@stylexjs/stylex";
+import { $create, $props } from "../../utils/styles";
 import { Skeleton } from "../skeleton";
 import { useClassNames } from "../../hooks/use-class-names";
 import { stringify } from "@aiszlab/relax/class-name";
 import { CLASS_NAMES } from "./context";
 import { Empty } from "../empty";
 
-const styles = stylex.create({
+const styles = $create({
   size: (props: { width?: number | string; height?: number | string }) => ({
     width: props.width,
     height: props.height,
@@ -49,8 +49,8 @@ const Image = ({
   });
 
   const styled = {
-    loading: stylex.props(styles.size({ width, height })),
-    image: stylex.props(styles.size({ width, height })),
+    loading: $props(styles.size({ width, height })),
+    image: $props(styles.size({ width, height })),
   };
 
   if (status === "loading") {

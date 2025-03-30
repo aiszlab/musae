@@ -1,5 +1,5 @@
 import React from "react";
-import stylex from "@stylexjs/stylex";
+import { $create, $props } from "../../utils/styles";
 import { useClassNames } from "../../hooks/use-class-names";
 import Context, { CLASS_NAMES } from "./context";
 import { stringify } from "@aiszlab/relax/class-name";
@@ -9,7 +9,7 @@ import { SplitPanelProps } from "../../types/split-panel";
 import Panel from "./panel";
 import { usePanels } from "./hooks";
 
-const styles = stylex.create({
+const styles = $create({
   default: {
     width: sizes.full,
     height: sizes.full,
@@ -38,7 +38,7 @@ const SplitPanel = ({ className, style, items, orientation = "horizontal" }: Spl
     return null;
   }
 
-  const styled = stylex.props(styles.default, styles[orientation], typography.body.medium);
+  const styled = $props(styles.default, styles[orientation], typography.body.medium);
 
   return (
     <Context.Provider value={{ classNames, orientation, panelsRef }}>

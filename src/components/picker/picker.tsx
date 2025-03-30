@@ -11,7 +11,7 @@ import { Popper } from "../popper";
 import { useBoolean, useFocus, useEvent } from "@aiszlab/relax";
 import type { PickerProps, PickerRef } from "../../types/picker";
 import { useClassNames } from "../../hooks/use-class-names";
-import stylex from "@stylexjs/stylex";
+import { $create, $props } from "../../utils/styles";
 import { useTheme } from "../theme";
 import { typography } from "../theme/theme";
 import { styles as inputStyles } from "../input";
@@ -19,7 +19,7 @@ import { CLASS_NAMES, Context } from "./context";
 import { stringify } from "@aiszlab/relax/class-name";
 import { Close } from "../icon/icons";
 
-const styles = stylex.create({
+const styles = $create({
   pickable: (props: { minWidth: CSSProperties["minWidth"] }) => ({
     minWidth: props.minWidth,
   }),
@@ -89,7 +89,7 @@ const Picker = forwardRef<PickerRef, PickerProps>(
     });
 
     const styled = {
-      picker: stylex.props(
+      picker: $props(
         typography.body.medium,
         inputStyles.inputor({
           outlineColor: theme.colors.outline,
@@ -100,7 +100,7 @@ const Picker = forwardRef<PickerRef, PickerProps>(
             outlineColor: theme.colors.error,
           }),
       ),
-      pickable: stylex.props(
+      pickable: $props(
         styles.pickable({
           minWidth: getDropdownWidth(),
         }),

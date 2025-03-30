@@ -8,8 +8,8 @@ import {
   FormatUnderlined,
   InsertLink,
   FontDownload,
-} from "musae/icons";
-import stylex from "@stylexjs/stylex";
+} from "../../../icon/icons";
+import { $create, $props } from "../../../../utils/styles";
 import { sizes, spacing } from "../../../theme/tokens.stylex";
 import { Divider } from "../../../divider";
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
@@ -33,7 +33,7 @@ import { $getNearestNodeOfType } from "@lexical/utils";
 import FloatingLinkEditorPlugin from "../floating-link-editor";
 import { $getSelectionStyleValueForProperty } from "@lexical/selection";
 
-const styles = stylex.create({
+const styles = $create({
   default: (props: { outlineColor: CSSProperties["borderColor"] }) => ({
     minHeight: sizes.medium,
 
@@ -156,7 +156,7 @@ const ToolbarPlugin = () => {
     };
   });
 
-  const styled = stylex.props(styles.default({ outlineColor: theme.colors["outline-variant"] }));
+  const styled = $props(styles.default({ outlineColor: theme.colors["outline-variant"] }));
 
   return (
     <>

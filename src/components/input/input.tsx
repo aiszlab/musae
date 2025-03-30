@@ -2,7 +2,7 @@ import React, { forwardRef, useRef, useImperativeHandle, type CSSProperties } fr
 import { useInputEvents, useInputorEvents } from "./hooks";
 import type { InputProps, InputRef } from "../../types/input";
 import { useControlledState, useFocus } from "@aiszlab/relax";
-import stylex from "@stylexjs/stylex";
+import { $create, $props } from "../../utils/styles";
 import { duration, OPACITY, sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { useClassNames } from "../../hooks/use-class-names";
@@ -11,7 +11,7 @@ import { hexToRgba } from "@aiszlab/fuzzy/color";
 import { stringify } from "@aiszlab/relax/class-name";
 import { CLASS_NAMES } from "./context";
 
-export const styles = stylex.create({
+export const styles = $create({
   inputor: (props: {
     outlineColor: CSSProperties["borderColor"];
     focusedOutlineColor: CSSProperties["borderColor"];
@@ -138,7 +138,7 @@ const Input = forwardRef<InputRef, InputProps>(
     });
 
     const styled = {
-      inputor: stylex.props(
+      inputor: $props(
         typography.body.medium,
         styles.inputor({
           outlineColor: theme.colors.outline,
@@ -155,7 +155,7 @@ const Input = forwardRef<InputRef, InputProps>(
             outlineColor: hexToRgba(theme.colors["on-surface"], OPACITY.thickest).toString(),
           }),
       ),
-      input: stylex.props(styles.input),
+      input: $props(styles.input),
     };
 
     return (

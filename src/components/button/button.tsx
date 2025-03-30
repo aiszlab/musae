@@ -1,7 +1,7 @@
 import type { ButtonProps } from "../../types/button";
 import React, { forwardRef } from "react";
 import { stringify } from "@aiszlab/relax/class-name";
-import stylex from "@stylexjs/stylex";
+import { $create, $props } from "../../utils/styles";
 import { duration, elevations, OPACITY, sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { useButton } from "./hooks";
@@ -12,7 +12,7 @@ import { useClassNames } from "../../hooks/use-class-names";
 import { CLASS_NAMES } from "./context";
 
 const styles = {
-  button: stylex.create({
+  button: $create({
     default: {
       display: "inline-flex",
       alignItems: "center",
@@ -39,7 +39,7 @@ const styles = {
     },
   }),
 
-  variant: stylex.create({
+  variant: $create({
     filled: {
       borderWidth: sizes.none,
       backgroundColor: "var(--color-button)",
@@ -70,7 +70,7 @@ const styles = {
     },
   }),
 
-  shape: stylex.create({
+  shape: $create({
     rounded: {
       borderRadius: sizes.infinity,
     },
@@ -80,7 +80,7 @@ const styles = {
     },
   }),
 
-  size: stylex.create({
+  size: $create({
     small: {
       paddingBlock: spacing.xxxxxsmall,
       paddingInline: spacing.xxsmall,
@@ -92,7 +92,7 @@ const styles = {
     },
   }),
 
-  disabled: stylex.create({
+  disabled: $create({
     default: {
       color: "var(--color-on-surface-opacity-38)",
       cursor: "not-allowed",
@@ -148,7 +148,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     const classNames = useClassNames(CLASS_NAMES);
 
     const styled = {
-      button: stylex.props(
+      button: $props(
         styles.button.default,
         ripple && styles.button.rippleable,
         styles.size[size],

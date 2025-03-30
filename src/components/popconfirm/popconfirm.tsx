@@ -7,11 +7,11 @@ import React, {
   type CSSProperties,
 } from "react";
 import type { PopconfirmProps, ChildProps } from "../../types/popconfirm";
-import stylex from "@stylexjs/stylex";
+import { $create, $props } from "../../utils/styles";
 import { Space } from "../space";
 import { Button } from "../button";
 import { useBoolean, useClickAway, useEvent } from "@aiszlab/relax";
-import { Warning } from "musae/icons";
+import { Warning } from "../icon/icons";
 import { Popper } from "../popper";
 import { spacing } from "../theme/tokens.stylex";
 import { typography } from "../theme/theme";
@@ -22,7 +22,7 @@ import { stringify } from "@aiszlab/relax/class-name";
 import { useClassNames } from "../../hooks/use-class-names";
 import { CLASS_NAMES } from "./context";
 
-const styles = stylex.create({
+const styles = $create({
   popconfirm: {
     padding: spacing.medium,
     maxWidth: "100vw",
@@ -113,11 +113,11 @@ const Popconfirm = ({
   }, [popperRef, ref]);
 
   const styled = {
-    popconfirm: stylex.props(styles.popconfirm, !title && styles.simple),
-    leading: stylex.props(styles.leading({ color: theme.colors.warning })),
-    title: stylex.props(styles.title, typography.title.medium),
-    content: stylex.props(styles.content, typography.body.medium),
-    footer: stylex.props(styles.footer),
+    popconfirm: $props(styles.popconfirm, !title && styles.simple),
+    leading: $props(styles.leading({ color: theme.colors.warning })),
+    title: $props(styles.title, typography.title.medium),
+    content: $props(styles.content, typography.body.medium),
+    footer: $props(styles.footer),
   };
 
   return (

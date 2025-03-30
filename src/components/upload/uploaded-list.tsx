@@ -1,5 +1,5 @@
 import React, { forwardRef, type Key, useContext, useImperativeHandle, useMemo } from "react";
-import stylex from "@stylexjs/stylex";
+import { $create, $props } from "../../utils/styles";
 import { spacing } from "../theme/tokens.stylex";
 import type {
   UploadedItem as UploadedItemType,
@@ -13,7 +13,7 @@ import UploadedItem from "./uploaded-item";
 import { Context } from "./context";
 import { stringify } from "@aiszlab/relax/class-name";
 
-const styles = stylex.create({
+const styles = $create({
   list: {
     display: "flex",
     flexDirection: "column",
@@ -134,9 +134,9 @@ const UploadedList = forwardRef<UploadedListRef, UploadedListProps>(
     }
 
     const styled = {
-      list: stylex.props(styles.list),
-      item: stylex.props(styles.item, typography.body.small),
-      filename: stylex.props(styles.filename),
+      list: $props(styles.list),
+      item: $props(styles.item, typography.body.small),
+      filename: $props(styles.filename),
     };
 
     return (

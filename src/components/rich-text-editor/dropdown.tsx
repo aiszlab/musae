@@ -5,9 +5,9 @@ import { Menu } from "../menu";
 import { Empty } from "../empty";
 import { toArray, useEvent } from "@aiszlab/relax";
 import type { DropdownProps } from "../../types/rich-text-editor";
-import stylex from "@stylexjs/stylex";
+import { $create, $props } from "../../utils/styles";
 
-const _styles = stylex.create({
+const _styles = $create({
   label: (props: { width?: number }) => ({
     width: props.width,
     overflow: "hidden",
@@ -55,9 +55,7 @@ const Dropdown = ({
       ref={popoverRef}
     >
       <Button variant="text" size="small">
-        <span {...stylex.props(_styles.label({ width }))}>
-          {children ?? _items.get(value[0])?.label}
-        </span>
+        <span {...$props(_styles.label({ width }))}>{children ?? _items.get(value[0])?.label}</span>
       </Button>
     </Popover>
   );

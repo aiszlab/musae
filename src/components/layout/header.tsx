@@ -1,12 +1,12 @@
 import type { HeaderProps } from "../../types/layout";
 import React, { useContext } from "react";
-import stylex from "@stylexjs/stylex";
+import { $create, $props } from "../../utils/styles";
 import { spacing } from "../theme/tokens.stylex";
 import { stringify } from "@aiszlab/relax/class-name";
 import Context from "./context";
 
 const styles = {
-  header: stylex.create({
+  header: $create({
     default: {
       gridArea: "header",
       display: "flex",
@@ -21,7 +21,7 @@ const styles = {
 const Header = ({ className, style, children }: HeaderProps) => {
   const { classNames } = useContext(Context);
   const styled = {
-    header: stylex.props(styles.header.default),
+    header: $props(styles.header.default),
   };
 
   return (

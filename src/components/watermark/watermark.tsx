@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useRef } from "react";
-import stylex from "@stylexjs/stylex";
+import { $create, $props } from "../../utils/styles";
 import { OPACITY, sizes } from "../theme/tokens.stylex";
 import type { WatermarkProps } from "../../types/watermark";
 import { useMutateObserver, useRaf, useDevicePixelRatio } from "@aiszlab/relax";
@@ -8,7 +8,7 @@ import type { Nullable } from "@aiszlab/relax/types";
 import { useTheme } from "../theme";
 import { hexToRgba } from "@aiszlab/fuzzy/color";
 
-const styles = stylex.create({
+const styles = $create({
   watermark: {
     position: "relative",
     overflow: "hidden",
@@ -37,8 +37,8 @@ const Watermark = ({
   const watermarkRef = useRef<HTMLDivElement>(null);
   const { add, isWatermarkRewritten } = useWatermarks();
   const styled = {
-    watermark: stylex.props(styles.watermark),
-    marks: stylex.props(styles.marks),
+    watermark: $props(styles.watermark),
+    marks: $props(styles.marks),
   };
   const { draw } = useClips();
   const [mark, setMark] = React.useState<

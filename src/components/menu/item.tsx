@@ -1,7 +1,7 @@
 import React, { type CSSProperties, forwardRef, type MouseEventHandler, useRef } from "react";
 import { MenuItemProps } from "../../types/menu";
 import { useItemChildren, useMenuContext } from "./hooks";
-import stylex from "@stylexjs/stylex";
+import { $create, $props } from "../../utils/styles";
 import { duration, sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { typography } from "../theme/theme";
@@ -11,7 +11,7 @@ import { useLazyBoolean } from "../../hooks/use-lazy-boolean";
 import { stringify } from "@aiszlab/relax/class-name";
 
 const styles = {
-  default: stylex.create({
+  default: $create({
     item: {
       display: "flex",
       alignItems: "center",
@@ -29,7 +29,7 @@ const styles = {
   }),
 
   mode: {
-    menuitem: stylex.create({
+    menuitem: $create({
       horizontal: {},
 
       vertical: {
@@ -47,7 +47,7 @@ const styles = {
       },
     }),
 
-    item: stylex.create({
+    item: $create({
       horizontal: {
         height: sizes.full,
         position: "relative",
@@ -89,7 +89,7 @@ const styles = {
     }),
   },
 
-  size: stylex.create({
+  size: $create({
     small: (props: { level: number }) => ({
       paddingBlock: spacing.xxxxxsmall,
       paddingRight: spacing.xxsmall,
@@ -112,7 +112,7 @@ const styles = {
     }),
   }),
 
-  selected: stylex.create({
+  selected: $create({
     inline: (props: {
       color?: CSSProperties["color"];
       backgroundColor?: CSSProperties["backgroundColor"];
@@ -138,7 +138,7 @@ const styles = {
     }),
   }),
 
-  popper: stylex.create({
+  popper: $create({
     default: {
       padding: spacing.xxxxxsmall,
     },
@@ -199,8 +199,8 @@ const Item = forwardRef<HTMLLIElement, MenuItemProps>(
     });
 
     const styled = {
-      menuitem: stylex.props(styles.mode.menuitem[mode]),
-      item: stylex.props(
+      menuitem: $props(styles.mode.menuitem[mode]),
+      item: $props(
         styles.default.item,
         styles.size[size]({ level }),
         // mode
@@ -219,7 +219,7 @@ const Item = forwardRef<HTMLLIElement, MenuItemProps>(
 
         typography.label[size],
       ),
-      popper: stylex.props(styles.popper.default),
+      popper: $props(styles.popper.default),
     };
 
     return (

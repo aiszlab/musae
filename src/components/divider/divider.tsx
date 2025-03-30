@@ -2,7 +2,7 @@ import type { DividerProps } from "../../types/divider";
 import React from "react";
 import { useOffset } from "./hooks";
 import { useClassNames } from "../../hooks/use-class-names";
-import stylex from "@stylexjs/stylex";
+import { $create, $props } from "../../utils/styles";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { typography } from "../theme/theme";
@@ -11,7 +11,7 @@ import { useGutters } from "../../hooks/use-gutters";
 import { CLASS_NAMES } from "./context";
 
 const styles = {
-  divider: stylex.create({
+  divider: $create({
     horizontal: {
       width: sizes.full,
       marginBlockStart: "var(--margin-start)",
@@ -27,7 +27,7 @@ const styles = {
     },
   }),
 
-  simple: stylex.create({
+  simple: $create({
     horizontal: {
       height: sizes.smallest,
       backgroundColor: "var(--color-outline-variant)",
@@ -39,7 +39,7 @@ const styles = {
     },
   }),
 
-  labeled: stylex.create({
+  labeled: $create({
     horizontal: {
       display: "flex",
       flexDirection: "row",
@@ -81,7 +81,7 @@ const styles = {
     },
   }),
 
-  label: stylex.create({
+  label: $create({
     horizontal: {
       marginInline: spacing.xxsmall,
       whiteSpace: "nowrap",
@@ -111,12 +111,12 @@ const Divider = ({
   const isLabeled = !!children && orientation === "horizontal";
 
   const styled = {
-    divider: stylex.props(
+    divider: $props(
       styles.divider[orientation],
       !isLabeled && styles.simple[orientation],
       isLabeled && styles.labeled[orientation],
     ),
-    label: stylex.props(styles.label[orientation], typography.body.small),
+    label: $props(styles.label[orientation], typography.body.small),
   };
 
   return (

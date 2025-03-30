@@ -1,5 +1,5 @@
 import React, { useContext, type CSSProperties } from "react";
-import stylex from "@stylexjs/stylex";
+import { $create, $props } from "../../utils/styles";
 import { duration, sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import type { BreadcrumbItemProps } from "../../types/breadcrumb";
@@ -7,7 +7,7 @@ import { stringify } from "@aiszlab/relax/class-name";
 import { Context } from "./context";
 
 const styles = {
-  navigation: stylex.create({
+  navigation: $create({
     default: (props: { color: CSSProperties["color"] }) => ({
       ":last-of-type": {
         color: props.color,
@@ -33,7 +33,7 @@ const styles = {
     }),
   }),
 
-  separator: stylex.create({
+  separator: $create({
     default: {
       marginInline: spacing.xxsmall,
     },
@@ -46,7 +46,7 @@ const Item = ({ href, label, max, separator }: BreadcrumbItemProps) => {
   const { classNames } = useContext(Context);
 
   const styled = {
-    navigation: stylex.props(
+    navigation: $props(
       styles.navigation.default({ color: theme.colors["on-surface"] }),
       isLink &&
         styles.navigation.link({
@@ -54,7 +54,7 @@ const Item = ({ href, label, max, separator }: BreadcrumbItemProps) => {
           hoveredColor: theme.colors["on-surface"],
         }),
     ),
-    separator: stylex.props(styles.separator.default),
+    separator: $props(styles.separator.default),
   };
 
   return (

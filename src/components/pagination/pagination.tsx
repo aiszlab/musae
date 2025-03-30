@@ -2,7 +2,7 @@ import React, { useMemo } from "react";
 import type { PagiantionProps } from "../../types/pagination";
 import { usePagiantion } from "./hooks";
 import Item from "./item";
-import stylex from "@stylexjs/stylex";
+import { $create, $props } from "../../utils/styles";
 import { spacing } from "../theme/tokens.stylex";
 import { Select } from "../select";
 import type { Option } from "../../types/option";
@@ -12,7 +12,7 @@ import { stringify } from "@aiszlab/relax/class-name";
 import { useClassNames } from "../../hooks/use-class-names";
 import { CLASS_NAMES } from "./context";
 
-const styles = stylex.create({
+const styles = $create({
   pagination: {
     display: "flex",
     columnGap: spacing.xxxxxsmall,
@@ -61,8 +61,8 @@ const Pagination = ({
   });
 
   const styled = {
-    pagination: stylex.props(styles.pagination),
-    sizer: stylex.props(styles.sizer),
+    pagination: $props(styles.pagination),
+    sizer: $props(styles.sizer),
   };
 
   const sizeOptions = useMemo<Option[]>(() => {

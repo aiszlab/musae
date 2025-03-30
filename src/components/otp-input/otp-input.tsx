@@ -4,11 +4,11 @@ import { useInputEvents, useValue } from "./hooks";
 import { Input } from "../input";
 import type { InputRef } from "../../types/input";
 import { clamp, useEvent } from "@aiszlab/relax";
-import stylex from "@stylexjs/stylex";
+import { $create, $props } from "../../utils/styles";
 import { spacing } from "../theme/tokens.stylex";
 import { stringify } from "@aiszlab/relax/class-name";
 
-const styles = stylex.create({
+const styles = $create({
   otp: {
     display: "flex",
     flexDirection: "row",
@@ -65,8 +65,8 @@ const OtpInput = ({
   });
 
   const styled = {
-    otp: stylex.props(styles.otp),
-    input: stylex.props(styles.input),
+    otp: $props(styles.otp),
+    input: $props(styles.input),
   };
 
   return (

@@ -1,11 +1,11 @@
 import React from "react";
-import stylex from "@stylexjs/stylex";
+import { $create, $props } from "../../utils/styles";
 import { useTheme } from "../theme";
 import { sizes } from "../theme/tokens.stylex";
 import type { CircularProps } from "../../types/progress";
 import { useCircular, useValue } from "./hooks";
 
-const styles = stylex.create({
+const styles = $create({
   progress: {
     transform: "rotate(-90deg)",
   },
@@ -34,12 +34,12 @@ const Circular = ({ value: _value }: CircularProps) => {
   });
 
   const styled = {
-    progress: stylex.props(styles.progress),
-    segment: stylex.props(
+    progress: $props(styles.progress),
+    segment: $props(
       styles.shape,
       styles.segment({ perimeter: segmentPerimeter, offset: segmentOffset }),
     ),
-    track: stylex.props(styles.shape),
+    track: $props(styles.shape),
   };
 
   return (

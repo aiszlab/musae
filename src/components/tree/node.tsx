@@ -2,14 +2,14 @@ import React, { type CSSProperties, useContext } from "react";
 import type { TreeNodeProps } from "../../types/tree";
 import Context from "./context";
 import { Checkbox } from "../checkbox";
-import { KeyboardArrowRight } from "musae/icons";
-import stylex from "@stylexjs/stylex";
+import { KeyboardArrowRight } from "../icon/icons";
+import { $create, $props } from "../../utils/styles";
 import { spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { useEvent } from "@aiszlab/relax";
 import { stringify } from "@aiszlab/relax/class-name";
 
-const styles = stylex.create({
+const styles = $create({
   node: (props: { level: number }) => ({
     display: "flex",
     alignItems: "center",
@@ -61,8 +61,8 @@ const Node = ({ value, children, level, onExpand, ...props }: TreeNodeProps) => 
   const theme = useTheme();
 
   const styled = {
-    node: stylex.props(styles.node({ level })),
-    title: stylex.props(
+    node: $props(styles.node({ level })),
+    title: $props(
       styles.title({
         isSelected,
         backgroundColor: theme.colors["surface-container"],
@@ -71,7 +71,7 @@ const Node = ({ value, children, level, onExpand, ...props }: TreeNodeProps) => 
       }),
       selectable && styles.selectable,
     ),
-    expander: stylex.props(
+    expander: $props(
       styles.expander({
         isExpanded,
       }),

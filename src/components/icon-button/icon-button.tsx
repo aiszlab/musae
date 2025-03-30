@@ -1,11 +1,11 @@
 import React, { forwardRef } from "react";
-import stylex from "@stylexjs/stylex";
+import { $create, $props } from "../../utils/styles";
 import { sizes } from "../theme/tokens.stylex";
 import { Button } from "../button";
 import type { ButtonProps } from "../../types/button";
 import { stringify } from "@aiszlab/relax/class-name";
 
-const styles = stylex.create({
+const styles = $create({
   default: {
     ":not(#\\#)": {
       paddingInline: 0,
@@ -28,7 +28,7 @@ const styles = stylex.create({
 
 const IconButton = forwardRef<HTMLButtonElement, Omit<ButtonProps, "shape" | "prefix" | "suffix">>(
   ({ className, style, size = "medium", ...props }, ref) => {
-    const styled = stylex.props(styles.default, styles[size]);
+    const styled = $props(styles.default, styles[size]);
 
     return (
       <Button

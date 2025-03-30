@@ -1,14 +1,14 @@
 import React, { useMemo, type CSSProperties } from "react";
 import { toFunction, useEvent } from "@aiszlab/relax";
-import stylex from "@stylexjs/stylex";
+import { $create, $props } from "../../../utils/styles";
 import { sizes, spacing } from "../../theme/tokens.stylex";
 import { useTheme } from "../../theme";
-import { UnfoldMore } from "musae/icons";
+import { UnfoldMore } from "../../icon/icons";
 import type { HeaderCellProps, SortDirection } from "../../../types/table";
 import { useTable } from "../context";
 
 const styles = {
-  cell: stylex.create({
+  cell: $create({
     default: {
       display: "flex",
       justifyContent: "space-between",
@@ -24,7 +24,7 @@ const styles = {
     }),
   }),
 
-  sort: stylex.create({
+  sort: $create({
     default: {
       position: "relative",
       cursor: "pointer",
@@ -83,20 +83,18 @@ const Cell = ({
   }
 
   const styled = {
-    cell: stylex.props(styles.cell.default),
-    handlers: stylex.props(
-      styles.cell.handlers({ color: theme.colors["surface-container-highest"] }),
-    ),
-    sort: stylex.props(styles.sort.default),
+    cell: $props(styles.cell.default),
+    handlers: $props(styles.cell.handlers({ color: theme.colors["surface-container-highest"] })),
+    sort: $props(styles.sort.default),
 
-    fullSort: stylex.props(
+    fullSort: $props(
       sort === "descending" &&
         styles.sort.checked({
           color: theme.colors.primary,
         }),
     ),
 
-    halfSort: stylex.props(
+    halfSort: $props(
       styles.sort.half,
       sort === "ascending" && styles.sort.checked({ color: theme.colors.primary }),
     ),

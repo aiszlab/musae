@@ -5,13 +5,13 @@ import type { DateRangePickerProps } from "../../types/date-range-picker";
 import { Calendar } from "../calendar";
 import { SwapHoriz } from "musae/icons";
 import { useClassNames } from "../../hooks/use-class-names";
-import stylex from "@stylexjs/stylex";
+import { $create, $props } from "../../utils/styles";
 import { stringify } from "@aiszlab/relax/class-name";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import type { PickerRef } from "../../types/picker";
 import { CLASS_NAMES } from "./context";
 
-const styles = stylex.create({
+const styles = $create({
   picker: {
     flex: 1,
     display: "flex",
@@ -39,8 +39,8 @@ const DateRangePicker = (props: DateRangePickerProps) => {
   const picked = useMemo(() => {
     const [from, to] = value;
     const styled = {
-      picker: stylex.props(styles.picker),
-      trigger: stylex.props(styles.trigger),
+      picker: $props(styles.picker),
+      trigger: $props(styles.trigger),
     };
 
     return (

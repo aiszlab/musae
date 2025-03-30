@@ -1,12 +1,12 @@
 import type { MainProps } from "../../types/layout";
-import stylex from "@stylexjs/stylex";
+import { $create, $props } from "../../utils/styles";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import React, { useContext } from "react";
 import Context from "./context";
 import { stringify } from "@aiszlab/relax/class-name";
 
 const styles = {
-  main: stylex.create({
+  main: $create({
     default: {
       gridArea: "main",
       overflow: "auto",
@@ -24,7 +24,7 @@ const Main = ({ children, className, style }: MainProps) => {
   const { classNames } = useContext(Context);
 
   const styled = {
-    main: stylex.props(styles.main.default),
+    main: $props(styles.main.default),
   };
 
   return (

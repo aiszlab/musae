@@ -1,10 +1,10 @@
 import React from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Ripple as RippleType, RippleProps } from "../../types/ripple";
-import stylex from "@stylexjs/stylex";
+import { $create, $props } from "../../utils/styles";
 import { sizes } from "../theme/tokens.stylex";
 
-const styles = stylex.create({
+const styles = $create({
   ripple: {
     backgroundColor: "currentColor",
     borderRadius: sizes.infinity,
@@ -26,7 +26,7 @@ const styles = stylex.create({
 
 const Ripple = ({ ripples = [], onClear }: RippleProps) => {
   return ripples.map((ripple) => {
-    const styled = stylex.props(
+    const styled = $props(
       styles.ripple,
       styles.position({
         x: ripple.x,

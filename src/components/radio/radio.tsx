@@ -3,14 +3,14 @@ import { Context, CLASS_NAMES } from "./context";
 import type { RadioProps } from "../../types/radio";
 import { useControlledState } from "@aiszlab/relax";
 import { useClassNames } from "../../hooks/use-class-names";
-import stylex from "@stylexjs/stylex";
+import { $create, $props } from "../../utils/styles";
 import { useTheme } from "../theme";
 import { duration, sizes, spacing } from "../theme/tokens.stylex";
 import { typography } from "../theme/theme";
 import { stringify } from "@aiszlab/relax/class-name";
 
 const styles = {
-  radio: stylex.create({
+  radio: $create({
     default: {
       display: "flex",
       alignItems: "center",
@@ -22,7 +22,7 @@ const styles = {
     },
   }),
 
-  input: stylex.create({
+  input: $create({
     default: (props: { borderColor: CSSProperties["borderColor"] }) => ({
       visibility: "hidden",
       height: sizes.xxxxsmall,
@@ -84,7 +84,7 @@ const styles = {
     },
   }),
 
-  label: stylex.create({
+  label: $create({
     default: {
       paddingInline: spacing.xxxsmall,
     },
@@ -129,8 +129,8 @@ const Radio = ({ children, value, checked, disabled = false, ...props }: RadioPr
   }, [isChecked, contextValue, value, isDisabled]);
 
   const styled = {
-    radio: stylex.props(styles.radio.default, isDisabled && styles.radio.disabled),
-    input: stylex.props(
+    radio: $props(styles.radio.default, isDisabled && styles.radio.disabled),
+    input: $props(
       styles.input.default({
         borderColor: theme.colors.outline,
       }),
@@ -144,7 +144,7 @@ const Radio = ({ children, value, checked, disabled = false, ...props }: RadioPr
         }),
       !isChecked && styles.input.unckecked,
     ),
-    label: stylex.props(typography.body.medium, styles.label.default),
+    label: $props(typography.body.medium, styles.label.default),
   };
 
   return (

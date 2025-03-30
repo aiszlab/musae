@@ -1,5 +1,5 @@
 import React, { useContext, type CSSProperties } from "react";
-import stylex from "@stylexjs/stylex";
+import { $create, $props } from "../../utils/styles";
 import type { LinearProps } from "../../types/progress";
 import { stringify } from "@aiszlab/relax/class-name";
 import { sizes } from "../theme/tokens.stylex";
@@ -7,7 +7,7 @@ import { useTheme } from "../theme";
 import { useValue } from "./hooks";
 import Context from "./context";
 
-const styles = stylex.create({
+const styles = $create({
   progress: (props: { color: CSSProperties["backgroundColor"] }) => ({
     width: sizes.full,
     height: sizes.xxxxxxxsmall,
@@ -29,8 +29,8 @@ const Linear = ({ value: _value, className, style }: LinearProps) => {
   const { value } = useValue({ value: _value });
 
   const styled = {
-    progress: stylex.props(styles.progress({ color: theme.colors["primary-container"] })),
-    segment: stylex.props(styles.segment({ flex: value, color: theme.colors.primary })),
+    progress: $props(styles.progress({ color: theme.colors["primary-container"] })),
+    segment: $props(styles.segment({ flex: value, color: theme.colors.primary })),
   };
 
   return (

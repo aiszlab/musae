@@ -1,15 +1,14 @@
-import stylex from "@stylexjs/stylex";
+import { $create, $props } from "../../utils/styles";
 import { spacing } from "../theme/tokens.stylex";
 import type { TreeListProps } from "../../types/tree";
-import React, { useContext, useRef } from "react";
+import React, { useContext } from "react";
 import Node from "./node";
-import { animate } from "motion/mini";
 import Context from "./context";
 import { useExpandable } from "../../hooks/use-expandable";
 import { useUpdateEffect } from "@aiszlab/relax";
 import { stringify } from "@aiszlab/relax/class-name";
 
-const styles = stylex.create({
+const styles = $create({
   list: {
     // reset ul styles
     margin: spacing.none,
@@ -34,7 +33,7 @@ const List = ({ nodes = [], expanded = true, level = 0, className, style }: Tree
     await collapse();
   }, [expanded]);
 
-  const styled = stylex.props(styles.list, !expanded && styles.hidden);
+  const styled = $props(styles.list, !expanded && styles.hidden);
 
   return (
     <ul

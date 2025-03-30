@@ -2,13 +2,13 @@ import React, { type CSSProperties } from "react";
 import { useTable } from "../context";
 import { flexRender } from "@tanstack/react-table";
 import type { HeaderProps } from "../../../types/table";
-import stylex from "@stylexjs/stylex";
+import { $create, $props } from "../../../utils/styles";
 import { sizes, spacing } from "../../theme/tokens.stylex";
 import { useTheme } from "../../theme";
 import { stringify } from "@aiszlab/relax/class-name";
 import { typography } from "../../theme/theme";
 
-const styles = stylex.create({
+const styles = $create({
   cell: (props: {
     backgroundColor: CSSProperties["backgroundColor"];
     borderColor: CSSProperties["borderColor"];
@@ -52,7 +52,7 @@ const Header = <T,>(props: HeaderProps) => {
   if (!table) return null;
 
   const headerGroups = table.getHeaderGroups();
-  const styled = stylex.props(
+  const styled = $props(
     styles.cell({
       backgroundColor: theme.colors.surface,
       borderColor: theme.colors["outline-variant"],

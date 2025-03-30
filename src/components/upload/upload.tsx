@@ -8,7 +8,7 @@ import React, {
   useRef,
 } from "react";
 import type { UploadProps, UploadedListRef } from "../../types/upload";
-import stylex from "@stylexjs/stylex";
+import { $create, $props } from "../../utils/styles";
 import { useEvent } from "@aiszlab/relax";
 import { Keyboard } from "../../utils/keyboard";
 import UploadedList from "./uploaded-list";
@@ -19,7 +19,7 @@ import { useClassNames } from "../../hooks/use-class-names";
 import { CLASS_NAMES, Context } from "./context";
 import { stringify } from "@aiszlab/relax/class-name";
 
-const styles = stylex.create({
+const styles = $create({
   input: {
     display: "none",
   },
@@ -84,8 +84,8 @@ const Upload = ({
   };
 
   const styled = {
-    upload: stylex.props(styles.upload),
-    input: stylex.props(styles.input),
+    upload: $props(styles.upload),
+    input: $props(styles.input),
   };
 
   const children = useMemo(() => {

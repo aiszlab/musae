@@ -1,5 +1,5 @@
 import React, { type CSSProperties, useContext, type Key, useMemo } from "react";
-import stylex from "@stylexjs/stylex";
+import { $create, $props } from "../../utils/styles";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import type { UploadedItem as UploadedItemType } from "../../types/upload";
 import { isFunction, useEvent } from "@aiszlab/relax";
@@ -12,7 +12,7 @@ import { useTheme } from "../theme";
 import { stringify } from "@aiszlab/relax/class-name";
 
 const styles = {
-  item: stylex.create({
+  item: $create({
     default: {
       display: "flex",
       alignItems: "center",
@@ -29,14 +29,14 @@ const styles = {
     }),
   }),
 
-  leading: stylex.create({
+  leading: $create({
     picture: {
       width: sizes.xxlarge,
       height: sizes.xxlarge,
     },
   }),
 
-  filename: stylex.create({
+  filename: $create({
     default: {
       flex: 1,
       overflow: "hidden",
@@ -60,12 +60,12 @@ const UploadedItem = ({
   const isLoading = item.status === "loading";
 
   const styled = {
-    item: stylex.props(
+    item: $props(
       styles.item.default,
       typography.body.small,
       isPicture && styles.item.picture({ borderColor: theme.colors["outline-variant"] }),
     ),
-    filename: stylex.props(styles.filename.default),
+    filename: $props(styles.filename.default),
   };
 
   const onRemove = useEvent(() => {
@@ -81,14 +81,14 @@ const UploadedItem = ({
         return (
           <Image
             src={item.url}
-            {...stylex.props(styles.leading.picture)}
+            {...$props(styles.leading.picture)}
             crossOrigin="anonymous"
             referrerPolicy="strict-origin-when-cross-origin"
           />
         );
       }
 
-      return <AttachFile {...stylex.props(styles.leading.picture)} />;
+      return <AttachFile {...$props(styles.leading.picture)} />;
     }
 
     if (isLoading) {

@@ -1,7 +1,6 @@
-import stylex from "@stylexjs/stylex";
-import { opacity, spacing } from "../theme/tokens.stylex";
+import { $create, $attrs } from "../../utils/styles";
+import { spacing } from "../theme/tokens.stylex";
 import { typography } from "../theme/theme";
-import { styles as checkboxStyles } from "../checkbox";
 import type { CreateEditorArgs, EditorThemeClasses } from "lexical";
 /* nodes */
 import { HeadingNode, QuoteNode } from "@lexical/rich-text";
@@ -17,7 +16,7 @@ import { CheckboxNode } from "./nodes/checkbox";
 
 const _styles = {
   list: {
-    default: stylex.create({
+    default: $create({
       default: {
         padding: spacing.none,
         margin: spacing.none,
@@ -25,7 +24,7 @@ const _styles = {
       },
     }),
 
-    unordered: stylex.create({
+    unordered: $create({
       default: {
         listStyleType: "disc",
       },
@@ -35,13 +34,13 @@ const _styles = {
       },
     }),
 
-    ordered: stylex.create({
+    ordered: $create({
       default: {
         listStyleType: "decimal",
       },
     }),
 
-    item: stylex.create({
+    item: $create({
       default: {
         outline: "none",
         position: "relative",
@@ -59,7 +58,7 @@ const _styles = {
     }),
   },
 
-  code: stylex.create({
+  code: $create({
     block: {
       backgroundColor: "var(--color-surface-container-highest)",
       display: "block",
@@ -79,7 +78,7 @@ const _styles = {
     },
   }),
 
-  heading: stylex.create({
+  heading: $create({
     default: { fontWeight: 700 },
 
     h1: {
@@ -112,7 +111,7 @@ const _styles = {
     },
   }),
 
-  link: stylex.create({
+  link: $create({
     default: {
       color: "var(--color-primary)",
       cursor: "pointer",
@@ -126,26 +125,26 @@ const _styles = {
 
 export const usingStyles = () => {
   return {
-    h1: stylex.attrs(typography.headline.large, _styles.heading.default, _styles.heading.h1),
-    h2: stylex.attrs(typography.headline.medium, _styles.heading.default, _styles.heading.h2),
-    h3: stylex.attrs(typography.headline.small, _styles.heading.default, _styles.heading.h3),
-    h4: stylex.attrs(typography.title.large, _styles.heading.default, _styles.heading.h4),
-    h5: stylex.attrs(typography.title.medium, _styles.heading.default, _styles.heading.h5),
-    h6: stylex.attrs(typography.title.medium, _styles.heading.default, _styles.heading.h6),
+    h1: $attrs(typography.headline.large, _styles.heading.default, _styles.heading.h1),
+    h2: $attrs(typography.headline.medium, _styles.heading.default, _styles.heading.h2),
+    h3: $attrs(typography.headline.small, _styles.heading.default, _styles.heading.h3),
+    h4: $attrs(typography.title.large, _styles.heading.default, _styles.heading.h4),
+    h5: $attrs(typography.title.medium, _styles.heading.default, _styles.heading.h5),
+    h6: $attrs(typography.title.medium, _styles.heading.default, _styles.heading.h6),
 
-    code: stylex.attrs(typography.label.medium, _styles.code.block),
-    inlineCode: stylex.attrs(typography.label.medium, _styles.code.inline),
+    code: $attrs(typography.label.medium, _styles.code.block),
+    inlineCode: $attrs(typography.label.medium, _styles.code.inline),
 
-    link: stylex.attrs(_styles.link.default),
+    link: $attrs(_styles.link.default),
 
     list: {
-      unordered: stylex.attrs(_styles.list.default.default, _styles.list.unordered.default),
-      ordered: stylex.attrs(_styles.list.default.default, _styles.list.ordered.default),
-      checkable: stylex.attrs(_styles.list.unordered.checkable),
+      unordered: $attrs(_styles.list.default.default, _styles.list.unordered.default),
+      ordered: $attrs(_styles.list.default.default, _styles.list.ordered.default),
+      checkable: $attrs(_styles.list.unordered.checkable),
       item: {
-        default: stylex.attrs(_styles.list.item.default),
-        unchecked: stylex.attrs(_styles.list.item.checkable),
-        checked: stylex.attrs(_styles.list.item.checkable, _styles.list.item.checked),
+        default: $attrs(_styles.list.item.default),
+        unchecked: $attrs(_styles.list.item.checkable),
+        checked: $attrs(_styles.list.item.checkable, _styles.list.item.checked),
       },
     },
   };

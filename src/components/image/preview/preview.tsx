@@ -2,10 +2,10 @@ import React, { forwardRef, useImperativeHandle, useState } from "react";
 import { Dialog } from "../../dialog";
 import Operations from "./operations";
 import type { PreviewProps, PreviewRef } from "../../../types/image";
-import stylex from "@stylexjs/stylex";
+import { $create, $props } from "../../../utils/styles";
 import { duration } from "../../theme/tokens.stylex";
 
-const styles = stylex.create({
+const styles = $create({
   image: (props: { scale: number; rotate: number; flipX: number; flipY: number }) => ({
     transform: `translate3d(0px, 0px, 0px) scale3d(${props.scale * props.flipX}, ${
       props.scale * props.flipY
@@ -64,7 +64,7 @@ const Preview = forwardRef<PreviewRef, PreviewProps>(({ onClose, src, alt }, ref
     [],
   );
 
-  const styled = stylex.props(
+  const styled = $props(
     styles.image({ scale, rotate, flipX: isFlipX ? -1 : 1, flipY: isFlipY ? -1 : 1 }),
   );
   const isSmallest = scale <= 1;

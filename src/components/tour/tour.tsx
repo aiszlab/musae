@@ -2,7 +2,7 @@ import React, { type CSSProperties } from "react";
 import type { TourProps } from "../../types/tour";
 import { Portal } from "../portal";
 import { Popper } from "../popper";
-import stylex from "@stylexjs/stylex";
+import { $create, $props } from "../../utils/styles";
 import { Button } from "../button";
 import { useTheme } from "../theme";
 import { duration, elevations, positions, sizes, spacing } from "../theme/tokens.stylex";
@@ -17,7 +17,7 @@ import { CLASS_NAMES, Context } from "./context";
 import { useClassNames } from "../../hooks/use-class-names";
 import { useContainer } from "../../hooks/use-container";
 
-const styles = stylex.create({
+const styles = $create({
   overlay: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
     position: "absolute",
     inset: 0,
@@ -68,15 +68,15 @@ const Tour = ({
   const { container: trigger } = useContainer({ container: step.target, useBody: false });
 
   const styled = {
-    overlay: stylex.props(styles.overlay({ backgroundColor: theme.colors["surface-dim"] })),
-    tour: stylex.props(
+    overlay: $props(styles.overlay({ backgroundColor: theme.colors["surface-dim"] })),
+    tour: $props(
       styles.tour({
         backgroundColor: theme.colors["on-primary"],
       }),
     ),
-    title: stylex.props(styles.title, typography.title.medium),
-    description: stylex.props(styles.description, typography.body.medium),
-    footer: stylex.props(styles.footer),
+    title: $props(styles.title, typography.title.medium),
+    description: $props(styles.description, typography.body.medium),
+    footer: $props(styles.footer),
   };
 
   // close handler

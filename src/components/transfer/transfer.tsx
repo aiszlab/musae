@@ -2,7 +2,7 @@ import React, { useMemo } from "react";
 import { useTransfer } from "./hooks";
 import type { TransferProps } from "../../types/transfer";
 import List from "./list";
-import stylex from "@stylexjs/stylex";
+import { $create, $props } from "../../utils/styles";
 import { KeyboardArrowLeft, KeyboardArrowRight } from "musae/icons";
 import { spacing } from "../theme/tokens.stylex";
 import { CLASS_NAMES, Context } from "./context";
@@ -11,7 +11,7 @@ import { stringify } from "@aiszlab/relax/class-name";
 import { IconButton } from "../icon-button";
 import { at } from "@aiszlab/relax";
 
-const styles = stylex.create({
+const styles = $create({
   transfer: {
     display: "flex",
     flexDirection: "row",
@@ -52,8 +52,8 @@ const Transfer = ({
   const classNames = useClassNames(CLASS_NAMES);
 
   const styled = {
-    transfer: stylex.props(styles.transfer),
-    operation: stylex.props(styles.operation),
+    transfer: $props(styles.transfer),
+    operation: $props(styles.operation),
   };
 
   const contextValue = useMemo(() => {

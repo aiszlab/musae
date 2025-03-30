@@ -1,10 +1,10 @@
 import dayjs, { type Dayjs } from "dayjs";
 import React, { type CSSProperties, type ReactNode, useCallback, useMemo, useState } from "react";
-import { toArray, useControlledState } from "@aiszlab/relax";
+import { toArray } from "@aiszlab/relax";
 import { Timespan } from "../../utils/timespan";
 import { stringify } from "@aiszlab/relax/class-name";
 import type { CalendarProps } from "../../types/calendar";
-import stylex from "@stylexjs/stylex";
+import { $create, $props } from "../../utils/styles";
 import { positions, sizes, spacing } from "../theme/tokens.stylex";
 import { typography } from "../theme/theme";
 import { useTheme } from "../theme";
@@ -12,7 +12,7 @@ import { IconButton } from "../icon-button";
 import type { CLASS_NAMES } from "./context";
 import { Partialable } from "@aiszlab/relax/types";
 
-const styles = stylex.create({
+const styles = $create({
   cell: {
     height: sizes.large,
     width: sizes.large,
@@ -75,7 +75,7 @@ export const useHeadCells = ({ classNames }: { classNames: typeof CLASS_NAMES })
   const theme = useTheme();
 
   return useMemo(() => {
-    const styled = stylex.props(
+    const styled = $props(
       styles.cell,
       styles.header({
         color: theme.colors["on-surface-variant"],
@@ -133,7 +133,7 @@ export const useDateCells = ({
         const isSelected = isFrom || isTo;
 
         const styled = {
-          cell: stylex.props(
+          cell: $props(
             styles.cell,
             styles.date({
               backgroundColor: theme.colors["secondary-container"],
@@ -144,7 +144,7 @@ export const useDateCells = ({
             isTo && timespan.isRange && styles.to,
             typography.body.large,
           ),
-          trigger: stylex.props(styles.trigger),
+          trigger: $props(styles.trigger),
         };
 
         prev.at(prev.length - 1)!.push(

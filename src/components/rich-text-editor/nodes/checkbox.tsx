@@ -7,11 +7,11 @@ import {
 } from "lexical";
 import React, { type ReactNode, type ChangeEvent } from "react";
 import { Checkbox } from "../../checkbox";
-import stylex from "@stylexjs/stylex";
+import { $create, $attrs } from "../../../utils/styles";
 import { sizes, spacing } from "../../theme/tokens.stylex";
 import { CheckableListItemNode } from "./checkable-list-item";
 
-const styles = stylex.create({
+const styles = $create({
   checkbox: {
     position: "absolute",
     insetInlineStart: sizes.none,
@@ -39,7 +39,7 @@ class CheckboxNode extends DecoratorNode<ReactNode> {
   }
 
   createDOM(): HTMLElement {
-    const styled = stylex.attrs(styles.checkbox);
+    const styled = $attrs(styles.checkbox);
     const dom = document.createElement("span");
     dom.className = styled.class ?? "";
     dom.style.cssText = styled.style ?? "";

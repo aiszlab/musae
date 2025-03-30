@@ -1,7 +1,7 @@
-import stylex from "@stylexjs/stylex";
+import { $create } from "../../utils/styles";
 import { sizes, spacing } from "../theme/tokens.stylex";
 
-const styles = stylex.create({
+const styles = $create({
   variables: (props: { outlineColor: string }) => ({
     "--color-outline": props.outlineColor,
   }),

@@ -1,5 +1,5 @@
 import React from "react";
-import stylex from "@stylexjs/stylex";
+import { $create, $props } from "../../utils/styles";
 import { duration, sizes, spacing } from "../theme/tokens.stylex";
 import type { BenchProps } from "../../types/bench";
 import { useLogo, useMenuItems, useNavigations, useMenuKeys } from "./hooks";
@@ -13,7 +13,7 @@ import { CLASS_NAMES, useStore } from "./context";
 import { Layout } from "../layout";
 
 const styles = {
-  bench: stylex.create({
+  bench: $create({
     default: {
       width: "100vw",
       height: "100vh",
@@ -30,7 +30,7 @@ const styles = {
     },
   }),
 
-  heading: stylex.create({
+  heading: $create({
     default: {},
 
     collapsed: {
@@ -39,23 +39,23 @@ const styles = {
     },
   }),
 
-  collapser: stylex.create({
+  collapser: $create({
     default: {
       marginInlineStart: "auto",
     },
   }),
 
-  header: stylex.create({
+  header: $create({
     default: {},
   }),
 
-  trailing: stylex.create({
+  trailing: $create({
     default: {
       marginInlineStart: spacing.auto,
     },
   }),
 
-  sidebar: stylex.create({
+  sidebar: $create({
     default: {},
 
     collapsed: {
@@ -68,7 +68,7 @@ const styles = {
     },
   }),
 
-  menu: stylex.create({
+  menu: $create({
     default: {
       overflow: "hidden",
     },
@@ -78,7 +78,7 @@ const styles = {
     },
   }),
 
-  expander: stylex.create({
+  expander: $create({
     default: {
       gridArea: "expander",
       width: sizes.full,
@@ -94,7 +94,7 @@ const styles = {
     },
   }),
 
-  main: stylex.create({
+  main: $create({
     default: {},
   }),
 };
@@ -136,20 +136,20 @@ const Bench = ({
   });
 
   const styled = {
-    bench: stylex.props(styles.bench.default, isCollapsed && styles.bench.collapsed),
-    heading: stylex.props(
+    bench: $props(styles.bench.default, isCollapsed && styles.bench.collapsed),
+    heading: $props(
       typography.title.large,
       styles.heading.default,
       isCollapsed && styles.heading.collapsed,
     ),
-    header: stylex.props(styles.header.default),
-    sidebar: stylex.props(styles.sidebar.default, isCollapsed && styles.sidebar.collapsed),
-    menu: stylex.props(styles.menu.default, isCollapsed && styles.menu.collapsed),
-    trailing: stylex.props(styles.trailing.default),
-    main: stylex.props(styles.main.default),
-    collapser: stylex.props(styles.collapser.default),
-    expander: stylex.props(styles.expander.default),
-    title: stylex.props(typography.title.large),
+    header: $props(styles.header.default),
+    sidebar: $props(styles.sidebar.default, isCollapsed && styles.sidebar.collapsed),
+    menu: $props(styles.menu.default, isCollapsed && styles.menu.collapsed),
+    trailing: $props(styles.trailing.default),
+    main: $props(styles.main.default),
+    collapser: $props(styles.collapser.default),
+    expander: $props(styles.expander.default),
+    title: $props(typography.title.large),
   };
 
   return (

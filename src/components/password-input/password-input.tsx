@@ -5,10 +5,10 @@ import { Visibility, VisibilityOff } from "../icon/icons";
 import type { InputRef } from "../../types/input";
 import type { PasswordInputProps } from "../../types/password-input";
 import { useTheme } from "../theme";
-import stylex from "@stylexjs/stylex";
+import { $create, $props } from "../../utils/styles";
 import { duration } from "../theme/tokens.stylex";
 
-const styles = stylex.create({
+const styles = $create({
   visibility: (props: { color: CSSProperties["color"]; hoveredColor: CSSProperties["color"] }) => ({
     color: props.color,
     willChange: "color",
@@ -26,7 +26,7 @@ const PasswordInput = forwardRef<InputRef, PasswordInputProps>((props, ref) => {
   const theme = useTheme();
 
   const styled = {
-    visibility: stylex.props(
+    visibility: $props(
       styles.visibility({
         color: theme.colors["secondary-fixed-dim"],
         hoveredColor: theme.colors.secondary,

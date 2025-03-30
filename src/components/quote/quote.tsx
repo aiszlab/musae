@@ -2,7 +2,7 @@ import React from "react";
 import { QuoteProps } from "../../types/quote";
 import { stringify } from "@aiszlab/relax/class-name";
 import styles from "./styles";
-import stylex from "@stylexjs/stylex";
+import { $props } from "../../utils/styles";
 import { useTheme } from "../theme";
 import { typography } from "../theme/theme";
 import { CLASS_NAMES } from "./context";
@@ -12,7 +12,7 @@ const Quote = ({ className, children, style }: QuoteProps) => {
   const classNames = useClassNames(CLASS_NAMES);
   const theme = useTheme();
 
-  const styled = stylex.props(
+  const styled = $props(
     styles.variables({
       outlineColor: theme.colors["outline-variant"],
     }),

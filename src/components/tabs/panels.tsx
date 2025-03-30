@@ -1,5 +1,5 @@
 import React, { type Key, type ReactNode, useMemo } from "react";
-import stylex from "@stylexjs/stylex";
+import { $create, $props } from "../../utils/styles";
 import { spacing } from "../theme/tokens.stylex";
 import { type PanelsProps } from "../../types/tabs";
 import { stringify } from "@aiszlab/relax/class-name";
@@ -7,13 +7,13 @@ import { isUndefined, isVoid } from "@aiszlab/relax";
 import { useTabsContext } from "./hooks";
 
 const styles = {
-  panels: stylex.create({
+  panels: $create({
     default: {
       marginBlockStart: spacing.medium,
     },
   }),
 
-  panel: stylex.create({
+  panel: $create({
     default: {},
 
     active: {
@@ -29,10 +29,10 @@ const styles = {
 const Panels = ({ forceRender, destroyable, activatedKeys }: PanelsProps) => {
   const { items, activeKey, classNames } = useTabsContext();
   const styled = {
-    panels: stylex.props(styles.panels.default),
+    panels: $props(styles.panels.default),
     panel: {
-      active: stylex.props(styles.panel.default, styles.panel.active),
-      hidden: stylex.props(styles.panel.default, styles.panel.hidden),
+      active: $props(styles.panel.default, styles.panel.active),
+      hidden: $props(styles.panel.default, styles.panel.hidden),
     },
   };
 

@@ -5,11 +5,11 @@ import type { TableProps } from "../../types/table";
 import Header from "./header/header";
 import { Context, CLASS_NAMES } from "./context";
 import Body from "./body";
-import stylex from "@stylexjs/stylex";
+import { $create, $props } from "../../utils/styles";
 import { stringify } from "@aiszlab/relax/class-name";
 import { useClassNames } from "../../hooks/use-class-names";
 
-const styles = stylex.create({
+const styles = $create({
   table: {
     width: "100%",
 
@@ -43,7 +43,7 @@ const Table = <T,>({
     classNames,
   });
 
-  const styled = stylex.props(styles.table);
+  const styled = $props(styles.table);
 
   return (
     <Context.Provider value={contextValue}>

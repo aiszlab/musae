@@ -1,4 +1,4 @@
-import stylex from "@stylexjs/stylex";
+import { $props, $create, $keyframes } from "../../utils/styles";
 import type { SkeletonProps } from "../../types/skeleton";
 import React, { type CSSProperties } from "react";
 import { stringify } from "@aiszlab/relax/class-name";
@@ -8,7 +8,7 @@ import { hexToRgba } from "@aiszlab/fuzzy/color";
 import { useClassNames } from "../../hooks/use-class-names";
 import { CLASS_NAMES } from "./context";
 
-const animation = stylex.keyframes({
+const animation = $keyframes({
   from: {
     backgroundPosition: "100% 50%",
   },
@@ -18,7 +18,7 @@ const animation = stylex.keyframes({
   },
 });
 
-const styles = stylex.create({
+const styles = $create({
   variables: (props: {
     shadow: CSSProperties["color"];
     lighterShadow: CSSProperties["color"];
@@ -47,7 +47,7 @@ const Skeleton = ({ animation = true, className, style, children }: SkeletonProp
   const classNames = useClassNames(CLASS_NAMES);
   const theme = useTheme();
 
-  const styled = stylex.props(
+  const styled = $props(
     styles.variables({
       shadow: hexToRgba(theme.colors.shadow, OPACITY.thin).toString(),
       lighterShadow: hexToRgba(theme.colors.shadow, OPACITY.thick).toString(),

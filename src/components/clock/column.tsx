@@ -2,7 +2,7 @@ import React, { type Key, useCallback, useContext, useEffect, useRef } from "rea
 import type { ColumnProps, TimeUnit } from "../../types/clock";
 import { Menu } from "../menu";
 import { isVoid } from "@aiszlab/relax";
-import stylex from "@stylexjs/stylex";
+import { $create, $props } from "../../utils/styles";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import type { MenuRef } from "../../types/menu";
@@ -16,7 +16,7 @@ const UNITS: Record<TimeUnit, number> = {
   second: 60,
 };
 
-const styles = stylex.create({
+const styles = $create({
   menu: {
     overflowX: "hidden",
     overflowY: {
@@ -55,8 +55,8 @@ const Column = ({ unit, value, onChange }: ColumnProps) => {
   }, [value]);
 
   const styled = {
-    menu: stylex.props(scrollbar.default, styles.menu),
-    item: stylex.props(styles.item),
+    menu: $props(scrollbar.default, styles.menu),
+    item: $props(styles.item),
   };
 
   return (

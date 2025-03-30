@@ -4,16 +4,15 @@ import { Tag } from "../tag";
 import { useOptions, useValue } from "./hooks";
 import { Menu } from "../menu";
 import { useClassNames } from "../../hooks/use-class-names";
-import stylex from "@stylexjs/stylex";
+import { $create, $props } from "../../utils/styles";
 import { stringify } from "@aiszlab/relax/class-name";
 import { spacing } from "../theme/tokens.stylex";
-
 import type { MenuProps } from "../../types/menu";
 import type { PickerRef } from "../../types/picker";
 import type { CascaderProps } from "../../types/cascader";
 import { CLASS_NAMES } from "./context";
 
-const styles = stylex.create({
+const styles = $create({
   options: {
     display: "flex",
     columnGap: spacing.xxxxxsmall,
@@ -68,7 +67,7 @@ const Cascader = ({
 
   // options render
   const menus = useMemo(() => {
-    const styled = stylex.props(styles.options);
+    const styled = $props(styles.options);
 
     return (
       <div className={stringify(classNames.options, styled.className)} style={styled.style}>

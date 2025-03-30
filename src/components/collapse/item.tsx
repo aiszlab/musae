@@ -1,18 +1,17 @@
-import React, { type CSSProperties, useContext, useRef } from "react";
-import stylex from "@stylexjs/stylex";
+import React, { type CSSProperties, useContext } from "react";
+import { $create, $props } from "../../utils/styles";
 import { duration, sizes, spacing } from "../theme/tokens.stylex";
 import { useEvent, useUpdateEffect } from "@aiszlab/relax";
-import { animate } from "motion/mini";
 import type { CollapseItemProps } from "../../types/collapse";
 import { Context } from "./context";
 import { useExpandable } from "../../hooks/use-expandable";
 import { useTheme } from "../theme";
-import { KeyboardArrowRight } from "musae/icons";
+import { KeyboardArrowRight } from "../icon/icons";
 import { stringify } from "@aiszlab/relax/class-name";
 import { typography } from "../theme/theme";
 
 const styles = {
-  item: stylex.create({
+  item: $create({
     default: (props: { outlineColor: CSSProperties["borderColor"] }) => ({
       borderBottomWidth: sizes.smallest,
       borderBottomStyle: "solid",
@@ -24,7 +23,7 @@ const styles = {
     }),
   }),
 
-  header: stylex.create({
+  header: $create({
     default: {
       paddingInline: spacing.large,
       paddingBlock: spacing.medium,
@@ -36,7 +35,7 @@ const styles = {
     },
   }),
 
-  panel: stylex.create({
+  panel: $create({
     default: {
       height: "auto",
     },
@@ -46,7 +45,7 @@ const styles = {
     },
   }),
 
-  content: stylex.create({
+  content: $create({
     default: (props: { outlineColor: CSSProperties["borderColor"] }) => ({
       borderTopWidth: sizes.smallest,
       borderTopStyle: "solid",
@@ -55,7 +54,7 @@ const styles = {
     }),
   }),
 
-  collapser: stylex.create({
+  collapser: $create({
     default: {
       willChange: "transform",
       transitionProperty: "transform",
@@ -83,14 +82,14 @@ const CollapseItem = ({ children, label, value }: CollapseItemProps) => {
   }, [isExpanded]);
 
   const styled = {
-    item: stylex.props(styles.item.default({ outlineColor: theme.colors["outline-variant"] })),
-    header: stylex.props(styles.header.default, typography.title.medium),
-    panel: stylex.props(styles.panel.default, !isExpanded && styles.panel.hidden),
-    content: stylex.props(
+    item: $props(styles.item.default({ outlineColor: theme.colors["outline-variant"] })),
+    header: $props(styles.header.default, typography.title.medium),
+    panel: $props(styles.panel.default, !isExpanded && styles.panel.hidden),
+    content: $props(
       styles.content.default({ outlineColor: theme.colors["outline-variant"] }),
       typography.body.medium,
     ),
-    collapser: stylex.props(styles.collapser.default, isExpanded && styles.collapser.expanded),
+    collapser: $props(styles.collapser.default, isExpanded && styles.collapser.expanded),
   };
 
   const onClick = useEvent(() => {

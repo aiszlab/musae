@@ -1,12 +1,12 @@
 import React, { type ReactNode, createElement, useMemo, type CSSProperties } from "react";
 import type { AsProps, IconProps } from "../../types/icon";
 import { isFunction } from "@aiszlab/relax";
-import stylex from "@stylexjs/stylex";
+import { $create, $props } from "../../utils/styles";
 import { useClassNames } from "../../hooks/use-class-names";
 import { stringify } from "@aiszlab/relax/class-name";
 import { CLASS_NAMES } from "./context";
 
-const styles = stylex.create({
+const styles = $create({
   icon: (props: { color: CSSProperties["color"] }) => ({
     display: "inline-flex",
     verticalAlign: "middle",
@@ -35,7 +35,7 @@ const Icon = ({ as, color, size, onClick, style, className, ...props }: IconProp
     return as;
   }, [asProps, as]);
 
-  const styled = stylex.props(
+  const styled = $props(
     styles.icon({
       color,
     }),

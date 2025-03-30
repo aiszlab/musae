@@ -2,14 +2,14 @@ import React, { type CSSProperties } from "react";
 import type { CollapseProps } from "../../types/collapse";
 import { useClassNames } from "../../hooks/use-class-names";
 import Item from "./item";
-import stylex from "@stylexjs/stylex";
+import { $create, $props } from "../../utils/styles";
 import { sizes } from "../theme/tokens.stylex";
 import { stringify } from "@aiszlab/relax/class-name";
 import { useActiveKeys } from "./hooks";
 import { CLASS_NAMES, Context } from "./context";
 import { useTheme } from "../theme";
 
-const styles = stylex.create({
+const styles = $create({
   collapse: (props: { outlineColor: CSSProperties["borderColor"] }) => ({
     borderWidth: sizes.smallest,
     borderStyle: "solid",
@@ -34,7 +34,7 @@ const Collapse = ({
   // no need to render when items is empty
   if (items.length === 0) return null;
 
-  const styled = stylex.props(styles.collapse({ outlineColor: theme.colors["outline-variant"] }));
+  const styled = $props(styles.collapse({ outlineColor: theme.colors["outline-variant"] }));
 
   return (
     <Context.Provider

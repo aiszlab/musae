@@ -1,14 +1,14 @@
 import React from "react";
 import { withIcon } from "../../hoc";
-import stylex from "@stylexjs/stylex";
+import { $create, $props, $keyframes } from "../../../../utils/styles";
 
-const loading = stylex.keyframes({
+const loading = $keyframes({
   to: {
     transform: "rotate(360deg)",
   },
 });
 
-const styles = stylex.create({
+const styles = $create({
   loading: {
     animationName: loading,
     animationDuration: "1s",
@@ -18,7 +18,7 @@ const styles = stylex.create({
 });
 
 const Loading = withIcon((props) => {
-  const styled = stylex.props(styles.loading);
+  const styled = $props(styles.loading);
 
   return (
     <svg

@@ -1,4 +1,4 @@
-import stylex from "@stylexjs/stylex";
+import { $create, $props } from "../../utils/styles";
 import React from "react";
 import type { VisuallyHiddenProps } from "../../types/visually-hidden";
 import { sizes, spacing } from "../theme/tokens.stylex";
@@ -6,7 +6,7 @@ import { stringify } from "@aiszlab/relax/class-name";
 import { useClassNames } from "../../hooks/use-class-names";
 import { CLASS_NAMES } from "./context";
 
-const styles = stylex.create({
+const styles = $create({
   hidden: {
     width: sizes.smallest,
     height: sizes.smallest,
@@ -18,7 +18,7 @@ const styles = stylex.create({
 });
 
 const VisuallyHidden = ({ children, dangerouslySetInnerHTML }: VisuallyHiddenProps) => {
-  const styled = stylex.props(styles.hidden);
+  const styled = $props(styles.hidden);
   const classNames = useClassNames(CLASS_NAMES);
 
   return (

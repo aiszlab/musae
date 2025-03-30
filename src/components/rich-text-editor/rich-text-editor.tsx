@@ -16,7 +16,7 @@ import EditablePlugin from "./plugins/editable";
 
 import { useDefault, useIdentity } from "@aiszlab/relax";
 import { useMessage } from "../message";
-import stylex from "@stylexjs/stylex";
+import { $create, $props } from "../../utils/styles";
 import { stringify } from "@aiszlab/relax/class-name";
 
 import { sizes, spacing } from "../theme/tokens.stylex";
@@ -32,7 +32,7 @@ import { CLASS_NAMES, Context } from "./context";
 import { useClassNames } from "../../hooks/use-class-names";
 import { usingEditor } from "./utils";
 
-const styles = stylex.create({
+const styles = $create({
   editor: {
     backgroundColor: "var(--color-surface-container)",
     borderRadius: sizes.xxxxxxsmall,
@@ -72,8 +72,8 @@ const RichTextEditor = forwardRef<RichTextEditorRef, RichTextEditorProps>(
     const classNames = useClassNames(CLASS_NAMES);
 
     const styled = {
-      editor: stylex.props(styles.editor, disabled && styles.disabled, typography.body.medium),
-      textarea: stylex.props(!disabled && styles.textarea),
+      editor: $props(styles.editor, disabled && styles.disabled, typography.body.medium),
+      textarea: $props(!disabled && styles.textarea),
     };
 
     const initialConfig = useDefault<InitialConfigType>(() => {

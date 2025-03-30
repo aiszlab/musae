@@ -4,7 +4,7 @@ import type { PanelRef, TimePickerProps } from "../../types/time-picker";
 import { useClassNames } from "../../hooks/use-class-names";
 import Panel from "./panel";
 import { useValue } from "./hooks";
-import stylex from "@stylexjs/stylex";
+import { $create, $props } from "../../utils/styles";
 import { useEvent } from "@aiszlab/relax";
 import { styles as inputStyles } from "../input";
 import type { PickerRef } from "../../types/picker";
@@ -19,7 +19,7 @@ const TimePicker = ({ className, ...props }: TimePickerProps) => {
 
   // picked date
   const picked = useMemo(() => {
-    const { className, style } = stylex.props(inputStyles.input);
+    const { className, style } = $props(inputStyles.input);
 
     return (
       <input

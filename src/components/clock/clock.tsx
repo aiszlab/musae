@@ -2,13 +2,13 @@ import React from "react";
 import { useClassNames } from "../../hooks/use-class-names";
 import type { ClockProps, TimeUnit } from "../../types/clock";
 import Column from "./column";
-import stylex from "@stylexjs/stylex";
+import { $create, $props } from "../../utils/styles";
 import { stringify } from "@aiszlab/relax/class-name";
 import { Divider } from "../divider";
 import { spacing } from "../theme/tokens.stylex";
 import { CLASS_NAMES, Context } from "./context";
 
-const styles = stylex.create({
+const styles = $create({
   clock: {
     display: "flex",
     height: 200,
@@ -18,7 +18,7 @@ const styles = stylex.create({
 
 const Clock = ({ value, onChange, className, style }: ClockProps) => {
   const classNames = useClassNames(CLASS_NAMES);
-  const styled = stylex.props(styles.clock);
+  const styled = $props(styles.clock);
   const columns = ["hour", "minute", "second"] satisfies TimeUnit[];
 
   return (

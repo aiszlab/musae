@@ -1,7 +1,7 @@
 import React, { type CSSProperties } from "react";
 import { useTable } from "./context";
 import { flexRender } from "@tanstack/react-table";
-import stylex from "@stylexjs/stylex";
+import { $create, $props } from "../../utils/styles";
 import { isEmpty } from "@aiszlab/relax";
 import { typography } from "../theme/theme";
 import { sizes, spacing } from "../theme/tokens.stylex";
@@ -9,7 +9,7 @@ import { useTheme } from "../theme";
 import { Empty } from "../empty";
 import { stringify } from "@aiszlab/relax/class-name";
 
-const styles = stylex.create({
+const styles = $create({
   cell: (props: { borderColor: CSSProperties["borderColor"] }) => ({
     // reset styles
     borderInlineWidth: sizes.none,
@@ -34,7 +34,7 @@ const Body = <T,>() => {
 
   if (!table) return null;
 
-  const styled = stylex.props(
+  const styled = $props(
     styles.cell({ borderColor: theme.colors["outline-variant"] }),
     bordered && styles.bordered,
     typography.body.small,

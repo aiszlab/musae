@@ -1,10 +1,10 @@
 import React from "react";
 import type { SpaceProps } from "../../types/space";
-import stylex from "@stylexjs/stylex";
+import { $create, $props } from "../../utils/styles";
 import { useGutters } from "../../hooks/use-gutters";
 import { stringify } from "@aiszlab/relax/class-name";
 
-const styles = stylex.create({
+const styles = $create({
   space: (props: { columnGap: number; rowGap: number }) => ({
     display: "flex",
     columnGap: props.columnGap,
@@ -30,7 +30,7 @@ const Space = ({
   orientation = "horizontal",
 }: SpaceProps) => {
   const [columnGap, rowGap] = useGutters({ gutter });
-  const styled = stylex.props(
+  const styled = $props(
     styles.space({
       columnGap,
       rowGap,

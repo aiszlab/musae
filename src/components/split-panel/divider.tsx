@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import stylex from "@stylexjs/stylex";
+import { $create, $props } from "../../utils/styles";
 import { sizes } from "../theme/tokens.stylex";
 import Context from "./context";
 import { stringify } from "@aiszlab/relax/class-name";
@@ -10,7 +10,7 @@ import { UsingDrag } from "../../../../relax/packages/relax/dist/hooks/use-drag"
 import { RequiredTo } from "@aiszlab/relax/types";
 
 const styles = {
-  divider: stylex.create({
+  divider: $create({
     default: {
       position: "relative",
     },
@@ -24,7 +24,7 @@ const styles = {
     },
   }),
 
-  dragger: stylex.create({
+  dragger: $create({
     default: {
       position: "absolute",
 
@@ -99,8 +99,8 @@ const Divider = ({ onDragMove, onDragEnd }: DividerProps) => {
   });
 
   const styled = {
-    divider: stylex.props(styles.divider.default, styles.divider[orientation]),
-    dragger: stylex.props(styles.dragger.default, styles.dragger[orientation]),
+    divider: $props(styles.divider.default, styles.divider[orientation]),
+    dragger: $props(styles.dragger.default, styles.dragger[orientation]),
   };
 
   return (

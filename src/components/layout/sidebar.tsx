@@ -1,12 +1,12 @@
 import type { SidebarProps } from "../../types/layout";
 import React, { useContext } from "react";
-import stylex from "@stylexjs/stylex";
+import { $create, $props } from "../../utils/styles";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import Context from "./context";
 import { stringify } from "@aiszlab/relax/class-name";
 
 const styles = {
-  sidebar: stylex.create({
+  sidebar: $create({
     default: {
       gridArea: "sidebar",
       padding: spacing.xxxxlarge,
@@ -28,7 +28,7 @@ const styles = {
 const Sidebar = ({ style, children, className }: SidebarProps) => {
   const { classNames } = useContext(Context);
   const styled = {
-    sidebar: stylex.props(styles.sidebar.default),
+    sidebar: $props(styles.sidebar.default),
   };
 
   return (

@@ -3,14 +3,14 @@ import type { MenuGroupProps } from "../../types/menu";
 import Item from "./item";
 import { useMenuContext } from "./hooks";
 import { useComposedRef, useUpdateEffect } from "@aiszlab/relax";
-import stylex from "@stylexjs/stylex";
+import { $create, $props } from "../../utils/styles";
 import { spacing } from "../theme/tokens.stylex";
 import { useExpandable } from "../../hooks/use-expandable";
 import { useTheme } from "../theme";
 import { stringify } from "@aiszlab/relax/class-name";
 
 const styles = {
-  group: stylex.create({
+  group: $create({
     default: {
       // reset ul styles
       margin: spacing.none,
@@ -60,11 +60,7 @@ const Group = forwardRef<HTMLUListElement, MenuGroupProps>(
     }, [expanded]);
 
     const styled = {
-      group: stylex.props(
-        styles.group.default,
-        styles.group[mode],
-        !expanded && styles.group.hidden,
-      ),
+      group: $props(styles.group.default, styles.group[mode], !expanded && styles.group.hidden),
     };
 
     return (

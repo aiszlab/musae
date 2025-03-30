@@ -1,9 +1,9 @@
 import type { WaterfallProps } from "../../types/waterfall";
 import React, { useMemo, type ReactNode } from "react";
-import stylex from "@stylexjs/stylex";
+import { $create, $props } from "../../utils/styles";
 import type { RequiredIn } from "@aiszlab/relax/types";
 
-const styles = stylex.create({
+const styles = $create({
   column: (props: { rowGap: number }) => ({
     flex: 1,
     display: "flex",
@@ -41,7 +41,7 @@ const Sequential = ({
   // convert column into react div node
   // inject column styles
   const _children = useMemo(() => {
-    const styled = stylex.props(styles.column({ rowGap }));
+    const styled = $props(styles.column({ rowGap }));
 
     return groupedColumns.map((column, index) => {
       return (

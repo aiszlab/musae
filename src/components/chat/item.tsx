@@ -2,12 +2,12 @@ import { useEvent, useMounted } from "@aiszlab/relax";
 import React, { useContext, useState } from "react";
 import type { ChatItemProps } from "../../types/chat";
 import { Context } from "./context";
-import stylex, { keyframes } from "@stylexjs/stylex";
+import { $create, $props, $keyframes } from "../../utils/styles";
 import { useTheme } from "../theme";
 import { stringify } from "@aiszlab/relax/class-name";
 import { sizes, spacing } from "../theme/tokens.stylex";
 
-const blink = keyframes({
+const blink = $keyframes({
   from: {
     color: "inherit",
   },
@@ -21,7 +21,7 @@ const blink = keyframes({
   },
 });
 
-const styles = stylex.create({
+const styles = $create({
   item: {
     display: "flex",
     flexDirection: "column",
@@ -92,14 +92,14 @@ const Item = ({ message, content: _content }: ChatItemProps) => {
   });
 
   const styled = {
-    item: stylex.props(styles.item),
-    send: stylex.props(
+    item: $props(styles.item),
+    send: $props(
       styles.send({
         backgroundColor: theme.colors["surface-container-highest"],
         color: theme.colors["on-surface"],
       }),
     ),
-    receive: stylex.props(
+    receive: $props(
       styles.receive({
         backgroundColor: theme.colors["surface-container"],
         color: theme.colors["on-surface"],

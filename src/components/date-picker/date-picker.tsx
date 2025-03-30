@@ -4,7 +4,7 @@ import { Calendar } from "../calendar";
 import type { DatePickerProps } from "../../types/date-picker";
 import { useValue } from "./hooks";
 import { useClassNames } from "../../hooks/use-class-names";
-import stylex from "@stylexjs/stylex";
+import { $create, $props } from "../../utils/styles";
 import { stringify } from "@aiszlab/relax/class-name";
 import { spacing } from "../theme/tokens.stylex";
 import { styles as inputStyles } from "../input";
@@ -13,7 +13,7 @@ import { CLASS_NAMES } from "./context";
 import type { CalendarRef } from "../../types/calendar";
 import { useEvent } from "@aiszlab/relax";
 
-const styles = stylex.create({
+const styles = $create({
   calendar: {
     padding: spacing.xxxxxsmall,
   },
@@ -26,8 +26,8 @@ const DatePicker = (props: DatePickerProps) => {
   const calendarRef = useRef<CalendarRef>(null);
 
   const styled = {
-    input: stylex.props(inputStyles.input),
-    calendar: stylex.props(styles.calendar),
+    input: $props(inputStyles.input),
+    calendar: $props(styles.calendar),
   };
 
   const reset = useEvent(() => {

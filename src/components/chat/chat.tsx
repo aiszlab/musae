@@ -5,14 +5,14 @@ import Item from "./item";
 import { useClassNames } from "../../hooks/use-class-names";
 import { CLASS_NAMES, Context } from "./context";
 import type { ChatItemProps, ChatProps } from "../../types/chat";
-import stylex from "@stylexjs/stylex";
+import { $create, $props } from "../../utils/styles";
 import { typography } from "../theme/theme";
 import { stringify } from "@aiszlab/relax/class-name";
 import { spacing } from "../theme/tokens.stylex";
 import { IconButton } from "../icon-button";
 import { RocketLaunch } from "../icon/icons";
 
-const styles = stylex.create({
+const styles = $create({
   chat: {
     display: "flex",
     flexDirection: "column",
@@ -55,9 +55,9 @@ const Chat = ({ onMessage, className, style, defaultValue, placeholder }: ChatPr
   }, [id, message]);
 
   const styled = {
-    chat: stylex.props(styles.chat, typography.body.medium),
-    messages: stylex.props(styles.messages),
-    footer: stylex.props(styles.footer),
+    chat: $props(styles.chat, typography.body.medium),
+    messages: $props(styles.messages),
+    footer: $props(styles.footer),
   };
 
   const messages = useMemo(() => Array.from(items.entries()), [items]);

@@ -11,14 +11,14 @@ import { Button } from "../button";
 import type { PanelProps, PanelRef } from "../../types/time-picker";
 import type { ClockProps } from "../../types/clock";
 import dayjs from "dayjs";
-import stylex from "@stylexjs/stylex";
+import { $create, $props } from "../../utils/styles";
 import { useTheme } from "../theme";
 import { stringify } from "@aiszlab/relax/class-name";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { useLocale } from "../../locale";
 import { Context } from "./context";
 
-const styles = stylex.create({
+const styles = $create({
   panel: {
     marginInline: spacing.xxxxxsmall,
   },
@@ -70,8 +70,8 @@ const Panel = forwardRef<PanelRef, PanelProps>((props, ref) => {
   }, []);
 
   const styled = {
-    panel: stylex.props(styles.panel),
-    footer: stylex.props(
+    panel: $props(styles.panel),
+    footer: $props(
       styles.footer({
         borderTopColor: theme.colors["outline-variant"],
       }),

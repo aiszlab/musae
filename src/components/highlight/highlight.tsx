@@ -1,12 +1,12 @@
 import React, { type CSSProperties, memo, type ReactNode, useMemo } from "react";
 import type { HighlightProps } from "../../types/highlight";
-import stylex from "@stylexjs/stylex";
+import { $create, $props } from "../../utils/styles";
 import { useTheme } from "../theme";
 import { stringify } from "@aiszlab/relax/class-name";
 import { CLASS_NAMES } from "./context";
 import { useClassNames } from "../../hooks/use-class-names";
 
-const styles = stylex.create({
+const styles = $create({
   capture: (props: { color: CSSProperties["color"] }) => ({
     color: props.color,
   }),
@@ -19,7 +19,7 @@ const Highlight = ({ children, capture }: HighlightProps) => {
   const _children = useMemo<ReactNode>(() => {
     if (!capture) return [children];
 
-    const styled = stylex.props(
+    const styled = $props(
       styles.capture({
         color: theme.colors.primary,
       }),

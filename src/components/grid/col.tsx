@@ -1,10 +1,10 @@
 import { createElement, type ReactNode, useContext } from "react";
 import type { ColProps } from "../../types/grid";
 import { stringify } from "@aiszlab/relax/class-name";
-import stylex from "@stylexjs/stylex";
+import { $create, $props } from "../../utils/styles";
 import { Context } from "./context";
 
-const styles = stylex.create({
+const styles = $create({
   col: (props: { span: number }) => ({
     gridColumnStart: "auto",
     gridColumnEnd: `span ${props.span}`,
@@ -19,7 +19,7 @@ const Col = <E extends "aside" | "div" = "div">({
   style,
   onClick,
 }: ColProps<E>): ReactNode => {
-  const styled = stylex.props(styles.col({ span }));
+  const styled = $props(styles.col({ span }));
   const { classNames } = useContext(Context);
 
   return createElement(

@@ -4,11 +4,11 @@ import { Context, CLASS_NAMES } from "./context";
 import { useScrollable } from "@aiszlab/relax";
 import { useContextValue, useScrollOrientation } from "./hooks";
 import Group from "./group";
-import stylex from "@stylexjs/stylex";
+import { $create, $props } from "../../utils/styles";
 import { useClassNames } from "../../hooks/use-class-names";
 import { stringify } from "@aiszlab/relax/class-name";
 
-const styles = stylex.create({
+const styles = $create({
   menu: {
     // add position reason: when read li offsetTop, if parent is not relative, then it will read wrong value
     // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetTop
@@ -63,7 +63,7 @@ const Menu = forwardRef<MenuRef, MenuProps>(
       },
     }));
 
-    const styled = stylex.props(styles.menu);
+    const styled = $props(styles.menu);
 
     return (
       <Context.Provider value={contextValue}>

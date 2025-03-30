@@ -1,6 +1,6 @@
 import React, { type CSSProperties } from "react";
 import type { BreadcrumbProps } from "../../types/breadcrumb";
-import stylex from "@stylexjs/stylex";
+import { $create, $props } from "../../utils/styles";
 import { typography } from "../theme/theme";
 import { useTheme } from "../theme";
 import { useClassNames } from "../../hooks/use-class-names";
@@ -9,7 +9,7 @@ import Item from "./item";
 import { spacing } from "../theme/tokens.stylex";
 import { CLASS_NAMES, Context } from "./context";
 
-const styles = stylex.create({
+const styles = $create({
   breadcrumb: (props: { color: CSSProperties["color"] }) => ({
     color: props.color,
   }),
@@ -33,13 +33,13 @@ const Breadcrumb = ({ items = [], className, separator = "/", style }: Breadcrum
   }
 
   const styled = {
-    breadcrumb: stylex.props(
+    breadcrumb: $props(
       typography.label.large,
       styles.breadcrumb({
         color: theme.colors["on-surface-variant"],
       }),
     ),
-    navigations: stylex.props(styles.navigations),
+    navigations: $props(styles.navigations),
   };
 
   return (

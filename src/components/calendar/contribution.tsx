@@ -1,6 +1,6 @@
 import dayjs from "dayjs";
-import React, { type CSSProperties, useMemo } from "react";
-import stylex from "@stylexjs/stylex";
+import React, { useMemo } from "react";
+import { $create, $props } from "../../utils/styles";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { typography } from "../theme/theme";
@@ -14,7 +14,7 @@ import { useLocale } from "../../locale";
 const FORMAT = "YYYY-MM-DD";
 
 const styles = {
-  calendar: stylex.create({
+  calendar: $create({
     default: {
       borderCollapse: "separate",
       borderSpacing: spacing.xxxxxsmall,
@@ -26,7 +26,7 @@ const styles = {
     },
   }),
 
-  cell: stylex.create({
+  cell: $create({
     default: {
       minWidth: sizes.xxxxxsmall,
       minHeight: sizes.xxxxxsmall,
@@ -37,7 +37,7 @@ const styles = {
     },
   }),
 
-  weekday: stylex.create({
+  weekday: $create({
     cell: {
       padding: 0,
     },
@@ -50,7 +50,7 @@ const styles = {
     },
   }),
 
-  month: stylex.create({
+  month: $create({
     cell: {
       padding: 0,
       position: "relative",
@@ -67,7 +67,7 @@ const styles = {
     },
   }),
 
-  legend: stylex.create({
+  legend: $create({
     default: {
       paddingBlock: spacing.xxxxxsmall,
       paddingInline: spacing.xxxxlarge,
@@ -76,7 +76,7 @@ const styles = {
     },
   }),
 
-  levels: stylex.create({
+  levels: $create({
     default: {
       display: "flex",
       gap: spacing.xxxxxsmall,
@@ -148,21 +148,21 @@ const ContributionCalendar = ({
   }, [contributions]);
 
   const styled = {
-    scrollable: stylex.props(styles.calendar.scrollable),
-    calendar: stylex.props(styles.calendar.default),
-    cell: stylex.props(styles.cell.default),
+    scrollable: $props(styles.calendar.scrollable),
+    calendar: $props(styles.calendar.default),
+    cell: $props(styles.cell.default),
     weekday: {
-      cell: stylex.props(styles.weekday.cell, typography.body.small),
-      default: stylex.props(styles.weekday.default),
+      cell: $props(styles.weekday.cell, typography.body.small),
+      default: $props(styles.weekday.default),
     },
     month: {
-      cell: stylex.props(styles.month.cell, typography.body.small),
-      default: stylex.props(styles.month.default),
-      leading: stylex.props(styles.month.cell, typography.body.small, styles.month.leading),
+      cell: $props(styles.month.cell, typography.body.small),
+      default: $props(styles.month.default),
+      leading: $props(styles.month.cell, typography.body.small, styles.month.leading),
     },
-    legend: stylex.props(styles.legend.default, typography.label.medium),
-    levels: stylex.props(styles.levels.default),
-    level: stylex.props(styles.levels.level),
+    legend: $props(styles.legend.default, typography.label.medium),
+    levels: $props(styles.levels.default),
+    level: $props(styles.levels.level),
   };
 
   // how to get different levels

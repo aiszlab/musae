@@ -3,7 +3,7 @@ import { Picker } from "../picker";
 import { useOptions, useValue } from "./hooks";
 import type { SelectProps, SelectorRef, ValueOrValues } from "../../types/select";
 import { stringify } from "@aiszlab/relax/class-name";
-import stylex from "@stylexjs/stylex";
+import { $create, $props } from "../../utils/styles";
 import { spacing } from "../theme/tokens.stylex";
 import Selector from "./selector";
 import Selections from "./selections";
@@ -11,7 +11,7 @@ import { useClassNames } from "../../hooks/use-class-names";
 import type { PickerRef } from "../../types/picker";
 import { CLASS_NAMES } from "./context";
 
-const styles = stylex.create({
+const styles = $create({
   picked: {
     gap: spacing.xxxxxsmall,
     flexWrap: "wrap",
@@ -69,8 +69,8 @@ const Select = <T extends ValueOrValues = ValueOrValues>({
   };
 
   const styled = {
-    picker: stylex.props(styles.picked),
-    pickable: stylex.props(styles.pickable),
+    picker: $props(styles.picked),
+    pickable: $props(styles.pickable),
   };
 
   const selectedKeys = useMemo(() => Array.from(readableValues.keys()), [readableValues]);

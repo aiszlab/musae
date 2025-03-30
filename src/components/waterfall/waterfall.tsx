@@ -1,4 +1,4 @@
-import stylex from "@stylexjs/stylex";
+import { $create, $props } from "../../utils/styles";
 import { sizes } from "../theme/tokens.stylex";
 import type { WaterfallProps } from "../../types/waterfall";
 import React from "react";
@@ -10,7 +10,7 @@ import { useClassNames } from "../../hooks/use-class-names";
 import { stringify } from "@aiszlab/relax/class-name";
 import { CLASS_NAMES } from "./context";
 
-const styles = stylex.create({
+const styles = $create({
   waterfall: (props: { columnGap: number; rowGap: number }) => ({
     width: sizes.full,
     display: "flex",
@@ -47,7 +47,7 @@ const Waterfall = ({
   const { collect, maxHeight, order, items, repaint } = useRepaint({ columns, rowGap });
   const classNames = useClassNames(CLASS_NAMES);
 
-  const styled = stylex.props(
+  const styled = $props(
     styles.waterfall({ rowGap, columnGap }),
     !sequential && maxHeight > 0 && styles.repainted({ maxHeight: maxHeight }),
   );
@@ -105,7 +105,7 @@ const Waterfall = ({
       }}
     >
       {children.map((item, index) => {
-        const { className, style } = stylex.props(
+        const { className, style } = $props(
           styles.item({ columnGap: columnGap, columns, order: order(index) }),
         );
 

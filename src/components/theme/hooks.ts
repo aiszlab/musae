@@ -2,7 +2,7 @@ import { MouseEvent, createContext, useContext, useMemo, useRef, useState } from
 import type { Palette, ContextValue, Theme, Mode } from "../../types/theme";
 import { toColorRoles } from "../../utils/color-role";
 import { isFunction, useEvent, useMounted } from "@aiszlab/relax";
-import stylex from "@stylexjs/stylex";
+import { $create, $props } from "../../utils/styles";
 import { toClassList } from "../../utils/styles";
 import { Observable, type Subscriber, distinctUntilChanged } from "rxjs";
 import { positions } from "./tokens.stylex";
@@ -108,7 +108,7 @@ export const PALETTE: Readonly<Palette> = {
   },
 };
 
-const styles = stylex.create({
+const styles = $create({
   default: {
     "::view-transition-old(root)": {
       animationName: "none",
@@ -181,9 +181,9 @@ export const useSwitchable = ({ theme }: { theme: Theme }) => {
   const colors = useMemo(() => toColorRoles(theme.palette, mode), [mode, theme.palette]);
 
   const styled = {
-    default: stylex.props(styles.default),
-    light: stylex.props(styles.light),
-    dark: stylex.props(styles.dark),
+    default: $props(styles.default),
+    light: $props(styles.light),
+    dark: $props(styles.dark),
   };
 
   const repaint = useEvent((nextMode: Mode) => {

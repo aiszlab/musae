@@ -16,7 +16,7 @@ import React, {
 import type { ChildProps, PopoverProps, PopoverRef } from "../../types/popover";
 import { Popper } from "../popper";
 import type { PopperRef } from "../../types/popper";
-import stylex from "@stylexjs/stylex";
+import { $create, $props } from "../../utils/styles";
 import { spacing } from "../theme/tokens.stylex";
 import { typography } from "../theme/theme";
 import { useClassNames } from "../../hooks/use-class-names";
@@ -25,7 +25,7 @@ import { stringify } from "@aiszlab/relax/class-name";
 import { CLASS_NAMES } from "./context";
 
 const styles = {
-  popover: stylex.create({
+  popover: $create({
     default: {
       maxWidth: "100vw",
 
@@ -40,7 +40,7 @@ const styles = {
     }),
   }),
 
-  virtual: stylex.create({
+  virtual: $create({
     default: {
       width: "fit-content",
       height: "fit-content",
@@ -133,7 +133,7 @@ const Popover = forwardRef(
     // valid elment, inject handlers
     // else add `div` wrapper, inject handlers to `div` wrapper
     const children = useMemo(() => {
-      const styled = stylex.props(styles.virtual.default);
+      const styled = $props(styles.virtual.default);
       const _child = isValidElement(_children) ? (
         _children
       ) : (
@@ -189,13 +189,13 @@ const Popover = forwardRef(
     }));
 
     const styled = {
-      popover: stylex.props(
+      popover: $props(
         styles.popover.default,
         !!padding && styles.popover.padding(padding),
         typography.body.medium,
       ),
-      title: stylex.props(typography.title.medium),
-      content: stylex.props(typography.body.medium),
+      title: $props(typography.title.medium),
+      content: $props(typography.body.medium),
     };
 
     return (

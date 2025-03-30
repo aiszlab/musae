@@ -1,4 +1,4 @@
-import React, { forwardRef, useImperativeHandle, type CSSProperties } from "react";
+import React, { forwardRef, useImperativeHandle } from "react";
 import { useDateCells, useHeadCells, useFocusedAt, useValue } from "./hooks";
 import type { CalendarProps, CalendarRef } from "../../types/calendar";
 import {
@@ -6,9 +6,9 @@ import {
   KeyboardDoubleArrowRight,
   KeyboardArrowLeft,
   KeyboardArrowRight,
-} from "musae/icons";
+} from "../icon/icons";
 import { useClassNames } from "../../hooks/use-class-names";
-import stylex from "@stylexjs/stylex";
+import { $create, $props } from "../../utils/styles";
 import { spacing } from "../theme/tokens.stylex";
 import { typography } from "../theme/theme";
 import { stringify } from "@aiszlab/relax/class-name";
@@ -16,7 +16,7 @@ import { useTheme } from "../theme";
 import { IconButton } from "../icon-button";
 import { CLASS_NAMES } from "./context";
 
-const styles = stylex.create({
+const styles = $create({
   calendar: {
     width: "fit-content",
   },
@@ -59,10 +59,10 @@ const Calendar = forwardRef<CalendarRef, CalendarProps>(
     const theme = useTheme();
 
     const styled = {
-      calendar: stylex.props(styles.calendar),
-      header: stylex.props(typography.label.large, styles.header),
-      heading: stylex.props(styles.heading, typography.body.medium),
-      body: stylex.props(styles.body),
+      calendar: $props(styles.calendar),
+      header: $props(typography.label.large, styles.header),
+      heading: $props(styles.heading, typography.body.medium),
+      body: $props(styles.body),
     };
 
     useImperativeHandle(ref, () => {

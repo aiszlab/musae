@@ -1,6 +1,6 @@
 import React, { useContext, type CSSProperties } from "react";
-import stylex from "@stylexjs/stylex";
-import { Close, KeyboardArrowLeft, KeyboardArrowRight } from "musae/icons";
+import { $create, $props } from "../../../utils/styles";
+import { Close, KeyboardArrowLeft, KeyboardArrowRight } from "../../icon/icons";
 import { Portal } from "../../portal";
 import { spacing, positions, sizes } from "../../theme/tokens.stylex";
 import { useTheme } from "../../theme";
@@ -9,7 +9,7 @@ import { useHandlers } from "../hooks";
 import PreviewGroupContext from "./context";
 import { IconButton } from "../../icon-button";
 
-const styles = stylex.create({
+const styles = $create({
   operations: {
     position: "fixed",
     zIndex: positions.image,
@@ -69,11 +69,11 @@ const Operations = ({
 }: OperationsProps) => {
   const theme = useTheme();
   const styled = {
-    operations: stylex.props(styles.operations),
-    closer: stylex.props(styles.closer),
-    navigations: stylex.props(styles.navigations),
-    footer: stylex.props(styles.footer({ color: theme.colors["on-surface"] })),
-    handlers: stylex.props(styles.handlers({ backgroundColor: theme.colors.surface })),
+    operations: $props(styles.operations),
+    closer: $props(styles.closer),
+    navigations: $props(styles.navigations),
+    footer: $props(styles.footer({ color: theme.colors["on-surface"] })),
+    handlers: $props(styles.handlers({ backgroundColor: theme.colors.surface })),
   };
 
   const handlers = useHandlers({

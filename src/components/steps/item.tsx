@@ -1,16 +1,15 @@
-import React, { useContext, type CSSProperties } from "react";
+import React, { useContext } from "react";
 import type { Status, StepItemProps } from "../../types/steps";
-import stylex from "@stylexjs/stylex";
+import { $create, $props } from "../../utils/styles";
 import { sizes, spacing } from "../theme/tokens.stylex";
-import { useTheme } from "../theme";
 import { useEvent } from "@aiszlab/relax";
 import { Context } from "./context";
 import { typography } from "../theme/theme";
-import { Done } from "musae/icons";
+import { Done } from "../icon/icons";
 import { stringify } from "@aiszlab/relax/class-name";
 
 const styles = {
-  step: stylex.create({
+  step: $create({
     default: {
       flex: 1,
       display: "grid",
@@ -29,7 +28,7 @@ const styles = {
     },
   }),
 
-  leading: stylex.create({
+  leading: $create({
     default: {
       gridArea: "leading",
     },
@@ -50,7 +49,7 @@ const styles = {
     },
   }),
 
-  sign: stylex.create({
+  sign: $create({
     default: (props: { size?: number }) => ({
       display: "flex",
       justifyContent: "center",
@@ -77,7 +76,7 @@ const styles = {
     },
   }),
 
-  title: stylex.create({
+  title: $create({
     default: {
       gridArea: "title",
       alignItems: "center",
@@ -98,7 +97,7 @@ const styles = {
     },
   }),
 
-  description: stylex.create({
+  description: $create({
     default: {
       gridArea: "description",
     },
@@ -115,20 +114,20 @@ const Item = ({ leading, title, description, value }: StepItemProps) => {
   const isMax = value === max;
 
   const styled = {
-    step: stylex.props(styles.step.default, isClickable && styles.step.clickable),
-    leading: stylex.props(styles.leading.default, isVertical && !isMax && styles.leading.tail),
-    sign: stylex.props(
+    step: $props(styles.step.default, isClickable && styles.step.clickable),
+    leading: $props(styles.leading.default, isVertical && !isMax && styles.leading.tail),
+    sign: $props(
       styles.sign.default({ size }),
       status === "doing" && styles.sign.doing,
       status === "done" && styles.sign.done,
       status === "todo" && styles.sign.todo,
     ),
-    title: stylex.props(
+    title: $props(
       typography.title.medium,
       styles.title.default,
       isHorizontal && !isMax && styles.title.tail,
     ),
-    description: stylex.props(typography.body.medium, styles.description.default),
+    description: $props(typography.body.medium, styles.description.default),
   };
 
   const click = useEvent(() => {

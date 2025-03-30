@@ -1,12 +1,12 @@
 import React, { forwardRef, useCallback, useContext, useImperativeHandle, useState } from "react";
 import Context from "./context";
 import { stringify } from "@aiszlab/relax/class-name";
-import stylex from "@stylexjs/stylex";
+import { $create, $props } from "../../utils/styles";
 import type { PanelProps, PanelRef } from "../../types/split-panel";
 import Divider from "./divider";
 import { useBoundingClientRect } from "./hooks";
 
-const styles = stylex.create({
+const styles = $create({
   default: {
     flexGrow: 0,
     userSelect: "none",
@@ -56,7 +56,7 @@ const Panel = forwardRef<PanelRef, PanelProps>(
       };
     });
 
-    const styled = stylex.props(
+    const styled = $props(
       styles.default,
       !isSized && styles.unsized,
       isSized && styles.sized,

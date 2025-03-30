@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import type { TransferListProps } from "../../types/transfer";
-import stylex from "@stylexjs/stylex";
+import { $create, $props } from "../../utils/styles";
 import { elevations, sizes, spacing } from "../theme/tokens.stylex";
 import Item from "./item";
 import { Checkbox } from "../checkbox";
@@ -9,7 +9,7 @@ import { stringify } from "@aiszlab/relax/class-name";
 import { scrollbar, typography } from "../theme/theme";
 import { useLocale } from "../../locale";
 
-const styles = stylex.create({
+const styles = $create({
   list: {
     minWidth: sizes.xxxxxxxlarge,
     maxHeight: sizes.xxxxxxxxlarge,
@@ -57,10 +57,10 @@ const List = ({ options, title, onChange, value }: TransferListProps) => {
   const [locale] = useLocale("transfer");
 
   const styled = {
-    list: stylex.props(scrollbar.default, styles.list),
-    header: stylex.props(styles.header, typography.label.large),
-    title: stylex.props(styles.title),
-    body: stylex.props(styles.body, typography.body.medium),
+    list: $props(scrollbar.default, styles.list),
+    header: $props(styles.header, typography.label.large),
+    title: $props(styles.title),
+    body: $props(styles.body, typography.body.medium),
   };
 
   return (

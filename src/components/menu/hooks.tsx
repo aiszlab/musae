@@ -2,11 +2,11 @@ import React, { type Key, type ReactNode, useCallback, useContext, useMemo } fro
 import { Context, type CLASS_NAMES } from "./context";
 import type { ContextValue, MenuProps, Mode, Size } from "../../types/menu";
 import { toArray, useControlledState, useEvent } from "@aiszlab/relax";
-import stylex from "@stylexjs/stylex";
+import { $create, $props } from "../../utils/styles";
 import { duration, spacing } from "../theme/tokens.stylex";
-import { KeyboardArrowUp } from "musae/icons";
+import { KeyboardArrowUp } from "../icon/icons";
 
-const styles = stylex.create({
+const styles = $create({
   prefix: {
     display: "flex",
     justifyContent: "center",
@@ -55,7 +55,7 @@ export const useItemChildren = ({
 }) => {
   // prefix
   const _prefix = useMemo(
-    () => prefix && <span {...stylex.props(styles.prefix)}>{prefix}</span>,
+    () => prefix && <span {...$props(styles.prefix)}>{prefix}</span>,
     [prefix],
   );
 
@@ -66,14 +66,14 @@ export const useItemChildren = ({
   const _suffix = useMemo<ReactNode>(() => {
     if (!suffix && !hasChildren) return null;
 
-    const styled = stylex.props(
+    const styled = $props(
       styles.collapser({
         isExpanded,
       }),
     );
 
     return (
-      <span {...stylex.props(styles.suffix)}>
+      <span {...$props(styles.suffix)}>
         {suffix}
         {hasChildren && isInline && (
           <span {...styled}>

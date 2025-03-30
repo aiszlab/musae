@@ -2,11 +2,11 @@ import React from "react";
 import type { RowProps } from "../../types/grid";
 import { useClassNames } from "../../hooks/use-class-names";
 import { stringify } from "@aiszlab/relax/class-name";
-import stylex from "@stylexjs/stylex";
+import { $create, $props } from "../../utils/styles";
 import { useGutters } from "../../hooks/use-gutters";
 import { CLASS_NAMES, Context } from "./context";
 
-const styles = stylex.create({
+const styles = $create({
   row: (props: {
     columnGap: number;
     rowGap: number;
@@ -34,7 +34,7 @@ const Row = ({
   // col and row gap in grid
   const [columnGap, rowGap] = useGutters({ gutter });
   const classNames = useClassNames(CLASS_NAMES);
-  const styled = stylex.props(styles.row({ columnGap, rowGap, justify, align }));
+  const styled = $props(styles.row({ columnGap, rowGap, justify, align }));
 
   return (
     <Context.Provider value={{ classNames }}>

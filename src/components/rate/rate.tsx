@@ -1,6 +1,6 @@
 import React from "react";
 import type { RateProps } from "../../types/rate";
-import stylex from "@stylexjs/stylex";
+import { $create, $props } from "../../utils/styles";
 import { stringify } from "@aiszlab/relax/class-name";
 import { useHover, useValue } from "./hooks";
 import Star from "./star";
@@ -9,7 +9,7 @@ import Context, { CLASS_NAMES } from "./context";
 import { useClassNames } from "../../hooks/use-class-names";
 
 const styles = {
-  rate: stylex.create({
+  rate: $create({
     default: {
       display: "flex",
       flexDirection: "row",
@@ -36,7 +36,7 @@ const Rate = ({
   const { enter, hovered, leave } = useHover();
 
   const styled = {
-    rate: stylex.props(styles.rate.default),
+    rate: $props(styles.rate.default),
   };
 
   return (

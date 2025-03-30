@@ -7,10 +7,10 @@ import {
   KeyboardDoubleArrowLeft,
   KeyboardDoubleArrowRight,
 } from "musae/icons";
-import stylex from "@stylexjs/stylex";
+import { $create, $props } from "../../utils/styles";
 import { IconButton } from "../icon-button";
 
-const styles = stylex.create({
+const styles = $create({
   more: {
     ":hover > [role='separator']": {
       display: "none",
@@ -64,7 +64,7 @@ const Item = ({
 
   if (isMorePrev || isMoreNext) {
     const styled = {
-      more: stylex.props(styles.more),
+      more: $props(styles.more),
     };
 
     return (

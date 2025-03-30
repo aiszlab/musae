@@ -1,12 +1,12 @@
 import React from "react";
 import { toHtml } from "./utils";
-import stylex from "@stylexjs/stylex";
+import { $create, $props } from "../../utils/styles";
 import { typography } from "../theme/theme";
 import type { MarkdownProps } from "../../types/markdown";
 import { stringify } from "@aiszlab/relax/class-name";
 import { spacing } from "../theme/tokens.stylex";
 
-const styles = stylex.create({
+const styles = $create({
   markdown: {
     width: "fit-content",
     overflow: "auto",
@@ -31,7 +31,7 @@ const Markdown = async ({
 
   console.log("__html===", __html);
 
-  const styled = stylex.props(styles.markdown, typography.body.medium);
+  const styled = $props(styles.markdown, typography.body.medium);
 
   return (
     <div

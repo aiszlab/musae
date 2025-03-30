@@ -1,12 +1,12 @@
 import React from "react";
-import stylex from "@stylexjs/stylex";
+import { $create, $props, $keyframes } from "../../utils/styles";
 import type { LoadingProps } from "../../types/loading";
 import { positions, sizes } from "../theme/tokens.stylex";
 import { useClassNames } from "../../hooks/use-class-names";
 import { stringify } from "@aiszlab/relax/class-name";
 import { CLASS_NAMES } from "./context";
 
-const top = stylex.keyframes({
+const top = $keyframes({
   from: {
     strokeDasharray: "0 660",
     strokeWidth: 20,
@@ -68,7 +68,7 @@ const top = stylex.keyframes({
   },
 });
 
-const bottom = stylex.keyframes({
+const bottom = $keyframes({
   from: {
     strokeDasharray: "0 220",
     strokeWidth: 20,
@@ -130,7 +130,7 @@ const bottom = stylex.keyframes({
   },
 });
 
-const left = stylex.keyframes({
+const left = $keyframes({
   from: {
     strokeDasharray: "0 440",
     strokeWidth: 20,
@@ -186,7 +186,7 @@ const left = stylex.keyframes({
   },
 });
 
-const right = stylex.keyframes({
+const right = $keyframes({
   from: {
     strokeDasharray: "0 440",
     strokeWidth: 20,
@@ -248,7 +248,7 @@ const right = stylex.keyframes({
   },
 });
 
-const styles = stylex.create({
+const styles = $create({
   circle: {
     animationDuration: "2s",
     animationTimingFunction: "linear",
@@ -330,25 +330,25 @@ const Loading = ({
   const classNames = useClassNames(CLASS_NAMES);
   const circles = {
     top: {
-      ...stylex.props(styles.circle, styles.top),
+      ...$props(styles.circle, styles.top),
       cx: "120",
       cy: "120",
       r: "105",
     },
     bottom: {
-      ...stylex.props(styles.circle, styles.bottom),
+      ...$props(styles.circle, styles.bottom),
       cx: "120",
       cy: "120",
       r: "35",
     },
     left: {
-      ...stylex.props(styles.circle, styles.left),
+      ...$props(styles.circle, styles.left),
       cx: "85",
       cy: "120",
       r: "70",
     },
     right: {
-      ...stylex.props(styles.circle, styles.right),
+      ...$props(styles.circle, styles.right),
       cx: "155",
       cy: "120",
       r: "70",
@@ -356,10 +356,10 @@ const Loading = ({
   };
 
   const styled = {
-    loading: stylex.props(styles.loading),
-    spin: stylex.props(styles.spin),
-    spinning: stylex.props(styles[size]),
-    content: stylex.props(loading && overlay && styles.overlay),
+    loading: $props(styles.loading),
+    spin: $props(styles.spin),
+    spinning: $props(styles[size]),
+    content: $props(loading && overlay && styles.overlay),
   };
 
   return (

@@ -1,8 +1,8 @@
-import stylex from "@stylexjs/stylex";
+import { $create } from "../../utils/styles";
 import { duration, opacity, sizes, spacing } from "../theme/tokens.stylex";
 
 const styles = {
-  checkbox: stylex.create({
+  checkbox: $create({
     default: {
       display: "inline-flex",
       alignItems: "center",
@@ -24,7 +24,7 @@ const styles = {
   }),
 
   layer: {
-    default: stylex.create({
+    default: $create({
       default: {
         display: "flex",
         justifyContent: "center",
@@ -32,7 +32,7 @@ const styles = {
       },
     }),
 
-    rippleable: stylex.create({
+    rippleable: $create({
       default: {
         position: "relative",
         overflow: "hidden",
@@ -84,7 +84,7 @@ const styles = {
   },
 
   inputer: {
-    default: stylex.create({
+    default: $create({
       default: {
         width: "var(--size)",
         height: "var(--size)",
@@ -105,7 +105,7 @@ const styles = {
       },
     }),
 
-    checked: stylex.create({
+    checked: $create({
       default: {
         color: "var(--color-on-primary)",
         borderColor: "var(--color-primary)",
@@ -119,7 +119,7 @@ const styles = {
       },
     }),
 
-    invalid: stylex.create({
+    invalid: $create({
       default: {
         borderColor: "var(--color-error)",
       },
@@ -137,13 +137,13 @@ const styles = {
     }),
   },
 
-  input: stylex.create({
+  input: $create({
     default: {
       display: "none",
     },
   }),
 
-  check: stylex.create({
+  check: $create({
     default: {
       position: "absolute",
       width: "var(--check-size)",
@@ -152,7 +152,7 @@ const styles = {
     },
   }),
 
-  label: stylex.create({
+  label: $create({
     default: {
       paddingInline: spacing.xxxsmall,
     },

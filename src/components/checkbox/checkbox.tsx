@@ -2,7 +2,7 @@ import React, { type ChangeEvent, type CSSProperties, useContext, useMemo } from
 import { isUndefined, useControlledState, useEvent } from "@aiszlab/relax";
 import Context, { CLASS_NAMES } from "./context";
 import type { CheckboxProps } from "../../types/checkbox";
-import stylex from "@stylexjs/stylex";
+import { $create, $props } from "../../utils/styles";
 import { useTheme } from "../theme";
 import { typography } from "../theme/theme";
 import styles from "./styles";
@@ -93,12 +93,12 @@ const Checkbox = ({
   }, [theme]);
 
   const styled = {
-    checkbox: stylex.props(
+    checkbox: $props(
       styles.checkbox.default,
       styles.checkbox.medium,
       isDisabled && styles.checkbox.disabled,
     ),
-    layer: stylex.props(
+    layer: $props(
       styles.layer.default.default,
       ripple && [
         styles.layer.rippleable.default,
@@ -107,7 +107,7 @@ const Checkbox = ({
         isDisabled && styles.layer.rippleable.disabled,
       ],
     ),
-    inputer: stylex.props(
+    inputer: $props(
       styles.inputer.default.default,
       isDisabled && styles.inputer.default.disabled,
       (isChecked || indeterminate) && [
@@ -120,13 +120,9 @@ const Checkbox = ({
         isDisabled && styles.inputer.invalid.disabled,
       ],
     ),
-    input: stylex.props(styles.input.default),
-    check: stylex.props(styles.check.default),
-    label: stylex.props(
-      typography.label.small,
-      styles.label.default,
-      invalid && styles.label.invalid,
-    ),
+    input: $props(styles.input.default),
+    check: $props(styles.check.default),
+    label: $props(typography.label.small, styles.label.default, invalid && styles.label.invalid),
   };
 
   return (

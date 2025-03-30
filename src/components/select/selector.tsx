@@ -12,12 +12,12 @@ import React, {
 import type { SelectorProps, SelectorRef } from "../../types/select";
 import { Tag } from "../tag";
 import { styles as inputStyles } from "../input";
-import stylex from "@stylexjs/stylex";
+import { $create, $props } from "../../utils/styles";
 import { Context } from "../picker";
 import { useTheme } from "../theme";
 import { typography } from "../theme/theme";
 
-const styles = stylex.create({
+const styles = $create({
   input: (props: { color: CSSProperties["color"] }) => ({
     "::placeholder": {
       color: props.color,
@@ -47,7 +47,7 @@ const Selector: ForwardRefExoticComponent<
       onSearch(e.target.value);
     };
 
-    const styled = stylex.props(
+    const styled = $props(
       inputStyles.input,
       styles.input({
         color: (isFocused && searchable && theme.colors["on-surface"]) || void 0,

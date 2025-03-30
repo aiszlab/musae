@@ -1,4 +1,4 @@
-import stylex from "@stylexjs/stylex";
+import { $create, $props, $attrs } from "../../utils/styles";
 import { EllipsisProps } from "../../types/ellipsis";
 import { Tooltip } from "../tooltip";
 import React, { useLayoutEffect, useRef, useState } from "react";
@@ -7,7 +7,7 @@ import { stringify } from "@aiszlab/relax/class-name";
 import { useClassNames } from "../../hooks/use-class-names";
 import { CLASS_NAMES } from "./context";
 
-const styles = stylex.create({
+const styles = $create({
   ellipsis: {
     overflow: "hidden",
   },
@@ -30,8 +30,8 @@ const Ellipsis = ({
   const classNames = useClassNames(CLASS_NAMES);
 
   const styled = {
-    ellipsis: stylex.props(styles.ellipsis),
-    virtual: stylex.attrs(styles.virtual),
+    ellipsis: $props(styles.ellipsis),
+    virtual: $attrs(styles.virtual),
   };
 
   useLayoutEffect(() => {

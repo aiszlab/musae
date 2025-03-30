@@ -1,7 +1,7 @@
 import React from "react";
 import type { LayoutProps } from "../../types/layout";
 import { useChildren } from "./hooks";
-import stylex from "@stylexjs/stylex";
+import { $create, $props } from "../../utils/styles";
 import { useTheme } from "../theme";
 import { stringify } from "@aiszlab/relax/class-name";
 import Context, { CLASS_NAMES } from "./context";
@@ -13,7 +13,7 @@ import Main from "./main";
 import Footer from "./footer";
 
 const styles = {
-  layout: stylex.create({
+  layout: $create({
     default: (props: { gridTemplateAreas: string }) => ({
       display: "grid",
       gridTemplateAreas: props.gridTemplateAreas,
@@ -29,7 +29,7 @@ const Layout = ({ className, style, ...props }: LayoutProps) => {
   });
 
   const styled = {
-    layout: stylex.props(styles.layout.default({ gridTemplateAreas })),
+    layout: $props(styles.layout.default({ gridTemplateAreas })),
   };
 
   return (

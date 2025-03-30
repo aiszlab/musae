@@ -1,14 +1,14 @@
 import { isUndefined, useEvent } from "@aiszlab/relax";
 import React, { KeyboardEvent, useMemo } from "react";
 import { IconButton } from "../components/icon-button";
-import stylex from "@stylexjs/stylex";
+import { $create, $props } from "../utils/styles";
 import { spacing } from "../components/theme/tokens.stylex";
-import { Close } from "musae/icons";
+import { Close } from "../components/icon/icons";
 import { Keyboard } from "../utils/keyboard";
 
 export type Closable = "esc" | "overlay" | "close";
 
-const styles = stylex.create({
+const styles = $create({
   static: {},
 
   "top-right": {
@@ -49,7 +49,7 @@ export const useClosable = ({
   const closer = useMemo(() => {
     if (!triggers.has("close")) return null;
 
-    const styled = stylex.props(styles[placement]);
+    const styled = $props(styles[placement]);
 
     return (
       <IconButton

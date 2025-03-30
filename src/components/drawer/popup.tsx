@@ -3,7 +3,7 @@ import { animate } from "motion/mini";
 import type { PopupProps } from "../../types/drawer";
 import { PLACEMENTS } from "./hooks";
 import { useClassNames } from "../../hooks/use-class-names";
-import stylex from "@stylexjs/stylex";
+import { $create, $props } from "../../utils/styles";
 import { positions, sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { stringify } from "@aiszlab/relax/class-name";
@@ -16,7 +16,7 @@ import { useLocale } from "../../locale";
 import { CLASS_NAMES } from "./context";
 import { useAsyncEffect } from "@aiszlab/relax";
 
-const styles = stylex.create({
+const styles = $create({
   popup: {
     position: "fixed",
     inset: 0,
@@ -151,25 +151,25 @@ const Popup = ({
   }, [open]);
 
   const styled = {
-    popup: stylex.props(styles.popup),
-    overlay: stylex.props(
+    popup: $props(styles.popup),
+    overlay: $props(
       styles.overlay({
         backgroundColor: theme.colors["surface-dim"],
       }),
     ),
-    panel: stylex.props(
+    panel: $props(
       styles.panel({
         backgroundColor: theme.colors["on-primary"],
         transform: _placement.at(0),
       }),
       styles[placement]({ size }),
     ),
-    header: stylex.props(
+    header: $props(
       typography.body.large,
       styles.header({ outlineColor: theme.colors["outline-variant"] }),
     ),
-    body: stylex.props(styles.body),
-    actions: stylex.props(styles.actions),
+    body: $props(styles.body),
+    actions: $props(styles.actions),
   };
 
   return (

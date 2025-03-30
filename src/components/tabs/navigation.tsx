@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, type CSSProperties, type Key } from "react";
-import stylex from "@stylexjs/stylex";
+import { $create, $props } from "../../utils/styles";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { type NavigationProps } from "../../types/tabs";
 import Tab from "./tab";
@@ -10,7 +10,7 @@ import { useNavigation, useNavigatorScroll, useTabsContext } from "./hooks";
 import { stringify } from "@aiszlab/relax/class-name";
 
 const styles = {
-  navigation: stylex.create({
+  navigation: $create({
     default: (props: { outlineColor: CSSProperties["borderBottomColor"] }) => ({
       borderBottomColor: props.outlineColor,
       borderBottomWidth: sizes.smallest,
@@ -18,7 +18,7 @@ const styles = {
     }),
   }),
 
-  navigator: stylex.create({
+  navigator: $create({
     default: {
       position: "relative",
       overflow: "hidden",
@@ -49,7 +49,7 @@ const styles = {
     },
   }),
 
-  list: stylex.create({
+  list: $create({
     default: (props: { offset: number }) => ({
       display: "flex",
       width: "fit-content",
@@ -57,7 +57,7 @@ const styles = {
     }),
   }),
 
-  indicator: stylex.create({
+  indicator: $create({
     default: (props: { color: CSSProperties["backgroundColor"] }) => ({
       height: sizes.xxxxxxxxsmall,
       backgroundColor: props.color,
@@ -79,18 +79,18 @@ const Navigation = ({ onChange }: NavigationProps) => {
   useNavigatorScroll({ navigatorRef, scroll });
 
   const styled = {
-    navigation: stylex.props(
+    navigation: $props(
       styles.navigation.default({
         outlineColor: theme.colors["outline-variant"],
       }),
     ),
-    navigator: stylex.props(
+    navigator: $props(
       styles.navigator.default,
       isLeadingOverflow && styles.navigator.leading,
       isTrailingOverflow && styles.navigator.trailing,
     ),
-    list: stylex.props(styles.list.default({ offset })),
-    indicator: stylex.props(
+    list: $props(styles.list.default({ offset })),
+    indicator: $props(
       styles.indicator.default({
         color: theme.colors.primary,
       }),

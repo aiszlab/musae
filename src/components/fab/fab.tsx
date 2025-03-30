@@ -5,12 +5,12 @@ import type { FabProps } from "../../types/fab";
 import { useContainer } from "../../hooks/use-container";
 import { Portal } from "../portal";
 import { IconButton } from "../icon-button";
-import stylex from "@stylexjs/stylex";
+import { $create, $props } from "../../utils/styles";
 import { spacing } from "../theme/tokens.stylex";
 import { useClassNames } from "../../hooks/use-class-names";
 import { CLASS_NAMES } from "./context";
 
-const styles = stylex.create({
+const styles = $create({
   button: (props: {
     movementX: number;
     movementY: number;
@@ -48,7 +48,7 @@ const Fab = forwardRef<HTMLButtonElement, FabProps>(
     const buttonRef = useComposedRef(_buttonRef, ref, draggableRef);
 
     const styled = {
-      button: stylex.props(
+      button: $props(
         styles.button({
           movementX,
           movementY,
@@ -57,7 +57,7 @@ const Fab = forwardRef<HTMLButtonElement, FabProps>(
           insetBlockStart: y - offsetY,
         }),
       ),
-      icon: stylex.props(styles.icon),
+      icon: $props(styles.icon),
     };
 
     const onClick = useEvent((event: _MouseEvent<HTMLButtonElement>) => {

@@ -3,7 +3,7 @@ import { useContext, type ReactNode } from "react";
 import type { ContextValue } from "../../../types/form";
 import { Context } from "../context";
 import { Grid } from "../../grid";
-import stylex from "@stylexjs/stylex";
+import { $create, $props } from "../../../utils/styles";
 import { typography } from "../../theme/theme";
 import { sizes, spacing } from "../../theme/tokens.stylex";
 import { useTheme } from "../../theme";
@@ -12,7 +12,7 @@ import type { ComponentProps } from "../../../types/element";
 
 const { Row, Col } = Grid;
 
-const styles = stylex.create({
+const styles = $create({
   space: {
     marginBlockEnd: spacing.xxlarge,
   },
@@ -93,15 +93,15 @@ const Layout = ({ required, space = false, className, style, supporting, ...prop
   const isLabeled = labelCol > 0 && !!props.label;
 
   const styled = {
-    item: stylex.props(space && !supporting && styles.space),
-    label: stylex.props(
+    item: $props(space && !supporting && styles.space),
+    label: $props(
       required &&
         styles.required({
           color: theme.colors.error,
         }),
       typography.label.small,
     ),
-    supporting: stylex.props(styles.supporting, typography.body.small),
+    supporting: $props(styles.supporting, typography.body.small),
   };
 
   return (

@@ -3,7 +3,7 @@ import type { PopupProps } from "../../types/dialog";
 import { useFooter } from "./hooks";
 import { animate } from "motion/mini";
 import { useClassNames } from "../../hooks/use-class-names";
-import stylex from "@stylexjs/stylex";
+import { $create, $props } from "../../utils/styles";
 import { positions, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { typography } from "../theme/theme";
@@ -13,7 +13,7 @@ import { useClosable } from "../../hooks/use-closable";
 import { CLASS_NAMES } from "./context";
 import { useAsyncEffect } from "@aiszlab/relax";
 
-const styles = stylex.create({
+const styles = $create({
   popup: {
     position: "fixed",
     top: 0,
@@ -111,12 +111,12 @@ const Popup = ({ onClose, open, closable, onClosed, className, ...props }: Popup
   }, [open]);
 
   const styled = {
-    popup: stylex.props(styles.popup),
-    overlay: stylex.props(styles.overlay),
-    panel: stylex.props(styles.panel),
-    header: stylex.props(typography.headline.small),
-    body: stylex.props(typography.body.medium, styles.body),
-    footer: stylex.props(styles.footer),
+    popup: $props(styles.popup),
+    overlay: $props(styles.overlay),
+    panel: $props(styles.panel),
+    header: $props(typography.headline.small),
+    body: $props(typography.body.medium, styles.body),
+    footer: $props(styles.footer),
   };
 
   return (
