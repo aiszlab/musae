@@ -4,7 +4,7 @@ import { Context, CLASS_NAMES } from "./context";
 import { useScrollable } from "@aiszlab/relax";
 import { useContextValue, useScrollOrientation } from "./hooks";
 import Group from "./group";
-import { $create, $props } from "../../utils/styles";
+import { create as $create, props as $props } from "@stylexjs/stylex";
 import { useClassNames } from "../../hooks/use-class-names";
 import { stringify } from "@aiszlab/relax/class-name";
 

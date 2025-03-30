@@ -6,8 +6,8 @@ import {
   MoreHoriz,
   KeyboardDoubleArrowLeft,
   KeyboardDoubleArrowRight,
-} from "musae/icons";
-import { $create, $props } from "../../utils/styles";
+} from "../icon/icons";
+import { create as $create, props as $props } from "@stylexjs/stylex";
 import { IconButton } from "../icon-button";
 
 const styles = $create({

@@ -3,7 +3,7 @@ import { Context, CLASS_NAMES } from "./context";
 import type { RadioProps } from "../../types/radio";
 import { useControlledState } from "@aiszlab/relax";
 import { useClassNames } from "../../hooks/use-class-names";
-import { $create, $props } from "../../utils/styles";
+import { create as $create, props as $props } from "@stylexjs/stylex";
 import { useTheme } from "../theme";
 import { duration, sizes, spacing } from "../theme/tokens.stylex";
 import { typography } from "../theme/theme";

@@ -1,7 +1,7 @@
 import React, { createElement, forwardRef, lazy, Suspense } from "react";
 import type { RichTextEditorProps, RichTextEditorRef } from "../../types/rich-text-editor";
 import { Skeleton } from "../skeleton";
-import { $create, $props } from "../../utils/styles";
+import { create as $create, props as $props } from "@stylexjs/stylex";
 import { sizes } from "../theme/tokens.stylex";
 import { stringify } from "@aiszlab/relax/class-name";
 import { useClassNames } from "../../hooks/use-class-names";

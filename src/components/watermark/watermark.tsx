@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useRef } from "react";
-import { $create, $props } from "../../utils/styles";
+import { create as $create, props as $props } from "@stylexjs/stylex";
 import { OPACITY, sizes } from "../theme/tokens.stylex";
 import type { WatermarkProps } from "../../types/watermark";
 import { useMutateObserver, useRaf, useDevicePixelRatio } from "@aiszlab/relax";

@@ -5,7 +5,7 @@ import type { TableProps } from "../../types/table";
 import Header from "./header/header";
 import { Context, CLASS_NAMES } from "./context";
 import Body from "./body";
-import { $create, $props } from "../../utils/styles";
+import { create as $create, props as $props } from "@stylexjs/stylex";
 import { stringify } from "@aiszlab/relax/class-name";
 import { useClassNames } from "../../hooks/use-class-names";
 

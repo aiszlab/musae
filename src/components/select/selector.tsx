@@ -12,7 +12,7 @@ import React, {
 import type { SelectorProps, SelectorRef } from "../../types/select";
 import { Tag } from "../tag";
 import { styles as inputStyles } from "../input";
-import { $create, $props } from "../../utils/styles";
+import { create as $create, props as $props } from "@stylexjs/stylex";
 import { Context } from "../picker";
 import { useTheme } from "../theme";
 import { typography } from "../theme/theme";

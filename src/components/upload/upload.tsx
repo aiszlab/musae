@@ -8,7 +8,7 @@ import React, {
   useRef,
 } from "react";
 import type { UploadProps, UploadedListRef } from "../../types/upload";
-import { $create, $props } from "../../utils/styles";
+import { create as $create, props as $props } from "@stylexjs/stylex";
 import { useEvent } from "@aiszlab/relax";
 import { Keyboard } from "../../utils/keyboard";
 import UploadedList from "./uploaded-list";

@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useRef } from "react";
 import { stringify } from "@aiszlab/relax/class-name";
 import { computePosition, size, autoUpdate, offset } from "@floating-ui/dom";
-import { $create, $props } from "../../utils/styles";
+import { create as $create, props as $props } from "@stylexjs/stylex";
 import { SpotlightProps } from "../../types/tour";
 import { duration, sizes } from "../theme/tokens.stylex";
 import { Context } from "./context";

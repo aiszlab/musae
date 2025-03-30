@@ -2,7 +2,7 @@ import React, { type Key, useCallback, useContext, useEffect, useRef } from "rea
 import type { ColumnProps, TimeUnit } from "../../types/clock";
 import { Menu } from "../menu";
 import { isVoid } from "@aiszlab/relax";
-import { $create, $props } from "../../utils/styles";
+import { create as $create, props as $props } from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import type { MenuRef } from "../../types/menu";

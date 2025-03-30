@@ -7,7 +7,7 @@ import { elevations, positions, sizes } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { contains } from "@aiszlab/relax/dom";
 import { CLASS_NAMES } from "./context";
-import { $create, $props } from "../../utils/styles";
+import { create as $create, props as $props } from "@stylexjs/stylex";
 
 const styles = {
   portal: $create({

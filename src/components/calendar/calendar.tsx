@@ -8,7 +8,7 @@ import {
   KeyboardArrowRight,
 } from "../icon/icons";
 import { useClassNames } from "../../hooks/use-class-names";
-import { $create, $props } from "../../utils/styles";
+import { create as $create, props as $props } from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
 import { typography } from "../theme/theme";
 import { stringify } from "@aiszlab/relax/class-name";

@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import type { TransferItemProps } from "../../types/transfer";
 import { Checkbox } from "../checkbox";
-import { $create, $props } from "../../utils/styles";
+import { create as $create, props as $props } from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
 import { stringify } from "@aiszlab/relax/class-name";
 import { Context } from "./context";

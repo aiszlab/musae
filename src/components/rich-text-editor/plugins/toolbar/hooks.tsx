@@ -22,7 +22,7 @@ import {
   Subscript,
   Superscript,
   Code,
-} from "musae/icons";
+} from "../../../icon/icons";
 import { $patchStyleText, $setBlocksType } from "@lexical/selection";
 import { $createHeadingNode, type HeadingTagType } from "@lexical/rich-text";
 import { INSERT_CHECK_LIST_COMMAND } from "@lexical/list";

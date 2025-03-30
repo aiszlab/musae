@@ -7,7 +7,7 @@ import React, {
   type CSSProperties,
 } from "react";
 import type { PopconfirmProps, ChildProps } from "../../types/popconfirm";
-import { $create, $props } from "../../utils/styles";
+import { create as $create, props as $props } from "@stylexjs/stylex";
 import { Space } from "../space";
 import { Button } from "../button";
 import { useBoolean, useClickAway, useEvent } from "@aiszlab/relax";

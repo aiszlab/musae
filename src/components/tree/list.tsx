@@ -1,4 +1,4 @@
-import { $create, $props } from "../../utils/styles";
+import { create as $create, props as $props } from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
 import type { TreeListProps } from "../../types/tree";
 import React, { useContext } from "react";

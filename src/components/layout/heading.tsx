@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { $create, $props } from "../../utils/styles";
+import { create as $create, props as $props } from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { HeadingProps } from "../../types/layout";
 import { stringify } from "@aiszlab/relax/class-name";

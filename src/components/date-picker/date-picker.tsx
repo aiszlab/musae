@@ -4,7 +4,7 @@ import { Calendar } from "../calendar";
 import type { DatePickerProps } from "../../types/date-picker";
 import { useValue } from "./hooks";
 import { useClassNames } from "../../hooks/use-class-names";
-import { $create, $props } from "../../utils/styles";
+import { create as $create, props as $props } from "@stylexjs/stylex";
 import { stringify } from "@aiszlab/relax/class-name";
 import { spacing } from "../theme/tokens.stylex";
 import { styles as inputStyles } from "../input";

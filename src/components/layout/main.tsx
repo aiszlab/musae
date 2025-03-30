@@ -1,5 +1,5 @@
 import type { MainProps } from "../../types/layout";
-import { $create, $props } from "../../utils/styles";
+import { create as $create, props as $props } from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import React, { useContext } from "react";
 import Context from "./context";

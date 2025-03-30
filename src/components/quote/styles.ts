@@ -1,4 +1,4 @@
-import { $create } from "../../utils/styles";
+import { create as $create } from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";
 
 const styles = $create({

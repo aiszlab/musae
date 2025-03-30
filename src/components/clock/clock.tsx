@@ -2,7 +2,7 @@ import React from "react";
 import { useClassNames } from "../../hooks/use-class-names";
 import type { ClockProps, TimeUnit } from "../../types/clock";
 import Column from "./column";
-import { $create, $props } from "../../utils/styles";
+import { create as $create, props as $props } from "@stylexjs/stylex";
 import { stringify } from "@aiszlab/relax/class-name";
 import { Divider } from "../divider";
 import { spacing } from "../theme/tokens.stylex";

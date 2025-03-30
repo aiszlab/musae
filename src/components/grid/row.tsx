@@ -2,7 +2,7 @@ import React from "react";
 import type { RowProps } from "../../types/grid";
 import { useClassNames } from "../../hooks/use-class-names";
 import { stringify } from "@aiszlab/relax/class-name";
-import { $create, $props } from "../../utils/styles";
+import { create as $create, props as $props } from "@stylexjs/stylex";
 import { useGutters } from "../../hooks/use-gutters";
 import { CLASS_NAMES, Context } from "./context";
 

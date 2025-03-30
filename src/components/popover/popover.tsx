@@ -16,7 +16,7 @@ import React, {
 import type { ChildProps, PopoverProps, PopoverRef } from "../../types/popover";
 import { Popper } from "../popper";
 import type { PopperRef } from "../../types/popper";
-import { $create, $props } from "../../utils/styles";
+import { create as $create, props as $props } from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
 import { typography } from "../theme/theme";
 import { useClassNames } from "../../hooks/use-class-names";

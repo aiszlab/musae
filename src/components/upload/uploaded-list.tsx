@@ -1,5 +1,5 @@
 import React, { forwardRef, type Key, useContext, useImperativeHandle, useMemo } from "react";
-import { $create, $props } from "../../utils/styles";
+import { create as $create, props as $props } from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
 import type {
   UploadedItem as UploadedItemType,

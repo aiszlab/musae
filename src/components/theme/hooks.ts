@@ -2,7 +2,7 @@ import { MouseEvent, createContext, useContext, useMemo, useRef, useState } from
 import type { Palette, ContextValue, Theme, Mode } from "../../types/theme";
 import { toColorRoles } from "../../utils/color-role";
 import { isFunction, useEvent, useMounted } from "@aiszlab/relax";
-import { $create, $props } from "../../utils/styles";
+import { create as $create, props as $props } from "@stylexjs/stylex";
 import { toClassList } from "../../utils/styles";
 import { Observable, type Subscriber, distinctUntilChanged } from "rxjs";
 import { positions } from "./tokens.stylex";

@@ -9,7 +9,7 @@ import {
   InsertLink,
   FontDownload,
 } from "../../../icon/icons";
-import { $create, $props } from "../../../../utils/styles";
+import { create as $create, props as $props } from "@stylexjs/stylex";
 import { sizes, spacing } from "../../../theme/tokens.stylex";
 import { Divider } from "../../../divider";
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";

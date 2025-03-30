@@ -4,7 +4,7 @@ import type { PanelRef, TimePickerProps } from "../../types/time-picker";
 import { useClassNames } from "../../hooks/use-class-names";
 import Panel from "./panel";
 import { useValue } from "./hooks";
-import { $create, $props } from "../../utils/styles";
+import { create as $create, props as $props } from "@stylexjs/stylex";
 import { useEvent } from "@aiszlab/relax";
 import { styles as inputStyles } from "../input";
 import type { PickerRef } from "../../types/picker";

@@ -1,4 +1,4 @@
-import { $create, $props, $attrs } from "../../utils/styles";
+import { create as $create, attrs as $attrs, props as $props } from "@stylexjs/stylex";
 import { EllipsisProps } from "../../types/ellipsis";
 import { Tooltip } from "../tooltip";
 import React, { useLayoutEffect, useRef, useState } from "react";

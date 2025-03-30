@@ -8,7 +8,7 @@ import type {
 import { Portal } from "../portal";
 import { AnimatePresence } from "motion/react";
 import Notification from "./notification";
-import { $create, $props } from "../../utils/styles";
+import { create as $create, props as $props } from "@stylexjs/stylex";
 import { positions, spacing } from "../theme/tokens.stylex";
 import { useEvent, useIdentity } from "@aiszlab/relax";
 

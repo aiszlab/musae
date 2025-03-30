@@ -1,5 +1,5 @@
 import React, { useContext, type CSSProperties } from "react";
-import { $create, $props } from "../../../utils/styles";
+import { create as $create, props as $props } from "@stylexjs/stylex";
 import { Close, KeyboardArrowLeft, KeyboardArrowRight } from "../../icon/icons";
 import { Portal } from "../../portal";
 import { spacing, positions, sizes } from "../../theme/tokens.stylex";

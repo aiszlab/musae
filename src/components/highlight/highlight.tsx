@@ -1,6 +1,6 @@
 import React, { type CSSProperties, memo, type ReactNode, useMemo } from "react";
 import type { HighlightProps } from "../../types/highlight";
-import { $create, $props } from "../../utils/styles";
+import { create as $create, props as $props } from "@stylexjs/stylex";
 import { useTheme } from "../theme";
 import { stringify } from "@aiszlab/relax/class-name";
 import { CLASS_NAMES } from "./context";

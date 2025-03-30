@@ -1,4 +1,4 @@
-import { $props, $create, $keyframes } from "../../utils/styles";
+import { props as $props, create as $create, keyframes as $keyframes } from "@stylexjs/stylex";
 import type { SkeletonProps } from "../../types/skeleton";
 import React, { type CSSProperties } from "react";
 import { stringify } from "@aiszlab/relax/class-name";

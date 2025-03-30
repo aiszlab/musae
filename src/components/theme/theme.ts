@@ -1,4 +1,4 @@
-import { $create, $props } from "../../utils/styles";
+import { create as $create, props as $props } from "@stylexjs/stylex";
 import { tracking } from "./tokens.stylex";
 
 /**

@@ -5,7 +5,7 @@ import type { FabProps } from "../../types/fab";
 import { useContainer } from "../../hooks/use-container";
 import { Portal } from "../portal";
 import { IconButton } from "../icon-button";
-import { $create, $props } from "../../utils/styles";
+import { create as $create, props as $props } from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
 import { useClassNames } from "../../hooks/use-class-names";
 import { CLASS_NAMES } from "./context";

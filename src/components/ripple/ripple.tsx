@@ -1,7 +1,7 @@
 import React from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Ripple as RippleType, RippleProps } from "../../types/ripple";
-import { $create, $props } from "../../utils/styles";
+import { create as $create, props as $props } from "@stylexjs/stylex";
 import { sizes } from "../theme/tokens.stylex";
 
 const styles = $create({

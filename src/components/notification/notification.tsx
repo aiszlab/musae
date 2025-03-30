@@ -1,4 +1,4 @@
-import { $create, $props } from "../../utils/styles";
+import { create as $create, props as $props } from "@stylexjs/stylex";
 import React, { type CSSProperties, type FC, createElement, forwardRef, useRef } from "react";
 import { usePresence } from "motion/react";
 import { animate } from "motion/mini";

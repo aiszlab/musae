@@ -1,6 +1,6 @@
 import React from "react";
 import type { SpaceProps } from "../../types/space";
-import { $create, $props } from "../../utils/styles";
+import { create as $create, props as $props } from "@stylexjs/stylex";
 import { useGutters } from "../../hooks/use-gutters";
 import { stringify } from "@aiszlab/relax/class-name";
 

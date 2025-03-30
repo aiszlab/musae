@@ -1,6 +1,6 @@
 import type { WaterfallProps } from "../../types/waterfall";
 import React, { useMemo, type ReactNode } from "react";
-import { $create, $props } from "../../utils/styles";
+import { create as $create, props as $props } from "@stylexjs/stylex";
 import type { RequiredIn } from "@aiszlab/relax/types";
 
 const styles = $create({

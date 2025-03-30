@@ -3,7 +3,7 @@ import type { ImageProps } from "../../types/image";
 import Preview from "./preview/preview";
 import PreviewGroupContext from "./preview/context";
 import { useBoolean, useEvent, useImageLoader } from "@aiszlab/relax";
-import { $create, $props } from "../../utils/styles";
+import { create as $create, props as $props } from "@stylexjs/stylex";
 import { Skeleton } from "../skeleton";
 import { useClassNames } from "../../hooks/use-class-names";
 import { stringify } from "@aiszlab/relax/class-name";

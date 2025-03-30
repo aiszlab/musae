@@ -1,6 +1,6 @@
 import React from "react";
 import type { RateProps } from "../../types/rate";
-import { $create, $props } from "../../utils/styles";
+import { create as $create, props as $props } from "@stylexjs/stylex";
 import { stringify } from "@aiszlab/relax/class-name";
 import { useHover, useValue } from "./hooks";
 import Star from "./star";

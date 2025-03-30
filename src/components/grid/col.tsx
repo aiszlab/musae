@@ -1,7 +1,7 @@
 import { createElement, type ReactNode, useContext } from "react";
 import type { ColProps } from "../../types/grid";
 import { stringify } from "@aiszlab/relax/class-name";
-import { $create, $props } from "../../utils/styles";
+import { create as $create, props as $props } from "@stylexjs/stylex";
 import { Context } from "./context";
 
 const styles = $create({

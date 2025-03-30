@@ -5,7 +5,7 @@ import { Menu } from "../menu";
 import { Empty } from "../empty";
 import { toArray, useEvent } from "@aiszlab/relax";
 import type { DropdownProps } from "../../types/rich-text-editor";
-import { $create, $props } from "../../utils/styles";
+import { create as $create, props as $props } from "@stylexjs/stylex";
 
 const _styles = $create({
   label: (props: { width?: number }) => ({

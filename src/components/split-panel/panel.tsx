@@ -1,7 +1,7 @@
 import React, { forwardRef, useCallback, useContext, useImperativeHandle, useState } from "react";
 import Context from "./context";
 import { stringify } from "@aiszlab/relax/class-name";
-import { $create, $props } from "../../utils/styles";
+import { create as $create, props as $props } from "@stylexjs/stylex";
 import type { PanelProps, PanelRef } from "../../types/split-panel";
 import Divider from "./divider";
 import { useBoundingClientRect } from "./hooks";

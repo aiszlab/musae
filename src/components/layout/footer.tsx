@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import type { FooterProps } from "../../types/layout";
 import Context from "./context";
-import { $create, $props } from "../../utils/styles";
+import { create as $create, props as $props } from "@stylexjs/stylex";
 import { stringify } from "@aiszlab/relax/class-name";
 import { spacing } from "../theme/tokens.stylex";
 

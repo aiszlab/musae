@@ -7,7 +7,7 @@ import {
 } from "lexical";
 import React, { type ReactNode, type ChangeEvent } from "react";
 import { Checkbox } from "../../checkbox";
-import { $create, $attrs } from "../../../utils/styles";
+import { create as $create, attrs as $attrs } from "@stylexjs/stylex";
 import { sizes, spacing } from "../../theme/tokens.stylex";
 import { CheckableListItemNode } from "./checkable-list-item";
 

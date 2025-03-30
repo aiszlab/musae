@@ -1,5 +1,5 @@
 import React, { forwardRef } from "react";
-import { $create, $props } from "../../utils/styles";
+import { create as $create, props as $props } from "@stylexjs/stylex";
 import { sizes } from "../theme/tokens.stylex";
 import { Button } from "../button";
 import type { ButtonProps } from "../../types/button";

@@ -1,7 +1,7 @@
 import React, { type CSSProperties } from "react";
 import { useTable } from "./context";
 import { flexRender } from "@tanstack/react-table";
-import { $create, $props } from "../../utils/styles";
+import { create as $create, props as $props } from "@stylexjs/stylex";
 import { isEmpty } from "@aiszlab/relax";
 import { typography } from "../theme/theme";
 import { sizes, spacing } from "../theme/tokens.stylex";

@@ -2,7 +2,7 @@ import React, { type CSSProperties } from "react";
 import type { TourProps } from "../../types/tour";
 import { Portal } from "../portal";
 import { Popper } from "../popper";
-import { $create, $props } from "../../utils/styles";
+import { create as $create, props as $props } from "@stylexjs/stylex";
 import { Button } from "../button";
 import { useTheme } from "../theme";
 import { duration, elevations, positions, sizes, spacing } from "../theme/tokens.stylex";

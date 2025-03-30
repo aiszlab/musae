@@ -1,5 +1,5 @@
 import React from "react";
-import { $create, $props } from "../../utils/styles";
+import { create as $create, props as $props } from "@stylexjs/stylex";
 import { useTheme } from "../theme";
 import { sizes } from "../theme/tokens.stylex";
 import type { CircularProps } from "../../types/progress";

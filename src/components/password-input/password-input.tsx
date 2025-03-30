@@ -5,7 +5,7 @@ import { Visibility, VisibilityOff } from "../icon/icons";
 import type { InputRef } from "../../types/input";
 import type { PasswordInputProps } from "../../types/password-input";
 import { useTheme } from "../theme";
-import { $create, $props } from "../../utils/styles";
+import { create as $create, props as $props } from "@stylexjs/stylex";
 import { duration } from "../theme/tokens.stylex";
 
 const styles = $create({

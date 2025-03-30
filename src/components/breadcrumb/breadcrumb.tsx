@@ -1,6 +1,6 @@
 import React, { type CSSProperties } from "react";
 import type { BreadcrumbProps } from "../../types/breadcrumb";
-import { $create, $props } from "../../utils/styles";
+import { create as $create, props as $props } from "@stylexjs/stylex";
 import { typography } from "../theme/theme";
 import { useTheme } from "../theme";
 import { useClassNames } from "../../hooks/use-class-names";

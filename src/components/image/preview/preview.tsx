@@ -2,7 +2,7 @@ import React, { forwardRef, useImperativeHandle, useState } from "react";
 import { Dialog } from "../../dialog";
 import Operations from "./operations";
 import type { PreviewProps, PreviewRef } from "../../../types/image";
-import { $create, $props } from "../../../utils/styles";
+import { create as $create, props as $props } from "@stylexjs/stylex";
 import { duration } from "../../theme/tokens.stylex";
 
 const styles = $create({

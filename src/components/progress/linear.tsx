@@ -1,5 +1,5 @@
 import React, { useContext, type CSSProperties } from "react";
-import { $create, $props } from "../../utils/styles";
+import { create as $create, props as $props } from "@stylexjs/stylex";
 import type { LinearProps } from "../../types/progress";
 import { stringify } from "@aiszlab/relax/class-name";
 import { sizes } from "../theme/tokens.stylex";

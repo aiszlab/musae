@@ -2,7 +2,7 @@ import React, { forwardRef, useCallback } from "react";
 import { Button } from "../button";
 import type { TabItemProps } from "../../types/tabs";
 import { useTabsContext } from "./hooks";
-import { $create, $props } from "../../utils/styles";
+import { create as $create, props as $props } from "@stylexjs/stylex";
 import { stringify } from "@aiszlab/relax/class-name";
 
 const styles = $create({

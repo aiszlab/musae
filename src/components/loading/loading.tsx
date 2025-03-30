@@ -1,5 +1,5 @@
 import React from "react";
-import { $create, $props, $keyframes } from "../../utils/styles";
+import { create as $create, props as $props, keyframes as $keyframes } from "@stylexjs/stylex";
 import type { LoadingProps } from "../../types/loading";
 import { positions, sizes } from "../theme/tokens.stylex";
 import { useClassNames } from "../../hooks/use-class-names";

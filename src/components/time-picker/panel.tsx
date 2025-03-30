@@ -11,7 +11,7 @@ import { Button } from "../button";
 import type { PanelProps, PanelRef } from "../../types/time-picker";
 import type { ClockProps } from "../../types/clock";
 import dayjs from "dayjs";
-import { $create, $props } from "../../utils/styles";
+import { create as $create, props as $props } from "@stylexjs/stylex";
 import { useTheme } from "../theme";
 import { stringify } from "@aiszlab/relax/class-name";
 import { sizes, spacing } from "../theme/tokens.stylex";

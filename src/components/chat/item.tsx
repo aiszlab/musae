@@ -2,7 +2,7 @@ import { useEvent, useMounted } from "@aiszlab/relax";
 import React, { useContext, useState } from "react";
 import type { ChatItemProps } from "../../types/chat";
 import { Context } from "./context";
-import { $create, $props, $keyframes } from "../../utils/styles";
+import { create as $create, props as $props, keyframes as $keyframes } from "@stylexjs/stylex";
 import { useTheme } from "../theme";
 import { stringify } from "@aiszlab/relax/class-name";
 import { sizes, spacing } from "../theme/tokens.stylex";

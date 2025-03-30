@@ -1,5 +1,5 @@
 import React from "react";
-import { $create, $props } from "../../utils/styles";
+import { create as $create, props as $props } from "@stylexjs/stylex";
 import { duration, sizes, spacing } from "../theme/tokens.stylex";
 import type { BenchProps } from "../../types/bench";
 import { useLogo, useMenuItems, useNavigations, useMenuKeys } from "./hooks";

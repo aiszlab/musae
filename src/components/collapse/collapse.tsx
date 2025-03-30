@@ -2,7 +2,7 @@ import React, { type CSSProperties } from "react";
 import type { CollapseProps } from "../../types/collapse";
 import { useClassNames } from "../../hooks/use-class-names";
 import Item from "./item";
-import { $create, $props } from "../../utils/styles";
+import { create as $create, props as $props } from "@stylexjs/stylex";
 import { sizes } from "../theme/tokens.stylex";
 import { stringify } from "@aiszlab/relax/class-name";
 import { useActiveKeys } from "./hooks";

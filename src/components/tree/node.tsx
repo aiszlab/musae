@@ -3,7 +3,7 @@ import type { TreeNodeProps } from "../../types/tree";
 import Context from "./context";
 import { Checkbox } from "../checkbox";
 import { KeyboardArrowRight } from "../icon/icons";
-import { $create, $props } from "../../utils/styles";
+import { create as $create, props as $props } from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { useEvent } from "@aiszlab/relax";

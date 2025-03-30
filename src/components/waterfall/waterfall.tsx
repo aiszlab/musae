@@ -1,4 +1,4 @@
-import { $create, $props } from "../../utils/styles";
+import { create as $create, props as $props } from "@stylexjs/stylex";
 import { sizes } from "../theme/tokens.stylex";
 import type { WaterfallProps } from "../../types/waterfall";
 import React from "react";

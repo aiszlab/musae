@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import type { TransferListProps } from "../../types/transfer";
-import { $create, $props } from "../../utils/styles";
+import { create as $create, props as $props } from "@stylexjs/stylex";
 import { elevations, sizes, spacing } from "../theme/tokens.stylex";
 import Item from "./item";
 import { Checkbox } from "../checkbox";

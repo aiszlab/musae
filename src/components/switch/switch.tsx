@@ -1,7 +1,7 @@
 import React, { type CSSProperties } from "react";
 import type { SwitchProps } from "../../types/switch";
 import { useControlledState, useEvent } from "@aiszlab/relax";
-import { $create, $props } from "../../utils/styles";
+import { create as $create, props as $props } from "@stylexjs/stylex";
 import { duration, OPACITY, opacity, sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { Close, Check } from "../icon/icons";

@@ -2,7 +2,7 @@ import type { DividerProps } from "../../types/divider";
 import React from "react";
 import { useOffset } from "./hooks";
 import { useClassNames } from "../../hooks/use-class-names";
-import { $create, $props } from "../../utils/styles";
+import { create as $create, props as $props } from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { typography } from "../theme/theme";

@@ -1,5 +1,5 @@
 import React, { useRef, type Key } from "react";
-import { Translate } from "musae/icons";
+import { Translate } from "../icon/icons";
 import { Popover, type PopoverRef } from "../popover";
 import { useLocales } from "./hooks";
 import { Menu } from "../menu";

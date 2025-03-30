@@ -1,6 +1,6 @@
 import React, { useContext, useMemo } from "react";
 import type { TimelineItemProps } from "../../types/timeline";
-import { $create, $props } from "../../utils/styles";
+import { create as $create, props as $props } from "@stylexjs/stylex";
 import { Context } from "./context";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { stringify } from "@aiszlab/relax/class-name";

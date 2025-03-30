@@ -1,7 +1,7 @@
 import React, { forwardRef, type ChangeEvent } from "react";
 import { styles as inputStyles } from "../input";
 import { useTheme } from "../theme";
-import { $create, $props } from "../../utils/styles";
+import { create as $create, props as $props } from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { useControlledState, useEvent } from "@aiszlab/relax";
 import type { TextareaProps } from "../../types/textarea";

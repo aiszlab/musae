@@ -1,10 +1,10 @@
 import { type FieldError } from "react-hook-form";
 import type { ComponentProps } from "../../../types/element";
-import React, { type CSSProperties, useContext, useEffect, useRef } from "react";
+import React, { type CSSProperties, useContext, useRef } from "react";
 import { stringify } from "@aiszlab/relax/class-name";
 import { usePresence } from "motion/react";
 import { animate } from "motion/mini";
-import { $create, $props } from "../../../utils/styles";
+import { create as $create, props as $props } from "@stylexjs/stylex";
 import { useTheme } from "../../theme";
 import { spacing } from "../../theme/tokens.stylex";
 import { Context } from "../context";

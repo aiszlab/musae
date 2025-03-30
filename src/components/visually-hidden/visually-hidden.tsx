@@ -1,4 +1,4 @@
-import { $create, $props } from "../../utils/styles";
+import { create as $create, props as $props } from "@stylexjs/stylex";
 import React from "react";
 import type { VisuallyHiddenProps } from "../../types/visually-hidden";
 import { sizes, spacing } from "../theme/tokens.stylex";

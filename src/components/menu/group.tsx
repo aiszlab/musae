@@ -3,7 +3,7 @@ import type { MenuGroupProps } from "../../types/menu";
 import Item from "./item";
 import { useMenuContext } from "./hooks";
 import { useComposedRef, useUpdateEffect } from "@aiszlab/relax";
-import { $create, $props } from "../../utils/styles";
+import { create as $create, props as $props } from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
 import { useExpandable } from "../../hooks/use-expandable";
 import { useTheme } from "../theme";

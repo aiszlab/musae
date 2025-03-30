@@ -1,6 +1,6 @@
 import React from "react";
 import { withIcon } from "../../hoc";
-import { $create, $props, $keyframes } from "../../../../utils/styles";
+import { create as $create, props as $props, keyframes as $keyframes } from "@stylexjs/stylex";
 
 const loading = $keyframes({
   to: {

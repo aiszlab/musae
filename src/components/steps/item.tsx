@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import type { Status, StepItemProps } from "../../types/steps";
-import { $create, $props } from "../../utils/styles";
+import { create as $create, props as $props } from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { useEvent } from "@aiszlab/relax";
 import { Context } from "./context";

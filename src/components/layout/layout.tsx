@@ -1,7 +1,7 @@
 import React from "react";
 import type { LayoutProps } from "../../types/layout";
 import { useChildren } from "./hooks";
-import { $create, $props } from "../../utils/styles";
+import { create as $create, props as $props } from "@stylexjs/stylex";
 import { useTheme } from "../theme";
 import { stringify } from "@aiszlab/relax/class-name";
 import Context, { CLASS_NAMES } from "./context";

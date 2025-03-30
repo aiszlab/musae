@@ -1,5 +1,5 @@
 import React, { type CSSProperties, useContext } from "react";
-import { $create, $props } from "../../utils/styles";
+import { create as $create, props as $props } from "@stylexjs/stylex";
 import { duration, sizes, spacing } from "../theme/tokens.stylex";
 import { useEvent, useUpdateEffect } from "@aiszlab/relax";
 import type { CollapseItemProps } from "../../types/collapse";

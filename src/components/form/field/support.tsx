@@ -1,5 +1,5 @@
 import React, { type ReactNode, type CSSProperties } from "react";
-import { $create, $props } from "../../../utils/styles";
+import { create as $create, props as $props } from "@stylexjs/stylex";
 import { useTheme } from "../../theme";
 import { spacing } from "../../theme/tokens.stylex";
 

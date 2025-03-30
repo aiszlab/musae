@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import Item from "./item";
 import type { TimelineProps } from "../../types/timeline";
-import { $create, $props } from "../../utils/styles";
+import { create as $create, props as $props } from "@stylexjs/stylex";
 import { CLASS_NAMES, Context } from "./context";
 import { useClassNames } from "../../hooks/use-class-names";
 import { stringify } from "@aiszlab/relax/class-name";

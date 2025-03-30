@@ -2,7 +2,7 @@ import React, { useMemo } from "react";
 import type { StepsProps } from "../../types/steps";
 import Item from "./item";
 import { useClassNames } from "../../hooks/use-class-names";
-import { $create, $props } from "../../utils/styles";
+import { create as $create, props as $props } from "@stylexjs/stylex";
 import { stringify } from "@aiszlab/relax/class-name";
 import { CLASS_NAMES, Context } from "./context";
 import { spacing } from "../theme/tokens.stylex";

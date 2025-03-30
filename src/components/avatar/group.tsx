@@ -1,5 +1,5 @@
 import React, { Children, cloneElement, isValidElement, useMemo } from "react";
-import { $create, $props } from "../../utils/styles";
+import { create as $create, props as $props } from "@stylexjs/stylex";
 import type { AvatarGroupProps } from "../../types/avatar";
 import Context, { CLASS_NAMES } from "./context";
 import { Popover } from "../popover";

@@ -16,7 +16,7 @@ import EditablePlugin from "./plugins/editable";
 
 import { useDefault, useIdentity } from "@aiszlab/relax";
 import { useMessage } from "../message";
-import { $create, $props } from "../../utils/styles";
+import { create as $create, props as $props } from "@stylexjs/stylex";
 import { stringify } from "@aiszlab/relax/class-name";
 
 import { sizes, spacing } from "../theme/tokens.stylex";

@@ -1,5 +1,5 @@
 import React, { type CSSProperties, useContext, type Key, useMemo } from "react";
-import { $create, $props } from "../../utils/styles";
+import { create as $create, props as $props } from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import type { UploadedItem as UploadedItemType } from "../../types/upload";
 import { isFunction, useEvent } from "@aiszlab/relax";

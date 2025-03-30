@@ -4,7 +4,7 @@ import { Tag } from "../tag";
 import { useOptions, useValue } from "./hooks";
 import { Menu } from "../menu";
 import { useClassNames } from "../../hooks/use-class-names";
-import { $create, $props } from "../../utils/styles";
+import { create as $create, props as $props } from "@stylexjs/stylex";
 import { stringify } from "@aiszlab/relax/class-name";
 import { spacing } from "../theme/tokens.stylex";
 import type { MenuProps } from "../../types/menu";

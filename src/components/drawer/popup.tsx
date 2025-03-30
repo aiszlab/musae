@@ -3,7 +3,7 @@ import { animate } from "motion/mini";
 import type { PopupProps } from "../../types/drawer";
 import { PLACEMENTS } from "./hooks";
 import { useClassNames } from "../../hooks/use-class-names";
-import { $create, $props } from "../../utils/styles";
+import { create as $create, props as $props } from "@stylexjs/stylex";
 import { positions, sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { stringify } from "@aiszlab/relax/class-name";

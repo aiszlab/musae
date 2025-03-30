@@ -1,4 +1,4 @@
-import { $create, $attrs } from "../../utils/styles";
+import { create as $create, attrs as $attrs } from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
 import { typography } from "../theme/theme";
 import type { CreateEditorArgs, EditorThemeClasses } from "lexical";

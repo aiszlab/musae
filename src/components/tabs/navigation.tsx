@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, type CSSProperties, type Key } from "react";
-import { $create, $props } from "../../utils/styles";
+import { create as $create, props as $props } from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { type NavigationProps } from "../../types/tabs";
 import Tab from "./tab";
