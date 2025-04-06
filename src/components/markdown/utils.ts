@@ -17,12 +17,13 @@ export async function toHtml(markdown: string) {
     import("@lexical/markdown"),
   ]);
 
-  return await new Promise<string>((resolve) => {
+  return await new Promise<string>((resolve, reject) => {
     const editor = createHeadlessEditor({
       ...usingEditor({ disabled: true }),
-      onError: () => {
+      onError: (error) => {
         // in any env not support dom api, use raw md
-        resolve(markdown);
+        // resolve(markdown);
+        reject(error);
       },
     });
 

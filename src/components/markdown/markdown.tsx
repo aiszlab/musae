@@ -27,7 +27,7 @@ const Markdown = async ({
 }: MarkdownProps & {
   dark?: boolean;
 }) => {
-  const __html = (await toHtml(value)) ?? "";
+  const __html = await toHtml(value);
 
   const styled = $props(styles.markdown, typography.body.medium);
 
