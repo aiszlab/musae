@@ -1,22 +1,35 @@
+import { TRANSFORMERS } from "../rich-text-editor/plugins/markdown-shortcut";
+import { usingEditor } from "../rich-text-editor/utils";
+
 /**
- * @description
- * to html
+ * @description html 生成器
+ *
+ * @param {string} markdown
  */
-const toHtml = async (markdown: string) => {
-  const worker = new Worker("./parser.mjs");
+export async function toHtml(markdown: string) {
+  const {
+    0: { $generateHtmlFromNodes },
+    1: { createHeadlessEditor },
+    2: { $convertFromMarkdownString },
+  } = await Promise.all([
+    import("@lexical/html"),
+    import("@lexical/headless"),
+    import("@lexical/markdown"),
+  ]);
 
-  console.log("worker====", worker);
+  return await new Promise<string>((resolve) => {
+    const editor = createHeadlessEditor({
+      ...usingEditor({ disabled: true }),
+      onError: () => {
+        // in any env not support dom api, use raw md
+        resolve(markdown);
+      },
+    });
 
-  return await new Promise<string>((resolve, reject) => {
-    worker.postMessage(markdown);
-    worker.onmessage = function (event) {
-      console.log("event=====", event);
-      resolve(event.data);
-    };
-    worker.onerror = function (error) {
-      reject(error);
-    };
+    editor.update(() => {
+      $convertFromMarkdownString(markdown, TRANSFORMERS);
+      const html = $generateHtmlFromNodes(editor);
+      resolve(html);
+    });
   });
-};
-
-export { toHtml };
+}
