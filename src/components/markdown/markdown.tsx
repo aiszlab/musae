@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { toHtml } from "./utils";
 import { create as $create, props as $props } from "@stylexjs/stylex";
 import { typography } from "../theme/theme";
@@ -19,7 +19,7 @@ const styles = $create({
   },
 });
 
-const Markdown = async ({
+const Markdown = ({
   value,
   className,
   style,
@@ -27,13 +27,20 @@ const Markdown = async ({
 }: MarkdownProps & {
   dark?: boolean;
 }) => {
-  const __html = await toHtml(value);
+  const [_html, _setHtml] = useState("");
+
+  useEffect(() => {
+    toHtml(value).then((_v) => {
+      _setHtml(_v);
+    });
+    _setHtml(_html);
+  }, []);
 
   const styled = $props(styles.markdown, typography.body.medium);
 
   return (
     <div
-      dangerouslySetInnerHTML={{ __html }}
+      dangerouslySetInnerHTML={{ __html: _html }}
       className={stringify(className, styled.className)}
       style={{
         ...styled.style,

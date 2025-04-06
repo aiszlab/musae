@@ -18,7 +18,7 @@ const styles = {
       borderStyle: "solid",
       borderColor: "var(--color-outline-variant)",
 
-      ":focus": {
+      ":hover": {
         overflow: "auto",
       },
     },

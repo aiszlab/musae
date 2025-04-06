@@ -171,10 +171,10 @@ export const useMenuItems = ({
     return _sidebar.map(({ prefix, label, ...item }) => {
       return {
         ...item,
-        label: !!prefix ? prefix : toReactNodeText(label)?.charAt(0),
+        label: prefix ? prefix : toReactNodeText(label)?.charAt(0),
       };
     });
-  }, [isCollapsed]);
+  }, [isCollapsed, _sidebar]);
 
   return {
     header,

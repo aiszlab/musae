@@ -51,6 +51,8 @@ const styles = {
 
   trailing: $create({
     default: {
+      display: "flex",
+      gap: spacing.xxsmall,
       marginInlineStart: spacing.auto,
     },
   }),
@@ -108,7 +110,7 @@ const Bench = ({
   style,
   trailing,
   onNavigate,
-  location = window.location.pathname,
+  location,
   defaultExpandedKeys,
   classNames: { main: mainClassName } = {},
   layout = "mix",

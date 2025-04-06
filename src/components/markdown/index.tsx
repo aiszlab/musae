@@ -6,6 +6,7 @@ import Loading from "./loading";
 import Context, { CLASS_NAMES } from "./context";
 import { useClassNames } from "../../hooks/use-class-names";
 import { stringify } from "@aiszlab/relax/class-name";
+import _Markdown from "./markdown";
 
 const _SRC = import("./markdown");
 
@@ -13,30 +14,13 @@ const Markdown = ({ value, className, style }: MarkdownProps) => {
   const { mode } = useTheme();
   const classNames = useClassNames(CLASS_NAMES);
 
-  // dynamically render
-  const _Markdown = useMemo(() => {
-    return lazy(() =>
-      _SRC
-        .then(({ default: render }) =>
-          render({
-            value,
-            className: stringify(classNames.markdown, className),
-            style,
-            dark: mode === "dark",
-          }),
-        )
-        .then((rendered) => ({
-          default: () => rendered,
-        })),
-    );
-  }, [value, className, style, mode]);
-
-  // avoid fallback show when children updated
-  const children = useDeferredValue(createElement(_Markdown));
-
   return (
     <Context.Provider value={{ classNames }}>
-      <Suspense fallback={<Loading />}>{children}</Suspense>
+      {createElement(_Markdown, {
+        value,
+        className: stringify(className, classNames.markdown),
+        style,
+      })}
     </Context.Provider>
   );
 };
