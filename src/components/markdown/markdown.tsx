@@ -5,6 +5,7 @@ import { typography } from "../theme/theme";
 import type { MarkdownProps } from "../../types/markdown";
 import { stringify } from "@aiszlab/relax/class-name";
 import { spacing } from "../theme/tokens.stylex";
+import { VisuallyHidden } from "../visually-hidden";
 
 const styles = $create({
   markdown: {
@@ -39,14 +40,20 @@ const Markdown = ({
   const styled = $props(styles.markdown, typography.body.medium);
 
   return (
-    <div
-      dangerouslySetInnerHTML={{ __html: _html }}
-      className={stringify(className, styled.className)}
-      style={{
-        ...styled.style,
-        ...style,
-      }}
-    />
+    <div>
+      {/* for ssr, nothing else */}
+      {/* we are thinking about how to remove this */}
+      <VisuallyHidden>{value}</VisuallyHidden>
+
+      <div
+        dangerouslySetInnerHTML={{ __html: _html }}
+        className={stringify(className, styled.className)}
+        style={{
+          ...styled.style,
+          ...style,
+        }}
+      />
+    </div>
   );
 };
 
