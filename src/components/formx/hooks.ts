@@ -1,73 +1,72 @@
 import { filter, Subject } from "rxjs";
 import { useFormContext } from "./context";
 import { useDefault } from "@aiszlab/relax";
-import { useEffect, useMemo, useState } from "react";
-
-interface Form {
-  /**
-   * validate
-   */
-  validate(): Promise<boolean>;
-}
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { UsedForm } from "../../types/formx";
 
 /**
  * form hook
  */
-export function useForm() {
-  /**
-   * form created, create a subject
-   */
-  const _values$ = useDefault(() => {
-    return new Subject();
-  });
+export function useForm<T extends object, K extends keyof T>(): UsedForm<T, K> {
+  const fieldsValue = useRef<Partial<T>>({});
+  const fieldsValue$ = useRef<Subject<Partial<T>>>(null);
 
-  // hook run, create a global form instance
+  const createFieldsValue$ = useCallback(() => {
+    const _value$ = new Subject<Partial<T>>();
+
+    _value$.subscribe({
+      next(value) {
+        fieldsValue.current = {
+          ...fieldsValue.current,
+          ...value,
+        };
+      },
+    });
+
+    return _value$;
+  }, []);
 
   // set field value
-  const setFieldValue = (name: string, value: unknown) => {
-    if (!name) return;
-    _values$.next({
-      name,
-      value,
+  const setFieldValue = (name: K, value: T[K]) => {
+    const _value$ = (fieldsValue$.current ??= createFieldsValue$());
+
+    _value$.next({
+      ...fieldsValue.current,
+      [name]: value,
     });
   };
 
-  return {};
+  // set fields values
+  const setFieldsValue = (values: Partial<T>) => {
+    const _value$ = (fieldsValue$.current ??= createFieldsValue$());
+
+    _value$.next(values);
+  };
+
+  return {
+    setFieldValue,
+    setFieldsValue,
+  };
 }
 
 /**
  * form item hook
  */
-export function useFormItem<T>({ name }: { name?: string }) {
-  const { value$Refs } = useFormContext();
-  const [value, setValue] = useState<T>();
+export function useFormItem<T extends object = {}, K extends keyof T = keyof T>({
+  name,
+}: {
+  name?: K;
+}) {
+  const { form } = useFormContext<T, K>();
+  const [value, setValue] = useState<T[K]>();
 
   // any value change handler
-  const change = (value: T) => {
+  const change = (value: T[K]) => {
     if (!name) return;
 
     setValue(value);
-    value$Refs?.current.get(name)?.next(value);
+    form?.setFieldValue(name, value);
   };
-
-  useEffect(() => {
-    if (!name) return;
-
-    value$Refs?.current.set(
-      name,
-      // @ts-expect-error unknown type at this moment
-      new Subject<T>(),
-    );
-
-    // When unmount, remove subscription
-    return () => {
-      const _value$Ref = value$Refs?.current.get(name);
-      value$Refs?.current.delete(name);
-
-      _value$Ref?.complete();
-      _value$Ref?.unsubscribe();
-    };
-  }, [name]);
 
   // hook run, create a form item instance
   return {
@@ -79,24 +78,24 @@ export function useFormItem<T>({ name }: { name?: string }) {
 /**
  * watch form item value change
  */
-function useSubscribe<T>(name: string) {
-  const { value$Refs } = useFormContext();
-  const [value, setValue] = useState<T>();
+// function useSubscribe<T>(name: string) {
+//   const { value$Refs } = useFormContext();
+//   const [value, setValue] = useState<T>();
 
-  useEffect(() => {
-    if (!name) return;
+//   useEffect(() => {
+//     if (!name) return;
 
-    const _value$Ref = value$Refs?.current.get(name);
+//     const _value$Ref = value$Refs?.current.get(name);
 
-    _value$Ref?.subscribe({
-      complete() {
-        setValue(void 0);
-      },
-      next(_value) {
-        setValue(_value as T);
-      },
-    });
-  }, [name]);
+//     _value$Ref?.subscribe({
+//       complete() {
+//         setValue(void 0);
+//       },
+//       next(_value) {
+//         setValue(_value as T);
+//       },
+//     });
+//   }, [name]);
 
-  return value;
-}
+//   return value;
+// }

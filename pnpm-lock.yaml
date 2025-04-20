@@ -4,16 +4,19 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+overrides:
+  '@aiszlab/relax': link:../relax/packages/relax
+
 importers:
 
   .:
     dependencies:
       '@aiszlab/fuzzy':
         specifier: ^2.0.3
-        version: 2.0.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 2.0.3
       '@aiszlab/relax':
-        specifier: ^2.0.3
-        version: 2.0.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: link:../relax/packages/relax
+        version: link:../relax/packages/relax
       '@babel/runtime':
         specifier: ^7.27.0
         version: 7.27.0
@@ -207,12 +210,6 @@ packages:
   '@aiszlab/jarvis@1.0.2':
     resolution: {integrity: sha512-fM6c6lhoXA6btgTAd7+xE14zWXbeHRMyWeS992mDiSAMvJ9s5X39fr8z1mMmnAog2sNGKSZ2ElDqgQs+mWcAZg==}
     hasBin: true
-
-  '@aiszlab/relax@2.0.3':
-    resolution: {integrity: sha512-W8go/LEXSIaIRbuPsB0/RXGHzOC3RGIXgv+NzcnoUFA9jXNrmLU4fU+3du/spyOCMbUS5e0CCnTSeMtiFHqPMw==}
-    peerDependencies:
-      react: '18'
-      react-dom: '18'
 
   '@ampproject/remapping@2.3.0':
     resolution: {integrity: sha512-30iZtAPgz+LTIYoeivqYo853f02jBYSd5uGnGpkFV0M3xOt9aN73erkgYAmZU43x4VfqcnLxW9Kpg3R5LC4YYw==}
@@ -4112,9 +4109,6 @@ packages:
   react-is@18.3.1:
     resolution: {integrity: sha512-/LLMVyas0ljjAtoYiPqYiL8VWXzUUdThrmU5+n20DZv+a+ClRoevUzw5JxU+Ieh5/c87ytoTBV9G1FiKfNJdmg==}
 
-  react-is@19.1.0:
-    resolution: {integrity: sha512-Oe56aUPnkHyyDxxkvqtd7KkdQP5uIUfHxd5XTb3wE9d/kRnZLmKbDB0GWk919tdQ+mxxPtG6EAs6RMT6i1qtHg==}
-
   react@19.1.0:
     resolution: {integrity: sha512-FS+XFBNvn3GTAWq26joslQgWNoFu08F4kl0J4CgdNKADkdSGXQyTCnKteIAJy96Br6YbpEU1LSzV5dYtjMkMDg==}
     engines: {node: '>=0.10.0'}
@@ -4744,13 +4738,10 @@ snapshots:
 
   '@adobe/css-tools@4.4.2': {}
 
-  '@aiszlab/fuzzy@2.0.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
+  '@aiszlab/fuzzy@2.0.3':
     dependencies:
-      '@aiszlab/relax': 2.0.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@aiszlab/relax': link:../relax/packages/relax
       '@babel/runtime': 7.27.0
-    transitivePeerDependencies:
-      - react
-      - react-dom
 
   '@aiszlab/jarvis@1.0.2':
     dependencies:
@@ -4758,14 +4749,6 @@ snapshots:
       '@changesets/config': 3.1.1
       '@npmcli/promise-spawn': 7.0.2
       commander: 12.1.0
-
-  '@aiszlab/relax@2.0.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
-    dependencies:
-      '@babel/runtime': 7.27.0
-      react: 19.1.0
-      react-dom: 19.1.0(react@19.1.0)
-      react-is: 19.1.0
-      rxjs: 7.8.2
 
   '@ampproject/remapping@2.3.0':
     dependencies:
@@ -9453,8 +9436,6 @@ snapshots:
   react-is@17.0.2: {}
 
   react-is@18.3.1: {}
-
-  react-is@19.1.0: {}
 
   react@19.1.0: {}
 
