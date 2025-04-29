@@ -1,12 +1,12 @@
 import { Nullable } from "@aiszlab/relax/types";
 import { createContext, RefObject, useContext } from "react";
 import { type Subject } from "rxjs";
-import { UsedForm } from "../../types/formx";
+import { ChangingValue } from "../../types/formx";
 
 /**
  * Context
  */
-interface ContextValue<T extends object = {}, K extends keyof T = keyof T> {
+interface ContextValue<T extends object = {}> {
   /**
    * Items ref
    * @description When Item is mounted, it will be added to this ref
@@ -17,16 +17,22 @@ interface ContextValue<T extends object = {}, K extends keyof T = keyof T> {
    * Values$ subject
    * @description all values will be emitted to this subject
    */
-  form: Nullable<UsedForm<T, K>>;
+  fieldsValue$: Nullable<RefObject<Subject<ChangingValue<T>> | null>>;
+
+  /**
+   * registed fields in form
+   */
+  fieldsRef: Nullable<RefObject<Set<keyof T>>>;
 }
 
 const Context = createContext<ContextValue>({
   itemsRef: null,
-  form: null,
+  fieldsValue$: null,
+  fieldsRef: null,
 });
 
 export default Context;
 
-export const useFormContext = <T extends object = {}, K extends keyof T = keyof T>() => {
-  return useContext(Context) as unknown as ContextValue<T, K>;
+export const useFormContext = <T extends object = {}>() => {
+  return useContext(Context) as unknown as ContextValue<T>;
 };

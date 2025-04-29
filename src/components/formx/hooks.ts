@@ -1,25 +1,35 @@
-import { filter, Subject } from "rxjs";
+import { Subject } from "rxjs";
 import { useFormContext } from "./context";
-import { useDefault } from "@aiszlab/relax";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { UsedForm } from "../../types/formx";
+import { useMounted } from "@aiszlab/relax";
+import { useCallback, useRef, useState } from "react";
+import type { ChangingValue, UsedForm, UsingForm } from "../../types/formx";
 
 /**
  * form hook
  */
-export function useForm<T extends object, K extends keyof T>(): UsedForm<T, K> {
+export function useForm<T extends object, K extends keyof T>({
+  onChange,
+}: UsingForm<T>): UsedForm<T, K> {
   const fieldsValue = useRef<Partial<T>>({});
-  const fieldsValue$ = useRef<Subject<Partial<T>>>(null);
+  const fieldsValue$ = useRef<Subject<ChangingValue<T>>>(null);
+
+  // registed fields in form
+  const fieldsRef = useRef<Set<K>>(new Set());
 
   const createFieldsValue$ = useCallback(() => {
-    const _value$ = new Subject<Partial<T>>();
+    const _value$ = new Subject<ChangingValue<T>>();
 
     _value$.subscribe({
-      next(value) {
+      next({ source, values }) {
         fieldsValue.current = {
           ...fieldsValue.current,
-          ...value,
+          ...values,
         };
+
+        // callback change handler
+        if (source !== "set") {
+          onChange?.(values, fieldsValue.current);
+        }
       },
     });
 
@@ -31,8 +41,10 @@ export function useForm<T extends object, K extends keyof T>(): UsedForm<T, K> {
     const _value$ = (fieldsValue$.current ??= createFieldsValue$());
 
     _value$.next({
-      ...fieldsValue.current,
-      [name]: value,
+      source: "set",
+      values: {
+        [name]: value,
+      } as unknown as Partial<T>,
     });
   };
 
@@ -40,12 +52,28 @@ export function useForm<T extends object, K extends keyof T>(): UsedForm<T, K> {
   const setFieldsValue = (values: Partial<T>) => {
     const _value$ = (fieldsValue$.current ??= createFieldsValue$());
 
-    _value$.next(values);
+    _value$.next({
+      source: "set",
+      values,
+    });
   };
+
+  useMounted(() => {
+    if (!fieldsValue$.current) {
+      fieldsValue$.current = createFieldsValue$();
+    }
+
+    return () => {
+      fieldsValue$.current?.complete();
+      fieldsValue$.current = null;
+    };
+  });
 
   return {
     setFieldValue,
     setFieldsValue,
+    fieldsRef,
+    fieldsValue$,
   };
 }
 
@@ -57,7 +85,7 @@ export function useFormItem<T extends object = {}, K extends keyof T = keyof T>(
 }: {
   name?: K;
 }) {
-  const { form } = useFormContext<T, K>();
+  const { fieldsValue$, fieldsRef } = useFormContext<T>();
   const [value, setValue] = useState<T[K]>();
 
   // any value change handler
@@ -65,8 +93,22 @@ export function useFormItem<T extends object = {}, K extends keyof T = keyof T>(
     if (!name) return;
 
     setValue(value);
-    form?.setFieldValue(name, value);
+
+    fieldsValue$?.current?.next({
+      source: "change",
+      values: { [name]: value } as unknown as Partial<T>,
+    });
   };
+
+  useMounted(() => {
+    if (!name) return;
+
+    fieldsRef?.current?.add(name);
+
+    return () => {
+      fieldsRef?.current?.delete(name);
+    };
+  });
 
   // hook run, create a form item instance
   return {
