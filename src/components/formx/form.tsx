@@ -1,7 +1,7 @@
 import { FormProps } from "../../types/formx";
 import React from "react";
 import Context from "./context";
-import { useForm } from "./hooks";
+import { useForm, FORM_TOKEN } from "./use-form";
 
 /**
  * Form Component
@@ -9,10 +9,10 @@ import { useForm } from "./hooks";
  * @author murukal <tutu@fantufantu.com>
  */
 const Form = <T extends object, K extends keyof T = keyof T>({ children }: FormProps<T, K>) => {
-  const { fieldsValue$, fieldsRef } = useForm({});
+  const form = useForm({});
 
   return (
-    <Context.Provider value={{ fieldsValue$, fieldsRef, itemsRef: null }}>
+    <Context.Provider value={{ form: form[FORM_TOKEN] }}>
       <form>{children}</form>
     </Context.Provider>
   );

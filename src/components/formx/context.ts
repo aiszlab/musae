@@ -1,38 +1,24 @@
 import { Nullable } from "@aiszlab/relax/types";
-import { createContext, RefObject, useContext } from "react";
-import { type Subject } from "rxjs";
-import { ChangingValue } from "../../types/formx";
+import { createContext, useContext } from "react";
+import { type Form } from "./use-form";
+import type { FieldsValue } from "./types";
 
 /**
  * Context
  */
-interface ContextValue<T extends object = {}> {
+export interface ContextValue<T extends FieldsValue = {}> {
   /**
-   * Items ref
-   * @description When Item is mounted, it will be added to this ref
+   * form instance
    */
-  itemsRef: Nullable<RefObject<HTMLDivElement>>;
-
-  /**
-   * Values$ subject
-   * @description all values will be emitted to this subject
-   */
-  fieldsValue$: Nullable<RefObject<Subject<ChangingValue<T>> | null>>;
-
-  /**
-   * registed fields in form
-   */
-  fieldsRef: Nullable<RefObject<Set<keyof T>>>;
+  form: Nullable<Form<T>>;
 }
 
 const Context = createContext<ContextValue>({
-  itemsRef: null,
-  fieldsValue$: null,
-  fieldsRef: null,
+  form: null,
 });
 
 export default Context;
 
-export const useFormContext = <T extends object = {}>() => {
+export const useFormContext = <T extends FieldsValue = {}>() => {
   return useContext(Context) as unknown as ContextValue<T>;
 };
