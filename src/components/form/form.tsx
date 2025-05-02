@@ -1,72 +1,24 @@
-import React, { type ForwardedRef, forwardRef, useImperativeHandle, useMemo } from "react";
-import type { FormProps } from "../../types/form";
-import { type FieldValues, FormProvider, UseFormReturn } from "react-hook-form";
-import { useMounted } from "@aiszlab/relax";
-import { CLASS_NAMES, CONTEXT_VALUE, Context } from "./context";
-import { useForm } from "./hooks";
+import { FieldsValue, FORM_TOKEN, type FormProps } from "../../utils/form";
+import React from "react";
+import Context, { CLASS_NAMES } from "./context";
+import { useForm } from "./use-form";
 import { useClassNames } from "../../hooks/use-class-names";
-import { stringify } from "@aiszlab/relax/class-name";
+import { DEFAULT_CONTEXT_VALUE } from "./context";
 
-const Form = forwardRef(
-  <T extends FieldValues>(
-    {
-      onSubmit,
-      onChange,
-      labelCol,
-      wrapperCol,
-      children,
-      className,
-      style,
-      ...props
-    }: FormProps<T>,
-    ref: ForwardedRef<UseFormReturn<T>>,
-  ) => {
-    const classNames = useClassNames(CLASS_NAMES);
-    // use react hook form
-    const form = useForm(props.form);
+/**
+ * Form Component
+ *
+ * @author murukal <tutu@fantufantu.com>
+ */
+const Form = <T extends FieldsValue>({ children, form }: FormProps<T>) => {
+  const _form = useForm({});
+  const classNames = useClassNames(CLASS_NAMES);
 
-    useImperativeHandle(ref, () => {
-      return form;
-    });
-
-    const submit = form.handleSubmit((values) => {
-      onSubmit?.(values);
-    });
-
-    useMounted(() => {
-      const watched = form.watch((values, { type }) => {
-        type === "change" && onChange?.(values);
-      });
-
-      return () => {
-        watched.unsubscribe();
-      };
-    });
-
-    // context value
-    const contextValue = useMemo(() => {
-      return {
-        ...CONTEXT_VALUE,
-        ...(!!labelCol && {
-          labelCol,
-        }),
-        ...(!!wrapperCol && {
-          wrapperCol,
-        }),
-        classNames,
-      };
-    }, [labelCol, wrapperCol, classNames]);
-
-    return (
-      <Context.Provider value={contextValue}>
-        <FormProvider {...form}>
-          <form className={stringify(classNames.form, className)} style={style} onSubmit={submit}>
-            {children}
-          </form>
-        </FormProvider>
-      </Context.Provider>
-    );
-  },
-);
+  return (
+    <Context.Provider value={{ ...DEFAULT_CONTEXT_VALUE, form: _form[FORM_TOKEN], classNames }}>
+      <form>{children}</form>
+    </Context.Provider>
+  );
+};
 
 export default Form;

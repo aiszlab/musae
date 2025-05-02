@@ -14,9 +14,9 @@ import Layout from "./layout";
 import Error from "./error";
 import { AnimatePresence } from "motion/react";
 import { useLocale } from "../../../locale";
-import Support from "./support";
+import Supporting from "./supporting";
 import { stringify } from "@aiszlab/relax/class-name";
-import { Context } from "../context";
+import { useFormContext } from "../context";
 
 /**
  * @description
@@ -28,10 +28,10 @@ const Field = ({
   children: _children,
   className,
   style,
-  support,
+  supporting,
   ...props
 }: RequiredIn<FormItemProps, "name" | "required">) => {
-  const { classNames } = useContext(Context);
+  const { classNames } = useFormContext();
   const [locale] = useLocale("form");
 
   const {
@@ -84,7 +84,7 @@ const Field = ({
       className={classNames.item}
       supporting={
         <>
-          {!!support && <Support>{support}</Support>}
+          {!!supporting && <Supporting>{supporting}</Supporting>}
           <AnimatePresence mode="wait">{invalid && <Error error={error} />}</AnimatePresence>
         </>
       }

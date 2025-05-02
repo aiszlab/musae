@@ -7,8 +7,8 @@ import { animate } from "motion/mini";
 import { create as $create, props as $props } from "@stylexjs/stylex";
 import { useTheme } from "../../theme";
 import { spacing } from "../../theme/tokens.stylex";
-import { Context } from "../context";
 import { useAsyncEffect } from "@aiszlab/relax";
+import { useFormContext } from "../context";
 
 const styles = $create({
   error: (props: { color: CSSProperties["color"] }) => ({
@@ -28,7 +28,7 @@ type Props = ComponentProps & {
 };
 
 const Error = ({ error, className, style }: Props) => {
-  const { classNames } = useContext(Context);
+  const { classNames } = useFormContext();
   const [isPresent, safeToRemove] = usePresence();
   const theme = useTheme();
   const ref = useRef<HTMLDivElement>(null);

@@ -1,7 +1,7 @@
 import { useMounted } from "@aiszlab/relax";
-import { ContextValue, useFormContext } from "./context";
-import { FieldsValue, FormItemProps } from "./types";
+import { type ContextValue, useFormContext } from "./context";
 import { type ReactNode, useMemo, useState } from "react";
+import type { FieldsValue, FormItemProps } from "../../utils/form";
 
 function useFormItem<T extends FieldsValue, FieldValue>({
   name,
@@ -9,21 +9,26 @@ function useFormItem<T extends FieldsValue, FieldValue>({
 }: FormItemProps<FieldValue>) {
   const { form } = useFormContext() as ContextValue<T>;
   const [error, setError] = useState<ReactNode>();
+  const [value, setValue] = useState<FieldValue>();
 
   useMounted(() => {
-    return form?.registerField(name, {
-      name,
+    return form?.register<FieldValue>(name, {
       rules,
+      onChange: ({ error, value }) => {
+        setError(error);
+        setValue(value);
+      },
     });
   });
 
-  const isError = useMemo(() => {
+  const isInvalid = useMemo(() => {
     return !!error;
   }, []);
 
   return {
+    value,
     error,
-    isError,
+    isInvalid,
   };
 }
 

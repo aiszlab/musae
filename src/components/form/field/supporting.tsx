@@ -4,7 +4,7 @@ import { useTheme } from "../../theme";
 import { spacing } from "../../theme/tokens.stylex";
 
 const styles = $create({
-  support: (props: { color: CSSProperties["color"] }) => ({
+  supporting: (props: { color: CSSProperties["color"] }) => ({
     color: props.color,
     marginBlock: spacing.xxxxxsmall,
   }),
@@ -14,7 +14,7 @@ const Support = ({ children }: { children?: ReactNode }) => {
   const theme = useTheme();
 
   const styled = $props(
-    styles.support({
+    styles.supporting({
       color: theme.colors.secondary,
     }),
   );

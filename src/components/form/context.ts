@@ -1,8 +1,8 @@
-import { createContext } from "react";
-import type { ContextValue } from "../../types/form";
+import { Nullable } from "@aiszlab/relax/types";
+import { createContext, useContext } from "react";
+import type { FieldsValue, Form } from "../../utils/form";
 
 /**
- * @description
  * class names
  */
 export const CLASS_NAMES = {
@@ -13,12 +13,39 @@ export const CLASS_NAMES = {
   fieldError: "form__item-field-error",
 } as const;
 
-export const CONTEXT_VALUE: Readonly<ContextValue> = {
+/**
+ * Context
+ */
+export interface ContextValue<T extends FieldsValue = {}> {
+  /**
+   * form instance
+   */
+  form: Nullable<Form<T>>;
+
+  /**
+   * labelCol
+   */
+  labelCol: number;
+
+  /**
+   * wrapperCol
+   */
+  wrapperCol: number;
+}
+
+export const DEFAULT_CONTEXT_VALUE: ContextValue & { classNames: typeof CLASS_NAMES } = {
+  form: null,
   labelCol: 24,
   wrapperCol: 24,
+  classNames: CLASS_NAMES,
 };
 
-export const Context = createContext<ContextValue & { classNames: typeof CLASS_NAMES }>({
-  ...CONTEXT_VALUE,
-  classNames: CLASS_NAMES,
-});
+const Context = createContext<ContextValue & { classNames: typeof CLASS_NAMES }>(
+  DEFAULT_CONTEXT_VALUE,
+);
+
+export default Context;
+
+export const useFormContext = <T extends FieldsValue = {}>() => {
+  return useContext(Context) as unknown as ContextValue<T> & { classNames: typeof CLASS_NAMES };
+};

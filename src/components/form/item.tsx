@@ -1,10 +1,10 @@
 import type { FormItemProps } from "../../types/form";
-import React, { useContext } from "react";
+import React from "react";
 import { Field, Layout } from "./field";
 import type { FieldValues } from "react-hook-form";
 import { stringify } from "@aiszlab/relax/class-name";
-import Support from "./field/support";
-import { Context } from "./context";
+import Supporting from "./field/supporting";
+import { useFormContext } from "./context";
 
 /**
  * @description
@@ -14,10 +14,10 @@ const Item = <T extends FieldValues = FieldValues>({
   required = false,
   className,
   style,
-  support,
+  supporting,
   ...props
 }: FormItemProps<T>) => {
-  const { classNames } = useContext(Context);
+  const { classNames } = useFormContext();
 
   if (props.name) {
     return (
@@ -30,7 +30,7 @@ const Item = <T extends FieldValues = FieldValues>({
       label={props.label}
       labelCol={props.labelCol}
       wrapperCol={props.wrapperCol}
-      supporting={!!support && <Support>{support}</Support>}
+      supporting={!!supporting && <Supporting>{supporting}</Supporting>}
       required={required}
       space
       className={classNames.item}

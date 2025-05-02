@@ -3,7 +3,7 @@ import type { Palette, ContextValue, Theme, Mode } from "../../types/theme";
 import { toColorRoles } from "../../utils/color-role";
 import { isFunction, useEvent, useMounted } from "@aiszlab/relax";
 import { create as $create, props as $props } from "@stylexjs/stylex";
-import { toClassList } from "../../utils/styles";
+import { normalize } from "@aiszlab/relax/class-name";
 import { Observable, type Subscriber, distinctUntilChanged } from "rxjs";
 import { positions } from "./tokens.stylex";
 
@@ -190,8 +190,8 @@ export const useSwitchable = ({ theme }: { theme: Theme }) => {
     const _isDark = nextMode === "dark";
     const _usingMode: Mode = _isDark ? "light" : "dark";
 
-    document.documentElement.classList.remove(...toClassList(styled[_usingMode].className));
-    document.documentElement.classList.add(...toClassList(styled[nextMode].className));
+    document.documentElement.classList.remove(...normalize(styled[_usingMode].className));
+    document.documentElement.classList.add(...normalize(styled[nextMode].className));
 
     document.documentElement.style.backgroundColor = _isDark
       ? theme.palette.neutral[0]
@@ -200,7 +200,7 @@ export const useSwitchable = ({ theme }: { theme: Theme }) => {
 
   useMounted(() => {
     // set default class names
-    document.documentElement.classList.add(...toClassList(styled.default.className));
+    document.documentElement.classList.add(...normalize(styled.default.className));
 
     new Observable<Mode>((subscriber) => {
       trigger.current = subscriber;
