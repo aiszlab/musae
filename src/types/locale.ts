@@ -46,10 +46,6 @@ export interface Locale {
     upload: string;
   };
 
-  form: {
-    required: ((name: string) => string) | string;
-  };
-
   guideline: {
     recommend: string;
     oppose: string;

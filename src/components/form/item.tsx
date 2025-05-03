@@ -1,4 +1,4 @@
-import type { FormItemProps } from "../../types/form";
+import type { FieldsValue, FormItemProps } from "../../types/form";
 import React from "react";
 import { Field, Layout } from "./field";
 import { stringify } from "@aiszlab/relax/class-name";
@@ -9,18 +9,24 @@ import { useFormContext } from "./context";
  * @description
  * item render
  */
-const Item = <T extends unknown = unknown>({
+const Item = <T extends FieldsValue, FieldValue>({
   required = false,
   className,
   style,
   supporting,
   ...props
-}: FormItemProps<T>) => {
+}: FormItemProps<FieldValue>) => {
   const { classNames } = useFormContext();
 
   if (props.name) {
     return (
-      <Field {...props} className={className} style={style} name={props.name} required={required} />
+      <Field<T, FieldValue>
+        {...props}
+        className={className}
+        style={style}
+        name={props.name}
+        required={required}
+      />
     );
   }
 

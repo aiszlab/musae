@@ -10,7 +10,7 @@ const styles = $create({
   }),
 });
 
-const Support = ({ children }: { children?: ReactNode }) => {
+const Supporting = ({ children }: { children?: ReactNode }) => {
   const theme = useTheme();
 
   const styled = $props(
@@ -22,4 +22,4 @@ const Support = ({ children }: { children?: ReactNode }) => {
   return <div {...styled}>{children}</div>;
 };
 
-export default Support;
+export default Supporting;

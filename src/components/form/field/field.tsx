@@ -1,5 +1,5 @@
 import React, { isValidElement, useMemo, cloneElement, Children, type ReactNode } from "react";
-import type { FormItemProps, FieldRenderProps } from "../../../types/form";
+import type { FieldsValue, FormItemProps } from "../../../types/form";
 import type { RequiredIn } from "@aiszlab/relax/types";
 import { chain } from "@aiszlab/relax";
 import Layout from "./layout";
@@ -11,12 +11,20 @@ import { stringify } from "@aiszlab/relax/class-name";
 import { useFormContext } from "../context";
 import { useFormItem } from "../use-form-item";
 
+interface FieldProps<T> {
+  name: PropertyKey;
+  value: T;
+  invalid?: boolean;
+  onChange?: (value: T) => void;
+  onBlur?: () => void;
+}
+
 /**
  * @description
  * form item may not has name prop
  * if there is name prop, it will render
  */
-const Field = ({
+const Field = <T extends FieldsValue, FieldValue>({
   required,
   children: _children,
   className,
@@ -24,10 +32,9 @@ const Field = ({
   supporting,
   name,
   ...props
-}: RequiredIn<FormItemProps, "name" | "required">) => {
+}: RequiredIn<FormItemProps<FieldValue>, "name" | "required">) => {
   const { classNames } = useFormContext();
-  const [locale] = useLocale("form");
-  const { isInvalid, value, change, error } = useFormItem({
+  const { isInvalid, value, change, error } = useFormItem<T, FieldValue>({
     name,
     rules: [],
   });
@@ -36,14 +43,14 @@ const Field = ({
     return Children.toArray(_children)
       .reduce<[ReactNode[], boolean]>(
         ([_clonedChildren, isBound], _child) => {
-          if (isBound || !isValidElement<FieldRenderProps>(_child)) {
+          if (isBound || !isValidElement<FieldProps<FieldValue>>(_child)) {
             return [_clonedChildren.concat(_child), isBound] as const;
           }
 
           // registe react hook form
           return [
             _clonedChildren.concat(
-              cloneElement<FieldRenderProps>(_child, {
+              cloneElement(_child, {
                 name,
                 value,
                 invalid: isInvalid,

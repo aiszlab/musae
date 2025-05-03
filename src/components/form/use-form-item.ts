@@ -4,10 +4,12 @@ import { type ReactNode, useCallback, useMemo, useState } from "react";
 import type { FieldsValue, FormItemProps } from "../../utils/form";
 import type { ContextValue } from "../../types/form";
 
+type UsingFormItem<T> = Pick<FormItemProps<T>, "name" | "rules">;
+
 function useFormItem<T extends FieldsValue, FieldValue>({
   name,
   rules,
-}: FormItemProps<FieldValue>) {
+}: UsingFormItem<FieldValue>) {
   const { form } = useFormContext() as ContextValue<T>;
   const [error, setError] = useState<ReactNode>();
   const [value, setValue] = useState<FieldValue>();

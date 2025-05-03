@@ -49,10 +49,6 @@ const en_US: Locale = {
     upload: "Upload",
   },
 
-  form: {
-    required: (name) => `${name} is required`,
-  },
-
   guideline: {
     recommend: "Do",
     oppose: "Don’t",

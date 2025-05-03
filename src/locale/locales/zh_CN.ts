@@ -49,10 +49,6 @@ const zh_CN: Locale = {
     upload: "上传",
   },
 
-  form: {
-    required: (name) => `${name} 是必填项`,
-  },
-
   guideline: {
     recommend: "建议",
     oppose: "禁止",
