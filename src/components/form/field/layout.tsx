@@ -48,7 +48,7 @@ type Props = ComponentProps & {
    * @description
    * label for current input
    */
-  label?: string;
+  label?: ReactNode;
 
   /**
    * @description

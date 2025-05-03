@@ -1,7 +1,6 @@
 import type { FormItemProps } from "../../types/form";
 import React from "react";
 import { Field, Layout } from "./field";
-import type { FieldValues } from "react-hook-form";
 import { stringify } from "@aiszlab/relax/class-name";
 import Supporting from "./field/supporting";
 import { useFormContext } from "./context";
@@ -10,7 +9,7 @@ import { useFormContext } from "./context";
  * @description
  * item render
  */
-const Item = <T extends FieldValues = FieldValues>({
+const Item = <T extends unknown = unknown>({
   required = false,
   className,
   style,

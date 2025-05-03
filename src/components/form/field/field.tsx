@@ -1,15 +1,7 @@
-import React, {
-  isValidElement,
-  useMemo,
-  cloneElement,
-  Children,
-  type ReactNode,
-  useContext,
-} from "react";
+import React, { isValidElement, useMemo, cloneElement, Children, type ReactNode } from "react";
 import type { FormItemProps, FieldRenderProps } from "../../../types/form";
-import { useController } from "react-hook-form";
 import type { RequiredIn } from "@aiszlab/relax/types";
-import { chain, isRefable, toFunction } from "@aiszlab/relax";
+import { chain } from "@aiszlab/relax";
 import Layout from "./layout";
 import Error from "./error";
 import { AnimatePresence } from "motion/react";
@@ -17,6 +9,7 @@ import { useLocale } from "../../../locale";
 import Supporting from "./supporting";
 import { stringify } from "@aiszlab/relax/class-name";
 import { useFormContext } from "../context";
+import { useFormItem } from "../use-form-item";
 
 /**
  * @description
@@ -29,22 +22,14 @@ const Field = ({
   className,
   style,
   supporting,
+  name,
   ...props
 }: RequiredIn<FormItemProps, "name" | "required">) => {
   const { classNames } = useFormContext();
   const [locale] = useLocale("form");
-
-  const {
-    field: { onBlur, onChange, name, value, ref },
-    fieldState: { invalid, error },
-  } = useController({
-    name: props.name,
-    rules: {
-      required: {
-        value: required,
-        message: toFunction(locale.required)(props.label ?? props.name),
-      },
-    },
+  const { isInvalid, value, change, error } = useFormItem({
+    name,
+    rules: [],
   });
 
   const children = useMemo(() => {
@@ -61,12 +46,9 @@ const Field = ({
               cloneElement<FieldRenderProps>(_child, {
                 name,
                 value,
-                invalid,
-                onChange: chain(_child.props.onChange, onChange),
-                onBlur: chain(_child.props.onBlur, onBlur),
-                ...(isRefable(_child) && {
-                  ref,
-                }),
+                invalid: isInvalid,
+                onChange: chain(_child.props.onChange, change),
+                onBlur: chain(_child.props.onBlur),
               }),
             ),
             true,
@@ -75,7 +57,7 @@ const Field = ({
         [[], false],
       )
       .at(0);
-  }, [_children, name, value, invalid, ref, onChange, onBlur]);
+  }, [_children, name, value, isInvalid, change]);
 
   return (
     <Layout
@@ -85,7 +67,7 @@ const Field = ({
       supporting={
         <>
           {!!supporting && <Supporting>{supporting}</Supporting>}
-          <AnimatePresence mode="wait">{invalid && <Error error={error} />}</AnimatePresence>
+          <AnimatePresence mode="wait">{isInvalid && <Error error={error} />}</AnimatePresence>
         </>
       }
     >

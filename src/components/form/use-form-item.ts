@@ -1,7 +1,8 @@
 import { useMounted } from "@aiszlab/relax";
-import { type ContextValue, useFormContext } from "./context";
-import { type ReactNode, useMemo, useState } from "react";
+import { useFormContext } from "./context";
+import { type ReactNode, useCallback, useMemo, useState } from "react";
 import type { FieldsValue, FormItemProps } from "../../utils/form";
+import type { ContextValue } from "../../types/form";
 
 function useFormItem<T extends FieldsValue, FieldValue>({
   name,
@@ -25,10 +26,13 @@ function useFormItem<T extends FieldsValue, FieldValue>({
     return !!error;
   }, []);
 
+  const change = useCallback(() => {}, []);
+
   return {
     value,
     error,
     isInvalid,
+    change,
   };
 }
 

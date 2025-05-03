@@ -1,6 +1,5 @@
-import { type FieldError } from "react-hook-form";
 import type { ComponentProps } from "../../../types/element";
-import React, { type CSSProperties, useContext, useRef } from "react";
+import React, { type CSSProperties, type ReactNode, useRef } from "react";
 import { stringify } from "@aiszlab/relax/class-name";
 import { usePresence } from "motion/react";
 import { animate } from "motion/mini";
@@ -24,7 +23,7 @@ type Props = ComponentProps & {
    * @description
    * error
    */
-  error?: FieldError;
+  error?: ReactNode;
 };
 
 const Error = ({ error, className, style }: Props) => {
@@ -62,7 +61,7 @@ const Error = ({ error, className, style }: Props) => {
       }}
       ref={ref}
     >
-      {error?.message}
+      {error}
     </div>
   );
 };

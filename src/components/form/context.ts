@@ -1,6 +1,5 @@
-import { Nullable } from "@aiszlab/relax/types";
 import { createContext, useContext } from "react";
-import type { FieldsValue, Form } from "../../utils/form";
+import type { ContextValue, FieldsValue } from "../../types/form";
 
 /**
  * class names
@@ -12,26 +11,6 @@ export const CLASS_NAMES = {
   fieldSupporting: "form__item-supporting",
   fieldError: "form__item-field-error",
 } as const;
-
-/**
- * Context
- */
-export interface ContextValue<T extends FieldsValue = {}> {
-  /**
-   * form instance
-   */
-  form: Nullable<Form<T>>;
-
-  /**
-   * labelCol
-   */
-  labelCol: number;
-
-  /**
-   * wrapperCol
-   */
-  wrapperCol: number;
-}
 
 export const DEFAULT_CONTEXT_VALUE: ContextValue & { classNames: typeof CLASS_NAMES } = {
   form: null,

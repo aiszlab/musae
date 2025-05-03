@@ -82,7 +82,6 @@
     "dayjs": "^1.11.13",
     "lexical": "^0.30.0",
     "motion": "^12.6.5",
-    "react-hook-form": "^7.55.0",
     "rxjs": "^7.8.2"
   },
   "devDependencies": {

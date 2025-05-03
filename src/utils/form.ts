@@ -1,6 +1,6 @@
 import { get, pick, set, toArray } from "@aiszlab/relax";
-import type { Partialable } from "@aiszlab/relax/types";
-import { type ReactNode } from "react";
+import type { Nullable, Partialable } from "@aiszlab/relax/types";
+import { type CSSProperties, type ReactNode } from "react";
 import { Subject } from "rxjs";
 
 /**
@@ -38,6 +38,46 @@ export interface FormItemProps<FieldValue> {
     validate: (value: Partialable<FieldValue>) => ReactNode | Promise<ReactNode>;
     message?: ReactNode;
   }[];
+
+  /**
+   * required field
+   */
+  required?: boolean;
+
+  /**
+   * class name
+   */
+  className?: string;
+
+  /**
+   * style
+   */
+  style?: CSSProperties;
+
+  /**
+   * supporting
+   */
+  supporting?: ReactNode;
+
+  /**
+   * label
+   */
+  label?: ReactNode;
+
+  /**
+   * labelCol
+   */
+  labelCol: number;
+
+  /**
+   * wrapperCol
+   */
+  wrapperCol: number;
+
+  /**
+   * children
+   */
+  children?: ReactNode;
 }
 
 /**
@@ -195,6 +235,34 @@ export class Form<T extends FieldsValue> {
  * form props
  */
 export interface FormProps<T extends FieldsValue> {
+  /**
+   * used form instance
+   * use `form` can control `Form` value
+   */
   form: Form<T>;
+
+  /**
+   * children components
+   */
   children: ReactNode;
+}
+
+/**
+ * Context value type
+ */
+export interface ContextValue<T extends FieldsValue = {}> {
+  /**
+   * form instance
+   */
+  form: Nullable<Form<T>>;
+
+  /**
+   * labelCol
+   */
+  labelCol: number;
+
+  /**
+   * wrapperCol
+   */
+  wrapperCol: number;
 }
