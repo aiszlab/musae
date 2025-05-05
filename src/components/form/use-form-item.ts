@@ -15,6 +15,8 @@ function useFormItem<T extends FieldsValue, FieldValue>({
   const [value, setValue] = useState<FieldValue>();
 
   useMounted(() => {
+    if (!name) return;
+
     return form?.register<FieldValue>(name, {
       rules,
       onChange: ({ error, value }) => {
@@ -28,7 +30,10 @@ function useFormItem<T extends FieldsValue, FieldValue>({
     return !!error;
   }, []);
 
-  const change = useCallback(() => {}, []);
+  const change = useCallback((value: FieldValue) => {
+    if (!name) return;
+    form?.changeFieldValue(name, value);
+  }, []);
 
   return {
     value,

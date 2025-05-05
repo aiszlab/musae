@@ -3,15 +3,14 @@ import type { Nullable, Partialable } from "@aiszlab/relax/types";
 import { type CSSProperties, type ReactNode } from "react";
 import { Subject } from "rxjs";
 
+
 /**
  * unique symbols
  */
 export const FORM_TOKEN = Symbol("FORM");
 export const ERROR_TOKEN = Symbol("ERROR");
 
-export interface FieldsValue {
-  [propertyKey: PropertyKey]: unknown;
-}
+export type FieldsValue = Record<PropertyKey, any>;
 
 export interface FieldsError {
   [propertyKey: PropertyKey]: ({ [ERROR_TOKEN]: ReactNode } & FieldsError) | null;
@@ -29,7 +28,7 @@ export interface FormItemProps<FieldValue> {
   /**
    * name
    */
-  name: PropertyKey;
+  name?: PropertyKey;
 
   /**
    * rules
@@ -67,12 +66,12 @@ export interface FormItemProps<FieldValue> {
   /**
    * labelCol
    */
-  labelCol: number;
+  labelCol?: number;
 
   /**
    * wrapperCol
    */
-  wrapperCol: number;
+  wrapperCol?: number;
 
   /**
    * children
@@ -96,7 +95,12 @@ interface FormState<T extends FieldsValue> {
 
 interface ChangingState<T extends FieldsValue> {
   source: ChangingSource;
-  state: FormState<T>;
+  name?: PropertyKey;
+  changedValue: Partial<T>;
+}
+
+interface FormProps<T extends FieldsValue> {
+  onChange: (changedValue: Partial<T>, value: Partial<T>) => void;
 }
 
 /**
@@ -107,17 +111,31 @@ export class Form<T extends FieldsValue> {
   #fields: Map<PropertyKey, Pick<RegisteredField<any>, "rules">>;
   #state: FormState<T>;
   #state$: Subject<ChangingState<T>>;
+  #onChange: FormProps<T>["onChange"];
 
-  constructor() {
+  constructor({ onChange }: FormProps<T>) {
     this.#defaultValue = {};
     this.#fields = new Map();
     this.#state = {
       value: {},
       error: {},
     };
+    this.#onChange = onChange;
     this.#state$ = new Subject<ChangingState<T>>();
+
+    this.#state$.subscribe(({ source, state, name }) => {
+      const changedValue: Partial<T> = {};
+      set(changedValue, name, value);
+
+      if (source === "change") {
+        this.#onChange(changedValue, this.#state.value);
+      }
+    });
   }
 
+  /**
+   * set default value
+   */
   setDefaultValue(value?: Partial<T>) {
     this.#defaultValue = value ?? {};
     this.#state.value = this.#defaultValue;
@@ -187,6 +205,7 @@ export class Form<T extends FieldsValue> {
 
     this.#state$.next({
       source: "set",
+      name,
       state: this.#state,
     });
   }
@@ -229,22 +248,19 @@ export class Form<T extends FieldsValue> {
       state: this.#state,
     });
   }
-}
-
-/**
- * form props
- */
-export interface FormProps<T extends FieldsValue> {
-  /**
-   * used form instance
-   * use `form` can control `Form` value
-   */
-  form: Form<T>;
 
   /**
-   * children components
+   * change field value
    */
-  children: ReactNode;
+  changeFieldValue<FieldValue>(name: PropertyKey, value: FieldValue) {
+    set(this.#state.value, name, value);
+    set(this.#state.error, name, null);
+
+    this.#state$.next({
+      source: "change",
+      state: this.#state,
+    });
+  }
 }
 
 /**

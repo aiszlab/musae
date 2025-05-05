@@ -11,7 +11,6 @@ import { spacing } from "../../../theme/tokens.stylex";
 import { Button } from "../../../button";
 import { Form } from "../../../form";
 import { Input } from "../../../input";
-import { useForm } from "../../../form/hooks";
 import { $createTextNode } from "lexical";
 import { IconButton } from "../../../icon-button";
 
@@ -33,7 +32,7 @@ const styles = $create({
 const FloatingLinkEditorPlugin = ({ link }: Props) => {
   const [editor] = useLexicalComposerContext();
   const [isEditable, { turnOn, turnOff }] = useBoolean();
-  const form = useForm<FormValues>();
+  const form = Form.useForm<FormValues>();
 
   const trigger = useMemo(() => {
     return getElementByNode(editor, link);
@@ -42,10 +41,10 @@ const FloatingLinkEditorPlugin = ({ link }: Props) => {
   const styled = $props(styles.popper);
 
   const updateLink = useEvent(async () => {
-    const isValid = await form.trigger().catch(() => false);
+    const isValid = await form.validate().catch(() => false);
     if (!isValid) return;
 
-    const { href, title } = form.getValues();
+    const { href, title } = form.getFieldsValue();
 
     editor.update(() => {
       if (!link) return;
@@ -63,7 +62,7 @@ const FloatingLinkEditorPlugin = ({ link }: Props) => {
 
     editor.read(() => {
       const href = link.getURL();
-      form.setValue("href", href);
+      form.setFieldValue("href", href);
       turnOn();
     });
   };

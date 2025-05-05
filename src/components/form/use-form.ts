@@ -1,13 +1,6 @@
 import { useDefault } from "@aiszlab/relax";
-import type { UsedForm as _UsedForm } from "./types";
 import { type FieldsValue, Form, FORM_TOKEN } from "../../utils/form";
-
-/**
- * form hook return
- */
-interface UsedForm<T extends FieldsValue> extends _UsedForm {
-  [FORM_TOKEN]: Form<T>;
-}
+import type { UsedForm, UsingForm } from "../../types/form";
 
 /**
  * form hook
@@ -16,7 +9,7 @@ interface UsedForm<T extends FieldsValue> extends _UsedForm {
 function useForm<T extends FieldsValue>({
   defaultValue,
   form: _usedForm,
-}: { defaultValue?: Partial<T>; form?: UsedForm<T> } = {}): UsedForm<T> {
+}: UsingForm<T> = {}): UsedForm<T> {
   const form = useDefault(() => {
     const _form = _usedForm?.[FORM_TOKEN] ?? new Form<T>();
 
@@ -35,6 +28,12 @@ function useForm<T extends FieldsValue>({
       },
       clear() {
         return _form.clear();
+      },
+      getFieldsValue() {
+        return _form.getFieldsValue();
+      },
+      validate() {
+        return _form.validate();
       },
       [FORM_TOKEN]: _form,
     };
