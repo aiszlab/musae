@@ -1,4 +1,4 @@
-import { useDefault } from "@aiszlab/relax";
+import { useDefault, useEvent } from "@aiszlab/relax";
 import { type FieldsValue, Form, FORM_TOKEN } from "../../utils/form";
 import type { UsedForm, UsingForm } from "../../types/form";
 
@@ -9,9 +9,15 @@ import type { UsedForm, UsingForm } from "../../types/form";
 function useForm<T extends FieldsValue>({
   defaultValue,
   form: _usedForm,
+  onChange,
 }: UsingForm<T> = {}): UsedForm<T> {
+  // value change handler
+  const changeValue = useEvent((changedValue: Partial<T>, value: Partial<T>) => {
+    onChange?.(changedValue, value);
+  });
+
   const form = useDefault(() => {
-    const _form = _usedForm?.[FORM_TOKEN] ?? new Form<T>();
+    const _form = _usedForm?.[FORM_TOKEN] ?? new Form<T>({ onChange: changeValue });
 
     // set default value
     _form.setDefaultValue(defaultValue);

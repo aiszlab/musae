@@ -1,8 +1,7 @@
-import { get, pick, set, toArray } from "@aiszlab/relax";
+import { get, pick, toArray, set } from "@aiszlab/relax";
 import type { Nullable, Partialable } from "@aiszlab/relax/types";
 import { type CSSProperties, type ReactNode } from "react";
-import { Subject } from "rxjs";
-
+import { type Observable, Subject, tap } from "rxjs";
 
 /**
  * unique symbols
@@ -86,21 +85,28 @@ interface RegisteredField<FieldValue> extends Pick<FormItemProps<FieldValue>, "r
   onChange: (_state: FieldState<FieldValue>) => void;
 }
 
-type ChangingSource = "set" | "change" | "blur" | "unfocus";
-
 interface FormState<T extends FieldsValue> {
   value: Partial<T>;
   error: FieldsError;
 }
 
-interface ChangingState<T extends FieldsValue> {
-  source: ChangingSource;
-  name?: PropertyKey;
-  changedValue: Partial<T>;
-}
+type ChangingState<T extends FieldsValue> =
+  | {
+      source: "change";
+      name: PropertyKey;
+      changedValue?: Partial<T>;
+    }
+  | {
+      source: "reset";
+    }
+  | {
+      source: "set";
+      name?: PropertyKey;
+      changedValue: Partial<T>;
+    };
 
 interface FormProps<T extends FieldsValue> {
-  onChange: (changedValue: Partial<T>, value: Partial<T>) => void;
+  onChange: <FieldValue>(name: PropertyKey, value: FieldValue) => void;
 }
 
 /**
@@ -123,9 +129,12 @@ export class Form<T extends FieldsValue> {
     this.#onChange = onChange;
     this.#state$ = new Subject<ChangingState<T>>();
 
-    this.#state$.subscribe(({ source, state, name }) => {
-      const changedValue: Partial<T> = {};
-      set(changedValue, name, value);
+    this.#state$.subscribe(({ source, changedValue, name }) => {
+      // if `name` is valid, then only use name
+      // else all fields
+      if (name) {
+        set(this.#state.value, name, get(changedValue, name));
+      }
 
       if (source === "change") {
         this.#onChange(changedValue, this.#state.value);
@@ -147,10 +156,10 @@ export class Form<T extends FieldsValue> {
   register<FieldValue>(name: PropertyKey, { onChange, rules }: RegisteredField<FieldValue>) {
     this.#fields.set(name, { rules });
 
-    const _subscription = this.#state$.subscribe(({ source, state: _state }) => {
+    const _subscription = this.#state$.subscribe(({ source, changedValue }) => {
       onChange({
-        value: get(_state.value, name) as FieldValue,
-        error: get(_state.error, [name, ERROR_TOKEN]),
+        value: get(changedValue, name) as FieldValue,
+        error: get(this.#state.error, [name, ERROR_TOKEN]),
       });
     });
 
@@ -200,13 +209,13 @@ export class Form<T extends FieldsValue> {
    * set field value
    */
   setFieldValue<FieldValue>(name: PropertyKey, value: FieldValue) {
-    set(this.#state.value, name, value);
-    set(this.#state.error, name, null);
+    const changedValue = {};
+    set(changedValue, name, value);
 
     this.#state$.next({
       source: "set",
       name,
-      state: this.#state,
+      changedValue,
     });
   }
 
@@ -219,7 +228,7 @@ export class Form<T extends FieldsValue> {
 
     this.#state$.next({
       source: "set",
-      state: this.#state,
+      changedValue: value,
     });
   }
 
@@ -252,12 +261,13 @@ export class Form<T extends FieldsValue> {
   /**
    * change field value
    */
-  changeFieldValue<FieldValue>(name: PropertyKey, value: FieldValue) {
+  change<FieldValue>(name: PropertyKey, value: FieldValue) {
     set(this.#state.value, name, value);
     set(this.#state.error, name, null);
 
     this.#state$.next({
       source: "change",
+      name,
       state: this.#state,
     });
   }

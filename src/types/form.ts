@@ -49,6 +49,11 @@ interface UsingForm<T extends FieldsValue> {
    * registered form
    */
   form?: UsedForm<T>;
+
+  /**
+   * change handler
+   */
+  onChange?: (changedValue: Partial<T>, value: Partial<T>) => void;
 }
 
 /**
