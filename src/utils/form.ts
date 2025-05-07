@@ -90,22 +90,12 @@ interface FormState<T extends FieldsValue> {
   error: FieldsError;
 }
 
-type ChangingState<T extends FieldsValue> =
-  | {
-      source: "change";
-      name: PropertyKey;
-      changedValue?: Partial<T>;
-    }
-  | {
-      source: "reset";
-    }
-  | {
-      source: "set";
-      name?: PropertyKey;
-      changedValue: Partial<T>;
-    };
+type ChangingState<T extends FieldsValue> = {
+  source: "change" | "set";
+  names: keyof T[];
+};
 
-interface FormProps<T extends FieldsValue> {
+interface FormProps {
   onChange: <FieldValue>(name: PropertyKey, value: FieldValue) => void;
 }
 
@@ -117,9 +107,9 @@ export class Form<T extends FieldsValue> {
   #fields: Map<PropertyKey, Pick<RegisteredField<any>, "rules">>;
   #state: FormState<T>;
   #state$: Subject<ChangingState<T>>;
-  #onChange: FormProps<T>["onChange"];
+  #onChange: FormProps["onChange"];
 
-  constructor({ onChange }: FormProps<T>) {
+  constructor({ onChange }: FormProps) {
     this.#defaultValue = {};
     this.#fields = new Map();
     this.#state = {
@@ -129,15 +119,10 @@ export class Form<T extends FieldsValue> {
     this.#onChange = onChange;
     this.#state$ = new Subject<ChangingState<T>>();
 
-    this.#state$.subscribe(({ source, changedValue, name }) => {
-      // if `name` is valid, then only use name
-      // else all fields
-      if (name) {
-        set(this.#state.value, name, get(changedValue, name));
-      }
-
+    this.#state$.subscribe(({ source }) => {
+      // value change, handle `onChange` callback
       if (source === "change") {
-        this.#onChange(changedValue, this.#state.value);
+        this.#onChange("", this.#state.value);
       }
     });
   }
@@ -156,7 +141,7 @@ export class Form<T extends FieldsValue> {
   register<FieldValue>(name: PropertyKey, { onChange, rules }: RegisteredField<FieldValue>) {
     this.#fields.set(name, { rules });
 
-    const _subscription = this.#state$.subscribe(({ source, changedValue }) => {
+    const _subscription = this.#state$.subscribe(({ source }) => {
       onChange({
         value: get(changedValue, name) as FieldValue,
         error: get(this.#state.error, [name, ERROR_TOKEN]),
@@ -209,8 +194,7 @@ export class Form<T extends FieldsValue> {
    * set field value
    */
   setFieldValue<FieldValue>(name: PropertyKey, value: FieldValue) {
-    const changedValue = {};
-    set(changedValue, name, value);
+    this.#state.value[name] = value;
 
     this.#state$.next({
       source: "set",
