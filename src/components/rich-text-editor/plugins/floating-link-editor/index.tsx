@@ -9,7 +9,7 @@ import { OpenInNew, Edit, LinkOff } from "../../../icon/icons";
 import { create as $create, props as $props } from "@stylexjs/stylex";
 import { spacing } from "../../../theme/tokens.stylex";
 import { Button } from "../../../button";
-import { Form, Item as FormItem } from "../../../form";
+import { Form } from "../../../form";
 import { Input } from "../../../input";
 import { $createTextNode } from "lexical";
 import { IconButton } from "../../../icon-button";

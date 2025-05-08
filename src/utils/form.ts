@@ -91,8 +91,8 @@ interface ChangingState<T extends FieldsValue> extends Partial<FormState<T>> {
   names: (keyof T)[];
 }
 
-interface FormProps {
-  onChange: <FieldValue>(name: PropertyKey, value: FieldValue) => void;
+interface FormProps<T extends FieldsValue> {
+  onChange: (names: (keyof T)[], value: Partial<T>) => void;
 }
 
 /**
@@ -103,9 +103,9 @@ export class Form<T extends FieldsValue> {
   #fields: Map<keyof T, Pick<RegisteredField<T, keyof T>, "rules">>;
   #state: FormState<T>;
   #state$: Subject<ChangingState<T>>;
-  #onChange: FormProps["onChange"];
+  #onChange: FormProps<T>["onChange"];
 
-  constructor({ onChange }: FormProps) {
+  constructor({ onChange }: FormProps<T>) {
     this.#defaultValue = {};
     this.#fields = new Map();
     this.#state = {
@@ -115,10 +115,10 @@ export class Form<T extends FieldsValue> {
     this.#onChange = onChange;
     this.#state$ = new Subject<ChangingState<T>>();
 
-    this.#state$.subscribe(({ source }) => {
+    this.#state$.subscribe(({ source, names }) => {
       // value change, handle `onChange` callback
       if (source === "change") {
-        this.#onChange("", this.#state.value);
+        this.#onChange(names, this.#state.value);
       }
     });
   }

@@ -53,7 +53,7 @@ interface UsingForm<T extends FieldsValue> {
   /**
    * change handler
    */
-  onChange?: (changedValue: Partial<T>, value: Partial<T>) => void;
+  onChange?: (names: (keyof T)[], value: Partial<T>) => void;
 }
 
 /**
