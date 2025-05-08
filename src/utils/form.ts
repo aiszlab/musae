@@ -1,39 +1,34 @@
-import { get, pick, toArray, set } from "@aiszlab/relax";
+import { get, pick, toArray } from "@aiszlab/relax";
 import type { Nullable, Partialable } from "@aiszlab/relax/types";
 import { type CSSProperties, type ReactNode } from "react";
-import { type Observable, Subject, tap } from "rxjs";
+import { filter, Subject } from "rxjs";
 
 /**
  * unique symbols
  */
 export const FORM_TOKEN = Symbol("FORM");
-export const ERROR_TOKEN = Symbol("ERROR");
 
-export type FieldsValue = Record<PropertyKey, any>;
-
-export interface FieldsError {
-  [propertyKey: PropertyKey]: ({ [ERROR_TOKEN]: ReactNode } & FieldsError) | null;
-}
+export type FieldsValue = Record<string, any>;
 
 interface FieldState<FieldValue> {
-  value: FieldValue;
+  value: Partialable<FieldValue>;
   error: ReactNode;
 }
 
 /**
  * form item props
  */
-export interface FormItemProps<FieldValue> {
+export interface FormItemProps<T extends FieldsValue, FieldKey extends keyof T> {
   /**
    * name
    */
-  name?: PropertyKey;
+  name?: FieldKey;
 
   /**
    * rules
    */
   rules?: {
-    validate: (value: Partialable<FieldValue>) => ReactNode | Promise<ReactNode>;
+    validate: (value: Partialable<T[FieldKey]>) => ReactNode | Promise<ReactNode>;
     message?: ReactNode;
   }[];
 
@@ -81,19 +76,20 @@ export interface FormItemProps<FieldValue> {
 /**
  * registered field
  */
-interface RegisteredField<FieldValue> extends Pick<FormItemProps<FieldValue>, "rules"> {
-  onChange: (_state: FieldState<FieldValue>) => void;
+interface RegisteredField<T extends FieldsValue, FieldKey extends keyof T>
+  extends Pick<FormItemProps<T, FieldKey>, "rules"> {
+  onChange: (_state: FieldState<T[FieldKey]>) => void;
 }
 
 interface FormState<T extends FieldsValue> {
   value: Partial<T>;
-  error: FieldsError;
+  error: Partial<Record<keyof T, ReactNode>>;
 }
 
-type ChangingState<T extends FieldsValue> = {
+interface ChangingState<T extends FieldsValue> extends Partial<FormState<T>> {
   source: "change" | "set";
-  names: keyof T[];
-};
+  names: (keyof T)[];
+}
 
 interface FormProps {
   onChange: <FieldValue>(name: PropertyKey, value: FieldValue) => void;
@@ -104,7 +100,7 @@ interface FormProps {
  */
 export class Form<T extends FieldsValue> {
   #defaultValue: Partial<T>;
-  #fields: Map<PropertyKey, Pick<RegisteredField<any>, "rules">>;
+  #fields: Map<keyof T, Pick<RegisteredField<T, keyof T>, "rules">>;
   #state: FormState<T>;
   #state$: Subject<ChangingState<T>>;
   #onChange: FormProps["onChange"];
@@ -138,15 +134,24 @@ export class Form<T extends FieldsValue> {
   /**
    * register field
    */
-  register<FieldValue>(name: PropertyKey, { onChange, rules }: RegisteredField<FieldValue>) {
+  register<FieldKey extends keyof T = keyof T>(
+    name: FieldKey,
+    { onChange, rules }: RegisteredField<T, FieldKey>,
+  ) {
     this.#fields.set(name, { rules });
 
-    const _subscription = this.#state$.subscribe(({ source }) => {
-      onChange({
-        value: get(changedValue, name) as FieldValue,
-        error: get(this.#state.error, [name, ERROR_TOKEN]),
+    const _subscription = this.#state$
+      .pipe(
+        // only listen `name` related to `register` field
+        filter(({ names }) => names.length === 0 || new Set(names).has(name)),
+      )
+      .subscribe(() => {
+        // callback field state
+        onChange({
+          value: this.#state.value[name],
+          error: this.#state.error[name],
+        });
       });
-    });
 
     return () => {
       this.#fields.delete(name);
@@ -166,7 +171,7 @@ export class Form<T extends FieldsValue> {
    * validate all registered fields
    */
   async validate() {
-    const validated = await Promise.all<[PropertyKey, ReactNode][]>(
+    const validated = await Promise.all<[keyof T, ReactNode][]>(
       toArray(this.#fields).map(({ 0: name, 1: { rules = [] } }) => {
         return [
           name,
@@ -185,7 +190,7 @@ export class Form<T extends FieldsValue> {
 
     // notify field validated result
     return validated.reduce((isValid, { 0: name, 1: error }) => {
-      set(this.#state.error, [name, ERROR_TOKEN], error);
+      this.#state.error[name] = error;
       return isValid && !error;
     }, true);
   }
@@ -193,13 +198,16 @@ export class Form<T extends FieldsValue> {
   /**
    * set field value
    */
-  setFieldValue<FieldValue>(name: PropertyKey, value: FieldValue) {
+  setFieldValue<FieldValue extends T[FieldKey], FieldKey extends keyof T = keyof T>(
+    name: FieldKey,
+    value: FieldValue,
+  ) {
     this.#state.value[name] = value;
 
     this.#state$.next({
       source: "set",
-      name,
-      changedValue,
+      names: [name],
+      value: this.#state.value,
     });
   }
 
@@ -207,12 +215,22 @@ export class Form<T extends FieldsValue> {
    * set field value
    */
   setFieldsValue(value: Partial<T>) {
-    this.#state.value = value;
-    this.#state.error = {};
+    const names = Object.keys(value);
+
+    this.#state.value = {
+      ...this.#state.value,
+      ...value,
+    };
+
+    this.#state.error = {
+      ...this.#state.error,
+      ...Object.fromEntries(names.map((name) => [name, null])),
+    };
 
     this.#state$.next({
       source: "set",
-      changedValue: value,
+      names,
+      ...this.#state,
     });
   }
 
@@ -225,7 +243,8 @@ export class Form<T extends FieldsValue> {
 
     this.#state$.next({
       source: "set",
-      state: this.#state,
+      names: [],
+      ...this.#state,
     });
   }
 
@@ -238,21 +257,24 @@ export class Form<T extends FieldsValue> {
 
     this.#state$.next({
       source: "set",
-      state: this.#state,
+      names: [],
+      ...this.#state,
     });
   }
 
   /**
    * change field value
    */
-  change<FieldValue>(name: PropertyKey, value: FieldValue) {
-    set(this.#state.value, name, value);
-    set(this.#state.error, name, null);
+  change<FieldValue extends T[FieldKey], FieldKey extends keyof T = keyof T>(
+    name: FieldKey,
+    value: FieldValue,
+  ) {
+    this.#state.value[name] = value;
+    this.#state.error[name] = null;
 
     this.#state$.next({
       source: "change",
-      name,
-      state: this.#state,
+      names: [name],
     });
   }
 }

@@ -24,7 +24,7 @@ interface FieldProps<T> {
  * form item may not has name prop
  * if there is name prop, it will render
  */
-const Field = <T extends FieldsValue, FieldValue>({
+const Field = <T extends FieldsValue, FieldKey extends keyof T>({
   required,
   children: _children,
   className,
@@ -32,9 +32,9 @@ const Field = <T extends FieldsValue, FieldValue>({
   supporting,
   name,
   ...props
-}: RequiredIn<FormItemProps<FieldValue>, "name" | "required">) => {
+}: RequiredIn<FormItemProps<T, FieldKey>, "name" | "required">) => {
   const { classNames } = useFormContext();
-  const { isInvalid, value, change, error } = useFormItem<T, FieldValue>({
+  const { isInvalid, value, change, error } = useFormItem<T, FieldKey>({
     name,
     rules: [],
   });
@@ -43,7 +43,7 @@ const Field = <T extends FieldsValue, FieldValue>({
     return Children.toArray(_children)
       .reduce<[ReactNode[], boolean]>(
         ([_clonedChildren, isBound], _child) => {
-          if (isBound || !isValidElement<FieldProps<FieldValue>>(_child)) {
+          if (isBound || !isValidElement<FieldProps<T[FieldKey]>>(_child)) {
             return [_clonedChildren.concat(_child), isBound] as const;
           }
 

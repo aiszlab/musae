@@ -12,9 +12,7 @@ function useForm<T extends FieldsValue>({
   onChange,
 }: UsingForm<T> = {}): UsedForm<T> {
   // value change handler
-  const changeValue = useEvent((changedValue: Partial<T>, value: Partial<T>) => {
-    onChange?.(changedValue, value);
-  });
+  const changeValue = useEvent(() => {});
 
   const form = useDefault(() => {
     const _form = _usedForm?.[FORM_TOKEN] ?? new Form<T>({ onChange: changeValue });
@@ -23,7 +21,7 @@ function useForm<T extends FieldsValue>({
     _form.setDefaultValue(defaultValue);
 
     return {
-      setFieldValue(name: PropertyKey, value: unknown) {
+      setFieldValue<FieldKey extends keyof T>(name: FieldKey, value: T[FieldKey]) {
         return _form.setFieldValue(name, value);
       },
       setFieldsValue(value: Partial<T>) {

@@ -9,18 +9,18 @@ import { useFormContext } from "./context";
  * @description
  * item render
  */
-const Item = <T extends FieldsValue, FieldValue>({
+const Item = <T extends FieldsValue, FieldKey extends keyof T>({
   required = false,
   className,
   style,
   supporting,
   ...props
-}: FormItemProps<FieldValue>) => {
+}: FormItemProps<T, FieldKey>) => {
   const { classNames } = useFormContext();
 
   if (props.name) {
     return (
-      <Field<T, FieldValue>
+      <Field<T, FieldKey>
         {...props}
         className={className}
         style={style}

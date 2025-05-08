@@ -75,21 +75,23 @@ interface FormProps<T extends FieldsValue> {
 /**
  * typed form
  */
-interface TypedForm<T extends FieldsValue> {
+interface TypedForm {
   /**
    * `Form` Component
    */
-  (props: FormProps<T>): ReactNode;
+  <T extends FieldsValue>(props: FormProps<T>): ReactNode;
 
   /**
    * `Item` Component
    */
-  Item: <V>(props: FormItemProps<V>) => ReactNode;
+  Item: <T extends FieldsValue, FieldKey extends keyof T = keyof T>(
+    props: FormItemProps<T, FieldKey>,
+  ) => ReactNode;
 
   /**
    * form hook
    */
-  useForm<V extends FieldsValue>(props?: UsingForm<V>): UsedForm<V>;
+  useForm<T extends FieldsValue>(props?: UsingForm<T>): UsedForm<T>;
 }
 
 export { FormProps, FormItemProps, TypedForm, FieldsValue, ContextValue, UsedForm, UsingForm };

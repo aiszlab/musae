@@ -4,20 +4,23 @@ import { type ReactNode, useCallback, useMemo, useState } from "react";
 import type { FieldsValue, FormItemProps } from "../../utils/form";
 import type { ContextValue } from "../../types/form";
 
-type UsingFormItem<T> = Pick<FormItemProps<T>, "name" | "rules">;
+type UsingFormItem<T extends FieldsValue, FieldKey extends keyof T> = Pick<
+  FormItemProps<T, FieldKey>,
+  "name" | "rules"
+>;
 
-function useFormItem<T extends FieldsValue, FieldValue>({
+function useFormItem<T extends FieldsValue, FieldKey extends keyof T>({
   name,
   rules,
-}: UsingFormItem<FieldValue>) {
+}: UsingFormItem<T, FieldKey>) {
   const { form } = useFormContext() as ContextValue<T>;
   const [error, setError] = useState<ReactNode>();
-  const [value, setValue] = useState<FieldValue>();
+  const [value, setValue] = useState<T[FieldKey]>();
 
   useMounted(() => {
     if (!name) return;
 
-    return form?.register<FieldValue>(name, {
+    return form?.register<FieldKey>(name, {
       rules,
       onChange: ({ error, value }) => {
         setError(error);
@@ -30,9 +33,9 @@ function useFormItem<T extends FieldsValue, FieldValue>({
     return !!error;
   }, []);
 
-  const change = useCallback((value: FieldValue) => {
+  const change = useCallback((value: T[FieldKey]) => {
     if (!name) return;
-    form?.changeFieldValue(name, value);
+    form?.change(name, value);
   }, []);
 
   return {
