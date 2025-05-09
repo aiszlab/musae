@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { toHtml } from "./utils";
 import { create as $create, props as $props } from "@stylexjs/stylex";
 import { typography } from "../theme/theme";
 import type { MarkdownProps } from "../../types/markdown";
 import { stringify } from "@aiszlab/relax/class-name";
 import { spacing } from "../theme/tokens.stylex";
-import { VisuallyHidden } from "../visually-hidden";
+import { JSDOM } from "jsdom";
 
 const styles = $create({
   markdown: {
@@ -20,40 +20,19 @@ const styles = $create({
   },
 });
 
-const Markdown = ({
-  value,
-  className,
-  style,
-  dark = false,
-}: MarkdownProps & {
-  dark?: boolean;
-}) => {
-  const [_html, _setHtml] = useState("");
-
-  useEffect(() => {
-    toHtml(value).then((_v) => {
-      _setHtml(_v);
-    });
-    _setHtml(_html);
-  }, []);
-
+const Markdown = async ({ value, className, style }: MarkdownProps) => {
+  const _html = await toHtml(value);
   const styled = $props(styles.markdown, typography.body.medium);
 
   return (
-    <div>
-      {/* for ssr, nothing else */}
-      {/* we are thinking about how to remove this */}
-      <VisuallyHidden>{value}</VisuallyHidden>
-
-      <div
-        dangerouslySetInnerHTML={{ __html: _html }}
-        className={stringify(className, styled.className)}
-        style={{
-          ...styled.style,
-          ...style,
-        }}
-      />
-    </div>
+    <div
+      dangerouslySetInnerHTML={{ __html: _html }}
+      className={stringify(className, styled.className)}
+      style={{
+        ...styled.style,
+        ...style,
+      }}
+    />
   );
 };
 
