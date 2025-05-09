@@ -7,15 +7,13 @@ import { useClassNames } from "../../hooks/use-class-names";
 import { stringify } from "@aiszlab/relax/class-name";
 import _Markdown from "./markdown";
 
-const _SRC = import("./markdown");
-
 const Markdown = ({ value, className, style }: MarkdownProps) => {
   const classNames = useClassNames(CLASS_NAMES);
 
   // dynamically render
   const _Markdown = useMemo(() => {
     return lazy(() =>
-      _SRC
+      import("./markdown")
         .then(({ default: render }) =>
           render({
             value,
