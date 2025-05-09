@@ -7,9 +7,9 @@ import { CLASS_NAMES } from "./context";
 import { useClassNames } from "../../hooks/use-class-names";
 
 const styles = $create({
-  capture: (props: { color: CSSProperties["color"] }) => ({
-    color: props.color,
-  }),
+  capture: {
+    color: "var(--color-primary)",
+  },
 });
 
 const Highlight = ({ children, capture }: HighlightProps) => {
@@ -19,11 +19,7 @@ const Highlight = ({ children, capture }: HighlightProps) => {
   const _children = useMemo<ReactNode>(() => {
     if (!capture) return [children];
 
-    const styled = $props(
-      styles.capture({
-        color: theme.colors.primary,
-      }),
-    );
+    const styled = $props(styles.capture);
 
     // 1. use regex match
     // 2. replace with custom node
@@ -52,7 +48,17 @@ const Highlight = ({ children, capture }: HighlightProps) => {
     return _children;
   }, [capture, children, theme, classNames]);
 
-  return <span className={classNames.highlight}>{_children}</span>;
+  return (
+    <span
+      className={classNames.highlight}
+      style={{
+        // @ts-expect-error style vars
+        "--color-primary": theme.colors.primary,
+      }}
+    >
+      {_children}
+    </span>
+  );
 };
 
 export default memo(Highlight);

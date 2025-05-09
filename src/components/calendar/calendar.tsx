@@ -91,7 +91,7 @@ const Calendar = forwardRef<CalendarRef, CalendarProps>(
             <KeyboardDoubleArrowLeft />
           </IconButton>
 
-          <IconButton variant="text" onClick={subtractYear} size="small">
+          <IconButton variant="text" onClick={subtractMonth} size="small">
             <KeyboardArrowLeft />
           </IconButton>
 

@@ -12,15 +12,15 @@ import { typography } from "../theme/theme";
 
 const styles = {
   item: $create({
-    default: (props: { outlineColor: CSSProperties["borderColor"] }) => ({
+    default: {
       borderBottomWidth: sizes.smallest,
       borderBottomStyle: "solid",
-      borderBottomColor: props.outlineColor,
+      borderBottomColor: "var(--color-outline-variant)",
 
       ":last-of-type": {
         borderBottomWidth: 0,
       },
-    }),
+    },
   }),
 
   header: $create({
@@ -46,12 +46,12 @@ const styles = {
   }),
 
   content: $create({
-    default: (props: { outlineColor: CSSProperties["borderColor"] }) => ({
+    default: {
       borderTopWidth: sizes.smallest,
       borderTopStyle: "solid",
-      borderTopColor: props.outlineColor,
+      borderTopColor: "var(--color-outline-variant)",
       padding: spacing.large,
-    }),
+    },
   }),
 
   collapser: $create({
@@ -82,13 +82,10 @@ const CollapseItem = ({ children, label, value }: CollapseItemProps) => {
   }, [isExpanded]);
 
   const styled = {
-    item: $props(styles.item.default({ outlineColor: theme.colors["outline-variant"] })),
+    item: $props(styles.item.default),
     header: $props(styles.header.default, typography.title.medium),
     panel: $props(styles.panel.default, !isExpanded && styles.panel.hidden),
-    content: $props(
-      styles.content.default({ outlineColor: theme.colors["outline-variant"] }),
-      typography.body.medium,
-    ),
+    content: $props(styles.content.default, typography.body.medium),
     collapser: $props(styles.collapser.default, isExpanded && styles.collapser.expanded),
   };
 
@@ -103,7 +100,11 @@ const CollapseItem = ({ children, label, value }: CollapseItemProps) => {
         isExpanded && classNames.itemActive,
         styled.item.className,
       )}
-      style={styled.item.style}
+      style={{
+        ...styled.item.style,
+        // @ts-expect-error style vars
+        "--color-outline-variant": theme.colors["outline-variant"],
+      }}
     >
       <div
         className={stringify(classNames.header, styled.header.className)}

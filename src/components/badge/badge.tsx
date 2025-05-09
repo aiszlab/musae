@@ -18,18 +18,15 @@ const styles = {
   }),
 
   tail: $create({
-    default: (props: {
-      backgroundColor: CSSProperties["backgroundColor"];
-      color: CSSProperties["color"];
-    }) => ({
+    default: {
       position: "absolute",
       borderRadius: sizes.infinity,
       minWidth: sizes.xxxxsmall,
       textAlign: "center",
-      boxShadow: `0 0 0 ${sizes.smallest} ${props.color}`,
-      backgroundColor: props.backgroundColor,
-      color: props.color,
-    }),
+      boxShadow: `0 0 0 ${sizes.smallest} var(--color-on-primary)`,
+      backgroundColor: "var(--color-primary)",
+      color: "var(--color-on-primary)",
+    },
 
     dot: {
       minWidth: null,
@@ -82,10 +79,7 @@ const Badge = ({
   const styled = {
     badge: $props(styles.badge.default),
     tail: $props(
-      styles.tail.default({
-        backgroundColor: theme.colors.primary,
-        color: theme.colors["on-primary"],
-      }),
+      styles.tail.default,
       isDot && styles.tail.dot,
       typography.label.small,
       invisible && styles.tail.invisible,
@@ -99,6 +93,9 @@ const Badge = ({
       style={{
         ...styled.badge.style,
         ...style,
+        // @ts-expect-error style vars
+        "--color-primary": theme.colors.primary,
+        "--color-on-primary": theme.colors["on-primary"],
       }}
     >
       {children}

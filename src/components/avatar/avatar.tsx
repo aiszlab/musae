@@ -1,4 +1,4 @@
-import React, { type CSSProperties, useContext, forwardRef } from "react";
+import React, { useContext, forwardRef } from "react";
 import type { AvatarProps } from "../../types/avatar";
 import { create as $create, props as $props } from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";
@@ -11,23 +11,20 @@ import { Skeleton } from "../skeleton";
 import { useClassNames } from "../../hooks/use-class-names";
 
 const styles = $create({
-  avatar: (props: {
-    backgroundColor: CSSProperties["backgroundColor"];
-    color: CSSProperties["color"];
-  }) => ({
+  avatar: {
     borderWidth: sizes.smallest,
     borderStyle: "solid",
     borderColor: "transparent",
     boxSizing: "border-box",
-    backgroundColor: props.backgroundColor,
-    color: props.color,
+    backgroundColor: "var(--color-primary-container)",
+    color: "var(--color-primary)",
     alignItems: "center",
     justifyContent: "center",
     userSelect: "none",
 
     display: "inline-flex",
     verticalAlign: "middle",
-  }),
+  },
 
   loading: {
     display: "inline-block",
@@ -40,13 +37,13 @@ const styles = $create({
     borderRadius: "inherit",
   },
 
-  overlapping: (props: { outlineColor: CSSProperties["borderColor"] }) => ({
+  overlapping: {
     ":not(:first-child)": {
       marginInlineStart: `calc(${spacing.xxsmall} * -1)`,
     },
 
-    borderColor: props.outlineColor,
-  }),
+    borderColor: "var(--color-on-primary)",
+  },
 
   circular: {
     borderRadius: sizes.infinity,
@@ -102,26 +99,17 @@ const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(
     const styled = {
       avatar: $props(
         typography.label[size],
-        styles.avatar({
-          backgroundColor: theme.colors["primary-container"],
-          color: theme.colors.primary,
-        }),
+        styles.avatar,
         styles[size],
         styles[shape],
-        isInGroup &&
-          styles.overlapping({
-            outlineColor: theme.colors["on-primary"],
-          }),
+        isInGroup && styles.overlapping,
       ),
       loading: $props(
         typography.label[size],
         styles.loading,
         styles[size],
         styles[shape],
-        isInGroup &&
-          styles.overlapping({
-            outlineColor: theme.colors["on-primary"],
-          }),
+        isInGroup && styles.overlapping,
       ),
       image: $props(styles.image, styles[size]),
     };
@@ -137,6 +125,10 @@ const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(
         style={{
           ...styled.avatar.style,
           ...style,
+          // @ts-expect-error style vars
+          "--color-primary": theme.colors.primary,
+          "--color-on-primary": theme.colors["on-primary"],
+          "--color-primary-container": theme.colors["primary-container"],
         }}
         ref={ref}
       >

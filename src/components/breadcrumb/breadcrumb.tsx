@@ -1,4 +1,4 @@
-import React, { type CSSProperties } from "react";
+import React from "react";
 import type { BreadcrumbProps } from "../../types/breadcrumb";
 import { create as $create, props as $props } from "@stylexjs/stylex";
 import { typography } from "../theme/theme";
@@ -10,9 +10,9 @@ import { spacing } from "../theme/tokens.stylex";
 import { CLASS_NAMES, Context } from "./context";
 
 const styles = $create({
-  breadcrumb: (props: { color: CSSProperties["color"] }) => ({
-    color: props.color,
-  }),
+  breadcrumb: {
+    color: "var(--color-on-surface-variant)",
+  },
 
   navigations: {
     margin: spacing.none,
@@ -33,12 +33,7 @@ const Breadcrumb = ({ items = [], className, separator = "/", style }: Breadcrum
   }
 
   const styled = {
-    breadcrumb: $props(
-      typography.label.large,
-      styles.breadcrumb({
-        color: theme.colors["on-surface-variant"],
-      }),
-    ),
+    breadcrumb: $props(typography.label.large, styles.breadcrumb),
     navigations: $props(styles.navigations),
   };
 
@@ -49,6 +44,8 @@ const Breadcrumb = ({ items = [], className, separator = "/", style }: Breadcrum
         style={{
           ...styled.breadcrumb.style,
           ...style,
+          // @ts-expect-error style vars
+          "--color-on-surface-variant": theme.colors["on-surface-variant"],
         }}
       >
         <ol {...styled.navigations}>

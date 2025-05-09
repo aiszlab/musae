@@ -14,7 +14,7 @@ import { Space } from "../space";
 import { Button } from "../button";
 import { useLocale } from "../../locale";
 import { CLASS_NAMES } from "./context";
-import { useAsyncEffect } from "@aiszlab/relax";
+import { at, useAsyncEffect } from "@aiszlab/relax";
 
 const styles = $create({
   popup: {
@@ -24,58 +24,55 @@ const styles = $create({
     zIndex: positions.drawer,
   },
 
-  overlay: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
+  overlay: {
     position: "absolute",
     inset: 0,
     pointerEvents: "auto",
     zIndex: positions.drawer,
     opacity: 0,
-    backgroundColor: props.backgroundColor,
-  }),
+    backgroundColor: "var(--color-surface-dim)",
+  },
 
-  panel: (props: {
-    backgroundColor: CSSProperties["backgroundColor"];
-    transform: CSSProperties["transform"];
-  }) => ({
-    backgroundColor: props.backgroundColor,
+  panel: {
+    backgroundColor: "var(--color-on-primary)",
     position: "absolute",
     zIndex: positions.drawer,
     pointerEvents: "auto",
     willChange: "transform",
     display: "flex",
     flexDirection: "column",
-    transform: props.transform,
-  }),
+    transform: "var(--default-position)",
+  },
 
-  right: (props: { size: number }) => ({
+  right: {
     right: 0,
     top: 0,
     bottom: 0,
-    width: props.size,
-  }),
+    width: "var(--size)",
+  },
 
-  left: (props: { size: number }) => ({
+  left: {
     left: 0,
     top: 0,
     bottom: 0,
-    width: props.size,
-  }),
+    width: "var(--size)",
+  },
 
-  bottom: (props: { size: number }) => ({
+  bottom: {
     bottom: 0,
     left: 0,
     right: 0,
-    height: props.size,
-  }),
+    height: "var(--size)",
+  },
 
-  top: (props: { size: number }) => ({
+  top: {
     top: 0,
     left: 0,
     right: 0,
-    height: props.size,
-  }),
+    height: "var(--size)",
+  },
 
-  header: (props: { outlineColor: CSSProperties["borderColor"] }) => ({
+  header: {
     display: "flex",
     paddingInline: spacing.large,
     paddingBlock: spacing.large,
@@ -83,8 +80,8 @@ const styles = $create({
     gap: spacing.xxxsmall,
     borderBottomWidth: sizes.smallest,
     borderBottomStyle: "solid",
-    borderBottomColor: props.outlineColor,
-  }),
+    borderBottomColor: "var(--color-outline-variant)",
+  },
 
   body: {
     flex: 1,
@@ -128,14 +125,14 @@ const Popup = ({
     if (open) {
       _popup.style.display = "block";
       await Promise.all([
-        panelRef.current && animate(panelRef.current, { transform: _placement.at(1) }),
+        panelRef.current && animate(panelRef.current, { transform: at(_placement, 1) }),
         overlayRef.current && animate(overlayRef.current, { opacity: 0.8 }),
       ]);
       return;
     }
 
     await Promise.all([
-      panelRef.current && animate(panelRef.current, { transform: _placement.at(0) }),
+      panelRef.current && animate(panelRef.current, { transform: at(_placement, 0) }),
       overlayRef.current && animate(overlayRef.current, { opacity: 0 }),
     ]);
     _popup.style.display = "none";
@@ -152,22 +149,9 @@ const Popup = ({
 
   const styled = {
     popup: $props(styles.popup),
-    overlay: $props(
-      styles.overlay({
-        backgroundColor: theme.colors["surface-dim"],
-      }),
-    ),
-    panel: $props(
-      styles.panel({
-        backgroundColor: theme.colors["on-primary"],
-        transform: _placement.at(0),
-      }),
-      styles[placement]({ size }),
-    ),
-    header: $props(
-      typography.body.large,
-      styles.header({ outlineColor: theme.colors["outline-variant"] }),
-    ),
+    overlay: $props(styles.overlay),
+    panel: $props(styles.panel, styles[placement]),
+    header: $props(typography.body.large, styles.header),
     body: $props(styles.body),
     actions: $props(styles.actions),
   };
@@ -177,7 +161,15 @@ const Popup = ({
       tabIndex={-1}
       ref={ref}
       className={stringify(classNames.drawer, className, styled.popup.className)}
-      style={styled.popup.style}
+      style={{
+        ...styled.popup.style,
+        // @ts-expect-error style vars
+        "--color-on-primary": theme.colors["on-primary"],
+        "--color-surface-dim": theme.colors["surface-dim"],
+        "--color-outline-variant": theme.colors["outline-variant"],
+        "--default-position": at(_placement, 0),
+        "--size": size,
+      }}
       onKeyDown={onKeyDown}
     >
       {/* overlay */}

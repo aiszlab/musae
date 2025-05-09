@@ -22,18 +22,18 @@ const styles = stylex.create({
     borderEndEndRadius: sizes.xxxxxxxxsmall,
   },
 
-  label: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
+  label: {
     marginBlockStart: spacing.xxxxxsmall,
-    backgroundColor: props.backgroundColor,
+    backgroundColor: "var(--color-error)",
     borderStartStartRadius: sizes.xxxxxxxxsmall,
     borderStartEndRadius: sizes.xxxxxxxxsmall,
     borderEndStartRadius: sizes.xxxxsmall,
     borderEndEndRadius: sizes.xxxxsmall,
-  }),
+  },
 
-  recommend: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
-    backgroundColor: props.backgroundColor,
-  }),
+  recommend: {
+    backgroundColor: "var(--color-success)",
+  },
 
   caption: {
     marginBlockStart: spacing.xxsmall,
@@ -51,12 +51,7 @@ const Guideline = ({ figure, caption, recommend = true, className, style }: Guid
   const styled = {
     guideline: stylex.props(styles.guideline),
     figure: stylex.props(styles.figure),
-    label: stylex.props(
-      styles.label({
-        backgroundColor: theme.colors.error,
-      }),
-      recommend && styles.recommend({ backgroundColor: theme.colors.success }),
-    ),
+    label: stylex.props(styles.label, recommend && styles.recommend),
     caption: stylex.props(styles.caption),
   };
 
@@ -66,6 +61,9 @@ const Guideline = ({ figure, caption, recommend = true, className, style }: Guid
       style={{
         ...styled.guideline.style,
         ...style,
+        // @ts-expect-error style vars
+        "--color-error": theme.colors.error,
+        "--color-success": theme.colors.success,
       }}
     >
       <Image

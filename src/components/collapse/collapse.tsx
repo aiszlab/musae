@@ -1,4 +1,4 @@
-import React, { type CSSProperties } from "react";
+import React from "react";
 import type { CollapseProps } from "../../types/collapse";
 import { useClassNames } from "../../hooks/use-class-names";
 import Item from "./item";
@@ -10,12 +10,12 @@ import { CLASS_NAMES, Context } from "./context";
 import { useTheme } from "../theme";
 
 const styles = $create({
-  collapse: (props: { outlineColor: CSSProperties["borderColor"] }) => ({
+  collapse: {
     borderWidth: sizes.smallest,
     borderStyle: "solid",
-    borderColor: props.outlineColor,
+    borderColor: "var(--color-outline-variant)",
     borderRadius: sizes.xxxxxxsmall,
-  }),
+  },
 });
 
 const Collapse = ({
@@ -34,7 +34,7 @@ const Collapse = ({
   // no need to render when items is empty
   if (items.length === 0) return null;
 
-  const styled = $props(styles.collapse({ outlineColor: theme.colors["outline-variant"] }));
+  const styled = $props(styles.collapse);
 
   return (
     <Context.Provider
@@ -49,6 +49,8 @@ const Collapse = ({
         style={{
           ...styled.style,
           ...style,
+          // @ts-expect-error style vars
+          "--color-outline-variant": theme.colors["outline-variant"],
         }}
       >
         {items.map((item) => {

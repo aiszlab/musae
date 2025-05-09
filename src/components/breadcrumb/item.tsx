@@ -8,29 +8,26 @@ import { Context } from "./context";
 
 const styles = {
   navigation: $create({
-    default: (props: { color: CSSProperties["color"] }) => ({
+    default: {
       ":last-of-type": {
-        color: props.color,
+        color: "var(--color-on-surface)",
       },
-    }),
+    },
 
-    link: (props: {
-      hoveredBackgroundColor: CSSProperties["backgroundColor"];
-      hoveredColor: CSSProperties["color"];
-    }) => ({
+    link: {
       paddingInline: spacing.xxxxxsmall,
       borderRadius: sizes.xxxxxxxsmall,
       backgroundColor: {
         default: null,
-        ":hover": props.hoveredBackgroundColor,
+        ":hover": "var(--color-surface)",
       },
       color: {
         default: null,
-        ":hover": props.hoveredColor,
+        ":hover": "var(--color-on-surface)",
       },
       transitionProperty: "all",
       transitionDuration: duration.short,
-    }),
+    },
   }),
 
   separator: $create({
@@ -46,20 +43,21 @@ const Item = ({ href, label, max, separator }: BreadcrumbItemProps) => {
   const { classNames } = useContext(Context);
 
   const styled = {
-    navigation: $props(
-      styles.navigation.default({ color: theme.colors["on-surface"] }),
-      isLink &&
-        styles.navigation.link({
-          hoveredBackgroundColor: theme.colors.surface,
-          hoveredColor: theme.colors["on-surface"],
-        }),
-    ),
+    navigation: $props(styles.navigation.default, isLink && styles.navigation.link),
     separator: $props(styles.separator.default),
   };
 
   return (
     <>
-      <li className={classNames.item}>
+      <li
+        className={stringify(classNames.item, styled.navigation.className)}
+        style={{
+          ...styled.navigation.style,
+          // @ts-expect-error style vars
+          "--color-surface": theme.colors.surface,
+          "--color-on-surface": theme.colors["on-surface"],
+        }}
+      >
         {isLink && <a href={href}>{label}</a>}
         {!isLink && label}
       </li>
