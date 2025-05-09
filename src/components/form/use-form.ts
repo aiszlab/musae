@@ -20,7 +20,7 @@ function useForm<T extends FieldsValue>({
     const _form = _usedForm?.[FORM_TOKEN] ?? new Form<T>({ onChange: changeValue });
 
     // set default value
-    _form.setDefaultValue(defaultValue);
+    _form.useDefaultValue(defaultValue);
 
     return {
       setFieldValue<FieldKey extends keyof T>(name: FieldKey, value: T[FieldKey]) {

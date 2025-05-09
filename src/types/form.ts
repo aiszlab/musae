@@ -1,5 +1,6 @@
-import type { ReactNode } from "react";
-import type { FieldsValue, ContextValue, Form, FORM_TOKEN, FormItemProps } from "../utils/form";
+import type { CSSProperties, ReactNode } from "react";
+import type { FieldsValue, Form, FORM_TOKEN, RegisteredField } from "../utils/form";
+import type { Nullable } from "@aiszlab/relax/types";
 
 /**
  * form hook return
@@ -92,6 +93,77 @@ interface TypedForm {
    * form hook
    */
   useForm<T extends FieldsValue>(props?: UsingForm<T>): UsedForm<T>;
+}
+
+/**
+ * form item props
+ */
+interface FormItemProps<T extends FieldsValue, FieldKey extends keyof T>
+  extends Pick<RegisteredField<T, FieldKey>, "rules"> {
+  /**
+   * name
+   */
+  name?: FieldKey;
+
+  /**
+   * required field
+   */
+  required?: boolean;
+
+  /**
+   * class name
+   */
+  className?: string;
+
+  /**
+   * style
+   */
+  style?: CSSProperties;
+
+  /**
+   * supporting
+   */
+  supporting?: ReactNode;
+
+  /**
+   * label
+   */
+  label?: ReactNode;
+
+  /**
+   * labelCol
+   */
+  labelCol?: number;
+
+  /**
+   * wrapperCol
+   */
+  wrapperCol?: number;
+
+  /**
+   * children
+   */
+  children?: ReactNode;
+}
+
+/**
+ * Context value type
+ */
+interface ContextValue<T extends FieldsValue = {}> {
+  /**
+   * form instance
+   */
+  form: Nullable<Form<T>>;
+
+  /**
+   * labelCol
+   */
+  labelCol: number;
+
+  /**
+   * wrapperCol
+   */
+  wrapperCol: number;
 }
 
 export { FormProps, FormItemProps, TypedForm, FieldsValue, ContextValue, UsedForm, UsingForm };

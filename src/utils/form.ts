@@ -1,6 +1,5 @@
-import { get, pick, toArray } from "@aiszlab/relax";
-import type { Nullable, Partialable } from "@aiszlab/relax/types";
-import { type CSSProperties, type ReactNode } from "react";
+import type { Partialable } from "@aiszlab/relax/types";
+import { type ReactNode } from "react";
 import { filter, Subject } from "rxjs";
 
 /**
@@ -15,14 +14,22 @@ interface FieldState<FieldValue> {
   error: ReactNode;
 }
 
+enum ChangingSource {
+  Change = "change",
+  Set = "set",
+  Validate = "validate",
+}
+
 /**
- * form item props
+ * registered field
+ * @description
+ * in `Form`, field which was registered will be managed by `Form`
  */
-export interface FormItemProps<T extends FieldsValue, FieldKey extends keyof T> {
+export interface RegisteredField<T extends FieldsValue, FieldKey extends keyof T> {
   /**
-   * name
+   * state change callback
    */
-  name?: FieldKey;
+  onChange: (_state: FieldState<T[FieldKey]>) => void;
 
   /**
    * rules
@@ -31,54 +38,6 @@ export interface FormItemProps<T extends FieldsValue, FieldKey extends keyof T> 
     validate: (value: Partialable<T[FieldKey]>) => ReactNode | Promise<ReactNode>;
     message?: ReactNode;
   }[];
-
-  /**
-   * required field
-   */
-  required?: boolean;
-
-  /**
-   * class name
-   */
-  className?: string;
-
-  /**
-   * style
-   */
-  style?: CSSProperties;
-
-  /**
-   * supporting
-   */
-  supporting?: ReactNode;
-
-  /**
-   * label
-   */
-  label?: ReactNode;
-
-  /**
-   * labelCol
-   */
-  labelCol?: number;
-
-  /**
-   * wrapperCol
-   */
-  wrapperCol?: number;
-
-  /**
-   * children
-   */
-  children?: ReactNode;
-}
-
-/**
- * registered field
- */
-interface RegisteredField<T extends FieldsValue, FieldKey extends keyof T>
-  extends Pick<FormItemProps<T, FieldKey>, "rules"> {
-  onChange: (_state: FieldState<T[FieldKey]>) => void;
 }
 
 interface FormState<T extends FieldsValue> {
@@ -87,7 +46,7 @@ interface FormState<T extends FieldsValue> {
 }
 
 interface ChangingState<T extends FieldsValue> extends Partial<FormState<T>> {
-  source: "change" | "set";
+  source: ChangingSource;
   names: (keyof T)[];
 }
 
@@ -125,10 +84,13 @@ export class Form<T extends FieldsValue> {
 
   /**
    * set default value
+   * @description
+   * once `defaultValue` changed, `Form` will reset to `defaultValue
    */
-  setDefaultValue(value?: Partial<T>) {
+  useDefaultValue(value?: Partial<T>) {
     this.#defaultValue = value ?? {};
     this.#state.value = this.#defaultValue;
+    this.reset();
   }
 
   /**
@@ -164,35 +126,47 @@ export class Form<T extends FieldsValue> {
    */
   getFieldsValue() {
     if (this.#fields.size === 0) return this.#state.value;
-    return pick(this.#state.value, toArray(this.#fields.keys()));
+
+    return this.#fields.keys().reduce<Partial<T>>((value, name) => {
+      value[name] = this.#state.value[name];
+      return value;
+    }, {});
   }
 
   /**
    * validate all registered fields
+   * @description
+   * if provided `names`, only validate `names`
    */
-  async validate() {
-    const validated = await Promise.all<[keyof T, ReactNode][]>(
-      toArray(this.#fields).map(({ 0: name, 1: { rules = [] } }) => {
-        return [
-          name,
-          Promise.race(
-            rules.map(async ({ validate }) => {
-              const _validated = await Promise.try(() => validate(get(this.#state.value, name)))
-                .catch((error) => error)
-                .then((_v) => (_v === true ? null : _v));
+  async validate(names: (keyof T)[] = Object.keys(this.#fields)) {
+    const validated = await Promise.all<ReactNode[]>(
+      names.map(async (name) => {
+        // validate result
+        const error = await Promise.race(
+          (this.#fields.get(name)?.rules ?? []).map(async ({ validate, message }) => {
+            const _validated = await Promise.try(() => validate(this.#state.value[name]))
+              .catch((_error: ReactNode) => _error || message)
+              // `validate` resolved value is `true`, means valid, set `error` to `null`
+              .then((_v) => (_v === true ? null : _v));
 
-              return _validated;
-            }),
-          ),
-        ];
+            return _validated;
+          }),
+        );
+
+        this.#state.error[name] = error;
+        return error;
       }),
     );
 
-    // notify field validated result
-    return validated.reduce((isValid, { 0: name, 1: error }) => {
-      this.#state.error[name] = error;
-      return isValid && !error;
-    }, true);
+    // notify state change
+    // only notify `error`
+    this.#state$.next({
+      source: ChangingSource.Validate,
+      names,
+      error: this.#state.error,
+    });
+
+    return validated.every((error) => !error);
   }
 
   /**
@@ -203,11 +177,12 @@ export class Form<T extends FieldsValue> {
     value: FieldValue,
   ) {
     this.#state.value[name] = value;
+    this.#state.error[name] = null;
 
     this.#state$.next({
-      source: "set",
+      source: ChangingSource.Set,
       names: [name],
-      value: this.#state.value,
+      ...this.#state,
     });
   }
 
@@ -228,7 +203,7 @@ export class Form<T extends FieldsValue> {
     };
 
     this.#state$.next({
-      source: "set",
+      source: ChangingSource.Set,
       names,
       ...this.#state,
     });
@@ -242,7 +217,7 @@ export class Form<T extends FieldsValue> {
     this.#state.error = {};
 
     this.#state$.next({
-      source: "set",
+      source: ChangingSource.Set,
       names: [],
       ...this.#state,
     });
@@ -256,7 +231,7 @@ export class Form<T extends FieldsValue> {
     this.#state.error = {};
 
     this.#state$.next({
-      source: "set",
+      source: ChangingSource.Set,
       names: [],
       ...this.#state,
     });
@@ -264,8 +239,10 @@ export class Form<T extends FieldsValue> {
 
   /**
    * change field value
+   * @description
+   * in `change` mode, `value` changed, trigger `validate`
    */
-  change<FieldValue extends T[FieldKey], FieldKey extends keyof T = keyof T>(
+  async change<FieldValue extends T[FieldKey], FieldKey extends keyof T = keyof T>(
     name: FieldKey,
     value: FieldValue,
   ) {
@@ -273,28 +250,12 @@ export class Form<T extends FieldsValue> {
     this.#state.error[name] = null;
 
     this.#state$.next({
-      source: "change",
+      source: ChangingSource.Change,
       names: [name],
+      ...this.#state,
     });
+
+    // trigger validate
+    this.validate([name]);
   }
-}
-
-/**
- * Context value type
- */
-export interface ContextValue<T extends FieldsValue = {}> {
-  /**
-   * form instance
-   */
-  form: Nullable<Form<T>>;
-
-  /**
-   * labelCol
-   */
-  labelCol: number;
-
-  /**
-   * wrapperCol
-   */
-  wrapperCol: number;
 }
