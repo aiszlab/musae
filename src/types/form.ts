@@ -9,7 +9,7 @@ interface UsedForm<T extends FieldsValue> {
   /**
    * set field value
    */
-  setFieldValue(name: PropertyKey, value: unknown): void;
+  setFieldValue(name: keyof T, value: T[keyof T]): void;
 
   /**
    * reset fields value and clear errors
@@ -22,11 +22,6 @@ interface UsedForm<T extends FieldsValue> {
   clear(): void;
 
   /**
-   * form instance
-   */
-  [FORM_TOKEN]: Form<T>;
-
-  /**
    * validate
    */
   validate: () => Promise<boolean>;
@@ -35,6 +30,11 @@ interface UsedForm<T extends FieldsValue> {
    * get fields value
    */
   getFieldsValue: () => Partial<T>;
+
+  /**
+   * form instance
+   */
+  [FORM_TOKEN]: Form<T>;
 }
 
 /**
@@ -90,7 +90,7 @@ interface TypedForm {
   ) => ReactNode;
 
   /**
-   * form hook
+   * `Form` hook
    */
   useForm<T extends FieldsValue>(props?: UsingForm<T>): UsedForm<T>;
 }
