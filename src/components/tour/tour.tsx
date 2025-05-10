@@ -18,21 +18,22 @@ import { useClassNames } from "../../hooks/use-class-names";
 import { useContainer } from "../../hooks/use-container";
 
 const styles = $create({
-  overlay: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
+  overlay: {
     position: "absolute",
     inset: 0,
     mixBlendMode: "hard-light",
-    backgroundColor: props.backgroundColor,
+    backgroundColor: "var(--color-surface-dim)",
     zIndex: positions.tour,
-  }),
+  },
 
-  tour: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
-    backgroundColor: props.backgroundColor,
+  tour: {
+    backgroundColor: "var(--color-on-primary)",
+    flexDirection: "column",
     boxShadow: elevations.small,
     borderRadius: sizes.xxxxxxxsmall,
     transitionProperty: "all",
     transitionDuration: duration.short,
-  }),
+  },
 
   title: {
     paddingInline: spacing.large,
@@ -68,20 +69,11 @@ const Tour = ({
   const { container: trigger } = useContainer({ container: step.target, useBody: false });
 
   const styled = {
-    overlay: $props(styles.overlay({ backgroundColor: theme.colors["surface-dim"] })),
-    tour: $props(
-      styles.tour({
-        backgroundColor: theme.colors["on-primary"],
-      }),
-    ),
+    overlay: $props(styles.overlay),
+    tour: $props(styles.tour),
     title: $props(styles.title, typography.title.medium),
     description: $props(styles.description, typography.body.medium),
     footer: $props(styles.footer),
-  };
-
-  // close handler
-  const close = () => {
-    onClose?.();
   };
 
   return (
@@ -89,7 +81,11 @@ const Tour = ({
       <Portal open={overlay && open} destroyable lockable>
         <div
           className={stringify(classNames.overlay, styled.overlay.className)}
-          style={styled.overlay.style}
+          style={{
+            ...styled.overlay.style,
+            // @ts-expect-error style vars
+            "--color-surface-dim": theme.colors["surface-dim"],
+          }}
         >
           <Spotlight trigger={trigger} padding={paddings} />
         </div>
@@ -99,7 +95,11 @@ const Tour = ({
         trigger={trigger}
         open={open}
         className={stringify(classNames.tour, styled.tour.className)}
-        style={styled.tour.style}
+        style={{
+          ...styled.tour.style,
+          // @ts-expect-error style vars
+          "--color-on-primary": theme.colors["on-primary"],
+        }}
         offset={paddings[0]}
         placement="bottom"
         overlay={overlay}
@@ -140,7 +140,7 @@ const Tour = ({
 
           {/* close */}
           {!hasNext && (
-            <Button onClick={close} size="small">
+            <Button onClick={onClose} size="small">
               {locale.finish}
             </Button>
           )}

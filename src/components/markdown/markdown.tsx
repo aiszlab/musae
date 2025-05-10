@@ -5,7 +5,6 @@ import { typography } from "../theme/theme";
 import type { MarkdownProps } from "../../types/markdown";
 import { stringify } from "@aiszlab/relax/class-name";
 import { spacing } from "../theme/tokens.stylex";
-import { JSDOM } from "jsdom";
 
 const styles = $create({
   markdown: {
@@ -20,8 +19,8 @@ const styles = $create({
   },
 });
 
-const Markdown = async ({ value, className, style }: MarkdownProps) => {
-  const _html = await toHtml(value);
+const Markdown = async ({ value, className, style, isInClient }: MarkdownProps) => {
+  const _html = isInClient ? await toHtml(value) : value;
   const styled = $props(styles.markdown, typography.body.medium);
 
   return (

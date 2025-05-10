@@ -130,7 +130,11 @@ const Bench = ({
     defaultExpandedKeys,
   });
 
-  const { header: headerMenuItems, sidebar: sidebarMenuItems } = useMenuItems({
+  const {
+    header: headerMenuItems,
+    sidebar: sidebarMenuItems,
+    hasSidebar,
+  } = useMenuItems({
     layout,
     menuItems,
     selectedKeys,
@@ -168,17 +172,15 @@ const Bench = ({
       >
         {_logo}
 
-        {!isCollapsed && (
-          <>
-            {title}
+        {!isCollapsed && title}
 
-            <MenuOpenIcon
-              size={24}
-              onClick={collapse}
-              className={styled.collapser.className}
-              style={styled.collapser.style}
-            />
-          </>
+        {!isCollapsed && hasSidebar && (
+          <MenuOpenIcon
+            size={24}
+            onClick={collapse}
+            className={styled.collapser.className}
+            style={styled.collapser.style}
+          />
         )}
       </Layout.Heading>
 
@@ -201,30 +203,32 @@ const Bench = ({
         </div>
       </Layout.Header>
 
-      <Layout.Sidebar
-        className={stringify(classNames.sidebar, styled.sidebar.className)}
-        style={styled.sidebar.style}
-      >
-        <Menu
-          mode={isCollapsed ? "vertical" : "inline"}
-          items={sidebarMenuItems}
-          selectedKeys={last(selectedKeys)}
-          onClick={navigate}
-          expandedKeys={expandedKeys}
-          onExpandedKeysChange={onExpandedKeysChange}
-          className={styled.menu.className}
-          style={styled.menu.style}
-        />
+      {hasSidebar && (
+        <Layout.Sidebar
+          className={stringify(classNames.sidebar, styled.sidebar.className)}
+          style={styled.sidebar.style}
+        >
+          <Menu
+            mode={isCollapsed ? "vertical" : "inline"}
+            items={sidebarMenuItems}
+            selectedKeys={last(selectedKeys)}
+            onClick={navigate}
+            expandedKeys={expandedKeys}
+            onExpandedKeysChange={onExpandedKeysChange}
+            className={styled.menu.className}
+            style={styled.menu.style}
+          />
 
-        {isCollapsed && (
-          <div
-            className={stringify(classNames.expander, styled.expander.className)}
-            style={styled.expander.style}
-          >
-            <MenuIcon size={24} onClick={expand} />
-          </div>
-        )}
-      </Layout.Sidebar>
+          {isCollapsed && (
+            <div
+              className={stringify(classNames.expander, styled.expander.className)}
+              style={styled.expander.style}
+            >
+              <MenuIcon size={24} onClick={expand} />
+            </div>
+          )}
+        </Layout.Sidebar>
+      )}
 
       <Layout.Main
         className={stringify(classNames.main, mainClassName, styled.main.className)}

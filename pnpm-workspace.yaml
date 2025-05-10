@@ -1,4 +1,2 @@
 onlyBuiltDependencies:
   - esbuild
-overrides:
-  '@aiszlab/relax': link:../relax/packages/relax

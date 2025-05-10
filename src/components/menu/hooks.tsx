@@ -125,6 +125,8 @@ export const useContextValue = ({
   const selectedKeys = useMemo(() => new Set(toArray(_selectedKeys)), [_selectedKeys]);
   const expandedKeys = useMemo(() => new Set(_expandedKeys), [_expandedKeys]);
 
+  console.log("selectedKeys====", selectedKeys);
+
   // click handler
   const click = useCallback(
     async (key: Key) => {

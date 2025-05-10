@@ -176,8 +176,12 @@ export const useMenuItems = ({
     });
   }, [isCollapsed, _sidebar]);
 
+  // has siderbar
+  const hasSidebar = useMemo(() => sidebar.length > 0, [sidebar]);
+
   return {
     header,
     sidebar,
+    hasSidebar,
   };
 };
