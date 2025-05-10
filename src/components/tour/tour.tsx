@@ -1,4 +1,4 @@
-import React, { type CSSProperties } from "react";
+import React from "react";
 import type { TourProps } from "../../types/tour";
 import { Portal } from "../portal";
 import { Popper } from "../popper";

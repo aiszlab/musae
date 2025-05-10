@@ -3,7 +3,7 @@ import { create as $create, props as $props } from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { type NavigationProps } from "../../types/tabs";
 import Tab from "./tab";
-import { animate } from "motion/mini";
+import { animate } from "motion/react";
 import { isUndefined } from "@aiszlab/relax";
 import { useTheme } from "../theme";
 import { useNavigation, useNavigatorScroll, useTabsContext } from "./hooks";

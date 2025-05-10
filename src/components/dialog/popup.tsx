@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import type { PopupProps } from "../../types/dialog";
 import { useFooter } from "./hooks";
-import { animate } from "motion/mini";
+import { animate } from "motion/react";
 import { useClassNames } from "../../hooks/use-class-names";
 import { create as $create, props as $props } from "@stylexjs/stylex";
 import { positions, spacing } from "../theme/tokens.stylex";

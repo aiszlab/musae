@@ -1,8 +1,7 @@
 import type { ComponentProps } from "../../../types/element";
 import React, { type CSSProperties, type ReactNode, useRef } from "react";
 import { stringify } from "@aiszlab/relax/class-name";
-import { usePresence } from "motion/react";
-import { animate } from "motion/mini";
+import { usePresence, animate } from "motion/react";
 import { create as $create, props as $props } from "@stylexjs/stylex";
 import { useTheme } from "../../theme";
 import { spacing } from "../../theme/tokens.stylex";

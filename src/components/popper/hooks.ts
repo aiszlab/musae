@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef } from "react";
 import type { DropdownProps, PopperProps } from "../../types/popper";
-import { animate } from "motion/mini";
+import { animate } from "motion/react";
 import { useEvent } from "@aiszlab/relax";
 import { useContainer } from "../../hooks/use-container";
 import {

@@ -4,13 +4,14 @@ exports[`\`Breadcrumb\` Component customize separator 1`] = `
 <DocumentFragment>
   <nav
     class="musae-breadcrumb theme__label.large breadcrumb__styles.breadcrumb"
-    style="--color: #49454F;"
+    style="--color-on-surface-variant: #49454F;"
   >
     <ol
       class="breadcrumb__styles.navigations"
     >
       <li
-        class="musae-breadcrumb__item"
+        class="musae-breadcrumb__item item__default"
+        style="--color-surface: #FFFBFE; --color-on-surface: #1D1B20;"
       >
         label1
       </li>
@@ -21,7 +22,8 @@ exports[`\`Breadcrumb\` Component customize separator 1`] = `
         -
       </li>
       <li
-        class="musae-breadcrumb__item"
+        class="musae-breadcrumb__item item__default item__link"
+        style="--color-surface: #FFFBFE; --color-on-surface: #1D1B20;"
       >
         <a
           href="https://aiszlab.dev"
@@ -36,7 +38,8 @@ exports[`\`Breadcrumb\` Component customize separator 1`] = `
         -
       </li>
       <li
-        class="musae-breadcrumb__item"
+        class="musae-breadcrumb__item item__default"
+        style="--color-surface: #FFFBFE; --color-on-surface: #1D1B20;"
       >
         label3
       </li>
@@ -49,13 +52,14 @@ exports[`\`Breadcrumb\` Component display items 1`] = `
 <DocumentFragment>
   <nav
     class="musae-breadcrumb theme__label.large breadcrumb__styles.breadcrumb"
-    style="--color: #49454F;"
+    style="--color-on-surface-variant: #49454F;"
   >
     <ol
       class="breadcrumb__styles.navigations"
     >
       <li
-        class="musae-breadcrumb__item"
+        class="musae-breadcrumb__item item__default"
+        style="--color-surface: #FFFBFE; --color-on-surface: #1D1B20;"
       >
         label1
       </li>
@@ -66,7 +70,8 @@ exports[`\`Breadcrumb\` Component display items 1`] = `
         /
       </li>
       <li
-        class="musae-breadcrumb__item"
+        class="musae-breadcrumb__item item__default item__link"
+        style="--color-surface: #FFFBFE; --color-on-surface: #1D1B20;"
       >
         <a
           href="https://aiszlab.dev"
@@ -81,7 +86,8 @@ exports[`\`Breadcrumb\` Component display items 1`] = `
         /
       </li>
       <li
-        class="musae-breadcrumb__item"
+        class="musae-breadcrumb__item item__default"
+        style="--color-surface: #FFFBFE; --color-on-surface: #1D1B20;"
       >
         label3
       </li>

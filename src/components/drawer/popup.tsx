@@ -1,5 +1,5 @@
-import React, { type CSSProperties, useEffect, useRef } from "react";
-import { animate } from "motion/mini";
+import React, { useEffect, useRef } from "react";
+import { animate } from "motion/react";
 import type { PopupProps } from "../../types/drawer";
 import { PLACEMENTS } from "./hooks";
 import { useClassNames } from "../../hooks/use-class-names";
