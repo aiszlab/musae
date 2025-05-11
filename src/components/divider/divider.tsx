@@ -128,8 +128,8 @@ const Divider = ({
         // @ts-expect-error style vars
         "--offset": `${offset}%`,
         "--color-outline-variant": theme.colors["outline-variant"],
-        "--margin-start": margins[0],
-        "--margin-end": margins[1],
+        "--margin-start": `${margins[0]}px`,
+        "--margin-end": `${margins[1]}px`,
       }}
     >
       {isLabeled && (
