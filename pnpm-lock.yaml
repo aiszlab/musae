@@ -9,7 +9,7 @@ importers:
   .:
     dependencies:
       '@aiszlab/fuzzy':
-        specifier: ^2.0.4
+        specifier: ^2.0.5
         version: 2.0.5(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@aiszlab/relax':
         specifier: 2.0.5
