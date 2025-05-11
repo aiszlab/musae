@@ -1,5 +1,11 @@
 # musae
 
+## 1.0.3
+
+### Patch Changes
+
+- chore: upgrade relax utils
+
 ## 1.0.2
 
 ### Patch Changes
