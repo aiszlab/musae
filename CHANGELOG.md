@@ -1,5 +1,11 @@
 # musae
 
+## 1.0.5
+
+### Patch Changes
+
+- refactor: move isInClient prop to MarkdownProps interface for better type management
+
 ## 1.0.4
 
 ### Patch Changes
