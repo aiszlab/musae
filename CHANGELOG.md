@@ -1,5 +1,11 @@
 # musae
 
+## 1.0.6
+
+### Patch Changes
+
+- fix: add pixel units to margin styles in Divider component
+
 ## 1.0.5
 
 ### Patch Changes
