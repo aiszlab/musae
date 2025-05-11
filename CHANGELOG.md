@@ -1,5 +1,11 @@
 # musae
 
+## 1.0.4
+
+### Patch Changes
+
+- chore: remove debug log for selectedKeys in useContextValue
+
 ## 1.0.3
 
 ### Patch Changes
