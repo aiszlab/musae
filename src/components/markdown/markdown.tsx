@@ -19,7 +19,15 @@ const styles = $create({
   },
 });
 
-const Markdown = async ({ value, className, style, isInClient }: MarkdownProps) => {
+interface Props extends MarkdownProps {
+  /**
+   * @description
+   * is in client, render html
+   */
+  isInClient: boolean;
+}
+
+const Markdown = async ({ value, className, style, isInClient }: Props) => {
   const _html = isInClient ? await toHtml(value) : value;
   const styled = $props(styles.markdown, typography.body.medium);
 

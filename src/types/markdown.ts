@@ -10,10 +10,4 @@ export type MarkdownProps = ComponentProps & {
    * value
    */
   value: string;
-
-  /**
-   * @description
-   * is in client, render html
-   */
-  isInClient: boolean;
 };
