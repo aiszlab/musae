@@ -1,6 +1,7 @@
 import type { CSSProperties, ReactNode } from "react";
 import type { FieldsValue, Form, FORM_TOKEN, RegisteredField } from "../utils/form";
 import type { Nullable } from "@aiszlab/relax/types";
+import { ComponentProps } from "./element";
 
 /**
  * form hook return
@@ -60,7 +61,7 @@ interface UsingForm<T extends FieldsValue> {
 /**
  * form props
  */
-interface FormProps<T extends FieldsValue> {
+interface FormProps<T extends FieldsValue> extends ComponentProps {
   /**
    * used form instance
    * use `form` can control `Form` value

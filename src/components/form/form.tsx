@@ -5,13 +5,14 @@ import { useForm } from "./use-form";
 import { useClassNames } from "../../hooks/use-class-names";
 import { DEFAULT_CONTEXT_VALUE } from "./context";
 import type { FormProps, UsedForm } from "../../types/form";
+import { stringify } from "@aiszlab/relax/class-name";
 
 /**
  * Form Component
  *
  * @author murukal <tutu@fantufantu.com>
  */
-const Form = <T extends FieldsValue>({ children, form }: FormProps<T>) => {
+const Form = <T extends FieldsValue>({ children, form, className, style }: FormProps<T>) => {
   const _form = useForm({ form }) as unknown as UsedForm<{}>;
   const classNames = useClassNames(CLASS_NAMES);
 
@@ -23,7 +24,9 @@ const Form = <T extends FieldsValue>({ children, form }: FormProps<T>) => {
         classNames,
       }}
     >
-      <form>{children}</form>
+      <form className={stringify(classNames.form, className)} style={style}>
+        {children}
+      </form>
     </Context.Provider>
   );
 };
