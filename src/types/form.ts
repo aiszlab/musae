@@ -65,7 +65,7 @@ interface FormProps<T extends FieldsValue> {
    * used form instance
    * use `form` can control `Form` value
    */
-  form: UsedForm<T>;
+  form?: UsedForm<T>;
 
   /**
    * children components
