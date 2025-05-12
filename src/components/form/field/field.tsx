@@ -31,12 +31,13 @@ const Field = <T extends FieldsValue, FieldKey extends keyof T>({
   style,
   supporting,
   name,
+  rules,
   ...props
 }: RequiredIn<FormItemProps<T, FieldKey>, "name" | "required">) => {
   const { classNames } = useFormContext();
   const { isInvalid, value, change, error } = useFormItem<T, FieldKey>({
     name,
-    rules: [],
+    rules,
   });
 
   const children = useMemo(() => {
@@ -74,7 +75,7 @@ const Field = <T extends FieldsValue, FieldKey extends keyof T>({
       supporting={
         <>
           {!!supporting && <Supporting>{supporting}</Supporting>}
-          <AnimatePresence mode="wait">{isInvalid && <Error error={error} />}</AnimatePresence>
+          <AnimatePresence mode="wait">{isInvalid && <Error children={error} />}</AnimatePresence>
         </>
       }
     >

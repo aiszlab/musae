@@ -22,10 +22,10 @@ type Props = ComponentProps & {
    * @description
    * error
    */
-  error?: ReactNode;
+  children?: ReactNode;
 };
 
-const Error = ({ error, className, style }: Props) => {
+const Error = ({ children, className, style }: Props) => {
   const { classNames } = useFormContext();
   const [isPresent, safeToRemove] = usePresence();
   const theme = useTheme();
@@ -60,7 +60,7 @@ const Error = ({ error, className, style }: Props) => {
       }}
       ref={ref}
     >
-      {error}
+      {children}
     </div>
   );
 };

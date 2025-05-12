@@ -1,3 +1,4 @@
+import { toArray } from "@aiszlab/relax";
 import type { Partialable } from "@aiszlab/relax/types";
 import { type ReactNode } from "react";
 import { filter, Subject } from "rxjs";
@@ -20,6 +21,11 @@ enum ChangingSource {
   Validate = "validate",
 }
 
+export interface Rule<T extends FieldsValue, FieldKey extends keyof T> {
+  validate: (value: Partialable<T[FieldKey]>) => ReactNode | Promise<ReactNode>;
+  message?: ReactNode;
+}
+
 /**
  * registered field
  * @description
@@ -32,12 +38,14 @@ export interface RegisteredField<T extends FieldsValue, FieldKey extends keyof T
   onChange: (_state: FieldState<T[FieldKey]>) => void;
 
   /**
+   * validate callback
+   */
+  onValidate: (_error: ReactNode) => void;
+
+  /**
    * rules
    */
-  rules?: {
-    validate: (value: Partialable<T[FieldKey]>) => ReactNode | Promise<ReactNode>;
-    message?: ReactNode;
-  }[];
+  rules: () => Partialable<Rule<T, FieldKey>[]>;
 }
 
 interface FormState<T extends FieldsValue> {
@@ -98,7 +106,7 @@ export class Form<T extends FieldsValue> {
    */
   register<FieldKey extends keyof T = keyof T>(
     name: FieldKey,
-    { onChange, rules }: RegisteredField<T, FieldKey>,
+    { onChange, rules, onValidate }: RegisteredField<T, FieldKey>,
   ) {
     this.#fields.set(name, { rules });
 
@@ -107,12 +115,17 @@ export class Form<T extends FieldsValue> {
         // only listen `name` related to `register` field
         filter(({ names }) => names.length === 0 || new Set(names).has(name)),
       )
-      .subscribe(() => {
+      .subscribe(({ source }) => {
         // callback field state
         onChange({
           value: this.#state.value[name],
           error: this.#state.error[name],
         });
+
+        // validate
+        if (source === ChangingSource.Validate) {
+          onValidate(this.#state.error[name]);
+        }
       });
 
     return () => {
@@ -138,18 +151,27 @@ export class Form<T extends FieldsValue> {
    * @description
    * if provided `names`, only validate `names`
    */
-  async validate(names: (keyof T)[] = Object.keys(this.#fields)) {
+  async validate(names: (keyof T)[] = toArray(this.#fields.keys())) {
     const validated = await Promise.all<ReactNode[]>(
       names.map(async (name) => {
+        const rules = this.#fields.get(name)?.rules?.() ?? [];
+
+        // no valid rule
+        if (rules.length === 0) {
+          return null;
+        }
+
         // validate result
         const error = await Promise.race(
-          (this.#fields.get(name)?.rules ?? []).map(async ({ validate, message }) => {
-            const _validated = await Promise.try(() => validate(this.#state.value[name]))
-              .catch((_error: ReactNode) => _error || message)
+          rules.map(async ({ validate, message }) => {
+            return await Promise.try(() => validate(this.#state.value[name]))
+              .catch((_error: ReactNode) => false)
               // `validate` resolved value is `true`, means valid, set `error` to `null`
-              .then((_v) => (_v === true ? null : _v));
-
-            return _validated;
+              .then((_v) => {
+                if (_v === true) return null;
+                if (_v === false) return message;
+                return _v;
+              });
           }),
         );
 

@@ -1,4 +1,4 @@
-import { useMounted } from "@aiszlab/relax";
+import { useEvent, useMounted } from "@aiszlab/relax";
 import { useFormContext } from "./context";
 import { type ReactNode, useCallback, useMemo, useState } from "react";
 import type { FieldsValue } from "../../utils/form";
@@ -17,21 +17,28 @@ function useFormItem<T extends FieldsValue, FieldKey extends keyof T>({
   const [error, setError] = useState<ReactNode>();
   const [value, setValue] = useState<T[FieldKey]>();
 
+  const _rules = useEvent(() => {
+    return rules;
+  });
+
   useMounted(() => {
     if (!name) return;
 
     return form?.register<FieldKey>(name, {
-      rules,
+      rules: _rules,
       onChange: ({ error, value }) => {
         setError(error);
         setValue(value);
+      },
+      onValidate: (error) => {
+        setError(error);
       },
     });
   });
 
   const isInvalid = useMemo(() => {
     return !!error;
-  }, []);
+  }, [error]);
 
   const change = useCallback((value: T[FieldKey]) => {
     if (!name) return;

@@ -1,7 +1,7 @@
 import type { CSSProperties, ReactNode } from "react";
-import type { FieldsValue, Form, FORM_TOKEN, RegisteredField } from "../utils/form";
+import type { FieldsValue, Form, Rule, FORM_TOKEN, RegisteredField } from "../utils/form";
 import type { Nullable } from "@aiszlab/relax/types";
-import { ComponentProps } from "./element";
+import type { ComponentProps } from "./element";
 
 /**
  * form hook return
@@ -99,8 +99,7 @@ interface TypedForm {
 /**
  * form item props
  */
-interface FormItemProps<T extends FieldsValue, FieldKey extends keyof T>
-  extends Pick<RegisteredField<T, FieldKey>, "rules"> {
+interface FormItemProps<T extends FieldsValue, FieldKey extends keyof T> {
   /**
    * name
    */
@@ -145,6 +144,11 @@ interface FormItemProps<T extends FieldsValue, FieldKey extends keyof T>
    * children
    */
   children?: ReactNode;
+
+  /**
+   * rules
+   */
+  rules?: Rule<T, FieldKey>[];
 }
 
 /**
