@@ -7,36 +7,41 @@ import type { PasswordInputProps } from "../../types/password-input";
 import { useTheme } from "../theme";
 import { create as $create, props as $props } from "@stylexjs/stylex";
 import { duration } from "../theme/tokens.stylex";
+import { CLASS_NAMES } from "./context";
+import { useClassNames } from "../../hooks/use-class-names";
+import { stringify } from "@aiszlab/relax/class-name";
 
 const styles = $create({
-  visibility: (props: { color: CSSProperties["color"]; hoveredColor: CSSProperties["color"] }) => ({
-    color: props.color,
+  visibility: {
+    color: "var(--color-secondary-fixed-dim)",
     willChange: "color",
     transitionProperty: "color",
     transitionDuration: duration.short,
 
     ":hover": {
-      color: props.hoveredColor,
+      color: "var(--color-secondary)",
     },
-  }),
+  },
 });
 
-const PasswordInput = forwardRef<InputRef, PasswordInputProps>((props, ref) => {
+const PasswordInput = forwardRef<InputRef, PasswordInputProps>(({ className, ...props }, ref) => {
   const [isVisible, { toggle }] = useBoolean(false);
   const theme = useTheme();
+  const classNames = useClassNames(CLASS_NAMES);
 
   const styled = {
-    visibility: $props(
-      styles.visibility({
-        color: theme.colors["secondary-fixed-dim"],
-        hoveredColor: theme.colors.secondary,
-      }),
-    ),
+    visibility: $props(styles.visibility),
   };
 
   return (
     <Input
       {...props}
+      className={stringify(classNames.passwordInput, className)}
+      style={{
+        // @ts-expect-error style vars
+        "--color-secondary-fixed-dim": theme.colors["secondary-fixed-dim"],
+        "--color-secondary": theme.colors.secondary,
+      }}
       ref={ref}
       type={isVisible ? "text" : "password"}
       trailing={createElement(isVisible ? VisibilityOff : Visibility, {

@@ -3,8 +3,7 @@
  * class names
  */
 const CLASS_NAMES = {
-  pagination: "pagination",
-  sizeSelector: "pagination__size-selector",
+  passwordInput: "password-input",
 };
 
 export { CLASS_NAMES };
