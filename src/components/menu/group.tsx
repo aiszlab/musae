@@ -34,6 +34,16 @@ const styles = {
       display: "none",
     },
   }),
+
+  subgroup: $create({
+    inline: {
+      marginBlockStart: spacing.xxxxxsmall,
+    },
+
+    vertical: {},
+
+    horizontal: {},
+  }),
 };
 
 /**
@@ -61,6 +71,7 @@ const Group = forwardRef<HTMLUListElement, MenuGroupProps>(
 
     const styled = {
       group: $props(styles.group.default, styles.group[mode], !expanded && styles.group.hidden),
+      subgroup: $props(styles.subgroup[mode]),
     };
 
     return (
@@ -101,6 +112,8 @@ const Group = forwardRef<HTMLUListElement, MenuGroupProps>(
                   expanded={!isInline || expandedKeys.has(key)}
                   level={!isInline ? 0 : level + 1}
                   mode="inline"
+                  className={styled.subgroup.className}
+                  style={styled.subgroup.style}
                 />
               )}
             </Item>
