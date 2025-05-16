@@ -6,6 +6,7 @@ import { sizes } from "../theme/tokens.stylex";
 import { stringify } from "@aiszlab/relax/class-name";
 import { useClassNames } from "../../hooks/use-class-names";
 import { usingStyles } from "./utils";
+import { TRANSFORMERS } from "./plugins/markdown-shortcut";
 
 const _RichTextEditor = lazy(() => import("./rich-text-editor"));
 
@@ -52,4 +53,4 @@ const RichTextEditor = forwardRef<
   );
 });
 
-export { RichTextEditor, usingStyles };
+export { RichTextEditor, usingStyles, TRANSFORMERS };

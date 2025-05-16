@@ -1,4 +1,4 @@
-import React, { forwardRef, useImperativeHandle, useRef, type CSSProperties } from "react";
+import React, { forwardRef, useImperativeHandle, useRef } from "react";
 import { LexicalComposer, type InitialConfigType } from "@lexical/react/LexicalComposer";
 import { ContentEditable } from "@lexical/react/LexicalContentEditable";
 import { LexicalErrorBoundary } from "@lexical/react/LexicalErrorBoundary";
