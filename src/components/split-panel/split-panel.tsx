@@ -54,7 +54,7 @@ const SplitPanel = ({ className, style, items, orientation = "horizontal" }: Spl
         {panels.map((panelProps, index) => {
           return (
             <Panel {...panelProps} key={index} ref={(_ref) => collect(_ref, index)}>
-              {panelProps.children ?? items[index].children}
+              {items[index].children}
             </Panel>
           );
         })}

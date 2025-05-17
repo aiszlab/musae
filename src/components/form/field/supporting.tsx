@@ -1,25 +1,32 @@
-import React, { type ReactNode, type CSSProperties } from "react";
+import React, { type ReactNode } from "react";
 import { create as $create, props as $props } from "@stylexjs/stylex";
 import { useTheme } from "../../theme";
 import { spacing } from "../../theme/tokens.stylex";
 
 const styles = $create({
-  supporting: (props: { color: CSSProperties["color"] }) => ({
-    color: props.color,
+  supporting: {
+    color: "var(--color-secondary)",
     marginBlock: spacing.xxxxxsmall,
-  }),
+  },
 });
 
 const Supporting = ({ children }: { children?: ReactNode }) => {
   const theme = useTheme();
 
-  const styled = $props(
-    styles.supporting({
-      color: theme.colors.secondary,
-    }),
-  );
+  const styled = $props(styles.supporting);
 
-  return <div {...styled}>{children}</div>;
+  return (
+    <div
+      className={styled.className}
+      style={{
+        ...styled.style,
+        // @ts-expect-error style vars
+        "--color-secondary": theme.colors.secondary,
+      }}
+    >
+      {children}
+    </div>
+  );
 };
 
 export default Supporting;

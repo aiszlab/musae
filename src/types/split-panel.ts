@@ -17,11 +17,14 @@ export interface PanelItem extends ComponentProps {
    * @description default size
    *
    * 0 mean "auto"
+   * 1-100 mean `${defaultSize}%`
    *
    * @default 0
    */
   defaultSize?: number;
 }
+
+type UnsizedPanelItem = Omit<PanelItem, "defaultSize">;
 
 /**
  * @description split panel props
@@ -30,7 +33,7 @@ export interface SplitPanelProps extends ComponentProps {
   /**
    * @description items
    */
-  items: [...PanelItem[], Omit<PanelItem, "defaultSize">];
+  items: [...PanelItem[], UnsizedPanelItem];
 
   /**
    * @description

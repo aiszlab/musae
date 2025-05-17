@@ -3,6 +3,8 @@ import type { PanelItem, PanelProps, PanelRef } from "../../types/split-panel";
 import { useEvent, useMounted } from "@aiszlab/relax";
 import type { Nullable } from "@aiszlab/relax/types";
 
+type _PanelProps = Omit<PanelProps, "children">;
+
 /**
  * @description panels hooks
  *
@@ -19,15 +21,14 @@ export const usePanels = ({ items }: { items: PanelItem[] }) => {
       0: unsizedItems,
       1: sizes,
       2: panels,
-    } = items.reduce<[PanelItem[], string[], PanelProps[]]>(
+    } = items.reduce<[PanelItem[], string[], _PanelProps[]]>(
       (prev, { defaultSize = 0, ...item }, index) => {
         const _item: PanelItem = {
           defaultSize,
           ...item,
         };
 
-        const _panelProps: PanelProps = {
-          children: null,
+        const _panelProps: _PanelProps = {
           defaultSize: defaultSize > 0 ? `${defaultSize}%` : void 0,
           last: items.length - 1 === index,
           at: index,
