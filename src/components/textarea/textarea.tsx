@@ -9,32 +9,51 @@ import { useClassNames } from "../../hooks/use-class-names";
 import { stringify } from "@aiszlab/relax/class-name";
 import { CLASS_NAMES } from "./context";
 
-const styles = $create({
-  textarea: {
-    // reset
-    padding: null,
-    width: sizes.full,
-    overflow: "hidden",
-  },
+const styles = {
+  textarea: $create({
+    default: {
+      // reset
+      padding: null,
+      width: sizes.full,
+      overflow: "hidden",
+    },
 
-  input: {
-    paddingBlock: spacing.xxxxxsmall,
-    paddingInline: spacing.medium,
-    outline: sizes.none,
-    borderWidth: sizes.none,
-    flex: 1,
-    backgroundColor: "transparent",
-    resize: "none",
-  },
+    unbordered: {
+      boxShadow: "none",
+    },
+  }),
 
-  resize: {
-    resize: null,
-  },
-});
+  input: $create({
+    default: {
+      height: sizes.full,
+      paddingBlock: spacing.xxxxxsmall,
+      paddingInline: spacing.medium,
+      flex: 1,
+      backgroundColor: "transparent",
+      resize: "none",
+      border: "none",
+      outline: "none",
+    },
+
+    resizable: {
+      resize: null,
+    },
+  }),
+};
 
 const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
   (
-    { onChange, value, className, style, invalid = false, onBlur, placeholder, resize = true },
+    {
+      onChange,
+      value,
+      className,
+      style,
+      invalid = false,
+      onBlur,
+      placeholder,
+      resize = true,
+      border = true,
+    },
     ref,
   ) => {
     const theme = useTheme();
@@ -53,13 +72,14 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           outlineColor: theme.colors.outline,
           focusedOutlineColor: theme.colors.primary,
         }),
-        styles.textarea,
+        styles.textarea.default,
         invalid &&
           inputStyles.invalid({
             outlineColor: theme.colors.error,
           }),
+        !border && styles.textarea.unbordered,
       ),
-      input: $props(styles.input, resize && styles.resize),
+      input: $props(styles.input.default, resize && styles.input.resizable),
     };
 
     return (

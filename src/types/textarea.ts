@@ -33,4 +33,9 @@ export type TextareaProps = ComponentProps &
      * @default true
      */
     resize?: boolean;
+
+    /**
+     * border
+     */
+    border?: boolean;
   };
