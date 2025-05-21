@@ -1,4 +1,4 @@
-import type { CSSProperties, ReactNode } from "react";
+import type { CSSProperties, FC, ReactNode } from "react";
 import type { FieldsValue, Form, Rule, FORM_TOKEN, ChangeHandler } from "../utils/form";
 import type { Nullable } from "@aiszlab/relax/types";
 import type { ComponentProps } from "./element";
@@ -176,4 +176,39 @@ interface ContextValue<T extends FieldsValue = {}> {
   wrapperCol: number;
 }
 
-export { FormProps, FormItemProps, TypedForm, FieldsValue, ContextValue, UsedForm, UsingForm };
+/**
+ * form list field
+ */
+interface FormListField {
+  /**
+   * field name
+   */
+  name: number;
+}
+
+/**
+ * form list props
+ */
+interface FormListProps<T extends FieldsValue, FieldKey extends keyof T>
+  extends Omit<FormItemProps<T, FieldKey>, "children"> {
+  /**
+   * children render
+   */
+  children: FC<{
+    fields: FormListField[];
+    add: () => void;
+    remove: (index: number) => void;
+  }>;
+}
+
+export {
+  FormProps,
+  FormItemProps,
+  TypedForm,
+  FieldsValue,
+  ContextValue,
+  UsedForm,
+  UsingForm,
+  FormListField,
+  FormListProps,
+};
