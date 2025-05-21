@@ -1,5 +1,5 @@
 import type { CSSProperties, ReactNode } from "react";
-import type { FieldsValue, Form, Rule, FORM_TOKEN, RegisteredField } from "../utils/form";
+import type { FieldsValue, Form, Rule, FORM_TOKEN, ChangeHandler } from "../utils/form";
 import type { Nullable } from "@aiszlab/relax/types";
 import type { ComponentProps } from "./element";
 
@@ -55,7 +55,7 @@ interface UsingForm<T extends FieldsValue> {
   /**
    * change handler
    */
-  onChange?: (names: (keyof T)[], value: Partial<T>) => void;
+  onChange?: ChangeHandler<T>;
 }
 
 /**
@@ -72,6 +72,11 @@ interface FormProps<T extends FieldsValue> extends ComponentProps {
    * children components
    */
   children: ReactNode;
+
+  /**
+   * form value change handler
+   */
+  onChange?: (names: (keyof T)[], value: Partial<T>) => void;
 }
 
 /**

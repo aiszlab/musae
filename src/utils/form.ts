@@ -58,9 +58,7 @@ interface ChangingState<T extends FieldsValue> extends Partial<FormState<T>> {
   names: (keyof T)[];
 }
 
-interface FormProps<T extends FieldsValue> {
-  onChange: (names: (keyof T)[], value: Partial<T>) => void;
-}
+export type ChangeHandler<T extends FieldsValue> = (names: (keyof T)[], value: Partial<T>) => void;
 
 /**
  * form instance
@@ -70,22 +68,23 @@ export class Form<T extends FieldsValue> {
   #fields: Map<keyof T, Pick<RegisteredField<T, keyof T>, "rules">>;
   #state: FormState<T>;
   #state$: Subject<ChangingState<T>>;
-  #onChange: FormProps<T>["onChange"];
+  #onChange: ChangeHandler<T> | null;
 
-  constructor({ onChange }: FormProps<T>) {
+  constructor() {
     this.#defaultValue = {};
     this.#fields = new Map();
     this.#state = {
       value: {},
       error: {},
     };
-    this.#onChange = onChange;
+    this.#onChange = null;
+
     this.#state$ = new Subject<ChangingState<T>>();
 
     this.#state$.subscribe(({ source, names }) => {
       // value change, handle `onChange` callback
       if (source === "change") {
-        this.#onChange(names, this.#state.value);
+        this.#onChange?.(names, this.#state.value);
       }
     });
   }
@@ -99,6 +98,13 @@ export class Form<T extends FieldsValue> {
     this.#defaultValue = value ?? {};
     this.#state.value = this.#defaultValue;
     this.reset();
+  }
+
+  /**
+   * set change handler
+   */
+  useOnChange(onChange: ChangeHandler<T>) {
+    this.#onChange = onChange;
   }
 
   /**

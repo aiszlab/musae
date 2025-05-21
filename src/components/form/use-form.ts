@@ -17,10 +17,12 @@ function useForm<T extends FieldsValue>({
   });
 
   const form = useDefault(() => {
-    const _form = _usedForm?.[FORM_TOKEN] ?? new Form<T>({ onChange: changeValue });
+    const _form = _usedForm?.[FORM_TOKEN] ?? new Form<T>();
 
     // set default value
     _form.useDefaultValue(defaultValue);
+    // use change handler
+    _form.useOnChange(changeValue);
 
     return {
       setFieldValue<FieldKey extends keyof T>(name: FieldKey, value: T[FieldKey]) {

@@ -12,8 +12,14 @@ import { stringify } from "@aiszlab/relax/class-name";
  *
  * @author murukal <tutu@fantufantu.com>
  */
-const Form = <T extends FieldsValue>({ children, form, className, style }: FormProps<T>) => {
-  const _form = useForm({ form }) as unknown as UsedForm<{}>;
+const Form = <T extends FieldsValue>({
+  children,
+  form,
+  className,
+  style,
+  onChange,
+}: FormProps<T>) => {
+  const _form = useForm({ form, onChange }) as unknown as UsedForm<{}>;
   const classNames = useClassNames(CLASS_NAMES);
 
   return (
