@@ -19,7 +19,9 @@ function List<T extends FieldsValue, FieldKey extends keyof T>({
     setFields((prev) => [...prev, { name: _id() }]);
   };
 
-  const remove = () => {};
+  const remove = (index: number) => {
+    setFields((prev) => prev.filter((_, _index) => _index !== index));
+  };
 
   const _fields = useMemo<Map<string, FormListField>>(() => {
     return fields.reduce((prev, field, index) => {
