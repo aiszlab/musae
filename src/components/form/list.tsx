@@ -3,6 +3,9 @@ import Item from "./item";
 import Form from "./form";
 import type { FieldsValue, FormListField, FormListProps } from "../../types/form";
 import { useIdentity } from "@aiszlab/relax";
+import { FormContext } from "./context";
+import { useForm } from "./hooks";
+import { FORM_TOKEN } from "../../utils/form";
 
 function List<T extends FieldsValue, FieldKey extends keyof T>({
   children,
@@ -10,6 +13,7 @@ function List<T extends FieldsValue, FieldKey extends keyof T>({
 }: FormListProps<T, FieldKey>) {
   const { 1: _id } = useIdentity();
   const [fields, setFields] = useState<{ name: string }[]>([]);
+  const _form = useForm<{}>();
 
   const add = () => {
     setFields((prev) => [...prev, { name: _id() }]);
@@ -25,13 +29,13 @@ function List<T extends FieldsValue, FieldKey extends keyof T>({
 
   return (
     <Item {...itemProps}>
-      <Form>
+      <FormContext.Provider value={{ form: _form[FORM_TOKEN] }}>
         {createElement(children, {
           fields: Array.from(_fields.values()),
           add,
           remove,
         })}
-      </Form>
+      </FormContext.Provider>
     </Item>
   );
 }

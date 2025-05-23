@@ -77,6 +77,18 @@ interface FormProps<T extends FieldsValue> extends ComponentProps {
    * form value change handler
    */
   onChange?: (names: (keyof T)[], value: Partial<T>) => void;
+
+  /**
+   * default value
+   */
+  defaultValue?: Partial<T>;
+
+  /**
+   * controlled value
+   * @description
+   * if `value` is provided, `Form` will be controlled
+   */
+  value?: Partial<T>;
 }
 
 /**

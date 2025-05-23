@@ -20,7 +20,7 @@ function useForm<T extends FieldsValue>({
     const _form = _usedForm?.[FORM_TOKEN] ?? new Form<T>();
 
     // set default value
-    _form.useDefaultValue(defaultValue);
+    _form.useValue(defaultValue, defaultValue);
     // use change handler
     _form.useOnChange(changeValue);
 

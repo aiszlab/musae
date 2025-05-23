@@ -15,7 +15,7 @@ import { AnimatePresence } from "motion/react";
 import Supporting from "./supporting";
 import { stringify } from "@aiszlab/relax/class-name";
 import Context from "../context";
-import { useFormItem } from "../use-form-item";
+import { useFormItem } from "../hooks";
 
 interface FieldProps<T> {
   name: PropertyKey;

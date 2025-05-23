@@ -90,14 +90,18 @@ export class Form<T extends FieldsValue> {
   }
 
   /**
-   * set default value
+   * `Form` use value
    * @description
-   * once `defaultValue` changed, `Form` will reset to `defaultValue
+   * in `Component.Form`, will provider `value` or `defaultValue`
    */
-  useDefaultValue(value?: Partial<T>) {
-    this.#defaultValue = value ?? {};
-    this.#state.value = this.#defaultValue;
-    this.reset();
+  useValue(value?: Partial<T>, defaultValue?: Partial<T>) {
+    this.#defaultValue = defaultValue ?? this.#defaultValue;
+
+    if (value) {
+      this.setFieldsValue(value ?? this.#defaultValue);
+    } else {
+      this.reset();
+    }
   }
 
   /**

@@ -1,7 +1,7 @@
 import { FORM_TOKEN, type FieldsValue } from "../../utils/form";
 import React from "react";
 import Context, { CLASS_NAMES } from "./context";
-import { useForm } from "./use-form";
+import { useForm } from "./hooks";
 import { useClassNames } from "../../hooks/use-class-names";
 import { DEFAULT_CONTEXT_VALUE } from "./context";
 import type { FormProps, UsedForm } from "../../types/form";
@@ -19,8 +19,10 @@ const Form = <T extends FieldsValue>({
   className,
   style,
   onChange,
+  value,
+  defaultValue,
 }: FormProps<T>) => {
-  const _form = useForm({ form, onChange }) as unknown as UsedForm<{}>;
+  const _form = useForm({ form, onChange, value, defaultValue }) as unknown as UsedForm<{}>;
   const classNames = useClassNames(CLASS_NAMES);
 
   return (
