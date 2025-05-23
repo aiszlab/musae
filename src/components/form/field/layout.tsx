@@ -1,7 +1,7 @@
-import React, { type CSSProperties } from "react";
+import React, { useContext, type CSSProperties } from "react";
 import { type ReactNode } from "react";
 import type { ContextValue } from "../../../types/form";
-import { useFormContext } from "../context";
+import Context from "../context";
 import { Grid } from "../../grid";
 import { create as $create, props as $props } from "@stylexjs/stylex";
 import { typography } from "../../theme/theme";
@@ -86,7 +86,7 @@ type Props = ComponentProps & {
  * item layout
  */
 const Layout = ({ required, space = false, className, style, supporting, ...props }: Props) => {
-  const { classNames, ...contextValue } = useFormContext();
+  const { classNames, ...contextValue } = useContext(Context);
   const labelCol = props.labelCol ?? contextValue.labelCol;
   const wrapperCol = props.wrapperCol ?? contextValue.wrapperCol;
   const theme = useTheme();

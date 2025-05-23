@@ -1,14 +1,20 @@
-import React, { isValidElement, useMemo, cloneElement, Children, type ReactNode } from "react";
+import React, {
+  isValidElement,
+  useMemo,
+  cloneElement,
+  Children,
+  type ReactNode,
+  useContext,
+} from "react";
 import type { FieldsValue, FormItemProps } from "../../../types/form";
 import type { RequiredIn } from "@aiszlab/relax/types";
 import { chain } from "@aiszlab/relax";
 import Layout from "./layout";
 import Error from "./error";
 import { AnimatePresence } from "motion/react";
-import { useLocale } from "../../../locale";
 import Supporting from "./supporting";
 import { stringify } from "@aiszlab/relax/class-name";
-import { useFormContext } from "../context";
+import Context from "../context";
 import { useFormItem } from "../use-form-item";
 
 interface FieldProps<T> {
@@ -34,7 +40,7 @@ const Field = <T extends FieldsValue, FieldKey extends keyof T>({
   rules,
   ...props
 }: RequiredIn<FormItemProps<T, FieldKey>, "name" | "required">) => {
-  const { classNames } = useFormContext();
+  const { classNames } = useContext(Context);
   const { isInvalid, value, change, error } = useFormItem<T, FieldKey>({
     name,
     rules,

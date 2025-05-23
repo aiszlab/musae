@@ -2,7 +2,7 @@ import { useEvent, useMounted } from "@aiszlab/relax";
 import { useFormContext } from "./context";
 import { type ReactNode, useCallback, useMemo, useState } from "react";
 import type { FieldsValue } from "../../utils/form";
-import type { ContextValue, FormItemProps } from "../../types/form";
+import type { FormItemProps } from "../../types/form";
 
 type UsingFormItem<T extends FieldsValue, FieldKey extends keyof T> = Pick<
   FormItemProps<T, FieldKey>,
@@ -13,7 +13,7 @@ function useFormItem<T extends FieldsValue, FieldKey extends keyof T>({
   name,
   rules,
 }: UsingFormItem<T, FieldKey>) {
-  const { form } = useFormContext() as ContextValue<T>;
+  const { form } = useFormContext<T>();
   const [error, setError] = useState<ReactNode>();
   const [value, setValue] = useState<T[FieldKey]>();
 

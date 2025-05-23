@@ -6,6 +6,7 @@ import { useClassNames } from "../../hooks/use-class-names";
 import { DEFAULT_CONTEXT_VALUE } from "./context";
 import type { FormProps, UsedForm } from "../../types/form";
 import { stringify } from "@aiszlab/relax/class-name";
+import { FormContext } from "./context";
 
 /**
  * Form Component
@@ -26,13 +27,14 @@ const Form = <T extends FieldsValue>({
     <Context.Provider
       value={{
         ...DEFAULT_CONTEXT_VALUE,
-        form: _form[FORM_TOKEN],
         classNames,
       }}
     >
-      <form className={stringify(classNames.form, className)} style={style}>
-        {children}
-      </form>
+      <FormContext.Provider value={{ form: _form[FORM_TOKEN] }}>
+        <form className={stringify(classNames.form, className)} style={style}>
+          {children}
+        </form>
+      </FormContext.Provider>
     </Context.Provider>
   );
 };

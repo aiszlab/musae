@@ -1,12 +1,12 @@
 import type { ComponentProps } from "../../../types/element";
-import React, { type CSSProperties, type ReactNode, useRef } from "react";
+import React, { type CSSProperties, type ReactNode, useContext, useRef } from "react";
 import { stringify } from "@aiszlab/relax/class-name";
 import { usePresence, animate } from "motion/react";
 import { create as $create, props as $props } from "@stylexjs/stylex";
 import { useTheme } from "../../theme";
 import { spacing } from "../../theme/tokens.stylex";
 import { useAsyncEffect } from "@aiszlab/relax";
-import { useFormContext } from "../context";
+import Context from "../context";
 
 const styles = $create({
   error: (props: { color: CSSProperties["color"] }) => ({
@@ -26,7 +26,7 @@ type Props = ComponentProps & {
 };
 
 const Error = ({ children, className, style }: Props) => {
-  const { classNames } = useFormContext();
+  const { classNames } = useContext(Context);
   const [isPresent, safeToRemove] = usePresence();
   const theme = useTheme();
   const ref = useRef<HTMLDivElement>(null);

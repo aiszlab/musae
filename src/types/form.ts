@@ -159,12 +159,7 @@ interface FormItemProps<T extends FieldsValue, FieldKey extends keyof T> {
 /**
  * Context value type
  */
-interface ContextValue<T extends FieldsValue = {}> {
-  /**
-   * form instance
-   */
-  form: Nullable<Form<T>>;
-
+interface ContextValue {
   /**
    * labelCol
    */
@@ -174,6 +169,16 @@ interface ContextValue<T extends FieldsValue = {}> {
    * wrapperCol
    */
   wrapperCol: number;
+}
+
+/**
+ * form context value
+ */
+interface FormContextValue<T extends FieldsValue = {}> {
+  /**
+   * form instance
+   */
+  form: Nullable<Form<T>>;
 }
 
 /**
@@ -211,4 +216,5 @@ export {
   UsingForm,
   FormListField,
   FormListProps,
+  FormContextValue,
 };

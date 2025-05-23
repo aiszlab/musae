@@ -1,5 +1,5 @@
 import { createContext, useContext } from "react";
-import type { ContextValue, FieldsValue } from "../../types/form";
+import type { ContextValue, FieldsValue, FormContextValue } from "../../types/form";
 
 /**
  * class names
@@ -13,7 +13,6 @@ export const CLASS_NAMES = {
 } as const;
 
 export const DEFAULT_CONTEXT_VALUE: ContextValue & { classNames: typeof CLASS_NAMES } = {
-  form: null,
   labelCol: 24,
   wrapperCol: 24,
   classNames: CLASS_NAMES,
@@ -25,6 +24,11 @@ const Context = createContext<ContextValue & { classNames: typeof CLASS_NAMES }>
 
 export default Context;
 
+/**
+ * form context
+ */
+export const FormContext = createContext<FormContextValue>({ form: null });
+
 export const useFormContext = <T extends FieldsValue = {}>() => {
-  return useContext(Context) as unknown as ContextValue<T> & { classNames: typeof CLASS_NAMES };
+  return useContext(Context) as unknown as FormContextValue<T>;
 };
