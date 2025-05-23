@@ -2,7 +2,7 @@ import React, { createElement, useMemo, useState } from "react";
 import Item from "./item";
 import Form from "./form";
 import type { FieldsValue, FormListField, FormListProps } from "../../types/form";
-import { useIdentity } from "@aiszlab/relax";
+import { useEvent, useIdentity } from "@aiszlab/relax";
 import { FormContext } from "./context";
 import { useForm } from "./hooks";
 import { FORM_TOKEN } from "../../utils/form";
@@ -15,13 +15,13 @@ function List<T extends FieldsValue, FieldKey extends keyof T>({
   const [fields, setFields] = useState<{ name: string }[]>([]);
   const _form = useForm<{}>();
 
-  const add = () => {
+  const add = useEvent(() => {
     setFields((prev) => [...prev, { name: _id() }]);
-  };
+  });
 
-  const remove = (index: number) => {
+  const remove = useEvent((index: number) => {
     setFields((prev) => prev.filter((_, _index) => _index !== index));
-  };
+  });
 
   const _fields = useMemo<Map<string, FormListField>>(() => {
     return fields.reduce((prev, field, index) => {
