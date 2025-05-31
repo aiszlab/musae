@@ -1,6 +1,5 @@
 import React, { createElement, useMemo, useState } from "react";
 import Item from "./item";
-import Form from "./form";
 import type { FieldsValue, FormListField, FormListProps } from "../../types/form";
 import { useEvent, useIdentity } from "@aiszlab/relax";
 import { FormContext } from "./context";
