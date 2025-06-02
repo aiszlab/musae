@@ -24,13 +24,13 @@ import { useTheme } from "../theme";
 
 import ToolbarPlugin from "./plugins/toolbar";
 import MarkdownShortcutPlugin, { TRANSFORMERS } from "./plugins/markdown-shortcut";
-import { typography } from "../theme/theme";
 import { $convertFromMarkdownString } from "@lexical/markdown";
 
 import type { RichTextEditorRef, RichTextEditorProps } from "../../types/rich-text-editor";
 import { CLASS_NAMES, Context } from "./context";
 import { useClassNames } from "../../hooks/use-class-names";
 import { usingEditor } from "./utils";
+import { $body } from "../theme/theme";
 
 const styles = $create({
   editor: {
@@ -72,7 +72,7 @@ const RichTextEditor = forwardRef<RichTextEditorRef, RichTextEditorProps>(
     const classNames = useClassNames(CLASS_NAMES);
 
     const styled = {
-      editor: $props(styles.editor, disabled && styles.disabled, typography.body.medium),
+      editor: $props(styles.editor, disabled && styles.disabled, $body.medium),
       textarea: $props(!disabled && styles.textarea),
     };
 

@@ -18,11 +18,11 @@ import { Popper } from "../popper";
 import type { PopperRef } from "../../types/popper";
 import { create as $create, props as $props } from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
-import { typography } from "../theme/theme";
 import { useClassNames } from "../../hooks/use-class-names";
 import { useIsOpen, useTriggerBy } from "./hooks";
 import { stringify } from "@aiszlab/relax/class-name";
 import { CLASS_NAMES } from "./context";
+import { $body, $title } from "../theme/theme";
 
 const styles = {
   popover: $create({
@@ -192,10 +192,10 @@ const Popover = forwardRef(
       popover: $props(
         styles.popover.default,
         !!padding && styles.popover.padding(padding),
-        typography.body.medium,
+        $body.medium,
       ),
-      title: $props(typography.title.medium),
-      content: $props(typography.body.medium),
+      title: $props($title.medium),
+      content: $props($body.medium),
     };
 
     return (

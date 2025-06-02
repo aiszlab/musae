@@ -6,7 +6,7 @@ import { duration, elevations, OPACITY, sizes, spacing } from "../theme/tokens.s
 import { useTheme } from "../theme";
 import { useButton } from "./hooks";
 import { Ripple } from "../ripple";
-import { typography } from "../theme/theme";
+import { $label } from "../theme/theme";
 import { hexToRgba } from "@aiszlab/fuzzy/color";
 import { useClassNames } from "../../hooks/use-class-names";
 import { CLASS_NAMES } from "./context";
@@ -155,8 +155,8 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         styles.variant[variant],
         styles.shape[shape],
         disabled && [styles.disabled.default, styles.disabled[variant]],
-        size === "small" && typography.label.medium,
-        size !== "small" && typography.label.large,
+        size === "small" && $label.medium,
+        size !== "small" && $label.large,
       ),
     };
 

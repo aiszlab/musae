@@ -2,13 +2,13 @@ import { createElement, type ReactNode, useContext } from "react";
 import type { ColProps } from "../../types/grid";
 import { stringify } from "@aiszlab/relax/class-name";
 import { create as $create, props as $props } from "@stylexjs/stylex";
-import { Context } from "./context";
+import { Context, SPANS } from "./context";
 
 const styles = $create({
-  col: (props: { span: number }) => ({
-    gridColumnStart: "auto",
-    gridColumnEnd: `span ${props.span}`,
-  }),
+  col: {
+    flex: "0 0 var(--span)",
+    maxWidth: "var(--span)",
+  },
 });
 
 const Col = <E extends "aside" | "div" = "div">({
@@ -19,7 +19,7 @@ const Col = <E extends "aside" | "div" = "div">({
   style,
   onClick,
 }: ColProps<E>): ReactNode => {
-  const styled = $props(styles.col({ span }));
+  const styled = $props(styles.col);
   const { classNames } = useContext(Context);
 
   return createElement(
@@ -29,6 +29,7 @@ const Col = <E extends "aside" | "div" = "div">({
       style: {
         ...styled.style,
         ...style,
+        "--span": `${(span / SPANS) * 100}%`,
       },
       onClick,
     },

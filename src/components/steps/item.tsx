@@ -4,9 +4,9 @@ import { create as $create, props as $props } from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { useEvent } from "@aiszlab/relax";
 import { Context } from "./context";
-import { typography } from "../theme/theme";
 import { Done } from "../icon/icons";
 import { stringify } from "@aiszlab/relax/class-name";
+import { $body, $title } from "../theme/theme";
 
 const styles = {
   step: $create({
@@ -122,12 +122,8 @@ const Item = ({ leading, title, description, value }: StepItemProps) => {
       status === "done" && styles.sign.done,
       status === "todo" && styles.sign.todo,
     ),
-    title: $props(
-      typography.title.medium,
-      styles.title.default,
-      isHorizontal && !isMax && styles.title.tail,
-    ),
-    description: $props(typography.body.medium, styles.description.default),
+    title: $props($title.medium, styles.title.default, isHorizontal && !isMax && styles.title.tail),
+    description: $props($body.medium, styles.description.default),
   };
 
   const click = useEvent(() => {

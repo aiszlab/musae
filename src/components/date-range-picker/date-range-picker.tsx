@@ -17,6 +17,7 @@ const styles = $create({
     display: "flex",
     columnGap: spacing.xxsmall,
     alignItems: "center",
+    maxWidth: sizes.full,
   },
 
   trigger: {
@@ -45,7 +46,7 @@ const DateRangePicker = (props: DateRangePickerProps) => {
 
     return (
       <div
-        className={stringify(styled.picker.className, classNames.picker)}
+        className={stringify(classNames.picker, styled.picker.className)}
         style={styled.picker.style}
       >
         <span

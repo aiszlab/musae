@@ -7,10 +7,10 @@ import { useAsyncEffect, useComposedRef, useTimeout } from "@aiszlab/relax";
 import { useClassNames } from "../../hooks/use-class-names";
 import { duration, elevations, sizes, spacing } from "../theme/tokens.stylex";
 import { CheckCircle, Close, Loading, Error, NotificationImportant, Warning } from "../icon/icons";
-import { typography } from "../theme/theme";
 import type { IconProps } from "../../types/icon";
 import { stringify } from "@aiszlab/relax/class-name";
 import { CLASS_NAMES } from "./context";
+import { $body, $title } from "../theme/theme";
 
 const AXIS: Readonly<Record<Placement, Axis>> = {
   top: "top",
@@ -164,9 +164,9 @@ const Notification = forwardRef<HTMLDivElement, NotificationProps>(
               : theme.colors.primary,
         }),
       ),
-      title: $props(typography.title.medium, styles.title.default),
+      title: $props($title.medium, styles.title.default),
       description: $props(
-        typography.body.medium,
+        $body.medium,
         styles.description.default,
         !title && styles.description.simple,
       ),

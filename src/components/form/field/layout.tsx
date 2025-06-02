@@ -4,11 +4,11 @@ import type { ContextValue } from "../../../types/form";
 import Context from "../context";
 import { Grid } from "../../grid";
 import { create as $create, props as $props } from "@stylexjs/stylex";
-import { typography } from "../../theme/theme";
 import { sizes, spacing } from "../../theme/tokens.stylex";
 import { useTheme } from "../../theme";
 import { stringify } from "@aiszlab/relax/class-name";
 import type { ComponentProps } from "../../../types/element";
+import { $body, $label } from "src/components/theme/theme";
 
 const { Row, Col } = Grid;
 
@@ -99,9 +99,9 @@ const Layout = ({ required, space = false, className, style, supporting, ...prop
         styles.required({
           color: theme.colors.error,
         }),
-      typography.label.small,
+      $label.small,
     ),
-    supporting: $props(styles.supporting, typography.body.small),
+    supporting: $props(styles.supporting, $body.small),
   };
 
   return (

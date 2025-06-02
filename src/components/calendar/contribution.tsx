@@ -3,13 +3,13 @@ import React, { useMemo } from "react";
 import { create as $create, props as $props } from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
-import { typography } from "../theme/theme";
 import { Tooltip } from "../tooltip";
 import { clamp, min, toFunction } from "@aiszlab/relax";
 import { firstSundayInMonth } from "../../utils/date";
 import { ContributionCalendarProps } from "../../types/calendar";
 import { hexToHsla } from "@aiszlab/fuzzy/color";
 import { useLocale } from "../../locale";
+import { $body, $label } from "../theme/theme";
 
 const FORMAT = "YYYY-MM-DD";
 
@@ -152,15 +152,15 @@ const ContributionCalendar = ({
     calendar: $props(styles.calendar.default),
     cell: $props(styles.cell.default),
     weekday: {
-      cell: $props(styles.weekday.cell, typography.body.small),
+      cell: $props(styles.weekday.cell, $body.small),
       default: $props(styles.weekday.default),
     },
     month: {
-      cell: $props(styles.month.cell, typography.body.small),
+      cell: $props(styles.month.cell, $body.small),
       default: $props(styles.month.default),
-      leading: $props(styles.month.cell, typography.body.small, styles.month.leading),
+      leading: $props(styles.month.cell, $body.small, styles.month.leading),
     },
-    legend: $props(styles.legend.default, typography.label.medium),
+    legend: $props(styles.legend.default, $label.medium),
     levels: $props(styles.levels.default),
     level: $props(styles.levels.level),
   };

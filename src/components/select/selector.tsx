@@ -15,7 +15,7 @@ import { styles as inputStyles } from "../input";
 import { create as $create, props as $props } from "@stylexjs/stylex";
 import { Context } from "../picker";
 import { useTheme } from "../theme";
-import { typography } from "../theme/theme";
+import { $body } from "../theme/theme";
 
 const styles = $create({
   input: (props: { color: CSSProperties["color"] }) => ({
@@ -52,7 +52,7 @@ const Selector: ForwardRefExoticComponent<
       styles.input({
         color: (isFocused && searchable && theme.colors["on-surface"]) || void 0,
       }),
-      typography.body.small,
+      $body.small,
     );
 
     // multiple mode render

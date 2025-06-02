@@ -13,11 +13,11 @@ import type { PickerProps, PickerRef } from "../../types/picker";
 import { useClassNames } from "../../hooks/use-class-names";
 import { create as $create, props as $props } from "@stylexjs/stylex";
 import { useTheme } from "../theme";
-import { typography } from "../theme/theme";
 import { styles as inputStyles } from "../input";
 import { CLASS_NAMES, Context } from "./context";
 import { stringify } from "@aiszlab/relax/class-name";
 import { Close } from "../icon/icons";
+import { $body } from "../theme/theme";
 
 const styles = $create({
   pickable: (props: { minWidth: CSSProperties["minWidth"] }) => ({
@@ -90,7 +90,7 @@ const Picker = forwardRef<PickerRef, PickerProps>(
 
     const styled = {
       picker: $props(
-        typography.body.medium,
+        $body.medium,
         inputStyles.inputor({
           outlineColor: theme.colors.outline,
           focusedOutlineColor: theme.colors.primary,

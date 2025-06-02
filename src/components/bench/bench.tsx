@@ -3,7 +3,7 @@ import { create as $create, props as $props } from "@stylexjs/stylex";
 import { duration, sizes, spacing } from "../theme/tokens.stylex";
 import type { BenchProps } from "../../types/bench";
 import { useLogo, useMenuItems, useNavigations, useMenuKeys } from "./hooks";
-import { typography } from "../theme/theme";
+import { $title } from "../theme/theme";
 import { stringify } from "@aiszlab/relax/class-name";
 import { Menu } from "../menu";
 import { MenuOpen as MenuOpenIcon, Menu as MenuIcon } from "../icon/icons";
@@ -143,11 +143,7 @@ const Bench = ({
 
   const styled = {
     bench: $props(styles.bench.default, isCollapsed && styles.bench.collapsed),
-    heading: $props(
-      typography.title.large,
-      styles.heading.default,
-      isCollapsed && styles.heading.collapsed,
-    ),
+    heading: $props($title.large, styles.heading.default, isCollapsed && styles.heading.collapsed),
     header: $props(styles.header.default),
     sidebar: $props(styles.sidebar.default, isCollapsed && styles.sidebar.collapsed),
     menu: $props(styles.menu.default, isCollapsed && styles.menu.collapsed),
@@ -155,7 +151,7 @@ const Bench = ({
     main: $props(styles.main.default),
     collapser: $props(styles.collapser.default),
     expander: $props(styles.expander.default),
-    title: $props(typography.title.large),
+    title: $props($title.large),
   };
 
   return (

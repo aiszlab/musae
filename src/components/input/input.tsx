@@ -6,10 +6,10 @@ import { create as $create, props as $props } from "@stylexjs/stylex";
 import { duration, OPACITY, sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { useClassNames } from "../../hooks/use-class-names";
-import { typography } from "../theme/theme";
 import { hexToRgba } from "@aiszlab/fuzzy/color";
 import { stringify } from "@aiszlab/relax/class-name";
 import { CLASS_NAMES } from "./context";
+import { $body } from "../theme/theme";
 
 export const styles = $create({
   inputor: (props: {
@@ -139,7 +139,7 @@ const Input = forwardRef<InputRef, InputProps>(
 
     const styled = {
       inputor: $props(
-        typography.body.medium,
+        $body.medium,
         styles.inputor({
           outlineColor: theme.colors.outline,
           focusedOutlineColor: theme.colors.primary,

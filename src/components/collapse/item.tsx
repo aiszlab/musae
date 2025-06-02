@@ -8,7 +8,7 @@ import { useExpandable } from "../../hooks/use-expandable";
 import { useTheme } from "../theme";
 import { KeyboardArrowRight } from "../icon/icons";
 import { stringify } from "@aiszlab/relax/class-name";
-import { typography } from "../theme/theme";
+import { $body, $title } from "../theme/theme";
 
 const styles = {
   item: $create({
@@ -83,9 +83,9 @@ const CollapseItem = ({ children, label, value }: CollapseItemProps) => {
 
   const styled = {
     item: $props(styles.item.default),
-    header: $props(styles.header.default, typography.title.medium),
+    header: $props(styles.header.default, $title.medium),
     panel: $props(styles.panel.default, !isExpanded && styles.panel.hidden),
-    content: $props(styles.content.default, typography.body.medium),
+    content: $props(styles.content.default, $body.medium),
     collapser: $props(styles.collapser.default, isExpanded && styles.collapser.expanded),
   };
 

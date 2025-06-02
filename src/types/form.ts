@@ -108,6 +108,13 @@ interface TypedForm {
   ) => ReactNode;
 
   /**
+   * `List` Component
+   */
+  List: <T extends FieldsValue, FieldKey extends keyof T = keyof T>(
+    props: FormListProps<T, FieldKey>,
+  ) => ReactNode;
+
+  /**
    * `Form` hook
    */
   useForm<T extends FieldsValue>(props?: UsingForm<T>): UsedForm<T>;
@@ -211,7 +218,7 @@ interface FormListProps<T extends FieldsValue, FieldKey extends keyof T>
   /**
    * children render
    */
-  children: FC<{
+  children?: FC<{
     fields: FormListField[];
     add: () => void;
     remove: (index: number) => void;

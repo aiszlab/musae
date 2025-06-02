@@ -7,9 +7,9 @@ import { AttachFile, Delete, Loading } from "../icon/icons";
 import { leaf } from "@aiszlab/fuzzy/path";
 import { Context } from "./context";
 import { Image } from "../image";
-import { typography } from "../theme/theme";
 import { useTheme } from "../theme";
 import { stringify } from "@aiszlab/relax/class-name";
+import { $body } from "../theme/theme";
 
 const styles = {
   item: $create({
@@ -62,7 +62,7 @@ const UploadedItem = ({
   const styled = {
     item: $props(
       styles.item.default,
-      typography.body.small,
+      $body.small,
       isPicture && styles.item.picture({ borderColor: theme.colors["outline-variant"] }),
     ),
     filename: $props(styles.filename.default),

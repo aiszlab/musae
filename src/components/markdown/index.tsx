@@ -5,8 +5,9 @@ import Loading from "./loading";
 import Context, { CLASS_NAMES } from "./context";
 import { useClassNames } from "../../hooks/use-class-names";
 import { stringify } from "@aiszlab/relax/class-name";
-import _Markdown from "./markdown";
 import { useIsMounted } from "@aiszlab/relax";
+
+const _markdown = import("./markdown");
 
 const Markdown = ({ value, className, style }: MarkdownProps) => {
   const classNames = useClassNames(CLASS_NAMES);
@@ -15,7 +16,7 @@ const Markdown = ({ value, className, style }: MarkdownProps) => {
   // dynamically render
   const _Markdown = useMemo(() => {
     return lazy(() =>
-      import("./markdown")
+      _markdown
         .then(({ default: render }) =>
           render({
             value,

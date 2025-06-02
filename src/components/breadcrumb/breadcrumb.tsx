@@ -1,7 +1,7 @@
 import React from "react";
 import type { BreadcrumbProps } from "../../types/breadcrumb";
 import { create as $create, props as $props } from "@stylexjs/stylex";
-import { typography } from "../theme/theme";
+import { $label } from "../theme/theme";
 import { useTheme } from "../theme";
 import { useClassNames } from "../../hooks/use-class-names";
 import { stringify } from "@aiszlab/relax/class-name";
@@ -33,7 +33,7 @@ const Breadcrumb = ({ items = [], className, separator = "/", style }: Breadcrum
   }
 
   const styled = {
-    breadcrumb: $props(typography.label.large, styles.breadcrumb),
+    breadcrumb: $props($label.large, styles.breadcrumb),
     navigations: $props(styles.navigations),
   };
 

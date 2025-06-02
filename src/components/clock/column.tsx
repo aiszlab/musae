@@ -8,7 +8,7 @@ import { useTheme } from "../theme";
 import type { MenuRef } from "../../types/menu";
 import { stringify } from "@aiszlab/relax/class-name";
 import { Context } from "./context";
-import { scrollbar } from "../theme/theme";
+import { $scrollbar } from "../theme/theme";
 
 const UNITS: Record<TimeUnit, number> = {
   hour: 24,
@@ -55,7 +55,7 @@ const Column = ({ unit, value, onChange }: ColumnProps) => {
   }, [value]);
 
   const styled = {
-    menu: $props(scrollbar.default, styles.menu),
+    menu: $props($scrollbar.default, styles.menu),
     item: $props(styles.item),
   };
 

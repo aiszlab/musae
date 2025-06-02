@@ -6,11 +6,11 @@ import { useClassNames } from "../../hooks/use-class-names";
 import { CLASS_NAMES, Context } from "./context";
 import type { ChatItemProps, ChatProps } from "../../types/chat";
 import { create as $create, props as $props } from "@stylexjs/stylex";
-import { typography } from "../theme/theme";
 import { stringify } from "@aiszlab/relax/class-name";
 import { spacing } from "../theme/tokens.stylex";
 import { IconButton } from "../icon-button";
 import { RocketLaunch } from "../icon/icons";
+import { $body } from "../theme/theme";
 
 const styles = $create({
   chat: {
@@ -55,7 +55,7 @@ const Chat = ({ onMessage, className, style, defaultValue, placeholder }: ChatPr
   }, [id, message]);
 
   const styled = {
-    chat: $props(styles.chat, typography.body.medium),
+    chat: $props(styles.chat, $body.medium),
     messages: $props(styles.messages),
     footer: $props(styles.footer),
   };

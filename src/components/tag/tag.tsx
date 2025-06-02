@@ -4,10 +4,10 @@ import type { TagProps } from "../../types/tag";
 import { useClassNames } from "../../hooks/use-class-names";
 import { create as $create, props as $props } from "@stylexjs/stylex";
 import { useTheme } from "../theme";
-import { typography } from "../theme/theme";
 import { spacing } from "../theme/tokens.stylex";
 import { Close } from "../icon/icons";
 import { CLASS_NAMES } from "./context";
+import { $label } from "../theme/theme";
 
 const styles = $create({
   tag: (props: {
@@ -56,7 +56,7 @@ const Tag = ({
   const theme = useTheme();
 
   const styled = $props(
-    typography.label[size],
+    $label[size],
     styles.tag({
       backgroundColor: theme.colors["primary-container"],
       color: theme.colors["on-primary-container"],

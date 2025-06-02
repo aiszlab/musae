@@ -9,6 +9,11 @@ export const CLASS_NAMES = {
   col: "grid__col",
 };
 
+/**
+ * Grid Span
+ */
+export const SPANS = 24;
+
 export const Context = createContext({
   classNames: CLASS_NAMES,
 });

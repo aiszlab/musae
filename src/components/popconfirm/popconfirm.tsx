@@ -14,13 +14,13 @@ import { useBoolean, useClickAway, useEvent } from "@aiszlab/relax";
 import { Warning } from "../icon/icons";
 import { Popper } from "../popper";
 import { spacing } from "../theme/tokens.stylex";
-import { typography } from "../theme/theme";
 import { useTheme } from "../theme";
 import { useLocale } from "../../locale";
 import type { PopperRef } from "../../types/popper";
 import { stringify } from "@aiszlab/relax/class-name";
 import { useClassNames } from "../../hooks/use-class-names";
 import { CLASS_NAMES } from "./context";
+import { $body, $title } from "../theme/theme";
 
 const styles = $create({
   popconfirm: {
@@ -115,8 +115,8 @@ const Popconfirm = ({
   const styled = {
     popconfirm: $props(styles.popconfirm, !title && styles.simple),
     leading: $props(styles.leading({ color: theme.colors.warning })),
-    title: $props(styles.title, typography.title.medium),
-    content: $props(styles.content, typography.body.medium),
+    title: $props(styles.title, $title.medium),
+    content: $props(styles.content, $body.medium),
     footer: $props(styles.footer),
   };
 

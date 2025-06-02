@@ -4,10 +4,10 @@ import { useClassNames } from "../../hooks/use-class-names";
 import Context, { CLASS_NAMES } from "./context";
 import { stringify } from "@aiszlab/relax/class-name";
 import { sizes, spacing } from "../theme/tokens.stylex";
-import { typography } from "../theme/theme";
 import { SplitPanelProps } from "../../types/split-panel";
 import Panel from "./panel";
 import { usePanels } from "./hooks";
+import { $body } from "../theme/theme";
 
 const styles = $create({
   default: {
@@ -38,7 +38,7 @@ const SplitPanel = ({ className, style, items, orientation = "horizontal" }: Spl
     return null;
   }
 
-  const styled = $props(styles.default, styles[orientation], typography.body.medium);
+  const styled = $props(styles.default, styles[orientation], $body.medium);
 
   return (
     <Context.Provider value={{ classNames, orientation, panelsRef }}>

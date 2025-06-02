@@ -1,7 +1,7 @@
 import React from "react";
 import { toHtml } from "./utils";
 import { create as $create, props as $props } from "@stylexjs/stylex";
-import { typography } from "../theme/theme";
+import { $body } from "../theme/theme";
 import type { MarkdownProps } from "../../types/markdown";
 import { stringify } from "@aiszlab/relax/class-name";
 import { spacing } from "../theme/tokens.stylex";
@@ -29,7 +29,7 @@ interface Props extends MarkdownProps {
 
 const Markdown = async ({ value, className, style, isInClient }: Props) => {
   const _html = isInClient ? await toHtml(value) : value;
-  const styled = $props(styles.markdown, typography.body.medium);
+  const styled = $props(styles.markdown, $body.medium);
 
   return (
     <div

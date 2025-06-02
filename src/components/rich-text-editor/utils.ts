@@ -1,6 +1,5 @@
-import { create as $create, attrs as $attrs } from "@stylexjs/stylex";
+import { create as $create, props as $props } from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
-import { typography } from "../theme/theme";
 import type { CreateEditorArgs, EditorThemeClasses } from "lexical";
 /* nodes */
 import { HeadingNode, QuoteNode } from "@lexical/rich-text";
@@ -13,6 +12,7 @@ import {
   replacement as listItemNodeReplacement,
 } from "./nodes/checkable-list-item";
 import { CheckboxNode } from "./nodes/checkbox";
+import { $headline, $label, $title } from "../theme/theme";
 
 const _styles = {
   list: {
@@ -123,28 +123,28 @@ const _styles = {
   }),
 };
 
-export const usingStyles = () => {
+const usingStyles = () => {
   return {
-    h1: $attrs(typography.headline.large, _styles.heading.default, _styles.heading.h1),
-    h2: $attrs(typography.headline.medium, _styles.heading.default, _styles.heading.h2),
-    h3: $attrs(typography.headline.small, _styles.heading.default, _styles.heading.h3),
-    h4: $attrs(typography.title.large, _styles.heading.default, _styles.heading.h4),
-    h5: $attrs(typography.title.medium, _styles.heading.default, _styles.heading.h5),
-    h6: $attrs(typography.title.medium, _styles.heading.default, _styles.heading.h6),
+    h1: $props($headline.large, _styles.heading.default, _styles.heading.h1),
+    h2: $props($headline.medium, _styles.heading.default, _styles.heading.h2),
+    h3: $props($headline.small, _styles.heading.default, _styles.heading.h3),
+    h4: $props($title.large, _styles.heading.default, _styles.heading.h4),
+    h5: $props($title.medium, _styles.heading.default, _styles.heading.h5),
+    h6: $props($title.medium, _styles.heading.default, _styles.heading.h6),
 
-    code: $attrs(typography.label.medium, _styles.code.block),
-    inlineCode: $attrs(typography.label.medium, _styles.code.inline),
+    code: $props($label.medium, _styles.code.block),
+    inlineCode: $props($label.medium, _styles.code.inline),
 
-    link: $attrs(_styles.link.default),
+    link: $props(_styles.link.default),
 
     list: {
-      unordered: $attrs(_styles.list.default.default, _styles.list.unordered.default),
-      ordered: $attrs(_styles.list.default.default, _styles.list.ordered.default),
-      checkable: $attrs(_styles.list.unordered.checkable),
+      unordered: $props(_styles.list.default.default, _styles.list.unordered.default),
+      ordered: $props(_styles.list.default.default, _styles.list.ordered.default),
+      checkable: $props(_styles.list.unordered.checkable),
       item: {
-        default: $attrs(_styles.list.item.default),
-        unchecked: $attrs(_styles.list.item.checkable),
-        checked: $attrs(_styles.list.item.checkable, _styles.list.item.checked),
+        default: $props(_styles.list.item.default),
+        unchecked: $props(_styles.list.item.checkable),
+        checked: $props(_styles.list.item.checkable, _styles.list.item.checked),
       },
     },
   };
@@ -160,25 +160,25 @@ export const usingEditor = ({ disabled = false }: { disabled?: boolean }): Creat
 
   const theme: EditorThemeClasses = {
     heading: {
-      h1: styled.h1.class,
-      h2: styled.h2.class,
-      h3: styled.h3.class,
-      h4: styled.h4.class,
-      h5: styled.h5.class,
-      h6: styled.h6.class,
+      h1: styled.h1.className,
+      h2: styled.h2.className,
+      h3: styled.h3.className,
+      h4: styled.h4.className,
+      h5: styled.h5.className,
+      h6: styled.h6.className,
     },
-    code: styled.code.class,
+    code: styled.code.className,
     text: {
-      code: styled.inlineCode.class,
+      code: styled.inlineCode.className,
     },
-    link: styled.link.class,
+    link: styled.link.className,
     list: {
-      ul: styled.list.unordered.class,
-      ol: styled.list.ordered.class,
-      checklist: styled.list.checkable.class,
-      listitem: styled.list.item.default.class,
-      listitemUnchecked: styled.list.item.unchecked.class,
-      listitemChecked: styled.list.item.checked.class,
+      ul: styled.list.unordered.className,
+      ol: styled.list.ordered.className,
+      checklist: styled.list.checkable.className,
+      listitem: styled.list.item.default.className,
+      listitemUnchecked: styled.list.item.unchecked.className,
+      listitemChecked: styled.list.item.checked.className,
     },
   };
 

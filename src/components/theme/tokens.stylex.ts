@@ -125,7 +125,7 @@ export const OPACITY: Record<OpacityToken, number> = {
   thickest: 0.38,
 };
 
-export const opacity = defineVars(OPACITY);
+export const opacity = defineVars(OPACITY as unknown as Record<OpacityToken, string>);
 
 /**
  * @description duration

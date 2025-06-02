@@ -7,19 +7,15 @@ import { useGutters } from "../../hooks/use-gutters";
 import { CLASS_NAMES, Context } from "./context";
 
 const styles = $create({
-  row: (props: {
-    columnGap: number;
-    rowGap: number;
-    justify: RowProps["justify"];
-    align: RowProps["align"];
-  }) => ({
-    display: "grid",
-    gridTemplateColumns: "repeat(24, minmax(0, 1fr))",
-    columnGap: props.columnGap,
-    rowGap: props.rowGap,
-    justifyItems: props.justify,
-    alignItems: props.align,
-  }),
+  row: {
+    display: "flex",
+    flexDirection: "row",
+    flexWrap: "wrap",
+    columnGap: "var(--column-gap)",
+    rowGap: "var(--row-gap)",
+    justifyItems: "var(--justify)",
+    alignItems: "var(--align)",
+  },
 });
 
 const Row = ({
@@ -34,7 +30,7 @@ const Row = ({
   // col and row gap in grid
   const [columnGap, rowGap] = useGutters({ gutter });
   const classNames = useClassNames(CLASS_NAMES);
-  const styled = $props(styles.row({ columnGap, rowGap, justify, align }));
+  const styled = $props(styles.row);
 
   return (
     <Context.Provider value={{ classNames }}>
@@ -43,6 +39,11 @@ const Row = ({
         style={{
           ...styled.style,
           ...style,
+          // @ts-expect-error style vars
+          "--column-gap": `${columnGap}px`,
+          "--row-gap": `${rowGap}px`,
+          "--justify": justify,
+          "--align": align,
         }}
       >
         {children}

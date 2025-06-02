@@ -4,7 +4,7 @@ import { create as $create, props as $props } from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import Context, { CLASS_NAMES } from "./context";
 import { useTheme } from "../theme";
-import { typography } from "../theme/theme";
+import { $label } from "../theme/theme";
 import { useImageLoader } from "@aiszlab/relax";
 import { stringify } from "@aiszlab/relax/class-name";
 import { Skeleton } from "../skeleton";
@@ -98,14 +98,14 @@ const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(
 
     const styled = {
       avatar: $props(
-        typography.label[size],
+        $label[size],
         styles.avatar,
         styles[size],
         styles[shape],
         isInGroup && styles.overlapping,
       ),
       loading: $props(
-        typography.label[size],
+        $label[size],
         styles.loading,
         styles[size],
         styles[shape],

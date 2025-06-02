@@ -1,11 +1,11 @@
-import { create as $create, props as $props } from "@stylexjs/stylex";
+import { create } from "@stylexjs/stylex";
 import { tracking } from "./tokens.stylex";
 
 /**
  * @description
  * typography - display
  */
-const display = $create({
+export const $display = create({
   small: {
     fontSize: 36,
     fontWeight: 400,
@@ -30,7 +30,7 @@ const display = $create({
  * @description
  * typography - headline
  */
-export const headline = $create({
+export const $headline = create({
   small: {
     fontSize: 24,
     fontWeight: 400,
@@ -55,7 +55,7 @@ export const headline = $create({
  * @description
  * typography - title
  */
-const title = $create({
+export const $title = create({
   small: {
     fontSize: 14,
     fontWeight: 400,
@@ -80,7 +80,7 @@ const title = $create({
  * @description
  * typography - body
  */
-const body = $create({
+export const $body = create({
   small: {
     fontSize: 12,
     fontWeight: 400,
@@ -105,7 +105,7 @@ const body = $create({
  * @description
  * typography - label
  */
-const label = $create({
+export const $label = create({
   small: {
     fontSize: 11,
     fontWeight: 500,
@@ -126,18 +126,10 @@ const label = $create({
   },
 });
 
-export const typography = {
-  body,
-  label,
-  headline,
-  display,
-  title,
-};
-
 /**
  * @description scrollbar
  */
-export const scrollbar = $create({
+export const $scrollbar = create({
   default: {
     scrollbarWidth: "thin",
     scrollbarColor: "var(--color-scrollbar-thumb, #eaeaea) transparent",

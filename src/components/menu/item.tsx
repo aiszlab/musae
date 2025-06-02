@@ -4,11 +4,11 @@ import { useItemChildren, useMenuContext } from "./hooks";
 import { create as $create, props as $props } from "@stylexjs/stylex";
 import { duration, sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
-import { typography } from "../theme/theme";
 import { useEvent, useHover } from "@aiszlab/relax";
 import { Popper } from "../popper";
 import { useLazyBoolean } from "../../hooks/use-lazy-boolean";
 import { stringify } from "@aiszlab/relax/class-name";
+import { $label } from "../theme/theme";
 
 const styles = {
   default: $create({
@@ -217,7 +217,7 @@ const Item = forwardRef<HTMLLIElement, MenuItemProps>(
             }),
           }),
 
-        typography.label[size],
+        $label[size],
       ),
       popper: $props(styles.popper.default),
     };

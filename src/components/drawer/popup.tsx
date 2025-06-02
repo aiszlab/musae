@@ -7,7 +7,6 @@ import { create as $create, props as $props } from "@stylexjs/stylex";
 import { positions, sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { stringify } from "@aiszlab/relax/class-name";
-import { typography } from "../theme/theme";
 import { contains } from "@aiszlab/relax/dom";
 import { useClosable } from "../../hooks/use-closable";
 import { Space } from "../space";
@@ -15,6 +14,7 @@ import { Button } from "../button";
 import { useLocale } from "../../locale";
 import { CLASS_NAMES } from "./context";
 import { at, useAsyncEffect } from "@aiszlab/relax";
+import { $body } from "../theme/theme";
 
 const styles = $create({
   popup: {
@@ -151,7 +151,7 @@ const Popup = ({
     popup: $props(styles.popup),
     overlay: $props(styles.overlay),
     panel: $props(styles.panel, styles[placement]),
-    header: $props(typography.body.large, styles.header),
+    header: $props($body.large, styles.header),
     body: $props(styles.body),
     actions: $props(styles.actions),
   };

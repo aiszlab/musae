@@ -4,9 +4,9 @@ import { stringify } from "@aiszlab/relax/class-name";
 import styles from "./styles";
 import { props as $props } from "@stylexjs/stylex";
 import { useTheme } from "../theme";
-import { typography } from "../theme/theme";
 import { CLASS_NAMES } from "./context";
 import { useClassNames } from "../../hooks/use-class-names";
+import { $body } from "../theme/theme";
 
 const Quote = ({ className, children, style }: QuoteProps) => {
   const classNames = useClassNames(CLASS_NAMES);
@@ -17,7 +17,7 @@ const Quote = ({ className, children, style }: QuoteProps) => {
       outlineColor: theme.colors["outline-variant"],
     }),
     styles.quote,
-    typography.body.small,
+    $body.small,
   );
 
   return (

@@ -6,12 +6,12 @@ import { useClassNames } from "../../hooks/use-class-names";
 import { create as $create, props as $props } from "@stylexjs/stylex";
 import { positions, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
-import { typography } from "../theme/theme";
 import { stringify } from "@aiszlab/relax/class-name";
 import { contains } from "@aiszlab/relax/dom";
 import { useClosable } from "../../hooks/use-closable";
 import { CLASS_NAMES } from "./context";
 import { useAsyncEffect } from "@aiszlab/relax";
+import { $body, $headline } from "../theme/theme";
 
 const styles = $create({
   popup: {
@@ -114,8 +114,8 @@ const Popup = ({ onClose, open, closable, onClosed, className, ...props }: Popup
     popup: $props(styles.popup),
     overlay: $props(styles.overlay),
     panel: $props(styles.panel),
-    header: $props(typography.headline.small),
-    body: $props(typography.body.medium, styles.body),
+    header: $props($headline.small),
+    body: $props($body.medium, styles.body),
     footer: $props(styles.footer),
   };
 

@@ -6,11 +6,11 @@ import { stringify } from "@aiszlab/relax/class-name";
 import type { CalendarProps } from "../../types/calendar";
 import { create as $create, props as $props } from "@stylexjs/stylex";
 import { positions, sizes, spacing } from "../theme/tokens.stylex";
-import { typography } from "../theme/theme";
 import { useTheme } from "../theme";
 import { IconButton } from "../icon-button";
 import type { CLASS_NAMES } from "./context";
 import { Partialable } from "@aiszlab/relax/types";
+import { $body } from "../theme/theme";
 
 const styles = $create({
   cell: {
@@ -80,7 +80,7 @@ export const useHeadCells = ({ classNames }: { classNames: typeof CLASS_NAMES })
       styles.header({
         color: theme.colors["on-surface-variant"],
       }),
-      typography.body.medium,
+      $body.medium,
     );
 
     return dayjs.Ls[dayjs.locale()].weekdays?.map((weekday, index) => (
@@ -142,7 +142,7 @@ export const useDateCells = ({
             isBetween && styles.range,
             isFrom && timespan.isRange && styles.from,
             isTo && timespan.isRange && styles.to,
-            typography.body.large,
+            $body.large,
           ),
           trigger: $props(styles.trigger),
         };

@@ -10,11 +10,11 @@ import {
 import { useClassNames } from "../../hooks/use-class-names";
 import { create as $create, props as $props } from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
-import { typography } from "../theme/theme";
 import { stringify } from "@aiszlab/relax/class-name";
 import { useTheme } from "../theme";
 import { IconButton } from "../icon-button";
 import { CLASS_NAMES } from "./context";
+import { $body, $label } from "../theme/theme";
 
 const styles = $create({
   calendar: {
@@ -60,8 +60,8 @@ const Calendar = forwardRef<CalendarRef, CalendarProps>(
 
     const styled = {
       calendar: $props(styles.calendar),
-      header: $props(typography.label.large, styles.header),
-      heading: $props(styles.heading, typography.body.medium),
+      header: $props($label.large, styles.header),
+      heading: $props(styles.heading, $body.medium),
       body: $props(styles.body),
     };
 

@@ -1,4 +1,4 @@
-import { create as $create, attrs as $attrs, props as $props } from "@stylexjs/stylex";
+import { create as $create, props as $props } from "@stylexjs/stylex";
 import { EllipsisProps } from "../../types/ellipsis";
 import { Tooltip } from "../tooltip";
 import React, { useLayoutEffect, useRef, useState } from "react";
@@ -31,7 +31,7 @@ const Ellipsis = ({
 
   const styled = {
     ellipsis: $props(styles.ellipsis),
-    virtual: $attrs(styles.virtual),
+    virtual: $props(styles.virtual),
   };
 
   useLayoutEffect(() => {
@@ -44,8 +44,8 @@ const Ellipsis = ({
     const _exceedAt = exceedAt(value, {
       maxHeight: height,
       maxWidth: width,
-      className: stringify(_container.className, styled.virtual.class),
-      style: stringify(_container.style.cssText, styled.virtual.style),
+      className: stringify(_container.className, styled.virtual.className),
+      style: _container.style.cssText,
       textOverflow,
       lineClamp,
     });

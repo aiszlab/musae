@@ -5,10 +5,10 @@ import { useClassNames } from "../../hooks/use-class-names";
 import { create as $create, props as $props } from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
-import { typography } from "../theme/theme";
 import { stringify } from "@aiszlab/relax/class-name";
 import { useGutters } from "../../hooks/use-gutters";
 import { CLASS_NAMES } from "./context";
+import { $body } from "../theme/theme";
 
 const styles = {
   divider: $create({
@@ -116,7 +116,7 @@ const Divider = ({
       !isLabeled && styles.simple[orientation],
       isLabeled && styles.labeled[orientation],
     ),
-    label: $props(styles.label[orientation], typography.body.small),
+    label: $props(styles.label[orientation], $body.small),
   };
 
   return (

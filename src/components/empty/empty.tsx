@@ -3,10 +3,10 @@ import { useClassNames } from "../../hooks/use-class-names";
 import { create as $create, props as $props } from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
 import { stringify } from "@aiszlab/relax/class-name";
-import { typography } from "../theme/theme";
 import { useLocale } from "../../locale";
 import type { EmptyProps } from "../../types/empty";
 import { CLASS_NAMES } from "./context";
+import { $body } from "../theme/theme";
 
 const styles = $create({
   empty: {
@@ -32,7 +32,7 @@ const Empty = ({ className, style }: EmptyProps) => {
 
   const styled = {
     empty: $props(styles.empty),
-    label: $props(typography.body.small, styles.label),
+    label: $props($body.small, styles.label),
   };
 
   return (

@@ -4,7 +4,6 @@ import Context, { CLASS_NAMES } from "./context";
 import type { CheckboxProps } from "../../types/checkbox";
 import { create as $create, props as $props } from "@stylexjs/stylex";
 import { useTheme } from "../theme";
-import { typography } from "../theme/theme";
 import styles from "./styles";
 import { useClassNames } from "../../hooks/use-class-names";
 import { stringify } from "@aiszlab/relax/class-name";
@@ -14,6 +13,7 @@ import { Ripple, useRipple } from "../ripple";
 import { hexToRgba } from "@aiszlab/fuzzy/color";
 import { OPACITY } from "../theme/tokens.stylex";
 import { stopPropagation } from "@aiszlab/relax/dom";
+import { $label } from "../theme/theme";
 
 const Checkbox = ({
   value,
@@ -122,7 +122,7 @@ const Checkbox = ({
     ),
     input: $props(styles.input.default),
     check: $props(styles.check.default),
-    label: $props(typography.label.small, styles.label.default, invalid && styles.label.invalid),
+    label: $props($label.small, styles.label.default, invalid && styles.label.invalid),
   };
 
   return (

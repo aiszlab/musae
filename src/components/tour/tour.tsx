@@ -7,7 +7,6 @@ import { Button } from "../button";
 import { useTheme } from "../theme";
 import { duration, elevations, positions, sizes, spacing } from "../theme/tokens.stylex";
 import { Space } from "../space";
-import { typography } from "../theme/theme";
 import { stringify } from "@aiszlab/relax/class-name";
 import { useStep } from "./hooks";
 import Spotlight from "./spotlight";
@@ -16,6 +15,7 @@ import { useLocale } from "../../locale";
 import { CLASS_NAMES, Context } from "./context";
 import { useClassNames } from "../../hooks/use-class-names";
 import { useContainer } from "../../hooks/use-container";
+import { $body, $title } from "../theme/theme";
 
 const styles = $create({
   overlay: {
@@ -71,8 +71,8 @@ const Tour = ({
   const styled = {
     overlay: $props(styles.overlay),
     tour: $props(styles.tour),
-    title: $props(styles.title, typography.title.medium),
-    description: $props(styles.description, typography.body.medium),
+    title: $props(styles.title, $title.medium),
+    description: $props(styles.description, $body.medium),
     footer: $props(styles.footer),
   };
 

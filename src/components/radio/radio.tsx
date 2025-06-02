@@ -6,8 +6,8 @@ import { useClassNames } from "../../hooks/use-class-names";
 import { create as $create, props as $props } from "@stylexjs/stylex";
 import { useTheme } from "../theme";
 import { duration, sizes, spacing } from "../theme/tokens.stylex";
-import { typography } from "../theme/theme";
 import { stringify } from "@aiszlab/relax/class-name";
+import { $body } from "../theme/theme";
 
 const styles = {
   radio: $create({
@@ -144,7 +144,7 @@ const Radio = ({ children, value, checked, disabled = false, ...props }: RadioPr
         }),
       !isChecked && styles.input.unckecked,
     ),
-    label: $props(typography.body.medium, styles.label.default),
+    label: $props($body.medium, styles.label.default),
   };
 
   return (

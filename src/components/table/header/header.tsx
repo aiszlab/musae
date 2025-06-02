@@ -6,7 +6,7 @@ import { create as $create, props as $props } from "@stylexjs/stylex";
 import { sizes, spacing } from "../../theme/tokens.stylex";
 import { useTheme } from "../../theme";
 import { stringify } from "@aiszlab/relax/class-name";
-import { typography } from "../../theme/theme";
+import { $label } from "src/components/theme/theme";
 
 const styles = $create({
   cell: (props: {
@@ -57,7 +57,7 @@ const Header = <T,>(props: HeaderProps) => {
       backgroundColor: theme.colors.surface,
       borderColor: theme.colors["outline-variant"],
     }),
-    typography.label.small,
+    $label.small,
     bordered && styles.bordered,
     !bordered &&
       styles.unbordered({

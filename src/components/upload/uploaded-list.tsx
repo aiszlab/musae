@@ -7,11 +7,11 @@ import type {
   UploadedListRef,
 } from "../../types/upload";
 import { useControlledState, useEvent, useIdentity } from "@aiszlab/relax";
-import { typography } from "../theme/theme";
 import { isRemoteFile } from "./utils";
 import UploadedItem from "./uploaded-item";
 import { Context } from "./context";
 import { stringify } from "@aiszlab/relax/class-name";
+import { $body } from "../theme/theme";
 
 const styles = $create({
   list: {
@@ -135,7 +135,7 @@ const UploadedList = forwardRef<UploadedListRef, UploadedListProps>(
 
     const styled = {
       list: $props(styles.list),
-      item: $props(styles.item, typography.body.small),
+      item: $props(styles.item, $body.small),
       filename: $props(styles.filename),
     };
 

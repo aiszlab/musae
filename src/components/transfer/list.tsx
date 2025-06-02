@@ -6,7 +6,7 @@ import Item from "./item";
 import { Checkbox } from "../checkbox";
 import { Context } from "./context";
 import { stringify } from "@aiszlab/relax/class-name";
-import { scrollbar, typography } from "../theme/theme";
+import { $body, $label, $scrollbar } from "../theme/theme";
 import { useLocale } from "../../locale";
 
 const styles = $create({
@@ -57,10 +57,10 @@ const List = ({ options, title, onChange, value }: TransferListProps) => {
   const [locale] = useLocale("transfer");
 
   const styled = {
-    list: $props(scrollbar.default, styles.list),
-    header: $props(styles.header, typography.label.large),
+    list: $props($scrollbar.default, styles.list),
+    header: $props(styles.header, $label.large),
     title: $props(styles.title),
-    body: $props(styles.body, typography.body.medium),
+    body: $props(styles.body, $body.medium),
   };
 
   return (

@@ -1,18 +1,42 @@
-import React, { createElement, useMemo, useState } from "react";
+import React, { createElement, ReactNode, useMemo, useState } from "react";
 import Item from "./item";
 import type { FieldsValue, FormListField, FormListProps } from "../../types/form";
 import { useEvent, useIdentity } from "@aiszlab/relax";
-import { FormContext } from "./context";
+import { FormContext, useFormContext } from "./context";
 import { useForm } from "./hooks";
-import { FORM_TOKEN } from "../../utils/form";
+import { ChangeHandler, FORM_TOKEN } from "../../utils/form";
 
+/**
+ * internal used Component
+ */
+function _List<V extends FieldsValue>({
+  value,
+  onChange,
+  children,
+}: {
+  value?: V;
+  onChange?: ChangeHandler<V>;
+  children: ReactNode;
+}) {
+  const _form = useForm<{}>({
+    value,
+    onChange,
+  });
+
+  return (
+    <FormContext.Provider value={{ form: _form[FORM_TOKEN] }}>{children}</FormContext.Provider>
+  );
+}
+
+/**
+ * wrapped `Form.List` Component
+ */
 function List<T extends FieldsValue, FieldKey extends keyof T>({
   children,
   ...itemProps
 }: FormListProps<T, FieldKey>) {
   const { 1: _id } = useIdentity();
   const [fields, setFields] = useState<{ name: string }[]>([]);
-  const _form = useForm<{}>();
 
   const add = useEvent(() => {
     setFields((prev) => [...prev, { name: _id() }]);
@@ -28,15 +52,20 @@ function List<T extends FieldsValue, FieldKey extends keyof T>({
     }, new Map());
   }, [fields, add, remove]);
 
+  // null render, return null
+  if (!children) {
+    return null;
+  }
+
   return (
     <Item {...itemProps}>
-      <FormContext.Provider value={{ form: _form[FORM_TOKEN] }}>
+      <_List>
         {createElement(children, {
           fields: Array.from(_fields.values()),
           add,
           remove,
         })}
-      </FormContext.Provider>
+      </_List>
     </Item>
   );
 }
