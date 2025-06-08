@@ -21,6 +21,7 @@ const Col = <E extends "aside" | "div" = "div">({
 }: ColProps<E>): ReactNode => {
   const styled = $props(styles.col);
   const { classNames } = useContext(Context);
+  const isFull = span >= SPANS;
 
   return createElement(
     As,
@@ -29,7 +30,10 @@ const Col = <E extends "aside" | "div" = "div">({
       style: {
         ...styled.style,
         ...style,
-        "--span": `${(span / SPANS) * 100}%`,
+        ...(isFull && {
+          "--column-gap": "0px",
+        }),
+        "--span": `calc(${(span / SPANS) * 100}% - var(--column-gap) / 2)`,
       },
       onClick,
     },
