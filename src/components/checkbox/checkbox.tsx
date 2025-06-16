@@ -2,7 +2,7 @@ import React, { type ChangeEvent, type CSSProperties, useContext, useMemo } from
 import { isUndefined, useControlledState, useEvent } from "@aiszlab/relax";
 import Context, { CLASS_NAMES } from "./context";
 import type { CheckboxProps } from "../../types/checkbox";
-import { create as $create, props as $props } from "@stylexjs/stylex";
+import { props as $props } from "@stylexjs/stylex";
 import { useTheme } from "../theme";
 import styles from "./styles";
 import { useClassNames } from "../../hooks/use-class-names";

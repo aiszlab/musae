@@ -30,5 +30,5 @@ export default Context;
 export const FormContext = createContext<FormContextValue>({ form: null });
 
 export const useFormContext = <T extends FieldsValue = {}>() => {
-  return useContext(Context) as unknown as FormContextValue<T>;
+  return useContext(FormContext) as FormContextValue<T>;
 };

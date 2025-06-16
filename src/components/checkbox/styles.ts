@@ -88,6 +88,7 @@ const styles = {
       default: {
         width: "var(--size)",
         height: "var(--size)",
+        minWidth: "var(--size)",
         position: "relative",
         boxSizing: "border-box",
         borderRadius: sizes.xxxxxxxxsmall,
