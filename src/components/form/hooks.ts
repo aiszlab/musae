@@ -29,7 +29,7 @@ function useFormItem<T extends FieldsValue, FieldKey extends keyof T>({
   useMounted(() => {
     if (!name) return;
 
-    return form?.register<FieldKey>(name, {
+    const unregister = form?.register<FieldKey>(name, {
       rules: _rules,
       onChange: ({ error, value }) => {
         setError(error);
@@ -39,6 +39,10 @@ function useFormItem<T extends FieldsValue, FieldKey extends keyof T>({
         setError(error);
       },
     });
+
+    return () => {
+      unregister?.();
+    };
   });
 
   const isInvalid = useMemo(() => {
@@ -66,9 +70,42 @@ function useForm<T extends FieldsValue>({ value, ...usingForm }: UsingForm<T> = 
 
   useUpdateEffect(() => {
     form[FORM_TOKEN].useValue(value);
-  });
+  }, [value]);
 
   return form;
+}
+
+/**
+ * @description watch form item
+ */
+const useWatch = <T extends FieldsValue, FieldKey extends keyof T>(name: FieldKey) => {
+  const [value, setValue] = useState<T[FieldKey]>();
+  const { form } = useFormContext<T>();
+
+  useMounted(() => {
+    if (!name) return;
+
+    const unregister = form?.register<FieldKey>(name, {
+      onChange: ({ value }) => {
+        setValue(value);
+      },
+    });
+
+    return () => {
+      unregister?.();
+    };
+  });
+
+  return value;
+};
+
+/**
+ * get wrappered context form
+ */
+function useProvidedForm() {
+  const useWatch = () => {};
+
+  return {};
 }
 
 export { useFormItem, useForm };
