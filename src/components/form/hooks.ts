@@ -97,13 +97,4 @@ const useWatch = <T extends FieldsValue, FieldKey extends keyof T>(name: FieldKe
   return value;
 };
 
-/**
- * get wrappered context form
- */
-function useProvidedForm() {
-  const useWatch = () => {};
-
-  return {};
-}
-
-export { useFormItem, useForm, useProvidedForm };
+export { useFormItem, useForm, useWatch };

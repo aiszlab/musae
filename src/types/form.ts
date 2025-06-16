@@ -1,6 +1,6 @@
 import type { CSSProperties, FC, ReactNode } from "react";
 import type { FieldsValue, Form, Rule, FORM_TOKEN, ChangeHandler } from "../utils/form";
-import type { Nullable } from "@aiszlab/relax/types";
+import type { Nullable, Partialable } from "@aiszlab/relax/types";
 import type { ComponentProps } from "./element";
 
 /**
@@ -118,6 +118,13 @@ interface TypedForm {
    * `Form` hook
    */
   useForm<T extends FieldsValue>(props?: UsingForm<T>): UsedForm<T>;
+
+  /**
+   * `Watch` hook
+   */
+  useWatch<T extends FieldsValue, FieldKey extends keyof T = keyof T>(
+    name: FieldKey,
+  ): Partialable<T[FieldKey]>;
 }
 
 /**
