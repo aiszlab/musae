@@ -85,10 +85,8 @@ const useWatch = <T extends FieldsValue, FieldKey extends keyof T>(name: FieldKe
   useMounted(() => {
     if (!name) return;
 
-    const unregister = form?.register<FieldKey>(name, {
-      onChange: ({ value }) => {
-        setValue(value);
-      },
+    const unregister = form?.watch(name, (_changedValue) => {
+      setValue(_changedValue);
     });
 
     return () => {
@@ -108,4 +106,4 @@ function useProvidedForm() {
   return {};
 }
 
-export { useFormItem, useForm };
+export { useFormItem, useForm, useProvidedForm };

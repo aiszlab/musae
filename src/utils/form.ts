@@ -145,6 +145,30 @@ export class Form<T extends FieldsValue> {
   }
 
   /**
+   * watch field value
+   * @description when `Form` fields value changed, notify listener
+   */
+  watch<FieldKey extends keyof T = keyof T>(
+    name: FieldKey,
+    onChange: (value: Partialable<T[FieldKey]>) => void,
+  ) {
+    const _subscription = this.#state$
+      .pipe(
+        // only listen `name` related to `register` field
+        filter(({ names }) => names.length === 0 || new Set(names).has(name)),
+        // ignore `Validate` `ChangingSource`
+        filter(({ source }) => source !== ChangingSource.Validate),
+      )
+      .subscribe(() => {
+        onChange(this.#state.value[name]);
+      });
+
+    return () => {
+      _subscription.unsubscribe();
+    };
+  }
+
+  /**
    * get fields value
    */
   getFieldsValue() {
