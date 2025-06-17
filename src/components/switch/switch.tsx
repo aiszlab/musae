@@ -27,7 +27,7 @@ const styles = {
       transitionProperty: "all",
       transitionDuration: duration.short,
       borderRadius: sizes.infinity,
-      borderWidth: sizes.xxxxxxxxsmall,
+      borderWidth: sizes.xxxxxxxxxsmall,
       borderStyle: "solid",
       borderColor: props.borderColor,
       backgroundColor: props.backgroundColor,
@@ -110,14 +110,14 @@ const styles = {
       transitionProperty: "padding-inline-start, padding-inline-end",
       transitionDuration: duration.short,
 
-      paddingInlineStart: `calc(${sizes.xsmall} + ${sizes.xxxxxxxxsmall} * 4)`,
-      paddingInlineEnd: `calc(${spacing.xxxxlarge} / 2 - ${sizes.xxxxxxxxsmall})`,
+      paddingInlineStart: `calc(${sizes.xsmall} + ${sizes.xxxxxxxxxsmall} * 4)`,
+      paddingInlineEnd: `calc(${spacing.xxxxlarge} / 2 - ${sizes.xxxxxxxxxsmall})`,
     },
 
     // if checked, change padding styles, for slider has been right
     checked: {
-      paddingInlineStart: `calc(${spacing.xxxxlarge} / 2 - ${sizes.xxxxxxxxsmall})`,
-      paddingInlineEnd: `calc(${sizes.xsmall} + ${sizes.xxxxxxxxsmall} * 4)`,
+      paddingInlineStart: `calc(${spacing.xxxxlarge} / 2 - ${sizes.xxxxxxxxxsmall})`,
+      paddingInlineEnd: `calc(${sizes.xsmall} + ${sizes.xxxxxxxxxsmall} * 4)`,
     },
 
     child: {
@@ -136,8 +136,8 @@ const styles = {
   leading: $create({
     default: {
       // - `self width` - `slider width` - `slider padding width * 4` - `border width`
-      marginInlineStart: `calc(-100% - ${sizes.xsmall} - ${sizes.xxxxxxxxsmall} * 4 - ${sizes.xxxxxxxxsmall})`,
-      marginInlineEnd: `calc(100% + ${sizes.xsmall} + ${sizes.xxxxxxxxsmall} * 4 + ${sizes.xxxxxxxxsmall})`,
+      marginInlineStart: `calc(-100% - ${sizes.xsmall} - ${sizes.xxxxxxxxxsmall} * 4 - ${sizes.xxxxxxxxxsmall})`,
+      marginInlineEnd: `calc(100% + ${sizes.xsmall} + ${sizes.xxxxxxxxxsmall} * 4 + ${sizes.xxxxxxxxxsmall})`,
     },
 
     checked: {
@@ -155,8 +155,8 @@ const styles = {
 
     checked: {
       // + `self width` + `slider width` + `slider padding width * 2` + `border width`
-      marginInlineEnd: `calc(-100% - ${sizes.xsmall} - ${sizes.xxxxxxxxsmall} * 4 - ${sizes.xxxxxxxxsmall})`,
-      marginInlineStart: `calc(100% + ${sizes.xsmall} + ${sizes.xxxxxxxxsmall} * 4 + ${sizes.xxxxxxxxsmall})`,
+      marginInlineEnd: `calc(-100% - ${sizes.xsmall} - ${sizes.xxxxxxxxxsmall} * 4 - ${sizes.xxxxxxxxxsmall})`,
+      marginInlineStart: `calc(100% + ${sizes.xsmall} + ${sizes.xxxxxxxxxsmall} * 4 + ${sizes.xxxxxxxxxsmall})`,
     },
   }),
 };

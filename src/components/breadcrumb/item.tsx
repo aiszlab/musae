@@ -16,7 +16,7 @@ const styles = {
 
     link: {
       paddingInline: spacing.xxxxxsmall,
-      borderRadius: sizes.xxxxxxxsmall,
+      borderRadius: sizes.xxxxxxxxsmall,
       backgroundColor: {
         default: null,
         ":hover": "var(--color-surface)",

@@ -56,7 +56,7 @@ const styles = {
     checked: (props: { borderColor: CSSProperties["borderColor"] }) => ({
       "::after": {
         borderColor: props.borderColor,
-        borderWidth: sizes.xxxxxxxsmall,
+        borderWidth: sizes.xxxxxxxxsmall,
       },
     }),
 
@@ -70,8 +70,8 @@ const styles = {
         content: "''",
         position: "absolute",
         visibility: "visible",
-        height: sizes.xxxxxxsmall,
-        width: sizes.xxxxxxsmall,
+        height: sizes.xxxxxxxsmall,
+        width: sizes.xxxxxxxsmall,
         backgroundColor: props.backgroundColor,
         borderRadius: sizes.infinity,
       },

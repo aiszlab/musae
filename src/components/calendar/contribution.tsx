@@ -28,10 +28,10 @@ const styles = {
 
   cell: $create({
     default: {
-      minWidth: sizes.xxxxxsmall,
-      minHeight: sizes.xxxxxsmall,
+      minWidth: sizes.xxxxxxsmall,
+      minHeight: sizes.xxxxxxsmall,
       padding: spacing.none,
-      borderRadius: sizes.xxxxxxxxsmall,
+      borderRadius: sizes.xxxxxxxxxsmall,
       cursor: "pointer",
       backgroundColor: "var(--color-primary)",
     },
@@ -43,7 +43,7 @@ const styles = {
     },
 
     default: {
-      height: sizes.xxxxxsmall,
+      height: sizes.xxxxxxsmall,
       overflow: "visible",
       display: "flex",
       alignItems: "center",
@@ -84,9 +84,9 @@ const styles = {
     },
 
     level: {
-      width: sizes.xxxxxsmall,
-      height: sizes.xxxxxsmall,
-      borderRadius: sizes.xxxxxxxxsmall,
+      width: sizes.xxxxxxsmall,
+      height: sizes.xxxxxxsmall,
+      borderRadius: sizes.xxxxxxxxxsmall,
     },
   }),
 };

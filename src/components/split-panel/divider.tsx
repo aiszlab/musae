@@ -47,42 +47,42 @@ const styles = {
     },
 
     horizontal: {
-      width: sizes.xxxxxxsmall,
+      width: sizes.xxxxxxxsmall,
       height: sizes.full,
       cursor: "col-resize",
       insetInlineStart: sizes.half,
       transform: "translateX(-50%)",
 
       "::before": {
-        width: sizes.xxxxxxxxsmall,
+        width: sizes.xxxxxxxxxsmall,
         height: sizes.full,
         insetInlineStart: sizes.half,
         transform: "translateX(-50%)",
       },
 
       "::after": {
-        width: sizes.xxxxxxxxsmall,
+        width: sizes.xxxxxxxxxsmall,
         height: sizes.xxsmall,
       },
     },
 
     vertical: {
       width: sizes.full,
-      height: sizes.xxxxxxsmall,
+      height: sizes.xxxxxxxsmall,
       cursor: "row-resize",
       insetBlockStart: sizes.half,
       transform: "translateY(-50%)",
 
       "::before": {
         width: sizes.full,
-        height: sizes.xxxxxxxxsmall,
+        height: sizes.xxxxxxxxxsmall,
         insetBlockStart: sizes.half,
         transform: "translateY(-50%)",
       },
 
       "::after": {
         width: sizes.xxsmall,
-        height: sizes.xxxxxxxxsmall,
+        height: sizes.xxxxxxxxxsmall,
       },
     },
   }),

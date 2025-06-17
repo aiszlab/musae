@@ -30,8 +30,8 @@ const styles = {
 
     dot: {
       minWidth: null,
-      width: sizes.xxxxxxsmall,
-      height: sizes.xxxxxxsmall,
+      width: sizes.xxxxxxxsmall,
+      height: sizes.xxxxxxxsmall,
     },
 
     invisible: {

@@ -35,7 +35,7 @@ import { $body } from "../theme/theme";
 const styles = $create({
   editor: {
     backgroundColor: "var(--color-surface-container)",
-    borderRadius: sizes.xxxxxxsmall,
+    borderRadius: sizes.xxxxxxxsmall,
   },
 
   disabled: {

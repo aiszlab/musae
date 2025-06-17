@@ -9,7 +9,7 @@ import { Context } from "./context";
 const styles = $create({
   spotlight: {
     backgroundColor: "#808080",
-    borderRadius: sizes.xxxxxxsmall,
+    borderRadius: sizes.xxxxxxxsmall,
     transitionProperty: "transform",
     transitionDuration: duration.short,
     willChange: "transform",

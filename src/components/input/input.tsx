@@ -19,7 +19,7 @@ export const styles = $create({
     display: "inline-flex",
     alignItems: "center",
     cursor: "text",
-    borderRadius: sizes.xxxxxxxsmall,
+    borderRadius: sizes.xxxxxxxxsmall,
     verticalAlign: "bottom",
     outline: sizes.none,
 
@@ -46,12 +46,12 @@ export const styles = $create({
     willChange: "box-shadow, transform",
 
     ":focus-within": {
-      boxShadow: `0px 0px 0px ${sizes.xxxxxxxxsmall} ${props.focusedOutlineColor}`,
+      boxShadow: `0px 0px 0px ${sizes.xxxxxxxxxsmall} ${props.focusedOutlineColor}`,
     },
   }),
 
   invalid: (props: { outlineColor: CSSProperties["borderColor"] }) => ({
-    boxShadow: `0px 0px 0px ${sizes.xxxxxxxxsmall} ${props.outlineColor}`,
+    boxShadow: `0px 0px 0px ${sizes.xxxxxxxxxsmall} ${props.outlineColor}`,
 
     ":focus-within": {
       boxShadow: null,

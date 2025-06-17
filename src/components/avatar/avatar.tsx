@@ -50,7 +50,7 @@ const styles = $create({
   },
 
   squared: {
-    borderRadius: sizes.xxxxxxxsmall,
+    borderRadius: sizes.xxxxxxxxsmall,
   },
 
   small: {

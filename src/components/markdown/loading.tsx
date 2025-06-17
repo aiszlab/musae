@@ -14,25 +14,25 @@ const styles = $create({
   heading: {
     width: sizes.xxxxxxlarge,
     height: sizes.medium,
-    borderRadius: sizes.xxxxxxsmall,
+    borderRadius: sizes.xxxxxxxsmall,
   },
 
   content: {
     width: 600,
     height: sizes.xsmall,
-    borderRadius: sizes.xxxxxxsmall,
+    borderRadius: sizes.xxxxxxxsmall,
   },
 
   newline: {
     width: sizes.xxxxxxxlarge,
     height: sizes.xsmall,
-    borderRadius: sizes.xxxxxxsmall,
+    borderRadius: sizes.xxxxxxxsmall,
   },
 
   footer: {
     width: sizes.xxxxxxlarge,
     height: sizes.small,
-    borderRadius: sizes.xxxxxxsmall,
+    borderRadius: sizes.xxxxxxxsmall,
   },
 });
 

@@ -74,8 +74,8 @@ const styles = {
 
   dot: $create({
     default: {
-      width: sizes.xxxxxxxsmall,
-      height: sizes.xxxxxxxsmall,
+      width: sizes.xxxxxxxxsmall,
+      height: sizes.xxxxxxxxsmall,
       borderRadius: sizes.infinity,
       backgroundColor: "var(--color-primary)",
     },

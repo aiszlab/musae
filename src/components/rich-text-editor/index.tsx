@@ -13,7 +13,7 @@ const styles = $create({
   loading: {
     height: sizes.xxxxxxxlarge,
     width: sizes.full,
-    borderRadius: sizes.xxxxxxsmall,
+    borderRadius: sizes.xxxxxxxsmall,
   },
 });
 

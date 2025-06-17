@@ -35,7 +35,7 @@ const styles = $create({
     paddingBlock: spacing.xxsmall,
     backgroundColor: props.backgroundColor,
     color: props.color,
-    borderRadius: sizes.xxxxxxsmall,
+    borderRadius: sizes.xxxxxxxsmall,
   }),
 
   receive: (props: { backgroundColor: string; color: string }) => ({
@@ -44,7 +44,7 @@ const styles = $create({
     paddingBlock: spacing.xxsmall,
     backgroundColor: props.backgroundColor,
     color: props.color,
-    borderRadius: sizes.xxxxxxsmall,
+    borderRadius: sizes.xxxxxxxsmall,
   }),
 
   receiving: {

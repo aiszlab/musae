@@ -45,7 +45,7 @@ const styles = {
     }) => ({
       backgroundColor: props.backgroundColor,
       color: props.color,
-      borderRadius: sizes.xxxxxxxsmall,
+      borderRadius: sizes.xxxxxxxxsmall,
       boxShadow: elevations.xsmall,
       maxWidth: sizes.full,
       pointerEvents: "auto",

@@ -14,7 +14,7 @@ const styles = $create({
     borderWidth: sizes.smallest,
     borderStyle: "solid",
     borderColor: "var(--color-outline-variant)",
-    borderRadius: sizes.xxxxxxsmall,
+    borderRadius: sizes.xxxxxxxsmall,
   },
 });
 

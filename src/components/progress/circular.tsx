@@ -12,9 +12,9 @@ const styles = $create({
 
   shape: {
     r: "var(--radius)",
-    cx: `calc(var(--radius) + (${sizes.xxxxxxxsmall} / 2))`,
-    cy: `calc(var(--radius) + (${sizes.xxxxxxxsmall} / 2))`,
-    strokeWidth: sizes.xxxxxxxsmall,
+    cx: `calc(var(--radius) + (${sizes.xxxxxxxxsmall} / 2))`,
+    cy: `calc(var(--radius) + (${sizes.xxxxxxxxsmall} / 2))`,
+    strokeWidth: sizes.xxxxxxxxsmall,
     strokeLinecap: "round",
   },
 

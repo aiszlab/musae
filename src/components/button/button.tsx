@@ -1,8 +1,8 @@
 import type { ButtonProps } from "../../types/button";
 import React, { forwardRef } from "react";
 import { stringify } from "@aiszlab/relax/class-name";
-import { create as $create, props as $props } from "@stylexjs/stylex";
-import { duration, elevations, OPACITY, sizes, spacing } from "../theme/tokens.stylex";
+import { props as $props } from "@stylexjs/stylex";
+import { OPACITY } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { useButton } from "./hooks";
 import { Ripple } from "../ripple";
@@ -10,112 +10,7 @@ import { $label } from "../theme/theme";
 import { hexToRgba } from "@aiszlab/fuzzy/color";
 import { useClassNames } from "../../hooks/use-class-names";
 import { CLASS_NAMES } from "./context";
-
-const styles = {
-  button: $create({
-    default: {
-      display: "inline-flex",
-      alignItems: "center",
-      justifyContent: "center",
-      gap: spacing.xxsmall,
-      transitionProperty: "background-color, color, box-shadow",
-      transitionDuration: duration.medium,
-      willChange: "background-color, color, box-shadow",
-
-      // reset styles
-      borderWidth: sizes.none,
-      backgroundColor: "transparent",
-      overflow: "hidden",
-      whiteSpace: "nowrap",
-      textOverflow: "ellipsis",
-      cursor: "pointer",
-      fontFamily: "inherit",
-      boxSizing: "border-box",
-      height: "fit-content",
-    },
-
-    rippleable: {
-      position: "relative",
-    },
-  }),
-
-  variant: $create({
-    filled: {
-      borderWidth: sizes.none,
-      backgroundColor: "var(--color-button)",
-      color: "var(--color-on-button)",
-
-      ":hover": {
-        boxShadow: elevations.xsmall,
-      },
-    },
-
-    outlined: {
-      borderWidth: sizes.smallest,
-      borderStyle: "solid",
-      borderColor: "var(--color-button)",
-      color: "var(--color-button)",
-
-      ":hover": {
-        backgroundColor: "var(--color-button-opacity-08)",
-      },
-    },
-
-    text: {
-      color: "var(--color-button)",
-
-      ":hover": {
-        backgroundColor: "var(--color-button-opacity-08)",
-      },
-    },
-  }),
-
-  shape: $create({
-    rounded: {
-      borderRadius: sizes.infinity,
-    },
-
-    rectangular: {
-      borderRadius: sizes.xxxxxxxsmall,
-    },
-  }),
-
-  size: $create({
-    small: {
-      paddingBlock: spacing.xxxxxsmall,
-      paddingInline: spacing.xxsmall,
-    },
-
-    medium: {
-      paddingBlock: spacing.xsmall,
-      paddingInline: spacing.xxlarge,
-    },
-  }),
-
-  disabled: $create({
-    default: {
-      color: "var(--color-on-surface-opacity-38)",
-      cursor: "not-allowed",
-      boxShadow: null,
-      borderColor: null,
-      backgroundColor: null,
-
-      ":hover": {
-        boxShadow: null,
-      },
-    },
-
-    filled: {
-      backgroundColor: "var(--color-on-surface-opacity-12)",
-    },
-
-    outlined: {
-      borderColor: "var(--color-on-surface-opacity-38)",
-    },
-
-    text: {},
-  }),
-};
+import styles, { TYPOGRAPHYS } from "./styles";
 
 /**
  * @author murukal
@@ -132,7 +27,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       color = "primary",
       size = "medium",
       variant = "filled",
-      shape = "rounded",
+      shape = "round",
       disabled = false,
       ripple = true,
       type = "button",
@@ -153,10 +48,12 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         ripple && styles.button.rippleable,
         styles.size[size],
         styles.variant[variant],
-        styles.shape[shape],
         disabled && [styles.disabled.default, styles.disabled[variant]],
-        size === "small" && $label.medium,
-        size !== "small" && $label.large,
+        // shape styles
+        styles.shape[shape].medium,
+        styles.shape[shape][size],
+        // typography
+        TYPOGRAPHYS[size],
       ),
     };
 
