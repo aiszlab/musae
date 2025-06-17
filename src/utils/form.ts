@@ -169,6 +169,13 @@ export class Form<T extends FieldsValue> {
   }
 
   /**
+   * get field value
+   */
+  getFieldValue(name: keyof T) {
+    return this.#state.value[name];
+  }
+
+  /**
    * get fields value
    */
   getFieldsValue() {

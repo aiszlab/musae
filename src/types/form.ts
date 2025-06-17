@@ -28,6 +28,11 @@ interface UsedForm<T extends FieldsValue> {
   validate: () => Promise<boolean>;
 
   /**
+   * get field value
+   */
+  getFieldValue: (name: keyof T) => Partialable<T[keyof T]>;
+
+  /**
    * get fields value
    */
   getFieldsValue: () => Partial<T>;

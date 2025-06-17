@@ -37,6 +37,9 @@ function useForm<T extends FieldsValue>({
       clear() {
         return _form.clear();
       },
+      getFieldValue(name: keyof T) {
+        return _form.getFieldValue(name);
+      },
       getFieldsValue() {
         return _form.getFieldsValue();
       },
