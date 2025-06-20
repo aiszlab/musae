@@ -6,7 +6,6 @@ import { OPACITY } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { useButton } from "./hooks";
 import { Ripple } from "../ripple";
-import { $label } from "../theme/theme";
 import { hexToRgba } from "@aiszlab/fuzzy/color";
 import { useClassNames } from "../../hooks/use-class-names";
 import { CLASS_NAMES } from "./context";
