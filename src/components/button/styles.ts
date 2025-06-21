@@ -111,13 +111,13 @@ const styles = {
     },
 
     large: {
-      paddingBlock: spacing.xxxxlarge,
-      paddingInline: spacing.xxxxxxlarge,
+      paddingBlock: spacing.xxxxxlarge,
+      paddingInline: spacing.xxxxxxxlarge,
     },
 
     xlarge: {
-      paddingBlock: spacing.xxxxxxlarge,
-      paddingInline: spacing.xxxxxxxlarge,
+      paddingBlock: spacing.xxxxxxxlarge,
+      paddingInline: spacing.xxxxxxxxxlarge,
     },
   }),
 

@@ -9,7 +9,7 @@ const styles = {
   footer: $create({
     default: {
       gridArea: "footer",
-      paddingInline: spacing.xxxxxlarge,
+      paddingInline: spacing.xxxxxxlarge,
     },
   }),
 };

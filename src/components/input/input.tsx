@@ -24,7 +24,7 @@ export const styles = $create({
     outline: sizes.none,
 
     minHeight: sizes.medium,
-    minWidth: sizes.xxxxxxxlarge,
+    minWidth: sizes.xxxxxxxxxlarge,
     maxWidth: sizes.full,
 
     // border, for flexible, in musae, we use boxShadow replace border

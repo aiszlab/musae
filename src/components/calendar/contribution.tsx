@@ -70,7 +70,7 @@ const styles = {
   legend: $create({
     default: {
       paddingBlock: spacing.xxxxxsmall,
-      paddingInline: spacing.xxxxlarge,
+      paddingInline: spacing.xxxxxlarge,
       display: "flex",
       justifyContent: "flex-end",
     },

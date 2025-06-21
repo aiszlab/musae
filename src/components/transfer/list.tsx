@@ -11,8 +11,8 @@ import { useLocale } from "../../locale";
 
 const styles = $create({
   list: {
-    minWidth: sizes.xxxxxxxlarge,
-    maxHeight: sizes.xxxxxxxxlarge,
+    minWidth: sizes.xxxxxxxxxlarge,
+    maxHeight: sizes.xxxxxxxxxxlarge,
     display: "flex",
     flexDirection: "column",
     gap: spacing.xxxxxsmall,
@@ -36,7 +36,7 @@ const styles = $create({
   },
 
   body: {
-    minHeight: sizes.xxxxxxxlarge,
+    minHeight: sizes.xxxxxxxxxlarge,
     flexGrow: 1,
 
     margin: spacing.none,

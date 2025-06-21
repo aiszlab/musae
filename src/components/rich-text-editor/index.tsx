@@ -11,7 +11,7 @@ const _RichTextEditor = lazy(() => import("./rich-text-editor"));
 
 const styles = $create({
   loading: {
-    height: sizes.xxxxxxxlarge,
+    height: sizes.xxxxxxxxxlarge,
     width: sizes.full,
     borderRadius: sizes.xxxxxxxsmall,
   },

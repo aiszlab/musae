@@ -13,16 +13,34 @@ const styles = $create({
     },
   },
 
-  medium: {
-    width: sizes.xxlarge,
-    minWidth: sizes.xxlarge,
-    height: sizes.xxlarge,
-  },
-
-  small: {
+  xsmall: {
     width: sizes.medium,
     minWidth: sizes.medium,
     height: sizes.medium,
+  },
+
+  small: {
+    width: sizes.xlarge,
+    minWidth: sizes.xlarge,
+    height: sizes.xlarge,
+  },
+
+  medium: {
+    width: sizes.xxxlarge,
+    minWidth: sizes.xxxlarge,
+    height: sizes.xxxlarge,
+  },
+
+  large: {
+    width: sizes.xxxxxxlarge,
+    minWidth: sizes.xxxxxxlarge,
+    height: sizes.xxxxxxlarge,
+  },
+
+  xlarge: {
+    width: sizes.xxxxxxxxlarge,
+    minWidth: sizes.xxxxxxxxlarge,
+    height: sizes.xxxxxxxxlarge,
   },
 });
 
@@ -38,7 +56,7 @@ const IconButton = forwardRef<HTMLButtonElement, Omit<ButtonProps, "shape" | "pr
           ...style,
         }}
         size={size}
-        shape="rounded"
+        shape="round"
         ref={ref}
         {...props}
       />

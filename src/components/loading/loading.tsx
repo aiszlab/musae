@@ -288,14 +288,14 @@ const styles = $create({
   },
 
   large: {
-    width: sizes.xxxlarge,
-    height: sizes.xxxlarge,
+    width: sizes.xxxxlarge,
+    height: sizes.xxxxlarge,
   },
 
   loading: {
     position: "relative",
-    minWidth: sizes.xxxxxlarge,
-    minHeight: sizes.xxxxxlarge,
+    minWidth: sizes.xxxxxxlarge,
+    minHeight: sizes.xxxxxxlarge,
   },
 
   spin: {

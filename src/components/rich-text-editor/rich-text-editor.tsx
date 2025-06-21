@@ -46,7 +46,7 @@ const styles = $create({
     outline: "none",
     paddingInline: spacing.large,
     paddingBlock: spacing.medium,
-    minHeight: sizes.xxxxxxxlarge,
+    minHeight: sizes.xxxxxxxxxlarge,
   },
 });
 

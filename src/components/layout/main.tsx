@@ -10,7 +10,7 @@ const styles = {
     default: {
       gridArea: "main",
       overflow: "auto",
-      padding: spacing.xxxxxlarge,
+      padding: spacing.xxxxxxlarge,
 
       borderWidth: sizes.none,
       borderTopWidth: sizes.smallest,

@@ -17,8 +17,8 @@ const styles = $create({
 
   closer: {
     ":not(#\\#)": {
-      top: spacing.xxxxlarge,
-      right: spacing.xxxxlarge,
+      top: spacing.xxxxxlarge,
+      right: spacing.xxxxxlarge,
       position: "fixed",
     },
   },
@@ -39,7 +39,7 @@ const styles = $create({
     position: "fixed",
     left: 0,
     right: 0,
-    bottom: spacing.xxxxlarge,
+    bottom: spacing.xxxxxlarge,
     display: "flex",
     flexDirection: "column",
     alignItems: "center",

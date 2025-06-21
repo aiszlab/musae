@@ -12,7 +12,7 @@ const styles = $create({
   },
 
   heading: {
-    width: sizes.xxxxxxlarge,
+    width: sizes.xxxxxxxlarge,
     height: sizes.medium,
     borderRadius: sizes.xxxxxxxsmall,
   },
@@ -24,13 +24,13 @@ const styles = $create({
   },
 
   newline: {
-    width: sizes.xxxxxxxlarge,
+    width: sizes.xxxxxxxxxlarge,
     height: sizes.xsmall,
     borderRadius: sizes.xxxxxxxsmall,
   },
 
   footer: {
-    width: sizes.xxxxxxlarge,
+    width: sizes.xxxxxxxlarge,
     height: sizes.small,
     borderRadius: sizes.xxxxxxxsmall,
   },

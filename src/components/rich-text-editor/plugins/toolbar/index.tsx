@@ -163,7 +163,7 @@ const ToolbarPlugin = () => {
       <div className={styled.className} style={styled.style}>
         <Button
           variant="text"
-          shape="rounded"
+          shape="round"
           size="small"
           onClick={handlers.undo}
           disabled={!isUndoable}
@@ -173,7 +173,7 @@ const ToolbarPlugin = () => {
 
         <Button
           variant="text"
-          shape="rounded"
+          shape="round"
           size="small"
           onClick={handlers.redo}
           disabled={!isRedoable}
@@ -205,7 +205,7 @@ const ToolbarPlugin = () => {
 
         <Button
           variant={isBold ? "filled" : "text"}
-          shape="rounded"
+          shape="round"
           size="small"
           onClick={handlers.bold}
         >
@@ -214,7 +214,7 @@ const ToolbarPlugin = () => {
 
         <Button
           variant={isItalic ? "filled" : "text"}
-          shape="rounded"
+          shape="round"
           size="small"
           onClick={handlers.italic}
         >
@@ -223,7 +223,7 @@ const ToolbarPlugin = () => {
 
         <Button
           variant={isUnderline ? "filled" : "text"}
-          shape="rounded"
+          shape="round"
           size="small"
           onClick={handlers.underline}
         >
@@ -232,7 +232,7 @@ const ToolbarPlugin = () => {
 
         <Button
           variant={isLink ? "filled" : "text"}
-          shape="rounded"
+          shape="round"
           size="small"
           onClick={handlers.insertLink}
         >
@@ -241,7 +241,7 @@ const ToolbarPlugin = () => {
 
         <Button
           variant={isCode ? "filled" : "text"}
-          shape="rounded"
+          shape="round"
           size="small"
           onClick={handlers.code}
         >

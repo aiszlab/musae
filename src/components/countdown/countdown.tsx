@@ -14,7 +14,7 @@ const Countdown = ({
   disabled = false,
   variant = "filled",
   color = "primary",
-  shape = "rounded",
+  shape = "round",
   size = "medium",
   ripple = true,
   className,
