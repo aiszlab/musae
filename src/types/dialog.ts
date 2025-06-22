@@ -3,6 +3,7 @@ import type { Closable } from "../hooks/use-closable";
 import type { RequiredIn } from "@aiszlab/relax/types";
 import type { PortalProps } from "./portal";
 import type { ComponentProps } from "./element";
+import { ButtonProps } from "./button";
 
 /**
  * @description
@@ -77,6 +78,17 @@ export type DialogProps = Pick<ComponentProps, "className"> & {
    * @link {PortalProps.container}
    */
   container?: PortalProps["container"];
+
+  /**
+   * custom `confirm`
+   * @description custom `confirm` button props
+   */
+  confirm?: Pick<ButtonProps, "children" | "variant">;
+
+  /**
+   * custom `cancel`
+   */
+  cancel?: Pick<ButtonProps, "children" | "variant" | "onClick">;
 };
 
 /**

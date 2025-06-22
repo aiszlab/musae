@@ -1,7 +1,7 @@
 import { toArray } from "@aiszlab/relax";
 import type { Partialable } from "@aiszlab/relax/types";
 import { type ReactNode } from "react";
-import { filter, Subject } from "rxjs";
+import { BehaviorSubject, filter, Subject } from "rxjs";
 
 /**
  * unique symbols
@@ -19,6 +19,7 @@ enum ChangingSource {
   Change = "change",
   Set = "set",
   Validate = "validate",
+  Initialize = "initialize",
 }
 
 export interface Rule<T extends FieldsValue, FieldKey extends keyof T> {
@@ -53,7 +54,7 @@ interface FormState<T extends FieldsValue> {
   error: Partial<Record<keyof T, ReactNode>>;
 }
 
-interface ChangingState<T extends FieldsValue> extends Partial<FormState<T>> {
+interface ChangingState<T extends FieldsValue> {
   source: ChangingSource;
   names: (keyof T)[];
 }
@@ -67,7 +68,7 @@ export class Form<T extends FieldsValue> {
   #defaultValue: Partial<T>;
   #fields: Map<keyof T, Pick<RegisteredField<T, keyof T>, "rules">>;
   #state: FormState<T>;
-  #state$: Subject<ChangingState<T>>;
+  #state$: BehaviorSubject<ChangingState<T>>;
   #onChange: ChangeHandler<T> | null;
 
   constructor() {
@@ -79,13 +80,17 @@ export class Form<T extends FieldsValue> {
     };
     this.#onChange = null;
 
-    this.#state$ = new Subject<ChangingState<T>>();
+    this.#state$ = new BehaviorSubject<ChangingState<T>>({
+      source: ChangingSource.Initialize,
+      names: [],
+    });
 
     this.#state$.subscribe(({ source, names }) => {
+      if (names.length === 0) return;
+      if (source !== ChangingSource.Change) return;
+
       // value change, handle `onChange` callback
-      if (source === "change") {
-        this.#onChange?.(names, this.#state.value);
-      }
+      this.#onChange?.(names, this.#state.value);
     });
   }
 
@@ -226,7 +231,6 @@ export class Form<T extends FieldsValue> {
     this.#state$.next({
       source: ChangingSource.Validate,
       names,
-      error: this.#state.error,
     });
 
     return validated.every((error) => !error);

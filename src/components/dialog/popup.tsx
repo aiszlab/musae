@@ -66,15 +66,31 @@ const styles = $create({
   },
 });
 
-const Popup = ({ onClose, open, closable, onClosed, className, ...props }: PopupProps) => {
+const Popup = ({
+  onClose,
+  open,
+  closable,
+  onClosed,
+  className,
+  onConfirm,
+  confirm,
+  cancel,
+  ...props
+}: PopupProps) => {
   const classNames = useClassNames(CLASS_NAMES);
   const theme = useTheme();
   const ref = useRef<HTMLDivElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
 
-  // children render hooks
-  const footer = useFooter([props.footer, props.onConfirm, onClose]);
+  // `footer` render hooks
+  const footer = useFooter({
+    footer: props.footer,
+    onConfirm,
+    onClose,
+    confirm,
+    cancel,
+  });
   const { closer, onKeyDown, onOverlayClick } = useClosable({
     closable,
     onClose,
