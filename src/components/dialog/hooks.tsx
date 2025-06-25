@@ -12,8 +12,8 @@ export const useFooter = ({
   footer,
   onConfirm,
   onClose,
-  confirm,
-  cancel,
+  confirm = {},
+  cancel = {},
 }: {
   footer: PopupProps["footer"];
   onConfirm: PopupProps["onConfirm"];
@@ -28,13 +28,16 @@ export const useFooter = ({
       footer ?? (
         <Space>
           <Button onClick={onConfirm} variant="text" children={locale.confirm} {...confirm} />
-          <Button
-            onClick={onClose}
-            color="secondary"
-            variant="text"
-            children={locale.cancel}
-            {...cancel}
-          />
+
+          {!!cancel && (
+            <Button
+              onClick={onClose}
+              color="secondary"
+              variant="text"
+              children={locale.cancel}
+              {...cancel}
+            />
+          )}
         </Space>
       )
     );

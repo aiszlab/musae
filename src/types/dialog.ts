@@ -83,12 +83,12 @@ export type DialogProps = Pick<ComponentProps, "className"> & {
    * custom `confirm`
    * @description custom `confirm` button props
    */
-  confirm?: Pick<ButtonProps, "children" | "variant">;
+  confirm?: Partial<Pick<ButtonProps, "children" | "variant">>;
 
   /**
    * custom `cancel`
    */
-  cancel?: Pick<ButtonProps, "children" | "variant" | "onClick">;
+  cancel?: Partial<Pick<ButtonProps, "children" | "variant" | "onClick">> | false;
 };
 
 /**
