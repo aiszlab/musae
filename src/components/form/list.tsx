@@ -53,19 +53,11 @@ function List<T extends FieldsValue, FieldKey extends keyof T>({
   }, [fields, add, remove]);
 
   // null render, return null
-  if (!children) {
-    return null;
-  }
+  if (!children) return null;
 
   return (
     <Item {...itemProps}>
-      <_List>
-        {createElement(children, {
-          fields: Array.from(_fields.values()),
-          add,
-          remove,
-        })}
-      </_List>
+      <_List>{children({ fields: Array.from(_fields.values()), add, remove })}</_List>
     </Item>
   );
 }

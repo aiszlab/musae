@@ -230,11 +230,11 @@ interface FormListProps<T extends FieldsValue, FieldKey extends keyof T>
   /**
    * children render
    */
-  children?: FC<{
+  children?: (props: {
     fields: FormListField[];
     add: () => void;
     remove: (index: number) => void;
-  }>;
+  }) => ReactNode;
 }
 
 export {
