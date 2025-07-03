@@ -1,30 +1,66 @@
-import React, { createElement, ReactNode, useMemo, useState } from "react";
+import React, { createContext, ReactNode, useContext, useState } from "react";
 import Item from "./item";
-import type { FieldsValue, FormListField, FormListProps } from "../../types/form";
-import { useEvent, useIdentity } from "@aiszlab/relax";
-import { FormContext, useFormContext } from "./context";
+import type { FieldsValue, FormListProps } from "../../types/form";
+import { useEvent, useIdentity, replaceAt } from "@aiszlab/relax";
+import { FormContext } from "./context";
 import { useForm } from "./hooks";
-import { ChangeHandler, FORM_TOKEN } from "../../utils/form";
+import { FORM_TOKEN } from "../../utils/form";
+
+interface ContextValue<V extends FieldsValue> {
+  onChange?: (field: string, value: V) => void;
+  values?: V[];
+}
+
+/**
+ * `List` Context
+ */
+const Context = createContext<ContextValue<{}>>({});
+
+/**
+ * internal `List`.`Item` Component
+ */
+function _Item({ field, children }: { field: string; children: ReactNode }) {
+  const { onChange } = useContext(Context);
+
+  const _form = useForm<{}>({
+    onChange: (_names, value) => {
+      onChange?.(field, value);
+    },
+  });
+
+  return (
+    <FormContext.Provider value={{ form: _form[FORM_TOKEN] }}>{children}</FormContext.Provider>
+  );
+}
 
 /**
  * internal used Component
  */
 function _List<V extends FieldsValue>({
-  value,
+  values = [],
   onChange,
   children,
+  fields,
 }: {
-  value?: V;
-  onChange?: ChangeHandler<V>;
+  fields: string[];
+  values?: V[];
+  onChange?: (values: V[]) => void;
   children: ReactNode;
 }) {
-  const _form = useForm<{}>({
-    value,
-    onChange,
-  });
+  const changeItemValue = (field: string, value: V) => {
+    const _index = fields.indexOf(field);
+    onChange?.(replaceAt(values, _index, value));
+  };
 
   return (
-    <FormContext.Provider value={{ form: _form[FORM_TOKEN] }}>{children}</FormContext.Provider>
+    <Context.Provider
+      value={{
+        // @ts-expect-error 合理的泛型设计，在实际使用中，表单属性会被扩充
+        onChange: changeItemValue,
+      }}
+    >
+      {children}
+    </Context.Provider>
   );
 }
 
@@ -36,30 +72,32 @@ function List<T extends FieldsValue, FieldKey extends keyof T>({
   ...itemProps
 }: FormListProps<T, FieldKey>) {
   const { 1: _id } = useIdentity();
-  const [fields, setFields] = useState<{ name: string }[]>([]);
+  const [fields, setFields] = useState<Set<string>>(new Set());
 
   const add = useEvent(() => {
-    setFields((prev) => [...prev, { name: _id() }]);
+    setFields((prev) => new Set(prev).add(_id()));
   });
 
-  const remove = useEvent((index: number) => {
-    setFields((prev) => prev.filter((_, _index) => _index !== index));
+  const remove = useEvent((field: string) => {
+    setFields((prev) => {
+      const next = new Set(prev);
+      next.delete(field);
+      return next;
+    });
   });
-
-  const _fields = useMemo<Map<string, FormListField>>(() => {
-    return fields.reduce((prev, field, index) => {
-      return prev.set(field.name, { name: index });
-    }, new Map());
-  }, [fields, add, remove]);
 
   // null render, return null
   if (!children) return null;
 
+  const _fields = Array.from(fields);
+
   return (
     <Item {...itemProps}>
-      <_List>{children({ fields: Array.from(_fields.values()), add, remove })}</_List>
+      <_List fields={_fields}>{children({ fields: _fields, add, remove })}</_List>
     </Item>
   );
 }
+
+List.Item = _Item;
 
 export default List;
