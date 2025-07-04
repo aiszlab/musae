@@ -1,7 +1,7 @@
 import React, { createContext, ReactNode, useContext, useMemo, useState } from "react";
 import Item from "./item";
 import type { FieldsValue, FormListProps } from "../../types/form";
-import { useEvent, useIdentity, replaceAt } from "@aiszlab/relax";
+import { useEvent, useIdentity, replaceAt, at } from "@aiszlab/relax";
 import { FormContext } from "./context";
 import { useForm } from "./hooks";
 import { FORM_TOKEN } from "../../utils/form";
@@ -9,20 +9,31 @@ import { FORM_TOKEN } from "../../utils/form";
 interface ContextValue<V extends FieldsValue> {
   onChange?: (field: string, value: V) => void;
   values?: V[];
+  fields: string[];
 }
 
 /**
  * `List` Context
  */
-const Context = createContext<ContextValue<{}>>({});
+const Context = createContext<ContextValue<{}>>({
+  fields: [],
+});
 
 /**
  * internal `List`.`Item` Component
  */
 function _Item({ field, children }: { field: string; children: ReactNode }) {
-  const { onChange } = useContext(Context);
+  const { onChange, values, fields } = useContext(Context);
 
+  // current field form value
+  const value = useMemo(() => {
+    if (!values || values.length === 0) return void 0;
+    return at(values, fields.indexOf(field));
+  }, []);
+
+  // create form instance
   const _form = useForm<{}>({
+    value,
     onChange: (_names, value) => {
       onChange?.(field, value);
     },
@@ -55,6 +66,8 @@ function _List<V extends FieldsValue>({
   return (
     <Context.Provider
       value={{
+        fields,
+        values,
         // @ts-expect-error 合理的泛型设计，在实际使用中，表单属性会被扩充
         onChange: changeItemValue,
       }}
