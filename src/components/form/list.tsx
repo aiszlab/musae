@@ -1,4 +1,4 @@
-import React, { createContext, ReactNode, useContext, useState } from "react";
+import React, { createContext, ReactNode, useContext, useMemo, useState } from "react";
 import Item from "./item";
 import type { FieldsValue, FormListProps } from "../../types/form";
 import { useEvent, useIdentity, replaceAt } from "@aiszlab/relax";
@@ -72,7 +72,7 @@ function List<T extends FieldsValue, FieldKey extends keyof T>({
   ...itemProps
 }: FormListProps<T, FieldKey>) {
   const { 1: _id } = useIdentity();
-  const [fields, setFields] = useState<Set<string>>(new Set());
+  const [_fields, setFields] = useState<Set<string>>(new Set());
 
   const add = useEvent(() => {
     setFields((prev) => new Set(prev).add(_id()));
@@ -89,11 +89,11 @@ function List<T extends FieldsValue, FieldKey extends keyof T>({
   // null render, return null
   if (!children) return null;
 
-  const _fields = Array.from(fields);
+  const fields = useMemo(() => Array.from(_fields), [_fields]);
 
   return (
     <Item {...itemProps}>
-      <_List fields={_fields}>{children({ fields: _fields, add, remove })}</_List>
+      <_List fields={fields}>{children({ fields, add, remove })}</_List>
     </Item>
   );
 }
