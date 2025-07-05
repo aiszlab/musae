@@ -29,7 +29,7 @@ function _Item({ field, children }: { field: string; children: ReactNode }) {
   const value = useMemo(() => {
     if (!values || values.length === 0) return void 0;
     return at(values, fields.indexOf(field));
-  }, []);
+  }, [values, fields, field]);
 
   // create form instance
   const _form = useForm<{}>({
@@ -86,6 +86,7 @@ function List<T extends FieldsValue, FieldKey extends keyof T>({
 }: FormListProps<T, FieldKey>) {
   const { 1: _id } = useIdentity();
   const [_fields, setFields] = useState<Set<string>>(new Set());
+  const fields = useMemo(() => Array.from(_fields), [_fields]);
 
   const add = useEvent(() => {
     setFields((prev) => new Set(prev).add(_id()));
@@ -99,10 +100,8 @@ function List<T extends FieldsValue, FieldKey extends keyof T>({
     });
   });
 
-  // null render, return null
+  // no render, return null
   if (!children) return null;
-
-  const fields = useMemo(() => Array.from(_fields), [_fields]);
 
   return (
     <Item {...itemProps}>
