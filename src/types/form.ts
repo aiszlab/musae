@@ -1,4 +1,4 @@
-import type { CSSProperties, FC, ReactNode } from "react";
+import type { CSSProperties, ReactNode } from "react";
 import type { FieldsValue, Form, Rule, FORM_TOKEN, ChangeHandler } from "../utils/form";
 import type { Nullable, Partialable } from "@aiszlab/relax/types";
 import type { ComponentProps } from "./element";
@@ -97,6 +97,17 @@ interface FormProps<T extends FieldsValue> extends ComponentProps {
 }
 
 /**
+ * typed form list
+ */
+interface TypedFormList {
+  <T extends FieldsValue, FieldKey extends keyof T = keyof T>(
+    props: FormListProps<T, FieldKey>,
+  ): ReactNode;
+
+  Item: (props: FormListItemProps) => ReactNode;
+}
+
+/**
  * typed form
  */
 interface TypedForm {
@@ -115,9 +126,7 @@ interface TypedForm {
   /**
    * `List` Component
    */
-  List: <T extends FieldsValue, FieldKey extends keyof T = keyof T>(
-    props: FormListProps<T, FieldKey>,
-  ) => ReactNode;
+  List: TypedFormList;
 
   /**
    * `Form` hook
@@ -237,6 +246,21 @@ interface FormListProps<T extends FieldsValue, FieldKey extends keyof T>
   }) => ReactNode;
 }
 
+/**
+ * form list item props
+ */
+interface FormListItemProps {
+  /**
+   * field
+   */
+  field: string;
+
+  /**
+   * children
+   */
+  children: ReactNode;
+}
+
 export {
   FormProps,
   FormItemProps,
@@ -248,4 +272,6 @@ export {
   FormListField,
   FormListProps,
   FormContextValue,
+  TypedFormList,
+  FormListItemProps,
 };

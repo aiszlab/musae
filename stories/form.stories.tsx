@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Form, Input } from "../dist";
+import { Button, Form, Input } from "../dist";
 import React, { Fragment } from "react";
 
 const meta: Meta<typeof Form> = {
@@ -21,5 +21,38 @@ export const Normal: Story = {
         </Form.Item>
       </Fragment>
     ),
+  },
+};
+
+/**
+ * @description 动态添加表单项
+ */
+export const FormList: Story = {
+  render: () => {
+    return (
+      <Form>
+        <Form.List name="items">
+          {({ fields, add }) => {
+            return (
+              <>
+                {fields.map((field) => {
+                  return (
+                    <div>
+                      <Form.List.Item key={field} field={field}>
+                        <Form.Item name="name">
+                          <Input />
+                        </Form.Item>
+                      </Form.List.Item>
+                    </div>
+                  );
+                })}
+
+                <Button onClick={add}>add</Button>
+              </>
+            );
+          }}
+        </Form.List>
+      </Form>
+    );
   },
 };

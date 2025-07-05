@@ -1,7 +1,7 @@
 import React, {
   createContext,
   forwardRef,
-  ReactNode,
+  type ReactNode,
   useCallback,
   useContext,
   useImperativeHandle,
@@ -10,7 +10,13 @@ import React, {
   useState,
 } from "react";
 import Item from "./item";
-import type { FieldsValue, FormListProps, UsingForm } from "../../types/form";
+import type {
+  FieldsValue,
+  FormListItemProps,
+  FormListProps,
+  TypedFormList,
+  UsingForm,
+} from "../../types/form";
 import { useEvent, useIdentity, replaceAt, at } from "@aiszlab/relax";
 import { FormContext } from "./context";
 import { useForm } from "./hooks";
@@ -36,7 +42,7 @@ const Context = createContext<ContextValue<{}>>({
 /**
  * internal `List`.`Item` Component
  */
-function _Item({ field, children }: { field: string; children: ReactNode }) {
+function _Item({ field, children }: FormListItemProps) {
   const { onChange, values, fields } = useContext(Context);
 
   // current field form value
@@ -46,12 +52,9 @@ function _Item({ field, children }: { field: string; children: ReactNode }) {
   }, [values, fields, field]);
 
   // value change handler
-  const changeFieldValue = useCallback<Required<UsingForm<FieldsValue>>["onChange"]>(
-    (_names, value) => {
-      onChange?.(field, value);
-    },
-    [field],
-  );
+  const changeFieldValue = useEvent((_names, value) => {
+    onChange?.(field, value);
+  });
 
   // create form instance
   const _form = useForm<FieldsValue>({
@@ -71,21 +74,21 @@ const _List = forwardRef<
   ListRef,
   {
     fields: string[];
-    values?: FieldsValue[];
+    value?: FieldsValue[];
     onChange?: (values: FieldsValue[]) => void;
     children: ReactNode;
   }
->(function ({ values = [], onChange, children, fields }, ref) {
-  const changeItemValue = (field: string, value: FieldsValue) => {
+>(function ({ value = [], onChange, children, fields }, ref) {
+  const changeItemValue = useEvent((field: string, _value: FieldsValue) => {
     const _at = fields.indexOf(field);
-    onChange?.(replaceAt(values, _at, value));
-  };
+    onChange?.(replaceAt(value, _at, _value));
+  });
 
   useImperativeHandle(ref, () => {
     return {
       remove: (field: string) => {
         const _at = fields.indexOf(field);
-        onChange?.(values.toSpliced(_at, 1));
+        onChange?.(value.toSpliced(_at, 1));
       },
     };
   });
@@ -94,7 +97,7 @@ const _List = forwardRef<
     <Context.Provider
       value={{
         fields,
-        values,
+        values: value,
         onChange: changeItemValue,
       }}
     >
@@ -140,6 +143,8 @@ function List<T extends FieldsValue, FieldKey extends keyof T>({
   );
 }
 
-List.Item = _Item;
+const TypedList: TypedFormList = Object.assign(List, {
+  Item: _Item,
+});
 
-export default List;
+export default TypedList;
