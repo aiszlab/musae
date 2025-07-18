@@ -13,6 +13,12 @@ interface UsedForm<T extends FieldsValue> {
   setFieldValue(name: keyof T, value: T[keyof T]): void;
 
   /**
+   * set fields value
+   * @description set multiple fields value
+   */
+  setFieldsValue(value: Partial<T>): void;
+
+  /**
    * reset fields value and clear errors
    */
   reset(): void;

@@ -52,17 +52,21 @@ const styles = $create({
     zIndex: positions.dialog,
     opacity: 0,
     position: "relative",
-
-    padding: spacing.xxlarge,
+    paddingBlock: spacing.xxlarge,
   },
 
-  body: { flex: 1, wordBreak: "break-word", overflow: "auto" },
+  header: {
+    paddingInline: spacing.xxlarge,
+  },
+
+  body: { flex: 1, wordBreak: "break-word", overflow: "auto", paddingInline: spacing.xxlarge },
 
   footer: {
     marginBlockStart: spacing.xxsmall,
     display: "flex",
     flexDirection: "column",
     alignItems: "flex-end",
+    paddingInline: spacing.xxlarge,
   },
 });
 
@@ -130,7 +134,7 @@ const Popup = ({
     popup: $props(styles.popup),
     overlay: $props(styles.overlay),
     panel: $props(styles.panel),
-    header: $props($headline.small),
+    header: $props($headline.small, styles.header),
     body: $props($body.medium, styles.body),
     footer: $props(styles.footer),
   };
