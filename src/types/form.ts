@@ -67,6 +67,11 @@ interface UsingForm<T extends FieldsValue> {
    * change handler
    */
   onChange?: ChangeHandler<T>;
+
+  /**
+   * controlled form value
+   */
+  value?: Partial<T>;
 }
 
 /**

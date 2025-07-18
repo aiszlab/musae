@@ -2,17 +2,13 @@ import { useEvent, useMounted, useUpdateEffect } from "@aiszlab/relax";
 import { useFormContext } from "./context";
 import { type ReactNode, useCallback, useMemo, useState } from "react";
 import { FORM_TOKEN, type FieldsValue } from "../../utils/form";
-import type { FormItemProps, UsingForm as _UsingForm } from "../../types/form";
+import type { FormItemProps, UsingForm } from "../../types/form";
 import { useForm as _useForm } from "./use-form";
 
 type UsingFormItem<T extends FieldsValue, FieldKey extends keyof T> = Pick<
   FormItemProps<T, FieldKey>,
   "name" | "rules"
 >;
-
-type UsingForm<T extends FieldsValue> = _UsingForm<T> & {
-  value?: Partial<T>;
-};
 
 function useFormItem<T extends FieldsValue, FieldKey extends keyof T>({
   name,
@@ -65,12 +61,14 @@ function useFormItem<T extends FieldsValue, FieldKey extends keyof T>({
 /**
  * hook for `Form` used internal
  */
-function useForm<T extends FieldsValue>({ value, ...usingForm }: UsingForm<T> = {}) {
+function useForm<T extends FieldsValue>(usingForm: UsingForm<T> = {}) {
   const form = _useForm<T>(usingForm);
 
   useUpdateEffect(() => {
-    form[FORM_TOKEN].useValue(value);
-  }, [value]);
+    form[FORM_TOKEN].useValues({
+      value: usingForm.value,
+    });
+  }, [usingForm.value]);
 
   return form;
 }

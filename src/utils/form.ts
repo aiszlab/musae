@@ -20,6 +20,8 @@ enum ChangingSource {
   Set = "set",
   Validate = "validate",
   Initialize = "initialize",
+  Clear = "clear",
+  Reset = "reset",
 }
 
 export interface Rule<T extends FieldsValue, FieldKey extends keyof T> {
@@ -50,13 +52,15 @@ export interface RegisteredField<T extends FieldsValue, FieldKey extends keyof T
 }
 
 interface FormState<T extends FieldsValue> {
-  value: Partial<T>;
+  value: Partial<T> | null;
   error: Partial<Record<keyof T, ReactNode>>;
 }
 
 interface ChangingState<T extends FieldsValue> {
   source: ChangingSource;
   names: (keyof T)[];
+  value: Partial<T>;
+  error: Partial<Record<keyof T, ReactNode>>;
 }
 
 export type ChangeHandler<T extends FieldsValue> = (names: (keyof T)[], value: Partial<T>) => void;
@@ -83,14 +87,17 @@ export class Form<T extends FieldsValue> {
     this.#state$ = new BehaviorSubject<ChangingState<T>>({
       source: ChangingSource.Initialize,
       names: [],
+      value: this.#state.value ?? {},
+      error: this.#state.error,
     });
 
-    this.#state$.subscribe(({ source, names }) => {
+    this.#state$.subscribe(({ source, names, value }) => {
       if (names.length === 0) return;
       if (source !== ChangingSource.Change) return;
+      if (!value) return;
 
       // value change, handle `onChange` callback
-      this.#onChange?.(names, this.#state.value);
+      this.#onChange?.(names, value);
     });
   }
 
@@ -99,14 +106,19 @@ export class Form<T extends FieldsValue> {
    * @description
    * in `Component.Form`, will provider `value` or `defaultValue`
    */
-  useValue(value?: Partial<T>, defaultValue?: Partial<T>) {
+  useValues({ value, defaultValue }: { value?: Partial<T>; defaultValue?: Partial<T> }) {
     this.#defaultValue = defaultValue ?? this.#defaultValue;
 
     if (value) {
-      this.setFieldsValue(value ?? this.#defaultValue);
-    } else {
-      this.reset();
+      this.setFieldsValue(value);
+      return;
     }
+
+    if (this.#state.value) {
+      return;
+    }
+
+    this.reset();
   }
 
   /**
@@ -130,16 +142,16 @@ export class Form<T extends FieldsValue> {
         // only listen `name` related to `register` field
         filter(({ names }) => names.length === 0 || new Set(names).has(name)),
       )
-      .subscribe(({ source }) => {
+      .subscribe(({ source, value, error }) => {
         // callback field state
         onChange({
-          value: this.#state.value[name],
-          error: this.#state.error[name],
+          value: value[name],
+          error: error[name],
         });
 
         // validate
         if (source === ChangingSource.Validate) {
-          onValidate(this.#state.error[name]);
+          onValidate(error[name]);
         }
       });
 
@@ -164,8 +176,8 @@ export class Form<T extends FieldsValue> {
         // ignore `Validate` `ChangingSource`
         filter(({ source }) => source !== ChangingSource.Validate),
       )
-      .subscribe(() => {
-        onChange(this.#state.value[name]);
+      .subscribe(({ value }) => {
+        onChange(value[name]);
       });
 
     return () => {
@@ -177,17 +189,19 @@ export class Form<T extends FieldsValue> {
    * get field value
    */
   getFieldValue(name: keyof T) {
-    return this.#state.value[name];
+    return this.#state.value?.[name];
   }
 
   /**
    * get fields value
    */
-  getFieldsValue() {
-    if (this.#fields.size === 0) return this.#state.value;
+  getFieldsValue(): Partial<T> {
+    if (this.#fields.size === 0) {
+      return this.#state.value ?? {};
+    }
 
     return this.#fields.keys().reduce<Partial<T>>((value, name) => {
-      value[name] = this.#state.value[name];
+      value[name] = this.#state.value?.[name];
       return value;
     }, {});
   }
@@ -210,7 +224,7 @@ export class Form<T extends FieldsValue> {
         // validate result
         const error = await Promise.race(
           rules.map(async ({ validate, message }) => {
-            return await Promise.try(() => validate(this.#state.value[name]))
+            return await Promise.try(() => validate(this.#state.value?.[name]))
               .catch((_error: ReactNode) => false)
               // `validate` resolved value is `true`, means valid, set `error` to `null`
               .then((_v) => {
@@ -231,6 +245,8 @@ export class Form<T extends FieldsValue> {
     this.#state$.next({
       source: ChangingSource.Validate,
       names,
+      value: this.#state.value ?? {},
+      error: this.#state.error,
     });
 
     return validated.every((error) => !error);
@@ -243,13 +259,15 @@ export class Form<T extends FieldsValue> {
     name: FieldKey,
     value: FieldValue,
   ) {
+    this.#state.value ??= {};
     this.#state.value[name] = value;
     this.#state.error[name] = null;
 
     this.#state$.next({
       source: ChangingSource.Set,
       names: [name],
-      ...this.#state,
+      value: this.#state.value,
+      error: this.#state.error,
     });
   }
 
@@ -272,7 +290,8 @@ export class Form<T extends FieldsValue> {
     this.#state$.next({
       source: ChangingSource.Set,
       names,
-      ...this.#state,
+      value: this.#state.value,
+      error: this.#state.error,
     });
   }
 
@@ -284,9 +303,10 @@ export class Form<T extends FieldsValue> {
     this.#state.error = {};
 
     this.#state$.next({
-      source: ChangingSource.Set,
+      source: ChangingSource.Reset,
       names: [],
-      ...this.#state,
+      value: this.#state.value,
+      error: this.#state.error,
     });
   }
 
@@ -298,9 +318,10 @@ export class Form<T extends FieldsValue> {
     this.#state.error = {};
 
     this.#state$.next({
-      source: ChangingSource.Set,
+      source: ChangingSource.Clear,
       names: [],
-      ...this.#state,
+      value: this.#state.value,
+      error: this.#state.error,
     });
   }
 
@@ -313,13 +334,15 @@ export class Form<T extends FieldsValue> {
     name: FieldKey,
     value: FieldValue,
   ) {
+    this.#state.value ??= {};
     this.#state.value[name] = value;
     this.#state.error[name] = null;
 
     this.#state$.next({
       source: ChangingSource.Change,
       names: [name],
-      ...this.#state,
+      value: this.#state.value,
+      error: this.#state.error,
     });
 
     // trigger validate

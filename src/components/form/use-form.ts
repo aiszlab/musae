@@ -10,6 +10,7 @@ function useForm<T extends FieldsValue>({
   defaultValue,
   form: _usedForm,
   onChange,
+  value,
 }: UsingForm<T> = {}): UsedForm<T> {
   // value change handler
   const changeValue = useEvent((...args: Parameters<Required<UsingForm<T>>["onChange"]>) => {
@@ -20,7 +21,7 @@ function useForm<T extends FieldsValue>({
     const _form = _usedForm?.[FORM_TOKEN] ?? new Form<T>();
 
     // set default value
-    _form.useValue(defaultValue, defaultValue);
+    _form.useValues({ value, defaultValue });
     // use change handler
     _form.useOnChange(changeValue);
 
