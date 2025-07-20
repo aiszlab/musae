@@ -24,8 +24,8 @@ export const styles = $create({
     outline: sizes.none,
 
     minHeight: sizes.medium,
-    minWidth: sizes.xxxxxxxxxlarge,
-    maxWidth: sizes.full,
+    minWidth: sizes.none,
+    width: sizes.full,
 
     // border, for flexible, in musae, we use boxShadow replace border
     // box shadow is not added into layout

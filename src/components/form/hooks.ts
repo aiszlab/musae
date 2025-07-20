@@ -68,7 +68,7 @@ function useForm<T extends FieldsValue>(usingForm: UsingForm<T> = {}) {
     form[FORM_TOKEN].useValues({
       value: usingForm.value,
     });
-  }, [usingForm.value]);
+  });
 
   return form;
 }
