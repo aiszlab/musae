@@ -86,6 +86,7 @@ const styles = $create({
   body: {
     flex: 1,
     padding: spacing.xxlarge,
+    overflow: "auto",
   },
 
   actions: {
