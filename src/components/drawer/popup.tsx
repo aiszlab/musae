@@ -169,7 +169,7 @@ const Popup = ({
         "--color-surface-dim": theme.colors["surface-dim"],
         "--color-outline-variant": theme.colors["outline-variant"],
         "--default-position": at(_placement, 0),
-        "--size": size,
+        "--size": `${size}px`,
       }}
       onKeyDown={onKeyDown}
     >
