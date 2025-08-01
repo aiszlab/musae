@@ -4,6 +4,7 @@ import { createContext } from "react";
  * @description 滑块组件类名
  */
 export const CLASS_NAMES = {
+  slider: "slider",
   handle: "slider__handle",
   track: "slider__track",
   active: "slider__track--active",
