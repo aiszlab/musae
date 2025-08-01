@@ -59,7 +59,7 @@ const styles = {
 
   indicator: $create({
     default: (props: { color: CSSProperties["backgroundColor"] }) => ({
-      height: sizes.xxxxxxxxxsmall,
+      height: sizes.xxxxxxxxxxsmall,
       backgroundColor: props.color,
       position: "absolute",
       bottom: spacing.none,

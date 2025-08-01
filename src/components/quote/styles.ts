@@ -19,7 +19,7 @@ const styles = $create({
       position: "absolute",
       insetBlock: 0,
       insetInlineStart: 0,
-      width: sizes.xxxxxxxxxsmall,
+      width: sizes.xxxxxxxxxxsmall,
       backgroundColor: "var(--color-outline)",
     },
   },

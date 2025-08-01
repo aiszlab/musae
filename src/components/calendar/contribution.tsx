@@ -31,7 +31,7 @@ const styles = {
       minWidth: sizes.xxxxxxsmall,
       minHeight: sizes.xxxxxxsmall,
       padding: spacing.none,
-      borderRadius: sizes.xxxxxxxxxsmall,
+      borderRadius: sizes.xxxxxxxxxxsmall,
       cursor: "pointer",
       backgroundColor: "var(--color-primary)",
     },
@@ -86,7 +86,7 @@ const styles = {
     level: {
       width: sizes.xxxxxxsmall,
       height: sizes.xxxxxxsmall,
-      borderRadius: sizes.xxxxxxxxxsmall,
+      borderRadius: sizes.xxxxxxxxxxsmall,
     },
   }),
 };

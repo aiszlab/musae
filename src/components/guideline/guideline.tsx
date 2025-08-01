@@ -18,15 +18,15 @@ const styles = stylex.create({
   figure: {
     borderStartStartRadius: sizes.xxxxsmall,
     borderStartEndRadius: sizes.xxxxsmall,
-    borderEndStartRadius: sizes.xxxxxxxxxsmall,
-    borderEndEndRadius: sizes.xxxxxxxxxsmall,
+    borderEndStartRadius: sizes.xxxxxxxxxxsmall,
+    borderEndEndRadius: sizes.xxxxxxxxxxsmall,
   },
 
   label: {
     marginBlockStart: spacing.xxxxxsmall,
     backgroundColor: "var(--color-error)",
-    borderStartStartRadius: sizes.xxxxxxxxxsmall,
-    borderStartEndRadius: sizes.xxxxxxxxxsmall,
+    borderStartStartRadius: sizes.xxxxxxxxxxsmall,
+    borderStartEndRadius: sizes.xxxxxxxxxxsmall,
     borderEndStartRadius: sizes.xxxxsmall,
     borderEndEndRadius: sizes.xxxxsmall,
   },

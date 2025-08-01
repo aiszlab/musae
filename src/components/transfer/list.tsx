@@ -24,8 +24,8 @@ const styles = $create({
     padding: spacing.xxsmall,
     borderTopLeftRadius: sizes.xxxxsmall,
     borderTopRightRadius: sizes.xxxxsmall,
-    borderBottomLeftRadius: sizes.xxxxxxxxxsmall,
-    borderBottomRightRadius: sizes.xxxxxxxxxsmall,
+    borderBottomLeftRadius: sizes.xxxxxxxxxxsmall,
+    borderBottomRightRadius: sizes.xxxxxxxxxxsmall,
     boxShadow: elevations.xsmall,
   },
 
@@ -40,8 +40,8 @@ const styles = $create({
     flexGrow: 1,
 
     margin: spacing.none,
-    borderTopLeftRadius: sizes.xxxxxxxxxsmall,
-    borderTopRightRadius: sizes.xxxxxxxxxsmall,
+    borderTopLeftRadius: sizes.xxxxxxxxxxsmall,
+    borderTopRightRadius: sizes.xxxxxxxxxxsmall,
     borderBottomLeftRadius: sizes.xxxxxxxsmall,
     borderBottomRightRadius: sizes.xxxxxxxsmall,
     boxShadow: elevations.xsmall,

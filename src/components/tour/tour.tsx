@@ -30,7 +30,7 @@ const styles = $create({
     backgroundColor: "var(--color-on-primary)",
     flexDirection: "column",
     boxShadow: elevations.small,
-    borderRadius: sizes.xxxxxxxxsmall,
+    borderRadius: sizes.xxxxxxxxxsmall,
     transitionProperty: "all",
     transitionDuration: duration.short,
   },

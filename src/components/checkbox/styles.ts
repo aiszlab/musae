@@ -18,7 +18,7 @@ const styles = {
     medium: {
       "--size": sizes.xxxsmall,
       "--check-size": sizes.xsmall,
-      "--border-width": sizes.xxxxxxxxxsmall,
+      "--border-width": sizes.xxxxxxxxxxsmall,
       "--check-offset": "calc(((var(--check-size) - var(--size)) / 2 + var(--border-width)) * -1)",
     },
   }),
@@ -91,7 +91,7 @@ const styles = {
         minWidth: "var(--size)",
         position: "relative",
         boxSizing: "border-box",
-        borderRadius: sizes.xxxxxxxxxsmall,
+        borderRadius: sizes.xxxxxxxxxxsmall,
 
         borderWidth: "var(--border-width)",
         borderStyle: "solid",

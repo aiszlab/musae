@@ -7,7 +7,7 @@ import React from "react";
 
 const _styles = $create({
   default: {
-    width: sizes.xxxxxxxxsmall,
+    width: sizes.xxxxxxxxxsmall,
     height: sizes.xxlarge,
     borderRadius: sizes.infinity,
     backgroundColor: "var(--color-primary)",
