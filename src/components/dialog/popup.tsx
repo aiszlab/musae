@@ -44,29 +44,29 @@ const styles = $create({
     flexDirection: "column",
     gap: spacing.large,
     minWidth: 480,
-    maxHeight: `calc(100% - ${spacing.xxxxxlarge} * 2)`,
-    margin: spacing.xxxxxlarge,
+    maxHeight: `calc(100% - ${spacing.xxxxxxlarge} * 2)`,
+    margin: spacing.xxxxxxlarge,
     borderRadius: 8,
     pointerEvents: "auto",
     backgroundColor: "var(--color-surface-container-lowest)",
     zIndex: positions.dialog,
     opacity: 0,
     position: "relative",
-    paddingBlock: spacing.xxlarge,
+    paddingBlock: spacing.xxxlarge,
   },
 
   header: {
-    paddingInline: spacing.xxlarge,
+    paddingInline: spacing.xxxlarge,
   },
 
-  body: { flex: 1, wordBreak: "break-word", overflow: "auto", paddingInline: spacing.xxlarge },
+  body: { flex: 1, wordBreak: "break-word", overflow: "auto", paddingInline: spacing.xxxlarge },
 
   footer: {
     marginBlockStart: spacing.xxsmall,
     display: "flex",
     flexDirection: "column",
     alignItems: "flex-end",
-    paddingInline: spacing.xxlarge,
+    paddingInline: spacing.xxxlarge,
   },
 });
 
@@ -145,7 +145,6 @@ const Popup = ({
       className={stringify(classNames.dialog, className, styled.popup.className)}
       style={{
         ...styled.popup.style,
-        // @ts-expect-error style vars
         "--color-surface-dim": theme.colors["surface-dim"],
         "--color-surface-container-lowest": theme.colors["surface-container-lowest"],
       }}

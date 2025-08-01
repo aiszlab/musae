@@ -25,14 +25,14 @@ const styles = {
       borderColor: props.borderColor,
       padding: spacing.medium,
       borderRadius: sizes.xxxxxxxxsmall,
-      height: sizes.xxxxlarge,
+      height: sizes.xxxxxlarge,
     }),
   }),
 
   leading: $create({
     picture: {
-      width: sizes.xxlarge,
-      height: sizes.xxlarge,
+      width: sizes.xxxlarge,
+      height: sizes.xxxlarge,
     },
   }),
 

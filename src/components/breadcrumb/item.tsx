@@ -53,7 +53,6 @@ const Item = ({ href, label, max, separator }: BreadcrumbItemProps) => {
         className={stringify(classNames.item, styled.navigation.className)}
         style={{
           ...styled.navigation.style,
-          // @ts-expect-error style vars
           "--color-surface": theme.colors.surface,
           "--color-on-surface": theme.colors["on-surface"],
         }}

@@ -52,7 +52,6 @@ const Highlight = ({ children, capture }: HighlightProps) => {
     <span
       className={classNames.highlight}
       style={{
-        // @ts-expect-error style vars
         "--color-primary": theme.colors.primary,
       }}
     >

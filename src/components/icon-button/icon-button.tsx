@@ -26,21 +26,21 @@ const styles = $create({
   },
 
   medium: {
-    width: sizes.xxxlarge,
-    minWidth: sizes.xxxlarge,
-    height: sizes.xxxlarge,
+    width: sizes.xxxxlarge,
+    minWidth: sizes.xxxxlarge,
+    height: sizes.xxxxlarge,
   },
 
   large: {
-    width: sizes.xxxxxxlarge,
-    minWidth: sizes.xxxxxxlarge,
-    height: sizes.xxxxxxlarge,
+    width: sizes.xxxxxxxlarge,
+    minWidth: sizes.xxxxxxxlarge,
+    height: sizes.xxxxxxxlarge,
   },
 
   xlarge: {
-    width: sizes.xxxxxxxxlarge,
-    minWidth: sizes.xxxxxxxxlarge,
-    height: sizes.xxxxxxxxlarge,
+    width: sizes.xxxxxxxxxlarge,
+    minWidth: sizes.xxxxxxxxxlarge,
+    height: sizes.xxxxxxxxxlarge,
   },
 });
 

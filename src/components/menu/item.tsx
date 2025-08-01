@@ -100,14 +100,14 @@ const styles = {
     medium: (props: { level: number }) => ({
       paddingBlock: spacing.xxsmall,
       paddingRight: spacing.medium,
-      paddingLeft: `calc(${spacing.medium} + ${props.level} * ${spacing.xxlarge})`,
+      paddingLeft: `calc(${spacing.medium} + ${props.level} * ${spacing.xxxlarge})`,
       borderRadius: sizes.xxxxxxxsmall,
     }),
 
     large: (props: { level: number }) => ({
       paddingBlock: spacing.medium,
       paddingRight: spacing.large,
-      paddingLeft: `calc(${spacing.large} + ${props.level} * ${spacing.xxxxxlarge})`,
+      paddingLeft: `calc(${spacing.large} + ${props.level} * ${spacing.xxxxxxlarge})`,
       borderRadius: sizes.xxxxsmall,
     }),
   }),
@@ -229,7 +229,6 @@ const Item = forwardRef<HTMLLIElement, MenuItemProps>(
         className={styled.menuitem.className}
         style={{
           ...styled.menuitem.style,
-          // @ts-expect-error style vars
           "--color-primary": theme.colors.primary,
           "--color-surface-container-highest": theme.colors["surface-container-highest"],
         }}

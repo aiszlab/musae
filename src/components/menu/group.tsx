@@ -86,7 +86,6 @@ const Group = forwardRef<HTMLUListElement, MenuGroupProps>(
         style={{
           ...styled.group.style,
           ...style,
-          // @ts-expect-error style vars
           "--color-on-surface": theme.colors["on-surface"],
         }}
       >

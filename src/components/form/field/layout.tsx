@@ -14,7 +14,7 @@ const { Row, Col } = Grid;
 
 const styles = $create({
   space: {
-    marginBlockEnd: spacing.xxlarge,
+    marginBlockEnd: spacing.xxxlarge,
   },
 
   required: (props: { color: CSSProperties["color"] }) => ({

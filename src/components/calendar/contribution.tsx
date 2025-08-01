@@ -70,7 +70,7 @@ const styles = {
   legend: $create({
     default: {
       paddingBlock: spacing.xxxxxsmall,
-      paddingInline: spacing.xxxxxlarge,
+      paddingInline: spacing.xxxxxxlarge,
       display: "flex",
       justifyContent: "flex-end",
     },
@@ -187,7 +187,6 @@ const ContributionCalendar = ({
       className={styled.scrollable.className}
       style={{
         ...styled.scrollable.style,
-        // @ts-expect-error style vars
         "--color-primary": theme.colors.primary,
       }}
     >

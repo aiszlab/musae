@@ -13,7 +13,7 @@ const styles = {
       alignItems: "center",
       gap: spacing.medium,
 
-      paddingInline: spacing.xxxxxxlarge,
+      paddingInline: spacing.xxxxxxxlarge,
     },
   }),
 };

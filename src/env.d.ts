@@ -1,10 +1,8 @@
-interface Document {
-  startViewTransition(updateCallback: () => Promise<void> | void): ViewTransition;
+declare module "react" {
+  interface CSSProperties {
+    // 允许`CSS`自定义变量
+    [$$Key$$: `--${string}`]: string | number | undefined;
+  }
 }
 
-interface ViewTransition {
-  finished: Promise<void>;
-  ready: Promise<void>;
-  updateCallbackDone: Promise<void>;
-  skipTransition(): void;
-}
+export {};

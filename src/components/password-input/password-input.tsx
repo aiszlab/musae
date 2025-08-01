@@ -38,7 +38,6 @@ const PasswordInput = forwardRef<InputRef, PasswordInputProps>(({ className, ...
       {...props}
       className={stringify(classNames.passwordInput, className)}
       style={{
-        // @ts-expect-error style vars
         "--color-secondary-fixed-dim": theme.colors["secondary-fixed-dim"],
         "--color-secondary": theme.colors.secondary,
       }}

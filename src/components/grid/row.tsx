@@ -39,7 +39,6 @@ const Row = ({
         style={{
           ...styled.style,
           ...style,
-          // @ts-expect-error style vars
           "--column-gap": `${columnGap}px`,
           "--row-gap": `${rowGap}px`,
           "--justify": justify,

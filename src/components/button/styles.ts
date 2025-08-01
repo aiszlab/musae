@@ -107,17 +107,17 @@ const styles = {
 
     medium: {
       paddingBlock: spacing.large,
-      paddingInline: spacing.xxlarge,
+      paddingInline: spacing.xxxlarge,
     },
 
     large: {
-      paddingBlock: spacing.xxxxxlarge,
-      paddingInline: spacing.xxxxxxxlarge,
+      paddingBlock: spacing.xxxxxxlarge,
+      paddingInline: spacing.xxxxxxxxlarge,
     },
 
     xlarge: {
-      paddingBlock: spacing.xxxxxxxlarge,
-      paddingInline: spacing.xxxxxxxxxlarge,
+      paddingBlock: spacing.xxxxxxxxlarge,
+      paddingInline: spacing.xxxxxxxxxxlarge,
     },
   }),
 

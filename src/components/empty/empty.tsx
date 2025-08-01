@@ -13,7 +13,7 @@ const styles = $create({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    marginBlock: spacing.xxxxxlarge,
+    marginBlock: spacing.xxxxxxlarge,
     marginInline: spacing.xxsmall,
   },
 

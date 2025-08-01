@@ -79,7 +79,6 @@ const Calendar = forwardRef<CalendarRef, CalendarProps>(
         style={{
           ...styled.calendar.style,
           ...style,
-          // @ts-expect-error style vars
           "--color-on-surface-variant": theme.colors["on-surface-variant"],
         }}
       >

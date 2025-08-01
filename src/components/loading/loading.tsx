@@ -283,19 +283,19 @@ const styles = $create({
   },
 
   medium: {
-    width: sizes.xxlarge,
-    height: sizes.xxlarge,
+    width: sizes.xxxlarge,
+    height: sizes.xxxlarge,
   },
 
   large: {
-    width: sizes.xxxxlarge,
-    height: sizes.xxxxlarge,
+    width: sizes.xxxxxlarge,
+    height: sizes.xxxxxlarge,
   },
 
   loading: {
     position: "relative",
-    minWidth: sizes.xxxxxxlarge,
-    minHeight: sizes.xxxxxxlarge,
+    minWidth: sizes.xxxxxxxlarge,
+    minHeight: sizes.xxxxxxxlarge,
   },
 
   spin: {

@@ -21,8 +21,8 @@ const styles = $create({
     cursor: "pointer",
     pointerEvents: "auto",
     transform: `translateX(${props.movementX}px) translateY(${props.movementY}px)`,
-    insetInlineEnd: props.isDragged ? void 0 : spacing.xxlarge,
-    insetBlockEnd: props.isDragged ? void 0 : spacing.xxlarge,
+    insetInlineEnd: props.isDragged ? void 0 : spacing.xxxlarge,
+    insetBlockEnd: props.isDragged ? void 0 : spacing.xxxlarge,
     insetInlineStart: props.isDragged ? props.insetInlineStart : void 0,
     insetBlockStart: props.isDragged ? props.insetBlockStart : void 0,
 

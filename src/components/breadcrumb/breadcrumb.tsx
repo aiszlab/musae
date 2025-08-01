@@ -44,7 +44,6 @@ const Breadcrumb = ({ items = [], className, separator = "/", style }: Breadcrum
         style={{
           ...styled.breadcrumb.style,
           ...style,
-          // @ts-expect-error style vars
           "--color-on-surface-variant": theme.colors["on-surface-variant"],
         }}
       >

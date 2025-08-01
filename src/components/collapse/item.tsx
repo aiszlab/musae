@@ -102,7 +102,6 @@ const CollapseItem = ({ children, label, value }: CollapseItemProps) => {
       )}
       style={{
         ...styled.item.style,
-        // @ts-expect-error style vars
         "--color-outline-variant": theme.colors["outline-variant"],
       }}
     >

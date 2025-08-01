@@ -85,7 +85,7 @@ const styles = $create({
 
   body: {
     flex: 1,
-    padding: spacing.xxlarge,
+    padding: spacing.xxxlarge,
     overflow: "auto",
   },
 
@@ -164,7 +164,6 @@ const Popup = ({
       className={stringify(classNames.drawer, className, styled.popup.className)}
       style={{
         ...styled.popup.style,
-        // @ts-expect-error style vars
         "--color-on-primary": theme.colors["on-primary"],
         "--color-surface-dim": theme.colors["surface-dim"],
         "--color-outline-variant": theme.colors["outline-variant"],

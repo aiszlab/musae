@@ -93,7 +93,6 @@ const Badge = ({
       style={{
         ...styled.badge.style,
         ...style,
-        // @ts-expect-error style vars
         "--color-primary": theme.colors.primary,
         "--color-on-primary": theme.colors["on-primary"],
       }}

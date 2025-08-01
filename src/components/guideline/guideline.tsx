@@ -61,7 +61,6 @@ const Guideline = ({ figure, caption, recommend = true, className, style }: Guid
       style={{
         ...styled.guideline.style,
         ...style,
-        // @ts-expect-error style vars
         "--color-error": theme.colors.error,
         "--color-success": theme.colors.success,
       }}

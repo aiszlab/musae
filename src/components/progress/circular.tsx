@@ -52,7 +52,6 @@ const Circular = ({ value: _value }: CircularProps) => {
       className={styled.progress.className}
       style={{
         ...styled.progress.style,
-        // @ts-expect-error style vars
         "--radius": `${radius}px`,
       }}
     >

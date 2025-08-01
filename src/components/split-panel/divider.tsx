@@ -108,7 +108,6 @@ const Divider = ({ onDragMove, onDragEnd }: DividerProps) => {
       className={stringify(classNames.divider, styled.divider.className)}
       style={{
         ...styled.divider.style,
-        // @ts-expect-error style vars
         "--color-outline": theme.colors.outline,
         "--color-outline-variant": theme.colors["outline-variant"],
       }}
