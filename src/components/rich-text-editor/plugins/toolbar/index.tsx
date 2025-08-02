@@ -1,4 +1,4 @@
-import React, { type CSSProperties, useState } from "react";
+import React, { type CSSProperties, useContext, useState } from "react";
 import {
   Redo,
   Undo,
@@ -32,9 +32,11 @@ import { $isListNode, ListNode } from "@lexical/list";
 import { $getNearestNodeOfType } from "@lexical/utils";
 import FloatingLinkEditorPlugin from "../floating-link-editor";
 import { $getSelectionStyleValueForProperty } from "@lexical/selection";
+import { Context } from "../../context";
+import { stringify } from "@aiszlab/relax/class-name";
 
 const styles = $create({
-  default: (props: { outlineColor: CSSProperties["borderColor"] }) => ({
+  default: {
     minHeight: sizes.medium,
 
     display: "flex",
@@ -43,16 +45,17 @@ const styles = $create({
 
     gap: spacing.xxxxxsmall,
     borderBottomWidth: sizes.smallest,
-    borderBottomColor: props.outlineColor,
+    borderBottomColor: "var(--color-outline-variant)",
     borderBottomStyle: "solid",
     overflow: "auto",
 
-    paddingInline: spacing.xxxxxsmall,
-  }),
+    padding: spacing.xxxsmall,
+  },
 });
 
 const ToolbarPlugin = () => {
   const theme = useTheme();
+  const { classNames } = useContext(Context);
   const [editor] = useLexicalComposerContext();
   const [isBold, setIsBold] = useState(false);
   const [isItalic, setIsItalic] = useState(false);
@@ -156,11 +159,11 @@ const ToolbarPlugin = () => {
     };
   });
 
-  const styled = $props(styles.default({ outlineColor: theme.colors["outline-variant"] }));
+  const styled = $props(styles.default);
 
   return (
     <>
-      <div className={styled.className} style={styled.style}>
+      <div className={stringify(styled.className, classNames.toolbar)} style={styled.style}>
         <Button
           variant="text"
           shape="round"

@@ -128,6 +128,7 @@ const RichTextEditor = forwardRef<RichTextEditorRef, RichTextEditorProps>(
               "--color-surface-container": theme.colors["surface-container"],
               "--color-surface-container-highest": theme.colors["surface-container-highest"],
               "--color-outline": theme.colors.outline,
+              "--color-outline-variant": theme.colors["outline-variant"],
             }}
           >
             <MarkdownShortcutPlugin />

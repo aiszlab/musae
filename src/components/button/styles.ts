@@ -142,7 +142,11 @@ const styles = {
       borderColor: "var(--color-on-surface-opacity-38)",
     },
 
-    text: {},
+    text: {
+      ":hover": {
+        backgroundColor: null,
+      },
+    },
   }),
 };
 
