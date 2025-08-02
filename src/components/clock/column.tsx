@@ -24,12 +24,12 @@ const styles = $create({
       ":hover": "auto",
     },
 
-    width: sizes.xxlarge,
+    width: sizes.xxxlarge,
     marginBlock: spacing.xxxxxsmall,
   },
 
   item: {
-    width: sizes.xxlarge,
+    width: sizes.xxxlarge,
     display: "flex",
     justifyContent: "center",
   },
@@ -66,7 +66,6 @@ const Column = ({ unit, value, onChange }: ColumnProps) => {
       className={stringify(styled.menu.className, classNames.column)}
       style={{
         ...styled.menu.style,
-        // @ts-expect-error style vars
         "--color-scrollbar-thumb": theme.colors.secondary,
       }}
       items={Array.from(Array(timeUnit).keys()).map((step) => ({

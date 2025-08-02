@@ -119,7 +119,6 @@ const Dropdown = forwardRef<PopperRef, DropdownProps>(
         className={styled.portal.className}
         style={{
           ...styled.portal.style,
-          // @ts-expect-error style vars
           "--color-surface-container": theme.colors["surface-container"],
         }}
       >

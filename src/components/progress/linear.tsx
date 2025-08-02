@@ -10,7 +10,7 @@ import Context from "./context";
 const styles = $create({
   progress: (props: { color: CSSProperties["backgroundColor"] }) => ({
     width: sizes.full,
-    height: sizes.xxxxxxxxsmall,
+    height: sizes.xxxxxxxxxsmall,
     backgroundColor: props.color,
     borderRadius: sizes.infinity,
   }),

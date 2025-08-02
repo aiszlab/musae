@@ -39,7 +39,6 @@ const Layout = ({ className, style, ...props }: LayoutProps) => {
         style={{
           ...styled.layout.style,
           ...style,
-          // @ts-expect-error style vars
           "--color-outline-variant": theme.colors["outline-variant"],
         }}
       >

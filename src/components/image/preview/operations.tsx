@@ -17,8 +17,8 @@ const styles = $create({
 
   closer: {
     ":not(#\\#)": {
-      top: spacing.xxxxxlarge,
-      right: spacing.xxxxxlarge,
+      top: spacing.xxxxxxlarge,
+      right: spacing.xxxxxxlarge,
       position: "fixed",
     },
   },
@@ -39,7 +39,7 @@ const styles = $create({
     position: "fixed",
     left: 0,
     right: 0,
-    bottom: spacing.xxxxxlarge,
+    bottom: spacing.xxxxxxlarge,
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -53,7 +53,7 @@ const styles = $create({
     alignItems: "center",
     backgroundColor: props.backgroundColor,
     borderRadius: sizes.infinity,
-    paddingInline: spacing.xxlarge,
+    paddingInline: spacing.xxxlarge,
     paddingBlock: spacing.xxxxxsmall,
   }),
 });

@@ -18,15 +18,15 @@ const styles = {
       width: "100vw",
       height: "100vh",
       display: "grid",
-      gridTemplateRows: `${sizes.xxxxxlarge} ${sizes.fr} ${sizes.auto}`,
-      gridTemplateColumns: `${sizes.xxxxxxxxxxlarge} ${sizes.fr}`,
+      gridTemplateRows: `${sizes.xxxxxxlarge} ${sizes.fr} ${sizes.auto}`,
+      gridTemplateColumns: `${sizes.xxxxxxxxxxxlarge} ${sizes.fr}`,
       transitionProperty: "grid-template-columns",
       transitionDuration: duration.medium,
     },
 
     collapsed: {
       // gridTemplateAreas: "'heading header' 'sidebar main' 'expander main'",
-      gridTemplateColumns: `${sizes.xxxxxlarge} ${sizes.fr}`,
+      gridTemplateColumns: `${sizes.xxxxxxlarge} ${sizes.fr}`,
     },
   }),
 
@@ -63,7 +63,7 @@ const styles = {
     collapsed: {
       paddingInline: spacing.none,
       paddingBlockEnd: spacing.none,
-      paddingBlockStart: spacing.xxxxxlarge,
+      paddingBlockStart: spacing.xxxxxxlarge,
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
@@ -86,7 +86,7 @@ const styles = {
       width: sizes.full,
       display: "flex",
       justifyContent: "center",
-      paddingBlock: spacing.xxlarge,
+      paddingBlock: spacing.xxxlarge,
       marginBlockStart: spacing.auto,
 
       borderWidth: sizes.none,

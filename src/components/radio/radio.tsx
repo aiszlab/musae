@@ -56,7 +56,7 @@ const styles = {
     checked: (props: { borderColor: CSSProperties["borderColor"] }) => ({
       "::after": {
         borderColor: props.borderColor,
-        borderWidth: sizes.xxxxxxxxsmall,
+        borderWidth: sizes.xxxxxxxxxsmall,
       },
     }),
 

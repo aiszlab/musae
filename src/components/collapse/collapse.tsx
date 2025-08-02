@@ -49,7 +49,6 @@ const Collapse = ({
         style={{
           ...styled.style,
           ...style,
-          // @ts-expect-error style vars
           "--color-outline-variant": theme.colors["outline-variant"],
         }}
       >

@@ -30,7 +30,7 @@ const styles = $create({
     backgroundColor: "var(--color-on-primary)",
     flexDirection: "column",
     boxShadow: elevations.small,
-    borderRadius: sizes.xxxxxxxxsmall,
+    borderRadius: sizes.xxxxxxxxxsmall,
     transitionProperty: "all",
     transitionDuration: duration.short,
   },
@@ -83,7 +83,6 @@ const Tour = ({
           className={stringify(classNames.overlay, styled.overlay.className)}
           style={{
             ...styled.overlay.style,
-            // @ts-expect-error style vars
             "--color-surface-dim": theme.colors["surface-dim"],
           }}
         >
@@ -97,7 +96,6 @@ const Tour = ({
         className={stringify(classNames.tour, styled.tour.className)}
         style={{
           ...styled.tour.style,
-          // @ts-expect-error style vars
           "--color-on-primary": theme.colors["on-primary"],
         }}
         offset={paddings[0]}

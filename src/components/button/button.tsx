@@ -65,7 +65,6 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         style={{
           ...styled.button.style,
           ...style,
-          // @ts-expect-error style vars
           "--color-button": theme.colors[color],
           "--color-on-button": theme.colors[`on-${color}`],
           "--color-button-opacity-08": hexToRgba(theme.colors[color], OPACITY.thin).toString(),

@@ -98,7 +98,6 @@ const Panel = forwardRef<PanelRef, PanelProps>(
           style={{
             ...styled.style,
             ...style,
-            // @ts-expect-error style vars
             "--item-space": size,
             "--offset": `${offset}px`,
           }}

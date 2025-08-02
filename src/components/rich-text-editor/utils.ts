@@ -44,12 +44,12 @@ const _styles = {
       default: {
         outline: "none",
         position: "relative",
-        marginInline: spacing.xxlarge,
+        marginInline: spacing.xxxlarge,
       },
 
       checkable: {
         marginInline: spacing.none,
-        paddingInline: spacing.xxlarge,
+        paddingInline: spacing.xxxlarge,
       },
 
       checked: {
@@ -82,7 +82,7 @@ const _styles = {
     default: { fontWeight: 700 },
 
     h1: {
-      marginBlockStart: spacing.xxlarge,
+      marginBlockStart: spacing.xxxlarge,
       marginBlockEnd: spacing.xsmall,
     },
 

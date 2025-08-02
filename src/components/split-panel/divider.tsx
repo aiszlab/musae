@@ -54,14 +54,14 @@ const styles = {
       transform: "translateX(-50%)",
 
       "::before": {
-        width: sizes.xxxxxxxxxsmall,
+        width: sizes.xxxxxxxxxxsmall,
         height: sizes.full,
         insetInlineStart: sizes.half,
         transform: "translateX(-50%)",
       },
 
       "::after": {
-        width: sizes.xxxxxxxxxsmall,
+        width: sizes.xxxxxxxxxxsmall,
         height: sizes.xxsmall,
       },
     },
@@ -75,14 +75,14 @@ const styles = {
 
       "::before": {
         width: sizes.full,
-        height: sizes.xxxxxxxxxsmall,
+        height: sizes.xxxxxxxxxxsmall,
         insetBlockStart: sizes.half,
         transform: "translateY(-50%)",
       },
 
       "::after": {
         width: sizes.xxsmall,
-        height: sizes.xxxxxxxxxsmall,
+        height: sizes.xxxxxxxxxxsmall,
       },
     },
   }),
@@ -108,7 +108,6 @@ const Divider = ({ onDragMove, onDragEnd }: DividerProps) => {
       className={stringify(classNames.divider, styled.divider.className)}
       style={{
         ...styled.divider.style,
-        // @ts-expect-error style vars
         "--color-outline": theme.colors.outline,
         "--color-outline-variant": theme.colors["outline-variant"],
       }}

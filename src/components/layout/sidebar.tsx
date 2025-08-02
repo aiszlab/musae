@@ -9,7 +9,7 @@ const styles = {
   sidebar: $create({
     default: {
       gridArea: "sidebar",
-      padding: spacing.xxxxxlarge,
+      padding: spacing.xxxxxxlarge,
       overflow: "hidden",
 
       borderWidth: sizes.none,

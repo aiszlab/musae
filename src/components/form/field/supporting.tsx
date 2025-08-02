@@ -20,7 +20,6 @@ const Supporting = ({ children }: { children?: ReactNode }) => {
       className={styled.className}
       style={{
         ...styled.style,
-        // @ts-expect-error style vars
         "--color-secondary": theme.colors.secondary,
       }}
     >

@@ -50,7 +50,7 @@ const styles = $create({
   },
 
   squared: {
-    borderRadius: sizes.xxxxxxxxsmall,
+    borderRadius: sizes.xxxxxxxxxsmall,
   },
 
   small: {
@@ -125,7 +125,6 @@ const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(
         style={{
           ...styled.avatar.style,
           ...style,
-          // @ts-expect-error style vars
           "--color-primary": theme.colors.primary,
           "--color-on-primary": theme.colors["on-primary"],
           "--color-primary-container": theme.colors["primary-container"],

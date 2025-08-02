@@ -46,7 +46,7 @@ const styles = $create({
     outline: "none",
     paddingInline: spacing.large,
     paddingBlock: spacing.medium,
-    minHeight: sizes.xxxxxxxxxlarge,
+    minHeight: sizes.xxxxxxxxxxlarge,
   },
 });
 
@@ -121,7 +121,6 @@ const RichTextEditor = forwardRef<RichTextEditorRef, RichTextEditorProps>(
             style={{
               ...styled.editor.style,
               ...style,
-              // @ts-expect-error style vars
               "--color-primary": theme.colors.primary,
               "--color-on-primary": theme.colors["on-primary"],
               "--color-on-surface": theme.colors["on-surface"],

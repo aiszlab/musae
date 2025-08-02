@@ -12,9 +12,9 @@ const styles = $create({
 
   shape: {
     r: "var(--radius)",
-    cx: `calc(var(--radius) + (${sizes.xxxxxxxxsmall} / 2))`,
-    cy: `calc(var(--radius) + (${sizes.xxxxxxxxsmall} / 2))`,
-    strokeWidth: sizes.xxxxxxxxsmall,
+    cx: `calc(var(--radius) + (${sizes.xxxxxxxxxsmall} / 2))`,
+    cy: `calc(var(--radius) + (${sizes.xxxxxxxxxsmall} / 2))`,
+    strokeWidth: sizes.xxxxxxxxxsmall,
     strokeLinecap: "round",
   },
 
@@ -52,7 +52,6 @@ const Circular = ({ value: _value }: CircularProps) => {
       className={styled.progress.className}
       style={{
         ...styled.progress.style,
-        // @ts-expect-error style vars
         "--radius": `${radius}px`,
       }}
     >

@@ -57,7 +57,7 @@ const styles = {
           position: "absolute",
           insetInline: 0,
           insetBlockEnd: 0,
-          borderBottomWidth: sizes.xxxxxxxxxsmall,
+          borderBottomWidth: sizes.xxxxxxxxxxsmall,
           borderBottomStyle: "solid",
           willChange: "border-color",
           transitionProperty: "border-color",
@@ -94,20 +94,20 @@ const styles = {
       paddingBlock: spacing.xxxxxsmall,
       paddingRight: spacing.xxsmall,
       paddingLeft: `calc(${spacing.xxsmall} + ${props.level} * ${spacing.large})`,
-      borderRadius: sizes.xxxxxxxxsmall,
+      borderRadius: sizes.xxxxxxxxxsmall,
     }),
 
     medium: (props: { level: number }) => ({
       paddingBlock: spacing.xxsmall,
       paddingRight: spacing.medium,
-      paddingLeft: `calc(${spacing.medium} + ${props.level} * ${spacing.xxlarge})`,
+      paddingLeft: `calc(${spacing.medium} + ${props.level} * ${spacing.xxxlarge})`,
       borderRadius: sizes.xxxxxxxsmall,
     }),
 
     large: (props: { level: number }) => ({
       paddingBlock: spacing.medium,
       paddingRight: spacing.large,
-      paddingLeft: `calc(${spacing.large} + ${props.level} * ${spacing.xxxxxlarge})`,
+      paddingLeft: `calc(${spacing.large} + ${props.level} * ${spacing.xxxxxxlarge})`,
       borderRadius: sizes.xxxxsmall,
     }),
   }),
@@ -229,7 +229,6 @@ const Item = forwardRef<HTMLLIElement, MenuItemProps>(
         className={styled.menuitem.className}
         style={{
           ...styled.menuitem.style,
-          // @ts-expect-error style vars
           "--color-primary": theme.colors.primary,
           "--color-surface-container-highest": theme.colors["surface-container-highest"],
         }}

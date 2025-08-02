@@ -9,7 +9,7 @@ const styles = {
   heading: $create({
     default: {
       gridArea: "heading",
-      paddingInline: spacing.xxxxxlarge,
+      paddingInline: spacing.xxxxxxlarge,
       fontWeight: 700,
 
       display: "flex",

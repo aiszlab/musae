@@ -11,8 +11,8 @@ import { useLocale } from "../../locale";
 
 const styles = $create({
   list: {
-    minWidth: sizes.xxxxxxxxxlarge,
-    maxHeight: sizes.xxxxxxxxxxlarge,
+    minWidth: sizes.xxxxxxxxxxlarge,
+    maxHeight: sizes.xxxxxxxxxxxlarge,
     display: "flex",
     flexDirection: "column",
     gap: spacing.xxxxxsmall,
@@ -24,8 +24,8 @@ const styles = $create({
     padding: spacing.xxsmall,
     borderTopLeftRadius: sizes.xxxxsmall,
     borderTopRightRadius: sizes.xxxxsmall,
-    borderBottomLeftRadius: sizes.xxxxxxxxxsmall,
-    borderBottomRightRadius: sizes.xxxxxxxxxsmall,
+    borderBottomLeftRadius: sizes.xxxxxxxxxxsmall,
+    borderBottomRightRadius: sizes.xxxxxxxxxxsmall,
     boxShadow: elevations.xsmall,
   },
 
@@ -36,12 +36,12 @@ const styles = $create({
   },
 
   body: {
-    minHeight: sizes.xxxxxxxxxlarge,
+    minHeight: sizes.xxxxxxxxxxlarge,
     flexGrow: 1,
 
     margin: spacing.none,
-    borderTopLeftRadius: sizes.xxxxxxxxxsmall,
-    borderTopRightRadius: sizes.xxxxxxxxxsmall,
+    borderTopLeftRadius: sizes.xxxxxxxxxxsmall,
+    borderTopRightRadius: sizes.xxxxxxxxxxsmall,
     borderBottomLeftRadius: sizes.xxxxxxxsmall,
     borderBottomRightRadius: sizes.xxxxxxxsmall,
     boxShadow: elevations.xsmall,
