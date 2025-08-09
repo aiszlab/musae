@@ -6,7 +6,7 @@ import { stringify } from "@aiszlab/relax/class-name";
 import { useTheme } from "../theme";
 import { useDraggable, useEvent } from "@aiszlab/relax";
 import { DividerProps } from "../../types/split-panel";
-import { UsingDrag } from "../../../../relax/packages/relax/dist/hooks/use-drag";
+import { useDrag } from "@aiszlab/relax";
 import { RequiredTo } from "@aiszlab/relax/types";
 
 const styles = {
@@ -92,8 +92,9 @@ const Divider = ({ onDragMove, onDragEnd }: DividerProps) => {
   const { classNames, orientation } = useContext(Context);
   const theme = useTheme();
   const [draggerRef] = useDraggable<HTMLDivElement>({
-    onDragMove: useEvent<RequiredTo<UsingDrag["onDragMove"]>>(({ movementX, movementY }) =>
-      onDragMove(orientation === "horizontal" ? movementX : movementY),
+    onDragMove: useEvent<RequiredTo<RequiredTo<Parameters<typeof useDrag>["0"]>["onDragMove"]>>(
+      ({ movementX, movementY }) =>
+        onDragMove(orientation === "horizontal" ? movementX : movementY),
     ),
     onDragEnd,
   });
