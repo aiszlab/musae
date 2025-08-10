@@ -11,10 +11,10 @@ import { CLASS_NAMES } from "./context";
 import { Empty } from "../empty";
 
 const styles = $create({
-  size: (props: { width?: number | string; height?: number | string }) => ({
-    width: props.width,
-    height: props.height,
-  }),
+  size: {
+    width: "var(--width)",
+    height: "var(--height)",
+  },
 });
 
 const Image = ({
@@ -49,8 +49,12 @@ const Image = ({
   });
 
   const styled = {
-    loading: $props(styles.size({ width, height })),
-    image: $props(styles.size({ width, height })),
+    loading: $props(styles.size),
+    image: $props(styles.size),
+    style: {
+      "--width": width,
+      "--height": height,
+    },
   };
 
   if (status === "loading") {
@@ -59,22 +63,14 @@ const Image = ({
         className={stringify(className, styled.loading.className)}
         style={{
           ...styled.loading.style,
-          ...style,
+          ...styled.style,
         }}
       />
     );
   }
 
   if (status === "error") {
-    return (
-      <Empty
-        className={stringify(className, styled.image.className)}
-        style={{
-          ...styled.image.style,
-          ...style,
-        }}
-      />
-    );
+    return <Empty />;
   }
 
   return (
@@ -85,6 +81,7 @@ const Image = ({
           style={{
             ...styled.image.style,
             ...style,
+            ...styled.style,
           }}
           src={src}
           alt={alt}
