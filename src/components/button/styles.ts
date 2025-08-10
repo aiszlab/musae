@@ -26,6 +26,10 @@ const styles = {
       fontFamily: "inherit",
       boxSizing: "border-box",
       height: "fit-content",
+
+      // 元素设置为`inline-flex`后，会在父元素`flex`布局下被自动压缩
+      // 使用`flex-shrink`保证元素不能被压缩
+      flexShrink: 0,
     },
 
     rippleable: {

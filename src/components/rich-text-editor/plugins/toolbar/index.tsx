@@ -54,7 +54,6 @@ const styles = $create({
 });
 
 const ToolbarPlugin = () => {
-  const theme = useTheme();
   const { classNames } = useContext(Context);
   const [editor] = useLexicalComposerContext();
   const [isBold, setIsBold] = useState(false);
@@ -163,7 +162,11 @@ const ToolbarPlugin = () => {
 
   return (
     <>
-      <div className={stringify(styled.className, classNames.toolbar)} style={styled.style}>
+      <div
+        role="toolbar"
+        className={stringify(classNames.toolbar, styled.className)}
+        style={styled.style}
+      >
         <Button
           variant="text"
           shape="round"

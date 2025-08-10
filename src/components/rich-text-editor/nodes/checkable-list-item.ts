@@ -1,5 +1,5 @@
-import { ListItemNode, SerializedListItemNode } from "@lexical/list";
-import { LexicalNode, type NodeKey, type LexicalNodeReplacement, EditorConfig } from "lexical";
+import { $isListNode, ListItemNode, SerializedListItemNode } from "@lexical/list";
+import { type NodeKey, type LexicalNodeReplacement } from "lexical";
 import type { Partialable } from "@aiszlab/relax/types";
 import { CheckboxNode } from "./checkbox";
 
@@ -47,11 +47,18 @@ class CheckableListItemNode extends ListItemNode {
     };
   }
 
+  /**
+   * @description 渲染`checkbox`
+   * 1. 组件应用在多种场景下，需要识别是不是在选择列表内
+   * 2. 已经渲染`checkbox`后，无需重复渲染
+   */
   renderCheckbox() {
-    // if checkbox already render, do nothing
+    const parent = this.getParent();
+    if (!$isListNode(parent) || parent.getListType() !== "check") return;
+
     const children = this.getChildren();
-    const hasCheckbox = children.some((child) => child instanceof CheckboxNode);
-    if (hasCheckbox) return;
+    const isRendered = children.some((child) => child instanceof CheckboxNode);
+    if (isRendered) return;
 
     const checkboxNode = new CheckboxNode(void 0, this.__checked);
     this.#checkbox = checkboxNode.getKey();
