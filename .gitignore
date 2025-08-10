@@ -3,7 +3,7 @@ dist
 
 # package manager
 node_modules
-yarn-error.log
+node-compile-cache
 
 # editor
 .idea

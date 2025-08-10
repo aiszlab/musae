@@ -16,7 +16,9 @@ const styles = $create({
   },
 
   input: {
-    width: `calc(1ch + ${spacing.medium} * 2)`,
+    ":not(#\\#)": {
+      width: `calc(1ch + ${spacing.medium} * 2)`,
+    },
   },
 });
 
