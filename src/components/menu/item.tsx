@@ -8,7 +8,7 @@ import { useEvent, useHover } from "@aiszlab/relax";
 import { Popper } from "../popper";
 import { useLazyBoolean } from "../../hooks/use-lazy-boolean";
 import { stringify } from "@aiszlab/relax/class-name";
-import { $label } from "../theme/theme";
+import { $body } from "../theme/theme";
 
 const styles = {
   default: $create({
@@ -113,29 +113,23 @@ const styles = {
   }),
 
   selected: $create({
-    inline: (props: {
-      color?: CSSProperties["color"];
-      backgroundColor?: CSSProperties["backgroundColor"];
-    }) => ({
-      backgroundColor: props.backgroundColor,
-      color: props.color,
-    }),
+    inline: {
+      backgroundColor: "var(--color-surface-container-highest)",
+      color: "var(--color-primary)",
+    },
 
-    vertical: (props: {
-      color?: CSSProperties["color"];
-      backgroundColor?: CSSProperties["backgroundColor"];
-    }) => ({
-      backgroundColor: props.backgroundColor,
-      color: props.color,
-    }),
+    vertical: {
+      backgroundColor: "var(--color-surface-container-highest)",
+      color: "var(--color-primary)",
+    },
 
-    horizontal: (props: { color?: CSSProperties["color"] }) => ({
-      color: props.color,
+    horizontal: {
+      color: "var(--color-primary)",
 
       "::after": {
-        borderBottomColor: props.color,
+        borderBottomColor: "var(--color-primary)",
       },
-    }),
+    },
   }),
 
   popper: $create({
@@ -168,7 +162,6 @@ const Item = forwardRef<HTMLLIElement, MenuItemProps>(
     const itemRef = useRef<HTMLDivElement | null>(null);
     const isInline = mode === "inline";
     const isVertical = mode === "vertical";
-    const isHorizontal = mode === "horizontal";
 
     // delay disappear after hover leave
     const [isOpen, { turnOn, disappear }] = useLazyBoolean();
@@ -205,19 +198,8 @@ const Item = forwardRef<HTMLLIElement, MenuItemProps>(
         styles.size[size]({ level }),
         // mode
         styles.mode.item[mode],
-
-        isSelected &&
-          styles.selected[mode]({
-            ...((isInline || isVertical) && {
-              backgroundColor: theme.colors["surface-container-highest"],
-              color: theme.colors.primary,
-            }),
-            ...(isHorizontal && {
-              color: theme.colors.primary,
-            }),
-          }),
-
-        $label[size],
+        isSelected && styles.selected[mode],
+        $body[size],
       ),
       popper: $props(styles.popper.default),
     };
@@ -253,7 +235,7 @@ const Item = forwardRef<HTMLLIElement, MenuItemProps>(
           <Popper
             trigger={itemRef.current}
             open={isOpen}
-            placement={mode === "vertical" ? "left-start" : "bottom-start"}
+            placement={isVertical ? "left-start" : "bottom-start"}
             className={styled.popper.className}
             style={styled.popper.style}
             {...hoverProps}
