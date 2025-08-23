@@ -154,7 +154,12 @@ const RichTextEditor = forwardRef<RichTextEditorRef, RichTextEditorProps>(
             <ListPlugin />
             <CheckListPlugin />
 
-            <ControlledStatePlugin ref={controlledStatePluginRef} use={_use} onChange={onChange} />
+            <ControlledStatePlugin
+              ref={controlledStatePluginRef}
+              use={_use}
+              value={value}
+              onChange={onChange}
+            />
 
             <EditablePlugin isEditable={!disabled} />
 

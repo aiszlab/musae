@@ -2,7 +2,7 @@ import React, { useMemo } from "react";
 import type { TreeProps } from "../../types/tree";
 import List from "./list";
 import Context, { CLASS_NAMES } from "./context";
-import { useTogglable } from "@aiszlab/relax";
+import { useToggleable } from "@aiszlab/relax";
 import { useExpandedKeys, useSelectedKeys } from "./hooks";
 import { useClassNames } from "../../hooks/use-class-names";
 
@@ -22,7 +22,7 @@ const Tree = ({
   onSelect,
   onCheck,
 }: TreeProps) => {
-  const { toggledKeys: checkedKeys, toggle: check } = useTogglable(nodes, {
+  const { toggledKeys: checkedKeys, toggle: check } = useToggleable(nodes, {
     defaultToggledKeys: defaultCheckedKeys,
     toggledKeys: _checkedKeys,
     onToggle: onCheck,
