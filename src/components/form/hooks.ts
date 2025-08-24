@@ -61,14 +61,12 @@ function useFormItem<T extends FieldsValue, FieldKey extends keyof T>({
 /**
  * hook for `Form` used internal
  */
-function useForm<T extends FieldsValue>(usingForm: UsingForm<T> = {}) {
-  const form = _useForm<T>(usingForm);
+function useForm<T extends FieldsValue>({ value, ...usingForm }: UsingForm<T> = {}) {
+  const form = _useForm<T>({ value, ...usingForm });
 
   useUpdateEffect(() => {
-    form[FORM_TOKEN].useValues({
-      value: usingForm.value,
-    });
-  });
+    form[FORM_TOKEN].setFieldsValue(value ?? {});
+  }, [value, form]);
 
   return form;
 }

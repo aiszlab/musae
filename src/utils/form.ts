@@ -1,4 +1,4 @@
-import { toArray } from "@aiszlab/relax";
+import { clone, toArray } from "@aiszlab/relax";
 import type { Partialable } from "@aiszlab/relax/types";
 import { type ReactNode } from "react";
 import { BehaviorSubject, filter, Subject } from "rxjs";
@@ -97,7 +97,7 @@ export class Form<T extends FieldsValue> {
       if (!value) return;
 
       // value change, handle `onChange` callback
-      this.onChange?.(names, value);
+      this.onChange?.(names, clone(value));
     });
   }
 
@@ -107,18 +107,15 @@ export class Form<T extends FieldsValue> {
    * in `Component.Form`, will provider `value` or `defaultValue`
    */
   useValues({ value, defaultValue }: { value?: Partial<T>; defaultValue?: Partial<T> }) {
-    this.defaultValue = defaultValue ?? this.defaultValue;
+    this.defaultValue = clone(defaultValue) ?? this.defaultValue;
+    this.state.value = clone(value) ?? clone(this.defaultValue);
 
-    if (value) {
-      this.setFieldsValue(value);
-      return;
-    }
-
-    if (this.state.value) {
-      return;
-    }
-
-    this.reset();
+    this.state$.next({
+      source: ChangingSource.Initialize,
+      names: [],
+      value: this.state.value,
+      error: this.state.error,
+    });
   }
 
   /**
