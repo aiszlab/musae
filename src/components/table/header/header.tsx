@@ -7,38 +7,36 @@ import { sizes, spacing } from "../../theme/tokens.stylex";
 import { useTheme } from "../../theme";
 import { stringify } from "@aiszlab/relax/class-name";
 import { $label } from "src/components/theme/theme";
+import { type ThemeColorVariable, useThemeColorVars } from "src/hooks/use-theme-color-vars";
 
 const styles = $create({
-  cell: (props: {
-    backgroundColor: CSSProperties["backgroundColor"];
-    borderColor: CSSProperties["borderColor"];
-  }) => ({
+  cell: {
     // reset styles
     borderWidth: sizes.none,
 
     // apply styles
-    backgroundColor: props.backgroundColor,
+    backgroundColor: "var(--color-surface)" satisfies ThemeColorVariable,
+    borderColor: "var(--color-outline-variant)" satisfies ThemeColorVariable,
     textAlign: "start",
     position: "relative",
     paddingInline: spacing.xxsmall,
     paddingBlock: spacing.medium,
-    borderColor: props.borderColor,
     borderStyle: "solid",
     borderBottomWidth: sizes.smallest,
-  }),
+  },
 
-  unbordered: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
+  unbordered: {
     ":not(:last-of-type)::after": {
       content: '""',
       position: "absolute",
       top: "50%",
       width: sizes.smallest,
       height: sizes.xsmall,
-      backgroundColor: props.backgroundColor,
+      backgroundColor: "var(--color-outline-variant)" satisfies ThemeColorVariable,
       transform: "translateY(-50%)",
       insetInlineEnd: 0,
     },
-  }),
+  },
 
   bordered: {
     borderWidth: sizes.smallest,
@@ -48,25 +46,26 @@ const styles = $create({
 const Header = <T,>(props: HeaderProps) => {
   const { table, bordered, classNames } = useTable<T>();
   const theme = useTheme();
+  const _themeColorVars = useThemeColorVars(["surface", "outline-variant"]);
 
   if (!table) return null;
 
   const headerGroups = table.getHeaderGroups();
   const styled = $props(
-    styles.cell({
-      backgroundColor: theme.colors.surface,
-      borderColor: theme.colors["outline-variant"],
-    }),
+    styles.cell,
     $label.small,
     bordered && styles.bordered,
-    !bordered &&
-      styles.unbordered({
-        backgroundColor: theme.colors["outline-variant"],
-      }),
+    !bordered && styles.unbordered,
   );
 
   return (
-    <thead className={stringify(classNames.header, props.className)}>
+    <thead
+      className={stringify(classNames.header, props.className)}
+      style={{
+        ...styled.style,
+        ..._themeColorVars,
+      }}
+    >
       {headerGroups.map((headerGroup) => (
         <tr key={headerGroup.id}>
           {headerGroup.headers.map((header) => (

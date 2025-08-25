@@ -1,4 +1,4 @@
-import React, { type CSSProperties, useContext, type Key, useMemo } from "react";
+import React, { useContext, type Key, useMemo } from "react";
 import { create as $create, props as $props } from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import type { UploadedItem as UploadedItemType } from "../../types/upload";
@@ -7,9 +7,9 @@ import { AttachFile, Delete, Loading } from "../icon/icons";
 import { leaf } from "@aiszlab/fuzzy/path";
 import { Context } from "./context";
 import { Image } from "../image";
-import { useTheme } from "../theme";
 import { stringify } from "@aiszlab/relax/class-name";
 import { $body } from "../theme/theme";
+import { type ThemeColorVariable, useThemeColorVars } from "src/hooks/use-theme-color-vars";
 
 const styles = {
   item: $create({
@@ -19,14 +19,14 @@ const styles = {
       gap: spacing.xxsmall,
     },
 
-    picture: (props: { borderColor: CSSProperties["borderColor"] }) => ({
+    picture: {
       borderWidth: sizes.smallest,
       borderStyle: "solid",
-      borderColor: props.borderColor,
+      borderColor: "var(--color-outline-variant)" satisfies ThemeColorVariable,
       padding: spacing.medium,
       borderRadius: sizes.xxxxxxxxxsmall,
       height: sizes.xxxxxlarge,
-    }),
+    },
   }),
 
   leading: $create({
@@ -53,18 +53,14 @@ const UploadedItem = ({
   onRemove: (key: Key) => void;
 }) => {
   const { renderItem, classNames } = useContext(Context);
-  const theme = useTheme();
+  const _themeColorVars = useThemeColorVars(["outline-variant"]);
 
   const isPicture = renderItem === "picture";
   const isRender = isFunction(renderItem);
   const isLoading = item.status === "loading";
 
   const styled = {
-    item: $props(
-      styles.item.default,
-      $body.small,
-      isPicture && styles.item.picture({ borderColor: theme.colors["outline-variant"] }),
-    ),
+    item: $props(styles.item.default, $body.small, isPicture && styles.item.picture),
     filename: $props(styles.filename.default),
   };
 
@@ -104,7 +100,10 @@ const UploadedItem = ({
     return (
       <>
         {leading}
-        <span className={styled.filename.className} style={styled.filename.style}>
+        <span
+          className={styled.filename.className}
+          style={{ ...styled.filename.style, ..._themeColorVars }}
+        >
           {item.file?.name ?? leaf(item.url ?? "")}
         </span>
         <Delete onClick={onRemove} />

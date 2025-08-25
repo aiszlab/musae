@@ -5,11 +5,11 @@ import { useGutters } from "../../hooks/use-gutters";
 import { stringify } from "@aiszlab/relax/class-name";
 
 const styles = $create({
-  space: (props: { columnGap: number; rowGap: number }) => ({
+  space: {
     display: "flex",
-    columnGap: props.columnGap,
-    rowGap: props.rowGap,
-  }),
+    columnGap: "var(--column-gap)",
+    rowGap: "var(--row-gap)",
+  },
 
   horizontal: {
     flexDirection: "row",
@@ -30,13 +30,7 @@ const Space = ({
   orientation = "horizontal",
 }: SpaceProps) => {
   const [columnGap, rowGap] = useGutters({ gutter });
-  const styled = $props(
-    styles.space({
-      columnGap,
-      rowGap,
-    }),
-    styles[orientation],
-  );
+  const styled = $props(styles.space, styles[orientation]);
 
   return (
     <div
@@ -44,6 +38,8 @@ const Space = ({
       style={{
         ...styled.style,
         ...style,
+        "--column-gap": columnGap,
+        "--row-gap": rowGap,
       }}
     >
       {children}

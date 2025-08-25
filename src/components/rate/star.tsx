@@ -1,26 +1,26 @@
-import React, { CSSProperties, createElement, useContext } from "react";
+import React, { createElement, useContext } from "react";
 import { useEvent, useHover } from "@aiszlab/relax";
 import { create as $create, props as $props } from "@stylexjs/stylex";
 import { duration, sizes } from "../theme/tokens.stylex";
 import { Star as _Star } from "../icon/icons";
 import type { StarProps } from "../../types/rate";
-import { useTheme } from "../theme";
 import { stringify } from "@aiszlab/relax/class-name";
 import Context from "./context";
+import { type ThemeColorVariable, useThemeColorVars } from "src/hooks/use-theme-color-vars";
 
 const styles = {
   star: $create({
-    default: (props: { color: CSSProperties["color"] }) => ({
+    default: {
       position: "relative",
       transitionProperty: "all",
       transitionDuration: duration.short,
       cursor: "pointer",
-      color: props.color,
+      color: "var(--color-surface-container-highest)" satisfies ThemeColorVariable,
 
       ":hover": {
         transform: "scale(1.1)",
       },
-    }),
+    },
 
     disabled: {
       cursor: null,
@@ -43,10 +43,10 @@ const styles = {
       overflow: "hidden",
     },
 
-    checked: (props: { color: CSSProperties["color"] }) => ({
+    checked: {
       opacity: 1,
-      color: props.color,
-    }),
+      color: "var(--color-primary)" satisfies ThemeColorVariable,
+    },
   }),
 
   full: $create({
@@ -54,17 +54,17 @@ const styles = {
       userSelect: "none",
     },
 
-    checked: (props: { color: CSSProperties["color"] }) => ({
-      color: props.color,
-    }),
+    checked: {
+      color: "var(--color-primary)" satisfies ThemeColorVariable,
+    },
   }),
 };
 
 const Star = ({ disabled, value, onEnter, at, onLeave, onClick }: StarProps) => {
   const { classNames } = useContext(Context);
-  const theme = useTheme();
   const isHalf = value === 0.5;
   const isFull = value >= 1;
+  const _themeColorVars = useThemeColorVars(["primary", "surface-container-highest"]);
 
   const half = useEvent(() => {
     onClick(at + 0.5);
@@ -90,25 +90,19 @@ const Star = ({ disabled, value, onEnter, at, onLeave, onClick }: StarProps) => 
   });
 
   const styled = {
-    star: $props(
-      styles.star.default({ color: theme.colors["surface-container-highest"] }),
-      disabled && styles.star.disabled,
-    ),
-    half: $props(
-      styles.half.default,
-      isHalf &&
-        styles.half.checked({
-          color: theme.colors.primary,
-        }),
-    ),
-    full: $props(
-      styles.full.default,
-      isFull && styles.full.checked({ color: theme.colors.primary }),
-    ),
+    star: $props(styles.star.default, disabled && styles.star.disabled),
+    half: $props(styles.half.default, isHalf && styles.half.checked),
+    full: $props(styles.full.default, isFull && styles.full.checked),
   };
 
   return (
-    <li className={stringify(classNames.star, styled.star.className)} style={styled.star.style}>
+    <li
+      className={stringify(classNames.star, styled.star.className)}
+      style={{
+        ...styled.star.style,
+        ..._themeColorVars,
+      }}
+    >
       {/* half */}
       <div
         className={stringify(classNames.half, styled.half.className)}

@@ -1,21 +1,21 @@
-import React, { useEffect, useRef, type CSSProperties, type Key } from "react";
+import React, { useEffect, useRef, type Key } from "react";
 import { create as $create, props as $props } from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { type NavigationProps } from "../../types/tabs";
 import Tab from "./tab";
 import { animate } from "motion/react";
 import { isUndefined } from "@aiszlab/relax";
-import { useTheme } from "../theme";
 import { useNavigation, useNavigatorScroll, useTabsContext } from "./hooks";
 import { stringify } from "@aiszlab/relax/class-name";
+import { type ThemeColorVariable, useThemeColorVars } from "src/hooks/use-theme-color-vars";
 
 const styles = {
   navigation: $create({
-    default: (props: { outlineColor: CSSProperties["borderBottomColor"] }) => ({
-      borderBottomColor: props.outlineColor,
+    default: {
+      borderBottomColor: "var(--color-outline-variant)" satisfies ThemeColorVariable,
       borderBottomWidth: sizes.smallest,
       borderBottomStyle: "solid",
-    }),
+    },
   }),
 
   navigator: $create({
@@ -50,20 +50,20 @@ const styles = {
   }),
 
   list: $create({
-    default: (props: { offset: number }) => ({
+    default: {
       display: "flex",
       width: "fit-content",
-      transform: `translateX(-${props.offset}px)`,
-    }),
+      transform: "translateX(var(--offset))",
+    },
   }),
 
   indicator: $create({
-    default: (props: { color: CSSProperties["backgroundColor"] }) => ({
+    default: {
       height: sizes.xxxxxxxxxxsmall,
-      backgroundColor: props.color,
+      backgroundColor: "var(--color-primary)" satisfies ThemeColorVariable,
       position: "absolute",
       bottom: spacing.none,
-    }),
+    },
   }),
 };
 
@@ -71,30 +71,22 @@ const Navigation = ({ onChange }: NavigationProps) => {
   const { activeKey, items, classNames } = useTabsContext();
   const indicatorRef = useRef<HTMLDivElement>(null);
   const tabRefs = useRef<Map<Key, HTMLButtonElement | null>>(new Map());
-  const theme = useTheme();
   const { navigatorRef, tabsRef, scroll, offset, isLeadingOverflow, isTrailingOverflow } =
     useNavigation();
+  const _themeColorVars = useThemeColorVars(["outline-variant", "primary"]);
 
   // control tabs scroll
   useNavigatorScroll({ navigatorRef, scroll });
 
   const styled = {
-    navigation: $props(
-      styles.navigation.default({
-        outlineColor: theme.colors["outline-variant"],
-      }),
-    ),
+    navigation: $props(styles.navigation.default),
     navigator: $props(
       styles.navigator.default,
       isLeadingOverflow && styles.navigator.leading,
       isTrailingOverflow && styles.navigator.trailing,
     ),
-    list: $props(styles.list.default({ offset })),
-    indicator: $props(
-      styles.indicator.default({
-        color: theme.colors.primary,
-      }),
-    ),
+    list: $props(styles.list.default),
+    indicator: $props(styles.indicator.default),
   };
 
   // repaint indicator when activeKey changed
@@ -116,7 +108,11 @@ const Navigation = ({ onChange }: NavigationProps) => {
     <div
       role="tablist"
       className={stringify(classNames.navigation, styled.navigation.className)}
-      style={styled.navigation.style}
+      style={{
+        ...styled.navigation.style,
+        ..._themeColorVars,
+        "--offset": offset,
+      }}
     >
       <div
         ref={navigatorRef}

@@ -1,56 +1,63 @@
-import React, { type CSSProperties, useContext } from "react";
+import React, { useContext } from "react";
 import type { TreeNodeProps } from "../../types/tree";
 import Context from "./context";
 import { Checkbox } from "../checkbox";
 import { KeyboardArrowRight } from "../icon/icons";
 import { create as $create, props as $props } from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
-import { useTheme } from "../theme";
 import { useEvent } from "@aiszlab/relax";
 import { stringify } from "@aiszlab/relax/class-name";
+import { type ThemeColorVariable, useThemeColorVars } from "src/hooks/use-theme-color-vars";
 
-const styles = $create({
-  node: (props: { level: number }) => ({
-    display: "flex",
-    alignItems: "center",
-    gap: spacing.xxxxxsmall,
+const styles = {
+  node: $create({
+    default: {
+      display: "flex",
+      alignItems: "center",
+      gap: spacing.xxxxxsmall,
 
-    paddingBlock: spacing.xxsmall,
-    paddingLeft: 12 + props.level * 24,
-  }),
-
-  expander: (props: { isExpanded: boolean }) => ({
-    width: 24,
-    height: 24,
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    cursor: "pointer",
-    transition: "transform 0.3s",
-    transform: props.isExpanded ? "rotate(90deg)" : null,
-    userSelect: "none",
-  }),
-
-  title: (props: {
-    isSelected: boolean;
-    backgroundColor: CSSProperties["backgroundColor"];
-    hoveredBackgroundColor: CSSProperties["backgroundColor"];
-    color: CSSProperties["color"];
-  }) => ({
-    paddingInline: spacing.xxxxxsmall,
-    borderRadius: 4,
-    backgroundColor: {
-      default: props.isSelected ? props.backgroundColor : null,
-      ":hover": props.hoveredBackgroundColor,
+      paddingBlock: spacing.xxsmall,
+      paddingLeft: `calc(${spacing.medium} + var(--level) * ${spacing.xxxlarge})`,
     },
-    color: props.isSelected ? props.color : null,
-    cursor: "default",
   }),
 
-  selectable: {
-    cursor: "pointer",
-  },
-});
+  expander: $create({
+    default: {
+      width: 24,
+      height: 24,
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      cursor: "pointer",
+      transition: "transform 0.3s",
+      userSelect: "none",
+    },
+
+    expanded: {
+      transform: "rotate(90deg)",
+    },
+  }),
+
+  title: $create({
+    default: {
+      paddingInline: spacing.xxxxxsmall,
+      borderRadius: 4,
+      backgroundColor: {
+        ":hover": "var(--color-surface-container)" satisfies ThemeColorVariable,
+      },
+      cursor: "default",
+    },
+
+    selected: {
+      backgroundColor: "var(--color-surface-container)" satisfies ThemeColorVariable,
+      color: "var(--color-primary)" satisfies ThemeColorVariable,
+    },
+
+    selectable: {
+      cursor: "pointer",
+    },
+  }),
+};
 
 const Node = ({ value, children, level, onExpand, ...props }: TreeNodeProps) => {
   const { checkedKeys, onCheck, expandedKeys, onSelect, selectedKeys, selectable, classNames } =
@@ -58,24 +65,16 @@ const Node = ({ value, children, level, onExpand, ...props }: TreeNodeProps) => 
   const isChecked = checkedKeys.has(value);
   const isExpanded = expandedKeys.has(value);
   const isSelected = selectedKeys.has(value);
-  const theme = useTheme();
+  const _themeColorVars = useThemeColorVars(["surface-container", "primary"]);
 
   const styled = {
-    node: $props(styles.node({ level })),
+    node: $props(styles.node.default),
     title: $props(
-      styles.title({
-        isSelected,
-        backgroundColor: theme.colors["surface-container"],
-        hoveredBackgroundColor: theme.colors["surface-container"],
-        color: theme.colors.primary,
-      }),
-      selectable && styles.selectable,
+      styles.title.default,
+      isSelected && styles.title.selected,
+      selectable && styles.title.selectable,
     ),
-    expander: $props(
-      styles.expander({
-        isExpanded,
-      }),
-    ),
+    expander: $props(styles.expander.default, isExpanded && styles.expander.expanded),
   };
 
   const check = useEvent(() => {
@@ -93,7 +92,7 @@ const Node = ({ value, children, level, onExpand, ...props }: TreeNodeProps) => 
   });
 
   return (
-    <li className={classNames.holder}>
+    <li className={classNames.holder} style={{ "--level": level, ..._themeColorVars }}>
       <div className={stringify(classNames.node, styled.node.className)} style={styled.node.style}>
         <span
           className={stringify(classNames.expander, styled.expander.className)}

@@ -11,6 +11,7 @@ import { IconButton } from "../icon-button";
 import type { CLASS_NAMES } from "./context";
 import { Partialable } from "@aiszlab/relax/types";
 import { $body } from "../theme/theme";
+import { type ThemeColorVariable, useThemeColorVars } from "src/hooks/use-theme-color-vars";
 
 const styles = $create({
   cell: {
@@ -20,21 +21,21 @@ const styles = $create({
     textAlign: "center",
   },
 
-  header: (props: { color: CSSProperties["color"] }) => ({
-    color: props.color,
-  }),
+  header: {
+    color: "var(--color-on-surface-variant)" satisfies ThemeColorVariable,
+  },
 
-  date: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
+  date: {
     position: "relative",
 
     "::before": {
       content: "''",
       position: "absolute",
-      backgroundColor: props.backgroundColor,
+      backgroundColor: "var(--color-secondary-container)" satisfies ThemeColorVariable,
       zIndex: positions.min,
       height: sizes.xlarge,
     },
-  }),
+  },
 
   hidden: {
     visibility: "hidden",
@@ -72,27 +73,24 @@ const styles = $create({
  * head cells
  */
 export const useHeadCells = ({ classNames }: { classNames: typeof CLASS_NAMES }) => {
-  const theme = useTheme();
+  const _themeColorVars = useThemeColorVars(["on-surface-variant"]);
 
   return useMemo(() => {
-    const styled = $props(
-      styles.cell,
-      styles.header({
-        color: theme.colors["on-surface-variant"],
-      }),
-      $body.medium,
-    );
+    const styled = $props(styles.cell, styles.header, $body.medium);
 
     return dayjs.Ls[dayjs.locale()].weekdays?.map((weekday, index) => (
       <th
         key={index}
         className={stringify(classNames.headCell, styled.className)}
-        style={styled.style}
+        style={{
+          ...styled.style,
+          ..._themeColorVars,
+        }}
       >
         {weekday.charAt(0)}
       </th>
     ));
-  }, [classNames, theme]);
+  }, [classNames, _themeColorVars]);
 };
 
 /**
@@ -110,7 +108,7 @@ export const useDateCells = ({
   click: Required<CalendarProps>["onClick"];
   classNames: typeof CLASS_NAMES;
 }) => {
-  const theme = useTheme();
+  const _themeColorVars = useThemeColorVars(["secondary-container"]);
 
   return useMemo(() => {
     const start = focusedAt.startOf("month");
@@ -135,9 +133,7 @@ export const useDateCells = ({
         const styled = {
           cell: $props(
             styles.cell,
-            styles.date({
-              backgroundColor: theme.colors["secondary-container"],
-            }),
+            styles.date,
             isDisabled && styles.hidden,
             isBetween && styles.range,
             isFrom && timespan.isRange && styles.from,
@@ -163,7 +159,10 @@ export const useDateCells = ({
               },
               styled.cell.className,
             )}
-            style={styled.cell.style}
+            style={{
+              ...styled.cell.style,
+              ..._themeColorVars,
+            }}
             aria-selected={isSelected}
             aria-hidden={isDisabled}
           >
@@ -190,7 +189,7 @@ export const useDateCells = ({
     return dateCells.map((cells, index) => {
       return <tr key={index}>{cells}</tr>;
     });
-  }, [focusedAt, timespan, theme.colors, classNames, click]);
+  }, [focusedAt, timespan, classNames, click]);
 };
 
 /**

@@ -1,16 +1,16 @@
-import React, { type CSSProperties } from "react";
+import React from "react";
 import { useTable } from "./context";
 import { flexRender } from "@tanstack/react-table";
 import { create as $create, props as $props } from "@stylexjs/stylex";
 import { isEmpty } from "@aiszlab/relax";
 import { sizes, spacing } from "../theme/tokens.stylex";
-import { useTheme } from "../theme";
 import { Empty } from "../empty";
 import { stringify } from "@aiszlab/relax/class-name";
 import { $body } from "../theme/theme";
+import { type ThemeColorVariable, useThemeColorVars } from "src/hooks/use-theme-color-vars";
 
 const styles = $create({
-  cell: (props: { borderColor: CSSProperties["borderColor"] }) => ({
+  cell: {
     // reset styles
     borderInlineWidth: sizes.none,
     borderBlockStartWidth: sizes.none,
@@ -18,10 +18,10 @@ const styles = $create({
     // apply styles
     paddingInline: spacing.xxsmall,
     paddingBlock: spacing.medium,
-    borderColor: props.borderColor,
+    borderColor: "var(--color-outline-variant)" satisfies ThemeColorVariable,
     borderStyle: "solid",
     borderBlockEndWidth: sizes.smallest,
-  }),
+  },
 
   bordered: {
     borderInlineWidth: sizes.smallest,
@@ -30,16 +30,11 @@ const styles = $create({
 
 const Body = <T,>() => {
   const { table, bordered, classNames } = useTable<T>();
-  const theme = useTheme();
+  const _themeColorVars = useThemeColorVars(["outline-variant"]);
 
   if (!table) return null;
 
-  const styled = $props(
-    styles.cell({ borderColor: theme.colors["outline-variant"] }),
-    bordered && styles.bordered,
-    $body.small,
-  );
-
+  const styled = $props(styles.cell, bordered && styles.bordered, $body.small);
   const rows = table.getRowModel().rows;
   const _isEmpty = isEmpty(rows);
 

@@ -8,18 +8,16 @@ import { spacing } from "../theme/tokens.stylex";
 import { Close } from "../icon/icons";
 import { CLASS_NAMES } from "./context";
 import { $label } from "../theme/theme";
+import { type ThemeColorVariable, useThemeColorVars } from "src/hooks/use-theme-color-vars";
 
 const styles = $create({
-  tag: (props: {
-    backgroundColor: CSSProperties["backgroundColor"];
-    color: CSSProperties["color"];
-  }) => ({
-    backgroundColor: props.backgroundColor,
-    color: props.color,
+  tag: {
+    backgroundColor: "var(--color-primary-container)" satisfies ThemeColorVariable,
+    color: "var(--color-on-primary-container)" satisfies ThemeColorVariable,
     display: "inline-flex",
     flexDirection: "row",
     alignItems: "center",
-  }),
+  },
 
   small: {
     paddingInline: spacing.xxsmall,
@@ -53,22 +51,16 @@ const Tag = ({
   leading,
 }: TagProps) => {
   const classNames = useClassNames(CLASS_NAMES);
-  const theme = useTheme();
+  const _themeColorVars = useThemeColorVars(["primary-container", "on-primary-container"]);
 
-  const styled = $props(
-    $label[size],
-    styles.tag({
-      backgroundColor: theme.colors["primary-container"],
-      color: theme.colors["on-primary-container"],
-    }),
-    styles[size],
-  );
+  const styled = $props($label[size], styles.tag, styles[size]);
 
   return (
     <span
       className={stringify(classNames.tag, className, styled.className)}
       style={{
         ...styled.style,
+        ..._themeColorVars,
         ...style,
       }}
     >

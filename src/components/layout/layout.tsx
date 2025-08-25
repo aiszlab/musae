@@ -11,25 +11,26 @@ import Header from "./header";
 import Sidebar from "./sidebar";
 import Main from "./main";
 import Footer from "./footer";
+import { useThemeColorVars } from "src/hooks/use-theme-color-vars";
 
 const styles = {
   layout: $create({
-    default: (props: { gridTemplateAreas: string }) => ({
+    default: {
       display: "grid",
-      gridTemplateAreas: props.gridTemplateAreas,
-    }),
+      gridTemplateAreas: "var(--layout)",
+    },
   }),
 };
 
 const Layout = ({ className, style, ...props }: LayoutProps) => {
-  const theme = useTheme();
   const classNames = useClassNames(CLASS_NAMES);
   const { children, gridTemplateAreas } = useChildren({
     children: props.children,
   });
+  const _themeColorVars = useThemeColorVars(["outline-variant"]);
 
   const styled = {
-    layout: $props(styles.layout.default({ gridTemplateAreas })),
+    layout: $props(styles.layout.default),
   };
 
   return (
@@ -38,8 +39,9 @@ const Layout = ({ className, style, ...props }: LayoutProps) => {
         className={stringify(className, classNames.layout, styled.layout.className)}
         style={{
           ...styled.layout.style,
+          ..._themeColorVars,
           ...style,
-          "--color-outline-variant": theme.colors["outline-variant"],
+          "--layout": gridTemplateAreas,
         }}
       >
         {children.get(Heading)}

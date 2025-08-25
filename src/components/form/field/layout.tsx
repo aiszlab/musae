@@ -5,10 +5,10 @@ import Context from "../context";
 import { Grid } from "../../grid";
 import { create as $create, props as $props } from "@stylexjs/stylex";
 import { sizes, spacing } from "../../theme/tokens.stylex";
-import { useTheme } from "../../theme";
 import { stringify } from "@aiszlab/relax/class-name";
 import type { ComponentProps } from "../../../types/element";
 import { $body, $label } from "src/components/theme/theme";
+import { type ThemeColorVariable, useThemeColorVars } from "src/hooks/use-theme-color-vars";
 
 const { Row, Col } = Grid;
 
@@ -17,13 +17,13 @@ const styles = $create({
     marginBlockEnd: spacing.xxxlarge,
   },
 
-  required: (props: { color: CSSProperties["color"] }) => ({
+  required: {
     "::before": {
       content: '"*"',
-      color: props.color,
+      color: "var(--color-error)" satisfies ThemeColorVariable,
       marginRight: spacing.xxxxxsmall,
     },
-  }),
+  },
 
   supporting: {
     minHeight: sizes.xsmall,
@@ -89,18 +89,12 @@ const Layout = ({ required, space = false, className, style, supporting, ...prop
   const { classNames, ...contextValue } = useContext(Context);
   const labelCol = props.labelCol ?? contextValue.labelCol;
   const wrapperCol = props.wrapperCol ?? contextValue.wrapperCol;
-  const theme = useTheme();
   const isLabeled = labelCol > 0 && !!props.label;
+  const _themeColorVars = useThemeColorVars(["error"]);
 
   const styled = {
     item: $props(space && !supporting && styles.space),
-    label: $props(
-      required &&
-        styles.required({
-          color: theme.colors.error,
-        }),
-      $label.small,
-    ),
+    label: $props(required && styles.required, $label.small),
     supporting: $props(styles.supporting, $body.small),
   };
 

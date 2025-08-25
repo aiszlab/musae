@@ -11,28 +11,28 @@ import { stringify } from "@aiszlab/relax/class-name";
 import { CLASS_NAMES } from "./context";
 
 const styles = $create({
-  waterfall: (props: { columnGap: number; rowGap: number }) => ({
+  waterfall: {
     width: sizes.full,
     display: "flex",
     flexDirection: "row",
     flexWrap: "wrap",
     alignContent: "flex-start",
     height: "fit-content",
-    columnGap: props.columnGap,
-    rowGap: props.rowGap,
+    columnGap: "var(--column-gap)",
+    rowGap: "var(--row-gap)",
     overflow: "hidden",
-  }),
+  },
 
-  repainted: (props: { maxHeight: number }) => ({
+  repainted: {
     flexDirection: "column",
-    height: props.maxHeight,
-  }),
+    height: "var(--max-height)",
+  },
 
-  item: (props: { columns: number; columnGap: number; order: number | null }) => ({
-    order: props.order ?? 1,
-    width: `calc((100% - ${props.columns - 1} * ${props.columnGap}px) / ${props.columns})`,
+  item: {
+    order: "var(--order)",
+    width: `calc((100% - (var(--columns) - 1) * var(--column-gap)) / var(--columns))`,
     height: "fit-content",
-  }),
+  },
 });
 
 const Waterfall = ({
@@ -46,11 +46,6 @@ const Waterfall = ({
   const [columnGap, rowGap] = useGutters({ gutter });
   const { collect, maxHeight, order, items, repaint } = useRepaint({ columns, rowGap });
   const classNames = useClassNames(CLASS_NAMES);
-
-  const styled = $props(
-    styles.waterfall({ rowGap, columnGap }),
-    !sequential && maxHeight > 0 && styles.repainted({ maxHeight: maxHeight }),
-  );
 
   useUpdateEffect(() => {
     // no need to repaint when `sequential`
@@ -80,6 +75,8 @@ const Waterfall = ({
 
   if (children.length === 0) return null;
 
+  const styled = $props(styles.waterfall, !sequential && maxHeight > 0 && styles.repainted);
+
   // sequential waterfall
   if (sequential) {
     return (
@@ -90,6 +87,7 @@ const Waterfall = ({
         className={stringify(classNames.sequential, className, styled.className)}
         style={{
           ...styled.style,
+          "--max-height": `${maxHeight}px`,
           ...style,
         }}
       />
@@ -101,19 +99,26 @@ const Waterfall = ({
       className={stringify(classNames.waterfall, className, styled.className)}
       style={{
         ...styled.style,
+        "--columns": columns,
+        "--max-height": `${maxHeight}px`,
+        "--row-gap": `${rowGap}px`,
+        "--column-gap": `${columnGap}px`,
         ...style,
       }}
     >
       {children.map((item, index) => {
-        const { className, style } = $props(
-          styles.item({ columnGap: columnGap, columns, order: order(index) }),
-        );
+        const _order = order(index);
+        const { className, style } = $props(styles.item);
 
         return (
           <div
             key={index}
             className={className}
-            style={style}
+            style={{
+              ...style,
+              "--column-gap": `${columnGap}px`,
+              "--order": _order ?? void 0,
+            }}
             ref={(_ref) => {
               collect(index, _ref);
             }}

@@ -1,4 +1,4 @@
-import React, { forwardRef, type ChangeEvent } from "react";
+import React, { forwardRef, useId, type ChangeEvent } from "react";
 import { styles as inputStyles } from "../input";
 import { useTheme } from "../theme";
 import { create as $create, props as $props } from "@stylexjs/stylex";
@@ -8,6 +8,7 @@ import type { TextareaProps } from "../../types/textarea";
 import { useClassNames } from "../../hooks/use-class-names";
 import { stringify } from "@aiszlab/relax/class-name";
 import { CLASS_NAMES } from "./context";
+import { useThemeColorVars } from "src/hooks/use-theme-color-vars";
 
 const styles = {
   textarea: $create({
@@ -31,7 +32,7 @@ const styles = {
       flex: 1,
       backgroundColor: "transparent",
       resize: "none",
-      borderWidth: "none",
+      borderStyle: "none",
       outline: "none",
     },
 
@@ -56,8 +57,9 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
     },
     ref,
   ) => {
-    const theme = useTheme();
+    const id = useId();
     const classNames = useClassNames(CLASS_NAMES);
+    const _themeColorVars = useThemeColorVars(["outline", "primary", "error"]);
 
     const [_value, _setValue] = useControlledState(value, { defaultState: "" });
 
@@ -81,13 +83,12 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
         className={stringify(classNames.textarea, className, styled.textarea.className)}
         style={{
           ...styled.textarea.style,
+          ..._themeColorVars,
           ...style,
-          "--color-outline": theme.colors.outline,
-          "--color-primary": theme.colors.primary,
-          "--color-error": theme.colors.error,
         }}
       >
         <textarea
+          id={id}
           className={stringify(classNames.input, styled.input.className)}
           style={styled.input.style}
           value={_value}

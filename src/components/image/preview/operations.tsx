@@ -35,7 +35,7 @@ const styles = $create({
     alignItems: "center",
   },
 
-  footer: (props: { color: CSSProperties["color"] }) => ({
+  footer: {
     position: "fixed",
     left: 0,
     right: 0,
@@ -43,19 +43,19 @@ const styles = $create({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    color: props.color,
-  }),
+    color: "var(--color-on-surface)",
+  },
 
-  handlers: (props: { backgroundColor: CSSProperties["backgroundColor"] }) => ({
+  handlers: {
     display: "flex",
     flexDirection: "row",
     gap: spacing.xxxxxsmall,
     alignItems: "center",
-    backgroundColor: props.backgroundColor,
+    backgroundColor: "var(--color-surface)",
     borderRadius: sizes.infinity,
     paddingInline: spacing.xxxlarge,
     paddingBlock: spacing.xxxxxsmall,
-  }),
+  },
 });
 
 const Operations = ({
@@ -72,8 +72,8 @@ const Operations = ({
     operations: $props(styles.operations),
     closer: $props(styles.closer),
     navigations: $props(styles.navigations),
-    footer: $props(styles.footer({ color: theme.colors["on-surface"] })),
-    handlers: $props(styles.handlers({ backgroundColor: theme.colors.surface })),
+    footer: $props(styles.footer),
+    handlers: $props(styles.handlers),
   };
 
   const handlers = useHandlers({
@@ -90,7 +90,14 @@ const Operations = ({
 
   return (
     <Portal lockable>
-      <div className={styled.operations.className} style={styled.operations.style}>
+      <div
+        className={styled.operations.className}
+        style={{
+          ...styled.operations.style,
+          "--color-surface": theme.colors.surface,
+          "--color-on-surface": theme.colors["on-surface"],
+        }}
+      >
         <IconButton
           className={styled.closer.className}
           style={{

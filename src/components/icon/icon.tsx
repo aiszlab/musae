@@ -7,11 +7,11 @@ import { stringify } from "@aiszlab/relax/class-name";
 import { CLASS_NAMES } from "./context";
 
 const styles = $create({
-  icon: (props: { color: CSSProperties["color"] }) => ({
+  icon: {
     display: "inline-flex",
     verticalAlign: "middle",
-    color: props.color,
-  }),
+    color: "var(--color)",
+  },
 
   clickable: {
     cursor: "pointer",
@@ -35,12 +35,7 @@ const Icon = ({ as, color, size, onClick, style, className, ...props }: IconProp
     return as;
   }, [asProps, as]);
 
-  const styled = $props(
-    styles.icon({
-      color,
-    }),
-    !!onClick && styles.clickable,
-  );
+  const styled = $props(styles.icon, !!onClick && styles.clickable);
 
   return (
     <span
@@ -48,6 +43,7 @@ const Icon = ({ as, color, size, onClick, style, className, ...props }: IconProp
       style={{
         ...styled.style,
         ...style,
+        "--color": color,
       }}
       onClick={onClick}
       {...props}

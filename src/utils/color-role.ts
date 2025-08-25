@@ -5,7 +5,7 @@ import type { ContextValue, Palette } from "../types/theme";
  * theme color role
  * material 3 design link: https://m3.material.io/styles/color/roles
  */
-type ColorRole =
+export type ColorRole =
   // primary
   | "primary"
   | "on-primary"

@@ -12,21 +12,21 @@ import type { PanelProps, PanelRef } from "../../types/time-picker";
 import type { ClockProps } from "../../types/clock";
 import dayjs from "dayjs";
 import { create as $create, props as $props } from "@stylexjs/stylex";
-import { useTheme } from "../theme";
 import { stringify } from "@aiszlab/relax/class-name";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { useLocale } from "../../locale";
 import { Context } from "./context";
+import { type ThemeColorVariable, useThemeColorVars } from "src/hooks/use-theme-color-vars";
 
 const styles = $create({
   panel: {
     marginInline: spacing.xxxxxsmall,
   },
 
-  footer: (props: { borderTopColor: CSSProperties["borderTopColor"] }) => ({
+  footer: {
     borderTopWidth: sizes.smallest,
     borderTopStyle: "solid",
-    borderTopColor: props.borderTopColor,
+    borderTopColor: "var(--color-outline-variant)" satisfies ThemeColorVariable,
 
     display: "flex",
     justifyContent: "space-between",
@@ -34,14 +34,14 @@ const styles = $create({
     paddingBlock: spacing.xxxxxsmall,
     paddingInline: spacing.medium,
     minHeight: sizes.xlarge,
-  }),
+  },
 });
 
 const Panel = forwardRef<PanelRef, PanelProps>((props, ref) => {
   const { classNames } = useContext(Context);
   const [value, setValue] = useState<ClockProps["value"]>();
-  const theme = useTheme();
   const [locale] = useLocale("time-picker");
+  const _themeColorVars = useThemeColorVars(["outline-variant"]);
 
   useImperativeHandle(ref, () => {
     return {
@@ -71,11 +71,7 @@ const Panel = forwardRef<PanelRef, PanelProps>((props, ref) => {
 
   const styled = {
     panel: $props(styles.panel),
-    footer: $props(
-      styles.footer({
-        borderTopColor: theme.colors["outline-variant"],
-      }),
-    ),
+    footer: $props(styles.footer),
   };
 
   return (

@@ -6,27 +6,37 @@ import { create as $create, props as $props } from "@stylexjs/stylex";
 import { duration, spacing } from "../theme/tokens.stylex";
 import { KeyboardArrowUp } from "../icon/icons";
 
-const styles = $create({
-  prefix: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    marginRight: spacing.xxxxxsmall,
-  },
-
-  suffix: {
-    marginInlineStart: spacing.auto,
-  },
-
-  collapser: (props: { isExpanded: boolean }) => ({
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    transform: props.isExpanded ? "rotateX(0)" : "rotateX(180deg)",
-    transitionProperty: "transform",
-    transitionDuration: duration.short,
+const styles = {
+  prefix: $create({
+    default: {
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      marginRight: spacing.xxxxxsmall,
+    },
   }),
-});
+
+  suffix: $create({
+    default: {
+      marginInlineStart: spacing.auto,
+    },
+  }),
+
+  collapser: $create({
+    default: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      transform: "rotateX(180deg)",
+      transitionProperty: "transform",
+      transitionDuration: duration.short,
+    },
+
+    expanded: {
+      transform: "rotateX(0)",
+    },
+  }),
+};
 
 /**
  * @description
@@ -55,7 +65,7 @@ export const useItemChildren = ({
 }) => {
   // prefix
   const _prefix = useMemo(
-    () => prefix && <span {...$props(styles.prefix)}>{prefix}</span>,
+    () => prefix && <span {...$props(styles.prefix.default)}>{prefix}</span>,
     [prefix],
   );
 
@@ -66,14 +76,10 @@ export const useItemChildren = ({
   const _suffix = useMemo<ReactNode>(() => {
     if (!suffix && !hasChildren) return null;
 
-    const styled = $props(
-      styles.collapser({
-        isExpanded,
-      }),
-    );
+    const styled = $props(styles.collapser.default, isExpanded && styles.collapser.expanded);
 
     return (
-      <span {...$props(styles.suffix)}>
+      <span {...$props(styles.suffix.default)}>
         {suffix}
         {hasChildren && isInline && (
           <span {...styled}>

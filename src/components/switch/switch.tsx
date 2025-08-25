@@ -1,102 +1,112 @@
-import React, { type CSSProperties } from "react";
+import React from "react";
 import type { SwitchProps } from "../../types/switch";
 import { useControlledState, useEvent } from "@aiszlab/relax";
 import { create as $create, props as $props } from "@stylexjs/stylex";
 import { duration, OPACITY, opacity, sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { Close, Check } from "../icon/icons";
-import { hexToRgba } from "@aiszlab/fuzzy/color";
 import { stringify } from "@aiszlab/relax/class-name";
 import { useClassNames } from "../../hooks/use-class-names";
 import { CLASS_NAMES } from "./context";
+import { type ThemeColorVariable, useThemeColorVars } from "src/hooks/use-theme-color-vars";
 
 const styles = {
-  switch: $create({
-    default: (props: {
-      borderColor: CSSProperties["borderColor"];
-      backgroundColor: CSSProperties["backgroundColor"];
-      color: CSSProperties["color"];
-    }) => ({
-      minWidth: sizes.xxxlarge,
-      width: "fit-content",
-      height: sizes.medium,
-      display: "flex",
-      alignItems: "center",
-      position: "relative",
+  switch: {
+    default: $create({
+      default: {
+        minWidth: sizes.xxxlarge,
+        width: "fit-content",
+        height: sizes.medium,
+        display: "flex",
+        alignItems: "center",
+        position: "relative",
 
-      transitionProperty: "all",
-      transitionDuration: duration.short,
-      borderRadius: sizes.infinity,
-      borderWidth: sizes.xxxxxxxxxxsmall,
-      borderStyle: "solid",
-      borderColor: props.borderColor,
-      backgroundColor: props.backgroundColor,
-      color: props.color,
+        transitionProperty: "all",
+        transitionDuration: duration.short,
+        borderRadius: sizes.infinity,
+        borderWidth: sizes.xxxxxxxxxxsmall,
+        borderStyle: "solid",
+        borderColor: "var(--color-outline)",
+        backgroundColor: "var(--color-surface-container-highest)" satisfies ThemeColorVariable,
+        color: "var(--color-on-surface-variant)" satisfies ThemeColorVariable,
 
-      // reset styles
-      padding: spacing.none,
+        // reset styles
+        padding: spacing.none,
+      },
+
+      checked: {
+        borderColor: "transparent",
+        backgroundColor: "var(--color-primary)" satisfies ThemeColorVariable,
+        color: "var(--color-on-primary)" satisfies ThemeColorVariable,
+      },
     }),
 
-    checked: (props: {
-      backgroundColor: CSSProperties["backgroundColor"];
-      color: CSSProperties["color"];
-    }) => ({
-      borderColor: "transparent",
-      backgroundColor: props.backgroundColor,
-      color: props.color,
+    disabled: $create({
+      default: {
+        cursor: "not-allowed",
+        borderColor: "var(--color-on-surface-opacity-12)" satisfies ThemeColorVariable,
+        backgroundColor: "var(--color-surface-variant-opacity-12)" satisfies ThemeColorVariable,
+        color: "var(--color-on-surface-opacity-38)" satisfies ThemeColorVariable,
+      },
+
+      checked: {
+        backgroundColor: "var(--color-on-surface-opacity-12)" satisfies ThemeColorVariable,
+        color: "var(--color-surface)" satisfies ThemeColorVariable,
+      },
+    }),
+  },
+
+  slider: {
+    default: $create({
+      default: {
+        borderRadius: sizes.infinity,
+        position: "absolute",
+        transitionProperty: "all",
+        transitionDuration: duration.short,
+
+        backgroundColor: "var(--color-on-surface-variant)" satisfies ThemeColorVariable,
+        color: "var(--color-surface-container-highest)" satisfies ThemeColorVariable,
+        height: sizes.xxxxsmall,
+        width: sizes.xxxxsmall,
+        insetInlineStart: spacing.xxxsmall,
+
+        // layout
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      },
+
+      // in slider, if icon show, change default layout
+      icon: {
+        height: sizes.xsmall,
+        width: sizes.xsmall,
+        insetInlineStart: spacing.xxxxxxsmall,
+      },
+
+      checked: {
+        backgroundColor: "var(--color-on-primary)" satisfies ThemeColorVariable,
+        color: "var(--color-on-primary-container)" satisfies ThemeColorVariable,
+        height: sizes.xsmall,
+        width: sizes.xsmall,
+        opacity: null,
+        // `switch width` - `slider width` - `slider padding width`
+        insetInlineStart: `calc(100% - ${sizes.xsmall} - ${spacing.xxxxxxsmall})`,
+      },
     }),
 
-    disabled: {
-      cursor: "not-allowed",
-    },
-  }),
+    disabled: $create({
+      default: {
+        opacity: opacity.thicker,
+        backgroundColor: "var(--color-on-surface-opacity-38)" satisfies ThemeColorVariable,
+        color: "var(--color-surface-container-highest)" satisfies ThemeColorVariable,
+      },
 
-  slider: $create({
-    normal: (props: {
-      backgroundColor: CSSProperties["backgroundColor"];
-      color: CSSProperties["color"];
-    }) => ({
-      borderRadius: sizes.infinity,
-      position: "absolute",
-      transitionProperty: "all",
-      transitionDuration: duration.short,
-
-      backgroundColor: props.backgroundColor,
-      color: props.color,
-      height: sizes.xxxxsmall,
-      width: sizes.xxxxsmall,
-      insetInlineStart: spacing.xxxsmall,
-
-      // layout
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
+      checked: {
+        backgroundColor: "var(--color-surface)" satisfies ThemeColorVariable,
+        color: "var(--color-on-surface-opacity-38)" satisfies ThemeColorVariable,
+      },
     }),
-
-    // in slider, if icon show, change default layout
-    icon: {
-      height: sizes.xsmall,
-      width: sizes.xsmall,
-      insetInlineStart: spacing.xxxxxxsmall,
-    },
-
-    disabled: {
-      opacity: opacity.thicker,
-    },
-
-    checked: (props: {
-      backgroundColor: CSSProperties["backgroundColor"];
-      color: CSSProperties["color"];
-    }) => ({
-      backgroundColor: props.backgroundColor,
-      color: props.color,
-      height: sizes.xsmall,
-      width: sizes.xsmall,
-      opacity: null,
-      // `switch width` - `slider width` - `slider padding width`
-      insetInlineStart: `calc(100% - ${sizes.xsmall} - ${spacing.xxxxxxsmall})`,
-    }),
-  }),
+  },
 
   // supporting container styles
   supporting: $create({
@@ -181,49 +191,32 @@ const Switch = ({
     onChange?.(_isChecked);
   });
 
+  const _themeColorVars = useThemeColorVars([
+    "outline",
+    "surface-container-highest",
+    "on-surface-variant",
+    "primary",
+    "on-primary",
+    "surface",
+    "on-primary-container",
+    ["on-surface", OPACITY.medium],
+    ["surface-variant", OPACITY.medium],
+    ["on-surface", OPACITY.thickest],
+  ]);
+
   const styled = {
     switch: $props(
-      styles.switch.default({
-        borderColor: theme.colors.outline,
-        backgroundColor: theme.colors["surface-container-highest"],
-        color: theme.colors["on-surface-variant"],
-        ...(disabled && {
-          borderColor: hexToRgba(theme.colors["on-surface"], OPACITY.medium).toString(),
-          backgroundColor: hexToRgba(theme.colors["surface-variant"], OPACITY.medium).toString(),
-          color: hexToRgba(theme.colors["on-surface"], OPACITY.thickest).toString(),
-        }),
-      }),
-      isChecked &&
-        styles.switch.checked({
-          backgroundColor: theme.colors.primary,
-          color: theme.colors["on-primary"],
-          ...(disabled && {
-            backgroundColor: hexToRgba(theme.colors["on-surface"], OPACITY.medium).toString(),
-            color: theme.colors.surface,
-          }),
-        }),
-      disabled && styles.switch.disabled,
+      styles.switch.default.default,
+      isChecked && styles.switch.default.checked,
+      disabled && styles.switch.disabled.default,
+      disabled && isChecked && styles.switch.disabled.checked,
     ),
     slider: $props(
-      styles.slider.normal({
-        backgroundColor: theme.colors["on-surface-variant"],
-        color: theme.colors["surface-container-highest"],
-        ...(disabled && {
-          backgroundColor: hexToRgba(theme.colors["on-surface"], OPACITY.thickest).toString(),
-          color: theme.colors["surface-container-highest"],
-        }),
-      }),
-      icon && styles.slider.icon,
-      disabled && styles.slider.disabled,
-      isChecked &&
-        styles.slider.checked({
-          backgroundColor: theme.colors["on-primary"],
-          color: theme.colors["on-primary-container"],
-          ...(disabled && {
-            backgroundColor: theme.colors.surface,
-            color: hexToRgba(theme.colors["on-surface"], OPACITY.thickest).toString(),
-          }),
-        }),
+      styles.slider.default.default,
+      icon && styles.slider.default.icon,
+      isChecked && styles.slider.default.checked,
+      disabled && styles.slider.disabled.default,
+      disabled && isChecked && styles.slider.disabled.checked,
     ),
     supporting: $props(styles.supporting.default, isChecked && styles.supporting.checked),
     leading: $props(
@@ -249,6 +242,7 @@ const Switch = ({
       style={{
         ...styled.switch.style,
         ...style,
+        ..._themeColorVars,
       }}
     >
       <div

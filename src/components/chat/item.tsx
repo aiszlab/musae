@@ -6,6 +6,7 @@ import { create as $create, props as $props, keyframes as $keyframes } from "@st
 import { useTheme } from "../theme";
 import { stringify } from "@aiszlab/relax/class-name";
 import { sizes, spacing } from "../theme/tokens.stylex";
+import { useThemeColorVars } from "src/hooks/use-theme-color-vars";
 
 const blink = $keyframes({
   from: {
@@ -28,24 +29,24 @@ const styles = $create({
     gap: spacing.medium,
   },
 
-  send: (props: { backgroundColor: string; color: string }) => ({
+  send: {
     alignSelf: "flex-end",
     width: "fit-content",
     paddingInline: spacing.large,
     paddingBlock: spacing.xxsmall,
-    backgroundColor: props.backgroundColor,
-    color: props.color,
+    backgroundColor: "var(--color-surface-container-highest)",
+    color: "var(--color-on-surface)",
     borderRadius: sizes.xxxxxxxsmall,
-  }),
+  },
 
-  receive: (props: { backgroundColor: string; color: string }) => ({
+  receive: {
     alignSelf: "flex-start",
     paddingInline: spacing.large,
     paddingBlock: spacing.xxsmall,
-    backgroundColor: props.backgroundColor,
-    color: props.color,
+    backgroundColor: "var(--color-surface-container)",
+    color: "var(--color-on-surface)",
     borderRadius: sizes.xxxxxxxsmall,
-  }),
+  },
 
   receiving: {
     "::after": {
@@ -58,15 +59,20 @@ const styles = $create({
   },
 });
 
-const Item = ({ message, content: _content }: ChatItemProps) => {
-  const [content, setContent] = useState(_content ?? "");
+const Item = ({ message, content: _content = "" }: ChatItemProps) => {
+  const [content, setContent] = useState(_content);
   const { classNames, onMessage } = useContext(Context);
-  const theme = useTheme();
   const isOverride = !!onMessage?.override;
   const [status, setStatus] = useState<"complete" | "error" | "loading">(() => {
     if (!!_content) return "complete";
     return "loading";
   });
+
+  const _themeColorVars = useThemeColorVars([
+    "surface-container-highest",
+    "on-surface",
+    "surface-container",
+  ]);
 
   // use callback way to receive stream like message
   const receive = useEvent((_content: string) => {
@@ -93,23 +99,18 @@ const Item = ({ message, content: _content }: ChatItemProps) => {
 
   const styled = {
     item: $props(styles.item),
-    send: $props(
-      styles.send({
-        backgroundColor: theme.colors["surface-container-highest"],
-        color: theme.colors["on-surface"],
-      }),
-    ),
-    receive: $props(
-      styles.receive({
-        backgroundColor: theme.colors["surface-container"],
-        color: theme.colors["on-surface"],
-      }),
-      status === "loading" && styles.receiving,
-    ),
+    send: $props(styles.send),
+    receive: $props(styles.receive, status === "loading" && styles.receiving),
   };
 
   return (
-    <div className={stringify(classNames.item, styled.item.className)} style={styled.item.style}>
+    <div
+      className={stringify(classNames.item, styled.item.className)}
+      style={{
+        ...styled.item.style,
+        ..._themeColorVars,
+      }}
+    >
       <div className={stringify(classNames.send, styled.send.className)} style={styled.send.style}>
         {message}
       </div>

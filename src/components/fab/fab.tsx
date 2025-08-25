@@ -11,26 +11,25 @@ import { useClassNames } from "../../hooks/use-class-names";
 import { CLASS_NAMES } from "./context";
 
 const styles = $create({
-  button: (props: {
-    movementX: number;
-    movementY: number;
-    insetInlineStart: number;
-    insetBlockStart: number;
-    isDragged: boolean;
-  }) => ({
+  default: {
     cursor: "pointer",
     pointerEvents: "auto",
-    transform: `translateX(${props.movementX}px) translateY(${props.movementY}px)`,
-    insetInlineEnd: props.isDragged ? void 0 : spacing.xxxlarge,
-    insetBlockEnd: props.isDragged ? void 0 : spacing.xxxlarge,
-    insetInlineStart: props.isDragged ? props.insetInlineStart : void 0,
-    insetBlockStart: props.isDragged ? props.insetBlockStart : void 0,
+    transform: "translateX(var(--movement-x)) translateY(var(--movement-y))",
+    insetInlineEnd: spacing.xxxlarge,
+    insetBlockEnd: spacing.xxxlarge,
 
     // use higher selector
     ":not(#\\#)": {
       position: "absolute",
     },
-  }),
+  },
+
+  dragged: {
+    insetInlineEnd: null,
+    insetBlockEnd: null,
+    insetInlineStart: "var(--left)",
+    insetBlockStart: "var(--top)",
+  },
 
   icon: {
     pointerEvents: "none",
@@ -48,15 +47,7 @@ const Fab = forwardRef<HTMLButtonElement, FabProps>(
     const buttonRef = useComposedRef(_buttonRef, ref, draggableRef);
 
     const styled = {
-      button: $props(
-        styles.button({
-          movementX,
-          movementY,
-          isDragged,
-          insetInlineStart: x - offsetX,
-          insetBlockStart: y - offsetY,
-        }),
-      ),
+      button: $props(styles.default, isDragged && styles.dragged),
       icon: $props(styles.icon),
     };
 
@@ -70,7 +61,13 @@ const Fab = forwardRef<HTMLButtonElement, FabProps>(
           ref={buttonRef}
           onClick={onClick}
           className={stringify(classNames.fab, styled.button.className)}
-          style={styled.button.style}
+          style={{
+            ...styled.button.style,
+            "--left": `${x - offsetX}px`,
+            "--top": `${y - offsetY}px`,
+            "--movement-x": `${movementX}px`,
+            "--movement-y": `${movementY}px`,
+          }}
           ripple={false}
           {...props}
         >

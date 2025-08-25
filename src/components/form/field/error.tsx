@@ -1,20 +1,20 @@
 import type { ComponentProps } from "../../../types/element";
-import React, { type CSSProperties, type ReactNode, useContext, useRef } from "react";
+import React, { type ReactNode, useContext, useRef } from "react";
 import { stringify } from "@aiszlab/relax/class-name";
 import { usePresence, animate } from "motion/react";
 import { create as $create, props as $props } from "@stylexjs/stylex";
-import { useTheme } from "../../theme";
 import { spacing } from "../../theme/tokens.stylex";
 import { useAsyncEffect } from "@aiszlab/relax";
 import Context from "../context";
+import { type ThemeColorVariable, useThemeColorVars } from "src/hooks/use-theme-color-vars";
 
 const styles = $create({
-  error: (props: { color: CSSProperties["color"] }) => ({
-    color: props.color,
+  error: {
+    color: "var(--color-error)" satisfies ThemeColorVariable,
     marginBlock: spacing.xxxxxsmall,
     height: 0,
     overflow: "hidden",
-  }),
+  },
 });
 
 type Props = ComponentProps & {
@@ -28,8 +28,8 @@ type Props = ComponentProps & {
 const Error = ({ children, className, style }: Props) => {
   const { classNames } = useContext(Context);
   const [isPresent, safeToRemove] = usePresence();
-  const theme = useTheme();
   const ref = useRef<HTMLDivElement>(null);
+  const _themeColorVars = useThemeColorVars(["error"]);
 
   useAsyncEffect(async () => {
     const _element = ref.current;
@@ -45,17 +45,14 @@ const Error = ({ children, className, style }: Props) => {
     });
   }, [isPresent]);
 
-  const styled = $props(
-    styles.error({
-      color: theme.colors.error,
-    }),
-  );
+  const styled = $props(styles.error);
 
   return (
     <div
       className={stringify(classNames.fieldError, className, styled.className)}
       style={{
         ...styled.style,
+        ..._themeColorVars,
         ...style,
       }}
       ref={ref}

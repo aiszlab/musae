@@ -38,13 +38,9 @@ const LEADINGS = new Map<Type, FC<IconProps>>([
 
 const styles = {
   notification: $create({
-    default: (props: {
-      backgroundColor: CSSProperties["backgroundColor"];
-      color: CSSProperties["color"];
-      transform: CSSProperties["transform"];
-    }) => ({
-      backgroundColor: props.backgroundColor,
-      color: props.color,
+    default: {
+      backgroundColor: "var(--color-surface-container-lowest)",
+      color: "var(--color-on-surface)",
       borderRadius: sizes.xxxxxxxxxsmall,
       boxShadow: elevations.xsmall,
       maxWidth: sizes.full,
@@ -53,7 +49,7 @@ const styles = {
       transitionProperty: "margin-top, transform",
       transitionDuration: duration.short,
       // hidden styles
-      transform: props.transform,
+      transform: "var(--placement)",
       opacity: 0,
       marginBlockStart: spacing.none,
       // layout
@@ -63,7 +59,7 @@ const styles = {
       // padding
       paddingBlock: spacing.large,
       paddingInline: spacing.large,
-    }),
+    },
 
     simple: {
       gridTemplateAreas: "'leading description closer'",
@@ -74,12 +70,24 @@ const styles = {
   }),
 
   leading: $create({
-    default: (props: { color: CSSProperties["color"] }) => ({
+    default: {
       gridArea: "leading",
       alignSelf: "center",
       display: "inline-flex",
-      color: props.color,
-    }),
+      color: "var(--color-primary)",
+    },
+
+    success: {
+      color: "var(--color-success)",
+    },
+
+    warning: {
+      color: "var(--color-warning)",
+    },
+
+    error: {
+      color: "var(--color-error)",
+    },
   }),
 
   title: $create({
@@ -144,25 +152,12 @@ const Notification = forwardRef<HTMLDivElement, NotificationProps>(
     }, duration);
 
     const styled = {
-      notification: $props(
-        styles.notification.default({
-          backgroundColor: theme.colors["surface-container-lowest"],
-          color: theme.colors["on-surface"],
-          transform: _placement[0],
-        }),
-        !title && styles.notification.simple,
-      ),
+      notification: $props(styles.notification.default, !title && styles.notification.simple),
       leading: $props(
-        styles.leading.default({
-          color:
-            type === "success"
-              ? theme.colors.success
-              : type === "warning"
-              ? theme.colors.warning
-              : type === "error"
-              ? theme.colors.error
-              : theme.colors.primary,
-        }),
+        styles.leading.default,
+        type === "success" && styles.leading.success,
+        type === "warning" && styles.leading.warning,
+        type === "error" && styles.leading.error,
       ),
       title: $props($title.medium, styles.title.default),
       description: $props(
@@ -183,14 +178,23 @@ const Notification = forwardRef<HTMLDivElement, NotificationProps>(
       const _notification = notificationRef.current;
       if (!_notification) return;
 
-      animate(_notification, { opacity: 1, transform: _placement[1] });
+      animate(_notification, { opacity: 1, transform: _placement.at(1) });
     }, [isPresent]);
 
     return (
       <div
-        className={stringify(classNames.notification, styled.notification.className)}
-        style={styled.notification.style}
         ref={_composedRef}
+        className={stringify(classNames.notification, styled.notification.className)}
+        style={{
+          ...styled.notification.style,
+          "--color-surface-container-lowest": theme.colors["surface-container-lowest"],
+          "--color-on-surface": theme.colors["on-surface"],
+          "--placement": _placement.at(0),
+          "--color-success": theme.colors.success,
+          "--color-warning": theme.colors.warning,
+          "--color-error": theme.colors.error,
+          "--color-primary": theme.colors.primary,
+        }}
       >
         {LEADINGS.has(type) && (
           <div className={styled.leading.className} style={styled.leading.style}>

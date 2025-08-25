@@ -35,9 +35,9 @@ const styles = {
       gap: spacing.xxsmall,
     },
 
-    padding: (padding: number | true) => ({
-      padding: padding === true ? spacing.medium : padding,
-    }),
+    padding: {
+      padding: `var(--padding, ${spacing.medium})`,
+    },
   }),
 
   virtual: $create({
@@ -189,11 +189,7 @@ const Popover = forwardRef(
     }));
 
     const styled = {
-      popover: $props(
-        styles.popover.default,
-        !!padding && styles.popover.padding(padding),
-        $body.medium,
-      ),
+      popover: $props(styles.popover.default, !!padding && styles.popover.padding, $body.medium),
       title: $props($title.medium),
       content: $props($body.medium),
     };
@@ -219,6 +215,7 @@ const Popover = forwardRef(
             className={stringify(classNames.popover, className, styled.popover.className)}
             style={{
               ...styled.popover.style,
+              "--padding": typeof padding === "number" ? padding : void 0,
               ...style,
             }}
           >

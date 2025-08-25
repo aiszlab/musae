@@ -1,11 +1,4 @@
-import React, {
-  cloneElement,
-  useRef,
-  useMemo,
-  isValidElement,
-  type MouseEvent,
-  type CSSProperties,
-} from "react";
+import React, { cloneElement, useRef, useMemo, isValidElement, type MouseEvent } from "react";
 import type { PopconfirmProps, ChildProps } from "../../types/popconfirm";
 import { create as $create, props as $props } from "@stylexjs/stylex";
 import { Space } from "../space";
@@ -14,13 +7,13 @@ import { useBoolean, useClickAway, useEvent } from "@aiszlab/relax";
 import { Warning } from "../icon/icons";
 import { Popper } from "../popper";
 import { spacing } from "../theme/tokens.stylex";
-import { useTheme } from "../theme";
 import { useLocale } from "../../locale";
 import type { PopperRef } from "../../types/popper";
 import { stringify } from "@aiszlab/relax/class-name";
 import { useClassNames } from "../../hooks/use-class-names";
 import { CLASS_NAMES } from "./context";
 import { $body, $title } from "../theme/theme";
+import { type ThemeColorVariable, useThemeColorVars } from "src/hooks/use-theme-color-vars";
 
 const styles = $create({
   popconfirm: {
@@ -37,12 +30,12 @@ const styles = $create({
     gridTemplateAreas: "'leading content' 'footer footer'",
   },
 
-  leading: (props: { color: CSSProperties["color"] }) => ({
+  leading: {
     gridArea: "leading",
     display: "flex",
     alignSelf: "center",
-    color: props.color,
-  }),
+    color: "var(--color-warning)" satisfies ThemeColorVariable,
+  },
 
   title: {
     gridArea: "title",
@@ -73,8 +66,8 @@ const Popconfirm = ({
   const [isOpen, { turnOff, toggle }] = useBoolean();
   const classNames = useClassNames(CLASS_NAMES);
   const popperRef = useRef<PopperRef>(null);
-  const theme = useTheme();
   const [locale] = useLocale("popconfirm");
+  const _themeColorVars = useThemeColorVars(["warning"]);
 
   const onClick = useEvent((event: MouseEvent<HTMLDivElement>) => {
     event.stopPropagation();
@@ -114,7 +107,7 @@ const Popconfirm = ({
 
   const styled = {
     popconfirm: $props(styles.popconfirm, !title && styles.simple),
-    leading: $props(styles.leading({ color: theme.colors.warning })),
+    leading: $props(styles.leading),
     title: $props(styles.title, $title.medium),
     content: $props(styles.content, $body.medium),
     footer: $props(styles.footer),

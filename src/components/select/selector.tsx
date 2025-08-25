@@ -4,7 +4,6 @@ import React, {
   useRef,
   useContext,
   type ChangeEvent,
-  type CSSProperties,
   type ForwardRefExoticComponent,
   type PropsWithoutRef,
   type RefAttributes,
@@ -14,16 +13,22 @@ import { Tag } from "../tag";
 import { styles as inputStyles } from "../input";
 import { create as $create, props as $props } from "@stylexjs/stylex";
 import { Context } from "../picker";
-import { useTheme } from "../theme";
 import { $body } from "../theme/theme";
+import { ThemeColorVariable, useThemeColorVars } from "src/hooks/use-theme-color-vars";
 
-const styles = $create({
-  input: (props: { color: CSSProperties["color"] }) => ({
-    "::placeholder": {
-      color: props.color,
-    },
-  }),
-});
+const styles = {
+  input: {
+    focused: $create({
+      default: {},
+
+      searchable: {
+        "::placeholder": {
+          color: "var(--color-on-surface)" satisfies ThemeColorVariable,
+        },
+      },
+    }),
+  },
+};
 
 const Selector: ForwardRefExoticComponent<
   PropsWithoutRef<SelectorProps> & RefAttributes<SelectorRef>
@@ -31,7 +36,7 @@ const Selector: ForwardRefExoticComponent<
   ({ mode, searchable, value, onSearch, searched, onChange, onBlur, placeholder }, ref) => {
     const inputRef = useRef<HTMLInputElement>(null);
     const { isFocused, open } = useContext(Context);
-    const theme = useTheme();
+    const _themeColorVars = useThemeColorVars(["on-surface"]);
 
     useImperativeHandle(ref, () => {
       return {
@@ -49,9 +54,8 @@ const Selector: ForwardRefExoticComponent<
 
     const styled = $props(
       inputStyles.input,
-      styles.input({
-        color: (isFocused && searchable && theme.colors["on-surface"]) || void 0,
-      }),
+      styles.input.focused.default,
+      isFocused && searchable && styles.input.focused.searchable,
       $body.small,
     );
 
@@ -82,7 +86,7 @@ const Selector: ForwardRefExoticComponent<
               ref={inputRef}
               value={searched}
               className={styled.className}
-              style={styled.style}
+              style={{ ...styled.style, ..._themeColorVars }}
               onChange={search}
               onBlur={onBlur}
               placeholder={placeholder}
@@ -95,7 +99,7 @@ const Selector: ForwardRefExoticComponent<
     // single mode render
     if (!searchable) {
       return (
-        <span className={styled.className} style={styled.style}>
+        <span className={styled.className} style={{ ...styled.style, ..._themeColorVars }}>
           {Array.from(value.values()).join(",") || placeholder}
         </span>
       );
@@ -107,7 +111,7 @@ const Selector: ForwardRefExoticComponent<
         value={searched}
         placeholder={Array.from(value.values()).join(",") || placeholder}
         className={styled.className}
-        style={styled.style}
+        style={{ ...styled.style, ..._themeColorVars }}
         onChange={search}
         onBlur={onBlur}
       />

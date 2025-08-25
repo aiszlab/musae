@@ -2,10 +2,10 @@ import React, { useMemo, type CSSProperties } from "react";
 import { toFunction, useEvent } from "@aiszlab/relax";
 import { create as $create, props as $props } from "@stylexjs/stylex";
 import { sizes, spacing } from "../../theme/tokens.stylex";
-import { useTheme } from "../../theme";
 import { UnfoldMore } from "../../icon/icons";
 import type { HeaderCellProps, SortDirection } from "../../../types/table";
 import { useTable } from "../context";
+import { type ThemeColorVariable, useThemeColorVars } from "src/hooks/use-theme-color-vars";
 
 const styles = {
   cell: $create({
@@ -15,13 +15,13 @@ const styles = {
       alignItems: "center",
     },
 
-    handlers: (props: { color: CSSProperties["color"] }) => ({
+    handlers: {
       display: "inline-flex",
       flexDirection: "row",
       gap: spacing.xxxxxsmall,
-      color: props.color,
+      color: "var(--color-surface-container-highest)" satisfies ThemeColorVariable,
       userSelect: "none",
-    }),
+    },
   }),
 
   sort: $create({
@@ -38,9 +38,9 @@ const styles = {
       overflow: "hidden",
     },
 
-    checked: (props: { color: CSSProperties["color"] }) => ({
-      color: props.color,
-    }),
+    checked: {
+      color: "var(--color-primary)" satisfies ThemeColorVariable,
+    },
   }),
 };
 
@@ -52,7 +52,7 @@ const Cell = ({
 }: HeaderCellProps) => {
   const { sortDescriptor, onSortChange } = useTable();
   const children = toFunction(_children)();
-  const theme = useTheme();
+  const _themeColorVars = useThemeColorVars(["surface-container-highest", "primary"]);
 
   // convert sort directions to usable
   const sortDirections = useMemo(() => {
@@ -84,24 +84,20 @@ const Cell = ({
 
   const styled = {
     cell: $props(styles.cell.default),
-    handlers: $props(styles.cell.handlers({ color: theme.colors["surface-container-highest"] })),
+    handlers: $props(styles.cell.handlers),
     sort: $props(styles.sort.default),
-
-    fullSort: $props(
-      sort === "descending" &&
-        styles.sort.checked({
-          color: theme.colors.primary,
-        }),
-    ),
-
-    halfSort: $props(
-      styles.sort.half,
-      sort === "ascending" && styles.sort.checked({ color: theme.colors.primary }),
-    ),
+    fullSort: $props(sort === "descending" && styles.sort.checked),
+    halfSort: $props(styles.sort.half, sort === "ascending" && styles.sort.checked),
   };
 
   return (
-    <div className={styled.cell.className} style={styled.cell.style}>
+    <div
+      className={styled.cell.className}
+      style={{
+        ...styled.cell.style,
+        ..._themeColorVars,
+      }}
+    >
       {children}
 
       {/* header cell operations */}
