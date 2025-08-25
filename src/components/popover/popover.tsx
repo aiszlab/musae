@@ -215,7 +215,7 @@ const Popover = forwardRef(
             className={stringify(classNames.popover, className, styled.popover.className)}
             style={{
               ...styled.popover.style,
-              "--padding": typeof padding === "number" ? padding : void 0,
+              "--padding": typeof padding === "number" ? `${padding}px` : void 0,
               ...style,
             }}
           >

@@ -8,23 +8,23 @@ import type { DropdownProps } from "../../types/rich-text-editor";
 import { create as $create, props as $props } from "@stylexjs/stylex";
 
 const _styles = $create({
-  label: (props: { width?: number }) => ({
-    width: props.width,
+  label: {
+    width: "var(--width)",
     overflow: "hidden",
     textOverflow: "ellipsis",
-  }),
+  },
 });
 
-const Dropdown = ({
+const Dropdown = <T extends Key>({
   items: _items = new Map(),
   value: _value,
   onChange,
   children,
   width,
-}: DropdownProps) => {
+}: DropdownProps<T>) => {
   const popoverRef = useRef<PopoverRef>(null);
 
-  const onClick = useEvent(async (key: Key) => {
+  const onClick = useEvent(async (key: T) => {
     await popoverRef.current?.close().catch(() => null);
     onChange(key);
   });
@@ -37,13 +37,23 @@ const Dropdown = ({
   }, [_items]);
 
   const value = useMemo(() => toArray(_value), [_value]);
+  const _firstValue = value.at(0);
 
   const content = useMemo(() => {
     if (items.length === 0) {
       return <Empty />;
     }
-    return <Menu items={items} onClick={onClick} selectedKeys={value} />;
+    return (
+      <Menu
+        items={items}
+        // @ts-expect-error type-safe value
+        onClick={onClick}
+        selectedKeys={value}
+      />
+    );
   }, [items, onClick, value]);
+
+  const _styled = $props(_styles.label);
 
   return (
     <Popover
@@ -55,7 +65,9 @@ const Dropdown = ({
       ref={popoverRef}
     >
       <Button variant="text" size="small">
-        <span {...$props(_styles.label({ width }))}>{children ?? _items.get(value[0])?.label}</span>
+        <span className={_styled.className} style={{ ..._styled.style, "--width": width }}>
+          {children ?? (!!_firstValue && _items.get(_firstValue as T)?.label)}
+        </span>
       </Button>
     </Popover>
   );

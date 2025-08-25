@@ -6,7 +6,7 @@ import { create as $create, props as $props } from "@stylexjs/stylex";
 import { spacing } from "../../theme/tokens.stylex";
 import { useAsyncEffect } from "@aiszlab/relax";
 import Context from "../context";
-import { type ThemeColorVariable, useThemeColorVars } from "src/hooks/use-theme-color-vars";
+import { type ThemeColorVariable, useThemeColorVars } from "../../../hooks/use-theme-color-vars";
 
 const styles = $create({
   error: {

@@ -2,7 +2,6 @@ import React from "react";
 import type { LayoutProps } from "../../types/layout";
 import { useChildren } from "./hooks";
 import { create as $create, props as $props } from "@stylexjs/stylex";
-import { useTheme } from "../theme";
 import { stringify } from "@aiszlab/relax/class-name";
 import Context, { CLASS_NAMES } from "./context";
 import { useClassNames } from "../../hooks/use-class-names";
@@ -11,7 +10,7 @@ import Header from "./header";
 import Sidebar from "./sidebar";
 import Main from "./main";
 import Footer from "./footer";
-import { useThemeColorVars } from "src/hooks/use-theme-color-vars";
+import { useThemeColorVars } from "../../hooks/use-theme-color-vars";
 
 const styles = {
   layout: $create({

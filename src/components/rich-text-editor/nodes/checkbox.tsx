@@ -1,7 +1,8 @@
 import {
   $getNodeByKey,
   DecoratorNode,
-  DOMExportOutput,
+  type DOMExportOutput,
+  type SerializedLexicalNode,
   type LexicalEditor,
   type NodeKey,
 } from "lexical";
@@ -20,6 +21,12 @@ const styles = $create({
     padding: spacing.smallest,
   },
 });
+
+type SerializedCheckboxNode = Omit<SerializedLexicalNode, "$"> & {
+  $: {
+    __checked: boolean;
+  };
+};
 
 class CheckboxNode extends DecoratorNode<ReactNode> {
   #checked: boolean;
@@ -45,12 +52,6 @@ class CheckboxNode extends DecoratorNode<ReactNode> {
     return dom;
   }
 
-  exportDOM(_editor: LexicalEditor): DOMExportOutput {
-    return {
-      element: null,
-    };
-  }
-
   updateDOM(): false {
     return false;
   }
@@ -74,6 +75,22 @@ class CheckboxNode extends DecoratorNode<ReactNode> {
 
   isParentRequired() {
     return true;
+  }
+
+  exportJSON(): SerializedCheckboxNode {
+    const _serializedLexicalNode = super.exportJSON();
+
+    return {
+      ...super.exportJSON(),
+      $: {
+        ..._serializedLexicalNode.$,
+        __checked: this.#checked,
+      },
+    };
+  }
+
+  static importJSON(_serializedNode: SerializedCheckboxNode) {
+    return new CheckboxNode(void 0, _serializedNode.$.__checked);
   }
 }
 

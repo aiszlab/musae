@@ -14,7 +14,7 @@ import { styles as inputStyles } from "../input";
 import { create as $create, props as $props } from "@stylexjs/stylex";
 import { Context } from "../picker";
 import { $body } from "../theme/theme";
-import { ThemeColorVariable, useThemeColorVars } from "src/hooks/use-theme-color-vars";
+import { type ThemeColorVariable, useThemeColorVars } from "../../hooks/use-theme-color-vars";
 
 const styles = {
   input: {

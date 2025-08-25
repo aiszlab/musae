@@ -1,11 +1,4 @@
-import React, {
-  type CSSProperties,
-  forwardRef,
-  useCallback,
-  useContext,
-  useImperativeHandle,
-  useState,
-} from "react";
+import React, { forwardRef, useCallback, useContext, useImperativeHandle, useState } from "react";
 import { Clock } from "../clock";
 import { Button } from "../button";
 import type { PanelProps, PanelRef } from "../../types/time-picker";
@@ -16,7 +9,7 @@ import { stringify } from "@aiszlab/relax/class-name";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { useLocale } from "../../locale";
 import { Context } from "./context";
-import { type ThemeColorVariable, useThemeColorVars } from "src/hooks/use-theme-color-vars";
+import { type ThemeColorVariable, useThemeColorVars } from "../../hooks/use-theme-color-vars";
 
 const styles = $create({
   panel: {

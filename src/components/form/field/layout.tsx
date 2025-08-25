@@ -1,4 +1,4 @@
-import React, { useContext, type CSSProperties } from "react";
+import React, { useContext } from "react";
 import { type ReactNode } from "react";
 import type { ContextValue } from "../../../types/form";
 import Context from "../context";
@@ -7,8 +7,8 @@ import { create as $create, props as $props } from "@stylexjs/stylex";
 import { sizes, spacing } from "../../theme/tokens.stylex";
 import { stringify } from "@aiszlab/relax/class-name";
 import type { ComponentProps } from "../../../types/element";
-import { $body, $label } from "src/components/theme/theme";
-import { type ThemeColorVariable, useThemeColorVars } from "src/hooks/use-theme-color-vars";
+import { $body, $label } from "../../../components/theme/theme";
+import { type ThemeColorVariable, useThemeColorVars } from "../../../hooks/use-theme-color-vars";
 
 const { Row, Col } = Grid;
 

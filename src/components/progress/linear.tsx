@@ -5,7 +5,7 @@ import { stringify } from "@aiszlab/relax/class-name";
 import { sizes } from "../theme/tokens.stylex";
 import { useValue } from "./hooks";
 import Context from "./context";
-import { type ThemeColorVariable, useThemeColorVars } from "src/hooks/use-theme-color-vars";
+import { type ThemeColorVariable, useThemeColorVars } from "../../hooks/use-theme-color-vars";
 
 const styles = $create({
   progress: {

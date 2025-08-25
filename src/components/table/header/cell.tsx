@@ -1,11 +1,11 @@
-import React, { useMemo, type CSSProperties } from "react";
+import React, { useMemo } from "react";
 import { toFunction, useEvent } from "@aiszlab/relax";
 import { create as $create, props as $props } from "@stylexjs/stylex";
 import { sizes, spacing } from "../../theme/tokens.stylex";
 import { UnfoldMore } from "../../icon/icons";
 import type { HeaderCellProps, SortDirection } from "../../../types/table";
 import { useTable } from "../context";
-import { type ThemeColorVariable, useThemeColorVars } from "src/hooks/use-theme-color-vars";
+import { type ThemeColorVariable, useThemeColorVars } from "../../../hooks/use-theme-color-vars";
 
 const styles = {
   cell: $create({

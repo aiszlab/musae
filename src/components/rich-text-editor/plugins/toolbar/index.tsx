@@ -189,23 +189,11 @@ const ToolbarPlugin = () => {
 
         <Divider orientation="vertical" />
 
-        <Dropdown
-          items={blockFormats}
-          value={blockFormat}
-          // @ts-expect-error type-safe value
-          onChange={formatBlock}
-          width={80}
-        />
+        <Dropdown items={blockFormats} value={blockFormat} onChange={formatBlock} width={80} />
 
         <Divider orientation="vertical" />
 
-        <Dropdown
-          items={fontSizes}
-          value={fontSize}
-          // @ts-expect-error type-safe value
-          onChange={updateFontSize}
-          width={40}
-        />
+        <Dropdown items={fontSizes} value={fontSize} onChange={updateFontSize} width={40} />
 
         <Divider orientation="vertical" />
 
@@ -254,12 +242,7 @@ const ToolbarPlugin = () => {
           <Code />
         </Button>
 
-        <Dropdown
-          items={fontFormats}
-          value={Array.from(fontFormat)}
-          // @ts-expect-error type-safe value
-          onChange={formatFont}
-        >
+        <Dropdown items={fontFormats} value={Array.from(fontFormat)} onChange={formatFont}>
           <FontDownload />
         </Dropdown>
       </div>

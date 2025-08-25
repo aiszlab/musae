@@ -1,14 +1,13 @@
-import React, { type CSSProperties } from "react";
+import React from "react";
 import { stringify } from "@aiszlab/relax/class-name";
 import type { TagProps } from "../../types/tag";
 import { useClassNames } from "../../hooks/use-class-names";
 import { create as $create, props as $props } from "@stylexjs/stylex";
-import { useTheme } from "../theme";
 import { spacing } from "../theme/tokens.stylex";
 import { Close } from "../icon/icons";
 import { CLASS_NAMES } from "./context";
 import { $label } from "../theme/theme";
-import { type ThemeColorVariable, useThemeColorVars } from "src/hooks/use-theme-color-vars";
+import { type ThemeColorVariable, useThemeColorVars } from "../../hooks/use-theme-color-vars";
 
 const styles = $create({
   tag: {

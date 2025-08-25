@@ -1,17 +1,16 @@
 import dayjs, { type Dayjs } from "dayjs";
-import React, { type CSSProperties, type ReactNode, useCallback, useMemo, useState } from "react";
+import React, { type ReactNode, useCallback, useMemo, useState } from "react";
 import { toArray } from "@aiszlab/relax";
 import { Timespan } from "../../utils/timespan";
 import { stringify } from "@aiszlab/relax/class-name";
 import type { CalendarProps } from "../../types/calendar";
 import { create as $create, props as $props } from "@stylexjs/stylex";
 import { positions, sizes, spacing } from "../theme/tokens.stylex";
-import { useTheme } from "../theme";
 import { IconButton } from "../icon-button";
 import type { CLASS_NAMES } from "./context";
 import { Partialable } from "@aiszlab/relax/types";
 import { $body } from "../theme/theme";
-import { type ThemeColorVariable, useThemeColorVars } from "src/hooks/use-theme-color-vars";
+import { type ThemeColorVariable, useThemeColorVars } from "../../hooks/use-theme-color-vars";
 
 const styles = $create({
   cell: {

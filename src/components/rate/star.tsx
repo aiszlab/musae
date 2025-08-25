@@ -6,7 +6,7 @@ import { Star as _Star } from "../icon/icons";
 import type { StarProps } from "../../types/rate";
 import { stringify } from "@aiszlab/relax/class-name";
 import Context from "./context";
-import { type ThemeColorVariable, useThemeColorVars } from "src/hooks/use-theme-color-vars";
+import { type ThemeColorVariable, useThemeColorVars } from "../../hooks/use-theme-color-vars";
 
 const styles = {
   star: $create({

@@ -4,7 +4,6 @@ import { create as $create, props as $props } from "@stylexjs/stylex";
 import { Context } from "./context";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { stringify } from "@aiszlab/relax/class-name";
-import { useTheme } from "../theme";
 
 const styles = {
   item: $create({
@@ -63,13 +62,13 @@ const styles = {
   }),
 
   sign: $create({
-    default: (props: { size?: number }) => ({
+    default: {
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
-      width: props.size ?? sizes.xsmall,
-      height: props.size ?? sizes.xsmall,
-    }),
+      width: `var(--sign-size, ${sizes.xsmall})`,
+      height: `var(--sign-size, ${sizes.xsmall})`,
+    },
   }),
 
   dot: $create({
@@ -112,7 +111,6 @@ const styles = {
 
 const Item = ({ description, label, value, dot }: TimelineItemProps) => {
   const { mode: _mode, max, size, classNames } = useContext(Context);
-  const theme = useTheme();
   const isLabeled = !!label;
   const isMax = max === value;
 
@@ -133,13 +131,16 @@ const Item = ({ description, label, value, dot }: TimelineItemProps) => {
     ),
     label: $props(styles.label.default, styles.label[mode]),
     leading: $props(styles.leading.default, !isMax && styles.leading.tail),
-    sign: $props(styles.sign.default({ size })),
+    sign: $props(styles.sign.default),
     dot: $props(styles.dot.default),
     description: $props(styles.description.default, styles.description[mode]),
   };
 
   return (
-    <li className={stringify(classNames.item, styled.item.className)} style={styled.item.style}>
+    <li
+      className={stringify(classNames.item, styled.item.className)}
+      style={{ ...styled.item.style, "--sign-size": size }}
+    >
       {isLabeled && (
         <div
           className={stringify(classNames.label, styled.label.className)}

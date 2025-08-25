@@ -3,10 +3,9 @@ import React, { useContext, useState } from "react";
 import type { ChatItemProps } from "../../types/chat";
 import { Context } from "./context";
 import { create as $create, props as $props, keyframes as $keyframes } from "@stylexjs/stylex";
-import { useTheme } from "../theme";
 import { stringify } from "@aiszlab/relax/class-name";
 import { sizes, spacing } from "../theme/tokens.stylex";
-import { useThemeColorVars } from "src/hooks/use-theme-color-vars";
+import { useThemeColorVars } from "../../hooks/use-theme-color-vars";
 
 const blink = $keyframes({
   from: {

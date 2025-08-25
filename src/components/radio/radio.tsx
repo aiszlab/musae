@@ -7,7 +7,7 @@ import { create as $create, props as $props } from "@stylexjs/stylex";
 import { duration, sizes, spacing } from "../theme/tokens.stylex";
 import { stringify } from "@aiszlab/relax/class-name";
 import { $body } from "../theme/theme";
-import { ThemeColorVariable, useThemeColorVars } from "src/hooks/use-theme-color-vars";
+import { ThemeColorVariable, useThemeColorVars } from "../../hooks/use-theme-color-vars";
 
 const styles = {
   radio: $create({

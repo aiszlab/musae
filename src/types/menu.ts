@@ -43,6 +43,9 @@ export interface ContextValue {
    */
   expandedKeys: Set<Key>;
 
+  /**
+   * @description component size
+   */
   size: Size;
 }
 

@@ -1,6 +1,5 @@
 import React, { forwardRef, useId, type ChangeEvent } from "react";
 import { styles as inputStyles } from "../input";
-import { useTheme } from "../theme";
 import { create as $create, props as $props } from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { useControlledState, useEvent } from "@aiszlab/relax";
@@ -8,7 +7,7 @@ import type { TextareaProps } from "../../types/textarea";
 import { useClassNames } from "../../hooks/use-class-names";
 import { stringify } from "@aiszlab/relax/class-name";
 import { CLASS_NAMES } from "./context";
-import { useThemeColorVars } from "src/hooks/use-theme-color-vars";
+import { useThemeColorVars } from "../../hooks/use-theme-color-vars";
 
 const styles = {
   textarea: $create({

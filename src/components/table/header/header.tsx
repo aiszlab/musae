@@ -1,4 +1,4 @@
-import React, { type CSSProperties } from "react";
+import React from "react";
 import { useTable } from "../context";
 import { flexRender } from "@tanstack/react-table";
 import type { HeaderProps } from "../../../types/table";
@@ -6,8 +6,8 @@ import { create as $create, props as $props } from "@stylexjs/stylex";
 import { sizes, spacing } from "../../theme/tokens.stylex";
 import { useTheme } from "../../theme";
 import { stringify } from "@aiszlab/relax/class-name";
-import { $label } from "src/components/theme/theme";
-import { type ThemeColorVariable, useThemeColorVars } from "src/hooks/use-theme-color-vars";
+import { $label } from "../../../components/theme/theme";
+import { type ThemeColorVariable, useThemeColorVars } from "../../../hooks/use-theme-color-vars";
 
 const styles = $create({
   cell: {

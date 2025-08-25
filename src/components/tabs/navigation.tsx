@@ -7,7 +7,7 @@ import { animate } from "motion/react";
 import { isUndefined } from "@aiszlab/relax";
 import { useNavigation, useNavigatorScroll, useTabsContext } from "./hooks";
 import { stringify } from "@aiszlab/relax/class-name";
-import { type ThemeColorVariable, useThemeColorVars } from "src/hooks/use-theme-color-vars";
+import { type ThemeColorVariable, useThemeColorVars } from "../../hooks/use-theme-color-vars";
 
 const styles = {
   navigation: $create({

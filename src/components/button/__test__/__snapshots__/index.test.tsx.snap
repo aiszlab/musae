@@ -1,9 +1,9 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`\`Button\` Component disabled variant render 1`] = `
 <DocumentFragment>
   <button
-    class="musae-button button__rippleable button__medium button__rounded button__default button__filled theme__label.large"
+    class="musae-button styles__rippleable styles__default styles__filled styles__medium theme__title.medium"
     disabled=""
     style="--color-button: #6750A4; --color-on-button: #FFF; --color-button-opacity-08: rgba(103,80,164,0.08); --color-on-surface-opacity-12: rgba(29,27,32,0.12); --color-on-surface-opacity-38: rgba(29,27,32,0.38);"
     type="button"
@@ -11,7 +11,7 @@ exports[`\`Button\` Component disabled variant render 1`] = `
     disabled filled
   </button>
   <button
-    class="musae-button button__rippleable button__medium button__rounded button__default button__outlined theme__label.large"
+    class="musae-button styles__rippleable styles__default styles__outlined styles__medium theme__title.medium"
     disabled=""
     style="--color-button: #6750A4; --color-on-button: #FFF; --color-button-opacity-08: rgba(103,80,164,0.08); --color-on-surface-opacity-12: rgba(29,27,32,0.12); --color-on-surface-opacity-38: rgba(29,27,32,0.38);"
     type="button"
@@ -19,7 +19,7 @@ exports[`\`Button\` Component disabled variant render 1`] = `
     disabled outlined
   </button>
   <button
-    class="musae-button button__rippleable button__medium button__rounded button__default button__text theme__label.large"
+    class="musae-button styles__rippleable styles__default styles__text styles__medium theme__title.medium"
     disabled=""
     style="--color-button: #6750A4; --color-on-button: #FFF; --color-button-opacity-08: rgba(103,80,164,0.08); --color-on-surface-opacity-12: rgba(29,27,32,0.12); --color-on-surface-opacity-38: rgba(29,27,32,0.38);"
     type="button"
@@ -32,21 +32,21 @@ exports[`\`Button\` Component disabled variant render 1`] = `
 exports[`\`Button\` Component variant render 1`] = `
 <DocumentFragment>
   <button
-    class="musae-button button__default button__rippleable button__medium button__filled button__rounded theme__label.large"
+    class="musae-button styles__default styles__rippleable styles__filled styles__medium theme__title.medium"
     style="--color-button: #6750A4; --color-on-button: #FFF; --color-button-opacity-08: rgba(103,80,164,0.08); --color-on-surface-opacity-12: rgba(29,27,32,0.12); --color-on-surface-opacity-38: rgba(29,27,32,0.38);"
     type="button"
   >
     filled
   </button>
   <button
-    class="musae-button button__default button__rippleable button__medium button__outlined button__rounded theme__label.large"
+    class="musae-button styles__default styles__rippleable styles__outlined styles__medium theme__title.medium"
     style="--color-button: #6750A4; --color-on-button: #FFF; --color-button-opacity-08: rgba(103,80,164,0.08); --color-on-surface-opacity-12: rgba(29,27,32,0.12); --color-on-surface-opacity-38: rgba(29,27,32,0.38);"
     type="button"
   >
     outlined
   </button>
   <button
-    class="musae-button button__default button__rippleable button__medium button__text button__rounded theme__label.large"
+    class="musae-button styles__default styles__rippleable styles__text styles__medium theme__title.medium"
     style="--color-button: #6750A4; --color-on-button: #FFF; --color-button-opacity-08: rgba(103,80,164,0.08); --color-on-surface-opacity-12: rgba(29,27,32,0.12); --color-on-surface-opacity-38: rgba(29,27,32,0.38);"
     type="button"
   >
