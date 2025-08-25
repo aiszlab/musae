@@ -12,10 +12,7 @@ import { CLASS_NAMES } from "./context";
 import { $body } from "../theme/theme";
 
 export const styles = $create({
-  inputor: (props: {
-    outlineColor: CSSProperties["borderColor"];
-    focusedOutlineColor: CSSProperties["borderColor"];
-  }) => ({
+  inputor: {
     display: "inline-flex",
     alignItems: "center",
     cursor: "text",
@@ -29,7 +26,7 @@ export const styles = $create({
 
     // border, for flexible, in musae, we use boxShadow replace border
     // box shadow is not added into layout
-    boxShadow: `0px 0px 0px ${sizes.smallest} ${props.outlineColor}`,
+    boxShadow: `0px 0px 0px ${sizes.smallest} var(--color-outline)`,
 
     // reset styles
     boxSizing: "border-box",
@@ -46,17 +43,17 @@ export const styles = $create({
     willChange: "box-shadow, transform",
 
     ":focus-within": {
-      boxShadow: `0px 0px 0px ${sizes.xxxxxxxxxxsmall} ${props.focusedOutlineColor}`,
+      boxShadow: `0px 0px 0px ${sizes.xxxxxxxxxxsmall} var(--color-primary)`,
     },
-  }),
+  },
 
-  invalid: (props: { outlineColor: CSSProperties["borderColor"] }) => ({
-    boxShadow: `0px 0px 0px ${sizes.xxxxxxxxxxsmall} ${props.outlineColor}`,
+  invalid: {
+    boxShadow: `0px 0px 0px ${sizes.xxxxxxxxxxsmall} var(--color-error)`,
 
     ":focus-within": {
       boxShadow: null,
     },
-  }),
+  },
 
   input: {
     // reset styles
@@ -70,11 +67,11 @@ export const styles = $create({
     flex: 1,
   },
 
-  disabled: (props: { backgroundColor: string; color: string; outlineColor: string }) => ({
-    backgroundColor: props.backgroundColor,
-    color: props.color,
-    boxShadow: `0px 0px 0px ${sizes.smallest} ${props.outlineColor}`,
-  }),
+  disabled: {
+    backgroundColor: "var(--color-on-surface-opacity-08)",
+    color: "var(--color-on-surface-opacity-38)",
+    boxShadow: `0px 0px 0px ${sizes.smallest} var(--color-on-surface-opacity-38)`,
+  },
 });
 
 /**
@@ -140,20 +137,9 @@ const Input = forwardRef<InputRef, InputProps>(
     const styled = {
       inputor: $props(
         $body.medium,
-        styles.inputor({
-          outlineColor: theme.colors.outline,
-          focusedOutlineColor: theme.colors.primary,
-        }),
-        invalid &&
-          styles.invalid({
-            outlineColor: theme.colors.error,
-          }),
-        disabled &&
-          styles.disabled({
-            backgroundColor: hexToRgba(theme.colors["on-surface"], OPACITY.thin).toString(),
-            color: hexToRgba(theme.colors["on-surface"], OPACITY.thickest).toString(),
-            outlineColor: hexToRgba(theme.colors["on-surface"], OPACITY.thickest).toString(),
-          }),
+        styles.inputor,
+        invalid && styles.invalid,
+        disabled && styles.disabled,
       ),
       input: $props(styles.input),
     };
@@ -172,6 +158,17 @@ const Input = forwardRef<InputRef, InputProps>(
         style={{
           ...styled.inputor.style,
           ...style,
+          "--color-outline": theme.colors.outline,
+          "--color-primary": theme.colors.primary,
+          "--color-error": theme.colors.error,
+          "--color-on-surface-opacity-08": hexToRgba(
+            theme.colors["on-surface"],
+            OPACITY.thin,
+          ).toString(),
+          "--color-on-surface-opacity-38": hexToRgba(
+            theme.colors["on-surface"],
+            OPACITY.thickest,
+          ).toString(),
         }}
         onClick={inputorEvents.click}
         {...(!disabled && {

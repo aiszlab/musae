@@ -89,17 +89,7 @@ const Picker = forwardRef<PickerRef, PickerProps>(
     });
 
     const styled = {
-      picker: $props(
-        $body.medium,
-        inputStyles.inputor({
-          outlineColor: theme.colors.outline,
-          focusedOutlineColor: theme.colors.primary,
-        }),
-        invalid &&
-          inputStyles.invalid({
-            outlineColor: theme.colors.error,
-          }),
-      ),
+      picker: $props($body.medium, inputStyles.inputor, invalid && inputStyles.invalid),
       pickable: $props(
         styles.pickable({
           minWidth: getDropdownWidth(),
@@ -119,6 +109,9 @@ const Picker = forwardRef<PickerRef, PickerProps>(
           style={{
             ...styled.picker.style,
             ...style,
+            "--color-outline": theme.colors.outline,
+            "--color-primary": theme.colors.primary,
+            "--color-error": theme.colors.error,
           }}
           ref={trigger}
           tabIndex={-1}

@@ -31,7 +31,7 @@ const styles = {
       flex: 1,
       backgroundColor: "transparent",
       resize: "none",
-      border: "none",
+      borderWidth: "none",
       outline: "none",
     },
 
@@ -68,15 +68,9 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
 
     const styled = {
       textarea: $props(
-        inputStyles.inputor({
-          outlineColor: theme.colors.outline,
-          focusedOutlineColor: theme.colors.primary,
-        }),
+        inputStyles.inputor,
         styles.textarea.default,
-        invalid &&
-          inputStyles.invalid({
-            outlineColor: theme.colors.error,
-          }),
+        invalid && inputStyles.invalid,
         !border && styles.textarea.unbordered,
       ),
       input: $props(styles.input.default, resize && styles.input.resizable),
@@ -88,6 +82,9 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
         style={{
           ...styled.textarea.style,
           ...style,
+          "--color-outline": theme.colors.outline,
+          "--color-primary": theme.colors.primary,
+          "--color-error": theme.colors.error,
         }}
       >
         <textarea
