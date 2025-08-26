@@ -12,15 +12,15 @@ export const CLASS_NAMES = {
   fieldError: "form__item-field-error",
 } as const;
 
-export const DEFAULT_CONTEXT_VALUE: ContextValue & { classNames: typeof CLASS_NAMES } = {
+export const DEFAULT_CONTEXT_VALUE: ContextValue = {
   labelCol: 24,
   wrapperCol: 24,
-  classNames: CLASS_NAMES,
 };
 
-const Context = createContext<ContextValue & { classNames: typeof CLASS_NAMES }>(
-  DEFAULT_CONTEXT_VALUE,
-);
+const Context = createContext<ContextValue & { classNames: typeof CLASS_NAMES }>({
+  ...DEFAULT_CONTEXT_VALUE,
+  classNames: CLASS_NAMES,
+});
 
 export default Context;
 
