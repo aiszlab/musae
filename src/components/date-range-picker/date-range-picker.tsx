@@ -1,6 +1,6 @@
-import React, { useMemo, useRef } from "react";
+import React, { useRef } from "react";
 import { Picker } from "../picker";
-import { useValue } from "./hooks";
+import { useDateRangePickerState } from "./hooks/use-date-range-picker-state";
 import type { DateRangePickerProps } from "../../types/date-range-picker";
 import { Calendar } from "../calendar";
 import { SwapHoriz } from "../icon/icons";
@@ -31,26 +31,29 @@ const styles = $create({
   },
 });
 
-const DateRangePicker = (props: DateRangePickerProps) => {
-  const ref = useRef<PickerRef>(null);
-  const { onChange, value } = useValue([props.value, props.onChange, ref]);
+const DateRangePicker = ({ onChange, ...props }: DateRangePickerProps) => {
+  const pickerRef = useRef<PickerRef>(null);
+  const { value, change } = useDateRangePickerState(props.value, { pickerRef, onChange });
   const classNames = useClassNames(CLASS_NAMES);
 
-  // picked date
-  const picked = useMemo(() => {
-    const [from, to] = value;
-    const styled = {
-      picker: $props(styles.picker),
-      trigger: $props(styles.trigger),
-    };
+  const [from, to] = value;
+  const styled = {
+    picker: $props(styles.picker),
+    trigger: $props(styles.trigger),
+  };
 
-    return (
+  return (
+    <Picker
+      ref={pickerRef}
+      pickable={<Calendar value={value} onClick={change} />}
+      popupWidth={false}
+    >
       <div
         className={stringify(classNames.picker, styled.picker.className)}
         style={styled.picker.style}
       >
         <span
-          className={stringify(styled.trigger.className, classNames.input)}
+          className={stringify(classNames.input, styled.trigger.className)}
           style={styled.trigger.style}
         >
           {from?.format("YYYY-MM-DD")}
@@ -59,18 +62,12 @@ const DateRangePicker = (props: DateRangePickerProps) => {
         <SwapHoriz className={classNames.separator} />
 
         <span
-          className={stringify(styled.trigger.className, classNames.input)}
+          className={stringify(classNames.input, styled.trigger.className)}
           style={styled.trigger.style}
         >
           {to?.format("YYYY-MM-DD")}
         </span>
       </div>
-    );
-  }, [value, classNames]);
-
-  return (
-    <Picker ref={ref} pickable={<Calendar value={value} onClick={onChange} />} popupWidth={false}>
-      {picked}
     </Picker>
   );
 };

@@ -18,11 +18,12 @@ import { CLASS_NAMES, Context } from "./context";
 import { stringify } from "@aiszlab/relax/class-name";
 import { Close } from "../icon/icons";
 import { $body } from "../theme/theme";
+import { useThemeColorVars } from "src/hooks/use-theme-color-vars";
 
 const styles = $create({
-  pickable: (props: { minWidth: CSSProperties["minWidth"] }) => ({
-    minWidth: props.minWidth,
-  }),
+  pickable: {
+    minWidth: "var(--min-width)",
+  },
 });
 
 const Picker = forwardRef<PickerRef, PickerProps>(
@@ -49,8 +50,8 @@ const Picker = forwardRef<PickerRef, PickerProps>(
     const trigger = useRef<HTMLDivElement>(null);
     const [isOpen, { turnOff: close, toggle, turnOn: open }] = useBoolean();
     const classNames = useClassNames(CLASS_NAMES);
-    const theme = useTheme();
     const pickableRef = useRef<HTMLDivElement>(null);
+    const _themeColorVars = useThemeColorVars(["primary", "outline", "error"]);
 
     const getDropdownWidth = useCallback(() => {
       if (!popupWidth) return void 0;
@@ -90,11 +91,7 @@ const Picker = forwardRef<PickerRef, PickerProps>(
 
     const styled = {
       picker: $props($body.medium, inputStyles.inputor, invalid && inputStyles.invalid),
-      pickable: $props(
-        styles.pickable({
-          minWidth: getDropdownWidth(),
-        }),
-      ),
+      pickable: $props(styles.pickable),
     };
 
     return (
@@ -108,10 +105,9 @@ const Picker = forwardRef<PickerRef, PickerProps>(
           )}
           style={{
             ...styled.picker.style,
+            ..._themeColorVars,
+            "--min-width": `${getDropdownWidth() ?? 0}px`,
             ...style,
-            "--color-outline": theme.colors.outline,
-            "--color-primary": theme.colors.primary,
-            "--color-error": theme.colors.error,
           }}
           ref={trigger}
           tabIndex={-1}
