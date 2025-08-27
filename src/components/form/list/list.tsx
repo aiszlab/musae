@@ -1,49 +1,47 @@
-import React, { forwardRef, useImperativeHandle, type ReactNode } from "react";
+import React, { useMemo } from "react";
 import { type FieldsValue } from "../../../utils/form";
 import { replaceAt, useEvent } from "@aiszlab/relax";
 import { Context } from "./context";
-
-export interface ListRef {
-  remove: (field: string) => void;
-}
+import type { FormListProps } from "../../../types/form";
+import type { RequiredTo } from "@aiszlab/relax/types";
+import type { Partialable } from "@aiszlab/relax/types";
 
 /**
  * internal used Component
  */
-const List = forwardRef<
-  ListRef,
-  {
-    fields: string[];
-    value?: FieldsValue[];
-    onChange?: (values: FieldsValue[]) => void;
-    children: ReactNode;
-  }
->(({ value = [], onChange, children, fields }, ref) => {
-  const changeItemValue = useEvent((field: string, _value: FieldsValue) => {
-    const _at = fields.indexOf(field);
-    onChange?.(replaceAt(value, _at, _value));
+const List = ({
+  value = [],
+  onChange,
+  children,
+}: {
+  value?: Partialable<FieldsValue>[];
+  onChange?: (values: Partialable<FieldsValue>[]) => void;
+  children: RequiredTo<FormListProps<FieldsValue, keyof FieldsValue>["children"]>;
+}) => {
+  const fields = useMemo(() => value.map((_, field) => field), [value]);
+
+  const changeItemValue = useEvent((field: number, _value: FieldsValue) => {
+    onChange?.(replaceAt(value, field, _value));
   });
 
-  useImperativeHandle(ref, () => {
-    return {
-      remove: (field: string) => {
-        const _at = fields.indexOf(field);
-        onChange?.(value.toSpliced(_at, 1));
-      },
-    };
-  });
+  const remove = (field: number) => {
+    onChange?.(value.toSpliced(field, 1));
+  };
+
+  const add = (field?: number) => {
+    onChange?.(value.toSpliced(field ?? -1, 0, void 0));
+  };
 
   return (
     <Context.Provider
       value={{
-        fields,
         values: value,
         onChange: changeItemValue,
       }}
     >
-      {children}
+      {children({ fields, add, remove })}
     </Context.Provider>
   );
-});
+};
 
 export { List };

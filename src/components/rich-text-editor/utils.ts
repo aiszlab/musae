@@ -1,6 +1,6 @@
 import { create as $create, props as $props } from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
-import type { CreateEditorArgs, EditorThemeClasses } from "lexical";
+import type { EditorThemeClasses } from "lexical";
 /* nodes */
 import { HeadingNode, QuoteNode } from "@lexical/rich-text";
 import { LinkNode } from "@lexical/link";
@@ -13,6 +13,7 @@ import {
 } from "./nodes/checkable-list-item";
 import { CheckboxNode } from "./nodes/checkbox";
 import { $headline, $label, $title } from "../theme/theme";
+import { type InitialConfigType } from "@lexical/react/LexicalComposer";
 
 const _styles = {
   list: {
@@ -155,7 +156,11 @@ const usingStyles = () => {
  * in musae
  * rich text always use same configuration
  */
-export const usingEditor = ({ disabled = false }: { disabled?: boolean }): CreateEditorArgs => {
+export const usingEditor = ({
+  disabled = false,
+}: {
+  disabled?: boolean;
+}): Pick<InitialConfigType, "nodes" | "theme" | "editable"> => {
   const styled = usingStyles();
 
   const theme: EditorThemeClasses = {

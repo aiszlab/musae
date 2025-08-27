@@ -55,7 +55,7 @@ const RichTextEditor = forwardRef<RichTextEditorRef, RichTextEditorProps>(
     {
       placeholder,
       disabled = false,
-      defaultValue,
+      defaultValue: _defaultValue,
       onChange,
       value,
       className,
@@ -70,6 +70,7 @@ const RichTextEditor = forwardRef<RichTextEditorRef, RichTextEditorProps>(
     const theme = useTheme();
     const controlledStatePluginRef = useRef<ControlledStatePluginRef>(null);
     const classNames = useClassNames(CLASS_NAMES);
+    const defaultValue = value ?? _defaultValue;
 
     const styled = {
       editor: $props(styles.editor, disabled && styles.disabled, $body.medium),
