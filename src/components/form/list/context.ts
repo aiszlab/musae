@@ -2,6 +2,7 @@ import { createContext } from "react";
 import type { FieldsValue } from "../../../utils/form";
 
 interface ContextValue<V extends FieldsValue> {
+  fields?: string[];
   onChange?: (field: number, value: V) => void;
   values?: V[];
 }

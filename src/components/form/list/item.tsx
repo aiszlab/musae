@@ -10,11 +10,11 @@ import { type ChangeHandler, FORM_TOKEN } from "../../../utils/form";
  * internal `List`.`Item` Component
  */
 function Item({ field, children }: FormListItemProps) {
-  const { onChange, values } = useContext(Context);
+  const { onChange, values, fields } = useContext(Context);
 
   // current field form value
   const value = useMemo(() => {
-    return at(values ?? [], field);
+    return at(values ?? [], 1);
   }, [values, field]);
 
   // value change handler

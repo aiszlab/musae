@@ -251,9 +251,9 @@ interface FormListProps<T extends FieldsValue, FieldKey extends keyof T>
    * children render
    */
   children?: (props: {
-    fields: number[];
-    add: (field?: number) => void;
-    remove: (field: number) => void;
+    fields: string[];
+    add: (field?: string) => void;
+    remove: (field: string) => void;
   }) => ReactNode;
 }
 
@@ -262,12 +262,17 @@ interface FormListProps<T extends FieldsValue, FieldKey extends keyof T>
  */
 interface FormListItemProps {
   /**
-   * field
+   * @description current item field
    */
-  field: number;
+  field: string;
 
   /**
-   * children
+   * @description all fields
+   */
+  fields: string[];
+
+  /**
+   * @description children
    */
   children: ReactNode;
 }
