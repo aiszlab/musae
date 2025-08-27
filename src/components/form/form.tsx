@@ -1,7 +1,7 @@
 import { FORM_TOKEN, type FieldsValue } from "../../utils/form";
 import React from "react";
 import Context, { CLASS_NAMES } from "./context";
-import { useForm } from "./hooks";
+import { useForm } from "./hooks/use-form";
 import { useClassNames } from "../../hooks/use-class-names";
 import { DEFAULT_CONTEXT_VALUE } from "./context";
 import type { FormProps, UsedForm } from "../../types/form";

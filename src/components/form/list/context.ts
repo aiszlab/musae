@@ -1,10 +1,9 @@
 import { createContext } from "react";
 import type { FieldsValue } from "../../../utils/form";
-import type { Partialable } from "@aiszlab/relax/types";
 
 interface ContextValue<V extends FieldsValue> {
   onChange?: (field: number, value: V) => void;
-  values?: Partialable<V>[];
+  values?: V[];
 }
 
 /**

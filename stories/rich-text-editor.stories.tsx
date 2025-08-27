@@ -18,10 +18,24 @@ export const Normal: Story = {
   args: {},
 };
 
+export const DefaultValue: Story = {
+  args: {},
+  render: () => {
+    return (
+      <RichTextEditor
+        defaultValue={`# Hello Musae
+#### Get Started To Use Musae`}
+        style={{ flex: 1 }}
+        use="markdown"
+      />
+    );
+  },
+};
+
 export const Controlled: Story = {
   args: {},
   render: () => {
-    const [value, setValue] = useState("");
+    const [value, setValue] = useState("# Hello Musae");
 
     return (
       <div style={{ display: "flex", flexDirection: "row", gap: 8 }}>

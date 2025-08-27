@@ -63,7 +63,10 @@ interface ChangingState<T extends FieldsValue> {
   error: Partial<Record<keyof T, ReactNode>>;
 }
 
-export type ChangeHandler<T extends FieldsValue> = (names: (keyof T)[], value: Partial<T>) => void;
+export type ChangeHandler<T extends FieldsValue> = (
+  fieldsValue: Partial<T>,
+  names: (keyof T)[],
+) => void;
 
 /**
  * form instance
@@ -94,10 +97,9 @@ export class Form<T extends FieldsValue> {
     this.state$.subscribe(({ source, names, value }) => {
       if (names.length === 0) return;
       if (source !== ChangingSource.Change) return;
-      if (!value) return;
 
       // value change, handle `onChange` callback
-      this.onChange?.(names, { ...value });
+      this.onChange?.({ ...value }, names);
     });
   }
 

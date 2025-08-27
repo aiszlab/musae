@@ -92,7 +92,7 @@ interface FormProps<T extends FieldsValue> extends ComponentProps {
   /**
    * form value change handler
    */
-  onChange?: (names: (keyof T)[], value: Partial<T>) => void;
+  onChange?: ChangeHandler<T>;
 
   /**
    * default value
@@ -252,7 +252,7 @@ interface FormListProps<T extends FieldsValue, FieldKey extends keyof T>
    */
   children?: (props: {
     fields: number[];
-    add: () => void;
+    add: (field?: number) => void;
     remove: (field: number) => void;
   }) => ReactNode;
 }

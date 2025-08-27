@@ -4,7 +4,6 @@ import { replaceAt, useEvent } from "@aiszlab/relax";
 import { Context } from "./context";
 import type { FormListProps } from "../../../types/form";
 import type { RequiredTo } from "@aiszlab/relax/types";
-import type { Partialable } from "@aiszlab/relax/types";
 
 /**
  * internal used Component
@@ -14,8 +13,8 @@ const List = ({
   onChange,
   children,
 }: {
-  value?: Partialable<FieldsValue>[];
-  onChange?: (values: Partialable<FieldsValue>[]) => void;
+  value?: FieldsValue[];
+  onChange?: (values: FieldsValue[]) => void;
   children: RequiredTo<FormListProps<FieldsValue, keyof FieldsValue>["children"]>;
 }) => {
   const fields = useMemo(() => value.map((_, field) => field), [value]);
@@ -28,8 +27,16 @@ const List = ({
     onChange?.(value.toSpliced(field, 1));
   };
 
-  const add = (field?: number) => {
-    onChange?.(value.toSpliced(field ?? -1, 0, void 0));
+  const add = (field: number = -1) => {
+    const _nextValues = [...value];
+
+    if (field < 0) {
+      _nextValues.push({});
+    } else {
+      _nextValues.splice(field + 1, 0, {});
+    }
+
+    onChange?.(_nextValues);
   };
 
   return (
