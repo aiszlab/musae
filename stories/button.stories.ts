@@ -56,10 +56,3 @@ export const Secondary: Story = {
     disabled: false,
   },
 };
-
-export const Rectangular: Story = {
-  args: {
-    shape: "rectangular",
-    children: "Rectangular",
-  },
-};
