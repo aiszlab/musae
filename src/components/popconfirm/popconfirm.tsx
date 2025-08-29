@@ -129,10 +129,14 @@ const Popconfirm = ({
           className={stringify(classNames.popconfirm, className, styled.popconfirm.className)}
           style={{
             ...styled.popconfirm.style,
+            ..._themeColorVars,
             ...style,
           }}
         >
-          <div className={styled.leading.className} style={styled.leading.style}>
+          <div
+            className={stringify(classNames.leading, styled.leading.className)}
+            style={styled.leading.style}
+          >
             <Warning />
           </div>
 
@@ -156,11 +160,11 @@ const Popconfirm = ({
             className={stringify(classNames.footer, styled.footer.className)}
             style={styled.footer.style}
           >
-            <Button variant="filled" size="small" onClick={confirm}>
+            <Button variant="filled" size="xsmall" onClick={confirm}>
               {locale.confirm}
             </Button>
 
-            <Button variant="text" size="small" onClick={cancel}>
+            <Button variant="text" size="xsmall" onClick={cancel}>
               {locale.cancel}
             </Button>
           </Space>

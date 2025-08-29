@@ -267,11 +267,6 @@ interface FormListItemProps {
   field: string;
 
   /**
-   * @description all fields
-   */
-  fields: string[];
-
-  /**
    * @description children
    */
   children: ReactNode;

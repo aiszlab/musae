@@ -70,7 +70,7 @@ const Image = ({
   }
 
   if (status === "error") {
-    return <Empty />;
+    return <Empty className={className} />;
   }
 
   return (

@@ -66,10 +66,13 @@ class Fields {
   }
 
   get fields() {
-    const _groupedFields = Array.from(this.indexedFields.values());
+    const _groupedFields =
+      this.indexedFields.size === 0
+        ? Array.from<undefined>({ length: this._values.length })
+        : Array.from(this.indexedFields.values());
     this.reset();
 
-    return _groupedFields.reduce<string[]>((prev, _fields) => {
+    return _groupedFields.reduce<string[]>((prev, _fields = [this.getId()]) => {
       _fields.forEach((_field) => {
         const _index = prev.length;
 

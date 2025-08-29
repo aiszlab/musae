@@ -3,7 +3,7 @@ import { stringify } from "@aiszlab/relax/class-name";
 import type { TagProps } from "../../types/tag";
 import { useClassNames } from "../../hooks/use-class-names";
 import { create as $create, props as $props } from "@stylexjs/stylex";
-import { spacing } from "../theme/tokens.stylex";
+import { sizes, spacing } from "../theme/tokens.stylex";
 import { Close } from "../icon/icons";
 import { CLASS_NAMES } from "./context";
 import { $label } from "../theme/theme";
@@ -16,6 +16,7 @@ const styles = $create({
     display: "inline-flex",
     flexDirection: "row",
     alignItems: "center",
+    height: sizes.fit,
   },
 
   small: {

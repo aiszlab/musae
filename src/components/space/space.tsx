@@ -3,6 +3,8 @@ import type { SpaceProps } from "../../types/space";
 import { create as $create, props as $props } from "@stylexjs/stylex";
 import { useGutters } from "../../hooks/use-gutters";
 import { stringify } from "@aiszlab/relax/class-name";
+import { useClassNames } from "../../hooks/use-class-names";
+import { CLASS_NAMES } from "./context";
 
 const styles = $create({
   space: {
@@ -29,17 +31,18 @@ const Space = ({
   style,
   orientation = "horizontal",
 }: SpaceProps) => {
+  const classNames = useClassNames(CLASS_NAMES);
   const [columnGap, rowGap] = useGutters({ gutter });
   const styled = $props(styles.space, styles[orientation]);
 
   return (
     <div
-      className={stringify(className, styled.className)}
+      className={stringify(classNames.space, className, styled.className)}
       style={{
         ...styled.style,
         ...style,
-        "--column-gap": columnGap,
-        "--row-gap": rowGap,
+        "--column-gap": `${columnGap}px`,
+        "--row-gap": `${rowGap}px`,
       }}
     >
       {children}

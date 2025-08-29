@@ -80,6 +80,7 @@ export const sizes = defineVars({
   half: "50%",
   auto: "auto",
   fr: "1fr",
+  fit: "fit-content",
 });
 
 /**
