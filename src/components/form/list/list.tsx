@@ -5,6 +5,8 @@ import { Context } from "./context";
 import type { FormListProps } from "../../../types/form";
 import type { RequiredTo } from "@aiszlab/relax/types";
 import { useMemorized } from "@aiszlab/relax";
+import { Fields } from "./fields";
+import { Item } from "./item";
 
 /**
  * internal used Component
@@ -19,36 +21,26 @@ const List = ({
   children: RequiredTo<FormListProps<FieldsValue, keyof FieldsValue>["children"]>;
 }) => {
   const { 1: _id } = useIdentity();
-  const fields = useMemorized<string[]>(
-    (previous = []) => {
-      if (previous?.length === value.length) return previous;
-      return value.map(() => _id());
+
+  const _fields = useMemorized<Fields>(
+    (prev) => {
+      const _ref = prev ?? new Fields(_id);
+      _ref.values = value;
+      return _ref;
     },
     [value],
   );
 
-  console.log("fields====", fields);
-  console.log("value====", value);
-
   const changeItemValue = useEvent((field: string, _value: FieldsValue) => {
-    onChange?.(replaceAt(value, fields.indexOf(field), _value));
+    onChange?.(replaceAt(value, _fields.indexOf(field), _value));
   });
 
   const remove = (field: string) => {
-    onChange?.(value.toSpliced(fields.indexOf(field), 1));
+    onChange?.(value.toSpliced(_fields.remove(field), 1));
   };
 
   const add = (field?: string) => {
-    const _nextValues = [...value];
-    const _at = isUndefined(field) ? -1 : fields.indexOf(field);
-
-    if (_at < 0) {
-      _nextValues.push({});
-    } else {
-      _nextValues.splice(_at + 1, 0, {});
-    }
-
-    onChange?.(_nextValues);
+    onChange?.(value.toSpliced(_fields.add(field), 0, {}));
   };
 
   return (
@@ -58,7 +50,7 @@ const List = ({
         onChange: changeItemValue,
       }}
     >
-      {children({ fields, add, remove })}
+      {children({ fields: _fields.fields, add, remove })}
     </Context.Provider>
   );
 };

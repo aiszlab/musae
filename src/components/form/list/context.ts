@@ -1,8 +1,9 @@
 import { createContext } from "react";
 import type { FieldsValue } from "../../../utils/form";
+import { type Fields } from "./fields";
 
 interface ContextValue<V extends FieldsValue> {
-  fields?: string[];
+  fields?: Fields;
   onChange?: (field: string, value: V) => void;
   values?: V[];
 }

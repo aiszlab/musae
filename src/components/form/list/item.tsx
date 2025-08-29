@@ -14,7 +14,7 @@ function Item({ field, children }: FormListItemProps) {
 
   // current field form value
   const value = useMemo(() => {
-    return at(values ?? [], 1);
+    return at(values ?? [], fields?.indexOf(field) ?? Infinity);
   }, [values, field]);
 
   // value change handler
