@@ -1,9 +1,10 @@
-import React, { useMemo } from "react";
+import React from "react";
 import { type FieldsValue } from "../../../utils/form";
 import { isUndefined, replaceAt, useEvent, useIdentity } from "@aiszlab/relax";
 import { Context } from "./context";
 import type { FormListProps } from "../../../types/form";
 import type { RequiredTo } from "@aiszlab/relax/types";
+import { useMemorized } from "@aiszlab/relax";
 
 /**
  * internal used Component
@@ -18,10 +19,19 @@ const List = ({
   children: RequiredTo<FormListProps<FieldsValue, keyof FieldsValue>["children"]>;
 }) => {
   const { 1: _id } = useIdentity();
-  const fields = useMemo(() => value.map(() => _id()), [value]);
+  const fields = useMemorized<string[]>(
+    (previous = []) => {
+      if (previous?.length === value.length) return previous;
+      return value.map(() => _id());
+    },
+    [value],
+  );
 
-  const changeItemValue = useEvent((field: number, _value: FieldsValue) => {
-    onChange?.(replaceAt(value, field, _value));
+  console.log("fields====", fields);
+  console.log("value====", value);
+
+  const changeItemValue = useEvent((field: string, _value: FieldsValue) => {
+    onChange?.(replaceAt(value, fields.indexOf(field), _value));
   });
 
   const remove = (field: string) => {
