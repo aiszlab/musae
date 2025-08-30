@@ -80,6 +80,17 @@ export type PopoverProps<
    * offset
    */
   offset?: PopperProps["offset"];
+
+  /**
+   * `Popover`是否可见
+   */
+  visible?: boolean;
+
+  /**
+   * `visible`变化时的回调
+   * 常适用于`Popover`可见性受控场景
+   */
+  onVisibleChange?: (visible: boolean) => void;
 };
 
 /**

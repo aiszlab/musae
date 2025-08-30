@@ -12,8 +12,8 @@ importers:
         specifier: ^2.0.5
         version: 2.0.5(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
       '@aiszlab/relax':
-        specifier: 2.0.6-beta.10
-        version: 2.0.6-beta.10(@babel/core@7.28.3)(babel-plugin-macros@3.1.0)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
+        specifier: 2.0.6-beta.12
+        version: 2.0.6-beta.12(@babel/core@7.28.3)(babel-plugin-macros@3.1.0)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
       '@babel/runtime':
         specifier: ^7.28.3
         version: 7.28.3
@@ -208,8 +208,8 @@ packages:
       react: '>=18'
       react-dom: '>=18'
 
-  '@aiszlab/relax@2.0.6-beta.10':
-    resolution: {integrity: sha512-uOPdSQKyDcAmJnK+w1jy1iC/Ga6kUo+sZ5F37L4MAOIWZmsLBsrGJLqZQ2468o5EBKJELzCPvUPGT/jrnVXPBg==}
+  '@aiszlab/relax@2.0.6-beta.12':
+    resolution: {integrity: sha512-pBmVa22NOXdLgv44llvZDLdGruuN/2+sGdNjZs25IAxS+L+dkqkq0xs1S57tSqbV3IyGpOsaSnIHwDxQCEK2ZQ==}
     peerDependencies:
       react: '>=18'
       react-dom: '>=18'
@@ -5028,7 +5028,7 @@ snapshots:
       react-is: 19.1.1
       rxjs: 7.8.2
 
-  '@aiszlab/relax@2.0.6-beta.10(@babel/core@7.28.3)(babel-plugin-macros@3.1.0)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)':
+  '@aiszlab/relax@2.0.6-beta.12(@babel/core@7.28.3)(babel-plugin-macros@3.1.0)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)':
     dependencies:
       '@babel/runtime': 7.28.3
       next: 15.5.0(@babel/core@7.28.3)(babel-plugin-macros@3.1.0)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)

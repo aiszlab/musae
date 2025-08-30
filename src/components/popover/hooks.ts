@@ -1,55 +1,6 @@
-import { toArray, useEvent } from "@aiszlab/relax";
-import { useLazyBoolean } from "../../hooks/use-lazy-boolean";
-import type { PopperRef } from "../../types/popper";
-import { useCallback, useMemo } from "react";
+import { toArray } from "@aiszlab/relax";
+import { useMemo } from "react";
 import type { TriggerBy } from "../../types/popover";
-import type { Nullable } from "@aiszlab/relax/types";
-
-type UsedIsOpen = [
-  boolean,
-  {
-    turnOn: () => void;
-    turnOff: () => Promise<void>;
-    toggle: () => void;
-    disappear: () => Promise<void>;
-  },
-];
-
-/**
- * @description
- * open state
- */
-export const useIsOpen = (popperRef: React.RefObject<Nullable<PopperRef>>): UsedIsOpen => {
-  const [isOpen, { turnOn, turnOff: _turnOff, disappear: _disappear }] = useLazyBoolean();
-
-  const turnOff = useEvent(async () => {
-    _turnOff();
-    await popperRef.current?.disappear();
-  });
-
-  const toggle = useCallback(() => {
-    if (isOpen) {
-      turnOff();
-      return;
-    }
-    turnOn();
-  }, [isOpen, turnOff, turnOn]);
-
-  const disappear = useCallback(async () => {
-    await _disappear();
-    await popperRef.current?.disappear();
-  }, [_disappear, popperRef]);
-
-  return [
-    isOpen,
-    {
-      turnOn,
-      turnOff,
-      toggle,
-      disappear,
-    },
-  ];
-};
 
 /**
  * @description

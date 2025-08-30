@@ -1,5 +1,10 @@
-import { useBoolean, useTimer } from "@aiszlab/relax";
+import { isUndefined, useControlledState, useEvent, useTimer } from "@aiszlab/relax";
 import { useCallback } from "react";
+
+interface UsingLazyBoolean {
+  isTruthy?: boolean;
+  onIsTruthyChange?: (_isTruthy: boolean) => void;
+}
 
 type UsedLazyBoolean = [
   boolean,
@@ -12,45 +17,62 @@ type UsedLazyBoolean = [
   },
 ];
 
-export const useLazyBoolean = (): UsedLazyBoolean => {
-  const [isTruthy, { turnOn: _turnOn, turnOff: _turnOff, toggle: _toggle }] = useBoolean();
+export const useLazyBoolean = ({
+  isTruthy: _isTruthy,
+  onIsTruthyChange,
+}: UsingLazyBoolean = {}): UsedLazyBoolean => {
+  const { "0": isTruthy, "1": setIsTruthy } = useControlledState(_isTruthy, {
+    defaultState: false,
+  });
+
   const { timeout } = useTimer();
 
-  const turnOn = useCallback(() => {
+  const turnOn = useEvent(() => {
     timeout(() => {
-      _turnOn();
+      setIsTruthy(true);
+      onIsTruthyChange?.(true);
     });
-  }, [_turnOn, timeout]);
+  });
 
-  const turnOff = useCallback(() => {
+  const turnOff = useEvent(() => {
     timeout(() => {
-      _turnOff();
+      setIsTruthy(false);
+      onIsTruthyChange?.(false);
     });
-  }, [_turnOff, timeout]);
+  });
 
-  const appear = useCallback(() => {
+  const appear = useEvent(() => {
     const { resolve, promise } = Promise.withResolvers<void>();
+
     timeout(() => {
       turnOn();
       resolve();
     }, 100);
-    return promise;
-  }, [timeout, turnOn]);
 
-  const disappear = useCallback(() => {
+    return promise;
+  });
+
+  const disappear = useEvent(() => {
     const { resolve, promise } = Promise.withResolvers<void>();
+
     timeout(() => {
       turnOff();
       resolve();
     }, 100);
-    return promise;
-  }, [timeout, turnOff]);
 
-  const toggle = useCallback(() => {
+    return promise;
+  });
+
+  const toggle = useEvent(() => {
     timeout(() => {
-      _toggle();
+      if (isTruthy) {
+        turnOff();
+        return;
+      }
+
+      turnOn();
     });
-  }, [_toggle, timeout]);
+  });
 
   return [
     isTruthy,

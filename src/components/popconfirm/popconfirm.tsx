@@ -63,7 +63,7 @@ const Popconfirm = ({
   offset,
 }: PopconfirmProps) => {
   const ref = useRef<HTMLDivElement>(null);
-  const [isOpen, { turnOff, toggle }] = useBoolean();
+  const [isVisible, { turnOff, toggle }] = useBoolean();
   const classNames = useClassNames(CLASS_NAMES);
   const popperRef = useRef<PopperRef>(null);
   const [locale] = useLocale("popconfirm");
@@ -119,7 +119,7 @@ const Popconfirm = ({
 
       <Popper
         trigger={ref.current}
-        open={isOpen}
+        open={isVisible}
         arrow
         placement={placement}
         ref={popperRef}

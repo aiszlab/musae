@@ -19,10 +19,11 @@ import type { PopperRef } from "../../types/popper";
 import { create as $create, props as $props } from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
 import { useClassNames } from "../../hooks/use-class-names";
-import { useIsOpen, useTriggerBy } from "./hooks";
+import { useTriggerBy } from "./hooks";
 import { stringify } from "@aiszlab/relax/class-name";
 import { CLASS_NAMES } from "./context";
 import { $body, $title } from "../theme/theme";
+import { useIsVisibleState } from "./hooks/use-is-visible-state";
 
 const styles = {
   popover: $create({
@@ -61,16 +62,23 @@ const Popover = forwardRef(
       padding = true,
       arrow = true,
       offset,
+      visible,
+      onVisibleChange,
     }: PopoverProps<T, P>,
     ref: ForwardedRef<PopoverRef>,
   ) => {
     const _ref = useRef<T>(null);
     const popperRef = useRef<PopperRef>(null);
-    const [isOpen, { turnOn, turnOff, toggle, disappear }] = useIsOpen(popperRef);
     const classNames = useClassNames(CLASS_NAMES);
     const { isClickable, isContextMenuable, isFocusable, isHoverable } = useTriggerBy(_triggerBy);
 
-    const onClick = useEvent((event: MouseEvent<T>) => {
+    const [isVisible, { turnOn, turnOff, toggle, disappear }] = useIsVisibleState({
+      isVisible: visible,
+      onDisappear: async () => await popperRef.current?.disappear(),
+      onIsVisibleChange: onVisibleChange,
+    });
+
+    const click = useEvent((event: MouseEvent<T>) => {
       event.stopPropagation();
       toggle();
     });
@@ -146,7 +154,7 @@ const Popover = forwardRef(
         ...(isHoverable && hoverProps),
         ...(isFocusable && focusProps),
         ...(isClickable && {
-          onClick,
+          onClick: click,
         }),
         ...(isContextMenuable && {
           onContextMenu,
@@ -168,7 +176,7 @@ const Popover = forwardRef(
       isContextMenuable,
       isFocusable,
       isHoverable,
-      onClick,
+      click,
       onContextMenu,
     ]);
 
@@ -200,7 +208,7 @@ const Popover = forwardRef(
 
         <Popper
           trigger={_ref.current}
-          open={isOpen}
+          open={isVisible}
           arrow={arrow}
           {...(isHoverable && {
             onPointerEnter: onPopperHoverEnter,
