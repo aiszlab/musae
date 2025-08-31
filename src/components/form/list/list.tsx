@@ -48,6 +48,7 @@ const List = ({
       value={{
         values: value,
         onChange: changeItemValue,
+        fields: _fields,
       }}
     >
       {children({ fields: _fields.fields, add, remove })}
