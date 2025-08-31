@@ -24,6 +24,9 @@ const styles = $create({
 
     display: "inline-flex",
     verticalAlign: "middle",
+
+    // 阻止在`flex`布局下被压缩
+    flexShrink: 0,
   },
 
   loading: {
