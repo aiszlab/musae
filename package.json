@@ -1,6 +1,6 @@
 {
   "name": "musae",
-  "version": "1.0.7-beta.32",
+  "version": "1.0.7",
   "description": "musae-ui",
   "author": "tutu@fantufantu.com",
   "license": "MIT",
@@ -63,8 +63,8 @@
     "pnpm": ">=10"
   },
   "dependencies": {
-    "@aiszlab/fuzzy": "^2.0.5",
-    "@aiszlab/relax": "2.0.6-beta.12",
+    "@aiszlab/fuzzy": "^2.0.6",
+    "@aiszlab/relax": "^2.0.6",
     "@babel/runtime": "^7.28.3",
     "@floating-ui/dom": "^1.7.4",
     "@lexical/code": "^0.34.0",
