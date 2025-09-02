@@ -10,7 +10,6 @@ function useForm<T extends FieldsValue>({ value, ...usingForm }: UsingForm<T> = 
   const form = _useForm<T>({ value, ...usingForm });
 
   useUpdateEffect(() => {
-    console.log("value=====updated=====", value);
     form[FORM_TOKEN].setFieldsValue(value ?? {});
   }, [value, form]);
 

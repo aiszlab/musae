@@ -115,8 +115,13 @@ interface TypedFormList {
     props: FormListProps<T, FieldKey>,
   ): ReactNode;
 
-  Item: (props: FormListItemProps) => ReactNode;
+  Item: <T extends FieldsValue>(props: FormListItemProps<T>) => ReactNode;
 }
+
+/**
+ * Use Form Context
+ */
+type UseFormContext = <T extends FieldsValue = {}>() => FormContextValue<T>;
 
 /**
  * typed form
@@ -149,7 +154,13 @@ interface TypedForm {
    */
   useWatch<T extends FieldsValue, FieldKey extends keyof T = keyof T>(
     name: FieldKey,
+    usedForm?: UsedForm<T>,
   ): Partialable<T[FieldKey]>;
+
+  /**
+   * 读取上下文中正在使用的表单实例
+   */
+  useFormContext: UseFormContext;
 }
 
 /**
@@ -260,7 +271,7 @@ interface FormListProps<T extends FieldsValue, FieldKey extends keyof T>
 /**
  * form list item props
  */
-interface FormListItemProps {
+interface FormListItemProps<T extends FieldsValue = {}> {
   /**
    * @description current item field
    */
@@ -270,6 +281,11 @@ interface FormListItemProps {
    * @description children
    */
   children: ReactNode;
+
+  /**
+   * registered form
+   */
+  form?: UsedForm<T>;
 }
 
 export {
@@ -285,4 +301,5 @@ export {
   FormContextValue,
   TypedFormList,
   FormListItemProps,
+  UseFormContext,
 };

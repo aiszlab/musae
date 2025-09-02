@@ -1,5 +1,5 @@
 import { createContext, useContext } from "react";
-import type { ContextValue, FieldsValue, FormContextValue } from "../../types/form";
+import type { ContextValue, FieldsValue, FormContextValue, UseFormContext } from "../../types/form";
 
 /**
  * class names
@@ -29,6 +29,6 @@ export default Context;
  */
 export const FormContext = createContext<FormContextValue>({ form: null });
 
-export const useFormContext = <T extends FieldsValue = {}>() => {
+export const useFormContext: UseFormContext = <T extends FieldsValue = {}>() => {
   return useContext(FormContext) as FormContextValue<T>;
 };

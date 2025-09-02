@@ -58,26 +58,4 @@ function useFormItem<T extends FieldsValue, FieldKey extends keyof T>({
   };
 }
 
-/**
- * @description watch form item
- */
-const useWatch = <T extends FieldsValue, FieldKey extends keyof T>(name: FieldKey) => {
-  const [value, setValue] = useState<T[FieldKey]>();
-  const { form } = useFormContext<T>();
-
-  useMounted(() => {
-    if (!name) return;
-
-    const unregister = form?.watch(name, (_changedValue) => {
-      setValue(_changedValue);
-    });
-
-    return () => {
-      unregister?.();
-    };
-  });
-
-  return value;
-};
-
-export { useFormItem, useWatch };
+export { useFormItem };

@@ -4,12 +4,12 @@ import { Context } from "./context";
 import { FormContext } from "../context";
 import { at, useEvent } from "@aiszlab/relax";
 import { useForm } from "../hooks/use-form";
-import { type ChangeHandler, FORM_TOKEN } from "../../../utils/form";
+import { type ChangeHandler, Form, FORM_TOKEN } from "../../../utils/form";
 
 /**
  * internal `List`.`Item` Component
  */
-function Item({ field, children }: FormListItemProps) {
+function Item<T extends FieldsValue>({ field, children, form }: FormListItemProps<T>) {
   const { onChange, values, fields } = useContext(Context);
 
   // current field form value
@@ -18,18 +18,21 @@ function Item({ field, children }: FormListItemProps) {
   }, [values, field]);
 
   // value change handler
-  const changeFieldValue = useEvent<ChangeHandler<FieldsValue>>((value) => {
+  const changeFieldValue = useEvent<ChangeHandler<T>>((value) => {
     onChange?.(field, value);
   });
 
   // create form instance
-  const _form = useForm<FieldsValue>({
+  const _form = useForm<T>({
+    form,
     value,
     onChange: changeFieldValue,
   });
 
   return (
-    <FormContext.Provider value={{ form: _form[FORM_TOKEN] }}>{children}</FormContext.Provider>
+    <FormContext.Provider value={{ form: _form[FORM_TOKEN] as Form<FieldsValue> }}>
+      {children}
+    </FormContext.Provider>
   );
 }
 
