@@ -40,7 +40,9 @@ const List = ({
   };
 
   const add = (field?: string) => {
-    onChange?.(value.toSpliced(_fields.add(field), 0, {}));
+    const [_addedField, _addedAt] = _fields.add(field);
+    onChange?.(value.toSpliced(_addedAt, 0, {}));
+    return _addedField;
   };
 
   return (

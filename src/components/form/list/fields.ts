@@ -53,7 +53,7 @@ class Fields {
     this._fields.set(_field, _index);
     this.indexedFields.set(_index, _fieldsAtIndex);
 
-    return _index + _offset;
+    return [_field, _index + _offset] as const;
   }
 
   remove(field: string) {
