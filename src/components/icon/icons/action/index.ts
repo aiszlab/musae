@@ -16,6 +16,7 @@ import ThreeDRotation from "./three-d-rotation";
 import AccountCircle from "./account-circle";
 import RocketLaunch from "./rocket-launch";
 import Preview from "./preview";
+import Logout from "./logout";
 
 export {
   Visibility,
@@ -36,4 +37,5 @@ export {
   AccountCircle,
   RocketLaunch,
   Preview,
+  Logout,
 };

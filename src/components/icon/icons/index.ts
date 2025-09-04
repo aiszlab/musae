@@ -8,3 +8,4 @@ export * from "./toggle";
 export * from "./editor";
 export * from "./mock";
 export * from "./home";
+export * from "./device";
