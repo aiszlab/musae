@@ -17,6 +17,8 @@ import AccountCircle from "./account-circle";
 import RocketLaunch from "./rocket-launch";
 import Preview from "./preview";
 import Logout from "./logout";
+import Schedule from "./schedule";
+import TurnedIn from "./turned-in";
 
 export {
   Visibility,
@@ -38,4 +40,6 @@ export {
   RocketLaunch,
   Preview,
   Logout,
+  Schedule,
+  TurnedIn,
 };

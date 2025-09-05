@@ -4,7 +4,7 @@ import { type ColorRole } from "../utils/color-role";
 import { isUndefined, toArray } from "@aiszlab/relax";
 import { hexToRgba } from "@aiszlab/fuzzy/color";
 
-type ThemeColorVarToken = `--color-${ColorRole}` | `--color-${ColorRole}-opacity-${number}`;
+type ThemeColorVarToken = `--color-${ColorRole}` | `--color-${ColorRole}-opacity-${string}`;
 
 export type ThemeColorVariable = `var(${ThemeColorVarToken})`;
 
@@ -23,7 +23,8 @@ export const useThemeColorVars = (tokens: (ColorRole | [ColorRole, number])[]) =
       if (isUndefined(_opacity)) {
         prev[`--color-${_token}`] = _color;
       } else {
-        prev[`--color-${_token}-opacity-${_opacity}`] = hexToRgba(_color, _opacity).toString();
+        prev[`--color-${_token}-opacity-${(_opacity * 100).toString().padStart(2, "0")}`] =
+          hexToRgba(_color, _opacity).toString();
       }
 
       return prev;
