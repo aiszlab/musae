@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import { Picker } from "../picker";
-import { useDateRangePickerState } from "./hooks/use-date-range-picker-state";
+import { useDateRangeState } from "./hooks/use-date-range-state";
 import type { DateRangePickerProps } from "../../types/date-range-picker";
 import { Calendar } from "../calendar";
 import { SwapHoriz } from "../icon/icons";
@@ -33,10 +33,11 @@ const styles = $create({
 
 const DateRangePicker = ({ onChange, ...props }: DateRangePickerProps) => {
   const pickerRef = useRef<PickerRef>(null);
-  const { value, change } = useDateRangePickerState(props.value, { pickerRef, onChange });
+  const { value, change } = useDateRangeState(props.value, { pickerRef, onChange });
   const classNames = useClassNames(CLASS_NAMES);
 
   const [from, to] = value;
+
   const styled = {
     picker: $props(styles.picker),
     trigger: $props(styles.trigger),

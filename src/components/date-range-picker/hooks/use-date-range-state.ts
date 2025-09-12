@@ -13,7 +13,7 @@ interface Props {
 /**
  * @description component state
  */
-export const useDateRangePickerState = (
+export const useDateRangeState = (
   controlledState: DateRangePickerProps["value"],
   { pickerRef, onChange }: Props,
 ) => {
