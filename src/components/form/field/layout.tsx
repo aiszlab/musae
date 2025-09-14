@@ -104,13 +104,17 @@ const Layout = ({ required, space = false, className, style, supporting, ...prop
       className={stringify(className, styled.item.className)}
       style={{
         ...styled.item.style,
+        ..._themeColorVars,
         ...style,
       }}
     >
       {/* label */}
       {isLabeled && (
         <Col span={labelCol}>
-          <span className={stringify(styled.label.className)} style={styled.label.style}>
+          <span
+            className={stringify(classNames.label, styled.label.className)}
+            style={styled.label.style}
+          >
             {props.label}
           </span>
         </Col>

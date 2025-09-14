@@ -1,4 +1,4 @@
-import React, { forwardRef, useRef, useImperativeHandle, type CSSProperties } from "react";
+import React, { forwardRef, useRef, useImperativeHandle } from "react";
 import { useInputEvents, useInputorEvents } from "./hooks";
 import type { InputProps, InputRef } from "../../types/input";
 import { useControlledState, useFocus } from "@aiszlab/relax";
@@ -10,6 +10,7 @@ import { hexToRgba } from "@aiszlab/fuzzy/color";
 import { stringify } from "@aiszlab/relax/class-name";
 import { CLASS_NAMES } from "./context";
 import { $body } from "../theme/theme";
+import { ThemeColorVariable } from "../../hooks/use-theme-color-vars";
 
 export const styles = $create({
   inputor: {
@@ -68,8 +69,8 @@ export const styles = $create({
   },
 
   disabled: {
-    backgroundColor: "var(--color-on-surface-opacity-08)",
-    color: "var(--color-on-surface-opacity-38)",
+    backgroundColor: "var(--color-on-surface-opacity-08)" satisfies ThemeColorVariable,
+    color: "var(--color-on-surface-opacity-38)" satisfies ThemeColorVariable,
     boxShadow: `0px 0px 0px ${sizes.smallest} var(--color-on-surface-opacity-38)`,
   },
 });

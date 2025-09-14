@@ -6,6 +6,7 @@ import React, {
   type MouseEvent,
   type CSSProperties,
   type FocusEvent,
+  useContext,
 } from "react";
 import { Popper } from "../popper";
 import { useBoolean, useFocus, useEvent } from "@aiszlab/relax";
@@ -19,6 +20,7 @@ import { stringify } from "@aiszlab/relax/class-name";
 import { Close } from "../icon/icons";
 import { $body } from "../theme/theme";
 import { useThemeColorVars } from "src/hooks/use-theme-color-vars";
+import { DialogContext } from "../dialog/context";
 
 const styles = $create({
   pickable: {
@@ -52,6 +54,7 @@ const Picker = forwardRef<PickerRef, PickerProps>(
     const classNames = useClassNames(CLASS_NAMES);
     const pickableRef = useRef<HTMLDivElement>(null);
     const _themeColorVars = useThemeColorVars(["primary", "outline", "error"]);
+    const { container } = useContext(DialogContext);
 
     const getDropdownWidth = useCallback(() => {
       if (!popupWidth) return void 0;
@@ -129,6 +132,7 @@ const Picker = forwardRef<PickerRef, PickerProps>(
           onExited={onPopperExited}
           // click on popper, keep select focused
           onMouseDown={onDropdownClick}
+          container={container}
         >
           <div
             ref={pickableRef}

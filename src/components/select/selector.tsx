@@ -15,6 +15,7 @@ import { create as $create, props as $props } from "@stylexjs/stylex";
 import { Context } from "../picker";
 import { $body } from "../theme/theme";
 import { type ThemeColorVariable, useThemeColorVars } from "../../hooks/use-theme-color-vars";
+import { OPACITY } from "../theme/tokens.stylex";
 
 const styles = {
   input: {
@@ -28,6 +29,12 @@ const styles = {
       },
     }),
   },
+
+  placeholder: $create({
+    default: {
+      color: "var(--color-on-surface-opacity-38)" satisfies ThemeColorVariable,
+    },
+  }),
 };
 
 const Selector: ForwardRefExoticComponent<
@@ -36,7 +43,7 @@ const Selector: ForwardRefExoticComponent<
   ({ mode, searchable, value, onSearch, searched, onChange, onBlur, placeholder }, ref) => {
     const inputRef = useRef<HTMLInputElement>(null);
     const { isFocused, open } = useContext(Context);
-    const _themeColorVars = useThemeColorVars(["on-surface"]);
+    const _themeColorVars = useThemeColorVars(["on-surface", ["on-surface", OPACITY.thickest]]);
 
     useImperativeHandle(ref, () => {
       return {
@@ -52,12 +59,15 @@ const Selector: ForwardRefExoticComponent<
       onSearch(e.target.value);
     };
 
-    const styled = $props(
-      inputStyles.input,
-      styles.input.focused.default,
-      isFocused && searchable && styles.input.focused.searchable,
-      $body.small,
-    );
+    const styled = {
+      input: $props(
+        inputStyles.input,
+        styles.input.focused.default,
+        isFocused && searchable && styles.input.focused.searchable,
+        $body.small,
+      ),
+      placeholder: $props(styles.placeholder.default),
+    };
 
     // multiple mode render
     if (mode === "multiple") {
@@ -82,11 +92,10 @@ const Selector: ForwardRefExoticComponent<
 
           {searchable && (
             <input
-              key="select-selector"
               ref={inputRef}
               value={searched}
-              className={styled.className}
-              style={{ ...styled.style, ..._themeColorVars }}
+              className={styled.input.className}
+              style={{ ...styled.input.style, ..._themeColorVars }}
               onChange={search}
               onBlur={onBlur}
               placeholder={placeholder}
@@ -99,8 +108,16 @@ const Selector: ForwardRefExoticComponent<
     // single mode render
     if (!searchable) {
       return (
-        <span className={styled.className} style={{ ...styled.style, ..._themeColorVars }}>
-          {Array.from(value.values()).join(",") || placeholder}
+        <span
+          className={styled.input.className}
+          style={{ ...styled.input.style, ..._themeColorVars }}
+        >
+          {Array.from(value.values()).join(",") ||
+            (!!placeholder && (
+              <span className={styled.placeholder.className} style={styled.placeholder.style}>
+                {placeholder}
+              </span>
+            ))}
         </span>
       );
     }
@@ -110,8 +127,8 @@ const Selector: ForwardRefExoticComponent<
         ref={inputRef}
         value={searched}
         placeholder={Array.from(value.values()).join(",") || placeholder}
-        className={styled.className}
-        style={{ ...styled.style, ..._themeColorVars }}
+        className={styled.input.className}
+        style={{ ...styled.input.style, ..._themeColorVars }}
         onChange={search}
         onBlur={onBlur}
       />

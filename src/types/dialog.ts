@@ -102,3 +102,13 @@ export type PopupProps = RequiredIn<DialogProps, "closable"> & {
    */
   onClosed?: () => void;
 };
+
+/**
+ * `Dialog`.`ContextValue`
+ */
+export interface DialogContextValue {
+  /**
+   * @link {PortalProps.container}
+   */
+  container?: PortalProps["container"];
+}

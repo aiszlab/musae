@@ -10,7 +10,7 @@
     "test:coverage": "jest --coverage",
     "dev": "rollup -c -w --environment NODE_ENV:development",
     "build": "rollup -c --environment NODE_ENV:production",
-    "prepublishOnly": "z rm dist && npm run build",
+    "prepublishOnly": "z rm dist && pnpm run build",
     "preinstall": "npx @aiszlab/watchdog preinstall",
     "authors": "zx scripts/contributors.mjs",
     "changesets": "z cs",

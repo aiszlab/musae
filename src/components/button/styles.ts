@@ -2,6 +2,7 @@ import { create as $create, type CompiledStyles, type StyleXArray } from "@style
 import { duration, elevations, sizes, spacing } from "../theme/tokens.stylex";
 import type { Size } from "../../types/button";
 import { $headline, $label, $title } from "../theme/theme";
+import { type ThemeColorVariable } from "src/hooks/use-theme-color-vars";
 
 type ShapeCSSProperties = Partial<Record<Size, { borderRadius: string }>>;
 
@@ -127,7 +128,7 @@ const styles = {
 
   disabled: $create({
     default: {
-      color: "var(--color-on-surface-opacity-38)",
+      color: "var(--color-on-surface-opacity-38)" satisfies ThemeColorVariable,
       cursor: "not-allowed",
       boxShadow: null,
       borderColor: null,

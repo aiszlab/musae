@@ -13,7 +13,8 @@ const styles = {
   textarea: $create({
     default: {
       // reset
-      padding: null,
+      paddingBlock: null,
+      paddingInline: null,
       width: sizes.full,
       overflow: "hidden",
     },

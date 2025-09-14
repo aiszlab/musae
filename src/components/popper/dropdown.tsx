@@ -116,7 +116,7 @@ const Dropdown = forwardRef<PopperRef, DropdownProps>(
 
     return (
       <div
-        className={styled.portal.className}
+        className={stringify(classNames.popper, styled.portal.className)}
         style={{
           ...styled.portal.style,
           "--color-surface-container": theme.colors["surface-container"],

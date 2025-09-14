@@ -1,3 +1,6 @@
+import { createContext } from "react";
+import type { DialogContextValue } from "../../types/dialog";
+
 /**
  * @description
  * class name
@@ -10,3 +13,8 @@ export const CLASS_NAMES = {
   body: "dialog__body",
   footer: "dialog__footer",
 } as const;
+
+/**
+ * `Dialog`.`Context`
+ */
+export const DialogContext = createContext<DialogContextValue>({});

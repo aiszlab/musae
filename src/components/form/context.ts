@@ -1,5 +1,6 @@
 import { createContext, useContext } from "react";
 import type { ContextValue, FieldsValue, FormContextValue, UseFormContext } from "../../types/form";
+import { label } from "motion/react-client";
 
 /**
  * class names
@@ -7,6 +8,7 @@ import type { ContextValue, FieldsValue, FormContextValue, UseFormContext } from
 export const CLASS_NAMES = {
   form: "form",
   item: "form__item",
+  label: "form__item-label",
   field: "form__item-field",
   fieldSupporting: "form__item-supporting",
   fieldError: "form__item-field-error",

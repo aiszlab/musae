@@ -110,10 +110,10 @@ export class Form<T extends FieldsValue> {
    */
   useValues({ value, defaultValue }: { value?: Partial<T>; defaultValue?: Partial<T> }) {
     this.defaultValue = defaultValue ?? this.defaultValue;
-    this.state.value = value ?? this.defaultValue;
+    this.state.value = value ?? this.state.value ?? this.defaultValue;
 
     this.state$.next({
-      source: ChangingSource.Initialize,
+      source: ChangingSource.Set,
       names: [],
       value: this.state.value,
       error: this.state.error,
@@ -139,7 +139,9 @@ export class Form<T extends FieldsValue> {
     const _subscription = this.state$
       .pipe(
         // only listen `name` related to `register` field
-        filter(({ names }) => names.length === 0 || new Set(names).has(name)),
+        filter(({ names }) => {
+          return names.length === 0 || new Set(names).has(name);
+        }),
       )
       .subscribe(({ source, value, error }) => {
         // callback field state
