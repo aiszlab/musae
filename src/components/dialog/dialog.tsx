@@ -19,8 +19,6 @@ const Dialog = ({ open, closable = true, ...props }: DialogProps) => {
   }, [open]);
 
   const containerGetter = useEvent<() => Voidable<HTMLElement>>(() => {
-    console.log("popupRef.current=====", popupRef.current);
-
     return popupRef.current;
   });
 

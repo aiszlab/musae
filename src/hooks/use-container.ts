@@ -6,28 +6,23 @@ import { useMemo } from "react";
  * @description
  * container
  */
-export const useContainer = (
-  {
-    container: _container,
-    useBody = true,
-  }: {
-    container: PortalProps["container"];
-    useBody?: boolean;
-  },
-  deps: unknown[] = [],
-) => {
-  const container = useMemo(() => {
-    if (isFunction(_container)) return _container();
-    return _container ?? (isDomUsable() && useBody ? document.body : null);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [_container, useBody, ...deps]);
+export const useContainer = ({
+  container,
+  useBody = true,
+}: {
+  container: PortalProps["container"];
+  useBody?: boolean;
+}) => {
+  const _container =
+    (isFunction(container) ? container() : container) ??
+    (isDomUsable() && useBody ? document.body : null);
 
   const isDocumentBody = useMemo(() => {
     return isDomUsable() && _container === document.body;
   }, [_container]);
 
   return {
-    container,
+    container: _container,
     isDocumentBody,
   };
 };

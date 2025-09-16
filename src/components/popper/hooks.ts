@@ -68,7 +68,7 @@ export const useFloating = ({
   const floatableRef = useRef<HTMLDivElement>(null);
   const arrowRef = useRef<HTMLDivElement>(null);
 
-  const { container: trigger } = useContainer({ container: _trigger, useBody: false }, [open]);
+  const { container: trigger } = useContainer({ container: _trigger, useBody: false });
   const _isOpen = useRef<boolean>(false);
 
   // appear animation
