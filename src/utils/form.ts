@@ -26,7 +26,7 @@ enum ChangingSource {
 }
 
 export interface Rule<T extends FieldsValue, FieldKey extends keyof T> {
-  validate: (value: Partialable<T[FieldKey]>) => ReactNode | Promise<ReactNode>;
+  validate: (value: Partialable<T[FieldKey]>) => void | ReactNode | Promise<ReactNode>;
   message?: ReactNode;
 }
 
@@ -224,7 +224,7 @@ export class Form<T extends FieldsValue> {
         // validate result
         const error = await Promise.race(
           rules.map(async ({ validate, message }) => {
-            return await Promise.try(() => validate(this.state.value?.[name]))
+            return await Promise.try(() => validate(this.state.value?.[name]) ?? null)
               .catch((error: ReactNode) => {
                 console.error(error);
                 return false;

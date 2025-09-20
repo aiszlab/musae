@@ -44,6 +44,7 @@ const Field = <T extends FieldsValue, FieldKey extends keyof T>({
   const { isInvalid, value, change, error } = useFormItem<T, FieldKey>({
     name,
     rules,
+    required,
   });
 
   const children = useMemo(() => {
