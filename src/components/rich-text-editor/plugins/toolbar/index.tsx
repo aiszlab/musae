@@ -1,4 +1,4 @@
-import React, { type CSSProperties, useContext, useState } from "react";
+import React, { useContext, useState } from "react";
 import {
   Redo,
   Undo,
@@ -23,8 +23,6 @@ import {
 } from "lexical";
 import { chain, useEvent, useMounted } from "@aiszlab/relax";
 import { Button } from "../../../button";
-import { useTheme } from "../../../theme";
-import { useBlockFormats, useFontFormats, useFontSizes, useHandlers, FontFormat } from "./hooks";
 import { $isLinkNode, LinkNode } from "@lexical/link";
 import Dropdown from "../../dropdown";
 import { $isHeadingNode } from "@lexical/rich-text";
@@ -34,6 +32,10 @@ import FloatingLinkEditorPlugin from "../floating-link-editor";
 import { $getSelectionStyleValueForProperty } from "@lexical/selection";
 import { Context } from "../../context";
 import { stringify } from "@aiszlab/relax/class-name";
+import { useBlockFormat } from "./use-block-format";
+import { useFontSize } from "./use-font-size";
+import { useFontFormats, type FontFormat } from "./use-font-format";
+import { useHandlers } from "./use-handlers";
 
 const styles = $create({
   default: {
@@ -67,8 +69,8 @@ const ToolbarPlugin = () => {
   const [isUndoable, setIsUndoable] = useState(false);
   const [isRedoable, setIsRedoable] = useState(false);
 
-  const { blockFormat, blockFormats, setBlockFormat, formatBlock } = useBlockFormats();
-  const { fontSize, fontSizes, setFontSize, updateFontSize } = useFontSizes();
+  const { blockFormat, blockFormats, setBlockFormat, formatBlock } = useBlockFormat();
+  const { fontSize, fontSizes, setFontSize, updateFontSize } = useFontSize();
   const { fontFormat, fontFormats, setFontFormat, formatFont } = useFontFormats();
 
   const updateToolbar = useEvent(() => {

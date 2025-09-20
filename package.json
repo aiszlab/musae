@@ -64,7 +64,7 @@
   },
   "dependencies": {
     "@aiszlab/fuzzy": "^2.0.6",
-    "@aiszlab/relax": "^2.0.6",
+    "@aiszlab/relax": "2.0.8-beta.0",
     "@babel/runtime": "^7.28.3",
     "@floating-ui/dom": "^1.7.4",
     "@lexical/code": "^0.34.0",
