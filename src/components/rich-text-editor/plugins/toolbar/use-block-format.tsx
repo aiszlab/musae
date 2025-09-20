@@ -11,7 +11,6 @@ import {
   LooksTwo,
   Notes,
   Code,
-  AccountCircle,
 } from "../../../icon/icons";
 import { $setBlocksType } from "@lexical/selection";
 import { $createHeadingNode, type HeadingTagType } from "@lexical/rich-text";
