@@ -1,4 +1,4 @@
-import React, { createElement, type CSSProperties, forwardRef } from "react";
+import React, { createElement, forwardRef } from "react";
 import { Input } from "../input";
 import { useBoolean } from "@aiszlab/relax";
 import { Visibility, VisibilityOff } from "../icon/icons";

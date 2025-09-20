@@ -1,5 +1,4 @@
 import { type ReactNode, Children, isValidElement, ReactElement, useMemo } from "react";
-import type { ComponentProps } from "../../types/element";
 import Header from "./header";
 import Sidebar from "./sidebar";
 import Footer from "./footer";

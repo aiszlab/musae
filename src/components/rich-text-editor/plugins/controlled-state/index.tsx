@@ -19,7 +19,7 @@ export type Ref = {
 
 const ControlledStatePlugin = forwardRef<Ref, Props>(({ value, use, onChange }, ref): ReactNode => {
   const [editor] = useLexicalComposerContext();
-  const [_value, _setValue] = useControlledState(value, {
+  const [, _setValue] = useControlledState(value, {
     /**
      * @description
      * 监听受控值变化

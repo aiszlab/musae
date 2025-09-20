@@ -188,7 +188,7 @@ export const useDateCells = ({
     return dateCells.map((cells, index) => {
       return <tr key={index}>{cells}</tr>;
     });
-  }, [focusedAt, timespan, classNames, click]);
+  }, [focusedAt, timespan, classNames, click, _themeColorVars]);
 };
 
 /**

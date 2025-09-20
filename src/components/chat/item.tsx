@@ -63,7 +63,7 @@ const Item = ({ message, content: _content = "" }: ChatItemProps) => {
   const { classNames, onMessage } = useContext(Context);
   const isOverride = !!onMessage?.override;
   const [status, setStatus] = useState<"complete" | "error" | "loading">(() => {
-    if (!!_content) return "complete";
+    if (_content) return "complete";
     return "loading";
   });
 

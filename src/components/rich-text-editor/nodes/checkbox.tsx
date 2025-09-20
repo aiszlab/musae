@@ -1,7 +1,6 @@
 import {
   $getNodeByKey,
   DecoratorNode,
-  type DOMExportOutput,
   type SerializedLexicalNode,
   type LexicalEditor,
   type NodeKey,

@@ -2,4 +2,4 @@
 
 import { $ } from "zx";
 
-const logs = await $`git log`.text();
+await $`git log`.text();

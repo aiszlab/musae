@@ -1,5 +1,5 @@
 import { create as $create, props as $props } from "@stylexjs/stylex";
-import React, { type CSSProperties, type FC, createElement, forwardRef, useRef } from "react";
+import React, { type FC, createElement, forwardRef, useRef } from "react";
 import { usePresence, animate } from "motion/react";
 import { useTheme } from "../theme";
 import type { NotificationProps, Placement, Axis, Type } from "../../types/notification";

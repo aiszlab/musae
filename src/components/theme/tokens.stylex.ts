@@ -1,6 +1,6 @@
 import { defineVars } from "@stylexjs/stylex";
 
-export type ElevationToken = "none" | "xsmall" | "small" | "medium" | "large" | "xlarge";
+type ElevationToken = "none" | "xsmall" | "small" | "medium" | "large" | "xlarge";
 
 /**
  * @description

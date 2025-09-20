@@ -3,7 +3,6 @@ import { useFormContext } from "../context";
 import { type ReactNode, useCallback, useMemo, useState } from "react";
 import { type FieldsValue } from "../../../utils/form";
 import type { FormItemProps } from "../../../types/form";
-import { useForm as _useForm } from "../use-form";
 
 type UsingFormItem<T extends FieldsValue, FieldKey extends keyof T> = Pick<
   FormItemProps<T, FieldKey>,
@@ -45,10 +44,13 @@ function useFormItem<T extends FieldsValue, FieldKey extends keyof T>({
     return !!error;
   }, [error]);
 
-  const change = useCallback((value: T[FieldKey]) => {
-    if (!name) return;
-    form?.change(name, value);
-  }, []);
+  const change = useCallback(
+    (value: T[FieldKey]) => {
+      if (!name) return;
+      form?.change(name, value);
+    },
+    [form, name],
+  );
 
   return {
     value,

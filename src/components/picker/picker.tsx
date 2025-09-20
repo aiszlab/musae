@@ -4,7 +4,6 @@ import React, {
   forwardRef,
   useImperativeHandle,
   type MouseEvent,
-  type CSSProperties,
   type FocusEvent,
   useContext,
 } from "react";
@@ -13,7 +12,6 @@ import { useBoolean, useFocus, useEvent } from "@aiszlab/relax";
 import type { PickerProps, PickerRef } from "../../types/picker";
 import { useClassNames } from "../../hooks/use-class-names";
 import { create as $create, props as $props } from "@stylexjs/stylex";
-import { useTheme } from "../theme";
 import { styles as inputStyles } from "../input";
 import { CLASS_NAMES, Context } from "./context";
 import { stringify } from "@aiszlab/relax/class-name";

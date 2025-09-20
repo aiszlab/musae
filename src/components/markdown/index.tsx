@@ -29,7 +29,7 @@ const Markdown = ({ value, className, style }: MarkdownProps) => {
           default: () => rendered,
         })),
     );
-  }, [value, className, style, isMounted]);
+  }, [value, classNames.markdown, className, style, isMounted]);
 
   // avoid fallback show when children updated
   const children = useDeferredValue(createElement(_Markdown));

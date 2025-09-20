@@ -27,19 +27,17 @@ export const useFooter = ({
     return (
       footer ?? (
         <Space>
-          <Button onClick={onConfirm} variant="text" children={locale.confirm} {...confirm} />
+          <Button onClick={onConfirm} variant="text" {...confirm}>
+            {confirm.children ?? locale.confirm}
+          </Button>
 
           {!!cancel && (
-            <Button
-              onClick={onClose}
-              color="secondary"
-              variant="text"
-              children={locale.cancel}
-              {...cancel}
-            />
+            <Button onClick={onClose} color="secondary" variant="text" {...cancel}>
+              {cancel.children ?? locale.cancel}
+            </Button>
           )}
         </Space>
       )
     );
-  }, [footer, onConfirm, onClose, locale, confirm]);
+  }, [footer, onConfirm, confirm, locale.confirm, locale.cancel, cancel, onClose]);
 };

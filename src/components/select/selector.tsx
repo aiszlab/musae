@@ -4,9 +4,6 @@ import React, {
   useRef,
   useContext,
   type ChangeEvent,
-  type ForwardRefExoticComponent,
-  type PropsWithoutRef,
-  type RefAttributes,
 } from "react";
 import type { SelectorProps, SelectorRef } from "../../types/select";
 import { Tag } from "../tag";
@@ -37,9 +34,7 @@ const styles = {
   }),
 };
 
-const Selector: ForwardRefExoticComponent<
-  PropsWithoutRef<SelectorProps> & RefAttributes<SelectorRef>
-> = forwardRef(
+const Selector = forwardRef<SelectorRef, SelectorProps>(
   ({ mode, searchable, value, onSearch, searched, onChange, onBlur, placeholder }, ref) => {
     const inputRef = useRef<HTMLInputElement>(null);
     const { isFocused, open } = useContext(Context);

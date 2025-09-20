@@ -1,5 +1,3 @@
-import { props } from "@stylexjs/stylex";
-
 /**
  * @description get exceed index
  */

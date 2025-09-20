@@ -37,7 +37,7 @@ export type Column<T> = {
    * @description
    * custom render, render is not provided, just render value
    */
-  render?: (value: any, record: T, index: number) => ReactNode | unknown;
+  render?: (value: unknown, record: T, index: number) => ReactNode | unknown;
 
   /**
    * @description

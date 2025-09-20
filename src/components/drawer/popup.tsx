@@ -145,7 +145,6 @@ const Popup = ({
     if (!open) return;
     if (contains(ref.current, document.activeElement)) return;
     ref.current?.focus();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open]);
 
   const styled = {

@@ -53,7 +53,7 @@ const Collapse = ({
         }}
       >
         {items.map((item) => {
-          return <Item {...item} value={item.key} />;
+          return <Item {...item} value={item.key} key={item.key} />;
         })}
       </div>
     </Context.Provider>

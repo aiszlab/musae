@@ -16,11 +16,11 @@ type Story = StoryObj<typeof meta>;
 export const Normal: Story = {
   args: {
     children: [
-      <Layout.Heading>heading</Layout.Heading>,
-      <Layout.Header>header</Layout.Header>,
-      <Layout.Sidebar>sidebar</Layout.Sidebar>,
-      <Layout.Main>main</Layout.Main>,
-      <Layout.Footer>footer</Layout.Footer>,
+      <Layout.Heading key="heading">heading</Layout.Heading>,
+      <Layout.Header key="header">header</Layout.Header>,
+      <Layout.Sidebar key="sidebar">sidebar</Layout.Sidebar>,
+      <Layout.Main key="main">main</Layout.Main>,
+      <Layout.Footer key="footer">footer</Layout.Footer>,
     ],
   },
 };

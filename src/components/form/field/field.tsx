@@ -81,7 +81,7 @@ const Field = <T extends FieldsValue, FieldKey extends keyof T>({
       supporting={
         <>
           {!!supporting && <Supporting>{supporting}</Supporting>}
-          <AnimatePresence mode="wait">{isInvalid && <Error children={error} />}</AnimatePresence>
+          <AnimatePresence mode="wait">{isInvalid && <Error>{error}</Error>}</AnimatePresence>
         </>
       }
     >

@@ -1,4 +1,4 @@
-import React, { type CSSProperties, forwardRef, type MouseEventHandler, useRef } from "react";
+import React, { forwardRef, type MouseEventHandler, useRef } from "react";
 import { MenuItemProps } from "../../types/menu";
 import { useItemChildren, useMenuContext } from "./hooks";
 import { create as $create, props as $props } from "@stylexjs/stylex";

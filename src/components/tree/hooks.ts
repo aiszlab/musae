@@ -24,7 +24,11 @@ export const useExpandedKeys = ({
     (key: Key) => {
       // deal expanding key
       const _keys = new Set(_expandedKeys);
-      _keys.has(key) ? _keys.delete(key) : _keys.add(key);
+      if (_keys.has(key)) {
+        _keys.delete(key);
+      } else {
+        _keys.add(key);
+      }
       const expandingKeys = Array.from(_keys);
 
       // change inner state

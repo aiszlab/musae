@@ -20,13 +20,7 @@ const styles = $create({
   },
 });
 
-const Cascader = ({
-  mode,
-  separator = "/",
-  options = [],
-  complex = false,
-  ...props
-}: CascaderProps) => {
+const Cascader = ({ mode, separator = "/", options = [], ...props }: CascaderProps) => {
   const ref = useRef<PickerRef>(null);
   const close = useCallback(() => ref.current?.close(), []);
   const classNames = useClassNames(CLASS_NAMES);

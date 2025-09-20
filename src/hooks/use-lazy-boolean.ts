@@ -1,5 +1,4 @@
-import { isUndefined, useControlledState, useEvent, useTimer } from "@aiszlab/relax";
-import { useCallback } from "react";
+import { useControlledState, useEvent, useTimer } from "@aiszlab/relax";
 
 interface UsingLazyBoolean {
   isTruthy?: boolean;

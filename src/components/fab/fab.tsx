@@ -38,7 +38,7 @@ const styles = $create({
 });
 
 const Fab = forwardRef<HTMLButtonElement, FabProps>(
-  ({ container, children, onClick: click, draggable = true, ...props }, ref) => {
+  ({ container, children, onClick: click, ...props }, ref) => {
     const _buttonRef = useRef<HTMLButtonElement>(null);
     const { container: _container } = useContainer({ container });
     const [draggableRef, { offsetX, offsetY, x, y, movementX, movementY, isDragged }] =

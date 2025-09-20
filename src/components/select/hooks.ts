@@ -1,4 +1,4 @@
-import { type Key, useCallback, useMemo, useState } from "react";
+import { type Key, useMemo, useState } from "react";
 import type { Filter, Mode, ReadableOptions, SelectProps, ValueOrValues } from "../../types/select";
 import { isFunction, isNull, useControlledState, useEvent } from "@aiszlab/relax";
 import { readOptions, toKey, toMenuItem, toValues } from "./utils";

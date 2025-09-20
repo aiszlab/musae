@@ -6,7 +6,6 @@ import Context, { CLASS_NAMES } from "./context";
 import { stringify } from "@aiszlab/relax/class-name";
 import Track from "./track";
 import Handle from "./handle";
-import { useDrag } from "@aiszlab/relax";
 
 const _styles = $create({
   default: {
@@ -19,9 +18,9 @@ const _styles = $create({
 const Slider = () => {
   const classNames = useClassNames(CLASS_NAMES);
   const styled = $props(_styles.default);
-  const [offset, setOffset] = useState(0);
+  const [offset] = useState(0);
 
-  const {} = useDrag();
+  // const {} = useDrag();
 
   return (
     <Context.Provider value={{ classNames }}>

@@ -4,7 +4,6 @@ import { flexRender } from "@tanstack/react-table";
 import type { HeaderProps } from "../../../types/table";
 import { create as $create, props as $props } from "@stylexjs/stylex";
 import { sizes, spacing } from "../../theme/tokens.stylex";
-import { useTheme } from "../../theme";
 import { stringify } from "@aiszlab/relax/class-name";
 import { $label } from "../../../components/theme/theme";
 import { type ThemeColorVariable, useThemeColorVars } from "../../../hooks/use-theme-color-vars";
@@ -45,7 +44,6 @@ const styles = $create({
 
 const Header = <T,>(props: HeaderProps) => {
   const { table, bordered, classNames } = useTable<T>();
-  const theme = useTheme();
   const _themeColorVars = useThemeColorVars(["surface", "outline-variant"]);
 
   if (!table) return null;

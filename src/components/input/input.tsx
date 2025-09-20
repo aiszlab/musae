@@ -97,7 +97,6 @@ const Input = forwardRef<InputRef, InputProps>(
       onFocus,
       leading,
       trailing,
-      variant = "outlined",
       ...inputProps
     },
     ref,

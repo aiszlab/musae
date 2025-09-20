@@ -37,7 +37,7 @@ export const usePanels = ({ items }: { items: PanelItem[] }) => {
         };
 
         prev[2].push(_panelProps);
-        if (!!_panelProps.defaultSize) {
+        if (_panelProps.defaultSize) {
           prev[1].push(_panelProps.defaultSize);
         } else {
           prev[0].push(_item);
@@ -55,6 +55,7 @@ export const usePanels = ({ items }: { items: PanelItem[] }) => {
       panels,
       unsizedItemSpace,
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [items.length]);
 
   // when panel render, collect panel ref

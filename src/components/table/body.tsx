@@ -39,7 +39,7 @@ const Body = <T,>() => {
   const _isEmpty = isEmpty(rows);
 
   return (
-    <tbody className={classNames.body}>
+    <tbody className={classNames.body} style={_themeColorVars}>
       {_isEmpty && (
         <tr>
           <td colSpan={table.getAllColumns().length}>

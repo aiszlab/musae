@@ -143,7 +143,13 @@ export const useContextValue = ({
   // toggle expand
   const toggle = useEvent((key: Key) => {
     const expandingKeys = new Set(_expandedKeys);
-    expandingKeys.has(key) ? expandingKeys.delete(key) : expandingKeys.add(key);
+
+    if (expandingKeys.has(key)) {
+      expandingKeys.delete(key);
+    } else {
+      expandingKeys.add(key);
+    }
+
     const _expandingKeys = Array.from(expandingKeys);
 
     _setExpandedKeys(_expandingKeys);

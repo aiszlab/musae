@@ -8,7 +8,7 @@ import { BehaviorSubject, filter } from "rxjs";
  */
 export const FORM_TOKEN = Symbol("FORM");
 
-export type FieldsValue = Record<string, any>;
+export type FieldsValue = Record<string, unknown>;
 
 interface FieldState<FieldValue> {
   value: Partialable<FieldValue>;
@@ -134,7 +134,10 @@ export class Form<T extends FieldsValue> {
     name: FieldKey,
     { onChange, rules, onValidate }: RegisteredField<T, FieldKey>,
   ) {
-    this.fields.set(name, { rules });
+    this.fields.set(name, {
+      // @ts-expect-error 注册的字段均为表单`key`
+      rules,
+    });
 
     const _subscription = this.state$
       .pipe(
@@ -222,7 +225,10 @@ export class Form<T extends FieldsValue> {
         const error = await Promise.race(
           rules.map(async ({ validate, message }) => {
             return await Promise.try(() => validate(this.state.value?.[name]))
-              .catch((_error: ReactNode) => false)
+              .catch((error: ReactNode) => {
+                console.error(error);
+                return false;
+              })
               // `validate` resolved value is `true`, means valid, set `error` to `null`
               .then((_v) => {
                 if (_v === true) return null;

@@ -1,4 +1,4 @@
-import React, { type CSSProperties, memo, type ReactNode, useMemo } from "react";
+import React, { memo, type ReactNode, useMemo } from "react";
 import type { HighlightProps } from "../../types/highlight";
 import { create as $create, props as $props } from "@stylexjs/stylex";
 import { useTheme } from "../theme";
@@ -46,7 +46,7 @@ const Highlight = ({ children, capture }: HighlightProps) => {
     _children.push(children.slice(end));
 
     return _children;
-  }, [capture, children, theme, classNames]);
+  }, [capture, children, classNames]);
 
   return (
     <span

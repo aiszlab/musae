@@ -53,7 +53,7 @@ const Ellipsis = ({
     _setValue(
       _exceedAt === value.length ? value : value.substring(0, _exceedAt).concat(textOverflow),
     );
-  }, [value, textOverflow, lineClamp]);
+  }, [value, textOverflow, lineClamp, styled.virtual.className]);
 
   return (
     <Tooltip title={_value !== value && value}>

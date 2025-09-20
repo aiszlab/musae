@@ -89,7 +89,7 @@ const Select = <T extends ValueOrValues = ValueOrValues>({
       pickableStyle={styled.pickable.style}
       onPopperExite={reset}
       invalid={invalid}
-      onClear={!!onClear ? _onClear : void 0}
+      onClear={onClear ? _onClear : void 0}
       {...(!searchable && {
         onBlur,
       })}

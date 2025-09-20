@@ -45,11 +45,14 @@ export const useValue = ([
           const currentId = currentOption?.id;
 
           prev[0] = currentId;
-          currentOption &&
+
+          if (currentOption) {
             prev[1].push({
               label: currentOption.label,
               value: key,
             });
+          }
+
           prev[2] = currentOption?.children;
           return prev;
         },
@@ -76,9 +79,12 @@ export const useValue = ([
           const _option = prev[2]?.get(key);
           // check has children
           prev[0] = !!_option?.children;
+
           // add submenus
-          _option?.children &&
+          if (_option?.children) {
             prev[1].push([..._option.children.values()].map((option) => toMenuItem(option)));
+          }
+
           // pass children
           prev[2] = _option?.children;
           return prev;

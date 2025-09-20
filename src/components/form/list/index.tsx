@@ -17,7 +17,7 @@ function _List<T extends FieldsValue, FieldKey extends keyof T>({
 
   return (
     <Item {...itemProps}>
-      <List children={children} />
+      <List>{children}</List>
     </Item>
   );
 }

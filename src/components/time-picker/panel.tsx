@@ -68,7 +68,13 @@ const Panel = forwardRef<PanelRef, PanelProps>((props, ref) => {
   };
 
   return (
-    <div className={stringify(classNames.panel, styled.panel.className)} style={styled.panel.style}>
+    <div
+      className={stringify(classNames.panel, styled.panel.className)}
+      style={{
+        ...styled.panel.style,
+        ..._themeColorVars,
+      }}
+    >
       <Clock value={value} onChange={change} />
 
       <div

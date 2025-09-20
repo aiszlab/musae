@@ -117,7 +117,6 @@ const Popup = forwardRef<HTMLDivElement, PopupProps>(
       if (!open) return;
       if (contains(containerRef.current, document.activeElement)) return;
       containerRef.current?.focus();
-      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [open]);
 
     const styled = {

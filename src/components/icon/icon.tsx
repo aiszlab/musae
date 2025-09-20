@@ -1,4 +1,4 @@
-import React, { type ReactNode, createElement, useMemo, type CSSProperties } from "react";
+import React, { type ReactNode, createElement, useMemo } from "react";
 import type { AsProps, IconProps } from "../../types/icon";
 import { isFunction } from "@aiszlab/relax";
 import { create as $create, props as $props } from "@stylexjs/stylex";

@@ -39,7 +39,11 @@ const OtpInput = ({
 
     // handle input, only select when prev input
     inputRefs.current[foucsAt]?.focus?.();
-    _foucsAt < length && inputRefs.current[foucsAt]?.select?.();
+
+    if (_foucsAt < length) {
+      inputRefs.current[foucsAt]?.select?.();
+    }
+
     setFocusedAt(foucsAt);
   });
 

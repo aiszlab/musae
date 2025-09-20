@@ -1,8 +1,6 @@
 import { useEvent } from "@aiszlab/relax";
 import { useLazyBoolean } from "../../../hooks/use-lazy-boolean";
-import type { PopperRef } from "../../../types/popper";
 import { useCallback } from "react";
-import type { Nullable } from "@aiszlab/relax/types";
 
 type UsedIsVisibleState = [
   boolean,

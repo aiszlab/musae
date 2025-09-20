@@ -6,7 +6,7 @@ import {
   type DeepKeys,
   type Table,
 } from "@tanstack/react-table";
-import { useMemo, useRef, createElement } from "react";
+import React, { useMemo, useRef } from "react";
 import type { Column, ContextValue, SortDescriptor } from "../../types/table";
 import HeaderCell from "./header/cell";
 import { useControlledState, useEvent } from "@aiszlab/relax";
@@ -17,7 +17,7 @@ import type { CLASS_NAMES } from "./context";
  * @description
  * use columns
  */
-export const useColumns = <T>({ columns }: { columns: Column<T>[] }) => {
+export const useColumns = <T,>({ columns }: { columns: Column<T>[] }) => {
   const helper = useRef(createColumnHelper<T>());
 
   return useMemo<ColumnDef<T, DeepValue<T, DeepKeys<T>>>[]>(() => {
@@ -32,12 +32,11 @@ export const useColumns = <T>({ columns }: { columns: Column<T>[] }) => {
       }) => {
         // @ts-expect-error valueAt or key is always exist
         return helper.current.accessor(valueAt ?? key, {
-          header: createElement(HeaderCell, {
-            children: title,
-            sortable,
-            value: key,
-            sortDirections,
-          }),
+          header: (
+            <HeaderCell sortable={sortable} value={key} sortDirections={sortDirections}>
+              {title}
+            </HeaderCell>
+          ),
           cell: (_context: CellContext<T, DeepValue<T, DeepKeys<T>>>) => {
             const value = _context.getValue();
             if (!render) {
@@ -56,7 +55,7 @@ export const useColumns = <T>({ columns }: { columns: Column<T>[] }) => {
  * @description
  * for context value
  */
-export const useContextValue = <T>({
+export const useContextValue = <T,>({
   table: _table,
   bordered,
   sortDescriptor: _sortDescriptor,

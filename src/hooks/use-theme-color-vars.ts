@@ -29,5 +29,6 @@ export const useThemeColorVars = (tokens: (ColorRole | [ColorRole, number])[]) =
 
       return prev;
     }, {});
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tokens.toString(), theme.colors]);
 };

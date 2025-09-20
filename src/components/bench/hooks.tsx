@@ -1,4 +1,4 @@
-import React, { Children, type Key, type ReactNode, useCallback, useMemo, useState } from "react";
+import React, { type Key, type ReactNode, useCallback, useMemo, useState } from "react";
 import { first, isUndefined, useEvent } from "@aiszlab/relax";
 import type { BenchProps, Layout, Logo, NavigationItem } from "../../types/bench";
 import type { MenuItem } from "../../types/menu";
@@ -136,14 +136,14 @@ export const useMenuItems = ({
     switch (layout) {
       case "side":
         return Array.from(_menuItems.values());
-      case "mix":
-        // when header menu is not located, just use first menu`s children
+      case "mix": { // when header menu is not located, just use first menu`s children
         const _root = first(selectedKeys);
         return (
           (isUndefined(_root)
             ? _menuItems.values().next().value?.children
             : _menuItems.get(_root)?.children) ?? []
         );
+      }
       default:
         return [];
     }

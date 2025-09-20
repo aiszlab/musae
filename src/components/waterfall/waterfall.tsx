@@ -82,7 +82,6 @@ const Waterfall = ({
     return (
       <Sequential
         columns={columns}
-        children={children}
         rowGap={rowGap}
         className={stringify(classNames.sequential, className, styled.className)}
         style={{
@@ -90,7 +89,9 @@ const Waterfall = ({
           "--max-height": `${maxHeight}px`,
           ...style,
         }}
-      />
+      >
+        {children}
+      </Sequential>
     );
   }
 

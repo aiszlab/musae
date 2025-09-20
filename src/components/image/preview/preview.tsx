@@ -17,18 +17,18 @@ const styles = $create({
   }),
 });
 
-enum DefaultStyle {
-  scale = 1,
-  rotate = 0,
-  flipX = 0,
-  flipY = 0,
-}
+const DEFAULT_STYLE = {
+  scale: 1,
+  rotate: 0,
+  flipX: 0,
+  flipY: 0,
+} as const;
 
 const Preview = forwardRef<PreviewRef, PreviewProps>(({ onClose, src, alt }, ref) => {
-  const [scale, setScale] = useState(DefaultStyle.scale);
-  const [rotate, setRotate] = useState(DefaultStyle.rotate);
-  const [isFlipX, setFlipX] = useState(!!DefaultStyle.flipX);
-  const [isFlipY, setFlipY] = useState(!!DefaultStyle.flipY);
+  const [scale, setScale] = useState<number>(DEFAULT_STYLE.scale);
+  const [rotate, setRotate] = useState<number>(DEFAULT_STYLE.rotate);
+  const [isFlipX, setFlipX] = useState<boolean>(!!DEFAULT_STYLE.flipX);
+  const [isFlipY, setFlipY] = useState<boolean>(!!DEFAULT_STYLE.flipY);
 
   const onZoomOut = () => {
     setScale((prev) => Math.max(prev / 1.5, 1));
@@ -54,10 +54,10 @@ const Preview = forwardRef<PreviewRef, PreviewProps>(({ onClose, src, alt }, ref
     () => {
       return {
         reset: () => {
-          setScale(DefaultStyle.scale);
-          setRotate(DefaultStyle.rotate);
-          setFlipX(!!DefaultStyle.flipX);
-          setFlipY(!!DefaultStyle.flipY);
+          setScale(DEFAULT_STYLE.scale);
+          setRotate(DEFAULT_STYLE.rotate);
+          setFlipX(!!DEFAULT_STYLE.flipX);
+          setFlipY(!!DEFAULT_STYLE.flipY);
         },
       };
     },

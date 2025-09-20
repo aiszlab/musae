@@ -15,7 +15,7 @@ function Item<T extends FieldsValue>({ field, children, form }: FormListItemProp
   // current field form value
   const value = useMemo(() => {
     return at(values ?? [], fields?.indexOf(field) ?? Infinity);
-  }, [values, field]);
+  }, [values, fields, field]);
 
   // value change handler
   const changeFieldValue = useEvent<ChangeHandler<T>>((value) => {

@@ -1,6 +1,5 @@
 import type { ReactNode } from "react";
 import type { ComponentProps } from "./element";
-import type { ElevationToken } from "../components/theme/tokens.stylex";
 
 export type Layout = "side" | "top" | "mix";
 

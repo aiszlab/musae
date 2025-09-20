@@ -74,7 +74,12 @@ const Item = ({
         className={styled.more.className}
         style={styled.more.style}
         onClick={() => {
-          isMorePrev ? subtract(5) : add(5);
+          if (isMorePrev) {
+            subtract(5);
+            return;
+          }
+
+          add(5);
         }}
         size="small"
       >

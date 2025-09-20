@@ -1,4 +1,4 @@
-import React, { useContext, type CSSProperties } from "react";
+import React, { useContext } from "react";
 import { create as $create, props as $props } from "@stylexjs/stylex";
 import { Close, KeyboardArrowLeft, KeyboardArrowRight } from "../../icon/icons";
 import { Portal } from "../../portal";

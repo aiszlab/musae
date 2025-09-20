@@ -64,21 +64,24 @@ const Panel = forwardRef<PanelRef, PanelProps>(
     );
 
     // drag move handler
-    const onDragMove = useCallback((movement: number) => {
-      const leading = panelsRef?.current[at];
-      const trailing = panelsRef?.current[at + 1];
+    const onDragMove = useCallback(
+      (movement: number) => {
+        const leading = panelsRef?.current[at];
+        const trailing = panelsRef?.current[at + 1];
 
-      // can not overflow any item
-      const isNegative = movement < 0;
-      const _offset = Math.min(
-        Math.abs(movement),
-        (isNegative ? leading?.size() : trailing?.size()) ?? 0,
-      );
-      const offset = isNegative ? _offset * -1 : _offset;
+        // can not overflow any item
+        const isNegative = movement < 0;
+        const _offset = Math.min(
+          Math.abs(movement),
+          (isNegative ? leading?.size() : trailing?.size()) ?? 0,
+        );
+        const offset = isNegative ? _offset * -1 : _offset;
 
-      leading?.offset(offset);
-      trailing?.offset(offset * -1);
-    }, []);
+        leading?.offset(offset);
+        trailing?.offset(offset * -1);
+      },
+      [at, panelsRef],
+    );
 
     // drag end handler
     const onDragEnd = useCallback(() => {
@@ -87,7 +90,7 @@ const Panel = forwardRef<PanelRef, PanelProps>(
 
       leading?.reset();
       trailing?.reset();
-    }, []);
+    }, [at, panelsRef]);
 
     return (
       <>

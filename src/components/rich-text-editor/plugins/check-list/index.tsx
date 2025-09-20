@@ -1,9 +1,8 @@
-import { INSERT_CHECK_LIST_COMMAND, insertList } from "@lexical/list";
+import { INSERT_CHECK_LIST_COMMAND, $insertList } from "@lexical/list";
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
 import { $getNodeByKey, COMMAND_PRIORITY_LOW } from "lexical";
 import { chain, useMounted } from "@aiszlab/relax";
 import { CheckableListItemNode } from "../../nodes/checkable-list-item";
-import { CheckboxNode } from "../../nodes/checkbox";
 
 const CheckListPlugin = () => {
   const [editor] = useLexicalComposerContext();
@@ -14,7 +13,7 @@ const CheckListPlugin = () => {
       editor.registerCommand(
         INSERT_CHECK_LIST_COMMAND,
         () => {
-          insertList(editor, "check");
+          $insertList("check");
           return true;
         },
         COMMAND_PRIORITY_LOW,

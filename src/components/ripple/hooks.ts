@@ -24,7 +24,7 @@ export function useRipple({ isDisabled = false }: { isDisabled?: boolean } = {})
         });
       });
     },
-    [isDisabled],
+    [isDisabled, unique],
   );
 
   const clear = useCallback((key: Key) => {
