@@ -18,7 +18,7 @@ interface Props {
   link: LinkNode | null;
 }
 
-interface FormValues {
+interface FormValue {
   title: string;
   href: string;
 }
@@ -32,7 +32,7 @@ const styles = $create({
 const FloatingLinkEditorPlugin = ({ link }: Props) => {
   const [editor] = useLexicalComposerContext();
   const [isEditable, { turnOn, turnOff }] = useBoolean();
-  const form = Form.useForm<FormValues>();
+  const form = Form.useForm<FormValue>();
 
   const trigger = useMemo(() => {
     return getElementByNode(editor, link);

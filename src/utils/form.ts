@@ -8,7 +8,8 @@ import { BehaviorSubject, filter } from "rxjs";
  */
 export const FORM_TOKEN = Symbol("FORM");
 
-export type FieldsValue = Record<string, unknown>;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type FieldsValue = Record<string, any>;
 
 interface FieldState<FieldValue> {
   value: Partialable<FieldValue>;
@@ -135,7 +136,6 @@ export class Form<T extends FieldsValue> {
     { onChange, rules, onValidate }: RegisteredField<T, FieldKey>,
   ) {
     this.fields.set(name, {
-      // @ts-expect-error 注册的字段均为表单`key`
       rules,
     });
 
