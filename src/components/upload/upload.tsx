@@ -9,7 +9,7 @@ import React, {
 } from "react";
 import type { UploadProps, UploadedListRef } from "../../types/upload";
 import { create as $create, props as $props } from "@stylexjs/stylex";
-import { useEvent } from "@aiszlab/relax";
+import { toArray, useEvent } from "@aiszlab/relax";
 import { Keyboard } from "../../utils/keyboard";
 import UploadedList from "./uploaded-list";
 import { Button } from "../button";
@@ -41,7 +41,7 @@ const Upload = ({
   value,
   onChange,
   limit,
-  renderItem,
+  renderItem = true,
   className,
   style,
 }: UploadProps) => {
@@ -98,6 +98,9 @@ const Upload = ({
     return cloneElement(_children, { disabled });
   }, [_children, disabled, _locale]);
 
+  // 文件列表数据
+  const fileItems = useMemo(() => toArray(value), [value]);
+
   return (
     <Context.Provider value={{ renderItem, classNames }}>
       <div
@@ -107,7 +110,10 @@ const Upload = ({
           ...style,
         }}
       >
-        <div {...(!disabled && { onClick, onKeyDown, onDrop, onDragOver: onDrop })}>
+        <div
+          {...(!disabled && { onClick, onKeyDown, onDrop, onDragOver: onDrop })}
+          className={classNames.uploader}
+        >
           <input
             ref={inputRef}
             type="file"
@@ -123,7 +129,7 @@ const Upload = ({
 
         <UploadedList
           ref={uploadedListRef}
-          value={value}
+          value={fileItems}
           uploader={uploader}
           onError={onError}
           onChange={onChange}

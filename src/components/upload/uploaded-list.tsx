@@ -35,7 +35,7 @@ const styles = $create({
 
 const UploadedList = forwardRef<UploadedListRef, UploadedListProps>(
   ({ uploader, onError, value, onChange, limit = Infinity }, ref) => {
-    const [values, setValues] = useControlledState(value, { defaultState: [] });
+    const [values, setValues] = useControlledState(value);
     const [, identity] = useIdentity();
     const { renderItem, classNames } = useContext(Context);
 

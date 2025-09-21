@@ -110,7 +110,7 @@ export type UploadProps = ComponentProps & {
    * value
    * @default void 0
    */
-  value?: FileItem[];
+  value?: FileItem[] | FileItem;
 
   /**
    * @description
@@ -130,7 +130,7 @@ export type UploadProps = ComponentProps & {
    * @description
    * item render
    */
-  renderItem?: "picture" | ((item: FileItem) => ReactNode) | false;
+  renderItem?: "picture" | ((item: FileItem) => ReactNode) | boolean;
 };
 
 /**
@@ -149,10 +149,13 @@ export type UploadedListRef = {
  * @description
  * uploaded list props
  */
-export type UploadedListProps = Pick<
-  UploadProps,
-  "uploader" | "onError" | "value" | "onChange" | "limit"
->;
+export interface UploadedListProps
+  extends Pick<UploadProps, "uploader" | "onError" | "onChange" | "limit"> {
+  /**
+   * 文件列表
+   */
+  value: FileItem[];
+}
 
 /**
  * @description

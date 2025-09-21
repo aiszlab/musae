@@ -7,6 +7,7 @@ import { createContext } from "react";
  */
 export const CLASS_NAMES = {
   upload: "upload",
+  uploader: "upload__uploader",
   uploadedList: "upload__uploaded-list",
   uploadedItem: "upload__uploaded-item",
   uploadedPictureItem: "upload__uploaded-item--picture",
