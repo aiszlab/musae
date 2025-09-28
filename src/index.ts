@@ -67,6 +67,7 @@ export { Chat } from "./components/chat";
 export { Markdown } from "./components/markdown";
 export { Ellipsis } from "./components/ellipsis";
 export { SplitPanel } from "./components/split-panel";
+export { SessionStorage } from "./components/session-storage";
 
 /**
  * @description
