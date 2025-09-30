@@ -96,4 +96,11 @@ export interface ButtonProps
    * @default void 0
    */
   onClick?: MouseEventHandler<HTMLButtonElement>;
+
+  /**
+   * loading
+   * @description 按钮正在等到，当前状态不可用
+   * @default false
+   */
+  loading?: boolean;
 }

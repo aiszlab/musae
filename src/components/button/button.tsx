@@ -10,6 +10,8 @@ import { hexToRgba } from "@aiszlab/fuzzy/color";
 import { useClassNames } from "../../hooks/use-class-names";
 import { CLASS_NAMES } from "./context";
 import styles, { TYPOGRAPHYS } from "./styles";
+import { useThemeColorVars } from "src/hooks/use-theme-color-vars";
+import { Loading } from "../icon/icons";
 
 /**
  * @author murukal
@@ -30,16 +32,21 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       disabled = false,
       ripple = true,
       type = "button",
-      onClick: _onClick,
+      onClick,
       prefix,
       suffix,
+      loading = false,
       ...props
     },
     ref,
   ) => {
     const theme = useTheme();
-    const { onClick, clear, ripples } = useButton({ onClick: _onClick });
+    const { isLoading, click, clear, ripples } = useButton({ onClick, loading });
     const classNames = useClassNames(CLASS_NAMES);
+    const _themeColorVars = useThemeColorVars([
+      ["on-surface", OPACITY.medium],
+      ["on-surface", OPACITY.thickest],
+    ]);
 
     const styled = {
       button: $props(
@@ -47,7 +54,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         ripple && styles.button.rippleable,
         styles.size[size],
         styles.variant[variant],
-        disabled && [styles.disabled.default, styles.disabled[variant]],
+        (disabled || isLoading) && [styles.disabled.default, styles.disabled[variant]],
         // shape styles
         styles.shape[shape].medium,
         styles.shape[shape][size],
@@ -58,7 +65,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 
     return (
       <button
-        onClick={onClick}
+        onClick={click}
         ref={ref}
         disabled={disabled}
         className={stringify(classNames.button, className, styled.button.className)}
@@ -68,19 +75,12 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           "--color-button": theme.colors[color],
           "--color-on-button": theme.colors[`on-${color}`],
           "--color-button-opacity-08": hexToRgba(theme.colors[color], OPACITY.thin).toString(),
-          "--color-on-surface-opacity-12": hexToRgba(
-            theme.colors["on-surface"],
-            OPACITY.medium,
-          ).toString(),
-          "--color-on-surface-opacity-38": hexToRgba(
-            theme.colors["on-surface"],
-            OPACITY.thickest,
-          ).toString(),
+          ..._themeColorVars,
         }}
         type={type}
         {...props}
       >
-        {prefix}
+        {isLoading ? <Loading /> : prefix}
         {children}
         {suffix}
         {ripple && <Ripple ripples={ripples} onClear={clear} />}
