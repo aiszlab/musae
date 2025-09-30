@@ -1,6 +1,5 @@
-import React, { useRef, useCallback, useMemo } from "react";
+import React, { useRef, useCallback } from "react";
 import { Picker } from "../picker";
-import { useOptions, useValue } from "./hooks";
 import type { SelectProps, SelectorRef, ValueOrValues } from "../../types/select";
 import { stringify } from "@aiszlab/relax/class-name";
 import { create as $create, props as $props } from "@stylexjs/stylex";
@@ -11,6 +10,8 @@ import { useClassNames } from "../../hooks/use-class-names";
 import type { PickerRef } from "../../types/picker";
 import { CLASS_NAMES } from "./context";
 import { useTagOptions } from "./hooks/use-tag-options";
+import { useSelectedValue } from "./hooks/use-selected-value";
+import { useOptions } from "./hooks/use-options";
 
 const styles = $create({
   picked: {
@@ -33,7 +34,7 @@ const Select = <T extends ValueOrValues = ValueOrValues>({
   onFilter,
   complex = false,
   value,
-  onChange: _onChange,
+  onChange,
   onBlur,
   invalid = false,
   placeholder,
@@ -51,6 +52,7 @@ const Select = <T extends ValueOrValues = ValueOrValues>({
     search,
     keyword,
     reset,
+    filter,
   } = useOptions({
     options,
     onFilter,
@@ -59,26 +61,24 @@ const Select = <T extends ValueOrValues = ValueOrValues>({
     value,
   });
 
-  const {
-    readableValues,
-    onChange,
-    onClear: _onClear,
-  } = useValue({
+  const { readableValues, change, clear, selectedKeys } = useSelectedValue({
     value,
     readableOptions: _readableOptions,
     mode,
     close,
     reset,
-    onChange: _onChange,
-    isComplex: complex,
+    onChange,
+    complex,
     onClear,
   });
 
-  const { menuItems } = useTagOptions({
+  const menuItems = useTagOptions({
     menuItems: _menuItems,
     options: _readableOptions,
     mode,
     values: readableValues,
+    filter,
+    keyword,
   });
 
   const click = () => {
@@ -90,12 +90,10 @@ const Select = <T extends ValueOrValues = ValueOrValues>({
     pickable: $props(styles.pickable),
   };
 
-  const selectedKeys = useMemo(() => Array.from(readableValues.keys()), [readableValues]);
-
   return (
     <Picker
       ref={ref}
-      pickable={<Selections items={menuItems} onSelect={onChange} selectedKeys={selectedKeys} />}
+      pickable={<Selections items={menuItems} onSelect={change} selectedKeys={selectedKeys} />}
       className={stringify(classNames.select, className, styled.picker.className)}
       style={{
         ...styled.picker.style,
@@ -106,7 +104,7 @@ const Select = <T extends ValueOrValues = ValueOrValues>({
       pickableStyle={styled.pickable.style}
       onPopperExite={reset}
       invalid={invalid}
-      onClear={onClear ? _onClear : void 0}
+      onClear={onClear ? clear : void 0}
       {...(!searchable && {
         onBlur,
       })}
@@ -118,7 +116,7 @@ const Select = <T extends ValueOrValues = ValueOrValues>({
         ref={selectorRef}
         keyword={keyword}
         onSearch={search}
-        onChange={onChange}
+        onChange={change}
         {...(searchable && { onBlur })}
         placeholder={placeholder}
       />
