@@ -1,11 +1,11 @@
-import type { Key } from "react";
+import type { Key, ReactNode } from "react";
 import type { Option } from "./option";
 import type { MenuItem, MenuProps } from "./menu";
 import type { ComponentProps } from "./element";
 import type { RequiredIn } from "@aiszlab/relax/types";
 import type { PickerProps } from "./picker";
 
-export type Mode = "multiple";
+export type Mode = "multiple" | "tags";
 
 export type Value = Key | Pick<Option, "value" | "label">;
 
@@ -59,14 +59,14 @@ export type SelectProps<T extends ValueOrValues = ValueOrValues> = ComponentProp
      * search handler
      * @default void 0
      */
-    onSearch?: (searched: string) => void;
+    onSearch?: (keyword: string) => void;
 
     /**
      * @description
      * option filter, like array filter
      * @default void 0
      */
-    onFilter?: ((searched: string, option: Option) => boolean) | boolean;
+    onFilter?: ((keyword: string, option: Option) => boolean) | boolean;
 
     /**
      * @description
@@ -82,10 +82,9 @@ export type SelectProps<T extends ValueOrValues = ValueOrValues> = ComponentProp
      */
     invalid?: boolean;
 
-    // TODO: docs
     /**
-     * @description
      * placeholder
+     * @description 没有选中值时，展示的兜底内容
      * @default void 0
      */
     placeholder?: string;
@@ -102,13 +101,7 @@ export type SelectProps<T extends ValueOrValues = ValueOrValues> = ComponentProp
  * @description
  * readable options
  */
-export type ReadableOptions = Map<Key, string>;
-
-/**
- * @description
- * to menu items
- */
-export type ToMenuItem = (option: Option) => Pick<MenuItem, "key" | "label">;
+export type ReadableOptions = Map<Key, ReactNode>;
 
 export type Filter = (option: Option) => boolean;
 
@@ -124,13 +117,13 @@ export type SelectorProps = Pick<
    * @description
    * value
    */
-  value: Map<Key, string>;
+  value: Map<Key, ReactNode>;
 
   /**
-   * @description
-   * searched value
+   * keyword
+   * @description 用户正在搜索的关键词
    */
-  searched: string;
+  keyword: string;
 
   /**
    * @description

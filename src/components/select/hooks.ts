@@ -1,7 +1,14 @@
-import { type Key, useMemo, useState } from "react";
+import { type Key, ReactNode, useMemo, useState } from "react";
 import type { Filter, Mode, ReadableOptions, SelectProps, ValueOrValues } from "../../types/select";
-import { isFunction, isNull, useControlledState, useEvent } from "@aiszlab/relax";
-import { readOptions, toKey, toMenuItem, toValues } from "./utils";
+import {
+  isFunction,
+  isNull,
+  isString,
+  toArray,
+  useControlledState,
+  useEvent,
+} from "@aiszlab/relax";
+import { readOptions, toKey, toMenuItem } from "./utils";
 import type { Option } from "../../types/option";
 import { Partialable } from "@aiszlab/relax/types";
 
@@ -34,13 +41,13 @@ export const useValue = <T extends ValueOrValues = ValueOrValues>({
   // only effect by value change
   const readableValues = useMemo(
     () =>
-      toValues(value).reduce((prev, _value) => {
+      toArray(value).reduce((prev, _value) => {
         const key = toKey(_value);
         return prev.set(
           key,
           (_value as Pick<Option, "label">).label ?? readableOptions.get(key) ?? _value.toString(),
         );
-      }, new Map<Key, string>()),
+      }, new Map<Key, ReactNode>()),
     [value, readableOptions],
   );
 
@@ -104,42 +111,61 @@ export const useValue = <T extends ValueOrValues = ValueOrValues>({
 export const useOptions = ({
   options,
   onSearch,
-  onFilter,
+  onFilter = true,
+  mode,
+  value,
 }: {
   options: Option[];
   onFilter: SelectProps["onFilter"];
   onSearch: SelectProps["onSearch"];
+  mode: Mode | undefined;
+  value: ValueOrValues | undefined;
 }) => {
-  const [searched, setSearched] = useState("");
+  const [keyword, setKeyword] = useState("");
 
   const filter = useEvent<Filter>((option) => {
-    if (!searched) return true;
+    if (!keyword) return true;
     if (isNull(onFilter) || onFilter === false) return true;
-    if (isFunction(onFilter)) return onFilter(searched, option);
+    if (isFunction(onFilter)) return onFilter(keyword, option);
 
-    const regExp = new RegExp(searched, "i");
-    return regExp.test(option.value.toString()) || !!(option.label && regExp.test(option.label));
+    const matcher = new RegExp(keyword, "i");
+
+    return (
+      matcher.test(option.value.toString()) ||
+      !!(isString(option.label) && matcher.test(option.label))
+    );
   });
 
   // wrapper search handler, set react state
   const search = useEvent<Required<SelectProps>["onSearch"]>((searched) => {
-    setSearched(searched);
+    setKeyword(searched);
     onSearch?.(searched);
   });
 
   // reset search value
-  const reset = useEvent(() => setSearched(""));
+  const reset = useEvent(() => setKeyword(""));
 
-  const [menuItems, readableOptions] = useMemo(
-    () => readOptions(options, toMenuItem, filter ?? (() => true)),
-    [options, filter],
-  );
+  const [menuItems, readableOptions] = useMemo(() => {
+    const [_menuItems, _readableOptions] = readOptions(options, filter);
+
+    // 在`tags`模式下，需要将搜索内容和选中结果自动注入
+    if (mode === "tags") {
+      [...toArray(value ?? []), ...(keyword ? [keyword] : [])].forEach((_value) => {
+        const _menuItem = toMenuItem(_value);
+        if (_readableOptions.has(_menuItem.key)) return;
+        _readableOptions.set(_menuItem.key, _menuItem.label);
+        _menuItems.push(_menuItem);
+      });
+    }
+
+    return [_menuItems, _readableOptions];
+  }, [options, filter, mode, value, keyword]);
 
   return {
     menuItems,
     readableOptions,
     search,
-    searched,
+    keyword,
     reset,
   };
 };

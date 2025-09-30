@@ -1,49 +1,45 @@
-import { isVoid, toArray } from "@aiszlab/relax";
-import type { Filter, ReadableOptions, ToMenuItem, Value, ValueOrValues } from "../../types/select";
+import type { Filter, Mode, ReadableOptions, Value } from "../../types/select";
 import type { Option } from "../../types/option";
 import type { MenuItem } from "../../types/menu";
+import { isObject } from "@aiszlab/relax";
+import type { Key } from "react";
+import type { RequiredIn } from "@aiszlab/relax/types";
 
 /**
  * @description
- * convert to value array
+ * convert select option into menu item
  */
-export const toValues = (valueOrValues?: ValueOrValues) => {
-  // empty
-  if (isVoid(valueOrValues)) return [];
-  // convert to array
-  return toArray(valueOrValues);
+export const toMenuItem = (option: Option | Key): RequiredIn<MenuItem, "key" | "label"> => {
+  if (!isObject(option)) {
+    return {
+      key: option,
+      label: option.toString(),
+    };
+  }
+
+  return {
+    key: option.value,
+    label: option.label ?? option.value.toString(),
+  };
 };
 
 /**
- * @description
- * convert to key
+ * toKey
+ * @description 获取传入值对应的`key`
  */
 export const toKey = (value: Value) => {
-  if (typeof value === "object") {
+  if (isObject(value)) {
     return value.value;
   }
-  return value;
-};
 
-/**
- * @description
- * convert to option
- */
-export const toOption = (value: Value): Pick<Option, "value" | "label"> => {
-  if (typeof value === "object") {
-    return value;
-  }
-  return {
-    value,
-    label: value.toString(),
-  };
+  return value;
 };
 
 /**
  * @description
  * deep read options
  */
-export const readOptions = (options: Option[], toMenuItem: ToMenuItem, filter: Filter) => {
+export const readOptions = (options: Option[], filter: Filter) => {
   return options.reduce<[MenuItem[], ReadableOptions]>(
     (prev, option) => {
       // first step, check current option is valid by filter
@@ -53,7 +49,7 @@ export const readOptions = (options: Option[], toMenuItem: ToMenuItem, filter: F
 
       // has child, read deeply
       const [_additions, _readableOptions] = option.children
-        ? readOptions(option.children, toMenuItem, filter)
+        ? readOptions(option.children, filter)
         : [];
 
       // convert with children
@@ -75,12 +71,9 @@ export const readOptions = (options: Option[], toMenuItem: ToMenuItem, filter: F
 };
 
 /**
- * @description
- * convert select option into menu item
+ * isMultiple
+ * @description 判断是否为多选模式，在`tags`模式下，也遵循多选逻辑
  */
-export const toMenuItem: ToMenuItem = (option) => {
-  return {
-    key: option.value,
-    label: option.label ?? option.value.toString(),
-  };
-};
+export function isMultiple(mode: Mode | undefined) {
+  return mode === "multiple" || mode === "tags";
+}

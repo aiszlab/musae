@@ -1,4 +1,4 @@
-import type { Key } from "react";
+import type { Key, ReactNode } from "react";
 
 export interface Option {
   /**
@@ -13,7 +13,7 @@ export interface Option {
    * label
    * @default void 0
    */
-  label?: string;
+  label?: ReactNode;
 
   /**
    * @description

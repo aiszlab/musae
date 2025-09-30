@@ -13,6 +13,7 @@ import { Context } from "../picker";
 import { $body } from "../theme/theme";
 import { type ThemeColorVariable, useThemeColorVars } from "../../hooks/use-theme-color-vars";
 import { OPACITY } from "../theme/tokens.stylex";
+import { isMultiple } from "./utils";
 
 const styles = {
   input: {
@@ -35,7 +36,7 @@ const styles = {
 };
 
 const Selector = forwardRef<SelectorRef, SelectorProps>(
-  ({ mode, searchable, value, onSearch, searched, onChange, onBlur, placeholder }, ref) => {
+  ({ mode, searchable, value, onSearch, keyword, onChange, onBlur, placeholder }, ref) => {
     const inputRef = useRef<HTMLInputElement>(null);
     const { isFocused, open } = useContext(Context);
     const _themeColorVars = useThemeColorVars(["on-surface", ["on-surface", OPACITY.thickest]]);
@@ -65,7 +66,7 @@ const Selector = forwardRef<SelectorRef, SelectorProps>(
     };
 
     // multiple mode render
-    if (mode === "multiple") {
+    if (isMultiple(mode)) {
       return (
         <>
           {Array.from(value.entries()).map(([key, label]) => {
@@ -88,7 +89,7 @@ const Selector = forwardRef<SelectorRef, SelectorProps>(
           {searchable && (
             <input
               ref={inputRef}
-              value={searched}
+              value={keyword}
               className={styled.input.className}
               style={{ ...styled.input.style, ..._themeColorVars }}
               onChange={search}
@@ -120,7 +121,7 @@ const Selector = forwardRef<SelectorRef, SelectorProps>(
     return (
       <input
         ref={inputRef}
-        value={searched}
+        value={keyword}
         placeholder={Array.from(value.values()).join(",") || placeholder}
         className={styled.input.className}
         style={{ ...styled.input.style, ..._themeColorVars }}

@@ -10,6 +10,7 @@ import Selections from "./selections";
 import { useClassNames } from "../../hooks/use-class-names";
 import type { PickerRef } from "../../types/picker";
 import { CLASS_NAMES } from "./context";
+import { useTagOptions } from "./hooks/use-tag-options";
 
 const styles = $create({
   picked: {
@@ -24,7 +25,7 @@ const styles = $create({
 
 const Select = <T extends ValueOrValues = ValueOrValues>({
   mode,
-  searchable = false,
+  searchable: _searchable = false,
   onSearch,
   className,
   style,
@@ -42,11 +43,20 @@ const Select = <T extends ValueOrValues = ValueOrValues>({
   const selectorRef = useRef<SelectorRef>(null);
   const close = useCallback(() => ref.current?.close(), []);
   const classNames = useClassNames(CLASS_NAMES);
+  const searchable = _searchable || mode === "tags";
 
-  const { menuItems, readableOptions, search, searched, reset } = useOptions({
+  const {
+    menuItems: _menuItems,
+    readableOptions: _readableOptions,
+    search,
+    keyword,
+    reset,
+  } = useOptions({
     options,
     onFilter,
     onSearch,
+    mode,
+    value,
   });
 
   const {
@@ -55,13 +65,20 @@ const Select = <T extends ValueOrValues = ValueOrValues>({
     onClear: _onClear,
   } = useValue({
     value,
-    readableOptions,
+    readableOptions: _readableOptions,
     mode,
     close,
     reset,
     onChange: _onChange,
     isComplex: complex,
     onClear,
+  });
+
+  const { menuItems } = useTagOptions({
+    menuItems: _menuItems,
+    options: _readableOptions,
+    mode,
+    values: readableValues,
   });
 
   const click = () => {
@@ -99,7 +116,7 @@ const Select = <T extends ValueOrValues = ValueOrValues>({
         mode={mode}
         searchable={searchable}
         ref={selectorRef}
-        searched={searched}
+        keyword={keyword}
         onSearch={search}
         onChange={onChange}
         {...(searchable && { onBlur })}
