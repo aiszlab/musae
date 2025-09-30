@@ -27,14 +27,14 @@ export const useTagOptions = ({
     if (mode !== "tags") return menuItems;
     if (values.size === 0 && !keyword) return menuItems;
 
-    const _values = new Map(values);
+    const mergedValues = new Map(values);
     const mergedMenuItems = Array.from(menuItems);
 
-    if (keyword && !_values.has(keyword)) {
-      _values.set(keyword, keyword);
+    if (keyword && !mergedValues.has(keyword)) {
+      mergedValues.set(keyword, keyword);
     }
 
-    _values.forEach((label, value) => {
+    mergedValues.forEach((label, value) => {
       if (options.has(value)) return;
       if (!filter({ value, label })) return;
 
