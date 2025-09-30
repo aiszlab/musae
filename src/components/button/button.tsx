@@ -43,7 +43,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     const theme = useTheme();
     const { isLoading, click, clear, ripples } = useButton({ onClick, loading });
     const classNames = useClassNames(CLASS_NAMES);
-    const _themeColorVars = useThemeColorVars([
+    const themeColorVars = useThemeColorVars([
       ["on-surface", OPACITY.medium],
       ["on-surface", OPACITY.thickest],
     ]);
@@ -75,7 +75,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           "--color-button": theme.colors[color],
           "--color-on-button": theme.colors[`on-${color}`],
           "--color-button-opacity-08": hexToRgba(theme.colors[color], OPACITY.thin).toString(),
-          ..._themeColorVars,
+          ...themeColorVars,
         }}
         type={type}
         {...props}
