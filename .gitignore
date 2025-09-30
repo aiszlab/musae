@@ -13,3 +13,5 @@ node-compile-cache
 coverage
 
 *storybook.log
+
+storybook-static
