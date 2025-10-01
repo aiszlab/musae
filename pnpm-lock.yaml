@@ -12,8 +12,8 @@ importers:
         specifier: ^2.0.6
         version: 2.0.6(@babel/core@7.28.4)(babel-plugin-macros@3.1.0)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
       '@aiszlab/relax':
-        specifier: 2.0.8-beta.0
-        version: 2.0.8-beta.0(@babel/core@7.28.4)(babel-plugin-macros@3.1.0)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
+        specifier: 2.0.8-beta.1
+        version: 2.0.8-beta.1(@babel/core@7.28.4)(babel-plugin-macros@3.1.0)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
       '@babel/runtime':
         specifier: ^7.28.4
         version: 7.28.4
@@ -199,8 +199,8 @@ packages:
       react: '>=18'
       react-dom: '>=18'
 
-  '@aiszlab/relax@2.0.8-beta.0':
-    resolution: {integrity: sha512-boxIfMskapgTvDqh8nvFsglLst5KQrb7nCU2mwJfGHxEV/iYxCk766bxJ/5jQLQzsUHZYZLXqEoKz5ZR0KZdrw==}
+  '@aiszlab/relax@2.0.8-beta.1':
+    resolution: {integrity: sha512-c8aplVAiXbaOjWdr4trasIKjR8ohywZshpfvsy85aonnYFl+pcWgnNwsTa274a/MAKKowVNfaLFhLXFpx9q6XA==}
     peerDependencies:
       react: '>=18'
       react-dom: '>=18'
@@ -4596,7 +4596,7 @@ snapshots:
       - babel-plugin-react-compiler
       - sass
 
-  '@aiszlab/relax@2.0.8-beta.0(@babel/core@7.28.4)(babel-plugin-macros@3.1.0)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)':
+  '@aiszlab/relax@2.0.8-beta.1(@babel/core@7.28.4)(babel-plugin-macros@3.1.0)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)':
     dependencies:
       '@babel/runtime': 7.28.4
       next: 15.5.3(@babel/core@7.28.4)(babel-plugin-macros@3.1.0)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)

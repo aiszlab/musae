@@ -51,14 +51,12 @@ const Select = <T extends ValueOrValues = ValueOrValues>({
     readableOptions: _readableOptions,
     search,
     keyword,
-    reset,
+    clearKeyword,
     filter,
   } = useOptions({
     options,
     onFilter,
     onSearch,
-    mode,
-    value,
   });
 
   const { readableValues, change, clear, selectedKeys } = useSelectedValue({
@@ -66,7 +64,7 @@ const Select = <T extends ValueOrValues = ValueOrValues>({
     readableOptions: _readableOptions,
     mode,
     close,
-    reset,
+    clearKeyword,
     onChange,
     complex,
     onClear,
@@ -102,7 +100,7 @@ const Select = <T extends ValueOrValues = ValueOrValues>({
       onClick={click}
       pickableClassName={styled.pickable.className}
       pickableStyle={styled.pickable.style}
-      onPopperExite={reset}
+      onPopperExite={clearKeyword}
       invalid={invalid}
       onClear={onClear ? clear : void 0}
       {...(!searchable && {

@@ -82,11 +82,10 @@ export const useFloating = ({
 
     _isOpen.current = true;
     _floatable.style.display = "flex";
+    _floatable.style.opacity = "0";
 
     await Promise.all([
-      Promise.resolve()
-        .then(onEnter)
-        .catch(() => null),
+      Promise.try(() => onEnter?.()).catch(() => null),
       animate(_floatable, { opacity: 1 }, { duration: 0.2 }),
     ]);
     await onEntered?.();
@@ -104,7 +103,7 @@ export const useFloating = ({
     _isOpen.current = false;
 
     await Promise.all([
-      Promise.resolve(onExit).catch(() => null),
+      Promise.try(() => onExit?.()).catch(() => null),
       animate(_floatable, { opacity: 0 }, { duration: 0.2 }).then(() => {
         _floatable.style.display = "none";
       }),

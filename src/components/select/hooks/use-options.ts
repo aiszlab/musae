@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react";
-import type { Filter, Mode, SelectProps, ValueOrValues } from "../../../types/select";
-import { isFunction, isNull, isString, toArray, useEvent } from "@aiszlab/relax";
-import { readOptions, toMenuItem } from "../utils";
+import type { Filter, SelectProps } from "../../../types/select";
+import { isFunction, isNull, isString, useEvent } from "@aiszlab/relax";
+import { readOptions } from "../utils";
 import type { Option } from "../../../types/option";
 
 /**
@@ -12,14 +12,10 @@ export const useOptions = ({
   options,
   onSearch,
   onFilter = true,
-  mode,
-  value,
 }: {
   options: Option[];
   onFilter: SelectProps["onFilter"];
   onSearch: SelectProps["onSearch"];
-  mode: Mode | undefined;
-  value: ValueOrValues | undefined;
 }) => {
   const [keyword, setKeyword] = useState("");
 
@@ -42,31 +38,20 @@ export const useOptions = ({
     onSearch?.(searched);
   });
 
-  // reset search value
-  const reset = useEvent(() => setKeyword(""));
+  // clear search keyword
+  const clearKeyword = useEvent(() => setKeyword(""));
 
-  const [menuItems, readableOptions] = useMemo(() => {
-    const [_menuItems, _readableOptions] = readOptions(options, filter);
-
-    // 在`tags`模式下，需要将搜索内容和选中结果自动注入
-    if (mode === "tags") {
-      [...toArray(value ?? []), ...(keyword ? [keyword] : [])].forEach((_value) => {
-        const _menuItem = toMenuItem(_value);
-        if (_readableOptions.has(_menuItem.key)) return;
-        _readableOptions.set(_menuItem.key, _menuItem.label);
-        _menuItems.push(_menuItem);
-      });
-    }
-
-    return [_menuItems, _readableOptions];
-  }, [options, filter, mode, value, keyword]);
+  const [menuItems, readableOptions] = useMemo(
+    () => readOptions(options, filter),
+    [options, filter],
+  );
 
   return {
     menuItems,
     readableOptions,
     search,
     keyword,
-    reset,
+    clearKeyword,
     filter,
   };
 };

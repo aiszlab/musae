@@ -1,5 +1,5 @@
 import { useMemo, type Key, type ReactNode } from "react";
-import { MenuItem } from "../../../types/menu";
+import type { MenuItem } from "../../../types/menu";
 import type { Filter, Mode } from "../../../types/select";
 
 interface UsingTagOptions {
@@ -36,7 +36,9 @@ export const useTagOptions = ({
 
     mergedValues.forEach((label, value) => {
       if (options.has(value)) return;
-      if (!filter({ value, label })) return;
+
+      const isVisible = filter({ value, label });
+      if (!isVisible) return;
 
       mergedMenuItems.push({
         key: value,

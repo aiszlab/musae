@@ -11,7 +11,7 @@ interface UsingSelectedValue<T extends ValueOrValues = ValueOrValues> {
   mode: Mode | undefined;
   complex: boolean;
   close: () => void;
-  reset: () => void;
+  clearKeyword: () => void;
   onChange?: (value: T) => void;
   onClear?: () => void;
 }
@@ -27,6 +27,7 @@ export const useSelectedValue = <T extends ValueOrValues = ValueOrValues>({
   readableOptions,
   onChange,
   onClear,
+  clearKeyword,
   ...props
 }: UsingSelectedValue<T>) => {
   const [value, setValue] = useControlledState(props.value);
@@ -80,6 +81,7 @@ export const useSelectedValue = <T extends ValueOrValues = ValueOrValues>({
         : Array.from(next.keys())
     ) as T;
 
+    clearKeyword();
     setValue(_changedValues);
     onChange?.(_changedValues);
   });

@@ -15,7 +15,7 @@
     "authors": "zx scripts/contributors.mjs",
     "changesets": "z cs",
     "version": "z cs version",
-    "storybook": "storybook dev -p 6006",
+    "storybook": "npm run build && storybook dev -p 6006",
     "build-storybook": "storybook build",
     "lint": "eslint ."
   },
@@ -65,7 +65,7 @@
   },
   "dependencies": {
     "@aiszlab/fuzzy": "^2.0.6",
-    "@aiszlab/relax": "2.0.8-beta.0",
+    "@aiszlab/relax": "2.0.8-beta.1",
     "@babel/runtime": "^7.28.4",
     "@floating-ui/dom": "^1.7.4",
     "@lexical/code": "^0.35.0",
