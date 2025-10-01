@@ -7,7 +7,11 @@ import { useControlledState, useEvent } from "@aiszlab/relax";
  * @description
  * hooks for button component
  */
-export const useButton = ({ onClick, loading }: Pick<ButtonProps, "onClick" | "loading">) => {
+export const useButton = ({
+  onClick,
+  loading,
+  disabled = false,
+}: Pick<ButtonProps, "onClick" | "loading" | "disabled">) => {
   const [isLoading, setIsLoading] = useControlledState(loading);
   const { ripples, add, clear } = useRipple();
 
@@ -25,5 +29,6 @@ export const useButton = ({ onClick, loading }: Pick<ButtonProps, "onClick" | "l
     click,
     clear,
     isLoading,
+    isDisabled: disabled || isLoading,
   };
 };

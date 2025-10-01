@@ -29,26 +29,28 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       size = "medium",
       variant = "filled",
       shape = "round",
-      disabled: _disabled = false,
+      disabled,
       ripple = true,
       type = "button",
       onClick,
       prefix,
       suffix,
-      loading = false,
+      loading,
       ...props
     },
     ref,
   ) => {
     const theme = useTheme();
-    const { isLoading, click, clear, ripples } = useButton({ onClick, loading });
+    const { isLoading, click, clear, ripples, isDisabled } = useButton({
+      onClick,
+      loading,
+      disabled,
+    });
     const classNames = useClassNames(CLASS_NAMES);
     const themeColorVars = useThemeColorVars([
       ["on-surface", OPACITY.medium],
       ["on-surface", OPACITY.thickest],
     ]);
-
-    const disabled = _disabled || isLoading;
 
     const styled = {
       button: $props(
@@ -56,7 +58,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         ripple && styles.button.rippleable,
         styles.size[size],
         styles.variant[variant],
-        disabled && [styles.disabled.default, styles.disabled[variant]],
+        isDisabled && [styles.disabled.default, styles.disabled[variant]],
         // shape styles
         styles.shape[shape].medium,
         styles.shape[shape][size],
@@ -69,7 +71,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       <button
         onClick={click}
         ref={ref}
-        disabled={disabled}
+        disabled={isDisabled}
         className={stringify(classNames.button, className, styled.button.className)}
         style={{
           ...styled.button.style,
