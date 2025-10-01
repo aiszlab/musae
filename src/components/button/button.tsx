@@ -29,7 +29,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       size = "medium",
       variant = "filled",
       shape = "round",
-      disabled = false,
+      disabled: _disabled = false,
       ripple = true,
       type = "button",
       onClick,
@@ -48,13 +48,15 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       ["on-surface", OPACITY.thickest],
     ]);
 
+    const disabled = _disabled || isLoading;
+
     const styled = {
       button: $props(
         styles.button.default,
         ripple && styles.button.rippleable,
         styles.size[size],
         styles.variant[variant],
-        (disabled || isLoading) && [styles.disabled.default, styles.disabled[variant]],
+        disabled && [styles.disabled.default, styles.disabled[variant]],
         // shape styles
         styles.shape[shape].medium,
         styles.shape[shape][size],

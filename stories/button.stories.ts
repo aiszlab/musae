@@ -56,3 +56,10 @@ export const Secondary: Story = {
     disabled: false,
   },
 };
+
+export const Loading: Story = {
+  args: {
+    loading: true,
+    children: "Loading",
+  },
+};
