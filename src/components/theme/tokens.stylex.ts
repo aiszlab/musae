@@ -121,18 +121,18 @@ export const positions = defineVars({
  * @description
  * opacity
  */
-
-export type OpacityToken = "thin" | "medium" | "thick" | "thicker" | "thickest";
-
-export const OPACITY: Record<OpacityToken, number> = {
+export const OPACITY = {
   thin: 0.08,
   medium: 0.12,
   thick: 0.16,
   thicker: 0.2,
   thickest: 0.38,
-};
+  heavy: 0.7,
+  heavier: 0.8,
+  heaviest: 0.9,
+} as const;
 
-export const opacity = defineVars(OPACITY as unknown as Record<OpacityToken, string>);
+export const opacity = defineVars(OPACITY as unknown as Record<keyof typeof OPACITY, string>);
 
 /**
  * @description duration

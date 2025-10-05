@@ -190,3 +190,15 @@ export interface PreviewRef {
    */
   reset: () => void;
 }
+
+/**
+ * image ref
+ * @description 组件实例，在`musae`中注入定制化能力
+ */
+export interface ImageRef extends Partial<HTMLImageElement> {
+  /**
+   * preview
+   * @description 预览图片
+   */
+  preview?: () => void;
+}

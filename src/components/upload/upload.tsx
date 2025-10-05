@@ -14,7 +14,7 @@ import { Keyboard } from "../../utils/keyboard";
 import UploadedList from "./uploaded-list";
 import { Button } from "../button";
 import { useLocale } from "../../locale";
-import { spacing } from "../theme/tokens.stylex";
+import { sizes, spacing } from "../theme/tokens.stylex";
 import { useClassNames } from "../../hooks/use-class-names";
 import { CLASS_NAMES, Context } from "./context";
 import { stringify } from "@aiszlab/relax/class-name";
@@ -28,13 +28,14 @@ const styles = $create({
     display: "flex",
     flexDirection: "column",
     gap: spacing.xxsmall,
+    width: sizes.fit,
   },
 });
 
 const Upload = ({
   onClick: _onClick,
   disabled,
-  multiple,
+  multiple = true,
   children: _children,
   uploader,
   onError,
@@ -110,22 +111,25 @@ const Upload = ({
           ...style,
         }}
       >
-        <div
-          {...(!disabled && { onClick, onKeyDown, onDrop, onDragOver: onDrop })}
-          className={classNames.uploader}
-        >
-          <input
-            ref={inputRef}
-            type="file"
-            value=""
-            onClick={(e) => e.stopPropagation()}
-            className={styled.input.className}
-            style={styled.input.style}
-            multiple={multiple}
-            onChange={_onChange}
-          />
-          {children}
-        </div>
+        {(multiple || fileItems.length === 0) && (
+          <div
+            {...(!disabled && { onClick, onKeyDown, onDrop, onDragOver: onDrop })}
+            className={classNames.uploader}
+          >
+            <input
+              ref={inputRef}
+              type="file"
+              value=""
+              onClick={(e) => e.stopPropagation()}
+              className={styled.input.className}
+              style={styled.input.style}
+              multiple={multiple}
+              onChange={_onChange}
+            />
+
+            {children}
+          </div>
+        )}
 
         <UploadedList
           ref={uploadedListRef}

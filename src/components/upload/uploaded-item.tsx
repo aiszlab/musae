@@ -1,4 +1,4 @@
-import React, { useContext, type Key, useMemo } from "react";
+import React, { useContext, type Key } from "react";
 import { create as $create, props as $props } from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import type { UploadedItem as UploadedItemType } from "../../types/upload";
@@ -17,9 +17,11 @@ const styles = {
       display: "flex",
       alignItems: "center",
       gap: spacing.xxsmall,
+      width: sizes.fit,
     },
 
     picture: {
+      position: "relative",
       borderWidth: sizes.smallest,
       borderStyle: "solid",
       borderColor: "var(--color-outline-variant)" satisfies ThemeColorVariable,
@@ -53,10 +55,9 @@ const UploadedItem = ({
   onRemove: (key: Key) => void;
 }) => {
   const { renderItem, classNames } = useContext(Context);
-  const _themeColorVars = useThemeColorVars(["outline-variant"]);
+  const themeColorVars = useThemeColorVars(["outline-variant"]);
 
   const isPicture = renderItem === "picture";
-  const isRender = isFunction(renderItem);
   const isLoading = item.status === "loading";
 
   const styled = {
@@ -68,44 +69,39 @@ const UploadedItem = ({
     _onRemove(item.key);
   });
 
-  // render leading
-  const leading = useMemo(() => {
-    if (isRender) return null;
-
-    if (isPicture) {
-      if (item.url) {
-        return (
-          <Image
-            src={item.url}
-            {...$props(styles.leading.picture)}
-            crossOrigin="anonymous"
-            referrerPolicy="strict-origin-when-cross-origin"
-          />
-        );
-      }
-
-      return <AttachFile {...$props(styles.leading.picture)} />;
+  // render item function
+  const _renderItem = useEvent(() => {
+    if (isFunction(renderItem)) {
+      return renderItem(item);
     }
 
     if (isLoading) {
       return <Loading />;
     }
-    return <AttachFile />;
-  }, [isLoading, isPicture, isRender, item.url]);
 
-  // render item function
-  const _renderItem = useEvent(() => {
-    if (isFunction(renderItem)) return renderItem(item);
+    if (isPicture) {
+      if (!item.url) {
+        return <AttachFile {...$props(styles.leading.picture)} />;
+      }
+
+      return (
+        <Image
+          src={item.url}
+          {...$props(styles.leading.picture)}
+          crossOrigin="anonymous"
+          referrerPolicy="strict-origin-when-cross-origin"
+        />
+      );
+    }
 
     return (
       <>
-        {leading}
-        <span
-          className={styled.filename.className}
-          style={{ ...styled.filename.style, ..._themeColorVars }}
-        >
+        <AttachFile />
+
+        <span className={styled.filename.className} style={styled.filename.style}>
           {item.file?.name ?? leaf(item.url ?? "")}
         </span>
+
         <Delete onClick={onRemove} />
       </>
     );
@@ -113,14 +109,33 @@ const UploadedItem = ({
 
   return (
     <div
-      key={item.key}
       className={stringify(
         classNames.uploadedItem,
         isPicture && classNames.uploadedPictureItem,
         styled.item.className,
       )}
-      style={styled.item.style}
+      style={{
+        ...styled.item.style,
+        ...themeColorVars,
+      }}
     >
+      {isPicture && (
+        <>
+          {item.url ? (
+            <Image
+              src={item.url}
+              {...$props(styles.leading.picture)}
+              crossOrigin="anonymous"
+              referrerPolicy="strict-origin-when-cross-origin"
+            />
+          ) : (
+            <AttachFile {...$props(styles.leading.picture)} />
+          )}
+
+          <div></div>
+        </>
+      )}
+
       {_renderItem()}
     </div>
   );
