@@ -16,7 +16,7 @@ export type ImageProps = ComponentProps &
      * image source
      * @requires
      */
-    src: string;
+    src?: string;
 
     /**
      * @description
@@ -24,6 +24,12 @@ export type ImageProps = ComponentProps &
      * @default true
      */
     previewable?: boolean;
+
+    /**
+     * fallback
+     * @description 兜底元素，当没有提供图片资源或者图片资源加载失败时，用于体验优化
+     */
+    fallback?: ReactNode;
   };
 
 /**

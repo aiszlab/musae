@@ -1,5 +1,6 @@
+import { createContext } from "react";
+
 /**
- * @description
  * class name
  */
 export const CLASS_NAMES = {
@@ -7,3 +8,14 @@ export const CLASS_NAMES = {
   img: "img",
   overlay: "overlay",
 };
+
+/**
+ * image context
+ * @description 图片上下文，提供图片额外定制的能力
+ */
+export default createContext<{
+  /**
+   * 移除图片
+   */
+  onRemove?: () => void;
+}>({});

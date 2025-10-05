@@ -10,7 +10,7 @@ export const CLASS_NAMES = {
   uploader: "upload__uploader",
   uploadedList: "upload__uploaded-list",
   uploadedItem: "upload__uploaded-item",
-  uploadedPictureItem: "upload__uploaded-item--picture",
+  uploadedItemPicture: "upload__uploaded-item--picture",
 } as const;
 
 export const Context = createContext<ContextValue & { classNames: typeof CLASS_NAMES }>({

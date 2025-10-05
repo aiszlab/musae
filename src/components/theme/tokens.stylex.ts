@@ -132,7 +132,7 @@ export const OPACITY = {
   heaviest: 0.9,
 } as const;
 
-export const opacity = defineVars(OPACITY as unknown as Record<keyof typeof OPACITY, string>);
+export const opacity = defineVars(OPACITY);
 
 /**
  * @description duration
