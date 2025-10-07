@@ -9,3 +9,4 @@ export * from "./editor";
 export * from "./mock";
 export * from "./home";
 export * from "./device";
+export * from "./file";

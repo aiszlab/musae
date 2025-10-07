@@ -1,15 +1,15 @@
 import React, {
-  ChangeEvent,
-  DragEvent,
-  KeyboardEvent,
+  type ChangeEvent,
+  type DragEvent,
+  type KeyboardEvent,
   cloneElement,
   isValidElement,
   useMemo,
   useRef,
 } from "react";
-import type { UploadProps, UploadedListRef } from "../../types/upload";
+import type { UploadProps } from "../../types/upload";
 import { create as $create, props as $props } from "@stylexjs/stylex";
-import { toArray, useEvent } from "@aiszlab/relax";
+import { useEvent } from "@aiszlab/relax";
 import { Keyboard } from "../../utils/keyboard";
 import UploadedList from "./uploaded-list";
 import { Button } from "../button";
@@ -18,6 +18,7 @@ import { sizes, spacing } from "../theme/tokens.stylex";
 import { useClassNames } from "../../hooks/use-class-names";
 import { CLASS_NAMES, Context } from "./context";
 import { stringify } from "@aiszlab/relax/class-name";
+import { useUpload } from "./hooks/use-upload";
 
 const styles = $create({
   input: {
@@ -33,55 +34,48 @@ const styles = $create({
 });
 
 const Upload = ({
-  onClick: _onClick,
+  onClick,
   disabled,
   multiple = true,
   children: _children,
   uploader,
   onError,
-  value,
+  value: _value,
   onChange,
-  limit,
+  limit = Infinity,
   renderItem = true,
   className,
   style,
 }: UploadProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
-  const uploadedListRef = useRef<UploadedListRef>(null);
   const [_locale] = useLocale("upload");
   const classNames = useClassNames(CLASS_NAMES);
-
-  // file upload
-  const upload = useEvent((files: File[]) => {
-    files.forEach((file) => {
-      uploadedListRef.current?.add(file);
-    });
+  const { add, isMultiple, value, remove } = useUpload({
+    limit,
+    multiple,
+    onError,
+    value: _value,
+    uploader,
+    onChange,
   });
 
-  const _onChange = useEvent((e: ChangeEvent<HTMLInputElement>) => {
-    const { files } = e.target;
-    if (!files) return;
-    upload(Array.from(files));
+  const changeFiles = useEvent((e: ChangeEvent<HTMLInputElement>) => {
+    add(Array.from(e.target.files ?? []));
   });
 
-  const onClick = useEvent(() => {
+  const click = useEvent(() => {
     inputRef.current?.click();
-    _onClick?.();
+    onClick?.();
   });
 
-  const onKeyDown = useEvent((e: KeyboardEvent<HTMLDivElement>) => {
+  const downKey = useEvent((e: KeyboardEvent<HTMLDivElement>) => {
     if (e.key !== Keyboard.Enter) return;
-    onClick();
+    click();
   });
 
-  const onDrop = (e: DragEvent<HTMLDivElement>) => {
-    const files = Array.from(e.dataTransfer.files).filter((_, index) => {
-      // only one file when not multiple
-      if (!multiple && index > 0) return false;
-      return true;
-    });
-
-    upload(files);
+  const dropFiles = (e: DragEvent<HTMLDivElement>) => {
+    const files = Array.from(e.dataTransfer.files);
+    add(isMultiple ? files : files.slice(0, 1));
   };
 
   const styled = {
@@ -99,9 +93,6 @@ const Upload = ({
     return cloneElement(_children, { disabled });
   }, [_children, disabled, _locale]);
 
-  // 文件列表数据
-  const fileItems = useMemo(() => toArray(value), [value]);
-
   return (
     <Context.Provider value={{ renderItem, classNames }}>
       <div
@@ -111,9 +102,14 @@ const Upload = ({
           ...style,
         }}
       >
-        {(multiple || fileItems.length === 0) && (
+        {(multiple || value.length === 0) && (
           <div
-            {...(!disabled && { onClick, onKeyDown, onDrop, onDragOver: onDrop })}
+            {...(!disabled && {
+              onClick,
+              onKeyDown: downKey,
+              onDrop: dropFiles,
+              onDragOver: dropFiles,
+            })}
             className={classNames.uploader}
           >
             <input
@@ -124,21 +120,14 @@ const Upload = ({
               className={styled.input.className}
               style={styled.input.style}
               multiple={multiple}
-              onChange={_onChange}
+              onChange={changeFiles}
             />
 
             {children}
           </div>
         )}
 
-        <UploadedList
-          ref={uploadedListRef}
-          value={fileItems}
-          uploader={uploader}
-          onError={onError}
-          onChange={onChange}
-          limit={limit}
-        />
+        <UploadedList value={value} onRemove={remove} />
       </div>
     </Context.Provider>
   );

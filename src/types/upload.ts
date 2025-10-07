@@ -110,7 +110,7 @@ export type UploadProps = ComponentProps & {
    * value
    * @default void 0
    */
-  value?: FileItem[] | FileItem;
+  value?: FileItem[];
 
   /**
    * @description
@@ -135,26 +135,18 @@ export type UploadProps = ComponentProps & {
 
 /**
  * @description
- * Uploaded List Ref
- */
-export type UploadedListRef = {
-  /**
-   * @description
-   * add
-   */
-  add: (file: File) => void;
-};
-
-/**
- * @description
  * uploaded list props
  */
-export interface UploadedListProps
-  extends Pick<UploadProps, "uploader" | "onError" | "onChange" | "limit"> {
+export interface UploadedListProps {
   /**
    * 文件列表
    */
   value: FileItem[];
+
+  /**
+   * 删除文件
+   */
+  onRemove: (index: number) => void;
 }
 
 /**

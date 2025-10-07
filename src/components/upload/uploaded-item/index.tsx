@@ -1,7 +1,7 @@
-import React, { useContext, type Key } from "react";
+import React, { useContext, useMemo } from "react";
 import { create as $create, props as $props } from "@stylexjs/stylex";
 import { sizes, spacing } from "../../theme/tokens.stylex";
-import type { UploadedItem as UploadedItemType } from "../../../types/upload";
+import type { FileItem, UploadedItem as UploadedItemType } from "../../../types/upload";
 import { useEvent } from "@aiszlab/relax";
 import { AttachFile, Delete, Loading } from "../../icon/icons";
 import { leaf } from "@aiszlab/fuzzy/path";
@@ -10,6 +10,7 @@ import { stringify } from "@aiszlab/relax/class-name";
 import { $body } from "../../theme/theme";
 import { type ThemeColorVariable, useThemeColorVars } from "../../../hooks/use-theme-color-vars";
 import UploadedPicture from "./picture";
+import { isRemoteFile } from "../utils";
 
 const styles = {
   item: $create({
@@ -41,15 +42,29 @@ const styles = {
 const UploadedItem = ({
   item,
   onRemove,
+  index,
 }: {
-  item: UploadedItemType;
-  onRemove: (key: Key) => void;
+  item: FileItem;
+  onRemove: (index: number) => void;
+  index: number;
 }) => {
   const { renderItem, classNames } = useContext(Context);
   const themeColorVars = useThemeColorVars(["outline-variant"]);
 
+  const fileItem = useMemo<UploadedItemType>(() => {
+    if (isRemoteFile(item)) {
+      return {
+        key: item.key ?? index,
+        url: item.url,
+        status: "success",
+      };
+    }
+
+    return item;
+  }, [index, item]);
+
   const isPicture = renderItem === "picture";
-  const isLoading = item.status === "loading";
+  const isLoading = fileItem.status === "loading";
 
   const styled = {
     item: $props(styles.item.default, $body.small, isPicture && styles.item.picture),
@@ -57,7 +72,7 @@ const UploadedItem = ({
   };
 
   const remove = useEvent(() => {
-    onRemove(item.key);
+    onRemove(index);
   });
 
   // 加载状态
@@ -93,7 +108,7 @@ const UploadedItem = ({
           ...themeColorVars,
         }}
       >
-        <UploadedPicture item={item} onRemove={remove} />
+        <UploadedPicture item={fileItem} onRemove={remove} />
       </div>
     );
   }
@@ -109,7 +124,7 @@ const UploadedItem = ({
       <AttachFile />
 
       <span className={styled.filename.className} style={styled.filename.style}>
-        {item.file?.name ?? leaf(item.url ?? "")}
+        {fileItem.file?.name ?? leaf(item.url ?? "")}
       </span>
 
       <Delete onClick={remove} />
