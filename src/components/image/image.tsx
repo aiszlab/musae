@@ -18,6 +18,7 @@ type ImageAction = "preview" | "remove";
 const styles = {
   image: $create({
     default: {
+      display: "inline-flex",
       position: "relative",
       width: "var(--width)",
       height: "var(--height)",

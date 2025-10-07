@@ -21,6 +21,10 @@ import { stringify } from "@aiszlab/relax/class-name";
 import { useUpload } from "./hooks/use-upload";
 
 const styles = $create({
+  uploader: {
+    display: "inline-block",
+  },
+
   input: {
     display: "none",
   },
@@ -81,15 +85,15 @@ const Upload = ({
   const styled = {
     upload: $props(styles.upload),
     input: $props(styles.input),
+    uploader: $props(styles.uploader),
   };
 
   const children = useMemo(() => {
     if (!_children) {
-      return <Button disabled={disabled}>{_locale.upload}</Button>;
+      return <Button disabled={disabled}>+ {_locale.upload}</Button>;
     }
 
     if (!isValidElement<{ disabled?: boolean }>(_children)) return _children;
-
     return cloneElement(_children, { disabled });
   }, [_children, disabled, _locale]);
 
@@ -105,12 +109,13 @@ const Upload = ({
         {(multiple || value.length === 0) && (
           <div
             {...(!disabled && {
-              onClick,
+              onClick: click,
               onKeyDown: downKey,
               onDrop: dropFiles,
               onDragOver: dropFiles,
             })}
-            className={classNames.uploader}
+            className={stringify(classNames.uploader, styled.uploader.className)}
+            style={styled.uploader.style}
           >
             <input
               ref={inputRef}
