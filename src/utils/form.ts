@@ -53,7 +53,7 @@ export interface RegisteredField<T extends FieldsValue, FieldKey extends keyof T
 }
 
 interface FormState<T extends FieldsValue> {
-  value: Partial<T> | null;
+  value: Partial<T>;
   error: Partial<Record<keyof T, ReactNode>>;
 }
 
@@ -73,59 +73,63 @@ export type ChangeHandler<T extends FieldsValue> = (
  * form instance
  */
 export class Form<T extends FieldsValue> {
-  private defaultValue: Partial<T>;
-  private fields: Map<keyof T, Pick<RegisteredField<T, keyof T>, "rules">>;
-  private state: FormState<T>;
-  private state$: BehaviorSubject<ChangingState<T>>;
-  private onChange: ChangeHandler<T> | null;
+  #defaultValue: Partial<T>;
+  #fields: Map<keyof T, Pick<RegisteredField<T, keyof T>, "rules">>;
+  #state: FormState<T>;
+  #state$: BehaviorSubject<ChangingState<T>>;
+  #onChange: ChangeHandler<T> | null;
 
   constructor() {
-    this.defaultValue = {};
-    this.fields = new Map();
-    this.state = {
+    this.#defaultValue = {};
+    this.#fields = new Map();
+    this.#state = {
       value: {},
       error: {},
     };
-    this.onChange = null;
+    this.#onChange = null;
 
-    this.state$ = new BehaviorSubject<ChangingState<T>>({
+    this.#state$ = new BehaviorSubject<ChangingState<T>>({
       source: ChangingSource.Initialize,
       names: [],
-      value: this.state.value ?? {},
-      error: this.state.error,
+      value: this.#state.value ?? {},
+      error: this.#state.error,
     });
 
-    this.state$.subscribe(({ source, names, value }) => {
+    this.#state$.subscribe(({ source, names, value }) => {
       if (names.length === 0) return;
       if (source !== ChangingSource.Change) return;
 
       // value change, handle `onChange` callback
-      this.onChange?.({ ...value }, names);
+      this.#onChange?.({ ...value }, names);
     });
   }
 
   /**
-   * `Form` use value
-   * @description
-   * in `Component.Form`, will provider `value` or `defaultValue`
+   * defaultValue setter
    */
-  useValues({ value, defaultValue }: { value?: Partial<T>; defaultValue?: Partial<T> }) {
-    this.defaultValue = defaultValue ?? this.defaultValue;
-    this.state.value = value ?? this.state.value ?? this.defaultValue;
+  set defaultValue(defaultValue: Partial<T> | undefined) {
+    this.#defaultValue = defaultValue ?? this.#defaultValue;
+  }
 
-    this.state$.next({
+  /**
+   * value setter
+   */
+  set value(value: Partial<T> | undefined) {
+    this.#state.value = value ?? this.#defaultValue ?? this.#state.value;
+
+    this.#state$.next({
       source: ChangingSource.Set,
       names: [],
-      value: this.state.value,
-      error: this.state.error,
+      value: this.#state.value,
+      error: this.#state.error,
     });
   }
 
   /**
-   * set change handler
+   * change handler setter
    */
-  useOnChange(onChange: ChangeHandler<T>) {
-    this.onChange = onChange;
+  set onChange(onChange: ChangeHandler<T>) {
+    this.#onChange = onChange;
   }
 
   /**
@@ -135,11 +139,11 @@ export class Form<T extends FieldsValue> {
     name: FieldKey,
     { onChange, rules, onValidate }: RegisteredField<T, FieldKey>,
   ) {
-    this.fields.set(name, {
+    this.#fields.set(name, {
       rules,
     });
 
-    const _subscription = this.state$
+    const _subscription = this.#state$
       .pipe(
         // only listen `name` related to `register` field
         filter(({ names }) => {
@@ -160,7 +164,7 @@ export class Form<T extends FieldsValue> {
       });
 
     return () => {
-      this.fields.delete(name);
+      this.#fields.delete(name);
       _subscription.unsubscribe();
     };
   }
@@ -173,7 +177,7 @@ export class Form<T extends FieldsValue> {
     name: FieldKey,
     onChange: (value: Partialable<T[FieldKey]>) => void,
   ) {
-    const _subscription = this.state$
+    const _subscription = this.#state$
       .pipe(
         // only listen `name` related to `register` field
         filter(({ names }) => names.length === 0 || new Set(names).has(name)),
@@ -193,15 +197,15 @@ export class Form<T extends FieldsValue> {
    * get field value
    */
   getFieldValue(name: keyof T) {
-    return this.state.value?.[name];
+    return this.#state.value?.[name];
   }
 
   /**
    * get fields value
    */
   getFieldsValue(): Partial<T> {
-    return this.fields.keys().reduce<Partial<T>>((value, name) => {
-      value[name] = this.state.value?.[name];
+    return this.#fields.keys().reduce<Partial<T>>((value, name) => {
+      value[name] = this.#state.value?.[name];
       return value;
     }, {});
   }
@@ -211,10 +215,10 @@ export class Form<T extends FieldsValue> {
    * @description
    * if provided `names`, only validate `names`
    */
-  async validate(names: (keyof T)[] = toArray(this.fields.keys())) {
+  async validate(names: (keyof T)[] = toArray(this.#fields.keys())) {
     const validated = await Promise.all<ReactNode[]>(
       names.map(async (name) => {
-        const rules = this.fields.get(name)?.rules?.() ?? [];
+        const rules = this.#fields.get(name)?.rules?.() ?? [];
 
         // no valid rule
         if (rules.length === 0) {
@@ -224,7 +228,7 @@ export class Form<T extends FieldsValue> {
         // validate result
         const error = await Promise.race(
           rules.map(async ({ validate, message }) => {
-            return await Promise.try(() => validate(this.state.value?.[name]) ?? null)
+            return await Promise.try(() => validate(this.#state.value?.[name]) ?? null)
               .catch((error: ReactNode) => {
                 console.error(error);
                 return false;
@@ -238,18 +242,18 @@ export class Form<T extends FieldsValue> {
           }),
         );
 
-        this.state.error[name] = error;
+        this.#state.error[name] = error;
         return error;
       }),
     );
 
     // notify state change
     // only notify `error`
-    this.state$.next({
+    this.#state$.next({
       source: ChangingSource.Validate,
       names,
-      value: this.state.value ?? {},
-      error: this.state.error,
+      value: this.#state.value ?? {},
+      error: this.#state.error,
     });
 
     return validated.every((error) => !error);
@@ -262,15 +266,15 @@ export class Form<T extends FieldsValue> {
     name: FieldKey,
     value: FieldValue,
   ) {
-    this.state.value ??= {};
-    this.state.value[name] = value;
-    this.state.error[name] = null;
+    this.#state.value ??= {};
+    this.#state.value[name] = value;
+    this.#state.error[name] = null;
 
-    this.state$.next({
+    this.#state$.next({
       source: ChangingSource.Set,
       names: [name],
-      value: this.state.value,
-      error: this.state.error,
+      value: this.#state.value,
+      error: this.#state.error,
     });
   }
 
@@ -280,21 +284,21 @@ export class Form<T extends FieldsValue> {
   setFieldsValue(value: Partial<T>) {
     const names = Object.keys(value);
 
-    this.state.value = {
-      ...this.state.value,
+    this.#state.value = {
+      ...this.#state.value,
       ...value,
     };
 
-    this.state.error = {
-      ...this.state.error,
+    this.#state.error = {
+      ...this.#state.error,
       ...Object.fromEntries(names.map((name) => [name, null])),
     };
 
-    this.state$.next({
+    this.#state$.next({
       source: ChangingSource.Set,
       names,
-      value: this.state.value,
-      error: this.state.error,
+      value: this.#state.value,
+      error: this.#state.error,
     });
   }
 
@@ -302,14 +306,14 @@ export class Form<T extends FieldsValue> {
    * reset
    */
   reset() {
-    this.state.value = this.defaultValue;
-    this.state.error = {};
+    this.#state.value = this.#defaultValue;
+    this.#state.error = {};
 
-    this.state$.next({
+    this.#state$.next({
       source: ChangingSource.Reset,
       names: [],
-      value: this.state.value,
-      error: this.state.error,
+      value: this.#state.value,
+      error: this.#state.error,
     });
   }
 
@@ -317,14 +321,14 @@ export class Form<T extends FieldsValue> {
    * clear
    */
   clear() {
-    this.state.value = {};
-    this.state.error = {};
+    this.#state.value = {};
+    this.#state.error = {};
 
-    this.state$.next({
+    this.#state$.next({
       source: ChangingSource.Clear,
       names: [],
-      value: this.state.value,
-      error: this.state.error,
+      value: this.#state.value,
+      error: this.#state.error,
     });
   }
 
@@ -337,15 +341,15 @@ export class Form<T extends FieldsValue> {
     name: FieldKey,
     value: FieldValue,
   ) {
-    this.state.value ??= {};
-    this.state.value[name] = value;
-    this.state.error[name] = null;
+    this.#state.value ??= {};
+    this.#state.value[name] = value;
+    this.#state.error[name] = null;
 
-    this.state$.next({
+    this.#state$.next({
       source: ChangingSource.Change,
       names: [name],
-      value: this.state.value,
-      error: this.state.error,
+      value: this.#state.value,
+      error: this.#state.error,
     });
 
     // trigger validate

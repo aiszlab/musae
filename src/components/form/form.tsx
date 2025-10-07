@@ -4,7 +4,7 @@ import Context, { CLASS_NAMES } from "./context";
 import { useForm } from "./hooks/use-form";
 import { useClassNames } from "../../hooks/use-class-names";
 import { DEFAULT_CONTEXT_VALUE } from "./context";
-import type { FormProps, UsedForm } from "../../types/form";
+import type { FormProps } from "../../types/form";
 import { stringify } from "@aiszlab/relax/class-name";
 import { FormContext } from "./context";
 
@@ -22,7 +22,7 @@ const Form = <T extends FieldsValue>({
   value,
   defaultValue,
 }: FormProps<T>) => {
-  const _form = useForm({ form, onChange, value, defaultValue }) as unknown as UsedForm<{}>;
+  const _form = useForm({ form, onChange, value, defaultValue });
   const classNames = useClassNames(CLASS_NAMES);
 
   return (
@@ -32,7 +32,12 @@ const Form = <T extends FieldsValue>({
         classNames,
       }}
     >
-      <FormContext.Provider value={{ form: _form[FORM_TOKEN] }}>
+      <FormContext.Provider
+        value={{
+          // @ts-expect-error `Context`内部固定类型
+          form: _form[FORM_TOKEN],
+        }}
+      >
         <form className={stringify(classNames.form, className)} style={style}>
           {children}
         </form>
