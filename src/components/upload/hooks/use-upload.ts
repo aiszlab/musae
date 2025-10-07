@@ -1,4 +1,4 @@
-import { useControlledState, useIdentity } from "@aiszlab/relax";
+import { useControlledState, useEvent, useIdentity } from "@aiszlab/relax";
 import type { FileItem, UploadedItem } from "../../../types/upload";
 
 interface Props {
@@ -17,7 +17,7 @@ export function useUpload({ uploader, limit, multiple, value: _value, onError, o
   const isFull = value.length >= limit;
   const isMultiple = multiple && limit > 1;
 
-  const resolveUploadItem = (fileItem: UploadedItem) => {
+  const resolveUploadItem = useEvent((fileItem: UploadedItem) => {
     const resolvedFileItems = value.map((item) => {
       return item.key === fileItem.key ? fileItem : item;
     });
@@ -28,7 +28,7 @@ export function useUpload({ uploader, limit, multiple, value: _value, onError, o
     if (fileItem.status === "error") {
       onError?.(fileItem.error);
     }
-  };
+  });
 
   const add = async (files: File[]) => {
     if (files.length === 0) return;
