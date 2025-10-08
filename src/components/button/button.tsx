@@ -10,7 +10,7 @@ import { hexToRgba } from "@aiszlab/fuzzy/color";
 import { useClassNames } from "../../hooks/use-class-names";
 import { CLASS_NAMES } from "./context";
 import styles, { TYPOGRAPHYS } from "./styles";
-import { useThemeColorVars } from "src/hooks/use-theme-color-vars";
+import { useThemeColorVars } from "../../hooks/use-theme-color-vars";
 import { Loading } from "../icon/icons";
 
 /**

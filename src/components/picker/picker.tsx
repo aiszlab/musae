@@ -17,7 +17,7 @@ import { CLASS_NAMES, Context } from "./context";
 import { stringify } from "@aiszlab/relax/class-name";
 import { Close } from "../icon/icons";
 import { $body } from "../theme/theme";
-import { useThemeColorVars } from "src/hooks/use-theme-color-vars";
+import { useThemeColorVars } from "../../hooks/use-theme-color-vars";
 import { DialogContext } from "../dialog/context";
 
 const styles = $create({
@@ -107,6 +107,7 @@ const Picker = forwardRef<PickerRef, PickerProps>(
           style={{
             ...styled.picker.style,
             ..._themeColorVars,
+            // eslint-disable-next-line react-hooks/refs
             "--min-width": `${getDropdownWidth() ?? 0}px`,
             ...style,
           }}
@@ -121,6 +122,7 @@ const Picker = forwardRef<PickerRef, PickerProps>(
         </span>
 
         <Popper
+          // eslint-disable-next-line react-hooks/refs
           trigger={trigger.current}
           open={isOpen}
           className={classNames.dropdown}

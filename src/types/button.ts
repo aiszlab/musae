@@ -1,4 +1,4 @@
-import type { ButtonHTMLAttributes, MouseEventHandler, ReactNode } from "react";
+import type { ButtonHTMLAttributes, MouseEvent, ReactNode } from "react";
 import type { ComponentProps } from "./element";
 
 export type Variant = "filled" | "outlined" | "text";
@@ -95,7 +95,7 @@ export interface ButtonProps
    * click handler
    * @default void 0
    */
-  onClick?: MouseEventHandler<HTMLButtonElement>;
+  onClick?: (event: MouseEvent<HTMLButtonElement>) => void | Promise<void>;
 
   /**
    * loading

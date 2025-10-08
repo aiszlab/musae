@@ -18,10 +18,12 @@ export const useButton = ({
   const click = useEvent(async (event: MouseEvent<HTMLButtonElement>) => {
     add(event);
 
-    setIsLoading(true);
-    await Promise.try(() => onClick?.(event)).finally(() => {
+    try {
+      setIsLoading(true);
+      await onClick?.(event);
+    } finally {
       setIsLoading(false);
-    });
+    }
   });
 
   return {
