@@ -66,6 +66,20 @@ export const useNavigation = () => {
   // tabs size
   const [tabsSize, setTabsSize] = useState(0);
 
+  const { maxOffset, minOffset } = useMemo(() => {
+    return {
+      maxOffset: Math.max(0, tabsSize - navigatorSize),
+      minOffset: 0,
+    };
+  }, [navigatorSize, tabsSize]);
+
+  // handle scroll
+  const scroll = useEvent((delta: number) => {
+    setOffset((prev) => {
+      return clamp(prev + delta, minOffset, maxOffset);
+    });
+  });
+
   const resize = useEvent(() => {
     const _navigatorSize = navigatorRef.current?.getBoundingClientRect().width ?? 0;
     const _tabsSize = tabsRef.current?.getBoundingClientRect().width ?? 0;
@@ -75,26 +89,12 @@ export const useNavigation = () => {
     scroll(0);
   });
 
-  const { maxOffset, minOffset } = useMemo(() => {
-    return {
-      maxOffset: Math.max(0, tabsSize - navigatorSize),
-      minOffset: 0,
-    };
-  }, [navigatorSize, tabsSize]);
-
   const { isLeadingOverflow, isTrailingOverflow } = useMemo(() => {
     return {
       isLeadingOverflow: offset > minOffset,
       isTrailingOverflow: offset < maxOffset,
     };
   }, [minOffset, maxOffset, offset]);
-
-  // handle scroll
-  const scroll = useEvent((delta: number) => {
-    setOffset((prev) => {
-      return clamp(prev + delta, minOffset, maxOffset);
-    });
-  });
 
   // if window resize
   // re-calculate offsets range

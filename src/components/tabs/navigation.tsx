@@ -70,7 +70,7 @@ const styles = {
 const Navigation = ({ onChange }: NavigationProps) => {
   const { activeKey, items, classNames } = useTabsContext();
   const indicatorRef = useRef<HTMLDivElement>(null);
-  const tabRefs = useRef<Map<Key, HTMLButtonElement | null>>(new Map());
+  const tabItemsRef = useRef<Map<Key, HTMLButtonElement | null>>(new Map());
   const { navigatorRef, tabsRef, scroll, offset, isLeadingOverflow, isTrailingOverflow } =
     useNavigation();
   const _themeColorVars = useThemeColorVars(["outline-variant", "primary"]);
@@ -92,15 +92,14 @@ const Navigation = ({ onChange }: NavigationProps) => {
   // repaint indicator when activeKey changed
   // animate indicator to correct position & width
   useEffect(() => {
-    const _indicator = indicatorRef.current;
-    if (!_indicator) return;
+    const indicator = indicatorRef.current;
+    if (!indicator) return;
     if (isUndefined(activeKey)) return;
 
-    const tab = tabRefs.current.get(activeKey);
-
-    animate(_indicator, {
-      left: tab?.offsetLeft,
-      width: tab?.clientWidth,
+    const tabItem = tabItemsRef.current.get(activeKey);
+    animate(indicator, {
+      left: tabItem?.offsetLeft,
+      width: tabItem?.clientWidth,
     });
   }, [activeKey]);
 
@@ -132,7 +131,7 @@ const Navigation = ({ onChange }: NavigationProps) => {
                 label={item.label}
                 onClick={onChange}
                 ref={(_tab) => {
-                  tabRefs.current.set(item.key, _tab);
+                  tabItemsRef.current.set(item.key, _tab);
                 }}
               />
             );

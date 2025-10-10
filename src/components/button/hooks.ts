@@ -19,8 +19,12 @@ export const useButton = ({
     add(event);
 
     try {
-      setIsLoading(true);
-      await onClick?.(event);
+      const clicked = onClick?.(event);
+      if (clicked instanceof Promise) {
+        setIsLoading(true);
+      }
+
+      await clicked;
     } finally {
       setIsLoading(false);
     }

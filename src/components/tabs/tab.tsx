@@ -1,9 +1,10 @@
-import React, { forwardRef, useCallback } from "react";
+import React, { forwardRef } from "react";
 import { Button } from "../button";
 import type { TabItemProps } from "../../types/tabs";
 import { useTabsContext } from "./hooks";
 import { create as $create, props as $props } from "@stylexjs/stylex";
 import { stringify } from "@aiszlab/relax/class-name";
+import { useEvent } from "@aiszlab/relax";
 
 const styles = $create({
   button: {
@@ -17,9 +18,9 @@ const Tab = forwardRef<HTMLButtonElement, TabItemProps>(({ value, onClick, label
   const { activeKey, classNames } = useTabsContext();
   const isActive = activeKey === value;
 
-  const click = useCallback(() => {
+  const click = useEvent(() => {
     onClick(value);
-  }, [onClick, value]);
+  });
 
   const styled = $props(styles.button);
 
