@@ -1,11 +1,8 @@
 import { create as $create } from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";
+import { type ThemeColorVariable } from "../../hooks/use-theme-color-vars";
 
 const styles = $create({
-  variables: (props: { outlineColor: string }) => ({
-    "--color-outline": props.outlineColor,
-  }),
-
   quote: {
     // reset styles
     margin: spacing.none,
@@ -20,7 +17,7 @@ const styles = $create({
       insetBlock: 0,
       insetInlineStart: 0,
       width: sizes.xxxxxxxxxxsmall,
-      backgroundColor: "var(--color-outline)",
+      backgroundColor: "var(--color-outline)" satisfies ThemeColorVariable,
     },
   },
 });
