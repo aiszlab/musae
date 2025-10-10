@@ -1,5 +1,13 @@
 # musae
 
+## 1.0.15
+
+### Patch Changes
+
+- - `Button`组件回调优化: 同步点击回调事件不触发`loading`状态
+  - `Tabs`组件游标的宽度计算 Bug 修复
+- 0ab62ed: improve components apis
+
 ## 1.0.6
 
 ### Patch Changes
