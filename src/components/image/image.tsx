@@ -184,7 +184,7 @@ const Image = forwardRef<ImageRef, ImageProps>(
           </div>
         )}
 
-        {isOpen && !contextValue && !!src && <Preview src={src} onClose={turnOff} alt={alt} />}
+        {isOpen && !contextValue && <Preview src={src} onClose={turnOff} alt={alt} />}
       </div>
     );
   },

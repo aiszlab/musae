@@ -1,7 +1,7 @@
 import PreviewGroupContext from "./context";
 import type { PreviewGroupProps, PreviewRef } from "../../../types/image";
 import Preview from "./preview";
-import React, { useMemo, useRef } from "react";
+import React, { useRef } from "react";
 import { useBoolean, useCounter, useEvent } from "@aiszlab/relax";
 
 const Group = ({ children, items }: PreviewGroupProps) => {
@@ -13,10 +13,7 @@ const Group = ({ children, items }: PreviewGroupProps) => {
   });
   const [isOpen, { turnOff, turnOn }] = useBoolean();
   const ref = useRef<PreviewRef>(null);
-
-  const source = useMemo(() => {
-    return items[currentAt];
-  }, [currentAt, items]);
+  const source = items.at(currentAt);
 
   // when image is changed, reset styles
   const prev = useEvent(() => {

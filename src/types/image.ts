@@ -110,10 +110,9 @@ export type OperationsProps = {
  */
 export type PreviewProps = Pick<ImgHTMLAttributes<HTMLImageElement>, "alt"> & {
   /**
-   * @description
    * image source
    */
-  src: string;
+  src?: string;
 
   /**
    * @description
