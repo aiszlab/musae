@@ -122,8 +122,7 @@ const Picker = forwardRef<PickerRef, PickerProps>(
         </span>
 
         <Popper
-          // eslint-disable-next-line react-hooks/refs
-          trigger={trigger.current}
+          trigger={() => trigger.current}
           open={isOpen}
           className={classNames.dropdown}
           onEnter={onPopperEnter}

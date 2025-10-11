@@ -91,6 +91,7 @@ const Popconfirm = ({
     };
 
     if (isValidElement<ChildProps<HTMLDivElement>>(_children)) {
+      // eslint-disable-next-line react-hooks/refs
       return cloneElement(_children, props);
     }
 
@@ -118,7 +119,7 @@ const Popconfirm = ({
       {children}
 
       <Popper
-        trigger={ref.current}
+        trigger={() => ref.current}
         open={isVisible}
         arrow
         placement={placement}

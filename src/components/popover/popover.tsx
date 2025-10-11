@@ -167,6 +167,7 @@ const Popover = forwardRef(
         }),
       };
 
+      // eslint-disable-next-line react-hooks/refs
       return cloneElement<ChildProps<T>>(_child, props);
     }, [
       _children,
@@ -207,7 +208,7 @@ const Popover = forwardRef(
         {children}
 
         <Popper
-          trigger={_ref.current}
+          trigger={() => _ref.current}
           open={isVisible}
           arrow={arrow}
           {...(isHoverable && {

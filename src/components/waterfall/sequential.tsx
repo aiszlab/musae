@@ -4,13 +4,13 @@ import { create as $create, props as $props } from "@stylexjs/stylex";
 import type { RequiredIn } from "@aiszlab/relax/types";
 
 const styles = $create({
-  column: (props: { rowGap: number }) => ({
+  column: {
     flex: 1,
     display: "flex",
     flexDirection: "column",
-    rowGap: props.rowGap,
+    rowGap: "var(--row-gap)",
     overflow: "auto",
-  }),
+  },
 });
 
 const Sequential = ({
@@ -38,23 +38,17 @@ const Sequential = ({
       .filter((column) => column.length > 0);
   }, [children, columns]);
 
-  // convert column into react div node
-  // inject column styles
-  const _children = useMemo(() => {
-    const styled = $props(styles.column({ rowGap }));
-
-    return groupedColumns.map((column, index) => {
-      return (
-        <div className={styled.className} style={styled.style} key={index}>
-          {column}
-        </div>
-      );
-    });
-  }, [groupedColumns, rowGap]);
+  const styled = $props(styles.column);
 
   return (
-    <div className={className} style={style}>
-      {_children}
+    <div className={className} style={{ ...style, "--row-gap": `${rowGap}px` }}>
+      {groupedColumns.map((column, index) => {
+        return (
+          <div className={styled.className} style={styled.style} key={index}>
+            {column}
+          </div>
+        );
+      })}
     </div>
   );
 };

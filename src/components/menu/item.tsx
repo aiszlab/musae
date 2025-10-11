@@ -233,7 +233,7 @@ const Item = forwardRef<HTMLLIElement, MenuItemProps>(
         {/* not inline mode, show children in popper */}
         {!isInline && !!props.children && (
           <Popper
-            trigger={itemRef.current}
+            trigger={() => itemRef.current}
             open={isOpen}
             placement={isVertical ? "left-start" : "bottom-start"}
             className={styled.popper.className}
