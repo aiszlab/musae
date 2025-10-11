@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { create as $create, props as $props } from "@stylexjs/stylex";
 import { sizes } from "../theme/tokens.stylex";
-import { useClassNames } from "src/hooks/use-class-names";
+import { useClassNames } from "../../hooks/use-class-names";
 import Context, { CLASS_NAMES } from "./context";
 import { stringify } from "@aiszlab/relax/class-name";
 import Track from "./track";
