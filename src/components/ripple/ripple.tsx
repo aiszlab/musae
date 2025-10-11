@@ -1,6 +1,6 @@
 import React from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { Ripple as RippleType, RippleProps } from "../../types/ripple";
+import type { RippleProps } from "../../types/ripple";
 import { create as $create, props as $props } from "@stylexjs/stylex";
 import { sizes } from "../theme/tokens.stylex";
 
@@ -12,36 +12,32 @@ const styles = $create({
     pointerEvents: "none",
   },
 
-  position: (props: { x: number; y: number }) => ({
+  position: {
     position: "absolute",
-    top: props.y,
-    left: props.x,
-  }),
+    top: "var(--y)",
+    left: "var(--x)",
+  },
 
-  size: (props: Pick<RippleType, "size">) => ({
-    width: props.size,
-    height: props.size,
-  }),
+  size: {
+    width: "var(--size)",
+    height: "var(--size)",
+  },
 });
 
 const Ripple = ({ ripples = [], onClear }: RippleProps) => {
   return ripples.map((ripple) => {
-    const styled = $props(
-      styles.ripple,
-      styles.position({
-        x: ripple.x,
-        y: ripple.y,
-      }),
-      styles.size({
-        size: ripple.size,
-      }),
-    );
+    const styled = $props(styles.ripple, styles.position, styles.size);
 
     return (
       <AnimatePresence key={ripple.key} mode="popLayout">
         <motion.span
           className={styled.className}
-          style={styled.style}
+          style={{
+            ...styled.style,
+            "--x": ripple.x,
+            "--y": ripple.y,
+            "--size": ripple.size,
+          }}
           initial={{ transform: "scale(0)", opacity: 0.35 }}
           animate={{ transform: "scale(2)", opacity: 0 }}
           exit={{ opacity: 0 }}
