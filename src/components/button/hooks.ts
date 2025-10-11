@@ -11,7 +11,8 @@ export const useButton = ({
   onClick,
   loading,
   disabled = false,
-}: Pick<ButtonProps, "onClick" | "loading" | "disabled">) => {
+  autoLoading = false,
+}: Pick<ButtonProps, "onClick" | "loading" | "disabled" | "autoLoading">) => {
   const [isLoading, setIsLoading] = useControlledState(loading);
   const { ripples, add, clear } = useRipple();
 
@@ -19,14 +20,15 @@ export const useButton = ({
     add(event);
 
     try {
-      const clicked = onClick?.(event);
-      if (clicked instanceof Promise) {
+      if (autoLoading) {
         setIsLoading(true);
       }
 
-      await clicked;
+      await onClick?.(event);
     } finally {
-      setIsLoading(false);
+      if (autoLoading) {
+        setIsLoading(false);
+      }
     }
   });
 

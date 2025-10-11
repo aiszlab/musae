@@ -103,4 +103,12 @@ export interface ButtonProps
    * @default false
    */
   loading?: boolean;
+
+  /**
+   * autoLoading
+   * 自动加载状态，点击后自动切换为`loading`状态
+   * 适用于异步操作，点击后自动切换为`loading`状态，操作完成后自动切换为`false`
+   * @default false
+   */
+  autoLoading?: boolean;
 }

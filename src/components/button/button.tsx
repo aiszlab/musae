@@ -36,6 +36,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       prefix,
       suffix,
       loading,
+      autoLoading,
       ...props
     },
     ref,
@@ -45,6 +46,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       onClick,
       loading,
       disabled,
+      autoLoading,
     });
     const classNames = useClassNames(CLASS_NAMES);
     const themeColorVars = useThemeColorVars([
