@@ -34,9 +34,9 @@ const Ripple = ({ ripples = [], onClear }: RippleProps) => {
           className={styled.className}
           style={{
             ...styled.style,
-            "--x": ripple.x,
-            "--y": ripple.y,
-            "--size": ripple.size,
+            "--x": ripple.x + "px",
+            "--y": ripple.y + "px",
+            "--size": ripple.size + "px",
           }}
           initial={{ transform: "scale(0)", opacity: 0.35 }}
           animate={{ transform: "scale(2)", opacity: 0 }}

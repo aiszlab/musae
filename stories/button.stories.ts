@@ -67,6 +67,7 @@ export const Loading: Story = {
 export const AutoLoading: Story = {
   args: {
     children: "Auto Loading",
+    autoLoading: true,
     onClick: async () => {
       await new Promise((resolve) => setTimeout(resolve, 2000));
     },
