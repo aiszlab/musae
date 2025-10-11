@@ -3,12 +3,12 @@ import { MenuItemProps } from "../../types/menu";
 import { useItemChildren, useMenuContext } from "./hooks";
 import { create as $create, props as $props } from "@stylexjs/stylex";
 import { duration, sizes, spacing } from "../theme/tokens.stylex";
-import { useTheme } from "../theme";
 import { useEvent, useHover } from "@aiszlab/relax";
 import { Popper } from "../popper";
 import { useLazyBoolean } from "../../hooks/use-lazy-boolean";
 import { stringify } from "@aiszlab/relax/class-name";
 import { $body } from "../theme/theme";
+import { type ThemeColorVariable, useThemeColorVars } from "src/hooks/use-theme-color-vars";
 
 const styles = {
   default: $create({
@@ -69,65 +69,65 @@ const styles = {
         },
 
         ":hover::after": {
-          borderBottomColor: "var(--color-primary)",
+          borderBottomColor: "var(--color-primary)" satisfies ThemeColorVariable,
         },
       },
 
       vertical: {
         backgroundColor: {
           default: null,
-          ":hover": "var(--color-surface-container-highest)",
+          ":hover": "var(--color-surface-container-highest)" satisfies ThemeColorVariable,
         },
       },
 
       inline: {
         backgroundColor: {
           default: null,
-          ":hover": "var(--color-surface-container-highest)",
+          ":hover": "var(--color-surface-container-highest)" satisfies ThemeColorVariable,
         },
       },
     }),
   },
 
   size: $create({
-    small: (props: { level: number }) => ({
+    small: {
       paddingBlock: spacing.xxxxxsmall,
       paddingRight: spacing.xxsmall,
-      paddingLeft: `calc(${spacing.xxsmall} + ${props.level} * ${spacing.large})`,
+      paddingLeft: `calc(${spacing.xxsmall} + var(--level) * ${spacing.large})`,
       borderRadius: sizes.xxxxxxxxxsmall,
-    }),
+    },
 
-    medium: (props: { level: number }) => ({
+    medium: {
       paddingBlock: spacing.xxsmall,
       paddingRight: spacing.medium,
-      paddingLeft: `calc(${spacing.medium} + ${props.level} * ${spacing.xxxlarge})`,
+      paddingLeft: `calc(${spacing.medium} + var(--level) * ${spacing.xxxlarge})`,
       borderRadius: sizes.xxxxxxxsmall,
-    }),
+    },
 
-    large: (props: { level: number }) => ({
+    large: {
       paddingBlock: spacing.medium,
       paddingRight: spacing.large,
-      paddingLeft: `calc(${spacing.large} + ${props.level} * ${spacing.xxxxxxlarge})`,
+      paddingLeft: `calc(${spacing.large} + var(--level) * ${spacing.xxxxxxlarge})`,
       borderRadius: sizes.xxxxsmall,
-    }),
+    },
   }),
 
   selected: $create({
     inline: {
-      backgroundColor: "var(--color-surface-container-highest)",
-      color: "var(--color-primary)",
+      backgroundColor: "var(--color-surface-container-highest)" satisfies ThemeColorVariable,
+      color: "var(--color-primary)" satisfies ThemeColorVariable,
     },
 
     vertical: {
-      backgroundColor: "var(--color-surface-container-highest)",
-      color: "var(--color-primary)",
+      backgroundColor: "var(--color-surface-container-highest)" satisfies ThemeColorVariable,
+      color: "var(--color-primary)" satisfies ThemeColorVariable,
     },
 
     horizontal: {
-      color: "var(--color-primary)",
+      color: "var(--color-primary)" satisfies ThemeColorVariable,
 
       "::after": {
-        borderBottomColor: "var(--color-primary)",
+        borderBottomColor: "var(--color-primary)" satisfies ThemeColorVariable,
       },
     },
   }),
@@ -157,11 +157,11 @@ const Item = forwardRef<HTMLLIElement, MenuItemProps>(
     } = useMenuContext();
     const isSelected = selectedKeys.has(value);
     const isExpanded = expandedKeys.has(value);
-    const theme = useTheme();
     const hasChildren = !!props.children;
     const itemRef = useRef<HTMLDivElement | null>(null);
     const isInline = mode === "inline";
     const isVertical = mode === "vertical";
+    const themeColorVars = useThemeColorVars(["primary", "surface-container-highest"]);
 
     // delay disappear after hover leave
     const [isOpen, { turnOn, disappear }] = useLazyBoolean();
@@ -195,7 +195,8 @@ const Item = forwardRef<HTMLLIElement, MenuItemProps>(
       menuitem: $props(styles.mode.menuitem[mode]),
       item: $props(
         styles.default.item,
-        styles.size[size]({ level }),
+        // size
+        styles.size[size],
         // mode
         styles.mode.item[mode],
         isSelected && styles.selected[mode],
@@ -211,8 +212,8 @@ const Item = forwardRef<HTMLLIElement, MenuItemProps>(
         className={styled.menuitem.className}
         style={{
           ...styled.menuitem.style,
-          "--color-primary": theme.colors.primary,
-          "--color-surface-container-highest": theme.colors["surface-container-highest"],
+          ...themeColorVars,
+          "--level": level,
         }}
       >
         <div

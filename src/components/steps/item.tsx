@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import type { Status, StepItemProps } from "../../types/steps";
 import { create as $create, props as $props } from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";
-import { useEvent } from "@aiszlab/relax";
+import { isUndefined, useEvent } from "@aiszlab/relax";
 import { Context } from "./context";
 import { Done } from "../icon/icons";
 import { stringify } from "@aiszlab/relax/class-name";
@@ -50,15 +50,17 @@ const styles = {
   }),
 
   sign: $create({
-    default: (props: { size?: number }) => ({
+    default: {
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
       borderRadius: sizes.infinity,
       overflow: "hidden",
-      width: props.size ?? sizes.xsmall,
-      height: props.size ?? sizes.xsmall,
-    }),
+      // width: props.size ?? sizes.xsmall,
+      // height: props.size ?? sizes.xsmall,
+      width: `var(--size, ${sizes.xsmall})`,
+      height: `var(--size, ${sizes.xsmall})`,
+    },
 
     doing: {
       backgroundColor: "var(--color-primary)",
@@ -117,7 +119,7 @@ const Item = ({ leading, title, description, value }: StepItemProps) => {
     step: $props(styles.step.default, isClickable && styles.step.clickable),
     leading: $props(styles.leading.default, isVertical && !isMax && styles.leading.tail),
     sign: $props(
-      styles.sign.default({ size }),
+      styles.sign.default,
       status === "doing" && styles.sign.doing,
       status === "done" && styles.sign.done,
       status === "todo" && styles.sign.todo,
@@ -150,7 +152,12 @@ const Item = ({ leading, title, description, value }: StepItemProps) => {
       >
         <div
           className={stringify(classNames.sign, styled.sign.className)}
-          style={styled.sign.style}
+          style={{
+            ...styled.sign.style,
+            ...(!isUndefined(size) && {
+              "--size": `${size}px`,
+            }),
+          }}
         >
           {leading ?? (status === "done" ? <Done /> : value)}
         </div>

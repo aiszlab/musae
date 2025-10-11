@@ -18,10 +18,10 @@ const styles = $create({
     strokeLinecap: "round",
   },
 
-  segment: (props: { perimeter: number; offset: number }) => ({
-    strokeDasharray: `${props.perimeter} ${props.perimeter}`,
-    strokeDashoffset: props.offset,
-  }),
+  segment: {
+    strokeDasharray: "var(--segment-perimeter) var(--segment-perimeter)",
+    strokeDashoffset: "var(--segment-offset)",
+  },
 });
 
 const Circular = ({ value: _value }: CircularProps) => {
@@ -35,10 +35,7 @@ const Circular = ({ value: _value }: CircularProps) => {
 
   const styled = {
     progress: $props(styles.progress),
-    segment: $props(
-      styles.shape,
-      styles.segment({ perimeter: segmentPerimeter, offset: segmentOffset }),
-    ),
+    segment: $props(styles.shape, styles.segment),
     track: $props(styles.shape),
   };
 
@@ -53,6 +50,8 @@ const Circular = ({ value: _value }: CircularProps) => {
       style={{
         ...styled.progress.style,
         "--radius": `${radius}px`,
+        "--segment-perimeter": segmentPerimeter,
+        "--segment-offset": segmentOffset,
       }}
     >
       <circle

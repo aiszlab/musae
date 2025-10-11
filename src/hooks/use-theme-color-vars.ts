@@ -12,23 +12,24 @@ export type ThemeColorVariable = `var(${ThemeColorVarToken})`;
  * @description 主题色样式变量
  */
 export const useThemeColorVars = (tokens: (ColorRole | [ColorRole, number])[]) => {
-  const theme = useTheme();
+  const { colors } = useTheme();
 
   return useMemo(() => {
-    return tokens.reduce<Partial<Record<ThemeColorVarToken, string>>>((prev, _tokenOrPair) => {
-      const [_token, _opacity] = toArray(_tokenOrPair) as [ColorRole, number | undefined];
-      const _color = theme.colors[_token];
+    return tokens.reduce<Partial<Record<ThemeColorVarToken, string>>>((prev, tokenOrPair) => {
+      const [token, opacity] = toArray(tokenOrPair) as [ColorRole, number | undefined];
+      const color = colors[token];
 
       // 透明度特殊逻辑
-      if (isUndefined(_opacity)) {
-        prev[`--color-${_token}`] = _color;
+      if (isUndefined(opacity)) {
+        prev[`--color-${token}`] = color;
       } else {
-        prev[`--color-${_token}-opacity-${(_opacity * 100).toString().padStart(2, "0")}`] =
-          hexToRgba(_color, _opacity).toString();
+        prev[`--color-${token}-opacity-${(opacity * 100).toString().padStart(2, "0")}`] =
+          // 透明度场景下页面渲染统一使用`rgba`格式
+          hexToRgba(color, opacity).toString();
       }
 
       return prev;
     }, {});
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [tokens.toString(), theme.colors]);
+  }, [tokens.toString(), colors]);
 };
