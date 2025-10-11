@@ -18,10 +18,7 @@ const Sequential = ({
   columns,
   className,
   style,
-  rowGap,
-}: RequiredIn<Omit<WaterfallProps, "sequential" | "gutter">, "children" | "columns"> & {
-  rowGap: number;
-}) => {
+}: RequiredIn<Omit<WaterfallProps, "sequential" | "gutter">, "children" | "columns">) => {
   // group children into diff columns
   // if current column do not has any child, mean this column is not need to render
   const groupedColumns = useMemo(() => {
@@ -41,7 +38,7 @@ const Sequential = ({
   const styled = $props(styles.column);
 
   return (
-    <div className={className} style={{ ...style, "--row-gap": `${rowGap}px` }}>
+    <div className={className} style={style}>
       {groupedColumns.map((column, index) => {
         return (
           <div className={styled.className} style={styled.style} key={index}>

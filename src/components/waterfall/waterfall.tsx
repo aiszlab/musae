@@ -82,11 +82,12 @@ const Waterfall = ({
     return (
       <Sequential
         columns={columns}
-        rowGap={rowGap}
         className={stringify(classNames.sequential, className, styled.className)}
         style={{
           ...styled.style,
-          "--max-height": `${maxHeight}px`,
+          "--max-height": maxHeight + "px",
+          "--row-gap": rowGap + "px",
+          "--column-gap": columnGap + "px",
           ...style,
         }}
       >
@@ -100,11 +101,11 @@ const Waterfall = ({
       className={stringify(classNames.waterfall, className, styled.className)}
       style={{
         ...styled.style,
-        "--columns": columns,
-        "--max-height": `${maxHeight}px`,
-        "--row-gap": `${rowGap}px`,
-        "--column-gap": `${columnGap}px`,
         ...style,
+        "--columns": columns,
+        "--max-height": maxHeight + "px",
+        "--row-gap": rowGap + "px",
+        "--column-gap": columnGap + "px",
       }}
     >
       {children.map((item, index) => {
@@ -117,7 +118,6 @@ const Waterfall = ({
             className={className}
             style={{
               ...style,
-              "--column-gap": `${columnGap}px`,
               "--order": _order ?? void 0,
             }}
             ref={(_ref) => {
