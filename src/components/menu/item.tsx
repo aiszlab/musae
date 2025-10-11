@@ -8,7 +8,7 @@ import { Popper } from "../popper";
 import { useLazyBoolean } from "../../hooks/use-lazy-boolean";
 import { stringify } from "@aiszlab/relax/class-name";
 import { $body } from "../theme/theme";
-import { type ThemeColorVariable, useThemeColorVars } from "src/hooks/use-theme-color-vars";
+import { type ThemeColorVariable, useThemeColorVars } from "../../hooks/use-theme-color-vars";
 
 const styles = {
   default: $create({

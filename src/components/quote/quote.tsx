@@ -6,7 +6,7 @@ import { props as $props } from "@stylexjs/stylex";
 import { CLASS_NAMES } from "./context";
 import { useClassNames } from "../../hooks/use-class-names";
 import { $body } from "../theme/theme";
-import { useThemeColorVars } from "src/hooks/use-theme-color-vars";
+import { useThemeColorVars } from "../../hooks/use-theme-color-vars";
 
 const Quote = ({ className, children, style }: QuoteProps) => {
   const classNames = useClassNames(CLASS_NAMES);
