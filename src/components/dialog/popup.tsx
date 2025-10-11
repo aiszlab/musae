@@ -4,7 +4,7 @@ import { useFooter } from "./hooks";
 import { animate } from "motion/react";
 import { useClassNames } from "../../hooks/use-class-names";
 import { create as $create, props as $props } from "@stylexjs/stylex";
-import { positions, spacing } from "../theme/tokens.stylex";
+import { positions, sizes, spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { stringify } from "@aiszlab/relax/class-name";
 import { contains } from "@aiszlab/relax/dom";
@@ -45,7 +45,7 @@ const styles = $create({
     minWidth: 480,
     maxHeight: `calc(100% - ${spacing.xxxxxxlarge} * 2)`,
     margin: spacing.xxxxxxlarge,
-    borderRadius: 8,
+    borderRadius: sizes.xxxxxxxsmall,
     pointerEvents: "auto",
     backgroundColor: "var(--color-surface-container-lowest)",
     opacity: 0,

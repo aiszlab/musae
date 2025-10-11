@@ -4,7 +4,7 @@ import Context from "./context";
 import { Checkbox } from "../checkbox";
 import { KeyboardArrowRight } from "../icon/icons";
 import { create as $create, props as $props } from "@stylexjs/stylex";
-import { spacing } from "../theme/tokens.stylex";
+import { sizes, spacing } from "../theme/tokens.stylex";
 import { useEvent } from "@aiszlab/relax";
 import { stringify } from "@aiszlab/relax/class-name";
 import { type ThemeColorVariable, useThemeColorVars } from "../../hooks/use-theme-color-vars";
@@ -41,7 +41,7 @@ const styles = {
   title: $create({
     default: {
       paddingInline: spacing.xxxxxsmall,
-      borderRadius: 4,
+      borderRadius: sizes.xxxxxxxxxsmall,
       backgroundColor: {
         ":hover": "var(--color-surface-container)" satisfies ThemeColorVariable,
       },
