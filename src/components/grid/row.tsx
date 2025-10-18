@@ -27,7 +27,6 @@ const Row = ({
   as: As = "div",
   style,
 }: RowProps) => {
-  // col and row gap in grid
   const [columnGap, rowGap] = useGutters({ gutter });
   const classNames = useClassNames(CLASS_NAMES);
   const styled = $props(styles.row);

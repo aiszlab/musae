@@ -5,7 +5,6 @@ import { PLACEMENTS } from "./hooks";
 import { useClassNames } from "../../hooks/use-class-names";
 import { create as $create, props as $props } from "@stylexjs/stylex";
 import { positions, sizes, spacing } from "../theme/tokens.stylex";
-import { useTheme } from "../theme";
 import { stringify } from "@aiszlab/relax/class-name";
 import { contains } from "@aiszlab/relax/dom";
 import { useClosable } from "../../hooks/use-closable";
@@ -15,6 +14,7 @@ import { useLocale } from "../../locale";
 import { CLASS_NAMES } from "./context";
 import { at, useAsyncEffect } from "@aiszlab/relax";
 import { $body } from "../theme/theme";
+import { useThemeColorVars, type ThemeColorVariable } from "../../hooks/use-theme-color-vars";
 
 const styles = $create({
   popup: {
@@ -30,11 +30,11 @@ const styles = $create({
     pointerEvents: "auto",
     zIndex: positions.drawer,
     opacity: 0,
-    backgroundColor: "var(--color-surface-dim)",
+    backgroundColor: "var(--color-surface-dim)" satisfies ThemeColorVariable,
   },
 
   panel: {
-    backgroundColor: "var(--color-on-primary)",
+    backgroundColor: "var(--color-on-primary)" satisfies ThemeColorVariable,
     position: "absolute",
     zIndex: positions.drawer,
     pointerEvents: "auto",
@@ -80,7 +80,7 @@ const styles = $create({
     gap: spacing.xxxsmall,
     borderBottomWidth: sizes.smallest,
     borderBottomStyle: "solid",
-    borderBottomColor: "var(--color-outline-variant)",
+    borderBottomColor: "var(--color-outline-variant)" satisfies ThemeColorVariable,
   },
 
   body: {
@@ -107,11 +107,11 @@ const Popup = ({
 }: PopupProps) => {
   const classNames = useClassNames(CLASS_NAMES);
   const _placement = PLACEMENTS[placement];
-  const theme = useTheme();
   const panelRef = useRef<HTMLDivElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
   const [locale] = useLocale("drawer");
   const ref = useRef<HTMLDivElement>(null);
+  const themeColorVars = useThemeColorVars(["on-primary", "surface-dim", "outline-variant"]);
 
   // children render hooks
   const { closer, onKeyDown, onOverlayClick } = useClosable({
@@ -163,9 +163,7 @@ const Popup = ({
       className={stringify(classNames.drawer, className, styled.popup.className)}
       style={{
         ...styled.popup.style,
-        "--color-on-primary": theme.colors["on-primary"],
-        "--color-surface-dim": theme.colors["surface-dim"],
-        "--color-outline-variant": theme.colors["outline-variant"],
+        ...themeColorVars,
         "--default-position": at(_placement, 0),
         "--size": `${size}px`,
       }}

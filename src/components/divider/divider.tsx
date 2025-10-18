@@ -125,10 +125,10 @@ const Divider = ({
       style={{
         ...styled.divider.style,
         ...style,
-        "--offset": `${offset}%`,
         "--color-outline-variant": theme.colors["outline-variant"],
         "--margin-start": `${margins[0]}px`,
         "--margin-end": `${margins[1]}px`,
+        "--offset": `${offset}%`,
       }}
     >
       {isLabeled && (

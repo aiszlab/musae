@@ -6,8 +6,7 @@ import type { Nullable } from "@aiszlab/relax/types";
 type _PanelProps = Omit<PanelProps, "children">;
 
 /**
- * @description panels hooks
- *
+ * panels hooks
  * in split panel, every panel should be sized
  * if we dragged the bar, only change effected panels
  */

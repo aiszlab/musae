@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import type { Status, StepItemProps } from "../../types/steps";
 import { create as $create, props as $props } from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";
-import { isUndefined, useEvent } from "@aiszlab/relax";
+import { isNumber, isUndefined, useEvent } from "@aiszlab/relax";
 import { Context } from "./context";
 import { Done } from "../icon/icons";
 import { stringify } from "@aiszlab/relax/class-name";
@@ -56,8 +56,6 @@ const styles = {
       alignItems: "center",
       borderRadius: sizes.infinity,
       overflow: "hidden",
-      // width: props.size ?? sizes.xsmall,
-      // height: props.size ?? sizes.xsmall,
       width: `var(--size, ${sizes.xsmall})`,
       height: `var(--size, ${sizes.xsmall})`,
     },
@@ -154,9 +152,7 @@ const Item = ({ leading, title, description, value }: StepItemProps) => {
           className={stringify(classNames.sign, styled.sign.className)}
           style={{
             ...styled.sign.style,
-            ...(!isUndefined(size) && {
-              "--size": `${size}px`,
-            }),
+            "--size": isNumber(size) ? `${size}px` : void 0,
           }}
         >
           {leading ?? (status === "done" ? <Done /> : value)}

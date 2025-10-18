@@ -11,7 +11,7 @@ import ImageContex, { CLASS_NAMES } from "./context";
 import { Empty } from "../empty";
 import { Delete, Visibility } from "../icon/icons";
 import { type ThemeColorVariable, useThemeColorVars } from "../../hooks/use-theme-color-vars";
-import { duration, OPACITY, spacing } from "../theme/tokens.stylex";
+import { duration, OPACITY, sizes, spacing } from "../theme/tokens.stylex";
 
 type ImageAction = "preview" | "remove";
 
@@ -20,8 +20,6 @@ const styles = {
     default: {
       display: "inline-flex",
       position: "relative",
-      width: "var(--width)",
-      height: "var(--height)",
     },
   }),
 
@@ -52,8 +50,8 @@ const styles = {
 
   img: $create({
     default: {
-      width: "var(--width)",
-      height: "var(--height)",
+      width: sizes.full,
+      height: sizes.auto,
     },
   }),
 };
@@ -109,7 +107,7 @@ const Image = forwardRef<ImageRef, ImageProps>(
     });
 
     const styled = {
-      loading: $props(styles.img.default),
+      loading: $props(styles.image.default),
       image: $props(styles.image.default),
       overlay: $props(
         styles.overlay.default,
@@ -134,8 +132,8 @@ const Image = forwardRef<ImageRef, ImageProps>(
           className={stringify(className, styled.loading.className)}
           style={{
             ...styled.loading.style,
-            "--width": width,
-            "--height": height,
+            width: width,
+            height: height,
           }}
         />
       );
@@ -148,27 +146,23 @@ const Image = forwardRef<ImageRef, ImageProps>(
 
     return (
       <div
-        className={stringify(classNames.image, styled.image.className)}
+        className={stringify(classNames.image, className, styled.image.className)}
         style={{
           ...styled.image.style,
+          ...style,
           ...themeColorVars,
-          "--width": width,
-          "--height": height,
+          width: width,
+          height: height,
         }}
         ref={imageRef}
         {...hoverProps}
       >
         <img
           ref={imgRef}
-          className={stringify(classNames.img, className, styled.img.className)}
-          style={{
-            ...styled.img.style,
-            ...style,
-          }}
+          className={stringify(classNames.img, styled.img.className)}
+          style={styled.img.style}
           src={src}
           alt={alt}
-          width={width}
-          height={height}
           draggable={false}
           crossOrigin={crossOrigin}
           referrerPolicy={referrerPolicy}

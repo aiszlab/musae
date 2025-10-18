@@ -1,4 +1,4 @@
-import { useHover, useEvent, useFocus, useClickAway, isRefable } from "@aiszlab/relax";
+import { useHover, useEvent, useFocus, useClickAway, isRefable, isNumber } from "@aiszlab/relax";
 import { mountRef } from "@aiszlab/relax/react";
 import React, {
   cloneElement,
@@ -224,7 +224,7 @@ const Popover = forwardRef(
             className={stringify(classNames.popover, className, styled.popover.className)}
             style={{
               ...styled.popover.style,
-              "--padding": typeof padding === "number" ? `${padding}px` : void 0,
+              "--padding": isNumber(padding) ? `${padding}px` : void 0,
               ...style,
             }}
           >

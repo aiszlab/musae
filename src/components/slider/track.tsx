@@ -20,7 +20,7 @@ const _styles = $create({
   },
 });
 
-const Track = ({ size }: TrackProps) => {
+const Track = ({ size = 0 }: TrackProps) => {
   const isSized = !isUndefined(size);
   const { classNames } = useContext(Context);
   const styled = $props(_styles.default, !isSized ? _styles.flexible : {});
@@ -30,7 +30,7 @@ const Track = ({ size }: TrackProps) => {
       className={stringify(classNames.track, styled.className)}
       style={{
         ...styled.style,
-        "--size": `${size ?? 0}px`,
+        "--size": `${size}px`,
       }}
     />
   );
