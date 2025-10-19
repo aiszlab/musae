@@ -24,3 +24,16 @@ export const Normal: Story = {
     multiple: true,
   },
 };
+
+export const PictureFallback: Story = {
+  args: {
+    renderItem: "picture",
+    value: [
+      {
+        status: "success",
+        url: "invalid-url",
+      },
+    ],
+    multiple: true,
+  },
+};

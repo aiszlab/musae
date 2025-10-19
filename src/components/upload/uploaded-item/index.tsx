@@ -1,6 +1,6 @@
 import React, { useContext, useMemo } from "react";
 import { create as $create, props as $props } from "@stylexjs/stylex";
-import { sizes, spacing } from "../../theme/tokens.stylex";
+import { spacing } from "../../theme/tokens.stylex";
 import type { FileItem, UploadedItem as UploadedItemType } from "../../../types/upload";
 import { useEvent } from "@aiszlab/relax";
 import { AttachFile, Delete, Loading } from "../../icon/icons";
@@ -8,7 +8,6 @@ import { leaf } from "@aiszlab/fuzzy/path";
 import { Context } from "../context";
 import { stringify } from "@aiszlab/relax/class-name";
 import { $body } from "../../theme/theme";
-import { type ThemeColorVariable, useThemeColorVars } from "../../../hooks/use-theme-color-vars";
 import UploadedPicture from "./picture";
 import { isRemoteFile } from "../utils";
 
@@ -18,15 +17,6 @@ const styles = {
       display: "flex",
       alignItems: "center",
       gap: spacing.xxsmall,
-      height: sizes.xxxxxxxlarge,
-    },
-
-    picture: {
-      borderWidth: sizes.smallest,
-      borderStyle: "solid",
-      borderColor: "var(--color-outline-variant)" satisfies ThemeColorVariable,
-      padding: spacing.xxsmall,
-      borderRadius: sizes.xxxxxxxxxsmall,
     },
   }),
 
@@ -49,7 +39,6 @@ const UploadedItem = ({
   index: number;
 }) => {
   const { renderItem, classNames } = useContext(Context);
-  const themeColorVars = useThemeColorVars(["outline-variant"]);
 
   const fileItem = useMemo<UploadedItemType>(() => {
     if (isRemoteFile(item)) {
@@ -67,7 +56,7 @@ const UploadedItem = ({
   const isLoading = fileItem.status === "loading";
 
   const styled = {
-    item: $props(styles.item.default, $body.small, isPicture && styles.item.picture),
+    item: $props(styles.item.default, $body.small),
     filename: $props(styles.filename.default),
   };
 
@@ -79,15 +68,8 @@ const UploadedItem = ({
   if (isLoading) {
     return (
       <div
-        className={stringify(
-          classNames.uploadedItem,
-          classNames.uploadedItemPicture,
-          styled.item.className,
-        )}
-        style={{
-          ...styled.item.style,
-          ...themeColorVars,
-        }}
+        className={stringify(classNames.uploadedItem, styled.item.className)}
+        style={styled.item.style}
       >
         <Loading />
       </div>
@@ -97,29 +79,19 @@ const UploadedItem = ({
   // 图片
   if (isPicture) {
     return (
-      <div
-        className={stringify(
-          classNames.uploadedItem,
-          classNames.uploadedItemPicture,
-          styled.item.className,
-        )}
-        style={{
-          ...styled.item.style,
-          ...themeColorVars,
-        }}
-      >
-        <UploadedPicture item={fileItem} onRemove={remove} />
-      </div>
+      <UploadedPicture
+        item={fileItem}
+        onRemove={remove}
+        className={stringify(classNames.uploadedItem, styled.item.className)}
+        style={styled.item.style}
+      />
     );
   }
 
   return (
     <div
       className={stringify(classNames.uploadedItem, styled.item.className)}
-      style={{
-        ...styled.item.style,
-        ...themeColorVars,
-      }}
+      style={styled.item.style}
     >
       <AttachFile />
 

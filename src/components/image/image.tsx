@@ -2,7 +2,7 @@ import React, { forwardRef, useContext, useImperativeHandle, useMemo, useRef } f
 import type { ImageProps, ImageRef } from "../../types/image";
 import Preview from "./preview/preview";
 import PreviewGroupContext from "./preview/context";
-import { isUndefined, useBoolean, useEvent, useHover, useImageLoader } from "@aiszlab/relax";
+import { useBoolean, useEvent, useHover, useImageLoader } from "@aiszlab/relax";
 import { create as $create, props as $props } from "@stylexjs/stylex";
 import { Skeleton } from "../skeleton";
 import { useClassNames } from "../../hooks/use-class-names";
@@ -20,6 +20,8 @@ const styles = {
     default: {
       display: "inline-flex",
       position: "relative",
+      justifyContent: "center",
+      alignItems: "center",
     },
   }),
 
@@ -87,13 +89,13 @@ const Image = forwardRef<ImageRef, ImageProps>(
 
     const actions = useMemo(() => {
       return new Set([
-        ...((previewable && src ? ["preview"] : []) satisfies Array<ImageAction>),
-        ...((onRemove ? ["remove"] : []) satisfies Array<ImageAction>),
+        ...((previewable && status === "loaded" ? ["preview"] : []) satisfies ImageAction[]),
+        ...((onRemove ? ["remove"] : []) satisfies ImageAction[]),
       ]);
-    }, [previewable, src, onRemove]);
+    }, [previewable, onRemove, status]);
 
     const preview = useEvent(() => {
-      if (!src) return;
+      if (!src || status !== "loaded") return;
 
       // if current image is in preview group
       // just use preview group to preview image
@@ -118,10 +120,8 @@ const Image = forwardRef<ImageRef, ImageProps>(
     };
 
     useImperativeHandle(ref, () => {
-      if (!imageRef.current) return {};
-
       return {
-        ...imageRef.current,
+        ...(imageRef.current ?? {}),
         preview,
       };
     });
@@ -139,14 +139,6 @@ const Image = forwardRef<ImageRef, ImageProps>(
       );
     }
 
-    if (status !== "loaded") {
-      if (isUndefined(fallback)) {
-        return <Empty className={className} style={{ width: width, height: height }} />;
-      }
-
-      return fallback;
-    }
-
     return (
       <div
         className={stringify(classNames.image, className, styled.image.className)}
@@ -160,16 +152,20 @@ const Image = forwardRef<ImageRef, ImageProps>(
         ref={imageRef}
         {...hoverProps}
       >
-        <img
-          ref={imgRef}
-          className={stringify(classNames.img, styled.img.className)}
-          style={styled.img.style}
-          src={src}
-          alt={alt}
-          draggable={false}
-          crossOrigin={crossOrigin}
-          referrerPolicy={referrerPolicy}
-        />
+        {status === "loaded" && (
+          <img
+            ref={imgRef}
+            className={stringify(classNames.img, styled.img.className)}
+            style={styled.img.style}
+            src={src}
+            alt={alt}
+            draggable={false}
+            crossOrigin={crossOrigin}
+            referrerPolicy={referrerPolicy}
+          />
+        )}
+
+        {status !== "loaded" && (fallback ?? <Empty className={className} />)}
 
         {actions.size > 0 && (
           <div
