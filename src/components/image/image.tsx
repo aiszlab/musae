@@ -53,7 +53,8 @@ const styles = {
   img: $create({
     default: {
       width: sizes.full,
-      height: sizes.auto,
+      maxHeight: sizes.full,
+      objectFit: "cover",
     },
   }),
 };

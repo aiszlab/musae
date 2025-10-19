@@ -21,9 +21,10 @@ export const Normal: Story = {
 
 export const Sized: Story = {
   args: {
-    src: "https://fantu-1304340057.cos.ap-shanghai.myqcloud.com/stack-logos/4eddf664-1bb3-4cc1-800d-518aa5e884fe",
+    src: "https://fantu-1304340057.cos.ap-shanghai.myqcloud.com/a5a8fb8d-47e1-4d3c-a154-3d113f86dc9b",
     referrerPolicy: "strict-origin-when-cross-origin",
-    width: 100,
+    width: 300,
+    height: 200,
   },
 };
 
