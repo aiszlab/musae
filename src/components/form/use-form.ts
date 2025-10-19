@@ -18,8 +18,6 @@ function useForm<T extends FieldsValue>({
   });
 
   const form = useDefault(() => {
-    console.log("_usedForm?.[FORM_TOKEN]===========", _usedForm?.[FORM_TOKEN]);
-
     const _form = _usedForm?.[FORM_TOKEN] ?? new Form<T>();
 
     _form.defaultValue = defaultValue;

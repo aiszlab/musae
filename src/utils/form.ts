@@ -316,12 +316,12 @@ export class Form<T extends FieldsValue> {
    * clear
    */
   clear() {
-    this.#state.value = {};
+    this.#state.value = void 0;
     this.#state.error = {};
 
     this.#state$.next({
       event: FORM_EVENT.clear,
-      value: this.#state.value,
+      value: this.#state.value ?? {},
       error: this.#state.error,
     });
   }
