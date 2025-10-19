@@ -26,3 +26,10 @@ export const Sized: Story = {
     width: 100,
   },
 };
+
+export const Fallback: Story = {
+  args: {
+    width: 200,
+    height: 160,
+  },
+};

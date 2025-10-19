@@ -140,7 +140,10 @@ const Image = forwardRef<ImageRef, ImageProps>(
     }
 
     if (status !== "loaded") {
-      if (isUndefined(fallback)) return <Empty className={className} />;
+      if (isUndefined(fallback)) {
+        return <Empty className={className} style={{ width: width, height: height }} />;
+      }
+
       return fallback;
     }
 
