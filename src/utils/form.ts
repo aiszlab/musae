@@ -1,5 +1,5 @@
 import { toArray } from "@aiszlab/relax";
-import type { Partialable } from "@aiszlab/relax/types";
+import type { Partialable, ValueOf } from "@aiszlab/relax/types";
 import { type ReactNode } from "react";
 import { BehaviorSubject, filter } from "rxjs";
 
@@ -16,14 +16,18 @@ interface FieldState<FieldValue> {
   error: ReactNode;
 }
 
-enum ChangingSource {
-  Change = "change",
-  Set = "set",
-  Validate = "validate",
-  Initialize = "initialize",
-  Clear = "clear",
-  Reset = "reset",
-}
+const FORM_EVENT = {
+  change: "change",
+  set_value: "set_value",
+  set_fields_value: "set_fields_value",
+  set_field_value: "set_field_value",
+  validate: "validate",
+  initialize: "initialize",
+  clear: "clear",
+  reset: "reset",
+} as const;
+
+type FormEvent = ValueOf<typeof FORM_EVENT>;
 
 export interface Rule<T extends FieldsValue, FieldKey extends keyof T> {
   validate: (value: Partialable<T[FieldKey]>) => void | ReactNode | Promise<ReactNode>;
@@ -53,13 +57,13 @@ export interface RegisteredField<T extends FieldsValue, FieldKey extends keyof T
 }
 
 interface FormState<T extends FieldsValue> {
-  value: Partial<T>;
+  value?: Partial<T>;
   error: Partial<Record<keyof T, ReactNode>>;
 }
 
 interface ChangingState<T extends FieldsValue> {
-  source: ChangingSource;
-  names: (keyof T)[];
+  event: FormEvent;
+  names?: Set<keyof T>;
   value: Partial<T>;
   error: Partial<Record<keyof T, ReactNode>>;
 }
@@ -73,54 +77,48 @@ export type ChangeHandler<T extends FieldsValue> = (
  * form instance
  */
 export class Form<T extends FieldsValue> {
-  #defaultValue: Partial<T>;
+  #defaultValue?: Partial<T>;
   #fields: Map<keyof T, Pick<RegisteredField<T, keyof T>, "rules">>;
   #state: FormState<T>;
   #state$: BehaviorSubject<ChangingState<T>>;
   #onChange: ChangeHandler<T> | null;
 
   constructor() {
-    this.#defaultValue = {};
     this.#fields = new Map();
-    this.#state = {
-      value: {},
-      error: {},
-    };
+    this.#state = { error: {} };
     this.#onChange = null;
 
     this.#state$ = new BehaviorSubject<ChangingState<T>>({
-      source: ChangingSource.Initialize,
-      names: [],
+      event: FORM_EVENT.initialize,
       value: this.#state.value ?? {},
       error: this.#state.error,
     });
 
-    this.#state$.subscribe(({ source, names, value }) => {
-      if (names.length === 0) return;
-      if (source !== ChangingSource.Change) return;
+    this.#state$.subscribe(({ event, names, value }) => {
+      if ((names?.size ?? 0) === 0) return;
+      if (event !== FORM_EVENT.change) return;
 
       // value change, handle `onChange` callback
-      this.#onChange?.({ ...value }, names);
+      this.#onChange?.({ ...value }, Array.from(names ?? []));
     });
   }
 
   /**
    * defaultValue setter
    */
-  set defaultValue(defaultValue: Partial<T> | undefined) {
+  set defaultValue(defaultValue: Partialable<Partial<T>>) {
     this.#defaultValue = defaultValue ?? this.#defaultValue;
   }
 
   /**
    * value setter
    */
-  set value(value: Partial<T> | undefined) {
-    this.#state.value = value ?? this.#defaultValue ?? this.#state.value;
+  set value(value: Partialable<Partial<T>>) {
+    this.#state.value = value ?? this.#state.value ?? this.#defaultValue;
 
     this.#state$.next({
-      source: ChangingSource.Set,
-      names: [],
-      value: this.#state.value,
+      event: FORM_EVENT.set_value,
+      value: this.#state.value ?? {},
       error: this.#state.error,
     });
   }
@@ -147,10 +145,10 @@ export class Form<T extends FieldsValue> {
       .pipe(
         // only listen `name` related to `register` field
         filter(({ names }) => {
-          return names.length === 0 || new Set(names).has(name);
+          return !names || names.size === 0 || names.has(name);
         }),
       )
-      .subscribe(({ source, value, error }) => {
+      .subscribe(({ event, value, error }) => {
         // callback field state
         onChange({
           value: value[name],
@@ -158,7 +156,7 @@ export class Form<T extends FieldsValue> {
         });
 
         // validate
-        if (source === ChangingSource.Validate) {
+        if (event === FORM_EVENT.validate) {
           onValidate(error[name]);
         }
       });
@@ -179,10 +177,8 @@ export class Form<T extends FieldsValue> {
   ) {
     const _subscription = this.#state$
       .pipe(
-        // only listen `name` related to `register` field
-        filter(({ names }) => names.length === 0 || new Set(names).has(name)),
-        // ignore `Validate` `ChangingSource`
-        filter(({ source }) => source !== ChangingSource.Validate),
+        filter(({ names }) => !names || names.size === 0 || names.has(name)),
+        filter(({ event }) => event !== FORM_EVENT.validate),
       )
       .subscribe(({ value }) => {
         onChange(value[name]);
@@ -250,8 +246,8 @@ export class Form<T extends FieldsValue> {
     // notify state change
     // only notify `error`
     this.#state$.next({
-      source: ChangingSource.Validate,
-      names,
+      event: FORM_EVENT.validate,
+      names: new Set(names),
       value: this.#state.value ?? {},
       error: this.#state.error,
     });
@@ -271,8 +267,8 @@ export class Form<T extends FieldsValue> {
     this.#state.error[name] = null;
 
     this.#state$.next({
-      source: ChangingSource.Set,
-      names: [name],
+      event: FORM_EVENT.set_field_value,
+      names: new Set([name]),
       value: this.#state.value,
       error: this.#state.error,
     });
@@ -295,8 +291,8 @@ export class Form<T extends FieldsValue> {
     };
 
     this.#state$.next({
-      source: ChangingSource.Set,
-      names,
+      event: FORM_EVENT.set_fields_value,
+      names: new Set(names),
       value: this.#state.value,
       error: this.#state.error,
     });
@@ -310,9 +306,8 @@ export class Form<T extends FieldsValue> {
     this.#state.error = {};
 
     this.#state$.next({
-      source: ChangingSource.Reset,
-      names: [],
-      value: this.#state.value,
+      event: FORM_EVENT.reset,
+      value: this.#state.value ?? {},
       error: this.#state.error,
     });
   }
@@ -325,8 +320,7 @@ export class Form<T extends FieldsValue> {
     this.#state.error = {};
 
     this.#state$.next({
-      source: ChangingSource.Clear,
-      names: [],
+      event: FORM_EVENT.clear,
       value: this.#state.value,
       error: this.#state.error,
     });
@@ -346,8 +340,8 @@ export class Form<T extends FieldsValue> {
     this.#state.error[name] = null;
 
     this.#state$.next({
-      source: ChangingSource.Change,
-      names: [name],
+      event: FORM_EVENT.change,
+      names: new Set([name]),
       value: this.#state.value,
       error: this.#state.error,
     });
