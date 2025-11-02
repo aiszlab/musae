@@ -5,7 +5,6 @@ import { isFunction, useEvent, useMounted } from "@aiszlab/relax";
 import { create as $create, props as $props } from "@stylexjs/stylex";
 import { normalize } from "@aiszlab/relax/class-name";
 import { Observable, type Subscriber, distinctUntilChanged } from "rxjs";
-import { positions } from "./tokens.stylex";
 
 export const PALETTE: Readonly<Palette> = {
   primary: {
@@ -123,25 +122,31 @@ const styles = $create({
 
   light: {
     colorScheme: "light",
+    backgroundColor: "var(--color-light)",
+  },
 
+  lighting: {
     "::view-transition-old(root)": {
-      zIndex: positions.max,
+      zIndex: 9999,
     },
 
     "::view-transition-new(root)": {
-      zIndex: positions.min,
+      zIndex: 1,
     },
   },
 
   dark: {
     colorScheme: "dark",
+    backgroundColor: "var(--color-dark)",
+  },
 
+  darking: {
     "::view-transition-old(root)": {
-      zIndex: positions.min,
+      zIndex: 1,
     },
 
     "::view-transition-new(root)": {
-      zIndex: positions.max,
+      zIndex: 9999,
     },
   },
 });
@@ -176,54 +181,59 @@ export const useTheme = () => {
  */
 export const useSwitchable = ({ theme }: { theme: Theme }) => {
   const [mode, setMode] = useState<Mode>("light");
-  const isDark = mode === "dark";
   const trigger = useRef<Subscriber<Mode> | null>(null);
   const colors = useMemo(() => toColorRoles(theme.palette, mode), [mode, theme.palette]);
 
   const styled = {
     default: $props(styles.default),
     light: $props(styles.light),
+    lighting: $props(styles.lighting),
     dark: $props(styles.dark),
-  };
+    darking: $props(styles.darking),
+  } as const;
 
   const repaint = useEvent((nextMode: Mode) => {
-    const _isDark = nextMode === "dark";
-    const _usingMode: Mode = _isDark ? "light" : "dark";
+    const isDarking = nextMode === "dark";
+    setMode(nextMode);
 
-    document.documentElement.classList.remove(...normalize(styled[_usingMode].className));
-    document.documentElement.classList.add(...normalize(styled[nextMode].className));
-
-    document.documentElement.style.backgroundColor = _isDark
-      ? theme.palette.neutral[0]
-      : theme.palette.neutral[100];
+    document.documentElement.classList.remove(
+      ...normalize(styled[isDarking ? "light" : "dark"].className),
+    );
+    document.documentElement.classList.add(
+      ...normalize(
+        styled[nextMode].className,
+        styled[isDarking ? "darking" : "lighting"].className,
+      ),
+    );
   });
 
   useMounted(() => {
-    // set default class names
     document.documentElement.classList.add(...normalize(styled.default.className));
+    document.documentElement.attributeStyleMap.set("--color-light", theme.palette.neutral[100]);
+    document.documentElement.attributeStyleMap.set("--color-dark", theme.palette.neutral[0]);
 
     new Observable<Mode>((subscriber) => {
       trigger.current = subscriber;
     })
       .pipe(distinctUntilChanged())
-      .subscribe((_mode) => {
-        repaint(_mode);
-        setMode(_mode);
+      .subscribe({
+        next: repaint,
       });
   });
 
   // dark, light mode switch
   const toggle = useEvent((event?: MouseEvent) => {
-    const _toMode = isDark ? "light" : "dark";
+    const isDarking = mode === "light";
+    const nextMode = isDarking ? "dark" : "light";
 
     // dom not support animation
     if (!isFunction(document.startViewTransition)) {
-      trigger.current?.next(_toMode);
+      trigger.current?.next(nextMode);
       return;
     }
 
     const animation = document.startViewTransition(() => {
-      trigger.current?.next(_toMode);
+      trigger.current?.next(nextMode);
     });
 
     animation.ready.then(() => {
@@ -236,12 +246,19 @@ export const useSwitchable = ({ theme }: { theme: Theme }) => {
       const clipPath = [`circle(0px at ${x}px ${y}px)`, `circle(${radius}px at ${x}px ${y}px)`];
 
       document.documentElement.animate(
-        { clipPath: isDark ? clipPath.reverse() : clipPath },
+        { clipPath: isDarking ? clipPath : clipPath.toReversed() },
         {
           duration: 300,
           easing: "ease-in",
-          pseudoElement: isDark ? "::view-transition-old(root)" : "::view-transition-new(root)",
+          fill: "forwards",
+          pseudoElement: isDarking ? "::view-transition-new(root)" : "::view-transition-old(root)",
         },
+      );
+    });
+
+    animation.finished.then(() => {
+      document.documentElement.classList.remove(
+        ...normalize(styled.lighting.className, styled.darking.className),
       );
     });
   });
