@@ -10,16 +10,17 @@ import { duration } from "../theme/tokens.stylex";
 import { CLASS_NAMES } from "./context";
 import { useClassNames } from "../../hooks/use-class-names";
 import { stringify } from "@aiszlab/relax/class-name";
+import { type ThemeColorVariable } from "../../hooks/use-theme-color-vars";
 
 const styles = $create({
   visibility: {
-    color: "var(--color-secondary-fixed-dim)",
+    color: "var(--color-secondary-fixed-dim)" satisfies ThemeColorVariable,
     willChange: "color",
     transitionProperty: "color",
     transitionDuration: duration.short,
 
     ":hover": {
-      color: "var(--color-secondary)",
+      color: "var(--color-secondary)" satisfies ThemeColorVariable,
     },
   },
 });

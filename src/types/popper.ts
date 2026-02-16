@@ -1,5 +1,5 @@
 import type { Nullable } from "@aiszlab/relax/types";
-import type { DOMAttributes, ReactNode } from "react";
+import type { CSSProperties, DOMAttributes, ReactNode } from "react";
 import type { ComponentProps } from "./element";
 import type { Derivable, OffsetOptions, Placement } from "@floating-ui/dom";
 import type { PortalProps } from "./portal";
@@ -98,6 +98,18 @@ export interface PopperProps
    * @default true
    */
   elevation?: boolean;
+
+  /**
+   * 定制样式名 - `portal`
+   * @default undefined
+   */
+  portalClassName?: string;
+
+  /**
+   * 定制样式 - `portal`
+   * @default undefined
+   */
+  portalStyle?: CSSProperties;
 }
 
 export type DropdownProps = Omit<PopperProps, "portal" | "placement" | "container"> & {

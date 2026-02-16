@@ -19,6 +19,7 @@ import { Close } from "../icon/icons";
 import { $body } from "../theme/theme";
 import { useThemeColorVars } from "../../hooks/use-theme-color-vars";
 import { DialogContext } from "../dialog/context";
+import { useStackLevelContextContext } from "src/contexts/stack-level.context";
 
 const styles = $create({
   pickable: {
@@ -53,6 +54,8 @@ const Picker = forwardRef<PickerRef, PickerProps>(
     const pickableRef = useRef<HTMLDivElement>(null);
     const _themeColorVars = useThemeColorVars(["primary", "outline", "error"]);
     const { container } = useContext(DialogContext);
+    const { className: stackLevelClassName, style: stackLevelStyle } =
+      useStackLevelContextContext();
 
     const getDropdownWidth = useCallback(() => {
       if (!popupWidth) return void 0;
@@ -125,6 +128,7 @@ const Picker = forwardRef<PickerRef, PickerProps>(
           trigger={() => trigger.current}
           open={isOpen}
           className={classNames.dropdown}
+          style={stackLevelStyle}
           onEnter={onPopperEnter}
           onEntered={onPopperEntered}
           onExit={onPopperExite}
@@ -132,6 +136,9 @@ const Picker = forwardRef<PickerRef, PickerProps>(
           // click on popper, keep select focused
           onMouseDown={onDropdownClick}
           container={container}
+          // 定制`protal`的样式
+          portalClassName={stackLevelClassName}
+          portalStyle={stackLevelStyle}
         >
           <div
             ref={pickableRef}
