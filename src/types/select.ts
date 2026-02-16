@@ -73,7 +73,7 @@ export type SelectProps<T extends ValueOrValues = ValueOrValues> = ComponentProp
      * on value change, toggle
      * @default void 0
      */
-    onChange?: (value: T) => void;
+    onChange?: (value: T | undefined) => void;
 
     /**
      * @description
