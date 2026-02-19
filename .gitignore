@@ -8,6 +8,7 @@ node-compile-cache
 # editor
 .idea
 .vscode
+.env
 
 # unit test
 coverage
