@@ -12,7 +12,7 @@ export const useValue = ({
 }: Pick<RateProps, "value" | "onChange"> & {
   halfable: boolean;
 }) => {
-  const [_value, setValue] = useControlledState(props.value, { defaultState: 0 });
+  const [_value, setValue] = useControlledState<number>(props.value, { defaultState: 0 });
 
   // convert value into valid number like `0` `0.5` `1.5` `2`
   const value = useMemo(() => {

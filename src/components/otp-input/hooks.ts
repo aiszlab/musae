@@ -16,7 +16,7 @@ export const useValue = ({
   onChange: Partialable<(value: string) => void>;
   value?: string;
 }) => {
-  const [value, setValue] = useControlledState(_value, { defaultState: "" });
+  const [value, setValue] = useControlledState<string>(_value, { defaultState: "" });
   const values = useMemo(
     () => Array.from<string[], string>({ length }, (_, index) => value.charAt(index)),
     [length, value],

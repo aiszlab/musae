@@ -11,7 +11,7 @@ interface Props {
 }
 
 export function useUpload({ uploader, limit, multiple, value: _value, onError, onChange }: Props) {
-  const [value, setValue] = useControlledState(_value, { defaultState: [] });
+  const [value, setValue] = useControlledState<FileItem[]>(_value, { defaultState: [] });
   const [, identity] = useIdentity();
 
   const isFull = value.length >= limit;

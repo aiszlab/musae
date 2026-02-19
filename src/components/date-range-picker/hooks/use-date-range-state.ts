@@ -17,9 +17,12 @@ export const useDateRangeState = (
   controlledState: DateRangePickerProps["value"],
   { pickerRef, onChange }: Props,
 ) => {
-  const [value, setValue] = useControlledState(controlledState, {
-    defaultState: [void 0, void 0],
-  });
+  const [value, setValue] = useControlledState<Exclude<typeof controlledState, undefined>>(
+    controlledState,
+    {
+      defaultState: [void 0, void 0],
+    },
+  );
 
   const change = useEvent((_value: Dayjs) => {
     // click first time

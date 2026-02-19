@@ -20,7 +20,7 @@ export const useLazyBoolean = ({
   isTruthy: _isTruthy,
   onIsTruthyChange,
 }: UsingLazyBoolean = {}): UsedLazyBoolean => {
-  const { "0": isTruthy, "1": setIsTruthy } = useControlledState(_isTruthy, {
+  const { "0": isTruthy, "1": setIsTruthy } = useControlledState<boolean>(_isTruthy, {
     defaultState: false,
   });
 

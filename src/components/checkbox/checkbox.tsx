@@ -34,7 +34,7 @@ const Checkbox = ({
   const isDisabled = contextValue?.isDisabled ?? disabled;
 
   const { ripples, add, clear } = useRipple({ isDisabled: !ripple || isDisabled });
-  const [_isChecked, _setIsChecked] = useControlledState(checked, {
+  const [_isChecked, _setIsChecked] = useControlledState<boolean>(checked, {
     defaultState: defaultChecked,
   });
 

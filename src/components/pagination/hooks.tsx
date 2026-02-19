@@ -32,7 +32,7 @@ export const usePagiantion = ({
   onChange?: (at: number) => void;
   onPageSizeChange?: (pageSize: number) => void;
 }) => {
-  const [pageSize, setPageSize] = useControlledState(_pageSize, { defaultState: 10 });
+  const [pageSize, setPageSize] = useControlledState<number>(_pageSize, { defaultState: 10 });
 
   // convert total into page count
   // at least 1 page
