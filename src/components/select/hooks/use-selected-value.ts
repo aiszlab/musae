@@ -12,7 +12,7 @@ interface UsingSelectedValue<T extends ValueOrValues = ValueOrValues> {
   complex: boolean;
   close: () => void;
   clearKeyword: () => void;
-  onChange?: (value: T) => void;
+  onChange?: (value: T | undefined) => void;
   onClear?: () => void;
 }
 
@@ -54,20 +54,23 @@ export const useSelectedValue = <T extends ValueOrValues = ValueOrValues>({
       label: readableOptions.get(key) ?? key.toString(),
     };
 
-    // single mode
+    // 单选模式下，点击选项直接关闭下拉菜单
+    // 如果点击的选项已经被选中，则不执行任何操作
     if (!mode) {
       close();
-      // same value, do not toggle again
-      if (readableValues.has(key)) return;
+
+      if (readableValues.has(_value.value)) {
+        return;
+      }
 
       setValue(_value);
       onChange?.((complex ? _value : key) as T);
       return;
     }
 
-    // in multiple mode
-    // click menu item twice mean cancel it
-    // else add current values
+    // 多选模式下
+    // 点击选项不关闭下拉菜单
+    // 点击选项，如果选项已经被选中，则取消选中；如果选项未被选中，则添加到已选中列表中
     const prev = new Map(readableValues);
     const isRemoved = prev.has(key) && prev.delete(key);
     const next = isRemoved ? prev : prev.set(key, _value.label);

@@ -79,6 +79,8 @@ const Dropdown = forwardRef<PopperRef, DropdownProps>(
       arrow: arrowable = false,
       disappearable = true,
       elevation = true,
+      portalClassName,
+      portalStyle,
       ...props
     },
     ref,
@@ -116,9 +118,10 @@ const Dropdown = forwardRef<PopperRef, DropdownProps>(
 
     return (
       <div
-        className={stringify(classNames.popper, styled.portal.className)}
+        className={stringify(classNames.popper, portalClassName, styled.portal.className)}
         style={{
           ...styled.portal.style,
+          ...portalStyle,
           "--color-surface-container": theme.colors["surface-container"],
         }}
       >

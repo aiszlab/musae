@@ -1,4 +1,11 @@
-import { clamp, range, useControlledState, useCounter, useEvent } from "@aiszlab/relax";
+import {
+  clamp,
+  isUndefined,
+  range,
+  useControlledState,
+  useCounter,
+  useEvent,
+} from "@aiszlab/relax";
 import { useMemo } from "react";
 import type { PaginationItems, PaginationItemType } from "../../types/pagination";
 
@@ -74,7 +81,11 @@ export const usePagiantion = ({
     setCount(at);
   });
 
-  const onPageSizeChange = useEvent((pageSize: number) => {
+  const onPageSizeChange = useEvent((pageSize?: number) => {
+    if (isUndefined(pageSize)) {
+      return;
+    }
+
     _onPageSizeChange?.(pageSize);
     setPageSize(pageSize);
   });

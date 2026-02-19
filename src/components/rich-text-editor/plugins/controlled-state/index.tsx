@@ -25,7 +25,7 @@ const ControlledStatePlugin = forwardRef<Ref, Props>(({ value, use, onChange }, 
      * 监听受控值变化
      * 发生值变化时，更新内部状态和编辑器状态
      */
-    onUpdate: (nextValue) => {
+    onChange: (nextValue) => {
       _setEditorState(nextValue);
     },
   });

@@ -34,19 +34,21 @@ const Transfer = ({
   disabled = false,
   className,
   style,
+  onChange,
 }: TransferProps) => {
   const {
     transferred,
     untransferred,
     transfer,
     untransfer,
-    transferKeys,
-    untransferKeys,
-    setTransferKeys,
-    setUntransferKeys,
+    selectedTransferKeys,
+    selectedUntransferKeys,
+    setSelectedTransferKeys,
+    setSelectedUntransferKeys,
   } = useTransfer({
     options,
     value,
+    onChange,
   });
 
   const classNames = useClassNames(CLASS_NAMES);
@@ -75,8 +77,8 @@ const Transfer = ({
         <List
           options={Array.from(untransferred.values())}
           title={at(titles, 0)}
-          value={transferKeys}
-          onChange={setTransferKeys}
+          value={selectedTransferKeys}
+          onChange={setSelectedTransferKeys}
         />
 
         <div
@@ -86,7 +88,7 @@ const Transfer = ({
           <IconButton
             size="small"
             onClick={transfer}
-            disabled={disabled || transferKeys.length === 0}
+            disabled={disabled || selectedTransferKeys.length === 0}
           >
             <KeyboardArrowRight />
           </IconButton>
@@ -94,7 +96,7 @@ const Transfer = ({
           <IconButton
             size="small"
             onClick={untransfer}
-            disabled={disabled || untransferKeys.length === 0}
+            disabled={disabled || selectedUntransferKeys.length === 0}
           >
             <KeyboardArrowLeft />
           </IconButton>
@@ -103,8 +105,8 @@ const Transfer = ({
         <List
           options={Array.from(transferred.values())}
           title={at(titles, 1)}
-          value={untransferKeys}
-          onChange={setUntransferKeys}
+          value={selectedUntransferKeys}
+          onChange={setSelectedUntransferKeys}
         />
       </div>
     </Context.Provider>

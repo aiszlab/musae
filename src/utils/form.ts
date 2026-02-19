@@ -211,7 +211,7 @@ export class Form<T extends FieldsValue> {
    * @description
    * if provided `names`, only validate `names`
    */
-  async validate(names: (keyof T)[] = toArray(this.#fields.keys())) {
+  async validate(names: (keyof T)[] = this.#fields.keys().toArray()) {
     const validated = await Promise.all<ReactNode[]>(
       names.map(async (name) => {
         const rules = this.#fields.get(name)?.rules?.() ?? [];

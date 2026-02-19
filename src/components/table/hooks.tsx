@@ -22,18 +22,23 @@ export const useColumns = <T,>({ columns }: { columns: Column<T>[] }) => {
 
   return useMemo<ColumnDef<T, DeepValue<T, DeepKeys<T>>>[]>(() => {
     return columns.map(
-      ({
-        key,
-        render,
-        title,
-        sortable = false,
-        sortDirections = ["ascending", "descending"],
-        valueAt,
-      }) => {
+      (
+        {
+          key,
+          render,
+          title,
+          sortable = false,
+          sortDirections = ["ascending", "descending"],
+          valueAt,
+        },
+        index,
+      ) => {
+        const columnKey = valueAt ?? key ?? `__table_column_${index}`;
+
         // @ts-expect-error valueAt or key is always exist
-        return helper.current.accessor(valueAt ?? key, {
+        return helper.current.accessor(columnKey, {
           header: (
-            <HeaderCell sortable={sortable} value={key} sortDirections={sortDirections}>
+            <HeaderCell sortable={sortable} columnKey={columnKey} sortDirections={sortDirections}>
               {title}
             </HeaderCell>
           ),

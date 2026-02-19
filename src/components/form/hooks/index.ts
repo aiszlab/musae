@@ -1,4 +1,4 @@
-import { isEmpty, useEvent, useMounted } from "@aiszlab/relax";
+import { useEvent, useMounted } from "@aiszlab/relax";
 import { useFormContext } from "../context";
 import { type ReactNode, useCallback, useMemo, useState } from "react";
 import { type FieldsValue } from "../../../utils/form";
@@ -18,16 +18,7 @@ function useFormItem<T extends FieldsValue, FieldKey extends keyof T>({
   const [value, setValue] = useState<T[FieldKey]>();
 
   const _rules = useEvent(() => {
-    return [
-      ...rules,
-      {
-        validate: (fieldValue) => {
-          if (isEmpty(fieldValue)) {
-            return "请填写";
-          }
-        },
-      },
-    ] satisfies typeof rules;
+    return rules;
   });
 
   useMounted(() => {

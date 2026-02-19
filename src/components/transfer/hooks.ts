@@ -1,15 +1,25 @@
-import { type Key, useCallback, useMemo, useState } from "react";
+import { type Key, useMemo, useState } from "react";
 import type { TransferOption } from "../../types/transfer";
-import { useControlledState } from "@aiszlab/relax";
+import { useControlledState, useEvent } from "@aiszlab/relax";
+import type { Partialable } from "@aiszlab/relax/types";
+
+interface Props {
+  options: TransferOption[];
+  value?: Key[];
+  onChange?: (keys: Key[] | undefined) => void;
+}
 
 /**
  * @description
  * options
  */
-export const useTransfer = (props: { options: TransferOption[]; value?: Key[] }) => {
-  const [value, setValue] = useControlledState(props.value);
-  const [transferKeys, setTransferKeys] = useState<Key[]>([]);
-  const [untransferKeys, setUntransferKeys] = useState<Key[]>([]);
+export const useTransfer = (props: Props) => {
+  const [value, setValue] = useControlledState<Partialable<Key[]>>(props.value, {
+    onChange: props.onChange,
+  });
+
+  const [selectedTransferKeys, setSelectedTransferKeys] = useState<Key[]>([]);
+  const [selectedUntransferKeys, setSelectedUntransferKeys] = useState<Key[]>([]);
 
   const options = useMemo(() => {
     return props.options.reduce(
@@ -32,31 +42,31 @@ export const useTransfer = (props: { options: TransferOption[]; value?: Key[] })
     );
   }, [options, value]);
 
-  const transfer = useCallback(() => {
-    setValue((prev = []) => [...prev, ...transferKeys]);
-    setTransferKeys([]);
-  }, [transferKeys, setValue]);
+  const transfer = useEvent(() => {
+    setValue((prev = []) => [...prev, ...selectedTransferKeys]);
+    setSelectedTransferKeys([]);
+  });
 
-  const untransfer = useCallback(() => {
+  const untransfer = useEvent(() => {
     setValue((prev = []) => {
       return Array.from(
-        untransferKeys.reduce((checkedKeys, unchecked) => {
+        selectedUntransferKeys.reduce((checkedKeys, unchecked) => {
           checkedKeys.delete(unchecked);
           return checkedKeys;
         }, new Set(prev)),
       );
     });
-    setUntransferKeys([]);
-  }, [untransferKeys, setValue]);
+    setSelectedUntransferKeys([]);
+  });
 
   return {
     transferred,
     untransferred,
     transfer,
     untransfer,
-    transferKeys,
-    untransferKeys,
-    setTransferKeys,
-    setUntransferKeys,
+    selectedTransferKeys,
+    selectedUntransferKeys,
+    setSelectedTransferKeys,
+    setSelectedUntransferKeys,
   };
 };

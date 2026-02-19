@@ -15,20 +15,23 @@ import { CLASS_NAMES } from "./context";
 import { at, useAsyncEffect } from "@aiszlab/relax";
 import { $body } from "../theme/theme";
 import { useThemeColorVars, type ThemeColorVariable } from "../../hooks/use-theme-color-vars";
+import StackLevelContext from "src/contexts/stack-level.context";
 
 const styles = $create({
+  stackLevel: {
+    zIndex: positions.drawer,
+  },
+
   popup: {
     position: "fixed",
     inset: 0,
     pointerEvents: "none",
-    zIndex: positions.drawer,
   },
 
   overlay: {
     position: "absolute",
     inset: 0,
     pointerEvents: "auto",
-    zIndex: positions.drawer,
     opacity: 0,
     backgroundColor: "var(--color-surface-dim)" satisfies ThemeColorVariable,
   },
@@ -36,7 +39,6 @@ const styles = $create({
   panel: {
     backgroundColor: "var(--color-on-primary)" satisfies ThemeColorVariable,
     position: "absolute",
-    zIndex: positions.drawer,
     pointerEvents: "auto",
     willChange: "transform",
     display: "flex",
@@ -148,7 +150,8 @@ const Popup = ({
   }, [open]);
 
   const styled = {
-    popup: $props(styles.popup),
+    stackLevel: $props(styles.stackLevel),
+    popup: $props(styles.stackLevel, styles.popup),
     overlay: $props(styles.overlay),
     panel: $props(styles.panel, styles[placement]),
     header: $props($body.large, styles.header),
@@ -157,54 +160,61 @@ const Popup = ({
   };
 
   return (
-    <div
-      tabIndex={-1}
-      ref={ref}
-      className={stringify(classNames.drawer, className, styled.popup.className)}
-      style={{
-        ...styled.popup.style,
-        ...themeColorVars,
-        "--default-position": at(_placement, 0),
-        "--size": `${size}px`,
+    <StackLevelContext
+      value={{
+        className: styled.stackLevel.className,
+        style: styled.stackLevel.style,
       }}
-      onKeyDown={onKeyDown}
     >
-      {/* overlay */}
       <div
-        className={stringify(classNames.overlay, styled.overlay.className)}
-        onClick={onOverlayClick}
-        style={styled.overlay.style}
-        ref={overlayRef}
-      />
-
-      {/* panel */}
-      <div
-        className={stringify(classNames.panel, styled.panel.className)}
-        style={styled.panel.style}
-        ref={panelRef}
+        tabIndex={-1}
+        ref={ref}
+        className={stringify(classNames.drawer, className, styled.popup.className)}
+        style={{
+          ...styled.popup.style,
+          ...themeColorVars,
+          "--default-position": at(_placement, 0),
+          "--size": `${size}px`,
+        }}
+        onKeyDown={onKeyDown}
       >
-        {/* header */}
+        {/* overlay */}
         <div
-          className={stringify(classNames.header, styled.header.className)}
-          style={styled.header.style}
-        >
-          {closer}
-          {props.title}
+          className={stringify(classNames.overlay, styled.overlay.className)}
+          onClick={onOverlayClick}
+          style={styled.overlay.style}
+          ref={overlayRef}
+        />
 
-          <Space className={styled.actions.className} style={styled.actions.style}>
-            <Button onClick={onConfirm}>{locale.confirm}</Button>
-          </Space>
-        </div>
-
-        {/* body */}
+        {/* panel */}
         <div
-          className={stringify(classNames.body, styled.body.className)}
-          style={styled.body.style}
+          className={stringify(classNames.panel, styled.panel.className)}
+          style={styled.panel.style}
+          ref={panelRef}
         >
-          {props.children}
+          {/* header */}
+          <div
+            className={stringify(classNames.header, styled.header.className)}
+            style={styled.header.style}
+          >
+            {closer}
+            {props.title}
+
+            <Space className={styled.actions.className} style={styled.actions.style}>
+              <Button onClick={onConfirm}>{locale.confirm}</Button>
+            </Space>
+          </div>
+
+          {/* body */}
+          <div
+            className={stringify(classNames.body, styled.body.className)}
+            style={styled.body.style}
+          >
+            {props.children}
+          </div>
         </div>
       </div>
-    </div>
+    </StackLevelContext>
   );
 };
 

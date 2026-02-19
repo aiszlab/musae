@@ -142,7 +142,7 @@ export type HeaderCellProps = {
   children: ReactNode | (() => ReactNode);
 
   // key
-  value?: Key;
+  columnKey: Key;
 
   // sort dierctions
   sortDirections: SortDirection[];
