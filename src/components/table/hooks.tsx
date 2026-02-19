@@ -33,10 +33,12 @@ export const useColumns = <T,>({ columns }: { columns: Column<T>[] }) => {
         },
         index,
       ) => {
+        const columnKey = valueAt ?? key ?? `__table_column_${index}`;
+
         // @ts-expect-error valueAt or key is always exist
-        return helper.current.accessor(valueAt ?? key ?? `__table_column_${index}`, {
+        return helper.current.accessor(columnKey, {
           header: (
-            <HeaderCell sortable={sortable} value={key} sortDirections={sortDirections}>
+            <HeaderCell sortable={sortable} columnKey={columnKey} sortDirections={sortDirections}>
               {title}
             </HeaderCell>
           ),

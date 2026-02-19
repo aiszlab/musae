@@ -24,6 +24,12 @@ export type TransferProps = ComponentProps & {
   value?: Key[];
 
   /**
+   * 移动选项后触发的变更回调函数
+   * @default undefined
+   */
+  onChange?: (keys: Key[] | undefined) => void;
+
+  /**
    * @description
    * titles
    * @default [null, null]

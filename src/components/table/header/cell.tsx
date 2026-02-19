@@ -47,7 +47,7 @@ const styles = {
 const Cell = ({
   sortable = false,
   children: _children,
-  value,
+  columnKey,
   sortDirections: _sortDirections,
 }: HeaderCellProps) => {
   const { sortDescriptor, onSortChange } = useTable();
@@ -63,16 +63,14 @@ const Cell = ({
 
   const sort = useMemo(() => {
     if (!sortDescriptor) return null;
-    if (sortDescriptor.key !== value) return null;
+    if (sortDescriptor.key !== columnKey) return null;
     return sortDescriptor.direction;
-  }, [sortDescriptor, value]);
+  }, [sortDescriptor, columnKey]);
 
   // sort handler
   const onSort = useEvent(() => {
-    if (!value) return;
-
     onSortChange?.({
-      key: value,
+      key: columnKey,
       direction: sortDirections.get(sort) ?? "ascending",
     });
   });
