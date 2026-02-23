@@ -8,6 +8,7 @@ import Body from "./body";
 import { create as $create, props as $props } from "@stylexjs/stylex";
 import { stringify } from "@aiszlab/relax/class-name";
 import { useClassNames } from "../../hooks/use-class-names";
+import { Loading } from "../loading";
 
 const styles = $create({
   table: {
@@ -26,6 +27,7 @@ const Table = <T,>({
   onSortChange,
   className,
   style,
+  loading = false,
 }: TableProps<T>) => {
   const classNames = useClassNames(CLASS_NAMES);
   const columns = useColumns<T>({ columns: _columns });
@@ -47,16 +49,18 @@ const Table = <T,>({
 
   return (
     <Context.Provider value={contextValue}>
-      <table
-        className={stringify(classNames.table, className, styled.className)}
-        style={{
-          ...styled.style,
-          ...style,
-        }}
-      >
-        <Header<T> />
-        <Body<T> />
-      </table>
+      <Loading loading={loading}>
+        <table
+          className={stringify(classNames.table, className, styled.className)}
+          style={{
+            ...styled.style,
+            ...style,
+          }}
+        >
+          <Header<T> />
+          <Body<T> />
+        </table>
+      </Loading>
     </Context.Provider>
   );
 };

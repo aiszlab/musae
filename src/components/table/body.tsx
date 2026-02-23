@@ -8,6 +8,7 @@ import { Empty } from "../empty";
 import { stringify } from "@aiszlab/relax/class-name";
 import { $body } from "../theme/theme";
 import { type ThemeColorVariable, useThemeColorVars } from "../../hooks/use-theme-color-vars";
+import { Loading } from "../loading";
 
 const styles = $create({
   cell: {

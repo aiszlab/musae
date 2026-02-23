@@ -15,7 +15,7 @@ import { CLASS_NAMES } from "./context";
 import { at, useAsyncEffect } from "@aiszlab/relax";
 import { $body } from "../theme/theme";
 import { useThemeColorVars, type ThemeColorVariable } from "../../hooks/use-theme-color-vars";
-import StackLevelContext from "src/contexts/stack-level.context";
+import StackLevelContext from "../../contexts/stack-level.context";
 
 const styles = $create({
   stackLevel: {

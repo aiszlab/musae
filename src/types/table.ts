@@ -92,6 +92,13 @@ export type TableProps<T> = ComponentProps & {
    * @default void 0
    */
   onSortChange?: (sortDescriptor: SortDescriptor) => void;
+
+  /**
+   * @description 表格加载状态
+   * 值为`true`时，表格自动显示加载中的状态
+   * @default false
+   */
+  loading?: boolean;
 };
 
 /**

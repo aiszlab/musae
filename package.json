@@ -1,6 +1,6 @@
 {
   "name": "musae",
-  "version": "1.0.25-beta.2",
+  "version": "1.0.25",
   "description": "musae-ui",
   "author": "tutu@fantufantu.com",
   "license": "MIT",
@@ -15,7 +15,7 @@
     "authors": "zx scripts/contributors.mjs",
     "changesets": "z cs",
     "version": "z cs version",
-    "storybook": "npm run build && storybook dev -p 6006",
+    "storybook": "pnpm run build && storybook dev -p 6006",
     "build-storybook": "storybook build",
     "lint": "eslint ."
   },
@@ -65,7 +65,7 @@
   },
   "dependencies": {
     "@aiszlab/fuzzy": "^2.1.1",
-    "@aiszlab/relax": "2.1.2-beta.0",
+    "@aiszlab/relax": "2.1.2",
     "@babel/runtime": "^7.28.6",
     "@floating-ui/dom": "^1.7.5",
     "@lexical/code": "^0.40.0",
