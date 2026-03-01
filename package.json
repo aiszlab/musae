@@ -1,6 +1,6 @@
 {
   "name": "musae",
-  "version": "1.0.26",
+  "version": "1.0.27-beta.0",
   "description": "musae-ui",
   "author": "tutu@fantufantu.com",
   "license": "MIT",
@@ -9,7 +9,7 @@
     "test": "jest",
     "test:coverage": "jest --coverage",
     "dev": "rollup -c -w --environment NODE_ENV:development",
-    "build": "rollup -c --environment NODE_ENV:production",
+    "build": "z rm dist && rollup -c --environment NODE_ENV:production",
     "prepublishOnly": "z rm dist && pnpm run build",
     "preinstall": "npx @aiszlab/watchdog preinstall",
     "authors": "zx scripts/contributors.mjs",

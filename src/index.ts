@@ -68,6 +68,7 @@ export { Markdown } from "./components/markdown";
 export { Ellipsis } from "./components/ellipsis";
 export { SplitPanel } from "./components/split-panel";
 export { SessionStorage } from "./components/session-storage";
+export { Search } from "./components/search";
 
 /**
  * @description

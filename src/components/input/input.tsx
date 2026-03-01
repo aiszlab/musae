@@ -59,6 +59,7 @@ export const styles = $create({
   input: {
     // reset styles
     lineHeight: "inherit",
+    fontSize: "inherit",
     padding: spacing.none,
     borderWidth: sizes.none,
     backgroundColor: "transparent",
@@ -105,6 +106,9 @@ const Input = forwardRef<InputRef, InputProps>(
     const classNames = useClassNames(CLASS_NAMES);
     const theme = useTheme();
 
+    // controlled value
+    const [_value, _setValue] = useControlledState<string>(valueInProps, { defaultState: "" });
+
     useImperativeHandle<InputRef, InputRef>(ref, () => ({
       focus: () => {
         inputRef.current?.focus();
@@ -112,10 +116,10 @@ const Input = forwardRef<InputRef, InputProps>(
       select: () => {
         inputRef.current?.select();
       },
+      getValue: () => {
+        return _value;
+      },
     }));
-
-    // controlled value
-    const [_value, _setValue] = useControlledState<string>(valueInProps, { defaultState: "" });
 
     // input events
     const inputEvents = useInputEvents({

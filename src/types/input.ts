@@ -12,7 +12,8 @@ export type Variant = "outlined" | "filled" | "standard";
  * component props
  */
 export interface InputProps
-  extends Pick<
+  extends
+    Pick<
       InputHTMLAttributes<HTMLInputElement>,
       "onFocus" | "onBlur" | "name" | "value" | "disabled" | "onClick" | "maxLength" | "onKeyDown"
     >,
@@ -99,6 +100,11 @@ export interface InputRef {
    * select
    */
   select?: HTMLInputElement["select"];
+
+  /**
+   * 获取组件内部值
+   */
+  getValue: () => string;
 }
 
 /**
