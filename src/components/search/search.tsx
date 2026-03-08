@@ -14,7 +14,7 @@ const STYLES = $create({
     display: "inline-flex",
     width: sizes.full,
     borderRadius: sizes.infinity,
-    boxShadow: `0px 0px 0px ${sizes.xxxxxxxxxxsmall} var(--color-primary)`,
+    boxShadow: `0px 0px 0px ${sizes.xxxxxxxxxxsmall} var(--color-primary) inset`,
   },
 
   input: {

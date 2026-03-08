@@ -27,7 +27,7 @@ export const styles = $create({
 
     // border, for flexible, in musae, we use boxShadow replace border
     // box shadow is not added into layout
-    boxShadow: `0px 0px 0px ${sizes.smallest} var(--color-outline)`,
+    boxShadow: `0px 0px 0px ${sizes.smallest} var(--color-outline) inset`,
 
     // reset styles
     boxSizing: "border-box",
@@ -44,12 +44,12 @@ export const styles = $create({
     willChange: "box-shadow, transform",
 
     ":focus-within": {
-      boxShadow: `0px 0px 0px ${sizes.xxxxxxxxxxsmall} var(--color-primary)`,
+      boxShadow: `0px 0px 0px ${sizes.xxxxxxxxxxsmall} var(--color-primary) inset`,
     },
   },
 
   invalid: {
-    boxShadow: `0px 0px 0px ${sizes.xxxxxxxxxxsmall} var(--color-error)`,
+    boxShadow: `0px 0px 0px ${sizes.xxxxxxxxxxsmall} var(--color-error) inset`,
 
     ":focus-within": {
       boxShadow: null,
@@ -72,7 +72,7 @@ export const styles = $create({
   disabled: {
     backgroundColor: "var(--color-on-surface-opacity-08)" satisfies ThemeColorVariable,
     color: "var(--color-on-surface-opacity-38)" satisfies ThemeColorVariable,
-    boxShadow: `0px 0px 0px ${sizes.smallest} var(--color-on-surface-opacity-38)`,
+    boxShadow: `0px 0px 0px ${sizes.smallest} var(--color-on-surface-opacity-38) inset`,
   },
 });
 
