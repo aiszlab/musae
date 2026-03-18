@@ -109,10 +109,8 @@ const Picker = forwardRef<PickerRef, PickerProps>(
           )}
           style={{
             ...styled.picker.style,
-            ..._themeColorVars,
-            // eslint-disable-next-line react-hooks/refs
-            "--min-width": `${getDropdownWidth() ?? 0}px`,
             ...style,
+            ..._themeColorVars,
           }}
           ref={trigger}
           tabIndex={-1}
@@ -146,6 +144,7 @@ const Picker = forwardRef<PickerRef, PickerProps>(
             style={{
               ...styled.pickable.style,
               ...pickableStyle,
+              "--min-width": `${getDropdownWidth() ?? 0}px`,
             }}
           >
             {pickable}
