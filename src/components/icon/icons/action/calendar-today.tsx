@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Clear = withIcon(({ size }) => {
+const CalendarToday = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -11,11 +11,11 @@ const Clear = withIcon(({ size }) => {
       fill="none"
     >
       <path
-        d="M18.63 11.1C16.78 9.49 14.38 8.5 11.73 8.5C7.07999 8.5 3.14999 11.53 1.76999 15.72L4.12999 16.5C5.17999 13.31 8.17999 11 11.73 11C13.68 11 15.46 11.72 16.85 12.88L13.23 16.5H22.23V7.5L18.63 11.1Z"
+        d="M20 3H19V1H17V3H7V1H5V3H4C2.9 3 2 3.9 2 5V21C2 22.1 2.9 23 4 23H20C21.1 23 22 22.1 22 21V5C22 3.9 21.1 3 20 3ZM20 21H4V10H20V21ZM20 8H4V5H20V8Z"
         fill="currentColor"
       />
     </svg>
   );
 });
 
-export default Clear;
+export default CalendarToday;

@@ -19,6 +19,7 @@ import Preview from "./preview";
 import Logout from "./logout";
 import Schedule from "./schedule";
 import TurnedIn from "./turned-in";
+import CalendarToday from "./calendar-today";
 
 export {
   Visibility,
@@ -42,4 +43,5 @@ export {
   Logout,
   Schedule,
   TurnedIn,
+  CalendarToday,
 };
