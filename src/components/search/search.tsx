@@ -8,6 +8,7 @@ import { useThemeColorVars } from "src/hooks/use-theme-color-vars";
 import { useEvent } from "@aiszlab/relax";
 import type { SearchProps } from "../../types/search";
 import type { InputRef } from "../../types/input";
+import { stringify } from "@aiszlab/relax/class-name";
 
 const STYLES = $create({
   search: {
@@ -36,7 +37,7 @@ const STYLES = $create({
   },
 });
 
-const Search = ({ searchButton, onSearch }: SearchProps) => {
+const Search = ({ searchButton, onSearch, className, style }: SearchProps) => {
   const inputRef = useRef<InputRef>(null);
   const styled = {
     search: $props(STYLES.search),
@@ -52,9 +53,10 @@ const Search = ({ searchButton, onSearch }: SearchProps) => {
 
   return (
     <span
-      className={styled.search.className}
+      className={stringify(styled.search.className, className)}
       style={{
         ...styled.search.style,
+        ...style,
         ...themeColorVars,
       }}
     >

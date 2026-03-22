@@ -1,9 +1,10 @@
 import type { ReactNode } from "react";
+import { ComponentProps } from "./element";
 
 /**
  * `Search`组件属性入参
  */
-export type SearchProps = {
+export type SearchProps = ComponentProps & {
   /**
    * 定制搜索按钮
    * @default undefined
