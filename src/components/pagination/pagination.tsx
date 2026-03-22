@@ -89,17 +89,14 @@ const Pagination = ({
           </li>
         ))}
 
-        <li
-          className={stringify(classNames.sizeSelector, styled.sizer.className)}
-          style={styled.sizer.style}
-        >
-          <Select
-            options={sizeOptions}
-            value={pageSize}
-            style={{ minWidth: 0 }}
-            onChange={onPageSizeChange}
-          />
-        </li>
+        {sizeOptions.length > 0 && (
+          <li
+            className={stringify(classNames.sizeSelector, styled.sizer.className)}
+            style={styled.sizer.style}
+          >
+            <Select options={sizeOptions} value={pageSize} onChange={onPageSizeChange} />
+          </li>
+        )}
       </ul>
     </nav>
   );
