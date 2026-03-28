@@ -102,7 +102,12 @@ export const FormList: Story = {
                           </Form.Item>
                         </Form.List.Item>
 
-                        <IconButton size="xsmall" onClick={() => add(field)}>
+                        <IconButton
+                          size="xsmall"
+                          onClick={() => {
+                            add(field);
+                          }}
+                        >
                           +
                         </IconButton>
 
@@ -113,7 +118,13 @@ export const FormList: Story = {
                     );
                   })}
 
-                  <Button onClick={() => add()}>在底部新增</Button>
+                  <Button
+                    onClick={() => {
+                      add();
+                    }}
+                  >
+                    在底部新增
+                  </Button>
                 </>
               );
             }}

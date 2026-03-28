@@ -16,7 +16,7 @@ const styles = $create({
   },
 
   segment: {
-    width: "var(--flex)",
+    width: "var(--width)",
     height: sizes.full,
     borderRadius: sizes.infinity,
     backgroundColor: "var(--color-primary)" satisfies ThemeColorVariable,
@@ -40,7 +40,7 @@ const Linear = ({ value: _value, className, style }: LinearProps) => {
         ...styled.progress.style,
         ...style,
         ..._themeColorVars,
-        "--flex": value,
+        "--width": value + "%",
       }}
     >
       <div

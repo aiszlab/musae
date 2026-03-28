@@ -17,6 +17,7 @@ const styles = $create({
     flexDirection: "row",
     alignItems: "center",
     height: sizes.fit,
+    width: sizes.fit,
   },
 
   small: {

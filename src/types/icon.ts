@@ -17,8 +17,7 @@ type Size = "small" | "medium" | "large";
  * icon props
  */
 export interface IconProps
-  extends ComponentProps,
-    Pick<HTMLAttributes<HTMLSpanElement>, "onMouseDown" | "onMouseUp"> {
+  extends ComponentProps, Pick<HTMLAttributes<HTMLSpanElement>, "onMouseDown" | "onMouseUp"> {
   /**
    * @description
    * as render
