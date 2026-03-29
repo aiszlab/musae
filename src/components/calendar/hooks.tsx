@@ -99,12 +99,12 @@ export const useHeadCells = ({ classNames }: { classNames: typeof CLASS_NAMES })
 export const useDateCells = ({
   timespan,
   focusedAt,
-  click,
+  onClick,
   classNames,
 }: {
   timespan: Timespan;
   focusedAt: Dayjs;
-  click: Required<CalendarProps>["onClick"];
+  onClick: Required<CalendarProps>["onClick"];
   classNames: typeof CLASS_NAMES;
 }) => {
   const _themeColorVars = useThemeColorVars(["secondary-container"]);
@@ -142,7 +142,7 @@ export const useDateCells = ({
           trigger: $props(styles.trigger),
         };
 
-        prev.at(prev.length - 1)!.push(
+        prev.at(prev.length - 1)?.push(
           <td
             title={formatted}
             key={formatted}
@@ -150,11 +150,9 @@ export const useDateCells = ({
               classNames.dateCell,
               {
                 [classNames.dateCellSelected]: isSelected,
-                ...(timespan.isRange && {
-                  [classNames.dateCellInRange]: isBetween,
-                  [classNames.dateCellRangeFrom]: isFrom,
-                  [classNames.dateCellRangeTo]: isTo,
-                }),
+                [classNames.dateCellInRange]: !!timespan.isRange && isBetween,
+                [classNames.dateCellRangeFrom]: !!timespan.isRange && isFrom,
+                [classNames.dateCellRangeTo]: !!timespan.isRange && isTo,
               },
               styled.cell.className,
             )}
@@ -172,7 +170,7 @@ export const useDateCells = ({
               className={stringify(classNames.date, styled.trigger.className)}
               style={styled.trigger.style}
               onClick={() => {
-                click(currentAt);
+                onClick(currentAt);
               }}
             >
               {currentAt.date()}
@@ -188,7 +186,7 @@ export const useDateCells = ({
     return dateCells.map((cells, index) => {
       return <tr key={index}>{cells}</tr>;
     });
-  }, [focusedAt, timespan, classNames, click, _themeColorVars]);
+  }, [focusedAt, timespan, classNames, onClick, _themeColorVars]);
 };
 
 /**

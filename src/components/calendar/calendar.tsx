@@ -15,6 +15,7 @@ import { useTheme } from "../theme";
 import { IconButton } from "../icon-button";
 import { CLASS_NAMES } from "./context";
 import { $body, $label } from "../theme/theme";
+import { type ThemeColorVariable } from "../../hooks/use-theme-color-vars";
 
 const styles = $create({
   calendar: {
@@ -26,7 +27,7 @@ const styles = $create({
     alignItems: "center",
     columnGap: spacing.xxsmall,
     paddingInline: spacing.medium,
-    color: "var(--color-on-surface-variant)",
+    color: "var(--color-on-surface-variant)" satisfies ThemeColorVariable,
   },
 
   heading: {
@@ -36,7 +37,8 @@ const styles = $create({
   },
 
   body: {
-    borderCollapse: "collapse",
+    borderCollapse: "separate",
+    borderSpacing: `0 ${spacing.xxxxxsmall}`,
   },
 });
 
@@ -54,7 +56,7 @@ const Calendar = forwardRef<CalendarRef, CalendarProps>(
     } = useFocusedAt({
       focusedAt: timespan.to ?? timespan.from,
     });
-    const dateCells = useDateCells({ timespan, focusedAt, click: onClick, classNames });
+    const dateCells = useDateCells({ timespan, focusedAt, onClick, classNames });
     const headCells = useHeadCells({ classNames });
     const theme = useTheme();
 
