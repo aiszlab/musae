@@ -42,21 +42,21 @@ const styles = $create({
 
   range: {
     "::before": {
-      insetInlineStart: 0,
-      insetInlineEnd: 0,
+      insetInlineStart: `calc(${spacing.xxxxxxsmall} * -1)`,
+      insetInlineEnd: `calc(${spacing.xxxxxxsmall} * -1)`,
     },
   },
 
   from: {
     "::before": {
       insetInlineStart: "50%",
-      insetInlineEnd: 0,
+      insetInlineEnd: `calc(${spacing.xxxxxxsmall} * -1)`,
     },
   },
 
   to: {
     "::before": {
-      insetInlineStart: 0,
+      insetInlineStart: `calc(${spacing.xxxxxxsmall} * -1)`,
       insetInlineEnd: "50%",
     },
   },

@@ -38,7 +38,7 @@ const styles = $create({
 
   body: {
     borderCollapse: "separate",
-    borderSpacing: `0 ${spacing.xxxxxsmall}`,
+    borderSpacing: spacing.xxxxxsmall,
   },
 });
 
