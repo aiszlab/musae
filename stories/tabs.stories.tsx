@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Tabs } from "../dist";
 import { range } from "@aiszlab/relax";
+import React, { type Key, useState } from "react";
 
 const meta: Meta<typeof Tabs> = {
   title: "tabs",
@@ -21,5 +22,31 @@ export const Scrollable: Story = {
         children: `panel ${key}`,
       };
     }),
+  },
+};
+
+/**
+ * 受控
+ */
+export const Controlled: Story = {
+  render: () => {
+    const [activeKey, setActiveKey] = useState<Key>(0);
+
+    return (
+      <Tabs
+        activeKey={activeKey}
+        onChange={setActiveKey}
+        items={[
+          {
+            key: 0,
+            label: "第一项",
+          },
+          {
+            key: 1,
+            label: "第二项",
+          },
+        ]}
+      />
+    );
   },
 };

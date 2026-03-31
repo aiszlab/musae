@@ -36,6 +36,12 @@ export interface TabsProps extends ComponentProps {
    * @default false
    */
   destroyable?: boolean;
+
+  /**
+   * @zh 修改`activeKey`时触发的回调函数
+   * @en Callback function triggered when `activeKey` changes
+   */
+  onChange?: (key: Key) => void;
 }
 
 export interface TabItemProps {

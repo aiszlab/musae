@@ -15,11 +15,13 @@ const Tabs = ({
   defaultActiveKey,
   forceRender = false,
   destroyable = false,
+  onChange,
 }: TabsProps) => {
   const { activeKey, activatedKeys, changeActiveKey } = useTabs({
     items,
     activeKey: _activeKey,
     defaultActiveKey,
+    onChange,
   });
 
   const classNames = useClassNames(CLASS_NAMES);
