@@ -14,12 +14,6 @@ const styles = {
   }),
 
   panel: $create({
-    default: {},
-
-    active: {
-      display: null,
-    },
-
     hidden: {
       display: "none",
     },
@@ -28,44 +22,56 @@ const styles = {
 
 const Panels = ({ forceRender, destroyable, activatedKeys }: PanelsProps) => {
   const { items, activeKey, classNames } = useTabsContext();
-  const styled = {
-    panels: $props(styles.panels.default),
-    panel: {
-      active: $props(styles.panel.default, styles.panel.active),
-      hidden: $props(styles.panel.default, styles.panel.hidden),
-    },
-  };
 
-  const panels = useMemo<Array<[Key, ReactNode]>>(() => {
+  // 收集需要渲染的面板内容
+  const panels = useMemo(() => {
+    let renderedPanels: Array<{ key: Key; children: ReactNode }> = [];
+
     if (isUndefined(activeKey)) {
-      return [];
+      return renderedPanels;
     }
 
-    if (destroyable) {
-      return [[activeKey, items.find((item) => item.key === activeKey)?.children]];
+    for (const item of items) {
+      if (destroyable) {
+        if (item.key !== activeKey) {
+          continue;
+        }
+
+        if (item.children) {
+          renderedPanels.push({ key: item.key, children: item.children });
+        }
+        break;
+      }
+
+      if (forceRender || activatedKeys.has(item.key)) {
+        if (item.children) {
+          renderedPanels.push({ key: item.key, children: item.children });
+        }
+      }
     }
 
-    if (forceRender) {
-      return items.map((item) => [item.key, item.children]);
-    }
-
-    return items.map((item) => [item.key, activatedKeys.has(item.key) ? item.children : null]);
+    return renderedPanels;
   }, [destroyable, forceRender, items, activeKey, activatedKeys]);
+
+  const styled = {
+    panels: $props(panels.length > 0 && styles.panels.default),
+  };
 
   return (
     <div
       className={stringify(classNames.panels, styled.panels.className)}
       style={styled.panels.style}
     >
-      {panels.map(([key, children]) => {
-        const { className, style } = key === activeKey ? styled.panel.active : styled.panel.hidden;
-
-        if (isVoid(children)) {
-          return null;
-        }
+      {panels.map(({ key, children }) => {
+        const isActive = key === activeKey;
+        const panelStyled = $props(!isActive && styles.panel.hidden);
 
         return (
-          <div key={key} className={stringify(classNames.panel, className)} style={style}>
+          <div
+            key={key}
+            className={stringify(classNames.panel, panelStyled.className)}
+            style={panelStyled.style}
+          >
             {children}
           </div>
         );
