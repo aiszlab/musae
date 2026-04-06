@@ -1,3 +1,4 @@
+import { ValueOf } from "@aiszlab/relax/types";
 import { defineVars } from "@stylexjs/stylex";
 
 type ElevationToken = "none" | "xsmall" | "small" | "medium" | "large" | "xlarge";
@@ -132,6 +133,7 @@ export const OPACITY = {
   heaviest: 0.9,
 } as const;
 
+export type Opacity = ValueOf<typeof OPACITY>;
 export const opacity = defineVars(OPACITY);
 
 /**

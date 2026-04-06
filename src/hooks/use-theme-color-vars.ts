@@ -2,6 +2,7 @@ import { useMemo } from "react";
 import { useTheme } from "../components/theme";
 import { type ColorRole } from "../utils/color-role";
 import { isUndefined, toArray } from "@aiszlab/relax";
+import { type Opacity } from "../components/theme/tokens.stylex";
 
 type ThemeColorVarToken = `--color-${ColorRole}` | `--color-${ColorRole}-opacity-${string}`;
 
@@ -10,7 +11,7 @@ export type ThemeColorVariable = `var(${ThemeColorVarToken})`;
 /**
  * @description 主题色样式变量
  */
-export const useThemeColorVars = (tokens: (ColorRole | [ColorRole, number])[]) => {
+export const useThemeColorVars = (tokens: (ColorRole | [ColorRole, Opacity])[]) => {
   const { colors } = useTheme();
 
   return useMemo(() => {

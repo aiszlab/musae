@@ -1,19 +1,18 @@
-import React, { type ChangeEvent, type CSSProperties, useContext, useMemo } from "react";
+import React, { type ChangeEvent, useContext, useMemo } from "react";
 import { isUndefined, useControlledState, useEvent } from "@aiszlab/relax";
 import Context, { CLASS_NAMES } from "./context";
 import type { CheckboxProps } from "../../types/checkbox";
 import { props as $props } from "@stylexjs/stylex";
-import { useTheme } from "../theme";
 import styles from "./styles";
 import { useClassNames } from "../../hooks/use-class-names";
 import { stringify } from "@aiszlab/relax/class-name";
 import Check from "./check";
 import Indeterminate from "./Indeterminate";
 import { Ripple, useRipple } from "../ripple";
-import { hexToRgba } from "@aiszlab/fuzzy/color";
 import { OPACITY } from "../theme/tokens.stylex";
 import { stopPropagation } from "@aiszlab/relax/dom";
 import { $label } from "../theme/theme";
+import { useThemeColorVars } from "src/hooks/use-theme-color-vars";
 
 const Checkbox = ({
   value,
@@ -30,8 +29,25 @@ const Checkbox = ({
 }: CheckboxProps) => {
   const contextValue = useContext(Context);
   const classNames = useClassNames(CLASS_NAMES);
-  const theme = useTheme();
   const isDisabled = contextValue?.isDisabled ?? disabled;
+
+  const themeColorVars = useThemeColorVars([
+    "primary",
+    ["primary", OPACITY.thin],
+    ["primary", OPACITY.medium],
+    ["primary", OPACITY.thicker],
+    "on-primary",
+    "on-surface",
+    ["on-surface", OPACITY.thin],
+    ["on-surface", OPACITY.medium],
+    ["on-surface", OPACITY.thicker],
+    "on-surface-variant",
+    "error",
+    ["error", OPACITY.thin],
+    ["error", OPACITY.medium],
+    ["error", OPACITY.thicker],
+    "on-error",
+  ]);
 
   const { ripples, add, clear } = useRipple({ isDisabled: !ripple || isDisabled });
   const [_isChecked, _setIsChecked] = useControlledState<boolean>(checked, {
@@ -61,36 +77,6 @@ const Checkbox = ({
     _setIsChecked(checked);
     onChange?.(event);
   });
-
-  // style vars
-  const styleVars = useMemo(() => {
-    return {
-      "--color-primary": theme.colors.primary,
-      "--color-primary-opacity-08": hexToRgba(theme.colors.primary, OPACITY.thin).toString(),
-      "--color-primary-opacity-12": hexToRgba(theme.colors.primary, OPACITY.medium).toString(),
-      "--color-primary-opacity-20": hexToRgba(theme.colors.primary, OPACITY.thicker).toString(),
-      "--color-on-primary": theme.colors["on-primary"],
-      "--color-on-surface": theme.colors["on-surface"],
-      "--color-on-surface-opacity-08": hexToRgba(
-        theme.colors["on-surface"],
-        OPACITY.thin,
-      ).toString(),
-      "--color-on-surface-opacity-12": hexToRgba(
-        theme.colors["on-surface"],
-        OPACITY.medium,
-      ).toString(),
-      "--color-on-surface-opacity-20": hexToRgba(
-        theme.colors["on-surface"],
-        OPACITY.thicker,
-      ).toString(),
-      "--color-on-surface-variant": theme.colors["on-surface-variant"],
-      "--color-error": theme.colors.error,
-      "--color-error-opacity-08": hexToRgba(theme.colors.error, OPACITY.thin).toString(),
-      "--color-error-opacity-12": hexToRgba(theme.colors.error, OPACITY.medium).toString(),
-      "--color-error-opacity-20": hexToRgba(theme.colors.error, OPACITY.thicker).toString(),
-      "--color-on-error": theme.colors["on-error"],
-    } as CSSProperties;
-  }, [theme]);
 
   const styled = {
     checkbox: $props(
@@ -131,7 +117,7 @@ const Checkbox = ({
       style={{
         ...styled.checkbox.style,
         ...style,
-        ...styleVars,
+        ...themeColorVars,
       }}
       aria-checked={isChecked}
       aria-disabled={isDisabled}
