@@ -57,7 +57,7 @@ export interface TabItemProps {
    * label
    * @requires
    */
-  label: string;
+  label: ReactNode;
 
   /**
    * @description
@@ -80,7 +80,7 @@ export type TabItem = {
    * label
    * @requires
    */
-  label: string;
+  label: ReactNode;
 
   /**
    * @description

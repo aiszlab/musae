@@ -4,7 +4,7 @@ import { spacing } from "../theme/tokens.stylex";
 import { type PanelsProps } from "../../types/tabs";
 import { stringify } from "@aiszlab/relax/class-name";
 import { isUndefined, isVoid } from "@aiszlab/relax";
-import { useTabsContext } from "./hooks";
+import { useTabsContext } from "./hooks/use-tabs-context";
 
 const styles = {
   panels: $create({

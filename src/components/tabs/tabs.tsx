@@ -3,9 +3,9 @@ import type { TabsProps } from "../../types/tabs";
 import { Context, CLASS_NAMES } from "./context";
 import { useClassNames } from "../../hooks/use-class-names";
 import { stringify } from "@aiszlab/relax/class-name";
-import { useTabs } from "./hooks";
 import Panels from "./panels";
 import Navigation from "./navigation";
+import { useTabs } from "./hooks/use-tabs";
 
 const Tabs = ({
   items = [],

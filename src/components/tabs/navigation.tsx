@@ -4,10 +4,11 @@ import { sizes, spacing } from "../theme/tokens.stylex";
 import { type NavigationProps } from "../../types/tabs";
 import Tab from "./tab";
 import { animate } from "motion/react";
-import { isUndefined } from "@aiszlab/relax";
-import { useNavigation, useNavigatorScroll, useTabsContext } from "./hooks";
+import { isUndefined, useEvent } from "@aiszlab/relax";
 import { stringify } from "@aiszlab/relax/class-name";
 import { type ThemeColorVariable, useThemeColorVars } from "../../hooks/use-theme-color-vars";
+import { useTabsContext } from "./hooks/use-tabs-context";
+import { useNavigation } from "./hooks/use-navigation";
 
 const styles = {
   navigation: $create({
@@ -53,7 +54,8 @@ const styles = {
     default: {
       display: "flex",
       width: "fit-content",
-      transform: "translateX(var(--offset))",
+      transform: "translateX(calc(var(--offset) * -1))",
+      transition: "transform 0.3s ease-in-out",
     },
   }),
 
@@ -71,12 +73,9 @@ const Navigation = ({ onChange }: NavigationProps) => {
   const { activeKey, items, classNames } = useTabsContext();
   const indicatorRef = useRef<HTMLDivElement>(null);
   const tabItemsRef = useRef<Map<Key, HTMLButtonElement | null>>(new Map());
-  const { navigatorRef, tabsRef, scroll, offset, isLeadingOverflow, isTrailingOverflow } =
+  const { navigatorRef, tabsRef, offset, scrollNavigation, isLeadingOverflow, isTrailingOverflow } =
     useNavigation();
   const _themeColorVars = useThemeColorVars(["outline-variant", "primary"]);
-
-  // control tabs scroll
-  useNavigatorScroll({ navigatorRef, scroll });
 
   const styled = {
     navigation: $props(styles.navigation.default),
@@ -103,6 +102,18 @@ const Navigation = ({ onChange }: NavigationProps) => {
     });
   }, [activeKey]);
 
+  // 用户手动切换`tab`选项
+  // 1. 切换`tab`后，尝试滚动`tab`到中间为止
+  const changeTabItem = useEvent((key: Key) => {
+    const tabItem = tabItemsRef.current.get(key);
+
+    if (tabItem) {
+      scrollNavigation(tabItem.offsetLeft - (navigatorRef.current?.clientWidth ?? 0) / 2);
+    }
+
+    onChange(key);
+  });
+
   return (
     <div
       role="tablist"
@@ -110,7 +121,7 @@ const Navigation = ({ onChange }: NavigationProps) => {
       style={{
         ...styled.navigation.style,
         ..._themeColorVars,
-        "--offset": offset,
+        "--offset": offset + "px",
       }}
     >
       <div
@@ -129,7 +140,7 @@ const Navigation = ({ onChange }: NavigationProps) => {
                 key={item.key}
                 value={item.key}
                 label={item.label}
-                onClick={onChange}
+                onClick={changeTabItem}
                 ref={(_tab) => {
                   tabItemsRef.current.set(item.key, _tab);
                 }}
