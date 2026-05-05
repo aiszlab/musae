@@ -10,3 +10,5 @@ export * from "./mock";
 export * from "./home";
 export * from "./device";
 export * from "./file";
+export * from "./social";
+export * from "./communication";

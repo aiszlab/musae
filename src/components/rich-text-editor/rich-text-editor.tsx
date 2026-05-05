@@ -20,7 +20,6 @@ import { create as $create, props as $props } from "@stylexjs/stylex";
 import { stringify } from "@aiszlab/relax/class-name";
 
 import { sizes, spacing } from "../theme/tokens.stylex";
-import { useTheme } from "../theme";
 
 import ToolbarPlugin from "./plugins/toolbar";
 import MarkdownShortcutPlugin, { TRANSFORMERS } from "./plugins/markdown-shortcut";
@@ -31,10 +30,11 @@ import { CLASS_NAMES, Context } from "./context";
 import { useClassNames } from "../../hooks/use-class-names";
 import { usingEditor } from "./utils";
 import { $body } from "../theme/theme";
+import { ThemeColorVariable, useThemeColorVars } from "../../hooks/use-theme-color-vars";
 
 const styles = $create({
   editor: {
-    backgroundColor: "var(--color-surface-container)",
+    backgroundColor: "var(--color-surface-container)" satisfies ThemeColorVariable,
     borderRadius: sizes.xxxxxxxsmall,
   },
 
@@ -67,10 +67,19 @@ const RichTextEditor = forwardRef<RichTextEditorRef, RichTextEditorProps>(
   ) => {
     const [id] = useIdentity();
     const [messager, holder] = useMessage();
-    const theme = useTheme();
     const controlledStatePluginRef = useRef<ControlledStatePluginRef>(null);
     const classNames = useClassNames(CLASS_NAMES);
     const defaultValue = value ?? _defaultValue;
+
+    const themeColorVars = useThemeColorVars([
+      "primary",
+      "on-primary",
+      "on-surface",
+      "surface-container",
+      "surface-container-highest",
+      "outline",
+      "outline-variant",
+    ]);
 
     const styled = {
       editor: $props(styles.editor, disabled && styles.disabled, $body.medium),
@@ -122,13 +131,7 @@ const RichTextEditor = forwardRef<RichTextEditorRef, RichTextEditorProps>(
             style={{
               ...styled.editor.style,
               ...style,
-              "--color-primary": theme.colors.primary,
-              "--color-on-primary": theme.colors["on-primary"],
-              "--color-on-surface": theme.colors["on-surface"],
-              "--color-surface-container": theme.colors["surface-container"],
-              "--color-surface-container-highest": theme.colors["surface-container-highest"],
-              "--color-outline": theme.colors.outline,
-              "--color-outline-variant": theme.colors["outline-variant"],
+              ...themeColorVars,
             }}
           >
             <MarkdownShortcutPlugin />

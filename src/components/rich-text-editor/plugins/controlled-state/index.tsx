@@ -1,5 +1,5 @@
 import React, { forwardRef, useImperativeHandle, type ReactNode } from "react";
-import { useControlledState, useEvent } from "@aiszlab/relax";
+import { useControlledState, useEvent, useUpdateEffect } from "@aiszlab/relax";
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
 import { OnChangePlugin } from "@lexical/react/LexicalOnChangePlugin";
 import type { EditorState, LexicalEditor } from "lexical";
@@ -19,20 +19,8 @@ export type Ref = {
 
 const ControlledStatePlugin = forwardRef<Ref, Props>(({ value, use, onChange }, ref): ReactNode => {
   const [editor] = useLexicalComposerContext();
-  const [, _setValue] = useControlledState(value, {
-    /**
-     * @description
-     * 监听受控值变化
-     * 发生值变化时，更新内部状态和编辑器状态
-     */
-    onChange: (nextValue) => {
-      _setEditorState(nextValue);
-    },
-  });
 
-  /**
-   * @description 根据数据，设置编辑器状态
-   */
+  // 更新编辑器状态
   const _setEditorState = useEvent((updatedValue) => {
     if (use === "markdown") {
       editor.update(() => {
@@ -41,18 +29,17 @@ const ControlledStatePlugin = forwardRef<Ref, Props>(({ value, use, onChange }, 
       return;
     }
 
-    try {
-      const editorState = editor.parseEditorState(updatedValue);
-      editor.setEditorState(editorState);
-    } catch (error) {
-      console.error(error);
-    }
+    const editorState = editor.parseEditorState(updatedValue);
+    editor.setEditorState(editorState);
   });
 
-  /**
-   * @description
-   * 富文本组件发生数据变更时，同步更新受控数据
-   */
+  const [_value, _setValue] = useControlledState(value);
+
+  useUpdateEffect(() => {
+    _setEditorState(_value);
+  }, [_value]);
+
+  // 富文本组件发生数据变更时，同步更新受控数据
   const change = useEvent((state: EditorState, editor: LexicalEditor) => {
     editor.read(() => {
       if (use === "serialized") {
@@ -70,7 +57,7 @@ const ControlledStatePlugin = forwardRef<Ref, Props>(({ value, use, onChange }, 
 
   useImperativeHandle(ref, () => {
     return {
-      setValue: _setEditorState,
+      setValue: _setValue,
     };
   });
 
