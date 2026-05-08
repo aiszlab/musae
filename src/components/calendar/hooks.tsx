@@ -31,7 +31,6 @@ const styles = $create({
       content: "''",
       position: "absolute",
       backgroundColor: "var(--color-secondary-container)" satisfies ThemeColorVariable,
-      zIndex: positions.min,
       height: sizes.xlarge,
     },
   },
@@ -63,7 +62,6 @@ const styles = $create({
 
   trigger: {
     margin: spacing.auto,
-    zIndex: positions.max,
   },
 });
 
