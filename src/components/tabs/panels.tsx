@@ -9,7 +9,7 @@ import { useTabsContext } from "./hooks/use-tabs-context";
 const styles = {
   panels: $create({
     default: {
-      marginBlockStart: spacing.xxxlarge,
+      padding: spacing.xxxlarge,
     },
   }),
 
