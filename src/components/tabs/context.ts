@@ -17,10 +17,8 @@ export const CLASS_NAMES = {
 } as const;
 
 export const Context = createContext<
-  | ContextValue & {
+  | (ContextValue & {
       classNames: typeof CLASS_NAMES;
-    }
->({
-  items: [],
-  classNames: CLASS_NAMES,
-});
+    })
+  | null
+>(null);

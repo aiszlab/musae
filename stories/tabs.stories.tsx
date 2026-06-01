@@ -8,6 +8,12 @@ const meta: Meta<typeof Tabs> = {
   component: Tabs,
   parameters: {},
   tags: ["autodocs"],
+  argTypes: {
+    size: {
+      control: { type: "radio" },
+      options: ["small", "medium", "large"],
+    },
+  },
 };
 
 export default meta;
@@ -22,6 +28,7 @@ export const Scrollable: Story = {
         children: `panel ${key}`,
       };
     }),
+    size: "medium",
   },
 };
 
@@ -40,6 +47,7 @@ export const Simple: Story = {
         label: "第二项",
       },
     ],
+    size: "medium",
   },
 };
 
@@ -89,6 +97,7 @@ export const Destroyable: Story = {
         children: "panel 1",
       },
     ],
+    size: "medium",
   },
 };
 
@@ -110,5 +119,36 @@ export const ForceRender: Story = {
         children: "panel 1",
       },
     ],
+    size: "medium",
+  },
+};
+
+/**
+ * 不同尺寸的`Tabs`
+ */
+export const Sizes: Story = {
+  render: () => {
+    const items = [
+      { key: 0, label: "第一项", children: "panel 0" },
+      { key: 1, label: "第二项", children: "panel 1" },
+      { key: 2, label: "第三项", children: "panel 2" },
+    ];
+
+    return (
+      <div style={{ display: "flex", flexDirection: "column", gap: "32px" }}>
+        <div>
+          <h3>small</h3>
+          <Tabs size="small" items={items} />
+        </div>
+        <div>
+          <h3>medium</h3>
+          <Tabs size="medium" items={items} />
+        </div>
+        <div>
+          <h3>large</h3>
+          <Tabs size="large" items={items} />
+        </div>
+      </div>
+    );
   },
 };

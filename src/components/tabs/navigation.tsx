@@ -61,16 +61,29 @@ const styles = {
 
   indicator: $create({
     default: {
-      height: sizes.xxxxxxxxxxsmall,
       backgroundColor: "var(--color-primary)" satisfies ThemeColorVariable,
       position: "absolute",
       bottom: spacing.none,
+      borderTopLeftRadius: sizes.xxxxxxxxxxsmall,
+      borderTopRightRadius: sizes.xxxxxxxxxxsmall,
+    },
+
+    medium: {
+      height: sizes.xxxxxxxxxxsmall,
+    },
+
+    small: {
+      height: sizes.smallest,
+    },
+
+    large: {
+      height: sizes.xxxxxxxxxsmall,
     },
   }),
 };
 
 const Navigation = ({ onChange }: NavigationProps) => {
-  const { activeKey, items, classNames } = useTabsContext();
+  const { activeKey, items, classNames, size } = useTabsContext();
   const indicatorRef = useRef<HTMLDivElement>(null);
   const tabItemsRef = useRef<Map<Key, HTMLButtonElement | null>>(new Map());
   const { navigatorRef, tabsRef, offset, scrollNavigation, isLeadingOverflow, isTrailingOverflow } =
@@ -85,10 +98,10 @@ const Navigation = ({ onChange }: NavigationProps) => {
       isTrailingOverflow && styles.navigator.trailing,
     ),
     list: $props(styles.list.default),
-    indicator: $props(styles.indicator.default),
+    indicator: $props(styles.indicator.default, styles.indicator[size]),
   };
 
-  // repaint indicator when activeKey changed
+  // repaint indicator when activeKey or size changed
   // animate indicator to correct position & width
   useEffect(() => {
     const indicator = indicatorRef.current;
@@ -100,7 +113,7 @@ const Navigation = ({ onChange }: NavigationProps) => {
       left: tabItem?.offsetLeft,
       width: tabItem?.clientWidth,
     });
-  }, [activeKey]);
+  }, [activeKey, size]);
 
   // 用户手动切换`tab`选项
   // 1. 切换`tab`后，尝试滚动`tab`到中间为止

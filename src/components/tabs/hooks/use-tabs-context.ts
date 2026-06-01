@@ -6,5 +6,11 @@ import { Context } from "../context";
  * use tab context
  */
 export const useTabsContext = () => {
-  return useContext(Context) ?? { items: [], activeKey: void 0 };
+  const context = useContext(Context);
+
+  if (!context) {
+    throw new Error("useTabsContext must be used within a Tabs component");
+  }
+
+  return context;
 };

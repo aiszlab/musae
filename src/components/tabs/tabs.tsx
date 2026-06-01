@@ -15,6 +15,7 @@ const Tabs = ({
   defaultActiveKey,
   forceRender = false,
   destroyable = false,
+  size = "medium",
   onChange,
 }: TabsProps) => {
   const { activeKey, activatedKeys, changeActiveKey } = useTabs({
@@ -32,8 +33,9 @@ const Tabs = ({
       activeKey,
       items,
       classNames,
+      size,
     };
-  }, [activeKey, items, classNames]);
+  }, [activeKey, items, classNames, size]);
 
   // if there is not any item, return null
   if (items.length === 0) return null;

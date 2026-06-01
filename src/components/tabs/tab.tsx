@@ -15,7 +15,7 @@ const styles = $create({
 });
 
 const Tab = forwardRef<HTMLButtonElement, TabItemProps>(({ value, onClick, label }, ref) => {
-  const { activeKey, classNames } = useTabsContext();
+  const { activeKey, classNames, size } = useTabsContext();
   const isActive = activeKey === value;
 
   const click = useEvent(() => {
@@ -33,6 +33,7 @@ const Tab = forwardRef<HTMLButtonElement, TabItemProps>(({ value, onClick, label
       className={stringify(classNames.tab, styled.className)}
       ripple={false}
       style={styled.style}
+      size={size}
     >
       {label}
     </Button>

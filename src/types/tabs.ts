@@ -1,6 +1,8 @@
 import type { Key, ReactNode } from "react";
 import type { ComponentProps } from "./element";
 
+export type TabsSize = "small" | "medium" | "large";
+
 export interface TabsProps extends ComponentProps {
   /**
    * @description
@@ -36,6 +38,13 @@ export interface TabsProps extends ComponentProps {
    * @default false
    */
   destroyable?: boolean;
+
+  /**
+   * @description
+   * size of tabs
+   * @default "medium"
+   */
+  size?: TabsSize;
 
   /**
    * @zh 修改`activeKey`时触发的回调函数
@@ -102,6 +111,11 @@ export interface ContextValue {
    * items
    */
   items: TabItem[];
+
+  /**
+   * size of tabs
+   */
+  size: TabsSize;
 }
 
 /**
