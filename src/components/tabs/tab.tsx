@@ -9,14 +9,13 @@ import { useTabsContext } from "./hooks/use-tabs-context";
 const styles = $create({
   button: {
     ":not(#\\#)": {
-      borderRadius: "10% 10% 0 0",
+      borderRadius: 0,
     },
   },
 });
 
 const Tab = forwardRef<HTMLButtonElement, TabItemProps>(({ value, onClick, label }, ref) => {
-  const { activeKey, classNames, size } = useTabsContext();
-  const isActive = activeKey === value;
+  const { classNames, size } = useTabsContext();
 
   const click = useEvent(() => {
     onClick(value);
@@ -27,11 +26,9 @@ const Tab = forwardRef<HTMLButtonElement, TabItemProps>(({ value, onClick, label
   return (
     <Button
       variant="text"
-      color={isActive ? "primary" : "secondary"}
       ref={ref}
       onClick={click}
       className={stringify(classNames.tab, styled.className)}
-      ripple={false}
       style={styled.style}
       size={size}
     >
