@@ -22,17 +22,17 @@ const styles = {
 
   size: $create({
     small: {
-      paddingInline: spacing.xxsmall,
       borderRadius: spacing.xxxxxsmall,
       gap: spacing.xxxxxsmall,
       height: sizes.small,
+      "--padding-inline": spacing.xxsmall,
     },
 
     medium: {
-      paddingInline: spacing.medium,
       borderRadius: spacing.xxxsmall,
       gap: spacing.xxxsmall,
       height: sizes.medium,
+      "--padding-inline": spacing.medium,
     },
 
     large: {
@@ -40,6 +40,7 @@ const styles = {
       borderRadius: spacing.xxsmall,
       gap: spacing.xxsmall,
       height: sizes.large,
+      "--padding-inline": spacing.large,
     },
   }),
 
@@ -47,6 +48,7 @@ const styles = {
     filled: {
       backgroundColor: "var(--color-primary-container)" satisfies ThemeColorVariable,
       color: "var(--color-on-primary-container)" satisfies ThemeColorVariable,
+      paddingInline: "var(--padding-inline)",
     },
 
     outlined: {
@@ -55,6 +57,7 @@ const styles = {
       borderStyle: "solid",
       borderColor: "var(--color-outline-variant)" satisfies ThemeColorVariable,
       color: "inherit",
+      paddingInline: `calc(var(--padding-inline) - ${spacing.smallest})`,
     },
   }),
 };
