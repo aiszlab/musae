@@ -9,41 +9,59 @@ import { CLASS_NAMES } from "./context";
 import { $label } from "../theme/theme";
 import { type ThemeColorVariable, useThemeColorVars } from "../../hooks/use-theme-color-vars";
 
-const styles = $create({
-  tag: {
-    backgroundColor: "var(--color-primary-container)" satisfies ThemeColorVariable,
-    color: "var(--color-on-primary-container)" satisfies ThemeColorVariable,
-    display: "inline-flex",
-    flexDirection: "row",
-    alignItems: "center",
-    height: sizes.fit,
-    width: sizes.fit,
-  },
+const styles = {
+  tag: $create({
+    default: {
+      display: "inline-flex",
+      flexDirection: "row",
+      alignItems: "center",
+      width: sizes.fit,
+      boxSizing: "border-box",
+    },
+  }),
 
-  small: {
-    paddingInline: spacing.xxsmall,
-    paddingBlock: spacing.xxxxxsmall,
-    borderRadius: spacing.xxxxxsmall,
-    gap: spacing.xxxxxsmall,
-  },
+  size: $create({
+    small: {
+      paddingInline: spacing.xxsmall,
+      borderRadius: spacing.xxxxxsmall,
+      gap: spacing.xxxxxsmall,
+      height: sizes.small,
+    },
 
-  medium: {
-    paddingInline: spacing.medium,
-    paddingBlock: spacing.xxxsmall,
-    borderRadius: spacing.xxxsmall,
-    gap: spacing.xxxsmall,
-  },
+    medium: {
+      paddingInline: spacing.medium,
+      borderRadius: spacing.xxxsmall,
+      gap: spacing.xxxsmall,
+      height: sizes.medium,
+    },
 
-  large: {
-    paddingInline: spacing.large,
-    paddingBlock: spacing.xxsmall,
-    borderRadius: spacing.xxsmall,
-    gap: spacing.xxsmall,
-  },
-});
+    large: {
+      paddingInline: spacing.large,
+      borderRadius: spacing.xxsmall,
+      gap: spacing.xxsmall,
+      height: sizes.large,
+    },
+  }),
+
+  variant: $create({
+    filled: {
+      backgroundColor: "var(--color-primary-container)" satisfies ThemeColorVariable,
+      color: "var(--color-on-primary-container)" satisfies ThemeColorVariable,
+    },
+
+    outlined: {
+      backgroundColor: "var(--color-surface)" satisfies ThemeColorVariable,
+      borderWidth: sizes.smallest,
+      borderStyle: "solid",
+      borderColor: "var(--color-outline-variant)" satisfies ThemeColorVariable,
+      color: "inherit",
+    },
+  }),
+};
 
 const Tag = ({
   children,
+  variant = "filled",
   size = "medium",
   className,
   style,
@@ -52,9 +70,20 @@ const Tag = ({
   leading,
 }: TagProps) => {
   const classNames = useClassNames(CLASS_NAMES);
-  const _themeColorVars = useThemeColorVars(["primary-container", "on-primary-container"]);
+  const _themeColorVars = useThemeColorVars([
+    "primary-container",
+    "on-primary-container",
+    "surface",
+    "on-surface-variant",
+    "outline",
+  ]);
 
-  const styled = $props($label[size], styles.tag, styles[size]);
+  const styled = $props(
+    $label[size],
+    styles.tag.default,
+    styles.size[size],
+    styles.variant[variant],
+  );
 
   return (
     <span

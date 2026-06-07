@@ -3,11 +3,20 @@ import type { ComponentProps } from "./element";
 
 type Size = "small" | "medium" | "large";
 
+type Variant = "filled" | "outlined";
+
 /**
  * @description
  * tag props
  */
 export type TagProps = ComponentProps & {
+  /**
+   * @description
+   * variant
+   * @default "filled"
+   */
+  variant?: Variant;
+
   /**
    * @description
    * children
