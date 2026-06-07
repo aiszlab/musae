@@ -6,46 +6,44 @@ type Size = "small" | "medium" | "large";
 type Variant = "filled" | "outlined";
 
 /**
- * @description
  * tag props
  */
 export type TagProps = ComponentProps & {
   /**
-   * @description
    * variant
    * @default "filled"
    */
   variant?: Variant;
 
   /**
-   * @description
    * children
    * @default void 0
    */
   children?: ReactNode;
 
   /**
-   * @description
    * size
    * @default "medium"
    */
   size?: Size;
 
   /**
-   * @description
    * if current tag is closable
    * @default false
    */
   closable?: boolean;
 
   /**
-   * @description
+   * click handler
+   */
+  onClick?: (event: MouseEvent<HTMLSpanElement>) => void;
+
+  /**
    * close handler
    */
   onClose?: (event: MouseEvent<HTMLSpanElement>) => void;
 
   /**
-   * @description
    * leading node
    * @default void 0
    */

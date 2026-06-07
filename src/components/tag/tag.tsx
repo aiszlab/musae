@@ -70,6 +70,7 @@ const Tag = ({
   style,
   closable = false,
   onClose,
+  onClick,
   leading,
 }: TagProps) => {
   const classNames = useClassNames(CLASS_NAMES);
@@ -96,6 +97,7 @@ const Tag = ({
         ..._themeColorVars,
         ...style,
       }}
+      onClick={onClick}
     >
       {leading}
       {children}
