@@ -43,7 +43,7 @@ const styles = $create({
 });
 
 const Calendar = forwardRef<CalendarRef, CalendarProps>(
-  ({ className, style, value, onClick: _onClick }, ref) => {
+  ({ className, style, value, disabledDate, onClick: _onClick }, ref) => {
     const classNames = useClassNames(CLASS_NAMES);
     const { timespan, onClick } = useValue({ onClick: _onClick, value });
     const {
@@ -56,7 +56,7 @@ const Calendar = forwardRef<CalendarRef, CalendarProps>(
     } = useFocusedAt({
       focusedAt: timespan.to ?? timespan.from,
     });
-    const dateCells = useDateCells({ timespan, focusedAt, onClick, classNames });
+    const dateCells = useDateCells({ timespan, focusedAt, onClick, disabledDate, classNames });
     const headCells = useHeadCells({ classNames });
     const theme = useTheme();
 

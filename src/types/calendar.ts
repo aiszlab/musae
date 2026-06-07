@@ -3,77 +3,86 @@ import type { Partialable } from "@aiszlab/relax/types";
 import type { ComponentProps } from "./element";
 
 /**
- * @description
  * calendar props
+ * @zh 日历组件属性
  */
 export type CalendarProps = ComponentProps & {
   /**
-   * @description
    * value
+   * @zh 选中值
    * @default void 0
    */
   value?: Dayjs | [Partialable<Dayjs>, Partialable<Dayjs>];
 
   /**
-   * @description
    * click date handler
+   * @zh 日期点击回调
    * @default void 0
    */
   onClick?: (value: Dayjs) => void;
+
+  /**
+   * specify the date that cannot be selected
+   * @zh 指定不可选择的日期
+   * @default void 0
+   */
+  disabledDate?: (date: Dayjs) => boolean;
 };
 
 export type Contribution = {
   /**
-   * @description
    * contributedAt
+   * @zh 贡献日期
    */
   contributedAt: Dayjs;
 
   /**
-   * @description
    * count
+   * @zh 贡献次数
    */
   count: number;
 };
 
 /**
- * @description
  * contribution calendar props
+ * @zh 贡献日历组件属性
  */
 export type ContributionCalendarProps = {
   /**
-   * @description
    * year
+   * @zh 年份
    */
   year: number;
 
   /**
-   * @description
    * contributions
+   * @zh 贡献数据
    */
   contributions?: Contribution[];
 
   /**
-   * @description
    * gap
+   * @zh 间距
    * @default 5
    */
   gap?: number;
 
   /**
-   * @description
    * levels
+   * @zh 等级数量
    * @default 5
    */
   levels?: number;
 };
 
 /**
- * @description calendar ref
+ * calendar ref
+ * @zh 日历组件 ref
  */
 export interface CalendarRef {
   /**
-   * @description reset
+   * reset
+   * @zh 重置
    */
   reset: () => void;
 }

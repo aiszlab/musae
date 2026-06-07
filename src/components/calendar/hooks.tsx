@@ -98,11 +98,13 @@ export const useDateCells = ({
   timespan,
   focusedAt,
   onClick,
+  disabledDate,
   classNames,
 }: {
   timespan: Timespan;
   focusedAt: Dayjs;
   onClick: Required<CalendarProps>["onClick"];
+  disabledDate?: CalendarProps["disabledDate"];
   classNames: typeof CLASS_NAMES;
 }) => {
   const _themeColorVars = useThemeColorVars(["secondary-container"]);
@@ -124,14 +126,15 @@ export const useDateCells = ({
         const isFrom = timespan.isFrom(currentAt);
         const isTo = timespan.isTo(currentAt);
         const isBetween = timespan.isBetween(currentAt);
-        const isDisabled = currentAt.isBefore(start, "d") || currentAt.isAfter(end, "d");
+        const isHidden = currentAt.isBefore(start, "d") || currentAt.isAfter(end, "d");
+        const isDisabled = isHidden || !!disabledDate?.(currentAt);
         const isSelected = isFrom || isTo;
 
         const styled = {
           cell: $props(
             styles.cell,
             styles.date,
-            isDisabled && styles.hidden,
+            isHidden && styles.hidden,
             isBetween && styles.range,
             isFrom && timespan.isRange && styles.from,
             isTo && timespan.isRange && styles.to,
@@ -159,12 +162,13 @@ export const useDateCells = ({
               ..._themeColorVars,
             }}
             aria-selected={isSelected}
-            aria-hidden={isDisabled}
+            aria-hidden={isHidden}
           >
             <IconButton
               variant={isSelected ? "filled" : "text"}
               size="small"
               color={isSelected ? "primary" : "secondary"}
+              disabled={isDisabled}
               className={stringify(classNames.date, styled.trigger.className)}
               style={styled.trigger.style}
               onClick={() => {
@@ -184,7 +188,7 @@ export const useDateCells = ({
     return dateCells.map((cells, index) => {
       return <tr key={index}>{cells}</tr>;
     });
-  }, [focusedAt, timespan, classNames, onClick, _themeColorVars]);
+  }, [focusedAt, timespan, classNames, onClick, disabledDate, _themeColorVars]);
 };
 
 /**
