@@ -12,12 +12,24 @@ import { IconButton } from "../icon-button";
 
 const styles = $create({
   more: {
-    ":hover > [role='separator']": {
-      display: "none",
+    "@media (hover: hover)": {
+      ":hover > [role='separator']": {
+        display: "none",
+      },
+
+      ":not(:hover) > [role='button']": {
+        display: "none",
+      },
     },
 
-    ":not(:hover) > [role='button']": {
-      display: "none",
+    "@media (hover: none)": {
+      ":active > [role='separator']": {
+        display: "none",
+      },
+
+      ":not(:active) > [role='button']": {
+        display: "none",
+      },
     },
   },
 });

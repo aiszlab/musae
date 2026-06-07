@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { create as $create, props as $props } from "@stylexjs/stylex";
-import { type TrackProps } from "src/types/slider";
+import { type TrackProps } from "../../types/slider";
 import { isUndefined } from "@aiszlab/relax";
 import Context from "./context";
 import { stringify } from "@aiszlab/relax/class-name";

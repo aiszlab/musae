@@ -19,7 +19,9 @@ const styles = {
       borderColor: "var(--color-outline-variant)",
 
       ":hover": {
-        overflow: "auto",
+        "@media (hover: hover)": {
+          overflow: "auto",
+        },
       },
     },
   }),

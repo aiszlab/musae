@@ -12,7 +12,7 @@ import { Ripple, useRipple } from "../ripple";
 import { OPACITY } from "../theme/tokens.stylex";
 import { stopPropagation } from "@aiszlab/relax/dom";
 import { $label } from "../theme/theme";
-import { useThemeColorVars } from "src/hooks/use-theme-color-vars";
+import { useThemeColorVars } from "../../hooks/use-theme-color-vars";
 
 const Checkbox = ({
   value,

@@ -4,7 +4,7 @@ import React, { useRef } from "react";
 import SearchIcon from "../icon/icons/action/search";
 import { create as $create, props as $props } from "@stylexjs/stylex";
 import { sizes } from "../theme/tokens.stylex";
-import { useThemeColorVars } from "src/hooks/use-theme-color-vars";
+import { useThemeColorVars } from "../../hooks/use-theme-color-vars";
 import { useEvent } from "@aiszlab/relax";
 import type { SearchProps } from "../../types/search";
 import type { InputRef } from "../../types/input";

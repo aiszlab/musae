@@ -45,7 +45,9 @@ const styles = {
       color: "var(--color-on-button)",
 
       ":hover": {
-        boxShadow: elevations.xsmall,
+        "@media (hover: hover)": {
+          boxShadow: elevations.xsmall,
+        },
       },
     },
 
@@ -56,7 +58,9 @@ const styles = {
       color: "var(--color-button)",
 
       ":hover": {
-        backgroundColor: "var(--color-button-opacity-08)",
+        "@media (hover: hover)": {
+          backgroundColor: "var(--color-button-opacity-08)",
+        },
       },
     },
 
@@ -64,7 +68,9 @@ const styles = {
       color: "var(--color-button)",
 
       ":hover": {
-        backgroundColor: "var(--color-button-opacity-08)",
+        "@media (hover: hover)": {
+          backgroundColor: "var(--color-button-opacity-08)",
+        },
       },
     },
   }),
@@ -135,7 +141,9 @@ const styles = {
       backgroundColor: null,
 
       ":hover": {
-        boxShadow: null,
+        "@media (hover: hover)": {
+          boxShadow: null,
+        },
       },
     },
 
@@ -149,7 +157,9 @@ const styles = {
 
     text: {
       ":hover": {
-        backgroundColor: null,
+        "@media (hover: hover)": {
+          backgroundColor: null,
+        },
       },
     },
   }),

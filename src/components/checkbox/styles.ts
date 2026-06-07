@@ -44,7 +44,9 @@ const styles = {
 
         color: "var(--color-primary-opacity-20)",
         ":hover": {
-          backgroundColor: "var(--color-on-surface-opacity-08)",
+          "@media (hover: hover)": {
+            backgroundColor: "var(--color-on-surface-opacity-08)",
+          },
         },
         ":focus": {
           backgroundColor: "var(--color-on-surface-opacity-12)",
@@ -54,7 +56,9 @@ const styles = {
       checked: {
         color: "var(--color-on-surface-opacity-20)",
         ":hover": {
-          backgroundColor: "var(--color-primary-opacity-08)",
+          "@media (hover: hover)": {
+            backgroundColor: "var(--color-primary-opacity-08)",
+          },
         },
         ":focus": {
           backgroundColor: "var(--color-primary-opacity-12)",
@@ -64,7 +68,9 @@ const styles = {
       invalid: {
         color: "var(--color-error-opacity-20)",
         ":hover": {
-          backgroundColor: "var(--color-error-opacity-08)",
+          "@media (hover: hover)": {
+            backgroundColor: "var(--color-error-opacity-08)",
+          },
         },
         ":focus": {
           backgroundColor: "var(--color-error-opacity-12)",
@@ -74,7 +80,9 @@ const styles = {
       disabled: {
         color: null,
         ":hover": {
-          backgroundColor: null,
+          "@media (hover: hover)": {
+            backgroundColor: null,
+          },
         },
         ":focus": {
           backgroundColor: null,

@@ -21,7 +21,9 @@ const styles = $create({
     overflowX: "hidden",
     overflowY: {
       default: "hidden",
-      ":hover": "auto",
+      ":hover": {
+        "@media (hover: hover)": "auto",
+      },
     },
 
     width: sizes.xxxlarge,

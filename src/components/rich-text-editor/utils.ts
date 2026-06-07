@@ -118,7 +118,9 @@ const _styles = {
       cursor: "pointer",
       textDecoration: {
         default: "none",
-        ":hover": "underline",
+        ":hover": {
+          "@media (hover: hover)": "underline",
+        },
       },
     },
   }),

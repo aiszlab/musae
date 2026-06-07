@@ -69,21 +69,29 @@ const styles = {
         },
 
         ":hover::after": {
-          borderBottomColor: "var(--color-primary)" satisfies ThemeColorVariable,
+          "@media (hover: hover)": {
+            borderBottomColor: "var(--color-primary)" satisfies ThemeColorVariable,
+          },
         },
       },
 
       vertical: {
         backgroundColor: {
           default: null,
-          ":hover": "var(--color-surface-container-highest)" satisfies ThemeColorVariable,
+          ":hover": {
+            "@media (hover: hover)":
+              "var(--color-surface-container-highest)" satisfies ThemeColorVariable,
+          },
         },
       },
 
       inline: {
         backgroundColor: {
           default: null,
-          ":hover": "var(--color-surface-container-highest)" satisfies ThemeColorVariable,
+          ":hover": {
+            "@media (hover: hover)":
+              "var(--color-surface-container-highest)" satisfies ThemeColorVariable,
+          },
         },
       },
     }),

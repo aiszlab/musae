@@ -18,7 +18,9 @@ const styles = {
       color: "var(--color-surface-container-highest)" satisfies ThemeColorVariable,
 
       ":hover": {
-        transform: "scale(1.1)",
+        "@media (hover: hover)": {
+          transform: "scale(1.1)",
+        },
       },
     },
 
@@ -26,7 +28,9 @@ const styles = {
       cursor: null,
 
       ":hover": {
-        transform: null,
+        "@media (hover: hover)": {
+          transform: null,
+        },
       },
     },
   }),

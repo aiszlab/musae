@@ -5,6 +5,7 @@ import { useTheme } from "../theme";
 import type { BreadcrumbItemProps } from "../../types/breadcrumb";
 import { stringify } from "@aiszlab/relax/class-name";
 import { Context } from "./context";
+import { ThemeColorVariable } from "../../hooks/use-theme-color-vars";
 
 const styles = {
   navigation: $create({
@@ -19,14 +20,25 @@ const styles = {
       borderRadius: sizes.xxxxxxxxxsmall,
       backgroundColor: {
         default: null,
-        ":hover": "var(--color-surface)",
+        ":hover": {
+          "@media (hover: hover)": "var(--color-surface)" satisfies ThemeColorVariable,
+        },
       },
       color: {
         default: null,
-        ":hover": "var(--color-on-surface)",
+        ":hover": {
+          "@media (hover: hover)": "var(--color-on-surface)" satisfies ThemeColorVariable,
+        },
       },
       transitionProperty: "all",
       transitionDuration: duration.short,
+    },
+  }),
+
+  anchor: $create({
+    default: {
+      textDecoration: "none",
+      color: "inherit",
     },
   }),
 
@@ -45,6 +57,7 @@ const Item = ({ href, label, max, separator }: BreadcrumbItemProps) => {
   const styled = {
     navigation: $props(styles.navigation.default, isLink && styles.navigation.link),
     separator: $props(styles.separator.default),
+    anchor: $props(styles.anchor.default),
   };
 
   return (
@@ -57,7 +70,11 @@ const Item = ({ href, label, max, separator }: BreadcrumbItemProps) => {
           "--color-on-surface": theme.colors["on-surface"],
         }}
       >
-        {isLink && <a href={href}>{label}</a>}
+        {isLink && (
+          <a {...styled.anchor} href={href}>
+            {label}
+          </a>
+        )}
         {!isLink && label}
       </li>
       {!max && (

@@ -26,6 +26,7 @@ exports[`\`Breadcrumb\` Component customize separator 1`] = `
         style="--color-surface: #FFFBFE; --color-on-surface: #1D1B20;"
       >
         <a
+          class="item__default"
           href="https://aiszlab.dev"
         >
           link2
@@ -74,6 +75,7 @@ exports[`\`Breadcrumb\` Component display items 1`] = `
         style="--color-surface: #FFFBFE; --color-on-surface: #1D1B20;"
       >
         <a
+          class="item__default"
           href="https://aiszlab.dev"
         >
           link2

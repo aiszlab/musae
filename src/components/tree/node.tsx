@@ -43,7 +43,9 @@ const styles = {
       paddingInline: spacing.xxxxxsmall,
       borderRadius: sizes.xxxxxxxxxsmall,
       backgroundColor: {
-        ":hover": "var(--color-surface-container)" satisfies ThemeColorVariable,
+        ":hover": {
+          "@media (hover: hover)": "var(--color-surface-container)" satisfies ThemeColorVariable,
+        },
       },
       cursor: "default",
     },

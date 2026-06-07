@@ -20,7 +20,9 @@ const styles = $create({
     transitionDuration: duration.short,
 
     ":hover": {
-      color: "var(--color-secondary)" satisfies ThemeColorVariable,
+      "@media (hover: hover)": {
+        color: "var(--color-secondary)" satisfies ThemeColorVariable,
+      },
     },
   },
 });
