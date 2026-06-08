@@ -76,6 +76,72 @@ export const Controlled: Story = {
 };
 
 /**
+ * 重置表单
+ *
+ * 通过 `Form.useForm` 创建表单实例，调用 `reset` 方法将表单数据重置为默认值
+ */
+export const Reset: Story = {
+  render: () => {
+    interface FormValue {
+      username: string;
+      email: string;
+      nickname: string;
+    }
+
+    const form = Form.useForm<FormValue>({
+      defaultValue: {
+        username: "murukal",
+        email: "tutu@fantufantu.com",
+      },
+    });
+
+    return (
+      <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
+        <Form form={form}>
+          <Form.Item label="用户名" name="username">
+            <Input placeholder="请输入用户名" />
+          </Form.Item>
+          <Form.Item label="邮箱" name="email">
+            <Input placeholder="请输入邮箱" />
+          </Form.Item>
+          <Form.Item label="昵称" name="nickname">
+            <Input placeholder="请输入昵称" />
+          </Form.Item>
+        </Form>
+
+        <div style={{ display: "flex", gap: 8 }}>
+          <Button
+            onClick={() => {
+              form.reset();
+            }}
+          >
+            重置表单
+          </Button>
+          <Button
+            onClick={() => {
+              form.clear();
+            }}
+          >
+            清空表单
+          </Button>
+          <Button
+            onClick={() => {
+              form.setFieldsValue({
+                username: "张三",
+                email: "zhangsan@example.com",
+                nickname: "小张",
+              });
+            }}
+          >
+            设置新值
+          </Button>
+        </div>
+      </div>
+    );
+  },
+};
+
+/**
  * 动态添加表单项
  */
 export const FormList: Story = {
