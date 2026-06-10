@@ -7,7 +7,9 @@ import type { PickerProps } from "./picker";
 
 export type Mode = "multiple" | "tags";
 
-export type Value = Key | Pick<Option, "value" | "label">;
+export type SelectComplexValue = Pick<Option, "value" | "label">;
+
+export type Value = Key | SelectComplexValue;
 
 export type ValueOrValues = Value[] | Value;
 
