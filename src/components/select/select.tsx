@@ -39,6 +39,7 @@ const Select = <T extends ValueOrValues = ValueOrValues>({
   invalid = false,
   placeholder,
   onClear,
+  disabled = false,
 }: SelectProps<T>) => {
   const ref = useRef<PickerRef>(null);
   const selectorRef = useRef<SelectorRef>(null);
@@ -80,6 +81,7 @@ const Select = <T extends ValueOrValues = ValueOrValues>({
   });
 
   const click = () => {
+    if (disabled) return;
     selectorRef.current?.focus();
   };
 
@@ -102,6 +104,7 @@ const Select = <T extends ValueOrValues = ValueOrValues>({
       pickableStyle={styled.pickable.style}
       onPopperExite={clearKeyword}
       invalid={invalid}
+      disabled={disabled}
       onClear={onClear ? clear : void 0}
       {...(!searchable && {
         onBlur,
@@ -117,6 +120,7 @@ const Select = <T extends ValueOrValues = ValueOrValues>({
         onChange={change}
         {...(searchable && { onBlur })}
         placeholder={placeholder}
+        disabled={disabled}
       />
     </Picker>
   );

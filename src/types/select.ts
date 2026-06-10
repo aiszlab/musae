@@ -95,6 +95,13 @@ export type SelectProps<T extends ValueOrValues = ValueOrValues> = ComponentProp
      * @default void 0
      */
     onClear?: () => void;
+
+    /**
+     * @description
+     * disabled state of the select component
+     * @default false
+     */
+    disabled?: boolean;
   };
 
 /**
@@ -111,7 +118,7 @@ export type Filter = (option: Option) => boolean;
  */
 export type SelectorProps = Pick<
   RequiredIn<SelectProps, "searchable" | "onSearch">,
-  "searchable" | "mode" | "onSearch" | "onBlur" | "placeholder"
+  "searchable" | "mode" | "onSearch" | "onBlur" | "placeholder" | "disabled"
 > & {
   /**
    * @description

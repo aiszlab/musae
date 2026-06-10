@@ -4,13 +4,11 @@ import type { InputProps, InputRef } from "../../types/input";
 import { useControlledState, useFocus } from "@aiszlab/relax";
 import { create as $create, props as $props } from "@stylexjs/stylex";
 import { duration, OPACITY, sizes, spacing } from "../theme/tokens.stylex";
-import { useTheme } from "../theme";
 import { useClassNames } from "../../hooks/use-class-names";
-import { hexToRgba } from "@aiszlab/fuzzy/color";
 import { stringify } from "@aiszlab/relax/class-name";
 import { CLASS_NAMES } from "./context";
 import { $body } from "../theme/theme";
-import { ThemeColorVariable } from "../../hooks/use-theme-color-vars";
+import { ThemeColorVariable, useThemeColorVars } from "../../hooks/use-theme-color-vars";
 
 export const styles = $create({
   inputor: {
@@ -104,7 +102,14 @@ const Input = forwardRef<InputRef, InputProps>(
   ) => {
     const inputRef = useRef<HTMLInputElement>(null);
     const classNames = useClassNames(CLASS_NAMES);
-    const theme = useTheme();
+
+    const _themeColorVars = useThemeColorVars([
+      "primary",
+      "outline",
+      "error",
+      ["on-surface", OPACITY.thickest],
+      ["on-surface", OPACITY.thin],
+    ]);
 
     // controlled value
     const [_value, _setValue] = useControlledState<string>(valueInProps, { defaultState: "" });
@@ -162,17 +167,7 @@ const Input = forwardRef<InputRef, InputProps>(
         style={{
           ...styled.inputor.style,
           ...style,
-          "--color-outline": theme.colors.outline,
-          "--color-primary": theme.colors.primary,
-          "--color-error": theme.colors.error,
-          "--color-on-surface-opacity-08": hexToRgba(
-            theme.colors["on-surface"],
-            OPACITY.thin,
-          ).toString(),
-          "--color-on-surface-opacity-38": hexToRgba(
-            theme.colors["on-surface"],
-            OPACITY.thickest,
-          ).toString(),
+          ..._themeColorVars,
         }}
         onClick={inputorEvents.click}
         {...(!disabled && {

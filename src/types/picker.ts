@@ -82,6 +82,13 @@ export interface PickerProps
    * @default void 0
    */
   onClear?: () => void;
+
+  /**
+   * @description
+   * disabled state of the picker
+   * @default false
+   */
+  disabled?: boolean;
 }
 
 /**

@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Select } from "../dist";
+import { Input } from "../dist";
 
-const meta: Meta<typeof Select> = {
-  title: "select",
-  component: Select,
+const meta: Meta<typeof Input> = {
+  title: "input",
+  component: Input,
   parameters: {},
   tags: ["autodocs"],
 };
@@ -12,12 +12,8 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Normal: Story = {
-  args: {},
-};
-
-export const TagsMode: Story = {
   args: {
-    mode: "tags",
+    placeholder: "请输入内容",
   },
 };
 

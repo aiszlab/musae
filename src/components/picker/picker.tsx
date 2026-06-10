@@ -20,6 +20,7 @@ import { $body } from "../theme/theme";
 import { useThemeColorVars } from "../../hooks/use-theme-color-vars";
 import { DialogContext } from "../dialog/context";
 import { useStackLevelContextContext } from "../../contexts/stack-level.context";
+import { OPACITY } from "../theme/tokens.stylex";
 
 const styles = $create({
   pickable: {
@@ -45,6 +46,7 @@ const Picker = forwardRef<PickerRef, PickerProps>(
       onBlur: _onBlur,
       invalid = false,
       onClear,
+      disabled = false,
     },
     ref,
   ) => {
@@ -52,7 +54,15 @@ const Picker = forwardRef<PickerRef, PickerProps>(
     const [isOpen, { turnOff: close, toggle, turnOn: open }] = useBoolean();
     const classNames = useClassNames(CLASS_NAMES);
     const pickableRef = useRef<HTMLDivElement>(null);
-    const _themeColorVars = useThemeColorVars(["primary", "outline", "error"]);
+
+    const _themeColorVars = useThemeColorVars([
+      "primary",
+      "outline",
+      "error",
+      ["on-surface", OPACITY.thickest],
+      ["on-surface", OPACITY.thin],
+    ]);
+
     const { container } = useContext(DialogContext);
     const { className: stackLevelClassName, style: stackLevelStyle } =
       useStackLevelContextContext();
@@ -71,6 +81,7 @@ const Picker = forwardRef<PickerRef, PickerProps>(
     }));
 
     const click = useEvent((event: MouseEvent<HTMLSpanElement>) => {
+      if (disabled) return;
       event.stopPropagation();
       onClick?.(event);
       toggle();
@@ -94,7 +105,12 @@ const Picker = forwardRef<PickerRef, PickerProps>(
     });
 
     const styled = {
-      picker: $props($body.medium, inputStyles.inputor, invalid && inputStyles.invalid),
+      picker: $props(
+        $body.medium,
+        inputStyles.inputor,
+        invalid && inputStyles.invalid,
+        disabled && inputStyles.disabled,
+      ),
       pickable: $props(styles.pickable),
     };
 
@@ -113,13 +129,13 @@ const Picker = forwardRef<PickerRef, PickerProps>(
             ..._themeColorVars,
           }}
           ref={trigger}
-          tabIndex={-1}
+          {...(!disabled && { tabIndex: -1 })}
           onClick={click}
           {...focusProps}
         >
           {children}
 
-          {!!onClear && <Close onClick={clear} />}
+          {!!onClear && !disabled && <Close onClick={clear} />}
         </span>
 
         <Popper

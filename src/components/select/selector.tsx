@@ -36,7 +36,7 @@ const styles = {
 };
 
 const Selector = forwardRef<SelectorRef, SelectorProps>(
-  ({ mode, searchable, value, onSearch, keyword, onChange, onBlur, placeholder }, ref) => {
+  ({ mode, searchable, value, onSearch, keyword, onChange, onBlur, placeholder, disabled = false }, ref) => {
     const inputRef = useRef<HTMLInputElement>(null);
     const { isFocused, open } = useContext(Context);
     const _themeColorVars = useThemeColorVars(["on-surface", ["on-surface", OPACITY.thickest]]);
@@ -74,7 +74,7 @@ const Selector = forwardRef<SelectorRef, SelectorProps>(
               <Tag
                 key={key}
                 size="small"
-                closable
+                closable={!disabled}
                 onClose={(event) => {
                   // stop event: in `Select`, it will trigger and open the popup
                   event.stopPropagation();
@@ -95,6 +95,7 @@ const Selector = forwardRef<SelectorRef, SelectorProps>(
               onChange={search}
               onBlur={onBlur}
               placeholder={placeholder}
+              disabled={disabled}
             />
           )}
         </>
@@ -127,6 +128,7 @@ const Selector = forwardRef<SelectorRef, SelectorProps>(
         style={{ ...styled.input.style, ..._themeColorVars }}
         onChange={search}
         onBlur={onBlur}
+        disabled={disabled}
       />
     );
   },
