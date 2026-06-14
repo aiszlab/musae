@@ -36,7 +36,7 @@ interface UsedForm<T extends FieldsValue> {
   /**
    * get field value
    */
-  getFieldValue: (name: keyof T) => Partialable<T[keyof T]>;
+  getFieldValue: <FieldValue = T[keyof T]>(name: keyof T) => Partialable<FieldValue>;
 
   /**
    * get fields value
