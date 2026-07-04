@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import type { Meta, StoryObj } from "@storybook/react";
-import { BottomSheet, Button, Space } from "musae";
-import "musae/styles.css";
+import type { Meta, StoryObj } from "@storybook/react-vite";
+import { BottomSheet, Button, Space } from "../dist";
+import "../dist/styles.css";
 
 const meta: Meta<typeof BottomSheet> = {
   title: "Components/BottomSheet",
