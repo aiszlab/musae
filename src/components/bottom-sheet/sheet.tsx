@@ -3,6 +3,7 @@ import { animate } from "motion/react";
 import { create as $create, props as $props } from "@stylexjs/stylex";
 import { stringify } from "@aiszlab/relax/class-name";
 import { useAsyncEffect } from "@aiszlab/relax";
+import { contains } from "@aiszlab/relax/dom";
 import { useClassNames } from "../../hooks/use-class-names";
 import { useClosable } from "../../hooks/use-closable";
 import { useThemeColorVars, type ThemeColorVariable } from "../../hooks/use-theme-color-vars";
@@ -94,6 +95,13 @@ const Sheet = ({
     closable,
     onClose,
   });
+
+  // Focus the sheet when open to receive keyboard events
+  useEffect(() => {
+    if (!open) return;
+    if (contains(ref.current, document.activeElement)) return;
+    ref.current?.focus();
+  }, [open]);
 
   useAsyncEffect(async () => {
     if (!ref.current) return;
