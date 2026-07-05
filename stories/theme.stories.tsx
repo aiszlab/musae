@@ -41,3 +41,11 @@ export const Normal: Story = {
     </ThemeProvider>
   ),
 };
+
+export const DarkMode: Story = {
+  render: () => (
+    <ThemeProvider defaultMode="dark">
+      <ThemeSwitch />
+    </ThemeProvider>
+  ),
+};

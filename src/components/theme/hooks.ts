@@ -158,7 +158,7 @@ const styles = $create({
 export const Context = createContext<ContextValue>({
   colors: toColorRoles(PALETTE, "light"),
   mode: "light",
-  toggle: () => void 0,
+  toggle: () => "dark",
 });
 
 /**
@@ -171,7 +171,8 @@ export const Context = createContext<ContextValue>({
  * set the preset theme for musae ui component
  */
 export const useTheme = () => {
-  return useContext(Context);
+  const context = useContext(Context);
+  return context;
 };
 
 /**
@@ -179,7 +180,13 @@ export const useTheme = () => {
  * inject css names and styles into html element
  * for animations
  */
-export const useSwitchable = ({ theme, defaultMode = "light" }: { theme: Theme; defaultMode?: Mode }) => {
+export const useSwitchable = ({
+  theme,
+  defaultMode = "light",
+}: {
+  theme: Theme;
+  defaultMode?: Mode;
+}) => {
   const [mode, setMode] = useState<Mode>(defaultMode);
   const trigger = useRef<Subscriber<Mode> | null>(null);
   const colors = useMemo(() => toColorRoles(theme.palette, mode), [mode, theme.palette]);
@@ -219,17 +226,19 @@ export const useSwitchable = ({ theme, defaultMode = "light" }: { theme: Theme; 
       .subscribe({
         next: repaint,
       });
+
+    document.documentElement.classList.add(...normalize(styled[mode].className));
   });
 
   // dark, light mode switch
-  const toggle = useEvent((event?: MouseEvent) => {
+  const toggle = useEvent((event?: MouseEvent): Mode => {
     const isDarking = mode === "light";
     const nextMode = isDarking ? "dark" : "light";
 
     // dom not support animation
     if (!isFunction(document.startViewTransition)) {
       trigger.current?.next(nextMode);
-      return;
+      return nextMode;
     }
 
     const animation = document.startViewTransition(() => {
@@ -261,6 +270,8 @@ export const useSwitchable = ({ theme, defaultMode = "light" }: { theme: Theme; 
         ...normalize(styled.lighting.className, styled.darking.className),
       );
     });
+
+    return nextMode;
   });
 
   return {

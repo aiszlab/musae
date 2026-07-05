@@ -78,8 +78,8 @@ export interface ContextValue {
   mode: Mode;
 
   /**
-   * @description
-   * toggle theme mode, if dark, change to light
+   * @zh 切换主题模式，返回更新后的模式
+   * @en toggle theme mode, returns the updated mode
    */
-  toggle: (event?: MouseEvent) => void;
+  toggle: (event?: MouseEvent) => Mode;
 }
