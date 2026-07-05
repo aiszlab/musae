@@ -1,3 +1,3 @@
-import SplitPanel from './split-panel'
+import SplitPanel from "./split-panel";
 
-export { SplitPanel }
+export { SplitPanel };

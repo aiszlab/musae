@@ -18,7 +18,9 @@ export const useRepaint = ({ columns, rowGap }: { columns: number; rowGap: numbe
     // only 1 columns, no need to repaint, just display as flex
     if (columns <= 1) return;
 
-    const [columnHeights, _orders] = Array.from(items.current.entries()).reduce<[number[], typeof orders]>(
+    const [columnHeights, _orders] = Array.from(items.current.entries()).reduce<
+      [number[], typeof orders]
+    >(
       (prev, [index, child]) => {
         if (!child) return prev;
 
@@ -30,7 +32,7 @@ export const useRepaint = ({ columns, rowGap }: { columns: number; rowGap: numbe
         prev[1].set(index, order + 1);
         return prev;
       },
-      [new Array(columns).fill(0), new Map()]
+      [new Array(columns).fill(0), new Map()],
     );
 
     setMaxHeight(Math.max(...columnHeights));
@@ -41,7 +43,7 @@ export const useRepaint = ({ columns, rowGap }: { columns: number; rowGap: numbe
     (index: number) => {
       return orders.get(index) ?? null;
     },
-    [orders]
+    [orders],
   );
 
   return {

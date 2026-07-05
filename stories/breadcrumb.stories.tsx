@@ -122,10 +122,7 @@ export const Mixed: Story = {
 export const CustomClassName: Story = {
   args: {
     className: "custom-breadcrumb",
-    items: [
-      { label: "Home", href: "/" },
-      { label: "Page" },
-    ],
+    items: [{ label: "Home", href: "/" }, { label: "Page" }],
   },
 };
 

@@ -1,5 +1,3 @@
-const useResizeObserver = () => {
+const useResizeObserver = () => {};
 
-}
-
-export { useResizeObserver }
+export { useResizeObserver };

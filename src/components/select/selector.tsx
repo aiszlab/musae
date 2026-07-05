@@ -36,7 +36,10 @@ const styles = {
 };
 
 const Selector = forwardRef<SelectorRef, SelectorProps>(
-  ({ mode, searchable, value, onSearch, keyword, onChange, onBlur, placeholder, disabled = false }, ref) => {
+  (
+    { mode, searchable, value, onSearch, keyword, onChange, onBlur, placeholder, disabled = false },
+    ref,
+  ) => {
     const inputRef = useRef<HTMLInputElement>(null);
     const { isFocused, open } = useContext(Context);
     const _themeColorVars = useThemeColorVars(["on-surface", ["on-surface", OPACITY.thickest]]);

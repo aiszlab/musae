@@ -7,8 +7,7 @@ import type { Nullable } from "@aiszlab/relax/types";
  * picker props
  */
 export interface PickerProps
-  extends ComponentProps,
-    Pick<HTMLAttributes<HTMLSpanElement>, "onBlur"> {
+  extends ComponentProps, Pick<HTMLAttributes<HTMLSpanElement>, "onBlur"> {
   /**
    * @description
    * children

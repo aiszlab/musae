@@ -64,7 +64,7 @@ describe("BottomSheet", () => {
 
   it("applies custom height to panel", () => {
     render(<TestBottomSheet height={300} />);
-    const container = document.querySelector("[style*=\"--size\"]");
+    const container = document.querySelector('[style*="--size"]');
     expect(container).toHaveStyle({ "--size": "300px" });
   });
 

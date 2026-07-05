@@ -48,20 +48,16 @@ const Preview = forwardRef<PreviewRef, PreviewProps>(({ onClose, src, alt }, ref
     setFlipY((prev) => !prev);
   };
 
-  useImperativeHandle(
-    ref,
-    () => {
-      return {
-        reset: () => {
-          setScale(DEFAULT_STYLE.scale);
-          setRotate(DEFAULT_STYLE.rotate);
-          setFlipX(!!DEFAULT_STYLE.flipX);
-          setFlipY(!!DEFAULT_STYLE.flipY);
-        },
-      };
-    },
-    [],
-  );
+  useImperativeHandle(ref, () => {
+    return {
+      reset: () => {
+        setScale(DEFAULT_STYLE.scale);
+        setRotate(DEFAULT_STYLE.rotate);
+        setFlipX(!!DEFAULT_STYLE.flipX);
+        setFlipY(!!DEFAULT_STYLE.flipY);
+      },
+    };
+  }, []);
 
   const isSmallest = scale <= 1;
   const styled = $props(styles.image);

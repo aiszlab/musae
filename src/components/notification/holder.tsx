@@ -106,15 +106,11 @@ const Holder = forwardRef<HolderRef, HolderProps>(({ defaultNotifications }, ref
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  useImperativeHandle(
-    ref,
-    () => {
-      return {
-        add,
-      };
-    },
-    [add],
-  );
+  useImperativeHandle(ref, () => {
+    return {
+      add,
+    };
+  }, [add]);
 
   return Array.from(placements.entries()).map(([placement, notifications]) => {
     const styled = $props(styles.holder, styles[placement]);

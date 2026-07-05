@@ -5,12 +5,7 @@ import type { ReactNode } from "react";
  * notification placement
  */
 export type Placement =
-  | "top"
-  | "top-left"
-  | "top-right"
-  | "bottom"
-  | "bottom-left"
-  | "bottom-right";
+  "top" | "top-left" | "top-right" | "bottom" | "bottom-left" | "bottom-right";
 
 export type Axis = "top" | "left" | "bottom" | "right";
 

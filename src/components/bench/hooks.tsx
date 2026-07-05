@@ -136,7 +136,8 @@ export const useMenuItems = ({
     switch (layout) {
       case "side":
         return Array.from(_menuItems.values());
-      case "mix": { // when header menu is not located, just use first menu`s children
+      case "mix": {
+        // when header menu is not located, just use first menu`s children
         const _root = first(selectedKeys);
         return (
           (isUndefined(_root)

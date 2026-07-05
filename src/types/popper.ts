@@ -11,7 +11,8 @@ import type { PortalProps } from "./portal";
  * popper props
  */
 export interface PopperProps
-  extends Pick<DOMAttributes<HTMLDivElement>, "onMouseDown" | "onPointerEnter" | "onPointerLeave">,
+  extends
+    Pick<DOMAttributes<HTMLDivElement>, "onMouseDown" | "onPointerEnter" | "onPointerLeave">,
     ComponentProps,
     Pick<PortalProps, "destroyable" | "container"> {
   /**

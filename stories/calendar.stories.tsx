@@ -77,9 +77,7 @@ export const DisableDateRange: Story = {
     return (
       <Calendar
         value={value}
-        disabledDate={(date) =>
-          date.isAfter("2026-06-09") && date.isBefore("2026-06-21")
-        }
+        disabledDate={(date) => date.isAfter("2026-06-09") && date.isBefore("2026-06-21")}
         onClick={(date) => {
           setValue(date);
         }}

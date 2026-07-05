@@ -54,6 +54,7 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
       placeholder,
       resize = true,
       border = true,
+      rows,
     },
     ref,
   ) => {
@@ -97,6 +98,7 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           onBlur={onBlur}
           ref={ref}
           placeholder={placeholder}
+          rows={rows}
         />
       </div>
     );

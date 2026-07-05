@@ -38,4 +38,10 @@ export type TextareaProps = ComponentProps &
      * border
      */
     border?: boolean;
+
+    /**
+     * @zh 文本域可见行数，控制输入框的高度
+     * @en number of visible text lines, controls the height of the textarea
+     */
+    rows?: number;
   };

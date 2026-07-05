@@ -256,8 +256,10 @@ interface FormListField {
 /**
  * form list props
  */
-interface FormListProps<T extends FieldsValue, FieldKey extends keyof T>
-  extends Omit<FormItemProps<T, FieldKey>, "children"> {
+interface FormListProps<T extends FieldsValue, FieldKey extends keyof T> extends Omit<
+  FormItemProps<T, FieldKey>,
+  "children"
+> {
   /**
    * children render
    */

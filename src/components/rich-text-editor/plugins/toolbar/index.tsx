@@ -103,8 +103,8 @@ const ToolbarPlugin = () => {
       $isLinkNode(_focusedNode)
         ? _focusedNode
         : $isLinkNode(_focusedNodeParent)
-        ? _focusedNodeParent
-        : null,
+          ? _focusedNodeParent
+          : null,
     );
 
     if ($isListNode(_rootNode)) {

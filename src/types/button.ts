@@ -16,7 +16,8 @@ type Shape = "round" | "square";
  * button render props
  */
 export interface ButtonProps
-  extends Partial<
+  extends
+    Partial<
       Pick<
         ButtonHTMLAttributes<HTMLButtonElement>,
         "type" | "onPointerEnter" | "onPointerLeave" | "onContextMenu"
