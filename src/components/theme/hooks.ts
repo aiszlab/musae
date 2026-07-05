@@ -179,8 +179,8 @@ export const useTheme = () => {
  * inject css names and styles into html element
  * for animations
  */
-export const useSwitchable = ({ theme }: { theme: Theme }) => {
-  const [mode, setMode] = useState<Mode>("light");
+export const useSwitchable = ({ theme, defaultMode = "light" }: { theme: Theme; defaultMode?: Mode }) => {
+  const [mode, setMode] = useState<Mode>(defaultMode);
   const trigger = useRef<Subscriber<Mode> | null>(null);
   const colors = useMemo(() => toColorRoles(theme.palette, mode), [mode, theme.palette]);
 

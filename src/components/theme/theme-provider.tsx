@@ -10,7 +10,7 @@ import { merge } from "@aiszlab/relax";
  * theme provider
  * if user provider theme, we will merge it with presets theme
  */
-const ThemeProvider = ({ theme: _theme, children }: Props) => {
+const ThemeProvider = ({ theme: _theme, defaultMode, children }: Props) => {
   const theme = useMemo<Theme>(() => {
     if (!_theme) {
       return {
@@ -23,7 +23,7 @@ const ThemeProvider = ({ theme: _theme, children }: Props) => {
     });
   }, [_theme]);
 
-  const { mode, toggle, colors } = useSwitchable({ theme });
+  const { mode, toggle, colors } = useSwitchable({ theme, defaultMode });
 
   return <Context.Provider value={{ colors, mode, toggle }}>{children}</Context.Provider>;
 };

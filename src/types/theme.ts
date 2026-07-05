@@ -21,8 +21,14 @@ export interface Props {
   children: ReactNode;
 
   /**
-   * @description
-   * theme
+   * @zh 默认主题模式，默认为 "light"
+   * @en default theme mode, defaults to "light"
+   */
+  defaultMode?: Mode;
+
+  /**
+   * @zh 主题配置
+   * @en theme configuration
    */
   theme?: Theme;
 }
