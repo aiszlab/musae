@@ -89,7 +89,7 @@ const Operations = ({
   const isMultiple = total > 1;
 
   return (
-    <Portal lockable>
+    <Portal modal>
       <div
         className={styled.operations.className}
         style={{

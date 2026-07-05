@@ -44,7 +44,7 @@ describe("BottomSheet", () => {
     const onClose = jest.fn();
     render(<TestBottomSheet onClose={onClose} />);
 
-    const overlay = document.querySelector(".musae-bottom-sheet__overlay");
+    const overlay = document.querySelector(".musae-sheet__overlay");
     expect(overlay).toBeInTheDocument();
 
     await userEvent.click(overlay!);
@@ -64,15 +64,15 @@ describe("BottomSheet", () => {
 
   it("applies custom height to panel", () => {
     render(<TestBottomSheet height={300} />);
-    const panel = document.querySelector(".musae-bottom-sheet__panel");
-    expect(panel).toHaveStyle({ height: "300px" });
+    const container = document.querySelector("[style*=\"--size\"]");
+    expect(container).toHaveStyle({ "--size": "300px" });
   });
 
   it("respects closable prop — does not close on overlay click when closable excludes overlay", async () => {
     const onClose = jest.fn();
     render(<TestBottomSheet onClose={onClose} closable={["esc"]} />);
 
-    const overlay = document.querySelector(".musae-bottom-sheet__overlay");
+    const overlay = document.querySelector(".musae-sheet__overlay");
     await userEvent.click(overlay!);
     expect(onClose).not.toHaveBeenCalled();
   });

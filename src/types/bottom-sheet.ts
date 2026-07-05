@@ -35,4 +35,12 @@ export interface BottomSheetProps extends ComponentProps {
    * @default true (all triggers enabled)
    */
   closable?: boolean | Closable[];
+
+  /**
+   * @description
+   * Whether to enable modal locking (lock body scroll).
+   * Pass `false` to disable scroll locking.
+   * @default true
+   */
+  modal?: boolean;
 }

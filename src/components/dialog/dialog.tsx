@@ -24,7 +24,7 @@ const Dialog = ({ open, closable = true, ...props }: DialogProps) => {
 
   return (
     <DialogContext value={{ container: containerGetter }}>
-      <Portal open={open || _isVisible} lockable>
+      <Portal open={open || _isVisible} modal>
         <Popup {...props} closable={closable} open={open} onClosed={turnOff} ref={popupRef} />
       </Portal>
     </DialogContext>

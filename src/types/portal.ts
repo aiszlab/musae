@@ -26,9 +26,9 @@ export interface PortalProps {
 
   /**
    * @description
-   * lockable
+   * modal
    */
-  lockable?: boolean;
+  modal?: boolean;
 
   /**
    * @description

@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { BottomSheet, Button, Space } from "../dist";
-import "../dist/styles.css";
 
 const meta: Meta<typeof BottomSheet> = {
-  title: "Components/BottomSheet",
+  title: "bottom-sheet",
   component: BottomSheet,
   parameters: {
     layout: "fullscreen",
@@ -58,7 +57,7 @@ export const LongContent: Story = {
     return (
       <div style={{ padding: 16 }}>
         <Button onClick={() => setOpen(true)}>Open Long Content</Button>
-        <BottomSheet open={open} onClose={() => setOpen(false)} {...args}>
+        <BottomSheet {...args} open={open} onClose={() => setOpen(false)}>
           {Array.from({ length: 20 }, (_, i) => (
             <p
               key={i}

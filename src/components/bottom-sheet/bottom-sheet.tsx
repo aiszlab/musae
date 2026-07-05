@@ -1,35 +1,83 @@
-import React, { useEffect } from "react";
-import { useBoolean } from "@aiszlab/relax";
+import React from "react";
 import type { BottomSheetProps } from "../../types/bottom-sheet";
-import { Portal } from "../portal";
-import Sheet from "./sheet";
+import { Sheet } from "../sheet";
+import { useClassNames } from "../../hooks/use-class-names";
+import { create as $create, props as $props } from "@stylexjs/stylex";
+import { stringify } from "@aiszlab/relax/class-name";
+import { useThemeColorVars, type ThemeColorVariable } from "../../hooks/use-theme-color-vars";
+import { spacing, sizes } from "../theme/tokens.stylex";
+import { CLASS_NAMES } from "./context";
 
+/**
+ * @zh BottomSheet 专用样式：居中的拖拽手柄条，以及面板背景和圆角。
+ * @en BottomSheet-specific styles: a centered drag handle pill, and panel background/border-radius.
+ */
+const styles = $create({
+  handle: {
+    width: sizes.medium,
+    height: sizes.xxxxxxxxxsmall,
+    borderRadius: sizes.xxxxxxxxxxsmall,
+    backgroundColor: "var(--color-on-surface-variant)" satisfies ThemeColorVariable,
+    marginTop: spacing.xxsmall,
+    marginBottom: spacing.xxsmall,
+    marginInline: "auto",
+    flexShrink: 0,
+  },
+
+  panel: {
+    backgroundColor: "var(--color-surface-container)" satisfies ThemeColorVariable,
+    borderTopLeftRadius: sizes.small,
+    borderTopRightRadius: sizes.small,
+    maxHeight: sizes.full,
+  },
+});
+
+/**
+ * @zh BottomSheet 组件。从底部滑入的模态面板，带有拖拽手柄指示器。
+ * 基于共享的 Sheet 基础组件构建。
+ * @en BottomSheet component. A modal panel that slides up from the bottom
+ * with a drag handle indicator. Built on the shared Sheet base component.
+ */
 const BottomSheet = ({
   open,
   height = "50vh",
   closable = true,
+  modal = true,
   ...props
 }: BottomSheetProps) => {
-  // Keep Portal mounted during exit animation
-  const [isVisible, { turnOn, turnOff }] = useBoolean(false);
+  const classNames = useClassNames(CLASS_NAMES);
+  const themeColorVars = useThemeColorVars(["on-surface-variant"]);
 
-  useEffect(() => {
-    if (open) {
-      turnOn();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [open]);
+  const styled = {
+    handle: $props(styles.handle),
+    panel: $props(styles.panel),
+  };
+
+  /**
+   * @zh BottomSheet 专用头部：居中的拖拽手柄条。
+   * @en BottomSheet-specific header: a centered drag handle pill.
+   */
+  const header = (
+    <div
+      className={stringify(classNames.handle, styled.handle.className)}
+      style={{ ...styled.handle.style, ...themeColorVars }}
+    />
+  );
 
   return (
-    <Portal open={open || isVisible} lockable>
-      <Sheet
-        {...props}
-        open={open}
-        height={height}
-        closable={closable}
-        onClosed={turnOff}
-      />
-    </Portal>
+    <Sheet
+      visible={open}
+      placement="bottom"
+      size={height}
+      closable={closable}
+      modal={modal}
+      onClose={props.onClose}
+      className={classNames.sheet}
+      header={header}
+      panelClassName={styled.panel.className}
+    >
+      {props.children}
+    </Sheet>
   );
 };
 

@@ -78,7 +78,7 @@ const Tour = ({
 
   return (
     <Context.Provider value={{ classNames }}>
-      <Portal open={overlay && open} destroyable lockable>
+      <Portal open={overlay && open} destroyable modal>
         <div
           className={stringify(classNames.overlay, styled.overlay.className)}
           style={{

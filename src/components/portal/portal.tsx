@@ -8,7 +8,7 @@ const Portal: FC<PortalProps> = ({
   children,
   open = true,
   destroyable = false,
-  lockable = false,
+  modal = false,
   container,
 }) => {
   const [shouldRender, setShouldRender] = useState(false);
@@ -22,7 +22,7 @@ const Portal: FC<PortalProps> = ({
     }
   }, [destroyable, open]);
 
-  useScrollLocker(isDomUsable() && lockable && open);
+  useScrollLocker(isDomUsable() && modal && open);
 
   if (!(shouldRender || open)) return null;
   if (!_container) return null;

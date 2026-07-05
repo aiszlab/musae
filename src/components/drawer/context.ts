@@ -1,11 +1,10 @@
 /**
- * @description
- * class names
+ * @zh Drawer 的 class 名称
+ * @en class names for Drawer
  */
 export const CLASS_NAMES = {
   drawer: "drawer",
-  overlay: "drawer__overlay",
-  panel: "drawer__panel",
   header: "drawer__header",
   body: "drawer__body",
+  actions: "drawer__actions",
 } as const;
