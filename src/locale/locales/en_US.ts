@@ -64,6 +64,10 @@ const en_US: Locale = {
     checkList: "Check List",
     codeBlock: "Code Block",
   },
+
+  "action-sheet": {
+    cancel: "Cancel",
+  },
 };
 
 export default en_US;

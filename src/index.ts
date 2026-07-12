@@ -2,6 +2,7 @@
  * @description
  * components
  */
+export { ActionSheet } from "./components/action-sheet";
 export { Avatar } from "./components/avatar";
 export { Menu } from "./components/menu";
 export { Loading } from "./components/loading";
@@ -77,4 +78,5 @@ export { Search } from "./components/search";
  */
 export { useMessage, Message } from "./components/message";
 export { useNotification, Notification } from "./components/notification";
+export { useActionSheet } from "./components/action-sheet";
 export { useTheme } from "./components/theme";

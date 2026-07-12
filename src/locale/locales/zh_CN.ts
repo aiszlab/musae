@@ -64,6 +64,10 @@ const zh_CN: Locale = {
     checkList: "任务列表",
     codeBlock: "代码块",
   },
+
+  "action-sheet": {
+    cancel: "取消",
+  },
 };
 
 export default zh_CN;

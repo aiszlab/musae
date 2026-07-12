@@ -10,7 +10,7 @@ import { AnimatePresence } from "motion/react";
 import Notification from "./notification";
 import { create as $create, props as $props } from "@stylexjs/stylex";
 import { positions, spacing } from "../theme/tokens.stylex";
-import { useEvent, useIdentity } from "@aiszlab/relax";
+import { useEvent, useIdentity, useMounted } from "@aiszlab/relax";
 
 const styles = $create({
   holder: {
@@ -99,12 +99,11 @@ const Holder = forwardRef<HolderRef, HolderProps>(({ defaultNotifications }, ref
     },
   );
 
-  useEffect(() => {
+  useMounted(() => {
     defaultNotifications?.forEach((notification) => {
       add(notification);
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  });
 
   useImperativeHandle(ref, () => {
     return {

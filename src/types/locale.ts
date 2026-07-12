@@ -61,4 +61,8 @@ export interface Locale {
     checkList: string;
     codeBlock: string;
   };
+
+  "action-sheet": {
+    cancel: string;
+  };
 }
