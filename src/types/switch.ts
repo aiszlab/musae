@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import type { ReactNode, MouseEvent } from "react";
 import type { ComponentProps } from "./element";
 
 /**
@@ -21,6 +21,12 @@ export interface SwitchProps extends ComponentProps {
    * @default void 0
    */
   onChange?: (value: boolean) => void | PromiseLike<void>;
+
+  /**
+   * @zh 点击事件回调
+   * @en Click event handler
+   */
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 
   /**
    * @description

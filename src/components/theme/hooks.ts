@@ -215,7 +215,10 @@ export const useSwitchable = ({
   });
 
   useMounted(() => {
-    document.documentElement.classList.add(...normalize(styled.default.className));
+    document.documentElement.classList.add(
+      ...normalize(styled.default.className),
+      ...normalize(styled[mode].className),
+    );
     document.documentElement.attributeStyleMap.set("--color-light", theme.palette.neutral[100]);
     document.documentElement.attributeStyleMap.set("--color-dark", theme.palette.neutral[0]);
 
@@ -226,8 +229,6 @@ export const useSwitchable = ({
       .subscribe({
         next: repaint,
       });
-
-    document.documentElement.classList.add(...normalize(styled[mode].className));
   });
 
   // dark, light mode switch

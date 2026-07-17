@@ -179,11 +179,13 @@ const Switch = ({
   uncheckedChildren,
   disabled = false,
   onChange,
+  onClick,
 }: SwitchProps) => {
   const classNames = useClassNames(CLASS_NAMES);
   const [isChecked, setIsChecked] = useControlledState(value);
 
-  const toggle = useEvent(() => {
+  const toggle = useEvent((event: React.MouseEvent<HTMLButtonElement>) => {
+    onClick?.(event);
     const _isChecked = !isChecked;
     setIsChecked(_isChecked);
     onChange?.(_isChecked);
