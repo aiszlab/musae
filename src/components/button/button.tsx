@@ -6,12 +6,12 @@ import { OPACITY } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
 import { useButton } from "./hooks";
 import { Ripple } from "../ripple";
-import { hexToRgba } from "@aiszlab/fuzzy/color";
 import { useClassNames } from "../../hooks/use-class-names";
 import { CLASS_NAMES } from "./context";
 import styles, { TYPOGRAPHYS } from "./styles";
 import { useThemeColorVars } from "../../hooks/use-theme-color-vars";
 import { Loading } from "../icon/icons";
+import { toPercentage } from "@aiszlab/relax";
 
 /**
  * @author murukal
@@ -80,7 +80,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           ...style,
           "--color-button": theme.colors[color],
           "--color-on-button": theme.colors[`on-${color}`],
-          "--color-button-opacity-08": hexToRgba(theme.colors[color], OPACITY.thin).toString(),
+          "--color-button-opacity-08": `color-mix(in srgb, var(--color-button) ${toPercentage(OPACITY.thin)}, transparent)`,
           ...themeColorVars,
         }}
         type={type}

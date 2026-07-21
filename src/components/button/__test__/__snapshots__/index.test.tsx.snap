@@ -5,7 +5,7 @@ exports[`\`Button\` Component disabled variant render 1`] = `
   <button
     class="musae-button styles__rippleable styles__default styles__filled styles__medium theme__title.medium"
     disabled=""
-    style="--color-button: #6750A4; --color-on-button: #FFF; --color-button-opacity-08: rgba(103,80,164,0.08); --color-on-surface: #1D1B20; --color-on-surface-opacity-12: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-on-surface-opacity-38: color-mix(in srgb, var(--color-on-surface) 38%, transparent);"
+    style="--color-button: #6750A4; --color-on-button: #FFF; --color-button-opacity-08: color-mix(in srgb, var(--color-button) 8%, transparent); --color-on-surface: #1D1B20; --color-on-surface-opacity-12: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-on-surface-opacity-38: color-mix(in srgb, var(--color-on-surface) 38%, transparent);"
     type="button"
   >
     disabled filled
@@ -13,7 +13,7 @@ exports[`\`Button\` Component disabled variant render 1`] = `
   <button
     class="musae-button styles__rippleable styles__default styles__outlined styles__medium theme__title.medium"
     disabled=""
-    style="--color-button: #6750A4; --color-on-button: #FFF; --color-button-opacity-08: rgba(103,80,164,0.08); --color-on-surface: #1D1B20; --color-on-surface-opacity-12: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-on-surface-opacity-38: color-mix(in srgb, var(--color-on-surface) 38%, transparent);"
+    style="--color-button: #6750A4; --color-on-button: #FFF; --color-button-opacity-08: color-mix(in srgb, var(--color-button) 8%, transparent); --color-on-surface: #1D1B20; --color-on-surface-opacity-12: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-on-surface-opacity-38: color-mix(in srgb, var(--color-on-surface) 38%, transparent);"
     type="button"
   >
     disabled outlined
@@ -21,7 +21,7 @@ exports[`\`Button\` Component disabled variant render 1`] = `
   <button
     class="musae-button styles__rippleable styles__default styles__text styles__medium theme__title.medium"
     disabled=""
-    style="--color-button: #6750A4; --color-on-button: #FFF; --color-button-opacity-08: rgba(103,80,164,0.08); --color-on-surface: #1D1B20; --color-on-surface-opacity-12: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-on-surface-opacity-38: color-mix(in srgb, var(--color-on-surface) 38%, transparent);"
+    style="--color-button: #6750A4; --color-on-button: #FFF; --color-button-opacity-08: color-mix(in srgb, var(--color-button) 8%, transparent); --color-on-surface: #1D1B20; --color-on-surface-opacity-12: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-on-surface-opacity-38: color-mix(in srgb, var(--color-on-surface) 38%, transparent);"
     type="button"
   >
     disabled text
@@ -33,21 +33,21 @@ exports[`\`Button\` Component variant render 1`] = `
 <DocumentFragment>
   <button
     class="musae-button styles__default styles__rippleable styles__filled styles__medium theme__title.medium"
-    style="--color-button: #6750A4; --color-on-button: #FFF; --color-button-opacity-08: rgba(103,80,164,0.08); --color-on-surface: #1D1B20; --color-on-surface-opacity-12: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-on-surface-opacity-38: color-mix(in srgb, var(--color-on-surface) 38%, transparent);"
+    style="--color-button: #6750A4; --color-on-button: #FFF; --color-button-opacity-08: color-mix(in srgb, var(--color-button) 8%, transparent); --color-on-surface: #1D1B20; --color-on-surface-opacity-12: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-on-surface-opacity-38: color-mix(in srgb, var(--color-on-surface) 38%, transparent);"
     type="button"
   >
     filled
   </button>
   <button
     class="musae-button styles__default styles__rippleable styles__outlined styles__medium theme__title.medium"
-    style="--color-button: #6750A4; --color-on-button: #FFF; --color-button-opacity-08: rgba(103,80,164,0.08); --color-on-surface: #1D1B20; --color-on-surface-opacity-12: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-on-surface-opacity-38: color-mix(in srgb, var(--color-on-surface) 38%, transparent);"
+    style="--color-button: #6750A4; --color-on-button: #FFF; --color-button-opacity-08: color-mix(in srgb, var(--color-button) 8%, transparent); --color-on-surface: #1D1B20; --color-on-surface-opacity-12: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-on-surface-opacity-38: color-mix(in srgb, var(--color-on-surface) 38%, transparent);"
     type="button"
   >
     outlined
   </button>
   <button
     class="musae-button styles__default styles__rippleable styles__text styles__medium theme__title.medium"
-    style="--color-button: #6750A4; --color-on-button: #FFF; --color-button-opacity-08: rgba(103,80,164,0.08); --color-on-surface: #1D1B20; --color-on-surface-opacity-12: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-on-surface-opacity-38: color-mix(in srgb, var(--color-on-surface) 38%, transparent);"
+    style="--color-button: #6750A4; --color-on-button: #FFF; --color-button-opacity-08: color-mix(in srgb, var(--color-button) 8%, transparent); --color-on-surface: #1D1B20; --color-on-surface-opacity-12: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-on-surface-opacity-38: color-mix(in srgb, var(--color-on-surface) 38%, transparent);"
     type="button"
   >
     text

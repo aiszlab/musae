@@ -6,7 +6,7 @@ import { useMutateObserver, useRaf, useDevicePixelRatio } from "@aiszlab/relax";
 import { useClips, useWatermarks } from "./hooks";
 import type { Nullable } from "@aiszlab/relax/types";
 import { useTheme } from "../theme";
-import { hexToRgba } from "@aiszlab/fuzzy/color";
+import { ThemeColorVariable, useThemeColorVars } from "../../hooks/use-theme-color-vars";
 
 const styles = $create({
   watermark: {
@@ -49,11 +49,13 @@ const Watermark = ({
   >(null);
   const ratio = useDevicePixelRatio();
   const theme = useTheme();
+  const _themeColorVars = useThemeColorVars([["shadow", OPACITY.thick]]);
 
   // font color
-  const fontColor = useMemo(() => {
-    return color ?? hexToRgba(theme.colors.shadow, OPACITY.thick).toString();
-  }, [color, theme.colors.shadow]);
+  const fontColor = useMemo(
+    () => color ?? ("var(--color-shadow-opacity-16)" satisfies ThemeColorVariable),
+    [color],
+  );
 
   const sync = useRaf(() => {
     const canvas = document.createElement("canvas");
@@ -105,7 +107,14 @@ const Watermark = ({
   ]);
 
   return (
-    <div className={styled.watermark.className} style={styled.watermark.style} ref={watermarkRef}>
+    <div
+      className={styled.watermark.className}
+      style={{
+        ...styled.watermark.style,
+        ..._themeColorVars,
+      }}
+      ref={watermarkRef}
+    >
       {children}
     </div>
   );

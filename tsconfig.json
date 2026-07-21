@@ -13,6 +13,7 @@
     "strict": true,
     "skipLibCheck": true,
     "rootDir": ".",
-    "baseUrl": "."
+    "baseUrl": ".",
+    "ignoreDeprecations": "6.0"
   }
 }

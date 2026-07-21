@@ -24,10 +24,11 @@ export const useThemeColorVars = (tokens: (ColorRole | [ColorRole, Opacity])[]) 
       prev[colorVar] = color;
 
       if (!isUndefined(opacity) && opacity < 1) {
-        const _opacity = (opacity * 100).toString().padStart(2, "0");
+        const _percent = Math.round(opacity * 100);
+        const _opacity = _percent.toString().padStart(2, "0");
 
         prev[`--color-${token}-opacity-${_opacity}`] =
-          `color-mix(in srgb, var(${colorVar}) ${_opacity}%, transparent)`;
+          `color-mix(in srgb, var(${colorVar}) ${_percent}%, transparent)`;
       }
 
       return prev;

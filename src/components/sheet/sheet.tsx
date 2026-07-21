@@ -14,7 +14,6 @@ import Portal from "../portal/portal";
 import StackLevelContext from "../../contexts/stack-level.context";
 import { PLACEMENTS } from "./hooks";
 import { CLASS_NAMES } from "./context";
-import { flushSync } from "react-dom";
 
 const styles = $create({
   stackLevel: {
@@ -141,9 +140,7 @@ const Sheet = ({
     if (!_popup) return;
 
     if (visible) {
-      flushSync(() => {
-        turnOn();
-      });
+      turnOn();
 
       // Focus the container when visible to receive keyboard events.
       if (!contains(ref.current, document.activeElement)) {
