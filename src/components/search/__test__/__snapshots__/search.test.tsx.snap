@@ -1,0 +1,155 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`\`Search\` Component snapshot 1`] = `
+<DocumentFragment>
+  <span
+    class="musae-search styles__default"
+    style="--color-primary: #6750A4; --color-outline: #79747E; --color-surface-container-high: #F5EFF7; --color-on-surface-variant: #49454F; --color-on-surface-variant-opacity-08: color-mix(in srgb, var(--color-on-surface-variant) 8%, transparent); --color-on-surface: #1D1B20; --color-on-surface-opacity-38: color-mix(in srgb, var(--color-on-surface) 38%, transparent); --color-on-surface-opacity-08: color-mix(in srgb, var(--color-on-surface) 8%, transparent);"
+  >
+    <span
+      class="musae-search-leading styles__default"
+    >
+      <span
+        class="musae-icon icon__styles.icon"
+      >
+        <svg
+          fill="none"
+          height="24"
+          viewBox="0 0 24 24"
+          width="24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M15.755 14.2549H14.965L14.685 13.9849C15.665 12.8449 16.255 11.3649 16.255 9.75488C16.255 6.16488 13.345 3.25488 9.755 3.25488C6.165 3.25488 3.255 6.16488 3.255 9.75488C3.255 13.3449 6.165 16.2549 9.755 16.2549C11.365 16.2549 12.845 15.6649 13.985 14.6849L14.255 14.9649V15.7549L19.255 20.7449L20.745 19.2549L15.755 14.2549ZM9.755 14.2549C7.26501 14.2549 5.255 12.2449 5.255 9.75488C5.255 7.26488 7.26501 5.25488 9.755 5.25488C12.245 5.25488 14.255 7.26488 14.255 9.75488C14.255 12.2449 12.245 14.2549 9.755 14.2549Z"
+            fill="currentColor"
+          />
+        </svg>
+      </span>
+    </span>
+    <span
+      class="musae-input__inputor musae-search-input styles__default theme__body.medium input__styles.inputor"
+      style="--color-primary: #6750A4; --color-outline: #79747E; --color-error: #B3261E; --color-on-surface: #1D1B20; --color-on-surface-opacity-38: color-mix(in srgb, var(--color-on-surface) 38%, transparent); --color-on-surface-opacity-08: color-mix(in srgb, var(--color-on-surface) 8%, transparent);"
+      tabindex="-1"
+    >
+      <input
+        aria-invalid="false"
+        class="musae-input input__styles.input"
+        value=""
+      />
+    </span>
+  </span>
+</DocumentFragment>
+`;
+
+exports[`\`Search\` Component snapshot disabled state 1`] = `
+<DocumentFragment>
+  <span
+    class="musae-search musae-search--disabled styles__default styles__disabled"
+    style="--color-primary: #6750A4; --color-outline: #79747E; --color-surface-container-high: #F5EFF7; --color-on-surface-variant: #49454F; --color-on-surface-variant-opacity-08: color-mix(in srgb, var(--color-on-surface-variant) 8%, transparent); --color-on-surface: #1D1B20; --color-on-surface-opacity-38: color-mix(in srgb, var(--color-on-surface) 38%, transparent); --color-on-surface-opacity-08: color-mix(in srgb, var(--color-on-surface) 8%, transparent);"
+  >
+    <span
+      class="musae-search-leading styles__default"
+    >
+      <span
+        class="musae-icon icon__styles.icon"
+      >
+        <svg
+          fill="none"
+          height="24"
+          viewBox="0 0 24 24"
+          width="24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M15.755 14.2549H14.965L14.685 13.9849C15.665 12.8449 16.255 11.3649 16.255 9.75488C16.255 6.16488 13.345 3.25488 9.755 3.25488C6.165 3.25488 3.255 6.16488 3.255 9.75488C3.255 13.3449 6.165 16.2549 9.755 16.2549C11.365 16.2549 12.845 15.6649 13.985 14.6849L14.255 14.9649V15.7549L19.255 20.7449L20.745 19.2549L15.755 14.2549ZM9.755 14.2549C7.26501 14.2549 5.255 12.2449 5.255 9.75488C5.255 7.26488 7.26501 5.25488 9.755 5.25488C12.245 5.25488 14.255 7.26488 14.255 9.75488C14.255 12.2449 12.245 14.2549 9.755 14.2549Z"
+            fill="currentColor"
+          />
+        </svg>
+      </span>
+    </span>
+    <span
+      class="musae-input__inputor musae-search-input styles__default theme__body.medium input__styles.inputor input__styles.disabled"
+      style="--color-primary: #6750A4; --color-outline: #79747E; --color-error: #B3261E; --color-on-surface: #1D1B20; --color-on-surface-opacity-38: color-mix(in srgb, var(--color-on-surface) 38%, transparent); --color-on-surface-opacity-08: color-mix(in srgb, var(--color-on-surface) 8%, transparent);"
+    >
+      <input
+        aria-invalid="false"
+        class="musae-input input__styles.input"
+        disabled=""
+        placeholder="Search..."
+        value=""
+      />
+    </span>
+  </span>
+</DocumentFragment>
+`;
+
+exports[`\`Search\` Component snapshot with all props 1`] = `
+<DocumentFragment>
+  <span
+    class="musae-search styles__default styles__withSearchButton"
+    style="--color-primary: #6750A4; --color-outline: #79747E; --color-surface-container-high: #F5EFF7; --color-on-surface-variant: #49454F; --color-on-surface-variant-opacity-08: color-mix(in srgb, var(--color-on-surface-variant) 8%, transparent); --color-on-surface: #1D1B20; --color-on-surface-opacity-38: color-mix(in srgb, var(--color-on-surface) 38%, transparent); --color-on-surface-opacity-08: color-mix(in srgb, var(--color-on-surface) 8%, transparent);"
+  >
+    <span
+      class="musae-search-leading styles__default"
+    >
+      <span
+        class="musae-icon icon__styles.icon"
+      >
+        <svg
+          fill="none"
+          height="24"
+          viewBox="0 0 24 24"
+          width="24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M15.755 14.2549H14.965L14.685 13.9849C15.665 12.8449 16.255 11.3649 16.255 9.75488C16.255 6.16488 13.345 3.25488 9.755 3.25488C6.165 3.25488 3.255 6.16488 3.255 9.75488C3.255 13.3449 6.165 16.2549 9.755 16.2549C11.365 16.2549 12.845 15.6649 13.985 14.6849L14.255 14.9649V15.7549L19.255 20.7449L20.745 19.2549L15.755 14.2549ZM9.755 14.2549C7.26501 14.2549 5.255 12.2449 5.255 9.75488C5.255 7.26488 7.26501 5.25488 9.755 5.25488C12.245 5.25488 14.255 7.26488 14.255 9.75488C14.255 12.2449 12.245 14.2549 9.755 14.2549Z"
+            fill="currentColor"
+          />
+        </svg>
+      </span>
+    </span>
+    <span
+      class="musae-input__inputor musae-search-input styles__default theme__body.medium input__styles.inputor"
+      style="--color-primary: #6750A4; --color-outline: #79747E; --color-error: #B3261E; --color-on-surface: #1D1B20; --color-on-surface-opacity-38: color-mix(in srgb, var(--color-on-surface) 38%, transparent); --color-on-surface-opacity-08: color-mix(in srgb, var(--color-on-surface) 8%, transparent);"
+      tabindex="-1"
+    >
+      <input
+        aria-invalid="false"
+        class="musae-input input__styles.input"
+        placeholder="Search..."
+        value=""
+      />
+    </span>
+    <button
+      aria-label="Clear search"
+      class="musae-search-clear styles__default"
+      type="button"
+    >
+      <span
+        class="musae-icon icon__styles.icon"
+      >
+        <svg
+          fill="none"
+          height="24"
+          viewBox="0 0 24 24"
+          width="24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12L19 6.41Z"
+            fill="currentColor"
+          />
+        </svg>
+      </span>
+    </button>
+    <button
+      class="musae-button musae-search-button styles__default styles__default styles__rippleable styles__filled styles__medium theme__title.medium"
+      style="--color-button: #6750A4; --color-on-button: #FFF; --color-button-opacity-08: color-mix(in srgb, var(--color-button) 8%, transparent); --color-on-surface: #1D1B20; --color-on-surface-opacity-12: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-on-surface-opacity-38: color-mix(in srgb, var(--color-on-surface) 38%, transparent);"
+      type="button"
+    >
+      Go
+    </button>
+  </span>
+</DocumentFragment>
+`;
