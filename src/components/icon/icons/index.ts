@@ -12,3 +12,5 @@ export * from "./device";
 export * from "./file";
 export * from "./social";
 export * from "./communication";
+export * from "./notification";
+export * from "./places";

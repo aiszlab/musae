@@ -10,10 +10,9 @@ const KeyboardArrowUp = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <path
-        d="M7.41 15.7049L12 11.1249L16.59 15.7049L18 14.2949L12 8.29492L6 14.2949L7.41 15.7049Z"
-        fill="currentColor"
-      />
+      <g transform="translate(0, 4.59) scale(2)">
+        <path d="M1.41 7.41L6 2.83L10.59 7.41L12 6L6 0L0 6L1.41 7.41Z" fill="currentColor" />
+      </g>
     </svg>
   );
 });

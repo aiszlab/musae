@@ -1,19 +1,18 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const KeyboardArrowDown = withIcon((props) => {
+const KeyboardArrowDown = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width={props.size}
-      height={props.size}
+      width={size}
+      height={size}
       viewBox="0 0 24 24"
       fill="none"
     >
-      <path
-        d="M7.41 8.29492L12 12.8749L16.59 8.29492L18 9.70492L12 15.7049L6 9.70492L7.41 8.29492Z"
-        fill="currentColor"
-      />
+      <g transform="translate(0, 4.59) scale(2)">
+        <path d="M1.41 0L6 4.58L10.59 0L12 1.41L6 7.41L0 1.41L1.41 0Z" fill="currentColor" />
+      </g>
     </svg>
   );
 });

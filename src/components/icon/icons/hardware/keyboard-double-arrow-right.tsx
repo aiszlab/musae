@@ -10,8 +10,10 @@ const KeyboardDoubleArrowRight = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <path d="M6.41 6L5 7.41L9.58 12L5 16.59L6.41 18L12.41 12L6.41 6Z" fill="currentColor" />
-      <path d="M13 6L11.59 7.41L16.17 12L11.59 16.59L13 18L19 12L13 6Z" fill="currentColor" />
+      <g transform="translate(0, 1.7143) scale(1.7143)">
+        <path d="M1.41 0L0 1.41L4.58 6L0 10.59L1.41 12L7.41 6L1.41 0Z" fill="currentColor" />
+        <path d="M8 0L6.59 1.41L11.17 6L6.59 10.59L8 12L14 6L8 0Z" fill="currentColor" />
+      </g>
     </svg>
   );
 });

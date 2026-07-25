@@ -10,10 +10,9 @@ const FormatStrikethrough = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <path
-        d="M10 19.5H14V16.5H10V19.5ZM5 4.5V7.5H10V10.5H14V7.5H19V4.5H5ZM3 14.5H21V12.5H3V14.5Z"
-        fill="currentColor"
-      />
+      <g transform="translate(0, 2) scale(1.3333)">
+        <path d="M7 15H11V12H7V15ZM2 0V3H7V6H11V3H16V0H2ZM0 10H18V8H0V10Z" fill="currentColor" />
+      </g>
     </svg>
   );
 });

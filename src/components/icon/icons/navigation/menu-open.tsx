@@ -10,10 +10,12 @@ const MenuOpen = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <path
-        d="M3 18H16V16H3V18ZM3 13H13V11H3V13ZM3 6V8H16V6H3ZM21 15.59L17.42 12L21 8.41L19.59 7L14.59 12L19.59 17L21 15.59Z"
-        fill="currentColor"
-      />
+      <g transform="translate(0, 4) scale(1.3333)">
+        <path
+          d="M0 12H13V10H0V12ZM0 7H10V5H0V7ZM0 0V2H13V0H0ZM18 9.59L14.42 6L18 2.41L16.59 1L11.59 6L16.59 11L18 9.59Z"
+          fill="currentColor"
+        />
+      </g>
     </svg>
   );
 });

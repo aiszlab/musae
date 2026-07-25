@@ -1,0 +1,20 @@
+import React from "react";
+import { withIcon } from "../../hoc";
+
+const FormatSize = withIcon(({ size }) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+    >
+      <g transform="translate(0, 2.5263) scale(1.2632)">
+        <path d="M6 0V3H11V15H14V3H19V0H6ZM0 8H3V15H6V8H9V5H0V8Z" fill="currentColor" />
+      </g>
+    </svg>
+  );
+});
+
+export default FormatSize;

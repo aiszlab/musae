@@ -1,0 +1,21 @@
+import React from "react";
+import { withIcon } from "../../hoc";
+
+const AddCard = withIcon(({ size }) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+    >
+      <path
+        d="M19 3H3C1.89 3 1.01 3.89 1.01 5L1 17C1 18.11 1.89 19 3 19H13V17H3V11H21V5C21 3.89 20.11 3 19 3ZM19 7H3V5H19V7ZM23 16V18H20V21H18V18H15V16H18V13H20V16H23Z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+});
+
+export default AddCard;

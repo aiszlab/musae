@@ -10,10 +10,12 @@ const LooksTwo = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <path
-        d="M19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3ZM19 19H5V5H19V19ZM15 15H11V13H13C14.1 13 15 12.11 15 11V9C15 7.89 14.1 7 13 7H9V9H13V11H11C9.9 11 9 11.89 9 13V17H15V15Z"
-        fill="currentColor"
-      />
+      <g transform="translate(0, 0) scale(1.3333)">
+        <path
+          d="M16 0H2C0.9 0 0 0.9 0 2V16C0 17.1 0.9 18 2 18H16C17.1 18 18 17.1 18 16V2C18 0.9 17.1 0 16 0ZM16 16H2V2H16V16ZM12 12H8V10H10C11.1 10 12 9.11 12 8V6C12 4.89 11.1 4 10 4H6V6H10V8H8C6.9 8 6 8.89 6 10V14H12V12Z"
+          fill="currentColor"
+        />
+      </g>
     </svg>
   );
 });

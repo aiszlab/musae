@@ -1,0 +1,25 @@
+import React from "react";
+import { withIcon } from "../../hoc";
+
+const DisplaySettings = withIcon(({ size }) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+    >
+      <path
+        d="M20 3H4C2.89 3 2 3.89 2 5V17C2 18.1 2.89 19 4 19H8V21H16V19H20C21.1 19 22 18.1 22 17V5C22 3.89 21.1 3 20 3ZM20 17H4V5H20V17Z"
+        fill="currentColor"
+      />
+      <path d="M14 8.25H6V9.75H14V8.25Z" fill="currentColor" />
+      <path d="M16.5 9.75H18V8.25H16.5V7H15V11H16.5V9.75Z" fill="currentColor" />
+      <path d="M18 12.25H10V13.75H18V12.25Z" fill="currentColor" />
+      <path d="M7.5 15H9V11H7.5V12.25H6V13.75H7.5V15Z" fill="currentColor" />
+    </svg>
+  );
+});
+
+export default DisplaySettings;
