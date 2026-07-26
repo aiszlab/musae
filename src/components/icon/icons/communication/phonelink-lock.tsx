@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const PhonelinkLock = withIcon(({ size }) => {
+const IconPhonelinkLock = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const PhonelinkLock = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(2.7273, 0) scale(1.0909)">
-        <path
-          d="M15 0H5C3.9 0 3 0.9 3 2V5H5V3H15V19H5V17H3V20C3 21.1 3.9 22 5 22H15C16.1 22 17 21.1 17 20V2C17 0.9 16.1 0 15 0ZM6.8 10V8.5C6.8 7.1 5.4 6 4 6C2.6 6 1.2 7.1 1.2 8.5V10C0.6 10 0 10.6 0 11.2V14.7C0 15.4 0.6 16 1.2 16H6.7C7.4 16 8 15.4 8 14.8V11.3C8 10.6 7.4 10 6.8 10ZM5.5 10H2.5V8.5C2.5 7.7 3.2 7.2 4 7.2C4.8 7.2 5.5 7.7 5.5 8.5V10Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M18.5 1H8.5C7.4 1 6.5 1.9 6.5 3V6H8.5V4H18.5V20H8.5V18H6.5V21C6.5 22.1 7.4 23 8.5 23H18.5C19.6 23 20.5 22.1 20.5 21V3C20.5 1.9 19.6 1 18.5 1ZM10.3 11V9.5C10.3 8.1 8.9 7 7.5 7C6.1 7 4.7 8.1 4.7 9.5V11C4.1 11 3.5 11.6 3.5 12.2V15.7C3.5 16.4 4.1 17 4.7 17H10.2C10.9 17 11.5 16.4 11.5 15.8V12.3C11.5 11.6 10.9 11 10.3 11ZM9 11H6V9.5C6 8.7 6.7 8.2 7.5 8.2C8.3 8.2 9 8.7 9 9.5V11Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default PhonelinkLock;
+export default IconPhonelinkLock;

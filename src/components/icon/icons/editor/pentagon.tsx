@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Pentagon = withIcon(({ size }) => {
+const IconPentagon = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const Pentagon = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0.6) scale(1.2)">
-        <path
-          d="M17.63 7.78L14.56 17H5.44L2.37 7.78L10 2.44L17.63 7.78ZM0 7L4 19H16L20 7L10 0L0 7Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M19.63 10.28L16.56 19.5H7.44L4.37 10.28L12 4.94L19.63 10.28ZM2 9.5L6 21.5H18L22 9.5L12 2.5L2 9.5Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default Pentagon;
+export default IconPentagon;

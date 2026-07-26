@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const LocalOffer = withIcon(({ size }) => {
+const IconLocalOffer = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,18 +10,16 @@ const LocalOffer = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0) scale(1.2)">
-        <path
-          d="M19.41 9.58L10.41 0.58C10.05 0.22 9.55 0 9 0H2C0.9 0 0 0.9 0 2V9C0 9.55 0.22 10.05 0.59 10.42L9.59 19.42C9.95 19.78 10.45 20 11 20C11.55 20 12.05 19.78 12.41 19.41L19.41 12.41C19.78 12.05 20 11.55 20 11C20 10.45 19.77 9.94 19.41 9.58ZM11 18.01L2 9V2H9V1.99L18 10.99L11 18.01Z"
-          fill="currentColor"
-        />
-        <path
-          d="M4.5 6C5.32843 6 6 5.32843 6 4.5C6 3.67157 5.32843 3 4.5 3C3.67157 3 3 3.67157 3 4.5C3 5.32843 3.67157 6 4.5 6Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M 23.292 11.496 L 12.492 0.696 C 12.06 0.264 11.46 0 10.8 0 H 2.4 C 1.08 0 0 1.08 0 2.4 V 10.8 C 0 11.46 0.264 12.06 0.708 12.504 L 11.508 23.304 C 11.94 23.736 12.54 24 13.2 24 C 13.86 24 14.46 23.736 14.892 23.292 L 23.292 14.892 C 23.736 14.46 24 13.86 24 13.2 C 24 12.54 23.724 11.928 23.292 11.496ZM 13.2 21.612 L 2.4 10.8 V 2.4 H 10.8 V 2.388 L 21.6 13.188 L 13.2 21.612Z"
+        fill="currentColor"
+      />
+      <path
+        d="M 5.4 7.2 C 6.3941 7.2 7.2 6.3941 7.2 5.4 C 7.2 4.4059 6.3941 3.6 5.4 3.6 C 4.4059 3.6 3.6 4.4059 3.6 5.4 C 3.6 6.3941 4.4059 7.2 5.4 7.2Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default LocalOffer;
+export default IconLocalOffer;

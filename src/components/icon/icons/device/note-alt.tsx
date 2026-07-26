@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const NoteAlt = withIcon(({ size }) => {
+const IconNoteAlt = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,19 +10,17 @@ const NoteAlt = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(1.2, 0) scale(1.2)">
-        <path
-          d="M16 2H11.82C11.4 0.84 10.3 0 9 0C7.7 0 6.6 0.84 6.18 2H2C0.9 2 0 2.9 0 4V18C0 19.1 0.9 20 2 20H16C17.1 20 18 19.1 18 18V4C18 2.9 17.1 2 16 2ZM9 1.75C9.41 1.75 9.75 2.09 9.75 2.5C9.75 2.91 9.41 3.25 9 3.25C8.59 3.25 8.25 2.91 8.25 2.5C8.25 2.09 8.59 1.75 9 1.75ZM16 18H2V4H16V18Z"
-          fill="currentColor"
-        />
-        <path d="M12.08 10.03L9.96 7.91L4 13.86V16H6.1L12.08 10.03Z" fill="currentColor" />
-        <path
-          d="M13.85 8.27C14.05 8.07 14.05 7.76 13.85 7.56L12.44 6.15C12.24 5.95 11.93 5.95 11.73 6.15L10.67 7.21L12.79 9.33L13.85 8.27Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M19 4H14.82C14.4 2.84 13.3 2 12 2C10.7 2 9.6 2.84 9.18 4H5C3.9 4 3 4.9 3 6V20C3 21.1 3.9 22 5 22H19C20.1 22 21 21.1 21 20V6C21 4.9 20.1 4 19 4ZM12 3.75C12.41 3.75 12.75 4.09 12.75 4.5C12.75 4.91 12.41 5.25 12 5.25C11.59 5.25 11.25 4.91 11.25 4.5C11.25 4.09 11.59 3.75 12 3.75ZM19 20H5V6H19V20Z"
+        fill="currentColor"
+      />
+      <path d="M15.08 12.03L12.96 9.91L7 15.86V18H9.1L15.08 12.03Z" fill="currentColor" />
+      <path
+        d="M16.85 10.27C17.05 10.07 17.05 9.76 16.85 9.56L15.44 8.15C15.24 7.95 14.93 7.95 14.73 8.15L13.67 9.21L15.79 11.33L16.85 10.27Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default NoteAlt;
+export default IconNoteAlt;

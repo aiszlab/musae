@@ -1,159 +1,159 @@
-import AdfScanner from "./adf-scanner";
-import BrowserNotSupported from "./browser-not-supported";
-import BrowserUpdated from "./browser-updated";
-import CastConnected from "./cast-connected";
-import CastForEducation from "./cast-for-education";
-import Cast from "./cast";
-import Computer from "./computer";
-import ConnectedTv from "./connected-tv";
-import DesktopMac from "./desktop-mac";
-import DesktopWindows from "./desktop-windows";
-import DeveloperBoardOff from "./developer-board-off";
-import DeveloperBoard from "./developer-board";
-import DeviceHub from "./device-hub";
-import DeviceUnknown from "./device-unknown";
-import DevicesOther from "./devices-other";
-import Dock from "./dock";
-import EarbudsBattery from "./earbuds-battery";
-import Earbuds from "./earbuds";
-import Gamepad from "./gamepad";
-import HeadphonesBattery from "./headphones-battery";
-import Headphones from "./headphones";
-import HeadsetMic from "./headset-mic";
-import HeadsetOff from "./headset-off";
-import Headset from "./headset";
-import HomeMax from "./home-max";
-import HomeMini from "./home-mini";
-import KeyboardAlt from "./keyboard-alt";
-import KeyboardArrowDown from "./keyboard-arrow-down";
-import KeyboardArrowLeft from "./keyboard-arrow-left";
-import KeyboardArrowRight from "./keyboard-arrow-right";
-import KeyboardArrowUp from "./keyboard-arrow-up";
-import KeyboardBackspace from "./keyboard-backspace";
-import KeyboardCapslock from "./keyboard-capslock";
-import KeyboardCommandKey from "./keyboard-command-key";
-import KeyboardControlKey from "./keyboard-control-key";
-import KeyboardDoubleArrowDown from "./keyboard-double-arrow-down";
-import KeyboardDoubleArrowLeft from "./keyboard-double-arrow-left";
-import KeyboardDoubleArrowRight from "./keyboard-double-arrow-right";
-import KeyboardDoubleArrowUp from "./keyboard-double-arrow-up";
-import KeyboardHide from "./keyboard-hide";
-import KeyboardOptionKey from "./keyboard-option-key";
-import KeyboardReturn from "./keyboard-return";
-import KeyboardTab from "./keyboard-tab";
-import KeyboardVoice from "./keyboard-voice";
-import Keyboard from "./keyboard";
-import LaptopChromebook from "./laptop-chromebook";
-import LaptopMac from "./laptop-mac";
-import LaptopWindows from "./laptop-windows";
-import Laptop from "./laptop";
-import Memory from "./memory";
-import Monitor from "./monitor";
-import Mouse from "./mouse";
-import PhoneAndroid from "./phone-android";
-import PhoneIphone from "./phone-iphone";
-import PhonelinkOff from "./phonelink-off";
-import Phonelink from "./phonelink";
-import PointOfSale from "./point-of-sale";
-import PowerInput from "./power-input";
-import Router from "./router";
-import Scanner from "./scanner";
-import Security from "./security";
-import SimCard from "./sim-card";
-import SmartDisplay from "./smart-display";
-import SmartScreen from "./smart-screen";
-import SmartToy from "./smart-toy";
-import Smartphone from "./smartphone";
-import SpeakerGroup from "./speaker-group";
-import Speaker from "./speaker";
-import Start from "./start";
-import TabletAndroid from "./tablet-android";
-import TabletMac from "./tablet-mac";
-import Tablet from "./tablet";
-import Toys from "./toys";
-import Tv from "./tv";
-import VideogameAssetOff from "./videogame-asset-off";
-import VideogameAsset from "./videogame-asset";
-import WatchOff from "./watch-off";
-import Watch from "./watch";
+import IconAdfScanner from "./adf-scanner";
+import IconBrowserNotSupported from "./browser-not-supported";
+import IconBrowserUpdated from "./browser-updated";
+import IconCastConnected from "./cast-connected";
+import IconCastForEducation from "./cast-for-education";
+import IconCast from "./cast";
+import IconComputer from "./computer";
+import IconConnectedTv from "./connected-tv";
+import IconDesktopMac from "./desktop-mac";
+import IconDesktopWindows from "./desktop-windows";
+import IconDeveloperBoardOff from "./developer-board-off";
+import IconDeveloperBoard from "./developer-board";
+import IconDeviceHub from "./device-hub";
+import IconDeviceUnknown from "./device-unknown";
+import IconDevicesOther from "./devices-other";
+import IconDock from "./dock";
+import IconEarbudsBattery from "./earbuds-battery";
+import IconEarbuds from "./earbuds";
+import IconGamepad from "./gamepad";
+import IconHeadphonesBattery from "./headphones-battery";
+import IconHeadphones from "./headphones";
+import IconHeadsetMic from "./headset-mic";
+import IconHeadsetOff from "./headset-off";
+import IconHeadset from "./headset";
+import IconHomeMax from "./home-max";
+import IconHomeMini from "./home-mini";
+import IconKeyboardAlt from "./keyboard-alt";
+import IconKeyboardArrowDown from "./keyboard-arrow-down";
+import IconKeyboardArrowLeft from "./keyboard-arrow-left";
+import IconKeyboardArrowRight from "./keyboard-arrow-right";
+import IconKeyboardArrowUp from "./keyboard-arrow-up";
+import IconKeyboardBackspace from "./keyboard-backspace";
+import IconKeyboardCapslock from "./keyboard-capslock";
+import IconKeyboardCommandKey from "./keyboard-command-key";
+import IconKeyboardControlKey from "./keyboard-control-key";
+import IconKeyboardDoubleArrowDown from "./keyboard-double-arrow-down";
+import IconKeyboardDoubleArrowLeft from "./keyboard-double-arrow-left";
+import IconKeyboardDoubleArrowRight from "./keyboard-double-arrow-right";
+import IconKeyboardDoubleArrowUp from "./keyboard-double-arrow-up";
+import IconKeyboardHide from "./keyboard-hide";
+import IconKeyboardOptionKey from "./keyboard-option-key";
+import IconKeyboardReturn from "./keyboard-return";
+import IconKeyboardTab from "./keyboard-tab";
+import IconKeyboardVoice from "./keyboard-voice";
+import IconKeyboard from "./keyboard";
+import IconLaptopChromebook from "./laptop-chromebook";
+import IconLaptopMac from "./laptop-mac";
+import IconLaptopWindows from "./laptop-windows";
+import IconLaptop from "./laptop";
+import IconMemory from "./memory";
+import IconMonitor from "./monitor";
+import IconMouse from "./mouse";
+import IconPhoneAndroid from "./phone-android";
+import IconPhoneIphone from "./phone-iphone";
+import IconPhonelinkOff from "./phonelink-off";
+import IconPhonelink from "./phonelink";
+import IconPointOfSale from "./point-of-sale";
+import IconPowerInput from "./power-input";
+import IconRouter from "./router";
+import IconScanner from "./scanner";
+import IconSecurity from "./security";
+import IconSimCard from "./sim-card";
+import IconSmartDisplay from "./smart-display";
+import IconSmartScreen from "./smart-screen";
+import IconSmartToy from "./smart-toy";
+import IconSmartphone from "./smartphone";
+import IconSpeakerGroup from "./speaker-group";
+import IconSpeaker from "./speaker";
+import IconStart from "./start";
+import IconTabletAndroid from "./tablet-android";
+import IconTabletMac from "./tablet-mac";
+import IconTablet from "./tablet";
+import IconToys from "./toys";
+import IconTv from "./tv";
+import IconVideogameAssetOff from "./videogame-asset-off";
+import IconVideogameAsset from "./videogame-asset";
+import IconWatchOff from "./watch-off";
+import IconWatch from "./watch";
 
 export {
-  AdfScanner,
-  BrowserNotSupported,
-  BrowserUpdated,
-  CastConnected,
-  CastForEducation,
-  Cast,
-  Computer,
-  ConnectedTv,
-  DesktopMac,
-  DesktopWindows,
-  DeveloperBoardOff,
-  DeveloperBoard,
-  DeviceHub,
-  DeviceUnknown,
-  DevicesOther,
-  Dock,
-  EarbudsBattery,
-  Earbuds,
-  Gamepad,
-  HeadphonesBattery,
-  Headphones,
-  HeadsetMic,
-  HeadsetOff,
-  Headset,
-  HomeMax,
-  HomeMini,
-  KeyboardAlt,
-  KeyboardArrowDown,
-  KeyboardArrowLeft,
-  KeyboardArrowRight,
-  KeyboardArrowUp,
-  KeyboardBackspace,
-  KeyboardCapslock,
-  KeyboardCommandKey,
-  KeyboardControlKey,
-  KeyboardDoubleArrowDown,
-  KeyboardDoubleArrowLeft,
-  KeyboardDoubleArrowRight,
-  KeyboardDoubleArrowUp,
-  KeyboardHide,
-  KeyboardOptionKey,
-  KeyboardReturn,
-  KeyboardTab,
-  KeyboardVoice,
-  Keyboard,
-  LaptopChromebook,
-  LaptopMac,
-  LaptopWindows,
-  Laptop,
-  Memory,
-  Monitor,
-  Mouse,
-  PhoneAndroid,
-  PhoneIphone,
-  PhonelinkOff,
-  Phonelink,
-  PointOfSale,
-  PowerInput,
-  Router,
-  Scanner,
-  Security,
-  SimCard,
-  SmartDisplay,
-  SmartScreen,
-  SmartToy,
-  Smartphone,
-  SpeakerGroup,
-  Speaker,
-  Start,
-  TabletAndroid,
-  TabletMac,
-  Tablet,
-  Toys,
-  Tv,
-  VideogameAssetOff,
-  VideogameAsset,
-  WatchOff,
-  Watch,
+  IconAdfScanner,
+  IconBrowserNotSupported,
+  IconBrowserUpdated,
+  IconCastConnected,
+  IconCastForEducation,
+  IconCast,
+  IconComputer,
+  IconConnectedTv,
+  IconDesktopMac,
+  IconDesktopWindows,
+  IconDeveloperBoardOff,
+  IconDeveloperBoard,
+  IconDeviceHub,
+  IconDeviceUnknown,
+  IconDevicesOther,
+  IconDock,
+  IconEarbudsBattery,
+  IconEarbuds,
+  IconGamepad,
+  IconHeadphonesBattery,
+  IconHeadphones,
+  IconHeadsetMic,
+  IconHeadsetOff,
+  IconHeadset,
+  IconHomeMax,
+  IconHomeMini,
+  IconKeyboardAlt,
+  IconKeyboardArrowDown,
+  IconKeyboardArrowLeft,
+  IconKeyboardArrowRight,
+  IconKeyboardArrowUp,
+  IconKeyboardBackspace,
+  IconKeyboardCapslock,
+  IconKeyboardCommandKey,
+  IconKeyboardControlKey,
+  IconKeyboardDoubleArrowDown,
+  IconKeyboardDoubleArrowLeft,
+  IconKeyboardDoubleArrowRight,
+  IconKeyboardDoubleArrowUp,
+  IconKeyboardHide,
+  IconKeyboardOptionKey,
+  IconKeyboardReturn,
+  IconKeyboardTab,
+  IconKeyboardVoice,
+  IconKeyboard,
+  IconLaptopChromebook,
+  IconLaptopMac,
+  IconLaptopWindows,
+  IconLaptop,
+  IconMemory,
+  IconMonitor,
+  IconMouse,
+  IconPhoneAndroid,
+  IconPhoneIphone,
+  IconPhonelinkOff,
+  IconPhonelink,
+  IconPointOfSale,
+  IconPowerInput,
+  IconRouter,
+  IconScanner,
+  IconSecurity,
+  IconSimCard,
+  IconSmartDisplay,
+  IconSmartScreen,
+  IconSmartToy,
+  IconSmartphone,
+  IconSpeakerGroup,
+  IconSpeaker,
+  IconStart,
+  IconTabletAndroid,
+  IconTabletMac,
+  IconTablet,
+  IconToys,
+  IconTv,
+  IconVideogameAssetOff,
+  IconVideogameAsset,
+  IconWatchOff,
+  IconWatch,
 };

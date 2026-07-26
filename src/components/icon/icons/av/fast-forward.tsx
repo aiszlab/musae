@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const FastForward = withIcon(({ size }) => {
+const IconFastForward = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const FastForward = withIcon(({ size }) => {
   );
 });
 
-export default FastForward;
+export default IconFastForward;

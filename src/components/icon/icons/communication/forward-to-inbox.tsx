@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const ForwardToInbox = withIcon(({ size }) => {
+const IconForwardToInbox = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const ForwardToInbox = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 1.1429) scale(1.1429)">
-        <path
-          d="M18 0H2C0.9 0 0 0.9 0 2V14C0 15.1 0.9 16 2 16H11V14H2V4L10 9L18 4V9H20V2C20 0.9 19.1 0 18 0ZM10 7L2 2H18L10 7ZM17 11L21 15L17 19V16H13V14H17V11Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M19.5 2.5H3.5C2.4 2.5 1.5 3.4 1.5 4.5V16.5C1.5 17.6 2.4 18.5 3.5 18.5H12.5V16.5H3.5V6.5L11.5 11.5L19.5 6.5V11.5H21.5V4.5C21.5 3.4 20.6 2.5 19.5 2.5ZM11.5 9.5L3.5 4.5H19.5L11.5 9.5ZM18.5 13.5L22.5 17.5L18.5 21.5V18.5H14.5V16.5H18.5V13.5Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default ForwardToInbox;
+export default IconForwardToInbox;

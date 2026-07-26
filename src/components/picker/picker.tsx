@@ -15,7 +15,7 @@ import { create as $create, props as $props } from "@stylexjs/stylex";
 import { styles as inputStyles } from "../input";
 import { CLASS_NAMES, Context } from "./context";
 import { stringify } from "@aiszlab/relax/class-name";
-import { Close } from "../icon/icons";
+import { IconClose } from "../icon/icons";
 import { $body } from "../theme/theme";
 import { useThemeColorVars } from "../../hooks/use-theme-color-vars";
 import { DialogContext } from "../dialog/context";
@@ -135,7 +135,7 @@ const Picker = forwardRef<PickerRef, PickerProps>(
         >
           {children}
 
-          {!!onClear && !disabled && <Close onClick={clear} />}
+          {!!onClear && !disabled && <IconClose onClick={clear} />}
         </span>
 
         <Popper

@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Dvr = withIcon(({ size }) => {
+const IconDvr = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const Dvr = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 2.1818) scale(1.0909)">
-        <path
-          d="M20 0H2C0.9 0 0 0.9 0 2V14C0 15.1 0.9 16 2 16H7V18H15V16H20C21.1 16 22 15.1 22 14V2C22 0.9 21.1 0 20 0ZM20 14H2V2H20V14ZM18 5H7V7H18V5ZM18 9H7V11H18V9ZM6 5H4V7H6V5ZM6 9H4V11H6V9Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M21 3H3C1.9 3 1 3.9 1 5V17C1 18.1 1.9 19 3 19H8V21H16V19H21C22.1 19 23 18.1 23 17V5C23 3.9 22.1 3 21 3ZM21 17H3V5H21V17ZM19 8H8V10H19V8ZM19 12H8V14H19V12ZM7 8H5V10H7V8ZM7 12H5V14H7V12Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default Dvr;
+export default IconDvr;

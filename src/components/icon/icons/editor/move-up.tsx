@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const MoveUp = withIcon(({ size }) => {
+const IconMoveUp = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,16 +10,17 @@ const MoveUp = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 2.2857) scale(1.1429)">
-        <path
-          d="M2 10C2 7.55 3.76 5.53 6.08 5.09L4.59 6.59L6 8L10 3.99L6 0L4.59 1.41L6.17 2.99V3.05C2.7 3.46 0 6.42 0 10C0 13.87 3.13 17 7 17H10V15H7C4.24 15 2 12.76 2 10Z"
-          fill="currentColor"
-        />
-        <path d="M12 10V17H21V10H12ZM19 15H14V12H19V15Z" fill="currentColor" />
-        <path d="M21 1H12V8H21V1Z" fill="currentColor" />
-      </g>
+      <path
+        d="M3.5 13.5C3.5 11.05 5.26 9.03 7.58 8.59L6.09 10.09L7.5 11.5L11.5 7.49L7.5 3.5L6.09 4.91L7.67 6.49V6.55C4.2 6.96 1.5 9.92 1.5 13.5C1.5 17.37 4.63 20.5 8.5 20.5H11.5V18.5H8.5C5.74 18.5 3.5 16.26 3.5 13.5Z"
+        fill="currentColor"
+      />
+      <path
+        d="M13.5 13.5V20.5H22.5V13.5H13.5ZM20.5 18.5H15.5V15.5H20.5V18.5Z"
+        fill="currentColor"
+      />
+      <path d="M22.5 4.5H13.5V11.5H22.5V4.5Z" fill="currentColor" />
     </svg>
   );
 });
 
-export default MoveUp;
+export default IconMoveUp;

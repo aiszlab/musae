@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const SwapCalls = withIcon(({ size }) => {
+const IconSwapCalls = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const SwapCalls = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 3) scale(1.2)">
-        <path
-          d="M16 0L12 4H15V11C15 12.1 14.1 13 13 13C11.9 13 11 12.1 11 11V4C11 1.79 9.21 0 7 0C4.79 0 3 1.79 3 4V11H0L4 15L8 11H5V4C5 2.9 5.9 2 7 2C8.1 2 9 2.9 9 4V11C9 13.21 10.79 15 13 15C15.21 15 17 13.21 17 11V4H20L16 0Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M18 4.5L14 8.5H17V15.5C17 16.6 16.1 17.5 15 17.5C13.9 17.5 13 16.6 13 15.5V8.5C13 6.29 11.21 4.5 9 4.5C6.79 4.5 5 6.29 5 8.5V15.5H2L6 19.5L10 15.5H7V8.5C7 7.4 7.9 6.5 9 6.5C10.1 6.5 11 7.4 11 8.5V15.5C11 17.71 12.79 19.5 15 19.5C17.21 19.5 19 17.71 19 15.5V8.5H22L18 4.5Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default SwapCalls;
+export default IconSwapCalls;

@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Widgets = withIcon(({ size }) => {
+const IconWidgets = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const Widgets = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0.0062) scale(1.2422)">
-        <path
-          d="M13.66 2.83L16.49 5.66L13.66 8.49L10.83 5.66L13.66 2.83ZM6 3.31V7.31H2V3.31H6ZM16 13.31V17.31H12V13.31H16ZM6 13.31V17.31H2V13.31H6ZM13.66 0L8 5.65L13.66 11.31L19.32 5.65L13.66 0ZM8 1.31H0V9.31H8V1.31ZM18 11.31H10V19.31H18V11.31ZM8 11.31H0V19.31H8V11.31Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M16 5.175L18.83 8.005L16 10.835L13.17 8.005L16 5.175ZM8.34 5.655V9.655H4.34V5.655H8.34ZM18.34 15.655V19.655H14.34V15.655H18.34ZM8.34 15.655V19.655H4.34V15.655H8.34ZM16 2.345L10.34 7.995L16 13.655L21.66 7.995L16 2.345ZM10.34 3.655H2.34V11.655H10.34V3.655ZM20.34 13.655H12.34V21.655H20.34V13.655ZM10.34 13.655H2.34V21.655H10.34V13.655Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default Widgets;
+export default IconWidgets;

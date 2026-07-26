@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Inbox = withIcon(({ size }) => {
+const IconInbox = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const Inbox = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0) scale(1.3333)">
-        <path
-          d="M16 0H2C0.9 0 0 0.9 0 2V16C0 17.1 0.89 18 2 18H16C17.1 18 18 17.1 18 16V2C18 0.9 17.1 0 16 0ZM16 16H2V13H5.56C6.25 14.19 7.53 15 9.01 15C10.49 15 11.76 14.19 12.46 13H16V16ZM16 11H11.01C11.01 12.1 10.11 13 9.01 13C7.91 13 7.01 12.1 7.01 11H2V2H16V11Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.89 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3ZM19 19H5V16H8.56C9.25 17.19 10.53 18 12.01 18C13.49 18 14.76 17.19 15.46 16H19V19ZM19 14H14.01C14.01 15.1 13.11 16 12.01 16C10.91 16 10.01 15.1 10.01 14H5V5H19V14Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default Inbox;
+export default IconInbox;

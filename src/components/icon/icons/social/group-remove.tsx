@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const GroupRemove = withIcon(({ size }) => {
+const IconGroupRemove = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const GroupRemove = withIcon(({ size }) => {
   );
 });
 
-export default GroupRemove;
+export default IconGroupRemove;

@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const ReplayCircleFilled = withIcon(({ size }) => {
+const IconReplayCircleFilled = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const ReplayCircleFilled = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0) scale(1.2)">
-        <path
-          d="M10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM10 16.5C6.69 16.5 4 13.81 4 10.5H6C6 12.71 7.79 14.5 10 14.5C12.21 14.5 14 12.71 14 10.5C14 8.26 12.15 6.41 9.84 6.51L11.41 8.08L10 9.5L6 5.5L10 1.5L11.41 2.91L9.81 4.51C13.28 4.4 16 7.18 16 10.5C16 13.81 13.31 16.5 10 16.5Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 18.5C8.69 18.5 6 15.81 6 12.5H8C8 14.71 9.79 16.5 12 16.5C14.21 16.5 16 14.71 16 12.5C16 10.26 14.15 8.41 11.84 8.51L13.41 10.08L12 11.5L8 7.5L12 3.5L13.41 4.91L11.81 6.51C15.28 6.4 18 9.18 18 12.5C18 15.81 15.31 18.5 12 18.5Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default ReplayCircleFilled;
+export default IconReplayCircleFilled;

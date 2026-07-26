@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const PhotoAlbum = withIcon(({ size }) => {
+const IconPhotoAlbum = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const PhotoAlbum = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(2.4, 0) scale(1.2)">
-        <path
-          d="M14 0H2C0.9 0 0 0.9 0 2V18C0 19.1 0.9 20 2 20H14C15.1 20 16 19.1 16 18V2C16 0.9 15.1 0 14 0ZM14 18H2V2H7V9L9.5 7.5L12 9V2H14V18ZM9.62 11.5L13 16H3L5.38 12.83L7 15L9.62 11.5Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M16 2H4C2.9 2 2 2.9 2 4V20C2 21.1 2.9 22 4 22H16C17.1 22 18 21.1 18 20V4C18 2.9 17.1 2 16 2ZM16 20H4V4H9V11L11.5 9.5L14 11V4H16V20ZM11.62 13.5L15 18H5L7.38 14.83L9 17L11.62 13.5Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default PhotoAlbum;
+export default IconPhotoAlbum;

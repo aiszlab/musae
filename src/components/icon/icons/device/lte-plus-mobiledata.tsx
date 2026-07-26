@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const LtePlusMobiledata = withIcon(({ size }) => {
+const IconLtePlusMobiledata = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const LtePlusMobiledata = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 7.8261) scale(1.0435)">
-        <path
-          d="M2 6H5V8H0V0H2V6ZM4 2H6V8H8V2H10V0H4V2ZM11 8H16V6H13V5H16V3H13V2H16V0H11V8ZM23 3H21V1H19V3H17V5H19V7H21V5H23V3Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M2.5 14H5.5V16H0.5V8H2.5V14ZM4.5 10H6.5V16H8.5V10H10.5V8H4.5V10ZM11.5 16H16.5V14H13.5V13H16.5V11H13.5V10H16.5V8H11.5V16ZM23.5 11H21.5V9H19.5V11H17.5V13H19.5V15H21.5V13H23.5V11Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default LtePlusMobiledata;
+export default IconLtePlusMobiledata;

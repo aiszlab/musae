@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Signpost = withIcon(({ size }) => {
+const IconSignpost = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const Signpost = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(1.2, 0) scale(1.2)">
-        <path
-          d="M10 8H15L18 5L15 2H10V0H8V2H1V8H8V10H3L0 13L3 16H8V20H10V16H17V10H10V8ZM3 4H14.17L15.17 5L14.17 6H3V4ZM15 14H3.83L2.83 13L3.83 12H15V14Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M 13.2 9.6 H 19.2 L 22.8 6 L 19.2 2.4 H 13.2 V 0 H 10.8 V 2.4 H 2.4 V 9.6 H 10.8 V 12 H 4.8 L 1.2 15.6 L 4.8 19.2 H 10.8 V 24 H 13.2 V 19.2 H 21.6 V 12 H 13.2 V 9.6ZM 4.8 4.8 H 18.204 L 19.404 6 L 18.204 7.2 H 4.8 V 4.8ZM 19.2 16.8 H 5.796 L 4.596 15.6 L 5.796 14.4 H 19.2 V 16.8Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default Signpost;
+export default IconSignpost;

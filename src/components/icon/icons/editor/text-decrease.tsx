@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const TextDecrease = withIcon(({ size }) => {
+const IconTextDecrease = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const TextDecrease = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 4.3671) scale(1.0904)">
-        <path
-          d="M0 14H2.42L3.69 10.42H9.34L10.6 14H13.02L7.76 0H5.26L0 14ZM4.42 8.39L6.45 2.6H6.57L8.6 8.39H4.42ZM22.01 6V8H14.01V6H22.01Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M0.994995 19H3.415L4.68499 15.42H10.335L11.595 19H14.015L8.755 5H6.255L0.994995 19ZM5.415 13.39L7.44499 7.6H7.56499L9.595 13.39H5.415ZM23.005 11V13H15.005V11H23.005Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default TextDecrease;
+export default IconTextDecrease;

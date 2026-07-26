@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const MoveToInbox = withIcon(({ size }) => {
+const IconMoveToInbox = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const MoveToInbox = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0) scale(1.3333)">
-        <path
-          d="M13 6H10.45V3H7.55V6H5L9 10L13 6ZM16 0H1.99C0.88 0 0 0.9 0 2V16C0 17.1 0.88 18 1.99 18H16C17.1 18 18 17.1 18 16V2C18 0.9 17.1 0 16 0ZM16 16H2V13H5.56C6.25 14.19 7.53 15 9.01 15C10.49 15 11.76 14.19 12.46 13H16V16ZM16 11H11.01C11.01 12.1 10.11 13 9.01 13C7.91 13 7.01 12.1 7.01 11H2L1.99 2H16V11Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M16 9H13.45V6H10.55V9H8L12 13L16 9ZM19 3H4.99C3.88 3 3 3.9 3 5V19C3 20.1 3.88 21 4.99 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3ZM19 19H5V16H8.56C9.25 17.19 10.53 18 12.01 18C13.49 18 14.76 17.19 15.46 16H19V19ZM19 14H14.01C14.01 15.1 13.11 16 12.01 16C10.91 16 10.01 15.1 10.01 14H5L4.99 5H19V14Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default MoveToInbox;
+export default IconMoveToInbox;

@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const DriveFileMoveRtl = withIcon(({ size }) => {
+const IconDriveFileMoveRtl = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const DriveFileMoveRtl = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 2.4) scale(1.2)">
-        <path
-          d="M18 2H10L8 0H2C0.9 0 0 0.9 0 2V14C0 15.1 0.9 16 2 16H18C19.1 16 20 15.1 20 14V4C20 2.9 19.1 2 18 2ZM18 14H2V2H7.17L9.17 4H18V14ZM11.41 11.59L10 13L6 9L10 5L11.41 6.41L9.83 8H14V10H9.83L11.41 11.59Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M20 6H12L10 4H4C2.9 4 2 4.9 2 6V18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V8C22 6.9 21.1 6 20 6ZM20 18H4V6H9.17L11.17 8H20V18ZM13.41 15.59L12 17L8 13L12 9L13.41 10.41L11.83 12H16V14H11.83L13.41 15.59Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default DriveFileMoveRtl;
+export default IconDriveFileMoveRtl;

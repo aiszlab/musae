@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const FormatIndentIncrease = withIcon(({ size }) => {
+const IconFormatIndentIncrease = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const FormatIndentIncrease = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0) scale(1.3333)">
-        <path
-          d="M0 18H18V16H0V18ZM0 5V13L4 9L0 5ZM8 14H18V12H8V14ZM0 0V2H18V0H0ZM8 6H18V4H8V6ZM8 10H18V8H8V10Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M3 21H21V19H3V21ZM3 8V16L7 12L3 8ZM11 17H21V15H11V17ZM3 3V5H21V3H3ZM11 9H21V7H11V9ZM11 13H21V11H11V13Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default FormatIndentIncrease;
+export default IconFormatIndentIncrease;

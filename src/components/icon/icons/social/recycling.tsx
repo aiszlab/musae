@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Recycling = withIcon(({ size }) => {
+const IconRecycling = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const Recycling = withIcon(({ size }) => {
   );
 });
 
-export default Recycling;
+export default IconRecycling;

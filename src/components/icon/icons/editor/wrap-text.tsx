@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const WrapText = withIcon(({ size }) => {
+const IconWrapText = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,11 +10,12 @@ const WrapText = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0) scale(1.2)">
-        <path d="M20 0V2H0V0H20ZM5 8.5V11.5H15V8.5H5ZM0 18V20H20V18H0Z" fill="currentColor" />
-      </g>
+      <path
+        d="M3.5 18H9.5V16H3.5V18ZM19.5 4H3.5V6H19.5V4ZM16.5 10H3.5V12H16.75C17.85 12 18.75 12.9 18.75 14C18.75 15.1 17.85 16 16.75 16H14.5V14L11.5 17L14.5 20V18H16.5C18.71 18 20.5 16.21 20.5 14C20.5 11.79 18.71 10 16.5 10Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default WrapText;
+export default IconWrapText;

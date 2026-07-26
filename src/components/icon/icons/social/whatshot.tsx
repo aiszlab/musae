@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Whatshot = withIcon(({ size }) => {
+const IconWhatshot = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const Whatshot = withIcon(({ size }) => {
   );
 });
 
-export default Whatshot;
+export default IconWhatshot;

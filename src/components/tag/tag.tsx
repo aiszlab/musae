@@ -4,7 +4,7 @@ import type { TagProps } from "../../types/tag";
 import { useClassNames } from "../../hooks/use-class-names";
 import { create as $create, props as $props } from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";
-import { Close } from "../icon/icons";
+import { IconClose } from "../icon/icons";
 import { CLASS_NAMES } from "./context";
 import { $label } from "../theme/theme";
 import { type ThemeColorVariable, useThemeColorVars } from "../../hooks/use-theme-color-vars";
@@ -101,7 +101,7 @@ const Tag = ({
     >
       {leading}
       {children}
-      {closable && <Close onClick={onClose} />}
+      {closable && <IconClose onClick={onClose} />}
     </span>
   );
 };

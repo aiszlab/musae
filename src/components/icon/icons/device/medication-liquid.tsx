@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const MedicationLiquid = withIcon(({ size }) => {
+const IconMedicationLiquid = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,19 +10,17 @@ const MedicationLiquid = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 1.7143) scale(1.1429)">
-        <path d="M13 0H1V2H13V0Z" fill="currentColor" />
-        <path
-          d="M0 18H14V3H0V18ZM3 9H5.5V6.5H8.5V9H11V12H8.5V14.5H5.5V12H3V9Z"
-          fill="currentColor"
-        />
-        <path
-          d="M18 3C16.32 3 15 4.76 15 7C15 8.77 15.83 10.22 17 10.76V18H19V10.76C20.17 10.22 21 8.77 21 7C21 4.76 19.68 3 18 3Z"
-          fill="currentColor"
-        />
-      </g>
+      <path d="M14.5 3H2.5V5H14.5V3Z" fill="currentColor" />
+      <path
+        d="M1.5 21H15.5V6H1.5V21ZM4.5 12H7V9.5H10V12H12.5V15H10V17.5H7V15H4.5V12Z"
+        fill="currentColor"
+      />
+      <path
+        d="M19.5 6C17.82 6 16.5 7.76 16.5 10C16.5 11.77 17.33 13.22 18.5 13.76V21H20.5V13.76C21.67 13.22 22.5 11.77 22.5 10C22.5 7.76 21.18 6 19.5 6Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default MedicationLiquid;
+export default IconMedicationLiquid;

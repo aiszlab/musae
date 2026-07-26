@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const AddChart = withIcon(({ size }) => {
+const IconAddChart = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,18 +10,16 @@ const AddChart = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0) scale(1.3333)">
-        <path
-          d="M16 16H2V2H11V0H2C0.9 0 0 0.9 0 2V16C0 17.1 0.9 18 2 18H16C17.1 18 18 17.1 18 16V7H16V16Z"
-          fill="currentColor"
-        />
-        <path d="M14 10H12V14H14V10Z" fill="currentColor" />
-        <path d="M6 7H4V14H6V7Z" fill="currentColor" />
-        <path d="M10 4H8V14H10V4Z" fill="currentColor" />
-        <path d="M16 2V0H14V2H12V4H14V6H16V4H18V2H16Z" fill="currentColor" />
-      </g>
+      <path
+        d="M19 19H5V5H14V3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V10H19V19Z"
+        fill="currentColor"
+      />
+      <path d="M17 13H15V17H17V13Z" fill="currentColor" />
+      <path d="M9 10H7V17H9V10Z" fill="currentColor" />
+      <path d="M13 7H11V17H13V7Z" fill="currentColor" />
+      <path d="M19 5V3H17V5H15V7H17V9H19V7H21V5H19Z" fill="currentColor" />
     </svg>
   );
 });
 
-export default AddChart;
+export default IconAddChart;

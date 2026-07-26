@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const MobiledataOff = withIcon(({ size }) => {
+const IconMobiledataOff = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,18 +10,16 @@ const MobiledataOff = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0) scale(1.2121)">
-        <path
-          d="M14.61 4.01L16.2 5.6L17.61 4.19L13.61 0.19L9.61 4.19L11.02 5.6L12.61 4.01V8.36L14.61 10.36V4.01Z"
-          fill="currentColor"
-        />
-        <path
-          d="M0 1.41L6.61 8.02V14.37L5.02 12.78L3.61 14.19L7.61 18.19L11.61 14.19L10.2 12.78L8.61 14.37V10.02L18.39 19.8L19.8 18.38L1.42 0L0 1.41Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M16.71 6.11L18.3 7.7L19.71 6.29L15.71 2.29L11.71 6.29L13.12 7.7L14.71 6.11V10.46L16.71 12.46V6.11Z"
+        fill="currentColor"
+      />
+      <path
+        d="M2.1 3.51L8.71 10.12V16.47L7.12 14.88L5.71 16.29L9.71 20.29L13.71 16.29L12.3 14.88L10.71 16.47V12.12L20.49 21.9L21.9 20.48L3.52 2.1L2.1 3.51Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default MobiledataOff;
+export default IconMobiledataOff;

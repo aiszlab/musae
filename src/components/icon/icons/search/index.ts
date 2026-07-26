@@ -1,61 +1,61 @@
-import Bathroom from "./bathroom";
-import Bed from "./bed";
-import BedroomBaby from "./bedroom-baby";
-import BedroomChild from "./bedroom-child";
-import BedroomParent from "./bedroom-parent";
-import Blender from "./blender";
-import CameraIndoor from "./camera-indoor";
-import CameraOutdoor from "./camera-outdoor";
-import Chair from "./chair";
-import ChairAlt from "./chair-alt";
-import Coffee from "./coffee";
-import CoffeeMaker from "./coffee-maker";
-import Dining from "./dining";
-import DoorBack from "./door-back";
-import DoorFront from "./door-front";
-import DoorSliding from "./door-sliding";
-import Doorbell from "./doorbell";
-import Feed from "./feed";
-import Flatware from "./flatware";
-import Garage from "./garage";
-import Light from "./light";
-import Living from "./living";
-import ManageSearch from "./manage-search";
-import Podcasts from "./podcasts";
-import Shower from "./shower";
-import TableBar from "./table-bar";
-import TableRestaurant from "./table-restaurant";
-import Window from "./window";
-import Yard from "./yard";
+import IconBathroom from "./bathroom";
+import IconBed from "./bed";
+import IconBedroomBaby from "./bedroom-baby";
+import IconBedroomChild from "./bedroom-child";
+import IconBedroomParent from "./bedroom-parent";
+import IconBlender from "./blender";
+import IconCameraIndoor from "./camera-indoor";
+import IconCameraOutdoor from "./camera-outdoor";
+import IconChair from "./chair";
+import IconChairAlt from "./chair-alt";
+import IconCoffee from "./coffee";
+import IconCoffeeMaker from "./coffee-maker";
+import IconDining from "./dining";
+import IconDoorBack from "./door-back";
+import IconDoorFront from "./door-front";
+import IconDoorSliding from "./door-sliding";
+import IconDoorbell from "./doorbell";
+import IconFeed from "./feed";
+import IconFlatware from "./flatware";
+import IconGarage from "./garage";
+import IconLight from "./light";
+import IconLiving from "./living";
+import IconManageSearch from "./manage-search";
+import IconPodcasts from "./podcasts";
+import IconShower from "./shower";
+import IconTableBar from "./table-bar";
+import IconTableRestaurant from "./table-restaurant";
+import IconWindow from "./window";
+import IconYard from "./yard";
 
 export {
-  Bathroom,
-  Bed,
-  BedroomBaby,
-  BedroomChild,
-  BedroomParent,
-  Blender,
-  CameraIndoor,
-  CameraOutdoor,
-  Chair,
-  ChairAlt,
-  Coffee,
-  CoffeeMaker,
-  Dining,
-  DoorBack,
-  DoorFront,
-  DoorSliding,
-  Doorbell,
-  Feed,
-  Flatware,
-  Garage,
-  Light,
-  Living,
-  ManageSearch,
-  Podcasts,
-  Shower,
-  TableBar,
-  TableRestaurant,
-  Window,
-  Yard,
+  IconBathroom,
+  IconBed,
+  IconBedroomBaby,
+  IconBedroomChild,
+  IconBedroomParent,
+  IconBlender,
+  IconCameraIndoor,
+  IconCameraOutdoor,
+  IconChair,
+  IconChairAlt,
+  IconCoffee,
+  IconCoffeeMaker,
+  IconDining,
+  IconDoorBack,
+  IconDoorFront,
+  IconDoorSliding,
+  IconDoorbell,
+  IconFeed,
+  IconFlatware,
+  IconGarage,
+  IconLight,
+  IconLiving,
+  IconManageSearch,
+  IconPodcasts,
+  IconShower,
+  IconTableBar,
+  IconTableRestaurant,
+  IconWindow,
+  IconYard,
 };

@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const RoundaboutRight = withIcon(({ size }) => {
+const IconRoundaboutRight = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const RoundaboutRight = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 1.2) scale(1.2)">
-        <path
-          d="M11.92 5C11.44 2.16 8.97 0 6 0C2.69 0 0 2.69 0 6C0 8.97 2.16 11.44 5 11.92V18H7V11.91C7 10.93 6.29 10.11 5.33 9.94C3.44 9.63 2 7.98 2 6C2 3.79 3.79 2 6 2C7.98 2 9.63 3.44 9.94 5.33C10.11 6.29 10.93 7 11.91 7H16.17L14.58 8.59L16 10L20 6L16 2L14.59 3.41L16.17 5H11.92Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M 14.304 7.2 C 13.728 3.792 10.764 1.2 7.2 1.2 C 3.228 1.2 0 4.428 0 8.4 C 0 11.964 2.592 14.928 6 15.504 V 22.8 H 8.4 V 15.492 C 8.4 14.316 7.548 13.332 6.396 13.128 C 4.128 12.756 2.4 10.776 2.4 8.4 C 2.4 5.748 4.548 3.6 7.2 3.6 C 9.576 3.6 11.556 5.328 11.928 7.596 C 12.132 8.748 13.116 9.6 14.292 9.6 H 19.404 L 17.496 11.508 L 19.2 13.2 L 24 8.4 L 19.2 3.6 L 17.508 5.292 L 19.404 7.2 H 14.304Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default RoundaboutRight;
+export default IconRoundaboutRight;

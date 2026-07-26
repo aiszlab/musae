@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Lan = withIcon(({ size }) => {
+const IconLan = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const Lan = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(1.2, 0) scale(1.2)">
-        <path
-          d="M10 20H18V13H15V9H10V7H13V0H5V7H8V9H3V13H0V20H8V13H5V11H13V13H10V20ZM7 5V2H11V5H7ZM6 15V18H2V15H6ZM16 15V18H12V15H16Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M13 22H21V15H18V11H13V9H16V2H8V9H11V11H6V15H3V22H11V15H8V13H16V15H13V22ZM10 7V4H14V7H10ZM9 17V20H5V17H9ZM19 17V20H15V17H19Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default Lan;
+export default IconLan;

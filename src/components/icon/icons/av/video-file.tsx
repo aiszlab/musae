@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const VideoFile = withIcon(({ size }) => {
+const IconVideoFile = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const VideoFile = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(2.4, 0) scale(1.2)">
-        <path
-          d="M10 0H2C0.9 0 0 0.9 0 2V18C0 19.1 0.9 20 2 20H14C15.1 20 16 19.1 16 18V6L10 0ZM2 18V2H9V7H14V18H2ZM10 12L12 10.94V15.06L10 14V15C10 15.55 9.55 16 9 16H5C4.45 16 4 15.55 4 15V11C4 10.45 4.45 10 5 10H9C9.55 10 10 10.45 10 11V12Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M14 2H6C4.9 2 4 2.9 4 4V20C4 21.1 4.9 22 6 22H18C19.1 22 20 21.1 20 20V8L14 2ZM6 20V4H13V9H18V20H6ZM14 14L16 12.94V17.06L14 16V17C14 17.55 13.55 18 13 18H9C8.45 18 8 17.55 8 17V13C8 12.45 8.45 12 9 12H13C13.55 12 14 12.45 14 13V14Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default VideoFile;
+export default IconVideoFile;

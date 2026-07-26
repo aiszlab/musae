@@ -1,117 +1,117 @@
-import AddHomeWork from "./add-home-work";
-import AppSettingsAlt from "./app-settings-alt";
-import AppsOutage from "./apps-outage";
-import Apps from "./apps";
-import ArrowBackIosNew from "./arrow-back-ios-new";
-import ArrowBackIos from "./arrow-back-ios";
-import ArrowBack from "./arrow-back";
-import ArrowDownward from "./arrow-downward";
-import ArrowDropDownCircle from "./arrow-drop-down-circle";
-import ArrowDropDown from "./arrow-drop-down";
-import ArrowDropUp from "./arrow-drop-up";
-import ArrowForwardIos from "./arrow-forward-ios";
-import ArrowForward from "./arrow-forward";
-import ArrowLeft from "./arrow-left";
-import ArrowRight from "./arrow-right";
-import ArrowUpward from "./arrow-upward";
-import AssistantDirection from "./assistant-direction";
-import Campaign from "./campaign";
-import Cancel from "./cancel";
-import Check from "./check";
-import ChevronLeft from "./chevron-left";
-import ChevronRight from "./chevron-right";
-import Close from "./close";
-import DoubleArrow from "./double-arrow";
-import East from "./east";
-import ExpandCircleDown from "./expand-circle-down";
-import ExpandLess from "./expand-less";
-import ExpandMore from "./expand-more";
-import FirstPage from "./first-page";
-import FullscreenExit from "./fullscreen-exit";
-import Fullscreen from "./fullscreen";
-import HomeWork from "./home-work";
-import LastPage from "./last-page";
-import LegendToggle from "./legend-toggle";
-import MapsHomeWork from "./maps-home-work";
-import MenuOpen from "./menu-open";
-import Menu from "./menu";
-import MoreHoriz from "./more-horiz";
-import MoreVert from "./more-vert";
-import NorthEast from "./north-east";
-import NorthWest from "./north-west";
-import North from "./north";
-import OfflineShare from "./offline-share";
-import Payments from "./payments";
-import PivotTableChart from "./pivot-table-chart";
-import Refresh from "./refresh";
-import SouthEast from "./south-east";
-import SouthWest from "./south-west";
-import South from "./south";
-import SubdirectoryArrowLeft from "./subdirectory-arrow-left";
-import SubdirectoryArrowRight from "./subdirectory-arrow-right";
-import SwitchLeft from "./switch-left";
-import SwitchRight from "./switch-right";
-import UnfoldLess from "./unfold-less";
-import UnfoldMore from "./unfold-more";
-import WaterfallChart from "./waterfall-chart";
-import West from "./west";
+import IconAddHomeWork from "./add-home-work";
+import IconAppSettingsAlt from "./app-settings-alt";
+import IconAppsOutage from "./apps-outage";
+import IconApps from "./apps";
+import IconArrowBackIosNew from "./arrow-back-ios-new";
+import IconArrowBackIos from "./arrow-back-ios";
+import IconArrowBack from "./arrow-back";
+import IconArrowDownward from "./arrow-downward";
+import IconArrowDropDownCircle from "./arrow-drop-down-circle";
+import IconArrowDropDown from "./arrow-drop-down";
+import IconArrowDropUp from "./arrow-drop-up";
+import IconArrowForwardIos from "./arrow-forward-ios";
+import IconArrowForward from "./arrow-forward";
+import IconArrowLeft from "./arrow-left";
+import IconArrowRight from "./arrow-right";
+import IconArrowUpward from "./arrow-upward";
+import IconAssistantDirection from "./assistant-direction";
+import IconCampaign from "./campaign";
+import IconCancel from "./cancel";
+import IconCheck from "./check";
+import IconChevronLeft from "./chevron-left";
+import IconChevronRight from "./chevron-right";
+import IconClose from "./close";
+import IconDoubleArrow from "./double-arrow";
+import IconEast from "./east";
+import IconExpandCircleDown from "./expand-circle-down";
+import IconExpandLess from "./expand-less";
+import IconExpandMore from "./expand-more";
+import IconFirstPage from "./first-page";
+import IconFullscreenExit from "./fullscreen-exit";
+import IconFullscreen from "./fullscreen";
+import IconHomeWork from "./home-work";
+import IconLastPage from "./last-page";
+import IconLegendToggle from "./legend-toggle";
+import IconMapsHomeWork from "./maps-home-work";
+import IconMenuOpen from "./menu-open";
+import IconMenu from "./menu";
+import IconMoreHoriz from "./more-horiz";
+import IconMoreVert from "./more-vert";
+import IconNorthEast from "./north-east";
+import IconNorthWest from "./north-west";
+import IconNorth from "./north";
+import IconOfflineShare from "./offline-share";
+import IconPayments from "./payments";
+import IconPivotTableChart from "./pivot-table-chart";
+import IconRefresh from "./refresh";
+import IconSouthEast from "./south-east";
+import IconSouthWest from "./south-west";
+import IconSouth from "./south";
+import IconSubdirectoryArrowLeft from "./subdirectory-arrow-left";
+import IconSubdirectoryArrowRight from "./subdirectory-arrow-right";
+import IconSwitchLeft from "./switch-left";
+import IconSwitchRight from "./switch-right";
+import IconUnfoldLess from "./unfold-less";
+import IconUnfoldMore from "./unfold-more";
+import IconWaterfallChart from "./waterfall-chart";
+import IconWest from "./west";
 
 export {
-  AddHomeWork,
-  AppSettingsAlt,
-  AppsOutage,
-  Apps,
-  ArrowBackIosNew,
-  ArrowBackIos,
-  ArrowBack,
-  ArrowDownward,
-  ArrowDropDownCircle,
-  ArrowDropDown,
-  ArrowDropUp,
-  ArrowForwardIos,
-  ArrowForward,
-  ArrowLeft,
-  ArrowRight,
-  ArrowUpward,
-  AssistantDirection,
-  Campaign,
-  Cancel,
-  Check,
-  ChevronLeft,
-  ChevronRight,
-  Close,
-  DoubleArrow,
-  East,
-  ExpandCircleDown,
-  ExpandLess,
-  ExpandMore,
-  FirstPage,
-  FullscreenExit,
-  Fullscreen,
-  HomeWork,
-  LastPage,
-  LegendToggle,
-  MapsHomeWork,
-  MenuOpen,
-  Menu,
-  MoreHoriz,
-  MoreVert,
-  NorthEast,
-  NorthWest,
-  North,
-  OfflineShare,
-  Payments,
-  PivotTableChart,
-  Refresh,
-  SouthEast,
-  SouthWest,
-  South,
-  SubdirectoryArrowLeft,
-  SubdirectoryArrowRight,
-  SwitchLeft,
-  SwitchRight,
-  UnfoldLess,
-  UnfoldMore,
-  WaterfallChart,
-  West,
+  IconAddHomeWork,
+  IconAppSettingsAlt,
+  IconAppsOutage,
+  IconApps,
+  IconArrowBackIosNew,
+  IconArrowBackIos,
+  IconArrowBack,
+  IconArrowDownward,
+  IconArrowDropDownCircle,
+  IconArrowDropDown,
+  IconArrowDropUp,
+  IconArrowForwardIos,
+  IconArrowForward,
+  IconArrowLeft,
+  IconArrowRight,
+  IconArrowUpward,
+  IconAssistantDirection,
+  IconCampaign,
+  IconCancel,
+  IconCheck,
+  IconChevronLeft,
+  IconChevronRight,
+  IconClose,
+  IconDoubleArrow,
+  IconEast,
+  IconExpandCircleDown,
+  IconExpandLess,
+  IconExpandMore,
+  IconFirstPage,
+  IconFullscreenExit,
+  IconFullscreen,
+  IconHomeWork,
+  IconLastPage,
+  IconLegendToggle,
+  IconMapsHomeWork,
+  IconMenuOpen,
+  IconMenu,
+  IconMoreHoriz,
+  IconMoreVert,
+  IconNorthEast,
+  IconNorthWest,
+  IconNorth,
+  IconOfflineShare,
+  IconPayments,
+  IconPivotTableChart,
+  IconRefresh,
+  IconSouthEast,
+  IconSouthWest,
+  IconSouth,
+  IconSubdirectoryArrowLeft,
+  IconSubdirectoryArrowRight,
+  IconSwitchLeft,
+  IconSwitchRight,
+  IconUnfoldLess,
+  IconUnfoldMore,
+  IconWaterfallChart,
+  IconWest,
 };

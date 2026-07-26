@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const DownloadForOffline = withIcon(({ size }) => {
+const IconDownloadForOffline = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const DownloadForOffline = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0) scale(1.2)">
-        <path
-          d="M10 0C4.49 0 0 4.49 0 10C0 15.51 4.49 20 10 20C15.51 20 20 15.51 20 10C20 4.49 15.51 0 10 0ZM10 18C5.59 18 2 14.41 2 10C2 5.59 5.59 2 10 2C14.41 2 18 5.59 18 10C18 14.41 14.41 18 10 18ZM12.59 6.59L14 8L10 12L6 8L7.41 6.59L9 8.17V4H11V8.17L12.59 6.59ZM15 15H5V13H15V15Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M12 2C6.49 2 2 6.49 2 12C2 17.51 6.49 22 12 22C17.51 22 22 17.51 22 12C22 6.49 17.51 2 12 2ZM12 20C7.59 20 4 16.41 4 12C4 7.59 7.59 4 12 4C16.41 4 20 7.59 20 12C20 16.41 16.41 20 12 20ZM14.59 8.59L16 10L12 14L8 10L9.41 8.59L11 10.17V6H13V10.17L14.59 8.59ZM17 17H7V15H17V17Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default DownloadForOffline;
+export default IconDownloadForOffline;

@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const SimCardAlert = withIcon(({ size }) => {
+const IconSimCardAlert = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -20,4 +20,4 @@ const SimCardAlert = withIcon(({ size }) => {
   );
 });
 
-export default SimCardAlert;
+export default IconSimCardAlert;

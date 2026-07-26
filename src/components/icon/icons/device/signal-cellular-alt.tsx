@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const SignalCellularAlt = withIcon(({ size }) => {
+const IconSignalCellularAlt = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,11 +10,12 @@ const SignalCellularAlt = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0.75, 0) scale(1.5)">
-        <path d="M12 0H15V16H12V0ZM0 10H3V16H0V10ZM6 5H9V16H6V5Z" fill="currentColor" />
-      </g>
+      <path
+        d="M16.5 4H19.5V20H16.5V4ZM4.5 14H7.5V20H4.5V14ZM10.5 9H13.5V20H10.5V9Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default SignalCellularAlt;
+export default IconSignalCellularAlt;

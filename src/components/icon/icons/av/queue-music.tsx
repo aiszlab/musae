@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const QueueMusic = withIcon(({ size }) => {
+const IconQueueMusic = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const QueueMusic = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 3.1579) scale(1.2632)">
-        <path
-          d="M19 0H14V8.18C13.69 8.07 13.35 8 13 8C11.34 8 10 9.34 10 11C10 12.66 11.34 14 13 14C14.66 14 16 12.66 16 11V2H19V0ZM12 0H0V2H12V0ZM12 4H0V6H12V4ZM8 8H0V10H8V8Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M21.5 5H16.5V13.18C16.19 13.07 15.85 13 15.5 13C13.84 13 12.5 14.34 12.5 16C12.5 17.66 13.84 19 15.5 19C17.16 19 18.5 17.66 18.5 16V7H21.5V5ZM14.5 5H2.5V7H14.5V5ZM14.5 9H2.5V11H14.5V9ZM10.5 13H2.5V15H10.5V13Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default QueueMusic;
+export default IconQueueMusic;

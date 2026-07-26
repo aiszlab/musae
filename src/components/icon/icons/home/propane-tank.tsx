@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const PropaneTank = withIcon(({ size }) => {
+const IconPropaneTank = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const PropaneTank = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(2.4, 0) scale(1.2)">
-        <path
-          d="M13 4.14V2C13 0.9 12.1 0 11 0H5C3.9 0 3 0.9 3 2V4.14C1.28 4.59 0 6.14 0 8V16C0 18.21 1.79 20 4 20H12C14.21 20 16 18.21 16 16V8C16 6.14 14.72 4.59 13 4.14ZM5 2H11V4H9C9 3.45 8.55 3 8 3C7.45 3 7 3.45 7 4H5V2ZM4 6H12C13.1 6 14 6.9 14 8V11H2V8C2 6.9 2.9 6 4 6ZM12 18H4C2.9 18 2 17.1 2 16V13H14V16C14 17.1 13.1 18 12 18Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M17 6.14V4C17 2.9 16.1 2 15 2H9C7.9 2 7 2.9 7 4V6.14C5.28 6.59 4 8.14 4 10V18C4 20.21 5.79 22 8 22H16C18.21 22 20 20.21 20 18V10C20 8.14 18.72 6.59 17 6.14ZM9 4H15V6H13C13 5.45 12.55 5 12 5C11.45 5 11 5.45 11 6H9V4ZM8 8H16C17.1 8 18 8.9 18 10V13H6V10C6 8.9 6.9 8 8 8ZM16 20H8C6.9 20 6 19.1 6 18V15H18V18C18 19.1 17.1 20 16 20Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default PropaneTank;
+export default IconPropaneTank;

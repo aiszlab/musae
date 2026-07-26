@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Password = withIcon(({ size }) => {
+const IconPassword = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const Password = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 5.4545) scale(1.0909)">
-        <path
-          d="M1 10H21V12H1V10ZM2.15 5.95L3 4.47L3.85 5.95L5.15 5.2L4.3 3.72H6V2.22H4.3L5.15 0.75L3.85 0L3 1.47L2.15 0L0.85 0.75L1.7 2.22H0V3.72H1.7L0.85 5.2L2.15 5.95ZM8.85 5.2L10.15 5.95L11 4.47L11.85 5.95L13.15 5.2L12.3 3.72H14V2.22H12.3L13.15 0.75L11.85 0L11 1.47L10.15 0L8.85 0.75L9.7 2.22H8V3.72H9.7L8.85 5.2ZM22 2.22H20.3L21.15 0.75L19.85 0L19 1.47L18.15 0L16.85 0.75L17.7 2.22H16V3.72H17.7L16.85 5.2L18.15 5.95L19 4.47L19.85 5.95L21.15 5.2L20.3 3.72H22V2.22Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M2 16H22V18H2V16ZM3.15 11.95L4 10.47L4.85 11.95L6.15 11.2L5.3 9.72H7V8.22H5.3L6.15 6.75L4.85 6L4 7.47L3.15 6L1.85 6.75L2.7 8.22H1V9.72H2.7L1.85 11.2L3.15 11.95ZM9.85 11.2L11.15 11.95L12 10.47L12.85 11.95L14.15 11.2L13.3 9.72H15V8.22H13.3L14.15 6.75L12.85 6L12 7.47L11.15 6L9.85 6.75L10.7 8.22H9V9.72H10.7L9.85 11.2ZM23 8.22H21.3L22.15 6.75L20.85 6L20 7.47L19.15 6L17.85 6.75L18.7 8.22H17V9.72H18.7L17.85 11.2L19.15 11.95L20 10.47L20.85 11.95L22.15 11.2L21.3 9.72H23V8.22Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default Password;
+export default IconPassword;

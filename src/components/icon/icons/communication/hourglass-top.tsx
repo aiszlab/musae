@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const HourglassTop = withIcon(({ size }) => {
+const IconHourglassTop = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const HourglassTop = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(4.8, 0) scale(1.2)">
-        <path
-          d="M0 0L0.0100002 6L4 10L0.0100002 14.01L0 20H12V14L8 10L12 6.01V0H0ZM10 14.5V18H2V14.5L6 10.5L10 14.5Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M6 2L6.01 8L10 12L6.01 16.01L6 22H18V16L14 12L18 8.01V2H6ZM16 16.5V20H8V16.5L12 12.5L16 16.5Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default HourglassTop;
+export default IconHourglassTop;

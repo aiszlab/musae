@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const AdfScanner = withIcon(({ size }) => {
+const IconAdfScanner = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,18 +10,16 @@ const AdfScanner = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 2.4) scale(1.2)">
-        <path
-          d="M17 8H16V0H4V8H3C1.34 8 0 9.34 0 11V16H20V11C20 9.34 18.66 8 17 8ZM6 2H14V8H6V2ZM18 14H2V11C2 10.45 2.45 10 3 10H17C17.55 10 18 10.45 18 11V14Z"
-          fill="currentColor"
-        />
-        <path
-          d="M16 13C16.5523 13 17 12.5523 17 12C17 11.4477 16.5523 11 16 11C15.4477 11 15 11.4477 15 12C15 12.5523 15.4477 13 16 13Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M19 12H18V4H6V12H5C3.34 12 2 13.34 2 15V20H22V15C22 13.34 20.66 12 19 12ZM8 6H16V12H8V6ZM20 18H4V15C4 14.45 4.45 14 5 14H19C19.55 14 20 14.45 20 15V18Z"
+        fill="currentColor"
+      />
+      <path
+        d="M18 17C18.5523 17 19 16.5523 19 16C19 15.4477 18.5523 15 18 15C17.4477 15 17 15.4477 17 16C17 16.5523 17.4477 17 18 17Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default AdfScanner;
+export default IconAdfScanner;

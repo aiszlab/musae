@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const DeviceThermostat = withIcon(({ size }) => {
+const IconDeviceThermostat = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const DeviceThermostat = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(6, 0) scale(1.2)">
-        <path
-          d="M8 11V3C8 1.34 6.66 0 5 0C3.34 0 2 1.34 2 3V11C0.79 11.91 0 13.37 0 15C0 17.76 2.24 20 5 20C7.76 20 10 17.76 10 15C10 13.37 9.21 11.91 8 11ZM4 9V3C4 2.45 4.45 2 5 2C5.55 2 6 2.45 6 3V4H5V5H6V7H5V8H6V9H4Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M15 13V5C15 3.34 13.66 2 12 2C10.34 2 9 3.34 9 5V13C7.79 13.91 7 15.37 7 17C7 19.76 9.24 22 12 22C14.76 22 17 19.76 17 17C17 15.37 16.21 13.91 15 13ZM11 11V5C11 4.45 11.45 4 12 4C12.55 4 13 4.45 13 5V6H12V7H13V9H12V10H13V11H11Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default DeviceThermostat;
+export default IconDeviceThermostat;

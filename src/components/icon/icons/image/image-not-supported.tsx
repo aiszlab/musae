@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const ImageNotSupported = withIcon(({ size }) => {
+const IconImageNotSupported = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const ImageNotSupported = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0) scale(1.1315)">
-        <path
-          d="M21.21 19.8L1.41 0L0 1.41L2.31 3.73V16.9C2.31 18 3.21 18.9 4.31 18.9H17.48L19.79 21.21L21.21 19.8ZM4.31 16.9V5.73L11.15 12.57L10.31 13.62L8.31 10.9L5.31 14.9H13.48L15.48 16.9H4.31ZM7.14 2.9L5.14 0.9H18.31C19.41 0.9 20.31 1.8 20.31 2.9V16.07L18.31 14.07V2.9H7.14Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M22.6046 21.1946L2.8046 1.3946L1.3946 2.8046L3.7046 5.1246V18.2946C3.7046 19.3946 4.6046 20.2946 5.7046 20.2946H18.8746L21.1846 22.6046L22.6046 21.1946ZM5.7046 18.2946V7.1246L12.5446 13.9646L11.7046 15.0146L9.7046 12.2946L6.7046 16.2946H14.8746L16.8746 18.2946H5.7046ZM8.5346 4.2946L6.5346 2.2946H19.7046C20.8046 2.2946 21.7046 3.1946 21.7046 4.2946V17.4646L19.7046 15.4646V4.2946H8.5346Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default ImageNotSupported;
+export default IconImageNotSupported;

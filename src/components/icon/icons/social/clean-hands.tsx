@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const CleanHands = withIcon(({ size }) => {
+const IconCleanHands = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const CleanHands = withIcon(({ size }) => {
   );
 });
 
-export default CleanHands;
+export default IconCleanHands;

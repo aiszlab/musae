@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Weekend = withIcon(({ size }) => {
+const IconWeekend = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const Weekend = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 4) scale(1)">
-        <path
-          d="M21 5V3C21 1.35 19.65 0 18 0H6C4.35 0 3 1.35 3 3V5C1.35 5 0 6.35 0 8V13C0 14.65 1.35 16 3 16H21C22.65 16 24 14.65 24 13V8C24 6.35 22.65 5 21 5ZM5 3C5 2.45 5.45 2 6 2H18C18.55 2 19 2.45 19 3V5.78C18.39 6.33 18 7.12 18 8V10H6V8C6 7.12 5.61 6.33 5 5.78V3ZM22 13C22 13.55 21.55 14 21 14H3C2.45 14 2 13.55 2 13V8C2 7.45 2.45 7 3 7C3.55 7 4 7.45 4 8V12H20V8C20 7.45 20.45 7 21 7C21.55 7 22 7.45 22 8V13Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M21 9V7C21 5.35 19.65 4 18 4H6C4.35 4 3 5.35 3 7V9C1.35 9 0 10.35 0 12V17C0 18.65 1.35 20 3 20H21C22.65 20 24 18.65 24 17V12C24 10.35 22.65 9 21 9ZM5 7C5 6.45 5.45 6 6 6H18C18.55 6 19 6.45 19 7V9.78C18.39 10.33 18 11.12 18 12V14H6V12C6 11.12 5.61 10.33 5 9.78V7ZM22 17C22 17.55 21.55 18 21 18H3C2.45 18 2 17.55 2 17V12C2 11.45 2.45 11 3 11C3.55 11 4 11.45 4 12V16H20V12C20 11.45 20.45 11 21 11C21.55 11 22 11.45 22 12V17Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default Weekend;
+export default IconWeekend;

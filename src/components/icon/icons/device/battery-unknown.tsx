@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const BatteryUnknown = withIcon(({ size }) => {
+const IconBatteryUnknown = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const BatteryUnknown = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(6, 0) scale(1.2)">
-        <path
-          d="M8.67 2H7V0H3V2H1.33C0.6 2 0 2.6 0 3.33V18.66C0 19.4 0.6 20 1.33 20H8.66C9.4 20 10 19.4 10 18.67V3.33C10 2.6 9.4 2 8.67 2ZM6 16H4V14H6V16ZM7.3 10.69C7.3 10.69 6.92 11.11 6.63 11.4C6.15 11.88 5.8 12.55 5.8 13H4.2C4.2 12.17 4.66 11.48 5.13 11L6.06 10.06C6.33 9.79 6.5 9.41 6.5 9C6.5 8.17 5.83 7.5 5 7.5C4.17 7.5 3.5 8.17 3.5 9H2C2 7.34 3.34 6 5 6C6.66 6 8 7.34 8 9C8 9.66 7.73 10.26 7.3 10.69Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M15.67 4H14V2H10V4H8.33C7.6 4 7 4.6 7 5.33V20.66C7 21.4 7.6 22 8.33 22H15.66C16.4 22 17 21.4 17 20.67V5.33C17 4.6 16.4 4 15.67 4ZM13 18H11V16H13V18ZM14.3 12.69C14.3 12.69 13.92 13.11 13.63 13.4C13.15 13.88 12.8 14.55 12.8 15H11.2C11.2 14.17 11.66 13.48 12.13 13L13.06 12.06C13.33 11.79 13.5 11.41 13.5 11C13.5 10.17 12.83 9.5 12 9.5C11.17 9.5 10.5 10.17 10.5 11H9C9 9.34 10.34 8 12 8C13.66 8 15 9.34 15 11C15 11.66 14.73 12.26 14.3 12.69Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default BatteryUnknown;
+export default IconBatteryUnknown;

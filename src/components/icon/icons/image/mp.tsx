@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Mp = withIcon(({ size }) => {
+const IconMp = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,22 +10,20 @@ const Mp = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0) scale(1.3333)">
-        <path
-          d="M14 6H10.5V12H12V10.5H14C14.55 10.5 15 10.05 15 9.5V7C15 6.45 14.55 6 14 6ZM13.5 9H12V7.5H13.5V9Z"
-          fill="currentColor"
-        />
-        <path
-          d="M8.5 6H4C3.45 6 3 6.45 3 7V12H4.5V7.5H5.5V10.5H7V7.5H8V12H9.5V7C9.5 6.45 9.05 6 8.5 6Z"
-          fill="currentColor"
-        />
-        <path
-          d="M16 0H2C0.9 0 0 0.9 0 2V16C0 17.1 0.9 18 2 18H16C17.1 18 18 17.1 18 16V2C18 0.9 17.1 0 16 0ZM2 16V2H16V16H2Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M16.9998 8.9998H13.4998V14.9998H14.9998V13.4998H16.9998C17.5498 13.4998 17.9998 13.0498 17.9998 12.4998V9.9998C17.9998 9.4498 17.5498 8.9998 16.9998 8.9998ZM16.4998 11.9998H14.9998V10.4998H16.4998V11.9998Z"
+        fill="currentColor"
+      />
+      <path
+        d="M11.4998 8.9998H6.9998C6.4498 8.9998 5.9998 9.4498 5.9998 9.9998V14.9998H7.4998V10.4998H8.4998V13.4998H9.9998V10.4998H10.9998V14.9998H12.4998V9.9998C12.4998 9.4498 12.0498 8.9998 11.4998 8.9998Z"
+        fill="currentColor"
+      />
+      <path
+        d="M18.9998 2.9998H4.9998C3.8998 2.9998 2.9998 3.8998 2.9998 4.9998V18.9998C2.9998 20.0998 3.8998 20.9998 4.9998 20.9998H18.9998C20.0998 20.9998 20.9998 20.0998 20.9998 18.9998V4.9998C20.9998 3.8998 20.0998 2.9998 18.9998 2.9998ZM4.9998 18.9998V4.9998H18.9998V18.9998H4.9998Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default Mp;
+export default IconMp;

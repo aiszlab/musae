@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const FlashOff = withIcon(({ size }) => {
+const IconFlashOff = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const FlashOff = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(1.716, 0) scale(1.2)">
-        <path
-          d="M15 8H11.39L13.67 10.28L15 8ZM15 0H5V1.61L11.13 7.74L15 0ZM1.41 0.86L0 2.27L5 7.27V11H8V20L11.58 13.85L15.73 18L17.14 16.59L1.41 0.86Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M17 10H13.39L15.67 12.28L17 10ZM17 2H7V3.61L13.13 9.74L17 2ZM3.41 2.86L2 4.27L7 9.27V13H10V22L13.58 15.85L17.73 20L19.14 18.59L3.41 2.86Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default FlashOff;
+export default IconFlashOff;

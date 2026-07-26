@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const RememberMe = withIcon(({ size }) => {
+const IconRememberMe = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,18 +10,16 @@ const RememberMe = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(4.3636, 0) scale(1.0909)">
-        <path
-          d="M12 0H2C0.9 0 0 0.9 0 2V20C0 21.1 0.9 22 2 22H12C13.1 22 14 21.1 14 20V2C14 0.9 13.1 0 12 0ZM12 20H2V19H12V20ZM12 17H2V16.52C3.47 15.53 5.22 15 7 15C8.78 15 10.53 15.53 12 16.52V17ZM12 14.21C10.5 13.44 8.8 13 7 13C5.2 13 3.5 13.44 2 14.21V5H12V14.21ZM12 3H2V2H12V3Z"
-          fill="currentColor"
-        />
-        <path
-          d="M7 12C8.66 12 10 10.66 10 9C10 7.34 8.66 6 7 6C5.34 6 4 7.34 4 9C4 10.66 5.34 12 7 12ZM7 8C7.55 8 8 8.45 8 9C8 9.55 7.55 10 7 10C6.45 10 6 9.55 6 9C6 8.45 6.45 8 7 8Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M17 1H7C5.9 1 5 1.9 5 3V21C5 22.1 5.9 23 7 23H17C18.1 23 19 22.1 19 21V3C19 1.9 18.1 1 17 1ZM17 21H7V20H17V21ZM17 18H7V17.52C8.47 16.53 10.22 16 12 16C13.78 16 15.53 16.53 17 17.52V18ZM17 15.21C15.5 14.44 13.8 14 12 14C10.2 14 8.5 14.44 7 15.21V6H17V15.21ZM17 4H7V3H17V4Z"
+        fill="currentColor"
+      />
+      <path
+        d="M12 13C13.66 13 15 11.66 15 10C15 8.34 13.66 7 12 7C10.34 7 9 8.34 9 10C9 11.66 10.34 13 12 13ZM12 9C12.55 9 13 9.45 13 10C13 10.55 12.55 11 12 11C11.45 11 11 10.55 11 10C11 9.45 11.45 9 12 9Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default RememberMe;
+export default IconRememberMe;

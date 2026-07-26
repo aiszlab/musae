@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const SdCard = withIcon(({ size }) => {
+const IconSdCard = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const SdCard = withIcon(({ size }) => {
   );
 });
 
-export default SdCard;
+export default IconSdCard;

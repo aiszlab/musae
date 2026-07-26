@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const HorizontalDistribute = withIcon(({ size }) => {
+const IconHorizontalDistribute = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,11 +10,9 @@ const HorizontalDistribute = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0) scale(1.2)">
-        <path d="M2 20H0V0H2V20ZM20 0H18V20H20V0ZM11.5 5H8.5V15H11.5V5Z" fill="currentColor" />
-      </g>
+      <path d="M4 22H2V2H4V22ZM22 2H20V22H22V2ZM13.5 7H10.5V17H13.5V7Z" fill="currentColor" />
     </svg>
   );
 });
 
-export default HorizontalDistribute;
+export default IconHorizontalDistribute;

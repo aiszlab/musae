@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const AdUnits = withIcon(({ size }) => {
+const IconAdUnits = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,15 +10,13 @@ const AdUnits = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(4.3636, 0) scale(1.0909)">
-        <path
-          d="M12 0H2C0.9 0 0 0.9 0 2V20C0 21.1 0.9 22 2 22H12C13.1 22 14 21.1 14 20V2C14 0.9 13.1 0 12 0ZM2 3V2H12V3H2ZM2 17V5H12V17H2ZM2 20V19H12V20H2Z"
-          fill="currentColor"
-        />
-        <path d="M11 6H3V8H11V6Z" fill="currentColor" />
-      </g>
+      <path
+        d="M17 1H7C5.9 1 5 1.9 5 3V21C5 22.1 5.9 23 7 23H17C18.1 23 19 22.1 19 21V3C19 1.9 18.1 1 17 1ZM7 4V3H17V4H7ZM7 18V6H17V18H7ZM7 21V20H17V21H7Z"
+        fill="currentColor"
+      />
+      <path d="M16 7H8V9H16V7Z" fill="currentColor" />
     </svg>
   );
 });
 
-export default AdUnits;
+export default IconAdUnits;

@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const SsidChart = withIcon(({ size }) => {
+const IconSsidChart = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const SsidChart = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0) scale(1.3333)">
-        <path
-          d="M18 2.47L9 9L4.62 4.62L0 8V5.52L4.83 2L9.21 6.38L18 0V2.47ZM18 12H13.3L9.13 15.34L3 9.41L0 11.54V14L2.8 12L9 18L14 14H18V12Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M21 5.47L12 12L7.62 7.62L3 11V8.52L7.83 5L12.21 9.38L21 3V5.47ZM21 15H16.3L12.13 18.34L6 12.41L3 14.54V17L5.8 15L12 21L17 17H21V15Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default SsidChart;
+export default IconSsidChart;

@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Volcano = withIcon(({ size }) => {
+const IconVolcano = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -30,4 +30,4 @@ const Volcano = withIcon(({ size }) => {
   );
 });
 
-export default Volcano;
+export default IconVolcano;

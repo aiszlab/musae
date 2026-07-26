@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Nat = withIcon(({ size }) => {
+const IconNat = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,18 +10,16 @@ const Nat = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 1.0909) scale(1.0909)">
-        <path
-          d="M5.82 11H10V9H5.82C5.4 7.84 4.3 7 3 7C1.34 7 0 8.34 0 10C0 11.66 1.34 13 3 13C4.3 13 5.4 12.16 5.82 11ZM3 11C2.45 11 2 10.55 2 10C2 9.45 2.45 9 3 9C3.55 9 4 9.45 4 10C4 10.55 3.55 11 3 11Z"
-          fill="currentColor"
-        />
-        <path
-          d="M22 10L18 7V9H13.95C13.45 3.95 9.19 0 4 0V2C8.42 2 12 5.58 12 10C12 14.42 8.42 18 4 18V20C9.19 20 13.45 16.05 13.95 11H18V13L22 10Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M6.82 13H11V11H6.82C6.4 9.84 5.3 9 4 9C2.34 9 1 10.34 1 12C1 13.66 2.34 15 4 15C5.3 15 6.4 14.16 6.82 13ZM4 13C3.45 13 3 12.55 3 12C3 11.45 3.45 11 4 11C4.55 11 5 11.45 5 12C5 12.55 4.55 13 4 13Z"
+        fill="currentColor"
+      />
+      <path
+        d="M23 12L19 9V11H14.95C14.45 5.95 10.19 2 5 2V4C9.42 4 13 7.58 13 12C13 16.42 9.42 20 5 20V22C10.19 22 14.45 18.05 14.95 13H19V15L23 12Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default Nat;
+export default IconNat;

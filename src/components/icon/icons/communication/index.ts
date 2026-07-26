@@ -1,201 +1,201 @@
-import ThreeP from "./3p";
-import AddIcCall from "./add-ic-call";
-import AlternateEmail from "./alternate-email";
-import AppRegistration from "./app-registration";
-import Business from "./business";
-import CallEnd from "./call-end";
-import CallMade from "./call-made";
-import CallMerge from "./call-merge";
-import CallMissedOutgoing from "./call-missed-outgoing";
-import CallMissed from "./call-missed";
-import CallReceived from "./call-received";
-import CallSplit from "./call-split";
-import Call from "./call";
-import CancelPresentation from "./cancel-presentation";
-import CellTower from "./cell-tower";
-import CellWifi from "./cell-wifi";
-import ChatBubbleOutline from "./chat-bubble-outline";
-import ChatBubble from "./chat-bubble";
-import Chat from "./chat";
-import ClearAll from "./clear-all";
-import CoPresent from "./co-present";
-import Comment from "./comment";
-import CommentsDisabled from "./comments-disabled";
-import ContactEmergency from "./contact-emergency";
-import ContactMail from "./contact-mail";
-import ContactPhone from "./contact-phone";
-import Contacts from "./contacts";
-import DesktopAccessDisabled from "./desktop-access-disabled";
-import DialerSip from "./dialer-sip";
-import Dialpad from "./dialpad";
-import DocumentScanner from "./document-scanner";
-import DomainDisabled from "./domain-disabled";
-import DomainVerification from "./domain-verification";
-import Duo from "./duo";
-import Email from "./email";
-import Forum from "./forum";
-import ForwardToInbox from "./forward-to-inbox";
-import HourglassBottom from "./hourglass-bottom";
-import HourglassTop from "./hourglass-top";
-import Hub from "./hub";
-import ImportContacts from "./import-contacts";
-import ImportExport from "./import-export";
-import InvertColorsOff from "./invert-colors-off";
-import KeyOff from "./key-off";
-import Key from "./key";
-import ListAlt from "./list-alt";
-import LiveHelp from "./live-help";
-import LocationOff from "./location-off";
-import LocationOn from "./location-on";
-import MailLock from "./mail-lock";
-import MailOutline from "./mail-outline";
-import MarkChatRead from "./mark-chat-read";
-import MarkChatUnread from "./mark-chat-unread";
-import MarkEmailRead from "./mark-email-read";
-import MarkEmailUnread from "./mark-email-unread";
-import MarkUnreadChatAlt from "./mark-unread-chat-alt";
-import Message from "./message";
-import MobileScreenShare from "./mobile-screen-share";
-import MoreTime from "./more-time";
-import Nat from "./nat";
-import NoSim from "./no-sim";
-import PausePresentation from "./pause-presentation";
-import PersonAddDisabled from "./person-add-disabled";
-import PersonSearch from "./person-search";
-import PhoneDisabled from "./phone-disabled";
-import PhoneEnabled from "./phone-enabled";
-import Phone from "./phone";
-import PhonelinkErase from "./phonelink-erase";
-import PhonelinkLock from "./phonelink-lock";
-import PhonelinkRing from "./phonelink-ring";
-import PhonelinkSetup from "./phonelink-setup";
-import PortableWifiOff from "./portable-wifi-off";
-import PresentToAll from "./present-to-all";
-import PrintDisabled from "./print-disabled";
-import QrCode2 from "./qr-code-2";
-import QrCodeScanner from "./qr-code-scanner";
-import QrCode from "./qr-code";
-import ReadMore from "./read-more";
-import RingVolume from "./ring-volume";
-import RssFeed from "./rss-feed";
-import Rtt from "./rtt";
-import ScreenShare from "./screen-share";
-import SendTimeExtension from "./send-time-extension";
-import SentimentSatisfiedAlt from "./sentiment-satisfied-alt";
-import Sip from "./sip";
-import SpeakerPhone from "./speaker-phone";
-import Spoke from "./spoke";
-import StayCurrentLandscape from "./stay-current-landscape";
-import StayCurrentPortrait from "./stay-current-portrait";
-import StayPrimaryLandscape from "./stay-primary-landscape";
-import StayPrimaryPortrait from "./stay-primary-portrait";
-import StopScreenShare from "./stop-screen-share";
-import SwapCalls from "./swap-calls";
-import Textsms from "./textsms";
-import Unsubscribe from "./unsubscribe";
-import Voicemail from "./voicemail";
-import VpnKeyOff from "./vpn-key-off";
-import VpnKey from "./vpn-key";
-import WifiCalling from "./wifi-calling";
+import Icon3p from "./3p";
+import IconAddIcCall from "./add-ic-call";
+import IconAlternateEmail from "./alternate-email";
+import IconAppRegistration from "./app-registration";
+import IconBusiness from "./business";
+import IconCallEnd from "./call-end";
+import IconCallMade from "./call-made";
+import IconCallMerge from "./call-merge";
+import IconCallMissedOutgoing from "./call-missed-outgoing";
+import IconCallMissed from "./call-missed";
+import IconCallReceived from "./call-received";
+import IconCallSplit from "./call-split";
+import IconCall from "./call";
+import IconCancelPresentation from "./cancel-presentation";
+import IconCellTower from "./cell-tower";
+import IconCellWifi from "./cell-wifi";
+import IconChatBubbleOutline from "./chat-bubble-outline";
+import IconChatBubble from "./chat-bubble";
+import IconChat from "./chat";
+import IconClearAll from "./clear-all";
+import IconCoPresent from "./co-present";
+import IconComment from "./comment";
+import IconCommentsDisabled from "./comments-disabled";
+import IconContactEmergency from "./contact-emergency";
+import IconContactMail from "./contact-mail";
+import IconContactPhone from "./contact-phone";
+import IconContacts from "./contacts";
+import IconDesktopAccessDisabled from "./desktop-access-disabled";
+import IconDialerSip from "./dialer-sip";
+import IconDialpad from "./dialpad";
+import IconDocumentScanner from "./document-scanner";
+import IconDomainDisabled from "./domain-disabled";
+import IconDomainVerification from "./domain-verification";
+import IconDuo from "./duo";
+import IconEmail from "./email";
+import IconForum from "./forum";
+import IconForwardToInbox from "./forward-to-inbox";
+import IconHourglassBottom from "./hourglass-bottom";
+import IconHourglassTop from "./hourglass-top";
+import IconHub from "./hub";
+import IconImportContacts from "./import-contacts";
+import IconImportExport from "./import-export";
+import IconInvertColorsOff from "./invert-colors-off";
+import IconKeyOff from "./key-off";
+import IconKey from "./key";
+import IconListAlt from "./list-alt";
+import IconLiveHelp from "./live-help";
+import IconLocationOff from "./location-off";
+import IconLocationOn from "./location-on";
+import IconMailLock from "./mail-lock";
+import IconMailOutline from "./mail-outline";
+import IconMarkChatRead from "./mark-chat-read";
+import IconMarkChatUnread from "./mark-chat-unread";
+import IconMarkEmailRead from "./mark-email-read";
+import IconMarkEmailUnread from "./mark-email-unread";
+import IconMarkUnreadChatAlt from "./mark-unread-chat-alt";
+import IconMessage from "./message";
+import IconMobileScreenShare from "./mobile-screen-share";
+import IconMoreTime from "./more-time";
+import IconNat from "./nat";
+import IconNoSim from "./no-sim";
+import IconPausePresentation from "./pause-presentation";
+import IconPersonAddDisabled from "./person-add-disabled";
+import IconPersonSearch from "./person-search";
+import IconPhoneDisabled from "./phone-disabled";
+import IconPhoneEnabled from "./phone-enabled";
+import IconPhone from "./phone";
+import IconPhonelinkErase from "./phonelink-erase";
+import IconPhonelinkLock from "./phonelink-lock";
+import IconPhonelinkRing from "./phonelink-ring";
+import IconPhonelinkSetup from "./phonelink-setup";
+import IconPortableWifiOff from "./portable-wifi-off";
+import IconPresentToAll from "./present-to-all";
+import IconPrintDisabled from "./print-disabled";
+import IconQrCode2 from "./qr-code-2";
+import IconQrCodeScanner from "./qr-code-scanner";
+import IconQrCode from "./qr-code";
+import IconReadMore from "./read-more";
+import IconRingVolume from "./ring-volume";
+import IconRssFeed from "./rss-feed";
+import IconRtt from "./rtt";
+import IconScreenShare from "./screen-share";
+import IconSendTimeExtension from "./send-time-extension";
+import IconSentimentSatisfiedAlt from "./sentiment-satisfied-alt";
+import IconSip from "./sip";
+import IconSpeakerPhone from "./speaker-phone";
+import IconSpoke from "./spoke";
+import IconStayCurrentLandscape from "./stay-current-landscape";
+import IconStayCurrentPortrait from "./stay-current-portrait";
+import IconStayPrimaryLandscape from "./stay-primary-landscape";
+import IconStayPrimaryPortrait from "./stay-primary-portrait";
+import IconStopScreenShare from "./stop-screen-share";
+import IconSwapCalls from "./swap-calls";
+import IconTextsms from "./textsms";
+import IconUnsubscribe from "./unsubscribe";
+import IconVoicemail from "./voicemail";
+import IconVpnKeyOff from "./vpn-key-off";
+import IconVpnKey from "./vpn-key";
+import IconWifiCalling from "./wifi-calling";
 
 export {
-  ThreeP,
-  AddIcCall,
-  AlternateEmail,
-  AppRegistration,
-  Business,
-  CallEnd,
-  CallMade,
-  CallMerge,
-  CallMissedOutgoing,
-  CallMissed,
-  CallReceived,
-  CallSplit,
-  Call,
-  CancelPresentation,
-  CellTower,
-  CellWifi,
-  ChatBubbleOutline,
-  ChatBubble,
-  Chat,
-  ClearAll,
-  CoPresent,
-  Comment,
-  CommentsDisabled,
-  ContactEmergency,
-  ContactMail,
-  ContactPhone,
-  Contacts,
-  DesktopAccessDisabled,
-  DialerSip,
-  Dialpad,
-  DocumentScanner,
-  DomainDisabled,
-  DomainVerification,
-  Duo,
-  Email,
-  Forum,
-  ForwardToInbox,
-  HourglassBottom,
-  HourglassTop,
-  Hub,
-  ImportContacts,
-  ImportExport,
-  InvertColorsOff,
-  KeyOff,
-  Key,
-  ListAlt,
-  LiveHelp,
-  LocationOff,
-  LocationOn,
-  MailLock,
-  MailOutline,
-  MarkChatRead,
-  MarkChatUnread,
-  MarkEmailRead,
-  MarkEmailUnread,
-  MarkUnreadChatAlt,
-  Message,
-  MobileScreenShare,
-  MoreTime,
-  Nat,
-  NoSim,
-  PausePresentation,
-  PersonAddDisabled,
-  PersonSearch,
-  PhoneDisabled,
-  PhoneEnabled,
-  Phone,
-  PhonelinkErase,
-  PhonelinkLock,
-  PhonelinkRing,
-  PhonelinkSetup,
-  PortableWifiOff,
-  PresentToAll,
-  PrintDisabled,
-  QrCode2,
-  QrCodeScanner,
-  QrCode,
-  ReadMore,
-  RingVolume,
-  RssFeed,
-  Rtt,
-  ScreenShare,
-  SendTimeExtension,
-  SentimentSatisfiedAlt,
-  Sip,
-  SpeakerPhone,
-  Spoke,
-  StayCurrentLandscape,
-  StayCurrentPortrait,
-  StayPrimaryLandscape,
-  StayPrimaryPortrait,
-  StopScreenShare,
-  SwapCalls,
-  Textsms,
-  Unsubscribe,
-  Voicemail,
-  VpnKeyOff,
-  VpnKey,
-  WifiCalling,
+  Icon3p,
+  IconAddIcCall,
+  IconAlternateEmail,
+  IconAppRegistration,
+  IconBusiness,
+  IconCallEnd,
+  IconCallMade,
+  IconCallMerge,
+  IconCallMissedOutgoing,
+  IconCallMissed,
+  IconCallReceived,
+  IconCallSplit,
+  IconCall,
+  IconCancelPresentation,
+  IconCellTower,
+  IconCellWifi,
+  IconChatBubbleOutline,
+  IconChatBubble,
+  IconChat,
+  IconClearAll,
+  IconCoPresent,
+  IconComment,
+  IconCommentsDisabled,
+  IconContactEmergency,
+  IconContactMail,
+  IconContactPhone,
+  IconContacts,
+  IconDesktopAccessDisabled,
+  IconDialerSip,
+  IconDialpad,
+  IconDocumentScanner,
+  IconDomainDisabled,
+  IconDomainVerification,
+  IconDuo,
+  IconEmail,
+  IconForum,
+  IconForwardToInbox,
+  IconHourglassBottom,
+  IconHourglassTop,
+  IconHub,
+  IconImportContacts,
+  IconImportExport,
+  IconInvertColorsOff,
+  IconKeyOff,
+  IconKey,
+  IconListAlt,
+  IconLiveHelp,
+  IconLocationOff,
+  IconLocationOn,
+  IconMailLock,
+  IconMailOutline,
+  IconMarkChatRead,
+  IconMarkChatUnread,
+  IconMarkEmailRead,
+  IconMarkEmailUnread,
+  IconMarkUnreadChatAlt,
+  IconMessage,
+  IconMobileScreenShare,
+  IconMoreTime,
+  IconNat,
+  IconNoSim,
+  IconPausePresentation,
+  IconPersonAddDisabled,
+  IconPersonSearch,
+  IconPhoneDisabled,
+  IconPhoneEnabled,
+  IconPhone,
+  IconPhonelinkErase,
+  IconPhonelinkLock,
+  IconPhonelinkRing,
+  IconPhonelinkSetup,
+  IconPortableWifiOff,
+  IconPresentToAll,
+  IconPrintDisabled,
+  IconQrCode2,
+  IconQrCodeScanner,
+  IconQrCode,
+  IconReadMore,
+  IconRingVolume,
+  IconRssFeed,
+  IconRtt,
+  IconScreenShare,
+  IconSendTimeExtension,
+  IconSentimentSatisfiedAlt,
+  IconSip,
+  IconSpeakerPhone,
+  IconSpoke,
+  IconStayCurrentLandscape,
+  IconStayCurrentPortrait,
+  IconStayPrimaryLandscape,
+  IconStayPrimaryPortrait,
+  IconStopScreenShare,
+  IconSwapCalls,
+  IconTextsms,
+  IconUnsubscribe,
+  IconVoicemail,
+  IconVpnKeyOff,
+  IconVpnKey,
+  IconWifiCalling,
 };

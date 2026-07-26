@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Flatware = withIcon(({ size }) => {
+const IconFlatware = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const Flatware = withIcon(({ size }) => {
   );
 });
 
-export default Flatware;
+export default IconFlatware;

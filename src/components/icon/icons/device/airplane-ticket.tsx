@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const AirplaneTicket = withIcon(({ size }) => {
+const IconAirplaneTicket = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const AirplaneTicket = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 2.4) scale(1.2)">
-        <path
-          d="M18.19 0H2C0.9 0 0.00999999 0.9 0.00999999 2V6C1.11 6 2 6.9 2 8C2 9.1 1.11 10 0 10V14C0 15.1 0.9 16 2 16H18C19.1 16 20 15.1 20 14V2C20 0.9 19.19 0 18.19 0ZM18 14H2V11.46C3.19 10.77 4 9.47 4 8C4 6.52 3.2 5.23 2.01 4.54L2 2H18V14ZM6.87 11.66L5.21 8.78L6.14 8.53L7.4 9.52L9.79 8.88L7.39 4.72L8.79 4.34L12.8 8.08L15.24 7.43C15.75 7.29 16.28 7.6 16.42 8.11C16.55 8.62 16.25 9.15 15.73 9.3L6.87 11.66Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M20.19 4H4C2.9 4 2.01 4.9 2.01 6V10C3.11 10 4 10.9 4 12C4 13.1 3.11 14 2 14V18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6C22 4.9 21.19 4 20.19 4ZM20 18H4V15.46C5.19 14.77 6 13.47 6 12C6 10.52 5.2 9.23 4.01 8.54L4 6H20V18ZM8.87 15.66L7.21 12.78L8.14 12.53L9.4 13.52L11.79 12.88L9.39 8.72L10.79 8.34L14.8 12.08L17.24 11.43C17.75 11.29 18.28 11.6 18.42 12.11C18.55 12.62 18.25 13.15 17.73 13.3L8.87 15.66Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default AirplaneTicket;
+export default IconAirplaneTicket;

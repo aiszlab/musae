@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const ClosedCaptionOff = withIcon(({ size }) => {
+const IconClosedCaptionOff = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,22 +10,20 @@ const ClosedCaptionOff = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 1.3333) scale(1.3333)">
-        <path
-          d="M16 0H2C0.89 0 0 0.9 0 2V14C0 15.1 0.89 16 2 16H16C17.1 16 18 15.1 18 14V2C18 0.9 17.1 0 16 0ZM16 14H2V2H16V14Z"
-          fill="currentColor"
-        />
-        <path
-          d="M4 11H7C7.55 11 8 10.55 8 10V9H6.5V9.5H4.5V6.5H6.5V7H8V6C8 5.45 7.55 5 7 5H4C3.45 5 3 5.45 3 6V10C3 10.55 3.45 11 4 11Z"
-          fill="currentColor"
-        />
-        <path
-          d="M11 11H14C14.55 11 15 10.55 15 10V9H13.5V9.5H11.5V6.5H13.5V7H15V6C15 5.45 14.55 5 14 5H11C10.45 5 10 5.45 10 6V10C10 10.55 10.45 11 11 11Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M19 4H5C3.89 4 3 4.9 3 6V18C3 19.1 3.89 20 5 20H19C20.1 20 21 19.1 21 18V6C21 4.9 20.1 4 19 4ZM19 18H5V6H19V18Z"
+        fill="currentColor"
+      />
+      <path
+        d="M7 15H10C10.55 15 11 14.55 11 14V13H9.5V13.5H7.5V10.5H9.5V11H11V10C11 9.45 10.55 9 10 9H7C6.45 9 6 9.45 6 10V14C6 14.55 6.45 15 7 15Z"
+        fill="currentColor"
+      />
+      <path
+        d="M14 15H17C17.55 15 18 14.55 18 14V13H16.5V13.5H14.5V10.5H16.5V11H18V10C18 9.45 17.55 9 17 9H14C13.45 9 13 9.45 13 10V14C13 14.55 13.45 15 14 15Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default ClosedCaptionOff;
+export default IconClosedCaptionOff;

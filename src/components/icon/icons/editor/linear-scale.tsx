@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const LinearScale = withIcon(({ size }) => {
+const IconLinearScale = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const LinearScale = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 9) scale(1.2)">
-        <path
-          d="M17.5 0C16.47 0 15.6 0.62 15.21 1.5H12.29C11.9 0.62 11.03 0 10 0C8.97 0 8.1 0.62 7.71 1.5H4.79C4.4 0.62 3.53 0 2.5 0C1.12 0 0 1.12 0 2.5C0 3.88 1.12 5 2.5 5C3.53 5 4.4 4.38 4.79 3.5H7.71C8.1 4.38 8.97 5 10 5C11.03 5 11.9 4.38 12.29 3.5H15.21C15.6 4.38 16.47 5 17.5 5C18.88 5 20 3.88 20 2.5C20 1.12 18.88 0 17.5 0Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M19.5 9.5C18.47 9.5 17.6 10.12 17.21 11H14.29C13.9 10.12 13.03 9.5 12 9.5C10.97 9.5 10.1 10.12 9.71 11H6.79C6.4 10.12 5.53 9.5 4.5 9.5C3.12 9.5 2 10.62 2 12C2 13.38 3.12 14.5 4.5 14.5C5.53 14.5 6.4 13.88 6.79 13H9.71C10.1 13.88 10.97 14.5 12 14.5C13.03 14.5 13.9 13.88 14.29 13H17.21C17.6 13.88 18.47 14.5 19.5 14.5C20.88 14.5 22 13.38 22 12C22 10.62 20.88 9.5 19.5 9.5Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default LinearScale;
+export default IconLinearScale;

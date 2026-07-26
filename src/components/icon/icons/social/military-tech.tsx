@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const MilitaryTech = withIcon(({ size }) => {
+const IconMilitaryTech = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const MilitaryTech = withIcon(({ size }) => {
   );
 });
 
-export default MilitaryTech;
+export default IconMilitaryTech;

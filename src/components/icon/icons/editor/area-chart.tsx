@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const AreaChart = withIcon(({ size }) => {
+const IconAreaChart = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const AreaChart = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0.6667) scale(1.3333)">
-        <path
-          d="M14 4L9 0L4 7L0 4V17H18V4H14ZM16 13.95L9 8.5L5 14L2 11.6V8L4.44 9.83L9.4 2.88L13.3 6H16V13.95Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M17 7.5L12 3.5L7 10.5L3 7.5V20.5H21V7.5H17ZM19 17.45L12 12L8 17.5L5 15.1V11.5L7.44 13.33L12.4 6.38L16.3 9.5H19V17.45Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default AreaChart;
+export default IconAreaChart;

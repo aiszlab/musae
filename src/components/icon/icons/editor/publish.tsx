@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Publish = withIcon(({ size }) => {
+const IconPublish = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const Publish = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(1.5, 0) scale(1.5)">
-        <path
-          d="M0 0H14V2H0V0ZM0 10H4V16H10V10H14L7 3L0 10ZM8 8V14H6V8H4.83L7 5.83L9.17 8H8Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M5 4H19V6H5V4ZM5 14H9V20H15V14H19L12 7L5 14ZM13 12V18H11V12H9.83L12 9.83L14.17 12H13Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default Publish;
+export default IconPublish;

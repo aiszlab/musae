@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Rotate90DegreesCw = withIcon(({ size }) => {
+const IconRotate90DegreesCw = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const Rotate90DegreesCw = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0) scale(1.1429)">
-        <path
-          d="M0 12C0 16.97 4.03 21 9 21C10.76 21 12.4 20.49 13.79 19.62L12.33 18.16C11.34 18.69 10.2 19 9 19C5.14 19 2 15.86 2 12C2 8.14 5.14 5 9 5H9.17L7.59 6.59L9 8L13 4L9 0L7.58 1.41L9.17 3H9C4.03 3 0 7.03 0 12ZM9 12L15 18L21 12L15 6L9 12ZM15 15.17L11.83 12L15 8.83L18.17 12L15 15.17Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M1.5004 13.5004C1.5004 18.4704 5.5304 22.5004 10.5004 22.5004C12.2604 22.5004 13.9004 21.9904 15.2904 21.1204L13.8304 19.6604C12.8404 20.1904 11.7004 20.5004 10.5004 20.5004C6.6404 20.5004 3.5004 17.3604 3.5004 13.5004C3.5004 9.6404 6.6404 6.5004 10.5004 6.5004H10.6704L9.0904 8.0904L10.5004 9.5004L14.5004 5.5004L10.5004 1.5004L9.0804 2.9104L10.6704 4.5004H10.5004C5.5304 4.5004 1.5004 8.5304 1.5004 13.5004ZM10.5004 13.5004L16.5004 19.5004L22.5004 13.5004L16.5004 7.5004L10.5004 13.5004ZM16.5004 16.6704L13.3304 13.5004L16.5004 10.3304L19.6704 13.5004L16.5004 16.6704Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default Rotate90DegreesCw;
+export default IconRotate90DegreesCw;

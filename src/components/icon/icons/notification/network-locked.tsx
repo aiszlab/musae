@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const NetworkLocked = withIcon(({ size }) => {
+const IconNetworkLocked = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const NetworkLocked = withIcon(({ size }) => {
   );
 });
 
-export default NetworkLocked;
+export default IconNetworkLocked;

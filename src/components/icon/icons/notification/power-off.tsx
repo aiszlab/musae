@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const PowerOff = withIcon(({ size }) => {
+const IconPowerOff = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const PowerOff = withIcon(({ size }) => {
   );
 });
 
-export default PowerOff;
+export default IconPowerOff;

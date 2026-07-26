@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const FilterListOff = withIcon(({ size }) => {
+const IconFilterListOff = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const FilterListOff = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0) scale(1.2127)">
-        <path
-          d="M9.44 5.19H19.61V3.19H7.44L9.44 5.19ZM14.44 10.19H16.61V8.19H12.44L14.44 10.19ZM12.61 14.02V15.19H8.61V13.19H11.78L8.78 10.19H4.61V8.19H6.78L3.78 5.19H1.61V3.19H1.78L0 1.41L1.41 0L19.79 18.38L18.38 19.79L12.61 14.02Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M11.545 7.29547H21.715V5.29547H9.545L11.545 7.29547ZM16.545 12.2955H18.715V10.2955H14.545L16.545 12.2955ZM14.715 16.1255V17.2955H10.715V15.2955H13.885L10.885 12.2955H6.715V10.2955H8.885L5.885 7.29547H3.715V5.29547H3.885L2.105 3.51547L3.515 2.10547L21.895 20.4855L20.485 21.8955L14.715 16.1255Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default FilterListOff;
+export default IconFilterListOff;

@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const KeyboardControlKey = withIcon(({ size }) => {
+const IconKeyboardControlKey = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,11 +10,12 @@ const KeyboardControlKey = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 4.7914) scale(1.7143)">
-        <path d="M0 7L1.41 8.41L7 2.83L12.59 8.41L14 7L7 0L0 7Z" fill="currentColor" />
-      </g>
+      <path
+        d="M5 14.7949L6.41 16.2049L12 10.6249L17.59 16.2049L19 14.7949L12 7.79492L5 14.7949Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default KeyboardControlKey;
+export default IconKeyboardControlKey;

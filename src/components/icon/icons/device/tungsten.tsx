@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Tungsten = withIcon(({ size }) => {
+const IconTungsten = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,25 +10,23 @@ const Tungsten = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0.6) scale(1.2)">
-        <path d="M11 16H9V19H11V16Z" fill="currentColor" />
-        <path d="M3 8H0V10H3V8Z" fill="currentColor" />
-        <path d="M20 8H17V10H20V8Z" fill="currentColor" />
-        <path
-          d="M15.3012 13.3943L13.8941 14.8014L16.0154 16.9227L17.4225 15.5156L15.3012 13.3943Z"
-          fill="currentColor"
-        />
-        <path
-          d="M4.70547 13.3872L2.58417 15.5085L3.9913 16.9156L6.1126 14.7943L4.70547 13.3872Z"
-          fill="currentColor"
-        />
-        <path
-          d="M13 5.02V0H7V5.02C5.79 5.94 5 7.37 5 9C5 11.76 7.24 14 10 14C12.76 14 15 11.76 15 9C15 7.37 14.21 5.94 13 5.02ZM9 2H11V4.1C10.68 4.04 10.34 4 10 4C9.66 4 9.32 4.04 9 4.1V2ZM10 12C8.35 12 7 10.65 7 9C7 7.35 8.35 6 10 6C11.65 6 13 7.35 13 9C13 10.65 11.65 12 10 12Z"
-          fill="currentColor"
-        />
-      </g>
+      <path d="M13 18.5H11V21.5H13V18.5Z" fill="currentColor" />
+      <path d="M5 10.5H2V12.5H5V10.5Z" fill="currentColor" />
+      <path d="M22 10.5H19V12.5H22V10.5Z" fill="currentColor" />
+      <path
+        d="M17.301 15.894L15.894 17.301L18.015 19.423L19.423 18.016L17.301 15.894Z"
+        fill="currentColor"
+      />
+      <path
+        d="M6.705 15.887L4.584 18.009L5.991 19.416L8.113 17.294L6.705 15.887Z"
+        fill="currentColor"
+      />
+      <path
+        d="M15 7.52V2.5H9V7.52C7.79 8.44 7 9.87 7 11.5C7 14.26 9.24 16.5 12 16.5C14.76 16.5 17 14.26 17 11.5C17 9.87 16.21 8.44 15 7.52ZM11 4.5H13V6.6C12.68 6.54 12.34 6.5 12 6.5C11.66 6.5 11.32 6.54 11 6.6V4.5ZM12 14.5C10.35 14.5 9 13.15 9 11.5C9 9.85 10.35 8.5 12 8.5C13.65 8.5 15 9.85 15 11.5C15 13.15 13.65 14.5 12 14.5Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default Tungsten;
+export default IconTungsten;

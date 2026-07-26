@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const LaptopWindows = withIcon(({ size }) => {
+const IconLaptopWindows = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const LaptopWindows = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 3.5) scale(1)">
-        <path
-          d="M20 15V14C21.1 14 21.99 13.1 21.99 12L22 2C22 0.9 21.1 0 20 0H4C2.9 0 2 0.9 2 2V12C2 13.1 2.9 14 4 14V15H0V17H24V15H20ZM4 2H20V12H4V2Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M20 18.5V17.5C21.1 17.5 21.99 16.6 21.99 15.5L22 5.5C22 4.4 21.1 3.5 20 3.5H4C2.9 3.5 2 4.4 2 5.5V15.5C2 16.6 2.9 17.5 4 17.5V18.5H0V20.5H24V18.5H20ZM4 5.5H20V15.5H4V5.5Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default LaptopWindows;
+export default IconLaptopWindows;

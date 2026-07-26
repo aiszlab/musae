@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const MarkEmailUnread = withIcon(({ size }) => {
+const IconMarkEmailUnread = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const MarkEmailUnread = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 1.2) scale(1.2)">
-        <path
-          d="M20 6.98V16C20 17.1 19.1 18 18 18H2C0.9 18 0 17.1 0 16L0.00999999 4C0.00999999 2.9 0.9 2 2 2H12.1C12.04 2.32 12 2.66 12 3C12 3.34 12.04 3.68 12.1 4H2L10 9L13.67 6.71C14.14 7.14 14.69 7.47 15.3 7.69L10 11L2 6V16H18V7.9C18.74 7.75 19.42 7.42 20 6.98ZM14 3C14 4.66 15.34 6 17 6C18.66 6 20 4.66 20 3C20 1.34 18.66 0 17 0C15.34 0 14 1.34 14 3Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M22 9.98V19C22 20.1 21.1 21 20 21H4C2.9 21 2 20.1 2 19L2.01 7C2.01 5.9 2.9 5 4 5H14.1C14.04 5.32 14 5.66 14 6C14 6.34 14.04 6.68 14.1 7H4L12 12L15.67 9.71C16.14 10.14 16.69 10.47 17.3 10.69L12 14L4 9V19H20V10.9C20.74 10.75 21.42 10.42 22 9.98ZM16 6C16 7.66 17.34 9 19 9C20.66 9 22 7.66 22 6C22 4.34 20.66 3 19 3C17.34 3 16 4.34 16 6Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default MarkEmailUnread;
+export default IconMarkEmailUnread;

@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const PlaylistAdd = withIcon(({ size }) => {
+const IconPlaylistAdd = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const PlaylistAdd = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 3.1579) scale(1.2632)">
-        <path
-          d="M11 4H0V6H11V4ZM11 0H0V2H11V0ZM15 8V4H13V8H9V10H13V14H15V10H19V8H15ZM0 10H7V8H0V10Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M13.5 9H2.5V11H13.5V9ZM13.5 5H2.5V7H13.5V5ZM17.5 13V9H15.5V13H11.5V15H15.5V19H17.5V15H21.5V13H17.5ZM2.5 15H9.5V13H2.5V15Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default PlaylistAdd;
+export default IconPlaylistAdd;

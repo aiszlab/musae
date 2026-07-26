@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const ThreeSixty = withIcon(({ size }) => {
+const Icon360 = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const ThreeSixty = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 4.2) scale(1.2)">
-        <path
-          d="M10 0C4.48 0 0 2.24 0 5C0 7.24 2.94 9.13 7 9.77V13L11 9L7 5V7.73C3.85 7.17 2 5.83 2 5C2 3.94 5.04 2 10 2C14.96 2 18 3.94 18 5C18 5.73 16.54 6.89 14 7.53V9.58C17.53 8.81 20 7.05 20 5C20 2.24 15.52 0 10 0Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M12 5.5C6.48 5.5 2 7.74 2 10.5C2 12.74 4.94 14.63 9 15.27V18.5L13 14.5L9 10.5V13.23C5.85 12.67 4 11.33 4 10.5C4 9.44 7.04 7.5 12 7.5C16.96 7.5 20 9.44 20 10.5C20 11.23 18.54 12.39 16 13.03V15.08C19.53 14.31 22 12.55 22 10.5C22 7.74 17.52 5.5 12 5.5Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default ThreeSixty;
+export default Icon360;

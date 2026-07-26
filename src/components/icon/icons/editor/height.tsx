@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Height = withIcon(({ size }) => {
+const IconHeight = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,11 +10,9 @@ const Height = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(6.6667, 0) scale(1.3333)">
-        <path d="M5 3.99H8L4 0L0 3.99H3V14.01H0L4 18L8 14.01H5V3.99Z" fill="currentColor" />
-      </g>
+      <path d="M13 6.99H16L12 3L8 6.99H11V17.01H8L12 21L16 17.01H13V6.99Z" fill="currentColor" />
     </svg>
   );
 });
 
-export default Height;
+export default IconHeight;

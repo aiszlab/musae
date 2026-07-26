@@ -1,163 +1,163 @@
-import Add from "./add";
-import AddBox from "./add-box";
-import AddCircle from "./add-circle";
-import AddCircleOutline from "./add-circle-outline";
-import AddLink from "./add-link";
-import Archive from "./archive";
-import Attribution from "./attribution";
-import Backspace from "./backspace";
-import Ballot from "./ballot";
-import Biotech from "./biotech";
-import Block from "./block";
-import Bolt from "./bolt";
-import Calculate from "./calculate";
-import ChangeCircle from "./change-circle";
-import Clear from "./clear";
-import ContentCopy from "./content-copy";
-import ContentCut from "./content-cut";
-import ContentPaste from "./content-paste";
-import ContentPasteGo from "./content-paste-go";
-import ContentPasteOff from "./content-paste-off";
-import ContentPasteSearch from "./content-paste-search";
-import CopyAll from "./copy-all";
-import Create from "./create";
-import DeleteSweep from "./delete-sweep";
-import Deselect from "./deselect";
-import Drafts from "./drafts";
-import DynamicFeed from "./dynamic-feed";
-import FileCopy from "./file-copy";
-import FilterList from "./filter-list";
-import FilterListOff from "./filter-list-off";
-import Flag from "./flag";
-import FlagCircle from "./flag-circle";
-import FontDownload from "./font-download";
-import FontDownloadOff from "./font-download-off";
-import Forward from "./forward";
-import Gesture from "./gesture";
-import HowToReg from "./how-to-reg";
-import HowToVote from "./how-to-vote";
-import Inbox from "./inbox";
-import Insights from "./insights";
-import Inventory from "./inventory";
-import Inventory2 from "./inventory-2";
-import Link from "./link";
-import LinkOff from "./link-off";
-import LowPriority from "./low-priority";
-import Mail from "./mail";
-import Markunread from "./markunread";
-import MoveToInbox from "./move-to-inbox";
-import NextWeek from "./next-week";
-import OutlinedFlag from "./outlined-flag";
-import Policy from "./policy";
-import PushPin from "./push-pin";
-import Redo from "./redo";
-import Remove from "./remove";
-import RemoveCircle from "./remove-circle";
-import RemoveCircleOutline from "./remove-circle-outline";
-import Reply from "./reply";
-import ReplyAll from "./reply-all";
-import Report from "./report";
-import ReportGmailerrorred from "./report-gmailerrorred";
-import ReportOff from "./report-off";
-import Save from "./save";
-import SaveAlt from "./save-alt";
-import SaveAs from "./save-as";
-import SelectAll from "./select-all";
-import Send from "./send";
-import Shield from "./shield";
-import Sort from "./sort";
-import SquareFoot from "./square-foot";
-import StackedBarChart from "./stacked-bar-chart";
-import Stream from "./stream";
-import Tag from "./tag";
-import TextFormat from "./text-format";
-import Unarchive from "./unarchive";
-import Undo from "./undo";
-import Upcoming from "./upcoming";
-import Waves from "./waves";
-import WebStories from "./web-stories";
-import Weekend from "./weekend";
-import WhereToVote from "./where-to-vote";
+import IconAdd from "./add";
+import IconAddBox from "./add-box";
+import IconAddCircle from "./add-circle";
+import IconAddCircleOutline from "./add-circle-outline";
+import IconAddLink from "./add-link";
+import IconArchive from "./archive";
+import IconAttribution from "./attribution";
+import IconBackspace from "./backspace";
+import IconBallot from "./ballot";
+import IconBiotech from "./biotech";
+import IconBlock from "./block";
+import IconBolt from "./bolt";
+import IconCalculate from "./calculate";
+import IconChangeCircle from "./change-circle";
+import IconClear from "./clear";
+import IconContentCopy from "./content-copy";
+import IconContentCut from "./content-cut";
+import IconContentPaste from "./content-paste";
+import IconContentPasteGo from "./content-paste-go";
+import IconContentPasteOff from "./content-paste-off";
+import IconContentPasteSearch from "./content-paste-search";
+import IconCopyAll from "./copy-all";
+import IconCreate from "./create";
+import IconDeleteSweep from "./delete-sweep";
+import IconDeselect from "./deselect";
+import IconDrafts from "./drafts";
+import IconDynamicFeed from "./dynamic-feed";
+import IconFileCopy from "./file-copy";
+import IconFilterList from "./filter-list";
+import IconFilterListOff from "./filter-list-off";
+import IconFlag from "./flag";
+import IconFlagCircle from "./flag-circle";
+import IconFontDownload from "./font-download";
+import IconFontDownloadOff from "./font-download-off";
+import IconForward from "./forward";
+import IconGesture from "./gesture";
+import IconHowToReg from "./how-to-reg";
+import IconHowToVote from "./how-to-vote";
+import IconInbox from "./inbox";
+import IconInsights from "./insights";
+import IconInventory from "./inventory";
+import IconInventory2 from "./inventory-2";
+import IconLink from "./link";
+import IconLinkOff from "./link-off";
+import IconLowPriority from "./low-priority";
+import IconMail from "./mail";
+import IconMarkunread from "./markunread";
+import IconMoveToInbox from "./move-to-inbox";
+import IconNextWeek from "./next-week";
+import IconOutlinedFlag from "./outlined-flag";
+import IconPolicy from "./policy";
+import IconPushPin from "./push-pin";
+import IconRedo from "./redo";
+import IconRemove from "./remove";
+import IconRemoveCircle from "./remove-circle";
+import IconRemoveCircleOutline from "./remove-circle-outline";
+import IconReply from "./reply";
+import IconReplyAll from "./reply-all";
+import IconReport from "./report";
+import IconReportGmailerrorred from "./report-gmailerrorred";
+import IconReportOff from "./report-off";
+import IconSave from "./save";
+import IconSaveAlt from "./save-alt";
+import IconSaveAs from "./save-as";
+import IconSelectAll from "./select-all";
+import IconSend from "./send";
+import IconShield from "./shield";
+import IconSort from "./sort";
+import IconSquareFoot from "./square-foot";
+import IconStackedBarChart from "./stacked-bar-chart";
+import IconStream from "./stream";
+import IconTag from "./tag";
+import IconTextFormat from "./text-format";
+import IconUnarchive from "./unarchive";
+import IconUndo from "./undo";
+import IconUpcoming from "./upcoming";
+import IconWaves from "./waves";
+import IconWebStories from "./web-stories";
+import IconWeekend from "./weekend";
+import IconWhereToVote from "./where-to-vote";
 
 export {
-  Add,
-  AddBox,
-  AddCircle,
-  AddCircleOutline,
-  AddLink,
-  Archive,
-  Attribution,
-  Backspace,
-  Ballot,
-  Biotech,
-  Block,
-  Bolt,
-  Calculate,
-  ChangeCircle,
-  Clear,
-  ContentCopy,
-  ContentCut,
-  ContentPaste,
-  ContentPasteGo,
-  ContentPasteOff,
-  ContentPasteSearch,
-  CopyAll,
-  Create,
-  DeleteSweep,
-  Deselect,
-  Drafts,
-  DynamicFeed,
-  FileCopy,
-  FilterList,
-  FilterListOff,
-  Flag,
-  FlagCircle,
-  FontDownload,
-  FontDownloadOff,
-  Forward,
-  Gesture,
-  HowToReg,
-  HowToVote,
-  Inbox,
-  Insights,
-  Inventory,
-  Inventory2,
-  Link,
-  LinkOff,
-  LowPriority,
-  Mail,
-  Markunread,
-  MoveToInbox,
-  NextWeek,
-  OutlinedFlag,
-  Policy,
-  PushPin,
-  Redo,
-  Remove,
-  RemoveCircle,
-  RemoveCircleOutline,
-  Reply,
-  ReplyAll,
-  Report,
-  ReportGmailerrorred,
-  ReportOff,
-  Save,
-  SaveAlt,
-  SaveAs,
-  SelectAll,
-  Send,
-  Shield,
-  Sort,
-  SquareFoot,
-  StackedBarChart,
-  Stream,
-  Tag,
-  TextFormat,
-  Unarchive,
-  Undo,
-  Upcoming,
-  Waves,
-  WebStories,
-  Weekend,
-  WhereToVote,
+  IconAdd,
+  IconAddBox,
+  IconAddCircle,
+  IconAddCircleOutline,
+  IconAddLink,
+  IconArchive,
+  IconAttribution,
+  IconBackspace,
+  IconBallot,
+  IconBiotech,
+  IconBlock,
+  IconBolt,
+  IconCalculate,
+  IconChangeCircle,
+  IconClear,
+  IconContentCopy,
+  IconContentCut,
+  IconContentPaste,
+  IconContentPasteGo,
+  IconContentPasteOff,
+  IconContentPasteSearch,
+  IconCopyAll,
+  IconCreate,
+  IconDeleteSweep,
+  IconDeselect,
+  IconDrafts,
+  IconDynamicFeed,
+  IconFileCopy,
+  IconFilterList,
+  IconFilterListOff,
+  IconFlag,
+  IconFlagCircle,
+  IconFontDownload,
+  IconFontDownloadOff,
+  IconForward,
+  IconGesture,
+  IconHowToReg,
+  IconHowToVote,
+  IconInbox,
+  IconInsights,
+  IconInventory,
+  IconInventory2,
+  IconLink,
+  IconLinkOff,
+  IconLowPriority,
+  IconMail,
+  IconMarkunread,
+  IconMoveToInbox,
+  IconNextWeek,
+  IconOutlinedFlag,
+  IconPolicy,
+  IconPushPin,
+  IconRedo,
+  IconRemove,
+  IconRemoveCircle,
+  IconRemoveCircleOutline,
+  IconReply,
+  IconReplyAll,
+  IconReport,
+  IconReportGmailerrorred,
+  IconReportOff,
+  IconSave,
+  IconSaveAlt,
+  IconSaveAs,
+  IconSelectAll,
+  IconSend,
+  IconShield,
+  IconSort,
+  IconSquareFoot,
+  IconStackedBarChart,
+  IconStream,
+  IconTag,
+  IconTextFormat,
+  IconUnarchive,
+  IconUndo,
+  IconUpcoming,
+  IconWaves,
+  IconWebStories,
+  IconWeekend,
+  IconWhereToVote,
 };

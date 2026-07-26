@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Sd = withIcon(({ size }) => {
+const IconSd = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,22 +10,20 @@ const Sd = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 2.4) scale(1.2)">
-        <path
-          d="M5 11H8C8.55 11 9 10.55 9 10V8.5C9 7.95 8.55 7.5 8 7.5H5.5V6.5H7.5V7H9V6C9 5.45 8.55 5 8 5H5C4.45 5 4 5.45 4 6V7.5C4 8.05 4.45 8.5 5 8.5H7.5V9.5H5.5V9H4V10C4 10.55 4.45 11 5 11Z"
-          fill="currentColor"
-        />
-        <path
-          d="M16 10V6C16 5.45 15.55 5 15 5H11V11H15C15.55 11 16 10.55 16 10ZM14.5 9.5H12.5V6.5H14.5V9.5Z"
-          fill="currentColor"
-        />
-        <path
-          d="M18 0H2C0.89 0 0 0.9 0 2V14C0 15.1 0.89 16 2 16H18C19.1 16 20 15.1 20 14V2C20 0.9 19.1 0 18 0ZM18 14H2V2H18V14Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M7 15H10C10.55 15 11 14.55 11 14V12.5C11 11.95 10.55 11.5 10 11.5H7.5V10.5H9.5V11H11V10C11 9.45 10.55 9 10 9H7C6.45 9 6 9.45 6 10V11.5C6 12.05 6.45 12.5 7 12.5H9.5V13.5H7.5V13H6V14C6 14.55 6.45 15 7 15Z"
+        fill="currentColor"
+      />
+      <path
+        d="M18 14V10C18 9.45 17.55 9 17 9H13V15H17C17.55 15 18 14.55 18 14ZM16.5 13.5H14.5V10.5H16.5V13.5Z"
+        fill="currentColor"
+      />
+      <path
+        d="M20 4H4C2.89 4 2 4.9 2 6V18C2 19.1 2.89 20 4 20H20C21.1 20 22 19.1 22 18V6C22 4.9 21.1 4 20 4ZM20 18H4V6H20V18Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default Sd;
+export default IconSd;

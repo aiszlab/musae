@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const FlipCameraAndroid = withIcon(({ size }) => {
+const IconFlipCameraAndroid = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,22 +10,20 @@ const FlipCameraAndroid = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0) scale(1.2)">
-        <path
-          d="M7 10C7 11.66 8.34 13 10 13C11.66 13 13 11.66 13 10C13 8.34 11.66 7 10 7C8.34 7 7 8.34 7 10ZM11 10C11 10.55 10.55 11 10 11C9.45 11 9 10.55 9 10C9 9.45 9.45 9 10 9C10.55 9 11 9.45 11 10Z"
-          fill="currentColor"
-        />
-        <path
-          d="M6 8V6H3.09C4.47 3.61 7.05 2 10 2C13.72 2 16.85 4.56 17.74 8H19.8C18.87 3.44 14.84 0 10 0C6.73 0 3.82 1.58 2 4.01V2H0V8H6Z"
-          fill="currentColor"
-        />
-        <path
-          d="M14 12V14H16.91C15.53 16.39 12.95 18 10 18C6.28 18 3.15 15.44 2.26 12H0.2C1.13 16.56 5.16 20 10 20C13.27 20 16.18 18.42 18 15.99V18H20V12H14Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M9 12C9 13.66 10.34 15 12 15C13.66 15 15 13.66 15 12C15 10.34 13.66 9 12 9C10.34 9 9 10.34 9 12ZM13 12C13 12.55 12.55 13 12 13C11.45 13 11 12.55 11 12C11 11.45 11.45 11 12 11C12.55 11 13 11.45 13 12Z"
+        fill="currentColor"
+      />
+      <path
+        d="M8 10V8H5.09C6.47 5.61 9.05 4 12 4C15.72 4 18.85 6.56 19.74 10H21.8C20.87 5.44 16.84 2 12 2C8.73 2 5.82 3.58 4 6.01V4H2V10H8Z"
+        fill="currentColor"
+      />
+      <path
+        d="M16 14V16H18.91C17.53 18.39 14.95 20 12 20C8.28 20 5.15 17.44 4.26 14H2.2C3.13 18.56 7.16 22 12 22C15.27 22 18.18 20.42 20 17.99V20H22V14H16Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default FlipCameraAndroid;
+export default IconFlipCameraAndroid;

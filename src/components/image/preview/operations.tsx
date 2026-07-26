@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { create as $create, props as $props } from "@stylexjs/stylex";
-import { Close, KeyboardArrowLeft, KeyboardArrowRight } from "../../icon/icons";
+import { IconClose, IconKeyboardArrowLeft, IconKeyboardArrowRight } from "../../icon/icons";
 import { Portal } from "../../portal";
 import { spacing, positions, sizes } from "../../theme/tokens.stylex";
 import { useTheme } from "../../theme";
@@ -107,18 +107,18 @@ const Operations = ({
           variant="text"
           onClick={onClose}
         >
-          <Close size={32} />
+          <IconClose size={32} />
         </IconButton>
 
         {/* navigations */}
         {isMultiple && (
           <div className={styled.navigations.className} style={styled.navigations.style}>
             <IconButton variant="text" onClick={onSwitchLeft} disabled={!onSwitchLeft}>
-              <KeyboardArrowLeft size={32} />
+              <IconKeyboardArrowLeft size={32} />
             </IconButton>
 
             <IconButton variant="text" onClick={onSwitchRight} disabled={!onSwitchRight}>
-              <KeyboardArrowRight size={32} />
+              <IconKeyboardArrowRight size={32} />
             </IconButton>
           </div>
         )}

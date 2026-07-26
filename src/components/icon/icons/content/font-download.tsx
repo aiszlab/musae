@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const FontDownload = withIcon(({ size }) => {
+const IconFontDownload = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const FontDownload = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0) scale(1.2)">
-        <path
-          d="M7.17 13.5H12.81L13.95 16.5H16.04L10.93 3.5H9.07L3.96 16.5H6.05L7.17 13.5ZM10 5.98L12.07 11.5H7.93L10 5.98ZM18 0H2C0.9 0 0 0.9 0 2V18C0 19.1 0.9 20 2 20H18C19.1 20 20 19.1 20 18V2C20 0.9 19.1 0 18 0ZM18 18H2V2H18V18Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M9.17 15.5H14.81L15.95 18.5H18.04L12.93 5.5H11.07L5.96 18.5H8.05L9.17 15.5ZM12 7.98L14.07 13.5H9.93L12 7.98ZM20 2H4C2.9 2 2 2.9 2 4V20C2 21.1 2.9 22 4 22H20C21.1 22 22 21.1 22 20V4C22 2.9 21.1 2 20 2ZM20 20H4V4H20V20Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default FontDownload;
+export default IconFontDownload;

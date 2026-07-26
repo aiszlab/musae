@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const NetworkWifi = withIcon(({ size }) => {
+const IconNetworkWifi = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const NetworkWifi = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 3.5) scale(1)">
-        <path
-          d="M12 0C7.31 0 3.07 1.9 0 4.98L12 17L24 4.98C20.93 1.9 16.69 0 12 0ZM12 4C9.14 4 6.5 4.94 4.35 6.51L2.92 5.07C5.51 3.08 8.67 2 12 2C15.33 2 18.49 3.08 21.08 5.07L19.65 6.5C17.5 4.94 14.86 4 12 4Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M12 3.5C7.31 3.5 3.07 5.4 0 8.48L12 20.5L24 8.48C20.93 5.4 16.69 3.5 12 3.5ZM12 7.5C9.14 7.5 6.5 8.44 4.35 10.01L2.92 8.57C5.51 6.58 8.67 5.5 12 5.5C15.33 5.5 18.49 6.58 21.08 8.57L19.65 10C17.5 8.44 14.86 7.5 12 7.5Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default NetworkWifi;
+export default IconNetworkWifi;

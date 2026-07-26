@@ -6,7 +6,7 @@ import { useLogo, useMenuItems, useNavigations, useMenuKeys } from "./hooks";
 import { $title } from "../theme/theme";
 import { stringify } from "@aiszlab/relax/class-name";
 import { Menu } from "../menu";
-import { MenuOpen as MenuOpenIcon, Menu as MenuIcon } from "../icon/icons";
+import { IconMenuOpen as MenuOpenIcon, IconMenu as MenuIcon } from "../icon/icons";
 import { first, last } from "@aiszlab/relax";
 import { useClassNames } from "../../hooks/use-class-names";
 import { CLASS_NAMES, useStore } from "./context";

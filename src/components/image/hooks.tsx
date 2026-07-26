@@ -3,8 +3,8 @@ import type { OperationsProps, OperationEvent } from "../../types/image";
 import {
   IconSwapHoriz,
   IconSwapVert,
-  RotateLeft,
-  RotateRight,
+  IconRotateLeft,
+  IconRotateRight,
   IconZoomOut,
   IconZoomIn,
 } from "../icon/icons";
@@ -35,12 +35,12 @@ export const useHandlers = ({
         type: "flip-y",
       },
       {
-        child: <RotateLeft />,
+        child: <IconRotateLeft />,
         onClick: onRotateLeft,
         type: "rotate-left",
       },
       {
-        child: <RotateRight />,
+        child: <IconRotateRight />,
         onClick: onRotateRight,
         type: "rotate-right",
       },

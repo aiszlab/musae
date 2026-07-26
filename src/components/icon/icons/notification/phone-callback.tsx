@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const PhoneCallback = withIcon(({ size }) => {
+const IconPhoneCallback = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const PhoneCallback = withIcon(({ size }) => {
   );
 });
 
-export default PhoneCallback;
+export default IconPhoneCallback;

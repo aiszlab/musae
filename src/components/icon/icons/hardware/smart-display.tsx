@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const SmartDisplay = withIcon(({ size }) => {
+const IconSmartDisplay = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,15 +10,13 @@ const SmartDisplay = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 2.4) scale(1.2)">
-        <path d="M7.5 3.5V12.5L14.5 8L7.5 3.5Z" fill="currentColor" />
-        <path
-          d="M18 0H2C0.9 0 0 0.9 0 2V14C0 15.1 0.9 16 2 16H18C19.1 16 20 15.1 20 14V2C20 0.9 19.1 0 18 0ZM18 14.01H2V1.99H18V14.01Z"
-          fill="currentColor"
-        />
-      </g>
+      <path d="M9.5 7.5V16.5L16.5 12L9.5 7.5Z" fill="currentColor" />
+      <path
+        d="M20 4H4C2.9 4 2 4.9 2 6V18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6C22 4.9 21.1 4 20 4ZM20 18.01H4V5.99H20V18.01Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default SmartDisplay;
+export default IconSmartDisplay;

@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Fastfood = withIcon(({ size }) => {
+const IconFastfood = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const Fastfood = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0) scale(1.0909)">
-        <path
-          d="M0 20.98C0 21.54 0.45 21.99 1.01 21.99H14C14.56 21.99 15.01 21.54 15.01 20.98V20H0V20.98ZM7.5 7.99C3.75 7.99 0 10 0 14H15C15 10 11.25 7.99 7.5 7.99ZM2.62 12C3.73 10.45 6.09 9.99 7.5 9.99C8.91 9.99 11.27 10.45 12.38 12H2.62ZM0 16H15V18H0V16ZM17 4V0H15V4H10L10.23 6H19.79L18.39 20H17V22H18.72C19.56 22 20.25 21.35 20.35 20.53L22 4H17Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M1 21.98C1 22.54 1.45 22.99 2.01 22.99H15C15.56 22.99 16.01 22.54 16.01 21.98V21H1V21.98ZM8.5 8.99C4.75 8.99 1 11 1 15H16C16 11 12.25 8.99 8.5 8.99ZM3.62 13C4.73 11.45 7.09 10.99 8.5 10.99C9.91 10.99 12.27 11.45 13.38 13H3.62ZM1 17H16V19H1V17ZM18 5V1H16V5H11L11.23 7H20.79L19.39 21H18V23H19.72C20.56 23 21.25 22.35 21.35 21.53L23 5H18Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default Fastfood;
+export default IconFastfood;

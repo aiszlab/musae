@@ -1,57 +1,57 @@
-import AutoMode from "./auto-mode";
-import Blinds from "./blinds";
-import BlindsClosed from "./blinds-closed";
-import BroadcastOnHome from "./broadcast-on-home";
-import BroadcastOnPersonal from "./broadcast-on-personal";
-import Curtains from "./curtains";
-import CurtainsClosed from "./curtains-closed";
-import ElectricBolt from "./electric-bolt";
-import ElectricMeter from "./electric-meter";
-import EnergySavingsLeaf from "./energy-savings-leaf";
-import GasMeter from "./gas-meter";
-import HeatPump from "./heat-pump";
-import ModeFanOff from "./mode-fan-off";
-import NestCamWiredStand from "./nest-cam-wired-stand";
-import OilBarrel from "./oil-barrel";
-import Propane from "./propane";
-import PropaneTank from "./propane-tank";
-import RollerShades from "./roller-shades";
-import RollerShadesClosed from "./roller-shades-closed";
-import SensorDoor from "./sensor-door";
-import SensorOccupied from "./sensor-occupied";
-import SensorWindow from "./sensor-window";
-import ShieldMoon from "./shield-moon";
-import SolarPower from "./solar-power";
-import VerticalShades from "./vertical-shades";
-import VerticalShadesClosed from "./vertical-shades-closed";
-import WindPower from "./wind-power";
+import IconAutoMode from "./auto-mode";
+import IconBlinds from "./blinds";
+import IconBlindsClosed from "./blinds-closed";
+import IconBroadcastOnHome from "./broadcast-on-home";
+import IconBroadcastOnPersonal from "./broadcast-on-personal";
+import IconCurtains from "./curtains";
+import IconCurtainsClosed from "./curtains-closed";
+import IconElectricBolt from "./electric-bolt";
+import IconElectricMeter from "./electric-meter";
+import IconEnergySavingsLeaf from "./energy-savings-leaf";
+import IconGasMeter from "./gas-meter";
+import IconHeatPump from "./heat-pump";
+import IconModeFanOff from "./mode-fan-off";
+import IconNestCamWiredStand from "./nest-cam-wired-stand";
+import IconOilBarrel from "./oil-barrel";
+import IconPropane from "./propane";
+import IconPropaneTank from "./propane-tank";
+import IconRollerShades from "./roller-shades";
+import IconRollerShadesClosed from "./roller-shades-closed";
+import IconSensorDoor from "./sensor-door";
+import IconSensorOccupied from "./sensor-occupied";
+import IconSensorWindow from "./sensor-window";
+import IconShieldMoon from "./shield-moon";
+import IconSolarPower from "./solar-power";
+import IconVerticalShades from "./vertical-shades";
+import IconVerticalShadesClosed from "./vertical-shades-closed";
+import IconWindPower from "./wind-power";
 
 export {
-  AutoMode,
-  Blinds,
-  BlindsClosed,
-  BroadcastOnHome,
-  BroadcastOnPersonal,
-  Curtains,
-  CurtainsClosed,
-  ElectricBolt,
-  ElectricMeter,
-  EnergySavingsLeaf,
-  GasMeter,
-  HeatPump,
-  ModeFanOff,
-  NestCamWiredStand,
-  OilBarrel,
-  Propane,
-  PropaneTank,
-  RollerShades,
-  RollerShadesClosed,
-  SensorDoor,
-  SensorOccupied,
-  SensorWindow,
-  ShieldMoon,
-  SolarPower,
-  VerticalShades,
-  VerticalShadesClosed,
-  WindPower,
+  IconAutoMode,
+  IconBlinds,
+  IconBlindsClosed,
+  IconBroadcastOnHome,
+  IconBroadcastOnPersonal,
+  IconCurtains,
+  IconCurtainsClosed,
+  IconElectricBolt,
+  IconElectricMeter,
+  IconEnergySavingsLeaf,
+  IconGasMeter,
+  IconHeatPump,
+  IconModeFanOff,
+  IconNestCamWiredStand,
+  IconOilBarrel,
+  IconPropane,
+  IconPropaneTank,
+  IconRollerShades,
+  IconRollerShadesClosed,
+  IconSensorDoor,
+  IconSensorOccupied,
+  IconSensorWindow,
+  IconShieldMoon,
+  IconSolarPower,
+  IconVerticalShades,
+  IconVerticalShadesClosed,
+  IconWindPower,
 };

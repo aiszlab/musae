@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const ThumbUpAlt = withIcon(({ size }) => {
+const IconThumbUpAlt = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const ThumbUpAlt = withIcon(({ size }) => {
   );
 });
 
-export default ThumbUpAlt;
+export default IconThumbUpAlt;

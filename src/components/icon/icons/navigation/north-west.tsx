@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const NorthWest = withIcon(({ size }) => {
+const IconNorthWest = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,11 +10,12 @@ const NorthWest = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0) scale(1.6)">
-        <path d="M0 10H2V3.41L13.59 15L15 13.59L3.41 2H10V0H0V10Z" fill="currentColor" />
-      </g>
+      <path
+        d="M4.5 14.5H6.5V7.91L18.09 19.5L19.5 18.09L7.91 6.5H14.5V4.5H4.5V14.5Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default NorthWest;
+export default IconNorthWest;

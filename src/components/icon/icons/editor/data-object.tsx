@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const DataObject = withIcon(({ size }) => {
+const IconDataObject = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,18 +10,16 @@ const DataObject = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 2.4) scale(1.2)">
-        <path
-          d="M2 3V5C2 5.55 1.55 6 1 6H0V10H1C1.55 10 2 10.45 2 11V13C2 14.65 3.35 16 5 16H8V14H5C4.45 14 4 13.55 4 13V11C4 9.7 3.16 8.58 2 8.17V7.83C3.16 7.42 4 6.3 4 5V3C4 2.45 4.45 2 5 2H8V0H5C3.35 0 2 1.35 2 3Z"
-          fill="currentColor"
-        />
-        <path
-          d="M19 6C18.45 6 18 5.55 18 5V3C18 1.35 16.65 0 15 0H12V2H15C15.55 2 16 2.45 16 3V5C16 6.3 16.84 7.42 18 7.83V8.17C16.84 8.58 16 9.69 16 11V13C16 13.55 15.55 14 15 14H12V16H15C16.65 16 18 14.65 18 13V11C18 10.45 18.45 10 19 10H20V6H19Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M4 7V9C4 9.55 3.55 10 3 10H2V14H3C3.55 14 4 14.45 4 15V17C4 18.65 5.35 20 7 20H10V18H7C6.45 18 6 17.55 6 17V15C6 13.7 5.16 12.58 4 12.17V11.83C5.16 11.42 6 10.3 6 9V7C6 6.45 6.45 6 7 6H10V4H7C5.35 4 4 5.35 4 7Z"
+        fill="currentColor"
+      />
+      <path
+        d="M21 10C20.45 10 20 9.55 20 9V7C20 5.35 18.65 4 17 4H14V6H17C17.55 6 18 6.45 18 7V9C18 10.3 18.84 11.42 20 11.83V12.17C18.84 12.58 18 13.69 18 15V17C18 17.55 17.55 18 17 18H14V20H17C18.65 20 20 18.65 20 17V15C20 14.45 20.45 14 21 14H22V10H21Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default DataObject;
+export default IconDataObject;

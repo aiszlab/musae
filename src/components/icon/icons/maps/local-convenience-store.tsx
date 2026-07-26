@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const LocalConvenienceStore = withIcon(({ size }) => {
+const IconLocalConvenienceStore = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const LocalConvenienceStore = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 2.4) scale(1.2)">
-        <path
-          d="M17 3V0H3V3H0V16H8V12H12V16H20V3H17ZM18 14H14V10H6V14H2V5H5V2H15V5H18V14ZM6 4H8V5H6V8H9V7H7V6H9V3H6V4ZM13 5H12V3H11V6H13V8H14V3H13V5Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M 20.4 6 V 2.4 H 3.6 V 6 H 0 V 21.6 H 9.6 V 16.8 H 14.4 V 21.6 H 24 V 6 H 20.4ZM 21.6 19.2 H 16.8 V 14.4 H 7.2 V 19.2 H 2.4 V 8.4 H 6 V 4.8 H 18 V 8.4 H 21.6 V 19.2ZM 7.2 7.2 H 9.6 V 8.4 H 7.2 V 12 H 10.8 V 10.8 H 8.4 V 9.6 H 10.8 V 6 H 7.2 V 7.2ZM 15.6 8.4 H 14.4 V 6 H 13.2 V 9.6 H 15.6 V 12 H 16.8 V 6 H 15.6 V 8.4Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default LocalConvenienceStore;
+export default IconLocalConvenienceStore;

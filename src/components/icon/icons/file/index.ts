@@ -1,91 +1,91 @@
-import Approval from "./approval";
-import AttachEmail from "./attach-email";
-import Attachment from "./attachment";
-import Cloud from "./cloud";
-import CloudCircle from "./cloud-circle";
-import CloudDone from "./cloud-done";
-import CloudDownload from "./cloud-download";
-import CloudOff from "./cloud-off";
-import CloudQueue from "./cloud-queue";
-import CloudSync from "./cloud-sync";
-import CloudUpload from "./cloud-upload";
-import CreateNewFolder from "./create-new-folder";
-import Difference from "./difference";
-import Download from "./download";
-import DownloadDone from "./download-done";
-import DownloadForOffline from "./download-for-offline";
-import Downloading from "./downloading";
-import DriveFileMove from "./drive-file-move";
-import DriveFileMoveRtl from "./drive-file-move-rtl";
-import DriveFileRenameOutline from "./drive-file-rename-outline";
-import DriveFolderUpload from "./drive-folder-upload";
-import FileDownload from "./file-download";
-import FileDownloadDone from "./file-download-done";
-import FileDownloadOff from "./file-download-off";
-import FileOpen from "./file-open";
-import FileUpload from "./file-upload";
-import Folder from "./folder";
-import FolderCopy from "./folder-copy";
-import FolderDelete from "./folder-delete";
-import FolderOff from "./folder-off";
-import FolderOpen from "./folder-open";
-import FolderShared from "./folder-shared";
-import FolderZip from "./folder-zip";
-import FormatOverline from "./format-overline";
-import GridView from "./grid-view";
-import Newspaper from "./newspaper";
-import RequestQuote from "./request-quote";
-import RuleFolder from "./rule-folder";
-import SnippetFolder from "./snippet-folder";
-import TextSnippet from "./text-snippet";
-import Topic from "./topic";
-import Upload from "./upload";
-import UploadFile from "./upload-file";
-import Workspaces from "./workspaces";
+import IconApproval from "./approval";
+import IconAttachEmail from "./attach-email";
+import IconAttachment from "./attachment";
+import IconCloud from "./cloud";
+import IconCloudCircle from "./cloud-circle";
+import IconCloudDone from "./cloud-done";
+import IconCloudDownload from "./cloud-download";
+import IconCloudOff from "./cloud-off";
+import IconCloudQueue from "./cloud-queue";
+import IconCloudSync from "./cloud-sync";
+import IconCloudUpload from "./cloud-upload";
+import IconCreateNewFolder from "./create-new-folder";
+import IconDifference from "./difference";
+import IconDownload from "./download";
+import IconDownloadDone from "./download-done";
+import IconDownloadForOffline from "./download-for-offline";
+import IconDownloading from "./downloading";
+import IconDriveFileMove from "./drive-file-move";
+import IconDriveFileMoveRtl from "./drive-file-move-rtl";
+import IconDriveFileRenameOutline from "./drive-file-rename-outline";
+import IconDriveFolderUpload from "./drive-folder-upload";
+import IconFileDownload from "./file-download";
+import IconFileDownloadDone from "./file-download-done";
+import IconFileDownloadOff from "./file-download-off";
+import IconFileOpen from "./file-open";
+import IconFileUpload from "./file-upload";
+import IconFolder from "./folder";
+import IconFolderCopy from "./folder-copy";
+import IconFolderDelete from "./folder-delete";
+import IconFolderOff from "./folder-off";
+import IconFolderOpen from "./folder-open";
+import IconFolderShared from "./folder-shared";
+import IconFolderZip from "./folder-zip";
+import IconFormatOverline from "./format-overline";
+import IconGridView from "./grid-view";
+import IconNewspaper from "./newspaper";
+import IconRequestQuote from "./request-quote";
+import IconRuleFolder from "./rule-folder";
+import IconSnippetFolder from "./snippet-folder";
+import IconTextSnippet from "./text-snippet";
+import IconTopic from "./topic";
+import IconUpload from "./upload";
+import IconUploadFile from "./upload-file";
+import IconWorkspaces from "./workspaces";
 
 export {
-  Approval,
-  AttachEmail,
-  Attachment,
-  Cloud,
-  CloudCircle,
-  CloudDone,
-  CloudDownload,
-  CloudOff,
-  CloudQueue,
-  CloudSync,
-  CloudUpload,
-  CreateNewFolder,
-  Difference,
-  Download,
-  DownloadDone,
-  DownloadForOffline,
-  Downloading,
-  DriveFileMove,
-  DriveFileMoveRtl,
-  DriveFileRenameOutline,
-  DriveFolderUpload,
-  FileDownload,
-  FileDownloadDone,
-  FileDownloadOff,
-  FileOpen,
-  FileUpload,
-  Folder,
-  FolderCopy,
-  FolderDelete,
-  FolderOff,
-  FolderOpen,
-  FolderShared,
-  FolderZip,
-  FormatOverline,
-  GridView,
-  Newspaper,
-  RequestQuote,
-  RuleFolder,
-  SnippetFolder,
-  TextSnippet,
-  Topic,
-  Upload,
-  UploadFile,
-  Workspaces,
+  IconApproval,
+  IconAttachEmail,
+  IconAttachment,
+  IconCloud,
+  IconCloudCircle,
+  IconCloudDone,
+  IconCloudDownload,
+  IconCloudOff,
+  IconCloudQueue,
+  IconCloudSync,
+  IconCloudUpload,
+  IconCreateNewFolder,
+  IconDifference,
+  IconDownload,
+  IconDownloadDone,
+  IconDownloadForOffline,
+  IconDownloading,
+  IconDriveFileMove,
+  IconDriveFileMoveRtl,
+  IconDriveFileRenameOutline,
+  IconDriveFolderUpload,
+  IconFileDownload,
+  IconFileDownloadDone,
+  IconFileDownloadOff,
+  IconFileOpen,
+  IconFileUpload,
+  IconFolder,
+  IconFolderCopy,
+  IconFolderDelete,
+  IconFolderOff,
+  IconFolderOpen,
+  IconFolderShared,
+  IconFolderZip,
+  IconFormatOverline,
+  IconGridView,
+  IconNewspaper,
+  IconRequestQuote,
+  IconRuleFolder,
+  IconSnippetFolder,
+  IconTextSnippet,
+  IconTopic,
+  IconUpload,
+  IconUploadFile,
+  IconWorkspaces,
 };

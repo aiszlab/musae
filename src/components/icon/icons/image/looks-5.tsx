@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Looks5 = withIcon(({ size }) => {
+const IconLooks5 = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const Looks5 = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0) scale(1.3333)">
-        <path
-          d="M16 0H2C0.9 0 0 0.9 0 2V16C0 17.1 0.9 18 2 18H16C17.1 18 18 17.1 18 16V2C18 0.9 17.1 0 16 0ZM16 16H2V2H16V16ZM12 12V10C12 8.89 11.1 8 10 8H8V6H12V4H6V10H10V12H6V14H10C11.1 14 12 13.11 12 12Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M18.9998 2.9998H4.9998C3.8998 2.9998 2.9998 3.8998 2.9998 4.9998V18.9998C2.9998 20.0998 3.8998 20.9998 4.9998 20.9998H18.9998C20.0998 20.9998 20.9998 20.0998 20.9998 18.9998V4.9998C20.9998 3.8998 20.0998 2.9998 18.9998 2.9998ZM18.9998 18.9998H4.9998V4.9998H18.9998V18.9998ZM14.9998 14.9998V12.9998C14.9998 11.8898 14.0998 10.9998 12.9998 10.9998H10.9998V8.9998H14.9998V6.9998H8.9998V12.9998H12.9998V14.9998H8.9998V16.9998H12.9998C14.0998 16.9998 14.9998 16.1098 14.9998 14.9998Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default Looks5;
+export default IconLooks5;

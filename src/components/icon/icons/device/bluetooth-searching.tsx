@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const BluetoothSearching = withIcon(({ size }) => {
+const IconBluetoothSearching = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const BluetoothSearching = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(1.194, 0) scale(1.2)">
-        <path
-          d="M11.24 10.01L13.56 12.33C13.84 11.61 14 10.82 14 10C14 9.18 13.84 8.41 13.57 7.69L11.24 10.01ZM16.53 4.71L15.27 5.97C15.9 7.18 16.25 8.54 16.25 9.99C16.25 11.44 15.89 12.81 15.27 14.01L16.47 15.21C17.44 13.67 18.01 11.85 18.01 9.9C18 8.01 17.46 6.23 16.53 4.71ZM12.71 5.71L7 0H6V7.59L1.41 3L0 4.41L5.59 10L0 15.59L1.41 17L6 12.41V20H7L12.71 14.29L8.41 10L12.71 5.71ZM8 3.83L9.88 5.71L8 7.59V3.83ZM9.88 14.29L8 16.17V12.41L9.88 14.29Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M14.235 12.01L16.555 14.33C16.835 13.61 16.995 12.82 16.995 12C16.995 11.18 16.835 10.41 16.565 9.69L14.235 12.01ZM19.525 6.71L18.265 7.97C18.895 9.18 19.245 10.54 19.245 11.99C19.245 13.44 18.885 14.81 18.265 16.01L19.465 17.21C20.435 15.67 21.005 13.85 21.005 11.9C20.995 10.01 20.455 8.23 19.525 6.71ZM15.705 7.71L9.995 2H8.995V9.59L4.405 5L2.995 6.41L8.585 12L2.995 17.59L4.405 19L8.995 14.41V22H9.995L15.705 16.29L11.405 12L15.705 7.71ZM10.995 5.83L12.875 7.71L10.995 9.59V5.83ZM12.875 16.29L10.995 18.17V14.41L12.875 16.29Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default BluetoothSearching;
+export default IconBluetoothSearching;

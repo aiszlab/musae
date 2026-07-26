@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const RecentActors = withIcon(({ size }) => {
+const IconRecentActors = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,22 +10,20 @@ const RecentActors = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 4.3636) scale(1.0909)">
-        <path
-          d="M20 0H22V14H20V0ZM16 0H18V14H16V0ZM13 0H1C0.45 0 0 0.45 0 1V13C0 13.55 0.45 14 1 14H13C13.55 14 14 13.55 14 13V1C14 0.45 13.55 0 13 0ZM12 12H2V2H12V12Z"
-          fill="currentColor"
-        />
-        <path
-          d="M7 6.89C8.07696 6.89 8.95 6.01695 8.95 4.94C8.95 3.86304 8.07696 2.99 7 2.99C5.92304 2.99 5.05 3.86304 5.05 4.94C5.05 6.01695 5.92304 6.89 7 6.89Z"
-          fill="currentColor"
-        />
-        <path
-          d="M10.89 10.35C10.89 9.05 8.3 8.4 7 8.4C5.7 8.4 3.11 9.05 3.11 10.35V11H10.89V10.35Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M21 5H23V19H21V5ZM17 5H19V19H17V5ZM14 5H2C1.45 5 1 5.45 1 6V18C1 18.55 1.45 19 2 19H14C14.55 19 15 18.55 15 18V6C15 5.45 14.55 5 14 5ZM13 17H3V7H13V17Z"
+        fill="currentColor"
+      />
+      <path
+        d="M8 11.89C9.07696 11.89 9.95 11.017 9.95 9.94C9.95 8.86304 9.07696 7.99 8 7.99C6.92304 7.99 6.05 8.86304 6.05 9.94C6.05 11.017 6.92304 11.89 8 11.89Z"
+        fill="currentColor"
+      />
+      <path
+        d="M11.89 15.35C11.89 14.05 9.3 13.4 8 13.4C6.7 13.4 4.11 14.05 4.11 15.35V16H11.89V15.35Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default RecentActors;
+export default IconRecentActors;

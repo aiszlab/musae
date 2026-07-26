@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const SignalCellularNoSim = withIcon(({ size }) => {
+const IconSignalCellularNoSim = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const SignalCellularNoSim = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0.4526, 0) scale(1.2232)">
-        <path
-          d="M8.45 2H14.62V11.11L16.62 13.11V2C16.62 0.9 15.72 0 14.62 0H7.62L5.56 2.06L6.98 3.48L8.45 2ZM18.88 18.21L1.41 0.74L0 2.15L2.62 4.77V16C2.62 17.11 3.52 18 4.62 18H15.85L17.47 19.62L18.88 18.21ZM4.62 16V6.79L13.85 16H4.62Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M11.01 4.19H17.18V13.3L19.18 15.3V4.19C19.18 3.09 18.28 2.19 17.18 2.19H10.18L8.12 4.25L9.54 5.67L11.01 4.19ZM21.44 20.4L3.97 2.93L2.56 4.34L5.18 6.96V18.19C5.18 19.3 6.08 20.19 7.18 20.19H18.41L20.03 21.81L21.44 20.4ZM7.18 18.19V8.98L16.41 18.19H7.18Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default SignalCellularNoSim;
+export default IconSignalCellularNoSim;

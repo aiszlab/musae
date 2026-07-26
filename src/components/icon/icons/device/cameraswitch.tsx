@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Cameraswitch = withIcon(({ size }) => {
+const IconCameraswitch = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,24 @@ const Cameraswitch = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0) scale(1.3333)">
-        <path
-          d="M17 2V1C17 0.45 16.55 0 16 0H14C13.45 0 13 0.45 13 1V2H12V6C12 6.55 12.45 7 13 7H14V14C14 15.1 13.1 16 12 16C10.9 16 10 15.1 10 14V4C10 1.79 8.21 0 6 0C3.79 0 2 1.79 2 4V11H1C0.45 11 0 11.45 0 12V16H1V17C1 17.55 1.45 18 2 18H4C4.55 18 5 17.55 5 17V16H6V12C6 11.45 5.55 11 5 11H4V4C4 2.9 4.9 2 6 2C7.1 2 8 2.9 8 4V14C8 16.21 9.79 18 12 18C14.21 18 16 16.21 16 14V7H17C17.55 7 18 6.55 18 6V2H17Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M16 7H15L14 6H10L9 7H8C6.9 7 6 7.9 6 9V15C6 16.1 6.9 17 8 17H16C17.1 17 18 16.1 18 15V9C18 7.9 17.1 7 16 7ZM16 15H8V9H9.83L10.83 8H13.17L14.17 9H16V15Z"
+        fill="currentColor"
+      />
+      <path
+        d="M12 14C13.105 14 14 13.105 14 12C14 10.896 13.105 10 12 10C10.895 10 10 10.896 10 12C10 13.105 10.895 14 12 14Z"
+        fill="currentColor"
+      />
+      <path
+        d="M8.57 0.52L13.05 5L14.46 3.59L12.92 2.05C17.7 2.46 21.53 6.24 22 11H24C23.36 3.3 15.79 -1.67 8.57 0.52Z"
+        fill="currentColor"
+      />
+      <path
+        d="M9.54 20.41L11.08 21.95C6.3 21.54 2.47 17.76 2 13H0C0.64 20.7 8.21 25.67 15.43 23.48L10.95 19L9.54 20.41Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default Cameraswitch;
+export default IconCameraswitch;

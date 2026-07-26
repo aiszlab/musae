@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const FileDownloadOff = withIcon(({ size }) => {
+const IconFileDownloadOff = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const FileDownloadOff = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0) scale(1.2121)">
-        <path
-          d="M16.61 12.36V12.19H18.61V14.36L16.61 12.36ZM14.02 9.78L15.61 8.19L14.2 6.78L12.61 8.36L14.02 9.78ZM11.61 7.36V1.19H9.61V5.36L11.61 7.36ZM19.8 18.38L1.42 0L0 1.41L6.19 7.6L5.61 8.19L10.61 13.19L11.2 12.6L13.78 15.19H4.61V12.19H2.61V15.19C2.61 16.29 3.51 17.19 4.61 17.19H15.78L18.39 19.8L19.8 18.38Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M18.71 14.4596V14.2896H20.71V16.4596L18.71 14.4596ZM16.12 11.8796L17.71 10.2896L16.3 8.87961L14.71 10.4596L16.12 11.8796ZM13.71 9.45961V3.28961H11.71V7.45961L13.71 9.45961ZM21.9 20.4796L3.52001 2.09961L2.10001 3.50961L8.29001 9.69961L7.71001 10.2896L12.71 15.2896L13.3 14.6996L15.88 17.2896H6.71001V14.2896H4.71001V17.2896C4.71001 18.3896 5.61001 19.2896 6.71001 19.2896H17.88L20.49 21.8996L21.9 20.4796Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default FileDownloadOff;
+export default IconFileDownloadOff;

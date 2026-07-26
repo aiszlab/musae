@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const SignalWifi4BarLock = withIcon(({ size }) => {
+const IconSignalWifi4BarLock = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,18 +10,16 @@ const SignalWifi4BarLock = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 3.5) scale(1)">
-        <path
-          d="M21.98 7L24 4.98C20.93 1.9 16.69 0 12 0C7.31 0 3.07 1.9 0 4.98L12 17L15.05 13.95V11C15.05 10.55 15.14 10.12 15.28 9.71C15.82 8.14 17.29 7 19.05 7H21.98Z"
-          fill="currentColor"
-        />
-        <path
-          d="M22 12V11C22 9.9 21.1 9 20 9C18.9 9 18 9.9 18 11V12C17.45 12 17 12.45 17 13V16C17 16.55 17.45 17 18 17H22C22.55 17 23 16.55 23 16V13C23 12.45 22.55 12 22 12ZM21 12H19V11C19 10.45 19.45 10 20 10C20.55 10 21 10.45 21 11V12Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M21.98 10.5L24 8.48C20.93 5.4 16.69 3.5 12 3.5C7.31 3.5 3.07 5.4 0 8.48L12 20.5L15.05 17.45V14.5C15.05 14.05 15.14 13.62 15.28 13.21C15.82 11.64 17.29 10.5 19.05 10.5H21.98Z"
+        fill="currentColor"
+      />
+      <path
+        d="M22 15.5V14.5C22 13.4 21.1 12.5 20 12.5C18.9 12.5 18 13.4 18 14.5V15.5C17.45 15.5 17 15.95 17 16.5V19.5C17 20.05 17.45 20.5 18 20.5H22C22.55 20.5 23 20.05 23 19.5V16.5C23 15.95 22.55 15.5 22 15.5ZM21 15.5H19V14.5C19 13.95 19.45 13.5 20 13.5C20.55 13.5 21 13.95 21 14.5V15.5Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default SignalWifi4BarLock;
+export default IconSignalWifi4BarLock;

@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const VideoStable = withIcon(({ size }) => {
+const IconVideoStable = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const VideoStable = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 2.4) scale(1.2)">
-        <path
-          d="M18 0H2C0.9 0 0 0.9 0 2V14C0 15.1 0.9 16 2 16H18C19.1 16 20 15.1 20 14V2C20 0.9 19.1 0 18 0ZM2 14V2H4.95L2.62 10.73L14.82 14H2ZM13.62 11.61L5.07 9.32L6.38 4.4L14.94 6.69L13.62 11.61ZM18 14H15.05L17.39 5.27L5.18 2H18V14Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M20 2H4C2.9 2 2 2.9 2 4V16C2 17.1 2.9 18 4 18H20C21.1 18 22 17.1 22 16V4C22 2.9 21.1 2 20 2ZM4 16V4H6.95L4.62 12.73L16.82 16H4ZM15.62 13.61L7.07 11.32L8.38 6.4L16.94 8.69L15.62 13.61ZM20 16H17.05L19.39 7.27L7.18 4H20V16Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default VideoStable;
+export default IconVideoStable;

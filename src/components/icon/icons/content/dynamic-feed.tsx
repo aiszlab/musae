@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const DynamicFeed = withIcon(({ size }) => {
+const IconDynamicFeed = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,16 +10,14 @@ const DynamicFeed = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 1.2) scale(1.2)">
-        <path d="M6 5H4V12C4 13.1 4.9 14 6 14H15V12H6V5Z" fill="currentColor" />
-        <path
-          d="M18 0H10C8.9 0 8 0.9 8 2V8C8 9.1 8.9 10 10 10H18C19.1 10 20 9.1 20 8V2C20 0.9 19.1 0 18 0ZM18 8H10V4H18V8Z"
-          fill="currentColor"
-        />
-        <path d="M2 9H0V16C0 17.1 0.9 18 2 18H11V16H2V9Z" fill="currentColor" />
-      </g>
+      <path d="M8 8H6V15C6 16.1 6.9 17 8 17H17V15H8V8Z" fill="currentColor" />
+      <path
+        d="M20 3H12C10.9 3 10 3.9 10 5V11C10 12.1 10.9 13 12 13H20C21.1 13 22 12.1 22 11V5C22 3.9 21.1 3 20 3ZM20 11H12V7H20V11Z"
+        fill="currentColor"
+      />
+      <path d="M4 12H2V19C2 20.1 2.9 21 4 21H13V19H4V12Z" fill="currentColor" />
     </svg>
   );
 });
 
-export default DynamicFeed;
+export default IconDynamicFeed;

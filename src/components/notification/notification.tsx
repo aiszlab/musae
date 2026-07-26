@@ -8,11 +8,11 @@ import { useClassNames } from "../../hooks/use-class-names";
 import { duration, elevations, sizes, spacing } from "../theme/tokens.stylex";
 import {
   IconCheckCircle,
-  Close,
-  Loading,
-  Error,
-  NotificationImportant,
-  Warning,
+  IconClose,
+  IconLoading,
+  IconError,
+  IconNotificationImportant,
+  IconWarning,
 } from "../icon/icons";
 import type { IconProps } from "../../types/icon";
 import { stringify } from "@aiszlab/relax/class-name";
@@ -37,10 +37,10 @@ export const PLACEMENTS: Record<Axis, [hidden: string, appeared: string]> = {
 
 const LEADINGS = new Map<Type, FC<IconProps>>([
   ["success", IconCheckCircle],
-  ["error", Error],
-  ["loading", Loading],
-  ["info", NotificationImportant],
-  ["warning", Warning],
+  ["error", IconError],
+  ["loading", IconLoading],
+  ["info", IconNotificationImportant],
+  ["warning", IconWarning],
 ]);
 
 const styles = {
@@ -226,7 +226,7 @@ const Notification = forwardRef<HTMLDivElement, NotificationProps>(
         </div>
 
         {closable && (
-          <Close
+          <IconClose
             className={stringify(classNames.closer, styled.closer.className)}
             onClick={onClose}
             color={theme.colors.primary}

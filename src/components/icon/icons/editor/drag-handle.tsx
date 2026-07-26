@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const DragHandle = withIcon(({ size }) => {
+const IconDragHandle = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,11 +10,9 @@ const DragHandle = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 7.5) scale(1.5)">
-        <path d="M16 0H0V2H16V0ZM0 6H16V4H0V6Z" fill="currentColor" />
-      </g>
+      <path d="M20 9H4V11H20V9ZM4 15H20V13H4V15Z" fill="currentColor" />
     </svg>
   );
 });
 
-export default DragHandle;
+export default IconDragHandle;

@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const BorderStyle = withIcon(({ size }) => {
+const IconBorderStyle = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const BorderStyle = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0) scale(1.3333)">
-        <path
-          d="M12 18H14V16H12V18ZM16 18H18V16H16V18ZM4 18H6V16H4V18ZM8 18H10V16H8V18ZM16 14H18V12H16V14ZM16 10H18V8H16V10ZM0 0V18H2V2H18V0H0ZM16 6H18V4H16V6Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M15 21H17V19H15V21ZM19 21H21V19H19V21ZM7 21H9V19H7V21ZM11 21H13V19H11V21ZM19 17H21V15H19V17ZM19 13H21V11H19V13ZM3 3V21H5V5H21V3H3ZM19 9H21V7H19V9Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default BorderStyle;
+export default IconBorderStyle;

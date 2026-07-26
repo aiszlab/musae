@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Forest = withIcon(({ size }) => {
+const IconForest = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const Forest = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 2) scale(1)">
-        <path
-          d="M24 16L20.14 10H22L15 0L12 4.29L9 0L2 10H3.86L0 16H7V20H11V16H13V20H17V16H24ZM15 3.49L18.16 8H16.48L20.34 14H16.72L14.15 10H16L13.22 6.03L15 3.49ZM3.66 14L7.52 8H5.84L9 3.49L12.16 8H10.48L14.34 14H3.66Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M24 18L20.14 12H22L15 2L12 6.29L9 2L2 12H3.86L0 18H7V22H11V18H13V22H17V18H24ZM15 5.49L18.16 10H16.48L20.34 16H16.72L14.15 12H16L13.22 8.03L15 5.49ZM3.66 16L7.52 10H5.84L9 5.49L12.16 10H10.48L14.34 16H3.66Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default Forest;
+export default IconForest;

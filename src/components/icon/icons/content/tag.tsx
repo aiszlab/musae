@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Tag = withIcon(({ size }) => {
+const IconTag = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const Tag = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0) scale(1.5)">
-        <path
-          d="M16 6V4H12V0H10V4H6V0H4V4H0V6H4V10H0V12H4V16H6V12H10V16H12V12H16V10H12V6H16ZM10 10H6V6H10V10Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M20 10V8H16V4H14V8H10V4H8V8H4V10H8V14H4V16H8V20H10V16H14V20H16V16H20V14H16V10H20ZM14 14H10V10H14V14Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default Tag;
+export default IconTag;

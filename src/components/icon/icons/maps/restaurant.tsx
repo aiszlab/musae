@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Restaurant = withIcon(({ size }) => {
+const IconRestaurant = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const Restaurant = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(1.2, 0) scale(1.2)">
-        <path
-          d="M13 4V12H16V20H18V0C15.24 0 13 2.24 13 4ZM8 7H6V0H4V7H2V0H0V7C0 9.21 1.79 11 4 11V20H6V11C8.21 11 10 9.21 10 7V0H8V7Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M 16.8 4.8 V 14.4 H 20.4 V 24 H 22.8 V 0 C 19.488 0 16.8 2.688 16.8 4.8ZM 10.8 8.4 H 8.4 V 0 H 6 V 8.4 H 3.6 V 0 H 1.2 V 8.4 C 1.2 11.052 3.348 13.2 6 13.2 V 24 H 8.4 V 13.2 C 11.052 13.2 13.2 11.052 13.2 8.4 V 0 H 10.8 V 8.4Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default Restaurant;
+export default IconRestaurant;

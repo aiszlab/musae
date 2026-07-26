@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Games = withIcon(({ size }) => {
+const IconGames = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,15 @@ const Games = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0) scale(1.2)">
-        <path
-          d="M11 2V4.67L10 5.67L9 4.67V2H11ZM18 9V11H15.33L14.33 10L15.33 9H18ZM4.67 9L5.67 10L4.67 11H2V9H4.67ZM10 14.33L11 15.33V18H9V15.33L10 14.33ZM13 0H7V5.5L10 8.5L13 5.5V0ZM20 7H14.5L11.5 10L14.5 13H20V7ZM5.5 7H0V13H5.5L8.5 10L5.5 7ZM10 11.5L7 14.5V20H13V14.5L10 11.5Z"
-          fill="currentColor"
-        />
-      </g>
+      <path d="Av" fill="currentColor" />
+      <path d="games" fill="currentColor" />
+      <path d="Vector" fill="currentColor" />
+      <path
+        d="M13 4V6.67L12 7.67L11 6.67V4H13ZM20 11V13H17.33L16.33 12L17.33 11H20ZM6.67 11L7.67 12L6.67 13H4V11H6.67ZM12 16.33L13 17.33V20H11V17.33L12 16.33ZM15 2H9V7.5L12 10.5L15 7.5V2ZM22 9H16.5L13.5 12L16.5 15H22V9ZM7.5 9H2V15H7.5L10.5 12L7.5 9ZM12 13.5L9 16.5V22H15V16.5L12 13.5Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default Games;
+export default IconGames;

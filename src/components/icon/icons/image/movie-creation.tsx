@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const MovieCreation = withIcon(({ size }) => {
+const IconMovieCreation = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const MovieCreation = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 2.4) scale(1.2)">
-        <path
-          d="M3.76 6H18V14H2V2.47M20 0H16L18 4H15L13 0H11L13 4H10L8 0H6L8 4H5L3 0H2C0.9 0 0 0.9 0 2V14C0 15.1 0.9 16 2 16H18C19.1 16 20 15.1 20 14V0Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M5.76 8H20V16H4V4.47M22 2H18L20 6H17L15 2H13L15 6H12L10 2H8L10 6H7L5 2H4C2.9 2 2 2.9 2 4V16C2 17.1 2.9 18 4 18H20C21.1 18 22 17.1 22 16V2Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default MovieCreation;
+export default IconMovieCreation;

@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Layers = withIcon(({ size }) => {
+const IconLayers = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const Layers = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0.6733, 0) scale(1.2585)">
-        <path
-          d="M8.99 16.54L1.62 10.81L0 12.07L9 19.07L18 12.07L16.37 10.8L8.99 16.54ZM9 14L16.36 8.27L18 7L9 0L0 7L1.63 8.27L9 14ZM9 2.53L14.74 7L9 11.47L3.26 7L9 2.53Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M 11.9872 20.8156 L 2.7121 13.6044 L 0.6733 15.1901 L 12 24 L 23.3263 15.1901 L 21.2749 13.5918 L 11.9872 20.8156ZM 12 17.619 L 21.2624 10.4078 L 23.3263 8.8095 L 12 0 L 0.6733 8.8095 L 2.7247 10.4078 L 12 17.619ZM 12 3.184 L 19.2236 8.8095 L 12 14.435 L 4.776 8.8095 L 12 3.184Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default Layers;
+export default IconLayers;

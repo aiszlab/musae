@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Shortcut = withIcon(({ size }) => {
+const IconShortcut = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const Shortcut = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 2.6667) scale(1.3333)">
-        <path
-          d="M12 0L10.59 1.41L12 2.83L14.17 5H5C2.24 5 0 7.24 0 10V14H2V10C2 8.35 3.35 7 5 7H14.17L10.59 10.58L12 12L18 6L12 0Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M15 5L13.59 6.41L15 7.83L17.17 10H8C5.24 10 3 12.24 3 15V19H5V15C5 13.35 6.35 12 8 12H17.17L13.59 15.58L15 17L21 11L15 5Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default Shortcut;
+export default IconShortcut;

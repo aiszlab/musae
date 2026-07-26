@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const OutlinedFlag = withIcon(({ size }) => {
+const IconOutlinedFlag = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const OutlinedFlag = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(1.4118, 0) scale(1.4118)">
-        <path
-          d="M9 2L8 0H0V17H2V10H7L8 12H15V2H9ZM13 10H9L8 8H2V2H7L8 4H13V10Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M13.5 5.5L12.5 3.5H4.5V20.5H6.5V13.5H11.5L12.5 15.5H19.5V5.5H13.5ZM17.5 13.5H13.5L12.5 11.5H6.5V5.5H11.5L12.5 7.5H17.5V13.5Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default OutlinedFlag;
+export default IconOutlinedFlag;

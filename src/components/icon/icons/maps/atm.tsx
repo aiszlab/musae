@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Atm = withIcon(({ size }) => {
+const IconAtm = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const Atm = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 8.4) scale(1.2)">
-        <path
-          d="M6 0V1.5H8.25V6H9.75V1.5H12V0H6ZM4 0H1C0.45 0 0 0.45 0 1V6H1.5V4.5H3.5V6H5V1C5 0.45 4.55 0 4 0ZM3.5 3H1.5V1.5H3.5V3ZM19 0H14.5C13.95 0 13.5 0.45 13.5 1V6H15V1.5H16V5H17.5V1.49H18.5V6H20V1C20 0.45 19.55 0 19 0Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M8 9V10.5H10.25V15H11.75V10.5H14V9H8ZM6 9H3C2.45 9 2 9.45 2 10V15H3.5V13.5H5.5V15H7V10C7 9.45 6.55 9 6 9ZM5.5 12H3.5V10.5H5.5V12ZM21 9H16.5C15.95 9 15.5 9.45 15.5 10V15H17V10.5H18V14H19.5V10.49H20.5V15H22V10C22 9.45 21.55 9 21 9Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default Atm;
+export default IconAtm;

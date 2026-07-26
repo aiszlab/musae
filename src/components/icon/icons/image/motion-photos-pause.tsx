@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const MotionPhotosPause = withIcon(({ size }) => {
+const IconMotionPhotosPause = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const MotionPhotosPause = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0) scale(1.2)">
-        <path
-          d="M0.88 5.88L2.42 7.42C2.15 8.23 2 9.1 2 10C2 14.41 5.59 18 10 18C14.41 18 18 14.41 18 10C18 5.59 14.41 2 10 2C9.1 2 8.23 2.15 7.42 2.42L5.89 0.89C7.15 0.32 8.54 0 10 0C15.52 0 20 4.48 20 10C20 15.52 15.52 20 10 20C4.48 20 0 15.52 0 10C0 8.53 0.32 7.14 0.88 5.88ZM5 3.5C5 4.33 4.33 5 3.5 5C2.67 5 2 4.33 2 3.5C2 2.67 2.67 2 3.5 2C4.33 2 5 2.67 5 3.5ZM9 13H7V7H9V13ZM13 13H11V7H13V13Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M2.88 7.88L4.42 9.42C4.15 10.23 4 11.1 4 12C4 16.41 7.59 20 12 20C16.41 20 20 16.41 20 12C20 7.59 16.41 4 12 4C11.1 4 10.23 4.15 9.42 4.42L7.89 2.89C9.15 2.32 10.54 2 12 2C17.52 2 22 6.48 22 12C22 17.52 17.52 22 12 22C6.48 22 2 17.52 2 12C2 10.53 2.32 9.14 2.88 7.88ZM7 5.5C7 6.33 6.33 7 5.5 7C4.67 7 4 6.33 4 5.5C4 4.67 4.67 4 5.5 4C6.33 4 7 4.67 7 5.5ZM11 15H9V9H11V15ZM15 15H13V9H15V15Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default MotionPhotosPause;
+export default IconMotionPhotosPause;

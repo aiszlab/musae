@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Money = withIcon(({ size }) => {
+const IconMoney = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const Money = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 2.4) scale(1.2)">
-        <path
-          d="M13 12H16C16.55 12 17 11.55 17 11V5C17 4.45 16.55 4 16 4H13C12.45 4 12 4.45 12 5V11C12 11.55 12.45 12 13 12ZM14 6H15V10H14V6ZM7 12H10C10.55 12 11 11.55 11 11V5C11 4.45 10.55 4 10 4H7C6.45 4 6 4.45 6 5V11C6 11.55 6.45 12 7 12ZM8 6H9V10H8V6ZM3 4H5V12H3V4ZM0 0V16H20V0H0ZM18 14H2V2H18V14Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M 15.6 16.8 H 19.2 C 19.86 16.8 20.4 16.26 20.4 15.6 V 8.4 C 20.4 7.74 19.86 7.2 19.2 7.2 H 15.6 C 14.94 7.2 14.4 7.74 14.4 8.4 V 15.6 C 14.4 16.26 14.94 16.8 15.6 16.8ZM 16.8 9.6 H 18 V 14.4 H 16.8 V 9.6ZM 8.4 16.8 H 12 C 12.66 16.8 13.2 16.26 13.2 15.6 V 8.4 C 13.2 7.74 12.66 7.2 12 7.2 H 8.4 C 7.74 7.2 7.2 7.74 7.2 8.4 V 15.6 C 7.2 16.26 7.74 16.8 8.4 16.8ZM 9.6 9.6 H 10.8 V 14.4 H 9.6 V 9.6ZM 3.6 7.2 H 6 V 16.8 H 3.6 V 7.2ZM 0 2.4 V 21.6 H 24 V 2.4 H 0ZM 21.6 19.2 H 2.4 V 4.8 H 21.6 V 19.2Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default Money;
+export default IconMoney;

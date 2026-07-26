@@ -2,7 +2,7 @@ import React, { createElement, useContext } from "react";
 import { useEvent, useHover } from "@aiszlab/relax";
 import { create as $create, props as $props } from "@stylexjs/stylex";
 import { duration, sizes } from "../theme/tokens.stylex";
-import { Star as _Star } from "../icon/icons";
+import { IconStar as _Star } from "../icon/icons";
 import type { StarProps } from "../../types/rate";
 import { stringify } from "@aiszlab/relax/class-name";
 import Context from "./context";

@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const ConfirmationNumber = withIcon(({ size }) => {
+const IconConfirmationNumber = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const ConfirmationNumber = withIcon(({ size }) => {
   );
 });
 
-export default ConfirmationNumber;
+export default IconConfirmationNumber;

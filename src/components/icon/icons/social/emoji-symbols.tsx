@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const EmojiSymbols = withIcon(({ size }) => {
+const IconEmojiSymbols = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -39,4 +39,4 @@ const EmojiSymbols = withIcon(({ size }) => {
   );
 });
 
-export default EmojiSymbols;
+export default IconEmojiSymbols;

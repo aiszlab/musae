@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const FormatLineSpacing = withIcon(({ size }) => {
+const IconFormatLineSpacing = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const FormatLineSpacing = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 2.0488) scale(1.1707)">
-        <path
-          d="M4.5 3.5H7L3.5 0L0 3.5H2.5V13.5H0L3.5 17L7 13.5H4.5V3.5ZM8.5 1.5V3.5H20.5V1.5H8.5ZM8.5 15.5H20.5V13.5H8.5V15.5ZM8.5 9.5H20.5V7.5H8.5V9.5Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M6.25 7H8.75L5.25 3.5L1.75 7H4.25V17H1.75L5.25 20.5L8.75 17H6.25V7ZM10.25 5V7H22.25V5H10.25ZM10.25 19H22.25V17H10.25V19ZM10.25 13H22.25V11H10.25V13Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default FormatLineSpacing;
+export default IconFormatLineSpacing;

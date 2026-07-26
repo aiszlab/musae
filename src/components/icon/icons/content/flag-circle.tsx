@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const FlagCircle = withIcon(({ size }) => {
+const IconFlagCircle = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,18 +10,16 @@ const FlagCircle = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0) scale(1.2)">
-        <path
-          d="M10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM10 18C5.59 18 2 14.41 2 10C2 5.59 5.59 2 10 2C14.41 2 18 5.59 18 10C18 14.41 14.41 18 10 18Z"
-          fill="currentColor"
-        />
-        <path
-          d="M13 7L12 5H6V16H7.5V11H10L11 13H16V7H13ZM14.5 11.5H11.93L10.93 9.5H7.5V6.5H11.07L12.07 8.5H14.5V11.5Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.59 20 4 16.41 4 12C4 7.59 7.59 4 12 4C16.41 4 20 7.59 20 12C20 16.41 16.41 20 12 20Z"
+        fill="currentColor"
+      />
+      <path
+        d="M15 9L14 7H8V18H9.5V13H12L13 15H18V9H15ZM16.5 13.5H13.93L12.93 11.5H9.5V8.5H13.07L14.07 10.5H16.5V13.5Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default FlagCircle;
+export default IconFlagCircle;

@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Battery5Bar = withIcon(({ size }) => {
+const IconBattery5Bar = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const Battery5Bar = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(6, 0) scale(1.2)">
-        <path
-          d="M10 3V19C10 19.55 9.55 20 9 20H1C0.45 20 0 19.55 0 19V3C0 2.45 0.45 2 1 2H3V0H7V2H9C9.55 2 10 2.45 10 3ZM8 4H2V8H8V4Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M17 5V21C17 21.55 16.55 22 16 22H8C7.45 22 7 21.55 7 21V5C7 4.45 7.45 4 8 4H10V2H14V4H16C16.55 4 17 4.45 17 5ZM15 6H9V10H15V6Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default Battery5Bar;
+export default IconBattery5Bar;

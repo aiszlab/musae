@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const RuleFolder = withIcon(({ size }) => {
+const IconRuleFolder = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const RuleFolder = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 2.4) scale(1.2)">
-        <path
-          d="M5.83 12L3 9.17L4.41 7.76L5.82 9.17L9.36 5.63L10.77 7.04L5.83 12ZM15.41 9L17 10.59L15.59 12L14 10.41L12.41 12L11 10.59L12.59 9L11 7.41L12.41 6L14 7.59L15.59 6L17 7.41L15.41 9ZM18 2H10L8 0H2C0.9 0 0.00999999 0.9 0.00999999 2L0 14C0 15.1 0.9 16 2 16H18C19.1 16 20 15.1 20 14V4C20 2.9 19.1 2 18 2ZM18 14H2V2H7.17L9.17 4H18V14Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M7.83 16L5 13.17L6.41 11.76L7.82 13.17L11.36 9.63L12.77 11.04L7.83 16ZM17.41 13L19 14.59L17.59 16L16 14.41L14.41 16L13 14.59L14.59 13L13 11.41L14.41 10L16 11.59L17.59 10L19 11.41L17.41 13ZM20 6H12L10 4H4C2.9 4 2.01 4.9 2.01 6L2 18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V8C22 6.9 21.1 6 20 6ZM20 18H4V6H9.17L11.17 8H20V18Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default RuleFolder;
+export default IconRuleFolder;

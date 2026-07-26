@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const OfflineShare = withIcon(({ size }) => {
+const IconOfflineShare = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,19 +10,17 @@ const OfflineShare = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(3.2727, 0) scale(1.0909)">
-        <path d="M2 4H0V20C0 21.1 0.9 22 2 22H12V20H2V4Z" fill="currentColor" />
-        <path
-          d="M14 0H6C4.9 0 4 0.9 4 2V16C4 17.1 4.9 18 6 18H14C15.1 18 16 17.1 16 16V2C16 0.9 15.1 0 14 0ZM14 16H6V15H14V16ZM14 13H6V5H14V13ZM14 3H6V2H14V3Z"
-          fill="currentColor"
-        />
-        <path
-          d="M8.5 9.25H10.13L9.44 9.94L10.5 11L13 8.5L10.5 6L9.44 7.06L10.13 7.75H8C7.45 7.75 7 8.2 7 8.75V11H8.5V9.25Z"
-          fill="currentColor"
-        />
-      </g>
+      <path d="M6 5H4V21C4 22.1 4.9 23 6 23H16V21H6V5Z" fill="currentColor" />
+      <path
+        d="M18 1H10C8.9 1 8 1.9 8 3V17C8 18.1 8.9 19 10 19H18C19.1 19 20 18.1 20 17V3C20 1.9 19.1 1 18 1ZM18 17H10V16H18V17ZM18 14H10V6H18V14ZM18 4H10V3H18V4Z"
+        fill="currentColor"
+      />
+      <path
+        d="M12.5 10.25H14.13L13.44 10.94L14.5 12L17 9.5L14.5 7L13.44 8.06L14.13 8.75H12C11.45 8.75 11 9.2 11 9.75V12H12.5V10.25Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default OfflineShare;
+export default IconOfflineShare;

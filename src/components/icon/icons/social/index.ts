@@ -1,187 +1,377 @@
-export { default as _18UpRating } from "./18-up-rating";
-export { default as _6FtApart } from "./6-ft-apart";
-export { default as AddModerator } from "./add-moderator";
-export { default as AddReaction } from "./add-reaction";
-export { default as Architecture } from "./architecture";
-export { default as AssistWalker } from "./assist-walker";
-export { default as BackHand } from "./back-hand";
-export { default as Blind } from "./blind";
-export { default as Boy } from "./boy";
-export { default as Cake } from "./cake";
-export { default as CatchingPokemon } from "./catching-pokemon";
-export { default as CleanHands } from "./clean-hands";
-export { default as Co2 } from "./co2";
-export { default as Compost } from "./compost";
-export { default as ConnectWithoutContact } from "./connect-without-contact";
-export { default as Construction } from "./construction";
-export { default as Cookie } from "./cookie";
-export { default as Coronavirus } from "./coronavirus";
-export { default as CrueltyFree } from "./cruelty-free";
-export { default as Cyclone } from "./cyclone";
-export { default as Deck } from "./deck";
-export { default as Diversity1 } from "./diversity-1";
-export { default as Diversity2 } from "./diversity-2";
-export { default as Diversity3 } from "./diversity-3";
-export { default as DomainAdd } from "./domain-add";
-export { default as Domain } from "./domain";
-export { default as DownhillSkiing } from "./downhill-skiing";
-export { default as EditNotifications } from "./edit-notifications";
-export { default as ElderlyWoman } from "./elderly-woman";
-export { default as Elderly } from "./elderly";
-export { default as EmojiEmotions } from "./emoji-emotions";
-export { default as EmojiEvents } from "./emoji-events";
-export { default as EmojiFoodBeverage } from "./emoji-food-beverage";
-export { default as EmojiNature } from "./emoji-nature";
-export { default as EmojiObjects } from "./emoji-objects";
-export { default as EmojiPeople } from "./emoji-people";
-export { default as EmojiSymbols } from "./emoji-symbols";
-export { default as EmojiTransportation } from "./emoji-transportation";
-export { default as Engineering } from "./engineering";
-export { default as Face2 } from "./face-2";
-export { default as Face3 } from "./face-3";
-export { default as Face4 } from "./face-4";
-export { default as Face5 } from "./face-5";
-export { default as Face6 } from "./face-6";
-export { default as Female } from "./female";
-export { default as Fireplace } from "./fireplace";
-export { default as Fitbit } from "./fitbit";
-export { default as Flood } from "./flood";
-export { default as FollowTheSigns } from "./follow-the-signs";
-export { default as FrontHand } from "./front-hand";
-export { default as Girl } from "./girl";
-export { default as GroupAdd } from "./group-add";
-export { default as GroupOff } from "./group-off";
-export { default as GroupRemove } from "./group-remove";
-export { default as Group } from "./group";
-export { default as Groups2 } from "./groups-2";
-export { default as Groups3 } from "./groups-3";
-export { default as Groups } from "./groups";
-export { default as Handshake } from "./handshake";
-export { default as HealthAndSafety } from "./health-and-safety";
-export { default as HeartBroken } from "./heart-broken";
-export { default as Hiking } from "./hiking";
-export { default as HistoryEdu } from "./history-edu";
-export { default as Hive } from "./hive";
-export { default as IceSkating } from "./ice-skating";
-export { default as Interests } from "./interests";
-export { default as IosShare } from "./ios-share";
-export { default as Kayaking } from "./kayaking";
-export { default as KingBed } from "./king-bed";
-export { default as Kitesurfing } from "./kitesurfing";
-export { default as Landslide } from "./landslide";
-export { default as LocationCity } from "./location-city";
-export { default as Luggage } from "./luggage";
-export { default as Male } from "./male";
-export { default as Man2 } from "./man-2";
-export { default as Man3 } from "./man-3";
-export { default as Man4 } from "./man-4";
-export { default as Man } from "./man";
-export { default as Masks } from "./masks";
-export { default as MilitaryTech } from "./military-tech";
-export { default as MoodBad } from "./mood-bad";
-export { default as Mood } from "./mood";
-export { default as NightsStay } from "./nights-stay";
-export { default as NoAdultContent } from "./no-adult-content";
-export { default as NoLuggage } from "./no-luggage";
-export { default as NordicWalking } from "./nordic-walking";
-export { default as NotificationAdd } from "./notification-add";
-export { default as NotificationsActive } from "./notifications-active";
-export { default as NotificationsNone } from "./notifications-none";
-export { default as NotificationsOff } from "./notifications-off";
-export { default as NotificationsPaused } from "./notifications-paused";
-export { default as Notifications } from "./notifications";
-export { default as OutdoorGrill } from "./outdoor-grill";
-export { default as Pages } from "./pages";
-export { default as Paragliding } from "./paragliding";
-export { default as PartyMode } from "./party-mode";
-export { default as PeopleAlt } from "./people-alt";
-export { default as PeopleOutline } from "./people-outline";
-export { default as People } from "./people";
-export { default as Person2 } from "./person-2";
-export { default as Person3 } from "./person-3";
-export { default as Person4 } from "./person-4";
-export { default as PersonAddAlt1 } from "./person-add-alt-1";
-export { default as PersonAddAlt } from "./person-add-alt";
-export { default as PersonAdd } from "./person-add";
-export { default as PersonOff } from "./person-off";
-export { default as PersonOutline } from "./person-outline";
-export { default as PersonRemoveAlt1 } from "./person-remove-alt-1";
-export { default as PersonRemove } from "./person-remove";
-export { default as Person } from "./person";
-export { default as PersonalInjury } from "./personal-injury";
-export { default as PianoOff } from "./piano-off";
-export { default as Piano } from "./piano";
-export { default as Pix } from "./pix";
-export { default as PlusOne } from "./plus-one";
-export { default as Poll } from "./poll";
-export { default as PrecisionManufacturing } from "./precision-manufacturing";
-export { default as PsychologyAlt } from "./psychology-alt";
-export { default as Psychology } from "./psychology";
-export { default as PublicOff } from "./public-off";
-export { default as Public } from "./public";
-export { default as RealEstateAgent } from "./real-estate-agent";
-export { default as Recommend } from "./recommend";
-export { default as Recycling } from "./recycling";
-export { default as ReduceCapacity } from "./reduce-capacity";
-export { default as RemoveModerator } from "./remove-moderator";
-export { default as RollerSkating } from "./roller-skating";
-export { default as SafetyDivider } from "./safety-divider";
-export { default as Sanitizer } from "./sanitizer";
-export { default as Scale } from "./scale";
-export { default as School } from "./school";
-export { default as Science } from "./science";
-export { default as Scoreboard } from "./scoreboard";
-export { default as ScubaDiving } from "./scuba-diving";
-export { default as SelfImprovement } from "./self-improvement";
-export { default as SentimentDissatisfied } from "./sentiment-dissatisfied";
-export { default as SentimentNeutral } from "./sentiment-neutral";
-export { default as SentimentSatisfied } from "./sentiment-satisfied";
-export { default as SentimentVeryDissatisfied } from "./sentiment-very-dissatisfied";
-export { default as SentimentVerySatisfied } from "./sentiment-very-satisfied";
-export { default as SevereCold } from "./severe-cold";
-export { default as Share } from "./share";
-export { default as Sick } from "./sick";
-export { default as SignLanguage } from "./sign-language";
-export { default as SingleBed } from "./single-bed";
-export { default as Skateboarding } from "./skateboarding";
-export { default as Sledding } from "./sledding";
-export { default as Snowboarding } from "./snowboarding";
-export { default as Snowshoeing } from "./snowshoeing";
-export { default as SocialDistance } from "./social-distance";
-export { default as SouthAmerica } from "./south-america";
-export { default as SportsBaseball } from "./sports-baseball";
-export { default as SportsBasketball } from "./sports-basketball";
-export { default as SportsCricket } from "./sports-cricket";
-export { default as SportsEsports } from "./sports-esports";
-export { default as SportsFootball } from "./sports-football";
-export { default as SportsGolf } from "./sports-golf";
-export { default as SportsGymnastics } from "./sports-gymnastics";
-export { default as SportsHandball } from "./sports-handball";
-export { default as SportsHockey } from "./sports-hockey";
-export { default as SportsKabaddi } from "./sports-kabaddi";
-export { default as SportsMartialArts } from "./sports-martial-arts";
-export { default as SportsMma } from "./sports-mma";
-export { default as SportsMotorsports } from "./sports-motorsports";
-export { default as SportsRugby } from "./sports-rugby";
-export { default as SportsSoccer } from "./sports-soccer";
-export { default as SportsTennis } from "./sports-tennis";
-export { default as SportsVolleyball } from "./sports-volleyball";
-export { default as Sports } from "./sports";
-export { default as Surfing } from "./surfing";
-export { default as SwitchAccount } from "./switch-account";
-export { default as ThumbDownAlt } from "./thumb-down-alt";
-export { default as ThumbUpAlt } from "./thumb-up-alt";
-export { default as Thunderstorm } from "./thunderstorm";
-export { default as Tornado } from "./tornado";
-export { default as Transgender } from "./transgender";
-export { default as TravelExplore } from "./travel-explore";
-export { default as Tsunami } from "./tsunami";
-export { default as Vaccines } from "./vaccines";
-export { default as Volcano } from "./volcano";
-export { default as Wallet } from "./wallet";
-export { default as WaterDrop } from "./water-drop";
-export { default as WavingHand } from "./waving-hand";
-export { default as Whatshot } from "./whatshot";
-export { default as Woman2 } from "./woman-2";
-export { default as Woman } from "./woman";
-export { default as WorkspacePremium } from "./workspace-premium";
+import Icon18UpRating from "./18-up-rating";
+import Icon6FtApart from "./6-ft-apart";
+import IconAddModerator from "./add-moderator";
+import IconAddReaction from "./add-reaction";
+import IconArchitecture from "./architecture";
+import IconAssistWalker from "./assist-walker";
+import IconBackHand from "./back-hand";
+import IconBlind from "./blind";
+import IconBoy from "./boy";
+import IconCake from "./cake";
+import IconCatchingPokemon from "./catching-pokemon";
+import IconCleanHands from "./clean-hands";
+import IconCo2 from "./co2";
+import IconCompost from "./compost";
+import IconConnectWithoutContact from "./connect-without-contact";
+import IconConstruction from "./construction";
+import IconCookie from "./cookie";
+import IconCoronavirus from "./coronavirus";
+import IconCrueltyFree from "./cruelty-free";
+import IconCyclone from "./cyclone";
+import IconDeck from "./deck";
+import IconDiversity1 from "./diversity-1";
+import IconDiversity2 from "./diversity-2";
+import IconDiversity3 from "./diversity-3";
+import IconDomainAdd from "./domain-add";
+import IconDomain from "./domain";
+import IconDownhillSkiing from "./downhill-skiing";
+import IconEditNotifications from "./edit-notifications";
+import IconElderlyWoman from "./elderly-woman";
+import IconElderly from "./elderly";
+import IconEmojiEmotions from "./emoji-emotions";
+import IconEmojiEvents from "./emoji-events";
+import IconEmojiFoodBeverage from "./emoji-food-beverage";
+import IconEmojiNature from "./emoji-nature";
+import IconEmojiObjects from "./emoji-objects";
+import IconEmojiPeople from "./emoji-people";
+import IconEmojiSymbols from "./emoji-symbols";
+import IconEmojiTransportation from "./emoji-transportation";
+import IconEngineering from "./engineering";
+import IconFace2 from "./face-2";
+import IconFace3 from "./face-3";
+import IconFace4 from "./face-4";
+import IconFace5 from "./face-5";
+import IconFace6 from "./face-6";
+import IconFemale from "./female";
+import IconFireplace from "./fireplace";
+import IconFitbit from "./fitbit";
+import IconFlood from "./flood";
+import IconFollowTheSigns from "./follow-the-signs";
+import IconFrontHand from "./front-hand";
+import IconGirl from "./girl";
+import IconGroupAdd from "./group-add";
+import IconGroupOff from "./group-off";
+import IconGroupRemove from "./group-remove";
+import IconGroup from "./group";
+import IconGroups2 from "./groups-2";
+import IconGroups3 from "./groups-3";
+import IconGroups from "./groups";
+import IconHandshake from "./handshake";
+import IconHealthAndSafety from "./health-and-safety";
+import IconHeartBroken from "./heart-broken";
+import IconHiking from "./hiking";
+import IconHistoryEdu from "./history-edu";
+import IconHive from "./hive";
+import IconIceSkating from "./ice-skating";
+import IconInterests from "./interests";
+import IconIosShare from "./ios-share";
+import IconKayaking from "./kayaking";
+import IconKingBed from "./king-bed";
+import IconKitesurfing from "./kitesurfing";
+import IconLandslide from "./landslide";
+import IconLocationCity from "./location-city";
+import IconLuggage from "./luggage";
+import IconMale from "./male";
+import IconMan2 from "./man-2";
+import IconMan3 from "./man-3";
+import IconMan4 from "./man-4";
+import IconMan from "./man";
+import IconMasks from "./masks";
+import IconMilitaryTech from "./military-tech";
+import IconMoodBad from "./mood-bad";
+import IconMood from "./mood";
+import IconNightsStay from "./nights-stay";
+import IconNoAdultContent from "./no-adult-content";
+import IconNoLuggage from "./no-luggage";
+import IconNordicWalking from "./nordic-walking";
+import IconNotificationAdd from "./notification-add";
+import IconNotificationsActive from "./notifications-active";
+import IconNotificationsNone from "./notifications-none";
+import IconNotificationsOff from "./notifications-off";
+import IconNotificationsPaused from "./notifications-paused";
+import IconNotifications from "./notifications";
+import IconOutdoorGrill from "./outdoor-grill";
+import IconPages from "./pages";
+import IconParagliding from "./paragliding";
+import IconPartyMode from "./party-mode";
+import IconPeopleAlt from "./people-alt";
+import IconPeopleOutline from "./people-outline";
+import IconPeople from "./people";
+import IconPerson2 from "./person-2";
+import IconPerson3 from "./person-3";
+import IconPerson4 from "./person-4";
+import IconPersonAddAlt1 from "./person-add-alt-1";
+import IconPersonAddAlt from "./person-add-alt";
+import IconPersonAdd from "./person-add";
+import IconPersonOff from "./person-off";
+import IconPersonOutline from "./person-outline";
+import IconPersonRemoveAlt1 from "./person-remove-alt-1";
+import IconPersonRemove from "./person-remove";
+import IconPerson from "./person";
+import IconPersonalInjury from "./personal-injury";
+import IconPianoOff from "./piano-off";
+import IconPiano from "./piano";
+import IconPix from "./pix";
+import IconPlusOne from "./plus-one";
+import IconPoll from "./poll";
+import IconPrecisionManufacturing from "./precision-manufacturing";
+import IconPsychologyAlt from "./psychology-alt";
+import IconPsychology from "./psychology";
+import IconPublicOff from "./public-off";
+import IconPublic from "./public";
+import IconRealEstateAgent from "./real-estate-agent";
+import IconRecommend from "./recommend";
+import IconRecycling from "./recycling";
+import IconReduceCapacity from "./reduce-capacity";
+import IconRemoveModerator from "./remove-moderator";
+import IconRollerSkating from "./roller-skating";
+import IconSafetyDivider from "./safety-divider";
+import IconSanitizer from "./sanitizer";
+import IconScale from "./scale";
+import IconSchool from "./school";
+import IconScience from "./science";
+import IconScoreboard from "./scoreboard";
+import IconScubaDiving from "./scuba-diving";
+import IconSelfImprovement from "./self-improvement";
+import IconSentimentDissatisfied from "./sentiment-dissatisfied";
+import IconSentimentNeutral from "./sentiment-neutral";
+import IconSentimentSatisfied from "./sentiment-satisfied";
+import IconSentimentVeryDissatisfied from "./sentiment-very-dissatisfied";
+import IconSentimentVerySatisfied from "./sentiment-very-satisfied";
+import IconSevereCold from "./severe-cold";
+import IconShare from "./share";
+import IconSick from "./sick";
+import IconSignLanguage from "./sign-language";
+import IconSingleBed from "./single-bed";
+import IconSkateboarding from "./skateboarding";
+import IconSledding from "./sledding";
+import IconSnowboarding from "./snowboarding";
+import IconSnowshoeing from "./snowshoeing";
+import IconSocialDistance from "./social-distance";
+import IconSouthAmerica from "./south-america";
+import IconSportsBaseball from "./sports-baseball";
+import IconSportsBasketball from "./sports-basketball";
+import IconSportsCricket from "./sports-cricket";
+import IconSportsEsports from "./sports-esports";
+import IconSportsFootball from "./sports-football";
+import IconSportsGolf from "./sports-golf";
+import IconSportsGymnastics from "./sports-gymnastics";
+import IconSportsHandball from "./sports-handball";
+import IconSportsHockey from "./sports-hockey";
+import IconSportsKabaddi from "./sports-kabaddi";
+import IconSportsMartialArts from "./sports-martial-arts";
+import IconSportsMma from "./sports-mma";
+import IconSportsMotorsports from "./sports-motorsports";
+import IconSportsRugby from "./sports-rugby";
+import IconSportsSoccer from "./sports-soccer";
+import IconSportsTennis from "./sports-tennis";
+import IconSportsVolleyball from "./sports-volleyball";
+import IconSports from "./sports";
+import IconSurfing from "./surfing";
+import IconSwitchAccount from "./switch-account";
+import IconThumbDownAlt from "./thumb-down-alt";
+import IconThumbUpAlt from "./thumb-up-alt";
+import IconThunderstorm from "./thunderstorm";
+import IconTornado from "./tornado";
+import IconTransgender from "./transgender";
+import IconTravelExplore from "./travel-explore";
+import IconTsunami from "./tsunami";
+import IconVaccines from "./vaccines";
+import IconVolcano from "./volcano";
+import IconWallet from "./wallet";
+import IconWaterDrop from "./water-drop";
+import IconWavingHand from "./waving-hand";
+import IconWhatshot from "./whatshot";
+import IconWoman2 from "./woman-2";
+import IconWoman from "./woman";
+import IconWorkspacePremium from "./workspace-premium";
+
+export {
+  Icon18UpRating,
+  Icon6FtApart,
+  IconAddModerator,
+  IconAddReaction,
+  IconArchitecture,
+  IconAssistWalker,
+  IconBackHand,
+  IconBlind,
+  IconBoy,
+  IconCake,
+  IconCatchingPokemon,
+  IconCleanHands,
+  IconCo2,
+  IconCompost,
+  IconConnectWithoutContact,
+  IconConstruction,
+  IconCookie,
+  IconCoronavirus,
+  IconCrueltyFree,
+  IconCyclone,
+  IconDeck,
+  IconDiversity1,
+  IconDiversity2,
+  IconDiversity3,
+  IconDomainAdd,
+  IconDomain,
+  IconDownhillSkiing,
+  IconEditNotifications,
+  IconElderlyWoman,
+  IconElderly,
+  IconEmojiEmotions,
+  IconEmojiEvents,
+  IconEmojiFoodBeverage,
+  IconEmojiNature,
+  IconEmojiObjects,
+  IconEmojiPeople,
+  IconEmojiSymbols,
+  IconEmojiTransportation,
+  IconEngineering,
+  IconFace2,
+  IconFace3,
+  IconFace4,
+  IconFace5,
+  IconFace6,
+  IconFemale,
+  IconFireplace,
+  IconFitbit,
+  IconFlood,
+  IconFollowTheSigns,
+  IconFrontHand,
+  IconGirl,
+  IconGroupAdd,
+  IconGroupOff,
+  IconGroupRemove,
+  IconGroup,
+  IconGroups2,
+  IconGroups3,
+  IconGroups,
+  IconHandshake,
+  IconHealthAndSafety,
+  IconHeartBroken,
+  IconHiking,
+  IconHistoryEdu,
+  IconHive,
+  IconIceSkating,
+  IconInterests,
+  IconIosShare,
+  IconKayaking,
+  IconKingBed,
+  IconKitesurfing,
+  IconLandslide,
+  IconLocationCity,
+  IconLuggage,
+  IconMale,
+  IconMan2,
+  IconMan3,
+  IconMan4,
+  IconMan,
+  IconMasks,
+  IconMilitaryTech,
+  IconMoodBad,
+  IconMood,
+  IconNightsStay,
+  IconNoAdultContent,
+  IconNoLuggage,
+  IconNordicWalking,
+  IconNotificationAdd,
+  IconNotificationsActive,
+  IconNotificationsNone,
+  IconNotificationsOff,
+  IconNotificationsPaused,
+  IconNotifications,
+  IconOutdoorGrill,
+  IconPages,
+  IconParagliding,
+  IconPartyMode,
+  IconPeopleAlt,
+  IconPeopleOutline,
+  IconPeople,
+  IconPerson2,
+  IconPerson3,
+  IconPerson4,
+  IconPersonAddAlt1,
+  IconPersonAddAlt,
+  IconPersonAdd,
+  IconPersonOff,
+  IconPersonOutline,
+  IconPersonRemoveAlt1,
+  IconPersonRemove,
+  IconPerson,
+  IconPersonalInjury,
+  IconPianoOff,
+  IconPiano,
+  IconPix,
+  IconPlusOne,
+  IconPoll,
+  IconPrecisionManufacturing,
+  IconPsychologyAlt,
+  IconPsychology,
+  IconPublicOff,
+  IconPublic,
+  IconRealEstateAgent,
+  IconRecommend,
+  IconRecycling,
+  IconReduceCapacity,
+  IconRemoveModerator,
+  IconRollerSkating,
+  IconSafetyDivider,
+  IconSanitizer,
+  IconScale,
+  IconSchool,
+  IconScience,
+  IconScoreboard,
+  IconScubaDiving,
+  IconSelfImprovement,
+  IconSentimentDissatisfied,
+  IconSentimentNeutral,
+  IconSentimentSatisfied,
+  IconSentimentVeryDissatisfied,
+  IconSentimentVerySatisfied,
+  IconSevereCold,
+  IconShare,
+  IconSick,
+  IconSignLanguage,
+  IconSingleBed,
+  IconSkateboarding,
+  IconSledding,
+  IconSnowboarding,
+  IconSnowshoeing,
+  IconSocialDistance,
+  IconSouthAmerica,
+  IconSportsBaseball,
+  IconSportsBasketball,
+  IconSportsCricket,
+  IconSportsEsports,
+  IconSportsFootball,
+  IconSportsGolf,
+  IconSportsGymnastics,
+  IconSportsHandball,
+  IconSportsHockey,
+  IconSportsKabaddi,
+  IconSportsMartialArts,
+  IconSportsMma,
+  IconSportsMotorsports,
+  IconSportsRugby,
+  IconSportsSoccer,
+  IconSportsTennis,
+  IconSportsVolleyball,
+  IconSports,
+  IconSurfing,
+  IconSwitchAccount,
+  IconThumbDownAlt,
+  IconThumbUpAlt,
+  IconThunderstorm,
+  IconTornado,
+  IconTransgender,
+  IconTravelExplore,
+  IconTsunami,
+  IconVaccines,
+  IconVolcano,
+  IconWallet,
+  IconWaterDrop,
+  IconWavingHand,
+  IconWhatshot,
+  IconWoman2,
+  IconWoman,
+  IconWorkspacePremium,
+};

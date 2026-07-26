@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const FiberSmartRecord = withIcon(({ size }) => {
+const IconFiberSmartRecord = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const FiberSmartRecord = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 3.2727) scale(1.0909)">
-        <path
-          d="M8 0C3.58 0 0 3.58 0 8C0 12.42 3.58 16 8 16C12.42 16 16 12.42 16 8C16 3.58 12.42 0 8 0ZM8 14C4.69 14 2 11.31 2 8C2 4.69 4.69 2 8 2C11.31 2 14 4.69 14 8C14 11.31 11.31 14 8 14ZM16 0.26V2.35C18.33 3.17 20 5.39 20 8C20 10.61 18.33 12.83 16 13.65V15.74C19.45 14.85 22 11.73 22 8C22 4.27 19.45 1.15 16 0.26Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M9 4C4.58 4 1 7.58 1 12C1 16.42 4.58 20 9 20C13.42 20 17 16.42 17 12C17 7.58 13.42 4 9 4ZM9 18C5.69 18 3 15.31 3 12C3 8.69 5.69 6 9 6C12.31 6 15 8.69 15 12C15 15.31 12.31 18 9 18ZM17 4.26V6.35C19.33 7.17 21 9.39 21 12C21 14.61 19.33 16.83 17 17.65V19.74C20.45 18.85 23 15.73 23 12C23 8.27 20.45 5.15 17 4.26Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default FiberSmartRecord;
+export default IconFiberSmartRecord;

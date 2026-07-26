@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Cookie = withIcon(({ size }) => {
+const IconCookie = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -30,4 +30,4 @@ const Cookie = withIcon(({ size }) => {
   );
 });
 
-export default Cookie;
+export default IconCookie;

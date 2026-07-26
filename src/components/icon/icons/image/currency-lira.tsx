@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const CurrencyLira = withIcon(({ size }) => {
+const IconCurrencyLira = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const CurrencyLira = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(4, 0) scale(1.3333)">
-        <path
-          d="M3 5.76V0H5V4.51L9 2V4.36L5 6.87L5.01 9.22L9 6.72V9.08L5 11.59V16C7.76 16 10 13.76 10 11H12C12 14.87 8.87 18 5 18H3V12.84L0 14.72V12.36L3 10.48V8.12L0 10V7.64L3 5.76Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M5.9998 8.7598V2.9998H7.9998V7.5098L11.9998 4.9998V7.3598L7.9998 9.8698L8.0098 12.2198L11.9998 9.7198V12.0798L7.9998 14.5898V18.9998C10.7598 18.9998 12.9998 16.7598 12.9998 13.9998H14.9998C14.9998 17.8698 11.8698 20.9998 7.9998 20.9998H5.9998V15.8398L2.9998 17.7198V15.3598L5.9998 13.4798V11.1198L2.9998 12.9998V10.6398L5.9998 8.7598Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default CurrencyLira;
+export default IconCurrencyLira;

@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Memory = withIcon(({ size }) => {
+const IconMemory = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const Memory = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0) scale(1.3333)">
-        <path
-          d="M12 6H6V12H12V6ZM10 10H8V8H10V10ZM18 8V6H16V4C16 2.9 15.1 2 14 2H12V0H10V2H8V0H6V2H4C2.9 2 2 2.9 2 4V6H0V8H2V10H0V12H2V14C2 15.1 2.9 16 4 16H6V18H8V16H10V18H12V16H14C15.1 16 16 15.1 16 14V12H18V10H16V8H18ZM14 14H4V4H14V14Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M15 9H9V15H15V9ZM13 13H11V11H13V13ZM21 11V9H19V7C19 5.9 18.1 5 17 5H15V3H13V5H11V3H9V5H7C5.9 5 5 5.9 5 7V9H3V11H5V13H3V15H5V17C5 18.1 5.9 19 7 19H9V21H11V19H13V21H15V19H17C18.1 19 19 18.1 19 17V15H21V13H19V11H21ZM17 17H7V7H17V17Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default Memory;
+export default IconMemory;

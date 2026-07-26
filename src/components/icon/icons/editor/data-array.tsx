@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const DataArray = withIcon(({ size }) => {
+const IconDataArray = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,12 +10,10 @@ const DataArray = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0) scale(1.5)">
-        <path d="M11 0V2H14V14H11V16H16V0H11Z" fill="currentColor" />
-        <path d="M0 16H5V14H2V2H5V0H0V16Z" fill="currentColor" />
-      </g>
+      <path d="M15 4V6H18V18H15V20H20V4H15Z" fill="currentColor" />
+      <path d="M4 20H9V18H6V6H9V4H4V20Z" fill="currentColor" />
     </svg>
   );
 });
 
-export default DataArray;
+export default IconDataArray;

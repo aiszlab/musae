@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const FourKPlus = withIcon(({ size }) => {
+const Icon4kPlus = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,19 +10,17 @@ const FourKPlus = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0) scale(1.3333)">
-        <path
-          d="M16 0H2C0.9 0 0 0.9 0 2V16C0 17.1 0.9 18 2 18H16C17.1 18 18 17.1 18 16V2C18 0.9 17.1 0 16 0ZM16 8.5H14.5V7H13.5V8.5H12V9.5H13.5V11H14.5V9.5H16V16H2V2H16V8.5Z"
-          fill="currentColor"
-        />
-        <path d="M5.5 12H7V10.5H8V9H7V6H5.5V9H4V6H2.5V10.5H5.5V12Z" fill="currentColor" />
-        <path
-          d="M10 9.75L11.75 12H13.5L11.25 9L13.5 6H11.75L10 8.25V6H8.5V12H10V9.75Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3ZM19 11.5H17.5V10H16.5V11.5H15V12.5H16.5V14H17.5V12.5H19V19H5V5H19V11.5Z"
+        fill="currentColor"
+      />
+      <path d="M8.5 15H10V13.5H11V12H10V9H8.5V12H7V9H5.5V13.5H8.5V15Z" fill="currentColor" />
+      <path
+        d="M13 12.75L14.75 15H16.5L14.25 12L16.5 9H14.75L13 11.25V9H11.5V15H13V12.75Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default FourKPlus;
+export default Icon4kPlus;

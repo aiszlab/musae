@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const PlayLesson = withIcon(({ size }) => {
+const IconPlayLesson = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const PlayLesson = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0.5714, 0) scale(1.1429)">
-        <path
-          d="M2 18V2H4V9L6.5 7.5L9 9V2H14V9.08C14.33 9.03 14.66 9 15 9C15.34 9 15.67 9.03 16 9.08V2C16 0.9 15.1 0 14 0H2C0.9 0 0 0.9 0 2V18C0 19.1 0.9 20 2 20H9.26C8.84 19.4 8.51 18.72 8.29 18H2ZM15 11C12.24 11 10 13.24 10 16C10 18.76 12.24 21 15 21C17.76 21 20 18.76 20 16C20 13.24 17.76 11 15 11ZM13.75 18.5V13.5L17.75 16L13.75 18.5Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M4 19.5V3.5H6V10.5L8.5 9L11 10.5V3.5H16V10.58C16.33 10.53 16.66 10.5 17 10.5C17.34 10.5 17.67 10.53 18 10.58V3.5C18 2.4 17.1 1.5 16 1.5H4C2.9 1.5 2 2.4 2 3.5V19.5C2 20.6 2.9 21.5 4 21.5H11.26C10.84 20.9 10.51 20.22 10.29 19.5H4ZM17 12.5C14.24 12.5 12 14.74 12 17.5C12 20.26 14.24 22.5 17 22.5C19.76 22.5 22 20.26 22 17.5C22 14.74 19.76 12.5 17 12.5ZM15.75 20V15L19.75 17.5L15.75 20Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default PlayLesson;
+export default IconPlayLesson;

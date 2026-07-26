@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const IndeterminateCheckBox = withIcon(({ size }) => {
+const IconIndeterminateCheckBox = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const IndeterminateCheckBox = withIcon(({ size }) => {
   );
 });
 
-export default IndeterminateCheckBox;
+export default IconIndeterminateCheckBox;

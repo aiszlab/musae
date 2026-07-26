@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Airplay = withIcon(({ size }) => {
+const IconAirplay = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,15 +10,13 @@ const Airplay = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 1.6364) scale(1.0909)">
-        <path d="M5 19H17L11 13L5 19Z" fill="currentColor" />
-        <path
-          d="M20 0H2C0.9 0 0 0.9 0 2V14C0 15.1 0.9 16 2 16H6V14H2V2H20V14H16V16H20C21.1 16 22 15.1 22 14V2C22 0.9 21.1 0 20 0Z"
-          fill="currentColor"
-        />
-      </g>
+      <path d="M6 21.5H18L12 15.5L6 21.5Z" fill="currentColor" />
+      <path
+        d="M21 2.5H3C1.9 2.5 1 3.4 1 4.5V16.5C1 17.6 1.9 18.5 3 18.5H7V16.5H3V4.5H21V16.5H17V18.5H21C22.1 18.5 23 17.6 23 16.5V4.5C23 3.4 22.1 2.5 21 2.5Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default Airplay;
+export default IconAirplay;

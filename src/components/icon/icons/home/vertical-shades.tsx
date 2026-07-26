@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const VerticalShades = withIcon(({ size }) => {
+const IconVerticalShades = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const VerticalShades = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 1.2) scale(1.2)">
-        <path
-          d="M18 16V0H2V16H0V18H20V16H18ZM12 2V16H8V2H12ZM4 2H6V16H4V2ZM14 16V2H16V16H14Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M20 19V3H4V19H2V21H22V19H20ZM14 5V19H10V5H14ZM6 5H8V19H6V5ZM16 19V5H18V19H16Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default VerticalShades;
+export default IconVerticalShades;

@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const DocumentScanner = withIcon(({ size }) => {
+const IconDocumentScanner = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const DocumentScanner = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(1.0909, 0) scale(1.0909)">
-        <path
-          d="M5 2H2V5H0V0H5V2ZM20 5V0H15V2H18V5H20ZM5 20H2V17H0V22H5V20ZM18 17V20H15V22H20V17H18ZM15 5H5V17H15V5ZM17 17C17 18.1 16.1 19 15 19H5C3.9 19 3 18.1 3 17V5C3 3.9 3.9 3 5 3H15C16.1 3 17 3.9 17 5V17ZM13 7H7V9H13V7ZM13 10H7V12H13V10ZM13 13H7V15H13V13Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M7 3H4V6H2V1H7V3ZM22 6V1H17V3H20V6H22ZM7 21H4V18H2V23H7V21ZM20 18V21H17V23H22V18H20ZM17 6H7V18H17V6ZM19 18C19 19.1 18.1 20 17 20H7C5.9 20 5 19.1 5 18V6C5 4.9 5.9 4 7 4H17C18.1 4 19 4.9 19 6V18ZM15 8H9V10H15V8ZM15 11H9V13H15V11ZM15 14H9V16H15V14Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default DocumentScanner;
+export default IconDocumentScanner;

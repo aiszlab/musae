@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Monitor = withIcon(({ size }) => {
+const IconMonitor = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const Monitor = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 1.2) scale(1.2)">
-        <path
-          d="M18 0H2C0.9 0 0 0.9 0 2V13C0 14.1 0.9 15 2 15H5L4 16V18H16V16L15 15H18C19.1 15 20 14.1 20 13V2C20 0.9 19.1 0 18 0ZM18 13H2V2H18V13Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M20 3H4C2.9 3 2 3.9 2 5V16C2 17.1 2.9 18 4 18H7L6 19V21H18V19L17 18H20C21.1 18 22 17.1 22 16V5C22 3.9 21.1 3 20 3ZM20 16H4V5H20V16Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default Monitor;
+export default IconMonitor;

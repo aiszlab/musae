@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const ContentPasteGo = withIcon(({ size }) => {
+const IconContentPasteGo = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,18 +10,16 @@ const ContentPasteGo = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0.6, 0) scale(1.2)">
-        <path
-          d="M2 4H4V7H14V4H16V10H18V4C18 2.9 17.1 2 16 2H11.82C11.4 0.84 10.3 0 9 0C7.7 0 6.6 0.84 6.18 2H2C0.9 2 0 2.9 0 4V18C0 19.1 0.9 20 2 20H7V18H2V4ZM9 2C9.55 2 10 2.45 10 3C10 3.55 9.55 4 9 4C8.45 4 8 3.55 8 3C8 2.45 8.45 2 9 2Z"
-          fill="currentColor"
-        />
-        <path
-          d="M15.01 12L13.59 13.41L15.17 14.99H9V16.99H15.17L13.59 18.58L15.01 19.99L19 15.99L15.01 12Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M4.5 6H6.5V9H16.5V6H18.5V12H20.5V6C20.5 4.9 19.6 4 18.5 4H14.32C13.9 2.84 12.8 2 11.5 2C10.2 2 9.1 2.84 8.68 4H4.5C3.4 4 2.5 4.9 2.5 6V20C2.5 21.1 3.4 22 4.5 22H9.5V20H4.5V6ZM11.5 4C12.05 4 12.5 4.45 12.5 5C12.5 5.55 12.05 6 11.5 6C10.95 6 10.5 5.55 10.5 5C10.5 4.45 10.95 4 11.5 4Z"
+        fill="currentColor"
+      />
+      <path
+        d="M17.51 14L16.09 15.41L17.67 16.99H11.5V18.99H17.67L16.09 20.58L17.51 21.99L21.5 17.99L17.51 14Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default ContentPasteGo;
+export default IconContentPasteGo;

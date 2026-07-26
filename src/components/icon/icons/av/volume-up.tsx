@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const VolumeUp = withIcon(({ size }) => {
+const IconVolumeUp = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const VolumeUp = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0.3067) scale(1.3333)">
-        <path
-          d="M0 5.77V11.77H4L9 16.77V0.77L4 5.77H0ZM7 5.6V11.94L4.83 9.77H2V7.77H4.83L7 5.6ZM13.5 8.77C13.5 7 12.48 5.48 11 4.74V12.79C12.48 12.06 13.5 10.54 13.5 8.77ZM11 0V2.06C13.89 2.92 16 5.6 16 8.77C16 11.94 13.89 14.62 11 15.48V17.54C15.01 16.63 18 13.05 18 8.77C18 4.49 15.01 0.91 11 0Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M3 9.00047V15.0005H7L12 20.0005V4.00047L7 9.00047H3ZM10 8.83047V15.1705L7.83 13.0005H5V11.0005H7.83L10 8.83047ZM16.5 12.0005C16.5 10.2305 15.48 8.71047 14 7.97047V16.0205C15.48 15.2905 16.5 13.7705 16.5 12.0005ZM14 3.23047V5.29047C16.89 6.15047 19 8.83047 19 12.0005C19 15.1705 16.89 17.8505 14 18.7105V20.7705C18.01 19.8605 21 16.2805 21 12.0005C21 7.72047 18.01 4.14047 14 3.23047Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default VolumeUp;
+export default IconVolumeUp;

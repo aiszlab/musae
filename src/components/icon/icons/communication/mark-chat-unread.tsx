@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const MarkChatUnread = withIcon(({ size }) => {
+const IconMarkChatUnread = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const MarkChatUnread = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(1.0909, 0) scale(1.0909)">
-        <path
-          d="M20 6.98V16C20 17.1 19.1 18 18 18H4L0 22V4C0 2.9 0.9 2 2 2H12.1C12.04 2.32 12 2.66 12 3C12 3.34 12.04 3.68 12.1 4H2V16H18V7.9C18.74 7.75 19.42 7.42 20 6.98ZM14 3C14 4.66 15.34 6 17 6C18.66 6 20 4.66 20 3C20 1.34 18.66 0 17 0C15.34 0 14 1.34 14 3Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M22 7.98V17C22 18.1 21.1 19 20 19H6L2 23V5C2 3.9 2.9 3 4 3H14.1C14.04 3.32 14 3.66 14 4C14 4.34 14.04 4.68 14.1 5H4V17H20V8.9C20.74 8.75 21.42 8.42 22 7.98ZM16 4C16 5.66 17.34 7 19 7C20.66 7 22 5.66 22 4C22 2.34 20.66 1 19 1C17.34 1 16 2.34 16 4Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default MarkChatUnread;
+export default IconMarkChatUnread;

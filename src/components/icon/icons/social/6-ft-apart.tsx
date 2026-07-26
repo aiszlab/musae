@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const _6FtApart = withIcon(({ size }) => {
+const Icon6FtApart = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const _6FtApart = withIcon(({ size }) => {
   );
 });
 
-export default _6FtApart;
+export default Icon6FtApart;

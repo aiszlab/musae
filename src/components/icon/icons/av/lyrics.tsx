@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Lyrics = withIcon(({ size }) => {
+const IconLyrics = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,21 +10,19 @@ const Lyrics = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0.5455) scale(1.0909)">
-        <path d="M11 5H4V7H11V5Z" fill="currentColor" />
-        <path d="M8 11H4V13H8V11Z" fill="currentColor" />
-        <path
-          d="M13 10.97V15H4L2 17V3H13V5.03C13.52 4.34 14.2 3.78 15 3.43V3C15 1.9 14.1 1 13 1H2C0.9 1 0.00999999 1.9 0.00999999 3L0 21L4 17H13C14.1 17 15 16.1 15 15V12.58C14.2 12.22 13.52 11.66 13 10.97Z"
-          fill="currentColor"
-        />
-        <path d="M11 8H4V10H11V8Z" fill="currentColor" />
-        <path
-          d="M18 5.18C17.69 5.07 17.35 5 17 5C15.34 5 14 6.34 14 8C14 9.66 15.34 11 17 11C18.66 11 20 9.66 20 8V2H22V0H18V5.18Z"
-          fill="currentColor"
-        />
-      </g>
+      <path d="M12 6.5H5V8.5H12V6.5Z" fill="currentColor" />
+      <path d="M9 12.5H5V14.5H9V12.5Z" fill="currentColor" />
+      <path
+        d="M14 12.47V16.5H5L3 18.5V4.5H14V6.53C14.52 5.84 15.2 5.28 16 4.93V4.5C16 3.4 15.1 2.5 14 2.5H3C1.9 2.5 1.01 3.4 1.01 4.5L1 22.5L5 18.5H14C15.1 18.5 16 17.6 16 16.5V14.08C15.2 13.72 14.52 13.16 14 12.47Z"
+        fill="currentColor"
+      />
+      <path d="M12 9.5H5V11.5H12V9.5Z" fill="currentColor" />
+      <path
+        d="M19 6.68C18.69 6.57 18.35 6.5 18 6.5C16.34 6.5 15 7.84 15 9.5C15 11.16 16.34 12.5 18 12.5C19.66 12.5 21 11.16 21 9.5V3.5H23V1.5H19V6.68Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default Lyrics;
+export default IconLyrics;

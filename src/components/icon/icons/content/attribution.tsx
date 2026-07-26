@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Attribution = withIcon(({ size }) => {
+const IconAttribution = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,18 +10,16 @@ const Attribution = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0) scale(1.2)">
-        <path
-          d="M10 6.5C9.09 6.5 7.25 6.96 7.25 7.88V12.5H8.75V17H11.25V12.5H12.75V7.88C12.75 6.97 10.91 6.5 10 6.5ZM10 0C4.47 0 0 4.47 0 10C0 15.53 4.47 20 10 20C15.53 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM10 18C5.58 18 2 14.42 2 10C2 5.58 5.58 2 10 2C14.42 2 18 5.58 18 10C18 14.42 14.42 18 10 18Z"
-          fill="currentColor"
-        />
-        <path
-          d="M10 6C10.8284 6 11.5 5.32843 11.5 4.5C11.5 3.67157 10.8284 3 10 3C9.17157 3 8.5 3.67157 8.5 4.5C8.5 5.32843 9.17157 6 10 6Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M12 8.5C11.09 8.5 9.25 8.96 9.25 9.88V14.5H10.75V19H13.25V14.5H14.75V9.88C14.75 8.97 12.91 8.5 12 8.5ZM12 2C6.47 2 2 6.47 2 12C2 17.53 6.47 22 12 22C17.53 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.58 20 4 16.42 4 12C4 7.58 7.58 4 12 4C16.42 4 20 7.58 20 12C20 16.42 16.42 20 12 20Z"
+        fill="currentColor"
+      />
+      <path
+        d="M12 8C12.8284 8 13.5 7.32843 13.5 6.5C13.5 5.67157 12.8284 5 12 5C11.1716 5 10.5 5.67157 10.5 6.5C10.5 7.32843 11.1716 8 12 8Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default Attribution;
+export default IconAttribution;

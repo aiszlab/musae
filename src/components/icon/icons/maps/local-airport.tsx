@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const LocalAirport = withIcon(({ size }) => {
+const IconLocalAirport = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const LocalAirport = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0) scale(1.2)">
-        <path
-          d="M20 14V12L11.5 7V1.5C11.5 0.67 10.83 0 10 0C9.17 0 8.5 0.67 8.5 1.5V7L0 12V14L8.5 11.5V17L6 18.5V20L10 19L14 20V18.5L11.5 17V11.5L20 14Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M 24 16.8 V 14.4 L 13.8 8.4 V 1.8 C 13.8 0.804 12.996 0 12 0 C 11.004 0 10.2 0.804 10.2 1.8 V 8.4 L 0 14.4 V 16.8 L 10.2 13.8 V 20.4 L 7.2 22.2 V 24 L 12 22.8 L 16.8 24 V 22.2 L 13.8 20.4 V 13.8 L 24 16.8Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default LocalAirport;
+export default IconLocalAirport;

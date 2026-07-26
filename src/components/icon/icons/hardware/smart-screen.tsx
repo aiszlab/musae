@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const SmartScreen = withIcon(({ size }) => {
+const IconSmartScreen = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,18 +10,16 @@ const SmartScreen = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 4.3636) scale(1.0909)">
-        <path d="M13 6.25H11.5V7.75H13V6.25Z" fill="currentColor" />
-        <path d="M15.5 6.25H14V7.75H15.5V6.25Z" fill="currentColor" />
-        <path d="M10.5 6.25H9V7.75H10.5V6.25Z" fill="currentColor" />
-        <path d="M8 6.25H6.5V7.75H8V6.25Z" fill="currentColor" />
-        <path
-          d="M20 0H2C0.9 0 0 0.9 0 2V12C0 13.1 0.9 14 2 14H20C21.1 14 22 13.1 22 12V2C22 0.9 21.1 0 20 0ZM3 12H2V2H3V12ZM17 12H5V2H17V12ZM20 12H19V2H20V12Z"
-          fill="currentColor"
-        />
-      </g>
+      <path d="M14 11.25H12.5V12.75H14V11.25Z" fill="currentColor" />
+      <path d="M16.5 11.25H15V12.75H16.5V11.25Z" fill="currentColor" />
+      <path d="M11.5 11.25H10V12.75H11.5V11.25Z" fill="currentColor" />
+      <path d="M9 11.25H7.5V12.75H9V11.25Z" fill="currentColor" />
+      <path
+        d="M21 5H3C1.9 5 1 5.9 1 7V17C1 18.1 1.9 19 3 19H21C22.1 19 23 18.1 23 17V7C23 5.9 22.1 5 21 5ZM4 17H3V7H4V17ZM18 17H6V7H18V17ZM21 17H20V7H21V17Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default SmartScreen;
+export default IconSmartScreen;

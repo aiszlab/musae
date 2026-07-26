@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const RssFeed = withIcon(({ size }) => {
+const IconRssFeed = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,18 +10,16 @@ const RssFeed = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0) scale(1.5424)">
-        <path
-          d="M2.18 15.56C3.38398 15.56 4.36 14.584 4.36 13.38C4.36 12.176 3.38398 11.2 2.18 11.2C0.976019 11.2 0 12.176 0 13.38C0 14.584 0.976019 15.56 2.18 15.56Z"
-          fill="currentColor"
-        />
-        <path
-          d="M0 0V2.83C7.03 2.83 12.73 8.53 12.73 15.56H15.56C15.56 6.97 8.59 0 0 0ZM0 5.66V8.49C3.9 8.49 7.07 11.66 7.07 15.56H9.9C9.9 10.09 5.47 5.66 0 5.66Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M6.4 19.7797C7.60398 19.7797 8.58 18.8037 8.58 17.5997C8.58 16.3957 7.60398 15.4197 6.4 15.4197C5.19602 15.4197 4.22 16.3957 4.22 17.5997C4.22 18.8037 5.19602 19.7797 6.4 19.7797Z"
+        fill="currentColor"
+      />
+      <path
+        d="M4.22 4.21973V7.04973C11.25 7.04973 16.95 12.7497 16.95 19.7797H19.78C19.78 11.1897 12.81 4.21973 4.22 4.21973ZM4.22 9.87973V12.7097C8.12 12.7097 11.29 15.8797 11.29 19.7797H14.12C14.12 14.3097 9.69 9.87973 4.22 9.87973Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default RssFeed;
+export default IconRssFeed;

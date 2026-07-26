@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const PhotoCameraFront = withIcon(({ size }) => {
+const IconPhotoCameraFront = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,22 +10,20 @@ const PhotoCameraFront = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 1.2) scale(1.2)">
-        <path
-          d="M18 2H14.83L13 0H7L5.17 2H2C0.9 2 0 2.9 0 4V16C0 17.1 0.9 18 2 18H18C19.1 18 20 17.1 20 16V4C20 2.9 19.1 2 18 2ZM18 16H2V4H6.05L7.88 2H12.12L13.95 4H18V16Z"
-          fill="currentColor"
-        />
-        <path
-          d="M10 10C11.1046 10 12 9.10457 12 8C12 6.89543 11.1046 6 10 6C8.89543 6 8 6.89543 8 8C8 9.10457 8.89543 10 10 10Z"
-          fill="currentColor"
-        />
-        <path
-          d="M12.78 11.58C11.93 11.21 10.99 11 10 11C9.01 11 8.07 11.21 7.22 11.58C6.48 11.9 6 12.62 6 13.43V14H14V13.43C14 12.62 13.52 11.9 12.78 11.58Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M20 4H16.83L15 2H9L7.17 4H4C2.9 4 2 4.9 2 6V18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6C22 4.9 21.1 4 20 4ZM20 18H4V6H8.05L9.88 4H14.12L15.95 6H20V18Z"
+        fill="currentColor"
+      />
+      <path
+        d="M12 12C13.1046 12 14 11.1046 14 10C14 8.8954 13.1046 8 12 8C10.8954 8 10 8.8954 10 10C10 11.1046 10.8954 12 12 12Z"
+        fill="currentColor"
+      />
+      <path
+        d="M14.78 13.58C13.93 13.21 12.99 13 12 13C11.01 13 10.07 13.21 9.22 13.58C8.48 13.9 8 14.62 8 15.43V16H16V15.43C16 14.62 15.52 13.9 14.78 13.58Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default PhotoCameraFront;
+export default IconPhotoCameraFront;

@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const DevicesOther = withIcon(({ size }) => {
+const IconDevicesOther = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const DevicesOther = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 3.2727) scale(1.0909)">
-        <path
-          d="M2 2H20V0H2C0.9 0 0 0.9 0 2V14C0 15.1 0.9 16 2 16H6V14H2V2ZM12 8H8V9.78C7.39 10.33 7 11.11 7 12C7 12.89 7.39 13.67 8 14.22V16H12V14.22C12.61 13.67 13 12.88 13 12C13 11.12 12.61 10.33 12 9.78V8ZM10 13.5C9.17 13.5 8.5 12.83 8.5 12C8.5 11.17 9.17 10.5 10 10.5C10.83 10.5 11.5 11.17 11.5 12C11.5 12.83 10.83 13.5 10 13.5ZM21 4H15C14.5 4 14 4.5 14 5V15C14 15.5 14.5 16 15 16H21C21.5 16 22 15.5 22 15V5C22 4.5 21.5 4 21 4ZM20 14H16V6H20V14Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M3 6H21V4H3C1.9 4 1 4.9 1 6V18C1 19.1 1.9 20 3 20H7V18H3V6ZM13 12H9V13.78C8.39 14.33 8 15.11 8 16C8 16.89 8.39 17.67 9 18.22V20H13V18.22C13.61 17.67 14 16.88 14 16C14 15.12 13.61 14.33 13 13.78V12ZM11 17.5C10.17 17.5 9.5 16.83 9.5 16C9.5 15.17 10.17 14.5 11 14.5C11.83 14.5 12.5 15.17 12.5 16C12.5 16.83 11.83 17.5 11 17.5ZM22 8H16C15.5 8 15 8.5 15 9V19C15 19.5 15.5 20 16 20H22C22.5 20 23 19.5 23 19V9C23 8.5 22.5 8 22 8ZM21 18H17V10H21V18Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default DevicesOther;
+export default IconDevicesOther;

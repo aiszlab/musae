@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const ContentPasteSearch = withIcon(({ size }) => {
+const IconContentPasteSearch = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,18 +10,16 @@ const ContentPasteSearch = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(1.0909, 0) scale(1.0909)">
-        <path
-          d="M2 4H4V7H14V4H16V9H18V4C18 2.9 17.1 2 16 2H11.82C11.4 0.84 10.3 0 9 0C7.7 0 6.6 0.84 6.18 2H2C0.9 2 0 2.9 0 4V18C0 19.1 0.9 20 2 20H7V18H2V4ZM9 2C9.55 2 10 2.45 10 3C10 3.55 9.55 4 9 4C8.45 4 8 3.55 8 3C8 2.45 8.45 2 9 2Z"
-          fill="currentColor"
-        />
-        <path
-          d="M17.3 17.9C17.7 17.2 18 16.4 18 15.5C18 13 16 11 13.5 11C11 11 9 13 9 15.5C9 18 11 20 13.5 20C14.4 20 15.2 19.7 15.9 19.3L18.6 22L20 20.6L17.3 17.9ZM13.5 18C12.1 18 11 16.9 11 15.5C11 14.1 12.1 13 13.5 13C14.9 13 16 14.1 16 15.5C16 16.9 14.9 18 13.5 18Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M4 5H6V8H16V5H18V10H20V5C20 3.9 19.1 3 18 3H13.82C13.4 1.84 12.3 1 11 1C9.7 1 8.6 1.84 8.18 3H4C2.9 3 2 3.9 2 5V19C2 20.1 2.9 21 4 21H9V19H4V5ZM11 3C11.55 3 12 3.45 12 4C12 4.55 11.55 5 11 5C10.45 5 10 4.55 10 4C10 3.45 10.45 3 11 3Z"
+        fill="currentColor"
+      />
+      <path
+        d="M19.3 18.9C19.7 18.2 20 17.4 20 16.5C20 14 18 12 15.5 12C13 12 11 14 11 16.5C11 19 13 21 15.5 21C16.4 21 17.2 20.7 17.9 20.3L20.6 23L22 21.6L19.3 18.9ZM15.5 19C14.1 19 13 17.9 13 16.5C13 15.1 14.1 14 15.5 14C16.9 14 18 15.1 18 16.5C18 17.9 16.9 19 15.5 19Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default ContentPasteSearch;
+export default IconContentPasteSearch;

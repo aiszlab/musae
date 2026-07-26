@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const FolderOff = withIcon(({ size }) => {
+const IconFolderOff = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,18 +10,16 @@ const FolderOff = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0.0563) scale(1.1262)">
-        <path
-          d="M19.31 3.9H11.31L9.31 1.9H6.48L10.48 5.9H19.31V15.07L21.07 16.83C21.22 16.55 21.31 16.24 21.31 15.9V5.9C21.31 4.8 20.41 3.9 19.31 3.9Z"
-          fill="currentColor"
-        />
-        <path
-          d="M1.41 0L0 1.41L1.56 2.97C1.41 3.25 1.32 3.56 1.32 3.9L1.31 15.9C1.31 17 2.21 17.9 3.31 17.9H16.48L19.79 21.21L21.2 19.8L1.41 0ZM3.31 15.9V4.73L14.48 15.9H3.31Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M20.655 5.29453H12.655L10.655 3.29453H7.825L11.825 7.29453H20.655V16.4645L22.415 18.2245C22.565 17.9445 22.655 17.6345 22.655 17.2945V7.29453C22.655 6.19453 21.755 5.29453 20.655 5.29453Z"
+        fill="currentColor"
+      />
+      <path
+        d="M2.755 1.39453L1.345 2.80453L2.905 4.36453C2.755 4.64453 2.665 4.95453 2.665 5.29453L2.655 17.2945C2.655 18.3945 3.555 19.2945 4.655 19.2945H17.825L21.135 22.6045L22.545 21.1945L2.755 1.39453ZM4.655 17.2945V6.12453L15.825 17.2945H4.655Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default FolderOff;
+export default IconFolderOff;

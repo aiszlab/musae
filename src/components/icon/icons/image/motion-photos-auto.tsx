@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const MotionPhotosAuto = withIcon(({ size }) => {
+const IconMotionPhotosAuto = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const MotionPhotosAuto = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0) scale(1.2)">
-        <path
-          d="M0.88 5.88L2.42 7.42C2.15 8.23 2 9.1 2 10C2 14.41 5.59 18 10 18C14.41 18 18 14.41 18 10C18 5.59 14.41 2 10 2C9.1 2 8.23 2.15 7.42 2.42L5.89 0.89C7.15 0.32 8.54 0 10 0C15.52 0 20 4.48 20 10C20 15.52 15.52 20 10 20C4.48 20 0 15.52 0 10C0 8.53 0.32 7.14 0.88 5.88ZM5 3.5C5 4.33 4.33 5 3.5 5C2.67 5 2 4.33 2 3.5C2 2.67 2.67 2 3.5 2C4.33 2 5 2.67 5 3.5ZM10.03 6.99H9.96L8.8 10.3H11.19L10.03 6.99ZM9.29 5.5H10.72L13.73 13.5H12.34L11.62 11.46H8.39L7.66 13.5H6.28L9.29 5.5Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M2.88 7.88L4.42 9.42C4.15 10.23 4 11.1 4 12C4 16.41 7.59 20 12 20C16.41 20 20 16.41 20 12C20 7.59 16.41 4 12 4C11.1 4 10.23 4.15 9.42 4.42L7.89 2.89C9.15 2.32 10.54 2 12 2C17.52 2 22 6.48 22 12C22 17.52 17.52 22 12 22C6.48 22 2 17.52 2 12C2 10.53 2.32 9.14 2.88 7.88ZM7 5.5C7 6.33 6.33 7 5.5 7C4.67 7 4 6.33 4 5.5C4 4.67 4.67 4 5.5 4C6.33 4 7 4.67 7 5.5ZM12.03 8.99H11.96L10.8 12.3H13.19L12.03 8.99ZM11.29 7.5H12.72L15.73 15.5H14.34L13.62 13.46H10.39L9.66 15.5H8.28L11.29 7.5Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default MotionPhotosAuto;
+export default IconMotionPhotosAuto;

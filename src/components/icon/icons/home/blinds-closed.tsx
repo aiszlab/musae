@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const BlindsClosed = withIcon(({ size }) => {
+const IconBlindsClosed = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const BlindsClosed = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0.15) scale(1.2)">
-        <path
-          d="M18 16V0H2V16H0V18H11.25C11.25 18.97 12.03 19.75 13 19.75C13.97 19.75 14.75 18.97 14.75 18H20V16H18ZM16 8H14V6H16V8ZM12 8H4V6H12V8ZM12 10V12H4V10H12ZM14 10H16V12H14V10ZM16 4H14V2H16V4ZM12 2V4H4V2H12ZM4 16V14H12V16H4ZM14 16V14H16V16H14Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M20 18.125V2.125H4V18.125H2V20.125H13.25C13.25 21.095 14.03 21.875 15 21.875C15.97 21.875 16.75 21.095 16.75 20.125H22V18.125H20ZM18 10.125H16V8.125H18V10.125ZM14 10.125H6V8.125H14V10.125ZM14 12.125V14.125H6V12.125H14ZM16 12.125H18V14.125H16V12.125ZM18 6.125H16V4.125H18V6.125ZM14 4.125V6.125H6V4.125H14ZM6 18.125V16.125H14V18.125H6ZM16 18.125V16.125H18V18.125H16Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default BlindsClosed;
+export default IconBlindsClosed;

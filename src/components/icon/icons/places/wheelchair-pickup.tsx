@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const WheelchairPickup = withIcon(({ size }) => {
+const IconWheelchairPickup = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const WheelchairPickup = withIcon(({ size }) => {
   );
 });
 
-export default WheelchairPickup;
+export default IconWheelchairPickup;

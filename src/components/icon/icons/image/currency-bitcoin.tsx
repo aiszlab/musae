@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const CurrencyBitcoin = withIcon(({ size }) => {
+const IconCurrencyBitcoin = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const CurrencyBitcoin = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(3.3333, 0) scale(1.3333)">
-        <path
-          d="M11.06 8.57C11.65 7.88 12 6.98 12 6C12 4.14 10.73 2.57 9 2.13V0H7V2H5V0H3V2H0V4H2V14H0V16H3V18H5V16H7V18H9V16C11.21 16 13 14.21 13 12C13 10.55 12.22 9.27 11.06 8.57ZM4 4H8C9.1 4 10 4.9 10 6C10 7.1 9.1 8 8 8H4V4ZM9 14H4V10H9C10.1 10 11 10.9 11 12C11 13.1 10.1 14 9 14Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M14.0598 11.5698C14.6498 10.8798 14.9998 9.9798 14.9998 8.9998C14.9998 7.1398 13.7298 5.5698 11.9998 5.1298V2.9998H9.9998V4.9998H7.9998V2.9998H5.9998V4.9998H2.9998V6.9998H4.9998V16.9998H2.9998V18.9998H5.9998V20.9998H7.9998V18.9998H9.9998V20.9998H11.9998V18.9998C14.2098 18.9998 15.9998 17.2098 15.9998 14.9998C15.9998 13.5498 15.2198 12.2698 14.0598 11.5698ZM6.9998 6.9998H10.9998C12.0998 6.9998 12.9998 7.8998 12.9998 8.9998C12.9998 10.0998 12.0998 10.9998 10.9998 10.9998H6.9998V6.9998ZM11.9998 16.9998H6.9998V12.9998H11.9998C13.0998 12.9998 13.9998 13.8998 13.9998 14.9998C13.9998 16.0998 13.0998 16.9998 11.9998 16.9998Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default CurrencyBitcoin;
+export default IconCurrencyBitcoin;

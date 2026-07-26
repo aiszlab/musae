@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Score = withIcon(({ size }) => {
+const IconScore = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const Score = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0) scale(1.3333)">
-        <path
-          d="M16 0H2C0.9 0 0 0.9 0 2V16C0 17.1 0.9 18 2 18H16C17.1 18 18 17.1 18 16V2C18 0.9 17.1 0 16 0ZM16 16H2L6 12L10 16L16 10V16ZM16 7.5L10 13.5L6 9.5L2 13.5V2H16V7.5ZM10.5 6V3H9V9H10.5V6ZM14.2 9L12.2 6L14.2 3H12.5L10.5 6L12.5 9H14.2ZM8 7.5H5.5V6.75H8V3H4V4.5H6.5V5.25H4V9H8V7.5Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3ZM19 19H5L9 15L13 19L19 13V19ZM19 10.5L13 16.5L9 12.5L5 16.5V5H19V10.5ZM13.5 9V6H12V12H13.5V9ZM17.2 12L15.2 9L17.2 6H15.5L13.5 9L15.5 12H17.2ZM11 10.5H8.5V9.75H11V6H7V7.5H9.5V8.25H7V12H11V10.5Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default Score;
+export default IconScore;

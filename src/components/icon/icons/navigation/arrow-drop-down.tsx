@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const ArrowDropDown = withIcon(({ size }) => {
+const IconArrowDropDown = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,11 +10,9 @@ const ArrowDropDown = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 6) scale(2.4)">
-        <path d="M0 0L5 5L10 0H0Z" fill="currentColor" />
-      </g>
+      <path d="M7 9.5L12 14.5L17 9.5H7Z" fill="currentColor" />
     </svg>
   );
 });
 
-export default ArrowDropDown;
+export default IconArrowDropDown;

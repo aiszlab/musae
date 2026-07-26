@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const ScreenLockPortrait = withIcon(({ size }) => {
+const IconScreenLockPortrait = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const ScreenLockPortrait = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(4.3636, 0) scale(1.0909)">
-        <path
-          d="M5 15H9C9.55 15 10 14.55 10 14V11C10 10.45 9.55 10 9 10V9C9 7.89 8.1 7 7 7C5.89 7 5 7.9 5 9V10C4.45 10 4 10.45 4 11V14C4 14.55 4.45 15 5 15ZM5.8 9C5.8 8.34 6.34 7.8 7 7.8C7.66 7.8 8.2 8.34 8.2 9V10H5.8V9ZM12 0H2C0.9 0 0 0.9 0 2V20C0 21.1 0.9 22 2 22H12C13.1 22 14 21.1 14 20V2C14 0.9 13.1 0 12 0ZM12 18H2V4H12V18Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M10 16H14C14.55 16 15 15.55 15 15V12C15 11.45 14.55 11 14 11V10C14 8.89 13.1 8 12 8C10.89 8 10 8.9 10 10V11C9.45 11 9 11.45 9 12V15C9 15.55 9.45 16 10 16ZM10.8 10C10.8 9.34 11.34 8.8 12 8.8C12.66 8.8 13.2 9.34 13.2 10V11H10.8V10ZM17 1H7C5.9 1 5 1.9 5 3V21C5 22.1 5.9 23 7 23H17C18.1 23 19 22.1 19 21V3C19 1.9 18.1 1 17 1ZM17 19H7V5H17V19Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default ScreenLockPortrait;
+export default IconScreenLockPortrait;

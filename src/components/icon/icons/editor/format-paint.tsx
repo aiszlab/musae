@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const FormatPaint = withIcon(({ size }) => {
+const IconFormatPaint = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const FormatPaint = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(1.8, 0) scale(1.2)">
-        <path
-          d="M14 2V1C14 0.45 13.55 0 13 0H1C0.45 0 0 0.45 0 1V5C0 5.55 0.45 6 1 6H13C13.55 6 14 5.55 14 5V4H15V8H5V19C5 19.55 5.45 20 6 20H8C8.55 20 9 19.55 9 19V10H17V2H14ZM12 4H2V2H12V4Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M17.5 4V3C17.5 2.45 17.05 2 16.5 2H4.5C3.95 2 3.5 2.45 3.5 3V7C3.5 7.55 3.95 8 4.5 8H16.5C17.05 8 17.5 7.55 17.5 7V6H18.5V10H8.5V21C8.5 21.55 8.95 22 9.5 22H11.5C12.05 22 12.5 21.55 12.5 21V12H20.5V4H17.5ZM15.5 6H5.5V4H15.5V6Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default FormatPaint;
+export default IconFormatPaint;

@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const ResetTv = withIcon(({ size }) => {
+const IconResetTv = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const ResetTv = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 1.2) scale(1.2)">
-        <path
-          d="M20 5V2C20 0.9 19.1 0 18 0H2C0.9 0 0 0.9 0 2V14C0 15.1 0.9 16 2 16H6V18H14V16H18C19.1 16 19.99 15.1 19.99 14V9H20C20 7.9 19.1 7 18 7H10.83L12.66 5.17L11.25 3.76C7.69 7.31 8.88 6.12 7 8C9.06 10.06 7.9 8.9 11.24 12.24L12.65 10.83L10.83 9H18V14H2V2H18V5H20Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M22 8V5C22 3.9 21.1 3 20 3H4C2.9 3 2 3.9 2 5V17C2 18.1 2.9 19 4 19H8V21H16V19H20C21.1 19 21.99 18.1 21.99 17V12H22C22 10.9 21.1 10 20 10H12.83L14.66 8.17L13.25 6.76C9.69 10.31 10.88 9.12 9 11C11.06 13.06 9.9 11.9 13.24 15.24L14.65 13.83L12.83 12H20V17H4V5H20V8H22Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default ResetTv;
+export default IconResetTv;

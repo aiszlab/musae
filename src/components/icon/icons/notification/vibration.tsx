@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Vibration = withIcon(({ size }) => {
+const IconVibration = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const Vibration = withIcon(({ size }) => {
   );
 });
 
-export default Vibration;
+export default IconVibration;

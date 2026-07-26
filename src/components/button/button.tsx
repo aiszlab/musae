@@ -10,7 +10,7 @@ import { useClassNames } from "../../hooks/use-class-names";
 import { CLASS_NAMES } from "./context";
 import styles, { TYPOGRAPHYS } from "./styles";
 import { useThemeColorVars } from "../../hooks/use-theme-color-vars";
-import { Loading } from "../icon/icons";
+import { IconLoading } from "../icon/icons";
 import { toPercentage } from "@aiszlab/relax";
 
 /**
@@ -86,7 +86,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         type={type}
         {...props}
       >
-        {isLoading ? <Loading /> : prefix}
+        {isLoading ? <IconLoading /> : prefix}
         {children}
         {suffix}
         {ripple && <Ripple ripples={ripples} onClear={clear} />}

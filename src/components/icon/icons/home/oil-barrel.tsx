@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const OilBarrel = withIcon(({ size }) => {
+const IconOilBarrel = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,18 +10,16 @@ const OilBarrel = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0) scale(1.3333)">
-        <path
-          d="M6 10.05C6 11.68 7.34 13 9 13C10.66 13 12 11.68 12 10.05C12 8.74 11.47 8.36 9 5.5C6.52 8.38 6 8.75 6 10.05Z"
-          fill="currentColor"
-        />
-        <path
-          d="M17 10C17.55 10 18 9.55 18 9C18 8.45 17.55 8 17 8H16V2H17C17.55 2 18 1.55 18 1C18 0.45 17.55 0 17 0H1C0.45 0 0 0.45 0 1C0 1.55 0.45 2 1 2H2V8H1C0.45 8 0 8.45 0 9C0 9.55 0.45 10 1 10H2V16H1C0.45 16 0 16.45 0 17C0 17.55 0.45 18 1 18H17C17.55 18 18 17.55 18 17C18 16.45 17.55 16 17 16H16V10H17ZM14 16H4V10C4.55 10 5 9.55 5 9C5 8.45 4.55 8 4 8V2H14V8C13.45 8 13 8.45 13 9C13 9.55 13.45 10 14 10V16Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M9 13.05C9 14.68 10.34 16 12 16C13.66 16 15 14.68 15 13.05C15 11.74 14.47 11.36 12 8.5C9.52 11.38 9 11.75 9 13.05Z"
+        fill="currentColor"
+      />
+      <path
+        d="M20 13C20.55 13 21 12.55 21 12C21 11.45 20.55 11 20 11H19V5H20C20.55 5 21 4.55 21 4C21 3.45 20.55 3 20 3H4C3.45 3 3 3.45 3 4C3 4.55 3.45 5 4 5H5V11H4C3.45 11 3 11.45 3 12C3 12.55 3.45 13 4 13H5V19H4C3.45 19 3 19.45 3 20C3 20.55 3.45 21 4 21H20C20.55 21 21 20.55 21 20C21 19.45 20.55 19 20 19H19V13H20ZM17 19H7V13C7.55 13 8 12.55 8 12C8 11.45 7.55 11 7 11V5H17V11C16.45 11 16 11.45 16 12C16 12.55 16.45 13 17 13V19Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default OilBarrel;
+export default IconOilBarrel;

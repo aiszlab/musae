@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Straight = withIcon(({ size }) => {
+const IconStraight = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,11 +10,12 @@ const Straight = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(6.6667, 0) scale(1.3333)">
-        <path d="M3 3.83L1.41 5.41L0 4L4 0L8 4L6.59 5.41L5 3.83V18H3V3.83Z" fill="currentColor" />
-      </g>
+      <path
+        d="M 10.6666 5.1065 L 8.5467 7.2132 L 6.6667 5.3332 L 12 0 L 17.3331 5.3332 L 15.4531 7.2132 L 13.3332 5.1065 V 23.9994 H 10.6666 V 5.1065Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default Straight;
+export default IconStraight;

@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const CopyAll = withIcon(({ size }) => {
+const IconCopyAll = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const CopyAll = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(1.8, 0) scale(1.2)">
-        <path
-          d="M15 0H6C4.9 0 4 0.9 4 2V14C4 15.1 4.9 16 6 16H15C16.1 16 17 15.1 17 14V2C17 0.9 16.1 0 15 0ZM15 14H6V2H15V14ZM0 13V11H2V13H0ZM0 7.5H2V9.5H0V7.5ZM7 18H9V20H7V18ZM0 16.5V14.5H2V16.5H0ZM2 20C0.9 20 0 19.1 0 18H2V20ZM5.5 20H3.5V18H5.5V20ZM10.5 20V18H12.5C12.5 19.1 11.6 20 10.5 20ZM2 4V6H0C0 4.9 0.9 4 2 4Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M18.5 2H9.5C8.4 2 7.5 2.9 7.5 4V16C7.5 17.1 8.4 18 9.5 18H18.5C19.6 18 20.5 17.1 20.5 16V4C20.5 2.9 19.6 2 18.5 2ZM18.5 16H9.5V4H18.5V16ZM3.5 15V13H5.5V15H3.5ZM3.5 9.5H5.5V11.5H3.5V9.5ZM10.5 20H12.5V22H10.5V20ZM3.5 18.5V16.5H5.5V18.5H3.5ZM5.5 22C4.4 22 3.5 21.1 3.5 20H5.5V22ZM9 22H7V20H9V22ZM14 22V20H16C16 21.1 15.1 22 14 22ZM5.5 6V8H3.5C3.5 6.9 4.4 6 5.5 6Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default CopyAll;
+export default IconCopyAll;

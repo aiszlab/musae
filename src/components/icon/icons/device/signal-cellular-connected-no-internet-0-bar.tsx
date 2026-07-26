@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const SignalCellularConnectedNoInternet0Bar = withIcon(({ size }) => {
+const IconSignalCellularConnectedNoInternet0Bar = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const SignalCellularConnectedNoInternet0Bar = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0) scale(1.2)">
-        <path
-          d="M18 16H20V8H18V16ZM18 20H20V18H18V20ZM16 18V20H0L20 0V6H18V4.83L4.83 18H16Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M20 18H22V10H20V18ZM20 22H22V20H20V22ZM18 20V22H2L22 2V8H20V6.83L6.83 20H18Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default SignalCellularConnectedNoInternet0Bar;
+export default IconSignalCellularConnectedNoInternet0Bar;

@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const EditNote = withIcon(({ size }) => {
+const IconEditNote = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const EditNote = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 2.0731) scale(1.3236)">
-        <path
-          d="M0 4H11V6H0V4ZM0 2H11V0H0V2ZM0 10H7V8H0V10ZM15.01 6.87L15.72 6.16C16.11 5.77 16.74 5.77 17.13 6.16L17.84 6.87C18.23 7.26 18.23 7.89 17.84 8.28L17.13 8.99L15.01 6.87ZM14.3 7.58L9 12.88V15H11.12L16.42 9.7L14.3 7.58Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M2.93375 8.5H13.9337V10.5H2.93375V8.5ZM2.93375 6.5H13.9337V4.5H2.93375V6.5ZM2.93375 14.5H9.93375V12.5H2.93375V14.5ZM17.9437 11.37L18.6537 10.66C19.0437 10.27 19.6737 10.27 20.0637 10.66L20.7737 11.37C21.1637 11.76 21.1637 12.39 20.7737 12.78L20.0637 13.49L17.9437 11.37ZM17.2337 12.08L11.9337 17.38V19.5H14.0537L19.3537 14.2L17.2337 12.08Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default EditNote;
+export default IconEditNote;

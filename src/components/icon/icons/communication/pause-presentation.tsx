@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const PausePresentation = withIcon(({ size }) => {
+const IconPausePresentation = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const PausePresentation = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 2.1818) scale(1.0909)">
-        <path
-          d="M20 0H2C0.9 0 0 0.85 0 1.95V15.95C0 17.05 0.9 18 2 18H20C21.1 18 22 17.05 22 15.95V1.95C22 0.85 21.1 0 20 0ZM20 16H2V2H20V16ZM8 5H10V13H8V5ZM12 5H14V13H12V5Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M21 3H3C1.9 3 1 3.85 1 4.95V18.95C1 20.05 1.9 21 3 21H21C22.1 21 23 20.05 23 18.95V4.95C23 3.85 22.1 3 21 3ZM21 19H3V5H21V19ZM9 8H11V16H9V8ZM13 8H15V16H13V8Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default PausePresentation;
+export default IconPausePresentation;

@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const KeyboardHide = withIcon(({ size }) => {
+const IconKeyboardHide = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const KeyboardHide = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0) scale(1.2)">
-        <path
-          d="M18 0H2C0.9 0 0.00999999 0.9 0.00999999 2L0 12C0 13.1 0.9 14 2 14H18C19.1 14 20 13.1 20 12V2C20 0.9 19.1 0 18 0ZM18 12H2V2H18V12ZM9 3H11V5H9V3ZM9 6H11V8H9V6ZM6 3H8V5H6V3ZM6 6H8V8H6V6ZM3 6H5V8H3V6ZM3 3H5V5H3V3ZM6 9H14V11H6V9ZM12 6H14V8H12V6ZM12 3H14V5H12V3ZM15 6H17V8H15V6ZM15 3H17V5H15V3ZM10 20L14 16H6L10 20Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M20 2H4C2.9 2 2.01 2.9 2.01 4L2 14C2 15.1 2.9 16 4 16H20C21.1 16 22 15.1 22 14V4C22 2.9 21.1 2 20 2ZM20 14H4V4H20V14ZM11 5H13V7H11V5ZM11 8H13V10H11V8ZM8 5H10V7H8V5ZM8 8H10V10H8V8ZM5 8H7V10H5V8ZM5 5H7V7H5V5ZM8 11H16V13H8V11ZM14 8H16V10H14V8ZM14 5H16V7H14V5ZM17 8H19V10H17V8ZM17 5H19V7H17V5ZM12 22L16 18H8L12 22Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default KeyboardHide;
+export default IconKeyboardHide;

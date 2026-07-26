@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const EscalatorWarning = withIcon(({ size }) => {
+const IconEscalatorWarning = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const EscalatorWarning = withIcon(({ size }) => {
   );
 });
 
-export default EscalatorWarning;
+export default IconEscalatorWarning;

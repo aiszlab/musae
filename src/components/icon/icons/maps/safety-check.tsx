@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const SafetyCheck = withIcon(({ size }) => {
+const IconSafetyCheck = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const SafetyCheck = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(2.4, 0) scale(1.2)">
-        <path
-          d="M8 0L0 3V9.09C0 14.14 3.41 18.85 8 20C12.59 18.85 16 14.14 16 9.09V3L8 0ZM14 9.09C14 13.09 11.45 16.79 8 17.92C4.55 16.79 2 13.1 2 9.09V4.39L8 2.14L14 4.39V9.09ZM8 5C5.24 5 3 7.24 3 10C3 12.76 5.24 15 8 15C10.76 15 13 12.76 13 10C13 7.24 10.76 5 8 5ZM9.65 12.35L7.5 10.2V7H8.5V9.79L10.35 11.64L9.65 12.35Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M 12 0 L 2.4 3.6 V 10.908 C 2.4 16.968 6.492 22.62 12 24 C 17.508 22.62 21.6 16.968 21.6 10.908 V 3.6 L 12 0ZM 19.2 10.908 C 19.2 15.708 16.14 20.148 12 21.504 C 7.86 20.148 4.8 15.72 4.8 10.908 V 5.268 L 12 2.568 L 19.2 5.268 V 10.908ZM 12 6 C 8.688 6 6 8.688 6 12 C 6 15.312 8.688 18 12 18 C 15.312 18 18 15.312 18 12 C 18 8.688 15.312 6 12 6ZM 13.98 14.82 L 11.4 12.24 V 8.4 H 12.6 V 11.748 L 14.82 13.968 L 13.98 14.82Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default SafetyCheck;
+export default IconSafetyCheck;

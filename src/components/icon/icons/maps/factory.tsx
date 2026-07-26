@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Factory = withIcon(({ size }) => {
+const IconFactory = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const Factory = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0) scale(1.2)">
-        <path
-          d="M20 20H0V8L7 5V7L12 5V8H15L16 0H19L20 8V20ZM10 7.95L5 9.95V8L2 9.32V18H18V10H10V7.95ZM9 16H11V12H9V16ZM5 16H7V12H5V16ZM15 12H13V16H15V12Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M22 22H2V10L9 7V9L14 7V10H17L18 2H21L22 10V22ZM12 9.95L7 11.95V10L4 11.32V20H20V12H12V9.95ZM11 18H13V14H11V18ZM7 18H9V14H7V18ZM17 14H15V18H17V14Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default Factory;
+export default IconFactory;

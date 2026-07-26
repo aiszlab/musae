@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const CallSplit = withIcon(({ size }) => {
+const IconCallSplit = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const CallSplit = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0) scale(1.5)">
-        <path
-          d="M10 0L12.29 2.29L9.41 5.17L10.83 6.59L13.71 3.71L16 6V0H10ZM6 0H0V6L2.29 3.71L7 8.41V16H9V7.59L3.71 2.29L6 0Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M14 4L16.29 6.29L13.41 9.17L14.83 10.59L17.71 7.71L20 10V4H14ZM10 4H4V10L6.29 7.71L11 12.41V20H13V11.59L7.71 6.29L10 4Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default CallSplit;
+export default IconCallSplit;

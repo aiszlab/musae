@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const AutoAwesomeMotion = withIcon(({ size }) => {
+const IconAutoAwesomeMotion = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const AutoAwesomeMotion = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0) scale(1.2)">
-        <path
-          d="M12 0H2C0.9 0 0 0.9 0 2V12H2V2H12V0ZM16 4H6C4.9 4 4 4.9 4 6V16H6V6H16V4ZM18 8H10C8.9 8 8 8.9 8 10V18C8 19.1 8.9 20 10 20H18C19.1 20 20 19.1 20 18V10C20 8.9 19.1 8 18 8ZM18 18H10V10H18V18Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M14 2H4C2.9 2 2 2.9 2 4V14H4V4H14V2ZM18 6H8C6.9 6 6 6.9 6 8V18H8V8H18V6ZM20 10H12C10.9 10 10 10.9 10 12V20C10 21.1 10.9 22 12 22H20C21.1 22 22 21.1 22 20V12C22 10.9 21.1 10 20 10ZM20 20H12V12H20V20Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default AutoAwesomeMotion;
+export default IconAutoAwesomeMotion;

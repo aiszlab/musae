@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const DeveloperMode = withIcon(({ size }) => {
+const IconDeveloperMode = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const DeveloperMode = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(3.2727, 0) scale(1.0909)">
-        <path
-          d="M3 4H13V6H15V2C15 0.9 14.1 0.00999999 13 0.00999999L3 0C1.9 0 1 0.9 1 2V6H3V4ZM11.41 15.59L16 11L11.41 6.41L10 7.83L13.17 11L10 14.17L11.41 15.59ZM6 14.17L2.83 11L6 7.83L4.59 6.41L0 11L4.59 15.59L6 14.17ZM13 18H3V16H1V20C1 21.1 1.9 22 3 22H13C14.1 22 15 21.1 15 20V16H13V18Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M7 5H17V7H19V3C19 1.9 18.1 1.01 17 1.01L7 1C5.9 1 5 1.9 5 3V7H7V5ZM15.41 16.59L20 12L15.41 7.41L14 8.83L17.17 12L14 15.17L15.41 16.59ZM10 15.17L6.83 12L10 8.83L8.59 7.41L4 12L8.59 16.59L10 15.17ZM17 19H7V17H5V21C5 22.1 5.9 23 7 23H17C18.1 23 19 22.1 19 21V17H17V19Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default DeveloperMode;
+export default IconDeveloperMode;

@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const MonitorHeart = withIcon(({ size }) => {
+const IconMonitorHeart = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,19 +10,17 @@ const MonitorHeart = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 2.4) scale(1.2)">
-        <path d="M18 0H2C0.9 0 0 0.9 0 2V5H2V2H18V5H20V2C20 0.9 19.1 0 18 0Z" fill="currentColor" />
-        <path
-          d="M18 14H2V11H0V14C0 15.1 0.9 16 2 16H18C19.1 16 20 15.1 20 14V11H18V14Z"
-          fill="currentColor"
-        />
-        <path
-          d="M12.89 3.55C12.55 2.87 11.44 2.87 11.1 3.55L8 9.76L6.89 7.55C6.72 7.21 6.38 7 6 7H0V9H5.38L7.1 12.45C7.28 12.79 7.62 13 8 13C8.38 13 8.72 12.79 8.89 12.45L12 6.24L13.11 8.45C13.28 8.79 13.62 9 14 9H20V7H14.62L12.89 3.55Z"
-          fill="currentColor"
-        />
-      </g>
+      <path d="M20 4H4C2.9 4 2 4.9 2 6V9H4V6H20V9H22V6C22 4.9 21.1 4 20 4Z" fill="currentColor" />
+      <path
+        d="M20 18H4V15H2V18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V15H20V18Z"
+        fill="currentColor"
+      />
+      <path
+        d="M14.89 7.55C14.55 6.87 13.44 6.87 13.1 7.55L10 13.76L8.89 11.55C8.72 11.21 8.38 11 8 11H2V13H7.38L9.1 16.45C9.28 16.79 9.62 17 10 17C10.38 17 10.72 16.79 10.89 16.45L14 10.24L15.11 12.45C15.28 12.79 15.62 13 16 13H22V11H16.62L14.89 7.55Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default MonitorHeart;
+export default IconMonitorHeart;

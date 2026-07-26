@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const DoubleArrow = withIcon(({ size }) => {
+const IconDoubleArrow = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,12 +10,10 @@ const DoubleArrow = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 1.8182) scale(1.4545)">
-        <path d="M11.5 0H7L12 7L7 14H11.5L16.5 7L11.5 0Z" fill="currentColor" />
-        <path d="M4.5 0H0L5 7L0 14H4.5L9.5 7L4.5 0Z" fill="currentColor" />
-      </g>
+      <path d="M15.25 5H10.75L15.75 12L10.75 19H15.25L20.25 12L15.25 5Z" fill="currentColor" />
+      <path d="M8.25 5H3.75L8.75 12L3.75 19H8.25L13.25 12L8.25 5Z" fill="currentColor" />
     </svg>
   );
 });
 
-export default DoubleArrow;
+export default IconDoubleArrow;

@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Tune = withIcon(({ size }) => {
+const IconTune = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const Tune = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0) scale(1.3333)">
-        <path
-          d="M0 14V16H6V14H0ZM0 2V4H10V2H0ZM10 18V16H18V14H10V12H8V18H10ZM4 6V8H0V10H4V12H6V6H4ZM18 10V8H8V10H18ZM12 6H14V4H18V2H14V0H12V6Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M2.9998 16.9998V18.9998H8.9998V16.9998H2.9998ZM2.9998 4.9998V6.9998H12.9998V4.9998H2.9998ZM12.9998 20.9998V18.9998H20.9998V16.9998H12.9998V14.9998H10.9998V20.9998H12.9998ZM6.9998 8.9998V10.9998H2.9998V12.9998H6.9998V14.9998H8.9998V8.9998H6.9998ZM20.9998 12.9998V10.9998H10.9998V12.9998H20.9998ZM14.9998 8.9998H16.9998V6.9998H20.9998V4.9998H16.9998V2.9998H14.9998V8.9998Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default Tune;
+export default IconTune;

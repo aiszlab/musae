@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const CandlestickChart = withIcon(({ size }) => {
+const IconCandlestickChart = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,12 +10,10 @@ const CandlestickChart = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(1.5, 0) scale(1.5)">
-        <path d="M4 0H2V2H0V14H2V16H4V14H6V2H4V0ZM4 12H2V4H4V12Z" fill="currentColor" />
-        <path d="M14 4H12V0H10V4H8V11H10V16H12V11H14V4ZM12 9H10V6H12V9Z" fill="currentColor" />
-      </g>
+      <path d="M9 4H7V6H5V18H7V20H9V18H11V6H9V4ZM9 16H7V8H9V16Z" fill="currentColor" />
+      <path d="M19 8H17V4H15V8H13V15H15V20H17V15H19V8ZM17 13H15V10H17V13Z" fill="currentColor" />
     </svg>
   );
 });
 
-export default CandlestickChart;
+export default IconCandlestickChart;

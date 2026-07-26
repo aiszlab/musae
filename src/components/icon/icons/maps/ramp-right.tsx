@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const RampRight = withIcon(({ size }) => {
+const IconRampRight = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const RampRight = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(4.6667, 0) scale(1.3333)">
-        <path
-          d="M6 18H8V3.83L9.59 5.42L11 4L7 0L3 4L4.41 5.41L6 3.83V6C6 10.27 1.97 13.13 0 14.27L1.46 15.73C3.37 14.56 4.9 13.19 6 11.7V18Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M 12.6665 23.9994 H 15.3331 V 5.1065 L 17.453 7.2265 L 19.333 5.3332 L 14 0 L 8.6666 5.3332 L 10.5466 7.2132 L 12.6665 5.1065 V 8 C 12.6665 13.693 7.2933 17.5062 4.6667 19.0262 L 6.6133 20.9728 C 9.1599 19.4128 11.1999 17.5862 12.6665 15.5996 V 23.9994Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default RampRight;
+export default IconRampRight;

@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const MissedVideoCall = withIcon(({ size }) => {
+const IconMissedVideoCall = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const MissedVideoCall = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 4) scale(1.3333)">
-        <path
-          d="M14 4.5V1C14 0.45 13.55 0 13 0H1C0.45 0 0 0.45 0 1V11C0 11.55 0.45 12 1 12H13C13.55 12 14 11.55 14 11V7.5L18 11.5V0.5L14 4.5ZM12 10H2V2H12V10ZM4.11 5.11L8 9L11.77 5.21L10.99 4.42L8 7.43L4.89 4.33H7.44V3.22H3V7.66H4.11V5.11Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M17 10.5V7C17 6.45 16.55 6 16 6H4C3.45 6 3 6.45 3 7V17C3 17.55 3.45 18 4 18H16C16.55 18 17 17.55 17 17V13.5L21 17.5V6.5L17 10.5ZM15 16H5V8H15V16ZM7.11 11.11L11 15L14.77 11.21L13.99 10.42L11 13.43L7.89 10.33H10.44V9.22H6V13.66H7.11V11.11Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default MissedVideoCall;
+export default IconMissedVideoCall;

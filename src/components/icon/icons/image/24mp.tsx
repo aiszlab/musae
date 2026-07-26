@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const TwentyFourMp = withIcon(({ size }) => {
+const Icon24mp = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,30 +10,28 @@ const TwentyFourMp = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0) scale(1.3333)">
-        <path
-          d="M4.5 11H5.5V14H7V11H8V15.5H9.5V10.5C9.5 9.95 9.05 9.5 8.5 9.5H4C3.45 9.5 3 9.95 3 10.5V15.5H4.5V11Z"
-          fill="currentColor"
-        />
-        <path
-          d="M14 9.5H10.5V15.5H12V14H14C14.55 14 15 13.55 15 13V10.5C15 9.95 14.55 9.5 14 9.5ZM13.5 12.5H12V11H13.5V12.5Z"
-          fill="currentColor"
-        />
-        <path
-          d="M16 0H2C0.9 0 0 0.9 0 2V16C0 17.1 0.9 18 2 18H16C17.1 18 18 17.1 18 16V2C18 0.9 17.1 0 16 0ZM16 16H2V2H16V16Z"
-          fill="currentColor"
-        />
-        <path
-          d="M8 7H5V6H7C7.55 6 8 5.55 8 5V3.5C8 2.95 7.55 2.5 7 2.5H3.5V4H6.5V5H4.5C3.95 5 3.5 5.45 3.5 6V8.5H8V7Z"
-          fill="currentColor"
-        />
-        <path
-          d="M13 8.5H14.5V7H15.5V5.5H14.5V2.5H13V5.5H11.5V2.5H10V7H13V8.5Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M7.5 14H8.5V17H10V14H11V18.5H12.5V13.5C12.5 12.95 12.05 12.5 11.5 12.5H7C6.45 12.5 6 12.95 6 13.5V18.5H7.5V14Z"
+        fill="currentColor"
+      />
+      <path
+        d="M17 12.5H13.5V18.5H15V17H17C17.55 17 18 16.55 18 16V13.5C18 12.95 17.55 12.5 17 12.5ZM16.5 15.5H15V14H16.5V15.5Z"
+        fill="currentColor"
+      />
+      <path
+        d="M19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3ZM19 19H5V5H19V19Z"
+        fill="currentColor"
+      />
+      <path
+        d="M11 10H8V9H10C10.55 9 11 8.55 11 8V6.5C11 5.95 10.55 5.5 10 5.5H6.5V7H9.5V8H7.5C6.95 8 6.5 8.45 6.5 9V11.5H11V10Z"
+        fill="currentColor"
+      />
+      <path
+        d="M16 11.5H17.5V10H18.5V8.5H17.5V5.5H16V8.5H14.5V5.5H13V10H16V11.5Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default TwentyFourMp;
+export default Icon24mp;

@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Egg = withIcon(({ size }) => {
+const IconEgg = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,18 +10,16 @@ const Egg = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(2.6667, 0) scale(1.3333)">
-        <path
-          d="M7 0C3.5 0 0 6.33 0 11C0 14.87 3.13 18 7 18C10.87 18 14 14.87 14 11C14 6.33 10.5 0 7 0ZM7 16C4.24 16 2 13.76 2 11C2 6.91 5.07 2 7 2C8.93 2 12 6.91 12 11C12 13.76 9.76 16 7 16Z"
-          fill="currentColor"
-        />
-        <path
-          d="M8 13C7.42 13 5 12.92 5 10C5 9.45 4.55 9 4 9C3.45 9 3 9.45 3 10C3 13 4.99 15 8 15C8.55 15 9 14.55 9 14C9 13.45 8.55 13 8 13Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M12 3C8.5 3 5 9.33 5 14C5 17.87 8.13 21 12 21C15.87 21 19 17.87 19 14C19 9.33 15.5 3 12 3ZM12 19C9.24 19 7 16.76 7 14C7 9.91 10.07 5 12 5C13.93 5 17 9.91 17 14C17 16.76 14.76 19 12 19Z"
+        fill="currentColor"
+      />
+      <path
+        d="M13 16C12.42 16 10 15.92 10 13C10 12.45 9.55 12 9 12C8.45 12 8 12.45 8 13C8 16 9.99 18 13 18C13.55 18 14 17.55 14 17C14 16.45 13.55 16 13 16Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default Egg;
+export default IconEgg;

@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const FormatListNumbered = withIcon(({ size }) => {
+const IconFormatListNumbered = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const FormatListNumbered = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 1.8947) scale(1.2632)">
-        <path
-          d="M0 13H2V13.5H1V14.5H2V15H0V16H3V12H0V13ZM1 4H2V0H0V1H1V4ZM0 7H1.8L0 9.1V10H3V9H1.2L3 6.9V6H0V7ZM5 1V3H19V1H5ZM5 15H19V13H5V15ZM5 9H19V7H5V9Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M2.5 17H4.5V17.5H3.5V18.5H4.5V19H2.5V20H5.5V16H2.5V17ZM3.5 8H4.5V4H2.5V5H3.5V8ZM2.5 11H4.3L2.5 13.1V14H5.5V13H3.7L5.5 10.9V10H2.5V11ZM7.5 5V7H21.5V5H7.5ZM7.5 19H21.5V17H7.5V19ZM7.5 13H21.5V11H7.5V13Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default FormatListNumbered;
+export default IconFormatListNumbered;

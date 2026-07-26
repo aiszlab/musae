@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Duo = withIcon(({ size }) => {
+const IconDuo = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const Duo = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0) scale(1.2)">
-        <path
-          d="M18 0H10C4.38 0 0 4.66 0 10.28C0 15.5 4.49 20 9.72 20C15.39 20 20 15.62 20 10V2C20 0.9 19.1 0 18 0ZM15 13L12 11V13H5V7H12V9L15 7V13Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M20 2H12C6.38 2 2 6.66 2 12.28C2 17.5 6.49 22 11.72 22C17.39 22 22 17.62 22 12V4C22 2.9 21.1 2 20 2ZM17 15L14 13V15H7V9H14V11L17 9V15Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default Duo;
+export default IconDuo;

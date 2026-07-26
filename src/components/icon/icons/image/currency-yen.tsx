@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const CurrencyYen = withIcon(({ size }) => {
+const IconCurrencyYen = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const CurrencyYen = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(2.6667, 0) scale(1.3333)">
-        <path
-          d="M8.92 8H13V10H8V12H13V14H8V18H6V14H1V12H6V10H1V8H5.08L0 0H2.37L7 7.29L11.63 0H14L8.92 8Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M11.9198 10.9998H15.9998V12.9998H10.9998V14.9998H15.9998V16.9998H10.9998V20.9998H8.9998V16.9998H3.9998V14.9998H8.9998V12.9998H3.9998V10.9998H8.0798L2.9998 2.9998H5.3698L9.9998 10.2898L14.6298 2.9998H16.9998L11.9198 10.9998Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default CurrencyYen;
+export default IconCurrencyYen;

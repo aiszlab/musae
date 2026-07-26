@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const EdgesensorHigh = withIcon(({ size }) => {
+const IconEdgesensorHigh = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const EdgesensorHigh = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 2) scale(1)">
-        <path
-          d="M3 5H5V12H3V5ZM0 8H2V15H0V8ZM22 5H24V12H22V5ZM19 8H21V15H19V8ZM16 0.00999999L8 0C6.9 0 6 0.9 6 2V18C6 19.1 6.9 20 8 20H16C17.1 20 18 19.1 18 18V2C18 0.9 17.1 0.00999999 16 0.00999999ZM16 18H8V17H16V18ZM16 15H8V5H16V15ZM8 3V2H16V3H8Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M3 7H5V14H3V7ZM0 10H2V17H0V10ZM22 7H24V14H22V7ZM19 10H21V17H19V10ZM16 2.01L8 2C6.9 2 6 2.9 6 4V20C6 21.1 6.9 22 8 22H16C17.1 22 18 21.1 18 20V4C18 2.9 17.1 2.01 16 2.01ZM16 20H8V19H16V20ZM16 17H8V7H16V17ZM8 5V4H16V5H8Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default EdgesensorHigh;
+export default IconEdgesensorHigh;

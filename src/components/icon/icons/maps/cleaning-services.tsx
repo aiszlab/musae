@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const CleaningServices = withIcon(({ size }) => {
+const IconCleaningServices = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const CleaningServices = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(2.1818, 0) scale(1.0909)">
-        <path
-          d="M13 10H12V2C12 0.9 11.1 0 10 0H8C6.9 0 6 0.9 6 2V10H5C2.24 10 0 12.24 0 15V22H18V15C18 12.24 15.76 10 13 10ZM8 2H10V10H8V2ZM16 20H14V17C14 16.45 13.55 16 13 16C12.45 16 12 16.45 12 17V20H10V17C10 16.45 9.55 16 9 16C8.45 16 8 16.45 8 17V20H6V17C6 16.45 5.55 16 5 16C4.45 16 4 16.45 4 17V20H2V15C2 13.35 3.35 12 5 12H13C14.65 12 16 13.35 16 15V20Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M16 11H15V3C15 1.9 14.1 1 13 1H11C9.9 1 9 1.9 9 3V11H8C5.24 11 3 13.24 3 16V23H21V16C21 13.24 18.76 11 16 11ZM11 3H13V11H11V3ZM19 21H17V18C17 17.45 16.55 17 16 17C15.45 17 15 17.45 15 18V21H13V18C13 17.45 12.55 17 12 17C11.45 17 11 17.45 11 18V21H9V18C9 17.45 8.55 17 8 17C7.45 17 7 17.45 7 18V21H5V16C5 14.35 6.35 13 8 13H16C17.65 13 19 14.35 19 16V21Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default CleaningServices;
+export default IconCleaningServices;

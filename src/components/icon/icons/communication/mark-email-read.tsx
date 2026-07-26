@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const MarkEmailRead = withIcon(({ size }) => {
+const IconMarkEmailRead = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const MarkEmailRead = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 1.7143) scale(1.1429)">
-        <path
-          d="M18 0H2C0.9 0 0.00999999 0.9 0.00999999 2L0 14C0 15.1 0.9 16 2 16H10V14H2V4L10 9L18 4V9H20V2C20 0.9 19.1 0 18 0ZM10 7L2 2H18L10 7ZM15.34 18L11.8 14.46L13.21 13.05L15.33 15.17L19.57 10.93L21 12.34L15.34 18Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M19.5 3H3.5C2.4 3 1.51 3.9 1.51 5L1.5 17C1.5 18.1 2.4 19 3.5 19H11.5V17H3.5V7L11.5 12L19.5 7V12H21.5V5C21.5 3.9 20.6 3 19.5 3ZM11.5 10L3.5 5H19.5L11.5 10ZM16.84 21L13.3 17.46L14.71 16.05L16.83 18.17L21.07 13.93L22.5 15.34L16.84 21Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default MarkEmailRead;
+export default IconMarkEmailRead;

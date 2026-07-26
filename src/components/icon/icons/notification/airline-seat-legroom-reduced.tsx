@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const AirlineSeatLegroomReduced = withIcon(({ size }) => {
+const IconAirlineSeatLegroomReduced = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const AirlineSeatLegroomReduced = withIcon(({ size }) => {
   );
 });
 
-export default AirlineSeatLegroomReduced;
+export default IconAirlineSeatLegroomReduced;

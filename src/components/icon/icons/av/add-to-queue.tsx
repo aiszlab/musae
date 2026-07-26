@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const AddToQueue = withIcon(({ size }) => {
+const IconAddToQueue = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const AddToQueue = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 2.1818) scale(1.0909)">
-        <path
-          d="M10 12H12V9H15V7H12V4H10V7H7V9H10V12ZM20 0H2C0.89 0 0 0.89 0 2V14C0 15.1 0.89 16 2 16H7V18H15V16H20C21.1 16 22 15.1 22 14V2C22 0.89 21.1 0 20 0ZM20 14H2V2H20V14Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M11 15H13V12H16V10H13V7H11V10H8V12H11V15ZM21 3H3C1.89 3 1 3.89 1 5V17C1 18.1 1.89 19 3 19H8V21H16V19H21C22.1 19 23 18.1 23 17V5C23 3.89 22.1 3 21 3ZM21 17H3V5H21V17Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default AddToQueue;
+export default IconAddToQueue;

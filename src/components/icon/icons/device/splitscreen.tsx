@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Splitscreen = withIcon(({ size }) => {
+const IconSplitscreen = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const Splitscreen = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(2.4, 0) scale(1.2)">
-        <path
-          d="M14 2V7H2V2H14ZM14 0H2C0.9 0 0 0.9 0 2V7C0 8.1 0.9 9 2 9H14C15.1 9 16 8.1 16 7V2C16 0.9 15.1 0 14 0ZM14 13V18H2V13H14ZM14 11H2C0.9 11 0 11.9 0 13V18C0 19.1 0.9 20 2 20H14C15.1 20 16 19.1 16 18V13C16 11.9 15.1 11 14 11Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M18 4V9H6V4H18ZM18 2H6C4.9 2 4 2.9 4 4V9C4 10.1 4.9 11 6 11H18C19.1 11 20 10.1 20 9V4C20 2.9 19.1 2 18 2ZM18 15V20H6V15H18ZM18 13H6C4.9 13 4 13.9 4 15V20C4 21.1 4.9 22 6 22H18C19.1 22 20 21.1 20 20V15C20 13.9 19.1 13 18 13Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default Splitscreen;
+export default IconSplitscreen;

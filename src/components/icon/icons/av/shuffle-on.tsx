@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const ShuffleOn = withIcon(({ size }) => {
+const IconShuffleOn = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const ShuffleOn = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0) scale(1.0909)">
-        <path
-          d="M20 0H2C0.9 0 0 0.9 0 2V20C0 21.1 0.9 22 2 22H20C21.1 22 22 21.1 22 20V2C22 0.9 21.1 0 20 0ZM4.41 3L9.59 8.17L8.18 9.59L3 4.42L4.41 3ZM19 19H13V17H15.61L12.41 13.8L13.83 12.38L17 15.55V13H19V19ZM19 9H17V6.42L4.41 19L3 17.59L15.58 5H13V3H19V9Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M21 1H3C1.9 1 1 1.9 1 3V21C1 22.1 1.9 23 3 23H21C22.1 23 23 22.1 23 21V3C23 1.9 22.1 1 21 1ZM5.41 4L10.59 9.17L9.18 10.59L4 5.42L5.41 4ZM20 20H14V18H16.61L13.41 14.8L14.83 13.38L18 16.55V14H20V20ZM20 10H18V7.42L5.41 20L4 18.59L16.58 6H14V4H20V10Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default ShuffleOn;
+export default IconShuffleOn;

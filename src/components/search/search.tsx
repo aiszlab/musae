@@ -2,7 +2,7 @@ import { Button } from "../button";
 import { Input } from "../input";
 import React, { forwardRef, useRef, useImperativeHandle, useCallback } from "react";
 import IconSearch from "../icon/icons/action/search";
-import { Close } from "../icon/icons";
+import { IconClose } from "../icon/icons";
 import { props as $props } from "@stylexjs/stylex";
 import { OPACITY } from "../theme/tokens.stylex";
 import { useThemeColorVars } from "../../hooks/use-theme-color-vars";
@@ -153,7 +153,7 @@ const Search = forwardRef<SearchRef, SearchProps>(
             onClick={handleClear}
             aria-label="Clear search"
           >
-            <Close size={24} />
+            <IconClose size={24} />
           </button>
         )}
 

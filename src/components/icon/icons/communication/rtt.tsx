@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Rtt = withIcon(({ size }) => {
+const IconRtt = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const Rtt = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 1.2) scale(1.2)">
-        <path
-          d="M7.03 0L5.92 7.07H8.54L9.24 2.57H11.82L9.8 15.43H7.47L7.06 18H14.33L14.73 15.43H12.38L14.38 2.57H16.96L16.25 7.07H18.9L20 0H7.03ZM6 2H2L1.69 4H5.69L6 2ZM5.39 6H1.39L1.08 8H5.08L5.39 6ZM6.31 14H0.31L0 16H6L6.31 14ZM6.93 10H0.93L0.62 12H6.63L6.93 10Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M9.03 3L7.92 10.07H10.54L11.24 5.57H13.82L11.8 18.43H9.47L9.06 21H16.33L16.73 18.43H14.38L16.38 5.57H18.96L18.25 10.07H20.9L22 3H9.03ZM8 5H4L3.69 7H7.69L8 5ZM7.39 9H3.39L3.08 11H7.08L7.39 9ZM8.31 17H2.31L2 19H8L8.31 17ZM8.93 13H2.93L2.62 15H8.63L8.93 13Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default Rtt;
+export default IconRtt;

@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Radio = withIcon(({ size }) => {
+const IconRadio = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,18 +10,16 @@ const Radio = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0.5714, 0) scale(1.1429)">
-        <path
-          d="M18 5H6.3L14.56 1.66L13.88 0L1.24 5.15C0.51 5.43 0 6.17 0 7V19C0 20.1 0.89 21 2 21H18C19.11 21 20 20.1 20 19V7C20 5.89 19.11 5 18 5ZM18 7V10H16V8H14V10H2V7H18ZM2 19V12H18V19H2Z"
-          fill="currentColor"
-        />
-        <path
-          d="M6 17.98C7.38071 17.98 8.5 16.8607 8.5 15.48C8.5 14.0993 7.38071 12.98 6 12.98C4.61929 12.98 3.5 14.0993 3.5 15.48C3.5 16.8607 4.61929 17.98 6 17.98Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M20 6.5H8.3L16.56 3.16L15.88 1.5L3.24 6.65C2.51 6.93 2 7.67 2 8.5V20.5C2 21.6 2.89 22.5 4 22.5H20C21.11 22.5 22 21.6 22 20.5V8.5C22 7.39 21.11 6.5 20 6.5ZM20 8.5V11.5H18V9.5H16V11.5H4V8.5H20ZM4 20.5V13.5H20V20.5H4Z"
+        fill="currentColor"
+      />
+      <path
+        d="M8 19.48C9.38071 19.48 10.5 18.3607 10.5 16.98C10.5 15.5993 9.38071 14.48 8 14.48C6.61929 14.48 5.5 15.5993 5.5 16.98C5.5 18.3607 6.61929 19.48 8 19.48Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default Radio;
+export default IconRadio;

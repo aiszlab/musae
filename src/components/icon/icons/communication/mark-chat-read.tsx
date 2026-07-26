@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const MarkChatRead = withIcon(({ size }) => {
+const IconMarkChatRead = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const MarkChatRead = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0.5714) scale(1.1429)">
-        <path
-          d="M10 16H4L0 20V2C0 0.9 0.9 0 2 0H18C19.1 0 20 0.9 20 2V9H18V2H2V14H10V16ZM21 12.34L19.59 10.93L15.35 15.17L13.23 13.05L11.82 14.46L15.34 18L21 12.34Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M11.5 18H5.5L1.5 22V4C1.5 2.9 2.4 2 3.5 2H19.5C20.6 2 21.5 2.9 21.5 4V11H19.5V4H3.5V16H11.5V18ZM22.5 14.34L21.09 12.93L16.85 17.17L14.73 15.05L13.32 16.46L16.84 20L22.5 14.34Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default MarkChatRead;
+export default IconMarkChatRead;

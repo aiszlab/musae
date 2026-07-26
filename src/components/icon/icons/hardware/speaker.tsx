@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Speaker = withIcon(({ size }) => {
+const IconSpeaker = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const Speaker = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(3.6, 0) scale(1.2)">
-        <path
-          d="M12 0H2C0.9 0 0 0.9 0 2V18C0 19.1 0.9 19.99 2 19.99L12 20C13.1 20 14 19.1 14 18V2C14 0.9 13.1 0 12 0ZM2 18V2H12V18H2ZM7 7C8.1 7 9 6.1 9 5C9 3.9 8.1 3 7 3C5.89 3 5 3.9 5 5C5 6.1 5.89 7 7 7ZM7 9C4.79 9 3 10.79 3 13C3 15.21 4.79 17 7 17C9.21 17 11 15.21 11 13C11 10.79 9.21 9 7 9ZM7 15C5.9 15 5 14.1 5 13C5 11.9 5.9 11 7 11C8.1 11 9 11.9 9 13C9 14.1 8.1 15 7 15Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M17 2H7C5.9 2 5 2.9 5 4V20C5 21.1 5.9 21.99 7 21.99L17 22C18.1 22 19 21.1 19 20V4C19 2.9 18.1 2 17 2ZM7 20V4H17V20H7ZM12 9C13.1 9 14 8.1 14 7C14 5.9 13.1 5 12 5C10.89 5 10 5.9 10 7C10 8.1 10.89 9 12 9ZM12 11C9.79 11 8 12.79 8 15C8 17.21 9.79 19 12 19C14.21 19 16 17.21 16 15C16 12.79 14.21 11 12 11ZM12 17C10.9 17 10 16.1 10 15C10 13.9 10.9 13 12 13C13.1 13 14 13.9 14 15C14 16.1 13.1 17 12 17Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default Speaker;
+export default IconSpeaker;

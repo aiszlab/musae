@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const AddToHomeScreen = withIcon(({ size }) => {
+const IconAddToHomeScreen = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const AddToHomeScreen = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(2.7273, 0) scale(1.0909)">
-        <path
-          d="M15 0.00999999L5 0C3.9 0 3 0.9 3 2V5H5V4H15V18H5V17H3V20C3 21.1 3.9 22 5 22H15C16.1 22 17 21.1 17 20V2C17 0.9 16.1 0.00999999 15 0.00999999ZM7 14H9V7H2V9H5.59L0 14.59L1.41 16L7 10.41V14Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M18.5 1.01L8.5 1C7.4 1 6.5 1.9 6.5 3V6H8.5V5H18.5V19H8.5V18H6.5V21C6.5 22.1 7.4 23 8.5 23H18.5C19.6 23 20.5 22.1 20.5 21V3C20.5 1.9 19.6 1.01 18.5 1.01ZM10.5 15H12.5V8H5.5V10H9.09L3.5 15.59L4.91 17L10.5 11.41V15Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default AddToHomeScreen;
+export default IconAddToHomeScreen;

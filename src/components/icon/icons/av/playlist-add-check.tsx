@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const PlaylistAddCheck = withIcon(({ size }) => {
+const IconPlaylistAddCheck = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,17 +10,15 @@ const PlaylistAddCheck = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 3.7895) scale(1.2632)">
-        <path d="M11 4H0V6H11V4Z" fill="currentColor" />
-        <path d="M11 0H0V2H11V0Z" fill="currentColor" />
-        <path d="M7 8H0V10H7V8Z" fill="currentColor" />
-        <path
-          d="M17.59 5.93L13.34 10.17L11.22 8.05L9.81 9.46L13.34 13L19 7.34L17.59 5.93Z"
-          fill="currentColor"
-        />
-      </g>
+      <path d="M13.5 9.5H2.5V11.5H13.5V9.5Z" fill="currentColor" />
+      <path d="M13.5 5.5H2.5V7.5H13.5V5.5Z" fill="currentColor" />
+      <path d="M9.5 13.5H2.5V15.5H9.5V13.5Z" fill="currentColor" />
+      <path
+        d="M20.09 11.43L15.84 15.67L13.72 13.55L12.31 14.96L15.84 18.5L21.5 12.84L20.09 11.43Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default PlaylistAddCheck;
+export default IconPlaylistAddCheck;

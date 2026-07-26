@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const CreditScore = withIcon(({ size }) => {
+const IconCreditScore = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const CreditScore = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 1.2) scale(1.2)">
-        <path
-          d="M18 0H2C0.89 0 0.00999999 0.89 0.00999999 2L0 14C0 15.11 0.89 16 2 16H7V14H2V8H20V2C20 0.89 19.11 0 18 0ZM18 4H2V2H18V4ZM12.93 15.17L10.1 12.34L8.69 13.75L12.93 18L20 10.93L18.59 9.52L12.93 15.17Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M20 3H4C2.89 3 2.01 3.89 2.01 5L2 17C2 18.11 2.89 19 4 19H9V17H4V11H22V5C22 3.89 21.11 3 20 3ZM20 7H4V5H20V7ZM14.93 18.17L12.1 15.34L10.69 16.75L14.93 21L22 13.93L20.59 12.52L14.93 18.17Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default CreditScore;
+export default IconCreditScore;

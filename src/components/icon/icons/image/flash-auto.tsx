@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const FlashAuto = withIcon(({ size }) => {
+const IconFlashAuto = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const FlashAuto = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(1.0286, 0) scale(1.1429)">
-        <path
-          d="M0 0V12H3V21L10 9H6L10 0H0ZM16 0H14L10.8 9H12.7L13.4 7H16.6L17.3 9H19.2L16 0ZM13.85 5.65L15 2L16.15 5.65H13.85Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M1.5004 1.5004V13.5004H4.5004V22.5004L11.5004 10.5004H7.5004L11.5004 1.5004H1.5004ZM17.5004 1.5004H15.5004L12.3004 10.5004H14.2004L14.9004 8.5004H18.1004L18.8004 10.5004H20.7004L17.5004 1.5004ZM15.3504 7.1504L16.5004 3.5004L17.6504 7.1504H15.3504Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default FlashAuto;
+export default IconFlashAuto;

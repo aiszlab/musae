@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const LocalPrintshop = withIcon(({ size }) => {
+const IconLocalPrintshop = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,18 +10,16 @@ const LocalPrintshop = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 1.2) scale(1.2)">
-        <path
-          d="M17 5H16V0H4V5H3C1.34 5 0 6.34 0 8V14H4V18H16V14H20V8C20 6.34 18.66 5 17 5ZM6 2H14V5H6V2ZM14 16H6V12H14V16ZM16 12V10H4V12H2V8C2 7.45 2.45 7 3 7H17C17.55 7 18 7.45 18 8V12H16Z"
-          fill="currentColor"
-        />
-        <path
-          d="M16 9.5C16.5523 9.5 17 9.05228 17 8.5C17 7.94772 16.5523 7.5 16 7.5C15.4477 7.5 15 7.94772 15 8.5C15 9.05228 15.4477 9.5 16 9.5Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M 20.4 7.2 H 19.2 V 1.2 H 4.8 V 7.2 H 3.6 C 1.608 7.2 0 8.808 0 10.8 V 18 H 4.8 V 22.8 H 19.2 V 18 H 24 V 10.8 C 24 8.808 22.392 7.2 20.4 7.2ZM 7.2 3.6 H 16.8 V 7.2 H 7.2 V 3.6ZM 16.8 20.4 H 7.2 V 15.6 H 16.8 V 20.4ZM 19.2 15.6 V 13.2 H 4.8 V 15.6 H 2.4 V 10.8 C 2.4 10.14 2.94 9.6 3.6 9.6 H 20.4 C 21.06 9.6 21.6 10.14 21.6 10.8 V 15.6 H 19.2Z"
+        fill="currentColor"
+      />
+      <path
+        d="M 19.2 12.6 C 19.8628 12.6 20.4 12.0627 20.4 11.4 C 20.4 10.7373 19.8628 10.2 19.2 10.2 C 18.5372 10.2 18 10.7373 18 11.4 C 18 12.0627 18.5372 12.6 19.2 12.6Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default LocalPrintshop;
+export default IconLocalPrintshop;

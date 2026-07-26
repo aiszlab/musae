@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Superscript = withIcon(({ size }) => {
+const IconSuperscript = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const Superscript = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0.785) scale(1.4019)">
-        <path
-          d="M16.12 3H14.12V4H17.12V5H13.12V3C13.12 2.45 13.57 2 14.12 2H16.12V1H13.12V0H16.12C16.67 0 17.12 0.45 17.12 1V2C17.12 2.55 16.67 3 16.12 3ZM0 16H2.66L6.06 10.58H6.18L9.58 16H12.24L7.59 8.73L11.93 2H9.25L6.18 6.99H6.06L2.97 2H0.31L4.63 8.73L0 16Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M19.56 7H17.56V8H20.56V9H16.56V7C16.56 6.45 17.01 6 17.56 6H19.56V5H16.56V4H19.56C20.11 4 20.56 4.45 20.56 5V6C20.56 6.55 20.11 7 19.56 7ZM3.44 20H6.1L9.5 14.58H9.62L13.02 20H15.68L11.03 12.73L15.37 6H12.69L9.62 10.99H9.5L6.41 6H3.75L8.07 12.73L3.44 20Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default Superscript;
+export default IconSuperscript;

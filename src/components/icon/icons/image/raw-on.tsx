@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const RawOn = withIcon(({ size }) => {
+const IconRawOn = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,22 +10,20 @@ const RawOn = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 8.1039) scale(1.2987)">
-        <path
-          d="M3.5 0H0V6H1.5V4H2.6L3.5 6H5L4.1 3.9C4.6 3.6 5 3.1 5 2.5V1.5C5 0.7 4.3 0 3.5 0ZM3.5 2.5H1.5V1.5H3.5V2.5Z"
-          fill="currentColor"
-        />
-        <path
-          d="M7.25 0L5.75 6H7.25L7.63 4.5H9.38L9.75 6H11.25L9.75 0H7.25ZM8 3L8.25 2H8.75L9 3H8Z"
-          fill="currentColor"
-        />
-        <path
-          d="M16.98 0L16.24 3L15.5 0H13.98L13.24 3L12.5 0H11L12.5 6H13.98L14.74 2.96L15.5 6H16.98L18.48 0H16.98Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M6.26 2.76H2.76V8.76H4.26V6.76H5.36L6.26 8.76H7.76L6.86 6.66C7.36 6.36 7.76 5.86 7.76 5.26V4.26C7.76 3.46 7.06 2.76 6.26 2.76ZM6.26 5.26H4.26V4.26H6.26V5.26Z"
+        fill="currentColor"
+      />
+      <path
+        d="M10.01 2.76L8.51 8.76H10.01L10.39 7.26H12.14L12.51 8.76H14.01L12.51 2.76H10.01ZM10.76 5.76L11.01 4.76H11.51L11.76 5.76H10.76Z"
+        fill="currentColor"
+      />
+      <path
+        d="M19.74 2.76L19 5.76L18.26 2.76H16.74L16 5.76L15.26 2.76H13.76L15.26 8.76H16.74L17.5 5.72L18.26 8.76H19.74L21.24 2.76H19.74Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default RawOn;
+export default IconRawOn;

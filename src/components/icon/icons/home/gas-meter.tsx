@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const GasMeter = withIcon(({ size }) => {
+const IconGasMeter = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,19 +10,17 @@ const GasMeter = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(2.4, 0) scale(1.2)">
-        <path
-          d="M12 2H11V0H9V2H7V0H5V2H4C1.79 2 0 3.79 0 6V16C0 18.21 1.79 20 4 20H12C14.21 20 16 18.21 16 16V6C16 3.79 14.21 2 12 2ZM14 16C14 17.1 13.1 18 12 18H4C2.9 18 2 17.1 2 16V6C2 4.9 2.9 4 4 4H12C13.1 4 14 4.9 14 6V16Z"
-          fill="currentColor"
-        />
-        <path
-          d="M5.5 13.54C5.5 14.9 6.62 16 8 16C9.38 16 10.5 14.9 10.5 13.54C10.5 12.45 10.05 12.13 8 9.75C5.93 12.15 5.5 12.46 5.5 13.54Z"
-          fill="currentColor"
-        />
-        <path d="M12 6H4V8H12V6Z" fill="currentColor" />
-      </g>
+      <path
+        d="M16 4H15V2H13V4H11V2H9V4H8C5.79 4 4 5.79 4 8V18C4 20.21 5.79 22 8 22H16C18.21 22 20 20.21 20 18V8C20 5.79 18.21 4 16 4ZM18 18C18 19.1 17.1 20 16 20H8C6.9 20 6 19.1 6 18V8C6 6.9 6.9 6 8 6H16C17.1 6 18 6.9 18 8V18Z"
+        fill="currentColor"
+      />
+      <path
+        d="M9.5 15.54C9.5 16.9 10.62 18 12 18C13.38 18 14.5 16.9 14.5 15.54C14.5 14.45 14.05 14.13 12 11.75C9.93 14.15 9.5 14.46 9.5 15.54Z"
+        fill="currentColor"
+      />
+      <path d="M16 8H8V10H16V8Z" fill="currentColor" />
     </svg>
   );
 });
 
-export default GasMeter;
+export default IconGasMeter;

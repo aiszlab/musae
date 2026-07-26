@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const PhonelinkOff = withIcon(({ size }) => {
+const IconPhonelinkOff = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const PhonelinkOff = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 1.58) scale(1)">
-        <path
-          d="M22 4.49V2.49H7.39L9.39 4.49H22ZM24 17.49V7.49C24 6.94 23.55 6.49 23 6.49H17C16.45 6.49 16 6.94 16 7.49V11.1L18 13.1V8.49H22V15.49H20.39L23.32 18.42C23.71 18.29 24 17.93 24 17.49ZM2.06 0L0.65 1.41L2.47 3.23C2.18 3.57 2 4.01 2 4.49V15.49H0V18.49H17.73L20.08 20.84L21.49 19.43L2.06 0ZM4 15.49V4.76L14.73 15.49H4Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M22 6.07008V4.07008H7.39L9.39 6.07008H22ZM24 19.0701V9.07008C24 8.52008 23.55 8.07008 23 8.07008H17C16.45 8.07008 16 8.52008 16 9.07008V12.6801L18 14.6801V10.0701H22V17.0701H20.39L23.32 20.0001C23.71 19.8701 24 19.5101 24 19.0701ZM2.06 1.58008L0.65 2.99008L2.47 4.81008C2.18 5.15008 2 5.59008 2 6.07008V17.0701H0V20.0701H17.73L20.08 22.4201L21.49 21.0101L2.06 1.58008ZM4 17.0701V6.34008L14.73 17.0701H4Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default PhonelinkOff;
+export default IconPhonelinkOff;

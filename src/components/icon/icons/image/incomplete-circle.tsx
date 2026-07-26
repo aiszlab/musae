@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const IncompleteCircle = withIcon(({ size }) => {
+const IconIncompleteCircle = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const IncompleteCircle = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0) scale(1.2)">
-        <path
-          d="M20 10C20 15.52 15.52 20 10 20C4.48 20 0 15.52 0 10C0 7.24 1.12 4.74 2.93 2.93L10 10V0C15.52 0 20 4.48 20 10Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M22 12C22 17.52 17.52 22 12 22C6.48 22 2 17.52 2 12C2 9.24 3.12 6.74 4.93 4.93L12 12V2C17.52 2 22 6.48 22 12Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default IncompleteCircle;
+export default IconIncompleteCircle;

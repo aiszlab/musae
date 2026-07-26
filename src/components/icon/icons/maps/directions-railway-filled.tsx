@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const DirectionsRailwayFilled = withIcon(({ size }) => {
+const IconDirectionsRailwayFilled = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,18 +10,16 @@ const DirectionsRailwayFilled = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(1.8947, 0) scale(1.2632)">
-        <path
-          d="M8 0C4 0 0 0.5 0 4V13.5C0 15.43 1.57 17 3.5 17L2 18V19H14V18L12.5 17C14.43 17 16 15.43 16 13.5V4C16 0.5 12.42 0 8 0ZM8 2C11.71 2 13.13 2.46 13.67 3H2.43C3.03 2.48 4.48 2 8 2ZM14 13.5C14 14.33 13.33 15 12.5 15H3.5C2.67 15 2 14.33 2 13.5V10H14V13.5ZM14 8H2V5H14V8Z"
-          fill="currentColor"
-        />
-        <path
-          d="M8 14C8.82843 14 9.5 13.3284 9.5 12.5C9.5 11.6716 8.82843 11 8 11C7.17157 11 6.5 11.6716 6.5 12.5C6.5 13.3284 7.17157 14 8 14Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M12 2.5C8 2.5 4 3 4 6.5V16C4 17.93 5.57 19.5 7.5 19.5L6 20.5V21.5H18V20.5L16.5 19.5C18.43 19.5 20 17.93 20 16V6.5C20 3 16.42 2.5 12 2.5ZM12 4.5C15.71 4.5 17.13 4.96 17.67 5.5H6.43C7.03 4.98 8.48 4.5 12 4.5ZM18 16C18 16.83 17.33 17.5 16.5 17.5H7.5C6.67 17.5 6 16.83 6 16V12.5H18V16ZM18 10.5H6V7.5H18V10.5Z"
+        fill="currentColor"
+      />
+      <path
+        d="M12 16.5C12.8284 16.5 13.5 15.8284 13.5 15C13.5 14.1716 12.8284 13.5 12 13.5C11.1716 13.5 10.5 14.1716 10.5 15C10.5 15.8284 11.1716 16.5 12 16.5Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default DirectionsRailwayFilled;
+export default IconDirectionsRailwayFilled;

@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const ChecklistRtl = withIcon(({ size }) => {
+const IconChecklistRtl = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const ChecklistRtl = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 2.958) scale(1.2)">
-        <path
-          d="M9 3.07H0V5.07H9V3.07ZM9 11.07H0V13.07H9V11.07ZM14.34 7.07L10.8 3.53L12.21 2.12L14.33 4.24L18.57 0L20 1.41L14.34 7.07ZM14.34 15.07L10.8 11.53L12.21 10.12L14.33 12.24L18.57 8L20 9.41L14.34 15.07Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M11 7.53484H2V9.53484H11V7.53484ZM11 15.5348H2V17.5348H11V15.5348ZM16.34 11.5348L12.8 7.99484L14.21 6.58484L16.33 8.70484L20.57 4.46484L22 5.87484L16.34 11.5348ZM16.34 19.5348L12.8 15.9948L14.21 14.5848L16.33 16.7048L20.57 12.4648L22 13.8748L16.34 19.5348Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default ChecklistRtl;
+export default IconChecklistRtl;

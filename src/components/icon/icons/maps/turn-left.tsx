@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const TurnLeft = withIcon(({ size }) => {
+const IconTurnLeft = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const TurnLeft = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0) scale(1.7143)">
-        <path
-          d="M3.83 5L5.42 6.59L4 8L0 4L4 0L5.41 1.41L3.83 3H12C13.1 3 14 3.9 14 5V14H12V5H3.83Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M 6.5658 8.5715 L 9.2915 11.2972 L 6.8572 13.7144 L 0 6.8572 L 6.8572 0 L 9.2744 2.4172 L 6.5658 5.1429 H 20.5716 C 22.4573 5.1429 24 6.6858 24 8.5715 V 24 H 20.5716 V 8.5715 H 6.5658Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default TurnLeft;
+export default IconTurnLeft;

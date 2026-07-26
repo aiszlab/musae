@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const WbShade = withIcon(({ size }) => {
+const IconWbShade = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const WbShade = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 2.4) scale(1.2)">
-        <path
-          d="M12 8V10.5L17.5 16H20L12 8ZM12 16H15L12 13V16ZM6 0L0 6H2V16H10V6H12L6 0ZM7 10H5V6H7V10Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M14 10V12.5L19.5 18H22L14 10ZM14 18H17L14 15V18ZM8 2L2 8H4V18H12V8H14L8 2ZM9 12H7V8H9V12Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default WbShade;
+export default IconWbShade;

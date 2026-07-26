@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Moving = withIcon(({ size }) => {
+const IconMoving = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const Moving = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 4.8) scale(1.2)">
-        <path
-          d="M18 3.42V6H20V0H14V2H16.58L12.12 6.46C11.73 6.85 11.1 6.85 10.71 6.46L9.54 5.29C8.37 4.12 6.47 4.12 5.3 5.29L0 10.59L1.41 12L6.7 6.71C7.09 6.32 7.72 6.32 8.11 6.71L9.28 7.88C10.45 9.05 12.35 9.05 13.52 7.88L18 3.42Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M 21.6 8.904 V 12 H 24 V 4.8 H 16.8 V 7.2 H 19.896 L 14.544 12.552 C 14.076 13.02 13.32 13.02 12.852 12.552 L 11.448 11.148 C 10.044 9.744 7.764 9.744 6.36 11.148 L 0 17.508 L 1.692 19.2 L 8.04 12.852 C 8.508 12.384 9.264 12.384 9.732 12.852 L 11.136 14.256 C 12.54 15.66 14.82 15.66 16.224 14.256 L 21.6 8.904Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default Moving;
+export default IconMoving;

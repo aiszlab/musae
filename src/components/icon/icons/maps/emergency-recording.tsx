@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const EmergencyRecording = withIcon(({ size }) => {
+const IconEmergencyRecording = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const EmergencyRecording = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 2.4) scale(1.2)">
-        <path
-          d="M16 6.48V2C16 0.9 15.1 0 14 0H2C0.9 0 0 0.9 0 2V14C0 15.1 0.9 16 2 16H14C15.1 16 16 15.1 16 14V9.52L20 13.5V2.5L16 6.48ZM14 14H2V2H14V14ZM10 8L13 9.73L12 11.46L9 9.73V13H7V9.73L4 11.46L3 9.73L6 8L3 6.27L4 4.54L7 6.27V3H9V6.27L12 4.54L13 6.27L10 8Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M18 10.48V6C18 4.9 17.1 4 16 4H4C2.9 4 2 4.9 2 6V18C2 19.1 2.9 20 4 20H16C17.1 20 18 19.1 18 18V13.52L22 17.5V6.5L18 10.48ZM16 18H4V6H16V18ZM12 12L15 13.73L14 15.46L11 13.73V17H9V13.73L6 15.46L5 13.73L8 12L5 10.27L6 8.54L9 10.27V7H11V10.27L14 8.54L15 10.27L12 12Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default EmergencyRecording;
+export default IconEmergencyRecording;

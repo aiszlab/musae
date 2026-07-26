@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const CancelPresentation = withIcon(({ size }) => {
+const IconCancelPresentation = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const CancelPresentation = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 2.1818) scale(1.0909)">
-        <path
-          d="M20 0H2C0.9 0 0 0.9 0 2V16C0 17.1 0.9 18 2 18H20C21.1 18 22 17.1 22 16V2C22 0.9 21.1 0 20 0ZM20 16H2V2H20V16ZM8.41 12.95L11 10.36L13.59 12.95L15 11.54L12.41 8.95L15 6.36L13.59 4.95L11 7.54L8.41 4.95L7 6.36L9.59 8.95L7 11.54L8.41 12.95Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M21 3H3C1.9 3 1 3.9 1 5V19C1 20.1 1.9 21 3 21H21C22.1 21 23 20.1 23 19V5C23 3.9 22.1 3 21 3ZM21 19H3V5H21V19ZM9.41 15.95L12 13.36L14.59 15.95L16 14.54L13.41 11.95L16 9.36L14.59 7.95L12 10.54L9.41 7.95L8 9.36L10.59 11.95L8 14.54L9.41 15.95Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default CancelPresentation;
+export default IconCancelPresentation;

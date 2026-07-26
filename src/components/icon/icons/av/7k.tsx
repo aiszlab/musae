@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const SevenK = withIcon(({ size }) => {
+const Icon7k = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,22 +10,20 @@ const SevenK = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0) scale(1.3333)">
-        <path
-          d="M16 0H2C0.9 0 0 0.9 0 2V16C0 17.1 0.9 18 2 18H16C17.1 18 18 17.1 18 16V2C18 0.9 17.1 0 16 0ZM16 16H2V2H16V16Z"
-          fill="currentColor"
-        />
-        <path
-          d="M4.75 12H6.5L7.96 7.29C8.15 6.65 7.67 6 7 6H3.5V7.5H6.13L4.75 12Z"
-          fill="currentColor"
-        />
-        <path
-          d="M11.5 9.75L13.25 12H15L12.75 9L15 6H13.25L11.5 8.25V6H10V12H11.5V9.75Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3ZM19 19H5V5H19V19Z"
+        fill="currentColor"
+      />
+      <path
+        d="M7.75 15H9.5L10.96 10.29C11.15 9.65 10.67 9 10 9H6.5V10.5H9.13L7.75 15Z"
+        fill="currentColor"
+      />
+      <path
+        d="M14.5 12.75L16.25 15H18L15.75 12L18 9H16.25L14.5 11.25V9H13V15H14.5V12.75Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default SevenK;
+export default Icon7k;

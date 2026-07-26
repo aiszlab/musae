@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const BrightnessMedium = withIcon(({ size }) => {
+const IconBrightnessMedium = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const BrightnessMedium = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0) scale(1.061)">
-        <path
-          d="M19.31 8V3.31H14.62L11.31 0L8 3.31H3.31V8L0 11.31L3.31 14.62V19.31H8L11.31 22.62L14.62 19.31H19.31V14.62L22.62 11.31L19.31 8ZM17.31 13.79V17.31H13.79L11.31 19.79L8.83 17.31H5.31V13.79L2.83 11.31L5.31 8.83V5.31H8.83L11.31 2.83L13.79 5.31H17.31V8.83L19.79 11.31L17.31 13.79ZM11.31 5.31V17.31C14.62 17.31 17.31 14.62 17.31 11.31C17.31 8 14.62 5.31 11.31 5.31Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M20 8.69V4H15.31L12 0.69L8.69 4H4V8.69L0.69 12L4 15.31V20H8.69L12 23.31L15.31 20H20V15.31L23.31 12L20 8.69ZM18 14.48V18H14.48L12 20.48L9.52 18H6V14.48L3.52 12L6 9.52V6H9.52L12 3.52L14.48 6H18V9.52L20.48 12L18 14.48ZM12 6V18C15.31 18 18 15.31 18 12C18 8.69 15.31 6 12 6Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default BrightnessMedium;
+export default IconBrightnessMedium;

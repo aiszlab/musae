@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Difference = withIcon(({ size }) => {
+const IconDifference = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const Difference = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(1.6364, 0) scale(1.0909)">
-        <path
-          d="M16 22H2C0.9 22 0 21.1 0 20V6H2V20H16V22ZM12.5 6V4H10.5V6H8.5V8H10.5V10H12.5V8H14.5V6H12.5ZM14.5 12H8.5V14H14.5V12ZM13 0H6C4.9 0 4.01 0.9 4.01 2L4 16C4 17.1 4.89 18 5.99 18H17C18.1 18 19 17.1 19 16V6L13 0ZM17 16H6V2H12.17L17 6.83V16Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M18.5 23H4.5C3.4 23 2.5 22.1 2.5 21V7H4.5V21H18.5V23ZM15 7V5H13V7H11V9H13V11H15V9H17V7H15ZM17 13H11V15H17V13ZM15.5 1H8.5C7.4 1 6.51 1.9 6.51 3L6.5 17C6.5 18.1 7.39 19 8.49 19H19.5C20.6 19 21.5 18.1 21.5 17V7L15.5 1ZM19.5 17H8.5V3H14.67L19.5 7.83V17Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default Difference;
+export default IconDifference;

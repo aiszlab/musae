@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const PunchClock = withIcon(({ size }) => {
+const IconPunchClock = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,19 +10,17 @@ const PunchClock = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(1.7143, 0) scale(1.1429)">
-        <path
-          d="M16 5H15V0H3V5H2C0.9 5 0 5.9 0 7V19C0 20.1 0.9 21 2 21H16C17.1 21 18 20.1 18 19V7C18 5.9 17.1 5 16 5ZM5 2H13V5H5V2ZM16 19H2V7H16V19Z"
-          fill="currentColor"
-        />
-        <path
-          d="M9 8C6.24 8 4 10.24 4 13C4 15.76 6.24 18 9 18C11.76 18 14 15.76 14 13C14 10.24 11.76 8 9 8ZM9 16.5C7.07 16.5 5.5 14.93 5.5 13C5.5 11.07 7.07 9.5 9 9.5C10.93 9.5 12.5 11.07 12.5 13C12.5 14.93 10.93 16.5 9 16.5Z"
-          fill="currentColor"
-        />
-        <path d="M9.5 10.5H8.5V13.21L10.14 14.85L10.85 14.14L9.5 12.79V10.5Z" fill="currentColor" />
-      </g>
+      <path
+        d="M19 6.5H18V1.5H6V6.5H5C3.9 6.5 3 7.4 3 8.5V20.5C3 21.6 3.9 22.5 5 22.5H19C20.1 22.5 21 21.6 21 20.5V8.5C21 7.4 20.1 6.5 19 6.5ZM8 3.5H16V6.5H8V3.5ZM19 20.5H5V8.5H19V20.5Z"
+        fill="currentColor"
+      />
+      <path
+        d="M12 9.5C9.24 9.5 7 11.74 7 14.5C7 17.26 9.24 19.5 12 19.5C14.76 19.5 17 17.26 17 14.5C17 11.74 14.76 9.5 12 9.5ZM12 18C10.07 18 8.5 16.43 8.5 14.5C8.5 12.57 10.07 11 12 11C13.93 11 15.5 12.57 15.5 14.5C15.5 16.43 13.93 18 12 18Z"
+        fill="currentColor"
+      />
+      <path d="M12.5 12H11.5V14.71L13.14 16.35L13.85 15.64L12.5 14.29V12Z" fill="currentColor" />
     </svg>
   );
 });
 
-export default PunchClock;
+export default IconPunchClock;

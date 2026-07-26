@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const OutdoorGrill = withIcon(({ size }) => {
+const IconOutdoorGrill = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -30,4 +30,4 @@ const OutdoorGrill = withIcon(({ size }) => {
   );
 });
 
-export default OutdoorGrill;
+export default IconOutdoorGrill;

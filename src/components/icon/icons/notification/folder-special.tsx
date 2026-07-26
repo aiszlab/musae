@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const FolderSpecial = withIcon(({ size }) => {
+const IconFolderSpecial = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const FolderSpecial = withIcon(({ size }) => {
   );
 });
 
-export default FolderSpecial;
+export default IconFolderSpecial;

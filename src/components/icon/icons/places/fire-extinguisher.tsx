@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const FireExtinguisher = withIcon(({ size }) => {
+const IconFireExtinguisher = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const FireExtinguisher = withIcon(({ size }) => {
   );
 });
 
-export default FireExtinguisher;
+export default IconFireExtinguisher;

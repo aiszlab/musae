@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Drafts = withIcon(({ size }) => {
+const IconDrafts = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const Drafts = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0.6) scale(1.2)">
-        <path
-          d="M19.99 7C19.99 6.28 19.62 5.65 19.05 5.3L10 0L0.95 5.3C0.38 5.65 0 6.28 0 7V17C0 18.1 0.9 19 2 19H18C19.1 19 20 18.1 20 17L19.99 7ZM17.99 7V7.01L10 12L2 7L10 2.32L17.99 7ZM2 17V9.34L10 14.36L17.99 9.37L18 17H2Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M21.99 9.5C21.99 8.78 21.62 8.15 21.05 7.8L12 2.5L2.95 7.8C2.38 8.15 2 8.78 2 9.5V19.5C2 20.6 2.9 21.5 4 21.5H20C21.1 21.5 22 20.6 22 19.5L21.99 9.5ZM19.99 9.5V9.51L12 14.5L4 9.5L12 4.82L19.99 9.5ZM4 19.5V11.84L12 16.86L19.99 11.87L20 19.5H4Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default Drafts;
+export default IconDrafts;

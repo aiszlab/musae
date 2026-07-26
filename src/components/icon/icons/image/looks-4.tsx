@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Looks4 = withIcon(({ size }) => {
+const IconLooks4 = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const Looks4 = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0) scale(1.3333)">
-        <path
-          d="M16 0H2C0.9 0 0 0.9 0 2V16C0 17.1 0.9 18 2 18H16C17.1 18 18 17.1 18 16V2C18 0.9 17.1 0 16 0ZM16 16H2V2H16V16ZM10 14H12V4H10V8H8V4H6V10H10V14Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M18.9998 2.9998H4.9998C3.8998 2.9998 2.9998 3.8998 2.9998 4.9998V18.9998C2.9998 20.0998 3.8998 20.9998 4.9998 20.9998H18.9998C20.0998 20.9998 20.9998 20.0998 20.9998 18.9998V4.9998C20.9998 3.8998 20.0998 2.9998 18.9998 2.9998ZM18.9998 18.9998H4.9998V4.9998H18.9998V18.9998ZM12.9998 16.9998H14.9998V6.9998H12.9998V10.9998H10.9998V6.9998H8.9998V12.9998H12.9998V16.9998Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default Looks4;
+export default IconLooks4;

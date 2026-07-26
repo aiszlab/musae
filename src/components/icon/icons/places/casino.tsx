@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Casino = withIcon(({ size }) => {
+const IconCasino = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -38,4 +38,4 @@ const Casino = withIcon(({ size }) => {
   );
 });
 
-export default Casino;
+export default IconCasino;

@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const NetworkCell = withIcon(({ size }) => {
+const IconNetworkCell = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,11 +10,9 @@ const NetworkCell = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0) scale(1.2)">
-        <path d="M0 20H20V0L0 20ZM18 18H15V7.83L18 4.83V18Z" fill="currentColor" />
-      </g>
+      <path d="M2 22H22V2L2 22ZM20 20H17V9.83L20 6.83V20Z" fill="currentColor" />
     </svg>
   );
 });
 
-export default NetworkCell;
+export default IconNetworkCell;

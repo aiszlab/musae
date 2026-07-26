@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const KeyboardTab = withIcon(({ size }) => {
+const IconKeyboardTab = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const KeyboardTab = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 5.1429) scale(1.1429)">
-        <path
-          d="M10.59 1.41L14.17 5H0V7H14.17L10.58 10.59L12 12L18 6L12 0L10.59 1.41ZM19 0V12H21V0H19Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M12.09 7.41L15.67 11H1.5V13H15.67L12.08 16.59L13.5 18L19.5 12L13.5 6L12.09 7.41ZM20.5 6V18H22.5V6H20.5Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default KeyboardTab;
+export default IconKeyboardTab;

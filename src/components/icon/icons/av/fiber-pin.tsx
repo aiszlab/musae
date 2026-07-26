@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const FiberPin = withIcon(({ size }) => {
+const IconFiberPin = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const FiberPin = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 7.5) scale(1.5)">
-        <path
-          d="M7 6H8.5V0H7V6ZM14.75 0V3.5L12.25 0H11V6H12.25V2.5L14.8 6H16V0H14.75ZM3.5 0H0V6H1.5V4H3.5C4.35 4 5 3.35 5 2.5V1.5C5 0.65 4.35 0 3.5 0ZM3.5 2.5H1.5V1.5H3.5V2.5Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M11 15H12.5V9H11V15ZM18.75 9V12.5L16.25 9H15V15H16.25V11.5L18.8 15H20V9H18.75ZM7.5 9H4V15H5.5V13H7.5C8.35 13 9 12.35 9 11.5V10.5C9 9.65 8.35 9 7.5 9ZM7.5 11.5H5.5V10.5H7.5V11.5Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default FiberPin;
+export default IconFiberPin;

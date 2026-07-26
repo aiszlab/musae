@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const RepeatOne = withIcon(({ size }) => {
+const IconRepeatOne = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const RepeatOne = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(1.2, 0) scale(1.2)">
-        <path
-          d="M4 5H14V8L18 4L14 0V3H2V9H4V5ZM14 15H4V12L0 16L4 20V17H16V11H14V15ZM10 13V7H9L7 8V9H8.5V13H10Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M7 7H17V10L21 6L17 2V5H5V11H7V7ZM17 17H7V14L3 18L7 22V19H19V13H17V17ZM13 15V9H12L10 10V11H11.5V15H13Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default RepeatOne;
+export default IconRepeatOne;

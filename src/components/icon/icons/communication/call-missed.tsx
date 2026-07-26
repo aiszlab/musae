@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const CallMissed = withIcon(({ size }) => {
+const IconCallMissed = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const CallMissed = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 5.06) scale(1.3333)">
-        <path
-          d="M16.59 0L9 7.59L3.41 2H8V0H0V8H2V3.41L9 10.41L18 1.41L16.59 0Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M19.59 6.79492L12 14.3849L6.41 8.79492H11V6.79492H3V14.7949H5V10.2049L12 17.2049L21 8.20492L19.59 6.79492Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default CallMissed;
+export default IconCallMissed;

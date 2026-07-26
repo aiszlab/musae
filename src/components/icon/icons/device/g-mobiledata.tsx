@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const GMobiledata = withIcon(({ size }) => {
+const IconGMobiledata = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const GMobiledata = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(1.2, 0) scale(2.4)">
-        <path
-          d="M5 4V6H7V8H2V2H9C9 0.9 8.1 0 7 0H2C0.9 0 0 0.9 0 2V8C0 9.1 0.9 10 2 10H7C8.1 10 9 9.1 9 8V4H5Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M12.5 11V13H14.5V15H9.5V9H16.5C16.5 7.9 15.6 7 14.5 7H9.5C8.4 7 7.5 7.9 7.5 9V15C7.5 16.1 8.4 17 9.5 17H14.5C15.6 17 16.5 16.1 16.5 15V11H12.5Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default GMobiledata;
+export default IconGMobiledata;

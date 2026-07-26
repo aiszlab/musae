@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Router = withIcon(({ size }) => {
+const IconRouter = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const Router = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0) scale(1.3333)">
-        <path
-          d="M13 1.2C14.5 1.2 16 1.8 17.2 2.9L18 2.1C16.6 0.7 14.8 0 13 0C11.2 0 9.4 0.7 8 2.1L8.8 2.9C10 1.8 11.5 1.2 13 1.2ZM9.7 3.7L10.5 4.5C11.2 3.8 12.1 3.5 13 3.5C13.9 3.5 14.8 3.8 15.5 4.5L16.3 3.7C15.4 2.8 14.2 2.3 13 2.3C11.8 2.3 10.6 2.8 9.7 3.7ZM16 10H14V6H12V10H2C0.9 10 0 10.9 0 12V16C0 17.1 0.9 18 2 18H16C17.1 18 18 17.1 18 16V12C18 10.9 17.1 10 16 10ZM16 16H2V12H16V16ZM3 13H5V15H3V13ZM6.5 13H8.5V15H6.5V13ZM10 13H12V15H10V13Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M16 4.2C17.5 4.2 19 4.8 20.2 5.9L21 5.1C19.6 3.7 17.8 3 16 3C14.2 3 12.4 3.7 11 5.1L11.8 5.9C13 4.8 14.5 4.2 16 4.2ZM12.7 6.7L13.5 7.5C14.2 6.8 15.1 6.5 16 6.5C16.9 6.5 17.8 6.8 18.5 7.5L19.3 6.7C18.4 5.8 17.2 5.3 16 5.3C14.8 5.3 13.6 5.8 12.7 6.7ZM19 13H17V9H15V13H5C3.9 13 3 13.9 3 15V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V15C21 13.9 20.1 13 19 13ZM19 19H5V15H19V19ZM6 16H8V18H6V16ZM9.5 16H11.5V18H9.5V16ZM13 16H15V18H13V16Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default Router;
+export default IconRouter;

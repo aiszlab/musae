@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Hotel = withIcon(({ size }) => {
+const IconHotel = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const Hotel = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 3.8182) scale(1.0909)">
-        <path
-          d="M6 9C7.66 9 9 7.66 9 6C9 4.34 7.66 3 6 3C4.34 3 3 4.34 3 6C3 7.66 4.34 9 6 9ZM6 5C6.55 5 7 5.45 7 6C7 6.55 6.55 7 6 7C5.45 7 5 6.55 5 6C5 5.45 5.45 5 6 5ZM18 2H10V10H2V0H0V15H2V12H20V15H22V6C22 3.79 20.21 2 18 2ZM20 10H12V4H18C19.1 4 20 4.9 20 6V10Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M7 13.5C8.66 13.5 10 12.16 10 10.5C10 8.84 8.66 7.5 7 7.5C5.34 7.5 4 8.84 4 10.5C4 12.16 5.34 13.5 7 13.5ZM7 9.5C7.55 9.5 8 9.95 8 10.5C8 11.05 7.55 11.5 7 11.5C6.45 11.5 6 11.05 6 10.5C6 9.95 6.45 9.5 7 9.5ZM19 6.5H11V14.5H3V4.5H1V19.5H3V16.5H21V19.5H23V10.5C23 8.29 21.21 6.5 19 6.5ZM21 14.5H13V8.5H19C20.1 8.5 21 9.4 21 10.5V14.5Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default Hotel;
+export default IconHotel;

@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const BrokenImage = withIcon(({ size }) => {
+const IconBrokenImage = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const BrokenImage = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0) scale(1.3333)">
-        <path
-          d="M16 0H2C0.9 0 0 0.9 0 2V16C0 17.1 0.9 18 2 18H16C17.1 18 18 17.1 18 16V2C18 0.9 17.1 0 16 0ZM16 16H2V11.42L2.99 12.41L6.99 8.41L10.99 12.41L14.99 8.42L16 9.43V16ZM16 6.59L14.99 5.58L10.99 9.59L6.99 5.59L2.99 9.59L2 8.59V2H16V6.59Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M18.9998 2.9998H4.9998C3.8998 2.9998 2.9998 3.8998 2.9998 4.9998V18.9998C2.9998 20.0998 3.8998 20.9998 4.9998 20.9998H18.9998C20.0998 20.9998 20.9998 20.0998 20.9998 18.9998V4.9998C20.9998 3.8998 20.0998 2.9998 18.9998 2.9998ZM18.9998 18.9998H4.9998V14.4198L5.9898 15.4098L9.9898 11.4098L13.9898 15.4098L17.9898 11.4198L18.9998 12.4298V18.9998ZM18.9998 9.5898L17.9898 8.5798L13.9898 12.5898L9.9898 8.5898L5.9898 12.5898L4.9998 11.5898V4.9998H18.9998V9.5898Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default BrokenImage;
+export default IconBrokenImage;

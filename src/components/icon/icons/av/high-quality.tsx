@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const HighQuality = withIcon(({ size }) => {
+const IconHighQuality = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,15 @@ const HighQuality = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 1.3333) scale(1.3333)">
-        <path
-          d="M16 0H2C0.89 0 0 0.9 0 2V14C0 15.1 0.89 16 2 16H16C17.1 16 18 15.1 18 14V2C18 0.9 17.1 0 16 0ZM16 14H2V2H16V14ZM4.5 9H6.5V11H8V5H6.5V7.5H4.5V5H3V11H4.5V9ZM11 11H11.75V12.5H13.25V11H14C14.55 11 15 10.55 15 10V6C15 5.45 14.55 5 14 5H11C10.45 5 10 5.45 10 6V10C10 10.55 10.45 11 11 11ZM11.5 6.5H13.5V9.5H11.5V6.5Z"
-          fill="currentColor"
-        />
-      </g>
+      <path d="Av" fill="currentColor" />
+      <path d="high_quality" fill="currentColor" />
+      <path d="Vector" fill="currentColor" />
+      <path
+        d="M19 4H5C3.89 4 3 4.9 3 6V18C3 19.1 3.89 20 5 20H19C20.1 20 21 19.1 21 18V6C21 4.9 20.1 4 19 4ZM19 18H5V6H19V18ZM7.5 13H9.5V15H11V9H9.5V11.5H7.5V9H6V15H7.5V13ZM14 15H14.75V16.5H16.25V15H17C17.55 15 18 14.55 18 14V10C18 9.45 17.55 9 17 9H14C13.45 9 13 9.45 13 10V14C13 14.55 13.45 15 14 15ZM14.5 10.5H16.5V13.5H14.5V10.5Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default HighQuality;
+export default IconHighQuality;

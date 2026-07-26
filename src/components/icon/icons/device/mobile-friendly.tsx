@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const MobileFriendly = withIcon(({ size }) => {
+const IconMobileFriendly = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const MobileFriendly = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(2.2855, 0) scale(1.0909)">
-        <path
-          d="M15.81 0H5.81C4.71 0 3.81 0.9 3.81 2V5H5.81V3H15.81V19H5.81V17H3.81V20C3.81 21.1 4.71 22 5.81 22H15.81C16.91 22 17.81 21.1 17.81 20V2C17.81 0.9 16.91 0 15.81 0ZM3.82 12.47L1.27 9.92L0 11.19L3.81 15L11 7.81L9.73 6.54L3.82 12.47Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M18.905 1H8.905C7.805 1 6.905 1.9 6.905 3V6H8.905V4H18.905V20H8.905V18H6.905V21C6.905 22.1 7.805 23 8.905 23H18.905C20.005 23 20.905 22.1 20.905 21V3C20.905 1.9 20.005 1 18.905 1ZM6.915 13.47L4.365 10.92L3.095 12.19L6.905 16L14.095 8.81L12.825 7.54L6.915 13.47Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default MobileFriendly;
+export default IconMobileFriendly;

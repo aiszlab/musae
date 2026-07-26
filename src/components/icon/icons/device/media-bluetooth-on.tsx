@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const MediaBluetoothOn = withIcon(({ size }) => {
+const IconMediaBluetoothOn = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const MediaBluetoothOn = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0) scale(1.3333)">
-        <path
-          d="M6 0L6.01 10.55C5.41 10.21 4.73 10 4.01 10C1.79 10 0 11.79 0 14C0 16.21 1.79 18 4.01 18C6.23 18 8 16.21 8 14V4H12V0H6ZM18 9.43L14.57 6H13.97V10.55L11.22 7.8L10.37 8.65L13.73 12L10.38 15.35L11.23 16.2L13.98 13.45V18H14.58L18 14.57L15.42 12L18 9.43ZM15.17 8.3L16.3 9.43L15.17 10.56V8.3ZM16.3 14.57L15.17 15.7V13.44L16.3 14.57Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M9 3L9.01 13.55C8.41 13.21 7.73 13 7.01 13C4.79 13 3 14.79 3 17C3 19.21 4.79 21 7.01 21C9.23 21 11 19.21 11 17V7H15V3H9ZM21 12.43L17.57 9H16.97V13.55L14.22 10.8L13.37 11.65L16.73 15L13.38 18.35L14.23 19.2L16.98 16.45V21H17.58L21 17.57L18.42 15L21 12.43ZM18.17 11.3L19.3 12.43L18.17 13.56V11.3ZM19.3 17.57L18.17 18.7V16.44L19.3 17.57Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default MediaBluetoothOn;
+export default IconMediaBluetoothOn;

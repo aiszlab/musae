@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const SpaceBar = withIcon(({ size }) => {
+const IconSpaceBar = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,11 +10,9 @@ const SpaceBar = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 7.5) scale(1.5)">
-        <path d="M14 0V4H2V0H0V6H16V0H14Z" fill="currentColor" />
-      </g>
+      <path d="M18 9V13H6V9H4V15H20V9H18Z" fill="currentColor" />
     </svg>
   );
 });
 
-export default SpaceBar;
+export default IconSpaceBar;

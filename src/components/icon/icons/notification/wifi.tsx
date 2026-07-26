@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Wifi = withIcon(({ size }) => {
+const IconWifi = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const Wifi = withIcon(({ size }) => {
   );
 });
 
-export default Wifi;
+export default IconWifi;

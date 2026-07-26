@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Hail = withIcon(({ size }) => {
+const IconHail = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const Hail = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(3, 0) scale(1.2)">
-        <path
-          d="M8 4C6.9 4 6 3.1 6 2C6 0.9 6.9 0 8 0C9.1 0 10 0.9 10 2C10 3.1 9.1 4 8 4ZM13 0H15C15 2.7 14.07 4.41 12.7 5.5C12.2 5.9 11.6 6.2 11 6.4V20H9V14H7V20H5V8.1C4.7 8.2 4.5 8.3 4.4 8.4C3.87 8.81 3 9.43 3 12H1C1 9.94 1.35 8.22 3.11 6.71C4.21 5.81 6 5 8 5C10 5 10.68 4.54 11.48 3.94C11.96 3.55 13 2.76 13 0ZM0 14H3V20H0V14Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M12.5 6C11.4 6 10.5 5.1 10.5 4C10.5 2.9 11.4 2 12.5 2C13.6 2 14.5 2.9 14.5 4C14.5 5.1 13.6 6 12.5 6ZM17.5 2H19.5C19.5 4.7 18.57 6.41 17.2 7.5C16.7 7.9 16.1 8.2 15.5 8.4V22H13.5V16H11.5V22H9.5V10.1C9.2 10.2 9 10.3 8.9 10.4C8.37 10.81 7.5 11.43 7.5 14H5.5C5.5 11.94 5.85 10.22 7.61 8.71C8.71 7.81 10.5 7 12.5 7C14.5 7 15.18 6.54 15.98 5.94C16.46 5.55 17.5 4.76 17.5 2ZM4.5 16H7.5V22H4.5V16Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default Hail;
+export default IconHail;

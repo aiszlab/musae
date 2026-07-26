@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const SettingsSystemDaydream = withIcon(({ size }) => {
+const IconSettingsSystemDaydream = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const SettingsSystemDaydream = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 2.1818) scale(1.0909)">
-        <path
-          d="M14.5 14H8C5.79 14 4 12.21 4 10C4 8.07 5.36 6.44 7.22 6.08C8.04 4.8 9.47 4 11 4C12.95 4 14.66 5.28 15.26 7.09C16.84 7.45 18 8.84 18 10.5C18 12.43 16.43 14 14.5 14ZM7.74 8.02C6.74 8.15 6 8.99 6 10C6 11.1 6.9 12 8 12H14.5C15.33 12 16 11.33 16 10.5C16 9.67 15.33 9 14.5 9H13.63L13.46 8.14C13.29 6.92 12.23 6 11 6C10.04 6 9.16 6.57 8.74 7.45L8.47 8.02H7.74ZM20 0H2C0.9 0 0 0.9 0 2V16C0 17.1 0.9 18 2 18H20C21.1 18 22 17.1 22 16V2C22 0.9 21.1 0 20 0ZM20 16.01H2V1.99H20V16.01Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M15.5 17H9C6.79 17 5 15.21 5 13C5 11.07 6.36 9.44 8.22 9.08C9.04 7.8 10.47 7 12 7C13.95 7 15.66 8.28 16.26 10.09C17.84 10.45 19 11.84 19 13.5C19 15.43 17.43 17 15.5 17ZM8.74 11.02C7.74 11.15 7 11.99 7 13C7 14.1 7.9 15 9 15H15.5C16.33 15 17 14.33 17 13.5C17 12.67 16.33 12 15.5 12H14.63L14.46 11.14C14.29 9.92 13.23 9 12 9C11.04 9 10.16 9.57 9.74 10.45L9.47 11.02H8.74ZM21 3H3C1.9 3 1 3.9 1 5V19C1 20.1 1.9 21 3 21H21C22.1 21 23 20.1 23 19V5C23 3.9 22.1 3 21 3ZM21 19.01H3V4.99H21V19.01Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default SettingsSystemDaydream;
+export default IconSettingsSystemDaydream;

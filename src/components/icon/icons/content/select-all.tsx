@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const SelectAll = withIcon(({ size }) => {
+const IconSelectAll = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const SelectAll = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0) scale(1.3333)">
-        <path
-          d="M0 2H2V0C0.9 0 0 0.9 0 2ZM0 10H2V8H0V10ZM4 18H6V16H4V18ZM0 6H2V4H0V6ZM10 0H8V2H10V0ZM16 0V2H18C18 0.9 17.1 0 16 0ZM2 18V16H0C0 17.1 0.9 18 2 18ZM0 14H2V12H0V14ZM6 0H4V2H6V0ZM8 18H10V16H8V18ZM16 10H18V8H16V10ZM16 18C17.1 18 18 17.1 18 16H16V18ZM16 6H18V4H16V6ZM16 14H18V12H16V14ZM12 18H14V16H12V18ZM12 2H14V0H12V2ZM4 14H14V4H4V14ZM6 6H12V12H6V6Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M3 5H5V3C3.9 3 3 3.9 3 5ZM3 13H5V11H3V13ZM7 21H9V19H7V21ZM3 9H5V7H3V9ZM13 3H11V5H13V3ZM19 3V5H21C21 3.9 20.1 3 19 3ZM5 21V19H3C3 20.1 3.9 21 5 21ZM3 17H5V15H3V17ZM9 3H7V5H9V3ZM11 21H13V19H11V21ZM19 13H21V11H19V13ZM19 21C20.1 21 21 20.1 21 19H19V21ZM19 9H21V7H19V9ZM19 17H21V15H19V17ZM15 21H17V19H15V21ZM15 5H17V3H15V5ZM7 17H17V7H7V17ZM9 9H15V15H9V9Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default SelectAll;
+export default IconSelectAll;

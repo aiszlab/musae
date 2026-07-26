@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const ConnectedTv = withIcon(({ size }) => {
+const IconConnectedTv = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const ConnectedTv = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 1.2) scale(1.2)">
-        <path
-          d="M18 0H2C0.9 0 0 0.9 0 2V14C0 15.1 0.9 16 2 16H6V18H14V16H18C19.1 16 19.99 15.1 19.99 14L20 2C20 0.9 19.1 0 18 0ZM18 14H2V2H18V14ZM3 11V13H5C5 11.89 4.11 11 3 11ZM3 8V9.43C4.97 9.43 6.57 11.03 6.57 13H8C8 10.24 5.76 8 3 8ZM3 5V6.45C6.61 6.45 9.55 9.38 9.55 13H11C11 8.58 7.41 5 3 5Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M20 3H4C2.9 3 2 3.9 2 5V17C2 18.1 2.9 19 4 19H8V21H16V19H20C21.1 19 21.99 18.1 21.99 17L22 5C22 3.9 21.1 3 20 3ZM20 17H4V5H20V17ZM5 14V16H7C7 14.89 6.11 14 5 14ZM5 11V12.43C6.97 12.43 8.57 14.03 8.57 16H10C10 13.24 7.76 11 5 11ZM5 8V9.45C8.61 9.45 11.55 12.38 11.55 16H13C13 11.58 9.41 8 5 8Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default ConnectedTv;
+export default IconConnectedTv;

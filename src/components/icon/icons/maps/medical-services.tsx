@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const MedicalServices = withIcon(({ size }) => {
+const IconMedicalServices = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,15 +10,16 @@ const MedicalServices = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0) scale(1.2)">
-        <path
-          d="M18 4H14V2C14 0.9 13.1 0 12 0H8C6.9 0 6 0.9 6 2V4H2C0.9 4 0 4.9 0 6V18C0 19.1 0.9 20 2 20H18C19.1 20 20 19.1 20 18V6C20 4.9 19.1 4 18 4ZM8 2H12V4H8V2ZM18 18H2V6H18V18Z"
-          fill="currentColor"
-        />
-        <path d="M11 8H9V11H6V13H9V16H11V13H14V11H11V8Z" fill="currentColor" />
-      </g>
+      <path
+        d="M 21.6 4.8 H 16.8 V 2.4 C 16.8 1.08 15.72 0 14.4 0 H 9.6 C 8.28 0 7.2 1.08 7.2 2.4 V 4.8 H 2.4 C 1.08 4.8 0 5.88 0 7.2 V 21.6 C 0 22.92 1.08 24 2.4 24 H 21.6 C 22.92 24 24 22.92 24 21.6 V 7.2 C 24 5.88 22.92 4.8 21.6 4.8ZM 9.6 2.4 H 14.4 V 4.8 H 9.6 V 2.4ZM 21.6 21.6 H 2.4 V 7.2 H 21.6 V 21.6Z"
+        fill="currentColor"
+      />
+      <path
+        d="M 13.2 9.6 H 10.8 V 13.2 H 7.2 V 15.6 H 10.8 V 19.2 H 13.2 V 15.6 H 16.8 V 13.2 H 13.2 V 9.6Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default MedicalServices;
+export default IconMedicalServices;

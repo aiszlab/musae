@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const LocalActivity = withIcon(({ size }) => {
+const IconLocalActivity = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const LocalActivity = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 2.4) scale(1.2)">
-        <path
-          d="M20 6V2C20 0.9 19.1 0 18 0H2C0.9 0 0.00999999 0.9 0.00999999 2V6C1.11 6 2 6.9 2 8C2 9.1 1.11 10 0 10V14C0 15.1 0.9 16 2 16H18C19.1 16 20 15.1 20 14V10C18.9 10 18 9.1 18 8C18 6.9 18.9 6 20 6ZM18 4.54C16.81 5.23 16 6.53 16 8C16 9.47 16.81 10.77 18 11.46V14H2V11.46C3.19 10.77 4 9.47 4 8C4 6.52 3.2 5.23 2.01 4.54L2 2H18V4.54ZM7.07 12L10 10.12L12.93 12L12.04 8.64L14.73 6.44L11.26 6.23L10 3L8.73 6.22L5.26 6.43L7.95 8.63L7.07 12Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M22 10V6C22 4.9 21.1 4 20 4H4C2.9 4 2.01 4.9 2.01 6V10C3.11 10 4 10.9 4 12C4 13.1 3.11 14 2 14V18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V14C20.9 14 20 13.1 20 12C20 10.9 20.9 10 22 10ZM20 8.54C18.81 9.23 18 10.53 18 12C18 13.47 18.81 14.77 20 15.46V18H4V15.46C5.19 14.77 6 13.47 6 12C6 10.52 5.2 9.23 4.01 8.54L4 6H20V8.54ZM9.07 16L12 14.12L14.93 16L14.04 12.64L16.73 10.44L13.26 10.23L12 7L10.73 10.22L7.26 10.43L9.95 12.63L9.07 16Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default LocalActivity;
+export default IconLocalActivity;

@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const BurstMode = withIcon(({ size }) => {
+const IconBurstMode = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const BurstMode = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 4.3636) scale(1.0909)">
-        <path
-          d="M0 0H2V14H0V0ZM4 0H6V14H4V0ZM21 0H9C8.45 0 8 0.45 8 1V13C8 13.55 8.45 14 9 14H21C21.55 14 22 13.55 22 13V1C22 0.45 21.55 0 21 0ZM20 12H10V2H20V12ZM16.43 7.62L14.43 10.19L13 8.47L11 10.99H19L16.43 7.62Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M0.9999 0.9999H2.9999V14.9999H0.9999V0.9999ZM4.9999 0.9999H6.9999V14.9999H4.9999V0.9999ZM21.9999 0.9999H9.9999C9.4499 0.9999 8.9999 1.4499 8.9999 1.9999V13.9999C8.9999 14.5499 9.4499 14.9999 9.9999 14.9999H21.9999C22.5499 14.9999 22.9999 14.5499 22.9999 13.9999V1.9999C22.9999 1.4499 22.5499 0.9999 21.9999 0.9999ZM20.9999 12.9999H10.9999V2.9999H20.9999V12.9999ZM17.4299 8.6199L15.4299 11.1899L13.9999 9.4699L11.9999 11.9899H19.9999L17.4299 8.6199Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default BurstMode;
+export default IconBurstMode;

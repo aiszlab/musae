@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Numbers = withIcon(({ size }) => {
+const IconNumbers = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const Numbers = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 1.3333) scale(1.3333)">
-        <path
-          d="M17.5 6L18 4H14L15 0H13L12 4H8L9 0H7L6 4H2L1.5 6H5.5L4.5 10H0.5L0 12H4L3 16H5L6 12H10L9 16H11L12 12H16L16.5 10H12.5L13.5 6H17.5ZM10.5 10H6.5L7.5 6H11.5L10.5 10Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M20.5 10L21 8H17L18 4H16L15 8H11L12 4H10L9 8H5L4.5 10H8.5L7.5 14H3.5L3 16H7L6 20H8L9 16H13L12 20H14L15 16H19L19.5 14H15.5L16.5 10H20.5ZM13.5 14H9.5L10.5 10H14.5L13.5 14Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default Numbers;
+export default IconNumbers;

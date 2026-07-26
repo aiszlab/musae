@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Brightness2 = withIcon(({ size }) => {
+const IconBrightness2 = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const Brightness2 = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(3, 0) scale(1.2)">
-        <path
-          d="M5 2C9.41 2 13 5.59 13 10C13 14.41 9.41 18 5 18C4.66 18 4.32 17.98 3.99 17.93C5.9 15.77 7 12.95 7 10C7 7.05 5.9 4.23 3.99 2.07C4.32 2.02 4.66 2 5 2ZM5 0C3.18 0 1.47 0.5 0 1.35C2.99 3.08 5 6.3 5 10C5 13.7 2.99 16.92 0 18.65C1.47 19.5 3.18 20 5 20C10.52 20 15 15.52 15 10C15 4.48 10.52 0 5 0Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M7 4C11.41 4 15 7.59 15 12C15 16.41 11.41 20 7 20C6.66 20 6.32 19.98 5.99 19.93C7.9 17.77 9 14.95 9 12C9 9.05 7.9 6.23 5.99 4.07C6.32 4.02 6.66 4 7 4ZM7 2C5.18 2 3.47 2.5 2 3.35C4.99 5.08 7 8.3 7 12C7 15.7 4.99 18.92 2 20.65C3.47 21.5 5.18 22 7 22C12.52 22 17 17.52 17 12C17 6.48 12.52 2 7 2Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default Brightness2;
+export default IconBrightness2;

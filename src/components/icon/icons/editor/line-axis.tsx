@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const LineAxis = withIcon(({ size }) => {
+const IconLineAxis = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const LineAxis = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 3) scale(1.2)">
-        <path
-          d="M20 3.43L18.59 2.02L14.56 6.55L7.5 0L0 7.51L1.5 9.01L7.64 2.86L13.23 8.04L11.5 9.99L7.5 5.99L0 13.5L1.5 15L7.5 8.99L11.5 12.99L14.69 9.4L18.59 13.01L20 11.6L16.02 7.9L20 3.43Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M22 7.93L20.59 6.52L16.56 11.05L9.5 4.5L2 12.01L3.5 13.51L9.64 7.36L15.23 12.54L13.5 14.49L9.5 10.49L2 18L3.5 19.5L9.5 13.49L13.5 17.49L16.69 13.9L20.59 17.51L22 16.1L18.02 12.4L22 7.93Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default LineAxis;
+export default IconLineAxis;

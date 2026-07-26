@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const SolarPower = withIcon(({ size }) => {
+const IconSolarPower = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,29 +10,27 @@ const SolarPower = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0) scale(1.2)">
-        <path
-          d="M18 10H2L0 20H20L18 10ZM16.36 12L16.76 14H11V12H16.36ZM9 12V14H3.24L3.64 12H9ZM2.84 16H9V18H2.44L2.84 16ZM11 18V16H17.16L17.56 18H11Z"
-          fill="currentColor"
-        />
-        <path d="M11 6H9V9H11V6Z" fill="currentColor" />
-        <path
-          d="M15.1787 3.79096L13.7645 5.20516L15.8858 7.32646L17.3 5.91226L15.1787 3.79096Z"
-          fill="currentColor"
-        />
-        <path
-          d="M4.82616 3.79149L2.70486 5.91279L4.11906 7.32699L6.24036 5.20569L4.82616 3.79149Z"
-          fill="currentColor"
-        />
-        <path d="M4 0H1V2H4V0Z" fill="currentColor" />
-        <path d="M19 0H16V2H19V0Z" fill="currentColor" />
-        <path
-          d="M10 5C12.76 5 15 2.76 15 0H13C13 1.65 11.65 3 10 3C8.35 3 7 1.65 7 0H5C5 2.76 7.24 5 10 5Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M20 12H4L2 22H22L20 12ZM18.36 14L18.76 16H13V14H18.36ZM11 14V16H5.24L5.64 14H11ZM4.84 18H11V20H4.44L4.84 18ZM13 20V18H19.16L19.56 20H13Z"
+        fill="currentColor"
+      />
+      <path d="M13 8H11V11H13V8Z" fill="currentColor" />
+      <path
+        d="M17.1787 5.79096L15.7645 7.20516L17.8858 9.32646L19.3 7.91226L17.1787 5.79096Z"
+        fill="currentColor"
+      />
+      <path
+        d="M6.82616 5.79149L4.70486 7.91279L6.11906 9.32699L8.24036 7.20569L6.82616 5.79149Z"
+        fill="currentColor"
+      />
+      <path d="M6 2H3V4H6V2Z" fill="currentColor" />
+      <path d="M21 2H18V4H21V2Z" fill="currentColor" />
+      <path
+        d="M12 7C14.76 7 17 4.76 17 2H15C15 3.65 13.65 5 12 5C10.35 5 9 3.65 9 2H7C7 4.76 9.24 7 12 7Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default SolarPower;
+export default IconSolarPower;

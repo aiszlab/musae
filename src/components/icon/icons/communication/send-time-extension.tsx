@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const SendTimeExtension = withIcon(({ size }) => {
+const IconSendTimeExtension = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,15 +10,13 @@ const SendTimeExtension = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0.2927, 0) scale(1.1707)">
-        <path
-          d="M15 4.5V10.76L17 11.76V4.5C17 3.4 16.1 2.5 15 2.5H11C11 1.12 9.88 0 8.5 0C7.12 0 6 1.12 6 2.5H2.01C0.91 2.5 0.00999999 3.4 0.00999999 4.5V8.3C2.7 8.3 3 10.46 3 11C3 11.54 2.71 13.7 0 13.7V17.5C0 18.6 0.9 19.5 2 19.5H5.8C5.8 17.34 7.17 16.72 8 16.56V14.53C6.57 14.7 4.85 15.57 4.13 17.5H2V15.37C4.17 14.57 5 12.5 5 11C5 9.51 4.17 7.44 2.01 6.63V4.5H8V2.5C8 2.22 8.22 2 8.5 2C8.78 2 9 2.22 9 2.5V4.5H15Z"
-          fill="currentColor"
-        />
-        <path d="M10 10.5V14.5L14 15.5L10 16.5V20.5L20 15.5L10 10.5Z" fill="currentColor" />
-      </g>
+      <path
+        d="M17 6.25V12.51L19 13.51V6.25C19 5.15 18.1 4.25 17 4.25H13C13 2.87 11.88 1.75 10.5 1.75C9.12 1.75 8 2.87 8 4.25H4.01C2.91 4.25 2.01 5.15 2.01 6.25V10.05C4.7 10.05 5 12.21 5 12.75C5 13.29 4.71 15.45 2 15.45V19.25C2 20.35 2.9 21.25 4 21.25H7.8C7.8 19.09 9.17 18.47 10 18.31V16.28C8.57 16.45 6.85 17.32 6.13 19.25H4V17.12C6.17 16.32 7 14.25 7 12.75C7 11.26 6.17 9.19 4.01 8.38V6.25H10V4.25C10 3.97 10.22 3.75 10.5 3.75C10.78 3.75 11 3.97 11 4.25V6.25H17Z"
+        fill="currentColor"
+      />
+      <path d="M12 12.25V16.25L16 17.25L12 18.25V22.25L22 17.25L12 12.25Z" fill="currentColor" />
     </svg>
   );
 });
 
-export default SendTimeExtension;
+export default IconSendTimeExtension;

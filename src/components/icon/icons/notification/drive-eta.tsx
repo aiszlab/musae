@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const DriveEta = withIcon(({ size }) => {
+const IconDriveEta = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -26,4 +26,4 @@ const DriveEta = withIcon(({ size }) => {
   );
 });
 
-export default DriveEta;
+export default IconDriveEta;

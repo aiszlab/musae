@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const GroupOff = withIcon(({ size }) => {
+const IconGroupOff = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const GroupOff = withIcon(({ size }) => {
   );
 });
 
-export default GroupOff;
+export default IconGroupOff;

@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const BatterySaver = withIcon(({ size }) => {
+const IconBatterySaver = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const BatterySaver = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(6, 0) scale(1.2)">
-        <path
-          d="M9 2H7V0H3V2H1C0.45 2 0 2.45 0 3V19C0 19.55 0.45 20 1 20H9C9.55 20 10 19.55 10 19V3C10 2.45 9.55 2 9 2ZM8 12H6V14H4V12H2V10H4V8H6V10H8V12Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M16 4H14V2H10V4H8C7.45 4 7 4.45 7 5V21C7 21.55 7.45 22 8 22H16C16.55 22 17 21.55 17 21V5C17 4.45 16.55 4 16 4ZM15 14H13V16H11V14H9V12H11V10H13V12H15V14Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default BatterySaver;
+export default IconBatterySaver;

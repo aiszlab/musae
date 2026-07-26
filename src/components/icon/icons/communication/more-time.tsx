@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const MoreTime = withIcon(({ size }) => {
+const IconMoreTime = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,16 +10,14 @@ const MoreTime = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0.5714) scale(1.1429)">
-        <path d="M8 6V12L12.7 14.9L13.5 13.7L9.5 11.3V6H8Z" fill="currentColor" />
-        <path
-          d="M15.92 10C15.97 10.33 16 10.66 16 11C16 14.9 12.9 18 9 18C5.1 18 2 14.9 2 11C2 7.1 5.1 4 9 4C9.7 4 10.37 4.1 11 4.29V2.23C10.36 2.08 9.69 2 9 2C4 2 0 6 0 11C0 16 4 20 9 20C14 20 18 16 18 11C18 10.66 17.98 10.33 17.94 10H15.92Z"
-          fill="currentColor"
-        />
-        <path d="M18 3V0H16V3H13V5H16V8H18V5H21V3H18Z" fill="currentColor" />
-      </g>
+      <path d="M9.5 8V14L14.2 16.9L15 15.7L11 13.3V8H9.5Z" fill="currentColor" />
+      <path
+        d="M17.42 12C17.47 12.33 17.5 12.66 17.5 13C17.5 16.9 14.4 20 10.5 20C6.6 20 3.5 16.9 3.5 13C3.5 9.1 6.6 6 10.5 6C11.2 6 11.87 6.1 12.5 6.29V4.23C11.86 4.08 11.19 4 10.5 4C5.5 4 1.5 8 1.5 13C1.5 18 5.5 22 10.5 22C15.5 22 19.5 18 19.5 13C19.5 12.66 19.48 12.33 19.44 12H17.42Z"
+        fill="currentColor"
+      />
+      <path d="M19.5 5V2H17.5V5H14.5V7H17.5V10H19.5V7H22.5V5H19.5Z" fill="currentColor" />
     </svg>
   );
 });
 
-export default MoreTime;
+export default IconMoreTime;

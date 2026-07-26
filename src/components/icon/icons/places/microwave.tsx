@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Microwave = withIcon(({ size }) => {
+const IconMicrowave = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const Microwave = withIcon(({ size }) => {
   );
 });
 
-export default Microwave;
+export default IconMicrowave;

@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const PhoneAndroid = withIcon(({ size }) => {
+const IconPhoneAndroid = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const PhoneAndroid = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(4.3636, 0) scale(1.0909)">
-        <path
-          d="M11 0H3C1.34 0 0 1.34 0 3V19C0 20.66 1.34 22 3 22H11C12.66 22 14 20.66 14 19V3C14 1.34 12.66 0 11 0ZM12 17H2V3H12V17ZM9 20H5V19H9V20Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M16 1H8C6.34 1 5 2.34 5 4V20C5 21.66 6.34 23 8 23H16C17.66 23 19 21.66 19 20V4C19 2.34 17.66 1 16 1ZM17 18H7V4H17V18ZM14 21H10V20H14V21Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default PhoneAndroid;
+export default IconPhoneAndroid;

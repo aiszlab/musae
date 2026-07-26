@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const RawOff = withIcon(({ size }) => {
+const IconRawOff = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,18 +10,16 @@ const RawOff = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0.1732) scale(1.1946)">
-        <path
-          d="M15.76 11.51L16.35 9.15L17.11 12.19H18.59L20.09 6.19H18.59L17.85 9.19L17.11 6.19H15.59L14.85 9.19L14.11 6.19H12.61L13.33 9.09L15.76 11.51Z"
-          fill="currentColor"
-        />
-        <path
-          d="M0 1.41L4.78 6.19H1.61V12.19H3.11V10.19H4.21L5.11 12.19H6.61L5.71 10.09C6.21 9.79 6.61 9.29 6.61 8.69V8.02L8.04 9.45L7.36 12.19H8.86L9.24 10.69H9.28L18.39 19.8L19.8 18.39L1.42 0L0 1.41ZM5.11 8.69H3.11V7.69H5.11V8.69Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M17.7148 13.4648L18.3048 11.1048L19.0648 14.1448H20.5448L22.0448 8.1448H20.5448L19.8048 11.1448L19.0648 8.1448H17.5448L16.8048 11.1448L16.0648 8.1448H14.5648L15.2848 11.0448L17.7148 13.4648Z"
+        fill="currentColor"
+      />
+      <path
+        d="M1.9548 3.3648L6.7348 8.1448H3.5648V14.1448H5.0648V12.1448H6.1648L7.0648 14.1448H8.5648L7.6648 12.0448C8.1648 11.7448 8.5648 11.2448 8.5648 10.6448V9.9748L9.9948 11.4048L9.3148 14.1448H10.8148L11.1948 12.6448H11.2348L20.3448 21.7548L21.7548 20.3448L3.3748 1.9548L1.9548 3.3648ZM7.0648 10.6448H5.0648V9.6448H7.0648V10.6448Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default RawOff;
+export default IconRawOff;

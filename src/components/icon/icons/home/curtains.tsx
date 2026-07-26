@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Curtains = withIcon(({ size }) => {
+const IconCurtains = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const Curtains = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 1.2) scale(1.2)">
-        <path
-          d="M18 16V0H2V16H0V18H20V16H18ZM16 7.86C13.95 7.28 12.36 4.93 12.06 2H16V7.86ZM13.81 9C11.77 10.35 10.31 12.94 10.05 16H9.96C9.7 12.94 8.24 10.35 6.2 9C8.24 7.65 9.7 5.06 9.96 2H10.05C10.31 5.06 11.77 7.65 13.81 9ZM7.94 2C7.64 4.93 6.05 7.27 4 7.86V2H7.94ZM4 10.14C6.05 10.72 7.64 13.07 7.94 16H4V10.14ZM12.06 16C12.36 13.07 13.95 10.73 16 10.14V16H12.06Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M20 19V3H4V19H2V21H22V19H20ZM18 10.86C15.95 10.28 14.36 7.93 14.06 5H18V10.86ZM15.81 12C13.77 13.35 12.31 15.94 12.05 19H11.96C11.7 15.94 10.24 13.35 8.2 12C10.24 10.65 11.7 8.06 11.96 5H12.05C12.31 8.06 13.77 10.65 15.81 12ZM9.94 5C9.64 7.93 8.05 10.27 6 10.86V5H9.94ZM6 13.14C8.05 13.72 9.64 16.07 9.94 19H6V13.14ZM14.06 19C14.36 16.07 15.95 13.73 18 13.14V19H14.06Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default Curtains;
+export default IconCurtains;

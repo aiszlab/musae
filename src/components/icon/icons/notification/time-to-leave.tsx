@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const TimeToLeave = withIcon(({ size }) => {
+const IconTimeToLeave = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -26,4 +26,4 @@ const TimeToLeave = withIcon(({ size }) => {
   );
 });
 
-export default TimeToLeave;
+export default IconTimeToLeave;

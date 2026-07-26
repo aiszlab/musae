@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const QueuePlayNext = withIcon(({ size }) => {
+const IconQueuePlayNext = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const QueuePlayNext = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 1.8261) scale(1.0435)">
-        <path
-          d="M20 0H2C0.89 0 0 0.89 0 2V14C0 15.1 0.89 16 2 16H7V18H15V16H17V14H2V2H20V10H22V2C22 0.89 21.1 0 20 0ZM12 7V4H10V7H7V9H10V12H12V9H15V7H12ZM23 15L18.5 19.5L17 18L20 15L17 12L18.5 10.5L23 15Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M20.5 2.25H2.5C1.39 2.25 0.5 3.14 0.5 4.25V16.25C0.5 17.35 1.39 18.25 2.5 18.25H7.5V20.25H15.5V18.25H17.5V16.25H2.5V4.25H20.5V12.25H22.5V4.25C22.5 3.14 21.6 2.25 20.5 2.25ZM12.5 9.25V6.25H10.5V9.25H7.5V11.25H10.5V14.25H12.5V11.25H15.5V9.25H12.5ZM23.5 17.25L19 21.75L17.5 20.25L20.5 17.25L17.5 14.25L19 12.75L23.5 17.25Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default QueuePlayNext;
+export default IconQueuePlayNext;

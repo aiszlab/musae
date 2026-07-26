@@ -2,14 +2,14 @@ import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext
 import { $createParagraphNode, $getSelection, $isRangeSelection } from "lexical";
 import React, { useCallback, useMemo, useState } from "react";
 import {
-  Checklist,
-  LooksFive,
-  LooksFour,
-  LooksOne,
-  LooksSix,
-  LooksThree,
-  LooksTwo,
-  Notes,
+  IconChecklist,
+  IconLooks5,
+  IconLooks4,
+  IconLooksOne,
+  IconLooks6,
+  IconLooks3,
+  IconLooksTwo,
+  IconNotes,
   IconCode,
 } from "../../../icon/icons";
 import { $setBlocksType } from "@lexical/selection";
@@ -46,56 +46,56 @@ export const useBlockFormat = () => {
           "paragraph",
           {
             label: "Normal",
-            prefix: <Notes />,
+            prefix: <IconNotes />,
           },
         ],
         [
           "h1",
           {
             label: "Heading 1",
-            prefix: <LooksOne />,
+            prefix: <IconLooksOne />,
           },
         ],
         [
           "h2",
           {
             label: "Heading 2",
-            prefix: <LooksTwo />,
+            prefix: <IconLooksTwo />,
           },
         ],
         [
           "h3",
           {
             label: "Heading 3",
-            prefix: <LooksThree />,
+            prefix: <IconLooks3 />,
           },
         ],
         [
           "h4",
           {
             label: "Heading 4",
-            prefix: <LooksFour />,
+            prefix: <IconLooks4 />,
           },
         ],
         [
           "h5",
           {
             label: "Heading 5",
-            prefix: <LooksFive />,
+            prefix: <IconLooks5 />,
           },
         ],
         [
           "h6",
           {
             label: "Heading 6",
-            prefix: <LooksSix />,
+            prefix: <IconLooks6 />,
           },
         ],
         [
           "check",
           {
             label: locale.checkList,
-            prefix: <Checklist />,
+            prefix: <IconChecklist />,
           },
         ],
         [

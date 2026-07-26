@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const MoveDown = withIcon(({ size }) => {
+const IconMoveDown = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,16 +10,14 @@ const MoveDown = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 2.2857) scale(1.1429)">
-        <path
-          d="M2 7C2 9.45 3.76 11.47 6.08 11.91L4.59 10.42L6 9L10 13.01L6 17L4.59 15.59L6.17 14.01V13.95C2.7 13.54 0 10.58 0 7C0 3.13 3.13 0 7 0H10V2H7C4.24 2 2 4.24 2 7Z"
-          fill="currentColor"
-        />
-        <path d="M21 7V0H12V7H21ZM19 5H14V2H19V5Z" fill="currentColor" />
-        <path d="M21 9H12V16H21V9Z" fill="currentColor" />
-      </g>
+      <path
+        d="M3.5 10.5C3.5 12.95 5.26 14.97 7.58 15.41L6.09 13.92L7.5 12.5L11.5 16.51L7.5 20.5L6.09 19.09L7.67 17.51V17.45C4.2 17.04 1.5 14.08 1.5 10.5C1.5 6.63 4.63 3.5 8.5 3.5H11.5V5.5H8.5C5.74 5.5 3.5 7.74 3.5 10.5Z"
+        fill="currentColor"
+      />
+      <path d="M22.5 10.5V3.5H13.5V10.5H22.5ZM20.5 8.5H15.5V5.5H20.5V8.5Z" fill="currentColor" />
+      <path d="M22.5 12.5H13.5V19.5H22.5V12.5Z" fill="currentColor" />
     </svg>
   );
 });
 
-export default MoveDown;
+export default IconMoveDown;

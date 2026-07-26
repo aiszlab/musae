@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Cases = withIcon(({ size }) => {
+const IconCases = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,15 +10,16 @@ const Cases = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0.5455) scale(1.0909)">
-        <path d="M2 8H0V19C0 20.11 0.89 21 2 21H19V19H2V8Z" fill="currentColor" />
-        <path
-          d="M17 4V2C17 0.9 16.1 0 15 0H11C9.9 0 9 0.9 9 2V4H4V15C4 16.1 4.9 17 6 17H20C21.1 17 22 16.1 22 15V4H17ZM11 2H15V4H11V2ZM20 15H6V6H20V15Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M2.9999 8.9999H0.9999V19.9999C0.9999 21.1099 1.8899 21.9999 2.9999 21.9999H19.9999V19.9999H2.9999V8.9999Z"
+        fill="currentColor"
+      />
+      <path
+        d="M17.9999 4.9999V2.9999C17.9999 1.8999 17.0999 0.9999 15.9999 0.9999H11.9999C10.8999 0.9999 9.9999 1.8999 9.9999 2.9999V4.9999H4.9999V15.9999C4.9999 17.0999 5.8999 17.9999 6.9999 17.9999H20.9999C22.0999 17.9999 22.9999 17.0999 22.9999 15.9999V4.9999H17.9999ZM11.9999 2.9999H15.9999V4.9999H11.9999V2.9999ZM20.9999 15.9999H6.9999V6.9999H20.9999V15.9999Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default Cases;
+export default IconCases;

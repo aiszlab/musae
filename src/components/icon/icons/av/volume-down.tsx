@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const VolumeDown = withIcon(({ size }) => {
+const IconVolumeDown = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const VolumeDown = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(1.875, 0) scale(1.5)">
-        <path
-          d="M11 3.97V12.02C12.48 11.29 13.5 9.77 13.5 8C13.5 6.23 12.48 4.71 11 3.97ZM0 5V11H4L9 16V0L4 5H0ZM7 4.83V11.17L4.83 9H2V7H4.83L7 4.83Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M16.25 7.97V16.02C17.73 15.29 18.75 13.77 18.75 12C18.75 10.23 17.73 8.71 16.25 7.97ZM5.25 9V15H9.25L14.25 20V4L9.25 9H5.25ZM12.25 8.83V15.17L10.08 13H7.25V11H10.08L12.25 8.83Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default VolumeDown;
+export default IconVolumeDown;

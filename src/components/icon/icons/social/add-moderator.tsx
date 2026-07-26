@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const AddModerator = withIcon(({ size }) => {
+const IconAddModerator = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -22,4 +22,4 @@ const AddModerator = withIcon(({ size }) => {
   );
 });
 
-export default AddModerator;
+export default IconAddModerator;

@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const NoEncryptionGmailerrorred = withIcon(({ size }) => {
+const IconNoEncryptionGmailerrorred = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const NoEncryptionGmailerrorred = withIcon(({ size }) => {
   );
 });
 
-export default NoEncryptionGmailerrorred;
+export default IconNoEncryptionGmailerrorred;

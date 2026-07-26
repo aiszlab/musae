@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const PlaylistRemove = withIcon(({ size }) => {
+const IconPlaylistRemove = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const PlaylistRemove = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 1.3333) scale(1.3333)">
-        <path
-          d="M11 4H0V6H11V4ZM11 0H0V2H11V0ZM0 10H7V8H0V10ZM11.41 16L14 13.41L16.59 16L18 14.59L15.41 12L18 9.41L16.59 8L14 10.59L11.41 8L10 9.41L12.59 12L10 14.59L11.41 16Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M14 8H3V10H14V8ZM14 4H3V6H14V4ZM3 14H10V12H3V14ZM14.41 20L17 17.41L19.59 20L21 18.59L18.41 16L21 13.41L19.59 12L17 14.59L14.41 12L13 13.41L15.59 16L13 18.59L14.41 20Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default PlaylistRemove;
+export default IconPlaylistRemove;

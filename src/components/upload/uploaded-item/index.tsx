@@ -3,7 +3,7 @@ import { create as $create, props as $props } from "@stylexjs/stylex";
 import { spacing } from "../../theme/tokens.stylex";
 import type { FileItem, UploadedItem as UploadedItemType } from "../../../types/upload";
 import { useEvent } from "@aiszlab/relax";
-import { AttachFile, IconDelete, Loading } from "../../icon/icons";
+import { IconAttachFile, IconDelete, IconLoading } from "../../icon/icons";
 import { leaf } from "@aiszlab/fuzzy/path";
 import { Context } from "../context";
 import { stringify } from "@aiszlab/relax/class-name";
@@ -71,7 +71,7 @@ const UploadedItem = ({
         className={stringify(classNames.uploadedItem, styled.item.className)}
         style={styled.item.style}
       >
-        <Loading />
+        <IconLoading />
       </div>
     );
   }
@@ -93,7 +93,7 @@ const UploadedItem = ({
       className={stringify(classNames.uploadedItem, styled.item.className)}
       style={styled.item.style}
     >
-      <AttachFile />
+      <IconAttachFile />
 
       <span className={styled.filename.className} style={styled.filename.style}>
         {fileItem.file?.name ?? leaf(item.url ?? "")}

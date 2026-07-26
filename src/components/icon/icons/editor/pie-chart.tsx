@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const PieChart = withIcon(({ size }) => {
+const IconPieChart = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const PieChart = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0) scale(1.2)">
-        <path
-          d="M10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM17.93 9H11V2.07C14.61 2.52 17.48 5.39 17.93 9ZM2 10C2 5.93 5.06 2.56 9 2.07V17.93C5.06 17.44 2 14.07 2 10ZM11 17.93V11H17.93C17.48 14.61 14.61 17.48 11 17.93Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM19.93 11H13V4.07C16.61 4.52 19.48 7.39 19.93 11ZM4 12C4 7.93 7.06 4.56 11 4.07V19.93C7.06 19.44 4 16.07 4 12ZM13 19.93V13H19.93C19.48 16.61 16.61 19.48 13 19.93Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default PieChart;
+export default IconPieChart;

@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const ContactEmergency = withIcon(({ size }) => {
+const IconContactEmergency = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,22 +10,20 @@ const ContactEmergency = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 3) scale(1)">
-        <path
-          d="M9 11C10.65 11 12 9.65 12 8C12 6.35 10.65 5 9 5C7.35 5 6 6.35 6 8C6 9.65 7.35 11 9 11ZM9 7C9.54 7 10 7.46 10 8C10 8.54 9.54 9 9 9C8.46 9 8 8.54 8 8C8 7.46 8.46 7 9 7Z"
-          fill="currentColor"
-        />
-        <path
-          d="M22 0H2C0.9 0 0 0.9 0 2V16C0 17.1 0.9 18 2 18H22C23.1 18 23.99 17.1 23.99 16L24 2C24 0.9 23.1 0 22 0ZM4.54 16C5.64 14.78 7.23 14 9 14C10.77 14 12.36 14.78 13.46 16H4.54ZM22 16H15.92C14.54 13.61 11.96 12 9 12C6.04 12 3.46 13.61 2.08 16H2V2H22V16Z"
-          fill="currentColor"
-        />
-        <path
-          d="M15.78 8.15L17.25 7.3V9H18.75V7.3L20.22 8.15L20.97 6.85L19.5 6L20.97 5.15L20.22 3.85L18.75 4.7V3H17.25V4.7L15.78 3.85L15.03 5.15L16.5 6L15.03 6.85L15.78 8.15Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M9 14C10.65 14 12 12.65 12 11C12 9.35 10.65 8 9 8C7.35 8 6 9.35 6 11C6 12.65 7.35 14 9 14ZM9 10C9.54 10 10 10.46 10 11C10 11.54 9.54 12 9 12C8.46 12 8 11.54 8 11C8 10.46 8.46 10 9 10Z"
+        fill="currentColor"
+      />
+      <path
+        d="M22 3H2C0.9 3 0 3.9 0 5V19C0 20.1 0.9 21 2 21H22C23.1 21 23.99 20.1 23.99 19L24 5C24 3.9 23.1 3 22 3ZM4.54 19C5.64 17.78 7.23 17 9 17C10.77 17 12.36 17.78 13.46 19H4.54ZM22 19H15.92C14.54 16.61 11.96 15 9 15C6.04 15 3.46 16.61 2.08 19H2V5H22V19Z"
+        fill="currentColor"
+      />
+      <path
+        d="M15.78 11.15L17.25 10.3V12H18.75V10.3L20.22 11.15L20.97 9.85L19.5 9L20.97 8.15L20.22 6.85L18.75 7.7V6H17.25V7.7L15.78 6.85L15.03 8.15L16.5 9L15.03 9.85L15.78 11.15Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default ContactEmergency;
+export default IconContactEmergency;

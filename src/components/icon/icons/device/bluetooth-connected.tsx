@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const BluetoothConnected = withIcon(({ size }) => {
+const IconBluetoothConnected = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const BluetoothConnected = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(1.2, 0) scale(1.2)">
-        <path
-          d="M4 10L2 8L0 10L2 12L4 10ZM14.71 5.71L9 0H8V7.59L3.41 3L2 4.41L7.59 10L2 15.59L3.41 17L8 12.41V20H9L14.71 14.29L10.41 10L14.71 5.71ZM10 3.83L11.88 5.71L10 7.59V3.83ZM11.88 14.29L10 16.17V12.41L11.88 14.29ZM16 8L14 10L16 12L18 10L16 8Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M7 12L5 10L3 12L5 14L7 12ZM17.71 7.71L12 2H11V9.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L11 14.41V22H12L17.71 16.29L13.41 12L17.71 7.71ZM13 5.83L14.88 7.71L13 9.59V5.83ZM14.88 16.29L13 18.17V14.41L14.88 16.29ZM19 10L17 12L19 14L21 12L19 10Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default BluetoothConnected;
+export default IconBluetoothConnected;

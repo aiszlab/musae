@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Terrain = withIcon(({ size }) => {
+const IconTerrain = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const Terrain = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 5.4545) scale(1.0909)">
-        <path
-          d="M13 0L8.78 5.63L10.03 7.3L13 3.33L18 10H9.54L5.53 4.63L0 12H22L13 0ZM4 10L5.52 7.97L7.04 10H4Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M 14.1817 5.4545 L 9.5781 11.5963 L 10.9417 13.4181 L 14.1817 9.0872 L 19.6362 16.3635 H 10.4072 L 6.0327 10.5054 L 0 18.5453 H 24 L 14.1817 5.4545ZM 4.3636 16.3635 L 6.0218 14.149 L 7.6799 16.3635 H 4.3636Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default Terrain;
+export default IconTerrain;

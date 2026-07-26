@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Stroller = withIcon(({ size }) => {
+const IconStroller = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const Stroller = withIcon(({ size }) => {
   );
 });
 
-export default Stroller;
+export default IconStroller;

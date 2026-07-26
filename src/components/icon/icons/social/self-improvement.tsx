@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const SelfImprovement = withIcon(({ size }) => {
+const IconSelfImprovement = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -22,4 +22,4 @@ const SelfImprovement = withIcon(({ size }) => {
   );
 });
 
-export default SelfImprovement;
+export default IconSelfImprovement;

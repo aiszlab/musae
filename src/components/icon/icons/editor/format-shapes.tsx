@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const FormatShapes = withIcon(({ size }) => {
+const IconFormatShapes = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const FormatShapes = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0) scale(1.0909)">
-        <path
-          d="M22 6V0H16V2H6V0H0V6H2V16H0V22H6V20H16V22H22V16H20V6H22ZM2 2H4V4H2V2ZM4 20H2V18H4V20ZM16 18H6V16H4V6H6V4H16V6H18V16H16V18ZM20 20H18V18H20V20ZM18 4V2H20V4H18ZM12.73 13H9.24L8.51 15H6.89L10.29 6H11.69L15.1 15H13.47L12.73 13ZM9.69 11.74H12.3L11 7.91L9.69 11.74Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M23 7V1H17V3H7V1H1V7H3V17H1V23H7V21H17V23H23V17H21V7H23ZM3 3H5V5H3V3ZM5 21H3V19H5V21ZM17 19H7V17H5V7H7V5H17V7H19V17H17V19ZM21 21H19V19H21V21ZM19 5V3H21V5H19ZM13.73 14H10.24L9.51 16H7.89L11.29 7H12.69L16.1 16H14.47L13.73 14ZM10.69 12.74H13.3L12 8.91L10.69 12.74Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default FormatShapes;
+export default IconFormatShapes;

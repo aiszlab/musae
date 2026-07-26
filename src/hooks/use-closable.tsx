@@ -3,7 +3,7 @@ import React, { KeyboardEvent, useMemo } from "react";
 import { IconButton } from "../components/icon-button";
 import { create as $create, props as $props } from "@stylexjs/stylex";
 import { spacing } from "../components/theme/tokens.stylex";
-import { Close } from "../components/icon/icons";
+import { IconClose } from "../components/icon/icons";
 import { Keyboard } from "../utils/keyboard";
 
 export type Closable = "esc" | "overlay" | "close";
@@ -58,7 +58,7 @@ export const useClosable = ({
         className={styled.className}
         style={styled.style}
       >
-        <Close />
+        <IconClose />
       </IconButton>
     );
   }, [triggers, onClose, placement]);

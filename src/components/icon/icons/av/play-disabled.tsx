@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const PlayDisabled = withIcon(({ size }) => {
+const IconPlayDisabled = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,15 +10,16 @@ const PlayDisabled = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(-0, -0) scale(1.2127)">
-        <path d="M15.06 10.81L17.61 9.19L6.61 2.19V2.36L15.06 10.81Z" fill="currentColor" />
-        <path
-          d="M1.42 0L0 1.41L6.61 8.02V16.19L11.6 13.01L18.38 19.79L19.79 18.38L1.42 0ZM8.61 12.55V10.02L10.16 11.57L8.61 12.55Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M17.165 12.9155L19.715 11.2955L8.715 4.29547V4.46547L17.165 12.9155Z"
+        fill="currentColor"
+      />
+      <path
+        d="M3.525 2.10547L2.105 3.51547L8.715 10.1255V18.2955L13.705 15.1155L20.485 21.8955L21.895 20.4855L3.525 2.10547ZM10.715 14.6555V12.1255L12.265 13.6755L10.715 14.6555Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default PlayDisabled;
+export default IconPlayDisabled;

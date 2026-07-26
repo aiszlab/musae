@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Ballot = withIcon(({ size }) => {
+const IconBallot = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const Ballot = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0) scale(1.3333)">
-        <path
-          d="M10 4.5H15V6.5H10V4.5ZM10 11.5H15V13.5H10V11.5ZM16 0H2C0.9 0 0 0.9 0 2V16C0 17.1 0.9 18 2 18H16C17.1 18 18 17.1 18 16V2C18 0.9 17.1 0 16 0ZM16 16H2V2H16V16ZM8 3H3V8H8V3ZM7 7H4V4H7V7ZM8 10H3V15H8V10ZM7 14H4V11H7V14Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M13 7.5H18V9.5H13V7.5ZM13 14.5H18V16.5H13V14.5ZM19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3ZM19 19H5V5H19V19ZM11 6H6V11H11V6ZM10 10H7V7H10V10ZM11 13H6V18H11V13ZM10 17H7V14H10V17Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default Ballot;
+export default IconBallot;

@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const PriceCheck = withIcon(({ size }) => {
+const IconPriceCheck = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,18 +10,16 @@ const PriceCheck = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0.6667, 0) scale(1.3333)">
-        <path
-          d="M7 10V6C7 5.45 6.55 5 6 5H2V3H7V1H4.5V0H2.5V1H1C0.45 1 0 1.45 0 2V6C0 6.55 0.45 7 1 7H5V9H0V11H2.5V12H4.5V11H6C6.55 11 7 10.55 7 10Z"
-          fill="currentColor"
-        />
-        <path
-          d="M15.59 9.52L9.93 15.17L7.1 12.34L5.69 13.76L9.93 18L17 10.93L15.59 9.52Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M10.5 13V9C10.5 8.45 10.05 8 9.5 8H5.5V6H10.5V4H8V3H6V4H4.5C3.95 4 3.5 4.45 3.5 5V9C3.5 9.55 3.95 10 4.5 10H8.5V12H3.5V14H6V15H8V14H9.5C10.05 14 10.5 13.55 10.5 13Z"
+        fill="currentColor"
+      />
+      <path
+        d="M19.09 12.52L13.43 18.17L10.6 15.34L9.19 16.76L13.43 21L20.5 13.93L19.09 12.52Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default PriceCheck;
+export default IconPriceCheck;

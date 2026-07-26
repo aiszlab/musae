@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const KeyboardArrowRight = withIcon(({ size }) => {
+const IconKeyboardArrowRight = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,11 +10,12 @@ const KeyboardArrowRight = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(4.59, 0) scale(2)">
-        <path d="M0 10.59L4.58 6L0 1.41L1.41 0L7.41 6L1.41 12L0 10.59Z" fill="currentColor" />
-      </g>
+      <path
+        d="M8.29498 16.59L12.875 12L8.29498 7.41L9.70498 6L15.705 12L9.70498 18L8.29498 16.59Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default KeyboardArrowRight;
+export default IconKeyboardArrowRight;

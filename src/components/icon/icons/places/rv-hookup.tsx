@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const RvHookup = withIcon(({ size }) => {
+const IconRvHookup = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const RvHookup = withIcon(({ size }) => {
   );
 });
 
-export default RvHookup;
+export default IconRvHookup;

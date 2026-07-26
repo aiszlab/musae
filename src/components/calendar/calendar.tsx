@@ -2,10 +2,10 @@ import React, { forwardRef, useImperativeHandle } from "react";
 import { useDateCells, useHeadCells, useFocusedAt, useValue } from "./hooks";
 import type { CalendarProps, CalendarRef } from "../../types/calendar";
 import {
-  KeyboardDoubleArrowLeft,
-  KeyboardDoubleArrowRight,
-  KeyboardArrowLeft,
-  KeyboardArrowRight,
+  IconKeyboardDoubleArrowLeft,
+  IconKeyboardDoubleArrowRight,
+  IconKeyboardArrowLeft,
+  IconKeyboardArrowRight,
 } from "../icon/icons";
 import { useClassNames } from "../../hooks/use-class-names";
 import { create as $create, props as $props } from "@stylexjs/stylex";
@@ -89,11 +89,11 @@ const Calendar = forwardRef<CalendarRef, CalendarProps>(
           style={styled.header.style}
         >
           <IconButton variant="text" onClick={subtractYear} size="small">
-            <KeyboardDoubleArrowLeft />
+            <IconKeyboardDoubleArrowLeft />
           </IconButton>
 
           <IconButton variant="text" onClick={subtractMonth} size="small">
-            <KeyboardArrowLeft />
+            <IconKeyboardArrowLeft />
           </IconButton>
 
           <span
@@ -104,11 +104,11 @@ const Calendar = forwardRef<CalendarRef, CalendarProps>(
           </span>
 
           <IconButton variant="text" onClick={addMonth} size="small">
-            <KeyboardArrowRight />
+            <IconKeyboardArrowRight />
           </IconButton>
 
           <IconButton variant="text" onClick={addYear} size="small">
-            <KeyboardDoubleArrowRight />
+            <IconKeyboardDoubleArrowRight />
           </IconButton>
         </header>
 

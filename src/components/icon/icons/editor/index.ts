@@ -1,247 +1,271 @@
-import AddChart from "./add-chart";
-import AddComment from "./add-comment";
-import AlignHorizontalCenter from "./align-horizontal-center";
-import AlignHorizontalLeft from "./align-horizontal-left";
-import AlignHorizontalRight from "./align-horizontal-right";
-import AlignVerticalBottom from "./align-vertical-bottom";
-import AlignVerticalCenter from "./align-vertical-center";
-import AlignVerticalTop from "./align-vertical-top";
-import AreaChart from "./area-chart";
-import AttachFile from "./attach-file";
-import AttachMoney from "./attach-money";
-import AutoGraph from "./auto-graph";
-import BarChart from "./bar-chart";
-import BorderAll from "./border-all";
-import BorderBottom from "./border-bottom";
-import BorderClear from "./border-clear";
-import BorderColor from "./border-color";
-import BorderHorizontal from "./border-horizontal";
-import BorderInner from "./border-inner";
-import BorderLeft from "./border-left";
-import BorderOuter from "./border-outer";
-import BorderRight from "./border-right";
-import BorderStyle from "./border-style";
-import BorderTop from "./border-top";
-import BorderVertical from "./border-vertical";
-import BubbleChart from "./bubble-chart";
-import CandlestickChart from "./candlestick-chart";
-import ChecklistRtl from "./checklist-rtl";
-import Checklist from "./checklist";
-import DataArray from "./data-array";
-import DataObject from "./data-object";
-import DragHandle from "./drag-handle";
-import Draw from "./draw";
-import EditNote from "./edit-note";
-import FormatAlignCenter from "./format-align-center";
-import FormatAlignJustify from "./format-align-justify";
-import FormatAlignLeft from "./format-align-left";
-import FormatAlignRight from "./format-align-right";
-import FormatBold from "./format-bold";
-import FormatClear from "./format-clear";
-import FormatColorFill from "./format-color-fill";
-import FormatColorReset from "./format-color-reset";
-import FormatColorText from "./format-color-text";
-import FormatIndentDecrease from "./format-indent-decrease";
-import FormatIndentIncrease from "./format-indent-increase";
-import FormatItalic from "./format-italic";
-import FormatLineSpacing from "./format-line-spacing";
-import FormatListBulleted from "./format-list-bulleted";
-import FormatListNumberedRtl from "./format-list-numbered-rtl";
-import FormatListNumbered from "./format-list-numbered";
-import FormatPaint from "./format-paint";
-import FormatQuote from "./format-quote";
-import FormatShapes from "./format-shapes";
-import FormatSize from "./format-size";
-import FormatStrikethrough from "./format-strikethrough";
-import FormatTextdirectionLToR from "./format-textdirection-l-to-r";
-import FormatTextdirectionRToL from "./format-textdirection-r-to-l";
-import FormatUnderlined from "./format-underlined";
-import Functions from "./functions";
-import Height from "./height";
-import Hexagon from "./hexagon";
-import Highlight from "./highlight";
-import HorizontalDistribute from "./horizontal-distribute";
-import HorizontalRule from "./horizontal-rule";
-import InsertChartOutlined from "./insert-chart-outlined";
-import InsertChart from "./insert-chart";
-import InsertComment from "./insert-comment";
-import InsertDriveFile from "./insert-drive-file";
-import InsertEmoticon from "./insert-emoticon";
-import InsertInvitation from "./insert-invitation";
-import InsertLink from "./insert-link";
-import InsertPageBreak from "./insert-page-break";
-import InsertPhoto from "./insert-photo";
-import LineAxis from "./line-axis";
-import LinearScale from "./linear-scale";
-import Margin from "./margin";
-import MergeType from "./merge-type";
-import ModeComment from "./mode-comment";
-import ModeEditOutline from "./mode-edit-outline";
-import ModeEdit from "./mode-edit";
-import Mode from "./mode";
-import MonetizationOn from "./monetization-on";
-import MoneyOffCsred from "./money-off-csred";
-import MoneyOff from "./money-off";
-import MoveDown from "./move-down";
-import MoveUp from "./move-up";
-import MultilineChart from "./multiline-chart";
-import Notes from "./notes";
-import Numbers from "./numbers";
-import Padding from "./padding";
-import Pentagon from "./pentagon";
-import PieChartOutline from "./pie-chart-outline";
-import PieChart from "./pie-chart";
-import Polyline from "./polyline";
-import PostAdd from "./post-add";
-import Publish from "./publish";
-import QueryStats from "./query-stats";
-import Rectangle from "./rectangle";
-import ScatterPlot from "./scatter-plot";
-import Schema from "./schema";
-import Score from "./score";
-import ShapeLine from "./shape-line";
-import ShortText from "./short-text";
-import ShowChart from "./show-chart";
-import SpaceBar from "./space-bar";
-import Square from "./square";
-import StackedLineChart from "./stacked-line-chart";
-import StrikethroughS from "./strikethrough-s";
-import Subscript from "./subscript";
-import Superscript from "./superscript";
-import TableChart from "./table-chart";
-import TableRows from "./table-rows";
-import TextDecrease from "./text-decrease";
-import TextFields from "./text-fields";
-import TextIncrease from "./text-increase";
-import Title from "./title";
-import TypeSpecimen from "./type-specimen";
-import VerticalAlignBottom from "./vertical-align-bottom";
-import VerticalAlignCenter from "./vertical-align-center";
-import VerticalAlignTop from "./vertical-align-top";
-import VerticalDistribute from "./vertical-distribute";
-import WrapText from "./wrap-text";
+import IconAddChart from "./add-chart";
+import IconAddComment from "./add-comment";
+import IconAlertSvg1 from "./alert-svg-1";
+import IconAlertSvg2 from "./alert-svg-2";
+import IconAlertSvg3 from "./alert-svg-3";
+import IconAlertSvg4 from "./alert-svg-4";
+import IconAlertSvg5 from "./alert-svg-5";
+import IconAlertSvg6 from "./alert-svg-6";
+import IconAlertSvg7 from "./alert-svg-7";
+import IconAlignHorizontalCenter from "./align-horizontal-center";
+import IconAlignHorizontalLeft from "./align-horizontal-left";
+import IconAlignHorizontalRight from "./align-horizontal-right";
+import IconAlignVerticalBottom from "./align-vertical-bottom";
+import IconAlignVerticalCenter from "./align-vertical-center";
+import IconAlignVerticalTop from "./align-vertical-top";
+import IconAreaChart from "./area-chart";
+import IconAttachFile from "./attach-file";
+import IconAttachMoney from "./attach-money";
+import IconAutoGraph from "./auto-graph";
+import IconBarChart from "./bar-chart";
+import IconBorderAll from "./border-all";
+import IconBorderBottom from "./border-bottom";
+import IconBorderClear from "./border-clear";
+import IconBorderColor from "./border-color";
+import IconBorderHorizontal from "./border-horizontal";
+import IconBorderInner from "./border-inner";
+import IconBorderLeft from "./border-left";
+import IconBorderOuter from "./border-outer";
+import IconBorderRight from "./border-right";
+import IconBorderStyle from "./border-style";
+import IconBorderTop from "./border-top";
+import IconBorderVertical from "./border-vertical";
+import IconBubbleChart from "./bubble-chart";
+import IconCandlestickChart from "./candlestick-chart";
+import IconChecklist from "./checklist";
+import IconChecklistRtl from "./checklist-rtl";
+import IconDataArray from "./data-array";
+import IconDataObject from "./data-object";
+import IconDragHandle from "./drag-handle";
+import IconDraw from "./draw";
+import IconEditNote from "./edit-note";
+import IconFastForward240359310 from "./fast-forward-2403-5931-0";
+import IconFastForwardFilled from "./fast-forward-filled";
+import IconFastForwardOutlined from "./fast-forward-outlined";
+import IconFf24035967 from "./ff-2403-5967";
+import IconFf2403Outlined from "./ff-2403-outlined";
+import IconFormatAlignCenter from "./format-align-center";
+import IconFormatAlignJustify from "./format-align-justify";
+import IconFormatAlignLeft from "./format-align-left";
+import IconFormatAlignRight from "./format-align-right";
+import IconFormatBold from "./format-bold";
+import IconFormatClear from "./format-clear";
+import IconFormatColorFill from "./format-color-fill";
+import IconFormatColorReset from "./format-color-reset";
+import IconFormatColorText from "./format-color-text";
+import IconFormatIndentDecrease from "./format-indent-decrease";
+import IconFormatIndentIncrease from "./format-indent-increase";
+import IconFormatItalic from "./format-italic";
+import IconFormatLineSpacing from "./format-line-spacing";
+import IconFormatListBulleted from "./format-list-bulleted";
+import IconFormatListNumbered from "./format-list-numbered";
+import IconFormatListNumberedRtl from "./format-list-numbered-rtl";
+import IconFormatPaint from "./format-paint";
+import IconFormatQuote from "./format-quote";
+import IconFormatShapes from "./format-shapes";
+import IconFormatSize from "./format-size";
+import IconFormatStrikethrough from "./format-strikethrough";
+import IconFormatTextdirectionLToR from "./format-textdirection-l-to-r";
+import IconFormatTextdirectionRToL from "./format-textdirection-r-to-l";
+import IconFormatUnderlined from "./format-underlined";
+import IconFunctions from "./functions";
+import IconHeight from "./height";
+import IconHexagon from "./hexagon";
+import IconHighlight from "./highlight";
+import IconHorizontalDistribute from "./horizontal-distribute";
+import IconHorizontalRule from "./horizontal-rule";
+import IconInsertChart from "./insert-chart";
+import IconInsertChartOutlined from "./insert-chart-outlined";
+import IconInsertComment from "./insert-comment";
+import IconInsertDriveFile from "./insert-drive-file";
+import IconInsertEmoticon from "./insert-emoticon";
+import IconInsertInvitation from "./insert-invitation";
+import IconInsertLink from "./insert-link";
+import IconInsertPageBreak from "./insert-page-break";
+import IconInsertPhoto from "./insert-photo";
+import IconLineAxis from "./line-axis";
+import IconLinearScale from "./linear-scale";
+import IconMargin from "./margin";
+import IconMergeType from "./merge-type";
+import IconMode from "./mode";
+import IconModeComment from "./mode-comment";
+import IconModeEdit from "./mode-edit";
+import IconModeEditOutline from "./mode-edit-outline";
+import IconMonetizationOn from "./monetization-on";
+import IconMoneyOff from "./money-off";
+import IconMoneyOffCsred from "./money-off-csred";
+import IconMoveDown from "./move-down";
+import IconMoveUp from "./move-up";
+import IconMultilineChart from "./multiline-chart";
+import IconNotes from "./notes";
+import IconNumbers from "./numbers";
+import IconPadding from "./padding";
+import IconPentagon from "./pentagon";
+import IconPieChart from "./pie-chart";
+import IconPieChartOutline from "./pie-chart-outline";
+import IconPolyline from "./polyline";
+import IconPostAdd from "./post-add";
+import IconPublish from "./publish";
+import IconQueryStats from "./query-stats";
+import IconRectangle from "./rectangle";
+import IconScatterPlot from "./scatter-plot";
+import IconSchema from "./schema";
+import IconScore from "./score";
+import IconShapeLine from "./shape-line";
+import IconShortText from "./short-text";
+import IconShowChart from "./show-chart";
+import IconSpaceBar from "./space-bar";
+import IconSquare from "./square";
+import IconStackedLineChart from "./stacked-line-chart";
+import IconStrikethroughS from "./strikethrough-s";
+import IconSubscript from "./subscript";
+import IconSuperscript from "./superscript";
+import IconTableChart from "./table-chart";
+import IconTableRows from "./table-rows";
+import IconTextDecrease from "./text-decrease";
+import IconTextFields from "./text-fields";
+import IconTextIncrease from "./text-increase";
+import IconTitle from "./title";
+import IconTypeSpecimen from "./type-specimen";
+import IconVerticalAlignBottom from "./vertical-align-bottom";
+import IconVerticalAlignCenter from "./vertical-align-center";
+import IconVerticalAlignTop from "./vertical-align-top";
+import IconVerticalDistribute from "./vertical-distribute";
+import IconWrapText from "./wrap-text";
 
 export {
-  AddChart,
-  AddComment,
-  AlignHorizontalCenter,
-  AlignHorizontalLeft,
-  AlignHorizontalRight,
-  AlignVerticalBottom,
-  AlignVerticalCenter,
-  AlignVerticalTop,
-  AreaChart,
-  AttachFile,
-  AttachMoney,
-  AutoGraph,
-  BarChart,
-  BorderAll,
-  BorderBottom,
-  BorderClear,
-  BorderColor,
-  BorderHorizontal,
-  BorderInner,
-  BorderLeft,
-  BorderOuter,
-  BorderRight,
-  BorderStyle,
-  BorderTop,
-  BorderVertical,
-  BubbleChart,
-  CandlestickChart,
-  ChecklistRtl,
-  Checklist,
-  DataArray,
-  DataObject,
-  DragHandle,
-  Draw,
-  EditNote,
-  FormatAlignCenter,
-  FormatAlignJustify,
-  FormatAlignLeft,
-  FormatAlignRight,
-  FormatBold,
-  FormatClear,
-  FormatColorFill,
-  FormatColorReset,
-  FormatColorText,
-  FormatIndentDecrease,
-  FormatIndentIncrease,
-  FormatItalic,
-  FormatLineSpacing,
-  FormatListBulleted,
-  FormatListNumberedRtl,
-  FormatListNumbered,
-  FormatPaint,
-  FormatQuote,
-  FormatShapes,
-  FormatSize,
-  FormatStrikethrough,
-  FormatTextdirectionLToR,
-  FormatTextdirectionRToL,
-  FormatUnderlined,
-  Functions,
-  Height,
-  Hexagon,
-  Highlight,
-  HorizontalDistribute,
-  HorizontalRule,
-  InsertChartOutlined,
-  InsertChart,
-  InsertComment,
-  InsertDriveFile,
-  InsertEmoticon,
-  InsertInvitation,
-  InsertLink,
-  InsertPageBreak,
-  InsertPhoto,
-  LineAxis,
-  LinearScale,
-  Margin,
-  MergeType,
-  ModeComment,
-  ModeEditOutline,
-  ModeEdit,
-  Mode,
-  MonetizationOn,
-  MoneyOffCsred,
-  MoneyOff,
-  MoveDown,
-  MoveUp,
-  MultilineChart,
-  Notes,
-  Numbers,
-  Padding,
-  Pentagon,
-  PieChartOutline,
-  PieChart,
-  Polyline,
-  PostAdd,
-  Publish,
-  QueryStats,
-  Rectangle,
-  ScatterPlot,
-  Schema,
-  Score,
-  ShapeLine,
-  ShortText,
-  ShowChart,
-  SpaceBar,
-  Square,
-  StackedLineChart,
-  StrikethroughS,
-  Subscript,
-  Superscript,
-  TableChart,
-  TableRows,
-  TextDecrease,
-  TextFields,
-  TextIncrease,
-  Title,
-  TypeSpecimen,
-  VerticalAlignBottom,
-  VerticalAlignCenter,
-  VerticalAlignTop,
-  VerticalDistribute,
-  WrapText,
+  IconAddChart,
+  IconAddComment,
+  IconAlertSvg1,
+  IconAlertSvg2,
+  IconAlertSvg3,
+  IconAlertSvg4,
+  IconAlertSvg5,
+  IconAlertSvg6,
+  IconAlertSvg7,
+  IconAlignHorizontalCenter,
+  IconAlignHorizontalLeft,
+  IconAlignHorizontalRight,
+  IconAlignVerticalBottom,
+  IconAlignVerticalCenter,
+  IconAlignVerticalTop,
+  IconAreaChart,
+  IconAttachFile,
+  IconAttachMoney,
+  IconAutoGraph,
+  IconBarChart,
+  IconBorderAll,
+  IconBorderBottom,
+  IconBorderClear,
+  IconBorderColor,
+  IconBorderHorizontal,
+  IconBorderInner,
+  IconBorderLeft,
+  IconBorderOuter,
+  IconBorderRight,
+  IconBorderStyle,
+  IconBorderTop,
+  IconBorderVertical,
+  IconBubbleChart,
+  IconCandlestickChart,
+  IconChecklist,
+  IconChecklistRtl,
+  IconDataArray,
+  IconDataObject,
+  IconDragHandle,
+  IconDraw,
+  IconEditNote,
+  IconFastForward240359310,
+  IconFastForwardFilled,
+  IconFastForwardOutlined,
+  IconFf24035967,
+  IconFf2403Outlined,
+  IconFormatAlignCenter,
+  IconFormatAlignJustify,
+  IconFormatAlignLeft,
+  IconFormatAlignRight,
+  IconFormatBold,
+  IconFormatClear,
+  IconFormatColorFill,
+  IconFormatColorReset,
+  IconFormatColorText,
+  IconFormatIndentDecrease,
+  IconFormatIndentIncrease,
+  IconFormatItalic,
+  IconFormatLineSpacing,
+  IconFormatListBulleted,
+  IconFormatListNumbered,
+  IconFormatListNumberedRtl,
+  IconFormatPaint,
+  IconFormatQuote,
+  IconFormatShapes,
+  IconFormatSize,
+  IconFormatStrikethrough,
+  IconFormatTextdirectionLToR,
+  IconFormatTextdirectionRToL,
+  IconFormatUnderlined,
+  IconFunctions,
+  IconHeight,
+  IconHexagon,
+  IconHighlight,
+  IconHorizontalDistribute,
+  IconHorizontalRule,
+  IconInsertChart,
+  IconInsertChartOutlined,
+  IconInsertComment,
+  IconInsertDriveFile,
+  IconInsertEmoticon,
+  IconInsertInvitation,
+  IconInsertLink,
+  IconInsertPageBreak,
+  IconInsertPhoto,
+  IconLineAxis,
+  IconLinearScale,
+  IconMargin,
+  IconMergeType,
+  IconMode,
+  IconModeComment,
+  IconModeEdit,
+  IconModeEditOutline,
+  IconMonetizationOn,
+  IconMoneyOff,
+  IconMoneyOffCsred,
+  IconMoveDown,
+  IconMoveUp,
+  IconMultilineChart,
+  IconNotes,
+  IconNumbers,
+  IconPadding,
+  IconPentagon,
+  IconPieChart,
+  IconPieChartOutline,
+  IconPolyline,
+  IconPostAdd,
+  IconPublish,
+  IconQueryStats,
+  IconRectangle,
+  IconScatterPlot,
+  IconSchema,
+  IconScore,
+  IconShapeLine,
+  IconShortText,
+  IconShowChart,
+  IconSpaceBar,
+  IconSquare,
+  IconStackedLineChart,
+  IconStrikethroughS,
+  IconSubscript,
+  IconSuperscript,
+  IconTableChart,
+  IconTableRows,
+  IconTextDecrease,
+  IconTextFields,
+  IconTextIncrease,
+  IconTitle,
+  IconTypeSpecimen,
+  IconVerticalAlignBottom,
+  IconVerticalAlignCenter,
+  IconVerticalAlignTop,
+  IconVerticalDistribute,
+  IconWrapText,
 };

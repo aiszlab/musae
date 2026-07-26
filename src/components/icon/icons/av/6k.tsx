@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const SixK = withIcon(({ size }) => {
+const Icon6k = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,22 +10,20 @@ const SixK = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0) scale(1.3333)">
-        <path
-          d="M16 0H2C0.9 0 0 0.9 0 2V16C0 17.1 0.9 18 2 18H16C17.1 18 18 17.1 18 16V2C18 0.9 17.1 0 16 0ZM16 16H2V2H16V16Z"
-          fill="currentColor"
-        />
-        <path
-          d="M11.5 9.75L13.25 12H15L12.75 9L15 6H13.25L11.5 8.25V6H10V12H11.5V9.75Z"
-          fill="currentColor"
-        />
-        <path
-          d="M4.5 12H7C7.55 12 8 11.55 8 11V9.5C8 8.95 7.55 8.5 7 8.5H5V7.5H8V6H4.5C3.95 6 3.5 6.45 3.5 7V11C3.5 11.55 3.95 12 4.5 12ZM5 9.5H6.5V11H5V9.5Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3ZM19 19H5V5H19V19Z"
+        fill="currentColor"
+      />
+      <path
+        d="M14.5 12.75L16.25 15H18L15.75 12L18 9H16.25L14.5 11.25V9H13V15H14.5V12.75Z"
+        fill="currentColor"
+      />
+      <path
+        d="M7.5 15H10C10.55 15 11 14.55 11 14V12.5C11 11.95 10.55 11.5 10 11.5H8V10.5H11V9H7.5C6.95 9 6.5 9.45 6.5 10V14C6.5 14.55 6.95 15 7.5 15ZM8 12.5H9.5V14H8V12.5Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default SixK;
+export default Icon6k;

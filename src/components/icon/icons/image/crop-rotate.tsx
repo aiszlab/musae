@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const CropRotate = withIcon(({ size }) => {
+const IconCropRotate = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const CropRotate = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(2.6667, 0) scale(1.3333)">
-        <path
-          d="M12 0H2C0.9 0 0 0.9 0 2V16C0 17.1 0.9 18 2 18H12C13.1 18 14 17.1 14 16V2C14 0.9 13.1 0 12 0ZM12 16H2V2H12V16Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M14.9998 2.9998H4.9998C3.8998 2.9998 2.9998 3.8998 2.9998 4.9998V18.9998C2.9998 20.0998 3.8998 20.9998 4.9998 20.9998H14.9998C16.0998 20.9998 16.9998 20.0998 16.9998 18.9998V4.9998C16.9998 3.8998 16.0998 2.9998 14.9998 2.9998ZM14.9998 18.9998H4.9998V4.9998H14.9998V18.9998Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default CropRotate;
+export default IconCropRotate;

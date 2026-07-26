@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const CommentsDisabled = withIcon(({ size }) => {
+const IconCommentsDisabled = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const CommentsDisabled = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0) scale(1.1262)">
-        <path
-          d="M18.14 14H19.31V2H6.14L4.14 0H19.31C20.41 0 21.31 0.9 21.31 2V17.17L18.14 14ZM17.31 4H8.14L10.14 6H17.31V4ZM17.31 7H11.14L13.14 9H17.31V7ZM17.31 12V10H14.14L16.14 12H17.31ZM21.21 19.9L19.8 21.31L14.48 16H3.31C2.21 16 1.31 15.1 1.31 14V2.83L0 1.51L1.41 0.0999999L21.21 19.9ZM12.48 14L10.48 12H5.31V10H8.48L7.48 9H5.31V7H5.48L3.31 4.83V14H12.48Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M19.485 15.3447H20.655V3.34473H7.485L5.485 1.34473H20.655C21.755 1.34473 22.655 2.24473 22.655 3.34473V18.5147L19.485 15.3447ZM18.655 5.34473H9.485L11.485 7.34473H18.655V5.34473ZM18.655 8.34473H12.485L14.485 10.3447H18.655V8.34473ZM18.655 13.3447V11.3447H15.485L17.485 13.3447H18.655ZM22.555 21.2447L21.145 22.6547L15.825 17.3447H4.655C3.555 17.3447 2.655 16.4447 2.655 15.3447V4.17473L1.345 2.85473L2.755 1.44473L22.555 21.2447ZM13.825 15.3447L11.825 13.3447H6.655V11.3447H9.825L8.825 10.3447H6.655V8.34473H6.825L4.655 6.17473V15.3447H13.825Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default CommentsDisabled;
+export default IconCommentsDisabled;

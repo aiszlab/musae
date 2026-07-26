@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const DesktopAccessDisabled = withIcon(({ size }) => {
+const IconDesktopAccessDisabled = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const DesktopAccessDisabled = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0.3549) scale(1.0439)">
-        <path
-          d="M1.41 0L0 1.41L1 2.4V14.31C1 15.41 1.89 16.31 2.99 16.31H10V18.31H8V20.31H16V18.31H14V16.31H14.9L20.9 22.31L22.31 20.9L1.41 0ZM2.99 14.31V4.4L12.9 14.31H2.99ZM4.55 0.31L6.55 2.31H21V14.31H18.55L20.55 16.31H20.99C22.09 16.31 22.99 15.41 22.99 14.31V2.31C22.99 1.21 22.09 0.31 20.99 0.31H4.55Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M1.915 0.844727L0.505005 2.25473L1.505 3.24473V15.1547C1.505 16.2547 2.395 17.1547 3.495 17.1547H10.505V19.1547H8.505V21.1547H16.505V19.1547H14.505V17.1547H15.405L21.405 23.1547L22.815 21.7447L1.915 0.844727ZM3.495 15.1547V5.24473L13.405 15.1547H3.495ZM5.05501 1.15473L7.05501 3.15473H21.505V15.1547H19.055L21.055 17.1547H21.495C22.595 17.1547 23.495 16.2547 23.495 15.1547V3.15473C23.495 2.05473 22.595 1.15473 21.495 1.15473H5.05501Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default DesktopAccessDisabled;
+export default IconDesktopAccessDisabled;

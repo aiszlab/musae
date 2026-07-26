@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const ScreenshotMonitor = withIcon(({ size }) => {
+const IconScreenshotMonitor = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,16 +10,14 @@ const ScreenshotMonitor = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 1.2) scale(1.2)">
-        <path
-          d="M18 0H2C0.89 0 0 0.89 0 2V14C0 15.1 0.89 16 2 16H6V18H14V16H18C19.1 16 20 15.1 20 14V2C20 0.89 19.1 0 18 0ZM18 14H2V2H18V14Z"
-          fill="currentColor"
-        />
-        <path d="M4.5 4.5H7V3H3V7H4.5V4.5Z" fill="currentColor" />
-        <path d="M17 9H15.5V11.5H13V13H17V9Z" fill="currentColor" />
-      </g>
+      <path
+        d="M20 3H4C2.89 3 2 3.89 2 5V17C2 18.1 2.89 19 4 19H8V21H16V19H20C21.1 19 22 18.1 22 17V5C22 3.89 21.1 3 20 3ZM20 17H4V5H20V17Z"
+        fill="currentColor"
+      />
+      <path d="M6.5 7.5H9V6H5V10H6.5V7.5Z" fill="currentColor" />
+      <path d="M19 12H17.5V14.5H15V16H19V12Z" fill="currentColor" />
     </svg>
   );
 });
 
-export default ScreenshotMonitor;
+export default IconScreenshotMonitor;

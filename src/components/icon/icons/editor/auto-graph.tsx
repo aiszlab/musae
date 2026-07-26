@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const AutoGraph = withIcon(({ size }) => {
+const IconAutoGraph = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const AutoGraph = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 1.9091) scale(1.0909)">
-        <path
-          d="M13.06 7.94L11 7L13.06 6.06L14 4L14.94 6.06L17 7L14.94 7.94L14 10L13.06 7.94ZM3 12L3.94 9.94L6 9L3.94 8.06L3 6L2.06 8.06L0 9L2.06 9.94L3 12ZM7.5 7L8.59 4.59L11 3.5L8.59 2.41L7.5 0L6.41 2.41L4 3.5L6.41 4.59L7.5 7ZM3.5 18.5L9.5 12.49L13.5 16.49L22 6.93L20.59 5.52L13.5 13.49L9.5 9.49L2 17L3.5 18.5Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M14.06 10.69L12 9.75L14.06 8.81L15 6.75L15.94 8.81L18 9.75L15.94 10.69L15 12.75L14.06 10.69ZM4 14.75L4.94 12.69L7 11.75L4.94 10.81L4 8.75L3.06 10.81L1 11.75L3.06 12.69L4 14.75ZM8.5 9.75L9.59 7.34L12 6.25L9.59 5.16L8.5 2.75L7.41 5.16L5 6.25L7.41 7.34L8.5 9.75ZM4.5 21.25L10.5 15.24L14.5 19.24L23 9.68L21.59 8.27L14.5 16.24L10.5 12.24L3 19.75L4.5 21.25Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default AutoGraph;
+export default IconAutoGraph;

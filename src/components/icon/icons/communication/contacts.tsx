@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Contacts = withIcon(({ size }) => {
+const IconContacts = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const Contacts = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(2, 0) scale(1)">
-        <path
-          d="M18 4H2C0.9 4 0 4.9 0 6V18C0 19.1 0.9 20 2 20H18C19.1 20 20 19.1 20 18V6C20 4.9 19.1 4 18 4ZM18 18H2V6H18V18ZM2 0H18V2H2V0ZM2 22H18V24H2V22ZM10 12C11.38 12 12.5 10.88 12.5 9.5C12.5 8.12 11.38 7 10 7C8.62 7 7.5 8.12 7.5 9.5C7.5 10.88 8.62 12 10 12ZM10 8.5C10.55 8.5 11 8.95 11 9.5C11 10.05 10.55 10.5 10 10.5C9.45 10.5 9 10.05 9 9.5C9 8.95 9.45 8.5 10 8.5ZM15 15.99C15 13.9 11.69 13 10 13C8.31 13 5 13.9 5 15.99V17H15V15.99ZM6.81 15.5C7.42 14.98 8.84 14.5 10 14.5C11.17 14.5 12.59 14.98 13.2 15.5H6.81Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M20 4H4C2.9 4 2 4.9 2 6V18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6C22 4.9 21.1 4 20 4ZM20 18H4V6H20V18ZM4 0H20V2H4V0ZM4 22H20V24H4V22ZM12 12C13.38 12 14.5 10.88 14.5 9.5C14.5 8.12 13.38 7 12 7C10.62 7 9.5 8.12 9.5 9.5C9.5 10.88 10.62 12 12 12ZM12 8.5C12.55 8.5 13 8.95 13 9.5C13 10.05 12.55 10.5 12 10.5C11.45 10.5 11 10.05 11 9.5C11 8.95 11.45 8.5 12 8.5ZM17 15.99C17 13.9 13.69 13 12 13C10.31 13 7 13.9 7 15.99V17H17V15.99ZM8.81 15.5C9.42 14.98 10.84 14.5 12 14.5C13.17 14.5 14.59 14.98 15.2 15.5H8.81Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default Contacts;
+export default IconContacts;

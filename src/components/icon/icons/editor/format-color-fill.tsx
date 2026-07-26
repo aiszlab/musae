@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const FormatColorFill = withIcon(({ size }) => {
+const IconFormatColorFill = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const FormatColorFill = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(2, 0) scale(1)">
-        <path
-          d="M14.56 8.94L5.62 0L4.21 1.41L6.59 3.79L1.44 8.94C0.85 9.53 0.85 10.48 1.44 11.06L6.94 16.56C7.23 16.85 7.62 17 8 17C8.38 17 8.77 16.85 9.06 16.56L14.56 11.06C15.15 10.48 15.15 9.53 14.56 8.94ZM3.21 10L8 5.21L12.79 10H3.21ZM17 11.5C17 11.5 15 13.67 15 15C15 16.1 15.9 17 17 17C18.1 17 19 16.1 19 15C19 13.67 17 11.5 17 11.5ZM0 20H20V24H0V20Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M16.56 8.94L7.62 0L6.21 1.41L8.59 3.79L3.44 8.94C2.85 9.53 2.85 10.48 3.44 11.06L8.94 16.56C9.23 16.85 9.62 17 10 17C10.38 17 10.77 16.85 11.06 16.56L16.56 11.06C17.15 10.48 17.15 9.53 16.56 8.94ZM5.21 10L10 5.21L14.79 10H5.21ZM19 11.5C19 11.5 17 13.67 17 15C17 16.1 17.9 17 19 17C20.1 17 21 16.1 21 15C21 13.67 19 11.5 19 11.5ZM2 20H22V24H2V20Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default FormatColorFill;
+export default IconFormatColorFill;

@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const VolumeMute = withIcon(({ size }) => {
+const IconVolumeMute = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const VolumeMute = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(5.25, 0) scale(1.5)">
-        <path
-          d="M7 4.83V11.17L4.83 9H2V7H4.83L7 4.83ZM9 0L4 5H0V11H4L9 16V0Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M14.5 8.83V15.17L12.33 13H9.5V11H12.33L14.5 8.83ZM16.5 4L11.5 9H7.5V15H11.5L16.5 20V4Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default VolumeMute;
+export default IconVolumeMute;

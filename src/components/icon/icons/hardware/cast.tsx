@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Cast = withIcon(({ size }) => {
+const IconCast = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const Cast = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 2.1818) scale(1.0909)">
-        <path
-          d="M20 0H2C0.9 0 0 0.9 0 2V5H2V2H20V16H13V18H20C21.1 18 22 17.1 22 16V2C22 0.9 21.1 0 20 0ZM0 15V18H3C3 16.34 1.66 15 0 15ZM0 11V13C2.76 13 5 15.24 5 18H7C7 14.13 3.87 11 0 11ZM0 7V9C4.97 9 9 13.03 9 18H11C11 11.92 6.07 7 0 7Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M21 3H3C1.9 3 1 3.9 1 5V8H3V5H21V19H14V21H21C22.1 21 23 20.1 23 19V5C23 3.9 22.1 3 21 3ZM1 18V21H4C4 19.34 2.66 18 1 18ZM1 14V16C3.76 16 6 18.24 6 21H8C8 17.13 4.87 14 1 14ZM1 10V12C5.97 12 10 16.03 10 21H12C12 14.92 7.07 10 1 10Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default Cast;
+export default IconCast;

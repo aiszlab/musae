@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const BreakfastDining = withIcon(({ size }) => {
+const IconBreakfastDining = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,18 +10,16 @@ const BreakfastDining = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 1.2) scale(1.2)">
-        <path
-          d="M16 0H4C1.79 0 0 1.79 0 4C0 5.48 0.81 6.75 2 7.45V16C2 17.1 2.9 18 4 18H16C17.1 18 18 17.1 18 16V7.45C19.19 6.76 20 5.48 20 4C20 1.79 18.21 0 16 0ZM17 5.72L16 6.3V16H4V6.31L3.01 5.73C2.38 5.35 2 4.71 2 4C2 2.9 2.9 2 4 2H16C17.1 2 18 2.9 18 4C18 4.71 17.62 5.36 17 5.72Z"
-          fill="currentColor"
-        />
-        <path
-          d="M10.71 6.29C10.51 6.1 10.26 6 10 6C9.74 6 9.49 6.1 9.29 6.29L6.29 9.29C5.9 9.68 5.9 10.31 6.29 10.7L9.29 13.7C9.49 13.9 9.74 14 10 14C10.26 14 10.51 13.9 10.71 13.71L13.71 10.71C14.1 10.32 14.1 9.69 13.71 9.3L10.71 6.29ZM10 11.58L8.41 10L10 8.41L11.59 10L10 11.58Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M18 3H6C3.79 3 2 4.79 2 7C2 8.48 2.81 9.75 4 10.45V19C4 20.1 4.9 21 6 21H18C19.1 21 20 20.1 20 19V10.45C21.19 9.76 22 8.48 22 7C22 4.79 20.21 3 18 3ZM19 8.72L18 9.3V19H6V9.31L5.01 8.73C4.38 8.35 4 7.71 4 7C4 5.9 4.9 5 6 5H18C19.1 5 20 5.9 20 7C20 7.71 19.62 8.36 19 8.72Z"
+        fill="currentColor"
+      />
+      <path
+        d="M12.71 9.29C12.51 9.1 12.26 9 12 9C11.74 9 11.49 9.1 11.29 9.29L8.29 12.29C7.9 12.68 7.9 13.31 8.29 13.7L11.29 16.7C11.49 16.9 11.74 17 12 17C12.26 17 12.51 16.9 12.71 16.71L15.71 13.71C16.1 13.32 16.1 12.69 15.71 12.3L12.71 9.29ZM12 14.58L10.41 13L12 11.41L13.59 13L12 14.58Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default BreakfastDining;
+export default IconBreakfastDining;

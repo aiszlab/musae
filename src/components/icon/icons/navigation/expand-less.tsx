@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const ExpandLess = withIcon(({ size }) => {
+const IconExpandLess = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,11 +10,12 @@ const ExpandLess = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 4.59) scale(2)">
-        <path d="M6 0L0 6L1.41 7.41L6 2.83L10.59 7.41L12 6L6 0Z" fill="currentColor" />
-      </g>
+      <path
+        d="M12 8.29492L6 14.2949L7.41 15.7049L12 11.1249L16.59 15.7049L18 14.2949L12 8.29492Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default ExpandLess;
+export default IconExpandLess;

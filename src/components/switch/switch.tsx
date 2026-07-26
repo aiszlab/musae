@@ -3,7 +3,7 @@ import type { SwitchProps } from "../../types/switch";
 import { useControlledState, useEvent } from "@aiszlab/relax";
 import { create as $create, props as $props } from "@stylexjs/stylex";
 import { duration, OPACITY, opacity, sizes, spacing } from "../theme/tokens.stylex";
-import { Close, Check } from "../icon/icons";
+import { IconClose, IconCheck } from "../icon/icons";
 import { stringify } from "@aiszlab/relax/class-name";
 import { useClassNames } from "../../hooks/use-class-names";
 import { CLASS_NAMES } from "./context";
@@ -249,7 +249,7 @@ const Switch = ({
         className={stringify(classNames.slider, styled.slider.className)}
         style={styled.slider.style}
       >
-        {icon && (isChecked ? <Check /> : <Close />)}
+        {icon && (isChecked ? <IconCheck /> : <IconClose />)}
       </div>
 
       <span

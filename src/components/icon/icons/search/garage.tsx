@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Garage = withIcon(({ size }) => {
+const IconGarage = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -30,4 +30,4 @@ const Garage = withIcon(({ size }) => {
   );
 });
 
-export default Garage;
+export default IconGarage;

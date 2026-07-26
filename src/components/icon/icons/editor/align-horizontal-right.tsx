@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const AlignHorizontalRight = withIcon(({ size }) => {
+const IconAlignHorizontalRight = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,11 +10,9 @@ const AlignHorizontalRight = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0) scale(1.2)">
-        <path d="M18 0H20V20H18V0ZM0 8H16V5H0V8ZM6 15H16V12H6V15Z" fill="currentColor" />
-      </g>
+      <path d="M20 2H22V22H20V2ZM2 10H18V7H2V10ZM8 17H18V14H8V17Z" fill="currentColor" />
     </svg>
   );
 });
 
-export default AlignHorizontalRight;
+export default IconAlignHorizontalRight;

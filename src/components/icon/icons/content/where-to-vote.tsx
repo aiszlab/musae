@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const WhereToVote = withIcon(({ size }) => {
+const IconWhereToVote = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const WhereToVote = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(3.4629, 0) scale(1.0671)">
-        <path
-          d="M8 0C3.59 0 0 3.59 0 8C0 13.57 6.96 21.34 7.26 21.67L8 22.49L8.74 21.67C9.04 21.34 16 13.57 16 8C16 3.59 12.41 0 8 0ZM8 19.47C5.82 16.86 2 11.54 2 8C2 4.69 4.69 2 8 2C11.31 2 14 4.69 14 8C14 11.83 9.75 17.36 8 19.47ZM6.47 10.17L4.71 8.4L3.29 9.82L6.47 13L12.48 6.99L11.07 5.57L6.47 10.17Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M12 0.754883C7.59 0.754883 4 4.34488 4 8.75488C4 14.3249 10.96 22.0949 11.26 22.4249L12 23.2449L12.74 22.4249C13.04 22.0949 20 14.3249 20 8.75488C20 4.34488 16.41 0.754883 12 0.754883ZM12 20.2249C9.82 17.6149 6 12.2949 6 8.75488C6 5.44488 8.69 2.75488 12 2.75488C15.31 2.75488 18 5.44488 18 8.75488C18 12.5849 13.75 18.1149 12 20.2249ZM10.47 10.9249L8.71 9.15488L7.29 10.5749L10.47 13.7549L16.48 7.74488L15.07 6.32488L10.47 10.9249Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default WhereToVote;
+export default IconWhereToVote;

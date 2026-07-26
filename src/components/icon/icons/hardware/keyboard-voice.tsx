@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const KeyboardVoice = withIcon(({ size }) => {
+const IconKeyboardVoice = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const KeyboardVoice = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(3.1579, 0) scale(1.2632)">
-        <path
-          d="M7 12C8.66 12 9.99 10.66 9.99 9L10 3C10 1.34 8.66 0 7 0C5.34 0 4 1.34 4 3V9C4 10.66 5.34 12 7 12ZM5.8 2.9C5.8 2.24 6.34 1.7 7 1.7C7.66 1.7 8.2 2.24 8.2 2.9L8.19 9.1C8.19 9.76 7.66 10.3 7 10.3C6.34 10.3 5.8 9.76 5.8 9.1V2.9ZM12.3 9C12.3 12 9.76 14.1 7 14.1C4.24 14.1 1.7 12 1.7 9H0C0 12.41 2.72 15.23 6 15.72V19H8V15.72C11.28 15.24 14 12.42 14 9H12.3Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M12 14.5C13.66 14.5 14.99 13.16 14.99 11.5L15 5.5C15 3.84 13.66 2.5 12 2.5C10.34 2.5 9 3.84 9 5.5V11.5C9 13.16 10.34 14.5 12 14.5ZM10.8 5.4C10.8 4.74 11.34 4.2 12 4.2C12.66 4.2 13.2 4.74 13.2 5.4L13.19 11.6C13.19 12.26 12.66 12.8 12 12.8C11.34 12.8 10.8 12.26 10.8 11.6V5.4ZM17.3 11.5C17.3 14.5 14.76 16.6 12 16.6C9.24 16.6 6.7 14.5 6.7 11.5H5C5 14.91 7.72 17.73 11 18.22V21.5H13V18.22C16.28 17.74 19 14.92 19 11.5H17.3Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default KeyboardVoice;
+export default IconKeyboardVoice;

@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Refresh = withIcon(({ size }) => {
+const IconRefresh = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const Refresh = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0.0075, 0) scale(1.5)">
-        <path
-          d="M13.64 2.35C12.19 0.9 10.2 0 7.99 0C3.57 0 0 3.58 0 8C0 12.42 3.57 16 7.99 16C11.72 16 14.83 13.45 15.72 10H13.64C12.82 12.33 10.6 14 7.99 14C4.68 14 1.99 11.31 1.99 8C1.99 4.69 4.68 2 7.99 2C9.65 2 11.13 2.69 12.21 3.78L8.99 7H15.99V0L13.64 2.35Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M17.645 6.35C16.195 4.9 14.205 4 11.995 4C7.575 4 4.005 7.58 4.005 12C4.005 16.42 7.575 20 11.995 20C15.725 20 18.835 17.45 19.725 14H17.645C16.825 16.33 14.605 18 11.995 18C8.685 18 5.995 15.31 5.995 12C5.995 8.69 8.685 6 11.995 6C13.655 6 15.135 6.69 16.215 7.78L12.995 11H19.995V4L17.645 6.35Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default Refresh;
+export default IconRefresh;

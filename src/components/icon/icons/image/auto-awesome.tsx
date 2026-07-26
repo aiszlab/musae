@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const AutoAwesome = withIcon(({ size }) => {
+const IconAutoAwesome = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,22 +10,20 @@ const AutoAwesome = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0) scale(1.0909)">
-        <path
-          d="M18 8L19.25 5.25L22 4L19.25 2.75L18 0L16.75 2.75L14 4L16.75 5.25L18 8Z"
-          fill="currentColor"
-        />
-        <path
-          d="M18 14L16.75 16.75L14 18L16.75 19.25L18 22L19.25 19.25L22 18L19.25 16.75L18 14Z"
-          fill="currentColor"
-        />
-        <path
-          d="M10.5 8.5L8 3L5.5 8.5L0 11L5.5 13.5L8 19L10.5 13.5L16 11L10.5 8.5ZM8.99 11.99L8 14.17L7.01 11.99L4.83 11L7.01 10.01L8 7.83L8.99 10.01L11.17 11L8.99 11.99Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M19 9L20.25 6.25L23 5L20.25 3.75L19 1L17.75 3.75L15 5L17.75 6.25L19 9Z"
+        fill="currentColor"
+      />
+      <path
+        d="M19 15L17.75 17.75L15 19L17.75 20.25L19 23L20.25 20.25L23 19L20.25 17.75L19 15Z"
+        fill="currentColor"
+      />
+      <path
+        d="M11.5 9.5L9 4L6.5 9.5L1 12L6.5 14.5L9 20L11.5 14.5L17 12L11.5 9.5ZM9.99 12.99L9 15.17L8.01 12.99L5.83 12L8.01 11.01L9 8.83L9.99 11.01L12.17 12L9.99 12.99Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default AutoAwesome;
+export default IconAutoAwesome;

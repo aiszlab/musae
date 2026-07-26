@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const FlashOn = withIcon(({ size }) => {
+const IconFlashOn = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,11 +10,9 @@ const FlashOn = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(6, 0) scale(1.2)">
-        <path d="M0 0V11H3V20L10 8H6L9 0H0Z" fill="currentColor" />
-      </g>
+      <path d="M2 2V13H5V22L12 10H8L11 2H2Z" fill="currentColor" />
     </svg>
   );
 });
 
-export default FlashOn;
+export default IconFlashOn;

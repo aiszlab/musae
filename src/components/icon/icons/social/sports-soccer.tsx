@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const SportsSoccer = withIcon(({ size }) => {
+const IconSportsSoccer = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const SportsSoccer = withIcon(({ size }) => {
   );
 });
 
-export default SportsSoccer;
+export default IconSportsSoccer;

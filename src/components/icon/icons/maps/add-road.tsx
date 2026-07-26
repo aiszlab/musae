@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const AddRoad = withIcon(({ size }) => {
+const IconAddRoad = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,16 +10,17 @@ const AddRoad = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0) scale(1.2632)">
-        <path d="M16 14V11H14V14H11V16H14V19H16V16H19V14H16Z" fill="currentColor" />
-        <path d="M16 0H14V9H16V0Z" fill="currentColor" />
-        <path d="M2 0H0V16H2V0Z" fill="currentColor" />
-        <path d="M9 0H7V4H9V0Z" fill="currentColor" />
-        <path d="M9 6H7V10H9V6Z" fill="currentColor" />
-        <path d="M9 12H7V16H9V12Z" fill="currentColor" />
-      </g>
+      <path
+        d="M18.5 16.5V13.5H16.5V16.5H13.5V18.5H16.5V21.5H18.5V18.5H21.5V16.5H18.5Z"
+        fill="currentColor"
+      />
+      <path d="M18.5 2.5H16.5V11.5H18.5V2.5Z" fill="currentColor" />
+      <path d="M4.5 2.5H2.5V18.5H4.5V2.5Z" fill="currentColor" />
+      <path d="M11.5 2.5H9.5V6.5H11.5V2.5Z" fill="currentColor" />
+      <path d="M11.5 8.5H9.5V12.5H11.5V8.5Z" fill="currentColor" />
+      <path d="M11.5 14.5H9.5V18.5H11.5V14.5Z" fill="currentColor" />
     </svg>
   );
 });
 
-export default AddRoad;
+export default IconAddRoad;

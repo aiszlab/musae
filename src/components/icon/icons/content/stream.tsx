@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Stream = withIcon(({ size }) => {
+const IconStream = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,42 +10,40 @@ const Stream = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0) scale(1.2)">
-        <path
-          d="M18 12C19.1046 12 20 11.1046 20 10C20 8.89543 19.1046 8 18 8C16.8954 8 16 8.89543 16 10C16 11.1046 16.8954 12 18 12Z"
-          fill="currentColor"
-        />
-        <path
-          d="M2 12C3.10457 12 4 11.1046 4 10C4 8.89543 3.10457 8 2 8C0.89543 8 0 8.89543 0 10C0 11.1046 0.89543 12 2 12Z"
-          fill="currentColor"
-        />
-        <path
-          d="M10 20C11.1046 20 12 19.1046 12 18C12 16.8954 11.1046 16 10 16C8.89543 16 8 16.8954 8 18C8 19.1046 8.89543 20 10 20Z"
-          fill="currentColor"
-        />
-        <path
-          d="M16.3475 2.2271L11.9431 6.61904L13.3553 8.03524L17.7597 3.6433L16.3475 2.2271Z"
-          fill="currentColor"
-        />
-        <path
-          d="M6.32 7.68L6.63 8L8.05 6.59L4.03 2.55H4.02L3.71 2.23L2.29 3.64L6.31 7.69L6.32 7.68Z"
-          fill="currentColor"
-        />
-        <path
-          d="M13.41 11.94L12 13.35L15.99 17.36L16.34 17.71L17.76 16.3L13.77 12.29L13.41 11.94Z"
-          fill="currentColor"
-        />
-        <path
-          d="M6.59 11.95L2.56 15.96L2.24 16.29L3.65 17.7L7.68 13.68L8.01 13.36L6.59 11.95Z"
-          fill="currentColor"
-        />
-        <path
-          d="M10 4C11.1046 4 12 3.10457 12 2C12 0.89543 11.1046 0 10 0C8.89543 0 8 0.89543 8 2C8 3.10457 8.89543 4 10 4Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M20 14C21.1046 14 22 13.1046 22 12C22 10.8954 21.1046 10 20 10C18.8954 10 18 10.8954 18 12C18 13.1046 18.8954 14 20 14Z"
+        fill="currentColor"
+      />
+      <path
+        d="M4 14C5.10457 14 6 13.1046 6 12C6 10.8954 5.10457 10 4 10C2.89543 10 2 10.8954 2 12C2 13.1046 2.89543 14 4 14Z"
+        fill="currentColor"
+      />
+      <path
+        d="M12 22C13.1046 22 14 21.1046 14 20C14 18.8954 13.1046 18 12 18C10.8954 18 10 18.8954 10 20C10 21.1046 10.8954 22 12 22Z"
+        fill="currentColor"
+      />
+      <path
+        d="M18.3475 4.2271L13.9431 8.61904L15.3553 10.0352L19.7597 5.6433L18.3475 4.2271Z"
+        fill="currentColor"
+      />
+      <path
+        d="M8.32 9.68L8.63 10L10.05 8.59L6.03 4.55H6.02L5.71 4.23L4.29 5.64L8.31 9.69L8.32 9.68Z"
+        fill="currentColor"
+      />
+      <path
+        d="M15.41 13.94L14 15.35L17.99 19.36L18.34 19.71L19.76 18.3L15.77 14.29L15.41 13.94Z"
+        fill="currentColor"
+      />
+      <path
+        d="M8.59 13.95L4.56 17.96L4.24 18.29L5.65 19.7L9.68 15.68L10.01 15.36L8.59 13.95Z"
+        fill="currentColor"
+      />
+      <path
+        d="M12 6C13.1046 6 14 5.10457 14 4C14 2.89543 13.1046 2 12 2C10.8954 2 10 2.89543 10 4C10 5.10457 10.8954 6 12 6Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default Stream;
+export default IconStream;

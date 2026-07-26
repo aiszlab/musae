@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const TabletMac = withIcon(({ size }) => {
+const IconTabletMac = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const TabletMac = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(2.5, 0) scale(1)">
-        <path
-          d="M16.5 0H2.5C1.12 0 0 1.12 0 2.5V21.5C0 22.88 1.12 24 2.5 24H16.5C17.88 24 19 22.88 19 21.5V2.5C19 1.12 17.88 0 16.5 0ZM9.5 23C8.67 23 8 22.33 8 21.5C8 20.67 8.67 20 9.5 20C10.33 20 11 20.67 11 21.5C11 22.33 10.33 23 9.5 23ZM17 19H2V3H17V19Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M19 0H5C3.62 0 2.5 1.12 2.5 2.5V21.5C2.5 22.88 3.62 24 5 24H19C20.38 24 21.5 22.88 21.5 21.5V2.5C21.5 1.12 20.38 0 19 0ZM12 23C11.17 23 10.5 22.33 10.5 21.5C10.5 20.67 11.17 20 12 20C12.83 20 13.5 20.67 13.5 21.5C13.5 22.33 12.83 23 12 23ZM19.5 19H4.5V3H19.5V19Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default TabletMac;
+export default IconTabletMac;

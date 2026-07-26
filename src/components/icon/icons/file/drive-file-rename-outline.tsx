@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const DriveFileRenameOutline = withIcon(({ size }) => {
+const IconDriveFileRenameOutline = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,19 +10,17 @@ const DriveFileRenameOutline = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 1.3333) scale(1.3333)">
-        <path d="M12 12L8 16H18V12H12Z" fill="currentColor" />
-        <path
-          d="M9.06 3.19L0 12.25V16H3.75L12.81 6.94L9.06 3.19ZM2.92 14H2V13.08L9.06 6.02L9.98 6.94L2.92 14Z"
-          fill="currentColor"
-        />
-        <path
-          d="M15.71 4.04C16.1 3.65 16.1 3.02 15.71 2.63L13.37 0.29C13.17 0.09 12.92 0 12.66 0C12.41 0 12.15 0.1 11.96 0.29L10.13 2.12L13.88 5.87L15.71 4.04Z"
-          fill="currentColor"
-        />
-      </g>
+      <path d="M15 16L11 20H21V16H15Z" fill="currentColor" />
+      <path
+        d="M12.06 7.19L3 16.25V20H6.75L15.81 10.94L12.06 7.19ZM5.92 18H5V17.08L12.06 10.02L12.98 10.94L5.92 18Z"
+        fill="currentColor"
+      />
+      <path
+        d="M18.71 8.04C19.1 7.65 19.1 7.02 18.71 6.63L16.37 4.29C16.17 4.09 15.92 4 15.66 4C15.41 4 15.15 4.1 14.96 4.29L13.13 6.12L16.88 9.87L18.71 8.04Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default DriveFileRenameOutline;
+export default IconDriveFileRenameOutline;

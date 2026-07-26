@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const MovieFilter = withIcon(({ size }) => {
+const IconMovieFilter = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const MovieFilter = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 2.3952) scale(1.2006)">
-        <path
-          d="M7.99 7L7.05 9.06L4.99 10L7.05 10.94L7.99 13L8.93 10.94L10.99 10L8.93 9.06L7.99 7ZM16 0L18 4H15L13 0H11L13 4H10L8 0H6L8 4H5L3 0H2C0.9 0 0.00999999 0.9 0.00999999 2L0 14C0 15.1 0.9 16 2 16H18C19.1 16 19.99 15.1 19.99 14V0H16ZM18 14H2V2.47L3.76 6H13.99L13.36 7.37L11.99 8L13.36 8.63L13.99 10L14.62 8.63L15.99 8L14.62 7.37L13.99 6H18V14Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M9.995 9.005L9.055 11.065L6.995 12.005L9.055 12.945L9.995 15.005L10.935 12.945L12.995 12.005L10.935 11.065L9.995 9.005ZM18.005 2.005L20.005 6.005H17.005L15.005 2.005H13.005L15.005 6.005H12.005L10.005 2.005H8.005L10.005 6.005H7.005L5.005 2.005H4.005C2.905 2.005 2.015 2.905 2.015 4.005L2.005 16.005C2.005 17.105 2.905 18.005 4.005 18.005H20.005C21.105 18.005 21.995 17.105 21.995 16.005V2.005H18.005ZM20.005 16.005H4.005V4.475L5.765 8.005H15.995L15.365 9.375L13.995 10.005L15.365 10.635L15.995 12.005L16.625 10.635L17.995 10.005L16.625 9.375L15.995 8.005H20.005V16.005Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default MovieFilter;
+export default IconMovieFilter;

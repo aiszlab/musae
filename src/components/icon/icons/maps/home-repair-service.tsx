@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const HomeRepairService = withIcon(({ size }) => {
+const IconHomeRepairService = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const HomeRepairService = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 2.4) scale(1.2)">
-        <path
-          d="M18 4H15V2C15 0.9 14.1 0 13 0H7C5.9 0 5 0.9 5 2V4H2C0.9 4 0 4.9 0 6V16H20V6C20 4.9 19.1 4 18 4ZM7 2H13V4H7V2ZM18 14H2V11H4V12H6V11H14V12H16V11H18V14ZM16 9V8H14V9H6V8H4V9H2V6H18V9H16Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M20 8H17V6C17 4.9 16.1 4 15 4H9C7.9 4 7 4.9 7 6V8H4C2.9 8 2 8.9 2 10V20H22V10C22 8.9 21.1 8 20 8ZM9 6H15V8H9V6ZM20 18H4V15H6V16H8V15H16V16H18V15H20V18ZM18 13V12H16V13H8V12H6V13H4V10H20V13H18Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default HomeRepairService;
+export default IconHomeRepairService;

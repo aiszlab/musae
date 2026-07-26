@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const HdrOn = withIcon(({ size }) => {
+const IconHdrOn = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const HdrOn = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 8) scale(1.3333)">
-        <path
-          d="M18 2.5V1.5C18 0.7 17.3 0 16.5 0H13V6H14.5V4H15.6L16.5 6H18L17.1 3.9C17.6 3.6 18 3.1 18 2.5ZM16.5 2.5H14.5V1.5H16.5V2.5ZM3.5 2H1.5V0H0V6H1.5V3.5H3.5V6H5V0H3.5V2ZM10 0H6.5V6H10C10.8 6 11.5 5.3 11.5 4.5V1.5C11.5 0.7 10.8 0 10 0ZM10 4.5H8V1.5H10V4.5Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M20.9998 5.4998V4.4998C20.9998 3.6998 20.2998 2.9998 19.4998 2.9998H15.9998V8.9998H17.4998V6.9998H18.5998L19.4998 8.9998H20.9998L20.0998 6.8998C20.5998 6.5998 20.9998 6.0998 20.9998 5.4998ZM19.4998 5.4998H17.4998V4.4998H19.4998V5.4998ZM6.4998 4.9998H4.4998V2.9998H2.9998V8.9998H4.4998V6.4998H6.4998V8.9998H7.9998V2.9998H6.4998V4.9998ZM12.9998 2.9998H9.4998V8.9998H12.9998C13.7998 8.9998 14.4998 8.2998 14.4998 7.4998V4.4998C14.4998 3.6998 13.7998 2.9998 12.9998 2.9998ZM12.9998 7.4998H10.9998V4.4998H12.9998V7.4998Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default HdrOn;
+export default IconHdrOn;

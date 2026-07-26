@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const ScreenShare = withIcon(({ size }) => {
+const IconScreenShare = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const ScreenShare = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 4) scale(1)">
-        <path
-          d="M20 14C21.1 14 21.99 13.1 21.99 12L22 2C22 0.89 21.1 0 20 0H4C2.89 0 2 0.89 2 2V12C2 13.1 2.89 14 4 14H0V16H24V14H20ZM4 12V2H20V12.01L4 12ZM13 5.13C9.11 5.67 7.56 8.33 7 11C8.39 9.13 10.22 8.28 13 8.28V10.47L17 6.73L13 3V5.13Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M20 18C21.1 18 21.99 17.1 21.99 16L22 6C22 4.89 21.1 4 20 4H4C2.89 4 2 4.89 2 6V16C2 17.1 2.89 18 4 18H0V20H24V18H20ZM4 16V6H20V16.01L4 16ZM13 9.13C9.11 9.67 7.56 12.33 7 15C8.39 13.13 10.22 12.28 13 12.28V14.47L17 10.73L13 7V9.13Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default ScreenShare;
+export default IconScreenShare;

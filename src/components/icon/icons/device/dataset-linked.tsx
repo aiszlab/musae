@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const DatasetLinked = withIcon(({ size }) => {
+const IconDatasetLinked = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,26 +10,24 @@ const DatasetLinked = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 1.1429) scale(1.1429)">
-        <path d="M4 14H5.09C5.37 12.33 6.33 10.9 7.69 10H4V14Z" fill="currentColor" />
-        <path
-          d="M2 16V2H16V9H17C17.34 9 17.67 9.04 18 9.09V2C18 0.9 17.1 0 16 0H2C0.9 0 0 0.9 0 2V16C0 17.1 0.9 18 2 18H5.81C5.46 17.39 5.21 16.72 5.09 16H2Z"
-          fill="currentColor"
-        />
-        <path d="M8 4H4V8H8V4Z" fill="currentColor" />
-        <path d="M14 4H10V8H14V4Z" fill="currentColor" />
-        <path
-          d="M13 17H11C9.9 17 9 16.1 9 15C9 13.9 9.9 13 11 13H13V11H11C8.79 11 7 12.79 7 15C7 17.21 8.79 19 11 19H13V17Z"
-          fill="currentColor"
-        />
-        <path
-          d="M17 11H15V13H17C18.1 13 19 13.9 19 15C19 16.1 18.1 17 17 17H15V19H17C19.21 19 21 17.21 21 15C21 12.79 19.21 11 17 11Z"
-          fill="currentColor"
-        />
-        <path d="M17 16V14H11V16H17Z" fill="currentColor" />
-      </g>
+      <path d="M5.5 16.5H6.59C6.87 14.83 7.83 13.4 9.19 12.5H5.5V16.5Z" fill="currentColor" />
+      <path
+        d="M3.5 18.5V4.5H17.5V11.5H18.5C18.84 11.5 19.17 11.54 19.5 11.59V4.5C19.5 3.4 18.6 2.5 17.5 2.5H3.5C2.4 2.5 1.5 3.4 1.5 4.5V18.5C1.5 19.6 2.4 20.5 3.5 20.5H7.31C6.96 19.89 6.71 19.22 6.59 18.5H3.5Z"
+        fill="currentColor"
+      />
+      <path d="M9.5 6.5H5.5V10.5H9.5V6.5Z" fill="currentColor" />
+      <path d="M15.5 6.5H11.5V10.5H15.5V6.5Z" fill="currentColor" />
+      <path
+        d="M14.5 19.5H12.5C11.4 19.5 10.5 18.6 10.5 17.5C10.5 16.4 11.4 15.5 12.5 15.5H14.5V13.5H12.5C10.29 13.5 8.5 15.29 8.5 17.5C8.5 19.71 10.29 21.5 12.5 21.5H14.5V19.5Z"
+        fill="currentColor"
+      />
+      <path
+        d="M18.5 13.5H16.5V15.5H18.5C19.6 15.5 20.5 16.4 20.5 17.5C20.5 18.6 19.6 19.5 18.5 19.5H16.5V21.5H18.5C20.71 21.5 22.5 19.71 22.5 17.5C22.5 15.29 20.71 13.5 18.5 13.5Z"
+        fill="currentColor"
+      />
+      <path d="M18.5 18.5V16.5H12.5V18.5H18.5Z" fill="currentColor" />
     </svg>
   );
 });
 
-export default DatasetLinked;
+export default IconDatasetLinked;

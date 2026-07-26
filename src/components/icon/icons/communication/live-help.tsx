@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const LiveHelp = withIcon(({ size }) => {
+const IconLiveHelp = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const LiveHelp = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(1.7143, 0) scale(1.1429)">
-        <path
-          d="M16 0H2C0.89 0 0 0.9 0 2V16C0 17.1 0.89 18 2 18H6L9 21L12 18H16C17.1 18 18 17.1 18 16V2C18 0.9 17.1 0 16 0ZM16 16H11.17L9 18.17L6.83 16H2V2H16V16ZM8 13H10V15H8V13ZM9 5C10.1 5 11 5.9 11 7C11 9 8 8.75 8 12H10C10 9.75 13 9.5 13 7C13 4.79 11.21 3 9 3C6.79 3 5 4.79 5 7H7C7 5.9 7.9 5 9 5Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M19 1.5H5C3.89 1.5 3 2.4 3 3.5V17.5C3 18.6 3.89 19.5 5 19.5H9L12 22.5L15 19.5H19C20.1 19.5 21 18.6 21 17.5V3.5C21 2.4 20.1 1.5 19 1.5ZM19 17.5H14.17L12 19.67L9.83 17.5H5V3.5H19V17.5ZM11 14.5H13V16.5H11V14.5ZM12 6.5C13.1 6.5 14 7.4 14 8.5C14 10.5 11 10.25 11 13.5H13C13 11.25 16 11 16 8.5C16 6.29 14.21 4.5 12 4.5C9.79 4.5 8 6.29 8 8.5H10C10 7.4 10.9 6.5 12 6.5Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default LiveHelp;
+export default IconLiveHelp;

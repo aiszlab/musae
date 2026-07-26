@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const HomeMax = withIcon(({ size }) => {
+const IconHomeMax = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const HomeMax = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 4.3636) scale(1.0909)">
-        <path
-          d="M18 0H4C1.79 0 0 1.79 0 4V9C0 11.21 1.79 13 4 13H6V14H16V13H18C20.21 13 22 11.21 22 9V4C22 1.79 20.21 0 18 0ZM20 9C20 10.1 19.1 11 18 11H4C2.9 11 2 10.1 2 9V4C2 2.9 2.9 2 4 2H18C19.1 2 20 2.9 20 4V9Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M19 5H5C2.79 5 1 6.79 1 9V14C1 16.21 2.79 18 5 18H7V19H17V18H19C21.21 18 23 16.21 23 14V9C23 6.79 21.21 5 19 5ZM21 14C21 15.1 20.1 16 19 16H5C3.9 16 3 15.1 3 14V9C3 7.9 3.9 7 5 7H19C20.1 7 21 7.9 21 9V14Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default HomeMax;
+export default IconHomeMax;

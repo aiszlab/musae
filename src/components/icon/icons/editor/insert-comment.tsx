@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const InsertComment = withIcon(({ size }) => {
+const IconInsertComment = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const InsertComment = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0) scale(1.2)">
-        <path
-          d="M18 2V15.17L16.83 14H2V2H18ZM18 0H2C0.9 0 0 0.9 0 2V14C0 15.1 0.9 16 2 16H16L20 20V2C20 0.9 19.1 0 18 0ZM16 10H4V12H16V10ZM16 7H4V9H16V7ZM16 4H4V6H16V4Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M20 4V17.17L18.83 16H4V4H20ZM20 2H4C2.9 2 2 2.9 2 4V16C2 17.1 2.9 18 4 18H18L22 22V4C22 2.9 21.1 2 20 2ZM18 12H6V14H18V12ZM18 9H6V11H18V9ZM18 6H6V8H18V6Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default InsertComment;
+export default IconInsertComment;

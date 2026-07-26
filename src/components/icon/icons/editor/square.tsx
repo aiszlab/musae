@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Square = withIcon(({ size }) => {
+const IconSquare = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,11 +10,9 @@ const Square = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0) scale(1.3333)">
-        <path d="M0 0V18H18V0H0ZM16 16H2V2H16V16Z" fill="currentColor" />
-      </g>
+      <path d="M3 3V21H21V3H3ZM19 19H5V5H19V19Z" fill="currentColor" />
     </svg>
   );
 });
 
-export default Square;
+export default IconSquare;

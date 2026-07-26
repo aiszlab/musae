@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Stop = withIcon(({ size }) => {
+const IconStop = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,11 +10,9 @@ const Stop = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0) scale(2)">
-        <path d="M10 2V10H2V2H10ZM12 0H0V12H12V0Z" fill="currentColor" />
-      </g>
+      <path d="M16 8V16H8V8H16ZM18 6H6V18H18V6Z" fill="currentColor" />
     </svg>
   );
 });
 
-export default Stop;
+export default IconStop;

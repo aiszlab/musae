@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const ArrowBackIosNew = withIcon(({ size }) => {
+const IconArrowBackIosNew = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,11 +10,12 @@ const ArrowBackIosNew = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(4.938, 0) scale(1.2)">
-        <path d="M11.77 1.77L10 0L0 10L10 20L11.77 18.23L3.54 10L11.77 1.77Z" fill="currentColor" />
-      </g>
+      <path
+        d="M17.885 3.77L16.115 2L6.11499 12L16.115 22L17.885 20.23L9.65499 12L17.885 3.77Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default ArrowBackIosNew;
+export default IconArrowBackIosNew;

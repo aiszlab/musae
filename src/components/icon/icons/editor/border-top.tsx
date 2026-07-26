@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const BorderTop = withIcon(({ size }) => {
+const IconBorderTop = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const BorderTop = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0) scale(1.3333)">
-        <path
-          d="M4 18H6V16H4V18ZM4 10H6V8H4V10ZM8 10H10V8H8V10ZM8 18H10V16H8V18ZM0 14H2V12H0V14ZM0 18H2V16H0V18ZM0 10H2V8H0V10ZM0 6H2V4H0V6ZM8 14H10V12H8V14ZM16 6H18V4H16V6ZM16 10H18V8H16V10ZM0 0V2H18V0H0ZM16 14H18V12H16V14ZM12 18H14V16H12V18ZM8 6H10V4H8V6ZM16 18H18V16H16V18ZM12 10H14V8H12V10Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M7 21H9V19H7V21ZM7 13H9V11H7V13ZM11 13H13V11H11V13ZM11 21H13V19H11V21ZM3 17H5V15H3V17ZM3 21H5V19H3V21ZM3 13H5V11H3V13ZM3 9H5V7H3V9ZM11 17H13V15H11V17ZM19 9H21V7H19V9ZM19 13H21V11H19V13ZM3 3V5H21V3H3ZM19 17H21V15H19V17ZM15 21H17V19H15V21ZM11 9H13V7H11V9ZM19 21H21V19H19V21ZM15 13H17V11H15V13Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default BorderTop;
+export default IconBorderTop;

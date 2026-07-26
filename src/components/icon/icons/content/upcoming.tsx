@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Upcoming = withIcon(({ size }) => {
+const IconUpcoming = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const Upcoming = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 1.2) scale(1.2)">
-        <path
-          d="M15.6 7.81L14.19 6.4L17.75 2.85L19.16 4.26C19.05 4.29 15.6 7.81 15.6 7.81ZM11 0H9V5H11V0ZM4.4 7.81L5.81 6.4L2.26 2.84L0.84 4.26C0.95 4.29 4.4 7.81 4.4 7.81ZM18 11H14.58C13.81 12.76 12.04 14 10 14C7.96 14 6.19 12.76 5.42 11H2V16H18V11ZM18 9C19.1 9 20 9.9 20 11V16C20 17.1 19.1 18 18 18H2C0.9 18 0 17.1 0 16V11C0 9.9 0.9 9 2 9H7C7 10.66 8.34 12 10 12C11.66 12 13 10.66 13 9H18Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M17.6 10.81L16.19 9.4L19.75 5.85L21.16 7.26C21.05 7.29 17.6 10.81 17.6 10.81ZM13 3H11V8H13V3ZM6.4 10.81L7.81 9.4L4.26 5.84L2.84 7.26C2.95 7.29 6.4 10.81 6.4 10.81ZM20 14H16.58C15.81 15.76 14.04 17 12 17C9.96 17 8.19 15.76 7.42 14H4V19H20V14ZM20 12C21.1 12 22 12.9 22 14V19C22 20.1 21.1 21 20 21H4C2.9 21 2 20.1 2 19V14C2 12.9 2.9 12 4 12H9C9 13.66 10.34 15 12 15C13.66 15 15 13.66 15 12H20Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default Upcoming;
+export default IconUpcoming;

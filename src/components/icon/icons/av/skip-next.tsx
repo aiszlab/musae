@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const SkipNext = withIcon(({ size }) => {
+const IconSkipNext = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const SkipNext = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0) scale(2)">
-        <path
-          d="M0 12L8.5 6L0 0V12ZM2 3.86L5.03 6L2 8.14V3.86ZM10 0H12V12H10V0Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M6 18L14.5 12L6 6V18ZM8 9.86L11.03 12L8 14.14V9.86ZM16 6H18V18H16V6Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default SkipNext;
+export default IconSkipNext;

@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const CoPresent = withIcon(({ size }) => {
+const IconCoPresent = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,22 +10,20 @@ const CoPresent = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 1.6364) scale(1.0909)">
-        <path
-          d="M20 0H2C0.9 0 0 0.9 0 2V10H2V2H20V18C21.1 18 22 17.1 22 16V2C22 0.9 21.1 0 20 0Z"
-          fill="currentColor"
-        />
-        <path
-          d="M12 7C12 4.79 10.21 3 8 3C5.79 3 4 4.79 4 7C4 9.21 5.79 11 8 11C10.21 11 12 9.21 12 7ZM6 7C6 5.9 6.9 5 8 5C9.1 5 10 5.9 10 7C10 8.1 9.1 9 8 9C6.9 9 6 8.1 6 7Z"
-          fill="currentColor"
-        />
-        <path
-          d="M14.39 13.56C12.71 12.7 10.53 12 8 12C5.47 12 3.29 12.7 1.61 13.56C0.61 14.07 0 15.1 0 16.22V19H16V16.22C16 15.1 15.39 14.07 14.39 13.56ZM14 17H2C2 16.28 1.9 15.66 2.52 15.34C3.71 14.73 5.63 14 8 14C10.37 14 12.29 14.73 13.48 15.34C14.11 15.66 14 16.29 14 17Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M21 2.5H3C1.9 2.5 1 3.4 1 4.5V12.5H3V4.5H21V20.5C22.1 20.5 23 19.6 23 18.5V4.5C23 3.4 22.1 2.5 21 2.5Z"
+        fill="currentColor"
+      />
+      <path
+        d="M13 9.5C13 7.29 11.21 5.5 9 5.5C6.79 5.5 5 7.29 5 9.5C5 11.71 6.79 13.5 9 13.5C11.21 13.5 13 11.71 13 9.5ZM7 9.5C7 8.4 7.9 7.5 9 7.5C10.1 7.5 11 8.4 11 9.5C11 10.6 10.1 11.5 9 11.5C7.9 11.5 7 10.6 7 9.5Z"
+        fill="currentColor"
+      />
+      <path
+        d="M15.39 16.06C13.71 15.2 11.53 14.5 9 14.5C6.47 14.5 4.29 15.2 2.61 16.06C1.61 16.57 1 17.6 1 18.72V21.5H17V18.72C17 17.6 16.39 16.57 15.39 16.06ZM15 19.5H3C3 18.78 2.9 18.16 3.52 17.84C4.71 17.23 6.63 16.5 9 16.5C11.37 16.5 13.29 17.23 14.48 17.84C15.11 18.16 15 18.79 15 19.5Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default CoPresent;
+export default IconCoPresent;

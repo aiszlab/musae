@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const AutoDelete = withIcon(({ size }) => {
+const IconAutoDelete = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -20,4 +20,4 @@ const AutoDelete = withIcon(({ size }) => {
   );
 });
 
-export default AutoDelete;
+export default IconAutoDelete;

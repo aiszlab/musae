@@ -4,7 +4,7 @@ import { create as $create, props as $props } from "@stylexjs/stylex";
 import { Space } from "../space";
 import { Button } from "../button";
 import { useBoolean, useClickAway, useEvent } from "@aiszlab/relax";
-import { Warning } from "../icon/icons";
+import { IconWarning } from "../icon/icons";
 import { Popper } from "../popper";
 import { spacing } from "../theme/tokens.stylex";
 import { useLocale } from "../../locale";
@@ -138,7 +138,7 @@ const Popconfirm = ({
             className={stringify(classNames.leading, styled.leading.className)}
             style={styled.leading.style}
           >
-            <Warning />
+            <IconWarning />
           </div>
 
           {!!title && (

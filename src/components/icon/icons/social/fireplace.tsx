@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Fireplace = withIcon(({ size }) => {
+const IconFireplace = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -22,4 +22,4 @@ const Fireplace = withIcon(({ size }) => {
   );
 });
 
-export default Fireplace;
+export default IconFireplace;

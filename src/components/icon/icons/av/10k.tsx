@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const TenK = withIcon(({ size }) => {
+const Icon10k = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,22 +10,20 @@ const TenK = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0) scale(1.3333)">
-        <path
-          d="M16 0H2C0.9 0 0 0.9 0 2V16C0 17.1 0.9 18 2 18H16C17.1 18 18 17.1 18 16V2C18 0.9 17.1 0 16 0ZM16 6V12V16H2V7.5H3V12H4.5V6H2V2H16V6Z"
-          fill="currentColor"
-        />
-        <path
-          d="M12.5 8.25V6H11V12H12.5V9.75L14.25 12H16L13.75 9L16 6H14.25L12.5 8.25Z"
-          fill="currentColor"
-        />
-        <path
-          d="M6.5 12H9C9.55 12 10 11.55 10 11V7C10 6.45 9.55 6 9 6H6.5C5.95 6 5.5 6.45 5.5 7V11C5.5 11.55 5.95 12 6.5 12ZM7 7.5H8.5V10.5H7V7.5Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3ZM19 9V15V19H5V10.5H6V15H7.5V9H5V5H19V9Z"
+        fill="currentColor"
+      />
+      <path
+        d="M15.5 11.25V9H14V15H15.5V12.75L17.25 15H19L16.75 12L19 9H17.25L15.5 11.25Z"
+        fill="currentColor"
+      />
+      <path
+        d="M9.5 15H12C12.55 15 13 14.55 13 14V10C13 9.45 12.55 9 12 9H9.5C8.95 9 8.5 9.45 8.5 10V14C8.5 14.55 8.95 15 9.5 15ZM10 10.5H11.5V13.5H10V10.5Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default TenK;
+export default Icon10k;

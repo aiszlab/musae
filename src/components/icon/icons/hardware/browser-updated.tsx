@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const BrowserUpdated = withIcon(({ size }) => {
+const IconBrowserUpdated = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const BrowserUpdated = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 1.2) scale(1.2)">
-        <path
-          d="M20 10V13C20 14.1 19.1 15 18 15H15L16 16V18H4V16L5 15H2C0.9 15 0 14.1 0 13V2C0 0.9 0.9 0 2 0H10V2H2V13H18V10H20ZM13 12L8 7L9.41 5.59L12 8.17V0H14V8.17L16.59 5.59L18 7L13 12Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M22 13V16C22 17.1 21.1 18 20 18H17L18 19V21H6V19L7 18H4C2.9 18 2 17.1 2 16V5C2 3.9 2.9 3 4 3H12V5H4V16H20V13H22ZM15 15L10 10L11.41 8.59L14 11.17V3H16V11.17L18.59 8.59L20 10L15 15Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default BrowserUpdated;
+export default IconBrowserUpdated;

@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Forward = withIcon(({ size }) => {
+const IconForward = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const Forward = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0) scale(1.5)">
-        <path
-          d="M10 4.83L13.17 8L10 11.17V10H2V6H10V4.83ZM8 0V4H0V12H8V16L16 8L8 0Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M14 8.83L17.17 12L14 15.17V14H6V10H14V8.83ZM12 4V8H4V16H12V20L20 12L12 4Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default Forward;
+export default IconForward;

@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Scanner = withIcon(({ size }) => {
+const IconScanner = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const Scanner = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 2) scale(1.3333)">
-        <path
-          d="M16.8 5.7L1.2 0L0.5 1.9L14.6 7H2C0.9 7 0 7.9 0 9V13C0 14.1 0.9 15 2 15H16C17.1 15 18 14.1 18 13V7.5C18 6.7 17.5 5.9 16.8 5.7ZM16 13H2V9H16V13ZM3 10H5V12H3V10ZM7 10H15V12H7V10Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M19.8 10.2L4.2 4.5L3.5 6.4L17.6 11.5H5C3.9 11.5 3 12.4 3 13.5V17.5C3 18.6 3.9 19.5 5 19.5H19C20.1 19.5 21 18.6 21 17.5V12C21 11.2 20.5 10.4 19.8 10.2ZM19 17.5H5V13.5H19V17.5ZM6 14.5H8V16.5H6V14.5ZM10 14.5H18V16.5H10V14.5Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default Scanner;
+export default IconScanner;

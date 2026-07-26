@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Castle = withIcon(({ size }) => {
+const IconCastle = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,16 +10,14 @@ const Castle = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 2.1818) scale(1.0909)">
-        <path
-          d="M20 6V8H18V0H16V2H14V0H12V2H10V0H8V2H6V0H4V8H2V6H0V18H9V15C9 13.9 9.9 13 11 13C12.1 13 13 13.9 13 15V18H22V6H20ZM20 16H15V15C15 12.79 13.21 11 11 11C8.79 11 7 12.79 7 15V16H2V10H6V4H16V10H20V16Z"
-          fill="currentColor"
-        />
-        <path d="M10 6H8V9H10V6Z" fill="currentColor" />
-        <path d="M14 6H12V9H14V6Z" fill="currentColor" />
-      </g>
+      <path
+        d="M21 9V11H19V3H17V5H15V3H13V5H11V3H9V5H7V3H5V11H3V9H1V21H10V18C10 16.9 10.9 16 12 16C13.1 16 14 16.9 14 18V21H23V9H21ZM21 19H16V18C16 15.79 14.21 14 12 14C9.79 14 8 15.79 8 18V19H3V13H7V7H17V13H21V19Z"
+        fill="currentColor"
+      />
+      <path d="M11 9H9V12H11V9Z" fill="currentColor" />
+      <path d="M15 9H13V12H15V9Z" fill="currentColor" />
     </svg>
   );
 });
 
-export default Castle;
+export default IconCastle;

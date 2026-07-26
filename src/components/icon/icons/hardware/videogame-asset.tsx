@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const VideogameAsset = withIcon(({ size }) => {
+const IconVideogameAsset = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,22 +10,20 @@ const VideogameAsset = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 5.4545) scale(1.0909)">
-        <path
-          d="M20 0H2C0.9 0 0 0.9 0 2V10C0 11.1 0.9 12 2 12H20C21.1 12 22 11.1 22 10V2C22 0.9 21.1 0 20 0ZM20 10H2V2H20V10ZM5 9H7V7H9V5H7V3H5V5H3V7H5V9Z"
-          fill="currentColor"
-        />
-        <path
-          d="M13.5 9C14.3284 9 15 8.32843 15 7.5C15 6.67157 14.3284 6 13.5 6C12.6716 6 12 6.67157 12 7.5C12 8.32843 12.6716 9 13.5 9Z"
-          fill="currentColor"
-        />
-        <path
-          d="M17.5 6C18.3284 6 19 5.32843 19 4.5C19 3.67157 18.3284 3 17.5 3C16.6716 3 16 3.67157 16 4.5C16 5.32843 16.6716 6 17.5 6Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M21 6H3C1.9 6 1 6.9 1 8V16C1 17.1 1.9 18 3 18H21C22.1 18 23 17.1 23 16V8C23 6.9 22.1 6 21 6ZM21 16H3V8H21V16ZM6 15H8V13H10V11H8V9H6V11H4V13H6V15Z"
+        fill="currentColor"
+      />
+      <path
+        d="M14.5 15C15.3284 15 16 14.3284 16 13.5C16 12.6716 15.3284 12 14.5 12C13.6716 12 13 12.6716 13 13.5C13 14.3284 13.6716 15 14.5 15Z"
+        fill="currentColor"
+      />
+      <path
+        d="M18.5 12C19.3284 12 20 11.3284 20 10.5C20 9.67157 19.3284 9 18.5 9C17.6716 9 17 9.67157 17 10.5C17 11.3284 17.6716 12 18.5 12Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default VideogameAsset;
+export default IconVideogameAsset;

@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const NotInterested = withIcon(({ size }) => {
+const IconNotInterested = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const NotInterested = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0) scale(1.2)">
-        <path
-          d="M10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM10 18C5.58 18 2 14.42 2 10C2 8.15 2.63 6.45 3.69 5.1L14.9 16.31C13.55 17.37 11.85 18 10 18ZM16.31 14.9L5.1 3.69C6.45 2.63 8.15 2 10 2C14.42 2 18 5.58 18 10C18 11.85 17.37 13.55 16.31 14.9Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.58 20 4 16.42 4 12C4 10.15 4.63 8.45 5.69 7.1L16.9 18.31C15.55 19.37 13.85 20 12 20ZM18.31 16.9L7.1 5.69C8.45 4.63 10.15 4 12 4C16.42 4 20 7.58 20 12C20 13.85 19.37 15.55 18.31 16.9Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default NotInterested;
+export default IconNotInterested;

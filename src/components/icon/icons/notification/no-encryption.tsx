@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const NoEncryption = withIcon(({ size }) => {
+const IconNoEncryption = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const NoEncryption = withIcon(({ size }) => {
   );
 });
 
-export default NoEncryption;
+export default IconNoEncryption;

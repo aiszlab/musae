@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const BrowserNotSupported = withIcon(({ size }) => {
+const IconBrowserNotSupported = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,18 +10,16 @@ const BrowserNotSupported = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0.1953) scale(1.2598)">
-        <path
-          d="M17.05 2.68V13.18L19 15.13C19.03 14.98 19.05 14.83 19.05 14.68V2.68C19.05 1.58 18.15 0.68 17.05 0.68H4.55L6.55 2.68H17.05Z"
-          fill="currentColor"
-        />
-        <path
-          d="M1.27 0L0 1.27L1.05 2.32V14.68C1.05 15.78 1.95 16.68 3.05 16.68H15.41L17.47 18.74L18.74 17.47L1.27 0ZM3.05 14.68V4.32L13.41 14.68H3.05Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M19.525 5.30988V15.8099L21.475 17.7599C21.505 17.6099 21.525 17.4599 21.525 17.3099V5.30988C21.525 4.20988 20.625 3.30988 19.525 3.30988H7.02498L9.02498 5.30988H19.525Z"
+        fill="currentColor"
+      />
+      <path
+        d="M3.74498 2.62988L2.47498 3.89988L3.52498 4.94988V17.3099C3.52498 18.4099 4.42498 19.3099 5.52498 19.3099H17.885L19.945 21.3699L21.215 20.0999L3.74498 2.62988ZM5.52498 17.3099V6.94988L15.885 17.3099H5.52498Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default BrowserNotSupported;
+export default IconBrowserNotSupported;

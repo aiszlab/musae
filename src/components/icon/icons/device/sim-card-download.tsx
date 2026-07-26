@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const SimCardDownload = withIcon(({ size }) => {
+const IconSimCardDownload = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,18 +10,16 @@ const SimCardDownload = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(2.4, 0) scale(1.2)">
-        <path
-          d="M14 0H6L0 6V18C0 19.1 0.9 20 2 20H14C15.1 20 16 19.1 16 18V2C16 0.9 15.1 0 14 0ZM14 2V18H2V6.83L6.83 2H14Z"
-          fill="currentColor"
-        />
-        <path
-          d="M12 11L8 15L4 11L5.41 9.59L7 11.17V7.02L9 7V11.17L10.59 9.58L12 11Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M18 2H10L4 8V20C4 21.1 4.9 22 6 22H18C19.1 22 20 21.1 20 20V4C20 2.9 19.1 2 18 2ZM18 4V20H6V8.83L10.83 4H18Z"
+        fill="currentColor"
+      />
+      <path
+        d="M16 13L12 17L8 13L9.41 11.59L11 13.17V9.02L13 9V13.17L14.59 11.58L16 13Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default SimCardDownload;
+export default IconSimCardDownload;

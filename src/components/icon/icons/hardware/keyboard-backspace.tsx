@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const KeyboardBackspace = withIcon(({ size }) => {
+const IconKeyboardBackspace = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,11 +10,12 @@ const KeyboardBackspace = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 4) scale(1.3333)">
-        <path d="M18 5H3.83L7.41 1.41L6 0L0 6L6 12L7.41 10.59L3.83 7H18V5Z" fill="currentColor" />
-      </g>
+      <path
+        d="M21 11H6.83L10.41 7.41L9 6L3 12L9 18L10.41 16.59L6.83 13H21V11Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default KeyboardBackspace;
+export default IconKeyboardBackspace;

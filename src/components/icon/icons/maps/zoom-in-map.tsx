@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const ZoomInMap = withIcon(({ size }) => {
+const IconZoomInMap = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const ZoomInMap = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0) scale(1.2632)">
-        <path
-          d="M6.5 6.5V0.5H4.5V3.09L1.41 0L0 1.41L3.09 4.5H0.5V6.5H6.5ZM18.5 6.5V4.5H15.91L19 1.41L17.59 0L14.5 3.09V0.5H12.5V6.5H18.5ZM0.5 12.5V14.5H3.09L0 17.59L1.41 19L4.5 15.91V18.5H6.5V12.5H0.5ZM12.5 12.5V18.5H14.5V15.91L17.59 19L19 17.59L15.91 14.5H18.5V12.5H12.5Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M 8.2108 8.2108 V 0.6316 H 5.6844 V 3.9033 L 1.7811 0 L 0 1.7811 L 3.9033 5.6844 H 0.6316 V 8.2108 H 8.2108ZM 23.3692 8.2108 V 5.6844 H 20.0975 L 24.0008 1.7811 L 22.2197 0 L 18.3164 3.9033 V 0.6316 H 15.79 V 8.2108 H 23.3692ZM 0.6316 15.79 V 18.3164 H 3.9033 L 0 22.2197 L 1.7811 24.0008 L 5.6844 20.0975 V 23.3692 H 8.2108 V 15.79 H 0.6316ZM 15.79 15.79 V 23.3692 H 18.3164 V 20.0975 L 22.2197 24.0008 L 24.0008 22.2197 L 20.0975 18.3164 H 23.3692 V 15.79 H 15.79Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default ZoomInMap;
+export default IconZoomInMap;

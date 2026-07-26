@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const MicExternalOn = withIcon(({ size }) => {
+const IconMicExternalOn = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,18 +10,16 @@ const MicExternalOn = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(2.4, 0) scale(1.2)">
-        <path
-          d="M5.22 5C5.7 4.47 6 3.77 6 3C6 1.34 4.66 0 3 0C1.34 0 0 1.34 0 3C0 3.77 0.3 4.47 0.78 5H5.22Z"
-          fill="currentColor"
-        />
-        <path
-          d="M12 0C9.79 0 8 1.79 8 4V16C8 17.1 7.1 18 6 18C4.9 18 4 17.1 4 16H5L6 6H0L1 16H2C2 18.21 3.79 20 6 20C8.21 20 10 18.21 10 16V4C10 2.9 10.9 2 12 2C13.1 2 14 2.9 14 4V20H16V4C16 1.79 14.21 0 12 0ZM3.19 14H2.81L2.21 8H3.79L3.19 14Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M7.22 7C7.7 6.47 8 5.77 8 5C8 3.34 6.66 2 5 2C3.34 2 2 3.34 2 5C2 5.77 2.3 6.47 2.78 7H7.22Z"
+        fill="currentColor"
+      />
+      <path
+        d="M14 2C11.79 2 10 3.79 10 6V18C10 19.1 9.1 20 8 20C6.9 20 6 19.1 6 18H7L8 8H2L3 18H4C4 20.21 5.79 22 8 22C10.21 22 12 20.21 12 18V6C12 4.9 12.9 4 14 4C15.1 4 16 4.9 16 6V22H18V6C18 3.79 16.21 2 14 2ZM5.19 16H4.81L4.21 10H5.79L5.19 16Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default MicExternalOn;
+export default IconMicExternalOn;

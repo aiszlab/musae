@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const FolderShared = withIcon(({ size }) => {
+const IconFolderShared = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const FolderShared = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 2.4) scale(1.2)">
-        <path
-          d="M18 2H10L8 0H2C0.9 0 0.00999999 0.9 0.00999999 2L0 14C0 15.1 0.9 16 2 16H18C19.1 16 20 15.1 20 14V4C20 2.9 19.1 2 18 2ZM18 14H2V2H7.17L9.17 4H18V14ZM13 9C14.1 9 15 8.1 15 7C15 5.9 14.1 5 13 5C11.9 5 11 5.9 11 7C11 8.1 11.9 9 13 9ZM9 13H17V12C17 10.67 14.33 10 13 10C11.67 10 9 10.67 9 12V13Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M20 6H12L10 4H4C2.9 4 2.01 4.9 2.01 6L2 18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V8C22 6.9 21.1 6 20 6ZM20 18H4V6H9.17L11.17 8H20V18ZM15 13C16.1 13 17 12.1 17 11C17 9.9 16.1 9 15 9C13.9 9 13 9.9 13 11C13 12.1 13.9 13 15 13ZM11 17H19V16C19 14.67 16.33 14 15 14C13.67 14 11 14.67 11 16V17Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default FolderShared;
+export default IconFolderShared;

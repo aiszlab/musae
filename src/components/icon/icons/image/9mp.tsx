@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const NineMp = withIcon(({ size }) => {
+const Icon9mp = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,26 +10,24 @@ const NineMp = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0) scale(1.3333)">
-        <path
-          d="M4.5 11H5.5V14H7V11H8V15.5H9.5V10.5C9.5 9.95 9.05 9.5 8.5 9.5H4C3.45 9.5 3 9.95 3 10.5V15.5H4.5V11Z"
-          fill="currentColor"
-        />
-        <path
-          d="M10.5 15.5H12V14H14C14.55 14 15 13.55 15 13V10.5C15 9.95 14.55 9.5 14 9.5H10.5V15.5ZM12 11H13.5V12.5H12V11Z"
-          fill="currentColor"
-        />
-        <path
-          d="M16 0H2C0.9 0 0 0.9 0 2V16C0 17.1 0.9 18 2 18H16C17.1 18 18 17.1 18 16V2C18 0.9 17.1 0 16 0ZM16 16H2V2H16V16Z"
-          fill="currentColor"
-        />
-        <path
-          d="M11.5 7.5V3.5C11.5 2.95 11.05 2.5 10.5 2.5H8C7.45 2.5 7 2.95 7 3.5V5C7 5.55 7.45 6 8 6H10V7H7V8.5H10.5C11.05 8.5 11.5 8.05 11.5 7.5ZM10 5H8.5V3.5H10V5Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M7.5 14H8.5V17H10V14H11V18.5H12.5V13.5C12.5 12.95 12.05 12.5 11.5 12.5H7C6.45 12.5 6 12.95 6 13.5V18.5H7.5V14Z"
+        fill="currentColor"
+      />
+      <path
+        d="M13.5 18.5H15V17H17C17.55 17 18 16.55 18 16V13.5C18 12.95 17.55 12.5 17 12.5H13.5V18.5ZM15 14H16.5V15.5H15V14Z"
+        fill="currentColor"
+      />
+      <path
+        d="M19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3ZM19 19H5V5H19V19Z"
+        fill="currentColor"
+      />
+      <path
+        d="M14.5 10.5V6.5C14.5 5.95 14.05 5.5 13.5 5.5H11C10.45 5.5 10 5.95 10 6.5V8C10 8.55 10.45 9 11 9H13V10H10V11.5H13.5C14.05 11.5 14.5 11.05 14.5 10.5ZM13 8H11.5V6.5H13V8Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default NineMp;
+export default Icon9mp;

@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const ViewComfy = withIcon(({ size }) => {
+const IconViewComfy = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const ViewComfy = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 2.4) scale(1.2)">
-        <path
-          d="M0 0V16H20V0H0ZM2 2H18V7H2V2ZM2 14V9H6V14H2ZM8 14V9H18V14H8Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M2 2V18H22V2H2ZM4 4H20V9H4V4ZM4 16V11H8V16H4ZM10 16V11H20V16H10Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default ViewComfy;
+export default IconViewComfy;

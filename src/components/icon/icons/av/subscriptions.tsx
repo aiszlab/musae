@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Subscriptions = withIcon(({ size }) => {
+const IconSubscriptions = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const Subscriptions = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0) scale(1.2)">
-        <path
-          d="M2 4H18V6H2V4ZM4 0H16V2H4V0ZM18 8H2C0.9 8 0 8.9 0 10V18C0 19.1 0.9 20 2 20H18C19.1 20 20 19.1 20 18V10C20 8.9 19.1 8 18 8ZM18 18H2V10H18V18ZM8 10.73V17.26L14 14L8 10.73Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M4 6H20V8H4V6ZM6 2H18V4H6V2ZM20 10H4C2.9 10 2 10.9 2 12V20C2 21.1 2.9 22 4 22H20C21.1 22 22 21.1 22 20V12C22 10.9 21.1 10 20 10ZM20 20H4V12H20V20ZM10 12.73V19.26L16 16L10 12.73Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default Subscriptions;
+export default IconSubscriptions;

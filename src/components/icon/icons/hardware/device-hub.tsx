@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const DeviceHub = withIcon(({ size }) => {
+const IconDeviceHub = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const DeviceHub = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0) scale(1.3333)">
-        <path
-          d="M14 13L10 9V5.82C11.16 5.4 12 4.3 12 3C12 1.34 10.66 0 9 0C7.34 0 6 1.34 6 3C6 4.3 6.84 5.4 8 5.82V9L4 13H0V18H5V14.95L9 10.75L13 14.95V18H18V13H14Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M17 16L13 12V8.82C14.16 8.4 15 7.3 15 6C15 4.34 13.66 3 12 3C10.34 3 9 4.34 9 6C9 7.3 9.84 8.4 11 8.82V12L7 16H3V21H8V17.95L12 13.75L16 17.95V21H21V16H17Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default DeviceHub;
+export default IconDeviceHub;

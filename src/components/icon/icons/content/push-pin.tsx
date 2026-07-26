@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const PushPin = withIcon(({ size }) => {
+const IconPushPin = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const PushPin = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(3.6, 0) scale(1.2)">
-        <path
-          d="M9 2V7C9 8.12 9.37 9.16 10 10H4C4.65 9.14 5 8.1 5 7V2H9ZM12 0H2C1.45 0 1 0.45 1 1C1 1.55 1.45 2 2 2H3V7C3 8.66 1.66 10 0 10V12H5.97V19L6.97 20L7.97 19V12H14V10C12.34 10 11 8.66 11 7V2H12C12.55 2 13 1.55 13 1C13 0.45 12.55 0 12 0Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M14 4V9C14 10.12 14.37 11.16 15 12H9C9.65 11.14 10 10.1 10 9V4H14ZM17 2H7C6.45 2 6 2.45 6 3C6 3.55 6.45 4 7 4H8V9C8 10.66 6.66 12 5 12V14H10.97V21L11.97 22L12.97 21V14H19V12C17.34 12 16 10.66 16 9V4H17C17.55 4 18 3.55 18 3C18 2.45 17.55 2 17 2Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default PushPin;
+export default IconPushPin;

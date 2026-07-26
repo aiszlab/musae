@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const DirectionsRun = withIcon(({ size }) => {
+const IconDirectionsRun = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const DirectionsRun = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(3.014, 0) scale(1.1163)">
-        <path
-          d="M10.6 4C11.7 4 12.6 3.1 12.6 2C12.6 0.9 11.7 0 10.6 0C9.5 0 8.6 0.9 8.6 2C8.6 3.1 9.5 4 10.6 4ZM7 17.9L8 13.5L10.1 15.5V21.5H12.1V14L10 12L10.6 9C11.9 10.5 13.9 11.5 16.1 11.5V9.5C14.2 9.5 12.6 8.5 11.8 7.1L10.8 5.5C10.4 4.9 9.8 4.5 9.1 4.5C8.8 4.5 8.6 4.6 8.3 4.6L3.1 6.8V11.5H5.1V8.1L6.9 7.4L5.3 15.5L0.4 14.5L0 16.5L7 17.9Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M14.55 5.25C15.65 5.25 16.55 4.35 16.55 3.25C16.55 2.15 15.65 1.25 14.55 1.25C13.45 1.25 12.55 2.15 12.55 3.25C12.55 4.35 13.45 5.25 14.55 5.25ZM10.95 19.15L11.95 14.75L14.05 16.75V22.75H16.05V15.25L13.95 13.25L14.55 10.25C15.85 11.75 17.85 12.75 20.05 12.75V10.75C18.15 10.75 16.55 9.75 15.75 8.35L14.75 6.75C14.35 6.15 13.75 5.75 13.05 5.75C12.75 5.75 12.55 5.85 12.25 5.85L7.04995 8.05V12.75H9.04995V9.35L10.85 8.65L9.24995 16.75L4.34995 15.75L3.94995 17.75L10.95 19.15Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default DirectionsRun;
+export default IconDirectionsRun;

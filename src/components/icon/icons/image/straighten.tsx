@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Straighten = withIcon(({ size }) => {
+const IconStraighten = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const Straighten = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 5.4545) scale(1.0909)">
-        <path
-          d="M20 0H2C0.9 0 0 0.9 0 2V10C0 11.1 0.9 12 2 12H20C21.1 12 22 11.1 22 10V2C22 0.9 21.1 0 20 0ZM20 10H2V2H4V6H6V2H8V6H10V2H12V6H14V2H16V6H18V2H20V10Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M20.9999 0.9999H2.9999C1.8999 0.9999 0.9999 1.8999 0.9999 2.9999V10.9999C0.9999 12.0999 1.8999 12.9999 2.9999 12.9999H20.9999C22.0999 12.9999 22.9999 12.0999 22.9999 10.9999V2.9999C22.9999 1.8999 22.0999 0.9999 20.9999 0.9999ZM20.9999 10.9999H2.9999V2.9999H4.9999V6.9999H6.9999V2.9999H8.9999V6.9999H10.9999V2.9999H12.9999V6.9999H14.9999V2.9999H16.9999V6.9999H18.9999V2.9999H20.9999V10.9999Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default Straighten;
+export default IconStraighten;

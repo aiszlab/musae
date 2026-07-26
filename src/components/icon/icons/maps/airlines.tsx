@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Airlines = withIcon(({ size }) => {
+const IconAirlines = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const Airlines = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 2.4) scale(1.2)">
-        <path
-          d="M15.34 14H3.8L12.05 2H17.59L15.34 14ZM11 0L0 16H17L20 0H11ZM12.5 5C11.12 5 10 6.12 10 7.5C10 8.88 11.12 10 12.5 10C13.88 10 15 8.88 15 7.5C15 6.12 13.88 5 12.5 5Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M17.34 18H5.8L14.05 6H19.59L17.34 18ZM13 4L2 20H19L22 4H13ZM14.5 9C13.12 9 12 10.12 12 11.5C12 12.88 13.12 14 14.5 14C15.88 14 17 12.88 17 11.5C17 10.12 15.88 9 14.5 9Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default Airlines;
+export default IconAirlines;

@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const WorkspacePremium = withIcon(({ size }) => {
+const IconWorkspacePremium = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const WorkspacePremium = withIcon(({ size }) => {
   );
 });
 
-export default WorkspacePremium;
+export default IconWorkspacePremium;

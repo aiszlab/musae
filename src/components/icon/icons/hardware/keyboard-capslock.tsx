@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const KeyboardCapslock = withIcon(({ size }) => {
+const IconKeyboardCapslock = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const KeyboardCapslock = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0.3965, 0) scale(1.9339)">
-        <path
-          d="M6 2.82L10.59 7.41L12 6L6 0L0 6L1.41 7.41L6 2.82ZM0 12.41H12V10.41H0V12.41Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M12 8.61492L16.59 13.2049L18 11.7949L12 5.79492L6 11.7949L7.41 13.2049L12 8.61492ZM6 18.2049H18V16.2049H6V18.2049Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default KeyboardCapslock;
+export default IconKeyboardCapslock;

@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const RadioButtonChecked = withIcon(({ size }) => {
+const IconRadioButtonChecked = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -22,4 +22,4 @@ const RadioButtonChecked = withIcon(({ size }) => {
   );
 });
 
-export default RadioButtonChecked;
+export default IconRadioButtonChecked;

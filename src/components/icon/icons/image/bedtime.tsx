@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Bedtime = withIcon(({ size }) => {
+const IconBedtime = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const Bedtime = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0.7984, 0) scale(1.2006)">
-        <path
-          d="M7.27 2.48C5.64 10.02 11.02 14.89 14.93 16.28C13.54 17.37 11.81 17.99 10 17.99C5.59 17.99 2 14.4 2 9.99C2 6.54 4.2 3.59 7.27 2.48ZM9.99 0C4.4 0 0 4.53 0 9.99C0 15.51 4.48 19.99 10 19.99C13.71 19.99 16.93 17.97 18.66 14.97C11.15 14.72 6.57 6.54 10.34 0H9.99Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M9.275 4.485C7.645 12.025 13.025 16.895 16.935 18.285C15.545 19.375 13.815 19.995 12.005 19.995C7.595 19.995 4.005 16.405 4.005 11.995C4.005 8.545 6.205 5.595 9.275 4.485ZM11.995 2.005C6.405 2.005 2.005 6.535 2.005 11.995C2.005 17.515 6.485 21.995 12.005 21.995C15.715 21.995 18.935 19.975 20.665 16.975C13.155 16.725 8.575 8.545 12.345 2.005H11.995Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default Bedtime;
+export default IconBedtime;

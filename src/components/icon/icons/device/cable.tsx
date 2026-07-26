@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Cable = withIcon(({ size }) => {
+const IconCable = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const Cable = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0) scale(1.3333)">
-        <path
-          d="M17 2V1C17 0.45 16.55 0 16 0H14C13.45 0 13 0.45 13 1V2H12V6C12 6.55 12.45 7 13 7H14V14C14 15.1 13.1 16 12 16C10.9 16 10 15.1 10 14V4C10 1.79 8.21 0 6 0C3.79 0 2 1.79 2 4V11H1C0.45 11 0 11.45 0 12V16H1V17C1 17.55 1.45 18 2 18H4C4.55 18 5 17.55 5 17V16H6V12C6 11.45 5.55 11 5 11H4V4C4 2.9 4.9 2 6 2C7.1 2 8 2.9 8 4V14C8 16.21 9.79 18 12 18C14.21 18 16 16.21 16 14V7H17C17.55 7 18 6.55 18 6V2H17Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M20 5V4C20 3.45 19.55 3 19 3H17C16.45 3 16 3.45 16 4V5H15V9C15 9.55 15.45 10 16 10H17V17C17 18.1 16.1 19 15 19C13.9 19 13 18.1 13 17V7C13 4.79 11.21 3 9 3C6.79 3 5 4.79 5 7V14H4C3.45 14 3 14.45 3 15V19H4V20C4 20.55 4.45 21 5 21H7C7.55 21 8 20.55 8 20V19H9V15C9 14.45 8.55 14 8 14H7V7C7 5.9 7.9 5 9 5C10.1 5 11 5.9 11 7V17C11 19.21 12.79 21 15 21C17.21 21 19 19.21 19 17V10H20C20.55 10 21 9.55 21 9V5H20Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default Cable;
+export default IconCable;

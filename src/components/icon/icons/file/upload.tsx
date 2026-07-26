@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Upload = withIcon(({ size }) => {
+const IconUpload = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const Upload = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(2.1176, 0) scale(1.4118)">
-        <path
-          d="M4 13H10V7H14L7 0L0 7H4V13ZM7 2.83L9.17 5H8V11H6V5H4.83L7 2.83ZM0 15H14V17H0V15Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M9 16.5H15V10.5H19L12 3.5L5 10.5H9V16.5ZM12 6.33L14.17 8.5H13V14.5H11V8.5H9.83L12 6.33ZM5 18.5H19V20.5H5V18.5Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default Upload;
+export default IconUpload;

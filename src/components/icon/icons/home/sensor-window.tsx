@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const SensorWindow = withIcon(({ size }) => {
+const IconSensorWindow = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const SensorWindow = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(2.4, 0) scale(1.2)">
-        <path
-          d="M14 0H2C0.9 0 0 0.9 0 2V18C0 19.1 0.9 20 2 20H14C15.1 20 16 19.1 16 18V2C16 0.9 15.1 0 14 0ZM14 2V9H10V8H6V9H2V2H14ZM2 18V11H14V18H2Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M18 2H6C4.9 2 4 2.9 4 4V20C4 21.1 4.9 22 6 22H18C19.1 22 20 21.1 20 20V4C20 2.9 19.1 2 18 2ZM18 4V11H14V10H10V11H6V4H18ZM6 20V13H18V20H6Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default SensorWindow;
+export default IconSensorWindow;

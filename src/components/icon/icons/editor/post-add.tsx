@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const PostAdd = withIcon(({ size }) => {
+const IconPostAdd = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,21 +10,19 @@ const PostAdd = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0) scale(1.2632)">
-        <path
-          d="M14 17.22H2V5H9V3H2C0.9 3 0 3.9 0 5V17C0 18.1 0.9 19 2 19H14C15.1 19 16 18.1 16 17V10H14V17.22Z"
-          fill="currentColor"
-        />
-        <path
-          d="M16 0H14V3H11C11.01 3.01 11 5 11 5H14V7.99C14.01 8 16 7.99 16 7.99V5H19V3H16V0Z"
-          fill="currentColor"
-        />
-        <path d="M12 7H4V9H12V7Z" fill="currentColor" />
-        <path d="M4 10V12H12V10H4Z" fill="currentColor" />
-        <path d="M12 13H4V15H12V13Z" fill="currentColor" />
-      </g>
+      <path
+        d="M16.5 19.72H4.5V7.5H11.5V5.5H4.5C3.4 5.5 2.5 6.4 2.5 7.5V19.5C2.5 20.6 3.4 21.5 4.5 21.5H16.5C17.6 21.5 18.5 20.6 18.5 19.5V12.5H16.5V19.72Z"
+        fill="currentColor"
+      />
+      <path
+        d="M18.5 2.5H16.5V5.5H13.5C13.51 5.51 13.5 7.5 13.5 7.5H16.5V10.49C16.51 10.5 18.5 10.49 18.5 10.49V7.5H21.5V5.5H18.5V2.5Z"
+        fill="currentColor"
+      />
+      <path d="M14.5 9.5H6.5V11.5H14.5V9.5Z" fill="currentColor" />
+      <path d="M6.5 12.5V14.5H14.5V12.5H6.5Z" fill="currentColor" />
+      <path d="M14.5 15.5H6.5V17.5H14.5V15.5Z" fill="currentColor" />
     </svg>
   );
 });
 
-export default PostAdd;
+export default IconPostAdd;

@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const FormatOverline = withIcon(({ size }) => {
+const IconFormatOverline = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const FormatOverline = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(2.6667, 0) scale(1.3333)">
-        <path
-          d="M14 0V2H0V0H14ZM7 4C3.13 4 0 7.13 0 11C0 14.87 3.13 18 7 18C10.87 18 14 14.87 14 11C14 7.13 10.87 4 7 4ZM7 15.5C4.51 15.5 2.5 13.49 2.5 11C2.5 8.51 4.51 6.5 7 6.5C9.49 6.5 11.5 8.51 11.5 11C11.5 13.49 9.49 15.5 7 15.5Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M19 3V5H5V3H19ZM12 7C8.13 7 5 10.13 5 14C5 17.87 8.13 21 12 21C15.87 21 19 17.87 19 14C19 10.13 15.87 7 12 7ZM12 18.5C9.51 18.5 7.5 16.49 7.5 14C7.5 11.51 9.51 9.5 12 9.5C14.49 9.5 16.5 11.51 16.5 14C16.5 16.49 14.49 18.5 12 18.5Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default FormatOverline;
+export default IconFormatOverline;

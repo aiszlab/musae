@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const AddComment = withIcon(({ size }) => {
+const IconAddComment = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const AddComment = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0) scale(1.2)">
-        <path
-          d="M20 2C20 0.9 19.1 0 18 0H2C0.9 0 0 0.9 0 2V14C0 15.1 0.9 16 2 16H16L20 20V2ZM18 15.17L16.83 14H2V2H18V15.17ZM11 3H9V7H5V9H9V13H11V9H15V7H11V3Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M22 4C22 2.9 21.1 2 20 2H4C2.9 2 2 2.9 2 4V16C2 17.1 2.9 18 4 18H18L22 22V4ZM20 17.17L18.83 16H4V4H20V17.17ZM13 5H11V9H7V11H11V15H13V11H17V9H13V5Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default AddComment;
+export default IconAddComment;

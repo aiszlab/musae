@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Margin = withIcon(({ size }) => {
+const IconMargin = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const Margin = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0) scale(1.3333)">
-        <path
-          d="M0 0V18H18V0H0ZM16 16H2V2H16V16ZM8 4H10V6H8V4ZM4 4H6V6H4V4ZM12 4H14V6H12V4ZM4 8H6V10H4V8ZM8 8H10V10H8V8ZM12 8H14V10H12V8Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M3 3V21H21V3H3ZM19 19H5V5H19V19ZM11 7H13V9H11V7ZM7 7H9V9H7V7ZM15 7H17V9H15V7ZM7 11H9V13H7V11ZM11 11H13V13H11V11ZM15 11H17V13H15V11Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default Margin;
+export default IconMargin;

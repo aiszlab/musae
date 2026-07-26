@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const WbIridescent = withIcon(({ size }) => {
+const IconWbIridescent = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const WbIridescent = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(2.7764, 0) scale(1.0909)">
-        <path
-          d="M1.45 14H15.45V8H1.45V14ZM3.45 10H13.45V12H3.45V10ZM7.45 0H9.45V3H7.45V0ZM16.91 4.01L15.49 2.6L13.7 4.39L15.11 5.8L16.91 4.01ZM7.45 19H9.45V22H7.45V19ZM13.69 17.71L15.48 19.51L16.9 18.09L15.1 16.3L13.69 17.71ZM1.41 2.595L3.198 4.385L1.79 5.79L0.00300002 4.003L1.41 2.595ZM0 18.08L1.41 19.5L3.2 17.7L1.79 16.29L0 18.08Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M2.4499 14.9999H16.4499V8.9999H2.4499V14.9999ZM4.4499 10.9999H14.4499V12.9999H4.4499V10.9999ZM8.4499 0.9999H10.4499V3.9999H8.4499V0.9999ZM17.9099 5.0099L16.4899 3.5999L14.6999 5.3899L16.1099 6.7999L17.9099 5.0099ZM8.4499 19.9999H10.4499V22.9999H8.4499V19.9999ZM14.6899 18.7099L16.4799 20.5099L17.8999 19.0899L16.0999 17.2999L14.6899 18.7099ZM2.4099 3.5949L4.1979 5.3849L2.7899 6.7899L1.0029 5.0029L2.4099 3.5949ZM0.9999 19.0799L2.4099 20.4999L4.1999 18.6999L2.7899 17.2899L0.9999 19.0799Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default WbIridescent;
+export default IconWbIridescent;

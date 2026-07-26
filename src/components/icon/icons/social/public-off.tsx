@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const PublicOff = withIcon(({ size }) => {
+const IconPublicOff = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const PublicOff = withIcon(({ size }) => {
   );
 });
 
-export default PublicOff;
+export default IconPublicOff;

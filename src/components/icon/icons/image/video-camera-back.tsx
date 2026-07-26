@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const VideoCameraBack = withIcon(({ size }) => {
+const IconVideoCameraBack = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const VideoCameraBack = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 2.4) scale(1.2)">
-        <path
-          d="M16 6.48V2C16 0.9 15.1 0 14 0H2C0.9 0 0 0.9 0 2V14C0 15.1 0.9 16 2 16H14C15.1 16 16 15.1 16 14V9.52L20 13.5V2.5L16 6.48ZM14 14H2V2H14V14ZM9.62 7.5L7 11L5.38 8.83L3 12H13L9.62 7.5Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M18 8.48V4C18 2.9 17.1 2 16 2H4C2.9 2 2 2.9 2 4V16C2 17.1 2.9 18 4 18H16C17.1 18 18 17.1 18 16V11.52L22 15.5V4.5L18 8.48ZM16 16H4V4H16V16ZM11.62 9.5L9 13L7.38 10.83L5 14H15L11.62 9.5Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default VideoCameraBack;
+export default IconVideoCameraBack;

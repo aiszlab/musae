@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Umbrella = withIcon(({ size }) => {
+const IconUmbrella = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const Umbrella = withIcon(({ size }) => {
   );
 });
 
-export default Umbrella;
+export default IconUmbrella;

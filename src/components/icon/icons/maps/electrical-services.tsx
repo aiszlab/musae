@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const ElectricalServices = withIcon(({ size }) => {
+const IconElectricalServices = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,23 +10,24 @@ const ElectricalServices = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 1.3333) scale(1.3333)">
-        <path
-          d="M18 10C18 9.45 17.55 9 17 9H15V11H17C17.55 11 18 10.55 18 10Z"
-          fill="currentColor"
-        />
-        <path
-          d="M17 13H15V15H17C17.55 15 18 14.55 18 14C18 13.45 17.55 13 17 13Z"
-          fill="currentColor"
-        />
-        <path d="M9 10H7V14H9C9 15.1 9.9 16 11 16H14V8H11C9.9 8 9 8.9 9 10Z" fill="currentColor" />
-        <path
-          d="M2 9C2 7.9 2.9 7 4 7H5.5C7.43 7 9 5.43 9 3.5C9 1.57 7.43 0 5.5 0H2C1.45 0 1 0.45 1 1C1 1.55 1.45 2 2 2H5.5C6.33 2 7 2.67 7 3.5C7 4.33 6.33 5 5.5 5H4C1.79 5 0 6.79 0 9C0 11.21 1.79 13 4 13H6V11H4C2.9 11 2 10.1 2 9Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M21 14C21 13.45 20.55 13 20 13H18V15H20C20.55 15 21 14.55 21 14Z"
+        fill="currentColor"
+      />
+      <path
+        d="M20 17H18V19H20C20.55 19 21 18.55 21 18C21 17.45 20.55 17 20 17Z"
+        fill="currentColor"
+      />
+      <path
+        d="M12 14H10V18H12C12 19.1 12.9 20 14 20H17V12H14C12.9 12 12 12.9 12 14Z"
+        fill="currentColor"
+      />
+      <path
+        d="M5 13C5 11.9 5.9 11 7 11H8.5C10.43 11 12 9.43 12 7.5C12 5.57 10.43 4 8.5 4H5C4.45 4 4 4.45 4 5C4 5.55 4.45 6 5 6H8.5C9.33 6 10 6.67 10 7.5C10 8.33 9.33 9 8.5 9H7C4.79 9 3 10.79 3 13C3 15.21 4.79 17 7 17H9V15H7C5.9 15 5 14.1 5 13Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default ElectricalServices;
+export default IconElectricalServices;

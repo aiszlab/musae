@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const NavigateBefore = withIcon(({ size }) => {
+const IconNavigateBefore = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,11 +10,9 @@ const NavigateBefore = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(4.59, 0) scale(2)">
-        <path d="M7.41 1.41L6 0L0 6L6 12L7.41 10.59L2.83 6L7.41 1.41Z" fill="currentColor" />
-      </g>
+      <path d="M13.41 7.41L12 6L6 12L12 18L13.41 16.59L8.83 12L13.41 7.41Z" fill="currentColor" />
     </svg>
   );
 });
 
-export default NavigateBefore;
+export default IconNavigateBefore;

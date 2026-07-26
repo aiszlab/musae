@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const AutofpsSelect = withIcon(({ size }) => {
+const IconAutofpsSelect = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,19 +10,17 @@ const AutofpsSelect = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0.6316, 0) scale(1.2632)">
-        <path d="M9.03 3.3H8.97L7.95 6.19H10.05L9.03 3.3Z" fill="currentColor" />
-        <path d="M2 14H0V19H2V14Z" fill="currentColor" />
-        <path
-          d="M9 12C12.31 12 15 9.31 15 6C15 2.69 12.31 0 9 0C5.69 0 3 2.69 3 6C3 9.31 5.69 12 9 12ZM8.37 2H9.62L12.25 9H11.04L10.41 7.21H7.58L6.96 9H5.74L8.37 2Z"
-          fill="currentColor"
-        />
-        <path d="M6 14H4V19H6V14Z" fill="currentColor" />
-        <path d="M10 14H8V19H10V14Z" fill="currentColor" />
-        <path d="M18 14H12V19H18V14Z" fill="currentColor" />
-      </g>
+      <path d="M12.03 5.8H11.97L10.95 8.69H13.05L12.03 5.8Z" fill="currentColor" />
+      <path d="M5 16.5H3V21.5H5V16.5Z" fill="currentColor" />
+      <path
+        d="M12 14.5C15.31 14.5 18 11.81 18 8.5C18 5.19 15.31 2.5 12 2.5C8.69 2.5 6 5.19 6 8.5C6 11.81 8.69 14.5 12 14.5ZM11.37 4.5H12.62L15.25 11.5H14.04L13.41 9.71H10.58L9.96 11.5H8.74L11.37 4.5Z"
+        fill="currentColor"
+      />
+      <path d="M9 16.5H7V21.5H9V16.5Z" fill="currentColor" />
+      <path d="M13 16.5H11V21.5H13V16.5Z" fill="currentColor" />
+      <path d="M21 16.5H15V21.5H21V16.5Z" fill="currentColor" />
     </svg>
   );
 });
 
-export default AutofpsSelect;
+export default IconAutofpsSelect;

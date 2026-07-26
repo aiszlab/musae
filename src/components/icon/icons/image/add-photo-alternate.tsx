@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const AddPhotoAlternate = withIcon(({ size }) => {
+const IconAddPhotoAlternate = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const AddPhotoAlternate = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0) scale(1.1429)">
-        <path
-          d="M16 19H2V5H11V3H2C0.9 3 0 3.9 0 5V19C0 20.1 0.9 21 2 21H16C17.1 21 18 20.1 18 19V10H16V19ZM8.21 15.83L6.25 13.47L3.5 17H14.5L10.96 12.29L8.21 15.83ZM18 3V0H16V3H13C13.01 3.01 13 5 13 5H16V7.99C16.01 8 18 7.99 18 7.99V5H21V3H18Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M17.5 20.5H3.5V6.5H12.5V4.5H3.5C2.4 4.5 1.5 5.4 1.5 6.5V20.5C1.5 21.6 2.4 22.5 3.5 22.5H17.5C18.6 22.5 19.5 21.6 19.5 20.5V11.5H17.5V20.5ZM9.71 17.33L7.75 14.97L5 18.5H16L12.46 13.79L9.71 17.33ZM19.5 4.5V1.5H17.5V4.5H14.5C14.51 4.51 14.5 6.5 14.5 6.5H17.5V9.49C17.51 9.5 19.5 9.49 19.5 9.49V6.5H22.5V4.5H19.5Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default AddPhotoAlternate;
+export default IconAddPhotoAlternate;

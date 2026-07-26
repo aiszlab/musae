@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Snowmobile = withIcon(({ size }) => {
+const IconSnowmobile = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const Snowmobile = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 4.5) scale(1)">
-        <path
-          d="M22 12C22 12.55 21.55 13 21 13H20.83L18.63 10.8C20.58 10.37 22 9.4 22 8C22 7 14 0 14 0H11V2H13.25L14.05 2.72L11 5L2 4L0 8L4.54 9.36L1.05 11.24C-0.77 12.22 -0.0699999 15 2 15H8C10.21 15 12 13.21 12 11H16L18 13H15V15H21C22.66 15 24 13.66 24 12H22ZM8 13H2L7.25 10.17L10 11C10 12.1 9.11 13 8 13ZM17 9H10.3L2.85 6.77L3.16 6.15L11.6 7L15.53 4.06C15.53 4.06 19.3 7.5 19.8 8.2C19.8 8.2 18.7 9 17 9Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M 22 16.5 C 22 17.05 21.55 17.5 21 17.5 H 20.83 L 18.63 15.3 C 20.58 14.87 22 13.9 22 12.5 C 22 11.5 14 4.5 14 4.5 H 11 V 6.5 H 13.25 L 14.05 7.22 L 11 9.5 L 2 8.5 L 0 12.5 L 4.54 13.86 L 1.05 15.74 C -0.77 16.72 -0.07 19.5 2 19.5 H 8 C 10.21 19.5 12 17.71 12 15.5 H 16 L 18 17.5 H 15 V 19.5 H 21 C 22.66 19.5 24 18.16 24 16.5 H 22ZM 8 17.5 H 2 L 7.25 14.67 L 10 15.5 C 10 16.6 9.11 17.5 8 17.5ZM 17 13.5 H 10.3 L 2.85 11.27 L 3.16 10.65 L 11.6 11.5 L 15.53 8.56 C 15.53 8.56 19.3 12 19.8 12.7 C 19.8 12.7 18.7 13.5 17 13.5Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default Snowmobile;
+export default IconSnowmobile;

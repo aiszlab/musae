@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const ImagesearchRoller = withIcon(({ size }) => {
+const IconImagesearchRoller = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const ImagesearchRoller = withIcon(({ size }) => {
   );
 });
 
-export default ImagesearchRoller;
+export default IconImagesearchRoller;

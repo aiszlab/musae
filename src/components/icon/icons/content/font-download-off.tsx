@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const FontDownloadOff = withIcon(({ size }) => {
+const IconFontDownloadOff = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const FontDownloadOff = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0) scale(1.1262)">
-        <path
-          d="M4.14 0H19.31C20.41 0 21.31 0.9 21.31 2V17.17L19.31 15.17V2H6.14L4.14 0ZM10.23 4L9.66 5.52L11.02 6.88L11.25 6.22H11.35L11.89 7.74L14.93 10.78L12.38 4H10.23ZM19.8 21.31L18.48 20H3.31C2.21 20 1.31 19.1 1.31 18V2.83L0 1.51L1.41 0.0999999L21.21 19.9L19.8 21.31ZM16.48 18L11.41 12.93H8.89L7.8 16H5.72L8.11 9.63L3.31 4.83V18H16.48Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M5.485 1.34473H20.655C21.755 1.34473 22.655 2.24473 22.655 3.34473V18.5147L20.655 16.5147V3.34473H7.485L5.485 1.34473ZM11.575 5.34473L11.005 6.86473L12.365 8.22473L12.595 7.56473H12.695L13.235 9.08473L16.275 12.1247L13.725 5.34473H11.575ZM21.145 22.6547L19.825 21.3447H4.655C3.555 21.3447 2.655 20.4447 2.655 19.3447V4.17473L1.345 2.85473L2.755 1.44473L22.555 21.2447L21.145 22.6547ZM17.825 19.3447L12.755 14.2747H10.235L9.145 17.3447H7.065L9.455 10.9747L4.655 6.17473V19.3447H17.825Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default FontDownloadOff;
+export default IconFontDownloadOff;

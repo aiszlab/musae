@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const AllInclusive = withIcon(({ size }) => {
+const IconAllInclusive = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const AllInclusive = withIcon(({ size }) => {
   );
 });
 
-export default AllInclusive;
+export default IconAllInclusive;

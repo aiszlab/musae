@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const GppGood = withIcon(({ size }) => {
+const IconGppGood = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const GppGood = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(2.4, 0) scale(1.2)">
-        <path
-          d="M8 0L0 3V9.09C0 14.14 3.41 18.85 8 20C12.59 18.85 16 14.14 16 9.09V3L8 0ZM14 9.09C14 13.09 11.45 16.79 8 17.92C4.55 16.79 2 13.1 2 9.09V4.31L8 2.19L14 4.31V9.09ZM4.82 8.59L3.4 10L6.94 13.54L12.6 7.88L11.19 6.47L6.95 10.71L4.82 8.59Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M12 2L4 5V11.09C4 16.14 7.41 20.85 12 22C16.59 20.85 20 16.14 20 11.09V5L12 2ZM18 11.09C18 15.09 15.45 18.79 12 19.92C8.55 18.79 6 15.1 6 11.09V6.31L12 4.19L18 6.31V11.09ZM8.82 10.59L7.4 12L10.94 15.54L16.6 9.88L15.19 8.47L10.95 12.71L8.82 10.59Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default GppGood;
+export default IconGppGood;

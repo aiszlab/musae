@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const NextWeek = withIcon(({ size }) => {
+const IconNextWeek = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const NextWeek = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0.6) scale(1.2)">
-        <path
-          d="M9 15.5L13 11.5L9 7.5L8 8.5L11 11.5L8 14.5L9 15.5ZM18 4H14V2C14 1.45 13.78 0.95 13.41 0.59C13.05 0.22 12.55 0 12 0H8C6.9 0 6 0.9 6 2V4H2C0.9 4 0 4.9 0 6V17C0 18.1 0.9 19 2 19H18C19.1 19 20 18.1 20 17V6C20 4.9 19.1 4 18 4ZM8 2H12V4H8V2ZM18 17H2V6H18V17Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M11 18L15 14L11 10L10 11L13 14L10 17L11 18ZM20 6.5H16V4.5C16 3.95 15.78 3.45 15.41 3.09C15.05 2.72 14.55 2.5 14 2.5H10C8.9 2.5 8 3.4 8 4.5V6.5H4C2.9 6.5 2 7.4 2 8.5V19.5C2 20.6 2.9 21.5 4 21.5H20C21.1 21.5 22 20.6 22 19.5V8.5C22 7.4 21.1 6.5 20 6.5ZM10 4.5H14V6.5H10V4.5ZM20 19.5H4V8.5H20V19.5Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default NextWeek;
+export default IconNextWeek;

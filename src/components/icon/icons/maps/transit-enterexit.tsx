@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const TransitEnterexit = withIcon(({ size }) => {
+const IconTransitEnterexit = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,11 +10,12 @@ const TransitEnterexit = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0) scale(2)">
-        <path d="M10 12H0V2H3V6.77L9.98 0L12 2.03L5.15 9H10V12Z" fill="currentColor" />
-      </g>
+      <path
+        d="M 20 24 H 0 V 4 H 6 V 13.54 L 19.96 0 L 24 4.06 L 10.3 18 H 20 V 24Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default TransitEnterexit;
+export default IconTransitEnterexit;

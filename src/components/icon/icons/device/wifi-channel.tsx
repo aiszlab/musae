@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const WifiChannel = withIcon(({ size }) => {
+const IconWifiChannel = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const WifiChannel = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0) scale(1.3333)">
-        <path
-          d="M13 0C10.49 0 9.23 5.61 8.6 10.57C7.79 7.66 6.61 5 5 5C1.43 5 0 18 0 18H2.01C2.62 12.73 4.01 8.18 5 7.13C5.98 8.18 7.38 12.74 7.99 18H10C10.5 15.47 12 12 13 12C14 12 15.5 15.53 16 18H18C18 18 17.5 0 13 0ZM13 10C12.01 10 11.18 10.62 10.5 11.5C11.07 6.73 12.04 2.88 13 2.06C13.97 2.87 14.91 6.73 15.49 11.49C14.81 10.62 13.98 10 13 10Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M16 3C13.49 3 12.23 8.61 11.6 13.57C10.79 10.66 9.61 8 8 8C4.43 8 3 21 3 21H5.01C5.62 15.73 7.01 11.18 8 10.13C8.98 11.18 10.38 15.74 10.99 21H13C13.5 18.47 15 15 16 15C17 15 18.5 18.53 19 21H21C21 21 20.5 3 16 3ZM16 13C15.01 13 14.18 13.62 13.5 14.5C14.07 9.73 15.04 5.88 16 5.06C16.97 5.87 17.91 9.73 18.49 14.49C17.81 13.62 16.98 13 16 13Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default WifiChannel;
+export default IconWifiChannel;

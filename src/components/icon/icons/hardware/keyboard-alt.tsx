@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const KeyboardAlt = withIcon(({ size }) => {
+const IconKeyboardAlt = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const KeyboardAlt = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 2.7273) scale(1.0909)">
-        <path
-          d="M20 0H2C0.9 0 0 0.9 0 2V15C0 16.1 0.9 17 2 17H20C21.1 17 22 16.1 22 15V2C22 0.9 21.1 0 20 0ZM20 15H2V2H20V15ZM8 4H10V6H8V4ZM4 4H6V6H4V4ZM7 12H15V13H7V12ZM12 4H14V6H12V4ZM8 8H10V10H8V8ZM4 8H6V10H4V8ZM12 8H14V10H12V8ZM16 4H18V6H16V4ZM16 8H18V10H16V8Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M21 3.5H3C1.9 3.5 1 4.4 1 5.5V18.5C1 19.6 1.9 20.5 3 20.5H21C22.1 20.5 23 19.6 23 18.5V5.5C23 4.4 22.1 3.5 21 3.5ZM21 18.5H3V5.5H21V18.5ZM9 7.5H11V9.5H9V7.5ZM5 7.5H7V9.5H5V7.5ZM8 15.5H16V16.5H8V15.5ZM13 7.5H15V9.5H13V7.5ZM9 11.5H11V13.5H9V11.5ZM5 11.5H7V13.5H5V11.5ZM13 11.5H15V13.5H13V11.5ZM17 7.5H19V9.5H17V7.5ZM17 11.5H19V13.5H17V11.5Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default KeyboardAlt;
+export default IconKeyboardAlt;

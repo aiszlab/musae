@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const RemoveRoad = withIcon(({ size }) => {
+const IconRemoveRoad = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,19 +10,17 @@ const RemoveRoad = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0.3243) scale(1.2973)">
-        <path d="M16 0H14V9H16V0Z" fill="currentColor" />
-        <path d="M2 0H0V16H2V0Z" fill="currentColor" />
-        <path d="M9 0H7V4H9V0Z" fill="currentColor" />
-        <path d="M9 6H7V10H9V6Z" fill="currentColor" />
-        <path d="M9 12H7V16H9V12Z" fill="currentColor" />
-        <path
-          d="M18.5 12.41L17.09 11L15 13.09L12.91 11L11.5 12.41L13.59 14.5L11.5 16.59L12.91 18L15 15.91L17.09 18L18.5 16.59L16.41 14.5L18.5 12.41Z"
-          fill="currentColor"
-        />
-      </g>
+      <path d="M 20.7568 0.3243 H 18.1622 V 12 H 20.7568 V 0.3243Z" fill="currentColor" />
+      <path d="M 2.5946 0.3243 H 0 V 21.0811 H 2.5946 V 0.3243Z" fill="currentColor" />
+      <path d="M 11.6757 0.3243 H 9.0811 V 5.5135 H 11.6757 V 0.3243Z" fill="currentColor" />
+      <path d="M 11.6757 8.1081 H 9.0811 V 13.2973 H 11.6757 V 8.1081Z" fill="currentColor" />
+      <path d="M 11.6757 15.8919 H 9.0811 V 21.0811 H 11.6757 V 15.8919Z" fill="currentColor" />
+      <path
+        d="M 24 16.4238 L 22.1709 14.5946 L 19.4595 17.306 L 16.7481 14.5946 L 14.9189 16.4238 L 17.6303 19.1351 L 14.9189 21.8465 L 16.7481 23.6757 L 19.4595 20.9643 L 22.1709 23.6757 L 24 21.8465 L 21.2887 19.1351 L 24 16.4238Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default RemoveRoad;
+export default IconRemoveRoad;

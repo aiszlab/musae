@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const ReduceCapacity = withIcon(({ size }) => {
+const IconReduceCapacity = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const ReduceCapacity = withIcon(({ size }) => {
   );
 });
 
-export default ReduceCapacity;
+export default IconReduceCapacity;

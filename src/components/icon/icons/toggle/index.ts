@@ -1,25 +1,25 @@
-import CheckBox from "./check-box";
-import CheckBoxOutlineBlank from "./check-box-outline-blank";
-import IndeterminateCheckBox from "./indeterminate-check-box";
-import RadioButtonChecked from "./radio-button-checked";
-import RadioButtonUnchecked from "./radio-button-unchecked";
-import Star from "./star";
-import StarBorder from "./star-border";
-import StarHalf from "./star-half";
-import StarOutline from "./star-outline";
-import ToggleOff from "./toggle-off";
-import ToggleOn from "./toggle-on";
+import IconCheckBox from "./check-box";
+import IconCheckBoxOutlineBlank from "./check-box-outline-blank";
+import IconIndeterminateCheckBox from "./indeterminate-check-box";
+import IconRadioButtonChecked from "./radio-button-checked";
+import IconRadioButtonUnchecked from "./radio-button-unchecked";
+import IconStar from "./star";
+import IconStarBorder from "./star-border";
+import IconStarHalf from "./star-half";
+import IconStarOutline from "./star-outline";
+import IconToggleOff from "./toggle-off";
+import IconToggleOn from "./toggle-on";
 
 export {
-  CheckBox,
-  CheckBoxOutlineBlank,
-  IndeterminateCheckBox,
-  RadioButtonChecked,
-  RadioButtonUnchecked,
-  Star,
-  StarBorder,
-  StarHalf,
-  StarOutline,
-  ToggleOff,
-  ToggleOn,
+  IconCheckBox,
+  IconCheckBoxOutlineBlank,
+  IconIndeterminateCheckBox,
+  IconRadioButtonChecked,
+  IconRadioButtonUnchecked,
+  IconStar,
+  IconStarBorder,
+  IconStarHalf,
+  IconStarOutline,
+  IconToggleOff,
+  IconToggleOn,
 };

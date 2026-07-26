@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const FourGPlusMobiledata = withIcon(({ size }) => {
+const Icon4gPlusMobiledata = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const FourGPlusMobiledata = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 6.7826) scale(1.0435)">
-        <path
-          d="M12 4V6H14V8H10V2H16C16 0.9 15.1 0 14 0H10C8.9 0 8 0.9 8 2V8C8 9.1 8.9 10 10 10H14C15.1 10 16 9.1 16 8V4H12ZM23 4H21V2H19V4H17V6H19V8H21V6H23V4ZM6 0H4V5H2V0H0V7H4V10H6V7H7V5H6V0Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M12.5 11V13H14.5V15H10.5V9H16.5C16.5 7.9 15.6 7 14.5 7H10.5C9.4 7 8.5 7.9 8.5 9V15C8.5 16.1 9.4 17 10.5 17H14.5C15.6 17 16.5 16.1 16.5 15V11H12.5ZM23.5 11H21.5V9H19.5V11H17.5V13H19.5V15H21.5V13H23.5V11ZM6.5 7H4.5V12H2.5V7H0.5V14H4.5V17H6.5V14H7.5V12H6.5V7Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default FourGPlusMobiledata;
+export default Icon4gPlusMobiledata;

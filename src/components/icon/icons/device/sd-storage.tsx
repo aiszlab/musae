@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const SdStorage = withIcon(({ size }) => {
+const IconSdStorage = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const SdStorage = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(2.4, 0) scale(1.2)">
-        <path
-          d="M14 2V18H2V6.83L6.83 2H14ZM14 0H6L0 6V18C0 19.1 0.9 20 2 20H14C15.1 20 16 19.1 16 18V2C16 0.9 15.1 0 14 0ZM5 5H7V9H5V5ZM8 5H10V9H8V5ZM11 5H13V9H11V5Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M18 4V20H6V8.83L10.83 4H18ZM18 2H10L4 8V20C4 21.1 4.9 22 6 22H18C19.1 22 20 21.1 20 20V4C20 2.9 19.1 2 18 2ZM9 7H11V11H9V7ZM12 7H14V11H12V7ZM15 7H17V11H15V7Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default SdStorage;
+export default IconSdStorage;

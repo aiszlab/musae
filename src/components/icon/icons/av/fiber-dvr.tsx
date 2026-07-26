@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const FiberDvr = withIcon(({ size }) => {
+const IconFiberDvr = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const FiberDvr = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 8) scale(1.3333)">
-        <path
-          d="M8.87 3.43L7.87 0H6.37L8.12 6H9.62L11.37 0H9.87L8.87 3.43ZM18 2.5V1.5C18 0.65 17.35 0 16.5 0H13V6H14.5V4H15.65L16.5 6H18L17.1 3.9C17.6 3.65 18 3.1 18 2.5ZM16.5 2.5H14.5V1.5H16.5V2.5ZM3.5 0H0V6H3.5C4.35 6 5 5.35 5 4.5V1.5C5 0.65 4.35 0 3.5 0ZM3.5 4.5H1.5V1.5H3.5V4.5Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M11.87 12.43L10.87 9H9.37L11.12 15H12.62L14.37 9H12.87L11.87 12.43ZM21 11.5V10.5C21 9.65 20.35 9 19.5 9H16V15H17.5V13H18.65L19.5 15H21L20.1 12.9C20.6 12.65 21 12.1 21 11.5ZM19.5 11.5H17.5V10.5H19.5V11.5ZM6.5 9H3V15H6.5C7.35 15 8 14.35 8 13.5V10.5C8 9.65 7.35 9 6.5 9ZM6.5 13.5H4.5V10.5H6.5V13.5Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default FiberDvr;
+export default IconFiberDvr;

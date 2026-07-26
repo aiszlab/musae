@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const PartyMode = withIcon(({ size }) => {
+const IconPartyMode = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const PartyMode = withIcon(({ size }) => {
   );
 });
 
-export default PartyMode;
+export default IconPartyMode;

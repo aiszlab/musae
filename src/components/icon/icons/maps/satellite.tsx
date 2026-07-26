@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Satellite = withIcon(({ size }) => {
+const IconSatellite = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const Satellite = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0) scale(1.3333)">
-        <path
-          d="M16 0H2C0.9 0 0 0.9 0 2V16C0 17.1 0.9 18 2 18H16C17.1 18 18 17.1 18 16V2C18 0.9 17.1 0 16 0ZM16 16H2V2H16V16ZM5.57 3H3V5.58C4.42 5.58 5.57 4.42 5.57 3ZM9 3H7.29C7.29 5.36 5.37 7.29 3 7.29V9C6.32 9 9 6.31 9 3ZM11.14 8.86L8.14 12.73L6 10.15L3 14H15L11.14 8.86Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M 21.3328 0 H 2.6666 C 1.2 0 0 1.2 0 2.6666 V 21.3328 C 0 22.7994 1.2 23.9994 2.6666 23.9994 H 21.3328 C 22.7994 23.9994 23.9994 22.7994 23.9994 21.3328 V 2.6666 C 23.9994 1.2 22.7994 0 21.3328 0ZM 21.3328 21.3328 H 2.6666 V 2.6666 H 21.3328 V 21.3328ZM 7.4265 4 H 4 V 7.4398 C 5.8932 7.4398 7.4265 5.8932 7.4265 4ZM 12 4 H 9.7198 C 9.7198 7.1465 7.1598 9.7198 4 9.7198 V 12 C 8.4265 12 12 8.4131 12 4ZM 14.853 11.813 L 10.8531 16.9729 L 8 13.533 L 4 18.6662 H 19.9995 L 14.853 11.813Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default Satellite;
+export default IconSatellite;

@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const FourK = withIcon(({ size }) => {
+const Icon4k = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const FourK = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0) scale(1.3333)">
-        <path
-          d="M16 0H2C0.9 0 0 0.9 0 2V16C0 17.1 0.89 18 2 18H16C17.1 18 18 17.1 18 16V2C18 0.9 17.11 0 16 0ZM16 16H2V2H16V16ZM6.5 12H8V10.51H9V9H8V6H6.5V9H5V6H3.5V10.5H6.5V12ZM15.2 12L13.2 9L15.2 6H13.5L11.5 9L13.5 12H15.2ZM11.5 9V6H10V12H11.5V9Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.89 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.11 3 19 3ZM19 19H5V5H19V19ZM9.5 15H11V13.51H12V12H11V9H9.5V12H8V9H6.5V13.5H9.5V15ZM18.2 15L16.2 12L18.2 9H16.5L14.5 12L16.5 15H18.2ZM14.5 12V9H13V15H14.5V12Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default FourK;
+export default Icon4k;

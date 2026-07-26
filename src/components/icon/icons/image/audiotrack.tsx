@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Audiotrack = withIcon(({ size }) => {
+const IconAudiotrack = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const Audiotrack = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(4, 0) scale(1.3333)">
-        <path
-          d="M6 0V10.55C5.41 10.21 4.73 10 4 10C1.79 10 0 11.79 0 14C0 16.21 1.79 18 4 18C6.21 18 8 16.21 8 14V4H12V0H6ZM4 16C2.9 16 2 15.1 2 14C2 12.9 2.9 12 4 12C5.1 12 6 12.9 6 14C6 15.1 5.1 16 4 16Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M12 3V13.55C11.41 13.21 10.73 13 10 13C7.79 13 6 14.79 6 17C6 19.21 7.79 21 10 21C12.21 21 14 19.21 14 17V7H18V3H12ZM10 19C8.9 19 8 18.1 8 17C8 15.9 8.9 15 10 15C11.1 15 12 15.9 12 17C12 18.1 11.1 19 10 19Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default Audiotrack;
+export default IconAudiotrack;

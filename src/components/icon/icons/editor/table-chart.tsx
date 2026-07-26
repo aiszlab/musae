@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const TableChart = withIcon(({ size }) => {
+const IconTableChart = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const TableChart = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0.6316) scale(1.2632)">
-        <path
-          d="M17 0H2C0.9 0 0 0.9 0 2V16C0 17.1 0.9 18 2 18H17C18.1 18 19 17.1 19 16V2C19 0.9 18.1 0 17 0ZM17 2V5H2V2H17ZM12 16H7V7H12V16ZM2 7H5V16H2V7ZM14 16V7H17V16H14Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M19.5 3H4.5C3.4 3 2.5 3.9 2.5 5V19C2.5 20.1 3.4 21 4.5 21H19.5C20.6 21 21.5 20.1 21.5 19V5C21.5 3.9 20.6 3 19.5 3ZM19.5 5V8H4.5V5H19.5ZM14.5 19H9.5V10H14.5V19ZM4.5 10H7.5V19H4.5V10ZM16.5 19V10H19.5V19H16.5Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default TableChart;
+export default IconTableChart;

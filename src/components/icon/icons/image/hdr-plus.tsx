@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const HdrPlus = withIcon(({ size }) => {
+const IconHdrPlus = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const HdrPlus = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0) scale(1.2)">
-        <path
-          d="M6.13 17C7.28 17.64 8.6 18 10 18C14.41 18 18 14.41 18 10C18 5.59 14.41 2 10 2C5.59 2 2 5.59 2 10C2 12.52 3.17 14.77 5 16.24V11H8.5C9.3 11 10 11.7 10 12.5V13.5C10 14.1 9.6 14.6 9.1 14.9L10 17H8.5L7.6 15H6.5V17H6.13ZM10 0C15.52 0 20 4.48 20 10C20 15.52 15.52 20 10 20C4.48 20 0 15.52 0 10C0 4.48 4.48 0 10 0ZM15.5 14H14V15.5H12.5V14H11V12.5H12.5V11H14V12.49H15.5V14ZM8.5 13.5V12.5H6.5V13.5H8.5ZM8.5 6V4H10V10H8.5V7.5H6.5V10H5V4H6.5V6H8.5ZM14 4C14.8 4 15.5 4.7 15.5 5.5V8.5C15.5 9.3 14.8 10 14 10H11V4H14ZM14 8.5V5.5H12.5V8.5H14Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M8.13 19C9.28 19.64 10.6 20 12 20C16.41 20 20 16.41 20 12C20 7.59 16.41 4 12 4C7.59 4 4 7.59 4 12C4 14.52 5.17 16.77 7 18.24V13H10.5C11.3 13 12 13.7 12 14.5V15.5C12 16.1 11.6 16.6 11.1 16.9L12 19H10.5L9.6 17H8.5V19H8.13ZM12 2C17.52 2 22 6.48 22 12C22 17.52 17.52 22 12 22C6.48 22 2 17.52 2 12C2 6.48 6.48 2 12 2ZM17.5 16H16V17.5H14.5V16H13V14.5H14.5V13H16V14.49H17.5V16ZM10.5 15.5V14.5H8.5V15.5H10.5ZM10.5 8V6H12V12H10.5V9.5H8.5V12H7V6H8.5V8H10.5ZM16 6C16.8 6 17.5 6.7 17.5 7.5V10.5C17.5 11.3 16.8 12 16 12H13V6H16ZM16 10.5V7.5H14.5V10.5H16Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default HdrPlus;
+export default IconHdrPlus;

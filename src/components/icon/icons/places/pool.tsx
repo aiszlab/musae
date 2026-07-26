@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Pool = withIcon(({ size }) => {
+const IconPool = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -23,4 +23,4 @@ const Pool = withIcon(({ size }) => {
   );
 });
 
-export default Pool;
+export default IconPool;

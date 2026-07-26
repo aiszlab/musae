@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const PanoramaVerticalSelect = withIcon(({ size }) => {
+const IconPanoramaVerticalSelect = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const PanoramaVerticalSelect = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(2.3981, 0) scale(1.2)">
-        <path
-          d="M14.4998 10C14.4998 6.11 15.3398 3.05 15.9298 1.31C16.1498 0.67 15.6698 0 14.9798 0H0.999819C0.319819 0 -0.160181 0.66 0.0498188 1.31C0.739819 3.36 1.49982 6.1 1.49982 10C1.49982 13.87 0.739819 16.66 0.0498188 18.69C-0.160181 19.34 0.319819 20 0.999819 20H14.9998C15.6798 20 16.1698 19.34 15.9498 18.69C15.2698 16.66 14.4998 13.86 14.4998 10Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M16.4998 12C16.4998 8.11 17.3398 5.05 17.9298 3.31C18.1498 2.67 17.6698 2 16.9798 2H2.9998C2.3198 2 1.8398 2.66 2.0498 3.31C2.7398 5.36 3.4998 8.1 3.4998 12C3.4998 15.87 2.7398 18.66 2.0498 20.69C1.8398 21.34 2.3198 22 2.9998 22H16.9998C17.6798 22 18.1698 21.34 17.9498 20.69C17.2698 18.66 16.4998 15.86 16.4998 12Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default PanoramaVerticalSelect;
+export default IconPanoramaVerticalSelect;

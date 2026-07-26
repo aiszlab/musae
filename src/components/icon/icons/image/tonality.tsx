@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Tonality = withIcon(({ size }) => {
+const IconTonality = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const Tonality = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0) scale(1.2)">
-        <path
-          d="M10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM9 17.93C5.06 17.44 2 14.08 2 10C2 5.92 5.05 2.56 9 2.07V17.93ZM11 2.07C12.03 2.2 13 2.52 13.87 3H11V2.07ZM11 5H16.24C16.49 5.31 16.72 5.65 16.92 6H11V5ZM11 8H17.74C17.82 8.33 17.89 8.66 17.93 9H11V8ZM11 17.93V17H13.87C13 17.48 12.03 17.8 11 17.93ZM16.24 15H11V14H16.92C16.72 14.35 16.49 14.69 16.24 15ZM17.74 12H11V11H17.93C17.89 11.34 17.82 11.67 17.74 12Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM11 19.93C7.06 19.44 4 16.08 4 12C4 7.92 7.05 4.56 11 4.07V19.93ZM13 4.07C14.03 4.2 15 4.52 15.87 5H13V4.07ZM13 7H18.24C18.49 7.31 18.72 7.65 18.92 8H13V7ZM13 10H19.74C19.82 10.33 19.89 10.66 19.93 11H13V10ZM13 19.93V19H15.87C15 19.48 14.03 19.8 13 19.93ZM18.24 17H13V16H18.92C18.72 16.35 18.49 16.69 18.24 17ZM19.74 14H13V13H19.93C19.89 13.34 19.82 13.67 19.74 14Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default Tonality;
+export default IconTonality;

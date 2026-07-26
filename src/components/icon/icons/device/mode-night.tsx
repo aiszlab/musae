@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const ModeNight = withIcon(({ size }) => {
+const IconModeNight = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const ModeNight = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(3, 0) scale(1.2)">
-        <path
-          d="M5 2C9.41 2 13 5.59 13 10C13 14.41 9.41 18 5 18C4.66 18 4.32 17.98 3.99 17.93C5.9 15.77 7 12.95 7 10C7 7.05 5.9 4.23 3.99 2.07C4.32 2.02 4.66 2 5 2ZM5 0C3.18 0 1.47 0.5 0 1.35C2.99 3.08 5 6.3 5 10C5 13.7 2.99 16.92 0 18.65C1.47 19.5 3.18 20 5 20C10.52 20 15 15.52 15 10C15 4.48 10.52 0 5 0Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M9.5 4C13.91 4 17.5 7.59 17.5 12C17.5 16.41 13.91 20 9.5 20C9.16 20 8.82 19.98 8.49 19.93C10.4 17.77 11.5 14.95 11.5 12C11.5 9.05 10.4 6.23 8.49 4.07C8.82 4.02 9.16 4 9.5 4ZM9.5 2C7.68 2 5.97 2.5 4.5 3.35C7.49 5.08 9.5 8.3 9.5 12C9.5 15.7 7.49 18.92 4.5 20.65C5.97 21.5 7.68 22 9.5 22C15.02 22 19.5 17.52 19.5 12C19.5 6.48 15.02 2 9.5 2Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default ModeNight;
+export default IconModeNight;

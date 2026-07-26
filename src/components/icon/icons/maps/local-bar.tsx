@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const LocalBar = withIcon(({ size }) => {
+const IconLocalBar = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const LocalBar = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0) scale(1.3333)">
-        <path
-          d="M11.77 6L9 9.11L6.23 6H11.77ZM18 0H0V2L8 11V16H3V18H15V16H10V11L18 2V0ZM4.43 4L2.66 2H15.35L13.57 4H4.43Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M14.77 9L12 12.11L9.23 9H14.77ZM21 3H3V5L11 14V19H6V21H18V19H13V14L21 5V3ZM7.43 7L5.66 5H18.35L16.57 7H7.43Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default LocalBar;
+export default IconLocalBar;

@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Compost = withIcon(({ size }) => {
+const IconCompost = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const Compost = withIcon(({ size }) => {
   );
 });
 
-export default Compost;
+export default IconCompost;

@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Balcony = withIcon(({ size }) => {
+const IconBalcony = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const Balcony = withIcon(({ size }) => {
   );
 });
 
-export default Balcony;
+export default IconBalcony;

@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const FolderZip = withIcon(({ size }) => {
+const IconFolderZip = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const FolderZip = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 2.4) scale(1.2)">
-        <path
-          d="M18 2H10L8 0H2C0.9 0 0.00999999 0.9 0.00999999 2L0 14C0 15.1 0.9 16 2 16H18C19.1 16 20 15.1 20 14V4C20 2.9 19.1 2 18 2ZM14 12H16V10H14V8H16V6H14V4H18V14H14V12ZM14 12H12V14H2V2H7.17L9.17 4H12V6H14V8H12V10H14V12Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M20 6H12L10 4H4C2.9 4 2.01 4.9 2.01 6L2 18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V8C22 6.9 21.1 6 20 6ZM16 16H18V14H16V12H18V10H16V8H20V18H16V16ZM16 16H14V18H4V6H9.17L11.17 8H14V10H16V12H14V14H16V16Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default FolderZip;
+export default IconFolderZip;

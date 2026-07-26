@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const MailLock = withIcon(({ size }) => {
+const IconMailLock = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,18 +10,16 @@ const MailLock = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 3.2727) scale(1.0909)">
-        <path
-          d="M2 4L10 9L18 4V6H20V2C20 0.9 19.1 0 18 0H2C0.9 0 0.00999999 0.9 0.00999999 2L0 14C0 15.1 0.9 16 2 16H14V14H2V4ZM18 2L10 7L2 2H18Z"
-          fill="currentColor"
-        />
-        <path
-          d="M21 11V10C21 8.9 20.1 8 19 8C17.9 8 17 8.9 17 10V11C16.45 11 16 11.45 16 12V15C16 15.55 16.45 16 17 16H21C21.55 16 22 15.55 22 15V12C22 11.45 21.55 11 21 11ZM18 11V10C18 9.45 18.45 9 19 9C19.55 9 20 9.45 20 10V11H18Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M3 8L11 13L19 8V10H21V6C21 4.9 20.1 4 19 4H3C1.9 4 1.01 4.9 1.01 6L1 18C1 19.1 1.9 20 3 20H15V18H3V8ZM19 6L11 11L3 6H19Z"
+        fill="currentColor"
+      />
+      <path
+        d="M22 15V14C22 12.9 21.1 12 20 12C18.9 12 18 12.9 18 14V15C17.45 15 17 15.45 17 16V19C17 19.55 17.45 20 18 20H22C22.55 20 23 19.55 23 19V16C23 15.45 22.55 15 22 15ZM19 15V14C19 13.45 19.45 13 20 13C20.55 13 21 13.45 21 14V15H19Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default MailLock;
+export default IconMailLock;

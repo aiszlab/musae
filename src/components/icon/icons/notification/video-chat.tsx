@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const VideoChat = withIcon(({ size }) => {
+const IconVideoChat = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -22,4 +22,4 @@ const VideoChat = withIcon(({ size }) => {
   );
 });
 
-export default VideoChat;
+export default IconVideoChat;

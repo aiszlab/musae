@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const TabletAndroid = withIcon(({ size }) => {
+const IconTabletAndroid = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const TabletAndroid = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(3, 0) scale(1)">
-        <path
-          d="M15 0H3C1.34 0 0 1.34 0 3V21C0 22.66 1.34 24 3 24H15C16.66 24 18 22.66 18 21V3C18 1.34 16.66 0 15 0ZM11 22H7V21H11V22ZM16.25 19H1.75V3H16.25V19Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M18 0H6C4.34 0 3 1.34 3 3V21C3 22.66 4.34 24 6 24H18C19.66 24 21 22.66 21 21V3C21 1.34 19.66 0 18 0ZM14 22H10V21H14V22ZM19.25 19H4.75V3H19.25V19Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default TabletAndroid;
+export default IconTabletAndroid;

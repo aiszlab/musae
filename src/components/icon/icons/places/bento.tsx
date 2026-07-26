@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Bento = withIcon(({ size }) => {
+const IconBento = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const Bento = withIcon(({ size }) => {
   );
 });
 
-export default Bento;
+export default IconBento;

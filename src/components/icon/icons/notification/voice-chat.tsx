@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const VoiceChat = withIcon(({ size }) => {
+const IconVoiceChat = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const VoiceChat = withIcon(({ size }) => {
   );
 });
 
-export default VoiceChat;
+export default IconVoiceChat;

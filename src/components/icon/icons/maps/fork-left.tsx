@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const ForkLeft = withIcon(({ size }) => {
+const IconForkLeft = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const ForkLeft = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(2.6667, 0) scale(1.3333)">
-        <path
-          d="M5.41 12.59L4 14L0 10L4 6L5.41 7.41L3.83 9C5.34 8.67 7.56 9.08 9 10.36V3.83L7.41 5.42L6 4L10 0L14 4L12.59 5.41L11 3.83V18H9V14C8.27 11.42 5.93 10.53 3.83 11L5.41 12.59Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M10.41 15.59L9 17L5 13L9 9L10.41 10.41L8.83 12C10.34 11.67 12.56 12.08 14 13.36V6.83L12.41 8.42L11 7L15 3L19 7L17.59 8.41L16 6.83V21H14V17C13.27 14.42 10.93 13.53 8.83 14L10.41 15.59Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default ForkLeft;
+export default IconForkLeft;

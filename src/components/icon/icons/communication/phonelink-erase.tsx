@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const PhonelinkErase = withIcon(({ size }) => {
+const IconPhonelinkErase = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const PhonelinkErase = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(2.1818, 0) scale(1.0909)">
-        <path
-          d="M10 7.2L9 6.2L5 10.2L1 6.2L0 7.2L4 11.2L0 15.2L1 16.2L5 12.2L9 16.2L10 15.2L6 11.2L10 7.2ZM16 0H6C4.9 0 4 0.9 4 2V5H6V3H16V19H6V17H4V20C4 21.1 4.9 22 6 22H16C17.1 22 18 21.1 18 20V2C18 0.9 17.1 0 16 0Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M13 8.2L12 7.2L8 11.2L4 7.2L3 8.2L7 12.2L3 16.2L4 17.2L8 13.2L12 17.2L13 16.2L9 12.2L13 8.2ZM19 1H9C7.9 1 7 1.9 7 3V6H9V4H19V20H9V18H7V21C7 22.1 7.9 23 9 23H19C20.1 23 21 22.1 21 21V3C21 1.9 20.1 1 19 1Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default PhonelinkErase;
+export default IconPhonelinkErase;

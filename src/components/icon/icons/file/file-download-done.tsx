@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const FileDownloadDone = withIcon(({ size }) => {
+const IconFileDownloadDone = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,15 +10,13 @@ const FileDownloadDone = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 0.1919) scale(1.476)">
-        <path
-          d="M16.26 1.41L14.85 0L5.66 9.19L1.41 4.95L0 6.36L5.66 12.02L16.26 1.41Z"
-          fill="currentColor"
-        />
-        <path d="M15.13 14H1.13V16H15.13V14Z" fill="currentColor" />
-      </g>
+      <path
+        d="M20.13 5.41L18.72 4L9.52999 13.19L5.28 8.95L3.87 10.36L9.52999 16.02L20.13 5.41Z"
+        fill="currentColor"
+      />
+      <path d="M19 18H5V20H19V18Z" fill="currentColor" />
     </svg>
   );
 });
 
-export default FileDownloadDone;
+export default IconFileDownloadDone;

@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const NoMeals = withIcon(({ size }) => {
+const IconNoMeals = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const NoMeals = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0.0563, 0) scale(1.1262)">
-        <path
-          d="M15.31 12V4C15.31 2.24 17.55 0 20.31 0V16.17L18.31 14.17V12H15.31ZM19.8 21.31L9.33 10.85C9 10.94 8.67 11 8.31 11V20H6.31V11C4.1 11 2.31 9.21 2.31 7V3.83L0 1.51L1.41 0.0999999L21.21 19.9L19.8 21.31ZM5.48 7L4.31 5.83V7H5.48ZM8.31 0H6.31V2.17L8.31 4.17V0ZM12.31 7V0H10.31V6.17L12.16 8.02C12.25 7.69 12.31 7.36 12.31 7Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M 17.2984 13.5144 V 4.5048 C 17.2984 2.5227 19.8211 0 22.9294 0 V 18.2107 L 20.677 15.9583 V 13.5144 H 17.2984ZM 22.3551 23.9993 L 10.5637 12.2193 C 10.1921 12.3206 9.8205 12.3882 9.415 12.3882 V 22.524 H 7.1626 V 12.3882 C 4.6737 12.3882 2.6578 10.3723 2.6578 7.8834 V 4.3133 L 0.0563 1.7006 L 1.6442 0.1126 L 23.943 22.4114 L 22.3551 23.9993ZM 6.2279 7.8834 L 4.9102 6.5657 V 7.8834 H 6.2279ZM 9.415 0 H 7.1626 V 2.4439 L 9.415 4.6963 V 0ZM 13.9198 7.8834 V 0 H 11.6674 V 6.9487 L 13.7509 9.0321 C 13.8523 8.6605 13.9198 8.2888 13.9198 7.8834Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default NoMeals;
+export default IconNoMeals;

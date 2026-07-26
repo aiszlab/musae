@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const LowPriority = withIcon(({ size }) => {
+const IconLowPriority = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const LowPriority = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 3) scale(1.2)">
-        <path
-          d="M12 0H20V2H12V0ZM12 5.5H20V7.5H12V5.5ZM12 11H20V13H12V11ZM0 6.5C0 10.08 2.92 13 6.5 13H7V15L10 12L7 9V11H6.5C4.02 11 2 8.98 2 6.5C2 4.02 4.02 2 6.5 2H10V0H6.5C2.92 0 0 2.92 0 6.5Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M14 4.5H22V6.5H14V4.5ZM14 10H22V12H14V10ZM14 15.5H22V17.5H14V15.5ZM2 11C2 14.58 4.92 17.5 8.5 17.5H9V19.5L12 16.5L9 13.5V15.5H8.5C6.02 15.5 4 13.48 4 11C4 8.52 6.02 6.5 8.5 6.5H12V4.5H8.5C4.92 4.5 2 7.42 2 11Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default LowPriority;
+export default IconLowPriority;

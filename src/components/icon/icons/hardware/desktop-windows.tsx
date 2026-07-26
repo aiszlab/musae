@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const DesktopWindows = withIcon(({ size }) => {
+const IconDesktopWindows = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const DesktopWindows = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 1.0909) scale(1.0909)">
-        <path
-          d="M20 0H2C0.9 0 0 0.9 0 2V14C0 15.1 0.9 16 2 16H9V18H7V20H15V18H13V16H20C21.1 16 22 15.1 22 14V2C22 0.9 21.1 0 20 0ZM20 14H2V2H20V14Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M21 2H3C1.9 2 1 2.9 1 4V16C1 17.1 1.9 18 3 18H10V20H8V22H16V20H14V18H21C22.1 18 23 17.1 23 16V4C23 2.9 22.1 2 21 2ZM21 16H3V4H21V16Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default DesktopWindows;
+export default IconDesktopWindows;

@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const VpnKey = withIcon(({ size }) => {
+const IconVpnKey = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,14 +10,12 @@ const VpnKey = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g transform="translate(0, 5) scale(1)">
-        <path
-          d="M22 14H16V10H13.32C12.18 12.42 9.72 14 7 14C3.14 14 0 10.86 0 7C0 3.14 3.14 0 7 0C9.72 0 12.17 1.58 13.32 4H24V10H22V14ZM18 12H20V8H22V6H11.94L11.71 5.33C11.01 3.34 9.11 2 7 2C4.24 2 2 4.24 2 7C2 9.76 4.24 12 7 12C9.11 12 11.01 10.66 11.71 8.67L11.94 8H18V12ZM7 10C5.35 10 4 8.65 4 7C4 5.35 5.35 4 7 4C8.65 4 10 5.35 10 7C10 8.65 8.65 10 7 10ZM7 6C6.45 6 6 6.45 6 7C6 7.55 6.45 8 7 8C7.55 8 8 7.55 8 7C8 6.45 7.55 6 7 6Z"
-          fill="currentColor"
-        />
-      </g>
+      <path
+        d="M22 19H16V15H13.32C12.18 17.42 9.72 19 7 19C3.14 19 0 15.86 0 12C0 8.14 3.14 5 7 5C9.72 5 12.17 6.58 13.32 9H24V15H22V19ZM18 17H20V13H22V11H11.94L11.71 10.33C11.01 8.34 9.11 7 7 7C4.24 7 2 9.24 2 12C2 14.76 4.24 17 7 17C9.11 17 11.01 15.66 11.71 13.67L11.94 13H18V17ZM7 15C5.35 15 4 13.65 4 12C4 10.35 5.35 9 7 9C8.65 9 10 10.35 10 12C10 13.65 8.65 15 7 15ZM7 11C6.45 11 6 11.45 6 12C6 12.55 6.45 13 7 13C7.55 13 8 12.55 8 12C8 11.45 7.55 11 7 11Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });
 
-export default VpnKey;
+export default IconVpnKey;
