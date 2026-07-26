@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const AddToDrive = withIcon(({ size }) => {
+const IconAddToDrive = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -24,4 +24,4 @@ const AddToDrive = withIcon(({ size }) => {
   );
 });
 
-export default AddToDrive;
+export default IconAddToDrive;

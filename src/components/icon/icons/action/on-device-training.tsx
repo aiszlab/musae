@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const OnDeviceTraining = withIcon(({ size }) => {
+const IconOnDeviceTraining = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -31,4 +31,4 @@ const OnDeviceTraining = withIcon(({ size }) => {
   );
 });
 
-export default OnDeviceTraining;
+export default IconOnDeviceTraining;

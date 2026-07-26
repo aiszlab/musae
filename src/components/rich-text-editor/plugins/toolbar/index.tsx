@@ -3,7 +3,7 @@ import {
   Redo,
   Undo,
   FormatBold,
-  Code,
+  IconCode,
   FormatItalic,
   FormatUnderlined,
   InsertLink,
@@ -241,7 +241,7 @@ const ToolbarPlugin = () => {
           size="small"
           onClick={handlers.code}
         >
-          <Code />
+          <IconCode />
         </Button>
 
         <Dropdown items={fontFormats} value={Array.from(fontFormat)} onChange={formatFont}>

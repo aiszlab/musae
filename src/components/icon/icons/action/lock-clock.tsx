@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const LockClock = withIcon(({ size }) => {
+const IconLockClock = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -22,4 +22,4 @@ const LockClock = withIcon(({ size }) => {
   );
 });
 
-export default LockClock;
+export default IconLockClock;

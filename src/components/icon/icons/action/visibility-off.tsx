@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const VisibilityOff = withIcon(({ size }) => {
+const IconVisibilityOff = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const VisibilityOff = withIcon(({ size }) => {
   );
 });
 
-export default VisibilityOff;
+export default IconVisibilityOff;

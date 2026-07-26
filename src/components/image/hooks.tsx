@@ -1,6 +1,13 @@
 import React, { useMemo } from "react";
 import type { OperationsProps, OperationEvent } from "../../types/image";
-import { SwapHoriz, SwapVert, RotateLeft, RotateRight, ZoomOut, ZoomIn } from "../icon/icons";
+import {
+  IconSwapHoriz,
+  IconSwapVert,
+  RotateLeft,
+  RotateRight,
+  IconZoomOut,
+  IconZoomIn,
+} from "../icon/icons";
 import { IconButton } from "../icon-button";
 
 /**
@@ -18,12 +25,12 @@ export const useHandlers = ({
   const events = useMemo<OperationEvent[]>(() => {
     return [
       {
-        child: <SwapHoriz />,
+        child: <IconSwapHoriz />,
         onClick: onFlipX,
         type: "flip-x",
       },
       {
-        child: <SwapVert />,
+        child: <IconSwapVert />,
         onClick: onFlipY,
         type: "flip-y",
       },
@@ -38,12 +45,12 @@ export const useHandlers = ({
         type: "rotate-right",
       },
       {
-        child: <ZoomOut />,
+        child: <IconZoomOut />,
         onClick: onZoomOut,
         type: "zoom-out",
       },
       {
-        child: <ZoomIn />,
+        child: <IconZoomIn />,
         onClick: onZoomIn,
         type: "zoom-in",
       },

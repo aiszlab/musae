@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const ViewQuilt = withIcon(({ size }) => {
+const IconViewQuilt = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const ViewQuilt = withIcon(({ size }) => {
   );
 });
 
-export default ViewQuilt;
+export default IconViewQuilt;

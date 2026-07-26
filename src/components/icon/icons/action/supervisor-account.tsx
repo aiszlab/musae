@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const SupervisorAccount = withIcon(({ size }) => {
+const IconSupervisorAccount = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const SupervisorAccount = withIcon(({ size }) => {
   );
 });
 
-export default SupervisorAccount;
+export default IconSupervisorAccount;

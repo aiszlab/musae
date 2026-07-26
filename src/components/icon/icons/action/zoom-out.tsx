@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const ZoomOut = withIcon(({ size }) => {
+const IconZoomOut = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const ZoomOut = withIcon(({ size }) => {
   );
 });
 
-export default ZoomOut;
+export default IconZoomOut;

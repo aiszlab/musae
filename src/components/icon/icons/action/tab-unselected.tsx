@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const TabUnselected = withIcon(({ size }) => {
+const IconTabUnselected = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const TabUnselected = withIcon(({ size }) => {
   );
 });
 
-export default TabUnselected;
+export default IconTabUnselected;

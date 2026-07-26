@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const AspectRatio = withIcon(({ size }) => {
+const IconAspectRatio = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const AspectRatio = withIcon(({ size }) => {
   );
 });
 
-export default AspectRatio;
+export default IconAspectRatio;

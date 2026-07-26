@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const TrendingFlat = withIcon(({ size }) => {
+const IconTrendingFlat = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -15,4 +15,4 @@ const TrendingFlat = withIcon(({ size }) => {
   );
 });
 
-export default TrendingFlat;
+export default IconTrendingFlat;

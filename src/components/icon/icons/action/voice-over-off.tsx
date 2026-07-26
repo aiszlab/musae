@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const VoiceOverOff = withIcon(({ size }) => {
+const IconVoiceOverOff = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const VoiceOverOff = withIcon(({ size }) => {
   );
 });
 
-export default VoiceOverOff;
+export default IconVoiceOverOff;

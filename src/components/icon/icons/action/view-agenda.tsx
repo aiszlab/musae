@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const ViewAgenda = withIcon(({ size }) => {
+const IconViewAgenda = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const ViewAgenda = withIcon(({ size }) => {
   );
 });
 
-export default ViewAgenda;
+export default IconViewAgenda;

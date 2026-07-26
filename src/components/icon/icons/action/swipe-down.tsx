@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const SwipeDown = withIcon(({ size }) => {
+const IconSwipeDown = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const SwipeDown = withIcon(({ size }) => {
   );
 });
 
-export default SwipeDown;
+export default IconSwipeDown;

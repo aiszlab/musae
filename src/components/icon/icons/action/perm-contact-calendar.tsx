@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const PermContactCalendar = withIcon(({ size }) => {
+const IconPermContactCalendar = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const PermContactCalendar = withIcon(({ size }) => {
   );
 });
 
-export default PermContactCalendar;
+export default IconPermContactCalendar;

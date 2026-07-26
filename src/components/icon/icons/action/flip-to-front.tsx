@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const FlipToFront = withIcon(({ size }) => {
+const IconFlipToFront = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const FlipToFront = withIcon(({ size }) => {
   );
 });
 
-export default FlipToFront;
+export default IconFlipToFront;

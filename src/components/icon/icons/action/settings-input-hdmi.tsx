@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const SettingsInputHdmi = withIcon(({ size }) => {
+const IconSettingsInputHdmi = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const SettingsInputHdmi = withIcon(({ size }) => {
   );
 });
 
-export default SettingsInputHdmi;
+export default IconSettingsInputHdmi;

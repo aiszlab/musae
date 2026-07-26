@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Loyalty = withIcon(({ size }) => {
+const IconLoyalty = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -26,4 +26,4 @@ const Loyalty = withIcon(({ size }) => {
   );
 });
 
-export default Loyalty;
+export default IconLoyalty;

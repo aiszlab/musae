@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const LightbulbCircle = withIcon(({ size }) => {
+const IconLightbulbCircle = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -27,4 +27,4 @@ const LightbulbCircle = withIcon(({ size }) => {
   );
 });
 
-export default LightbulbCircle;
+export default IconLightbulbCircle;

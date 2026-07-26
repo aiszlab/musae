@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const EventSeat = withIcon(({ size }) => {
+const IconEventSeat = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const EventSeat = withIcon(({ size }) => {
   );
 });
 
-export default EventSeat;
+export default IconEventSeat;

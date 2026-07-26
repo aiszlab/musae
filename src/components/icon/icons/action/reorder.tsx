@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Reorder = withIcon(({ size }) => {
+const IconReorder = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const Reorder = withIcon(({ size }) => {
   );
 });
 
-export default Reorder;
+export default IconReorder;

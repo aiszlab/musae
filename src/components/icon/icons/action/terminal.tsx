@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Terminal = withIcon(({ size }) => {
+const IconTerminal = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const Terminal = withIcon(({ size }) => {
   );
 });
 
-export default Terminal;
+export default IconTerminal;

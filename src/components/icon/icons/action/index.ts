@@ -1,885 +1,910 @@
-import Visibility from "./visibility";
-import VisibilityOff from "./visibility-off";
-import CheckCircleOutline from "./check-circle-outline";
-import Done from "./done";
-import CheckCircle from "./check-circle";
-import SwapHoriz from "./swap-horiz";
-import SwapVert from "./swap-vert";
-import ZoomOut from "./zoom-out";
-import ZoomIn from "./zoom-in";
-import DoneOutline from "./done-outline";
-import Translate from "./translate";
-import Code from "./code";
-import OpenInNew from "./open-in-new";
-import Delete from "./delete";
-import ThreeDRotation from "./three-d-rotation";
-import AccountCircle from "./account-circle";
-import RocketLaunch from "./rocket-launch";
-import Preview from "./preview";
-import Logout from "./logout";
-import Schedule from "./schedule";
-import TurnedIn from "./turned-in";
-import CalendarToday from "./calendar-today";
-import Search from "./search";
-import Abc from "./abc";
-import AccessibilityNew from "./accessibility-new";
-import Accessibility from "./accessibility";
-import AccessibleForward from "./accessible-forward";
-import Accessible from "./accessible";
-import AccountBalanceWallet from "./account-balance-wallet";
-import AccountBalance from "./account-balance";
-import AccountBox from "./account-box";
-import AddCard from "./add-card";
-import AddHome from "./add-home";
-import AddShoppingCart from "./add-shopping-cart";
-import AddTask from "./add-task";
-import AddToDrive from "./add-to-drive";
-import Addchart from "./addchart";
-import AdminPanelSettings from "./admin-panel-settings";
-import AdsClick from "./ads-click";
-import AlarmAdd from "./alarm-add";
-import AlarmOff from "./alarm-off";
-import AlarmOn from "./alarm-on";
-import Alarm from "./alarm";
-import AllInbox from "./all-inbox";
-import AllOut from "./all-out";
-import Analytics from "./analytics";
-import Anchor from "./anchor";
-import Android from "./android";
-import Announcement from "./announcement";
-import Api from "./api";
-import AppBlocking from "./app-blocking";
-import AppShortcut from "./app-shortcut";
-import ArrowCircleDown from "./arrow-circle-down";
-import ArrowCircleLeft from "./arrow-circle-left";
-import ArrowCircleRight from "./arrow-circle-right";
-import ArrowCircleUp from "./arrow-circle-up";
-import ArrowOutward from "./arrow-outward";
-import ArrowRightAlt from "./arrow-right-alt";
-import Article from "./article";
-import AspectRatio from "./aspect-ratio";
-import Assessment from "./assessment";
-import AssignmentInd from "./assignment-ind";
-import AssignmentLate from "./assignment-late";
-import AssignmentReturn from "./assignment-return";
-import AssignmentReturned from "./assignment-returned";
-import AssignmentTurnedIn from "./assignment-turned-in";
-import Assignment from "./assignment";
-import AssuredWorkload from "./assured-workload";
-import Autorenew from "./autorenew";
-import BackupTable from "./backup-table";
-import Backup from "./backup";
-import Balance from "./balance";
-import BatchPrediction from "./batch-prediction";
-import BookOnline from "./book-online";
-import Book from "./book";
-import BookmarkAdd from "./bookmark-add";
-import BookmarkAdded from "./bookmark-added";
-import BookmarkBorder from "./bookmark-border";
-import BookmarkRemove from "./bookmark-remove";
-import Bookmark from "./bookmark";
-import Bookmarks from "./bookmarks";
-import BrowseGallery from "./browse-gallery";
-import BugReport from "./bug-report";
-import BuildCircle from "./build-circle";
-import Build from "./build";
-import Cached from "./cached";
-import CalendarMonth from "./calendar-month";
-import CalendarViewDay from "./calendar-view-day";
-import CalendarViewMonth from "./calendar-view-month";
-import CalendarViewWeek from "./calendar-view-week";
-import CameraEnhance from "./camera-enhance";
-import CancelScheduleSend from "./cancel-schedule-send";
-import CardGiftcard from "./card-giftcard";
-import CardMembership from "./card-membership";
-import CardTravel from "./card-travel";
-import ChangeHistory from "./change-history";
-import ChromeReaderMode from "./chrome-reader-mode";
-import CircleNotifications from "./circle-notifications";
-import Class from "./class";
-import CloseFullscreen from "./close-fullscreen";
-import CodeOff from "./code-off";
-import CommentBank from "./comment-bank";
-import Commit from "./commit";
-import Commute from "./commute";
-import CompareArrows from "./compare-arrows";
-import Compress from "./compress";
-import ContactPage from "./contact-page";
-import ContactSupport from "./contact-support";
-import Contactless from "./contactless";
-import Copyright from "./copyright";
-import CreditCardOff from "./credit-card-off";
-import CreditCard from "./credit-card";
-import Css from "./css";
-import CurrencyExchange from "./currency-exchange";
-import Dangerous from "./dangerous";
-import DashboardCustomize from "./dashboard-customize";
-import Dashboard from "./dashboard";
-import DataExploration from "./data-exploration";
-import DataThresholding from "./data-thresholding";
-import DateRange from "./date-range";
-import DeleteForever from "./delete-forever";
-import DeleteOutline from "./delete-outline";
-import DensityLarge from "./density-large";
-import DensityMedium from "./density-medium";
-import DensitySmall from "./density-small";
-import Description from "./description";
-import DisabledByDefault from "./disabled-by-default";
-import DisabledVisible from "./disabled-visible";
-import DisplaySettings from "./display-settings";
-import Dns from "./dns";
-import DoneAll from "./done-all";
-import DonutLarge from "./donut-large";
-import DonutSmall from "./donut-small";
-import DragIndicator from "./drag-indicator";
-import DynamicForm from "./dynamic-form";
-import EditCalendar from "./edit-calendar";
-import EditOff from "./edit-off";
-import Eject from "./eject";
-import EuroSymbol from "./euro-symbol";
-import EventRepeat from "./event-repeat";
-import EventSeat from "./event-seat";
-import Event from "./event";
-import ExitToApp from "./exit-to-app";
-import Expand from "./expand";
-import ExploreOff from "./explore-off";
-import Explore from "./explore";
-import ExtensionOff from "./extension-off";
-import Extension from "./extension";
-import Face from "./face";
-import FactCheck from "./fact-check";
-import FavoriteBorder from "./favorite-border";
-import Favorite from "./favorite";
-import Fax from "./fax";
-import Feedback from "./feedback";
-import FilePresent from "./file-present";
-import FilterAltOff from "./filter-alt-off";
-import FilterAlt from "./filter-alt";
-import FindInPage from "./find-in-page";
-import FindReplace from "./find-replace";
-import Fingerprint from "./fingerprint";
-import FitScreen from "./fit-screen";
-import Flaky from "./flaky";
-import FlightLand from "./flight-land";
-import FlightTakeoff from "./flight-takeoff";
-import FlipToBack from "./flip-to-back";
-import FlipToFront from "./flip-to-front";
-import FlutterDash from "./flutter-dash";
-import FreeCancellation from "./free-cancellation";
-import GTranslate from "./g-translate";
-import Gavel from "./gavel";
-import GeneratingTokens from "./generating-tokens";
-import GetApp from "./get-app";
-import GifBox from "./gif-box";
-import Gif from "./gif";
-import Grade from "./grade";
-import Grading from "./grading";
-import GroupWork from "./group-work";
-import HelpCenter from "./help-center";
-import HelpOutline from "./help-outline";
-import Help from "./help";
-import HideSource from "./hide-source";
-import HighlightAlt from "./highlight-alt";
-import HighlightOff from "./highlight-off";
-import HistoryToggleOff from "./history-toggle-off";
-import History from "./history";
-import HlsOff from "./hls-off";
-import Hls from "./hls";
-import Home from "./home";
-import HorizontalSplit from "./horizontal-split";
-import HotelClass from "./hotel-class";
-import HourglassDisabled from "./hourglass-disabled";
-import HourglassEmpty from "./hourglass-empty";
-import HourglassFull from "./hourglass-full";
-import Html from "./html";
-import Http from "./http";
-import Https from "./https";
-import ImportantDevices from "./important-devices";
-import Info from "./info";
-import Input from "./input";
-import InstallDesktop from "./install-desktop";
-import InstallMobile from "./install-mobile";
-import IntegrationInstructions from "./integration-instructions";
-import InvertColors from "./invert-colors";
-import Javascript from "./javascript";
-import JoinFull from "./join-full";
-import JoinInner from "./join-inner";
-import JoinLeft from "./join-left";
-import JoinRight from "./join-right";
-import LabelImportant from "./label-important";
-import LabelOff from "./label-off";
-import Label from "./label";
-import Language from "./language";
-import Launch from "./launch";
-import Leaderboard from "./leaderboard";
-import LightbulbCircle from "./lightbulb-circle";
-import Lightbulb from "./lightbulb";
-import LineStyle from "./line-style";
-import LineWeight from "./line-weight";
-import List from "./list";
-import LockClock from "./lock-clock";
-import LockOpen from "./lock-open";
-import LockPerson from "./lock-person";
-import LockReset from "./lock-reset";
-import Lock from "./lock";
-import Login from "./login";
-import Loyalty from "./loyalty";
-import ManageAccounts from "./manage-accounts";
-import ManageHistory from "./manage-history";
-import MarkAsUnread from "./mark-as-unread";
-import MarkunreadMailbox from "./markunread-mailbox";
-import Maximize from "./maximize";
-import Mediation from "./mediation";
-import Minimize from "./minimize";
-import ModelTraining from "./model-training";
-import NetworkPing from "./network-ping";
-import NewLabel from "./new-label";
-import NextPlan from "./next-plan";
-import NightlightRound from "./nightlight-round";
-import NoAccounts from "./no-accounts";
-import NoiseAware from "./noise-aware";
-import NoiseControlOff from "./noise-control-off";
-import NotAccessible from "./not-accessible";
-import NotStarted from "./not-started";
-import NoteAdd from "./note-add";
-import OfflineBolt from "./offline-bolt";
-import OfflinePin from "./offline-pin";
-import OnDeviceTraining from "./on-device-training";
-import Numbers from "./123";
-import OneTwoThree from "./one-two-three";
-import OnlinePrediction from "./online-prediction";
-import Opacity from "./opacity";
-import OpenInBrowser from "./open-in-browser";
-import OpenInFull from "./open-in-full";
-import OpenInNewOff from "./open-in-new-off";
-import OpenWith from "./open-with";
-import Outbound from "./outbound";
-import Outbox from "./outbox";
-import Outlet from "./outlet";
-import Output from "./output";
-import Pageview from "./pageview";
-import Paid from "./paid";
-import PanToolAlt from "./pan-tool-alt";
-import Payment from "./payment";
-import PendingActions from "./pending-actions";
-import Pending from "./pending";
-import Percent from "./percent";
-import PermCameraMic from "./perm-camera-mic";
-import PermContactCalendar from "./perm-contact-calendar";
-import PermDataSetting from "./perm-data-setting";
-import PermDeviceInformation from "./perm-device-information";
-import PermIdentity from "./perm-identity";
-import PermMedia from "./perm-media";
-import PermPhoneMsg from "./perm-phone-msg";
-import PermScanWifi from "./perm-scan-wifi";
-import Polymer from "./polymer";
-import PregnantWoman from "./pregnant-woman";
-import Print from "./print";
-import PrivacyTip from "./privacy-tip";
-import PublishedWithChanges from "./published-with-changes";
-import QueryBuilder from "./query-builder";
-import QuestionAnswer from "./question-answer";
-import QuestionMark from "./question-mark";
-import Quickreply from "./quickreply";
-import Receipt from "./receipt";
-import RecordVoiceOver from "./record-voice-over";
-import Redeem from "./redeem";
-import RemoveDone from "./remove-done";
-import RemoveShoppingCart from "./remove-shopping-cart";
-import Reorder from "./reorder";
-import Repartition from "./repartition";
-import ReportProblem from "./report-problem";
-import RequestPage from "./request-page";
-import RestoreFromTrash from "./restore-from-trash";
-import RestorePage from "./restore-page";
-import Restore from "./restore";
-import Rocket from "./rocket";
-import Room from "./room";
-import RoundedCorner from "./rounded-corner";
-import Rowing from "./rowing";
-import Rule from "./rule";
-import SatelliteAlt from "./satellite-alt";
-import SavedSearch from "./saved-search";
-import Savings from "./savings";
-import ScheduleSend from "./schedule-send";
-import SearchOff from "./search-off";
-import Segment from "./segment";
-import SendAndArchive from "./send-and-archive";
-import SensorsOff from "./sensors-off";
-import Sensors from "./sensors";
-import SettingsAccessibility from "./settings-accessibility";
-import SettingsApplications from "./settings-applications";
-import SettingsBackupRestore from "./settings-backup-restore";
-import SettingsBluetooth from "./settings-bluetooth";
-import SettingsBrightness from "./settings-brightness";
-import SettingsCell from "./settings-cell";
-import SettingsEthernet from "./settings-ethernet";
-import SettingsInputAntenna from "./settings-input-antenna";
-import SettingsInputComponent from "./settings-input-component";
-import SettingsInputComposite from "./settings-input-composite";
-import SettingsInputHdmi from "./settings-input-hdmi";
-import SettingsInputSvideo from "./settings-input-svideo";
-import SettingsOverscan from "./settings-overscan";
-import SettingsPhone from "./settings-phone";
-import SettingsPower from "./settings-power";
-import SettingsRemote from "./settings-remote";
-import SettingsVoice from "./settings-voice";
-import Settings from "./settings";
-import Shop2 from "./shop-2";
-import ShopTwo from "./shop-two";
-import Shop from "./shop";
-import ShoppingBag from "./shopping-bag";
-import ShoppingBasket from "./shopping-basket";
-import ShoppingCartCheckout from "./shopping-cart-checkout";
-import ShoppingCart from "./shopping-cart";
-import SmartButton from "./smart-button";
-import Source from "./source";
-import SpaceDashboard from "./space-dashboard";
-import SpatialAudioOff from "./spatial-audio-off";
-import SpatialAudio from "./spatial-audio";
-import SpatialTracking from "./spatial-tracking";
-import SpeakerNotesOff from "./speaker-notes-off";
-import SpeakerNotes from "./speaker-notes";
-import Spellcheck from "./spellcheck";
-import StarRate from "./star-rate";
-import Stars from "./stars";
-import StickyNote2 from "./sticky-note-2";
-import Store from "./store";
-import Subject from "./subject";
-import SubtitlesOff from "./subtitles-off";
-import SupervisedUserCircle from "./supervised-user-circle";
-import SupervisorAccount from "./supervisor-account";
-import Support from "./support";
-import SwapHorizontalCircle from "./swap-horizontal-circle";
-import SwapVerticalCircle from "./swap-vertical-circle";
-import SwipeDownAlt from "./swipe-down-alt";
-import SwipeDown from "./swipe-down";
-import SwipeLeftAlt from "./swipe-left-alt";
-import SwipeLeft from "./swipe-left";
-import SwipeRightAlt from "./swipe-right-alt";
-import SwipeRight from "./swipe-right";
-import SwipeUpAlt from "./swipe-up-alt";
-import SwipeUp from "./swipe-up";
-import SwipeVertical from "./swipe-vertical";
-import Swipe from "./swipe";
-import SwitchAccessShortcutAdd from "./switch-access-shortcut-add";
-import SwitchAccessShortcut from "./switch-access-shortcut";
-import SyncAlt from "./sync-alt";
-import SystemUpdateAlt from "./system-update-alt";
-import TabUnselected from "./tab-unselected";
-import Tab from "./tab";
-import TableView from "./table-view";
-import TaskAlt from "./task-alt";
-import Terminal from "./terminal";
-import TextRotateUp from "./text-rotate-up";
-import TextRotateVertical from "./text-rotate-vertical";
-import TextRotationAngledown from "./text-rotation-angledown";
-import TextRotationAngleup from "./text-rotation-angleup";
-import TextRotationDown from "./text-rotation-down";
-import TextRotationNone from "./text-rotation-none";
-import Theaters from "./theaters";
-import ThumbDownOffAlt from "./thumb-down-off-alt";
-import ThumbDown from "./thumb-down";
-import ThumbUpOffAlt from "./thumb-up-off-alt";
-import ThumbUp from "./thumb-up";
-import ThumbsUpDown from "./thumbs-up-down";
-import Timeline from "./timeline";
-import TipsAndUpdates from "./tips-and-updates";
-import Toc from "./toc";
-import Today from "./today";
-import Token from "./token";
-import Toll from "./toll";
-import TouchApp from "./touch-app";
-import Tour from "./tour";
-import TrackChanges from "./track-changes";
-import Transcribe from "./transcribe";
-import TrendingDown from "./trending-down";
-import TrendingFlat from "./trending-flat";
-import TrendingUp from "./trending-up";
-import Troubleshoot from "./troubleshoot";
-import Try from "./try";
-import TurnedInNot from "./turned-in-not";
-import UnfoldLessDouble from "./unfold-less-double";
-import UnfoldMoreDouble from "./unfold-more-double";
-import Unpublished from "./unpublished";
-import UpdateDisabled from "./update-disabled";
-import Update from "./update";
-import Upgrade from "./upgrade";
-import VerifiedUser from "./verified-user";
-import Verified from "./verified";
-import VerticalSplit from "./vertical-split";
-import ViewAgenda from "./view-agenda";
-import ViewArray from "./view-array";
-import ViewCarousel from "./view-carousel";
-import ViewColumn from "./view-column";
-import ViewComfyAlt from "./view-comfy-alt";
-import ViewCompactAlt from "./view-compact-alt";
-import ViewCozy from "./view-cozy";
-import ViewDay from "./view-day";
-import ViewHeadline from "./view-headline";
-import ViewInAr from "./view-in-ar";
-import ViewKanban from "./view-kanban";
-import ViewList from "./view-list";
-import ViewModule from "./view-module";
-import ViewQuilt from "./view-quilt";
-import ViewSidebar from "./view-sidebar";
-import ViewStream from "./view-stream";
-import ViewTimeline from "./view-timeline";
-import ViewWeek from "./view-week";
-import VoiceOverOff from "./voice-over-off";
-import WatchLater from "./watch-later";
-import Webhook from "./webhook";
-import WidthFull from "./width-full";
-import WidthNormal from "./width-normal";
-import WidthWide from "./width-wide";
-import WifiProtectedSetup from "./wifi-protected-setup";
-import WorkHistory from "./work-history";
-import WorkOff from "./work-off";
-import WorkOutline from "./work-outline";
-import Work from "./work";
-import Wysiwyg from "./wysiwyg";
-import YoutubeSearchedFor from "./youtube-searched-for";
+import IconVisibility from "./visibility";
+import IconVisibilityOff from "./visibility-off";
+import IconCheckCircleOutline from "./check-circle-outline";
+import IconDone from "./done";
+import IconCheckCircle from "./check-circle";
+import IconSwapHoriz from "./swap-horiz";
+import IconSwapVert from "./swap-vert";
+import IconZoomOut from "./zoom-out";
+import IconZoomIn from "./zoom-in";
+import IconDoneOutline from "./done-outline";
+import IconTranslate from "./translate";
+import IconCode from "./code";
+import IconOpenInNew from "./open-in-new";
+import IconDelete from "./delete";
+import Icon3dRotation from "./3d-rotation";
+import IconAccountCircle from "./account-circle";
+import IconRocketLaunch from "./rocket-launch";
+import IconPreview from "./preview";
+import IconLogout from "./logout";
+import IconSchedule from "./schedule";
+import IconTurnedIn from "./turned-in";
+import IconCalendarToday from "./calendar-today";
+import IconSearch from "./search";
+import IconAbc from "./abc";
+import IconAccessibilityNew from "./accessibility-new";
+import IconAccessibility from "./accessibility";
+import IconAccessibleForward from "./accessible-forward";
+import IconAccessible from "./accessible";
+import IconAccountBalanceWallet from "./account-balance-wallet";
+import IconAccountBalance from "./account-balance";
+import IconAccountBox from "./account-box";
+import IconAddCard from "./add-card";
+import IconAddHome from "./add-home";
+import IconAddShoppingCart from "./add-shopping-cart";
+import IconAddTask from "./add-task";
+import IconAddToDrive from "./add-to-drive";
+import IconAddchart from "./addchart";
+import IconAdminPanelSettings from "./admin-panel-settings";
+import IconAdsClick from "./ads-click";
+import IconAlarmAdd from "./alarm-add";
+import IconAlarmOff from "./alarm-off";
+import IconAlarmOn from "./alarm-on";
+import IconAlarm from "./alarm";
+import IconAllInbox from "./all-inbox";
+import IconAllOut from "./all-out";
+import IconAnalytics from "./analytics";
+import IconAnchor from "./anchor";
+import IconAndroid from "./android";
+import IconAnnouncement from "./announcement";
+import IconApi from "./api";
+import IconAppBlocking from "./app-blocking";
+import IconAppShortcut from "./app-shortcut";
+import IconArrowCircleDown from "./arrow-circle-down";
+import IconArrowCircleLeft from "./arrow-circle-left";
+import IconArrowCircleRight from "./arrow-circle-right";
+import IconArrowCircleUp from "./arrow-circle-up";
+import IconArrowOutward from "./arrow-outward";
+import IconArrowRightAlt from "./arrow-right-alt";
+import IconArticle from "./article";
+import IconAspectRatio from "./aspect-ratio";
+import IconAssessment from "./assessment";
+import IconAssignmentInd from "./assignment-ind";
+import IconAssignmentLate from "./assignment-late";
+import IconAssignmentReturn from "./assignment-return";
+import IconAssignmentReturned from "./assignment-returned";
+import IconAssignmentTurnedIn from "./assignment-turned-in";
+import IconAssignment from "./assignment";
+import IconAssuredWorkload from "./assured-workload";
+import IconAutorenew from "./autorenew";
+import IconBackupTable from "./backup-table";
+import IconBackup from "./backup";
+import IconBalance from "./balance";
+import IconBatchPrediction from "./batch-prediction";
+import IconBookOnline from "./book-online";
+import IconBook from "./book";
+import IconBookmarkAdd from "./bookmark-add";
+import IconBookmarkAdded from "./bookmark-added";
+import IconBookmarkBorder from "./bookmark-border";
+import IconBookmarkRemove from "./bookmark-remove";
+import IconBookmark from "./bookmark";
+import IconBookmarks from "./bookmarks";
+import IconBrowseGallery from "./browse-gallery";
+import IconBugReport from "./bug-report";
+import IconBuildCircle from "./build-circle";
+import IconBuild from "./build";
+import IconCached from "./cached";
+import IconCalendarMonth from "./calendar-month";
+import IconCalendarViewDay from "./calendar-view-day";
+import IconCalendarViewMonth from "./calendar-view-month";
+import IconCalendarViewWeek from "./calendar-view-week";
+import IconCameraEnhance from "./camera-enhance";
+import IconCancelScheduleSend from "./cancel-schedule-send";
+import IconCardGiftcard from "./card-giftcard";
+import IconCardMembership from "./card-membership";
+import IconCardTravel from "./card-travel";
+import IconChangeHistory from "./change-history";
+import IconChromeReaderMode from "./chrome-reader-mode";
+import IconCircleNotifications from "./circle-notifications";
+import IconClass from "./class";
+import IconCloseFullscreen from "./close-fullscreen";
+import IconCodeOff from "./code-off";
+import IconCommentBank from "./comment-bank";
+import IconCommit from "./commit";
+import IconCommute from "./commute";
+import IconCompareArrows from "./compare-arrows";
+import IconCompress from "./compress";
+import IconContactPage from "./contact-page";
+import IconContactSupport from "./contact-support";
+import IconContactless from "./contactless";
+import IconCopyright from "./copyright";
+import IconCreditCardOff from "./credit-card-off";
+import IconCreditCard from "./credit-card";
+import IconCss from "./css";
+import IconCurrencyExchange from "./currency-exchange";
+import IconDangerous from "./dangerous";
+import IconDashboardCustomize from "./dashboard-customize";
+import IconDashboard from "./dashboard";
+import IconDataExploration from "./data-exploration";
+import IconDataThresholding from "./data-thresholding";
+import IconDateRange from "./date-range";
+import IconDeleteForever from "./delete-forever";
+import IconDeleteOutline from "./delete-outline";
+import IconDensityLarge from "./density-large";
+import IconDensityMedium from "./density-medium";
+import IconDensitySmall from "./density-small";
+import IconDescription from "./description";
+import IconDisabledByDefault from "./disabled-by-default";
+import IconDisabledVisible from "./disabled-visible";
+import IconDisplaySettings from "./display-settings";
+import IconDns from "./dns";
+import IconDoneAll from "./done-all";
+import IconDonutLarge from "./donut-large";
+import IconDonutSmall from "./donut-small";
+import IconDragIndicator from "./drag-indicator";
+import IconDynamicForm from "./dynamic-form";
+import IconEditCalendar from "./edit-calendar";
+import IconEditOff from "./edit-off";
+import IconEject from "./eject";
+import IconEuroSymbol from "./euro-symbol";
+import IconEventRepeat from "./event-repeat";
+import IconEventSeat from "./event-seat";
+import IconEvent from "./event";
+import IconExitToApp from "./exit-to-app";
+import IconExpand from "./expand";
+import IconExploreOff from "./explore-off";
+import IconExplore from "./explore";
+import IconExtensionOff from "./extension-off";
+import IconExtension from "./extension";
+import IconFace from "./face";
+import IconFactCheck from "./fact-check";
+import IconFavoriteBorder from "./favorite-border";
+import IconFavorite from "./favorite";
+import IconFax from "./fax";
+import IconFeedback from "./feedback";
+import IconFilePresent from "./file-present";
+import IconFilterAltOff from "./filter-alt-off";
+import IconFilterAlt from "./filter-alt";
+import IconFindInPage from "./find-in-page";
+import IconFindReplace from "./find-replace";
+import IconFingerprint from "./fingerprint";
+import IconFitScreen from "./fit-screen";
+import IconFlaky from "./flaky";
+import IconFlightLand from "./flight-land";
+import IconFlightTakeoff from "./flight-takeoff";
+import IconFlipToBack from "./flip-to-back";
+import IconFlipToFront from "./flip-to-front";
+import IconFlutterDash from "./flutter-dash";
+import IconFreeCancellation from "./free-cancellation";
+import IconGTranslate from "./g-translate";
+import IconGavel from "./gavel";
+import IconGeneratingTokens from "./generating-tokens";
+import IconGetApp from "./get-app";
+import IconGifBox from "./gif-box";
+import IconGif from "./gif";
+import IconGrade from "./grade";
+import IconGrading from "./grading";
+import IconGroupWork from "./group-work";
+import IconHelpCenter from "./help-center";
+import IconHelpOutline from "./help-outline";
+import IconHelp from "./help";
+import IconHideSource from "./hide-source";
+import IconHighlightAlt from "./highlight-alt";
+import IconHighlightOff from "./highlight-off";
+import IconHistoryToggleOff from "./history-toggle-off";
+import IconHistory from "./history";
+import IconHlsOff from "./hls-off";
+import IconHls from "./hls";
+import IconHome from "./home";
+import IconHorizontalSplit from "./horizontal-split";
+import IconHotelClass from "./hotel-class";
+import IconHourglassDisabled from "./hourglass-disabled";
+import IconHourglassEmpty from "./hourglass-empty";
+import IconHourglassFull from "./hourglass-full";
+import IconHtml from "./html";
+import IconHttp from "./http";
+import IconHttps from "./https";
+import IconImportantDevices from "./important-devices";
+import IconInfo from "./info";
+import IconInput from "./input";
+import IconInstallDesktop from "./install-desktop";
+import IconInstallMobile from "./install-mobile";
+import IconIntegrationInstructions from "./integration-instructions";
+import IconInvertColors from "./invert-colors";
+import IconJavascript from "./javascript";
+import IconJoinFull from "./join-full";
+import IconJoinInner from "./join-inner";
+import IconJoinLeft from "./join-left";
+import IconJoinRight from "./join-right";
+import IconLabelImportant from "./label-important";
+import IconLabelOff from "./label-off";
+import IconLabel from "./label";
+import IconLanguage from "./language";
+import IconLaunch from "./launch";
+import IconLeaderboard from "./leaderboard";
+import IconLightbulbCircle from "./lightbulb-circle";
+import IconLightbulb from "./lightbulb";
+import IconLineStyle from "./line-style";
+import IconLineWeight from "./line-weight";
+import IconList from "./list";
+import IconLockClock from "./lock-clock";
+import IconLockOpen from "./lock-open";
+import IconLockPerson from "./lock-person";
+import IconLockReset from "./lock-reset";
+import IconLock from "./lock";
+import IconLogin from "./login";
+import IconLoyalty from "./loyalty";
+import IconManageAccounts from "./manage-accounts";
+import IconManageHistory from "./manage-history";
+import IconMarkAsUnread from "./mark-as-unread";
+import IconMarkunreadMailbox from "./markunread-mailbox";
+import IconMaximize from "./maximize";
+import IconMediation from "./mediation";
+import IconMinimize from "./minimize";
+import IconModelTraining from "./model-training";
+import IconNetworkPing from "./network-ping";
+import IconNewLabel from "./new-label";
+import IconNextPlan from "./next-plan";
+import IconNightlightRound from "./nightlight-round";
+import IconNoAccounts from "./no-accounts";
+import IconNoiseAware from "./noise-aware";
+import IconNoiseControlOff from "./noise-control-off";
+import IconNotAccessible from "./not-accessible";
+import IconNotStarted from "./not-started";
+import IconNoteAdd from "./note-add";
+import IconOfflineBolt from "./offline-bolt";
+import IconOfflinePin from "./offline-pin";
+import IconOnDeviceTraining from "./on-device-training";
+import Icon123 from "./123";
+
+import IconOnlinePrediction from "./online-prediction";
+import IconOpacity from "./opacity";
+import IconOpenInBrowser from "./open-in-browser";
+import IconOpenInFull from "./open-in-full";
+import IconOpenInNewOff from "./open-in-new-off";
+import IconOpenWith from "./open-with";
+import IconOutbound from "./outbound";
+import IconOutbox from "./outbox";
+import IconOutlet from "./outlet";
+import IconOutput from "./output";
+import IconPageview from "./pageview";
+import IconPaid from "./paid";
+import IconPanToolAlt from "./pan-tool-alt";
+import IconPanTool from "./pan-tool";
+import IconPayment from "./payment";
+import IconPendingActions from "./pending-actions";
+import IconPending from "./pending";
+import IconPercent from "./percent";
+import IconPermCameraMic from "./perm-camera-mic";
+import IconPermContactCalendar from "./perm-contact-calendar";
+import IconPermDataSetting from "./perm-data-setting";
+import IconPermDeviceInformation from "./perm-device-information";
+import IconPermIdentity from "./perm-identity";
+import IconPermMedia from "./perm-media";
+import IconPermPhoneMsg from "./perm-phone-msg";
+import IconPermScanWifi from "./perm-scan-wifi";
+import IconPets from "./pets";
+import IconPhp from "./php";
+import IconPictureInPicture from "./picture-in-picture";
+import IconPictureInPictureAlt from "./picture-in-picture-alt";
+import IconPinEnd from "./pin-end";
+import IconPinInvoke from "./pin-invoke";
+import IconPinch from "./pinch";
+import IconPlagiarism from "./plagiarism";
+import IconPlayForWork from "./play-for-work";
+import IconPolymer from "./polymer";
+import IconPowerSettingsNew from "./power-settings-new";
+import IconPregnantWoman from "./pregnant-woman";
+import IconPrint from "./print";
+import IconPrivacyTip from "./privacy-tip";
+import IconPrivateConnectivity from "./private-connectivity";
+import IconProductionQuantityLimits from "./production-quantity-limits";
+import IconPublishedWithChanges from "./published-with-changes";
+import IconQueryBuilder from "./query-builder";
+import IconQuestionAnswer from "./question-answer";
+import IconQuestionMark from "./question-mark";
+import IconQuickreply from "./quickreply";
+import IconReceipt from "./receipt";
+import IconRecordVoiceOver from "./record-voice-over";
+import IconRedeem from "./redeem";
+import IconRemoveDone from "./remove-done";
+import IconRemoveShoppingCart from "./remove-shopping-cart";
+import IconReorder from "./reorder";
+import IconRepartition from "./repartition";
+import IconReportProblem from "./report-problem";
+import IconRequestPage from "./request-page";
+import IconRestoreFromTrash from "./restore-from-trash";
+import IconRestorePage from "./restore-page";
+import IconRestore from "./restore";
+import IconRocket from "./rocket";
+import IconRoom from "./room";
+import IconRoundedCorner from "./rounded-corner";
+import IconRowing from "./rowing";
+import IconRule from "./rule";
+import IconSatelliteAlt from "./satellite-alt";
+import IconSavedSearch from "./saved-search";
+import IconSavings from "./savings";
+import IconScheduleSend from "./schedule-send";
+import IconSearchOff from "./search-off";
+import IconSegment from "./segment";
+import IconSendAndArchive from "./send-and-archive";
+import IconSensorsOff from "./sensors-off";
+import IconSensors from "./sensors";
+import IconSettingsAccessibility from "./settings-accessibility";
+import IconSettingsApplications from "./settings-applications";
+import IconSettingsBackupRestore from "./settings-backup-restore";
+import IconSettingsBluetooth from "./settings-bluetooth";
+import IconSettingsBrightness from "./settings-brightness";
+import IconSettingsCell from "./settings-cell";
+import IconSettingsEthernet from "./settings-ethernet";
+import IconSettingsInputAntenna from "./settings-input-antenna";
+import IconSettingsInputComponent from "./settings-input-component";
+import IconSettingsInputComposite from "./settings-input-composite";
+import IconSettingsInputHdmi from "./settings-input-hdmi";
+import IconSettingsInputSvideo from "./settings-input-svideo";
+import IconSettingsOverscan from "./settings-overscan";
+import IconSettingsPhone from "./settings-phone";
+import IconSettingsPower from "./settings-power";
+import IconSettingsRemote from "./settings-remote";
+import IconSettingsVoice from "./settings-voice";
+import IconSettings from "./settings";
+import IconShop2 from "./shop-2";
+import IconShopTwo from "./shop-two";
+import IconShop from "./shop";
+import IconShoppingBag from "./shopping-bag";
+import IconShoppingBasket from "./shopping-basket";
+import IconShoppingCartCheckout from "./shopping-cart-checkout";
+import IconShoppingCart from "./shopping-cart";
+import IconSmartButton from "./smart-button";
+import IconSource from "./source";
+import IconSpaceDashboard from "./space-dashboard";
+import IconSpatialAudioOff from "./spatial-audio-off";
+import IconSpatialAudio from "./spatial-audio";
+import IconSpatialTracking from "./spatial-tracking";
+import IconSpeakerNotesOff from "./speaker-notes-off";
+import IconSpeakerNotes from "./speaker-notes";
+import IconSpellcheck from "./spellcheck";
+import IconStarRate from "./star-rate";
+import IconStars from "./stars";
+import IconStickyNote2 from "./sticky-note-2";
+import IconStore from "./store";
+import IconSubject from "./subject";
+import IconSubtitlesOff from "./subtitles-off";
+import IconSupervisedUserCircle from "./supervised-user-circle";
+import IconSupervisorAccount from "./supervisor-account";
+import IconSupport from "./support";
+import IconSwapHorizontalCircle from "./swap-horizontal-circle";
+import IconSwapVerticalCircle from "./swap-vertical-circle";
+import IconSwipeDownAlt from "./swipe-down-alt";
+import IconSwipeDown from "./swipe-down";
+import IconSwipeLeftAlt from "./swipe-left-alt";
+import IconSwipeLeft from "./swipe-left";
+import IconSwipeRightAlt from "./swipe-right-alt";
+import IconSwipeRight from "./swipe-right";
+import IconSwipeUpAlt from "./swipe-up-alt";
+import IconSwipeUp from "./swipe-up";
+import IconSwipeVertical from "./swipe-vertical";
+import IconSwipe from "./swipe";
+import IconSwitchAccessShortcutAdd from "./switch-access-shortcut-add";
+import IconSwitchAccessShortcut from "./switch-access-shortcut";
+import IconSyncAlt from "./sync-alt";
+import IconSystemUpdateAlt from "./system-update-alt";
+import IconTabUnselected from "./tab-unselected";
+import IconTab from "./tab";
+import IconTableView from "./table-view";
+import IconTaskAlt from "./task-alt";
+import IconTerminal from "./terminal";
+import IconTextRotateUp from "./text-rotate-up";
+import IconTextRotateVertical from "./text-rotate-vertical";
+import IconTextRotationAngledown from "./text-rotation-angledown";
+import IconTextRotationAngleup from "./text-rotation-angleup";
+import IconTextRotationDown from "./text-rotation-down";
+import IconTextRotationNone from "./text-rotation-none";
+import IconTheaters from "./theaters";
+import IconThumbDownOffAlt from "./thumb-down-off-alt";
+import IconThumbDown from "./thumb-down";
+import IconThumbUpOffAlt from "./thumb-up-off-alt";
+import IconThumbUp from "./thumb-up";
+import IconThumbsUpDown from "./thumbs-up-down";
+import IconTimeline from "./timeline";
+import IconTipsAndUpdates from "./tips-and-updates";
+import IconToc from "./toc";
+import IconToday from "./today";
+import IconToken from "./token";
+import IconToll from "./toll";
+import IconTouchApp from "./touch-app";
+import IconTour from "./tour";
+import IconTrackChanges from "./track-changes";
+import IconTranscribe from "./transcribe";
+import IconTrendingDown from "./trending-down";
+import IconTrendingFlat from "./trending-flat";
+import IconTrendingUp from "./trending-up";
+import IconTroubleshoot from "./troubleshoot";
+import IconTry from "./try";
+import IconTurnedInNot from "./turned-in-not";
+import IconUnfoldLessDouble from "./unfold-less-double";
+import IconUnfoldMoreDouble from "./unfold-more-double";
+import IconUnpublished from "./unpublished";
+import IconUpdateDisabled from "./update-disabled";
+import IconUpdate from "./update";
+import IconUpgrade from "./upgrade";
+import IconVerifiedUser from "./verified-user";
+import IconVerified from "./verified";
+import IconVerticalSplit from "./vertical-split";
+import IconViewAgenda from "./view-agenda";
+import IconViewArray from "./view-array";
+import IconViewCarousel from "./view-carousel";
+import IconViewColumn from "./view-column";
+import IconViewComfyAlt from "./view-comfy-alt";
+import IconViewCompactAlt from "./view-compact-alt";
+import IconViewCozy from "./view-cozy";
+import IconViewDay from "./view-day";
+import IconViewHeadline from "./view-headline";
+import IconViewInAr from "./view-in-ar";
+import IconViewKanban from "./view-kanban";
+import IconViewList from "./view-list";
+import IconViewModule from "./view-module";
+import IconViewQuilt from "./view-quilt";
+import IconViewSidebar from "./view-sidebar";
+import IconViewStream from "./view-stream";
+import IconViewTimeline from "./view-timeline";
+import IconViewWeek from "./view-week";
+import IconVoiceOverOff from "./voice-over-off";
+import IconWatchLater from "./watch-later";
+import IconWebhook from "./webhook";
+import IconWidthFull from "./width-full";
+import IconWidthNormal from "./width-normal";
+import IconWidthWide from "./width-wide";
+import IconWifiProtectedSetup from "./wifi-protected-setup";
+import IconWorkHistory from "./work-history";
+import IconWorkOff from "./work-off";
+import IconWorkOutline from "./work-outline";
+import IconWork from "./work";
+import IconWysiwyg from "./wysiwyg";
+import IconYoutubeSearchedFor from "./youtube-searched-for";
 
 export {
-  Visibility,
-  VisibilityOff,
-  CheckCircleOutline,
-  Done,
-  CheckCircle,
-  SwapHoriz,
-  SwapVert,
-  ZoomOut,
-  ZoomIn,
-  DoneOutline,
-  Translate,
-  Code,
-  OpenInNew,
-  Delete,
-  ThreeDRotation,
-  AccountCircle,
-  RocketLaunch,
-  Preview,
-  Logout,
-  Schedule,
-  TurnedIn,
-  CalendarToday,
-  Search,
-  Abc,
-  AccessibilityNew,
-  Accessibility,
-  AccessibleForward,
-  Accessible,
-  AccountBalanceWallet,
-  AccountBalance,
-  AccountBox,
-  AddCard,
-  AddHome,
-  AddShoppingCart,
-  AddTask,
-  AddToDrive,
-  Addchart,
-  AdminPanelSettings,
-  AdsClick,
-  AlarmAdd,
-  AlarmOff,
-  AlarmOn,
-  Alarm,
-  AllInbox,
-  AllOut,
-  Analytics,
-  Anchor,
-  Android,
-  Announcement,
-  Api,
-  AppBlocking,
-  AppShortcut,
-  ArrowCircleDown,
-  ArrowCircleLeft,
-  ArrowCircleRight,
-  ArrowCircleUp,
-  ArrowOutward,
-  ArrowRightAlt,
-  Article,
-  AspectRatio,
-  Assessment,
-  AssignmentInd,
-  AssignmentLate,
-  AssignmentReturn,
-  AssignmentReturned,
-  AssignmentTurnedIn,
-  Assignment,
-  AssuredWorkload,
-  Autorenew,
-  BackupTable,
-  Backup,
-  Balance,
-  BatchPrediction,
-  BookOnline,
-  Book,
-  BookmarkAdd,
-  BookmarkAdded,
-  BookmarkBorder,
-  BookmarkRemove,
-  Bookmark,
-  Bookmarks,
-  BrowseGallery,
-  BugReport,
-  BuildCircle,
-  Build,
-  Cached,
-  CalendarMonth,
-  CalendarViewDay,
-  CalendarViewMonth,
-  CalendarViewWeek,
-  CameraEnhance,
-  CancelScheduleSend,
-  CardGiftcard,
-  CardMembership,
-  CardTravel,
-  ChangeHistory,
-  ChromeReaderMode,
-  CircleNotifications,
-  Class,
-  CloseFullscreen,
-  CodeOff,
-  CommentBank,
-  Commit,
-  Commute,
-  CompareArrows,
-  Compress,
-  ContactPage,
-  ContactSupport,
-  Contactless,
-  Copyright,
-  CreditCardOff,
-  CreditCard,
-  Css,
-  CurrencyExchange,
-  Dangerous,
-  DashboardCustomize,
-  Dashboard,
-  DataExploration,
-  DataThresholding,
-  DateRange,
-  DeleteForever,
-  DeleteOutline,
-  DensityLarge,
-  DensityMedium,
-  DensitySmall,
-  Description,
-  DisabledByDefault,
-  DisabledVisible,
-  DisplaySettings,
-  Dns,
-  DoneAll,
-  DonutLarge,
-  DonutSmall,
-  DragIndicator,
-  DynamicForm,
-  EditCalendar,
-  EditOff,
-  Eject,
-  EuroSymbol,
-  EventRepeat,
-  EventSeat,
-  Event,
-  ExitToApp,
-  Expand,
-  ExploreOff,
-  Explore,
-  ExtensionOff,
-  Extension,
-  Face,
-  FactCheck,
-  FavoriteBorder,
-  Favorite,
-  Fax,
-  Feedback,
-  FilePresent,
-  FilterAltOff,
-  FilterAlt,
-  FindInPage,
-  FindReplace,
-  Fingerprint,
-  FitScreen,
-  Flaky,
-  FlightLand,
-  FlightTakeoff,
-  FlipToBack,
-  FlipToFront,
-  FlutterDash,
-  FreeCancellation,
-  GTranslate,
-  Gavel,
-  GeneratingTokens,
-  GetApp,
-  GifBox,
-  Gif,
-  Grade,
-  Grading,
-  GroupWork,
-  HelpCenter,
-  HelpOutline,
-  Help,
-  HideSource,
-  HighlightAlt,
-  HighlightOff,
-  HistoryToggleOff,
-  History,
-  HlsOff,
-  Hls,
-  Home,
-  HorizontalSplit,
-  HotelClass,
-  HourglassDisabled,
-  HourglassEmpty,
-  HourglassFull,
-  Html,
-  Http,
-  Https,
-  ImportantDevices,
-  Info,
-  Input,
-  InstallDesktop,
-  InstallMobile,
-  IntegrationInstructions,
-  InvertColors,
-  Javascript,
-  JoinFull,
-  JoinInner,
-  JoinLeft,
-  JoinRight,
-  LabelImportant,
-  LabelOff,
-  Label,
-  Language,
-  Launch,
-  Leaderboard,
-  LightbulbCircle,
-  Lightbulb,
-  LineStyle,
-  LineWeight,
-  List,
-  LockClock,
-  LockOpen,
-  LockPerson,
-  LockReset,
-  Lock,
-  Login,
-  Loyalty,
-  ManageAccounts,
-  ManageHistory,
-  MarkAsUnread,
-  MarkunreadMailbox,
-  Maximize,
-  Mediation,
-  Minimize,
-  ModelTraining,
-  NetworkPing,
-  NewLabel,
-  NextPlan,
-  NightlightRound,
-  NoAccounts,
-  NoiseAware,
-  NoiseControlOff,
-  NotAccessible,
-  NotStarted,
-  NoteAdd,
-  OfflineBolt,
-  OfflinePin,
-  OnDeviceTraining,
-  Numbers,
-  OneTwoThree,
-  OnlinePrediction,
-  Opacity,
-  OpenInBrowser,
-  OpenInFull,
-  OpenInNewOff,
-  OpenWith,
-  Outbound,
-  Outbox,
-  Outlet,
-  Output,
-  Pageview,
-  Paid,
-  PanToolAlt,
-  Payment,
-  PendingActions,
-  Pending,
-  Percent,
-  PermCameraMic,
-  PermContactCalendar,
-  PermDataSetting,
-  PermDeviceInformation,
-  PermIdentity,
-  PermMedia,
-  PermPhoneMsg,
-  PermScanWifi,
-  Polymer,
-  PregnantWoman,
-  Print,
-  PrivacyTip,
-  PublishedWithChanges,
-  QueryBuilder,
-  QuestionAnswer,
-  QuestionMark,
-  Quickreply,
-  Receipt,
-  RecordVoiceOver,
-  Redeem,
-  RemoveDone,
-  RemoveShoppingCart,
-  Reorder,
-  Repartition,
-  ReportProblem,
-  RequestPage,
-  RestoreFromTrash,
-  RestorePage,
-  Restore,
-  Rocket,
-  Room,
-  RoundedCorner,
-  Rowing,
-  Rule,
-  SatelliteAlt,
-  SavedSearch,
-  Savings,
-  ScheduleSend,
-  SearchOff,
-  Segment,
-  SendAndArchive,
-  SensorsOff,
-  Sensors,
-  SettingsAccessibility,
-  SettingsApplications,
-  SettingsBackupRestore,
-  SettingsBluetooth,
-  SettingsBrightness,
-  SettingsCell,
-  SettingsEthernet,
-  SettingsInputAntenna,
-  SettingsInputComponent,
-  SettingsInputComposite,
-  SettingsInputHdmi,
-  SettingsInputSvideo,
-  SettingsOverscan,
-  SettingsPhone,
-  SettingsPower,
-  SettingsRemote,
-  SettingsVoice,
-  Settings,
-  Shop2,
-  ShopTwo,
-  Shop,
-  ShoppingBag,
-  ShoppingBasket,
-  ShoppingCartCheckout,
-  ShoppingCart,
-  SmartButton,
-  Source,
-  SpaceDashboard,
-  SpatialAudioOff,
-  SpatialAudio,
-  SpatialTracking,
-  SpeakerNotesOff,
-  SpeakerNotes,
-  Spellcheck,
-  StarRate,
-  Stars,
-  StickyNote2,
-  Store,
-  Subject,
-  SubtitlesOff,
-  SupervisedUserCircle,
-  SupervisorAccount,
-  Support,
-  SwapHorizontalCircle,
-  SwapVerticalCircle,
-  SwipeDownAlt,
-  SwipeDown,
-  SwipeLeftAlt,
-  SwipeLeft,
-  SwipeRightAlt,
-  SwipeRight,
-  SwipeUpAlt,
-  SwipeUp,
-  SwipeVertical,
-  Swipe,
-  SwitchAccessShortcutAdd,
-  SwitchAccessShortcut,
-  SyncAlt,
-  SystemUpdateAlt,
-  TabUnselected,
-  Tab,
-  TableView,
-  TaskAlt,
-  Terminal,
-  TextRotateUp,
-  TextRotateVertical,
-  TextRotationAngledown,
-  TextRotationAngleup,
-  TextRotationDown,
-  TextRotationNone,
-  Theaters,
-  ThumbDownOffAlt,
-  ThumbDown,
-  ThumbUpOffAlt,
-  ThumbUp,
-  ThumbsUpDown,
-  Timeline,
-  TipsAndUpdates,
-  Toc,
-  Today,
-  Token,
-  Toll,
-  TouchApp,
-  Tour,
-  TrackChanges,
-  Transcribe,
-  TrendingDown,
-  TrendingFlat,
-  TrendingUp,
-  Troubleshoot,
-  Try,
-  TurnedInNot,
-  UnfoldLessDouble,
-  UnfoldMoreDouble,
-  Unpublished,
-  UpdateDisabled,
-  Update,
-  Upgrade,
-  VerifiedUser,
-  Verified,
-  VerticalSplit,
-  ViewAgenda,
-  ViewArray,
-  ViewCarousel,
-  ViewColumn,
-  ViewComfyAlt,
-  ViewCompactAlt,
-  ViewCozy,
-  ViewDay,
-  ViewHeadline,
-  ViewInAr,
-  ViewKanban,
-  ViewList,
-  ViewModule,
-  ViewQuilt,
-  ViewSidebar,
-  ViewStream,
-  ViewTimeline,
-  ViewWeek,
-  VoiceOverOff,
-  WatchLater,
-  Webhook,
-  WidthFull,
-  WidthNormal,
-  WidthWide,
-  WifiProtectedSetup,
-  WorkHistory,
-  WorkOff,
-  WorkOutline,
-  Work,
-  Wysiwyg,
-  YoutubeSearchedFor,
+  IconVisibility,
+  IconVisibilityOff,
+  IconCheckCircleOutline,
+  IconDone,
+  IconCheckCircle,
+  IconSwapHoriz,
+  IconSwapVert,
+  IconZoomOut,
+  IconZoomIn,
+  IconDoneOutline,
+  IconTranslate,
+  IconCode,
+  IconOpenInNew,
+  IconDelete,
+  Icon3dRotation,
+  IconAccountCircle,
+  IconRocketLaunch,
+  IconPreview,
+  IconLogout,
+  IconSchedule,
+  IconTurnedIn,
+  IconCalendarToday,
+  IconSearch,
+  IconAbc,
+  IconAccessibilityNew,
+  IconAccessibility,
+  IconAccessibleForward,
+  IconAccessible,
+  IconAccountBalanceWallet,
+  IconAccountBalance,
+  IconAccountBox,
+  IconAddCard,
+  IconAddHome,
+  IconAddShoppingCart,
+  IconAddTask,
+  IconAddToDrive,
+  IconAddchart,
+  IconAdminPanelSettings,
+  IconAdsClick,
+  IconAlarmAdd,
+  IconAlarmOff,
+  IconAlarmOn,
+  IconAlarm,
+  IconAllInbox,
+  IconAllOut,
+  IconAnalytics,
+  IconAnchor,
+  IconAndroid,
+  IconAnnouncement,
+  IconApi,
+  IconAppBlocking,
+  IconAppShortcut,
+  IconArrowCircleDown,
+  IconArrowCircleLeft,
+  IconArrowCircleRight,
+  IconArrowCircleUp,
+  IconArrowOutward,
+  IconArrowRightAlt,
+  IconArticle,
+  IconAspectRatio,
+  IconAssessment,
+  IconAssignmentInd,
+  IconAssignmentLate,
+  IconAssignmentReturn,
+  IconAssignmentReturned,
+  IconAssignmentTurnedIn,
+  IconAssignment,
+  IconAssuredWorkload,
+  IconAutorenew,
+  IconBackupTable,
+  IconBackup,
+  IconBalance,
+  IconBatchPrediction,
+  IconBookOnline,
+  IconBook,
+  IconBookmarkAdd,
+  IconBookmarkAdded,
+  IconBookmarkBorder,
+  IconBookmarkRemove,
+  IconBookmark,
+  IconBookmarks,
+  IconBrowseGallery,
+  IconBugReport,
+  IconBuildCircle,
+  IconBuild,
+  IconCached,
+  IconCalendarMonth,
+  IconCalendarViewDay,
+  IconCalendarViewMonth,
+  IconCalendarViewWeek,
+  IconCameraEnhance,
+  IconCancelScheduleSend,
+  IconCardGiftcard,
+  IconCardMembership,
+  IconCardTravel,
+  IconChangeHistory,
+  IconChromeReaderMode,
+  IconCircleNotifications,
+  IconClass,
+  IconCloseFullscreen,
+  IconCodeOff,
+  IconCommentBank,
+  IconCommit,
+  IconCommute,
+  IconCompareArrows,
+  IconCompress,
+  IconContactPage,
+  IconContactSupport,
+  IconContactless,
+  IconCopyright,
+  IconCreditCardOff,
+  IconCreditCard,
+  IconCss,
+  IconCurrencyExchange,
+  IconDangerous,
+  IconDashboardCustomize,
+  IconDashboard,
+  IconDataExploration,
+  IconDataThresholding,
+  IconDateRange,
+  IconDeleteForever,
+  IconDeleteOutline,
+  IconDensityLarge,
+  IconDensityMedium,
+  IconDensitySmall,
+  IconDescription,
+  IconDisabledByDefault,
+  IconDisabledVisible,
+  IconDisplaySettings,
+  IconDns,
+  IconDoneAll,
+  IconDonutLarge,
+  IconDonutSmall,
+  IconDragIndicator,
+  IconDynamicForm,
+  IconEditCalendar,
+  IconEditOff,
+  IconEject,
+  IconEuroSymbol,
+  IconEventRepeat,
+  IconEventSeat,
+  IconEvent,
+  IconExitToApp,
+  IconExpand,
+  IconExploreOff,
+  IconExplore,
+  IconExtensionOff,
+  IconExtension,
+  IconFace,
+  IconFactCheck,
+  IconFavoriteBorder,
+  IconFavorite,
+  IconFax,
+  IconFeedback,
+  IconFilePresent,
+  IconFilterAltOff,
+  IconFilterAlt,
+  IconFindInPage,
+  IconFindReplace,
+  IconFingerprint,
+  IconFitScreen,
+  IconFlaky,
+  IconFlightLand,
+  IconFlightTakeoff,
+  IconFlipToBack,
+  IconFlipToFront,
+  IconFlutterDash,
+  IconFreeCancellation,
+  IconGTranslate,
+  IconGavel,
+  IconGeneratingTokens,
+  IconGetApp,
+  IconGifBox,
+  IconGif,
+  IconGrade,
+  IconGrading,
+  IconGroupWork,
+  IconHelpCenter,
+  IconHelpOutline,
+  IconHelp,
+  IconHideSource,
+  IconHighlightAlt,
+  IconHighlightOff,
+  IconHistoryToggleOff,
+  IconHistory,
+  IconHlsOff,
+  IconHls,
+  IconHome,
+  IconHorizontalSplit,
+  IconHotelClass,
+  IconHourglassDisabled,
+  IconHourglassEmpty,
+  IconHourglassFull,
+  IconHtml,
+  IconHttp,
+  IconHttps,
+  IconImportantDevices,
+  IconInfo,
+  IconInput,
+  IconInstallDesktop,
+  IconInstallMobile,
+  IconIntegrationInstructions,
+  IconInvertColors,
+  IconJavascript,
+  IconJoinFull,
+  IconJoinInner,
+  IconJoinLeft,
+  IconJoinRight,
+  IconLabelImportant,
+  IconLabelOff,
+  IconLabel,
+  IconLanguage,
+  IconLaunch,
+  IconLeaderboard,
+  IconLightbulbCircle,
+  IconLightbulb,
+  IconLineStyle,
+  IconLineWeight,
+  IconList,
+  IconLockClock,
+  IconLockOpen,
+  IconLockPerson,
+  IconLockReset,
+  IconLock,
+  IconLogin,
+  IconLoyalty,
+  IconManageAccounts,
+  IconManageHistory,
+  IconMarkAsUnread,
+  IconMarkunreadMailbox,
+  IconMaximize,
+  IconMediation,
+  IconMinimize,
+  IconModelTraining,
+  IconNetworkPing,
+  IconNewLabel,
+  IconNextPlan,
+  IconNightlightRound,
+  IconNoAccounts,
+  IconNoiseAware,
+  IconNoiseControlOff,
+  IconNotAccessible,
+  IconNotStarted,
+  IconNoteAdd,
+  IconOfflineBolt,
+  IconOfflinePin,
+  IconOnDeviceTraining,
+  Icon123,
+  IconOnlinePrediction,
+  IconOpacity,
+  IconOpenInBrowser,
+  IconOpenInFull,
+  IconOpenInNewOff,
+  IconOpenWith,
+  IconOutbound,
+  IconOutbox,
+  IconOutlet,
+  IconOutput,
+  IconPageview,
+  IconPaid,
+  IconPanToolAlt,
+  IconPanTool,
+  IconPayment,
+  IconPendingActions,
+  IconPending,
+  IconPercent,
+  IconPermCameraMic,
+  IconPermContactCalendar,
+  IconPermDataSetting,
+  IconPermDeviceInformation,
+  IconPermIdentity,
+  IconPermMedia,
+  IconPermPhoneMsg,
+  IconPermScanWifi,
+  IconPets,
+  IconPhp,
+  IconPictureInPicture,
+  IconPictureInPictureAlt,
+  IconPinEnd,
+  IconPinInvoke,
+  IconPinch,
+  IconPlagiarism,
+  IconPlayForWork,
+  IconPolymer,
+  IconPowerSettingsNew,
+  IconPregnantWoman,
+  IconPrint,
+  IconPrivacyTip,
+  IconPrivateConnectivity,
+  IconProductionQuantityLimits,
+  IconPublishedWithChanges,
+  IconQueryBuilder,
+  IconQuestionAnswer,
+  IconQuestionMark,
+  IconQuickreply,
+  IconReceipt,
+  IconRecordVoiceOver,
+  IconRedeem,
+  IconRemoveDone,
+  IconRemoveShoppingCart,
+  IconReorder,
+  IconRepartition,
+  IconReportProblem,
+  IconRequestPage,
+  IconRestoreFromTrash,
+  IconRestorePage,
+  IconRestore,
+  IconRocket,
+  IconRoom,
+  IconRoundedCorner,
+  IconRowing,
+  IconRule,
+  IconSatelliteAlt,
+  IconSavedSearch,
+  IconSavings,
+  IconScheduleSend,
+  IconSearchOff,
+  IconSegment,
+  IconSendAndArchive,
+  IconSensorsOff,
+  IconSensors,
+  IconSettingsAccessibility,
+  IconSettingsApplications,
+  IconSettingsBackupRestore,
+  IconSettingsBluetooth,
+  IconSettingsBrightness,
+  IconSettingsCell,
+  IconSettingsEthernet,
+  IconSettingsInputAntenna,
+  IconSettingsInputComponent,
+  IconSettingsInputComposite,
+  IconSettingsInputHdmi,
+  IconSettingsInputSvideo,
+  IconSettingsOverscan,
+  IconSettingsPhone,
+  IconSettingsPower,
+  IconSettingsRemote,
+  IconSettingsVoice,
+  IconSettings,
+  IconShop2,
+  IconShopTwo,
+  IconShop,
+  IconShoppingBag,
+  IconShoppingBasket,
+  IconShoppingCartCheckout,
+  IconShoppingCart,
+  IconSmartButton,
+  IconSource,
+  IconSpaceDashboard,
+  IconSpatialAudioOff,
+  IconSpatialAudio,
+  IconSpatialTracking,
+  IconSpeakerNotesOff,
+  IconSpeakerNotes,
+  IconSpellcheck,
+  IconStarRate,
+  IconStars,
+  IconStickyNote2,
+  IconStore,
+  IconSubject,
+  IconSubtitlesOff,
+  IconSupervisedUserCircle,
+  IconSupervisorAccount,
+  IconSupport,
+  IconSwapHorizontalCircle,
+  IconSwapVerticalCircle,
+  IconSwipeDownAlt,
+  IconSwipeDown,
+  IconSwipeLeftAlt,
+  IconSwipeLeft,
+  IconSwipeRightAlt,
+  IconSwipeRight,
+  IconSwipeUpAlt,
+  IconSwipeUp,
+  IconSwipeVertical,
+  IconSwipe,
+  IconSwitchAccessShortcutAdd,
+  IconSwitchAccessShortcut,
+  IconSyncAlt,
+  IconSystemUpdateAlt,
+  IconTabUnselected,
+  IconTab,
+  IconTableView,
+  IconTaskAlt,
+  IconTerminal,
+  IconTextRotateUp,
+  IconTextRotateVertical,
+  IconTextRotationAngledown,
+  IconTextRotationAngleup,
+  IconTextRotationDown,
+  IconTextRotationNone,
+  IconTheaters,
+  IconThumbDownOffAlt,
+  IconThumbDown,
+  IconThumbUpOffAlt,
+  IconThumbUp,
+  IconThumbsUpDown,
+  IconTimeline,
+  IconTipsAndUpdates,
+  IconToc,
+  IconToday,
+  IconToken,
+  IconToll,
+  IconTouchApp,
+  IconTour,
+  IconTrackChanges,
+  IconTranscribe,
+  IconTrendingDown,
+  IconTrendingFlat,
+  IconTrendingUp,
+  IconTroubleshoot,
+  IconTry,
+  IconTurnedInNot,
+  IconUnfoldLessDouble,
+  IconUnfoldMoreDouble,
+  IconUnpublished,
+  IconUpdateDisabled,
+  IconUpdate,
+  IconUpgrade,
+  IconVerifiedUser,
+  IconVerified,
+  IconVerticalSplit,
+  IconViewAgenda,
+  IconViewArray,
+  IconViewCarousel,
+  IconViewColumn,
+  IconViewComfyAlt,
+  IconViewCompactAlt,
+  IconViewCozy,
+  IconViewDay,
+  IconViewHeadline,
+  IconViewInAr,
+  IconViewKanban,
+  IconViewList,
+  IconViewModule,
+  IconViewQuilt,
+  IconViewSidebar,
+  IconViewStream,
+  IconViewTimeline,
+  IconViewWeek,
+  IconVoiceOverOff,
+  IconWatchLater,
+  IconWebhook,
+  IconWidthFull,
+  IconWidthNormal,
+  IconWidthWide,
+  IconWifiProtectedSetup,
+  IconWorkHistory,
+  IconWorkOff,
+  IconWorkOutline,
+  IconWork,
+  IconWysiwyg,
+  IconYoutubeSearchedFor,
 };

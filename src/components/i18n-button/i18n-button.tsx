@@ -1,5 +1,5 @@
 import React, { useRef, type Key } from "react";
-import { Translate } from "../icon/icons";
+import { IconTranslate } from "../icon/icons";
 import { Popover, type PopoverRef } from "../popover";
 import { useLocales } from "./hooks";
 import { Menu } from "../menu";
@@ -34,7 +34,7 @@ const I18nButton = ({ onChange, variant, className, style, size }: I18nButtonPro
         style={style}
         size={size}
       >
-        <Translate />
+        <IconTranslate />
       </IconButton>
     </Popover>
   );

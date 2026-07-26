@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const ViewTimeline = withIcon(({ size }) => {
+const IconViewTimeline = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -21,4 +21,4 @@ const ViewTimeline = withIcon(({ size }) => {
   );
 });
 
-export default ViewTimeline;
+export default IconViewTimeline;

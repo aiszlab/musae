@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const SettingsVoice = withIcon(({ size }) => {
+const IconSettingsVoice = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const SettingsVoice = withIcon(({ size }) => {
   );
 });
 
-export default SettingsVoice;
+export default IconSettingsVoice;

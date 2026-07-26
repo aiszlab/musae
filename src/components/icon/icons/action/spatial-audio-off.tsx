@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const SpatialAudioOff = withIcon(({ size }) => {
+const IconSpatialAudioOff = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -30,4 +30,4 @@ const SpatialAudioOff = withIcon(({ size }) => {
   );
 });
 
-export default SpatialAudioOff;
+export default IconSpatialAudioOff;

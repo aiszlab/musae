@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const AccessibleForward = withIcon(({ size }) => {
+const IconAccessibleForward = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -22,4 +22,4 @@ const AccessibleForward = withIcon(({ size }) => {
   );
 });
 
-export default AccessibleForward;
+export default IconAccessibleForward;

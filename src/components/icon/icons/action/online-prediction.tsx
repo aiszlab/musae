@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const OnlinePrediction = withIcon(({ size }) => {
+const IconOnlinePrediction = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const OnlinePrediction = withIcon(({ size }) => {
   );
 });
 
-export default OnlinePrediction;
+export default IconOnlinePrediction;

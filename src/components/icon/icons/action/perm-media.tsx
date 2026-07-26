@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const PermMedia = withIcon(({ size }) => {
+const IconPermMedia = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const PermMedia = withIcon(({ size }) => {
   );
 });
 
-export default PermMedia;
+export default IconPermMedia;

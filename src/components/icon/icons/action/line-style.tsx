@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const LineStyle = withIcon(({ size }) => {
+const IconLineStyle = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const LineStyle = withIcon(({ size }) => {
   );
 });
 
-export default LineStyle;
+export default IconLineStyle;

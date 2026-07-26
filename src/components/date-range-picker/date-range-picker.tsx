@@ -3,7 +3,7 @@ import { Picker } from "../picker";
 import { useDateRangeState } from "./hooks/use-date-range-state";
 import type { DateRangePickerProps } from "../../types/date-range-picker";
 import { Calendar } from "../calendar";
-import { SwapHoriz } from "../icon/icons";
+import { IconSwapHoriz } from "../icon/icons";
 import { useClassNames } from "../../hooks/use-class-names";
 import { create as $create, props as $props } from "@stylexjs/stylex";
 import { stringify } from "@aiszlab/relax/class-name";
@@ -60,7 +60,7 @@ const DateRangePicker = ({ onChange, ...props }: DateRangePickerProps) => {
           {from?.format("YYYY-MM-DD")}
         </span>
 
-        <SwapHoriz className={classNames.separator} />
+        <IconSwapHoriz className={classNames.separator} />
 
         <span
           className={stringify(classNames.input, styled.trigger.className)}

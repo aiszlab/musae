@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const FactCheck = withIcon(({ size }) => {
+const IconFactCheck = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -29,4 +29,4 @@ const FactCheck = withIcon(({ size }) => {
   );
 });
 
-export default FactCheck;
+export default IconFactCheck;

@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const SubtitlesOff = withIcon(({ size }) => {
+const IconSubtitlesOff = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -23,4 +23,4 @@ const SubtitlesOff = withIcon(({ size }) => {
   );
 });
 
-export default SubtitlesOff;
+export default IconSubtitlesOff;

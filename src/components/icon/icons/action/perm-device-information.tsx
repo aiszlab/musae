@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const PermDeviceInformation = withIcon(({ size }) => {
+const IconPermDeviceInformation = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const PermDeviceInformation = withIcon(({ size }) => {
   );
 });
 
-export default PermDeviceInformation;
+export default IconPermDeviceInformation;

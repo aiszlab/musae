@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const HourglassFull = withIcon(({ size }) => {
+const IconHourglassFull = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const HourglassFull = withIcon(({ size }) => {
   );
 });
 
-export default HourglassFull;
+export default IconHourglassFull;

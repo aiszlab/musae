@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const OfflinePin = withIcon(({ size }) => {
+const IconOfflinePin = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const OfflinePin = withIcon(({ size }) => {
   );
 });
 
-export default OfflinePin;
+export default IconOfflinePin;

@@ -1,7 +1,7 @@
 import { Button } from "../button";
 import { Input } from "../input";
 import React, { forwardRef, useRef, useImperativeHandle, useCallback } from "react";
-import SearchIcon from "../icon/icons/action/search";
+import IconSearch from "../icon/icons/action/search";
 import { Close } from "../icon/icons";
 import { props as $props } from "@stylexjs/stylex";
 import { OPACITY } from "../theme/tokens.stylex";
@@ -129,7 +129,7 @@ const Search = forwardRef<SearchRef, SearchProps>(
           className={stringify(classNames.searchLeading, _styled.leading.className)}
           style={_styled.leading.style}
         >
-          <SearchIcon size={24} />
+          <IconSearch size={24} />
         </span>
 
         {/* Input */}

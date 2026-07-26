@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const UnfoldLessDouble = withIcon(({ size }) => {
+const IconUnfoldLessDouble = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const UnfoldLessDouble = withIcon(({ size }) => {
   );
 });
 
-export default UnfoldLessDouble;
+export default IconUnfoldLessDouble;

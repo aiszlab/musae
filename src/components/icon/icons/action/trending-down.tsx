@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const TrendingDown = withIcon(({ size }) => {
+const IconTrendingDown = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const TrendingDown = withIcon(({ size }) => {
   );
 });
 
-export default TrendingDown;
+export default IconTrendingDown;

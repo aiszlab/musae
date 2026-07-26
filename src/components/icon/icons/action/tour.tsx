@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Tour = withIcon(({ size }) => {
+const IconTour = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const Tour = withIcon(({ size }) => {
   );
 });
 
-export default Tour;
+export default IconTour;

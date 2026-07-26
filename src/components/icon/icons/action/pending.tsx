@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Pending = withIcon(({ size }) => {
+const IconPending = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -30,4 +30,4 @@ const Pending = withIcon(({ size }) => {
   );
 });
 
-export default Pending;
+export default IconPending;

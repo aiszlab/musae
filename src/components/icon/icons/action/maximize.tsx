@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Maximize = withIcon(({ size }) => {
+const IconMaximize = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -15,4 +15,4 @@ const Maximize = withIcon(({ size }) => {
   );
 });
 
-export default Maximize;
+export default IconMaximize;

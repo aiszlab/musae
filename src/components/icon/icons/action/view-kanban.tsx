@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const ViewKanban = withIcon(({ size }) => {
+const IconViewKanban = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const ViewKanban = withIcon(({ size }) => {
   );
 });
 
-export default ViewKanban;
+export default IconViewKanban;

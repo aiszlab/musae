@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const NightlightRound = withIcon(({ size }) => {
+const IconNightlightRound = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const NightlightRound = withIcon(({ size }) => {
   );
 });
 
-export default NightlightRound;
+export default IconNightlightRound;

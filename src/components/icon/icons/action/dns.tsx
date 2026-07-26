@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Dns = withIcon(({ size }) => {
+const IconDns = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const Dns = withIcon(({ size }) => {
   );
 });
 
-export default Dns;
+export default IconDns;

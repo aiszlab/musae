@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Favorite = withIcon(({ size }) => {
+const IconFavorite = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const Favorite = withIcon(({ size }) => {
   );
 });
 
-export default Favorite;
+export default IconFavorite;

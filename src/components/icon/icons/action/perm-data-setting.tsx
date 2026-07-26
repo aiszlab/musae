@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const PermDataSetting = withIcon(({ size }) => {
+const IconPermDataSetting = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const PermDataSetting = withIcon(({ size }) => {
   );
 });
 
-export default PermDataSetting;
+export default IconPermDataSetting;

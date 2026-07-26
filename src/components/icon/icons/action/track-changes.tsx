@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const TrackChanges = withIcon(({ size }) => {
+const IconTrackChanges = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const TrackChanges = withIcon(({ size }) => {
   );
 });
 
-export default TrackChanges;
+export default IconTrackChanges;

@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const ArrowCircleDown = withIcon(({ size }) => {
+const IconArrowCircleDown = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const ArrowCircleDown = withIcon(({ size }) => {
   );
 });
 
-export default ArrowCircleDown;
+export default IconArrowCircleDown;

@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const PrivacyTip = withIcon(({ size }) => {
+const IconPrivacyTip = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const PrivacyTip = withIcon(({ size }) => {
   );
 });
 
-export default PrivacyTip;
+export default IconPrivacyTip;

@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const SwapHoriz = withIcon(({ size }) => {
+const IconSwapHoriz = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const SwapHoriz = withIcon(({ size }) => {
   );
 });
 
-export default SwapHoriz;
+export default IconSwapHoriz;

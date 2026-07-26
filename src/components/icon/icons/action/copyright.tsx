@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Copyright = withIcon(({ size }) => {
+const IconCopyright = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const Copyright = withIcon(({ size }) => {
   );
 });
 
-export default Copyright;
+export default IconCopyright;

@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Repartition = withIcon(({ size }) => {
+const IconRepartition = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -22,4 +22,4 @@ const Repartition = withIcon(({ size }) => {
   );
 });
 
-export default Repartition;
+export default IconRepartition;

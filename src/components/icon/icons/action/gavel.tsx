@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Gavel = withIcon(({ size }) => {
+const IconGavel = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const Gavel = withIcon(({ size }) => {
   );
 });
 
-export default Gavel;
+export default IconGavel;

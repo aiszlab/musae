@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const NetworkPing = withIcon(({ size }) => {
+const IconNetworkPing = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const NetworkPing = withIcon(({ size }) => {
   );
 });
 
-export default NetworkPing;
+export default IconNetworkPing;

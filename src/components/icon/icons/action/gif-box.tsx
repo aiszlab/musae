@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const GifBox = withIcon(({ size }) => {
+const IconGifBox = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const GifBox = withIcon(({ size }) => {
   );
 });
 
-export default GifBox;
+export default IconGifBox;

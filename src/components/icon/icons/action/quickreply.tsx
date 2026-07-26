@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Quickreply = withIcon(({ size }) => {
+const IconQuickreply = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -22,4 +22,4 @@ const Quickreply = withIcon(({ size }) => {
   );
 });
 
-export default Quickreply;
+export default IconQuickreply;

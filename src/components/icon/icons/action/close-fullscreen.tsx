@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const CloseFullscreen = withIcon(({ size }) => {
+const IconCloseFullscreen = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const CloseFullscreen = withIcon(({ size }) => {
   );
 });
 
-export default CloseFullscreen;
+export default IconCloseFullscreen;

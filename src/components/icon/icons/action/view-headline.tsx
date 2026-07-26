@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const ViewHeadline = withIcon(({ size }) => {
+const IconViewHeadline = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const ViewHeadline = withIcon(({ size }) => {
   );
 });
 
-export default ViewHeadline;
+export default IconViewHeadline;

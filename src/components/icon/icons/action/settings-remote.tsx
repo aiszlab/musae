@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const SettingsRemote = withIcon(({ size }) => {
+const IconSettingsRemote = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -26,4 +26,4 @@ const SettingsRemote = withIcon(({ size }) => {
   );
 });
 
-export default SettingsRemote;
+export default IconSettingsRemote;

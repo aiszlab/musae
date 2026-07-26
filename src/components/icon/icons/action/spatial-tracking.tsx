@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const SpatialTracking = withIcon(({ size }) => {
+const IconSpatialTracking = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -30,4 +30,4 @@ const SpatialTracking = withIcon(({ size }) => {
   );
 });
 
-export default SpatialTracking;
+export default IconSpatialTracking;

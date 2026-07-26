@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const CheckCircleOutline = withIcon(({ size }) => {
+const IconCheckCircleOutline = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const CheckCircleOutline = withIcon(({ size }) => {
   );
 });
 
-export default CheckCircleOutline;
+export default IconCheckCircleOutline;

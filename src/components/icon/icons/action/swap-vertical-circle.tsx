@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const SwapVerticalCircle = withIcon(({ size }) => {
+const IconSwapVerticalCircle = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const SwapVerticalCircle = withIcon(({ size }) => {
   );
 });
 
-export default SwapVerticalCircle;
+export default IconSwapVerticalCircle;

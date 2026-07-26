@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const BackupTable = withIcon(({ size }) => {
+const IconBackupTable = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -19,4 +19,4 @@ const BackupTable = withIcon(({ size }) => {
   );
 });
 
-export default BackupTable;
+export default IconBackupTable;

@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const DensitySmall = withIcon(({ size }) => {
+const IconDensitySmall = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const DensitySmall = withIcon(({ size }) => {
   );
 });
 
-export default DensitySmall;
+export default IconDensitySmall;

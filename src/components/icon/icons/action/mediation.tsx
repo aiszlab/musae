@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Mediation = withIcon(({ size }) => {
+const IconMediation = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const Mediation = withIcon(({ size }) => {
   );
 });
 
-export default Mediation;
+export default IconMediation;

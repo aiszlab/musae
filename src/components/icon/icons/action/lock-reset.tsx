@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const LockReset = withIcon(({ size }) => {
+const IconLockReset = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const LockReset = withIcon(({ size }) => {
   );
 });
 
-export default LockReset;
+export default IconLockReset;

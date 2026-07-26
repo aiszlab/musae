@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const WorkOutline = withIcon(({ size }) => {
+const IconWorkOutline = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const WorkOutline = withIcon(({ size }) => {
   );
 });
 
-export default WorkOutline;
+export default IconWorkOutline;

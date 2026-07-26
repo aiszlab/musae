@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const FindInPage = withIcon(({ size }) => {
+const IconFindInPage = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const FindInPage = withIcon(({ size }) => {
   );
 });
 
-export default FindInPage;
+export default IconFindInPage;

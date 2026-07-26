@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const HorizontalSplit = withIcon(({ size }) => {
+const IconHorizontalSplit = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const HorizontalSplit = withIcon(({ size }) => {
   );
 });
 
-export default HorizontalSplit;
+export default IconHorizontalSplit;

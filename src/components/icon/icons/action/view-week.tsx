@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const ViewWeek = withIcon(({ size }) => {
+const IconViewWeek = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const ViewWeek = withIcon(({ size }) => {
   );
 });
 
-export default ViewWeek;
+export default IconViewWeek;

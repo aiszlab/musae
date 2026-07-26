@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const JoinLeft = withIcon(({ size }) => {
+const IconJoinLeft = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -26,4 +26,4 @@ const JoinLeft = withIcon(({ size }) => {
   );
 });
 
-export default JoinLeft;
+export default IconJoinLeft;

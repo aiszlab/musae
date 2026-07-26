@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const DynamicForm = withIcon(({ size }) => {
+const IconDynamicForm = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const DynamicForm = withIcon(({ size }) => {
   );
 });
 
-export default DynamicForm;
+export default IconDynamicForm;

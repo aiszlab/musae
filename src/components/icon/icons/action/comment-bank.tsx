@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const CommentBank = withIcon(({ size }) => {
+const IconCommentBank = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -19,4 +19,4 @@ const CommentBank = withIcon(({ size }) => {
   );
 });
 
-export default CommentBank;
+export default IconCommentBank;

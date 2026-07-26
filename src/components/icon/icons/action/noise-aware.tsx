@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const NoiseAware = withIcon(({ size }) => {
+const IconNoiseAware = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -78,4 +78,4 @@ const NoiseAware = withIcon(({ size }) => {
   );
 });
 
-export default NoiseAware;
+export default IconNoiseAware;

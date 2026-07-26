@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const SettingsCell = withIcon(({ size }) => {
+const IconSettingsCell = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const SettingsCell = withIcon(({ size }) => {
   );
 });
 
-export default SettingsCell;
+export default IconSettingsCell;

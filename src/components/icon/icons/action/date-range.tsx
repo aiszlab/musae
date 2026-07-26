@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const DateRange = withIcon(({ size }) => {
+const IconDateRange = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const DateRange = withIcon(({ size }) => {
   );
 });
 
-export default DateRange;
+export default IconDateRange;

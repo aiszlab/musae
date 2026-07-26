@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const ViewCompactAlt = withIcon(({ size }) => {
+const IconViewCompactAlt = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -22,4 +22,4 @@ const ViewCompactAlt = withIcon(({ size }) => {
   );
 });
 
-export default ViewCompactAlt;
+export default IconViewCompactAlt;

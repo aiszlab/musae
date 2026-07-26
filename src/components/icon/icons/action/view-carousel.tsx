@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const ViewCarousel = withIcon(({ size }) => {
+const IconViewCarousel = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -15,4 +15,4 @@ const ViewCarousel = withIcon(({ size }) => {
   );
 });
 
-export default ViewCarousel;
+export default IconViewCarousel;

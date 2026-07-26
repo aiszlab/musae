@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Transcribe = withIcon(({ size }) => {
+const IconTranscribe = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const Transcribe = withIcon(({ size }) => {
   );
 });
 
-export default Transcribe;
+export default IconTranscribe;

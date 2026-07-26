@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const SatelliteAlt = withIcon(({ size }) => {
+const IconSatelliteAlt = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const SatelliteAlt = withIcon(({ size }) => {
   );
 });
 
-export default SatelliteAlt;
+export default IconSatelliteAlt;

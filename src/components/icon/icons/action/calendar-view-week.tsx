@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const CalendarViewWeek = withIcon(({ size }) => {
+const IconCalendarViewWeek = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const CalendarViewWeek = withIcon(({ size }) => {
   );
 });
 
-export default CalendarViewWeek;
+export default IconCalendarViewWeek;

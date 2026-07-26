@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const RoundedCorner = withIcon(({ size }) => {
+const IconRoundedCorner = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const RoundedCorner = withIcon(({ size }) => {
   );
 });
 
-export default RoundedCorner;
+export default IconRoundedCorner;

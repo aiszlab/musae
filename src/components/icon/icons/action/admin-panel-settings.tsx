@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const AdminPanelSettings = withIcon(({ size }) => {
+const IconAdminPanelSettings = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -30,4 +30,4 @@ const AdminPanelSettings = withIcon(({ size }) => {
   );
 });
 
-export default AdminPanelSettings;
+export default IconAdminPanelSettings;

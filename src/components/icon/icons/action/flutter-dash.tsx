@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const FlutterDash = withIcon(({ size }) => {
+const IconFlutterDash = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const FlutterDash = withIcon(({ size }) => {
   );
 });
 
-export default FlutterDash;
+export default IconFlutterDash;

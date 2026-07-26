@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Rule = withIcon(({ size }) => {
+const IconRule = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const Rule = withIcon(({ size }) => {
   );
 });
 
-export default Rule;
+export default IconRule;

@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const OfflineBolt = withIcon(({ size }) => {
+const IconOfflineBolt = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const OfflineBolt = withIcon(({ size }) => {
   );
 });
 
-export default OfflineBolt;
+export default IconOfflineBolt;

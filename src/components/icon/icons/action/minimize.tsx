@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Minimize = withIcon(({ size }) => {
+const IconMinimize = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -15,4 +15,4 @@ const Minimize = withIcon(({ size }) => {
   );
 });
 
-export default Minimize;
+export default IconMinimize;

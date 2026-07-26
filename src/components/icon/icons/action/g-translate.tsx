@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const GTranslate = withIcon(({ size }) => {
+const IconGTranslate = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const GTranslate = withIcon(({ size }) => {
   );
 });
 
-export default GTranslate;
+export default IconGTranslate;

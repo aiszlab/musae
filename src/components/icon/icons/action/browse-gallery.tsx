@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const BrowseGallery = withIcon(({ size }) => {
+const IconBrowseGallery = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -23,4 +23,4 @@ const BrowseGallery = withIcon(({ size }) => {
   );
 });
 
-export default BrowseGallery;
+export default IconBrowseGallery;

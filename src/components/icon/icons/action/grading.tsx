@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Grading = withIcon(({ size }) => {
+const IconGrading = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const Grading = withIcon(({ size }) => {
   );
 });
 
-export default Grading;
+export default IconGrading;

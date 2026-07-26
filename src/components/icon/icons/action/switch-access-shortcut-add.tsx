@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const SwitchAccessShortcutAdd = withIcon(({ size }) => {
+const IconSwitchAccessShortcutAdd = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const SwitchAccessShortcutAdd = withIcon(({ size }) => {
   );
 });
 
-export default SwitchAccessShortcutAdd;
+export default IconSwitchAccessShortcutAdd;

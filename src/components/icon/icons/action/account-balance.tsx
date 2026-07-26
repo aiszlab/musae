@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const AccountBalance = withIcon(({ size }) => {
+const IconAccountBalance = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const AccountBalance = withIcon(({ size }) => {
   );
 });
 
-export default AccountBalance;
+export default IconAccountBalance;

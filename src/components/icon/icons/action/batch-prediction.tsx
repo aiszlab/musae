@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const BatchPrediction = withIcon(({ size }) => {
+const IconBatchPrediction = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const BatchPrediction = withIcon(({ size }) => {
   );
 });
 
-export default BatchPrediction;
+export default IconBatchPrediction;

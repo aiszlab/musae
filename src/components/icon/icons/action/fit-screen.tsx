@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const FitScreen = withIcon(({ size }) => {
+const IconFitScreen = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const FitScreen = withIcon(({ size }) => {
   );
 });
 
-export default FitScreen;
+export default IconFitScreen;

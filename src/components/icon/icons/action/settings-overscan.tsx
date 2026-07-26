@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const SettingsOverscan = withIcon(({ size }) => {
+const IconSettingsOverscan = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const SettingsOverscan = withIcon(({ size }) => {
   );
 });
 
-export default SettingsOverscan;
+export default IconSettingsOverscan;

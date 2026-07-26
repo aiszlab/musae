@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const ViewArray = withIcon(({ size }) => {
+const IconViewArray = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -15,4 +15,4 @@ const ViewArray = withIcon(({ size }) => {
   );
 });
 
-export default ViewArray;
+export default IconViewArray;

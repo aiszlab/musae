@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Fax = withIcon(({ size }) => {
+const IconFax = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -35,4 +35,4 @@ const Fax = withIcon(({ size }) => {
   );
 });
 
-export default Fax;
+export default IconFax;

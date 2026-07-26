@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const ThreeDRotation = withIcon(({ size }) => {
+const Icon3dRotation = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -25,4 +25,4 @@ const ThreeDRotation = withIcon(({ size }) => {
   );
 });
 
-export default ThreeDRotation;
+export default Icon3dRotation;

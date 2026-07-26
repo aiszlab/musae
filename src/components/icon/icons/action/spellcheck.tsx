@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Spellcheck = withIcon(({ size }) => {
+const IconSpellcheck = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const Spellcheck = withIcon(({ size }) => {
   );
 });
 
-export default Spellcheck;
+export default IconSpellcheck;

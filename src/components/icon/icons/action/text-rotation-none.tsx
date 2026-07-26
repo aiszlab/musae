@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const TextRotationNone = withIcon(({ size }) => {
+const IconTextRotationNone = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const TextRotationNone = withIcon(({ size }) => {
   );
 });
 
-export default TextRotationNone;
+export default IconTextRotationNone;

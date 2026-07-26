@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const SystemUpdateAlt = withIcon(({ size }) => {
+const IconSystemUpdateAlt = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const SystemUpdateAlt = withIcon(({ size }) => {
   );
 });
 
-export default SystemUpdateAlt;
+export default IconSystemUpdateAlt;

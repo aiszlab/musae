@@ -10,7 +10,7 @@ import {
   LooksThree,
   LooksTwo,
   Notes,
-  Code,
+  IconCode,
 } from "../../../icon/icons";
 import { $setBlocksType } from "@lexical/selection";
 import { $createHeadingNode, type HeadingTagType } from "@lexical/rich-text";
@@ -102,7 +102,7 @@ export const useBlockFormat = () => {
           "code",
           {
             label: locale.codeBlock,
-            prefix: <Code />,
+            prefix: <IconCode />,
           },
         ],
       ]),

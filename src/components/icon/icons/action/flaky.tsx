@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Flaky = withIcon(({ size }) => {
+const IconFlaky = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -20,4 +20,4 @@ const Flaky = withIcon(({ size }) => {
   );
 });
 
-export default Flaky;
+export default IconFlaky;

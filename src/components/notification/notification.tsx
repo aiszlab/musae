@@ -6,7 +6,14 @@ import type { NotificationProps, Placement, Axis, Type } from "../../types/notif
 import { useAsyncEffect, useComposedRef, useTimeout } from "@aiszlab/relax";
 import { useClassNames } from "../../hooks/use-class-names";
 import { duration, elevations, sizes, spacing } from "../theme/tokens.stylex";
-import { CheckCircle, Close, Loading, Error, NotificationImportant, Warning } from "../icon/icons";
+import {
+  IconCheckCircle,
+  Close,
+  Loading,
+  Error,
+  NotificationImportant,
+  Warning,
+} from "../icon/icons";
 import type { IconProps } from "../../types/icon";
 import { stringify } from "@aiszlab/relax/class-name";
 import { CLASS_NAMES } from "./context";
@@ -29,7 +36,7 @@ export const PLACEMENTS: Record<Axis, [hidden: string, appeared: string]> = {
 };
 
 const LEADINGS = new Map<Type, FC<IconProps>>([
-  ["success", CheckCircle],
+  ["success", IconCheckCircle],
   ["error", Error],
   ["loading", Loading],
   ["info", NotificationImportant],

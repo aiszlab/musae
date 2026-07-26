@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const MarkunreadMailbox = withIcon(({ size }) => {
+const IconMarkunreadMailbox = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const MarkunreadMailbox = withIcon(({ size }) => {
   );
 });
 
-export default MarkunreadMailbox;
+export default IconMarkunreadMailbox;

@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const WifiProtectedSetup = withIcon(({ size }) => {
+const IconWifiProtectedSetup = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -22,4 +22,4 @@ const WifiProtectedSetup = withIcon(({ size }) => {
   );
 });
 
-export default WifiProtectedSetup;
+export default IconWifiProtectedSetup;

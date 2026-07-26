@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const CircleNotifications = withIcon(({ size }) => {
+const IconCircleNotifications = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const CircleNotifications = withIcon(({ size }) => {
   );
 });
 
-export default CircleNotifications;
+export default IconCircleNotifications;

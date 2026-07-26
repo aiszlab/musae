@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const ViewStream = withIcon(({ size }) => {
+const IconViewStream = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const ViewStream = withIcon(({ size }) => {
   );
 });
 
-export default ViewStream;
+export default IconViewStream;
