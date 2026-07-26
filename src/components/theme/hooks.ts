@@ -1,5 +1,5 @@
 import { MouseEvent, createContext, useContext, useMemo, useRef, useState } from "react";
-import type { Palette, ContextValue, Theme, Mode } from "../../types/theme";
+import type { Palette, ContextValue, Theme, Mode, ToggleOptions } from "../../types/theme";
 import { toColorRoles } from "../../utils/color-role";
 import { isFunction, useEvent, useMounted } from "@aiszlab/relax";
 import { create as $create, props as $props } from "@stylexjs/stylex";
@@ -232,7 +232,7 @@ export const useSwitchable = ({
   });
 
   // dark, light mode switch
-  const toggle = useEvent((event?: MouseEvent): Mode => {
+  const toggle = useEvent((event?: MouseEvent, options?: ToggleOptions): Mode => {
     const isDarking = mode === "light";
     const nextMode = isDarking ? "dark" : "light";
 
@@ -258,7 +258,7 @@ export const useSwitchable = ({
       document.documentElement.animate(
         { clipPath: isDarking ? clipPath : clipPath.toReversed() },
         {
-          duration: 300,
+          duration: options?.duration ?? 300,
           easing: "ease-in",
           fill: "forwards",
           pseudoElement: isDarking ? "::view-transition-new(root)" : "::view-transition-old(root)",
