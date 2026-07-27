@@ -1,0 +1,26 @@
+import React from "react";
+import { withIcon } from "../../hoc";
+
+const IconAutofpsSelect = withIcon(({ size }) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+    >
+      <path d="M12.03 5.8H11.97L10.95 8.69H13.05L12.03 5.8Z" fill="currentColor" />
+      <path d="M5 16.5H3V21.5H5V16.5Z" fill="currentColor" />
+      <path
+        d="M12 14.5C15.31 14.5 18 11.81 18 8.5C18 5.19 15.31 2.5 12 2.5C8.69 2.5 6 5.19 6 8.5C6 11.81 8.69 14.5 12 14.5ZM11.37 4.5H12.62L15.25 11.5H14.04L13.41 9.71H10.58L9.96 11.5H8.74L11.37 4.5Z"
+        fill="currentColor"
+      />
+      <path d="M9 16.5H7V21.5H9V16.5Z" fill="currentColor" />
+      <path d="M13 16.5H11V21.5H13V16.5Z" fill="currentColor" />
+      <path d="M21 16.5H15V21.5H21V16.5Z" fill="currentColor" />
+    </svg>
+  );
+});
+
+export default IconAutofpsSelect;

@@ -1,0 +1,21 @@
+import React from "react";
+import { withIcon } from "../../hoc";
+
+const IconWifi1Bar = withIcon(({ size }) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+    >
+      <path
+        d="M15.53 10.96L12 14.5L8.47 10.96C9.37 10.06 10.62 9.5 12 9.5C13.38 9.5 14.63 10.06 15.53 10.96Z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+});
+
+export default IconWifi1Bar;

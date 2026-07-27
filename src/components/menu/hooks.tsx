@@ -4,7 +4,7 @@ import type { ContextValue, MenuProps, Mode, Size } from "../../types/menu";
 import { toArray, useControlledState, useEvent } from "@aiszlab/relax";
 import { create as $create, props as $props } from "@stylexjs/stylex";
 import { duration, spacing } from "../theme/tokens.stylex";
-import { KeyboardArrowUp } from "../icon/icons";
+import { IconKeyboardArrowUp } from "../icon/icons";
 
 const styles = {
   prefix: $create({
@@ -83,7 +83,7 @@ export const useItemChildren = ({
         {suffix}
         {hasChildren && isInline && (
           <span {...styled}>
-            <KeyboardArrowUp size={16} />
+            <IconKeyboardArrowUp size={16} />
           </span>
         )}
       </span>

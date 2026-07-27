@@ -1,0 +1,19 @@
+import React from "react";
+import { withIcon } from "../../hoc";
+
+const IconKeyboardDoubleArrowDown = withIcon(({ size }) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+    >
+      <path d="M18 6.41L16.59 5L12 9.58L7.41 5L6 6.41L12 12.41L18 6.41Z" fill="currentColor" />
+      <path d="M18 13L16.59 11.59L12 16.17L7.41 11.59L6 13L12 19L18 13Z" fill="currentColor" />
+    </svg>
+  );
+});
+
+export default IconKeyboardDoubleArrowDown;

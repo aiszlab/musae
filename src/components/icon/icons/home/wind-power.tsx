@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const WindPower = withIcon(({ size }) => {
+const IconWindPower = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -21,4 +21,4 @@ const WindPower = withIcon(({ size }) => {
   );
 });
 
-export default WindPower;
+export default IconWindPower;

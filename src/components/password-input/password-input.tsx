@@ -1,7 +1,7 @@
 import React, { createElement, forwardRef } from "react";
 import { Input } from "../input";
 import { useBoolean } from "@aiszlab/relax";
-import { Visibility, VisibilityOff } from "../icon/icons";
+import { IconVisibility, IconVisibilityOff } from "../icon/icons";
 import type { InputRef } from "../../types/input";
 import type { PasswordInputProps } from "../../types/password-input";
 import { useTheme } from "../theme";
@@ -46,7 +46,7 @@ const PasswordInput = forwardRef<InputRef, PasswordInputProps>(({ className, ...
       }}
       ref={ref}
       type={isVisible ? "text" : "password"}
-      trailing={createElement(isVisible ? VisibilityOff : Visibility, {
+      trailing={createElement(isVisible ? IconVisibilityOff : IconVisibility, {
         onClick: toggle,
         onMouseDown: (event) => event.preventDefault(),
         onMouseUp: (event) => event.preventDefault(),

@@ -1,0 +1,21 @@
+import React from "react";
+import { withIcon } from "../../hoc";
+
+const IconTroubleshoot = withIcon(({ size }) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+    >
+      <path
+        d="M22.5 20.09L17.81 15.4C18.87 14.05 19.5 12.35 19.5 10.5C19.5 6.08 15.92 2.5 11.5 2.5C7.42 2.5 4.06 5.55 3.57 9.5H5.59C6.07 6.67 8.53 4.5 11.5 4.5C14.81 4.5 17.5 7.19 17.5 10.5C17.5 13.81 14.81 16.5 11.5 16.5C9.08 16.5 7 15.06 6.05 13H3.9C4.95 16.19 7.96 18.5 11.5 18.5C13.35 18.5 15.05 17.87 16.4 16.81L21.09 21.5L22.5 20.09Z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+});
+
+export default IconTroubleshoot;

@@ -1,0 +1,21 @@
+import React from "react";
+import { withIcon } from "../../hoc";
+
+const IconReplyAll = withIcon(({ size }) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+    >
+      <path
+        d="M7 7.5V4.5L0 11.5L7 18.5V15.5L3 11.5L7 7.5ZM13 8.5V4.5L6 11.5L13 18.5V14.4C18 14.4 21.5 16 24 19.5C23 14.5 20 9.5 13 8.5Z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+});
+
+export default IconReplyAll;

@@ -9,7 +9,7 @@ import { useClassNames } from "../../hooks/use-class-names";
 import { stringify } from "@aiszlab/relax/class-name";
 import ImageContex, { CLASS_NAMES } from "./context";
 import { Empty } from "../empty";
-import { Delete, Visibility } from "../icon/icons";
+import { IconDelete, IconVisibility } from "../icon/icons";
 import { type ThemeColorVariable, useThemeColorVars } from "../../hooks/use-theme-color-vars";
 import { duration, OPACITY, sizes, spacing } from "../theme/tokens.stylex";
 
@@ -173,8 +173,8 @@ const Image = forwardRef<ImageRef, ImageProps>(
             className={stringify(classNames.overlay, styled.overlay.className)}
             {...(actions.size === 1 && actions.has("preview") && { onClick: preview })}
           >
-            {actions.has("preview") && <Visibility onClick={preview} />}
-            {actions.has("remove") && <Delete onClick={onRemove} />}
+            {actions.has("preview") && <IconVisibility onClick={preview} />}
+            {actions.has("remove") && <IconDelete onClick={onRemove} />}
           </div>
         )}
 

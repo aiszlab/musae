@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const FormatStrikethrough = withIcon(({ size }) => {
+const IconFormatStrikethrough = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const FormatStrikethrough = withIcon(({ size }) => {
   );
 });
 
-export default FormatStrikethrough;
+export default IconFormatStrikethrough;

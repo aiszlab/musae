@@ -1,4 +1,4 @@
-import Github from "./github";
-import Loading from "./loading";
+import IconGithub from "./github";
+import IconLoading from "./loading";
 
-export { Github, Loading };
+export { IconGithub, IconLoading };

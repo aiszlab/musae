@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Superscript = withIcon(({ size }) => {
+const IconSuperscript = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const Superscript = withIcon(({ size }) => {
   );
 });
 
-export default Superscript;
+export default IconSuperscript;

@@ -1,6 +1,6 @@
 {
   "name": "musae",
-  "version": "1.0.27-beta.44",
+  "version": "1.1.1-beta.0",
   "description": "musae-ui",
   "author": "tutu@fantufantu.com",
   "license": "MIT",
@@ -91,6 +91,7 @@
     "@babel/preset-react": "^7.28.5",
     "@babel/preset-typescript": "^7.28.5",
     "@eslint/js": "^10.0.1",
+    "@material-design-icons/svg": "^0.14.15",
     "@rollup/plugin-babel": "^6.1.0",
     "@rollup/plugin-commonjs": "^29.0.0",
     "@rollup/plugin-node-resolve": "^16.0.3",

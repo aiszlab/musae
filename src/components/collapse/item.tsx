@@ -6,7 +6,7 @@ import type { CollapseItemProps } from "../../types/collapse";
 import { Context } from "./context";
 import { useExpandable } from "../../hooks/use-expandable";
 import { useTheme } from "../theme";
-import { KeyboardArrowRight } from "../icon/icons";
+import { IconKeyboardArrowRight } from "../icon/icons";
 import { stringify } from "@aiszlab/relax/class-name";
 import { $body, $title } from "../theme/theme";
 
@@ -110,7 +110,7 @@ const CollapseItem = ({ children, label, value }: CollapseItemProps) => {
         style={styled.header.style}
         onClick={onClick}
       >
-        <KeyboardArrowRight
+        <IconKeyboardArrowRight
           className={stringify(classNames.collapser, styled.collapser.className)}
           style={styled.collapser.style}
         />

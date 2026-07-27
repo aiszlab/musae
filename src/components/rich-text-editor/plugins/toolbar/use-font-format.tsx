@@ -2,7 +2,7 @@ import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext
 import { FORMAT_TEXT_COMMAND } from "lexical";
 import React, { useCallback, useMemo, useState } from "react";
 import type { DropdownProps } from "../../../../types/rich-text-editor";
-import { FormatStrikethrough, Subscript, Superscript } from "../../../icon/icons";
+import { IconFormatStrikethrough, IconSubscript, IconSuperscript } from "../../../icon/icons";
 
 export type FontFormat = "strikethrough" | "subscript" | "superscript";
 
@@ -26,21 +26,21 @@ export const useFontFormats = () => {
         "strikethrough",
         {
           label: "strikethrough",
-          prefix: <FormatStrikethrough />,
+          prefix: <IconFormatStrikethrough />,
         },
       ],
       [
         "subscript",
         {
           label: "subscript",
-          prefix: <Subscript />,
+          prefix: <IconSubscript />,
         },
       ],
       [
         "superscript",
         {
           label: "superscript",
-          prefix: <Superscript />,
+          prefix: <IconSuperscript />,
         },
       ],
     ]);

@@ -25,6 +25,7 @@ export { Drawer } from "./components/drawer";
 export { Dialog } from "./components/dialog";
 export { Tag } from "./components/tag";
 export { Calendar, ContributionCalendar } from "./components/calendar";
+export { Card } from "./components/card";
 export { DatePicker } from "./components/date-picker";
 export { TimePicker } from "./components/time-picker";
 export { DateRangePicker } from "./components/date-range-picker";

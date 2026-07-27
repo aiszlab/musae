@@ -1,18 +1,18 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Add = withIcon(({ size }) => {
+const IconAdd = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width={size}
       height={size}
-      viewBox="0 0 14 14"
+      viewBox="0 0 24 24"
       fill="none"
     >
-      <path d="M14 8H8V14H6V8H0V6H6V0H8V6H14V8Z" fill="currentColor" />
+      <path d="M19 13H13V19H11V13H5V11H11V5H13V11H19V13Z" fill="currentColor" />
     </svg>
   );
 });
 
-export default Add;
+export default IconAdd;

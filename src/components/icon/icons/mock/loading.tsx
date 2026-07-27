@@ -17,7 +17,7 @@ const styles = $create({
   },
 });
 
-const Loading = withIcon((props) => {
+const IconLoading = withIcon((props) => {
   const styled = $props(styles.loading);
 
   return (
@@ -40,4 +40,4 @@ const Loading = withIcon((props) => {
   );
 });
 
-export default Loading;
+export default IconLoading;

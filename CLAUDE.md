@@ -15,6 +15,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
  */
 ```
 
+- **Storybook comments exception.** Storybook story files (`stories/*.stories.ts`) do NOT need bilingual `@zh`/`@en` JSDoc comments. Use `/** */` block comments with plain single-language text instead.
+
 ## Project Overview
 
 `musae` is a React UI component library (~60+ components) built on Material Design 3 principles. It uses **StyleX** (Meta's CSS-in-JS) for styling, **Rollup** for bundling, and **RxJS** for internal reactive state management.

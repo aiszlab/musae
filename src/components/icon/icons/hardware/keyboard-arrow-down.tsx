@@ -1,12 +1,12 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const KeyboardArrowDown = withIcon((props) => {
+const IconKeyboardArrowDown = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width={props.size}
-      height={props.size}
+      width={size}
+      height={size}
       viewBox="0 0 24 24"
       fill="none"
     >
@@ -18,4 +18,4 @@ const KeyboardArrowDown = withIcon((props) => {
   );
 });
 
-export default KeyboardArrowDown;
+export default IconKeyboardArrowDown;

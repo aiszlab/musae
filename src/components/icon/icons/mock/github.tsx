@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Github = withIcon((props) => {
+const IconGithub = withIcon((props) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -20,4 +20,4 @@ const Github = withIcon((props) => {
   );
 });
 
-export default Github;
+export default IconGithub;

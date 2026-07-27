@@ -1,0 +1,21 @@
+import React from "react";
+import { withIcon } from "../../hoc";
+
+const IconStayCurrentPortrait = withIcon(({ size }) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+    >
+      <path
+        d="M16.995 1.01L6.995 1C5.895 1 5.005 1.9 5.005 3V21C5.005 22.1 5.895 23 6.995 23H16.995C18.095 23 18.995 22.1 18.995 21V3C18.995 1.9 18.095 1.01 16.995 1.01ZM16.995 19H6.995V5H16.995V19Z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+});
+
+export default IconStayCurrentPortrait;

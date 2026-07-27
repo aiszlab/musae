@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const CalendarToday = withIcon(({ size }) => {
+const IconCalendarToday = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const CalendarToday = withIcon(({ size }) => {
   );
 });
 
-export default CalendarToday;
+export default IconCalendarToday;

@@ -1,0 +1,21 @@
+import React from "react";
+import { withIcon } from "../../hoc";
+
+const IconFormatQuote = withIcon(({ size }) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+    >
+      <path
+        d="M18.62 18H13.38L15.38 14H13V6H21V13.24L18.62 18ZM16.62 16H17.38L19 12.76V8H15V12H18.62L16.62 16ZM8.62 18H3.38L5.38 14H3V6H11V13.24L8.62 18ZM6.62 16H7.38L9 12.76V8H5V12H8.62L6.62 16Z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+});
+
+export default IconFormatQuote;

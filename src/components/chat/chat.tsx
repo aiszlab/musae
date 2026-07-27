@@ -9,7 +9,7 @@ import { create as $create, props as $props } from "@stylexjs/stylex";
 import { stringify } from "@aiszlab/relax/class-name";
 import { spacing } from "../theme/tokens.stylex";
 import { IconButton } from "../icon-button";
-import { RocketLaunch } from "../icon/icons";
+import { IconRocketLaunch } from "../icon/icons";
 import { $body } from "../theme/theme";
 
 const styles = $create({
@@ -89,7 +89,7 @@ const Chat = ({ onMessage, className, style, defaultValue, placeholder }: ChatPr
           <Textarea value={message} onChange={setMessage} placeholder={placeholder} />
 
           <IconButton onClick={submit} disabled={!message} size="small">
-            <RocketLaunch />
+            <IconRocketLaunch />
           </IconButton>
         </div>
       </div>

@@ -5,7 +5,7 @@ import { getElementByNode } from "../../utils/get-element-by-node";
 import { $createLinkNode, TOGGLE_LINK_COMMAND, type LinkNode } from "@lexical/link";
 import { useBoolean, useEvent } from "@aiszlab/relax";
 import { Space } from "../../../space";
-import { OpenInNew, Edit, LinkOff } from "../../../icon/icons";
+import { IconOpenInNew, IconEdit, IconLinkOff } from "../../../icon/icons";
 import { create as $create, props as $props } from "@stylexjs/stylex";
 import { spacing } from "../../../theme/tokens.stylex";
 import { Button } from "../../../button";
@@ -87,15 +87,15 @@ const FloatingLinkEditorPlugin = ({ link }: Props) => {
       {!isEditable && (
         <Space>
           <IconButton variant="text" size="small" onClick={openLink}>
-            <OpenInNew />
+            <IconOpenInNew />
           </IconButton>
 
           <IconButton variant="text" size="small" onClick={edit}>
-            <Edit />
+            <IconEdit />
           </IconButton>
 
           <IconButton variant="text" size="small" onClick={linkOff}>
-            <LinkOff />
+            <IconLinkOff />
           </IconButton>
         </Space>
       )}

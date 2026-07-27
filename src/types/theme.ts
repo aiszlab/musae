@@ -57,6 +57,18 @@ export type Palette = Record<
   Record<ColorProperty.Success | ColorProperty.Warning, Record<0 | 100, string>>;
 
 /**
+ * @zh 主题切换选项
+ * @en theme toggle options
+ */
+export interface ToggleOptions {
+  /**
+   * @zh 动画持续时间（毫秒），默认 300
+   * @en animation duration in milliseconds, defaults to 300
+   */
+  duration?: number;
+}
+
+/**
  * @author murukal
  *
  * @description
@@ -81,5 +93,5 @@ export interface ContextValue {
    * @zh 切换主题模式，返回更新后的模式
    * @en toggle theme mode, returns the updated mode
    */
-  toggle: (event?: MouseEvent) => Mode;
+  toggle: (event?: MouseEvent, options?: ToggleOptions) => Mode;
 }

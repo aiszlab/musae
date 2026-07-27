@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const LightMode = withIcon(({ size }) => {
+const IconLightMode = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const LightMode = withIcon(({ size }) => {
   );
 });
 
-export default LightMode;
+export default IconLightMode;

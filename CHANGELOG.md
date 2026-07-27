@@ -1,5 +1,38 @@
 # musae
 
+## 1.1.0
+
+### Minor Changes
+
+- ### 🆕 新增组件
+  - **Search** — 新增搜索组件，支持图标和输入功能，提供通用组件属性
+  - **BottomSheet** — 新增底部弹出面板组件，支持拖拽手柄和动画效果
+  - **ActionSheet** — 新增移动端底部操作面板组件
+  - **CategoryPicker** — 新增分类选择器组件
+
+  ### ✨ 功能增强
+  - **Icon** — 新增 CalendarToday、Add、Remove、LocationOn、Share 等多个图标；重构图标命名为 `Icon` 前缀和 kebab-case 文件名；新增 av、communication、device、file、home、maps、notification、places、search、social 图标分类入口
+  - **Tabs** — 新增 `size` 属性、`onChange` 回调，增强面板功能，优化导航和样式
+  - **Tag** — 新增 `size` 和 `variant` 属性、`onClick` 事件处理，优化内边距样式
+  - **Calendar** — 新增 `disabledDate` 属性，修复边距和日期单元格间距问题
+  - **Select / Input / Picker** — 新增 `disabled` 属性支持
+  - **Switch** — 新增 `onClick` 事件处理
+  - **Form** — `getFieldValue` 新增泛型类型参数支持；新增 Reset 示例
+  - **Theme** — 新增 `defaultMode` 属性、深色模式切换功能；颜色变量改用 CSS 计算代替 JS 计算
+  - **Pagination** — 条件渲染尺寸选择器
+  - **Checkbox** — 引入主题色样式变量
+
+  ### 🐛 修复
+  - **Progress** — 修复进度条宽度展示问题
+  - **Image** — 修复图片全尺寸样式 `maxHeight` 改为 `height`
+  - **Input / Search** — 更新 `boxShadow` 样式添加 `inset` 属性
+  - **RichTextEditor** — 优化状态管理
+
+  ### 🔧 工程
+  - **StyleX** — 从 0.18.3 升级至 0.19.0
+  - **Prettier** — 新增格式化脚本并格式化所有 ts/tsx 文件
+  - **Sheet** — 提取共享 Sheet 组件，重构 BottomSheet 和 Drawer
+
 ## 1.0.15
 
 ### Patch Changes

@@ -1,13 +1,13 @@
 import React, { useContext, useState } from "react";
 import {
-  Redo,
-  Undo,
-  FormatBold,
-  Code,
-  FormatItalic,
-  FormatUnderlined,
-  InsertLink,
-  FontDownload,
+  IconRedo,
+  IconUndo,
+  IconFormatBold,
+  IconCode,
+  IconFormatItalic,
+  IconFormatUnderlined,
+  IconInsertLink,
+  IconFontDownload,
 } from "../../../icon/icons";
 import { create as $create, props as $props } from "@stylexjs/stylex";
 import { sizes, spacing } from "../../../theme/tokens.stylex";
@@ -176,7 +176,7 @@ const ToolbarPlugin = () => {
           onClick={handlers.undo}
           disabled={!isUndoable}
         >
-          <Undo />
+          <IconUndo />
         </Button>
 
         <Button
@@ -186,7 +186,7 @@ const ToolbarPlugin = () => {
           onClick={handlers.redo}
           disabled={!isRedoable}
         >
-          <Redo />
+          <IconRedo />
         </Button>
 
         <Divider orientation="vertical" />
@@ -205,7 +205,7 @@ const ToolbarPlugin = () => {
           size="small"
           onClick={handlers.bold}
         >
-          <FormatBold />
+          <IconFormatBold />
         </Button>
 
         <Button
@@ -214,7 +214,7 @@ const ToolbarPlugin = () => {
           size="small"
           onClick={handlers.italic}
         >
-          <FormatItalic />
+          <IconFormatItalic />
         </Button>
 
         <Button
@@ -223,7 +223,7 @@ const ToolbarPlugin = () => {
           size="small"
           onClick={handlers.underline}
         >
-          <FormatUnderlined />
+          <IconFormatUnderlined />
         </Button>
 
         <Button
@@ -232,7 +232,7 @@ const ToolbarPlugin = () => {
           size="small"
           onClick={handlers.insertLink}
         >
-          <InsertLink />
+          <IconInsertLink />
         </Button>
 
         <Button
@@ -241,11 +241,11 @@ const ToolbarPlugin = () => {
           size="small"
           onClick={handlers.code}
         >
-          <Code />
+          <IconCode />
         </Button>
 
         <Dropdown items={fontFormats} value={Array.from(fontFormat)} onChange={formatFont}>
-          <FontDownload />
+          <IconFontDownload />
         </Dropdown>
       </div>
 

@@ -3,7 +3,7 @@ import { useTransfer } from "./hooks";
 import type { TransferProps } from "../../types/transfer";
 import List from "./list";
 import { create as $create, props as $props } from "@stylexjs/stylex";
-import { KeyboardArrowLeft, KeyboardArrowRight } from "../icon/icons";
+import { IconKeyboardArrowLeft, IconKeyboardArrowRight } from "../icon/icons";
 import { spacing } from "../theme/tokens.stylex";
 import { CLASS_NAMES, Context } from "./context";
 import { useClassNames } from "../../hooks/use-class-names";
@@ -90,7 +90,7 @@ const Transfer = ({
             onClick={transfer}
             disabled={disabled || selectedTransferKeys.length === 0}
           >
-            <KeyboardArrowRight />
+            <IconKeyboardArrowRight />
           </IconButton>
 
           <IconButton
@@ -98,7 +98,7 @@ const Transfer = ({
             onClick={untransfer}
             disabled={disabled || selectedUntransferKeys.length === 0}
           >
-            <KeyboardArrowLeft />
+            <IconKeyboardArrowLeft />
           </IconButton>
         </div>
 

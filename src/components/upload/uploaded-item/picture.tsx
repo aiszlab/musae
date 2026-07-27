@@ -2,7 +2,7 @@ import React, { useContext, type CSSProperties } from "react";
 import type { UploadedItem } from "../../../types/upload";
 import ImageContext from "../../image/context";
 import { Image } from "../../image";
-import { AttachFile } from "../../icon/icons";
+import { IconAttachFile } from "../../icon/icons";
 import { create as $create, props as $props } from "@stylexjs/stylex";
 import { sizes, spacing } from "../../../components/theme/tokens.stylex";
 import { useThemeColorVars, type ThemeColorVariable } from "../../../hooks/use-theme-color-vars";
@@ -56,7 +56,7 @@ const UploadedPicture = ({ item, onRemove, className, style }: Props) => {
       >
         <Image
           src={item.url}
-          fallback={<AttachFile size={48} />}
+          fallback={<IconAttachFile size={48} />}
           referrerPolicy="strict-origin-when-cross-origin"
           className={styled.image.className}
           style={styled.image.style}

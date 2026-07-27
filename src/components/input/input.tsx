@@ -118,6 +118,9 @@ const Input = forwardRef<InputRef, InputProps>(
       focus: () => {
         inputRef.current?.focus();
       },
+      blur: () => {
+        inputRef.current?.blur();
+      },
       select: () => {
         inputRef.current?.select();
       },

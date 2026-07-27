@@ -1,0 +1,21 @@
+import React from "react";
+import { withIcon } from "../../hoc";
+
+const IconIncompleteCircle = withIcon(({ size }) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+    >
+      <path
+        d="M22 12C22 17.52 17.52 22 12 22C6.48 22 2 17.52 2 12C2 9.24 3.12 6.74 4.93 4.93L12 12V2C17.52 2 22 6.48 22 12Z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+});
+
+export default IconIncompleteCircle;

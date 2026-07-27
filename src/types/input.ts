@@ -97,12 +97,19 @@ export interface InputRef {
 
   /**
    * @description
+   * blur
+   */
+  blur?: HTMLInputElement["blur"];
+
+  /**
+   * @description
    * select
    */
   select?: HTMLInputElement["select"];
 
   /**
-   * 获取组件内部值
+   * @zh 获取组件内部值
+   * @en Get the current internal value
    */
   getValue: () => string;
 }

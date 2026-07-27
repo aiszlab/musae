@@ -1,0 +1,21 @@
+import React from "react";
+import { withIcon } from "../../hoc";
+
+const IconMergeType = withIcon(({ size }) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+    >
+      <path
+        d="M17 20.4549L18.41 19.0449L15 15.6349L13.59 17.0449L17 20.4549ZM7.5 8.04492H11V13.6349L5.59 19.0449L7 20.4549L13 14.4549V8.04492H16.5L12 3.54492L7.5 8.04492Z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+});
+
+export default IconMergeType;

@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const KeyboardDoubleArrowRight = withIcon(({ size }) => {
+const IconKeyboardDoubleArrowRight = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -16,4 +16,4 @@ const KeyboardDoubleArrowRight = withIcon(({ size }) => {
   );
 });
 
-export default KeyboardDoubleArrowRight;
+export default IconKeyboardDoubleArrowRight;

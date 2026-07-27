@@ -1,11 +1,11 @@
 import React, { createElement } from "react";
 import type { PaginationItemProps } from "../../types/pagination";
 import {
-  KeyboardArrowLeft,
-  KeyboardArrowRight,
-  MoreHoriz,
-  KeyboardDoubleArrowLeft,
-  KeyboardDoubleArrowRight,
+  IconKeyboardArrowLeft,
+  IconKeyboardArrowRight,
+  IconMoreHoriz,
+  IconKeyboardDoubleArrowLeft,
+  IconKeyboardDoubleArrowRight,
 } from "../icon/icons";
 import { create as $create, props as $props } from "@stylexjs/stylex";
 import { IconButton } from "../icon-button";
@@ -52,7 +52,7 @@ const Item = ({
         disabled={!hasPrev}
         size="small"
       >
-        <KeyboardArrowLeft />
+        <IconKeyboardArrowLeft />
       </IconButton>
     );
   }
@@ -66,7 +66,7 @@ const Item = ({
         disabled={!hasNext}
         size="small"
       >
-        <KeyboardArrowRight />
+        <IconKeyboardArrowRight />
       </IconButton>
     );
   }
@@ -95,7 +95,7 @@ const Item = ({
         }}
         size="small"
       >
-        <MoreHoriz role="separator" />
+        <IconMoreHoriz role="separator" />
 
         {/* hovered icon */}
         {createElement(isMorePrev ? KeyboardDoubleArrowLeft : KeyboardDoubleArrowRight, {

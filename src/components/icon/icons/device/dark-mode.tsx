@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const DarkMode = withIcon(({ size }) => {
+const IconDarkMode = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const DarkMode = withIcon(({ size }) => {
   );
 });
 
-export default DarkMode;
+export default IconDarkMode;

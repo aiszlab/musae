@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Error = withIcon(({ size }) => {
+const IconError = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const Error = withIcon(({ size }) => {
   );
 });
 
-export default Error;
+export default IconError;

@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const FormatUnderlined = withIcon(({ size }) => {
+const IconFormatUnderlined = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const FormatUnderlined = withIcon(({ size }) => {
   );
 });
 
-export default FormatUnderlined;
+export default IconFormatUnderlined;

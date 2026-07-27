@@ -6,7 +6,14 @@ import type { NotificationProps, Placement, Axis, Type } from "../../types/notif
 import { useAsyncEffect, useComposedRef, useTimeout } from "@aiszlab/relax";
 import { useClassNames } from "../../hooks/use-class-names";
 import { duration, elevations, sizes, spacing } from "../theme/tokens.stylex";
-import { CheckCircle, Close, Loading, Error, NotificationImportant, Warning } from "../icon/icons";
+import {
+  IconCheckCircle,
+  IconClose,
+  IconLoading,
+  IconError,
+  IconNotificationImportant,
+  IconWarning,
+} from "../icon/icons";
 import type { IconProps } from "../../types/icon";
 import { stringify } from "@aiszlab/relax/class-name";
 import { CLASS_NAMES } from "./context";
@@ -29,11 +36,11 @@ export const PLACEMENTS: Record<Axis, [hidden: string, appeared: string]> = {
 };
 
 const LEADINGS = new Map<Type, FC<IconProps>>([
-  ["success", CheckCircle],
-  ["error", Error],
-  ["loading", Loading],
-  ["info", NotificationImportant],
-  ["warning", Warning],
+  ["success", IconCheckCircle],
+  ["error", IconError],
+  ["loading", IconLoading],
+  ["info", IconNotificationImportant],
+  ["warning", IconWarning],
 ]);
 
 const styles = {
@@ -219,7 +226,7 @@ const Notification = forwardRef<HTMLDivElement, NotificationProps>(
         </div>
 
         {closable && (
-          <Close
+          <IconClose
             className={stringify(classNames.closer, styled.closer.className)}
             onClick={onClose}
             color={theme.colors.primary}

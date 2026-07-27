@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import type { TreeNodeProps } from "../../types/tree";
 import Context from "./context";
 import { Checkbox } from "../checkbox";
-import { KeyboardArrowRight } from "../icon/icons";
+import { IconKeyboardArrowRight } from "../icon/icons";
 import { create as $create, props as $props } from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { useEvent } from "@aiszlab/relax";
@@ -101,7 +101,7 @@ const Node = ({ value, children, level, onExpand, ...props }: TreeNodeProps) => 
           style={styled.expander.style}
           onClick={expand}
         >
-          {!!children && <KeyboardArrowRight />}
+          {!!children && <IconKeyboardArrowRight />}
         </span>
 
         <Checkbox className={stringify(classNames.checkbox)} checked={isChecked} onChange={check} />

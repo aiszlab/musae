@@ -4,7 +4,7 @@ import { create as $create, props as $props } from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";
 import { isNumber, isUndefined, useEvent } from "@aiszlab/relax";
 import { Context } from "./context";
-import { Done } from "../icon/icons";
+import { IconDone } from "../icon/icons";
 import { stringify } from "@aiszlab/relax/class-name";
 import { $body, $title } from "../theme/theme";
 
@@ -155,7 +155,7 @@ const Item = ({ leading, title, description, value }: StepItemProps) => {
             "--size": isNumber(size) ? `${size}px` : void 0,
           }}
         >
-          {leading ?? (status === "done" ? <Done /> : value)}
+          {leading ?? (status === "done" ? <IconDone /> : value)}
         </div>
       </div>
       <div

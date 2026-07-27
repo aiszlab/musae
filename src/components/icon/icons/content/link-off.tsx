@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const LinkOff = withIcon(({ size }) => {
+const IconLinkOff = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const LinkOff = withIcon(({ size }) => {
   );
 });
 
-export default LinkOff;
+export default IconLinkOff;

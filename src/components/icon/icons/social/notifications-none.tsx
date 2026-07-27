@@ -1,0 +1,21 @@
+import React from "react";
+import { withIcon } from "../../hoc";
+
+const IconNotificationsNone = withIcon(({ size }) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+    >
+      <path
+        d="M 12 22 C 13.128 22 14.051 21.077 14.051 19.949 L 9.949 19.949 C 9.949 21.077 10.872 22 12 22 Z M 18.154 15.846 L 18.154 10.718 C 18.154 7.569 16.482 4.933 13.538 4.236 L 13.538 3.538 C 13.538 2.687 12.851 2 12 2 C 11.149 2 10.462 2.687 10.462 3.538 L 10.462 4.236 C 7.528 4.933 5.846 7.559 5.846 10.718 L 5.846 15.846 L 3.795 17.897 L 3.795 18.923 L 20.205 18.923 L 20.205 17.897 L 18.154 15.846 Z M 16.103 16.872 L 7.897 16.872 L 7.897 10.718 C 7.897 8.174 9.446 6.103 12 6.103 C 14.554 6.103 16.103 8.174 16.103 10.718 L 16.103 16.872 Z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+});
+
+export default IconNotificationsNone;

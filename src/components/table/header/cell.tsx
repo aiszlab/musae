@@ -2,7 +2,7 @@ import React, { useMemo } from "react";
 import { toFunction, useEvent } from "@aiszlab/relax";
 import { create as $create, props as $props } from "@stylexjs/stylex";
 import { sizes, spacing } from "../../theme/tokens.stylex";
-import { UnfoldMore } from "../../icon/icons";
+import { IconUnfoldMore } from "../../icon/icons";
 import type { HeaderCellProps, SortDirection } from "../../../types/table";
 import { useTable } from "../context";
 import { type ThemeColorVariable, useThemeColorVars } from "../../../hooks/use-theme-color-vars";
@@ -103,13 +103,13 @@ const Cell = ({
         <span className={styled.sort.className} style={styled.sort.style} onClick={onSort}>
           {/* full */}
           <div className={styled.fullSort.className} style={styled.fullSort.style}>
-            <UnfoldMore size="medium" />
+            <IconUnfoldMore size="medium" />
           </div>
 
           {/* half */}
           {!!sort && (
             <div className={styled.halfSort.className} style={styled.halfSort.style}>
-              <UnfoldMore size="medium" />
+              <IconUnfoldMore size="medium" />
             </div>
           )}
         </span>

@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const Menu = withIcon(({ size }) => {
+const IconMenu = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -15,4 +15,4 @@ const Menu = withIcon(({ size }) => {
   );
 });
 
-export default Menu;
+export default IconMenu;
