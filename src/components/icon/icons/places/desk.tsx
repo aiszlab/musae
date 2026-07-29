@@ -11,7 +11,7 @@ const IconDesk = withIcon(({ size }) => {
       fill="none"
     >
       <path
-        d="M 2 6 L 2 18 L 4 18 L 4 8 L 14 8 L 14 18 L 16 18 L 16 16 L 20 16 L 20 18 L 22 18 L 22 6 L 2 6 Z M 20 8 L 20 10 L 16 10 L 16 8 L 20 8 Z M 16 14 L 16 12 L 20 12 L 20 14 L 16 14 Z"
+        d="M2 6V18H4V8H14V18H16V16H20V18H22V6H2ZM20 8V10H16V8H20ZM16 14V12H20V14H16Z"
         fill="currentColor"
       />
     </svg>

@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const IconFf24035967 = withIcon(({ size }) => {
+const IconStarPurple500 = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -11,11 +11,11 @@ const IconFf24035967 = withIcon(({ size }) => {
       fill="none"
     >
       <path
-        d="M11 3.86L14.03 6L11 8.14V3.86ZM2 3.86L5.03 6L2 8.14V3.86ZM9 0V12L17.5 6L9 0ZM0 0V12L8.5 6L0 0Z"
+        d="M12 17.77L18.18 21.5L16.54 14.47L22 9.74L14.81 9.13L12 2.5L9.19 9.13L2 9.74L7.46 14.47L5.82 21.5L12 17.77Z"
         fill="currentColor"
       />
     </svg>
   );
 });
 
-export default IconFf24035967;
+export default IconStarPurple500;

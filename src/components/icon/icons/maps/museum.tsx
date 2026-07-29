@@ -11,13 +11,10 @@ const IconMuseum = withIcon(({ size }) => {
       fill="none"
     >
       <path
-        d="M 24 10.8 V 8.4 L 12 0 L 0 8.4 V 10.8 H 2.4 V 21.6 H 0 V 24 H 24 V 21.6 H 21.6 V 10.8 H 24ZM 19.2 21.6 H 4.8 V 8.4 H 19.2 V 21.6Z"
+        d="M22 11V9L12 2L2 9V11H4V20H2V22H22V20H20V11H22ZM18 20H6V9H18V20Z"
         fill="currentColor"
       />
-      <path
-        d="M 9.6 14.4 L 12 18 L 14.4 14.4 V 19.2 H 16.8 V 10.8 H 14.4 L 12 14.4 L 9.6 10.8 H 7.2 V 19.2 H 9.6 V 14.4Z"
-        fill="currentColor"
-      />
+      <path d="M10 14L12 17L14 14V18H16V11H14L12 14L10 11H8V18H10V14Z" fill="currentColor" />
     </svg>
   );
 });

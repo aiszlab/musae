@@ -10,10 +10,7 @@ const IconTransitEnterexit = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <path
-        d="M 20 24 H 0 V 4 H 6 V 13.54 L 19.96 0 L 24 4.06 L 10.3 18 H 20 V 24Z"
-        fill="currentColor"
-      />
+      <path d="M16 18H6V8H9V12.77L15.98 6L18 8.03L11.15 15H16V18Z" fill="currentColor" />
     </svg>
   );
 });

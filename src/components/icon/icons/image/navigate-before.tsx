@@ -10,7 +10,10 @@ const IconNavigateBefore = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <path d="M13.41 7.41L12 6L6 12L12 18L13.41 16.59L8.83 12L13.41 7.41Z" fill="currentColor" />
+      <path
+        d="M15.705 7.41L14.295 6L8.29498 12L14.295 18L15.705 16.59L11.125 12L15.705 7.41Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });

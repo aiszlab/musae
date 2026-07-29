@@ -10,7 +10,10 @@ const IconViewCarousel = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <path d="M2 6H6V18H2V6ZM7 19H17V5H7V19ZM18 6H22V18H18V6Z" fill="currentColor" />
+      <path
+        d="M2 7H6V17H2V7ZM7 19H17V5H7V19ZM9 7H15V17H9V7ZM18 7H22V17H18V7Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });

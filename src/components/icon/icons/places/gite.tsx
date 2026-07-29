@@ -11,7 +11,7 @@ const IconGite = withIcon(({ size }) => {
       fill="none"
     >
       <path
-        d="M 18 6.5 L 9 6.5 L 9 4.5 L 7 4.5 L 7 6.5 L 6 6.5 L 2 10.5 L 2 19.5 L 22 19.5 L 22 10.5 L 18 6.5 Z M 4 12.5 L 14 12.5 L 14 17.5 L 4 17.5 L 4 12.5 Z M 20 17.5 L 16 17.5 L 16 11.33 L 18 9.33 L 20 11.33 L 20 17.5 Z"
+        d="M18 6.5H9V4.5H7V6.5H6L2 10.5V19.5H22V10.5L18 6.5ZM4 12.5H14V17.5H4V12.5ZM20 17.5H16V11.33L18 9.33L20 11.33V17.5Z"
         fill="currentColor"
       />
     </svg>

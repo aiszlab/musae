@@ -11,7 +11,7 @@ const IconExposureNeg1 = withIcon(({ size }) => {
       fill="none"
     >
       <path
-        d="M4.5 10.5V12.5H12.5V10.5H4.5ZM19.5 17.5H17.5V6.88L14.5 7.9V6.2L19.2 4.5H19.5V17.5Z"
+        d="M4.5 11.5V13.5H12.5V11.5H4.5ZM19.5 18.5H17.5V7.88L14.5 8.9V7.2L19.2 5.5H19.5V18.5Z"
         fill="currentColor"
       />
     </svg>

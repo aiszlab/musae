@@ -11,7 +11,7 @@ const IconWbShade = withIcon(({ size }) => {
       fill="none"
     >
       <path
-        d="M14 10V12.5L19.5 18H22L14 10ZM14 18H17L14 15V18ZM8 2L2 8H4V18H12V8H14L8 2ZM9 12H7V8H9V12Z"
+        d="M14 12V14.5L19.5 20H22L14 12ZM14 20H17L14 17V20ZM8 4L2 10H4V20H12V10H14L8 4ZM9 14H7V10H9V14Z"
         fill="currentColor"
       />
     </svg>

@@ -11,7 +11,7 @@ const IconMovieCreation = withIcon(({ size }) => {
       fill="none"
     >
       <path
-        d="M5.76 8H20V16H4V4.47M22 2H18L20 6H17L15 2H13L15 6H12L10 2H8L10 6H7L5 2H4C2.9 2 2 2.9 2 4V16C2 17.1 2.9 18 4 18H20C21.1 18 22 17.1 22 16V2Z"
+        d="M5.76 10H20V18H4V6.47M22 4H18L20 8H17L15 4H13L15 8H12L10 4H8L10 8H7L5 4H4C2.9 4 2 4.9 2 6V18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V4Z"
         fill="currentColor"
       />
     </svg>

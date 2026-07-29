@@ -10,7 +10,7 @@ const IconDehaze = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <path d="M2 12V14H22V12H2ZM2 7V9H22V7H2ZM2 2V4H22V2H2Z" fill="currentColor" />
+      <path d="M2 16V18H22V16H2ZM2 11V13H22V11H2ZM2 6V8H22V6H2Z" fill="currentColor" />
     </svg>
   );
 });
