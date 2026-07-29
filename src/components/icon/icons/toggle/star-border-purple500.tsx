@@ -1,7 +1,7 @@
 import React from "react";
 import { withIcon } from "../../hoc";
 
-const IconStarBorder = withIcon(({ size }) => {
+const IconStarBorderPurple500 = withIcon(({ size }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const IconStarBorder = withIcon(({ size }) => {
   );
 });
 
-export default IconStarBorder;
+export default IconStarBorderPurple500;

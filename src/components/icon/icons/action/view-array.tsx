@@ -10,7 +10,10 @@ const IconViewArray = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <path d="M21 5H17V19H21V5ZM15 5H9V19H15V5ZM7 19H3V5H7V19Z" fill="currentColor" />
+      <path
+        d="M15 7V17H9V7H15ZM21 5H18V19H21V5ZM17 5H7V19H17V5ZM6 5H3V19H6V5Z"
+        fill="currentColor"
+      />
     </svg>
   );
 });

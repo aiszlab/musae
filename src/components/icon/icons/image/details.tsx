@@ -11,7 +11,7 @@ const IconDetails = withIcon(({ size }) => {
       fill="none"
     >
       <path
-        d="M12 2L2 20H22L12 2ZM13 7.92L18.6 18H13V7.92ZM11 7.92V18H5.4L11 7.92Z"
+        d="M12 3L2 21H22L12 3ZM13 8.92L18.6 19H13V8.92ZM11 8.92V19H5.4L11 8.92Z"
         fill="currentColor"
       />
     </svg>

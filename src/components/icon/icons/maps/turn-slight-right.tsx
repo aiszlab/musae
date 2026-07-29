@@ -11,7 +11,7 @@ const IconTurnSlightRight = withIcon(({ size }) => {
       fill="none"
     >
       <path
-        d="M 10.26 0 H 18.75 V 8.49 H 15.75 V 5.115 L 8.25 12.615 V 24 H 5.25 V 12.63 C 5.25 11.835 5.565 11.07 6.135 10.515 L 13.635 3.015 H 10.26 V 0Z"
+        d="M10.84 4H16.5V9.66H14.5V7.41L9.5 12.41V20H7.5V12.42C7.5 11.89 7.71 11.38 8.09 11.01L13.09 6.01H10.84V4Z"
         fill="currentColor"
       />
     </svg>

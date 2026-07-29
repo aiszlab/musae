@@ -11,10 +11,10 @@ const IconSwitchCamera = withIcon(({ size }) => {
       fill="none"
     >
       <path
-        d="M20 4H16.83L15 2H9L7.17 4H4C2.9 4 2 4.9 2 6V18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6C22 4.9 21.1 4 20 4ZM9.88 4H14.12L15.95 6H20V18H4V6H8.05"
+        d="M20 5H16.83L15 3H9L7.17 5H4C2.9 5 2 5.9 2 7V19C2 20.1 2.9 21 4 21H20C21.1 21 22 20.1 22 19V7C22 5.9 21.1 5 20 5ZM9.88 5H14.12L15.95 7H20V19H4V7H8.05"
         fill="currentColor"
       />
-      <path d="M15 11H9V8.5L5.5 12L9 15.5V13H15V15.5L18.5 12L15 8.5V11Z" fill="currentColor" />
+      <path d="M15 12H9V9.5L5.5 13L9 16.5V14H15V16.5L18.5 13L15 9.5V12Z" fill="currentColor" />
     </svg>
   );
 });

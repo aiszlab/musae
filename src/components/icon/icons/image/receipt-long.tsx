@@ -11,13 +11,13 @@ const IconReceiptLong = withIcon(({ size }) => {
       fill="none"
     >
       <path
-        d="M18.5 3.5L17 2L15.5 3.5L14 2L12.5 3.5L11 2L9.5 3.5L8 2L6.5 3.5L5 2V16H2V19C2 20.66 3.34 22 5 22H17C18.66 22 20 20.66 20 19V2L18.5 3.5ZM14 20H5C4.45 20 4 19.55 4 19V18H14V20ZM18 19C18 19.55 17.55 20 17 20C16.45 20 16 19.55 16 19V16H7V5H18V19Z"
+        d="M19.5 3.5L18 2L16.5 3.5L15 2L13.5 3.5L12 2L10.5 3.5L9 2L7.5 3.5L6 2V16H3V19C3 20.66 4.34 22 6 22H18C19.66 22 21 20.66 21 19V2L19.5 3.5ZM15 20H6C5.45 20 5 19.55 5 19V18H15V20ZM19 19C19 19.55 18.55 20 18 20C17.45 20 17 19.55 17 19V16H8V5H19V19Z"
         fill="currentColor"
       />
-      <path d="M14 7H8V9H14V7Z" fill="currentColor" />
-      <path d="M17 7H15V9H17V7Z" fill="currentColor" />
-      <path d="M14 10H8V12H14V10Z" fill="currentColor" />
-      <path d="M17 10H15V12H17V10Z" fill="currentColor" />
+      <path d="M15 7H9V9H15V7Z" fill="currentColor" />
+      <path d="M18 7H16V9H18V7Z" fill="currentColor" />
+      <path d="M15 10H9V12H15V10Z" fill="currentColor" />
+      <path d="M18 10H16V12H18V10Z" fill="currentColor" />
     </svg>
   );
 });

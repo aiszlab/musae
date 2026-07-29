@@ -11,7 +11,7 @@ const IconCurrencyFranc = withIcon(({ size }) => {
       fill="none"
     >
       <path
-        d="M15.9998 4.9998V2.9998H4.9998V15.9998H2.9998V17.9998H4.9998V20.9998H6.9998V17.9998H10.9998V15.9998H6.9998V12.9998H14.9998V10.9998H6.9998V4.9998H15.9998Z"
+        d="M18.5 5V3H7.5V16H5.5V18H7.5V21H9.5V18H13.5V16H9.5V13H17.5V11H9.5V5H18.5Z"
         fill="currentColor"
       />
     </svg>

@@ -14,11 +14,11 @@ const IconTungsten = withIcon(({ size }) => {
       <path d="M5 10.5H2V12.5H5V10.5Z" fill="currentColor" />
       <path d="M22 10.5H19V12.5H22V10.5Z" fill="currentColor" />
       <path
-        d="M17.301 15.894L15.894 17.301L18.015 19.423L19.423 18.016L17.301 15.894Z"
+        d="M17.3012 15.8943L15.8941 17.3014L18.0154 19.4227L19.4225 18.0156L17.3012 15.8943Z"
         fill="currentColor"
       />
       <path
-        d="M6.705 15.887L4.584 18.009L5.991 19.416L8.113 17.294L6.705 15.887Z"
+        d="M6.70547 15.8872L4.58417 18.0085L5.9913 19.4156L8.1126 17.2943L6.70547 15.8872Z"
         fill="currentColor"
       />
       <path

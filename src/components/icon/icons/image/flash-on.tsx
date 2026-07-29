@@ -10,7 +10,7 @@ const IconFlashOn = withIcon(({ size }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <path d="M2 2V13H5V22L12 10H8L11 2H2Z" fill="currentColor" />
+      <path d="M7 2V13H10V22L17 10H13L16 2H7Z" fill="currentColor" />
     </svg>
   );
 });

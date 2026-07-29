@@ -11,7 +11,7 @@ const IconViewComfy = withIcon(({ size }) => {
       fill="none"
     >
       <path
-        d="M2 2V18H22V2H2ZM4 4H20V9H4V4ZM4 16V11H8V16H4ZM10 16V11H20V16H10Z"
+        d="M2 4V20H22V4H2ZM4 6H20V11H4V6ZM4 18V13H8V18H4ZM10 18V13H20V18H10Z"
         fill="currentColor"
       />
     </svg>

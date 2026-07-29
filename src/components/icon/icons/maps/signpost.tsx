@@ -11,7 +11,7 @@ const IconSignpost = withIcon(({ size }) => {
       fill="none"
     >
       <path
-        d="M 13.2 9.6 H 19.2 L 22.8 6 L 19.2 2.4 H 13.2 V 0 H 10.8 V 2.4 H 2.4 V 9.6 H 10.8 V 12 H 4.8 L 1.2 15.6 L 4.8 19.2 H 10.8 V 24 H 13.2 V 19.2 H 21.6 V 12 H 13.2 V 9.6ZM 4.8 4.8 H 18.204 L 19.404 6 L 18.204 7.2 H 4.8 V 4.8ZM 19.2 16.8 H 5.796 L 4.596 15.6 L 5.796 14.4 H 19.2 V 16.8Z"
+        d="M13 10H18L21 7L18 4H13V2H11V4H4V10H11V12H6L3 15L6 18H11V22H13V18H20V12H13V10ZM6 6H17.17L18.17 7L17.17 8H6V6ZM18 16H6.83L5.83 15L6.83 14H18V16Z"
         fill="currentColor"
       />
     </svg>

@@ -18,7 +18,7 @@ const Icon3dRotation = withIcon(({ size }) => {
       </g>
       <defs>
         <clipPath id="clip0_2403_6070">
-          <rect width="24" height="24" fill="currentColor" />
+          <rect width="24" height="24" fill="white" />
         </clipPath>
       </defs>
     </svg>

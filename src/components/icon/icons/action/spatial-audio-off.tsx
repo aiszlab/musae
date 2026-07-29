@@ -23,7 +23,7 @@ const IconSpatialAudioOff = withIcon(({ size }) => {
         fill="currentColor"
       />
       <path
-        d="M17.04 11.9C18.99 9.95 18.99 6.78 17.04 4.83L15.63 6.24C16.8 7.41 16.8 9.32 15.63 10.49L17.04 11.9Z"
+        d="M17.04 11.9C18.99 9.95 18.99 6.78 17.04 4.83L15.63 6.24C16.8 7.41 16.8 9.31 15.63 10.48L17.04 11.9Z"
         fill="currentColor"
       />
     </svg>

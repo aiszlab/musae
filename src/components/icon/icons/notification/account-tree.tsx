@@ -11,7 +11,7 @@ const IconAccountTree = withIcon(({ size }) => {
       fill="none"
     >
       <path
-        d="M 22 11 L 22 3 L 15 3 L 15 6 L 9 6 L 9 3 L 2 3 L 2 11 L 9 11 L 9 8 L 11 8 L 11 18 L 15 18 L 15 21 L 22 21 L 22 13 L 15 13 L 15 16 L 13 16 L 13 8 L 15 8 L 15 11 L 22 11 Z M 7 9 L 4 9 L 4 5 L 7 5 L 7 9 Z M 17 15 L 20 15 L 20 19 L 17 19 L 17 15 Z M 17 5 L 20 5 L 20 9 L 17 9 L 17 5 Z"
+        d="M22 11V3H15V6H9V3H2V11H9V8H11V18H15V21H22V13H15V16H13V8H15V11H22ZM7 9H4V5H7V9ZM17 15H20V19H17V15ZM17 5H20V9H17V5Z"
         fill="currentColor"
       />
     </svg>

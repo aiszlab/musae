@@ -11,7 +11,7 @@ const IconOpenInFull = withIcon(({ size }) => {
       fill="none"
     >
       <path
-        d="M21 8.59V3H15.41L17.42 5.01L13.42 9.01L14.84 10.43L20.84 4.43L21 8.59ZM3 15.41V21H8.59L6.58 18.99L10.58 14.99L9.16 13.57L3.16 19.57L3 15.41Z"
+        d="M21 11V3H13L16.29 6.29L6.29 16.29L3 13V21H11L7.71 17.71L17.71 7.71L21 11Z"
         fill="currentColor"
       />
     </svg>

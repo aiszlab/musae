@@ -11,7 +11,7 @@ const IconViewColumn = withIcon(({ size }) => {
       fill="none"
     >
       <path
-        d="M14.67 5V19H9.33V5H14.67ZM15.67 19H21V5H15.67V19ZM8.33 19V5H3V19H8.33Z"
+        d="M3 5V19H21V5H3ZM8.33 17H5V7H8.33V17ZM13.67 17H10.34V7H13.67V17ZM19 17H15.67V7H19V17Z"
         fill="currentColor"
       />
     </svg>

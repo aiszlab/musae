@@ -11,7 +11,7 @@ const IconRestaurant = withIcon(({ size }) => {
       fill="none"
     >
       <path
-        d="M 16.8 4.8 V 14.4 H 20.4 V 24 H 22.8 V 0 C 19.488 0 16.8 2.688 16.8 4.8ZM 10.8 8.4 H 8.4 V 0 H 6 V 8.4 H 3.6 V 0 H 1.2 V 8.4 C 1.2 11.052 3.348 13.2 6 13.2 V 24 H 8.4 V 13.2 C 11.052 13.2 13.2 11.052 13.2 8.4 V 0 H 10.8 V 8.4Z"
+        d="M16 6V14H19V22H21V2C18.24 2 16 4.24 16 6ZM11 9H9V2H7V9H5V2H3V9C3 11.21 4.79 13 7 13V22H9V13C11.21 13 13 11.21 13 9V2H11V9Z"
         fill="currentColor"
       />
     </svg>

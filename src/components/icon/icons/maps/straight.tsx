@@ -11,7 +11,7 @@ const IconStraight = withIcon(({ size }) => {
       fill="none"
     >
       <path
-        d="M 10.6666 5.1065 L 8.5467 7.2132 L 6.6667 5.3332 L 12 0 L 17.3331 5.3332 L 15.4531 7.2132 L 13.3332 5.1065 V 23.9994 H 10.6666 V 5.1065Z"
+        d="M11 6.83L9.41 8.41L8 7L12 3L16 7L14.59 8.41L13 6.83V21H11V6.83Z"
         fill="currentColor"
       />
     </svg>

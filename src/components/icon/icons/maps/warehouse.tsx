@@ -11,7 +11,7 @@ const IconWarehouse = withIcon(({ size }) => {
       fill="none"
     >
       <path
-        d="M 21.6 7.62 V 20.4 H 19.2 V 10.8 H 4.8 V 20.4 H 2.4 V 7.62 L 12 3.78 L 21.6 7.62ZM 24 22.8 V 6 L 12 1.2 L 0 6 V 22.8 H 7.2 V 13.2 H 16.8 V 22.8 H 24ZM 10.8 20.4 H 8.4 V 22.8 H 10.8 V 20.4ZM 13.2 16.8 H 10.8 V 19.2 H 13.2 V 16.8ZM 15.6 20.4 H 13.2 V 22.8 H 15.6 V 20.4Z"
+        d="M20 8.35V19H18V11H6V19H4V8.35L12 5.15L20 8.35ZM22 21V7L12 3L2 7V21H8V13H16V21H22ZM11 19H9V21H11V19ZM13 16H11V18H13V16ZM15 19H13V21H15V19Z"
         fill="currentColor"
       />
     </svg>
