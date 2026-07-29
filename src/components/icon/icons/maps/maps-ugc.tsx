@@ -15,8 +15,8 @@ const IconMapsUgc = withIcon(({ size }) => {
         fill="currentColor"
       />
       <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
+        fillRule="evenodd"
+        clipRule="evenodd"
         d="M13.5 7.5H11.5V10.5H8.5V12.5H11.5V15.5H13.5V12.5H16.5V10.5H13.5V7.5Z"
         fill="currentColor"
       />

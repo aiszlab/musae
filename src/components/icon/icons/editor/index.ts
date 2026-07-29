@@ -1,12 +1,5 @@
 import IconAddChart from "./add-chart";
 import IconAddComment from "./add-comment";
-import IconAlertSvg1 from "./alert-svg-1";
-import IconAlertSvg2 from "./alert-svg-2";
-import IconAlertSvg3 from "./alert-svg-3";
-import IconAlertSvg4 from "./alert-svg-4";
-import IconAlertSvg5 from "./alert-svg-5";
-import IconAlertSvg6 from "./alert-svg-6";
-import IconAlertSvg7 from "./alert-svg-7";
 import IconAlignHorizontalCenter from "./align-horizontal-center";
 import IconAlignHorizontalLeft from "./align-horizontal-left";
 import IconAlignHorizontalRight from "./align-horizontal-right";
@@ -39,11 +32,6 @@ import IconDataObject from "./data-object";
 import IconDragHandle from "./drag-handle";
 import IconDraw from "./draw";
 import IconEditNote from "./edit-note";
-import IconFastForward240359310 from "./fast-forward-2403-5931-0";
-import IconFastForwardFilled from "./fast-forward-filled";
-import IconFastForwardOutlined from "./fast-forward-outlined";
-import IconFf24035967 from "./ff-2403-5967";
-import IconFf2403Outlined from "./ff-2403-outlined";
 import IconFormatAlignCenter from "./format-align-center";
 import IconFormatAlignJustify from "./format-align-justify";
 import IconFormatAlignLeft from "./format-align-left";
@@ -136,13 +124,6 @@ import IconWrapText from "./wrap-text";
 export {
   IconAddChart,
   IconAddComment,
-  IconAlertSvg1,
-  IconAlertSvg2,
-  IconAlertSvg3,
-  IconAlertSvg4,
-  IconAlertSvg5,
-  IconAlertSvg6,
-  IconAlertSvg7,
   IconAlignHorizontalCenter,
   IconAlignHorizontalLeft,
   IconAlignHorizontalRight,
@@ -175,11 +156,6 @@ export {
   IconDragHandle,
   IconDraw,
   IconEditNote,
-  IconFastForward240359310,
-  IconFastForwardFilled,
-  IconFastForwardOutlined,
-  IconFf24035967,
-  IconFf2403Outlined,
   IconFormatAlignCenter,
   IconFormatAlignJustify,
   IconFormatAlignLeft,
