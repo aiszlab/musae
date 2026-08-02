@@ -25,10 +25,10 @@ function ThemeSwitch() {
       }}
     >
       <Switch
-        onChange={() => {
-          toggle();
-        }}
         value={mode === "dark"}
+        onClick={(event) => {
+          toggle(event);
+        }}
       />
     </div>
   );

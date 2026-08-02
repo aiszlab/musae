@@ -1,14 +1,23 @@
 import { ValueOf } from "@aiszlab/relax/types";
 import { defineVars } from "@stylexjs/stylex";
 
-type ElevationToken = "none" | "xsmall" | "small" | "medium" | "large" | "xlarge";
+type ElevationToken =
+  "none" | "0" | "1" | "2" | "3" | "4" | "xsmall" | "small" | "medium" | "large" | "xlarge";
 
 /**
  * @description
- * elevations
+ * M3 规范的 elevation token:
+ * - 0: 无阴影
+ * - 1-4: M3 elevation level 1-4
+ * - xsmall/small/medium/large/xlarge: 旧版通用 token,保留以兼容
  */
 export const elevations = defineVars<Record<ElevationToken, string>>({
   none: "none",
+  "0": "none",
+  "1": "0px 1px 2px 0px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15)",
+  "2": "0px 1px 2px 0px rgba(0, 0, 0, 0.3), 0px 2px 6px 2px rgba(0, 0, 0, 0.15)",
+  "3": "0px 1px 3px 0px rgba(0, 0, 0, 0.3), 0px 4px 8px 3px rgba(0, 0, 0, 0.15)",
+  "4": "0px 2px 3px 0px rgba(0, 0, 0, 0.3), 0px 6px 10px 4px rgba(0, 0, 0, 0.15)",
   xsmall:
     "rgba(0, 0, 0, 0.2) 0px 2px 1px -1px, rgba(0, 0, 0, 0.14) 0px 1px 1px 0px, rgba(0, 0, 0, 0.12) 0px 1px 3px 0px",
   small:
