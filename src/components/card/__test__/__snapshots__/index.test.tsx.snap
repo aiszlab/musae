@@ -1,49 +1,13 @@
 // Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
-exports[`\`Card\` Component interactive card renders with state layer 1`] = `
+exports[`\`Card\` Component Header action is wrapped in 48x48 container 1`] = `
 <DocumentFragment>
   <div
-    class="musae-card styles__default styles__outlined styles__interactive styles__hover styles__focus styles__active"
-    role="button"
-    style="--color-surface: #FFFBFE; --color-surface-container-low: #F5EFF7; --color-surface-container-highest: #E6E0E9; --color-outline-variant: #CAC4D0; --color-on-surface: #1D1B20; --color-on-surface-opacity-08: color-mix(in srgb, var(--color-on-surface) 8%, transparent); --color-on-surface-opacity-12: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-on-surface-opacity-16: color-mix(in srgb, var(--color-on-surface) 16%, transparent); --color-state-layer-hover: color-mix(in srgb, var(--color-on-surface) 8%, transparent); --color-state-layer-focus: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-state-layer-press: color-mix(in srgb, var(--color-on-surface) 12%, transparent);"
-    tabindex="0"
-  >
-    clickable card
-  </div>
-</DocumentFragment>
-`;
-
-exports[`\`Card\` Component variant render 1`] = `
-<DocumentFragment>
-  <div
-    class="musae-card styles__default styles__outlined"
-    style="--color-surface: #FFFBFE; --color-surface-container-low: #F5EFF7; --color-surface-container-highest: #E6E0E9; --color-outline-variant: #CAC4D0; --color-on-surface: #1D1B20; --color-on-surface-opacity-08: color-mix(in srgb, var(--color-on-surface) 8%, transparent); --color-on-surface-opacity-12: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-on-surface-opacity-16: color-mix(in srgb, var(--color-on-surface) 16%, transparent); --color-state-layer-hover: color-mix(in srgb, var(--color-on-surface) 8%, transparent); --color-state-layer-focus: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-state-layer-press: color-mix(in srgb, var(--color-on-surface) 12%, transparent);"
-  >
-    outlined card
-  </div>
-  <div
-    class="musae-card styles__default styles__elevated"
-    style="--color-surface: #FFFBFE; --color-surface-container-low: #F5EFF7; --color-surface-container-highest: #E6E0E9; --color-outline-variant: #CAC4D0; --color-on-surface: #1D1B20; --color-on-surface-opacity-08: color-mix(in srgb, var(--color-on-surface) 8%, transparent); --color-on-surface-opacity-12: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-on-surface-opacity-16: color-mix(in srgb, var(--color-on-surface) 16%, transparent); --color-state-layer-hover: color-mix(in srgb, var(--color-on-surface) 8%, transparent); --color-state-layer-focus: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-state-layer-press: color-mix(in srgb, var(--color-on-surface) 12%, transparent);"
-  >
-    elevated card
-  </div>
-  <div
-    class="musae-card styles__default styles__filled"
-    style="--color-surface: #FFFBFE; --color-surface-container-low: #F5EFF7; --color-surface-container-highest: #E6E0E9; --color-outline-variant: #CAC4D0; --color-on-surface: #1D1B20; --color-on-surface-opacity-08: color-mix(in srgb, var(--color-on-surface) 8%, transparent); --color-on-surface-opacity-12: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-on-surface-opacity-16: color-mix(in srgb, var(--color-on-surface) 16%, transparent); --color-state-layer-hover: color-mix(in srgb, var(--color-on-surface) 8%, transparent); --color-state-layer-focus: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-state-layer-press: color-mix(in srgb, var(--color-on-surface) 12%, transparent);"
-  >
-    filled card
-  </div>
-</DocumentFragment>
-`;
-
-exports[`\`Card\` Component with header, media, content and actions 1`] = `
-<DocumentFragment>
-  <div
-    class="musae-card styles__default styles__outlined"
-    style="--color-surface: #FFFBFE; --color-surface-container-low: #F5EFF7; --color-surface-container-highest: #E6E0E9; --color-outline-variant: #CAC4D0; --color-on-surface: #1D1B20; --color-on-surface-opacity-08: color-mix(in srgb, var(--color-on-surface) 8%, transparent); --color-on-surface-opacity-12: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-on-surface-opacity-16: color-mix(in srgb, var(--color-on-surface) 16%, transparent); --color-state-layer-hover: color-mix(in srgb, var(--color-on-surface) 8%, transparent); --color-state-layer-focus: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-state-layer-press: color-mix(in srgb, var(--color-on-surface) 12%, transparent);"
+    class="musae-card styles__default styles__stacked styles__outlined"
+    style="--color-surface: #FFFBFE; --color-surface-container-low: #F5EFF7; --color-surface-container-highest: #E6E0E9; --color-primary-container: #EADDFF; --color-on-primary-container: #21005D; --color-outline-variant: #CAC4D0; --color-on-surface: #1D1B20; --color-on-surface-opacity-08: color-mix(in srgb, var(--color-on-surface) 8%, transparent); --color-on-surface-opacity-12: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-on-surface-opacity-16: color-mix(in srgb, var(--color-on-surface) 16%, transparent); --color-state-layer-hover: color-mix(in srgb, var(--color-on-surface) 8%, transparent); --color-state-layer-focus: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-state-layer-press: color-mix(in srgb, var(--color-on-surface) 12%, transparent);"
   >
     <div
-      class="musae-card__header styles__default"
+      class="musae-card__header styles__default styles__stacked"
     >
       <div
         class="musae-card__header-content styles__default"
@@ -68,9 +32,473 @@ exports[`\`Card\` Component with header, media, content and actions 1`] = `
           </div>
         </div>
       </div>
+      <button
+        class="musae-button icon-button__styles.default icon-button__styles.medium styles__default styles__rippleable styles__text styles__medium theme__title.medium"
+        style="--color-button: #6750A4; --color-on-button: #FFF; --color-button-opacity-08: color-mix(in srgb, var(--color-button) 8%, transparent); --color-on-surface: #1D1B20; --color-on-surface-opacity-12: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-on-surface-opacity-38: color-mix(in srgb, var(--color-on-surface) 38%, transparent);"
+        type="button"
+      >
+        <span
+          class="musae-icon icon__styles.icon"
+        >
+          <svg
+            fill="none"
+            height="20"
+            viewBox="0 0 24 24"
+            width="20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M12 8C13.1 8 14 7.1 14 6C14 4.9 13.1 4 12 4C10.9 4 10 4.9 10 6C10 7.1 10.9 8 12 8ZM12 10C10.9 10 10 10.9 10 12C10 13.1 10.9 14 12 14C13.1 14 14 13.1 14 12C14 10.9 13.1 10 12 10ZM12 16C10.9 16 10 16.9 10 18C10 19.1 10.9 20 12 20C13.1 20 14 19.1 14 18C14 16.9 13.1 16 12 16Z"
+              fill="currentColor"
+            />
+          </svg>
+        </span>
+      </button>
     </div>
     <div
-      class="musae-card__media styles__default"
+      class="musae-card__content styles__default"
+    >
+      Content
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`\`Card\` Component Title/Subhead/Body subcomponents render with M3 typography 1`] = `
+<DocumentFragment>
+  <div
+    class="musae-card styles__default styles__stacked styles__outlined"
+    style="--color-surface: #FFFBFE; --color-surface-container-low: #F5EFF7; --color-surface-container-highest: #E6E0E9; --color-primary-container: #EADDFF; --color-on-primary-container: #21005D; --color-outline-variant: #CAC4D0; --color-on-surface: #1D1B20; --color-on-surface-opacity-08: color-mix(in srgb, var(--color-on-surface) 8%, transparent); --color-on-surface-opacity-12: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-on-surface-opacity-16: color-mix(in srgb, var(--color-on-surface) 16%, transparent); --color-state-layer-hover: color-mix(in srgb, var(--color-on-surface) 8%, transparent); --color-state-layer-focus: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-state-layer-press: color-mix(in srgb, var(--color-on-surface) 12%, transparent);"
+  >
+    <div
+      class="musae-card__content styles__default"
+    >
+      <div
+        class="musae-card__headline styles__default"
+      >
+        <div
+          class="musae-card__title styles__default"
+        >
+          Title
+        </div>
+        <div
+          class="musae-card__subhead styles__default"
+        >
+          Subhead
+        </div>
+      </div>
+      <div
+        class="musae-card__body styles__default"
+      >
+        Body text content
+      </div>
+      <div
+        class="musae-card__actions styles__default"
+      >
+        <button>
+          Action
+        </button>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`\`Card\` Component all three variants in horizontal layout 1`] = `
+<DocumentFragment>
+  <div
+    class="musae-card styles__default styles__horizontal styles__outlined"
+    style="--color-surface: #FFFBFE; --color-surface-container-low: #F5EFF7; --color-surface-container-highest: #E6E0E9; --color-primary-container: #EADDFF; --color-on-primary-container: #21005D; --color-outline-variant: #CAC4D0; --color-on-surface: #1D1B20; --color-on-surface-opacity-08: color-mix(in srgb, var(--color-on-surface) 8%, transparent); --color-on-surface-opacity-12: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-on-surface-opacity-16: color-mix(in srgb, var(--color-on-surface) 16%, transparent); --color-state-layer-hover: color-mix(in srgb, var(--color-on-surface) 8%, transparent); --color-state-layer-focus: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-state-layer-press: color-mix(in srgb, var(--color-on-surface) 12%, transparent);"
+  >
+    <div
+      class="musae-card__header styles__default styles__horizontal"
+    >
+      <div
+        class="musae-card__header-content styles__default"
+      >
+        <div
+          class="musae-card__header-monogram"
+        >
+          A
+        </div>
+        <div
+          class="musae-card__header-text styles__default"
+        >
+          <div
+            class="musae-card__header-title styles__default"
+          >
+            Header
+          </div>
+          <div
+            class="musae-card__header-subhead styles__default"
+          >
+            Subhead
+          </div>
+        </div>
+      </div>
+      <button
+        class="musae-button icon-button__styles.default icon-button__styles.medium styles__default styles__rippleable styles__text styles__medium theme__title.medium"
+        style="--color-button: #6750A4; --color-on-button: #FFF; --color-button-opacity-08: color-mix(in srgb, var(--color-button) 8%, transparent); --color-on-surface: #1D1B20; --color-on-surface-opacity-12: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-on-surface-opacity-38: color-mix(in srgb, var(--color-on-surface) 38%, transparent);"
+        type="button"
+      >
+        <span
+          class="musae-icon icon__styles.icon"
+        >
+          <svg
+            fill="none"
+            height="20"
+            viewBox="0 0 24 24"
+            width="20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M12 8C13.1 8 14 7.1 14 6C14 4.9 13.1 4 12 4C10.9 4 10 4.9 10 6C10 7.1 10.9 8 12 8ZM12 10C10.9 10 10 10.9 10 12C10 13.1 10.9 14 12 14C13.1 14 14 13.1 14 12C14 10.9 13.1 10 12 10ZM12 16C10.9 16 10 16.9 10 18C10 19.1 10.9 20 12 20C13.1 20 14 19.1 14 18C14 16.9 13.1 16 12 16Z"
+              fill="currentColor"
+            />
+          </svg>
+        </span>
+      </button>
+    </div>
+    <div
+      class="musae-card__media styles__default styles__horizontal"
+    >
+      <img
+        alt="example"
+        src="https://example.com/image.jpg"
+        style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;"
+      />
+    </div>
+  </div>
+  <div
+    class="musae-card styles__default styles__horizontal styles__elevated"
+    style="--color-surface: #FFFBFE; --color-surface-container-low: #F5EFF7; --color-surface-container-highest: #E6E0E9; --color-primary-container: #EADDFF; --color-on-primary-container: #21005D; --color-outline-variant: #CAC4D0; --color-on-surface: #1D1B20; --color-on-surface-opacity-08: color-mix(in srgb, var(--color-on-surface) 8%, transparent); --color-on-surface-opacity-12: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-on-surface-opacity-16: color-mix(in srgb, var(--color-on-surface) 16%, transparent); --color-state-layer-hover: color-mix(in srgb, var(--color-on-surface) 8%, transparent); --color-state-layer-focus: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-state-layer-press: color-mix(in srgb, var(--color-on-surface) 12%, transparent);"
+  >
+    <div
+      class="musae-card__header styles__default styles__horizontal"
+    >
+      <div
+        class="musae-card__header-content styles__default"
+      >
+        <div
+          class="musae-card__header-monogram"
+        >
+          A
+        </div>
+        <div
+          class="musae-card__header-text styles__default"
+        >
+          <div
+            class="musae-card__header-title styles__default"
+          >
+            Header
+          </div>
+          <div
+            class="musae-card__header-subhead styles__default"
+          >
+            Subhead
+          </div>
+        </div>
+      </div>
+      <button
+        class="musae-button icon-button__styles.default icon-button__styles.medium styles__default styles__rippleable styles__text styles__medium theme__title.medium"
+        style="--color-button: #6750A4; --color-on-button: #FFF; --color-button-opacity-08: color-mix(in srgb, var(--color-button) 8%, transparent); --color-on-surface: #1D1B20; --color-on-surface-opacity-12: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-on-surface-opacity-38: color-mix(in srgb, var(--color-on-surface) 38%, transparent);"
+        type="button"
+      >
+        <span
+          class="musae-icon icon__styles.icon"
+        >
+          <svg
+            fill="none"
+            height="20"
+            viewBox="0 0 24 24"
+            width="20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M12 8C13.1 8 14 7.1 14 6C14 4.9 13.1 4 12 4C10.9 4 10 4.9 10 6C10 7.1 10.9 8 12 8ZM12 10C10.9 10 10 10.9 10 12C10 13.1 10.9 14 12 14C13.1 14 14 13.1 14 12C14 10.9 13.1 10 12 10ZM12 16C10.9 16 10 16.9 10 18C10 19.1 10.9 20 12 20C13.1 20 14 19.1 14 18C14 16.9 13.1 16 12 16Z"
+              fill="currentColor"
+            />
+          </svg>
+        </span>
+      </button>
+    </div>
+    <div
+      class="musae-card__media styles__default styles__horizontal"
+    >
+      <img
+        alt="example"
+        src="https://example.com/image.jpg"
+        style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;"
+      />
+    </div>
+  </div>
+  <div
+    class="musae-card styles__default styles__horizontal styles__filled"
+    style="--color-surface: #FFFBFE; --color-surface-container-low: #F5EFF7; --color-surface-container-highest: #E6E0E9; --color-primary-container: #EADDFF; --color-on-primary-container: #21005D; --color-outline-variant: #CAC4D0; --color-on-surface: #1D1B20; --color-on-surface-opacity-08: color-mix(in srgb, var(--color-on-surface) 8%, transparent); --color-on-surface-opacity-12: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-on-surface-opacity-16: color-mix(in srgb, var(--color-on-surface) 16%, transparent); --color-state-layer-hover: color-mix(in srgb, var(--color-on-surface) 8%, transparent); --color-state-layer-focus: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-state-layer-press: color-mix(in srgb, var(--color-on-surface) 12%, transparent);"
+  >
+    <div
+      class="musae-card__header styles__default styles__horizontal"
+    >
+      <div
+        class="musae-card__header-content styles__default"
+      >
+        <div
+          class="musae-card__header-monogram"
+        >
+          A
+        </div>
+        <div
+          class="musae-card__header-text styles__default"
+        >
+          <div
+            class="musae-card__header-title styles__default"
+          >
+            Header
+          </div>
+          <div
+            class="musae-card__header-subhead styles__default"
+          >
+            Subhead
+          </div>
+        </div>
+      </div>
+      <button
+        class="musae-button icon-button__styles.default icon-button__styles.medium styles__default styles__rippleable styles__text styles__medium theme__title.medium"
+        style="--color-button: #6750A4; --color-on-button: #FFF; --color-button-opacity-08: color-mix(in srgb, var(--color-button) 8%, transparent); --color-on-surface: #1D1B20; --color-on-surface-opacity-12: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-on-surface-opacity-38: color-mix(in srgb, var(--color-on-surface) 38%, transparent);"
+        type="button"
+      >
+        <span
+          class="musae-icon icon__styles.icon"
+        >
+          <svg
+            fill="none"
+            height="20"
+            viewBox="0 0 24 24"
+            width="20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M12 8C13.1 8 14 7.1 14 6C14 4.9 13.1 4 12 4C10.9 4 10 4.9 10 6C10 7.1 10.9 8 12 8ZM12 10C10.9 10 10 10.9 10 12C10 13.1 10.9 14 12 14C13.1 14 14 13.1 14 12C14 10.9 13.1 10 12 10ZM12 16C10.9 16 10 16.9 10 18C10 19.1 10.9 20 12 20C13.1 20 14 19.1 14 18C14 16.9 13.1 16 12 16Z"
+              fill="currentColor"
+            />
+          </svg>
+        </span>
+      </button>
+    </div>
+    <div
+      class="musae-card__media styles__default styles__horizontal"
+    >
+      <img
+        alt="example"
+        src="https://example.com/image.jpg"
+        style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;"
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`\`Card\` Component draggable auto-detects drag state via HTML5 events 1`] = `
+<DocumentFragment>
+  <div
+    class="musae-card styles__default styles__stacked styles__outlined styles__interactive styles__outlinedHover styles__outlinedDragged"
+    draggable="true"
+    role="button"
+    style="--color-surface: #FFFBFE; --color-surface-container-low: #F5EFF7; --color-surface-container-highest: #E6E0E9; --color-primary-container: #EADDFF; --color-on-primary-container: #21005D; --color-outline-variant: #CAC4D0; --color-on-surface: #1D1B20; --color-on-surface-opacity-08: color-mix(in srgb, var(--color-on-surface) 8%, transparent); --color-on-surface-opacity-12: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-on-surface-opacity-16: color-mix(in srgb, var(--color-on-surface) 16%, transparent); --color-state-layer-hover: color-mix(in srgb, var(--color-on-surface) 8%, transparent); --color-state-layer-focus: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-state-layer-press: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --card-state-layer: color-mix(in srgb, var(--color-on-surface) 16%, transparent);"
+    tabindex="0"
+  >
+    draggable card
+  </div>
+</DocumentFragment>
+`;
+
+exports[`\`Card\` Component dragged state applies dragged state layer class 1`] = `
+<DocumentFragment>
+  <div
+    class="musae-card styles__default styles__stacked styles__outlined styles__interactive styles__outlinedHover styles__outlinedDragged"
+    role="button"
+    style="--color-surface: #FFFBFE; --color-surface-container-low: #F5EFF7; --color-surface-container-highest: #E6E0E9; --color-primary-container: #EADDFF; --color-on-primary-container: #21005D; --color-outline-variant: #CAC4D0; --color-on-surface: #1D1B20; --color-on-surface-opacity-08: color-mix(in srgb, var(--color-on-surface) 8%, transparent); --color-on-surface-opacity-12: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-on-surface-opacity-16: color-mix(in srgb, var(--color-on-surface) 16%, transparent); --color-state-layer-hover: color-mix(in srgb, var(--color-on-surface) 8%, transparent); --color-state-layer-focus: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-state-layer-press: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --card-state-layer: color-mix(in srgb, var(--color-on-surface) 16%, transparent);"
+    tabindex="0"
+  >
+    dragged card
+  </div>
+</DocumentFragment>
+`;
+
+exports[`\`Card\` Component elevated hover applies elevation 2 1`] = `
+<DocumentFragment>
+  <div
+    class="musae-card styles__default styles__stacked styles__elevated styles__interactive styles__elevatedHover styles__hover styles__focus styles__press"
+    role="button"
+    style="--color-surface: #FFFBFE; --color-surface-container-low: #F5EFF7; --color-surface-container-highest: #E6E0E9; --color-primary-container: #EADDFF; --color-on-primary-container: #21005D; --color-outline-variant: #CAC4D0; --color-on-surface: #1D1B20; --color-on-surface-opacity-08: color-mix(in srgb, var(--color-on-surface) 8%, transparent); --color-on-surface-opacity-12: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-on-surface-opacity-16: color-mix(in srgb, var(--color-on-surface) 16%, transparent); --color-state-layer-hover: color-mix(in srgb, var(--color-on-surface) 8%, transparent); --color-state-layer-focus: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-state-layer-press: color-mix(in srgb, var(--color-on-surface) 12%, transparent);"
+    tabindex="0"
+  >
+    elevated hover
+  </div>
+</DocumentFragment>
+`;
+
+exports[`\`Card\` Component horizontal layout applies row flex and 80px media 1`] = `
+<DocumentFragment>
+  <div
+    class="musae-card styles__default styles__horizontal styles__outlined"
+    style="--color-surface: #FFFBFE; --color-surface-container-low: #F5EFF7; --color-surface-container-highest: #E6E0E9; --color-primary-container: #EADDFF; --color-on-primary-container: #21005D; --color-outline-variant: #CAC4D0; --color-on-surface: #1D1B20; --color-on-surface-opacity-08: color-mix(in srgb, var(--color-on-surface) 8%, transparent); --color-on-surface-opacity-12: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-on-surface-opacity-16: color-mix(in srgb, var(--color-on-surface) 16%, transparent); --color-state-layer-hover: color-mix(in srgb, var(--color-on-surface) 8%, transparent); --color-state-layer-focus: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-state-layer-press: color-mix(in srgb, var(--color-on-surface) 12%, transparent);"
+  >
+    <div
+      class="musae-card__header styles__default styles__horizontal"
+    >
+      <div
+        class="musae-card__header-content styles__default"
+      >
+        <div
+          class="musae-card__header-monogram"
+        >
+          A
+        </div>
+        <div
+          class="musae-card__header-text styles__default"
+        >
+          <div
+            class="musae-card__header-title styles__default"
+          >
+            Header
+          </div>
+          <div
+            class="musae-card__header-subhead styles__default"
+          >
+            Subhead
+          </div>
+        </div>
+      </div>
+      <button
+        class="musae-button icon-button__styles.default icon-button__styles.medium styles__default styles__rippleable styles__text styles__medium theme__title.medium"
+        style="--color-button: #6750A4; --color-on-button: #FFF; --color-button-opacity-08: color-mix(in srgb, var(--color-button) 8%, transparent); --color-on-surface: #1D1B20; --color-on-surface-opacity-12: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-on-surface-opacity-38: color-mix(in srgb, var(--color-on-surface) 38%, transparent);"
+        type="button"
+      >
+        <span
+          class="musae-icon icon__styles.icon"
+        >
+          <svg
+            fill="none"
+            height="20"
+            viewBox="0 0 24 24"
+            width="20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M12 8C13.1 8 14 7.1 14 6C14 4.9 13.1 4 12 4C10.9 4 10 4.9 10 6C10 7.1 10.9 8 12 8ZM12 10C10.9 10 10 10.9 10 12C10 13.1 10.9 14 12 14C13.1 14 14 13.1 14 12C14 10.9 13.1 10 12 10ZM12 16C10.9 16 10 16.9 10 18C10 19.1 10.9 20 12 20C13.1 20 14 19.1 14 18C14 16.9 13.1 16 12 16Z"
+              fill="currentColor"
+            />
+          </svg>
+        </span>
+      </button>
+    </div>
+    <div
+      class="musae-card__media styles__default styles__horizontal"
+    >
+      <img
+        alt="example"
+        src="https://example.com/image.jpg"
+        style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;"
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`\`Card\` Component interactive card renders with state layer 1`] = `
+<DocumentFragment>
+  <div
+    class="musae-card styles__default styles__stacked styles__outlined styles__interactive styles__outlinedHover styles__hover styles__focus styles__press"
+    role="button"
+    style="--color-surface: #FFFBFE; --color-surface-container-low: #F5EFF7; --color-surface-container-highest: #E6E0E9; --color-primary-container: #EADDFF; --color-on-primary-container: #21005D; --color-outline-variant: #CAC4D0; --color-on-surface: #1D1B20; --color-on-surface-opacity-08: color-mix(in srgb, var(--color-on-surface) 8%, transparent); --color-on-surface-opacity-12: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-on-surface-opacity-16: color-mix(in srgb, var(--color-on-surface) 16%, transparent); --color-state-layer-hover: color-mix(in srgb, var(--color-on-surface) 8%, transparent); --color-state-layer-focus: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-state-layer-press: color-mix(in srgb, var(--color-on-surface) 12%, transparent);"
+    tabindex="0"
+  >
+    clickable card
+  </div>
+</DocumentFragment>
+`;
+
+exports[`\`Card\` Component variant render 1`] = `
+<DocumentFragment>
+  <div
+    class="musae-card styles__default styles__stacked styles__outlined"
+    style="--color-surface: #FFFBFE; --color-surface-container-low: #F5EFF7; --color-surface-container-highest: #E6E0E9; --color-primary-container: #EADDFF; --color-on-primary-container: #21005D; --color-outline-variant: #CAC4D0; --color-on-surface: #1D1B20; --color-on-surface-opacity-08: color-mix(in srgb, var(--color-on-surface) 8%, transparent); --color-on-surface-opacity-12: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-on-surface-opacity-16: color-mix(in srgb, var(--color-on-surface) 16%, transparent); --color-state-layer-hover: color-mix(in srgb, var(--color-on-surface) 8%, transparent); --color-state-layer-focus: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-state-layer-press: color-mix(in srgb, var(--color-on-surface) 12%, transparent);"
+  >
+    outlined card
+  </div>
+  <div
+    class="musae-card styles__default styles__stacked styles__elevated"
+    style="--color-surface: #FFFBFE; --color-surface-container-low: #F5EFF7; --color-surface-container-highest: #E6E0E9; --color-primary-container: #EADDFF; --color-on-primary-container: #21005D; --color-outline-variant: #CAC4D0; --color-on-surface: #1D1B20; --color-on-surface-opacity-08: color-mix(in srgb, var(--color-on-surface) 8%, transparent); --color-on-surface-opacity-12: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-on-surface-opacity-16: color-mix(in srgb, var(--color-on-surface) 16%, transparent); --color-state-layer-hover: color-mix(in srgb, var(--color-on-surface) 8%, transparent); --color-state-layer-focus: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-state-layer-press: color-mix(in srgb, var(--color-on-surface) 12%, transparent);"
+  >
+    elevated card
+  </div>
+  <div
+    class="musae-card styles__default styles__stacked styles__filled"
+    style="--color-surface: #FFFBFE; --color-surface-container-low: #F5EFF7; --color-surface-container-highest: #E6E0E9; --color-primary-container: #EADDFF; --color-on-primary-container: #21005D; --color-outline-variant: #CAC4D0; --color-on-surface: #1D1B20; --color-on-surface-opacity-08: color-mix(in srgb, var(--color-on-surface) 8%, transparent); --color-on-surface-opacity-12: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-on-surface-opacity-16: color-mix(in srgb, var(--color-on-surface) 16%, transparent); --color-state-layer-hover: color-mix(in srgb, var(--color-on-surface) 8%, transparent); --color-state-layer-focus: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-state-layer-press: color-mix(in srgb, var(--color-on-surface) 12%, transparent);"
+  >
+    filled card
+  </div>
+</DocumentFragment>
+`;
+
+exports[`\`Card\` Component with header, media, content and actions 1`] = `
+<DocumentFragment>
+  <div
+    class="musae-card styles__default styles__stacked styles__outlined"
+    style="--color-surface: #FFFBFE; --color-surface-container-low: #F5EFF7; --color-surface-container-highest: #E6E0E9; --color-primary-container: #EADDFF; --color-on-primary-container: #21005D; --color-outline-variant: #CAC4D0; --color-on-surface: #1D1B20; --color-on-surface-opacity-08: color-mix(in srgb, var(--color-on-surface) 8%, transparent); --color-on-surface-opacity-12: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-on-surface-opacity-16: color-mix(in srgb, var(--color-on-surface) 16%, transparent); --color-state-layer-hover: color-mix(in srgb, var(--color-on-surface) 8%, transparent); --color-state-layer-focus: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-state-layer-press: color-mix(in srgb, var(--color-on-surface) 12%, transparent);"
+  >
+    <div
+      class="musae-card__header styles__default styles__stacked"
+    >
+      <div
+        class="musae-card__header-content styles__default"
+      >
+        <div
+          class="musae-card__header-monogram"
+        >
+          A
+        </div>
+        <div
+          class="musae-card__header-text styles__default"
+        >
+          <div
+            class="musae-card__header-title styles__default"
+          >
+            Header
+          </div>
+          <div
+            class="musae-card__header-subhead styles__default"
+          >
+            Subhead
+          </div>
+        </div>
+      </div>
+      <button
+        class="musae-button icon-button__styles.default icon-button__styles.medium styles__default styles__rippleable styles__text styles__medium theme__title.medium"
+        style="--color-button: #6750A4; --color-on-button: #FFF; --color-button-opacity-08: color-mix(in srgb, var(--color-button) 8%, transparent); --color-on-surface: #1D1B20; --color-on-surface-opacity-12: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-on-surface-opacity-38: color-mix(in srgb, var(--color-on-surface) 38%, transparent);"
+        type="button"
+      >
+        <span
+          class="musae-icon icon__styles.icon"
+        >
+          <svg
+            fill="none"
+            height="20"
+            viewBox="0 0 24 24"
+            width="20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M12 8C13.1 8 14 7.1 14 6C14 4.9 13.1 4 12 4C10.9 4 10 4.9 10 6C10 7.1 10.9 8 12 8ZM12 10C10.9 10 10 10.9 10 12C10 13.1 10.9 14 12 14C13.1 14 14 13.1 14 12C14 10.9 13.1 10 12 10ZM12 16C10.9 16 10 16.9 10 18C10 19.1 10.9 20 12 20C13.1 20 14 19.1 14 18C14 16.9 13.1 16 12 16Z"
+              fill="currentColor"
+            />
+          </svg>
+        </span>
+      </button>
+    </div>
+    <div
+      class="musae-card__media styles__default styles__stacked"
     >
       <img
         alt="example"

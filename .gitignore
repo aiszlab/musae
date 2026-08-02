@@ -16,3 +16,6 @@ coverage
 *storybook.log
 
 storybook-static
+
+# macOS
+.DS_Store
