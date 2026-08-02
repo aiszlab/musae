@@ -1,5 +1,11 @@
 # musae
 
+## 1.3.1
+
+### Patch Changes
+
+- 7db0a9b: - **Search**: add `onClear` callback prop, triggered when the clear button is clicked
+
 ## 1.3.0
 
 ### Minor Changes
