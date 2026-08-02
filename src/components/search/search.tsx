@@ -31,6 +31,7 @@ const Search = forwardRef<SearchRef, SearchProps>(
       clearable = true,
       searchButton,
       onSearch,
+      onClear,
     },
     ref,
   ) => {
@@ -79,6 +80,7 @@ const Search = forwardRef<SearchRef, SearchProps>(
     const handleClear = useEvent(() => {
       _setValue("");
       onChange?.("");
+      onClear?.();
     });
 
     const handleKeyDown = useCallback(
