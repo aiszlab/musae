@@ -91,4 +91,11 @@ export type SearchProps = ComponentProps & {
    * @default undefined
    */
   onSearch?: (keyword?: string) => void;
+
+  /**
+   * @zh 点击清除按钮时的回调函数
+   * @en Callback when the clear button is clicked
+   * @default undefined
+   */
+  onClear?: () => void;
 };
