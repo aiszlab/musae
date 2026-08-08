@@ -98,6 +98,7 @@ const Sheet = ({
   size = 400,
   closable = true,
   header,
+  footer,
   className,
   panelClassName,
   panelStyle,
@@ -187,7 +188,7 @@ const Sheet = ({
             ...styled.container.style,
             ...themeColorVars,
             "--default-position": at(_placement, 0),
-            "--size": `${size}px`,
+            "--size": typeof size === "number" ? `${size}px` : size,
           }}
           onKeyDown={onKeyDown}
         >
@@ -215,6 +216,9 @@ const Sheet = ({
             >
               {children}
             </div>
+
+            {/* 底部插槽 */}
+            {footer}
           </div>
         </div>
       </StackLevelContext>

@@ -83,4 +83,11 @@ export interface SheetProps extends ComponentProps {
    * @en Body content rendered below the header.
    */
   children?: ReactNode;
+
+  /**
+   * @zh 渲染在主体下方的底部内容。使用此插槽注入操作按钮栏或任意自定义底部。
+   * @en Content rendered below the body. Use this slot to inject an action bar
+   * or any custom footer.
+   */
+  footer?: ReactNode;
 }
