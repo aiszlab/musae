@@ -7,123 +7,13 @@ import { IconButton } from "../icon-button";
 import { IconArrowBack } from "../icon/icons";
 import { useClosable } from "../../hooks/use-closable";
 import { useClassNames } from "../../hooks/use-class-names";
-import { useThemeColorVars, type ThemeColorVariable } from "../../hooks/use-theme-color-vars";
+import { useThemeColorVars } from "../../hooks/use-theme-color-vars";
 import { useLocale } from "../../locale";
-import { create as $create, props as $props } from "@stylexjs/stylex";
+import { props as $props } from "@stylexjs/stylex";
 import { stringify } from "@aiszlab/relax/class-name";
-import { sizes, spacing } from "../theme/tokens.stylex";
 import { $title } from "../theme/theme";
 import { CLASS_NAMES } from "./context";
-
-/**
- * @zh SideSheet 专用样式：包含头部栏（返回按钮、标题、关闭按钮）、底部操作区，
- * 以及两种类型的面板容器（模态圆角面板、标准内嵌面板）。
- * @en SideSheet-specific styles: header bar (back button, headline, closer),
- * footer actions, and the two panel containers (rounded modal panel, inline standard panel).
- */
-const styles = $create({
-  panel: {
-    backgroundColor: "var(--color-surface-container-low)" satisfies ThemeColorVariable,
-    paddingBottom: spacing.xxxlarge,
-  },
-
-  panelRight: {
-    borderTopLeftRadius: sizes.xxxxsmall,
-    borderBottomLeftRadius: sizes.xxxxsmall,
-  },
-
-  panelLeft: {
-    borderTopRightRadius: sizes.xxxxsmall,
-    borderBottomRightRadius: sizes.xxxxsmall,
-  },
-
-  panelTop: {
-    borderBottomLeftRadius: sizes.xxxxsmall,
-    borderBottomRightRadius: sizes.xxxxsmall,
-  },
-
-  panelBottom: {
-    borderTopLeftRadius: sizes.xxxxsmall,
-    borderTopRightRadius: sizes.xxxxsmall,
-  },
-
-  standard: {
-    display: "flex",
-    flexDirection: "column",
-    width: "var(--size)",
-    height: sizes.full,
-    flexShrink: 0,
-    backgroundColor: "var(--color-surface)" satisfies ThemeColorVariable,
-    paddingBottom: spacing.xxxlarge,
-  },
-
-  standardRight: {
-    borderLeftWidth: sizes.smallest,
-    borderLeftStyle: "solid",
-    borderLeftColor: "var(--color-outline-variant)" satisfies ThemeColorVariable,
-  },
-
-  standardLeft: {
-    borderRightWidth: sizes.smallest,
-    borderRightStyle: "solid",
-    borderRightColor: "var(--color-outline-variant)" satisfies ThemeColorVariable,
-  },
-
-  standardTop: {
-    borderBottomWidth: sizes.smallest,
-    borderBottomStyle: "solid",
-    borderBottomColor: "var(--color-outline-variant)" satisfies ThemeColorVariable,
-  },
-
-  standardBottom: {
-    borderTopWidth: sizes.smallest,
-    borderTopStyle: "solid",
-    borderTopColor: "var(--color-outline-variant)" satisfies ThemeColorVariable,
-  },
-
-  header: {
-    display: "flex",
-    alignItems: "flex-start",
-    paddingTop: spacing.medium,
-    paddingBottom: spacing.large,
-    paddingInlineEnd: spacing.medium,
-  },
-
-  headerWithTitle: {
-    paddingInlineStart: spacing.xxxlarge,
-  },
-
-  headerWithBack: {
-    paddingInlineStart: spacing.xxxxxsmall,
-  },
-
-  title: {
-    flex: 1,
-    minWidth: 0,
-    paddingTop: spacing.medium,
-    color: "var(--color-on-surface-variant)" satisfies ThemeColorVariable,
-  },
-
-  content: {
-    flex: 1,
-    minHeight: 0,
-    overflow: "auto",
-    overscrollBehavior: "contain",
-  },
-
-  actions: {
-    display: "flex",
-    flexDirection: "column",
-  },
-
-  actionsRow: {
-    display: "flex",
-    alignItems: "center",
-    gap: spacing.xxsmall,
-    paddingTop: spacing.large,
-    paddingInline: spacing.xxxlarge,
-  },
-});
+import { styles } from "./styles";
 
 /**
  * @zh SideSheet 组件。Material Design 3 侧边栏：承载补充内容或操作的面板，
@@ -167,28 +57,14 @@ const SideSheet = ({
     onClose,
   });
 
-  const panelPlacementStyles: Record<string, ReturnType<typeof $props>> = {
-    right: styles.panelRight,
-    left: styles.panelLeft,
-    top: styles.panelTop,
-    bottom: styles.panelBottom,
-  };
-
-  const standardPlacementStyles: Record<string, ReturnType<typeof $props>> = {
-    right: styles.standardRight,
-    left: styles.standardLeft,
-    top: styles.standardTop,
-    bottom: styles.standardBottom,
-  };
-
   const styled = {
-    panel: $props(styles.panel, panelPlacementStyles[placement]),
-    standard: $props(styles.standard, standardPlacementStyles[placement]),
-    header: $props(styles.header, onBack ? styles.headerWithBack : styles.headerWithTitle),
-    title: $props($title.large, styles.title),
-    content: $props(styles.content),
-    actions: $props(styles.actions),
-    actionsRow: $props(styles.actionsRow),
+    panel: $props(styles.panel.default),
+    standard: $props(styles.standard.default, styles.standard[placement]),
+    header: $props(styles.header.default, onBack ? styles.header.withBack : styles.header.withTitle),
+    title: $props($title.large, styles.title.default),
+    content: $props(styles.content.default),
+    actions: $props(styles.actions.default),
+    actionsRow: $props(styles.actions.row),
   };
 
   /**
