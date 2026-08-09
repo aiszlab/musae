@@ -2,11 +2,13 @@ import React from "react";
 import type { SideSheetProps } from "../../types/side-sheet";
 import { Sheet } from "../sheet";
 import { Divider } from "../divider";
+import { Button } from "../button";
 import { IconButton } from "../icon-button";
 import { IconArrowBack } from "../icon/icons";
 import { useClosable } from "../../hooks/use-closable";
 import { useClassNames } from "../../hooks/use-class-names";
 import { useThemeColorVars, type ThemeColorVariable } from "../../hooks/use-theme-color-vars";
+import { useLocale } from "../../locale";
 import { create as $create, props as $props } from "@stylexjs/stylex";
 import { stringify } from "@aiszlab/relax/class-name";
 import { sizes, spacing } from "../theme/tokens.stylex";
@@ -35,6 +37,16 @@ const styles = $create({
     borderBottomRightRadius: sizes.xxxxsmall,
   },
 
+  panelTop: {
+    borderBottomLeftRadius: sizes.xxxxsmall,
+    borderBottomRightRadius: sizes.xxxxsmall,
+  },
+
+  panelBottom: {
+    borderTopLeftRadius: sizes.xxxxsmall,
+    borderTopRightRadius: sizes.xxxxsmall,
+  },
+
   standard: {
     display: "flex",
     flexDirection: "column",
@@ -55,6 +67,18 @@ const styles = $create({
     borderRightWidth: sizes.smallest,
     borderRightStyle: "solid",
     borderRightColor: "var(--color-outline-variant)" satisfies ThemeColorVariable,
+  },
+
+  standardTop: {
+    borderBottomWidth: sizes.smallest,
+    borderBottomStyle: "solid",
+    borderBottomColor: "var(--color-outline-variant)" satisfies ThemeColorVariable,
+  },
+
+  standardBottom: {
+    borderTopWidth: sizes.smallest,
+    borderTopStyle: "solid",
+    borderTopColor: "var(--color-outline-variant)" satisfies ThemeColorVariable,
   },
 
   header: {
@@ -102,23 +126,27 @@ const styles = $create({
 });
 
 /**
- * @zh SideSheet 组件。Material Design 3 侧边栏：承载补充内容或操作的面板。
- * `modal` 类型基于共享的 Sheet 基础组件构建（遮罩层 + 滑入动画），
- * `standard` 类型内嵌在布局中展示（无遮罩层，停靠边缘带分割线）。
- * @en SideSheet component. A Material Design 3 side sheet: a surface for supplementary
- * content or actions. The `modal` type is built on the shared Sheet base component
- * (scrim + slide animation); the `standard` type renders inline in the layout
- * (no scrim, with a divider on the anchored edge).
+ * @zh SideSheet 组件。Material Design 3 侧边栏：承载补充内容或操作的面板，
+ * 支持从屏幕四边（left/right/top/bottom）滑入。`modal` 类型基于共享的 Sheet
+ * 基础组件构建（遮罩层 + 滑入动画），mobile 下全屏展示；`standard` 类型内嵌
+ * 在布局中展示（无遮罩层，停靠边缘带分割线）。
+ * @en SideSheet component. A Material Design 3 side sheet: a surface for
+ * supplementary content or actions, sliding in from any screen edge
+ * (left/right/top/bottom). The `modal` type is built on the shared Sheet base
+ * component (scrim + slide animation) and goes fullscreen on mobile;
+ * the `standard` type renders inline in the layout (no scrim, with a divider
+ * on the anchored edge).
  */
 const SideSheet = ({
   open,
   type = "modal",
   title,
   onBack,
+  onConfirm,
   closable = true,
   onClose,
   actions,
-  size = 320,
+  size = 400,
   placement = "right",
   className,
   style,
@@ -132,17 +160,30 @@ const SideSheet = ({
     "outline-variant",
   ]);
 
+  const [locale] = useLocale("drawer");
+
   const { closer } = useClosable({
     closable,
     onClose,
   });
 
+  const panelPlacementStyles: Record<string, ReturnType<typeof $props>> = {
+    right: styles.panelRight,
+    left: styles.panelLeft,
+    top: styles.panelTop,
+    bottom: styles.panelBottom,
+  };
+
+  const standardPlacementStyles: Record<string, ReturnType<typeof $props>> = {
+    right: styles.standardRight,
+    left: styles.standardLeft,
+    top: styles.standardTop,
+    bottom: styles.standardBottom,
+  };
+
   const styled = {
-    panel: $props(styles.panel, placement === "right" ? styles.panelRight : styles.panelLeft),
-    standard: $props(
-      styles.standard,
-      placement === "right" ? styles.standardRight : styles.standardLeft,
-    ),
+    panel: $props(styles.panel, panelPlacementStyles[placement]),
+    standard: $props(styles.standard, standardPlacementStyles[placement]),
     header: $props(styles.header, onBack ? styles.headerWithBack : styles.headerWithTitle),
     title: $props($title.large, styles.title),
     content: $props(styles.content),
@@ -156,7 +197,7 @@ const SideSheet = ({
    * @en Header bar: optional back button, headline, and closer.
    * Not rendered when all three are absent, avoiding empty placeholder space.
    */
-  const hasHeader = !!title || !!onBack || !!closer;
+  const hasHeader = !!title || !!onBack || !!onConfirm || !!closer;
 
   const header = hasHeader ? (
     <div
@@ -175,6 +216,8 @@ const SideSheet = ({
       >
         {title}
       </div>
+
+      {onConfirm && <Button onClick={onConfirm}>{locale.confirm}</Button>}
 
       {closer}
     </div>

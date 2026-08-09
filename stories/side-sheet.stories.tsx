@@ -18,7 +18,7 @@ const meta: Meta<typeof SideSheet> = {
     closable: { control: "boolean" },
     placement: {
       control: "select",
-      options: ["right", "left"],
+      options: ["right", "left", "top", "bottom"],
     },
   },
 };
@@ -158,6 +158,70 @@ export const WithoutActions: Story = {
           <div style={{ padding: 24 }}>
             <p style={{ margin: 0, color: "var(--color-on-surface-variant)" }}>
               The footer divider and buttons are only rendered when `actions` is provided.
+            </p>
+          </div>
+        </SideSheet>
+      </div>
+    );
+  },
+};
+
+export const AllPlacements: Story = {
+  render: (args) => {
+    const [placement, setPlacement] = useState<"right" | "left" | "top" | "bottom">(
+      (args.placement as "right" | "left" | "top" | "bottom") ?? "right",
+    );
+
+    return (
+      <div style={{ padding: 16 }}>
+        <Space style={{ marginBottom: 16 }}>
+          {(["right", "left", "top", "bottom"] as const).map((p) => (
+            <Button
+              key={p}
+              variant={placement === p ? "filled" : "outlined"}
+              onClick={() => setPlacement(p)}
+            >
+              {p}
+            </Button>
+          ))}
+        </Space>
+
+        <SideSheet
+          {...args}
+          open={true}
+          placement={placement}
+          title={`Placement: ${placement}`}
+          onClose={() => {}}
+        >
+          <div style={{ padding: 24 }}>
+            <p style={{ margin: 0, color: "var(--color-on-surface-variant)" }}>
+              SideSheet slides in from the {placement} edge.
+            </p>
+          </div>
+        </SideSheet>
+      </div>
+    );
+  },
+};
+
+export const WithConfirm: Story = {
+  render: (args) => {
+    const [open, setOpen] = useState(false);
+
+    return (
+      <div style={{ padding: 16 }}>
+        <Button onClick={() => setOpen(true)}>Open with Confirm</Button>
+        <SideSheet
+          {...args}
+          open={open}
+          title="Confirm Action"
+          onConfirm={() => setOpen(false)}
+          onClose={() => setOpen(false)}
+        >
+          <div style={{ padding: 24 }}>
+            <p style={{ margin: 0, color: "var(--color-on-surface-variant)" }}>
+              The header shows a confirm button when `onConfirm` is provided. Click
+              &quot;confirm&quot; or the close button to dismiss.
             </p>
           </div>
         </SideSheet>

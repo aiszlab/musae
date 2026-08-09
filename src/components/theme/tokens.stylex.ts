@@ -156,3 +156,11 @@ export const duration = defineVars({
   long: "0.5s",
   longest: "1s",
 });
+
+/**
+ * @zh 响应式断点。`mobile` 匹配宽度 < 905px 的视口。
+ * @en Responsive breakpoints. `mobile` matches viewports narrower than 905px.
+ */
+export const breakpoints = {
+  mobile: "@media (max-width: 904px)",
+};

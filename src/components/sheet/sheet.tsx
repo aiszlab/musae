@@ -82,6 +82,17 @@ const styles = $create({
     overflow: "auto",
     overscrollBehavior: "contain",
   },
+
+  panelFullscreen: {
+    "@media (max-width: 904px)": {
+      width: "100vw",
+      height: "100vh",
+      borderTopLeftRadius: 0,
+      borderTopRightRadius: 0,
+      borderBottomLeftRadius: 0,
+      borderBottomRightRadius: 0,
+    },
+  },
 });
 
 /**
@@ -168,7 +179,7 @@ const Sheet = ({
     stackLevel: $props(styles.stackLevel),
     container: $props(styles.stackLevel, styles.container, modal && styles.modal),
     overlay: $props(styles.overlay),
-    panel: $props(styles.panel, styles[placement]),
+    panel: $props(styles.panel, styles[placement], styles.panelFullscreen),
     body: $props(styles.body),
   };
 

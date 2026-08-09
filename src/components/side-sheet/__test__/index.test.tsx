@@ -27,6 +27,25 @@ const TestSideSheet = (props: Partial<Parameters<typeof SideSheet>[0]> = {}) => 
 };
 
 describe("SideSheet", () => {
+  let matchMediaMock: jest.Mock;
+
+  beforeEach(() => {
+    matchMediaMock = jest.fn().mockImplementation((query: string) => ({
+      matches: false,
+      media: query,
+      onchange: null,
+      addListener: jest.fn(),
+      removeListener: jest.fn(),
+      addEventListener: jest.fn(),
+      removeEventListener: jest.fn(),
+      dispatchEvent: jest.fn(),
+    }));
+    Object.defineProperty(window, "matchMedia", {
+      writable: true,
+      value: matchMediaMock,
+    });
+  });
+
   it("renders title and content when open", () => {
     render(<TestSideSheet />);
     expect(screen.getByText(TITLE)).toBeInTheDocument();
@@ -133,5 +152,81 @@ describe("SideSheet", () => {
     render(<TestSideSheet type="standard" size={400} />);
     const sideSheet = document.querySelector(".musae-side-sheet");
     expect(sideSheet).toHaveStyle({ "--size": "400px" });
+  });
+
+  it("renders with top placement", () => {
+    render(<TestSideSheet placement="top" />);
+    const sheet = document.querySelector(".musae-side-sheet");
+    expect(sheet).toBeInTheDocument();
+    expect(screen.getByText(BODY_CONTENT)).toBeInTheDocument();
+  });
+
+  it("renders with bottom placement", () => {
+    render(<TestSideSheet placement="bottom" />);
+    const sheet = document.querySelector(".musae-side-sheet");
+    expect(sheet).toBeInTheDocument();
+    expect(screen.getByText(BODY_CONTENT)).toBeInTheDocument();
+  });
+
+  it("renders confirm button when onConfirm is provided and calls it on click", async () => {
+    const onConfirm = jest.fn();
+    render(<TestSideSheet onConfirm={onConfirm} />);
+
+    const confirmButton = screen.getByRole("button", { name: /confirm/i });
+    expect(confirmButton).toBeInTheDocument();
+
+    await userEvent.click(confirmButton);
+    expect(onConfirm).toHaveBeenCalledTimes(1);
+  });
+
+  it("does not render confirm button when onConfirm is not provided", () => {
+    render(<TestSideSheet />);
+    expect(screen.queryByRole("button", { name: /confirm/i })).not.toBeInTheDocument();
+  });
+
+  it("renders all header elements — back button, title, confirm button, and closer", () => {
+    render(<TestSideSheet onBack={jest.fn()} onConfirm={jest.fn()} />);
+
+    const header = document.querySelector(".musae-side-sheet__header");
+    const buttons = header?.querySelectorAll("button");
+    // back button + confirm button + closer = 3 buttons
+    expect(buttons?.length).toBe(3);
+    expect(screen.getByText(TITLE)).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /confirm/i })).toBeInTheDocument();
+  });
+
+  it("renders modal type with fullscreen styles on mobile viewport", () => {
+    matchMediaMock.mockImplementation((query: string) => ({
+      matches: query === "(max-width: 904px)",
+      media: query,
+      onchange: null,
+      addListener: jest.fn(),
+      removeListener: jest.fn(),
+      addEventListener: jest.fn(),
+      removeEventListener: jest.fn(),
+      dispatchEvent: jest.fn(),
+    }));
+
+    render(<TestSideSheet type="modal" />);
+    const panel = document.querySelector(".musae-sheet__panel");
+    expect(panel).toBeInTheDocument();
+    expect(panel?.className).toContain("musae-sheet__panel");
+  });
+
+  it("renders standard type inline regardless of mobile viewport", () => {
+    matchMediaMock.mockImplementation((query: string) => ({
+      matches: query === "(max-width: 904px)",
+      media: query,
+      onchange: null,
+      addListener: jest.fn(),
+      removeListener: jest.fn(),
+      addEventListener: jest.fn(),
+      removeEventListener: jest.fn(),
+      dispatchEvent: jest.fn(),
+    }));
+
+    render(<TestSideSheet type="standard" />);
+    expect(document.querySelector(".musae-sheet__overlay")).not.toBeInTheDocument();
+    expect(document.querySelector(".musae-side-sheet")).toBeInTheDocument();
   });
 });

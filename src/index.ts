@@ -21,7 +21,6 @@ export { ThemeProvider } from "./components/theme";
 export { ConfigProvider } from "./components/config";
 export { Form } from "./components/form";
 export { Empty } from "./components/empty";
-export { Drawer } from "./components/drawer";
 export { Dialog } from "./components/dialog";
 export { Tag } from "./components/tag";
 export { Calendar, ContributionCalendar } from "./components/calendar";

@@ -13,7 +13,7 @@ export type SideSheetType = "standard" | "modal";
  * @zh Side Sheet 停靠方向。
  * @en The edge the side sheet is anchored to.
  */
-export type SideSheetPlacement = "left" | "right";
+export type SideSheetPlacement = "left" | "right" | "top" | "bottom";
 
 /**
  * @zh SideSheet 组件属性。
@@ -59,6 +59,13 @@ export interface SideSheetProps extends ComponentProps {
   closable?: boolean | Closable[];
 
   /**
+   * @zh 确认回调。传入后头部展示确认按钮。
+   * @en Confirm handler. When provided, a confirm button is rendered in the header.
+   * @default void 0
+   */
+  onConfirm?: VoidFunction;
+
+  /**
    * @zh 关闭回调。
    * @en Called when the side sheet requests to close.
    * @default void 0
@@ -75,13 +82,14 @@ export interface SideSheetProps extends ComponentProps {
   /**
    * @zh 面板宽度。接受数字（px）或任意 CSS 尺寸字符串。
    * @en Panel width. Accepts a number (px) or any CSS dimension string.
-   * @default 320
+   * @default 400
    */
   size?: number | string;
 
   /**
-   * @zh 停靠方向。
+   * @zh 停靠方向。`left` / `right` 水平滑入，`top` / `bottom` 垂直滑入。
    * @en The edge the side sheet is anchored to.
+   * `left` / `right` slides horizontally, `top` / `bottom` slides vertically.
    * @default "right"
    */
   placement?: SideSheetPlacement;
