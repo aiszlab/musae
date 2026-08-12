@@ -99,7 +99,28 @@ export type TableProps<T> = ComponentProps & {
    * @default false
    */
   loading?: boolean;
+
+  /** Enable hierarchical rows. Records are read from their `children` property. @default false */
+  expandable?: boolean;
+
+  /** Stable identifiers of expanded rows (controlled). */
+  expandedKeys?: Key[];
+
+  /** Initially expanded row identifiers (uncontrolled). */
+  defaultExpandedKeys?: Key[];
+
+  /** Called whenever the expanded row identifiers change. */
+  onExpandedKeysChange?: (keys: Key[]) => void;
+
+  /**
+   * Stable row identifier. Hierarchical tables should always provide this rather than relying on
+   * TanStack Table's positional row ids.
+   */
+  rowKey?: DeepKeys<T> | ((record: T, index: number, parent?: T) => Key);
 };
+
+/** Recursive record shape used by the built-in hierarchical-row reader. */
+export type ExpandableRecord<T> = T & { children?: ExpandableRecord<T>[] };
 
 /**
  * @author murukal

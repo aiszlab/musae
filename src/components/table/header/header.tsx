@@ -2,45 +2,12 @@ import React from "react";
 import { useTable } from "../context";
 import { flexRender } from "@tanstack/react-table";
 import type { HeaderProps } from "../../../types/table";
-import { create as $create, props as $props } from "@stylexjs/stylex";
-import { sizes, spacing } from "../../theme/tokens.stylex";
+import { props as $props } from "@stylexjs/stylex";
 import { stringify } from "@aiszlab/relax/class-name";
 import { $label } from "../../../components/theme/theme";
-import { type ThemeColorVariable, useThemeColorVars } from "../../../hooks/use-theme-color-vars";
-
-const styles = $create({
-  cell: {
-    // reset styles
-    borderWidth: sizes.none,
-
-    // apply styles
-    backgroundColor: "var(--color-surface)" satisfies ThemeColorVariable,
-    borderColor: "var(--color-outline-variant)" satisfies ThemeColorVariable,
-    textAlign: "start",
-    position: "relative",
-    paddingInline: spacing.xxsmall,
-    paddingBlock: spacing.medium,
-    borderStyle: "solid",
-    borderBottomWidth: sizes.smallest,
-  },
-
-  unbordered: {
-    ":not(:last-of-type)::after": {
-      content: '""',
-      position: "absolute",
-      top: "50%",
-      width: sizes.smallest,
-      height: sizes.xsmall,
-      backgroundColor: "var(--color-outline-variant)" satisfies ThemeColorVariable,
-      transform: "translateY(-50%)",
-      insetInlineEnd: 0,
-    },
-  },
-
-  bordered: {
-    borderWidth: sizes.smallest,
-  },
-});
+import { useThemeColorVars } from "../../../hooks/use-theme-color-vars";
+import { EXPAND_COLUMN_ID } from "../context";
+import styles from "../styles";
 
 const Header = <T,>(props: HeaderProps) => {
   const { table, bordered, classNames } = useTable<T>();
@@ -50,10 +17,10 @@ const Header = <T,>(props: HeaderProps) => {
 
   const headerGroups = table.getHeaderGroups();
   const styled = $props(
-    styles.cell,
+    styles.headerCell.default,
     $label.small,
-    bordered && styles.bordered,
-    !bordered && styles.unbordered,
+    bordered && styles.headerCell.bordered,
+    !bordered && styles.headerCell.unbordered,
   );
 
   return (
@@ -67,7 +34,14 @@ const Header = <T,>(props: HeaderProps) => {
       {headerGroups.map((headerGroup) => (
         <tr key={headerGroup.id}>
           {headerGroup.headers.map((header) => (
-            <th key={header.id} className={stringify(styled.className)} style={styled.style}>
+            <th
+              key={header.id}
+              className={stringify(
+                styled.className,
+                header.column.id === EXPAND_COLUMN_ID && classNames.expandColumn,
+              )}
+              style={styled.style}
+            >
               {header.isPlaceholder
                 ? null
                 : flexRender(header.column.columnDef.header, header.getContext())}

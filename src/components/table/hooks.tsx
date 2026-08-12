@@ -11,17 +11,25 @@ import type { Column, ContextValue, SortDescriptor } from "../../types/table";
 import HeaderCell from "./header/cell";
 import { useControlledState, useEvent } from "@aiszlab/relax";
 import type { Partialable } from "@aiszlab/relax/types";
-import type { CLASS_NAMES } from "./context";
+import { EXPAND_COLUMN_ID, type CLASS_NAMES } from "./context";
+import { Button } from "../button";
+import { IconExpandLess, IconExpandMore } from "../icon/icons/navigation";
 
 /**
  * @description
  * use columns
  */
-export const useColumns = <T,>({ columns }: { columns: Column<T>[] }) => {
+export const useColumns = <T,>({
+  columns,
+  expandable = false,
+}: {
+  columns: Column<T>[];
+  expandable?: boolean;
+}) => {
   const helper = useRef(createColumnHelper<T>());
 
   return useMemo<ColumnDef<T, DeepValue<T, DeepKeys<T>>>[]>(() => {
-    return columns.map(
+    const dataColumns = columns.map(
       (
         {
           key,
@@ -52,7 +60,29 @@ export const useColumns = <T,>({ columns }: { columns: Column<T>[] }) => {
         });
       },
     );
-  }, [columns]);
+
+    if (!expandable) return dataColumns;
+
+    return [
+      helper.current.display({
+        id: EXPAND_COLUMN_ID,
+        header: null,
+        cell: ({ row }) =>
+          row.getCanExpand() ? (
+            <Button
+              variant="text"
+              size="small"
+              aria-label={row.getIsExpanded() ? "收起" : "展开"}
+              aria-expanded={row.getIsExpanded()}
+              onClick={row.getToggleExpandedHandler()}
+            >
+              {row.getIsExpanded() ? <IconExpandLess /> : <IconExpandMore />}
+            </Button>
+          ) : null,
+      }),
+      ...dataColumns,
+    ];
+  }, [columns, expandable]);
 };
 
 /**
