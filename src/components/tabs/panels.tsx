@@ -40,7 +40,7 @@ const Panels = ({ forceRender, destroyable, activatedKeys }: PanelsProps) => {
   }, [destroyable, forceRender, items, activeKey, activatedKeys]);
 
   const styled = {
-    panels: $props(panels.length > 0 && styles.panels.panels.default),
+    panels: $props(panels.length > 0 && styles.panels.default),
   };
 
   return (
@@ -50,7 +50,7 @@ const Panels = ({ forceRender, destroyable, activatedKeys }: PanelsProps) => {
     >
       {panels.map(({ key, children }) => {
         const isActive = key === activeKey;
-        const panelStyled = $props(!isActive && styles.panels.panel.hidden);
+        const panelStyled = $props(!isActive && styles.panel.hidden);
 
         return (
           <div

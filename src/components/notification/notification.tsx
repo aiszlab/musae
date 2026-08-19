@@ -78,23 +78,20 @@ const Notification = forwardRef<HTMLDivElement, NotificationProps>(
     }, duration);
 
     const styled = {
-      notification: $props(
-        styles.notification.notification.default,
-        !title && styles.notification.notification.simple,
-      ),
+      notification: $props(styles.notification.default, !title && styles.notification.simple),
       leading: $props(
-        styles.notification.leading.default,
-        type === "success" && styles.notification.leading.success,
-        type === "warning" && styles.notification.leading.warning,
-        type === "error" && styles.notification.leading.error,
+        styles.leading.default,
+        type === "success" && styles.leading.success,
+        type === "warning" && styles.leading.warning,
+        type === "error" && styles.leading.error,
       ),
-      title: $props($title.medium, styles.notification.title.default),
+      title: $props($title.medium, styles.title.default),
       description: $props(
         $body.medium,
-        styles.notification.description.default,
-        !title && styles.notification.description.simple,
+        styles.description.default,
+        !title && styles.description.simple,
       ),
-      closer: $props(styles.notification.closer.default),
+      closer: $props(styles.closer.default),
     };
 
     useAsyncEffect(async () => {

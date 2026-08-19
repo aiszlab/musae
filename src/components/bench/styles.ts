@@ -1,93 +1,93 @@
 import { create as $create } from "@stylexjs/stylex";
 import { duration, sizes, spacing } from "../theme/tokens.stylex";
 
-const styles = {
-  bench: $create({
-    default: {
-      width: "100vw",
-      height: "100vh",
-      display: "grid",
-      gridTemplateRows: `${sizes.xxxxxxlarge} ${sizes.fr} ${sizes.auto}`,
-      gridTemplateColumns: `${sizes.xxxxxxxxxxxlarge} ${sizes.fr}`,
-      transitionProperty: "grid-template-columns",
-      transitionDuration: duration.medium,
-    },
+const bench = $create({
+  default: {
+    width: "100vw",
+    height: "100vh",
+    display: "grid",
+    gridTemplateRows: `${sizes.xxxxxxlarge} ${sizes.fr} ${sizes.auto}`,
+    gridTemplateColumns: `${sizes.xxxxxxxxxxxlarge} ${sizes.fr}`,
+    transitionProperty: "grid-template-columns",
+    transitionDuration: duration.medium,
+  },
 
-    collapsed: {
-      // gridTemplateAreas: "'heading header' 'sidebar main' 'expander main'",
-      gridTemplateColumns: `${sizes.xxxxxxlarge} ${sizes.fr}`,
-    },
-  }),
+  collapsed: {
+    // gridTemplateAreas: "'heading header' 'sidebar main' 'expander main'",
+    gridTemplateColumns: `${sizes.xxxxxxlarge} ${sizes.fr}`,
+  },
+});
 
-  heading: $create({
-    default: {},
+const heading = $create({
+  default: {},
 
-    collapsed: {
-      justifyContent: "center",
-      paddingInline: spacing.none,
-    },
-  }),
+  collapsed: {
+    justifyContent: "center",
+    paddingInline: spacing.none,
+  },
+});
 
-  collapser: $create({
-    default: {
-      marginInlineStart: "auto",
-    },
-  }),
+const collapser = $create({
+  default: {
+    marginInlineStart: "auto",
+  },
+});
 
-  header: $create({
-    default: {},
-  }),
+const header = $create({
+  default: {},
+});
 
-  trailing: $create({
-    default: {
-      display: "flex",
-      gap: spacing.xxsmall,
-      marginInlineStart: spacing.auto,
-    },
-  }),
+const trailing = $create({
+  default: {
+    display: "flex",
+    gap: spacing.xxsmall,
+    marginInlineStart: spacing.auto,
+  },
+});
 
-  sidebar: $create({
-    default: {},
+const sidebar = $create({
+  default: {},
 
-    collapsed: {
-      paddingInline: spacing.none,
-      paddingBlockEnd: spacing.none,
-      paddingBlockStart: spacing.xxxxxxlarge,
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
-    },
-  }),
+  collapsed: {
+    paddingInline: spacing.none,
+    paddingBlockEnd: spacing.none,
+    paddingBlockStart: spacing.xxxxxxlarge,
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+  },
+});
 
-  menu: $create({
-    default: {
-      overflow: "hidden",
-    },
+const menu = $create({
+  default: {
+    overflow: "hidden",
+  },
 
-    collapsed: {
-      width: "fit-content",
-    },
-  }),
+  collapsed: {
+    width: "fit-content",
+  },
+});
 
-  expander: $create({
-    default: {
-      gridArea: "expander",
-      width: sizes.full,
-      display: "flex",
-      justifyContent: "center",
-      paddingBlock: spacing.xxxlarge,
-      marginBlockStart: spacing.auto,
+const expander = $create({
+  default: {
+    gridArea: "expander",
+    width: sizes.full,
+    display: "flex",
+    justifyContent: "center",
+    paddingBlock: spacing.xxxlarge,
+    marginBlockStart: spacing.auto,
 
-      borderWidth: sizes.none,
-      borderTopWidth: sizes.smallest,
-      borderStyle: "solid",
-      borderColor: "var(--color-outline-variant)",
-    },
-  }),
+    borderWidth: sizes.none,
+    borderTopWidth: sizes.smallest,
+    borderStyle: "solid",
+    borderColor: "var(--color-outline-variant)",
+  },
+});
 
-  main: $create({
-    default: {},
-  }),
-};
+const main = $create({
+  default: {},
+});
+
+const styles = { bench, heading, collapser, header, trailing, sidebar, menu, expander, main };
 
 export default styles;

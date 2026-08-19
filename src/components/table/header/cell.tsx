@@ -44,11 +44,11 @@ const Cell = ({
   }
 
   const styled = {
-    cell: $props(styles.cell.cell.default),
-    handlers: $props(styles.cell.cell.handlers),
-    sort: $props(styles.cell.sort.default),
-    fullSort: $props(sort === "descending" && styles.cell.sort.checked),
-    halfSort: $props(styles.cell.sort.half, sort === "ascending" && styles.cell.sort.checked),
+    cell: $props(styles.cell.default),
+    handlers: $props(styles.cell.handlers),
+    sort: $props(styles.sort.default),
+    fullSort: $props(sort === "descending" && styles.sort.checked),
+    halfSort: $props(styles.sort.half, sort === "ascending" && styles.sort.checked),
   };
 
   return (

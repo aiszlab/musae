@@ -21,85 +21,82 @@ const splitPanel = $create({
     flexDirection: "column",
   },
 });
+const divider = $create({
+  default: {
+    position: "relative",
+  },
 
-const divider = {
-  divider: $create({
-    default: {
-      position: "relative",
-    },
+  horizontal: {
+    width: sizes.none,
+  },
 
-    horizontal: {
-      width: sizes.none,
-    },
+  vertical: {
+    height: sizes.none,
+  },
+});
 
-    vertical: {
-      height: sizes.none,
-    },
-  }),
+const dragger = $create({
+  default: {
+    position: "absolute",
 
-  dragger: $create({
-    default: {
+    "::before": {
+      content: "''",
+      display: "block",
       position: "absolute",
-
-      "::before": {
-        content: "''",
-        display: "block",
-        position: "absolute",
-        backgroundColor: "var(--color-outline-variant)",
-      },
-
-      "::after": {
-        content: "''",
-        display: "block",
-        position: "absolute",
-        backgroundColor: "var(--color-outline)",
-        insetInlineStart: sizes.half,
-        insetBlockStart: sizes.half,
-        transform: "translate(-50%, -50%)",
-      },
+      backgroundColor: "var(--color-outline-variant)",
     },
 
-    horizontal: {
-      width: sizes.xxxxxxxsmall,
+    "::after": {
+      content: "''",
+      display: "block",
+      position: "absolute",
+      backgroundColor: "var(--color-outline)",
+      insetInlineStart: sizes.half,
+      insetBlockStart: sizes.half,
+      transform: "translate(-50%, -50%)",
+    },
+  },
+
+  horizontal: {
+    width: sizes.xxxxxxxsmall,
+    height: sizes.full,
+    cursor: "col-resize",
+    insetInlineStart: sizes.half,
+    transform: "translateX(-50%)",
+
+    "::before": {
+      width: sizes.xxxxxxxxxxsmall,
       height: sizes.full,
-      cursor: "col-resize",
       insetInlineStart: sizes.half,
       transform: "translateX(-50%)",
-
-      "::before": {
-        width: sizes.xxxxxxxxxxsmall,
-        height: sizes.full,
-        insetInlineStart: sizes.half,
-        transform: "translateX(-50%)",
-      },
-
-      "::after": {
-        width: sizes.xxxxxxxxxxsmall,
-        height: sizes.xxsmall,
-      },
     },
 
-    vertical: {
+    "::after": {
+      width: sizes.xxxxxxxxxxsmall,
+      height: sizes.xxsmall,
+    },
+  },
+
+  vertical: {
+    width: sizes.full,
+    height: sizes.xxxxxxxsmall,
+    cursor: "row-resize",
+    insetBlockStart: sizes.half,
+    transform: "translateY(-50%)",
+
+    "::before": {
       width: sizes.full,
-      height: sizes.xxxxxxxsmall,
-      cursor: "row-resize",
+      height: sizes.xxxxxxxxxxsmall,
       insetBlockStart: sizes.half,
       transform: "translateY(-50%)",
-
-      "::before": {
-        width: sizes.full,
-        height: sizes.xxxxxxxxxxsmall,
-        insetBlockStart: sizes.half,
-        transform: "translateY(-50%)",
-      },
-
-      "::after": {
-        width: sizes.xxsmall,
-        height: sizes.xxxxxxxxxxsmall,
-      },
     },
-  }),
-};
+
+    "::after": {
+      width: sizes.xxsmall,
+      height: sizes.xxxxxxxxxxsmall,
+    },
+  },
+});
 
 const panel = $create({
   default: {
@@ -125,6 +122,7 @@ const panel = $create({
 const styles = {
   splitPanel,
   divider,
+  dragger,
   panel,
 };
 

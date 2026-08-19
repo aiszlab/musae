@@ -33,12 +33,8 @@ const Group = forwardRef<HTMLUListElement, MenuGroupProps>(
     }, [expanded]);
 
     const styled = {
-      group: $props(
-        styles.group.group.default,
-        styles.group.group[mode],
-        !expanded && styles.group.group.hidden,
-      ),
-      subgroup: $props(styles.group.subgroup[mode]),
+      group: $props(styles.group.default, styles.group[mode], !expanded && styles.group.hidden),
+      subgroup: $props(styles.subgroup[mode]),
     };
 
     return (

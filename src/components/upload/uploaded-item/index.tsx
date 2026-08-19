@@ -38,8 +38,8 @@ const UploadedItem = ({
   const isLoading = fileItem.status === "loading";
 
   const styled = {
-    item: $props(styles.root.item.default, $body.small),
-    filename: $props(styles.root.filename.default),
+    item: $props(styles.item.default, $body.small),
+    filename: $props(styles.filename.default),
   };
 
   const remove = useEvent(() => {

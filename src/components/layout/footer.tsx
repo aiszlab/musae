@@ -9,7 +9,7 @@ const Footer = ({ children, className, style }: FooterProps) => {
   const { classNames } = useContext(Context);
 
   const styled = {
-    footer: $props(styles.footer.footer.default),
+    footer: $props(styles.footer.default),
   };
 
   return (

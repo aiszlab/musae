@@ -138,43 +138,40 @@ const item = {
     },
   }),
 };
+const group = $create({
+  default: {
+    // reset ul group
+    margin: spacing.none,
+    padding: spacing.none,
+    listStyleType: "none",
+    color: "var(--color-on-surface)",
+    overflow: "auto",
+  },
 
-const group = {
-  group: $create({
-    default: {
-      // reset ul group
-      margin: spacing.none,
-      padding: spacing.none,
-      listStyleType: "none",
-      color: "var(--color-on-surface)",
-      overflow: "auto",
-    },
+  horizontal: {
+    display: "flex",
+    flexDirection: "row",
+    gap: spacing.xxsmall,
+  },
 
-    horizontal: {
-      display: "flex",
-      flexDirection: "row",
-      gap: spacing.xxsmall,
-    },
+  vertical: {},
 
-    vertical: {},
+  inline: {},
 
-    inline: {},
+  hidden: {
+    display: "none",
+  },
+});
 
-    hidden: {
-      display: "none",
-    },
-  }),
+const subgroup = $create({
+  inline: {
+    marginBlockStart: spacing.xxxxxsmall,
+  },
 
-  subgroup: $create({
-    inline: {
-      marginBlockStart: spacing.xxxxxsmall,
-    },
+  vertical: {},
 
-    vertical: {},
-
-    horizontal: {},
-  }),
-};
+  horizontal: {},
+});
 
 const menu = $create({
   default: {
@@ -183,44 +180,44 @@ const menu = $create({
     position: "relative",
   },
 });
+const prefix = $create({
+  default: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    marginRight: spacing.xxxxxsmall,
+  },
+});
 
-const hooks = {
-  prefix: $create({
-    default: {
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-      marginRight: spacing.xxxxxsmall,
-    },
-  }),
+const suffix = $create({
+  default: {
+    marginInlineStart: spacing.auto,
+  },
+});
 
-  suffix: $create({
-    default: {
-      marginInlineStart: spacing.auto,
-    },
-  }),
+const collapser = $create({
+  default: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    transform: "rotateX(180deg)",
+    transitionProperty: "transform",
+    transitionDuration: duration.short,
+  },
 
-  collapser: $create({
-    default: {
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      transform: "rotateX(180deg)",
-      transitionProperty: "transform",
-      transitionDuration: duration.short,
-    },
-
-    expanded: {
-      transform: "rotateX(0)",
-    },
-  }),
-};
+  expanded: {
+    transform: "rotateX(0)",
+  },
+});
 
 const styles = {
   item,
   group,
+  subgroup,
   menu,
-  hooks,
+  prefix,
+  suffix,
+  collapser,
 };
 
 export default styles;

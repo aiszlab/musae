@@ -2,42 +2,40 @@ import { create as $create } from "@stylexjs/stylex";
 import { sizes, spacing } from "../../theme/tokens.stylex";
 import { type ThemeColorVariable } from "../../../hooks/use-theme-color-vars";
 
-const cell = {
-  cell: $create({
-    default: {
-      display: "flex",
-      justifyContent: "space-between",
-      alignItems: "center",
-    },
+const cell = $create({
+  default: {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
 
-    handlers: {
-      display: "inline-flex",
-      flexDirection: "row",
-      gap: spacing.xxxxxsmall,
-      color: "var(--color-surface-container-highest)" satisfies ThemeColorVariable,
-      userSelect: "none",
-    },
-  }),
+  handlers: {
+    display: "inline-flex",
+    flexDirection: "row",
+    gap: spacing.xxxxxsmall,
+    color: "var(--color-surface-container-highest)" satisfies ThemeColorVariable,
+    userSelect: "none",
+  },
+});
 
-  sort: $create({
-    default: {
-      position: "relative",
-      cursor: "pointer",
-    },
+const sort = $create({
+  default: {
+    position: "relative",
+    cursor: "pointer",
+  },
 
-    half: {
-      position: "absolute",
-      insetBlockStart: 0,
-      insetInlineStart: 0,
-      height: sizes.half,
-      overflow: "hidden",
-    },
+  half: {
+    position: "absolute",
+    insetBlockStart: 0,
+    insetInlineStart: 0,
+    height: sizes.half,
+    overflow: "hidden",
+  },
 
-    checked: {
-      color: "var(--color-primary)" satisfies ThemeColorVariable,
-    },
-  }),
-};
+  checked: {
+    color: "var(--color-primary)" satisfies ThemeColorVariable,
+  },
+});
 
 const header = $create({
   cell: {
@@ -75,6 +73,7 @@ const header = $create({
 
 const styles = {
   cell,
+  sort,
   header,
 };
 

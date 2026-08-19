@@ -21,8 +21,8 @@ const Divider = ({ onDragMove, onDragEnd }: DividerProps) => {
   });
 
   const styled = {
-    divider: $props(styles.divider.divider.default, styles.divider.divider[orientation]),
-    dragger: $props(styles.divider.dragger.default, styles.divider.dragger[orientation]),
+    divider: $props(styles.divider.default, styles.divider[orientation]),
+    dragger: $props(styles.dragger.default, styles.dragger[orientation]),
   };
 
   return (

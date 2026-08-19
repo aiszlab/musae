@@ -21,7 +21,7 @@ const Layout = ({ className, style, ...props }: LayoutProps) => {
   const _themeColorVars = useThemeColorVars(["outline-variant"]);
 
   const styled = {
-    layout: $props(styles.layout.layout.default),
+    layout: $props(styles.layout.default),
   };
 
   return (

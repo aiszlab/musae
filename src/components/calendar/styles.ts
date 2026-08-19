@@ -79,89 +79,91 @@ const hooks = $create({
     margin: spacing.auto,
   },
 });
+const contributionCalendar = $create({
+  default: {
+    borderCollapse: "separate",
+    borderSpacing: spacing.xxxxxsmall,
+  },
 
-const contribution = {
-  calendar: $create({
-    default: {
-      borderCollapse: "separate",
-      borderSpacing: spacing.xxxxxsmall,
-    },
+  scrollable: {
+    maxWidth: "max-content",
+    overflow: "auto",
+  },
+});
 
-    scrollable: {
-      maxWidth: "max-content",
-      overflow: "auto",
-    },
-  }),
+const cell = $create({
+  default: {
+    minWidth: sizes.xxxxxxsmall,
+    minHeight: sizes.xxxxxxsmall,
+    padding: spacing.none,
+    borderRadius: sizes.xxxxxxxxxxsmall,
+    cursor: "pointer",
+    backgroundColor: "var(--color-primary)",
+  },
+});
 
-  cell: $create({
-    default: {
-      minWidth: sizes.xxxxxxsmall,
-      minHeight: sizes.xxxxxxsmall,
-      padding: spacing.none,
-      borderRadius: sizes.xxxxxxxxxxsmall,
-      cursor: "pointer",
-      backgroundColor: "var(--color-primary)",
-    },
-  }),
+const weekday = $create({
+  cell: {
+    padding: 0,
+  },
 
-  weekday: $create({
-    cell: {
-      padding: 0,
-    },
+  default: {
+    height: sizes.xxxxxxsmall,
+    overflow: "visible",
+    display: "flex",
+    alignItems: "center",
+  },
+});
 
-    default: {
-      height: sizes.xxxxxxsmall,
-      overflow: "visible",
-      display: "flex",
-      alignItems: "center",
-    },
-  }),
+const month = $create({
+  cell: {
+    padding: 0,
+    position: "relative",
+  },
 
-  month: $create({
-    cell: {
-      padding: 0,
-      position: "relative",
-    },
+  leading: {
+    visibility: "hidden",
+  },
 
-    leading: {
-      visibility: "hidden",
-    },
+  default: {
+    position: "absolute",
+    insetBlockStart: 0,
+    insetInlineStart: 0,
+  },
+});
 
-    default: {
-      position: "absolute",
-      insetBlockStart: 0,
-      insetInlineStart: 0,
-    },
-  }),
+const legend = $create({
+  default: {
+    paddingBlock: spacing.xxxxxsmall,
+    paddingInline: spacing.xxxxxxlarge,
+    display: "flex",
+    justifyContent: "flex-end",
+  },
+});
 
-  legend: $create({
-    default: {
-      paddingBlock: spacing.xxxxxsmall,
-      paddingInline: spacing.xxxxxxlarge,
-      display: "flex",
-      justifyContent: "flex-end",
-    },
-  }),
+const levels = $create({
+  default: {
+    display: "flex",
+    gap: spacing.xxxxxsmall,
+    alignItems: "center",
+  },
 
-  levels: $create({
-    default: {
-      display: "flex",
-      gap: spacing.xxxxxsmall,
-      alignItems: "center",
-    },
-
-    level: {
-      width: sizes.xxxxxxsmall,
-      height: sizes.xxxxxxsmall,
-      borderRadius: sizes.xxxxxxxxxxsmall,
-    },
-  }),
-};
+  level: {
+    width: sizes.xxxxxxsmall,
+    height: sizes.xxxxxxsmall,
+    borderRadius: sizes.xxxxxxxxxxsmall,
+  },
+});
 
 const styles = {
   calendar,
   hooks,
-  contribution,
+  contributionCalendar,
+  cell,
+  weekday,
+  month,
+  legend,
+  levels,
 };
 
 export default styles;

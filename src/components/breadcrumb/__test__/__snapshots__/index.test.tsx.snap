@@ -10,36 +10,36 @@ exports[`\`Breadcrumb\` Component customize separator 1`] = `
       class="styles__breadcrumb.navigations"
     >
       <li
-        class="musae-breadcrumb__item styles__default"
+        class="musae-breadcrumb__item styles__navigation.default"
         style="--color-surface: #FFFBFE; --color-on-surface: #1D1B20;"
       >
         label1
       </li>
       <li
-        class="musae-breadcrumb__separator styles__default"
+        class="musae-breadcrumb__separator styles__separator.default"
         role="separator"
       >
         -
       </li>
       <li
-        class="musae-breadcrumb__item styles__default styles__link"
+        class="musae-breadcrumb__item styles__navigation.default styles__navigation.link"
         style="--color-surface: #FFFBFE; --color-on-surface: #1D1B20;"
       >
         <a
-          class="styles__default"
+          class="styles__anchor.default"
           href="https://aiszlab.dev"
         >
           link2
         </a>
       </li>
       <li
-        class="musae-breadcrumb__separator styles__default"
+        class="musae-breadcrumb__separator styles__separator.default"
         role="separator"
       >
         -
       </li>
       <li
-        class="musae-breadcrumb__item styles__default"
+        class="musae-breadcrumb__item styles__navigation.default"
         style="--color-surface: #FFFBFE; --color-on-surface: #1D1B20;"
       >
         label3
@@ -59,36 +59,36 @@ exports[`\`Breadcrumb\` Component display items 1`] = `
       class="styles__breadcrumb.navigations"
     >
       <li
-        class="musae-breadcrumb__item styles__default"
+        class="musae-breadcrumb__item styles__navigation.default"
         style="--color-surface: #FFFBFE; --color-on-surface: #1D1B20;"
       >
         label1
       </li>
       <li
-        class="musae-breadcrumb__separator styles__default"
+        class="musae-breadcrumb__separator styles__separator.default"
         role="separator"
       >
         /
       </li>
       <li
-        class="musae-breadcrumb__item styles__default styles__link"
+        class="musae-breadcrumb__item styles__navigation.default styles__navigation.link"
         style="--color-surface: #FFFBFE; --color-on-surface: #1D1B20;"
       >
         <a
-          class="styles__default"
+          class="styles__anchor.default"
           href="https://aiszlab.dev"
         >
           link2
         </a>
       </li>
       <li
-        class="musae-breadcrumb__separator styles__default"
+        class="musae-breadcrumb__separator styles__separator.default"
         role="separator"
       >
         /
       </li>
       <li
-        class="musae-breadcrumb__item styles__default"
+        class="musae-breadcrumb__item styles__navigation.default"
         style="--color-surface: #FFFBFE; --color-on-surface: #1D1B20;"
       >
         label3

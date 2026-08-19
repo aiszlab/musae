@@ -18,20 +18,16 @@ const Item = ({ leading, title, description, value }: StepItemProps) => {
   const isMax = value === max;
 
   const styled = {
-    step: $props(styles.item.step.default, isClickable && styles.item.step.clickable),
-    leading: $props(styles.item.leading.default, isVertical && !isMax && styles.item.leading.tail),
+    step: $props(styles.step.default, isClickable && styles.step.clickable),
+    leading: $props(styles.leading.default, isVertical && !isMax && styles.leading.tail),
     sign: $props(
-      styles.item.sign.default,
-      status === "doing" && styles.item.sign.doing,
-      status === "done" && styles.item.sign.done,
-      status === "todo" && styles.item.sign.todo,
+      styles.sign.default,
+      status === "doing" && styles.sign.doing,
+      status === "done" && styles.sign.done,
+      status === "todo" && styles.sign.todo,
     ),
-    title: $props(
-      $title.medium,
-      styles.item.title.default,
-      isHorizontal && !isMax && styles.item.title.tail,
-    ),
-    description: $props($body.medium, styles.item.description.default),
+    title: $props($title.medium, styles.title.default, isHorizontal && !isMax && styles.title.tail),
+    description: $props($body.medium, styles.description.default),
   };
 
   const click = useEvent(() => {

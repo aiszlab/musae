@@ -70,25 +70,21 @@ const ContributionCalendar = ({
   }, [contributions]);
 
   const styled = {
-    scrollable: $props(styles.contribution.calendar.scrollable),
-    calendar: $props(styles.contribution.calendar.default),
-    cell: $props(styles.contribution.cell.default),
+    scrollable: $props(styles.contributionCalendar.scrollable),
+    calendar: $props(styles.contributionCalendar.default),
+    cell: $props(styles.cell.default),
     weekday: {
-      cell: $props(styles.contribution.weekday.cell, $body.small),
-      default: $props(styles.contribution.weekday.default),
+      cell: $props(styles.weekday.cell, $body.small),
+      default: $props(styles.weekday.default),
     },
     month: {
-      cell: $props(styles.contribution.month.cell, $body.small),
-      default: $props(styles.contribution.month.default),
-      leading: $props(
-        styles.contribution.month.cell,
-        $body.small,
-        styles.contribution.month.leading,
-      ),
+      cell: $props(styles.month.cell, $body.small),
+      default: $props(styles.month.default),
+      leading: $props(styles.month.cell, $body.small, styles.month.leading),
     },
-    legend: $props(styles.contribution.legend.default, $label.medium),
-    levels: $props(styles.contribution.levels.default),
-    level: $props(styles.contribution.levels.level),
+    legend: $props(styles.legend.default, $label.medium),
+    levels: $props(styles.levels.default),
+    level: $props(styles.levels.level),
   };
 
   // how to get different levels

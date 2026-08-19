@@ -18,13 +18,13 @@ const Node = ({ value, children, level, onExpand, ...props }: TreeNodeProps) => 
   const _themeColorVars = useThemeColorVars(["surface-container", "primary"]);
 
   const styled = {
-    node: $props(styles.node.node.default),
+    node: $props(styles.node.default),
     title: $props(
-      styles.node.title.default,
-      isSelected && styles.node.title.selected,
-      selectable && styles.node.title.selectable,
+      styles.title.default,
+      isSelected && styles.title.selected,
+      selectable && styles.title.selectable,
     ),
-    expander: $props(styles.node.expander.default, isExpanded && styles.node.expander.expanded),
+    expander: $props(styles.expander.default, isExpanded && styles.expander.expanded),
   };
 
   const check = useEvent(() => {

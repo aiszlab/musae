@@ -19,14 +19,14 @@ const Navigation = ({ onChange }: NavigationProps) => {
   const _themeColorVars = useThemeColorVars(["outline-variant", "primary"]);
 
   const styled = {
-    navigation: $props(styles.navigation.navigation.default),
+    navigation: $props(styles.navigation.default),
     navigator: $props(
-      styles.navigation.navigator.default,
-      isLeadingOverflow && styles.navigation.navigator.leading,
-      isTrailingOverflow && styles.navigation.navigator.trailing,
+      styles.navigator.default,
+      isLeadingOverflow && styles.navigator.leading,
+      isTrailingOverflow && styles.navigator.trailing,
     ),
-    list: $props(styles.navigation.list.default),
-    indicator: $props(styles.navigation.indicator.default, styles.navigation.indicator[size]),
+    list: $props(styles.list.default),
+    indicator: $props(styles.indicator.default, styles.indicator[size]),
   };
 
   // repaint indicator when activeKey or size changed

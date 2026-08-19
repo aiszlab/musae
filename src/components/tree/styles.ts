@@ -14,62 +14,61 @@ const list = $create({
     display: "none",
   },
 });
+const node = $create({
+  default: {
+    display: "flex",
+    alignItems: "center",
+    gap: spacing.xxxxxsmall,
 
-const node = {
-  node: $create({
-    default: {
-      display: "flex",
-      alignItems: "center",
-      gap: spacing.xxxxxsmall,
+    paddingBlock: spacing.xxsmall,
+    paddingLeft: `calc(${spacing.medium} + var(--level) * ${spacing.xxxlarge})`,
+  },
+});
 
-      paddingBlock: spacing.xxsmall,
-      paddingLeft: `calc(${spacing.medium} + var(--level) * ${spacing.xxxlarge})`,
-    },
-  }),
+const expander = $create({
+  default: {
+    width: 24,
+    height: 24,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    cursor: "pointer",
+    transition: "transform 0.3s",
+    userSelect: "none",
+  },
 
-  expander: $create({
-    default: {
-      width: 24,
-      height: 24,
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      cursor: "pointer",
-      transition: "transform 0.3s",
-      userSelect: "none",
-    },
+  expanded: {
+    transform: "rotate(90deg)",
+  },
+});
 
-    expanded: {
-      transform: "rotate(90deg)",
-    },
-  }),
-
-  title: $create({
-    default: {
-      paddingInline: spacing.xxxxxsmall,
-      borderRadius: sizes.xxxxxxxxxsmall,
-      backgroundColor: {
-        ":hover": {
-          "@media (hover: hover)": "var(--color-surface-container)" satisfies ThemeColorVariable,
-        },
+const title = $create({
+  default: {
+    paddingInline: spacing.xxxxxsmall,
+    borderRadius: sizes.xxxxxxxxxsmall,
+    backgroundColor: {
+      ":hover": {
+        "@media (hover: hover)": "var(--color-surface-container)" satisfies ThemeColorVariable,
       },
-      cursor: "default",
     },
+    cursor: "default",
+  },
 
-    selected: {
-      backgroundColor: "var(--color-surface-container)" satisfies ThemeColorVariable,
-      color: "var(--color-primary)" satisfies ThemeColorVariable,
-    },
+  selected: {
+    backgroundColor: "var(--color-surface-container)" satisfies ThemeColorVariable,
+    color: "var(--color-primary)" satisfies ThemeColorVariable,
+  },
 
-    selectable: {
-      cursor: "pointer",
-    },
-  }),
-};
+  selectable: {
+    cursor: "pointer",
+  },
+});
 
 const styles = {
   list,
   node,
+  expander,
+  title,
 };
 
 export default styles;

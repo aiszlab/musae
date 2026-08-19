@@ -2,6 +2,67 @@ import { create as $create } from "@stylexjs/stylex";
 import { duration, opacity, sizes, spacing } from "../theme/tokens.stylex";
 import { type ThemeColorVariable } from "../../hooks/use-theme-color-vars";
 
+const supporting = $create({
+  default: {
+    height: sizes.full,
+    width: sizes.full,
+    overflow: "hidden",
+    display: "flex",
+    flexDirection: "column",
+    color: "inherit",
+    transitionProperty: "padding-inline-start, padding-inline-end",
+    transitionDuration: duration.short,
+
+    paddingInlineStart: `calc(${sizes.xsmall} + ${sizes.xxxxxxxxxxsmall} * 4)`,
+    paddingInlineEnd: `calc(${spacing.xxxxxxlarge} / 2 - ${sizes.xxxxxxxxxxsmall})`,
+  },
+
+  // if checked, change padding styles, for slider has been right
+  checked: {
+    paddingInlineStart: `calc(${spacing.xxxxxxlarge} / 2 - ${sizes.xxxxxxxxxxsmall})`,
+    paddingInlineEnd: `calc(${sizes.xsmall} + ${sizes.xxxxxxxxxxsmall} * 4)`,
+  },
+
+  child: {
+    height: sizes.full,
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    color: "inherit",
+
+    transitionProperty: "margin-inline-start, margin-inline-end",
+    transitionDuration: duration.short,
+  },
+});
+
+const leading = $create({
+  default: {
+    // - `self width` - `slider width` - `slider padding width * 4` - `border width`
+    marginInlineStart: `calc(-100% - ${sizes.xsmall} - ${sizes.xxxxxxxxxxsmall} * 4 - ${sizes.xxxxxxxxxxsmall})`,
+    marginInlineEnd: `calc(100% + ${sizes.xsmall} + ${sizes.xxxxxxxxxxsmall} * 4 + ${sizes.xxxxxxxxxxsmall})`,
+  },
+
+  checked: {
+    marginInlineStart: 0,
+    marginInlineEnd: 0,
+  },
+});
+
+const trailing = $create({
+  default: {
+    marginBlockStart: `calc(-1 * ${sizes.small})`,
+    marginInlineEnd: 0,
+    marginInlineStart: 0,
+  },
+
+  checked: {
+    // + `self width` + `slider width` + `slider padding width * 2` + `border width`
+    marginInlineEnd: `calc(-100% - ${sizes.xsmall} - ${sizes.xxxxxxxxxxsmall} * 4 - ${sizes.xxxxxxxxxxsmall})`,
+    marginInlineStart: `calc(100% + ${sizes.xsmall} + ${sizes.xxxxxxxxxxsmall} * 4 + ${sizes.xxxxxxxxxxsmall})`,
+  },
+});
+
 const styles = {
   switch: {
     default: $create({
@@ -99,68 +160,9 @@ const styles = {
       },
     }),
   },
-
-  // supporting container styles
-  supporting: $create({
-    default: {
-      height: sizes.full,
-      width: sizes.full,
-      overflow: "hidden",
-      display: "flex",
-      flexDirection: "column",
-      color: "inherit",
-      transitionProperty: "padding-inline-start, padding-inline-end",
-      transitionDuration: duration.short,
-
-      paddingInlineStart: `calc(${sizes.xsmall} + ${sizes.xxxxxxxxxxsmall} * 4)`,
-      paddingInlineEnd: `calc(${spacing.xxxxxxlarge} / 2 - ${sizes.xxxxxxxxxxsmall})`,
-    },
-
-    // if checked, change padding styles, for slider has been right
-    checked: {
-      paddingInlineStart: `calc(${spacing.xxxxxxlarge} / 2 - ${sizes.xxxxxxxxxxsmall})`,
-      paddingInlineEnd: `calc(${sizes.xsmall} + ${sizes.xxxxxxxxxxsmall} * 4)`,
-    },
-
-    child: {
-      height: sizes.full,
-      display: "flex",
-      flexDirection: "row",
-      alignItems: "center",
-      justifyContent: "center",
-      color: "inherit",
-
-      transitionProperty: "margin-inline-start, margin-inline-end",
-      transitionDuration: duration.short,
-    },
-  }),
-
-  leading: $create({
-    default: {
-      // - `self width` - `slider width` - `slider padding width * 4` - `border width`
-      marginInlineStart: `calc(-100% - ${sizes.xsmall} - ${sizes.xxxxxxxxxxsmall} * 4 - ${sizes.xxxxxxxxxxsmall})`,
-      marginInlineEnd: `calc(100% + ${sizes.xsmall} + ${sizes.xxxxxxxxxxsmall} * 4 + ${sizes.xxxxxxxxxxsmall})`,
-    },
-
-    checked: {
-      marginInlineStart: 0,
-      marginInlineEnd: 0,
-    },
-  }),
-
-  trailing: $create({
-    default: {
-      marginBlockStart: `calc(-1 * ${sizes.small})`,
-      marginInlineEnd: 0,
-      marginInlineStart: 0,
-    },
-
-    checked: {
-      // + `self width` + `slider width` + `slider padding width * 2` + `border width`
-      marginInlineEnd: `calc(-100% - ${sizes.xsmall} - ${sizes.xxxxxxxxxxsmall} * 4 - ${sizes.xxxxxxxxxxsmall})`,
-      marginInlineStart: `calc(100% + ${sizes.xsmall} + ${sizes.xxxxxxxxxxsmall} * 4 + ${sizes.xxxxxxxxxxsmall})`,
-    },
-  }),
+  supporting,
+  leading,
+  trailing,
 };
 
 export default styles;

@@ -38,9 +38,9 @@ const Star = ({ disabled, value, onEnter, at, onLeave, onClick }: StarProps) => 
   });
 
   const styled = {
-    star: $props(styles.star.star.default, disabled && styles.star.star.disabled),
-    half: $props(styles.star.half.default, isHalf && styles.star.half.checked),
-    full: $props(styles.star.full.default, isFull && styles.star.full.checked),
+    star: $props(styles.star.default, disabled && styles.star.disabled),
+    half: $props(styles.half.default, isHalf && styles.half.checked),
+    full: $props(styles.full.default, isFull && styles.full.checked),
   };
 
   return (

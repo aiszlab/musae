@@ -3,11 +3,11 @@
 exports[`\`Search\` Component snapshot 1`] = `
 <DocumentFragment>
   <span
-    class="musae-search styles__default"
+    class="musae-search styles__container.default"
     style="--color-primary: #6750A4; --color-outline: #79747E; --color-surface-container-high: #F5EFF7; --color-on-surface-variant: #49454F; --color-on-surface-variant-opacity-08: color-mix(in srgb, var(--color-on-surface-variant) 8%, transparent); --color-on-surface: #1D1B20; --color-on-surface-opacity-38: color-mix(in srgb, var(--color-on-surface) 38%, transparent); --color-on-surface-opacity-08: color-mix(in srgb, var(--color-on-surface) 8%, transparent);"
   >
     <span
-      class="musae-search-leading styles__default"
+      class="musae-search-leading styles__leading.default"
     >
       <span
         class="musae-icon styles__styles.icon"
@@ -27,7 +27,7 @@ exports[`\`Search\` Component snapshot 1`] = `
       </span>
     </span>
     <span
-      class="musae-input__inputor musae-search-input styles__default theme__body.medium styles__input_styles.inputor"
+      class="musae-input__inputor musae-search-input styles__input.default theme__body.medium styles__input_styles.inputor"
       style="--color-primary: #6750A4; --color-outline: #79747E; --color-error: #B3261E; --color-on-surface: #1D1B20; --color-on-surface-opacity-38: color-mix(in srgb, var(--color-on-surface) 38%, transparent); --color-on-surface-opacity-08: color-mix(in srgb, var(--color-on-surface) 8%, transparent);"
       tabindex="-1"
     >
@@ -44,11 +44,11 @@ exports[`\`Search\` Component snapshot 1`] = `
 exports[`\`Search\` Component snapshot disabled state 1`] = `
 <DocumentFragment>
   <span
-    class="musae-search musae-search--disabled styles__default styles__disabled"
+    class="musae-search musae-search--disabled styles__container.default styles__container.disabled"
     style="--color-primary: #6750A4; --color-outline: #79747E; --color-surface-container-high: #F5EFF7; --color-on-surface-variant: #49454F; --color-on-surface-variant-opacity-08: color-mix(in srgb, var(--color-on-surface-variant) 8%, transparent); --color-on-surface: #1D1B20; --color-on-surface-opacity-38: color-mix(in srgb, var(--color-on-surface) 38%, transparent); --color-on-surface-opacity-08: color-mix(in srgb, var(--color-on-surface) 8%, transparent);"
   >
     <span
-      class="musae-search-leading styles__default"
+      class="musae-search-leading styles__leading.default"
     >
       <span
         class="musae-icon styles__styles.icon"
@@ -68,7 +68,7 @@ exports[`\`Search\` Component snapshot disabled state 1`] = `
       </span>
     </span>
     <span
-      class="musae-input__inputor musae-search-input styles__default theme__body.medium styles__input_styles.inputor styles__input_styles.disabled"
+      class="musae-input__inputor musae-search-input styles__input.default theme__body.medium styles__input_styles.inputor styles__input_styles.disabled"
       style="--color-primary: #6750A4; --color-outline: #79747E; --color-error: #B3261E; --color-on-surface: #1D1B20; --color-on-surface-opacity-38: color-mix(in srgb, var(--color-on-surface) 38%, transparent); --color-on-surface-opacity-08: color-mix(in srgb, var(--color-on-surface) 8%, transparent);"
     >
       <input
@@ -86,11 +86,11 @@ exports[`\`Search\` Component snapshot disabled state 1`] = `
 exports[`\`Search\` Component snapshot with all props 1`] = `
 <DocumentFragment>
   <span
-    class="musae-search styles__default styles__withSearchButton"
+    class="musae-search styles__container.default styles__container.withSearchButton"
     style="--color-primary: #6750A4; --color-outline: #79747E; --color-surface-container-high: #F5EFF7; --color-on-surface-variant: #49454F; --color-on-surface-variant-opacity-08: color-mix(in srgb, var(--color-on-surface-variant) 8%, transparent); --color-on-surface: #1D1B20; --color-on-surface-opacity-38: color-mix(in srgb, var(--color-on-surface) 38%, transparent); --color-on-surface-opacity-08: color-mix(in srgb, var(--color-on-surface) 8%, transparent);"
   >
     <span
-      class="musae-search-leading styles__default"
+      class="musae-search-leading styles__leading.default"
     >
       <span
         class="musae-icon styles__styles.icon"
@@ -110,7 +110,7 @@ exports[`\`Search\` Component snapshot with all props 1`] = `
       </span>
     </span>
     <span
-      class="musae-input__inputor musae-search-input styles__default theme__body.medium styles__input_styles.inputor"
+      class="musae-input__inputor musae-search-input styles__input.default theme__body.medium styles__input_styles.inputor"
       style="--color-primary: #6750A4; --color-outline: #79747E; --color-error: #B3261E; --color-on-surface: #1D1B20; --color-on-surface-opacity-38: color-mix(in srgb, var(--color-on-surface) 38%, transparent); --color-on-surface-opacity-08: color-mix(in srgb, var(--color-on-surface) 8%, transparent);"
       tabindex="-1"
     >
@@ -123,7 +123,7 @@ exports[`\`Search\` Component snapshot with all props 1`] = `
     </span>
     <button
       aria-label="Clear search"
-      class="musae-search-clear styles__default"
+      class="musae-search-clear styles__clear.default"
       type="button"
     >
       <span
@@ -144,7 +144,7 @@ exports[`\`Search\` Component snapshot with all props 1`] = `
       </span>
     </button>
     <button
-      class="musae-button musae-search-button styles__default styles__default styles__rippleable styles__filled styles__medium theme__title.medium"
+      class="musae-button musae-search-button styles__searchButton.default styles__button.default styles__button.rippleable styles__size.medium styles__variant.filled styles__medium theme__title.medium"
       style="--color-button: #6750A4; --color-on-button: #FFF; --color-button-opacity-08: color-mix(in srgb, var(--color-button) 8%, transparent); --color-on-surface: #1D1B20; --color-on-surface-opacity-12: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-on-surface-opacity-38: color-mix(in srgb, var(--color-on-surface) 38%, transparent);"
       type="button"
     >
