@@ -34,6 +34,29 @@ const avatar = $create({
 
     borderColor: "var(--color-on-primary)",
   },
+
+  circular: {
+    borderRadius: sizes.infinity,
+  },
+
+  squared: {
+    borderRadius: sizes.xxxxxxxxxsmall,
+  },
+
+  small: {
+    width: sizes.xsmall,
+    height: sizes.xsmall,
+  },
+
+  medium: {
+    width: sizes.medium,
+    height: sizes.medium,
+  },
+
+  large: {
+    width: sizes.xlarge,
+    height: sizes.xlarge,
+  },
 });
 
 const loading = $create({
@@ -51,40 +74,11 @@ const image = $create({
   },
 });
 
-const shape = $create({
-  circular: {
-    borderRadius: sizes.infinity,
-  },
-
-  squared: {
-    borderRadius: sizes.xxxxxxxxxsmall,
-  },
-});
-
-const size = $create({
-  small: {
-    width: sizes.xsmall,
-    height: sizes.xsmall,
-  },
-
-  medium: {
-    width: sizes.medium,
-    height: sizes.medium,
-  },
-
-  large: {
-    width: sizes.xlarge,
-    height: sizes.xlarge,
-  },
-});
-
 const styles = {
   group,
   avatar,
   loading,
   image,
-  shape,
-  size,
 };
 
 export default styles;
