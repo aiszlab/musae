@@ -1,27 +1,12 @@
+import styles from "./styles";
 import React from "react";
 import { useClassNames } from "../../hooks/use-class-names";
-import { create as $create, props as $props } from "@stylexjs/stylex";
-import { spacing } from "../theme/tokens.stylex";
+import { props as $props } from "@stylexjs/stylex";
 import { stringify } from "@aiszlab/relax/class-name";
 import { useLocale } from "../../locale";
 import type { EmptyProps } from "../../types/empty";
 import { CLASS_NAMES } from "./context";
 import { $body } from "../theme/theme";
-
-const styles = $create({
-  empty: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
-    marginBlock: spacing.xxxxxxlarge,
-    marginInline: spacing.xxsmall,
-  },
-
-  label: {
-    marginBlockStart: spacing.xxsmall,
-  },
-});
 
 /**
  * @description

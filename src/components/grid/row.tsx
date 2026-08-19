@@ -1,22 +1,11 @@
+import styles from "./styles";
 import React from "react";
 import type { RowProps } from "../../types/grid";
 import { useClassNames } from "../../hooks/use-class-names";
 import { stringify } from "@aiszlab/relax/class-name";
-import { create as $create, props as $props } from "@stylexjs/stylex";
+import { props as $props } from "@stylexjs/stylex";
 import { useGutters } from "../../hooks/use-gutters";
 import { CLASS_NAMES, Context } from "./context";
-
-const styles = $create({
-  row: {
-    display: "flex",
-    flexDirection: "row",
-    flexWrap: "wrap",
-    columnGap: "var(--column-gap)",
-    rowGap: "var(--row-gap)",
-    justifyItems: "var(--justify)",
-    alignItems: "var(--align)",
-  },
-});
 
 const Row = ({
   align,
@@ -29,7 +18,7 @@ const Row = ({
 }: RowProps) => {
   const [columnGap, rowGap] = useGutters({ gutter });
   const classNames = useClassNames(CLASS_NAMES);
-  const styled = $props(styles.row);
+  const styled = $props(styles.row.row);
 
   return (
     <Context.Provider value={{ classNames }}>

@@ -1,20 +1,9 @@
+import styles from "./styles";
 import React, { forwardRef, useImperativeHandle, useState } from "react";
 import { Dialog } from "../../dialog";
 import Operations from "./operations";
 import type { PreviewProps, PreviewRef } from "../../../types/image";
-import { create as $create, props as $props } from "@stylexjs/stylex";
-import { duration } from "../../theme/tokens.stylex";
-
-const styles = $create({
-  image: {
-    transform:
-      "translate3d(0px, 0px, 0px) scale3d(calc(var(--scale) * var(--flip-x)), calc(var(--scale) * var(--flip-y)), 1) rotate(var(--rotate))",
-    willChange: "transform",
-    transitionProperty: "transform",
-    transitionDuration: duration.short,
-    pointerEvents: "auto",
-  },
-});
+import { props as $props } from "@stylexjs/stylex";
 
 const DEFAULT_STYLE = {
   scale: 1,
@@ -60,7 +49,7 @@ const Preview = forwardRef<PreviewRef, PreviewProps>(({ onClose, src, alt }, ref
   }, []);
 
   const isSmallest = scale <= 1;
-  const styled = $props(styles.image);
+  const styled = $props(styles.preview.image);
 
   return (
     <>

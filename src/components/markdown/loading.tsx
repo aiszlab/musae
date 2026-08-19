@@ -1,50 +1,20 @@
+import styles from "./styles";
 import React, { useContext } from "react";
 import { Skeleton } from "../skeleton";
-import { create as $create, props as $props } from "@stylexjs/stylex";
-import { sizes, spacing } from "../theme/tokens.stylex";
+import { props as $props } from "@stylexjs/stylex";
 import { Space } from "../space";
 import Context from "./context";
 import { stringify } from "@aiszlab/relax/class-name";
-
-const styles = $create({
-  loading: {
-    padding: spacing.medium,
-  },
-
-  heading: {
-    width: sizes.xxxxxxxxlarge,
-    height: sizes.medium,
-    borderRadius: sizes.xxxxxxxsmall,
-  },
-
-  content: {
-    width: 600,
-    height: sizes.xsmall,
-    borderRadius: sizes.xxxxxxxsmall,
-  },
-
-  newline: {
-    width: sizes.xxxxxxxxxxlarge,
-    height: sizes.xsmall,
-    borderRadius: sizes.xxxxxxxsmall,
-  },
-
-  footer: {
-    width: sizes.xxxxxxxxlarge,
-    height: sizes.small,
-    borderRadius: sizes.xxxxxxxsmall,
-  },
-});
 
 const Loading = () => {
   const { classNames } = useContext(Context);
 
   const styled = {
-    loading: $props(styles.loading),
-    heading: $props(styles.heading),
-    content: $props(styles.content),
-    newline: $props(styles.newline),
-    footer: $props(styles.footer),
+    loading: $props(styles.loading.loading),
+    heading: $props(styles.loading.heading),
+    content: $props(styles.loading.content),
+    newline: $props(styles.loading.newline),
+    footer: $props(styles.loading.footer),
   };
 
   return (

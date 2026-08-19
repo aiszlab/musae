@@ -1,50 +1,13 @@
+import styles from "./styles";
 import React, { forwardRef } from "react";
 import type { MenuGroupProps } from "../../types/menu";
 import Item from "./item";
 import { useMenuContext } from "./hooks";
 import { useComposedRef, useUpdateEffect } from "@aiszlab/relax";
-import { create as $create, props as $props } from "@stylexjs/stylex";
-import { spacing } from "../theme/tokens.stylex";
+import { props as $props } from "@stylexjs/stylex";
 import { useExpandable } from "../../hooks/use-expandable";
 import { useTheme } from "../theme";
 import { stringify } from "@aiszlab/relax/class-name";
-
-const styles = {
-  group: $create({
-    default: {
-      // reset ul styles
-      margin: spacing.none,
-      padding: spacing.none,
-      listStyleType: "none",
-      color: "var(--color-on-surface)",
-      overflow: "auto",
-    },
-
-    horizontal: {
-      display: "flex",
-      flexDirection: "row",
-      gap: spacing.xxsmall,
-    },
-
-    vertical: {},
-
-    inline: {},
-
-    hidden: {
-      display: "none",
-    },
-  }),
-
-  subgroup: $create({
-    inline: {
-      marginBlockStart: spacing.xxxxxsmall,
-    },
-
-    vertical: {},
-
-    horizontal: {},
-  }),
-};
 
 /**
  * @author murukal
@@ -70,8 +33,12 @@ const Group = forwardRef<HTMLUListElement, MenuGroupProps>(
     }, [expanded]);
 
     const styled = {
-      group: $props(styles.group.default, styles.group[mode], !expanded && styles.group.hidden),
-      subgroup: $props(styles.subgroup[mode]),
+      group: $props(
+        styles.group.group.default,
+        styles.group.group[mode],
+        !expanded && styles.group.group.hidden,
+      ),
+      subgroup: $props(styles.group.subgroup[mode]),
     };
 
     return (

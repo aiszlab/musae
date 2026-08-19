@@ -1,3 +1,4 @@
+import styles from "./styles";
 import React, { useRef } from "react";
 import { Picker } from "../picker";
 import { useDateRangeState } from "./hooks/use-date-range-state";
@@ -5,31 +6,10 @@ import type { DateRangePickerProps } from "../../types/date-range-picker";
 import { Calendar } from "../calendar";
 import { IconSwapHoriz } from "../icon/icons";
 import { useClassNames } from "../../hooks/use-class-names";
-import { create as $create, props as $props } from "@stylexjs/stylex";
+import { props as $props } from "@stylexjs/stylex";
 import { stringify } from "@aiszlab/relax/class-name";
-import { sizes, spacing } from "../theme/tokens.stylex";
 import type { PickerRef } from "../../types/picker";
 import { CLASS_NAMES } from "./context";
-
-const styles = $create({
-  picker: {
-    flex: 1,
-    display: "flex",
-    columnGap: spacing.xxsmall,
-    alignItems: "center",
-    maxWidth: sizes.full,
-  },
-
-  trigger: {
-    flexGrow: 1,
-    flexShrink: 1,
-    flexBasis: "fit-content",
-    whiteSpace: "nowrap",
-    overflow: "hidden",
-    textOverflow: "ellipsis",
-    minWidth: sizes.medium,
-  },
-});
 
 const DateRangePicker = ({ onChange, ...props }: DateRangePickerProps) => {
   const pickerRef = useRef<PickerRef>(null);

@@ -1,19 +1,12 @@
+import styles from "./styles";
 import React, { type ReactNode } from "react";
-import { create as $create, props as $props } from "@stylexjs/stylex";
+import { props as $props } from "@stylexjs/stylex";
 import { useTheme } from "../../theme";
-import { spacing } from "../../theme/tokens.stylex";
-
-const styles = $create({
-  supporting: {
-    color: "var(--color-secondary)",
-    marginBlock: spacing.xxxxxsmall,
-  },
-});
 
 const Supporting = ({ children }: { children?: ReactNode }) => {
   const theme = useTheme();
 
-  const styled = $props(styles.supporting);
+  const styled = $props(styles.supporting.supporting);
 
   return (
     <div

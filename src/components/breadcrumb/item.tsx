@@ -1,53 +1,10 @@
+import styles from "./styles";
 import React, { useContext } from "react";
-import { create as $create, props as $props } from "@stylexjs/stylex";
-import { duration, sizes, spacing } from "../theme/tokens.stylex";
+import { props as $props } from "@stylexjs/stylex";
 import { useTheme } from "../theme";
 import type { BreadcrumbItemProps } from "../../types/breadcrumb";
 import { stringify } from "@aiszlab/relax/class-name";
 import { Context } from "./context";
-import { ThemeColorVariable } from "../../hooks/use-theme-color-vars";
-
-const styles = {
-  navigation: $create({
-    default: {
-      ":last-of-type": {
-        color: "var(--color-on-surface)",
-      },
-    },
-
-    link: {
-      paddingInline: spacing.xxxxxsmall,
-      borderRadius: sizes.xxxxxxxxxsmall,
-      backgroundColor: {
-        default: null,
-        ":hover": {
-          "@media (hover: hover)": "var(--color-surface)" satisfies ThemeColorVariable,
-        },
-      },
-      color: {
-        default: null,
-        ":hover": {
-          "@media (hover: hover)": "var(--color-on-surface)" satisfies ThemeColorVariable,
-        },
-      },
-      transitionProperty: "all",
-      transitionDuration: duration.short,
-    },
-  }),
-
-  anchor: $create({
-    default: {
-      textDecoration: "none",
-      color: "inherit",
-    },
-  }),
-
-  separator: $create({
-    default: {
-      marginInline: spacing.xxsmall,
-    },
-  }),
-};
 
 const Item = ({ href, label, max, separator }: BreadcrumbItemProps) => {
   const theme = useTheme();
@@ -55,9 +12,9 @@ const Item = ({ href, label, max, separator }: BreadcrumbItemProps) => {
   const { classNames } = useContext(Context);
 
   const styled = {
-    navigation: $props(styles.navigation.default, isLink && styles.navigation.link),
-    separator: $props(styles.separator.default),
-    anchor: $props(styles.anchor.default),
+    navigation: $props(styles.item.navigation.default, isLink && styles.item.navigation.link),
+    separator: $props(styles.item.separator.default),
+    anchor: $props(styles.item.anchor.default),
   };
 
   return (

@@ -1,6 +1,6 @@
 import { create as $create } from "@stylexjs/stylex";
 import { duration, sizes, spacing } from "../theme/tokens.stylex";
-import type { ThemeColorVariable } from "../../hooks/use-theme-color-vars";
+import { ThemeColorVariable } from "../../hooks/use-theme-color-vars";
 
 const styles = {
   container: $create({

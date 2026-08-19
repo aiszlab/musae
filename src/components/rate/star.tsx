@@ -1,68 +1,12 @@
+import styles from "./styles";
 import React, { createElement, useContext } from "react";
 import { useEvent, useHover } from "@aiszlab/relax";
-import { create as $create, props as $props } from "@stylexjs/stylex";
-import { duration, sizes } from "../theme/tokens.stylex";
+import { props as $props } from "@stylexjs/stylex";
 import { IconStar as _Star } from "../icon/icons";
 import type { StarProps } from "../../types/rate";
 import { stringify } from "@aiszlab/relax/class-name";
 import Context from "./context";
-import { type ThemeColorVariable, useThemeColorVars } from "../../hooks/use-theme-color-vars";
-
-const styles = {
-  star: $create({
-    default: {
-      position: "relative",
-      transitionProperty: "all",
-      transitionDuration: duration.short,
-      cursor: "pointer",
-      color: "var(--color-surface-container-highest)" satisfies ThemeColorVariable,
-
-      ":hover": {
-        "@media (hover: hover)": {
-          transform: "scale(1.1)",
-        },
-      },
-    },
-
-    disabled: {
-      cursor: null,
-
-      ":hover": {
-        "@media (hover: hover)": {
-          transform: null,
-        },
-      },
-    },
-  }),
-
-  half: $create({
-    default: {
-      position: "absolute",
-      width: sizes.half,
-      height: sizes.full,
-      insetInlineStart: 0,
-      insetBlockStart: 0,
-      opacity: 0,
-      userSelect: "none",
-      overflow: "hidden",
-    },
-
-    checked: {
-      opacity: 1,
-      color: "var(--color-primary)" satisfies ThemeColorVariable,
-    },
-  }),
-
-  full: $create({
-    default: {
-      userSelect: "none",
-    },
-
-    checked: {
-      color: "var(--color-primary)" satisfies ThemeColorVariable,
-    },
-  }),
-};
+import { useThemeColorVars } from "../../hooks/use-theme-color-vars";
 
 const Star = ({ disabled, value, onEnter, at, onLeave, onClick }: StarProps) => {
   const { classNames } = useContext(Context);
@@ -94,9 +38,9 @@ const Star = ({ disabled, value, onEnter, at, onLeave, onClick }: StarProps) => 
   });
 
   const styled = {
-    star: $props(styles.star.default, disabled && styles.star.disabled),
-    half: $props(styles.half.default, isHalf && styles.half.checked),
-    full: $props(styles.full.default, isFull && styles.full.checked),
+    star: $props(styles.star.star.default, disabled && styles.star.star.disabled),
+    half: $props(styles.star.half.default, isHalf && styles.star.half.checked),
+    full: $props(styles.star.full.default, isFull && styles.star.full.checked),
   };
 
   return (

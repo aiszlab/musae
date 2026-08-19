@@ -1,3 +1,4 @@
+import styles from "./styles";
 import React, { useContext, useState } from "react";
 import {
   IconRedo,
@@ -9,8 +10,7 @@ import {
   IconInsertLink,
   IconFontDownload,
 } from "../../../icon/icons";
-import { create as $create, props as $props } from "@stylexjs/stylex";
-import { sizes, spacing } from "../../../theme/tokens.stylex";
+import { props as $props } from "@stylexjs/stylex";
 import { Divider } from "../../../divider";
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
 import {
@@ -36,24 +36,6 @@ import { useBlockFormat } from "./use-block-format";
 import { useFontSize } from "./use-font-size";
 import { useFontFormats, type FontFormat } from "./use-font-format";
 import { useHandlers } from "./use-handlers";
-
-const styles = $create({
-  default: {
-    minHeight: sizes.medium,
-
-    display: "flex",
-    flexDirection: "row",
-    alignItems: "center",
-
-    gap: spacing.xxxxxsmall,
-    borderBottomWidth: sizes.smallest,
-    borderBottomColor: "var(--color-outline-variant)",
-    borderBottomStyle: "solid",
-    overflow: "auto",
-
-    padding: spacing.xxxsmall,
-  },
-});
 
 const ToolbarPlugin = () => {
   const { classNames } = useContext(Context);

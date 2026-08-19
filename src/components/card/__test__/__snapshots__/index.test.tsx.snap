@@ -33,12 +33,12 @@ exports[`\`Card\` Component Header action is wrapped in 48x48 container 1`] = `
         </div>
       </div>
       <button
-        class="musae-button icon-button__styles.default icon-button__styles.medium styles__default styles__rippleable styles__text styles__medium theme__title.medium"
+        class="musae-button styles__iconButton_styles.default styles__iconButton_styles.medium styles__default styles__rippleable styles__text styles__medium theme__title.medium"
         style="--color-button: #6750A4; --color-on-button: #FFF; --color-button-opacity-08: color-mix(in srgb, var(--color-button) 8%, transparent); --color-on-surface: #1D1B20; --color-on-surface-opacity-12: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-on-surface-opacity-38: color-mix(in srgb, var(--color-on-surface) 38%, transparent);"
         type="button"
       >
         <span
-          class="musae-icon icon__styles.icon"
+          class="musae-icon styles__icon_styles.icon"
         >
           <svg
             fill="none"
@@ -137,12 +137,12 @@ exports[`\`Card\` Component all three variants in horizontal layout 1`] = `
         </div>
       </div>
       <button
-        class="musae-button icon-button__styles.default icon-button__styles.medium styles__default styles__rippleable styles__text styles__medium theme__title.medium"
+        class="musae-button styles__iconButton_styles.default styles__iconButton_styles.medium styles__default styles__rippleable styles__text styles__medium theme__title.medium"
         style="--color-button: #6750A4; --color-on-button: #FFF; --color-button-opacity-08: color-mix(in srgb, var(--color-button) 8%, transparent); --color-on-surface: #1D1B20; --color-on-surface-opacity-12: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-on-surface-opacity-38: color-mix(in srgb, var(--color-on-surface) 38%, transparent);"
         type="button"
       >
         <span
-          class="musae-icon icon__styles.icon"
+          class="musae-icon styles__icon_styles.icon"
         >
           <svg
             fill="none"
@@ -200,12 +200,12 @@ exports[`\`Card\` Component all three variants in horizontal layout 1`] = `
         </div>
       </div>
       <button
-        class="musae-button icon-button__styles.default icon-button__styles.medium styles__default styles__rippleable styles__text styles__medium theme__title.medium"
+        class="musae-button styles__iconButton_styles.default styles__iconButton_styles.medium styles__default styles__rippleable styles__text styles__medium theme__title.medium"
         style="--color-button: #6750A4; --color-on-button: #FFF; --color-button-opacity-08: color-mix(in srgb, var(--color-button) 8%, transparent); --color-on-surface: #1D1B20; --color-on-surface-opacity-12: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-on-surface-opacity-38: color-mix(in srgb, var(--color-on-surface) 38%, transparent);"
         type="button"
       >
         <span
-          class="musae-icon icon__styles.icon"
+          class="musae-icon styles__icon_styles.icon"
         >
           <svg
             fill="none"
@@ -263,12 +263,12 @@ exports[`\`Card\` Component all three variants in horizontal layout 1`] = `
         </div>
       </div>
       <button
-        class="musae-button icon-button__styles.default icon-button__styles.medium styles__default styles__rippleable styles__text styles__medium theme__title.medium"
+        class="musae-button styles__iconButton_styles.default styles__iconButton_styles.medium styles__default styles__rippleable styles__text styles__medium theme__title.medium"
         style="--color-button: #6750A4; --color-on-button: #FFF; --color-button-opacity-08: color-mix(in srgb, var(--color-button) 8%, transparent); --color-on-surface: #1D1B20; --color-on-surface-opacity-12: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-on-surface-opacity-38: color-mix(in srgb, var(--color-on-surface) 38%, transparent);"
         type="button"
       >
         <span
-          class="musae-icon icon__styles.icon"
+          class="musae-icon styles__icon_styles.icon"
         >
           <svg
             fill="none"
@@ -371,12 +371,12 @@ exports[`\`Card\` Component horizontal layout applies row flex and 80px media 1`
         </div>
       </div>
       <button
-        class="musae-button icon-button__styles.default icon-button__styles.medium styles__default styles__rippleable styles__text styles__medium theme__title.medium"
+        class="musae-button styles__iconButton_styles.default styles__iconButton_styles.medium styles__default styles__rippleable styles__text styles__medium theme__title.medium"
         style="--color-button: #6750A4; --color-on-button: #FFF; --color-button-opacity-08: color-mix(in srgb, var(--color-button) 8%, transparent); --color-on-surface: #1D1B20; --color-on-surface-opacity-12: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-on-surface-opacity-38: color-mix(in srgb, var(--color-on-surface) 38%, transparent);"
         type="button"
       >
         <span
-          class="musae-icon icon__styles.icon"
+          class="musae-icon styles__icon_styles.icon"
         >
           <svg
             fill="none"
@@ -475,12 +475,12 @@ exports[`\`Card\` Component with header, media, content and actions 1`] = `
         </div>
       </div>
       <button
-        class="musae-button icon-button__styles.default icon-button__styles.medium styles__default styles__rippleable styles__text styles__medium theme__title.medium"
+        class="musae-button styles__iconButton_styles.default styles__iconButton_styles.medium styles__default styles__rippleable styles__text styles__medium theme__title.medium"
         style="--color-button: #6750A4; --color-on-button: #FFF; --color-button-opacity-08: color-mix(in srgb, var(--color-button) 8%, transparent); --color-on-surface: #1D1B20; --color-on-surface-opacity-12: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-on-surface-opacity-38: color-mix(in srgb, var(--color-on-surface) 38%, transparent);"
         type="button"
       >
         <span
-          class="musae-icon icon__styles.icon"
+          class="musae-icon styles__icon_styles.icon"
         >
           <svg
             fill="none"

@@ -1,3 +1,4 @@
+import styles from "./styles";
 import React, { forwardRef, useImperativeHandle } from "react";
 import { useDateCells, useHeadCells, useFocusedAt, useValue } from "./hooks";
 import type { CalendarProps, CalendarRef } from "../../types/calendar";
@@ -8,39 +9,12 @@ import {
   IconKeyboardArrowRight,
 } from "../icon/icons";
 import { useClassNames } from "../../hooks/use-class-names";
-import { create as $create, props as $props } from "@stylexjs/stylex";
-import { spacing } from "../theme/tokens.stylex";
+import { props as $props } from "@stylexjs/stylex";
 import { stringify } from "@aiszlab/relax/class-name";
 import { useTheme } from "../theme";
 import { IconButton } from "../icon-button";
 import { CLASS_NAMES } from "./context";
 import { $body, $label } from "../theme/theme";
-import { type ThemeColorVariable } from "../../hooks/use-theme-color-vars";
-
-const styles = $create({
-  calendar: {
-    width: "fit-content",
-  },
-
-  header: {
-    display: "flex",
-    alignItems: "center",
-    columnGap: spacing.xxsmall,
-    paddingInline: spacing.medium,
-    color: "var(--color-on-surface-variant)" satisfies ThemeColorVariable,
-  },
-
-  heading: {
-    flex: 1,
-    display: "flex",
-    justifyContent: "center",
-  },
-
-  body: {
-    borderCollapse: "separate",
-    borderSpacing: spacing.xxxxxsmall,
-  },
-});
 
 const Calendar = forwardRef<CalendarRef, CalendarProps>(
   ({ className, style, value, disabledDate, onClick: _onClick }, ref) => {
@@ -61,10 +35,10 @@ const Calendar = forwardRef<CalendarRef, CalendarProps>(
     const theme = useTheme();
 
     const styled = {
-      calendar: $props(styles.calendar),
-      header: $props($label.large, styles.header),
-      heading: $props(styles.heading, $body.medium),
-      body: $props(styles.body),
+      calendar: $props(styles.calendar.calendar),
+      header: $props($label.large, styles.calendar.header),
+      heading: $props(styles.calendar.heading, $body.medium),
+      body: $props(styles.calendar.body),
     };
 
     useImperativeHandle(ref, () => {

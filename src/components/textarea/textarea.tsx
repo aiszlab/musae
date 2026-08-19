@@ -1,46 +1,13 @@
+import styles from "./styles";
 import React, { forwardRef, useId, type ChangeEvent } from "react";
 import { styles as inputStyles } from "../input";
-import { create as $create, props as $props } from "@stylexjs/stylex";
-import { sizes, spacing } from "../theme/tokens.stylex";
+import { props as $props } from "@stylexjs/stylex";
 import { useControlledState, useEvent } from "@aiszlab/relax";
 import type { TextareaProps } from "../../types/textarea";
 import { useClassNames } from "../../hooks/use-class-names";
 import { stringify } from "@aiszlab/relax/class-name";
 import { CLASS_NAMES } from "./context";
 import { useThemeColorVars } from "../../hooks/use-theme-color-vars";
-
-const styles = {
-  textarea: $create({
-    default: {
-      // reset
-      paddingBlock: null,
-      paddingInline: null,
-      width: sizes.full,
-      overflow: "hidden",
-    },
-
-    unbordered: {
-      boxShadow: "none",
-    },
-  }),
-
-  input: $create({
-    default: {
-      height: sizes.full,
-      paddingBlock: spacing.xxxxxsmall,
-      paddingInline: spacing.medium,
-      flex: 1,
-      backgroundColor: "transparent",
-      resize: "none",
-      borderStyle: "none",
-      outline: "none",
-    },
-
-    resizable: {
-      resize: null,
-    },
-  }),
-};
 
 const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
   (

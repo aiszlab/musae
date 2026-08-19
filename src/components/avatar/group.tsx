@@ -1,18 +1,12 @@
+import styles from "./styles";
 import React, { Children, cloneElement, isValidElement, useMemo } from "react";
-import { create as $create, props as $props } from "@stylexjs/stylex";
+import { props as $props } from "@stylexjs/stylex";
 import type { AvatarGroupProps } from "../../types/avatar";
 import Context, { CLASS_NAMES } from "./context";
 import { Popover } from "../popover";
 import Avatar from "./avatar";
 import { stringify } from "@aiszlab/relax/class-name";
 import { useClassNames } from "../../hooks/use-class-names";
-
-const styles = $create({
-  group: {
-    display: "inline-flex",
-    userSelect: "none",
-  },
-});
 
 const Group = ({
   children: _children,
@@ -21,7 +15,7 @@ const Group = ({
   max = 3,
 }: AvatarGroupProps) => {
   const classNames = useClassNames(CLASS_NAMES);
-  const styled = $props(styles.group);
+  const styled = $props(styles.group.group);
 
   const children = useMemo(() => {
     const [visible, hidden] = Children.toArray(_children).reduce<

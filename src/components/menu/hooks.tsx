@@ -1,42 +1,10 @@
+import styles from "./styles";
 import React, { type Key, type ReactNode, useCallback, useContext, useMemo } from "react";
 import { Context, type CLASS_NAMES } from "./context";
 import type { ContextValue, MenuProps, Mode, Size } from "../../types/menu";
 import { toArray, useControlledState, useEvent } from "@aiszlab/relax";
-import { create as $create, props as $props } from "@stylexjs/stylex";
-import { duration, spacing } from "../theme/tokens.stylex";
+import { props as $props } from "@stylexjs/stylex";
 import { IconKeyboardArrowUp } from "../icon/icons";
-
-const styles = {
-  prefix: $create({
-    default: {
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-      marginRight: spacing.xxxxxsmall,
-    },
-  }),
-
-  suffix: $create({
-    default: {
-      marginInlineStart: spacing.auto,
-    },
-  }),
-
-  collapser: $create({
-    default: {
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      transform: "rotateX(180deg)",
-      transitionProperty: "transform",
-      transitionDuration: duration.short,
-    },
-
-    expanded: {
-      transform: "rotateX(0)",
-    },
-  }),
-};
 
 /**
  * @description
@@ -65,7 +33,7 @@ export const useItemChildren = ({
 }) => {
   // prefix
   const _prefix = useMemo(
-    () => prefix && <span {...$props(styles.prefix.default)}>{prefix}</span>,
+    () => prefix && <span {...$props(styles.hooks.prefix.default)}>{prefix}</span>,
     [prefix],
   );
 
@@ -76,10 +44,13 @@ export const useItemChildren = ({
   const _suffix = useMemo<ReactNode>(() => {
     if (!suffix && !hasChildren) return null;
 
-    const styled = $props(styles.collapser.default, isExpanded && styles.collapser.expanded);
+    const styled = $props(
+      styles.hooks.collapser.default,
+      isExpanded && styles.hooks.collapser.expanded,
+    );
 
     return (
-      <span {...$props(styles.suffix.default)}>
+      <span {...$props(styles.hooks.suffix.default)}>
         {suffix}
         {hasChildren && isInline && (
           <span {...styled}>

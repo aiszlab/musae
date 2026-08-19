@@ -1,24 +1,15 @@
+import styles from "./styles";
 import React, { useContext } from "react";
 import type { FooterProps } from "../../types/layout";
 import Context from "./context";
-import { create as $create, props as $props } from "@stylexjs/stylex";
+import { props as $props } from "@stylexjs/stylex";
 import { stringify } from "@aiszlab/relax/class-name";
-import { spacing } from "../theme/tokens.stylex";
-
-const styles = {
-  footer: $create({
-    default: {
-      gridArea: "footer",
-      paddingInline: spacing.xxxxxxxlarge,
-    },
-  }),
-};
 
 const Footer = ({ children, className, style }: FooterProps) => {
   const { classNames } = useContext(Context);
 
   const styled = {
-    footer: $props(styles.footer.default),
+    footer: $props(styles.footer.footer.default),
   };
 
   return (

@@ -1,24 +1,13 @@
+import styles from "./styles";
 import React, { useEffect, useMemo, useRef } from "react";
-import { create as $create, props as $props } from "@stylexjs/stylex";
-import { OPACITY, sizes } from "../theme/tokens.stylex";
+import { props as $props } from "@stylexjs/stylex";
+import { OPACITY } from "../theme/tokens.stylex";
 import type { WatermarkProps } from "../../types/watermark";
 import { useMutateObserver, useRaf, useDevicePixelRatio } from "@aiszlab/relax";
 import { useClips, useWatermarks } from "./hooks";
 import type { Nullable } from "@aiszlab/relax/types";
 import { useTheme } from "../theme";
 import { ThemeColorVariable, useThemeColorVars } from "../../hooks/use-theme-color-vars";
-
-const styles = $create({
-  watermark: {
-    position: "relative",
-    overflow: "hidden",
-  },
-
-  marks: {
-    width: sizes.full,
-    height: sizes.full,
-  },
-});
 
 const Watermark = ({
   children,

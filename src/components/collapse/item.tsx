@@ -1,6 +1,6 @@
+import styles from "./styles";
 import React, { useContext } from "react";
-import { create as $create, props as $props } from "@stylexjs/stylex";
-import { duration, sizes, spacing } from "../theme/tokens.stylex";
+import { props as $props } from "@stylexjs/stylex";
 import { useEvent, useUpdateEffect } from "@aiszlab/relax";
 import type { CollapseItemProps } from "../../types/collapse";
 import { Context } from "./context";
@@ -9,63 +9,6 @@ import { useTheme } from "../theme";
 import { IconKeyboardArrowRight } from "../icon/icons";
 import { stringify } from "@aiszlab/relax/class-name";
 import { $body, $title } from "../theme/theme";
-
-const styles = {
-  item: $create({
-    default: {
-      borderBottomWidth: sizes.smallest,
-      borderBottomStyle: "solid",
-      borderBottomColor: "var(--color-outline-variant)",
-
-      ":last-of-type": {
-        borderBottomWidth: 0,
-      },
-    },
-  }),
-
-  header: $create({
-    default: {
-      paddingInline: spacing.large,
-      paddingBlock: spacing.medium,
-      display: "flex",
-      flexDirection: "row",
-      alignItems: "center",
-      gap: spacing.xxsmall,
-      cursor: "pointer",
-    },
-  }),
-
-  panel: $create({
-    default: {
-      height: "auto",
-    },
-
-    hidden: {
-      display: "none",
-    },
-  }),
-
-  content: $create({
-    default: {
-      borderTopWidth: sizes.smallest,
-      borderTopStyle: "solid",
-      borderTopColor: "var(--color-outline-variant)",
-      padding: spacing.large,
-    },
-  }),
-
-  collapser: $create({
-    default: {
-      willChange: "transform",
-      transitionProperty: "transform",
-      transitionDuration: duration.short,
-    },
-
-    expanded: {
-      transform: "rotate(90deg)",
-    },
-  }),
-};
 
 const CollapseItem = ({ children, label, value }: CollapseItemProps) => {
   const { activeKeys, toggle, classNames } = useContext(Context);
@@ -82,11 +25,11 @@ const CollapseItem = ({ children, label, value }: CollapseItemProps) => {
   }, [isExpanded]);
 
   const styled = {
-    item: $props(styles.item.default),
-    header: $props(styles.header.default, $title.medium),
-    panel: $props(styles.panel.default, !isExpanded && styles.panel.hidden),
-    content: $props(styles.content.default, $body.medium),
-    collapser: $props(styles.collapser.default, isExpanded && styles.collapser.expanded),
+    item: $props(styles.item.item.default),
+    header: $props(styles.item.header.default, $title.medium),
+    panel: $props(styles.item.panel.default, !isExpanded && styles.item.panel.hidden),
+    content: $props(styles.item.content.default, $body.medium),
+    collapser: $props(styles.item.collapser.default, isExpanded && styles.item.collapser.expanded),
   };
 
   const onClick = useEvent(() => {

@@ -1,25 +1,16 @@
-import { create as $create, props as $props } from "@stylexjs/stylex";
-import { sizes } from "../theme/tokens.stylex";
+import styles from "./styles";
+import { props as $props } from "@stylexjs/stylex";
 import { useContext } from "react";
 import Context from "./context";
 import { stringify } from "@aiszlab/relax/class-name";
 import React from "react";
-
-const _styles = $create({
-  default: {
-    width: sizes.xxxxxxxxxsmall,
-    height: sizes.xxlarge,
-    borderRadius: sizes.infinity,
-    backgroundColor: "var(--color-primary)",
-  },
-});
 
 /**
  * @description 滑块句柄
  */
 const Handle = () => {
   const { classNames } = useContext(Context);
-  const styled = $props(_styles.default);
+  const styled = $props(styles.handle.default);
 
   return <div className={stringify(classNames.handle, styled.className)} style={styled.style} />;
 };

@@ -1,31 +1,11 @@
+import styles from "./styles";
 import React, { useContext } from "react";
-import { create as $create, props as $props } from "@stylexjs/stylex";
-import { spacing } from "../theme/tokens.stylex";
+import { props as $props } from "@stylexjs/stylex";
 import type { UploadedListProps } from "../../types/upload";
 import UploadedItem from "./uploaded-item";
 import { Context } from "./context";
 import { stringify } from "@aiszlab/relax/class-name";
 import { $body } from "../theme/theme";
-
-const styles = $create({
-  list: {
-    display: "flex",
-    flexDirection: "column",
-    gap: spacing.xxsmall,
-  },
-
-  item: {
-    display: "flex",
-    alignItems: "center",
-    gap: spacing.xxsmall,
-  },
-
-  filename: {
-    flex: 1,
-    overflow: "hidden",
-    textOverflow: "ellipsis",
-  },
-});
 
 const UploadedList = ({ value, onRemove }: UploadedListProps) => {
   const { renderItem, classNames } = useContext(Context);
@@ -37,9 +17,9 @@ const UploadedList = ({ value, onRemove }: UploadedListProps) => {
   }
 
   const styled = {
-    list: $props(styles.list),
-    item: $props(styles.item, $body.small),
-    filename: $props(styles.filename),
+    list: $props(styles.uploadedList.list),
+    item: $props(styles.uploadedList.item, $body.small),
+    filename: $props(styles.uploadedList.filename),
   };
 
   return (

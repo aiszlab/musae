@@ -10,7 +10,7 @@ exports[`\`Search\` Component snapshot 1`] = `
       class="musae-search-leading styles__default"
     >
       <span
-        class="musae-icon icon__styles.icon"
+        class="musae-icon styles__icon_styles.icon"
       >
         <svg
           fill="none"
@@ -27,13 +27,13 @@ exports[`\`Search\` Component snapshot 1`] = `
       </span>
     </span>
     <span
-      class="musae-input__inputor musae-search-input styles__default theme__body.medium input__styles.inputor"
+      class="musae-input__inputor musae-search-input styles__default theme__body.medium styles__input_styles.inputor"
       style="--color-primary: #6750A4; --color-outline: #79747E; --color-error: #B3261E; --color-on-surface: #1D1B20; --color-on-surface-opacity-38: color-mix(in srgb, var(--color-on-surface) 38%, transparent); --color-on-surface-opacity-08: color-mix(in srgb, var(--color-on-surface) 8%, transparent);"
       tabindex="-1"
     >
       <input
         aria-invalid="false"
-        class="musae-input input__styles.input"
+        class="musae-input styles__input_styles.input"
         value=""
       />
     </span>
@@ -51,7 +51,7 @@ exports[`\`Search\` Component snapshot disabled state 1`] = `
       class="musae-search-leading styles__default"
     >
       <span
-        class="musae-icon icon__styles.icon"
+        class="musae-icon styles__icon_styles.icon"
       >
         <svg
           fill="none"
@@ -68,12 +68,12 @@ exports[`\`Search\` Component snapshot disabled state 1`] = `
       </span>
     </span>
     <span
-      class="musae-input__inputor musae-search-input styles__default theme__body.medium input__styles.inputor input__styles.disabled"
+      class="musae-input__inputor musae-search-input styles__default theme__body.medium styles__input_styles.inputor styles__input_styles.disabled"
       style="--color-primary: #6750A4; --color-outline: #79747E; --color-error: #B3261E; --color-on-surface: #1D1B20; --color-on-surface-opacity-38: color-mix(in srgb, var(--color-on-surface) 38%, transparent); --color-on-surface-opacity-08: color-mix(in srgb, var(--color-on-surface) 8%, transparent);"
     >
       <input
         aria-invalid="false"
-        class="musae-input input__styles.input"
+        class="musae-input styles__input_styles.input"
         disabled=""
         placeholder="Search..."
         value=""
@@ -93,7 +93,7 @@ exports[`\`Search\` Component snapshot with all props 1`] = `
       class="musae-search-leading styles__default"
     >
       <span
-        class="musae-icon icon__styles.icon"
+        class="musae-icon styles__icon_styles.icon"
       >
         <svg
           fill="none"
@@ -110,13 +110,13 @@ exports[`\`Search\` Component snapshot with all props 1`] = `
       </span>
     </span>
     <span
-      class="musae-input__inputor musae-search-input styles__default theme__body.medium input__styles.inputor"
+      class="musae-input__inputor musae-search-input styles__default theme__body.medium styles__input_styles.inputor"
       style="--color-primary: #6750A4; --color-outline: #79747E; --color-error: #B3261E; --color-on-surface: #1D1B20; --color-on-surface-opacity-38: color-mix(in srgb, var(--color-on-surface) 38%, transparent); --color-on-surface-opacity-08: color-mix(in srgb, var(--color-on-surface) 8%, transparent);"
       tabindex="-1"
     >
       <input
         aria-invalid="false"
-        class="musae-input input__styles.input"
+        class="musae-input styles__input_styles.input"
         placeholder="Search..."
         value="hello"
       />
@@ -127,7 +127,7 @@ exports[`\`Search\` Component snapshot with all props 1`] = `
       type="button"
     >
       <span
-        class="musae-icon icon__styles.icon"
+        class="musae-icon styles__icon_styles.icon"
       >
         <svg
           fill="none"

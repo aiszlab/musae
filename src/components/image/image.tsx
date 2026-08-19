@@ -1,63 +1,20 @@
+import styles from "./styles";
 import React, { forwardRef, useContext, useImperativeHandle, useMemo, useRef } from "react";
 import type { ImageProps, ImageRef } from "../../types/image";
 import Preview from "./preview/preview";
 import PreviewGroupContext from "./preview/context";
 import { useBoolean, useEvent, useHover, useImageLoader } from "@aiszlab/relax";
-import { create as $create, props as $props } from "@stylexjs/stylex";
+import { props as $props } from "@stylexjs/stylex";
 import { Skeleton } from "../skeleton";
 import { useClassNames } from "../../hooks/use-class-names";
 import { stringify } from "@aiszlab/relax/class-name";
 import ImageContex, { CLASS_NAMES } from "./context";
 import { Empty } from "../empty";
 import { IconDelete, IconVisibility } from "../icon/icons";
-import { type ThemeColorVariable, useThemeColorVars } from "../../hooks/use-theme-color-vars";
-import { duration, OPACITY, sizes, spacing } from "../theme/tokens.stylex";
+import { useThemeColorVars } from "../../hooks/use-theme-color-vars";
+import { OPACITY } from "../theme/tokens.stylex";
 
 type ImageAction = "preview" | "remove";
-
-const styles = {
-  image: $create({
-    default: {
-      display: "inline-flex",
-      position: "relative",
-      justifyContent: "center",
-      alignItems: "center",
-    },
-  }),
-
-  overlay: $create({
-    default: {
-      position: "absolute",
-      inset: 0,
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-      gap: spacing.xxsmall,
-      backgroundColor: "var(--color-surface-dim-opacity-90)" satisfies ThemeColorVariable,
-      color: "var(--color-on-primary)" satisfies ThemeColorVariable,
-      userSelect: "none",
-      opacity: 1,
-      transitionProperty: "opacity",
-      transitionDuration: duration.medium,
-    },
-
-    hidden: {
-      opacity: 0,
-    },
-
-    previewable: {
-      cursor: "pointer",
-    },
-  }),
-
-  img: $create({
-    default: {
-      width: sizes.full,
-      height: sizes.full,
-      objectFit: "cover",
-    },
-  }),
-};
 
 const Image = forwardRef<ImageRef, ImageProps>(
   (

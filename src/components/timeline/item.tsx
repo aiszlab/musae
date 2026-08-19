@@ -1,113 +1,9 @@
+import styles from "./styles";
 import React, { useContext, useMemo } from "react";
 import type { TimelineItemProps } from "../../types/timeline";
-import { create as $create, props as $props } from "@stylexjs/stylex";
+import { props as $props } from "@stylexjs/stylex";
 import { Context } from "./context";
-import { sizes, spacing } from "../theme/tokens.stylex";
 import { stringify } from "@aiszlab/relax/class-name";
-
-const styles = {
-  item: $create({
-    default: {
-      display: "grid",
-      justifyContent: "flex-start",
-      gap: spacing.medium,
-      overflow: "hidden",
-      paddingBlockEnd: spacing.xxxlarge,
-    },
-
-    right: {
-      gridTemplateColumns: "auto 1fr",
-      gridTemplateAreas: "'leading description'",
-    },
-
-    left: {
-      gridTemplateColumns: "1fr auto",
-      gridTemplateAreas: "'description leading'",
-    },
-  }),
-
-  labeled: $create({
-    default: {
-      gridTemplateColumns: "1fr auto 1fr",
-    },
-
-    right: {
-      gridTemplateAreas: "'label leading description'",
-    },
-
-    left: {
-      gridTemplateAreas: "'description leading label'",
-    },
-  }),
-
-  leading: $create({
-    default: {
-      gridArea: "leading",
-      alignSelf: "flex-start",
-    },
-
-    tail: {
-      position: "relative",
-
-      "::after": {
-        content: "''",
-        position: "absolute",
-        height: sizes.infinity,
-        width: sizes.smallest,
-        backgroundColor: "var(--color-primary)",
-        insetBlockStart: "100%",
-        insetInlineStart: `calc((100% - ${sizes.smallest}) / 2)`,
-      },
-    },
-  }),
-
-  sign: $create({
-    default: {
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-      width: `var(--sign-size, ${sizes.xsmall})`,
-      height: `var(--sign-size, ${sizes.xsmall})`,
-    },
-  }),
-
-  dot: $create({
-    default: {
-      width: sizes.xxxxxxxxxsmall,
-      height: sizes.xxxxxxxxxsmall,
-      borderRadius: sizes.infinity,
-      backgroundColor: "var(--color-primary)",
-    },
-  }),
-
-  label: $create({
-    default: {
-      gridArea: "label",
-    },
-
-    right: {
-      justifySelf: "flex-end",
-    },
-
-    left: {
-      justifySelf: "flex-start",
-    },
-  }),
-
-  description: $create({
-    default: {
-      gridArea: "description",
-    },
-
-    right: {
-      justifySelf: "flex-start",
-    },
-
-    left: {
-      justifySelf: "flex-end",
-    },
-  }),
-};
 
 const Item = ({ description, label, value, dot }: TimelineItemProps) => {
   const { mode: _mode, max, size, classNames } = useContext(Context);
@@ -124,16 +20,16 @@ const Item = ({ description, label, value, dot }: TimelineItemProps) => {
 
   const styled = {
     item: $props(
-      styles.item.default,
-      styles.item[mode],
-      isLabeled && styles.labeled.default,
-      isLabeled && styles.labeled[mode],
+      styles.item.item.default,
+      styles.item.item[mode],
+      isLabeled && styles.item.labeled.default,
+      isLabeled && styles.item.labeled[mode],
     ),
-    label: $props(styles.label.default, styles.label[mode]),
-    leading: $props(styles.leading.default, !isMax && styles.leading.tail),
-    sign: $props(styles.sign.default),
-    dot: $props(styles.dot.default),
-    description: $props(styles.description.default, styles.description[mode]),
+    label: $props(styles.item.label.default, styles.item.label[mode]),
+    leading: $props(styles.item.leading.default, !isMax && styles.item.leading.tail),
+    sign: $props(styles.item.sign.default),
+    dot: $props(styles.item.dot.default),
+    description: $props(styles.item.description.default, styles.item.description[mode]),
   };
 
   return (

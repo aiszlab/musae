@@ -1,6 +1,6 @@
 import { create as $create, type CompiledStyles, type StyleXArray } from "@stylexjs/stylex";
 import { duration, elevations, sizes, spacing } from "../theme/tokens.stylex";
-import type { Size } from "../../types/button";
+import { Size } from "../../types/button";
 import { $headline, $label, $title } from "../theme/theme";
 import { type ThemeColorVariable } from "../../hooks/use-theme-color-vars";
 

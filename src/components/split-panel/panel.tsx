@@ -1,31 +1,11 @@
+import styles from "./styles";
 import React, { forwardRef, useCallback, useContext, useImperativeHandle, useState } from "react";
 import Context from "./context";
 import { stringify } from "@aiszlab/relax/class-name";
-import { create as $create, props as $props } from "@stylexjs/stylex";
+import { props as $props } from "@stylexjs/stylex";
 import type { PanelProps, PanelRef } from "../../types/split-panel";
 import Divider from "./divider";
 import { useBoundingClientRect } from "./hooks";
-
-const styles = $create({
-  default: {
-    flexGrow: 0,
-    userSelect: "none",
-    overflow: "hidden",
-  },
-
-  unsized: {
-    flexBasis: "calc(var(--unsized-item-space) + var(--offset))",
-  },
-
-  sized: {
-    flexBasis: "calc(var(--item-space) + var(--offset))",
-  },
-
-  last: {
-    flexBasis: "0%",
-    flexGrow: 1,
-  },
-});
 
 const Panel = forwardRef<PanelRef, PanelProps>(
   ({ children, last, defaultSize, at, className, style }, ref) => {
@@ -57,10 +37,10 @@ const Panel = forwardRef<PanelRef, PanelProps>(
     });
 
     const styled = $props(
-      styles.default,
-      !isSized && styles.unsized,
-      isSized && styles.sized,
-      last && styles.last,
+      styles.panel.default,
+      !isSized && styles.panel.unsized,
+      isSized && styles.panel.sized,
+      last && styles.panel.last,
     );
 
     // drag move handler

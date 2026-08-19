@@ -1,27 +1,12 @@
+import styles from "./styles";
 import React from "react";
 import type { RateProps } from "../../types/rate";
-import { create as $create, props as $props } from "@stylexjs/stylex";
+import { props as $props } from "@stylexjs/stylex";
 import { stringify } from "@aiszlab/relax/class-name";
 import { useHover, useValue } from "./hooks";
 import Star from "./star";
-import { spacing } from "../theme/tokens.stylex";
 import Context, { CLASS_NAMES } from "./context";
 import { useClassNames } from "../../hooks/use-class-names";
-
-const styles = {
-  rate: $create({
-    default: {
-      display: "flex",
-      flexDirection: "row",
-      alignItems: "center",
-
-      // reset styles
-      listStyleType: "none",
-      margin: spacing.none,
-      padding: spacing.none,
-    },
-  }),
-};
 
 const Rate = ({
   count = 5,
@@ -36,7 +21,7 @@ const Rate = ({
   const { enter, hovered, leave } = useHover();
 
   const styled = {
-    rate: $props(styles.rate.default),
+    rate: $props(styles.rate.rate.default),
   };
 
   return (

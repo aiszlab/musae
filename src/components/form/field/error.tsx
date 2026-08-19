@@ -1,21 +1,12 @@
+import styles from "./styles";
 import type { ComponentProps } from "../../../types/element";
 import React, { type ReactNode, useContext, useRef } from "react";
 import { stringify } from "@aiszlab/relax/class-name";
 import { usePresence, animate } from "motion/react";
-import { create as $create, props as $props } from "@stylexjs/stylex";
-import { spacing } from "../../theme/tokens.stylex";
+import { props as $props } from "@stylexjs/stylex";
 import { useAsyncEffect } from "@aiszlab/relax";
 import Context from "../context";
-import { type ThemeColorVariable, useThemeColorVars } from "../../../hooks/use-theme-color-vars";
-
-const styles = $create({
-  error: {
-    color: "var(--color-error)" satisfies ThemeColorVariable,
-    marginBlock: spacing.xxxxxsmall,
-    height: 0,
-    overflow: "hidden",
-  },
-});
+import { useThemeColorVars } from "../../../hooks/use-theme-color-vars";
 
 type Props = ComponentProps & {
   /**
@@ -45,7 +36,7 @@ const Error = ({ children, className, style }: Props) => {
     });
   }, [isPresent]);
 
-  const styled = $props(styles.error);
+  const styled = $props(styles.error.error);
 
   return (
     <div

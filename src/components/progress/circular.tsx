@@ -1,28 +1,9 @@
+import styles from "./styles";
 import React from "react";
-import { create as $create, props as $props } from "@stylexjs/stylex";
+import { props as $props } from "@stylexjs/stylex";
 import { useTheme } from "../theme";
-import { sizes } from "../theme/tokens.stylex";
 import type { CircularProps } from "../../types/progress";
 import { useCircular, useValue } from "./hooks";
-
-const styles = $create({
-  progress: {
-    transform: "rotate(-90deg)",
-  },
-
-  shape: {
-    r: "var(--radius)",
-    cx: `calc(var(--radius) + (${sizes.xxxxxxxxxsmall} / 2))`,
-    cy: `calc(var(--radius) + (${sizes.xxxxxxxxxsmall} / 2))`,
-    strokeWidth: sizes.xxxxxxxxxsmall,
-    strokeLinecap: "round",
-  },
-
-  segment: {
-    strokeDasharray: "var(--segment-perimeter) var(--segment-perimeter)",
-    strokeDashoffset: "var(--segment-offset)",
-  },
-});
 
 const Circular = ({ value: _value }: CircularProps) => {
   const theme = useTheme();
@@ -34,9 +15,9 @@ const Circular = ({ value: _value }: CircularProps) => {
   });
 
   const styled = {
-    progress: $props(styles.progress),
-    segment: $props(styles.shape, styles.segment),
-    track: $props(styles.shape),
+    progress: $props(styles.circular.progress),
+    segment: $props(styles.circular.shape, styles.circular.segment),
+    track: $props(styles.circular.shape),
   };
 
   return (

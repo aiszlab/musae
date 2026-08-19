@@ -1,5 +1,5 @@
-import { create as $create, props as $props } from "@stylexjs/stylex";
-import { sizes } from "../theme/tokens.stylex";
+import styles from "./styles";
+import { props as $props } from "@stylexjs/stylex";
 import type { WaterfallProps } from "../../types/waterfall";
 import React from "react";
 import { useRepaint } from "./hooks";
@@ -9,31 +9,6 @@ import Sequential from "./sequential";
 import { useClassNames } from "../../hooks/use-class-names";
 import { stringify } from "@aiszlab/relax/class-name";
 import { CLASS_NAMES } from "./context";
-
-const styles = $create({
-  waterfall: {
-    width: sizes.full,
-    display: "flex",
-    flexDirection: "row",
-    flexWrap: "wrap",
-    alignContent: "flex-start",
-    height: "fit-content",
-    columnGap: "var(--column-gap)",
-    rowGap: "var(--row-gap)",
-    overflow: "hidden",
-  },
-
-  repainted: {
-    flexDirection: "column",
-    height: "var(--max-height)",
-  },
-
-  item: {
-    order: "var(--order)",
-    width: `calc((100% - (var(--columns) - 1) * var(--column-gap)) / var(--columns))`,
-    height: "fit-content",
-  },
-});
 
 const Waterfall = ({
   columns = 4,
@@ -75,7 +50,10 @@ const Waterfall = ({
 
   if (children.length === 0) return null;
 
-  const styled = $props(styles.waterfall, !sequential && maxHeight > 0 && styles.repainted);
+  const styled = $props(
+    styles.waterfall.waterfall,
+    !sequential && maxHeight > 0 && styles.waterfall.repainted,
+  );
 
   // sequential waterfall
   if (sequential) {
@@ -110,7 +88,7 @@ const Waterfall = ({
     >
       {children.map((item, index) => {
         const _order = order(index);
-        const { className, style } = $props(styles.item);
+        const { className, style } = $props(styles.waterfall.item);
 
         return (
           <div

@@ -1,29 +1,15 @@
+import styles from "./styles";
 import React, { useContext } from "react";
-import { create as $create, props as $props } from "@stylexjs/stylex";
+import { props as $props } from "@stylexjs/stylex";
 import { type TrackProps } from "../../types/slider";
 import { isUndefined } from "@aiszlab/relax";
 import Context from "./context";
 import { stringify } from "@aiszlab/relax/class-name";
 
-const _styles = $create({
-  default: {
-    width: "100%",
-    height: "100%",
-  },
-
-  flexible: {
-    flex: 1,
-  },
-
-  sized: {
-    width: "var(--size)",
-  },
-});
-
 const Track = ({ size = 0 }: TrackProps) => {
   const isSized = !isUndefined(size);
   const { classNames } = useContext(Context);
-  const styled = $props(_styles.default, !isSized ? _styles.flexible : {});
+  const styled = $props(styles.track.default, !isSized ? styles.track.flexible : {});
 
   return (
     <div

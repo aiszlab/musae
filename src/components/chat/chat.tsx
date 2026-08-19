@@ -1,3 +1,4 @@
+import styles from "./styles";
 import React, { useCallback, useMemo, useState } from "react";
 import { Textarea } from "../textarea";
 import { useIdentity } from "@aiszlab/relax";
@@ -5,36 +6,11 @@ import Item from "./item";
 import { useClassNames } from "../../hooks/use-class-names";
 import { CLASS_NAMES, Context } from "./context";
 import type { ChatItemProps, ChatProps } from "../../types/chat";
-import { create as $create, props as $props } from "@stylexjs/stylex";
+import { props as $props } from "@stylexjs/stylex";
 import { stringify } from "@aiszlab/relax/class-name";
-import { spacing } from "../theme/tokens.stylex";
 import { IconButton } from "../icon-button";
 import { IconRocketLaunch } from "../icon/icons";
 import { $body } from "../theme/theme";
-
-const styles = $create({
-  chat: {
-    display: "flex",
-    flexDirection: "column",
-    gap: spacing.medium,
-  },
-
-  messages: {
-    flex: 1,
-    padding: spacing.xxsmall,
-    display: "flex",
-    flexDirection: "column",
-    gap: spacing.medium,
-    overflow: "auto",
-  },
-
-  footer: {
-    padding: spacing.xxsmall,
-    display: "flex",
-    flexDirection: "row",
-    gap: spacing.medium,
-  },
-});
 
 const Chat = ({ onMessage, className, style, defaultValue, placeholder }: ChatProps) => {
   const classNames = useClassNames(CLASS_NAMES);
@@ -55,9 +31,9 @@ const Chat = ({ onMessage, className, style, defaultValue, placeholder }: ChatPr
   }, [id, message]);
 
   const styled = {
-    chat: $props(styles.chat, $body.medium),
-    messages: $props(styles.messages),
-    footer: $props(styles.footer),
+    chat: $props(styles.chat.chat, $body.medium),
+    messages: $props(styles.chat.messages),
+    footer: $props(styles.chat.footer),
   };
 
   const messages = useMemo(() => Array.from(items.entries()), [items]);

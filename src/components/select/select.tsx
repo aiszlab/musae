@@ -1,9 +1,9 @@
+import styles from "./styles";
 import React, { useRef, useCallback } from "react";
 import { Picker } from "../picker";
 import type { SelectProps, SelectorRef, ValueOrValues } from "../../types/select";
 import { stringify } from "@aiszlab/relax/class-name";
-import { create as $create, props as $props } from "@stylexjs/stylex";
-import { spacing } from "../theme/tokens.stylex";
+import { props as $props } from "@stylexjs/stylex";
 import Selector from "./selector";
 import Selections from "./selections";
 import { useClassNames } from "../../hooks/use-class-names";
@@ -12,17 +12,6 @@ import { CLASS_NAMES } from "./context";
 import { useTagOptions } from "./hooks/use-tag-options";
 import { useSelectedValue } from "./hooks/use-selected-value";
 import { useOptions } from "./hooks/use-options";
-
-const styles = $create({
-  picked: {
-    gap: spacing.xxxxxsmall,
-    flexWrap: "wrap",
-  },
-
-  pickable: {
-    padding: spacing.xxxxxsmall,
-  },
-});
 
 const Select = <T extends ValueOrValues = ValueOrValues>({
   mode,
@@ -86,8 +75,8 @@ const Select = <T extends ValueOrValues = ValueOrValues>({
   };
 
   const styled = {
-    picker: $props(styles.picked),
-    pickable: $props(styles.pickable),
+    picker: $props(styles.select.picked),
+    pickable: $props(styles.select.pickable),
   };
 
   return (

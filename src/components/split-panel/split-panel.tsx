@@ -1,34 +1,13 @@
+import styles from "./styles";
 import React from "react";
-import { create as $create, props as $props } from "@stylexjs/stylex";
+import { props as $props } from "@stylexjs/stylex";
 import { useClassNames } from "../../hooks/use-class-names";
 import Context, { CLASS_NAMES } from "./context";
 import { stringify } from "@aiszlab/relax/class-name";
-import { sizes, spacing } from "../theme/tokens.stylex";
 import { SplitPanelProps } from "../../types/split-panel";
 import Panel from "./panel";
 import { usePanels } from "./hooks";
 import { $body } from "../theme/theme";
-
-const styles = $create({
-  default: {
-    width: sizes.full,
-    height: sizes.full,
-    display: "flex",
-    flexWrap: "nowrap",
-    alignItems: "stretch",
-    boxSizing: "border-box",
-    margin: spacing.none,
-    padding: spacing.none,
-  },
-
-  horizontal: {
-    flexDirection: "row",
-  },
-
-  vertical: {
-    flexDirection: "column",
-  },
-});
 
 const SplitPanel = ({ className, style, items, orientation = "horizontal" }: SplitPanelProps) => {
   const classNames = useClassNames(CLASS_NAMES);
@@ -38,7 +17,7 @@ const SplitPanel = ({ className, style, items, orientation = "horizontal" }: Spl
     return null;
   }
 
-  const styled = $props(styles.default, styles[orientation], $body.medium);
+  const styled = $props(styles.splitPanel.default, styles[orientation], $body.medium);
 
   return (
     <Context.Provider value={{ classNames, orientation, panelsRef }}>

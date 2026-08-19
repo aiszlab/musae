@@ -1,21 +1,10 @@
+import styles from "./styles";
 import React, { useContext, useEffect, useRef } from "react";
 import { stringify } from "@aiszlab/relax/class-name";
 import { computePosition, size, autoUpdate, offset } from "@floating-ui/dom";
-import { create as $create, props as $props } from "@stylexjs/stylex";
+import { props as $props } from "@stylexjs/stylex";
 import type { SpotlightProps } from "../../types/tour";
-import { duration, sizes } from "../theme/tokens.stylex";
 import { Context } from "./context";
-
-const styles = $create({
-  spotlight: {
-    backgroundColor: "#808080",
-    borderRadius: sizes.xxxxxxxsmall,
-    transitionProperty: "transform",
-    transitionDuration: duration.short,
-    willChange: "transform",
-    display: "none",
-  },
-});
 
 const Spotlight = ({ trigger, padding: [paddingY, paddingX] }: SpotlightProps) => {
   const floatable = useRef<HTMLDivElement>(null);
@@ -56,7 +45,7 @@ const Spotlight = ({ trigger, padding: [paddingY, paddingX] }: SpotlightProps) =
     };
   }, [trigger, paddingY, paddingX]);
 
-  const styled = $props(styles.spotlight);
+  const styled = $props(styles.spotlight.spotlight);
 
   return (
     <div

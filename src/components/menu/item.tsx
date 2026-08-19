@@ -1,151 +1,14 @@
+import styles from "./styles";
 import React, { forwardRef, type MouseEventHandler, useRef } from "react";
 import { MenuItemProps } from "../../types/menu";
 import { useItemChildren, useMenuContext } from "./hooks";
-import { create as $create, props as $props } from "@stylexjs/stylex";
-import { duration, sizes, spacing } from "../theme/tokens.stylex";
+import { props as $props } from "@stylexjs/stylex";
 import { useEvent, useHover } from "@aiszlab/relax";
 import { Popper } from "../popper";
 import { useLazyBoolean } from "../../hooks/use-lazy-boolean";
 import { stringify } from "@aiszlab/relax/class-name";
 import { $body } from "../theme/theme";
-import { type ThemeColorVariable, useThemeColorVars } from "../../hooks/use-theme-color-vars";
-
-const styles = {
-  default: $create({
-    item: {
-      display: "flex",
-      alignItems: "center",
-      cursor: "pointer",
-      userSelect: "none",
-      whiteSpace: "nowrap",
-
-      willChange: "background-color, border, color",
-      transitionProperty: "background-color, border, color",
-      transitionDuration: duration.short,
-
-      // reset styles
-      boxSizing: "border-box",
-    },
-  }),
-
-  mode: {
-    menuitem: $create({
-      horizontal: {},
-
-      vertical: {
-        marginBlockStart: {
-          default: spacing.xxxxxsmall,
-          ":first-of-type": spacing.none,
-        },
-      },
-
-      inline: {
-        marginBlockStart: {
-          default: spacing.xxxxxsmall,
-          ":first-of-type": spacing.none,
-        },
-      },
-    }),
-
-    item: $create({
-      horizontal: {
-        height: sizes.full,
-        position: "relative",
-
-        "::after": {
-          content: "",
-          position: "absolute",
-          insetInline: 0,
-          insetBlockEnd: 0,
-          borderBottomWidth: sizes.xxxxxxxxxxsmall,
-          borderBottomStyle: "solid",
-          willChange: "border-color",
-          transitionProperty: "border-color",
-          transitionDuration: duration.short,
-        },
-
-        ":not(:hover)::after": {
-          borderBottomColor: "transparent",
-        },
-
-        ":hover::after": {
-          "@media (hover: hover)": {
-            borderBottomColor: "var(--color-primary)" satisfies ThemeColorVariable,
-          },
-        },
-      },
-
-      vertical: {
-        backgroundColor: {
-          default: null,
-          ":hover": {
-            "@media (hover: hover)":
-              "var(--color-surface-container-highest)" satisfies ThemeColorVariable,
-          },
-        },
-      },
-
-      inline: {
-        backgroundColor: {
-          default: null,
-          ":hover": {
-            "@media (hover: hover)":
-              "var(--color-surface-container-highest)" satisfies ThemeColorVariable,
-          },
-        },
-      },
-    }),
-  },
-
-  size: $create({
-    small: {
-      paddingBlock: spacing.xxxxxsmall,
-      paddingRight: spacing.xxsmall,
-      paddingLeft: `calc(${spacing.xxsmall} + var(--level) * ${spacing.large})`,
-      borderRadius: sizes.xxxxxxxxxsmall,
-    },
-
-    medium: {
-      paddingBlock: spacing.xxsmall,
-      paddingRight: spacing.medium,
-      paddingLeft: `calc(${spacing.medium} + var(--level) * ${spacing.xxxlarge})`,
-      borderRadius: sizes.xxxxxxxsmall,
-    },
-
-    large: {
-      paddingBlock: spacing.medium,
-      paddingRight: spacing.large,
-      paddingLeft: `calc(${spacing.large} + var(--level) * ${spacing.xxxxxxlarge})`,
-      borderRadius: sizes.xxxxsmall,
-    },
-  }),
-
-  selected: $create({
-    inline: {
-      backgroundColor: "var(--color-surface-container-highest)" satisfies ThemeColorVariable,
-      color: "var(--color-primary)" satisfies ThemeColorVariable,
-    },
-
-    vertical: {
-      backgroundColor: "var(--color-surface-container-highest)" satisfies ThemeColorVariable,
-      color: "var(--color-primary)" satisfies ThemeColorVariable,
-    },
-
-    horizontal: {
-      color: "var(--color-primary)" satisfies ThemeColorVariable,
-
-      "::after": {
-        borderBottomColor: "var(--color-primary)" satisfies ThemeColorVariable,
-      },
-    },
-  }),
-
-  popper: $create({
-    default: {
-      padding: spacing.xxxxxsmall,
-    },
-  }),
-};
+import { useThemeColorVars } from "../../hooks/use-theme-color-vars";
 
 /**
  * @author murukal
@@ -200,17 +63,17 @@ const Item = forwardRef<HTMLLIElement, MenuItemProps>(
     });
 
     const styled = {
-      menuitem: $props(styles.mode.menuitem[mode]),
+      menuitem: $props(styles.item.mode.menuitem[mode]),
       item: $props(
-        styles.default.item,
+        styles.item.default.item,
         // size
-        styles.size[size],
+        styles.item.size[size],
         // mode
-        styles.mode.item[mode],
-        isSelected && styles.selected[mode],
+        styles.item.mode.item[mode],
+        isSelected && styles.item.selected[mode],
         $body[size],
       ),
-      popper: $props(styles.popper.default),
+      popper: $props(styles.item.popper.default),
     };
 
     return (

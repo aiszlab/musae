@@ -1,16 +1,11 @@
+import styles from "./styles";
 import React, { memo, type ReactNode, useMemo } from "react";
 import type { HighlightProps } from "../../types/highlight";
-import { create as $create, props as $props } from "@stylexjs/stylex";
+import { props as $props } from "@stylexjs/stylex";
 import { useTheme } from "../theme";
 import { stringify } from "@aiszlab/relax/class-name";
 import { CLASS_NAMES } from "./context";
 import { useClassNames } from "../../hooks/use-class-names";
-
-const styles = $create({
-  capture: {
-    color: "var(--color-primary)",
-  },
-});
 
 const Highlight = ({ children, capture }: HighlightProps) => {
   const classNames = useClassNames(CLASS_NAMES);

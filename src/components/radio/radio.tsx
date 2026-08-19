@@ -1,95 +1,13 @@
+import styles from "./styles";
 import React, { useCallback, useContext, useMemo } from "react";
 import { Context, CLASS_NAMES } from "./context";
 import type { RadioProps } from "../../types/radio";
 import { useControlledState } from "@aiszlab/relax";
 import { useClassNames } from "../../hooks/use-class-names";
-import { create as $create, props as $props } from "@stylexjs/stylex";
-import { duration, sizes, spacing } from "../theme/tokens.stylex";
+import { props as $props } from "@stylexjs/stylex";
 import { stringify } from "@aiszlab/relax/class-name";
 import { $body } from "../theme/theme";
-import { ThemeColorVariable, useThemeColorVars } from "../../hooks/use-theme-color-vars";
-
-const styles = {
-  radio: $create({
-    default: {
-      display: "flex",
-      alignItems: "center",
-      cursor: "pointer",
-    },
-
-    disabled: {
-      cursor: "not-allowed",
-    },
-  }),
-
-  input: $create({
-    default: {
-      visibility: "hidden",
-      height: sizes.xxxxsmall,
-      width: sizes.xxxxsmall,
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-      cursor: "inherit",
-
-      // reset styles
-      margin: spacing.none,
-
-      "::after": {
-        content: "''",
-        visibility: "visible",
-        display: "block",
-        height: sizes.full,
-        width: sizes.full,
-        boxSizing: "border-box",
-        borderWidth: sizes.smallest,
-        borderStyle: "solid",
-        borderColor: "var(--color-outline)" satisfies ThemeColorVariable,
-        borderRadius: sizes.infinity,
-
-        willChange: "border-color, border-width",
-        transitionProperty: "border-color, border-width",
-        transitionDuration: duration.short,
-      },
-    },
-
-    checked: {
-      "::after": {
-        borderColor: "var(--color-primary)" satisfies ThemeColorVariable,
-        borderWidth: sizes.xxxxxxxxxsmall,
-      },
-    },
-
-    disabled: {
-      "::after": {
-        borderWidth: sizes.smallest,
-        borderColor: "var(--color-inverse-primary)" satisfies ThemeColorVariable,
-      },
-
-      "::before": {
-        content: "''",
-        position: "absolute",
-        visibility: "visible",
-        height: sizes.xxxxxxxsmall,
-        width: sizes.xxxxxxxsmall,
-        backgroundColor: "var(--color-inverse-primary)" satisfies ThemeColorVariable,
-        borderRadius: sizes.infinity,
-      },
-    },
-
-    unckecked: {
-      "::before": {
-        display: "none",
-      },
-    },
-  }),
-
-  label: $create({
-    default: {
-      paddingInline: spacing.xxxsmall,
-    },
-  }),
-};
+import { useThemeColorVars } from "../../hooks/use-theme-color-vars";
 
 const Radio = ({ children, value, checked, disabled = false, ...props }: RadioProps) => {
   const contextValue = useContext(Context);

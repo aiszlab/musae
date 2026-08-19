@@ -1,24 +1,10 @@
+import styles from "./styles";
 import React, { type Key, type ReactNode, useMemo } from "react";
-import { create as $create, props as $props } from "@stylexjs/stylex";
-import { spacing } from "../theme/tokens.stylex";
+import { props as $props } from "@stylexjs/stylex";
 import { type PanelsProps } from "../../types/tabs";
 import { stringify } from "@aiszlab/relax/class-name";
 import { isUndefined } from "@aiszlab/relax";
 import { useTabsContext } from "./hooks/use-tabs-context";
-
-const styles = {
-  panels: $create({
-    default: {
-      padding: spacing.xxxlarge,
-    },
-  }),
-
-  panel: $create({
-    hidden: {
-      display: "none",
-    },
-  }),
-};
 
 const Panels = ({ forceRender, destroyable, activatedKeys }: PanelsProps) => {
   const { items, activeKey, classNames } = useTabsContext();
@@ -54,7 +40,7 @@ const Panels = ({ forceRender, destroyable, activatedKeys }: PanelsProps) => {
   }, [destroyable, forceRender, items, activeKey, activatedKeys]);
 
   const styled = {
-    panels: $props(panels.length > 0 && styles.panels.default),
+    panels: $props(panels.length > 0 && styles.panels.panels.default),
   };
 
   return (
@@ -64,7 +50,7 @@ const Panels = ({ forceRender, destroyable, activatedKeys }: PanelsProps) => {
     >
       {panels.map(({ key, children }) => {
         const isActive = key === activeKey;
-        const panelStyled = $props(!isActive && styles.panel.hidden);
+        const panelStyled = $props(!isActive && styles.panels.panel.hidden);
 
         return (
           <div
