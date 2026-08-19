@@ -2,14 +2,14 @@ import { create as $create } from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";
 
 const group = $create({
-  group: {
+  default: {
     display: "inline-flex",
     userSelect: "none",
   },
 });
 
 const avatar = $create({
-  avatar: {
+  default: {
     borderWidth: sizes.smallest,
     borderStyle: "solid",
     borderColor: "transparent",
@@ -27,17 +27,6 @@ const avatar = $create({
     flexShrink: 0,
   },
 
-  loading: {
-    display: "inline-block",
-    verticalAlign: "middle",
-  },
-
-  image: {
-    objectFit: "cover",
-    objectPosition: "center center",
-    borderRadius: "inherit",
-  },
-
   overlapping: {
     ":not(:first-child)": {
       marginInlineStart: `calc(${spacing.xxsmall} * -1)`,
@@ -45,7 +34,24 @@ const avatar = $create({
 
     borderColor: "var(--color-on-primary)",
   },
+});
 
+const loading = $create({
+  default: {
+    display: "inline-block",
+    verticalAlign: "middle",
+  },
+});
+
+const image = $create({
+  default: {
+    objectFit: "cover",
+    objectPosition: "center center",
+    borderRadius: "inherit",
+  },
+});
+
+const shape = $create({
   circular: {
     borderRadius: sizes.infinity,
   },
@@ -53,7 +59,9 @@ const avatar = $create({
   squared: {
     borderRadius: sizes.xxxxxxxxxsmall,
   },
+});
 
+const size = $create({
   small: {
     width: sizes.xsmall,
     height: sizes.xsmall,
@@ -73,6 +81,10 @@ const avatar = $create({
 const styles = {
   group,
   avatar,
+  loading,
+  image,
+  shape,
+  size,
 };
 
 export default styles;

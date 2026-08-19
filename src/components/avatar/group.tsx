@@ -15,7 +15,7 @@ const Group = ({
   max = 3,
 }: AvatarGroupProps) => {
   const classNames = useClassNames(CLASS_NAMES);
-  const styled = $props(styles.group.group);
+  const styled = $props(styles.group.default);
 
   const children = useMemo(() => {
     const [visible, hidden] = Children.toArray(_children).reduce<
