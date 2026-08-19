@@ -1,3 +1,4 @@
+import styles from "./styles";
 import React, {
   useCallback,
   useRef,
@@ -11,7 +12,7 @@ import { Popper } from "../popper";
 import { useBoolean, useFocus, useEvent } from "@aiszlab/relax";
 import type { PickerProps, PickerRef } from "../../types/picker";
 import { useClassNames } from "../../hooks/use-class-names";
-import { create as $create, props as $props } from "@stylexjs/stylex";
+import { props as $props } from "@stylexjs/stylex";
 import { styles as inputStyles } from "../input";
 import { CLASS_NAMES, Context } from "./context";
 import { stringify } from "@aiszlab/relax/class-name";
@@ -21,12 +22,6 @@ import { useThemeColorVars } from "../../hooks/use-theme-color-vars";
 import { DialogContext } from "../dialog/context";
 import { useStackLevelContextContext } from "../../contexts/stack-level.context";
 import { OPACITY } from "../theme/tokens.stylex";
-
-const styles = $create({
-  pickable: {
-    minWidth: "var(--min-width)",
-  },
-});
 
 const Picker = forwardRef<PickerRef, PickerProps>(
   (

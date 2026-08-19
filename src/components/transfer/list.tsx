@@ -1,7 +1,7 @@
+import styles from "./styles";
 import React, { useContext } from "react";
 import type { TransferListProps } from "../../types/transfer";
-import { create as $create, props as $props } from "@stylexjs/stylex";
-import { elevations, sizes, spacing } from "../theme/tokens.stylex";
+import { props as $props } from "@stylexjs/stylex";
 import Item from "./item";
 import { Checkbox } from "../checkbox";
 import { Context } from "./context";
@@ -9,58 +9,15 @@ import { stringify } from "@aiszlab/relax/class-name";
 import { $body, $label, $scrollbar } from "../theme/theme";
 import { useLocale } from "../../locale";
 
-const styles = $create({
-  list: {
-    minWidth: sizes.xxxxxxxxxxlarge,
-    maxHeight: sizes.xxxxxxxxxxxlarge,
-    display: "flex",
-    flexDirection: "column",
-    gap: spacing.xxxxxsmall,
-  },
-
-  header: {
-    display: "flex",
-    alignItems: "center",
-    padding: spacing.xxsmall,
-    borderTopLeftRadius: sizes.xxxxsmall,
-    borderTopRightRadius: sizes.xxxxsmall,
-    borderBottomLeftRadius: sizes.xxxxxxxxxxsmall,
-    borderBottomRightRadius: sizes.xxxxxxxxxxsmall,
-    boxShadow: elevations.xsmall,
-  },
-
-  title: {
-    overflow: "hidden",
-    textAlign: "end",
-    flex: "auto",
-  },
-
-  body: {
-    minHeight: sizes.xxxxxxxxxxlarge,
-    flexGrow: 1,
-
-    margin: spacing.none,
-    borderTopLeftRadius: sizes.xxxxxxxxxxsmall,
-    borderTopRightRadius: sizes.xxxxxxxxxxsmall,
-    borderBottomLeftRadius: sizes.xxxxxxxsmall,
-    borderBottomRightRadius: sizes.xxxxxxxsmall,
-    boxShadow: elevations.xsmall,
-    overflow: "auto",
-
-    paddingInline: spacing.none,
-    paddingBlock: spacing.xxxxxsmall,
-  },
-});
-
 const List = ({ options, title, onChange, value }: TransferListProps) => {
   const { disabled, classNames } = useContext(Context);
   const [locale] = useLocale("transfer");
 
   const styled = {
-    list: $props($scrollbar.default, styles.list),
-    header: $props(styles.header, $label.large),
-    title: $props(styles.title),
-    body: $props(styles.body, $body.medium),
+    list: $props($scrollbar.default, styles.list.default),
+    header: $props(styles.list.header, $label.large),
+    title: $props(styles.list.title),
+    body: $props(styles.list.body, $body.medium),
   };
 
   return (

@@ -1,23 +1,11 @@
+import styles from "./styles";
 import React, { type ReactNode, createElement, useMemo } from "react";
 import type { AsProps, IconProps } from "../../types/icon";
 import { isFunction } from "@aiszlab/relax";
-import { create as $create, props as $props } from "@stylexjs/stylex";
+import { props as $props } from "@stylexjs/stylex";
 import { useClassNames } from "../../hooks/use-class-names";
 import { stringify } from "@aiszlab/relax/class-name";
 import { CLASS_NAMES } from "./context";
-
-const styles = $create({
-  icon: {
-    display: "inline-flex",
-    verticalAlign: "middle",
-    color: "var(--color)",
-  },
-
-  clickable: {
-    cursor: "pointer",
-    userSelect: "none",
-  },
-});
 
 const Icon = ({ as, color, size, onClick, style, className, ...props }: IconProps) => {
   const classNames = useClassNames(CLASS_NAMES);

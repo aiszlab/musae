@@ -1,3 +1,4 @@
+import styles from "./styles";
 import { useHover, useEvent, useFocus, useClickAway, isRefable, isNumber } from "@aiszlab/relax";
 import { mountRef } from "@aiszlab/relax/react";
 import React, {
@@ -16,38 +17,13 @@ import React, {
 import type { ChildProps, PopoverProps, PopoverRef } from "../../types/popover";
 import { Popper } from "../popper";
 import type { PopperRef } from "../../types/popper";
-import { create as $create, props as $props } from "@stylexjs/stylex";
-import { spacing } from "../theme/tokens.stylex";
+import { props as $props } from "@stylexjs/stylex";
 import { useClassNames } from "../../hooks/use-class-names";
 import { useTriggerBy } from "./hooks";
 import { stringify } from "@aiszlab/relax/class-name";
 import { CLASS_NAMES } from "./context";
 import { $body, $title } from "../theme/theme";
 import { useIsVisibleState } from "./hooks/use-is-visible-state";
-
-const styles = {
-  popover: $create({
-    default: {
-      maxWidth: "100vw",
-
-      // layout
-      display: "flex",
-      flexDirection: "column",
-      gap: spacing.xxsmall,
-    },
-
-    padding: {
-      padding: `var(--padding, ${spacing.medium})`,
-    },
-  }),
-
-  virtual: $create({
-    default: {
-      width: "fit-content",
-      height: "fit-content",
-    },
-  }),
-};
 
 const Popover = forwardRef(
   <P extends ChildProps<T>, T extends HTMLElement>(

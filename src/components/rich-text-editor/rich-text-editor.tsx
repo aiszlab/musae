@@ -1,3 +1,4 @@
+import styles from "./styles";
 import React, { forwardRef, useImperativeHandle, useRef } from "react";
 import { LexicalComposer, type InitialConfigType } from "@lexical/react/LexicalComposer";
 import { ContentEditable } from "@lexical/react/LexicalContentEditable";
@@ -16,10 +17,8 @@ import EditablePlugin from "./plugins/editable";
 
 import { useDefault, useIdentity } from "@aiszlab/relax";
 import { useMessage } from "../message";
-import { create as $create, props as $props } from "@stylexjs/stylex";
+import { props as $props } from "@stylexjs/stylex";
 import { stringify } from "@aiszlab/relax/class-name";
-
-import { sizes, spacing } from "../theme/tokens.stylex";
 
 import ToolbarPlugin from "./plugins/toolbar";
 import MarkdownShortcutPlugin, { TRANSFORMERS } from "./plugins/markdown-shortcut";
@@ -30,25 +29,7 @@ import { CLASS_NAMES, Context } from "./context";
 import { useClassNames } from "../../hooks/use-class-names";
 import { usingEditor } from "./utils";
 import { $body } from "../theme/theme";
-import { ThemeColorVariable, useThemeColorVars } from "../../hooks/use-theme-color-vars";
-
-const styles = $create({
-  editor: {
-    backgroundColor: "var(--color-surface-container)" satisfies ThemeColorVariable,
-    borderRadius: sizes.xxxxxxxsmall,
-  },
-
-  disabled: {
-    backgroundColor: null,
-  },
-
-  textarea: {
-    outline: "none",
-    paddingInline: spacing.large,
-    paddingBlock: spacing.medium,
-    minHeight: sizes.xxxxxxxxxxlarge,
-  },
-});
+import { useThemeColorVars } from "../../hooks/use-theme-color-vars";
 
 const RichTextEditor = forwardRef<RichTextEditorRef, RichTextEditorProps>(
   (
@@ -82,8 +63,12 @@ const RichTextEditor = forwardRef<RichTextEditorRef, RichTextEditorProps>(
     ]);
 
     const styled = {
-      editor: $props(styles.editor, disabled && styles.disabled, $body.medium),
-      textarea: $props(!disabled && styles.textarea),
+      editor: $props(
+        styles.richTextEditor.editor,
+        disabled && styles.richTextEditor.disabled,
+        $body.medium,
+      ),
+      textarea: $props(!disabled && styles.richTextEditor.textarea),
     };
 
     const initialConfig = useDefault<InitialConfigType>(() => {

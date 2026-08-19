@@ -1,48 +1,11 @@
+import styles from "./styles";
 import React, { useMemo } from "react";
 import { toFunction, useEvent } from "@aiszlab/relax";
-import { create as $create, props as $props } from "@stylexjs/stylex";
-import { sizes, spacing } from "../../theme/tokens.stylex";
+import { props as $props } from "@stylexjs/stylex";
 import { IconUnfoldMore } from "../../icon/icons";
 import type { HeaderCellProps, SortDirection } from "../../../types/table";
 import { useTable } from "../context";
-import { type ThemeColorVariable, useThemeColorVars } from "../../../hooks/use-theme-color-vars";
-
-const styles = {
-  cell: $create({
-    default: {
-      display: "flex",
-      justifyContent: "space-between",
-      alignItems: "center",
-    },
-
-    handlers: {
-      display: "inline-flex",
-      flexDirection: "row",
-      gap: spacing.xxxxxsmall,
-      color: "var(--color-surface-container-highest)" satisfies ThemeColorVariable,
-      userSelect: "none",
-    },
-  }),
-
-  sort: $create({
-    default: {
-      position: "relative",
-      cursor: "pointer",
-    },
-
-    half: {
-      position: "absolute",
-      insetBlockStart: 0,
-      insetInlineStart: 0,
-      height: sizes.half,
-      overflow: "hidden",
-    },
-
-    checked: {
-      color: "var(--color-primary)" satisfies ThemeColorVariable,
-    },
-  }),
-};
+import { useThemeColorVars } from "../../../hooks/use-theme-color-vars";
 
 const Cell = ({
   sortable = false,

@@ -1,11 +1,11 @@
-import { create as $create, props as $props } from "@stylexjs/stylex";
+import styles from "./styles";
+import { props as $props } from "@stylexjs/stylex";
 import React, { type FC, createElement, forwardRef, useRef } from "react";
 import { usePresence, animate } from "motion/react";
 import { useTheme } from "../theme";
 import type { NotificationProps, Placement, Axis, Type } from "../../types/notification";
 import { useAsyncEffect, useComposedRef, useTimeout } from "@aiszlab/relax";
 import { useClassNames } from "../../hooks/use-class-names";
-import { duration, elevations, sizes, spacing } from "../theme/tokens.stylex";
 import {
   IconCheckCircle,
   IconClose,
@@ -42,87 +42,6 @@ const LEADINGS = new Map<Type, FC<IconProps>>([
   ["info", IconNotificationImportant],
   ["warning", IconWarning],
 ]);
-
-const styles = {
-  notification: $create({
-    default: {
-      backgroundColor: "var(--color-surface-container-lowest)",
-      color: "var(--color-on-surface)",
-      borderRadius: sizes.xxxxxxxxxsmall,
-      boxShadow: elevations.xsmall,
-      maxWidth: sizes.full,
-      pointerEvents: "auto",
-      overflow: "hidden",
-      transitionProperty: "margin-top, transform",
-      transitionDuration: duration.short,
-      // hidden styles
-      transform: "var(--placement)",
-      opacity: 0,
-      marginBlockStart: spacing.none,
-      // layout
-      display: "grid",
-      gap: spacing.xxsmall,
-      gridTemplateAreas: "'leading title closer' '. description description'",
-      // padding
-      paddingBlock: spacing.large,
-      paddingInline: spacing.large,
-    },
-
-    simple: {
-      gridTemplateAreas: "'leading description closer'",
-      // padding
-      paddingBlock: spacing.xxsmall,
-      paddingInline: spacing.medium,
-    },
-  }),
-
-  leading: $create({
-    default: {
-      gridArea: "leading",
-      alignSelf: "center",
-      display: "inline-flex",
-      color: "var(--color-primary)",
-    },
-
-    success: {
-      color: "var(--color-success)",
-    },
-
-    warning: {
-      color: "var(--color-warning)",
-    },
-
-    error: {
-      color: "var(--color-error)",
-    },
-  }),
-
-  title: $create({
-    default: {
-      gridArea: "title",
-    },
-  }),
-
-  description: $create({
-    default: {
-      gridArea: "description",
-      display: "inline-block",
-      wordBreak: "break-word",
-    },
-
-    simple: {
-      alignSelf: "center",
-    },
-  }),
-
-  closer: $create({
-    default: {
-      gridArea: "closer",
-      alignSelf: "center",
-      justifySelf: "flex-end",
-    },
-  }),
-};
 
 const Notification = forwardRef<HTMLDivElement, NotificationProps>(
   ({ placement, duration = 3000, onClose, description, title, type, closable = true }, ref) => {

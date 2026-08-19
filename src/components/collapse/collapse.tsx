@@ -1,22 +1,13 @@
+import styles from "./styles";
 import React from "react";
 import type { CollapseProps } from "../../types/collapse";
 import { useClassNames } from "../../hooks/use-class-names";
 import Item from "./item";
-import { create as $create, props as $props } from "@stylexjs/stylex";
-import { sizes } from "../theme/tokens.stylex";
+import { props as $props } from "@stylexjs/stylex";
 import { stringify } from "@aiszlab/relax/class-name";
 import { useActiveKeys } from "./hooks";
 import { CLASS_NAMES, Context } from "./context";
 import { useTheme } from "../theme";
-
-const styles = $create({
-  collapse: {
-    borderWidth: sizes.smallest,
-    borderStyle: "solid",
-    borderColor: "var(--color-outline-variant)",
-    borderRadius: sizes.xxxxxxxsmall,
-  },
-});
 
 const Collapse = ({
   items,
@@ -34,7 +25,7 @@ const Collapse = ({
   // no need to render when items is empty
   if (items.length === 0) return null;
 
-  const styled = $props(styles.collapse);
+  const styled = $props(styles.collapse.default);
 
   return (
     <Context.Provider

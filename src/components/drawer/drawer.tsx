@@ -1,3 +1,4 @@
+import styles from "./styles";
 import React from "react";
 import type { DrawerProps } from "../../types/drawer";
 import { Sheet } from "../sheet";
@@ -6,37 +7,11 @@ import { Space } from "../space";
 import { useLocale } from "../../locale";
 import { useClosable } from "../../hooks/use-closable";
 import { useClassNames } from "../../hooks/use-class-names";
-import { create as $create, props as $props } from "@stylexjs/stylex";
+import { props as $props } from "@stylexjs/stylex";
 import { stringify } from "@aiszlab/relax/class-name";
-import { sizes, spacing } from "../theme/tokens.stylex";
-import { useThemeColorVars, type ThemeColorVariable } from "../../hooks/use-theme-color-vars";
+import { useThemeColorVars } from "../../hooks/use-theme-color-vars";
 import { $body } from "../theme/theme";
 import { CLASS_NAMES } from "./context";
-
-/**
- * @zh Drawer 专用样式：包含关闭按钮、标题和确认按钮的头部栏，以及面板背景。
- * @en Drawer-specific styles: header bar with closer, title, confirm button, and panel background.
- */
-const styles = $create({
-  header: {
-    display: "flex",
-    paddingInline: spacing.large,
-    paddingBlock: spacing.large,
-    alignItems: "center",
-    gap: spacing.xxxsmall,
-    borderBottomWidth: sizes.smallest,
-    borderBottomStyle: "solid",
-    borderBottomColor: "var(--color-outline-variant)" satisfies ThemeColorVariable,
-  },
-
-  actions: {
-    marginInlineStart: "auto",
-  },
-
-  panel: {
-    backgroundColor: "var(--color-on-primary)" satisfies ThemeColorVariable,
-  },
-});
 
 /**
  * @zh Drawer 组件。从屏幕任意边缘滑入的模态面板。基于共享的 Sheet 基础组件构建。

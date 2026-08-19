@@ -1,24 +1,16 @@
+import styles from "./styles";
 import React from "react";
 import { useClassNames } from "../../hooks/use-class-names";
 import type { ClockProps, TimeUnit } from "../../types/clock";
 import Column from "./column";
-import { create as $create, props as $props } from "@stylexjs/stylex";
+import { props as $props } from "@stylexjs/stylex";
 import { stringify } from "@aiszlab/relax/class-name";
 import { Divider } from "../divider";
-import { spacing } from "../theme/tokens.stylex";
 import { CLASS_NAMES, Context } from "./context";
-
-const styles = $create({
-  clock: {
-    display: "flex",
-    height: 200,
-    columnGap: spacing.xxxxxsmall,
-  },
-});
 
 const Clock = ({ value, onChange, className, style }: ClockProps) => {
   const classNames = useClassNames(CLASS_NAMES);
-  const styled = $props(styles.clock);
+  const styled = $props(styles.clock.default);
   const columns = ["hour", "minute", "second"] satisfies TimeUnit[];
 
   return (

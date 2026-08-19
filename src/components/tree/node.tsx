@@ -1,65 +1,13 @@
+import styles from "./styles";
 import React, { useContext } from "react";
 import type { TreeNodeProps } from "../../types/tree";
 import Context from "./context";
 import { Checkbox } from "../checkbox";
 import { IconKeyboardArrowRight } from "../icon/icons";
-import { create as $create, props as $props } from "@stylexjs/stylex";
-import { sizes, spacing } from "../theme/tokens.stylex";
+import { props as $props } from "@stylexjs/stylex";
 import { useEvent } from "@aiszlab/relax";
 import { stringify } from "@aiszlab/relax/class-name";
-import { type ThemeColorVariable, useThemeColorVars } from "../../hooks/use-theme-color-vars";
-
-const styles = {
-  node: $create({
-    default: {
-      display: "flex",
-      alignItems: "center",
-      gap: spacing.xxxxxsmall,
-
-      paddingBlock: spacing.xxsmall,
-      paddingLeft: `calc(${spacing.medium} + var(--level) * ${spacing.xxxlarge})`,
-    },
-  }),
-
-  expander: $create({
-    default: {
-      width: 24,
-      height: 24,
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      cursor: "pointer",
-      transition: "transform 0.3s",
-      userSelect: "none",
-    },
-
-    expanded: {
-      transform: "rotate(90deg)",
-    },
-  }),
-
-  title: $create({
-    default: {
-      paddingInline: spacing.xxxxxsmall,
-      borderRadius: sizes.xxxxxxxxxsmall,
-      backgroundColor: {
-        ":hover": {
-          "@media (hover: hover)": "var(--color-surface-container)" satisfies ThemeColorVariable,
-        },
-      },
-      cursor: "default",
-    },
-
-    selected: {
-      backgroundColor: "var(--color-surface-container)" satisfies ThemeColorVariable,
-      color: "var(--color-primary)" satisfies ThemeColorVariable,
-    },
-
-    selectable: {
-      cursor: "pointer",
-    },
-  }),
-};
+import { useThemeColorVars } from "../../hooks/use-theme-color-vars";
 
 const Node = ({ value, children, level, onExpand, ...props }: TreeNodeProps) => {
   const { checkedKeys, onCheck, expandedKeys, onSelect, selectedKeys, selectable, classNames } =

@@ -1,3 +1,4 @@
+import styles from "./styles";
 import {
   $getNodeByKey,
   DecoratorNode,
@@ -7,19 +8,8 @@ import {
 } from "lexical";
 import React, { type ReactNode, type ChangeEvent } from "react";
 import { Checkbox } from "../../checkbox";
-import { create as $create, props as $props } from "@stylexjs/stylex";
-import { sizes, spacing } from "../../theme/tokens.stylex";
+import { props as $props } from "@stylexjs/stylex";
 import { CheckableListItemNode } from "./checkable-list-item";
-
-const styles = $create({
-  checkbox: {
-    position: "absolute",
-    insetInlineStart: sizes.none,
-    insetBlockStart: sizes.none,
-    display: "flex",
-    padding: spacing.smallest,
-  },
-});
 
 type SerializedCheckboxNode = Omit<SerializedLexicalNode, "$"> & {
   $: {

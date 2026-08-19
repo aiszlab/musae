@@ -1,3 +1,4 @@
+import styles from "./styles";
 import React, { createElement } from "react";
 import type { PaginationItemProps } from "../../types/pagination";
 import {
@@ -7,32 +8,8 @@ import {
   IconKeyboardDoubleArrowLeft,
   IconKeyboardDoubleArrowRight,
 } from "../icon/icons";
-import { create as $create, props as $props } from "@stylexjs/stylex";
+import { props as $props } from "@stylexjs/stylex";
 import { IconButton } from "../icon-button";
-
-const styles = $create({
-  more: {
-    "@media (hover: hover)": {
-      ":hover > [role='separator']": {
-        display: "none",
-      },
-
-      ":not(:hover) > [role='button']": {
-        display: "none",
-      },
-    },
-
-    "@media (hover: none)": {
-      ":active > [role='separator']": {
-        display: "none",
-      },
-
-      ":not(:active) > [role='button']": {
-        display: "none",
-      },
-    },
-  },
-});
 
 const Item = ({
   value,
@@ -76,7 +53,7 @@ const Item = ({
 
   if (isMorePrev || isMoreNext) {
     const styled = {
-      more: $props(styles.more),
+      more: $props(styles.item.more),
     };
 
     return (

@@ -1,24 +1,16 @@
+import styles from "./styles";
 import React, { useCallback, useMemo, useRef, type ReactNode } from "react";
 import { Picker } from "../picker";
 import { Tag } from "../tag";
 import { useOptions, useValue } from "./hooks";
 import { Menu } from "../menu";
 import { useClassNames } from "../../hooks/use-class-names";
-import { create as $create, props as $props } from "@stylexjs/stylex";
+import { props as $props } from "@stylexjs/stylex";
 import { stringify } from "@aiszlab/relax/class-name";
-import { spacing } from "../theme/tokens.stylex";
 import type { MenuProps } from "../../types/menu";
 import type { PickerRef } from "../../types/picker";
 import type { CascaderProps } from "../../types/cascader";
 import { CLASS_NAMES } from "./context";
-
-const styles = $create({
-  options: {
-    display: "flex",
-    columnGap: spacing.xxxxxsmall,
-    marginInline: spacing.xxxxxsmall,
-  },
-});
 
 const Cascader = ({ mode, separator = "/", options = [], ...props }: CascaderProps) => {
   const ref = useRef<PickerRef>(null);

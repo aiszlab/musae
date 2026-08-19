@@ -1,3 +1,4 @@
+import styles from "./styles";
 import React, { createElement, forwardRef } from "react";
 import { Input } from "../input";
 import { useBoolean } from "@aiszlab/relax";
@@ -5,27 +6,10 @@ import { IconVisibility, IconVisibilityOff } from "../icon/icons";
 import type { InputRef } from "../../types/input";
 import type { PasswordInputProps } from "../../types/password-input";
 import { useTheme } from "../theme";
-import { create as $create, props as $props } from "@stylexjs/stylex";
-import { duration } from "../theme/tokens.stylex";
+import { props as $props } from "@stylexjs/stylex";
 import { CLASS_NAMES } from "./context";
 import { useClassNames } from "../../hooks/use-class-names";
 import { stringify } from "@aiszlab/relax/class-name";
-import { type ThemeColorVariable } from "../../hooks/use-theme-color-vars";
-
-const styles = $create({
-  visibility: {
-    color: "var(--color-secondary-fixed-dim)" satisfies ThemeColorVariable,
-    willChange: "color",
-    transitionProperty: "color",
-    transitionDuration: duration.short,
-
-    ":hover": {
-      "@media (hover: hover)": {
-        color: "var(--color-secondary)" satisfies ThemeColorVariable,
-      },
-    },
-  },
-});
 
 const PasswordInput = forwardRef<InputRef, PasswordInputProps>(({ className, ...props }, ref) => {
   const [isVisible, { toggle }] = useBoolean(false);

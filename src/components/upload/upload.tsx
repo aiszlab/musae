@@ -1,3 +1,4 @@
+import styles from "./styles";
 import React, {
   type ChangeEvent,
   type DragEvent,
@@ -8,34 +9,16 @@ import React, {
   useRef,
 } from "react";
 import type { UploadProps } from "../../types/upload";
-import { create as $create, props as $props } from "@stylexjs/stylex";
+import { props as $props } from "@stylexjs/stylex";
 import { useEvent } from "@aiszlab/relax";
 import { Keyboard } from "../../utils/keyboard";
 import UploadedList from "./uploaded-list";
 import { Button } from "../button";
 import { useLocale } from "../../locale";
-import { sizes, spacing } from "../theme/tokens.stylex";
 import { useClassNames } from "../../hooks/use-class-names";
 import { CLASS_NAMES, Context } from "./context";
 import { stringify } from "@aiszlab/relax/class-name";
 import { useUpload } from "./hooks/use-upload";
-
-const styles = $create({
-  uploader: {
-    display: "inline-block",
-  },
-
-  input: {
-    display: "none",
-  },
-
-  upload: {
-    display: "flex",
-    flexDirection: "column",
-    gap: spacing.xxsmall,
-    width: sizes.fit,
-  },
-});
 
 const Upload = ({
   onClick,
@@ -83,9 +66,9 @@ const Upload = ({
   };
 
   const styled = {
-    upload: $props(styles.upload),
-    input: $props(styles.input),
-    uploader: $props(styles.uploader),
+    upload: $props(styles.upload.upload),
+    input: $props(styles.upload.input),
+    uploader: $props(styles.upload.uploader),
   };
 
   const children = useMemo(() => {

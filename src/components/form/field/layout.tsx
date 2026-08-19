@@ -1,37 +1,16 @@
+import styles from "./styles";
 import React, { useContext } from "react";
 import { type ReactNode } from "react";
 import type { ContextValue } from "../../../types/form";
 import Context from "../context";
 import { Grid } from "../../grid";
-import { create as $create, props as $props } from "@stylexjs/stylex";
-import { sizes, spacing } from "../../theme/tokens.stylex";
+import { props as $props } from "@stylexjs/stylex";
 import { stringify } from "@aiszlab/relax/class-name";
 import type { ComponentProps } from "../../../types/element";
 import { $body, $label } from "../../../components/theme/theme";
-import { type ThemeColorVariable, useThemeColorVars } from "../../../hooks/use-theme-color-vars";
+import { useThemeColorVars } from "../../../hooks/use-theme-color-vars";
 
 const { Row, Col } = Grid;
-
-const styles = $create({
-  space: {
-    marginBlockEnd: spacing.xxxlarge,
-  },
-
-  required: {
-    "::before": {
-      content: '"*"',
-      color: "var(--color-error)" satisfies ThemeColorVariable,
-      marginRight: spacing.xxxxxsmall,
-    },
-  },
-
-  supporting: {
-    minHeight: sizes.xsmall,
-    paddingInline: spacing.large,
-    display: "flex",
-    flexDirection: "column",
-  },
-});
 
 /**
  * @description
@@ -93,9 +72,9 @@ const Layout = ({ required, space = false, className, style, supporting, ...prop
   const _themeColorVars = useThemeColorVars(["error"]);
 
   const styled = {
-    item: $props(space && !supporting && styles.space),
-    label: $props(required && styles.required, $label.small),
-    supporting: $props(styles.supporting, $body.small),
+    item: $props(space && !supporting && styles.layout.space),
+    label: $props(required && styles.layout.required, $label.small),
+    supporting: $props(styles.layout.supporting, $body.small),
   };
 
   return (

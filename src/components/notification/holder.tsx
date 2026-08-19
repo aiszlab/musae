@@ -1,3 +1,4 @@
+import styles from "./styles";
 import React, { forwardRef, useEffect, useImperativeHandle, useState } from "react";
 import type {
   HolderProps,
@@ -8,53 +9,8 @@ import type {
 import { Portal } from "../portal";
 import { AnimatePresence } from "motion/react";
 import Notification from "./notification";
-import { create as $create, props as $props } from "@stylexjs/stylex";
-import { positions, spacing } from "../theme/tokens.stylex";
+import { props as $props } from "@stylexjs/stylex";
 import { useEvent, useIdentity, useMounted } from "@aiszlab/relax";
-
-const styles = $create({
-  holder: {
-    position: "fixed",
-    zIndex: positions.notification,
-    display: "flex",
-    flexDirection: "column",
-    pointerEvents: "none",
-    rowGap: spacing.medium,
-    padding: spacing.medium,
-  },
-
-  top: {
-    insetBlockStart: 0,
-    insetInline: 0,
-    alignItems: "center",
-  },
-
-  "top-right": {
-    insetBlockStart: 0,
-    insetInlineEnd: 0,
-  },
-
-  "top-left": {
-    insetBlockStart: 0,
-    insetInlineStart: 0,
-  },
-
-  bottom: {
-    insetBlockEnd: 0,
-    insetInline: 0,
-    alignItems: "center",
-  },
-
-  "bottom-left": {
-    insetBlockEnd: 0,
-    insetInlineStart: 0,
-  },
-
-  "bottom-right": {
-    insetBlockEnd: 0,
-    insetInlineEnd: 0,
-  },
-});
 
 const Holder = forwardRef<HolderRef, HolderProps>(({ defaultNotifications }, ref) => {
   const [, unique] = useIdentity();
@@ -112,7 +68,7 @@ const Holder = forwardRef<HolderRef, HolderProps>(({ defaultNotifications }, ref
   }, [add]);
 
   return Array.from(placements.entries()).map(([placement, notifications]) => {
-    const styled = $props(styles.holder, styles[placement]);
+    const styled = $props(styles.holder.default, styles.holder[placement]);
 
     return (
       <Portal destroyable open={notifications.size > 0} key={placement}>

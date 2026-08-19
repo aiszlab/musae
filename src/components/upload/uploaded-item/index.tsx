@@ -1,6 +1,6 @@
+import styles from "./styles";
 import React, { useContext, useMemo } from "react";
-import { create as $create, props as $props } from "@stylexjs/stylex";
-import { spacing } from "../../theme/tokens.stylex";
+import { props as $props } from "@stylexjs/stylex";
 import type { FileItem, UploadedItem as UploadedItemType } from "../../../types/upload";
 import { useEvent } from "@aiszlab/relax";
 import { IconAttachFile, IconDelete, IconLoading } from "../../icon/icons";
@@ -10,24 +10,6 @@ import { stringify } from "@aiszlab/relax/class-name";
 import { $body } from "../../theme/theme";
 import UploadedPicture from "./picture";
 import { isRemoteFile } from "../utils";
-
-const styles = {
-  item: $create({
-    default: {
-      display: "flex",
-      alignItems: "center",
-      gap: spacing.xxsmall,
-    },
-  }),
-
-  filename: $create({
-    default: {
-      flex: 1,
-      overflow: "hidden",
-      textOverflow: "ellipsis",
-    },
-  }),
-};
 
 const UploadedItem = ({
   item,

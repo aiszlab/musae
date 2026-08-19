@@ -1,9 +1,9 @@
+import styles from "./styles";
 import React, { type Key, useCallback, useContext, useEffect, useRef } from "react";
 import type { ColumnProps, TimeUnit } from "../../types/clock";
 import { Menu } from "../menu";
 import { isVoid } from "@aiszlab/relax";
-import { create as $create, props as $props } from "@stylexjs/stylex";
-import { sizes, spacing } from "../theme/tokens.stylex";
+import { props as $props } from "@stylexjs/stylex";
 import { useTheme } from "../theme";
 import type { MenuRef } from "../../types/menu";
 import { stringify } from "@aiszlab/relax/class-name";
@@ -15,27 +15,6 @@ const UNITS: Record<TimeUnit, number> = {
   minute: 60,
   second: 60,
 };
-
-const styles = $create({
-  menu: {
-    overflowX: "hidden",
-    overflowY: {
-      default: "hidden",
-      ":hover": {
-        "@media (hover: hover)": "auto",
-      },
-    },
-
-    width: sizes.xxxlarge,
-    marginBlock: spacing.xxxxxsmall,
-  },
-
-  item: {
-    width: sizes.xxxlarge,
-    display: "flex",
-    justifyContent: "center",
-  },
-});
 
 const Column = ({ unit, value, onChange }: ColumnProps) => {
   const timeUnit = UNITS[unit];
@@ -57,8 +36,8 @@ const Column = ({ unit, value, onChange }: ColumnProps) => {
   }, [value]);
 
   const styled = {
-    menu: $props($scrollbar.default, styles.menu),
-    item: $props(styles.item),
+    menu: $props($scrollbar.default, styles.column.menu),
+    item: $props(styles.column.item),
   };
 
   return (

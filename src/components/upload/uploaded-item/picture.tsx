@@ -1,11 +1,11 @@
+import styles from "./styles";
 import React, { useContext, type CSSProperties } from "react";
 import type { UploadedItem } from "../../../types/upload";
 import ImageContext from "../../image/context";
 import { Image } from "../../image";
 import { IconAttachFile } from "../../icon/icons";
-import { create as $create, props as $props } from "@stylexjs/stylex";
-import { sizes, spacing } from "../../../components/theme/tokens.stylex";
-import { useThemeColorVars, type ThemeColorVariable } from "../../../hooks/use-theme-color-vars";
+import { props as $props } from "@stylexjs/stylex";
+import { useThemeColorVars } from "../../../hooks/use-theme-color-vars";
 import { stringify } from "@aiszlab/relax/class-name";
 import { Context } from "../context";
 
@@ -16,28 +16,13 @@ interface Props {
   style?: CSSProperties;
 }
 
-const styles = $create({
-  default: {
-    width: sizes.xxxxxxxxlarge,
-    height: sizes.xxxxxxxxlarge,
-  },
-
-  wrapper: {
-    borderWidth: sizes.smallest,
-    borderStyle: "solid",
-    borderColor: "var(--color-outline-variant)" satisfies ThemeColorVariable,
-    borderRadius: sizes.xxxxxxxxxsmall,
-    padding: spacing.xxsmall,
-  },
-});
-
 const UploadedPicture = ({ item, onRemove, className, style }: Props) => {
   const themeColorVars = useThemeColorVars(["outline-variant"]);
   const { classNames } = useContext(Context);
 
   const styled = {
-    wrapper: $props(styles.wrapper),
-    image: $props(styles.default),
+    wrapper: $props(styles.picture.wrapper),
+    image: $props(styles.picture.default),
   };
 
   return (

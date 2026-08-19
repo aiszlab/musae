@@ -1,3 +1,4 @@
+import styles from "./styles";
 import { Button } from "../button";
 import React, { type Key, useMemo, useRef } from "react";
 import { Popover, type PopoverRef } from "../popover";
@@ -5,15 +6,7 @@ import { Menu } from "../menu";
 import { Empty } from "../empty";
 import { toArray, useEvent } from "@aiszlab/relax";
 import type { DropdownProps } from "../../types/rich-text-editor";
-import { create as $create, props as $props } from "@stylexjs/stylex";
-
-const _styles = $create({
-  label: {
-    width: "var(--width)",
-    overflow: "hidden",
-    textOverflow: "ellipsis",
-  },
-});
+import { props as $props } from "@stylexjs/stylex";
 
 const Dropdown = <T extends Key>({
   items: _items = new Map(),
@@ -53,7 +46,7 @@ const Dropdown = <T extends Key>({
     );
   }, [items, onClick, value]);
 
-  const _styled = $props(_styles.label);
+  const _styled = $props(styles.dropdown.label);
 
   return (
     <Popover

@@ -1,42 +1,10 @@
+import styles from "./styles";
 import React, { type Key, type ReactNode, useCallback, useContext, useMemo } from "react";
 import { Context, type CLASS_NAMES } from "./context";
 import type { ContextValue, MenuProps, Mode, Size } from "../../types/menu";
 import { toArray, useControlledState, useEvent } from "@aiszlab/relax";
-import { create as $create, props as $props } from "@stylexjs/stylex";
-import { duration, spacing } from "../theme/tokens.stylex";
+import { props as $props } from "@stylexjs/stylex";
 import { IconKeyboardArrowUp } from "../icon/icons";
-
-const styles = {
-  prefix: $create({
-    default: {
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-      marginRight: spacing.xxxxxsmall,
-    },
-  }),
-
-  suffix: $create({
-    default: {
-      marginInlineStart: spacing.auto,
-    },
-  }),
-
-  collapser: $create({
-    default: {
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      transform: "rotateX(180deg)",
-      transitionProperty: "transform",
-      transitionDuration: duration.short,
-    },
-
-    expanded: {
-      transform: "rotateX(0)",
-    },
-  }),
-};
 
 /**
  * @description

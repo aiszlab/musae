@@ -1,3 +1,4 @@
+import styles from "./styles";
 import { useReactTable, getCoreRowModel } from "@tanstack/react-table";
 import React from "react";
 import { useColumns, useContextValue } from "./hooks";
@@ -5,19 +6,10 @@ import type { TableProps } from "../../types/table";
 import Header from "./header/header";
 import { Context, CLASS_NAMES } from "./context";
 import Body from "./body";
-import { create as $create, props as $props } from "@stylexjs/stylex";
+import { props as $props } from "@stylexjs/stylex";
 import { stringify } from "@aiszlab/relax/class-name";
 import { useClassNames } from "../../hooks/use-class-names";
 import { Loading } from "../loading";
-
-const styles = $create({
-  table: {
-    width: "100%",
-
-    // reset styles
-    borderCollapse: "collapse",
-  },
-});
 
 const Table = <T,>({
   bordered = false,
@@ -45,7 +37,7 @@ const Table = <T,>({
     classNames,
   });
 
-  const styled = $props(styles.table);
+  const styled = $props(styles.table.default);
 
   return (
     <Context.Provider value={contextValue}>
