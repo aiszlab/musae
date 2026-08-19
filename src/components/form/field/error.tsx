@@ -36,7 +36,7 @@ const Error = ({ children, className, style }: Props) => {
     });
   }, [isPresent]);
 
-  const styled = $props(styles.error.error);
+  const styled = $props(styles.error.default);
 
   return (
     <div

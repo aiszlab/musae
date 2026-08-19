@@ -13,7 +13,7 @@ const preview = $create({
 });
 
 const operations = $create({
-  operations: {
+  default: {
     position: "fixed",
     zIndex: positions.image,
   },

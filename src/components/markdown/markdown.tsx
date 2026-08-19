@@ -16,7 +16,7 @@ interface Props extends MarkdownProps {
 
 const Markdown = async ({ value, className, style, isInClient }: Props) => {
   const _html = isInClient ? await toHtml(value) : value;
-  const styled = $props(styles.markdown.markdown, $body.medium);
+  const styled = $props(styles.markdown.default, $body.medium);
 
   return (
     <div

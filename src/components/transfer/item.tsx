@@ -10,7 +10,7 @@ const Item = ({ value, label }: TransferItemProps) => {
   const { classNames } = useContext(Context);
 
   const styled = {
-    item: $props(styles.item.item),
+    item: $props(styles.item.default),
   };
 
   return (

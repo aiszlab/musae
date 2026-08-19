@@ -3,11 +3,11 @@
 exports[`\`Breadcrumb\` Component customize separator 1`] = `
 <DocumentFragment>
   <nav
-    class="musae-breadcrumb theme__label.large styles__breadcrumb_styles.breadcrumb"
+    class="musae-breadcrumb theme__label.large styles__breadcrumb.default"
     style="--color-on-surface-variant: #49454F;"
   >
     <ol
-      class="styles__breadcrumb_styles.navigations"
+      class="styles__breadcrumb.navigations"
     >
       <li
         class="musae-breadcrumb__item styles__default"
@@ -52,11 +52,11 @@ exports[`\`Breadcrumb\` Component customize separator 1`] = `
 exports[`\`Breadcrumb\` Component display items 1`] = `
 <DocumentFragment>
   <nav
-    class="musae-breadcrumb theme__label.large styles__breadcrumb_styles.breadcrumb"
+    class="musae-breadcrumb theme__label.large styles__breadcrumb.default"
     style="--color-on-surface-variant: #49454F;"
   >
     <ol
-      class="styles__breadcrumb_styles.navigations"
+      class="styles__breadcrumb.navigations"
     >
       <li
         class="musae-breadcrumb__item styles__default"

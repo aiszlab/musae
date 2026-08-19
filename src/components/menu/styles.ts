@@ -177,7 +177,7 @@ const group = {
 };
 
 const menu = $create({
-  menu: {
+  default: {
     // add position reason: when read li offsetTop, if parent is not relative, then it will read wrong value
     // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetTop
     position: "relative",

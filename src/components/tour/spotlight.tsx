@@ -45,7 +45,7 @@ const Spotlight = ({ trigger, padding: [paddingY, paddingX] }: SpotlightProps) =
     };
   }, [trigger, paddingY, paddingX]);
 
-  const styled = $props(styles.spotlight.spotlight);
+  const styled = $props(styles.spotlight.default);
 
   return (
     <div

@@ -59,7 +59,7 @@ const item = {
 };
 
 const collapse = $create({
-  collapse: {
+  default: {
     borderWidth: sizes.smallest,
     borderStyle: "solid",
     borderColor: "var(--color-outline-variant)",

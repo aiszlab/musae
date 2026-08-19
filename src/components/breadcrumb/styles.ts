@@ -45,7 +45,7 @@ const item = {
 };
 
 const breadcrumb = $create({
-  breadcrumb: {
+  default: {
     color: "var(--color-on-surface-variant)",
   },
 

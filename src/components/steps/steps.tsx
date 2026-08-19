@@ -29,7 +29,7 @@ const Steps = ({
   const theme = useTheme();
 
   const styled = {
-    steps: $props(styles.steps.steps, styles[type]),
+    steps: $props(styles.steps.default, styles.steps[type]),
   };
 
   const contextValue = useMemo(

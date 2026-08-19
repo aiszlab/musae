@@ -3,7 +3,7 @@ import { spacing, sizes } from "../theme/tokens.stylex";
 import { type ThemeColorVariable } from "../../hooks/use-theme-color-vars";
 
 const list = $create({
-  list: {
+  default: {
     // reset ul list
     margin: spacing.none,
     padding: spacing.none,

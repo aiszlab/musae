@@ -46,7 +46,7 @@ const Pagination = ({
   });
 
   const styled = {
-    pagination: $props(styles.pagination.pagination),
+    pagination: $props(styles.pagination.default),
     sizer: $props(styles.pagination.sizer),
   };
 

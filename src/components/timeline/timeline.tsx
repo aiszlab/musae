@@ -23,7 +23,7 @@ const Timeline = ({ items, mode = "right", size }: TimelineProps) => {
     [mode, total, size, classNames],
   );
 
-  const styled = $props(styles.timeline.timeline);
+  const styled = $props(styles.timeline.default);
 
   return (
     <Context.Provider value={contextValue}>

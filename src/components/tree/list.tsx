@@ -20,7 +20,7 @@ const List = ({ nodes = [], expanded = true, level = 0, className, style }: Tree
     await collapse();
   }, [expanded]);
 
-  const styled = $props(styles.list.list, !expanded && styles.list.hidden);
+  const styled = $props(styles.list.default, !expanded && styles.list.hidden);
 
   return (
     <ul

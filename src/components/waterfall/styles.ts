@@ -2,7 +2,7 @@ import { create as $create } from "@stylexjs/stylex";
 import { sizes } from "../theme/tokens.stylex";
 
 const waterfall = $create({
-  waterfall: {
+  default: {
     width: sizes.full,
     display: "flex",
     flexDirection: "row",

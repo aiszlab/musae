@@ -37,7 +37,7 @@ const Table = <T,>({
     classNames,
   });
 
-  const styled = $props(styles.table.table);
+  const styled = $props(styles.table.default);
 
   return (
     <Context.Provider value={contextValue}>

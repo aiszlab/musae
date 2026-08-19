@@ -83,7 +83,7 @@ const notification = {
 };
 
 const holder = $create({
-  holder: {
+  default: {
     position: "fixed",
     zIndex: positions.notification,
     display: "flex",

@@ -31,7 +31,7 @@ const Chat = ({ onMessage, className, style, defaultValue, placeholder }: ChatPr
   }, [id, message]);
 
   const styled = {
-    chat: $props(styles.chat.chat, $body.medium),
+    chat: $props(styles.chat.default, $body.medium),
     messages: $props(styles.chat.messages),
     footer: $props(styles.chat.footer),
   };

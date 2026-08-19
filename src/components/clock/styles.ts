@@ -23,7 +23,7 @@ const column = $create({
 });
 
 const clock = $create({
-  clock: {
+  default: {
     display: "flex",
     height: 200,
     columnGap: spacing.xxxxxsmall,

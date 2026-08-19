@@ -46,7 +46,7 @@ const Item = ({ message, content: _content = "" }: ChatItemProps) => {
   });
 
   const styled = {
-    item: $props(styles.item.item),
+    item: $props(styles.item.default),
     send: $props(styles.item.send),
     receive: $props(styles.item.receive, status === "loading" && styles.item.receiving),
   };

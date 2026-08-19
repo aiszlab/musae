@@ -2,7 +2,7 @@ import { create as $create } from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";
 
 const loading = $create({
-  loading: {
+  default: {
     padding: spacing.medium,
   },
 
@@ -32,7 +32,7 @@ const loading = $create({
 });
 
 const markdown = $create({
-  markdown: {
+  default: {
     width: "fit-content",
     overflow: "auto",
     minWidth: "100%",

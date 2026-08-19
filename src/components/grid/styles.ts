@@ -1,14 +1,14 @@
 import { create as $create } from "@stylexjs/stylex";
 
 const col = $create({
-  col: {
+  default: {
     flex: "0 0 var(--span)",
     maxWidth: "var(--span)",
   },
 });
 
 const row = $create({
-  row: {
+  default: {
     display: "flex",
     flexDirection: "row",
     flexWrap: "wrap",

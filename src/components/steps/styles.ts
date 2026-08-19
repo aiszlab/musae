@@ -98,7 +98,7 @@ const item = {
 };
 
 const steps = $create({
-  steps: {
+  default: {
     display: "flex",
     alignItems: "flex-start",
     gap: spacing.xxsmall,

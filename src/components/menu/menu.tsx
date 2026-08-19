@@ -56,7 +56,7 @@ const Menu = forwardRef<MenuRef, MenuProps>(
       },
     }));
 
-    const styled = $props(styles.menu.menu);
+    const styled = $props(styles.menu.default);
 
     return (
       <Context.Provider value={contextValue}>

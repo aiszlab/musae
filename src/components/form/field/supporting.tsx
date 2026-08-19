@@ -6,7 +6,7 @@ import { useTheme } from "../../theme";
 const Supporting = ({ children }: { children?: ReactNode }) => {
   const theme = useTheme();
 
-  const styled = $props(styles.supporting.supporting);
+  const styled = $props(styles.supporting.default);
 
   return (
     <div

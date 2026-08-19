@@ -3,7 +3,7 @@ import { sizes, spacing } from "../theme/tokens.stylex";
 import { type ThemeColorVariable } from "../../hooks/use-theme-color-vars";
 
 const table = $create({
-  table: {
+  default: {
     width: "100%",
 
     // reset table

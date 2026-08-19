@@ -3,7 +3,7 @@ import { spacing, sizes } from "../theme/tokens.stylex";
 import { type ThemeColorVariable } from "../../hooks/use-theme-color-vars";
 
 const calendar = $create({
-  calendar: {
+  default: {
     width: "fit-content",
   },
 

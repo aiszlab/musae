@@ -10,7 +10,7 @@ import { CLASS_NAMES, Context } from "./context";
 
 const Clock = ({ value, onChange, className, style }: ClockProps) => {
   const classNames = useClassNames(CLASS_NAMES);
-  const styled = $props(styles.clock.clock);
+  const styled = $props(styles.clock.default);
   const columns = ["hour", "minute", "second"] satisfies TimeUnit[];
 
   return (

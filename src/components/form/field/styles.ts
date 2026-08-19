@@ -24,14 +24,14 @@ const layout = $create({
 });
 
 const supporting = $create({
-  supporting: {
+  default: {
     color: "var(--color-secondary)",
     marginBlock: spacing.xxxxxsmall,
   },
 });
 
 const error = $create({
-  error: {
+  default: {
     color: "var(--color-error)" satisfies ThemeColorVariable,
     marginBlock: spacing.xxxxxsmall,
     height: 0,

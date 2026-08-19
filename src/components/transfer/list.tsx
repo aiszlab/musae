@@ -14,7 +14,7 @@ const List = ({ options, title, onChange, value }: TransferListProps) => {
   const [locale] = useLocale("transfer");
 
   const styled = {
-    list: $props($scrollbar.default, styles.list.list),
+    list: $props($scrollbar.default, styles.list.default),
     header: $props(styles.list.header, $label.large),
     title: $props(styles.list.title),
     body: $props(styles.list.body, $body.medium),

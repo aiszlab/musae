@@ -106,7 +106,7 @@ const item = {
 };
 
 const timeline = $create({
-  timeline: {
+  default: {
     // reset timeline
     margin: spacing.none,
     padding: spacing.none,
