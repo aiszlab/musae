@@ -1,13 +1,15 @@
 import { create as $create } from "@stylexjs/stylex";
-import { type ThemeColorVariable } from "../../hooks/use-theme-color-vars";
 import { positions } from "../theme/tokens.stylex";
+import { type ThemeColorVariable } from "../../hooks/use-theme-color-vars";
 
-const styles = $create({
-  stackLevel: {
+const stackLevel = $create({
+  default: {
     zIndex: positions.drawer,
   },
+});
 
-  container: {
+const container = $create({
+  default: {
     position: "fixed",
     inset: 0,
     pointerEvents: "none",
@@ -17,16 +19,20 @@ const styles = $create({
     overscrollBehavior: "contain",
     overflow: "hidden",
   },
+});
 
-  overlay: {
+const overlay = $create({
+  default: {
     position: "absolute",
     inset: 0,
     pointerEvents: "auto",
     opacity: 0,
     backgroundColor: "var(--color-surface-dim)" satisfies ThemeColorVariable,
   },
+});
 
-  panel: {
+const panel = $create({
+  default: {
     position: "absolute",
     pointerEvents: "auto",
     willChange: "transform",
@@ -64,11 +70,32 @@ const styles = $create({
     height: "var(--size)",
   },
 
-  body: {
+  fullscreen: {
+    "@media (max-width: 904px)": {
+      width: "100vw",
+      height: "100vh",
+      borderTopLeftRadius: 0,
+      borderTopRightRadius: 0,
+      borderBottomLeftRadius: 0,
+      borderBottomRightRadius: 0,
+    },
+  },
+});
+
+const body = $create({
+  default: {
     flex: 1,
     overflow: "auto",
     overscrollBehavior: "contain",
   },
 });
+
+const styles = {
+  stackLevel,
+  container,
+  overlay,
+  panel,
+  body,
+};
 
 export default styles;

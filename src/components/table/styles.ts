@@ -28,6 +28,10 @@ const body = $create({
   bordered: {
     borderInlineWidth: sizes.smallest,
   },
+
+  child: {
+    paddingInlineStart: `calc(var(--depth) * ${spacing.large})`,
+  },
 });
 
 const styles = {

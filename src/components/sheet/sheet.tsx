@@ -29,6 +29,7 @@ const Sheet = ({
   size = 400,
   closable = true,
   header,
+  footer,
   className,
   panelClassName,
   panelStyle,
@@ -95,11 +96,15 @@ const Sheet = ({
   }, [visible, ..._placement]);
 
   const styled = {
-    stackLevel: $props(styles.stackLevel),
-    container: $props(styles.stackLevel, styles.container, modal && styles.modal),
-    overlay: $props(styles.overlay),
-    panel: $props(styles.panel, styles[placement]),
-    body: $props(styles.body),
+    stackLevel: $props(styles.stackLevel.default),
+    container: $props(
+      styles.stackLevel.default,
+      styles.container.default,
+      modal && styles.container.modal,
+    ),
+    overlay: $props(styles.overlay.default),
+    panel: $props(styles.panel.default, styles.panel[placement], styles.panel.fullscreen),
+    body: $props(styles.body.default),
   };
 
   return (
@@ -118,7 +123,7 @@ const Sheet = ({
             ...styled.container.style,
             ...themeColorVars,
             "--default-position": at(_placement, 0),
-            "--size": `${size}px`,
+            "--size": typeof size === "number" ? `${size}px` : size,
           }}
           onKeyDown={onKeyDown}
         >
@@ -146,6 +151,9 @@ const Sheet = ({
             >
               {children}
             </div>
+
+            {/* 底部插槽 */}
+            {footer}
           </div>
         </div>
       </StackLevelContext>

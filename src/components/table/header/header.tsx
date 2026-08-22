@@ -7,6 +7,7 @@ import { props as $props } from "@stylexjs/stylex";
 import { stringify } from "@aiszlab/relax/class-name";
 import { $label } from "../../../components/theme/theme";
 import { useThemeColorVars } from "../../../hooks/use-theme-color-vars";
+import { EXPAND_COLUMN_ID } from "../context";
 
 const Header = <T,>(props: HeaderProps) => {
   const { table, bordered, classNames } = useTable<T>();
@@ -33,7 +34,14 @@ const Header = <T,>(props: HeaderProps) => {
       {headerGroups.map((headerGroup) => (
         <tr key={headerGroup.id}>
           {headerGroup.headers.map((header) => (
-            <th key={header.id} className={stringify(styled.className)} style={styled.style}>
+            <th
+              key={header.id}
+              className={stringify(
+                styled.className,
+                header.column.id === EXPAND_COLUMN_ID && classNames.expandColumn,
+              )}
+              style={styled.style}
+            >
               {header.isPlaceholder
                 ? null
                 : flexRender(header.column.columnDef.header, header.getContext())}

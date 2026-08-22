@@ -17,6 +17,31 @@ This file provides guidance to coding agents working with code in this repositor
 
 - **Storybook comments exception.** Storybook story files (`stories/*.stories.ts`) do NOT need bilingual `@zh`/`@en` JSDoc comments. Use `/** */` block comments with plain single-language text instead.
 
+## Reuse `@aiszlab/relax`
+
+- Before implementing a generic predicate, type guard, state helper, event wrapper, or other
+  framework-agnostic utility, check whether `@aiszlab/relax` already exposes an equivalent API.
+- Prefer the shared `@aiszlab/relax` API over handwritten JavaScript checks so behavior and type
+  narrowing remain consistent across the repository.
+- In particular, use `isFunction(value)` instead of `typeof value === "function"` and
+  `isUndefined(value)` instead of `value === undefined` or `typeof value === "undefined"`.
+- Import these helpers directly from `@aiszlab/relax`; do not create component-local wrappers for
+  equivalent checks.
+- When reviewing or modifying nearby code, keep all equivalent checks within the touched scope on
+  the shared helper rather than mixing handwritten checks with `@aiszlab/relax` predicates.
+
+Example:
+
+```ts
+import { isFunction, isUndefined } from "@aiszlab/relax";
+
+const next = isFunction(updater) ? updater(previous) : updater;
+
+if (isUndefined(value)) {
+  // handle the absent value
+}
+```
+
 ## Project Overview
 
 `musae` is a React UI component library (~60+ components) built on Material Design 3 principles. It uses **StyleX** (Meta's CSS-in-JS) for styling, **Rollup** for bundling, and **RxJS** for internal reactive state management.
@@ -59,14 +84,14 @@ pnpm run version
 
 Each component lives in `src/components/<name>/` with this pattern:
 
-| File | Purpose |
-|------|---------|
-| `index.ts` | Public re-export |
-| `<name>.tsx` | Main component implementation |
-| `styles.ts` | StyleX styles (`$create(...)`) |
-| `hooks.ts` (or `hooks/`) | Component-specific hooks |
-| `context.ts` | React context and BEM class name constants |
-| `__test__/` | Jest tests with snapshots |
+| File                     | Purpose                                    |
+| ------------------------ | ------------------------------------------ |
+| `index.ts`               | Public re-export                           |
+| `<name>.tsx`             | Main component implementation              |
+| `styles.ts`              | StyleX styles (`$create(...)`)             |
+| `hooks.ts` (or `hooks/`) | Component-specific hooks                   |
+| `context.ts`             | React context and BEM class name constants |
+| `__test__/`              | Jest tests with snapshots                  |
 
 All component prop types are defined separately in `src/types/<name>.ts`.
 
@@ -106,6 +131,7 @@ The form system in `src/utils/form.ts` uses a `Form<T>` class that internally ma
 ### Popover/Popper Architecture
 
 Layered positioning system:
+
 - **`Popper`** — base layer: renders children in a `<Portal>`, delegates positioning to `Dropdown`.
 - **`Dropdown`** — uses `@floating-ui/dom` hooks for positioning logic.
 - **`Popover`** — higher-level component built on `Popper` with trigger, content, and interaction management.
@@ -114,10 +140,12 @@ Layered positioning system:
 ### Imperative APIs
 
 `Message` and `Notification` expose static methods for imperative use:
+
 ```ts
 Message.info({ content: "Hello" });
 Notification.open({ content: "Saved", type: "success" });
 ```
+
 They use a `Holder` component rendered inside `ConfigProvider` that manages the notification stack via a ref.
 
 ### StackLevelContext
@@ -126,21 +154,22 @@ Located in `src/contexts/stack-level.context.ts`, this context provides z-index 
 
 ### Key External Libraries
 
-| Library | Role |
-|---------|------|
-| `@stylexjs/stylex` | CSS-in-JS styling (`$create`, `$props`) |
-| `@aiszlab/relax` | Internal utility library — `merge` (deep merge), `useEvent`, `useDefault`, `useMounted`, `stringify`/`normalize` (class names), `toArray`, `at`, `contains`, `isFunction` |
-| `@aiszlab/fuzzy` | Fuzzy search and color utilities (`hexToRgba`) |
-| `@floating-ui/dom` | Positioning for popovers, tooltips, dropdowns |
-| `motion` (formerly framer-motion) | Animations (`animate()`) |
-| `rxjs` | Reactive state (Form, Theme mode switching) |
-| `@tanstack/react-table` | Headless table for the `Table` component |
-| `lexical` | Rich text editor framework for `RichTextEditor` |
-| `dayjs` | Date manipulation |
+| Library                           | Role                                                                                                                                                                      |
+| --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `@stylexjs/stylex`                | CSS-in-JS styling (`$create`, `$props`)                                                                                                                                   |
+| `@aiszlab/relax`                  | Internal utility library — `merge` (deep merge), `useEvent`, `useDefault`, `useMounted`, `stringify`/`normalize` (class names), `toArray`, `at`, `contains`, `isFunction` |
+| `@aiszlab/fuzzy`                  | Fuzzy search and color utilities (`hexToRgba`)                                                                                                                            |
+| `@floating-ui/dom`                | Positioning for popovers, tooltips, dropdowns                                                                                                                             |
+| `motion` (formerly framer-motion) | Animations (`animate()`)                                                                                                                                                  |
+| `rxjs`                            | Reactive state (Form, Theme mode switching)                                                                                                                               |
+| `@tanstack/react-table`           | Headless table for the `Table` component                                                                                                                                  |
+| `lexical`                         | Rich text editor framework for `RichTextEditor`                                                                                                                           |
+| `dayjs`                           | Date manipulation                                                                                                                                                         |
 
 ### Build Output
 
 Rollup produces dual-format output (`.mjs` ESM + `.cjs` CJS) with `preserveModules: true`. Multiple entry points:
+
 - `musae` — main component exports
 - `musae/styles.css` — extracted StyleX CSS
 - `musae/locales` — locale strings
