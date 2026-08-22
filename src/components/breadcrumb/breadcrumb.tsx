@@ -1,27 +1,13 @@
+import styles from "./styles";
 import React from "react";
 import type { BreadcrumbProps } from "../../types/breadcrumb";
-import { create as $create, props as $props } from "@stylexjs/stylex";
+import { props as $props } from "@stylexjs/stylex";
 import { $label } from "../theme/theme";
 import { useTheme } from "../theme";
 import { useClassNames } from "../../hooks/use-class-names";
 import { stringify } from "@aiszlab/relax/class-name";
 import Item from "./item";
-import { spacing } from "../theme/tokens.stylex";
 import { CLASS_NAMES, Context } from "./context";
-
-const styles = $create({
-  breadcrumb: {
-    color: "var(--color-on-surface-variant)",
-  },
-
-  navigations: {
-    margin: spacing.none,
-    padding: spacing.none,
-    listStyleType: "none",
-    display: "flex",
-    flexWrap: "wrap",
-  },
-});
 
 const Breadcrumb = ({ items = [], className, separator = "/", style }: BreadcrumbProps) => {
   const theme = useTheme();
@@ -33,8 +19,8 @@ const Breadcrumb = ({ items = [], className, separator = "/", style }: Breadcrum
   }
 
   const styled = {
-    breadcrumb: $props($label.large, styles.breadcrumb),
-    navigations: $props(styles.navigations),
+    breadcrumb: $props($label.large, styles.breadcrumb.default),
+    navigations: $props(styles.breadcrumb.navigations),
   };
 
   return (

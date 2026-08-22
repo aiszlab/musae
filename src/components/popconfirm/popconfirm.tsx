@@ -1,55 +1,19 @@
+import styles from "./styles";
 import React, { cloneElement, useRef, useMemo, isValidElement, type MouseEvent } from "react";
 import type { PopconfirmProps, ChildProps } from "../../types/popconfirm";
-import { create as $create, props as $props } from "@stylexjs/stylex";
+import { props as $props } from "@stylexjs/stylex";
 import { Space } from "../space";
 import { Button } from "../button";
 import { useBoolean, useClickAway, useEvent } from "@aiszlab/relax";
 import { IconWarning } from "../icon/icons";
 import { Popper } from "../popper";
-import { spacing } from "../theme/tokens.stylex";
 import { useLocale } from "../../locale";
 import type { PopperRef } from "../../types/popper";
 import { stringify } from "@aiszlab/relax/class-name";
 import { useClassNames } from "../../hooks/use-class-names";
 import { CLASS_NAMES } from "./context";
 import { $body, $title } from "../theme/theme";
-import { type ThemeColorVariable, useThemeColorVars } from "../../hooks/use-theme-color-vars";
-
-const styles = $create({
-  popconfirm: {
-    padding: spacing.medium,
-    maxWidth: "100vw",
-
-    // layout
-    display: "grid",
-    gridTemplateAreas: "'leading title' '. content' 'footer footer'",
-    gap: spacing.xxsmall,
-  },
-
-  simple: {
-    gridTemplateAreas: "'leading content' 'footer footer'",
-  },
-
-  leading: {
-    gridArea: "leading",
-    display: "flex",
-    alignSelf: "center",
-    color: "var(--color-warning)" satisfies ThemeColorVariable,
-  },
-
-  title: {
-    gridArea: "title",
-  },
-
-  content: {
-    gridArea: "content",
-  },
-
-  footer: {
-    gridArea: "footer",
-    justifyContent: "flex-end",
-  },
-});
+import { useThemeColorVars } from "../../hooks/use-theme-color-vars";
 
 const Popconfirm = ({
   content,

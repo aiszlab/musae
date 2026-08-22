@@ -1,7 +1,7 @@
+import styles from "./styles";
 import React, { useContext, forwardRef } from "react";
 import type { AvatarProps } from "../../types/avatar";
-import { create as $create, props as $props } from "@stylexjs/stylex";
-import { sizes, spacing } from "../theme/tokens.stylex";
+import { props as $props } from "@stylexjs/stylex";
 import Context, { CLASS_NAMES } from "./context";
 import { useTheme } from "../theme";
 import { $label } from "../theme/theme";
@@ -9,68 +9,6 @@ import { useImageLoader } from "@aiszlab/relax";
 import { stringify } from "@aiszlab/relax/class-name";
 import { Skeleton } from "../skeleton";
 import { useClassNames } from "../../hooks/use-class-names";
-
-const styles = $create({
-  avatar: {
-    borderWidth: sizes.smallest,
-    borderStyle: "solid",
-    borderColor: "transparent",
-    boxSizing: "border-box",
-    backgroundColor: "var(--color-primary-container)",
-    color: "var(--color-primary)",
-    alignItems: "center",
-    justifyContent: "center",
-    userSelect: "none",
-
-    display: "inline-flex",
-    verticalAlign: "middle",
-
-    // 阻止在`flex`布局下被压缩
-    flexShrink: 0,
-  },
-
-  loading: {
-    display: "inline-block",
-    verticalAlign: "middle",
-  },
-
-  image: {
-    objectFit: "cover",
-    objectPosition: "center center",
-    borderRadius: "inherit",
-  },
-
-  overlapping: {
-    ":not(:first-child)": {
-      marginInlineStart: `calc(${spacing.xxsmall} * -1)`,
-    },
-
-    borderColor: "var(--color-on-primary)",
-  },
-
-  circular: {
-    borderRadius: sizes.infinity,
-  },
-
-  squared: {
-    borderRadius: sizes.xxxxxxxxxsmall,
-  },
-
-  small: {
-    width: sizes.xsmall,
-    height: sizes.xsmall,
-  },
-
-  medium: {
-    width: sizes.medium,
-    height: sizes.medium,
-  },
-
-  large: {
-    width: sizes.xlarge,
-    height: sizes.xlarge,
-  },
-});
 
 /**
  * @description
@@ -102,19 +40,19 @@ const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(
     const styled = {
       avatar: $props(
         $label[size],
-        styles.avatar,
-        styles[size],
-        styles[shape],
-        isInGroup && styles.overlapping,
+        styles.avatar.default,
+        styles.avatar[size],
+        styles.avatar[shape],
+        isInGroup && styles.avatar.overlapping,
       ),
       loading: $props(
         $label[size],
-        styles.loading,
-        styles[size],
-        styles[shape],
-        isInGroup && styles.overlapping,
+        styles.loading.default,
+        styles.avatar[size],
+        styles.avatar[shape],
+        isInGroup && styles.avatar.overlapping,
       ),
-      image: $props(styles.image, styles[size]),
+      image: $props(styles.image.default, styles.avatar[size]),
     };
 
     if (loadStatus === "loading") {

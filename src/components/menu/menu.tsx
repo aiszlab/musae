@@ -1,20 +1,13 @@
+import styles from "./styles";
 import React, { forwardRef, useImperativeHandle } from "react";
 import type { MenuProps, MenuRef } from "../../types/menu";
 import { Context, CLASS_NAMES } from "./context";
 import { useScrollable } from "@aiszlab/relax";
 import { useContextValue, useScrollOrientation } from "./hooks";
 import Group from "./group";
-import { create as $create, props as $props } from "@stylexjs/stylex";
+import { props as $props } from "@stylexjs/stylex";
 import { useClassNames } from "../../hooks/use-class-names";
 import { stringify } from "@aiszlab/relax/class-name";
-
-const styles = $create({
-  menu: {
-    // add position reason: when read li offsetTop, if parent is not relative, then it will read wrong value
-    // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetTop
-    position: "relative",
-  },
-});
 
 /**
  * @author murukal
@@ -63,7 +56,7 @@ const Menu = forwardRef<MenuRef, MenuProps>(
       },
     }));
 
-    const styled = $props(styles.menu);
+    const styled = $props(styles.menu.default);
 
     return (
       <Context.Provider value={contextValue}>

@@ -1,24 +1,10 @@
+import styles from "./styles";
 import React, { type Key, type ReactNode, useMemo } from "react";
-import { create as $create, props as $props } from "@stylexjs/stylex";
-import { spacing } from "../theme/tokens.stylex";
+import { props as $props } from "@stylexjs/stylex";
 import { type PanelsProps } from "../../types/tabs";
 import { stringify } from "@aiszlab/relax/class-name";
 import { isUndefined } from "@aiszlab/relax";
 import { useTabsContext } from "./hooks/use-tabs-context";
-
-const styles = {
-  panels: $create({
-    default: {
-      padding: spacing.xxxlarge,
-    },
-  }),
-
-  panel: $create({
-    hidden: {
-      display: "none",
-    },
-  }),
-};
 
 const Panels = ({ forceRender, destroyable, activatedKeys }: PanelsProps) => {
   const { items, activeKey, classNames } = useTabsContext();

@@ -1,79 +1,140 @@
 import { create as $create, type CompiledStyles, type StyleXArray } from "@stylexjs/stylex";
 import { duration, elevations, sizes, spacing } from "../theme/tokens.stylex";
-import type { Size } from "../../types/button";
+import { Size } from "../../types/button";
 import { $headline, $label, $title } from "../theme/theme";
 import { type ThemeColorVariable } from "../../hooks/use-theme-color-vars";
 
 type ShapeCSSProperties = Partial<Record<Size, { borderRadius: string }>>;
+const button = $create({
+  default: {
+    display: "inline-flex",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: spacing.xxsmall,
+    transitionProperty: "background-color, color, box-shadow",
+    transitionDuration: duration.medium,
+    willChange: "background-color, color, box-shadow",
+
+    // reset styles
+    borderWidth: sizes.none,
+    backgroundColor: "transparent",
+    overflow: "hidden",
+    whiteSpace: "nowrap",
+    textOverflow: "ellipsis",
+    cursor: "pointer",
+    fontFamily: "inherit",
+    boxSizing: "border-box",
+    height: "fit-content",
+
+    // 元素设置为`inline-flex`后，会在父元素`flex`布局下被自动压缩
+    // 使用`flex-shrink`保证元素不能被压缩
+    flexShrink: 0,
+  },
+
+  rippleable: {
+    position: "relative",
+  },
+});
+
+const variant = $create({
+  filled: {
+    borderWidth: sizes.none,
+    backgroundColor: "var(--color-button)",
+    color: "var(--color-on-button)",
+
+    ":hover": {
+      "@media (hover: hover)": {
+        boxShadow: elevations.xsmall,
+      },
+    },
+  },
+
+  outlined: {
+    borderWidth: sizes.smallest,
+    borderStyle: "solid",
+    borderColor: "var(--color-button)",
+    color: "var(--color-button)",
+
+    ":hover": {
+      "@media (hover: hover)": {
+        backgroundColor: "var(--color-button-opacity-08)",
+      },
+    },
+  },
+
+  text: {
+    color: "var(--color-button)",
+
+    ":hover": {
+      "@media (hover: hover)": {
+        backgroundColor: "var(--color-button-opacity-08)",
+      },
+    },
+  },
+});
+
+const size = $create({
+  xsmall: {
+    paddingBlock: spacing.xxxsmall,
+    paddingInline: spacing.medium,
+  },
+
+  small: {
+    paddingBlock: spacing.xsmall,
+    paddingInline: spacing.large,
+  },
+
+  medium: {
+    paddingBlock: spacing.large,
+    paddingInline: spacing.xxxlarge,
+  },
+
+  large: {
+    paddingBlock: spacing.xxxxxxlarge,
+    paddingInline: spacing.xxxxxxxxlarge,
+  },
+
+  xlarge: {
+    paddingBlock: spacing.xxxxxxxxlarge,
+    paddingInline: spacing.xxxxxxxxxxlarge,
+  },
+});
+
+const disabled = $create({
+  default: {
+    color: "var(--color-on-surface-opacity-38)" satisfies ThemeColorVariable,
+    cursor: "not-allowed",
+    boxShadow: null,
+    borderColor: null,
+    backgroundColor: null,
+
+    ":hover": {
+      "@media (hover: hover)": {
+        boxShadow: null,
+      },
+    },
+  },
+
+  filled: {
+    backgroundColor: "var(--color-on-surface-opacity-12)",
+  },
+
+  outlined: {
+    borderColor: "var(--color-on-surface-opacity-38)",
+  },
+
+  text: {
+    ":hover": {
+      "@media (hover: hover)": {
+        backgroundColor: null,
+      },
+    },
+  },
+});
 
 const styles = {
-  button: $create({
-    default: {
-      display: "inline-flex",
-      alignItems: "center",
-      justifyContent: "center",
-      gap: spacing.xxsmall,
-      transitionProperty: "background-color, color, box-shadow",
-      transitionDuration: duration.medium,
-      willChange: "background-color, color, box-shadow",
-
-      // reset styles
-      borderWidth: sizes.none,
-      backgroundColor: "transparent",
-      overflow: "hidden",
-      whiteSpace: "nowrap",
-      textOverflow: "ellipsis",
-      cursor: "pointer",
-      fontFamily: "inherit",
-      boxSizing: "border-box",
-      height: "fit-content",
-
-      // 元素设置为`inline-flex`后，会在父元素`flex`布局下被自动压缩
-      // 使用`flex-shrink`保证元素不能被压缩
-      flexShrink: 0,
-    },
-
-    rippleable: {
-      position: "relative",
-    },
-  }),
-
-  variant: $create({
-    filled: {
-      borderWidth: sizes.none,
-      backgroundColor: "var(--color-button)",
-      color: "var(--color-on-button)",
-
-      ":hover": {
-        "@media (hover: hover)": {
-          boxShadow: elevations.xsmall,
-        },
-      },
-    },
-
-    outlined: {
-      borderWidth: sizes.smallest,
-      borderStyle: "solid",
-      borderColor: "var(--color-button)",
-      color: "var(--color-button)",
-
-      ":hover": {
-        "@media (hover: hover)": {
-          backgroundColor: "var(--color-button-opacity-08)",
-        },
-      },
-    },
-
-    text: {
-      color: "var(--color-button)",
-
-      ":hover": {
-        "@media (hover: hover)": {
-          backgroundColor: "var(--color-button-opacity-08)",
-        },
-      },
-    },
-  }),
+  button,
+  variant,
 
   shape: {
     round: $create<ShapeCSSProperties>({
@@ -104,65 +165,8 @@ const styles = {
       },
     }),
   },
-
-  size: $create({
-    xsmall: {
-      paddingBlock: spacing.xxxsmall,
-      paddingInline: spacing.medium,
-    },
-
-    small: {
-      paddingBlock: spacing.xsmall,
-      paddingInline: spacing.large,
-    },
-
-    medium: {
-      paddingBlock: spacing.large,
-      paddingInline: spacing.xxxlarge,
-    },
-
-    large: {
-      paddingBlock: spacing.xxxxxxlarge,
-      paddingInline: spacing.xxxxxxxxlarge,
-    },
-
-    xlarge: {
-      paddingBlock: spacing.xxxxxxxxlarge,
-      paddingInline: spacing.xxxxxxxxxxlarge,
-    },
-  }),
-
-  disabled: $create({
-    default: {
-      color: "var(--color-on-surface-opacity-38)" satisfies ThemeColorVariable,
-      cursor: "not-allowed",
-      boxShadow: null,
-      borderColor: null,
-      backgroundColor: null,
-
-      ":hover": {
-        "@media (hover: hover)": {
-          boxShadow: null,
-        },
-      },
-    },
-
-    filled: {
-      backgroundColor: "var(--color-on-surface-opacity-12)",
-    },
-
-    outlined: {
-      borderColor: "var(--color-on-surface-opacity-38)",
-    },
-
-    text: {
-      ":hover": {
-        "@media (hover: hover)": {
-          backgroundColor: null,
-        },
-      },
-    },
-  }),
+  size,
+  disabled,
 };
 
 /**

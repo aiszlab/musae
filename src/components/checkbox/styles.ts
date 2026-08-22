@@ -1,27 +1,54 @@
 import { create as $create } from "@stylexjs/stylex";
 import { duration, opacity, sizes, spacing } from "../theme/tokens.stylex";
 
+const checkbox = $create({
+  default: {
+    display: "inline-flex",
+    alignItems: "center",
+    cursor: "pointer",
+    userSelect: "none",
+  },
+
+  disabled: {
+    cursor: "not-allowed",
+    opacity: opacity.thickest,
+  },
+
+  medium: {
+    "--size": sizes.xxxsmall,
+    "--check-size": sizes.xsmall,
+    "--border-width": sizes.xxxxxxxxxxsmall,
+    "--check-offset": "calc(((var(--check-size) - var(--size)) / 2 + var(--border-width)) * -1)",
+  },
+});
+
+const input = $create({
+  default: {
+    display: "none",
+  },
+});
+
+const check = $create({
+  default: {
+    position: "absolute",
+    width: "var(--check-size)",
+    height: "var(--check-size)",
+    transform: "translate(var(--check-offset), var(--check-offset))",
+  },
+});
+
+const label = $create({
+  default: {
+    paddingInline: spacing.xxxsmall,
+  },
+
+  invalid: {
+    color: "var(--color-error)",
+  },
+});
+
 const styles = {
-  checkbox: $create({
-    default: {
-      display: "inline-flex",
-      alignItems: "center",
-      cursor: "pointer",
-      userSelect: "none",
-    },
-
-    disabled: {
-      cursor: "not-allowed",
-      opacity: opacity.thickest,
-    },
-
-    medium: {
-      "--size": sizes.xxxsmall,
-      "--check-size": sizes.xsmall,
-      "--border-width": sizes.xxxxxxxxxxsmall,
-      "--check-offset": "calc(((var(--check-size) - var(--size)) / 2 + var(--border-width)) * -1)",
-    },
-  }),
+  checkbox,
 
   layer: {
     default: $create({
@@ -145,31 +172,9 @@ const styles = {
       },
     }),
   },
-
-  input: $create({
-    default: {
-      display: "none",
-    },
-  }),
-
-  check: $create({
-    default: {
-      position: "absolute",
-      width: "var(--check-size)",
-      height: "var(--check-size)",
-      transform: "translate(var(--check-offset), var(--check-offset))",
-    },
-  }),
-
-  label: $create({
-    default: {
-      paddingInline: spacing.xxxsmall,
-    },
-
-    invalid: {
-      color: "var(--color-error)",
-    },
-  }),
+  input,
+  check,
+  label,
 };
 
 export default styles;

@@ -1,4 +1,5 @@
-import { create as $create, props as $props } from "@stylexjs/stylex";
+import styles from "./styles";
+import { props as $props } from "@stylexjs/stylex";
 import { EllipsisProps } from "../../types/ellipsis";
 import { Tooltip } from "../tooltip";
 import React, { useLayoutEffect, useRef, useState } from "react";
@@ -6,17 +7,6 @@ import { exceedAt } from "./utils";
 import { stringify } from "@aiszlab/relax/class-name";
 import { useClassNames } from "../../hooks/use-class-names";
 import { CLASS_NAMES } from "./context";
-
-const styles = $create({
-  ellipsis: {
-    overflow: "hidden",
-  },
-
-  virtual: {
-    position: "fixed",
-    visibility: "hidden",
-  },
-});
 
 const Ellipsis = ({
   value = "",

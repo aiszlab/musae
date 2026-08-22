@@ -1,6 +1,6 @@
+import styles from "./styles";
 import React, { useContext } from "react";
-import { create as $create, props as $props } from "@stylexjs/stylex";
-import { sizes } from "../theme/tokens.stylex";
+import { props as $props } from "@stylexjs/stylex";
 import Context from "./context";
 import { stringify } from "@aiszlab/relax/class-name";
 import { useTheme } from "../theme";
@@ -8,85 +8,6 @@ import { useDraggable, useEvent } from "@aiszlab/relax";
 import { DividerProps } from "../../types/split-panel";
 import { useDrag } from "@aiszlab/relax";
 import { RequiredTo } from "@aiszlab/relax/types";
-
-const styles = {
-  divider: $create({
-    default: {
-      position: "relative",
-    },
-
-    horizontal: {
-      width: sizes.none,
-    },
-
-    vertical: {
-      height: sizes.none,
-    },
-  }),
-
-  dragger: $create({
-    default: {
-      position: "absolute",
-
-      "::before": {
-        content: "''",
-        display: "block",
-        position: "absolute",
-        backgroundColor: "var(--color-outline-variant)",
-      },
-
-      "::after": {
-        content: "''",
-        display: "block",
-        position: "absolute",
-        backgroundColor: "var(--color-outline)",
-        insetInlineStart: sizes.half,
-        insetBlockStart: sizes.half,
-        transform: "translate(-50%, -50%)",
-      },
-    },
-
-    horizontal: {
-      width: sizes.xxxxxxxsmall,
-      height: sizes.full,
-      cursor: "col-resize",
-      insetInlineStart: sizes.half,
-      transform: "translateX(-50%)",
-
-      "::before": {
-        width: sizes.xxxxxxxxxxsmall,
-        height: sizes.full,
-        insetInlineStart: sizes.half,
-        transform: "translateX(-50%)",
-      },
-
-      "::after": {
-        width: sizes.xxxxxxxxxxsmall,
-        height: sizes.xxsmall,
-      },
-    },
-
-    vertical: {
-      width: sizes.full,
-      height: sizes.xxxxxxxsmall,
-      cursor: "row-resize",
-      insetBlockStart: sizes.half,
-      transform: "translateY(-50%)",
-
-      "::before": {
-        width: sizes.full,
-        height: sizes.xxxxxxxxxxsmall,
-        insetBlockStart: sizes.half,
-        transform: "translateY(-50%)",
-      },
-
-      "::after": {
-        width: sizes.xxsmall,
-        height: sizes.xxxxxxxxxxsmall,
-      },
-    },
-  }),
-};
 
 const Divider = ({ onDragMove, onDragEnd }: DividerProps) => {
   const { classNames, orientation } = useContext(Context);

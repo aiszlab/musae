@@ -1,3 +1,4 @@
+import styles from "./styles";
 import React, {
   forwardRef,
   useImperativeHandle,
@@ -8,32 +9,12 @@ import React, {
 import type { SelectorProps, SelectorRef } from "../../types/select";
 import { Tag } from "../tag";
 import { styles as inputStyles } from "../input";
-import { create as $create, props as $props } from "@stylexjs/stylex";
+import { props as $props } from "@stylexjs/stylex";
 import { Context } from "../picker";
 import { $body } from "../theme/theme";
-import { type ThemeColorVariable, useThemeColorVars } from "../../hooks/use-theme-color-vars";
+import { useThemeColorVars } from "../../hooks/use-theme-color-vars";
 import { OPACITY } from "../theme/tokens.stylex";
 import { isMultiple } from "./utils";
-
-const styles = {
-  input: {
-    focused: $create({
-      default: {},
-
-      searchable: {
-        "::placeholder": {
-          color: "var(--color-on-surface)" satisfies ThemeColorVariable,
-        },
-      },
-    }),
-  },
-
-  placeholder: $create({
-    default: {
-      color: "var(--color-on-surface-opacity-38)" satisfies ThemeColorVariable,
-    },
-  }),
-};
 
 const Selector = forwardRef<SelectorRef, SelectorProps>(
   (
@@ -61,11 +42,11 @@ const Selector = forwardRef<SelectorRef, SelectorProps>(
     const styled = {
       input: $props(
         inputStyles.input,
-        styles.input.focused.default,
-        isFocused && searchable && styles.input.focused.searchable,
+        styles.selector.input.focused.default,
+        isFocused && searchable && styles.selector.input.focused.searchable,
         $body.small,
       ),
-      placeholder: $props(styles.placeholder.default),
+      placeholder: $props(styles.selector.placeholder.default),
     };
 
     // multiple mode render

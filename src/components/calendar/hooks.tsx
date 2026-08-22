@@ -1,69 +1,17 @@
+import styles from "./styles";
 import dayjs, { type Dayjs } from "dayjs";
 import React, { type ReactNode, useCallback, useMemo, useState } from "react";
 import { toArray } from "@aiszlab/relax";
 import { Timespan } from "../../utils/timespan";
 import { stringify } from "@aiszlab/relax/class-name";
 import type { CalendarProps } from "../../types/calendar";
-import { create as $create, props as $props } from "@stylexjs/stylex";
-import { positions, sizes, spacing } from "../theme/tokens.stylex";
+import { props as $props } from "@stylexjs/stylex";
+import { positions } from "../theme/tokens.stylex";
 import { IconButton } from "../icon-button";
 import type { CLASS_NAMES } from "./context";
 import { Partialable } from "@aiszlab/relax/types";
 import { $body } from "../theme/theme";
-import { type ThemeColorVariable, useThemeColorVars } from "../../hooks/use-theme-color-vars";
-
-const styles = $create({
-  cell: {
-    height: sizes.large,
-    width: sizes.large,
-    padding: spacing.none,
-    textAlign: "center",
-  },
-
-  header: {
-    color: "var(--color-on-surface-variant)" satisfies ThemeColorVariable,
-  },
-
-  date: {
-    position: "relative",
-
-    "::before": {
-      content: "''",
-      position: "absolute",
-      backgroundColor: "var(--color-secondary-container)" satisfies ThemeColorVariable,
-      height: sizes.xlarge,
-    },
-  },
-
-  hidden: {
-    visibility: "hidden",
-  },
-
-  range: {
-    "::before": {
-      insetInlineStart: `calc(${spacing.xxxxxxsmall} * -1)`,
-      insetInlineEnd: `calc(${spacing.xxxxxxsmall} * -1)`,
-    },
-  },
-
-  from: {
-    "::before": {
-      insetInlineStart: "50%",
-      insetInlineEnd: `calc(${spacing.xxxxxxsmall} * -1)`,
-    },
-  },
-
-  to: {
-    "::before": {
-      insetInlineStart: `calc(${spacing.xxxxxxsmall} * -1)`,
-      insetInlineEnd: "50%",
-    },
-  },
-
-  trigger: {
-    margin: spacing.auto,
-  },
-});
+import { useThemeColorVars } from "../../hooks/use-theme-color-vars";
 
 /**
  * @description
@@ -73,7 +21,7 @@ export const useHeadCells = ({ classNames }: { classNames: typeof CLASS_NAMES })
   const _themeColorVars = useThemeColorVars(["on-surface-variant"]);
 
   return useMemo(() => {
-    const styled = $props(styles.cell, styles.header, $body.medium);
+    const styled = $props(styles.hooks.cell, styles.hooks.header, $body.medium);
 
     return dayjs.Ls[dayjs.locale()].weekdays?.map((weekday, index) => (
       <th
@@ -132,15 +80,15 @@ export const useDateCells = ({
 
         const styled = {
           cell: $props(
-            styles.cell,
-            styles.date,
-            isHidden && styles.hidden,
-            isBetween && styles.range,
-            isFrom && timespan.isRange && styles.from,
-            isTo && timespan.isRange && styles.to,
+            styles.hooks.cell,
+            styles.hooks.date,
+            isHidden && styles.hooks.hidden,
+            isBetween && styles.hooks.range,
+            isFrom && timespan.isRange && styles.hooks.from,
+            isTo && timespan.isRange && styles.hooks.to,
             $body.large,
           ),
-          trigger: $props(styles.trigger),
+          trigger: $props(styles.hooks.trigger),
         };
 
         prev.at(prev.length - 1)?.push(

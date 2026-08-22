@@ -1,27 +1,11 @@
+import styles from "./styles";
 import React, { useContext } from "react";
-import { create as $create, props as $props } from "@stylexjs/stylex";
+import { props as $props } from "@stylexjs/stylex";
 import type { LinearProps } from "../../types/progress";
 import { stringify } from "@aiszlab/relax/class-name";
-import { sizes } from "../theme/tokens.stylex";
 import { useValue } from "./hooks";
 import Context from "./context";
-import { type ThemeColorVariable, useThemeColorVars } from "../../hooks/use-theme-color-vars";
-
-const styles = $create({
-  progress: {
-    width: sizes.full,
-    height: sizes.xxxxxxxxxsmall,
-    backgroundColor: "var(--color-primary-container)" satisfies ThemeColorVariable,
-    borderRadius: sizes.infinity,
-  },
-
-  segment: {
-    width: "var(--width)",
-    height: sizes.full,
-    borderRadius: sizes.infinity,
-    backgroundColor: "var(--color-primary)" satisfies ThemeColorVariable,
-  },
-});
+import { useThemeColorVars } from "../../hooks/use-theme-color-vars";
 
 const Linear = ({ value: _value, className, style }: LinearProps) => {
   const { classNames } = useContext(Context);
@@ -29,8 +13,8 @@ const Linear = ({ value: _value, className, style }: LinearProps) => {
   const _themeColorVars = useThemeColorVars(["primary-container", "primary"]);
 
   const styled = {
-    progress: $props(styles.progress),
-    segment: $props(styles.segment),
+    progress: $props(styles.linear.progress),
+    segment: $props(styles.linear.segment),
   };
 
   return (

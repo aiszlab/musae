@@ -1,3 +1,4 @@
+import styles from "./styles";
 import React, { type MouseEvent as _MouseEvent, forwardRef, useRef } from "react";
 import { useComposedRef, useDraggable, useEvent } from "@aiszlab/relax";
 import { stringify } from "@aiszlab/relax/class-name";
@@ -5,37 +6,9 @@ import type { FabProps } from "../../types/fab";
 import { useContainer } from "../../hooks/use-container";
 import { Portal } from "../portal";
 import { IconButton } from "../icon-button";
-import { create as $create, props as $props } from "@stylexjs/stylex";
-import { spacing } from "../theme/tokens.stylex";
+import { props as $props } from "@stylexjs/stylex";
 import { useClassNames } from "../../hooks/use-class-names";
 import { CLASS_NAMES } from "./context";
-
-const styles = $create({
-  default: {
-    cursor: "pointer",
-    pointerEvents: "auto",
-    transform: "translateX(var(--movement-x)) translateY(var(--movement-y))",
-    insetInlineEnd: spacing.xxxlarge,
-    insetBlockEnd: spacing.xxxlarge,
-
-    // use higher selector
-    ":not(#\\#)": {
-      position: "absolute",
-    },
-  },
-
-  dragged: {
-    insetInlineEnd: null,
-    insetBlockEnd: null,
-    insetInlineStart: "var(--left)",
-    insetBlockStart: "var(--top)",
-  },
-
-  icon: {
-    pointerEvents: "none",
-    display: "inline-flex",
-  },
-});
 
 const Fab = forwardRef<HTMLButtonElement, FabProps>(
   ({ container, children, onClick: click, ...props }, ref) => {

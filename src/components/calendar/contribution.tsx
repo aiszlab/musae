@@ -1,7 +1,7 @@
+import styles from "./styles";
 import dayjs from "dayjs";
 import React, { useMemo } from "react";
-import { create as $create, props as $props } from "@stylexjs/stylex";
-import { sizes, spacing } from "../theme/tokens.stylex";
+import { props as $props } from "@stylexjs/stylex";
 import { useTheme } from "../theme";
 import { Tooltip } from "../tooltip";
 import { clamp, min, toFunction } from "@aiszlab/relax";
@@ -12,84 +12,6 @@ import { useLocale } from "../../locale";
 import { $body, $label } from "../theme/theme";
 
 const FORMAT = "YYYY-MM-DD";
-
-const styles = {
-  calendar: $create({
-    default: {
-      borderCollapse: "separate",
-      borderSpacing: spacing.xxxxxsmall,
-    },
-
-    scrollable: {
-      maxWidth: "max-content",
-      overflow: "auto",
-    },
-  }),
-
-  cell: $create({
-    default: {
-      minWidth: sizes.xxxxxxsmall,
-      minHeight: sizes.xxxxxxsmall,
-      padding: spacing.none,
-      borderRadius: sizes.xxxxxxxxxxsmall,
-      cursor: "pointer",
-      backgroundColor: "var(--color-primary)",
-    },
-  }),
-
-  weekday: $create({
-    cell: {
-      padding: 0,
-    },
-
-    default: {
-      height: sizes.xxxxxxsmall,
-      overflow: "visible",
-      display: "flex",
-      alignItems: "center",
-    },
-  }),
-
-  month: $create({
-    cell: {
-      padding: 0,
-      position: "relative",
-    },
-
-    leading: {
-      visibility: "hidden",
-    },
-
-    default: {
-      position: "absolute",
-      insetBlockStart: 0,
-      insetInlineStart: 0,
-    },
-  }),
-
-  legend: $create({
-    default: {
-      paddingBlock: spacing.xxxxxsmall,
-      paddingInline: spacing.xxxxxxlarge,
-      display: "flex",
-      justifyContent: "flex-end",
-    },
-  }),
-
-  levels: $create({
-    default: {
-      display: "flex",
-      gap: spacing.xxxxxsmall,
-      alignItems: "center",
-    },
-
-    level: {
-      width: sizes.xxxxxxsmall,
-      height: sizes.xxxxxxsmall,
-      borderRadius: sizes.xxxxxxxxxxsmall,
-    },
-  }),
-};
 
 /**
  * @description
@@ -148,8 +70,8 @@ const ContributionCalendar = ({
   }, [contributions]);
 
   const styled = {
-    scrollable: $props(styles.calendar.scrollable),
-    calendar: $props(styles.calendar.default),
+    scrollable: $props(styles.contributionCalendar.scrollable),
+    calendar: $props(styles.contributionCalendar.default),
     cell: $props(styles.cell.default),
     weekday: {
       cell: $props(styles.weekday.cell, $body.small),

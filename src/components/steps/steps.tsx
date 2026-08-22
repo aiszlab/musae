@@ -1,28 +1,12 @@
+import styles from "./styles";
 import React, { useMemo } from "react";
 import type { StepsProps } from "../../types/steps";
 import Item from "./item";
 import { useClassNames } from "../../hooks/use-class-names";
-import { create as $create, props as $props } from "@stylexjs/stylex";
+import { props as $props } from "@stylexjs/stylex";
 import { stringify } from "@aiszlab/relax/class-name";
 import { CLASS_NAMES, Context } from "./context";
-import { spacing } from "../theme/tokens.stylex";
 import { useTheme } from "../theme";
-
-const styles = $create({
-  steps: {
-    display: "flex",
-    alignItems: "flex-start",
-    gap: spacing.xxsmall,
-  },
-
-  horizontal: {
-    flexDirection: "row",
-  },
-
-  vertical: {
-    flexDirection: "column",
-  },
-});
 
 /**
  * @description
@@ -45,7 +29,7 @@ const Steps = ({
   const theme = useTheme();
 
   const styled = {
-    steps: $props(styles.steps, styles[type]),
+    steps: $props(styles.steps.default, styles.steps[type]),
   };
 
   const contextValue = useMemo(

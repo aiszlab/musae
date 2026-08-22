@@ -1,17 +1,8 @@
+import styles from "./styles";
 import type { WaterfallProps } from "../../types/waterfall";
 import React, { useMemo, type ReactNode } from "react";
-import { create as $create, props as $props } from "@stylexjs/stylex";
+import { props as $props } from "@stylexjs/stylex";
 import type { RequiredIn } from "@aiszlab/relax/types";
-
-const styles = $create({
-  column: {
-    flex: 1,
-    display: "flex",
-    flexDirection: "column",
-    rowGap: "var(--row-gap)",
-    overflow: "auto",
-  },
-});
 
 const Sequential = ({
   children,
@@ -35,7 +26,7 @@ const Sequential = ({
       .filter((column) => column.length > 0);
   }, [children, columns]);
 
-  const styled = $props(styles.column);
+  const styled = $props(styles.sequential.column);
 
   return (
     <div className={className} style={style}>

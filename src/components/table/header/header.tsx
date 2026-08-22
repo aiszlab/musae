@@ -1,3 +1,4 @@
+import styles from "./styles";
 import React from "react";
 import { useTable } from "../context";
 import { flexRender } from "@tanstack/react-table";
@@ -7,7 +8,6 @@ import { stringify } from "@aiszlab/relax/class-name";
 import { $label } from "../../../components/theme/theme";
 import { useThemeColorVars } from "../../../hooks/use-theme-color-vars";
 import { EXPAND_COLUMN_ID } from "../context";
-import styles from "../styles";
 
 const Header = <T,>(props: HeaderProps) => {
   const { table, bordered, classNames } = useTable<T>();
@@ -17,10 +17,10 @@ const Header = <T,>(props: HeaderProps) => {
 
   const headerGroups = table.getHeaderGroups();
   const styled = $props(
-    styles.headerCell.default,
+    styles.header.cell,
     $label.small,
-    bordered && styles.headerCell.bordered,
-    !bordered && styles.headerCell.unbordered,
+    bordered && styles.header.bordered,
+    !bordered && styles.header.unbordered,
   );
 
   return (

@@ -3,14 +3,14 @@
 exports[`\`Card\` Component Header action is wrapped in 48x48 container 1`] = `
 <DocumentFragment>
   <div
-    class="musae-card styles__default styles__stacked styles__outlined"
+    class="musae-card styles__card.default styles__card.stacked styles__card.outlined"
     style="--color-surface: #FFFBFE; --color-surface-container-low: #F5EFF7; --color-surface-container-highest: #E6E0E9; --color-primary-container: #EADDFF; --color-on-primary-container: #21005D; --color-outline-variant: #CAC4D0; --color-on-surface: #1D1B20; --color-on-surface-opacity-08: color-mix(in srgb, var(--color-on-surface) 8%, transparent); --color-on-surface-opacity-12: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-on-surface-opacity-16: color-mix(in srgb, var(--color-on-surface) 16%, transparent); --color-state-layer-hover: color-mix(in srgb, var(--color-on-surface) 8%, transparent); --color-state-layer-focus: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-state-layer-press: color-mix(in srgb, var(--color-on-surface) 12%, transparent);"
   >
     <div
-      class="musae-card__header styles__default styles__stacked"
+      class="musae-card__header styles__header.default styles__header.stacked"
     >
       <div
-        class="musae-card__header-content styles__default"
+        class="musae-card__header-content styles__headerContent.default"
       >
         <div
           class="musae-card__header-monogram"
@@ -18,27 +18,27 @@ exports[`\`Card\` Component Header action is wrapped in 48x48 container 1`] = `
           A
         </div>
         <div
-          class="musae-card__header-text styles__default"
+          class="musae-card__header-text styles__headerText.default"
         >
           <div
-            class="musae-card__header-title styles__default"
+            class="musae-card__header-title styles__headerTitle.default"
           >
             Header
           </div>
           <div
-            class="musae-card__header-subhead styles__default"
+            class="musae-card__header-subhead styles__headerSubhead.default"
           >
             Subhead
           </div>
         </div>
       </div>
       <button
-        class="musae-button icon-button__styles.default icon-button__styles.medium styles__default styles__rippleable styles__text styles__medium theme__title.medium"
+        class="musae-button styles__styles.default styles__styles.medium styles__button.default styles__button.rippleable styles__size.medium styles__variant.text styles__medium theme__title.medium"
         style="--color-button: #6750A4; --color-on-button: #FFF; --color-button-opacity-08: color-mix(in srgb, var(--color-button) 8%, transparent); --color-on-surface: #1D1B20; --color-on-surface-opacity-12: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-on-surface-opacity-38: color-mix(in srgb, var(--color-on-surface) 38%, transparent);"
         type="button"
       >
         <span
-          class="musae-icon icon__styles.icon"
+          class="musae-icon styles__styles.icon"
         >
           <svg
             fill="none"
@@ -56,7 +56,7 @@ exports[`\`Card\` Component Header action is wrapped in 48x48 container 1`] = `
       </button>
     </div>
     <div
-      class="musae-card__content styles__default"
+      class="musae-card__content styles__content.default"
     >
       Content
     </div>
@@ -67,33 +67,33 @@ exports[`\`Card\` Component Header action is wrapped in 48x48 container 1`] = `
 exports[`\`Card\` Component Title/Subhead/Body subcomponents render with M3 typography 1`] = `
 <DocumentFragment>
   <div
-    class="musae-card styles__default styles__stacked styles__outlined"
+    class="musae-card styles__card.default styles__card.stacked styles__card.outlined"
     style="--color-surface: #FFFBFE; --color-surface-container-low: #F5EFF7; --color-surface-container-highest: #E6E0E9; --color-primary-container: #EADDFF; --color-on-primary-container: #21005D; --color-outline-variant: #CAC4D0; --color-on-surface: #1D1B20; --color-on-surface-opacity-08: color-mix(in srgb, var(--color-on-surface) 8%, transparent); --color-on-surface-opacity-12: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-on-surface-opacity-16: color-mix(in srgb, var(--color-on-surface) 16%, transparent); --color-state-layer-hover: color-mix(in srgb, var(--color-on-surface) 8%, transparent); --color-state-layer-focus: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-state-layer-press: color-mix(in srgb, var(--color-on-surface) 12%, transparent);"
   >
     <div
-      class="musae-card__content styles__default"
+      class="musae-card__content styles__content.default"
     >
       <div
-        class="musae-card__headline styles__default"
+        class="musae-card__headline styles__headline.default"
       >
         <div
-          class="musae-card__title styles__default"
+          class="musae-card__title styles__title.default"
         >
           Title
         </div>
         <div
-          class="musae-card__subhead styles__default"
+          class="musae-card__subhead styles__subhead.default"
         >
           Subhead
         </div>
       </div>
       <div
-        class="musae-card__body styles__default"
+        class="musae-card__body styles__body.default"
       >
         Body text content
       </div>
       <div
-        class="musae-card__actions styles__default"
+        class="musae-card__actions styles__actions.default"
       >
         <button>
           Action
@@ -107,14 +107,14 @@ exports[`\`Card\` Component Title/Subhead/Body subcomponents render with M3 typo
 exports[`\`Card\` Component all three variants in horizontal layout 1`] = `
 <DocumentFragment>
   <div
-    class="musae-card styles__default styles__horizontal styles__outlined"
+    class="musae-card styles__card.default styles__card.horizontal styles__card.outlined"
     style="--color-surface: #FFFBFE; --color-surface-container-low: #F5EFF7; --color-surface-container-highest: #E6E0E9; --color-primary-container: #EADDFF; --color-on-primary-container: #21005D; --color-outline-variant: #CAC4D0; --color-on-surface: #1D1B20; --color-on-surface-opacity-08: color-mix(in srgb, var(--color-on-surface) 8%, transparent); --color-on-surface-opacity-12: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-on-surface-opacity-16: color-mix(in srgb, var(--color-on-surface) 16%, transparent); --color-state-layer-hover: color-mix(in srgb, var(--color-on-surface) 8%, transparent); --color-state-layer-focus: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-state-layer-press: color-mix(in srgb, var(--color-on-surface) 12%, transparent);"
   >
     <div
-      class="musae-card__header styles__default styles__horizontal"
+      class="musae-card__header styles__header.default styles__header.horizontal"
     >
       <div
-        class="musae-card__header-content styles__default"
+        class="musae-card__header-content styles__headerContent.default"
       >
         <div
           class="musae-card__header-monogram"
@@ -122,27 +122,27 @@ exports[`\`Card\` Component all three variants in horizontal layout 1`] = `
           A
         </div>
         <div
-          class="musae-card__header-text styles__default"
+          class="musae-card__header-text styles__headerText.default"
         >
           <div
-            class="musae-card__header-title styles__default"
+            class="musae-card__header-title styles__headerTitle.default"
           >
             Header
           </div>
           <div
-            class="musae-card__header-subhead styles__default"
+            class="musae-card__header-subhead styles__headerSubhead.default"
           >
             Subhead
           </div>
         </div>
       </div>
       <button
-        class="musae-button icon-button__styles.default icon-button__styles.medium styles__default styles__rippleable styles__text styles__medium theme__title.medium"
+        class="musae-button styles__styles.default styles__styles.medium styles__button.default styles__button.rippleable styles__size.medium styles__variant.text styles__medium theme__title.medium"
         style="--color-button: #6750A4; --color-on-button: #FFF; --color-button-opacity-08: color-mix(in srgb, var(--color-button) 8%, transparent); --color-on-surface: #1D1B20; --color-on-surface-opacity-12: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-on-surface-opacity-38: color-mix(in srgb, var(--color-on-surface) 38%, transparent);"
         type="button"
       >
         <span
-          class="musae-icon icon__styles.icon"
+          class="musae-icon styles__styles.icon"
         >
           <svg
             fill="none"
@@ -160,7 +160,7 @@ exports[`\`Card\` Component all three variants in horizontal layout 1`] = `
       </button>
     </div>
     <div
-      class="musae-card__media styles__default styles__horizontal"
+      class="musae-card__media styles__media.default styles__media.horizontal"
     >
       <img
         alt="example"
@@ -170,14 +170,14 @@ exports[`\`Card\` Component all three variants in horizontal layout 1`] = `
     </div>
   </div>
   <div
-    class="musae-card styles__default styles__horizontal styles__elevated"
+    class="musae-card styles__card.default styles__card.horizontal styles__card.elevated"
     style="--color-surface: #FFFBFE; --color-surface-container-low: #F5EFF7; --color-surface-container-highest: #E6E0E9; --color-primary-container: #EADDFF; --color-on-primary-container: #21005D; --color-outline-variant: #CAC4D0; --color-on-surface: #1D1B20; --color-on-surface-opacity-08: color-mix(in srgb, var(--color-on-surface) 8%, transparent); --color-on-surface-opacity-12: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-on-surface-opacity-16: color-mix(in srgb, var(--color-on-surface) 16%, transparent); --color-state-layer-hover: color-mix(in srgb, var(--color-on-surface) 8%, transparent); --color-state-layer-focus: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-state-layer-press: color-mix(in srgb, var(--color-on-surface) 12%, transparent);"
   >
     <div
-      class="musae-card__header styles__default styles__horizontal"
+      class="musae-card__header styles__header.default styles__header.horizontal"
     >
       <div
-        class="musae-card__header-content styles__default"
+        class="musae-card__header-content styles__headerContent.default"
       >
         <div
           class="musae-card__header-monogram"
@@ -185,27 +185,27 @@ exports[`\`Card\` Component all three variants in horizontal layout 1`] = `
           A
         </div>
         <div
-          class="musae-card__header-text styles__default"
+          class="musae-card__header-text styles__headerText.default"
         >
           <div
-            class="musae-card__header-title styles__default"
+            class="musae-card__header-title styles__headerTitle.default"
           >
             Header
           </div>
           <div
-            class="musae-card__header-subhead styles__default"
+            class="musae-card__header-subhead styles__headerSubhead.default"
           >
             Subhead
           </div>
         </div>
       </div>
       <button
-        class="musae-button icon-button__styles.default icon-button__styles.medium styles__default styles__rippleable styles__text styles__medium theme__title.medium"
+        class="musae-button styles__styles.default styles__styles.medium styles__button.default styles__button.rippleable styles__size.medium styles__variant.text styles__medium theme__title.medium"
         style="--color-button: #6750A4; --color-on-button: #FFF; --color-button-opacity-08: color-mix(in srgb, var(--color-button) 8%, transparent); --color-on-surface: #1D1B20; --color-on-surface-opacity-12: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-on-surface-opacity-38: color-mix(in srgb, var(--color-on-surface) 38%, transparent);"
         type="button"
       >
         <span
-          class="musae-icon icon__styles.icon"
+          class="musae-icon styles__styles.icon"
         >
           <svg
             fill="none"
@@ -223,7 +223,7 @@ exports[`\`Card\` Component all three variants in horizontal layout 1`] = `
       </button>
     </div>
     <div
-      class="musae-card__media styles__default styles__horizontal"
+      class="musae-card__media styles__media.default styles__media.horizontal"
     >
       <img
         alt="example"
@@ -233,14 +233,14 @@ exports[`\`Card\` Component all three variants in horizontal layout 1`] = `
     </div>
   </div>
   <div
-    class="musae-card styles__default styles__horizontal styles__filled"
+    class="musae-card styles__card.default styles__card.horizontal styles__card.filled"
     style="--color-surface: #FFFBFE; --color-surface-container-low: #F5EFF7; --color-surface-container-highest: #E6E0E9; --color-primary-container: #EADDFF; --color-on-primary-container: #21005D; --color-outline-variant: #CAC4D0; --color-on-surface: #1D1B20; --color-on-surface-opacity-08: color-mix(in srgb, var(--color-on-surface) 8%, transparent); --color-on-surface-opacity-12: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-on-surface-opacity-16: color-mix(in srgb, var(--color-on-surface) 16%, transparent); --color-state-layer-hover: color-mix(in srgb, var(--color-on-surface) 8%, transparent); --color-state-layer-focus: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-state-layer-press: color-mix(in srgb, var(--color-on-surface) 12%, transparent);"
   >
     <div
-      class="musae-card__header styles__default styles__horizontal"
+      class="musae-card__header styles__header.default styles__header.horizontal"
     >
       <div
-        class="musae-card__header-content styles__default"
+        class="musae-card__header-content styles__headerContent.default"
       >
         <div
           class="musae-card__header-monogram"
@@ -248,27 +248,27 @@ exports[`\`Card\` Component all three variants in horizontal layout 1`] = `
           A
         </div>
         <div
-          class="musae-card__header-text styles__default"
+          class="musae-card__header-text styles__headerText.default"
         >
           <div
-            class="musae-card__header-title styles__default"
+            class="musae-card__header-title styles__headerTitle.default"
           >
             Header
           </div>
           <div
-            class="musae-card__header-subhead styles__default"
+            class="musae-card__header-subhead styles__headerSubhead.default"
           >
             Subhead
           </div>
         </div>
       </div>
       <button
-        class="musae-button icon-button__styles.default icon-button__styles.medium styles__default styles__rippleable styles__text styles__medium theme__title.medium"
+        class="musae-button styles__styles.default styles__styles.medium styles__button.default styles__button.rippleable styles__size.medium styles__variant.text styles__medium theme__title.medium"
         style="--color-button: #6750A4; --color-on-button: #FFF; --color-button-opacity-08: color-mix(in srgb, var(--color-button) 8%, transparent); --color-on-surface: #1D1B20; --color-on-surface-opacity-12: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-on-surface-opacity-38: color-mix(in srgb, var(--color-on-surface) 38%, transparent);"
         type="button"
       >
         <span
-          class="musae-icon icon__styles.icon"
+          class="musae-icon styles__styles.icon"
         >
           <svg
             fill="none"
@@ -286,7 +286,7 @@ exports[`\`Card\` Component all three variants in horizontal layout 1`] = `
       </button>
     </div>
     <div
-      class="musae-card__media styles__default styles__horizontal"
+      class="musae-card__media styles__media.default styles__media.horizontal"
     >
       <img
         alt="example"
@@ -301,7 +301,7 @@ exports[`\`Card\` Component all three variants in horizontal layout 1`] = `
 exports[`\`Card\` Component draggable auto-detects drag state via HTML5 events 1`] = `
 <DocumentFragment>
   <div
-    class="musae-card styles__default styles__stacked styles__outlined styles__interactive styles__outlinedHover styles__outlinedDragged"
+    class="musae-card styles__card.default styles__card.stacked styles__card.outlined styles__card.interactive styles__elevationState.outlinedHover styles__elevationState.outlinedDragged"
     draggable="true"
     role="button"
     style="--color-surface: #FFFBFE; --color-surface-container-low: #F5EFF7; --color-surface-container-highest: #E6E0E9; --color-primary-container: #EADDFF; --color-on-primary-container: #21005D; --color-outline-variant: #CAC4D0; --color-on-surface: #1D1B20; --color-on-surface-opacity-08: color-mix(in srgb, var(--color-on-surface) 8%, transparent); --color-on-surface-opacity-12: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-on-surface-opacity-16: color-mix(in srgb, var(--color-on-surface) 16%, transparent); --color-state-layer-hover: color-mix(in srgb, var(--color-on-surface) 8%, transparent); --color-state-layer-focus: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-state-layer-press: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --card-state-layer: color-mix(in srgb, var(--color-on-surface) 16%, transparent);"
@@ -315,7 +315,7 @@ exports[`\`Card\` Component draggable auto-detects drag state via HTML5 events 1
 exports[`\`Card\` Component dragged state applies dragged state layer class 1`] = `
 <DocumentFragment>
   <div
-    class="musae-card styles__default styles__stacked styles__outlined styles__interactive styles__outlinedHover styles__outlinedDragged"
+    class="musae-card styles__card.default styles__card.stacked styles__card.outlined styles__card.interactive styles__elevationState.outlinedHover styles__elevationState.outlinedDragged"
     role="button"
     style="--color-surface: #FFFBFE; --color-surface-container-low: #F5EFF7; --color-surface-container-highest: #E6E0E9; --color-primary-container: #EADDFF; --color-on-primary-container: #21005D; --color-outline-variant: #CAC4D0; --color-on-surface: #1D1B20; --color-on-surface-opacity-08: color-mix(in srgb, var(--color-on-surface) 8%, transparent); --color-on-surface-opacity-12: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-on-surface-opacity-16: color-mix(in srgb, var(--color-on-surface) 16%, transparent); --color-state-layer-hover: color-mix(in srgb, var(--color-on-surface) 8%, transparent); --color-state-layer-focus: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-state-layer-press: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --card-state-layer: color-mix(in srgb, var(--color-on-surface) 16%, transparent);"
     tabindex="0"
@@ -328,7 +328,7 @@ exports[`\`Card\` Component dragged state applies dragged state layer class 1`] 
 exports[`\`Card\` Component elevated hover applies elevation 2 1`] = `
 <DocumentFragment>
   <div
-    class="musae-card styles__default styles__stacked styles__elevated styles__interactive styles__elevatedHover styles__hover styles__focus styles__press"
+    class="musae-card styles__card.default styles__card.stacked styles__card.elevated styles__card.interactive styles__elevationState.elevatedHover styles__stateLayer.hover styles__stateLayer.focus styles__stateLayer.press"
     role="button"
     style="--color-surface: #FFFBFE; --color-surface-container-low: #F5EFF7; --color-surface-container-highest: #E6E0E9; --color-primary-container: #EADDFF; --color-on-primary-container: #21005D; --color-outline-variant: #CAC4D0; --color-on-surface: #1D1B20; --color-on-surface-opacity-08: color-mix(in srgb, var(--color-on-surface) 8%, transparent); --color-on-surface-opacity-12: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-on-surface-opacity-16: color-mix(in srgb, var(--color-on-surface) 16%, transparent); --color-state-layer-hover: color-mix(in srgb, var(--color-on-surface) 8%, transparent); --color-state-layer-focus: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-state-layer-press: color-mix(in srgb, var(--color-on-surface) 12%, transparent);"
     tabindex="0"
@@ -341,14 +341,14 @@ exports[`\`Card\` Component elevated hover applies elevation 2 1`] = `
 exports[`\`Card\` Component horizontal layout applies row flex and 80px media 1`] = `
 <DocumentFragment>
   <div
-    class="musae-card styles__default styles__horizontal styles__outlined"
+    class="musae-card styles__card.default styles__card.horizontal styles__card.outlined"
     style="--color-surface: #FFFBFE; --color-surface-container-low: #F5EFF7; --color-surface-container-highest: #E6E0E9; --color-primary-container: #EADDFF; --color-on-primary-container: #21005D; --color-outline-variant: #CAC4D0; --color-on-surface: #1D1B20; --color-on-surface-opacity-08: color-mix(in srgb, var(--color-on-surface) 8%, transparent); --color-on-surface-opacity-12: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-on-surface-opacity-16: color-mix(in srgb, var(--color-on-surface) 16%, transparent); --color-state-layer-hover: color-mix(in srgb, var(--color-on-surface) 8%, transparent); --color-state-layer-focus: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-state-layer-press: color-mix(in srgb, var(--color-on-surface) 12%, transparent);"
   >
     <div
-      class="musae-card__header styles__default styles__horizontal"
+      class="musae-card__header styles__header.default styles__header.horizontal"
     >
       <div
-        class="musae-card__header-content styles__default"
+        class="musae-card__header-content styles__headerContent.default"
       >
         <div
           class="musae-card__header-monogram"
@@ -356,27 +356,27 @@ exports[`\`Card\` Component horizontal layout applies row flex and 80px media 1`
           A
         </div>
         <div
-          class="musae-card__header-text styles__default"
+          class="musae-card__header-text styles__headerText.default"
         >
           <div
-            class="musae-card__header-title styles__default"
+            class="musae-card__header-title styles__headerTitle.default"
           >
             Header
           </div>
           <div
-            class="musae-card__header-subhead styles__default"
+            class="musae-card__header-subhead styles__headerSubhead.default"
           >
             Subhead
           </div>
         </div>
       </div>
       <button
-        class="musae-button icon-button__styles.default icon-button__styles.medium styles__default styles__rippleable styles__text styles__medium theme__title.medium"
+        class="musae-button styles__styles.default styles__styles.medium styles__button.default styles__button.rippleable styles__size.medium styles__variant.text styles__medium theme__title.medium"
         style="--color-button: #6750A4; --color-on-button: #FFF; --color-button-opacity-08: color-mix(in srgb, var(--color-button) 8%, transparent); --color-on-surface: #1D1B20; --color-on-surface-opacity-12: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-on-surface-opacity-38: color-mix(in srgb, var(--color-on-surface) 38%, transparent);"
         type="button"
       >
         <span
-          class="musae-icon icon__styles.icon"
+          class="musae-icon styles__styles.icon"
         >
           <svg
             fill="none"
@@ -394,7 +394,7 @@ exports[`\`Card\` Component horizontal layout applies row flex and 80px media 1`
       </button>
     </div>
     <div
-      class="musae-card__media styles__default styles__horizontal"
+      class="musae-card__media styles__media.default styles__media.horizontal"
     >
       <img
         alt="example"
@@ -409,7 +409,7 @@ exports[`\`Card\` Component horizontal layout applies row flex and 80px media 1`
 exports[`\`Card\` Component interactive card renders with state layer 1`] = `
 <DocumentFragment>
   <div
-    class="musae-card styles__default styles__stacked styles__outlined styles__interactive styles__outlinedHover styles__hover styles__focus styles__press"
+    class="musae-card styles__card.default styles__card.stacked styles__card.outlined styles__card.interactive styles__elevationState.outlinedHover styles__stateLayer.hover styles__stateLayer.focus styles__stateLayer.press"
     role="button"
     style="--color-surface: #FFFBFE; --color-surface-container-low: #F5EFF7; --color-surface-container-highest: #E6E0E9; --color-primary-container: #EADDFF; --color-on-primary-container: #21005D; --color-outline-variant: #CAC4D0; --color-on-surface: #1D1B20; --color-on-surface-opacity-08: color-mix(in srgb, var(--color-on-surface) 8%, transparent); --color-on-surface-opacity-12: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-on-surface-opacity-16: color-mix(in srgb, var(--color-on-surface) 16%, transparent); --color-state-layer-hover: color-mix(in srgb, var(--color-on-surface) 8%, transparent); --color-state-layer-focus: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-state-layer-press: color-mix(in srgb, var(--color-on-surface) 12%, transparent);"
     tabindex="0"
@@ -422,19 +422,19 @@ exports[`\`Card\` Component interactive card renders with state layer 1`] = `
 exports[`\`Card\` Component variant render 1`] = `
 <DocumentFragment>
   <div
-    class="musae-card styles__default styles__stacked styles__outlined"
+    class="musae-card styles__card.default styles__card.stacked styles__card.outlined"
     style="--color-surface: #FFFBFE; --color-surface-container-low: #F5EFF7; --color-surface-container-highest: #E6E0E9; --color-primary-container: #EADDFF; --color-on-primary-container: #21005D; --color-outline-variant: #CAC4D0; --color-on-surface: #1D1B20; --color-on-surface-opacity-08: color-mix(in srgb, var(--color-on-surface) 8%, transparent); --color-on-surface-opacity-12: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-on-surface-opacity-16: color-mix(in srgb, var(--color-on-surface) 16%, transparent); --color-state-layer-hover: color-mix(in srgb, var(--color-on-surface) 8%, transparent); --color-state-layer-focus: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-state-layer-press: color-mix(in srgb, var(--color-on-surface) 12%, transparent);"
   >
     outlined card
   </div>
   <div
-    class="musae-card styles__default styles__stacked styles__elevated"
+    class="musae-card styles__card.default styles__card.stacked styles__card.elevated"
     style="--color-surface: #FFFBFE; --color-surface-container-low: #F5EFF7; --color-surface-container-highest: #E6E0E9; --color-primary-container: #EADDFF; --color-on-primary-container: #21005D; --color-outline-variant: #CAC4D0; --color-on-surface: #1D1B20; --color-on-surface-opacity-08: color-mix(in srgb, var(--color-on-surface) 8%, transparent); --color-on-surface-opacity-12: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-on-surface-opacity-16: color-mix(in srgb, var(--color-on-surface) 16%, transparent); --color-state-layer-hover: color-mix(in srgb, var(--color-on-surface) 8%, transparent); --color-state-layer-focus: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-state-layer-press: color-mix(in srgb, var(--color-on-surface) 12%, transparent);"
   >
     elevated card
   </div>
   <div
-    class="musae-card styles__default styles__stacked styles__filled"
+    class="musae-card styles__card.default styles__card.stacked styles__card.filled"
     style="--color-surface: #FFFBFE; --color-surface-container-low: #F5EFF7; --color-surface-container-highest: #E6E0E9; --color-primary-container: #EADDFF; --color-on-primary-container: #21005D; --color-outline-variant: #CAC4D0; --color-on-surface: #1D1B20; --color-on-surface-opacity-08: color-mix(in srgb, var(--color-on-surface) 8%, transparent); --color-on-surface-opacity-12: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-on-surface-opacity-16: color-mix(in srgb, var(--color-on-surface) 16%, transparent); --color-state-layer-hover: color-mix(in srgb, var(--color-on-surface) 8%, transparent); --color-state-layer-focus: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-state-layer-press: color-mix(in srgb, var(--color-on-surface) 12%, transparent);"
   >
     filled card
@@ -445,14 +445,14 @@ exports[`\`Card\` Component variant render 1`] = `
 exports[`\`Card\` Component with header, media, content and actions 1`] = `
 <DocumentFragment>
   <div
-    class="musae-card styles__default styles__stacked styles__outlined"
+    class="musae-card styles__card.default styles__card.stacked styles__card.outlined"
     style="--color-surface: #FFFBFE; --color-surface-container-low: #F5EFF7; --color-surface-container-highest: #E6E0E9; --color-primary-container: #EADDFF; --color-on-primary-container: #21005D; --color-outline-variant: #CAC4D0; --color-on-surface: #1D1B20; --color-on-surface-opacity-08: color-mix(in srgb, var(--color-on-surface) 8%, transparent); --color-on-surface-opacity-12: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-on-surface-opacity-16: color-mix(in srgb, var(--color-on-surface) 16%, transparent); --color-state-layer-hover: color-mix(in srgb, var(--color-on-surface) 8%, transparent); --color-state-layer-focus: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-state-layer-press: color-mix(in srgb, var(--color-on-surface) 12%, transparent);"
   >
     <div
-      class="musae-card__header styles__default styles__stacked"
+      class="musae-card__header styles__header.default styles__header.stacked"
     >
       <div
-        class="musae-card__header-content styles__default"
+        class="musae-card__header-content styles__headerContent.default"
       >
         <div
           class="musae-card__header-monogram"
@@ -460,27 +460,27 @@ exports[`\`Card\` Component with header, media, content and actions 1`] = `
           A
         </div>
         <div
-          class="musae-card__header-text styles__default"
+          class="musae-card__header-text styles__headerText.default"
         >
           <div
-            class="musae-card__header-title styles__default"
+            class="musae-card__header-title styles__headerTitle.default"
           >
             Header
           </div>
           <div
-            class="musae-card__header-subhead styles__default"
+            class="musae-card__header-subhead styles__headerSubhead.default"
           >
             Subhead
           </div>
         </div>
       </div>
       <button
-        class="musae-button icon-button__styles.default icon-button__styles.medium styles__default styles__rippleable styles__text styles__medium theme__title.medium"
+        class="musae-button styles__styles.default styles__styles.medium styles__button.default styles__button.rippleable styles__size.medium styles__variant.text styles__medium theme__title.medium"
         style="--color-button: #6750A4; --color-on-button: #FFF; --color-button-opacity-08: color-mix(in srgb, var(--color-button) 8%, transparent); --color-on-surface: #1D1B20; --color-on-surface-opacity-12: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-on-surface-opacity-38: color-mix(in srgb, var(--color-on-surface) 38%, transparent);"
         type="button"
       >
         <span
-          class="musae-icon icon__styles.icon"
+          class="musae-icon styles__styles.icon"
         >
           <svg
             fill="none"
@@ -498,7 +498,7 @@ exports[`\`Card\` Component with header, media, content and actions 1`] = `
       </button>
     </div>
     <div
-      class="musae-card__media styles__default styles__stacked"
+      class="musae-card__media styles__media.default styles__media.stacked"
     >
       <img
         alt="example"
@@ -507,14 +507,14 @@ exports[`\`Card\` Component with header, media, content and actions 1`] = `
       />
     </div>
     <div
-      class="musae-card__content styles__default"
+      class="musae-card__content styles__content.default"
     >
       <div>
         Content text here
       </div>
     </div>
     <div
-      class="musae-card__actions styles__default"
+      class="musae-card__actions styles__actions.default"
     >
       <button>
         Action

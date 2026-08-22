@@ -1,26 +1,12 @@
+import styles from "./styles";
 import React, { type FocusEvent, useRef, useState } from "react";
 import type { OtpInputProps } from "../../types/otp-input";
 import { useInputEvents, useValue } from "./hooks";
 import { Input } from "../input";
 import type { InputRef } from "../../types/input";
 import { clamp, useEvent } from "@aiszlab/relax";
-import { create as $create, props as $props } from "@stylexjs/stylex";
-import { spacing } from "../theme/tokens.stylex";
+import { props as $props } from "@stylexjs/stylex";
 import { stringify } from "@aiszlab/relax/class-name";
-
-const styles = $create({
-  otp: {
-    display: "flex",
-    flexDirection: "row",
-    gap: spacing.xxsmall,
-  },
-
-  input: {
-    ":not(#\\#)": {
-      width: `calc(1ch + ${spacing.medium} * 2)`,
-    },
-  },
-});
 
 const OtpInput = ({
   length = 6,

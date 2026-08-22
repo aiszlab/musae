@@ -1,78 +1,15 @@
+import styles from "./styles";
 import React, { forwardRef, useRef, useImperativeHandle } from "react";
 import { useInputEvents, useInputorEvents } from "./hooks";
 import type { InputProps, InputRef } from "../../types/input";
 import { useControlledState, useFocus } from "@aiszlab/relax";
-import { create as $create, props as $props } from "@stylexjs/stylex";
-import { duration, OPACITY, sizes, spacing } from "../theme/tokens.stylex";
+import { props as $props } from "@stylexjs/stylex";
+import { OPACITY } from "../theme/tokens.stylex";
 import { useClassNames } from "../../hooks/use-class-names";
 import { stringify } from "@aiszlab/relax/class-name";
 import { CLASS_NAMES } from "./context";
 import { $body } from "../theme/theme";
-import { ThemeColorVariable, useThemeColorVars } from "../../hooks/use-theme-color-vars";
-
-export const styles = $create({
-  inputor: {
-    display: "inline-flex",
-    alignItems: "center",
-    cursor: "text",
-    borderRadius: sizes.xxxxxxxxxsmall,
-    verticalAlign: "bottom",
-    outline: sizes.none,
-
-    minHeight: sizes.medium,
-    minWidth: sizes.none,
-    width: sizes.full,
-
-    // border, for flexible, in musae, we use boxShadow replace border
-    // box shadow is not added into layout
-    boxShadow: `0px 0px 0px ${sizes.smallest} var(--color-outline) inset`,
-
-    // reset styles
-    boxSizing: "border-box",
-
-    // layout
-    margin: spacing.none,
-    paddingBlock: spacing.xxxxxsmall,
-    paddingInline: spacing.medium,
-
-    // animation
-    transitionProperty: "box-shadow",
-    transitionDuration: duration.short,
-    // fix: eliminate serrations, use gpu speed up by add `transform`
-    willChange: "box-shadow, transform",
-
-    ":focus-within": {
-      boxShadow: `0px 0px 0px ${sizes.xxxxxxxxxxsmall} var(--color-primary) inset`,
-    },
-  },
-
-  invalid: {
-    boxShadow: `0px 0px 0px ${sizes.xxxxxxxxxxsmall} var(--color-error) inset`,
-
-    ":focus-within": {
-      boxShadow: null,
-    },
-  },
-
-  input: {
-    // reset styles
-    lineHeight: "inherit",
-    fontSize: "inherit",
-    padding: spacing.none,
-    borderWidth: sizes.none,
-    backgroundColor: "transparent",
-    outline: sizes.none,
-    minWidth: sizes.none,
-    height: sizes.auto,
-    flex: 1,
-  },
-
-  disabled: {
-    backgroundColor: "var(--color-on-surface-opacity-08)" satisfies ThemeColorVariable,
-    color: "var(--color-on-surface-opacity-38)" satisfies ThemeColorVariable,
-    boxShadow: `0px 0px 0px ${sizes.smallest} var(--color-on-surface-opacity-38) inset`,
-  },
-});
+import { useThemeColorVars } from "../../hooks/use-theme-color-vars";
 
 /**
  * @author murukal

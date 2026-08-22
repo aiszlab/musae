@@ -1,10 +1,10 @@
+import styles from "./styles";
 import React, { forwardRef, useEffect, useRef } from "react";
 import type { PopupProps } from "../../types/dialog";
 import { useFooter } from "./hooks";
 import { animate } from "motion/react";
 import { useClassNames } from "../../hooks/use-class-names";
-import { create as $create, props as $props } from "@stylexjs/stylex";
-import { positions, sizes, spacing } from "../theme/tokens.stylex";
+import { props as $props } from "@stylexjs/stylex";
 import { useTheme } from "../theme";
 import { stringify } from "@aiszlab/relax/class-name";
 import { contains } from "@aiszlab/relax/dom";
@@ -12,61 +12,6 @@ import { useClosable } from "../../hooks/use-closable";
 import { CLASS_NAMES } from "./context";
 import { useAsyncEffect, useComposedRef } from "@aiszlab/relax";
 import { $body, $headline } from "../theme/theme";
-
-const styles = $create({
-  popup: {
-    position: "fixed",
-    top: 0,
-    left: 0,
-    width: "100vw",
-    height: "100vh",
-    pointerEvents: "none",
-    zIndex: positions.dialog,
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-
-  overlay: {
-    position: "absolute",
-    top: 0,
-    left: 0,
-    width: "100vw",
-    height: "100vh",
-    pointerEvents: "auto",
-    backgroundColor: "var(--color-surface-dim)",
-    opacity: 0,
-  },
-
-  panel: {
-    display: "flex",
-    flexDirection: "column",
-    gap: spacing.large,
-    minWidth: 480,
-    maxHeight: `calc(100% - ${spacing.xxxxxxlarge} * 2)`,
-    margin: spacing.xxxxxxlarge,
-    borderRadius: sizes.xxxxxxxsmall,
-    pointerEvents: "auto",
-    backgroundColor: "var(--color-surface-container-lowest)",
-    opacity: 0,
-    position: "relative",
-    paddingBlock: spacing.xxxlarge,
-  },
-
-  header: {
-    paddingInline: spacing.xxxlarge,
-  },
-
-  body: { flex: 1, wordBreak: "break-word", overflow: "auto", paddingInline: spacing.xxxlarge },
-
-  footer: {
-    marginBlockStart: spacing.xxsmall,
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "flex-end",
-    paddingInline: spacing.xxxlarge,
-  },
-});
 
 const Popup = forwardRef<HTMLDivElement, PopupProps>(
   ({ onClose, open, closable, onClosed, className, onConfirm, confirm, cancel, ...props }, ref) => {

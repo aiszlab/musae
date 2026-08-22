@@ -1,34 +1,15 @@
+import styles from "./styles";
 import React, { forwardRef, useCallback, useContext, useImperativeHandle, useState } from "react";
 import { Clock } from "../clock";
 import { Button } from "../button";
 import type { PanelProps, PanelRef } from "../../types/time-picker";
 import type { ClockProps } from "../../types/clock";
 import dayjs from "dayjs";
-import { create as $create, props as $props } from "@stylexjs/stylex";
+import { props as $props } from "@stylexjs/stylex";
 import { stringify } from "@aiszlab/relax/class-name";
-import { sizes, spacing } from "../theme/tokens.stylex";
 import { useLocale } from "../../locale";
 import { Context } from "./context";
-import { type ThemeColorVariable, useThemeColorVars } from "../../hooks/use-theme-color-vars";
-
-const styles = $create({
-  panel: {
-    marginInline: spacing.xxxxxsmall,
-  },
-
-  footer: {
-    borderTopWidth: sizes.smallest,
-    borderTopStyle: "solid",
-    borderTopColor: "var(--color-outline-variant)" satisfies ThemeColorVariable,
-
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    paddingBlock: spacing.xxxxxsmall,
-    paddingInline: spacing.medium,
-    minHeight: sizes.xlarge,
-  },
-});
+import { useThemeColorVars } from "../../hooks/use-theme-color-vars";
 
 const Panel = forwardRef<PanelRef, PanelProps>((props, ref) => {
   const { classNames } = useContext(Context);

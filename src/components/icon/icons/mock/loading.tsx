@@ -1,21 +1,7 @@
+import styles from "./styles";
 import React from "react";
 import { withIcon } from "../../hoc";
-import { create as $create, props as $props, keyframes as $keyframes } from "@stylexjs/stylex";
-
-const loading = $keyframes({
-  to: {
-    transform: "rotate(360deg)",
-  },
-});
-
-const styles = $create({
-  loading: {
-    animationName: loading,
-    animationDuration: "1s",
-    animationTimingFunction: "linear",
-    animationIterationCount: "infinite",
-  },
-});
+import { props as $props } from "@stylexjs/stylex";
 
 const IconLoading = withIcon((props) => {
   const styled = $props(styles.loading);

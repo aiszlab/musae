@@ -1,11 +1,11 @@
+import styles from "./styles";
 import React from "react";
 import type { TourProps } from "../../types/tour";
 import { Portal } from "../portal";
 import { Popper } from "../popper";
-import { create as $create, props as $props } from "@stylexjs/stylex";
+import { props as $props } from "@stylexjs/stylex";
 import { Button } from "../button";
 import { useTheme } from "../theme";
-import { duration, elevations, positions, sizes, spacing } from "../theme/tokens.stylex";
 import { Space } from "../space";
 import { stringify } from "@aiszlab/relax/class-name";
 import { useStep } from "./hooks";
@@ -16,41 +16,6 @@ import { CLASS_NAMES, Context } from "./context";
 import { useClassNames } from "../../hooks/use-class-names";
 import { useContainer } from "../../hooks/use-container";
 import { $body, $title } from "../theme/theme";
-
-const styles = $create({
-  overlay: {
-    position: "absolute",
-    inset: 0,
-    mixBlendMode: "hard-light",
-    backgroundColor: "var(--color-surface-dim)",
-    zIndex: positions.tour,
-  },
-
-  tour: {
-    backgroundColor: "var(--color-on-primary)",
-    flexDirection: "column",
-    boxShadow: elevations.small,
-    borderRadius: sizes.xxxxxxxxxsmall,
-    transitionProperty: "all",
-    transitionDuration: duration.short,
-  },
-
-  title: {
-    paddingInline: spacing.large,
-    paddingBlockStart: spacing.large,
-    paddingBlockEnd: spacing.xxsmall,
-  },
-
-  description: {
-    paddingInline: spacing.large,
-  },
-
-  footer: {
-    paddingInline: spacing.large,
-    paddingBlockStart: spacing.xxsmall,
-    paddingBlockEnd: spacing.large,
-  },
-});
 
 const Tour = ({
   steps = [],
@@ -69,11 +34,11 @@ const Tour = ({
   const { container: trigger } = useContainer({ container: step.target, useBody: false });
 
   const styled = {
-    overlay: $props(styles.overlay),
-    tour: $props(styles.tour),
-    title: $props(styles.title, $title.medium),
-    description: $props(styles.description, $body.medium),
-    footer: $props(styles.footer),
+    overlay: $props(styles.tour.overlay),
+    tour: $props(styles.tour.tour),
+    title: $props(styles.tour.title, $title.medium),
+    description: $props(styles.tour.description, $body.medium),
+    footer: $props(styles.tour.footer),
   };
 
   return (

@@ -1,6 +1,7 @@
+import styles from "./styles";
 import React, { useRef } from "react";
 import { animate } from "motion/react";
-import { create as $create, props as $props } from "@stylexjs/stylex";
+import { props as $props } from "@stylexjs/stylex";
 import { stringify } from "@aiszlab/relax/class-name";
 import { useAsyncEffect, useBoolean } from "@aiszlab/relax";
 import { contains } from "@aiszlab/relax/dom";
@@ -8,92 +9,11 @@ import { at } from "@aiszlab/relax";
 import type { SheetProps } from "../../types/sheet";
 import { useClassNames } from "../../hooks/use-class-names";
 import { useClosable } from "../../hooks/use-closable";
-import { useThemeColorVars, type ThemeColorVariable } from "../../hooks/use-theme-color-vars";
-import { positions } from "../theme/tokens.stylex";
+import { useThemeColorVars } from "../../hooks/use-theme-color-vars";
 import Portal from "../portal/portal";
 import StackLevelContext from "../../contexts/stack-level.context";
 import { PLACEMENTS } from "./hooks";
 import { CLASS_NAMES } from "./context";
-
-const styles = $create({
-  stackLevel: {
-    zIndex: positions.drawer,
-  },
-
-  container: {
-    position: "fixed",
-    inset: 0,
-    pointerEvents: "none",
-  },
-
-  modal: {
-    overscrollBehavior: "contain",
-    overflow: "hidden",
-  },
-
-  overlay: {
-    position: "absolute",
-    inset: 0,
-    pointerEvents: "auto",
-    opacity: 0,
-    backgroundColor: "var(--color-surface-dim)" satisfies ThemeColorVariable,
-  },
-
-  panel: {
-    position: "absolute",
-    pointerEvents: "auto",
-    willChange: "transform",
-    display: "flex",
-    flexDirection: "column",
-    overflow: "hidden",
-    transform: "var(--default-position)",
-  },
-
-  right: {
-    right: 0,
-    top: 0,
-    bottom: 0,
-    width: "var(--size)",
-  },
-
-  left: {
-    left: 0,
-    top: 0,
-    bottom: 0,
-    width: "var(--size)",
-  },
-
-  bottom: {
-    bottom: 0,
-    left: 0,
-    right: 0,
-    height: "var(--size)",
-  },
-
-  top: {
-    top: 0,
-    left: 0,
-    right: 0,
-    height: "var(--size)",
-  },
-
-  body: {
-    flex: 1,
-    overflow: "auto",
-    overscrollBehavior: "contain",
-  },
-
-  panelFullscreen: {
-    "@media (max-width: 904px)": {
-      width: "100vw",
-      height: "100vh",
-      borderTopLeftRadius: 0,
-      borderTopRightRadius: 0,
-      borderBottomLeftRadius: 0,
-      borderBottomRightRadius: 0,
-    },
-  },
-});
 
 /**
  * @zh 共享的 Sheet 基础组件。渲染带遮罩层的模态面板，支持方位驱动的滑动动画、
@@ -176,11 +96,15 @@ const Sheet = ({
   }, [visible, ..._placement]);
 
   const styled = {
-    stackLevel: $props(styles.stackLevel),
-    container: $props(styles.stackLevel, styles.container, modal && styles.modal),
-    overlay: $props(styles.overlay),
-    panel: $props(styles.panel, styles[placement], styles.panelFullscreen),
-    body: $props(styles.body),
+    stackLevel: $props(styles.stackLevel.default),
+    container: $props(
+      styles.stackLevel.default,
+      styles.container.default,
+      modal && styles.container.modal,
+    ),
+    overlay: $props(styles.overlay.default),
+    panel: $props(styles.panel.default, styles.panel[placement], styles.panel.fullscreen),
+    body: $props(styles.body.default),
   };
 
   return (

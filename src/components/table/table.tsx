@@ -1,3 +1,4 @@
+import styles from "./styles";
 import {
   useReactTable,
   getCoreRowModel,
@@ -14,7 +15,6 @@ import { props as $props } from "@stylexjs/stylex";
 import { stringify } from "@aiszlab/relax/class-name";
 import { useClassNames } from "../../hooks/use-class-names";
 import { Loading } from "../loading";
-import styles from "./styles";
 import { isFunction, isUndefined } from "@aiszlab/relax";
 
 const Table = <T,>({

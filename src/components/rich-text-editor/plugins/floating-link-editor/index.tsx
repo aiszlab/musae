@@ -1,3 +1,4 @@
+import styles from "./styles";
 import React, { useMemo } from "react";
 import { Popper } from "../../../popper";
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
@@ -6,8 +7,7 @@ import { $createLinkNode, TOGGLE_LINK_COMMAND, type LinkNode } from "@lexical/li
 import { useBoolean, useEvent } from "@aiszlab/relax";
 import { Space } from "../../../space";
 import { IconOpenInNew, IconEdit, IconLinkOff } from "../../../icon/icons";
-import { create as $create, props as $props } from "@stylexjs/stylex";
-import { spacing } from "../../../theme/tokens.stylex";
+import { props as $props } from "@stylexjs/stylex";
 import { Button } from "../../../button";
 import { Form } from "../../../form";
 import { Input } from "../../../input";
@@ -22,12 +22,6 @@ interface FormValue {
   title: string;
   href: string;
 }
-
-const styles = $create({
-  popper: {
-    padding: spacing.xxsmall,
-  },
-});
 
 const FloatingLinkEditorPlugin = ({ link }: Props) => {
   const [editor] = useLexicalComposerContext();
