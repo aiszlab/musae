@@ -25,6 +25,26 @@ export const Normal: Story = {
 };
 
 /**
+ * 行内布局
+ */
+export const Inline: Story = {
+  args: {
+    layout: "inline",
+    children: (
+      <Fragment>
+        <Form.Item label="username" name="username">
+          <Input />
+        </Form.Item>
+        <Form.Item label="email" name="email">
+          <Input />
+        </Form.Item>
+        <Button>提交</Button>
+      </Fragment>
+    ),
+  },
+};
+
+/**
  * 受控表单
  */
 export const Controlled: Story = {

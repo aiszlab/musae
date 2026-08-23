@@ -7,6 +7,8 @@ import { DEFAULT_CONTEXT_VALUE } from "./context";
 import type { FormProps } from "../../types/form";
 import { stringify } from "@aiszlab/relax/class-name";
 import { FormContext } from "./context";
+import { props as $props } from "@stylexjs/stylex";
+import styles from "./styles";
 
 /**
  * Form Component
@@ -21,9 +23,11 @@ const Form = <T extends FieldsValue>({
   onChange,
   value,
   defaultValue,
+  layout = "default",
 }: FormProps<T>) => {
   const _form = useForm({ form, onChange, value, defaultValue });
   const classNames = useClassNames(CLASS_NAMES);
+  const styled = $props(styles.form.default, layout === "inline" && styles.form.inline);
 
   return (
     <Context.Provider
@@ -38,7 +42,10 @@ const Form = <T extends FieldsValue>({
           form: _form[FORM_TOKEN],
         }}
       >
-        <form className={stringify(classNames.form, className)} style={style}>
+        <form
+          className={stringify(classNames.form, styled.className, className)}
+          style={{ ...styled.style, ...style }}
+        >
           {children}
         </form>
       </FormContext.Provider>
