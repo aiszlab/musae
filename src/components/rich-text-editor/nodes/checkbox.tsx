@@ -1,4 +1,4 @@
-import styles from "./styles";
+import styles from "../styles";
 import {
   $getNodeByKey,
   DecoratorNode,
@@ -35,7 +35,7 @@ class CheckboxNode extends DecoratorNode<ReactNode> {
   }
 
   createDOM(): HTMLElement {
-    const styled = $props(styles.checkbox);
+    const styled = $props(styles.checkbox.default);
     const dom = document.createElement("span");
     dom.className = styled.className ?? "";
     return dom;

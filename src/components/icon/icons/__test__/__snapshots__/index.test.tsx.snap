@@ -30631,6 +30631,7 @@ exports[`icons all icons render (snapshot) 1`] = `
       class="musae-icon styles__styles.icon"
     >
       <svg
+        class="styles__styles.loading"
         fill="none"
         height="16"
         viewBox="0 0 1024 1024"

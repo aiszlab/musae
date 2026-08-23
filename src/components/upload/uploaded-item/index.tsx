@@ -1,4 +1,4 @@
-import styles from "./styles";
+import styles from "../styles";
 import React, { useContext, useMemo } from "react";
 import { props as $props } from "@stylexjs/stylex";
 import type { FileItem, UploadedItem as UploadedItemType } from "../../../types/upload";

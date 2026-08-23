@@ -1,4 +1,4 @@
-import styles from "./styles";
+import styles from "../styles";
 import React, { forwardRef, useImperativeHandle, useState } from "react";
 import { Dialog } from "../../dialog";
 import Operations from "./operations";

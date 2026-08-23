@@ -1,4 +1,10 @@
-import { create as $create } from "@stylexjs/stylex";
+import { create as $create, keyframes as $keyframes } from "@stylexjs/stylex";
+
+const loading = $keyframes({
+  to: {
+    transform: "rotate(360deg)",
+  },
+});
 
 const styles = $create({
   icon: {
@@ -10,6 +16,13 @@ const styles = $create({
   clickable: {
     cursor: "pointer",
     userSelect: "none",
+  },
+
+  loading: {
+    animationName: loading,
+    animationDuration: "1s",
+    animationTimingFunction: "linear",
+    animationIterationCount: "infinite",
   },
 });
 

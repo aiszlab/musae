@@ -1,4 +1,4 @@
-import styles from "./styles";
+import styles from "../../styles";
 import React, { useMemo } from "react";
 import { Popper } from "../../../popper";
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
@@ -32,7 +32,7 @@ const FloatingLinkEditorPlugin = ({ link }: Props) => {
     return getElementByNode(editor, link);
   }, [editor, link]);
 
-  const styled = $props(styles.popper);
+  const styled = $props(styles.floatingLinkEditor.popper);
 
   const updateLink = useEvent(async () => {
     const isValid = await form.validate().catch(() => false);

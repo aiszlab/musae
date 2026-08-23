@@ -1,4 +1,4 @@
-import styles from "./styles";
+import styles from "../styles";
 import React, { useContext, type CSSProperties } from "react";
 import type { UploadedItem } from "../../../types/upload";
 import ImageContext from "../../image/context";

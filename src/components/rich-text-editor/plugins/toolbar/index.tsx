@@ -1,4 +1,4 @@
-import styles from "./styles";
+import styles from "../../styles";
 import React, { useContext, useState } from "react";
 import {
   IconRedo,
@@ -142,7 +142,7 @@ const ToolbarPlugin = () => {
     };
   });
 
-  const styled = $props(styles.default);
+  const styled = $props(styles.toolbar.default);
 
   return (
     <>

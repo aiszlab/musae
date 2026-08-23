@@ -147,11 +147,45 @@ const dropdown = $create({
   },
 });
 
+const checkbox = $create({
+  default: {
+    position: "absolute",
+    insetInlineStart: sizes.none,
+    insetBlockStart: sizes.none,
+    display: "flex",
+    padding: spacing.smallest,
+  },
+});
+
+const floatingLinkEditor = $create({
+  popper: {
+    padding: spacing.xxsmall,
+  },
+});
+
+const toolbar = $create({
+  default: {
+    minHeight: sizes.medium,
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    gap: spacing.xxxxxsmall,
+    borderBottomWidth: sizes.smallest,
+    borderBottomColor: "var(--color-outline-variant)",
+    borderBottomStyle: "solid",
+    overflow: "auto",
+    padding: spacing.xxxsmall,
+  },
+});
+
 const styles = {
   richTextEditor,
   root,
   utils,
   dropdown,
+  checkbox,
+  floatingLinkEditor,
+  toolbar,
 };
 
 export default styles;

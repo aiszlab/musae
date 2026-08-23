@@ -1,4 +1,4 @@
-import styles from "./styles";
+import styles from "../styles";
 import type { ComponentProps } from "../../../types/element";
 import React, { type ReactNode, useContext, useRef } from "react";
 import { stringify } from "@aiszlab/relax/class-name";

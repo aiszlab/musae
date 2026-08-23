@@ -1,4 +1,4 @@
-import styles from "./styles";
+import styles from "../styles";
 import React, { type ReactNode } from "react";
 import { props as $props } from "@stylexjs/stylex";
 import { useTheme } from "../../theme";
