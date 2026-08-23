@@ -79,6 +79,13 @@ interface UsingForm<T extends FieldsValue> {
  */
 interface FormProps<T extends FieldsValue> extends ComponentProps {
   /**
+   * @zh 表单布局形式
+   * @en Form layout mode
+   * @default "default"
+   */
+  layout?: FormLayout;
+
+  /**
    * used form instance
    * use `form` can control `Form` value
    */
@@ -106,6 +113,12 @@ interface FormProps<T extends FieldsValue> extends ComponentProps {
    */
   value?: Partial<T>;
 }
+
+/**
+ * @zh 表单布局形式
+ * @en Form layout mode
+ */
+type FormLayout = "default" | "inline";
 
 /**
  * typed form list
@@ -304,4 +317,5 @@ export {
   TypedFormList,
   FormListItemProps,
   UseFormContext,
+  FormLayout,
 };
