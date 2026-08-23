@@ -1,4 +1,4 @@
-import styles from "./styles";
+import styles from "../../styles";
 import React from "react";
 import { withIcon } from "../../hoc";
 import { props as $props } from "@stylexjs/stylex";

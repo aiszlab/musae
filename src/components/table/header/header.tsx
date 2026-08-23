@@ -1,4 +1,4 @@
-import styles from "./styles";
+import styles from "../styles";
 import React from "react";
 import { useTable } from "../context";
 import { flexRender } from "@tanstack/react-table";

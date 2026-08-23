@@ -1,4 +1,4 @@
-import styles from "./styles";
+import styles from "../styles";
 import React, { useMemo } from "react";
 import { toFunction, useEvent } from "@aiszlab/relax";
 import { props as $props } from "@stylexjs/stylex";

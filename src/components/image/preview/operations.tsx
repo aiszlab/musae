@@ -1,4 +1,4 @@
-import styles from "./styles";
+import styles from "../styles";
 import React, { useContext } from "react";
 import { props as $props } from "@stylexjs/stylex";
 import { IconClose, IconKeyboardArrowLeft, IconKeyboardArrowRight } from "../../icon/icons";
