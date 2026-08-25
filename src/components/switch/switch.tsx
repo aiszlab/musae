@@ -46,27 +46,27 @@ const Switch = ({
 
   const styled = {
     switch: $props(
-      styles.switch.default.default,
-      isChecked && styles.switch.default.checked,
-      disabled && styles.switch.disabled.default,
+      styles.switch.base.base,
+      isChecked && styles.switch.base.checked,
+      disabled && styles.switch.disabled.base,
       disabled && isChecked && styles.switch.disabled.checked,
     ),
     slider: $props(
-      styles.slider.default.default,
-      icon && styles.slider.default.icon,
-      isChecked && styles.slider.default.checked,
-      disabled && styles.slider.disabled.default,
+      styles.slider.base.base,
+      icon && styles.slider.base.icon,
+      isChecked && styles.slider.base.checked,
+      disabled && styles.slider.disabled.base,
       disabled && isChecked && styles.slider.disabled.checked,
     ),
-    supporting: $props(styles.supporting.default, isChecked && styles.supporting.checked),
+    supporting: $props(styles.supporting.base, isChecked && styles.supporting.checked),
     leading: $props(
       styles.supporting.child,
-      styles.leading.default,
+      styles.leading.base,
       isChecked && styles.leading.checked,
     ),
     trailing: $props(
       styles.supporting.child,
-      styles.trailing.default,
+      styles.trailing.base,
       isChecked && styles.trailing.checked,
     ),
   };

@@ -3,7 +3,7 @@ import { spacing, sizes } from "../theme/tokens.stylex";
 import { type ThemeColorVariable } from "../../hooks/use-theme-color-vars";
 
 const list = $create({
-  default: {
+  base: {
     // reset ul list
     margin: spacing.none,
     padding: spacing.none,
@@ -15,7 +15,7 @@ const list = $create({
   },
 });
 const node = $create({
-  default: {
+  base: {
     display: "flex",
     alignItems: "center",
     gap: spacing.xxxxxsmall,
@@ -26,7 +26,7 @@ const node = $create({
 });
 
 const expander = $create({
-  default: {
+  base: {
     width: 24,
     height: 24,
     display: "flex",
@@ -43,7 +43,7 @@ const expander = $create({
 });
 
 const title = $create({
-  default: {
+  base: {
     paddingInline: spacing.xxxxxsmall,
     borderRadius: sizes.xxxxxxxxxsmall,
     backgroundColor: {

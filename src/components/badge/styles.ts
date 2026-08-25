@@ -2,14 +2,14 @@ import { create as $create } from "@stylexjs/stylex";
 import { sizes } from "../theme/tokens.stylex";
 
 const badge = $create({
-  default: {
+  base: {
     position: "relative",
     display: "inline-flex",
   },
 });
 
 const tail = $create({
-  default: {
+  base: {
     position: "absolute",
     borderRadius: sizes.infinity,
     minWidth: sizes.xxxxsmall,

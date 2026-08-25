@@ -2,7 +2,7 @@ import { create as $create } from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";
 
 const splitPanel = $create({
-  default: {
+  base: {
     width: sizes.full,
     height: sizes.full,
     display: "flex",
@@ -22,7 +22,7 @@ const splitPanel = $create({
   },
 });
 const divider = $create({
-  default: {
+  base: {
     position: "relative",
   },
 
@@ -36,7 +36,7 @@ const divider = $create({
 });
 
 const dragger = $create({
-  default: {
+  base: {
     position: "absolute",
 
     "::before": {
@@ -99,7 +99,7 @@ const dragger = $create({
 });
 
 const panel = $create({
-  default: {
+  base: {
     flexGrow: 0,
     userSelect: "none",
     overflow: "hidden",

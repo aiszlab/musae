@@ -19,7 +19,7 @@ const Breadcrumb = ({ items = [], className, separator = "/", style }: Breadcrum
   }
 
   const styled = {
-    breadcrumb: $props($label.large, styles.breadcrumb.default),
+    breadcrumb: $props($label.large, styles.breadcrumb.base),
     navigations: $props(styles.breadcrumb.navigations),
   };
 

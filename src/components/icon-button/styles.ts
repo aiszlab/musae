@@ -2,7 +2,7 @@ import { create as $create } from "@stylexjs/stylex";
 import { sizes } from "../theme/tokens.stylex";
 
 const styles = $create({
-  default: {
+  base: {
     ":not(#\\#)": {
       paddingInline: 0,
       paddingBlock: 0,

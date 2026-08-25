@@ -26,7 +26,7 @@ const item = $create({
 });
 
 const pagination = $create({
-  default: {
+  base: {
     display: "flex",
     columnGap: spacing.xxxxxsmall,
     listStyleType: "none",

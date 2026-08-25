@@ -67,14 +67,14 @@ const Image = forwardRef<ImageRef, ImageProps>(
     });
 
     const styled = {
-      loading: $props(styles.image.default),
-      image: $props(styles.image.default),
+      loading: $props(styles.image.base),
+      image: $props(styles.image.base),
       overlay: $props(
-        styles.overlay.default,
+        styles.overlay.base,
         !isHovered && styles.overlay.hidden,
         actions.size === 1 && actions.has("preview") && styles.overlay.previewable,
       ),
-      img: $props(styles.img.default),
+      img: $props(styles.img.base),
     };
 
     useImperativeHandle(ref, () => {

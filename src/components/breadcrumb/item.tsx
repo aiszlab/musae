@@ -12,9 +12,9 @@ const Item = ({ href, label, max, separator }: BreadcrumbItemProps) => {
   const { classNames } = useContext(Context);
 
   const styled = {
-    navigation: $props(styles.navigation.default, isLink && styles.navigation.link),
-    separator: $props(styles.separator.default),
-    anchor: $props(styles.anchor.default),
+    navigation: $props(styles.navigation.base, isLink && styles.navigation.link),
+    separator: $props(styles.separator.base),
+    anchor: $props(styles.anchor.base),
   };
 
   return (

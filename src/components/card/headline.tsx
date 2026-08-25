@@ -23,7 +23,7 @@ interface CardHeadlineProps {
 const CardHeadline = forwardRef<HTMLDivElement, CardHeadlineProps>(
   ({ className, style, children }, ref) => {
     const classNames = useClassNames(CLASS_NAMES);
-    const headlineStyled = $props(styles.headline.default);
+    const headlineStyled = $props(styles.headline.base);
 
     return (
       <div

@@ -2,7 +2,7 @@ import { create as $create } from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
 
 const popover = $create({
-  default: {
+  base: {
     maxWidth: "100vw",
 
     // layout
@@ -17,7 +17,7 @@ const popover = $create({
 });
 
 const virtual = $create({
-  default: {
+  base: {
     width: "fit-content",
     height: "fit-content",
   },

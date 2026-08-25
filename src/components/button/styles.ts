@@ -6,7 +6,7 @@ import { type ThemeColorVariable } from "../../hooks/use-theme-color-vars";
 
 type ShapeCSSProperties = Partial<Record<Size, { borderRadius: string }>>;
 const button = $create({
-  default: {
+  base: {
     display: "inline-flex",
     alignItems: "center",
     justifyContent: "center",
@@ -99,7 +99,7 @@ const size = $create({
 });
 
 const disabled = $create({
-  default: {
+  base: {
     color: "var(--color-on-surface-opacity-38)" satisfies ThemeColorVariable,
     cursor: "not-allowed",
     boxShadow: null,

@@ -3,7 +3,7 @@ import { sizes, spacing } from "../theme/tokens.stylex";
 import { type ThemeColorVariable } from "../../hooks/use-theme-color-vars";
 
 const table = $create({
-  default: {
+  base: {
     width: "100%",
 
     // reset table
@@ -35,7 +35,7 @@ const body = $create({
 });
 
 const cell = $create({
-  default: {
+  base: {
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
@@ -51,7 +51,7 @@ const cell = $create({
 });
 
 const sort = $create({
-  default: {
+  base: {
     position: "relative",
     cursor: "pointer",
   },

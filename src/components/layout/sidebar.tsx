@@ -8,7 +8,7 @@ import { stringify } from "@aiszlab/relax/class-name";
 const Sidebar = ({ style, children, className }: SidebarProps) => {
   const { classNames } = useContext(Context);
   const styled = {
-    sidebar: $props(styles.sidebar.default),
+    sidebar: $props(styles.sidebar.base),
   };
 
   return (

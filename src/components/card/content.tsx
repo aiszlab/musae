@@ -38,7 +38,7 @@ interface CardContentProps {
 const CardContent = forwardRef<HTMLDivElement, CardContentProps>(
   ({ className, style, children }, ref) => {
     const classNames = useClassNames(CLASS_NAMES);
-    const contentStyled = $props(styles.content.default);
+    const contentStyled = $props(styles.content.base);
 
     return (
       <div

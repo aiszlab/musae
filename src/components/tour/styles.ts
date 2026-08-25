@@ -37,7 +37,7 @@ const tour = $create({
 });
 
 const spotlight = $create({
-  default: {
+  base: {
     backgroundColor: "#808080",
     borderRadius: sizes.xxxxxxxsmall,
     transitionProperty: "transform",

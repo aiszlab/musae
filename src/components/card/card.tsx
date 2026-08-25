@@ -89,7 +89,7 @@ const Card = forwardRef<HTMLDivElement, CardProps>(
     );
 
     const styled = $props(
-      styles.card.default,
+      styles.card.base,
       styles.card[layout],
       styles.card[variant],
       interactive && styles.card.interactive,

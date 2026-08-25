@@ -18,7 +18,7 @@ const Row = ({
 }: RowProps) => {
   const [columnGap, rowGap] = useGutters({ gutter });
   const classNames = useClassNames(CLASS_NAMES);
-  const styled = $props(styles.row.default);
+  const styled = $props(styles.row.base);
 
   return (
     <Context.Provider value={{ classNames }}>

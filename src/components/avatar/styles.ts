@@ -2,14 +2,14 @@ import { create as $create } from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";
 
 const group = $create({
-  default: {
+  base: {
     display: "inline-flex",
     userSelect: "none",
   },
 });
 
 const avatar = $create({
-  default: {
+  base: {
     borderWidth: sizes.smallest,
     borderStyle: "solid",
     borderColor: "transparent",
@@ -60,14 +60,14 @@ const avatar = $create({
 });
 
 const loading = $create({
-  default: {
+  base: {
     display: "inline-block",
     verticalAlign: "middle",
   },
 });
 
 const image = $create({
-  default: {
+  base: {
     objectFit: "cover",
     objectPosition: "center center",
     borderRadius: "inherit",

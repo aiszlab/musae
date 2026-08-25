@@ -40,7 +40,7 @@ const uploadedList = $create({
 });
 
 const item = $create({
-  default: {
+  base: {
     display: "flex",
     alignItems: "center",
     gap: spacing.xxsmall,
@@ -48,7 +48,7 @@ const item = $create({
 });
 
 const filename = $create({
-  default: {
+  base: {
     flex: 1,
     overflow: "hidden",
     textOverflow: "ellipsis",
@@ -56,7 +56,7 @@ const filename = $create({
 });
 
 const picture = $create({
-  default: {
+  base: {
     width: sizes.xxxxxxxxlarge,
     height: sizes.xxxxxxxxlarge,
   },

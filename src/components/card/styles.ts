@@ -2,7 +2,7 @@ import { create as $create } from "@stylexjs/stylex";
 import { duration, elevations, sizes, spacing } from "../theme/tokens.stylex";
 
 const card = $create({
-  default: {
+  base: {
     position: "relative",
     overflow: "hidden",
     borderRadius: sizes.medium,
@@ -100,7 +100,7 @@ const stateLayer = $create({
 });
 
 const header = $create({
-  default: {
+  base: {
     display: "flex",
     alignItems: "center",
     boxSizing: "border-box",
@@ -123,7 +123,7 @@ const header = $create({
 });
 
 const headerContent = $create({
-  default: {
+  base: {
     display: "flex",
     flex: "1 0 0",
     alignItems: "center",
@@ -133,7 +133,7 @@ const headerContent = $create({
 });
 
 const headerMonogram = $create({
-  default: {
+  base: {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
@@ -153,7 +153,7 @@ const headerMonogram = $create({
 });
 
 const headerText = $create({
-  default: {
+  base: {
     display: "flex",
     flexDirection: "column",
     gap: spacing.xxxxxsmall,
@@ -163,7 +163,7 @@ const headerText = $create({
 });
 
 const headerTitle = $create({
-  default: {
+  base: {
     fontSize: "16px",
     fontWeight: 500,
     lineHeight: "24px",
@@ -176,7 +176,7 @@ const headerTitle = $create({
 });
 
 const headerSubhead = $create({
-  default: {
+  base: {
     fontSize: "14px",
     fontWeight: 400,
     lineHeight: "20px",
@@ -186,7 +186,7 @@ const headerSubhead = $create({
 });
 
 const headerAction = $create({
-  default: {
+  base: {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
@@ -198,7 +198,7 @@ const headerAction = $create({
 });
 
 const media = $create({
-  default: {
+  base: {
     position: "relative",
     overflow: "hidden",
   },
@@ -224,7 +224,7 @@ const media = $create({
 });
 
 const content = $create({
-  default: {
+  base: {
     display: "flex",
     flexDirection: "column",
     gap: spacing.xxxlarge,
@@ -235,7 +235,7 @@ const content = $create({
 });
 
 const headline = $create({
-  default: {
+  base: {
     display: "flex",
     flexDirection: "column",
     gap: spacing.xxxxxsmall,
@@ -244,7 +244,7 @@ const headline = $create({
 });
 
 const title = $create({
-  default: {
+  base: {
     fontSize: "16px",
     fontWeight: 400,
     lineHeight: "24px",
@@ -254,7 +254,7 @@ const title = $create({
 });
 
 const subhead = $create({
-  default: {
+  base: {
     fontSize: "14px",
     fontWeight: 400,
     lineHeight: "20px",
@@ -264,7 +264,7 @@ const subhead = $create({
 });
 
 const body = $create({
-  default: {
+  base: {
     fontSize: "14px",
     fontWeight: 400,
     lineHeight: "20px",
@@ -274,7 +274,7 @@ const body = $create({
 });
 
 const actions = $create({
-  default: {
+  base: {
     display: "flex",
     gap: spacing.xxsmall,
     alignItems: "flex-start",

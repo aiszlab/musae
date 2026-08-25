@@ -8,7 +8,7 @@ import Context from "./context";
 const Header = ({ className, style, children }: HeaderProps) => {
   const { classNames } = useContext(Context);
   const styled = {
-    header: $props(styles.header.default),
+    header: $props(styles.header.base),
   };
 
   return (

@@ -117,7 +117,7 @@ const Popover = forwardRef(
     // valid elment, inject handlers
     // else add `div` wrapper, inject handlers to `div` wrapper
     const children = useMemo(() => {
-      const styled = $props(styles.virtual.default);
+      const styled = $props(styles.virtual.base);
       const _child = isValidElement(_children) ? (
         _children
       ) : (
@@ -174,7 +174,7 @@ const Popover = forwardRef(
     }));
 
     const styled = {
-      popover: $props(styles.popover.default, !!padding && styles.popover.padding, $body.medium),
+      popover: $props(styles.popover.base, !!padding && styles.popover.padding, $body.medium),
       title: $props($title.medium),
       content: $props($body.medium),
     };

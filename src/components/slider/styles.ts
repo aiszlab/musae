@@ -2,7 +2,7 @@ import { create as $create } from "@stylexjs/stylex";
 import { sizes } from "../theme/tokens.stylex";
 
 const slider = $create({
-  default: {
+  base: {
     display: "flex",
     flexDirection: "row",
     gap: sizes.xxxxxxxxsmall,
@@ -10,7 +10,7 @@ const slider = $create({
 });
 
 const track = $create({
-  default: {
+  base: {
     width: "100%",
     height: "100%",
   },
@@ -25,7 +25,7 @@ const track = $create({
 });
 
 const handle = $create({
-  default: {
+  base: {
     width: sizes.xxxxxxxxxsmall,
     height: sizes.xxlarge,
     borderRadius: sizes.infinity,

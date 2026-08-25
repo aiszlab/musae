@@ -22,9 +22,9 @@ const Badge = ({
   const isDot = isVoid(content);
 
   const styled = {
-    badge: $props(styles.badge.default),
+    badge: $props(styles.badge.base),
     tail: $props(
-      styles.tail.default,
+      styles.tail.base,
       isDot && styles.tail.dot,
       $label.small,
       invisible && styles.tail.invisible,

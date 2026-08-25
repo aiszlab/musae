@@ -37,7 +37,7 @@ const Panel = forwardRef<PanelRef, PanelProps>(
     });
 
     const styled = $props(
-      styles.panel.default,
+      styles.panel.base,
       !isSized && styles.panel.unsized,
       isSized && styles.panel.sized,
       last && styles.panel.last,

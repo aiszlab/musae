@@ -100,14 +100,14 @@ const Search = forwardRef<SearchRef, SearchProps>(
 
     const _styled = {
       container: $props(
-        styles.container.default,
+        styles.container.base,
         disabled && styles.container.disabled,
         !!searchButton && styles.container.withSearchButton,
       ),
-      leading: $props(styles.leading.default),
-      input: $props(styles.input.default),
-      clear: $props(styles.clear.default),
-      searchButton: $props(styles.searchButton.default),
+      leading: $props(styles.leading.base),
+      input: $props(styles.input.base),
+      clear: $props(styles.clear.base),
+      searchButton: $props(styles.searchButton.base),
     };
 
     return (

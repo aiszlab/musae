@@ -3,7 +3,7 @@ import { sizes, spacing } from "../theme/tokens.stylex";
 import { type ThemeColorVariable } from "../../hooks/use-theme-color-vars";
 
 const navigation = $create({
-  default: {
+  base: {
     borderBottomColor: "var(--color-outline-variant)" satisfies ThemeColorVariable,
     borderBottomWidth: sizes.smallest,
     borderBottomStyle: "solid",
@@ -11,7 +11,7 @@ const navigation = $create({
 });
 
 const navigator = $create({
-  default: {
+  base: {
     position: "relative",
     overflow: "hidden",
   },
@@ -42,7 +42,7 @@ const navigator = $create({
 });
 
 const list = $create({
-  default: {
+  base: {
     display: "flex",
     width: "fit-content",
     transform: "translateX(calc(var(--offset) * -1))",
@@ -51,7 +51,7 @@ const list = $create({
 });
 
 const indicator = $create({
-  default: {
+  base: {
     backgroundColor: "var(--color-primary)" satisfies ThemeColorVariable,
     position: "absolute",
     bottom: spacing.none,
@@ -73,7 +73,7 @@ const indicator = $create({
 });
 
 const panels = $create({
-  default: {
+  base: {
     padding: spacing.xxxlarge,
   },
 });

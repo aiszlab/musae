@@ -23,7 +23,7 @@ interface CardSubheadProps {
 const CardSubhead = forwardRef<HTMLDivElement, CardSubheadProps>(
   ({ className, style, children }, ref) => {
     const classNames = useClassNames(CLASS_NAMES);
-    const subheadStyled = $props(styles.subhead.default);
+    const subheadStyled = $props(styles.subhead.base);
 
     return (
       <div

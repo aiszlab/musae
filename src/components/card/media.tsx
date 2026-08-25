@@ -48,7 +48,7 @@ const CardMedia = forwardRef<HTMLDivElement, CardMediaProps>(
   ({ className, style, src, alt, children, ...imgProps }, ref) => {
     const classNames = useClassNames(CLASS_NAMES);
     const { layout } = useCardContext();
-    const mediaStyled = $props(styles.media.default, styles.media[layout]);
+    const mediaStyled = $props(styles.media.base, styles.media[layout]);
 
     return (
       <div

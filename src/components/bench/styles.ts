@@ -2,7 +2,7 @@ import { create as $create } from "@stylexjs/stylex";
 import { duration, sizes, spacing } from "../theme/tokens.stylex";
 
 const bench = $create({
-  default: {
+  base: {
     width: "100vw",
     height: "100vh",
     display: "grid",
@@ -19,7 +19,7 @@ const bench = $create({
 });
 
 const heading = $create({
-  default: {},
+  base: {},
 
   collapsed: {
     justifyContent: "center",
@@ -28,17 +28,17 @@ const heading = $create({
 });
 
 const collapser = $create({
-  default: {
+  base: {
     marginInlineStart: "auto",
   },
 });
 
 const header = $create({
-  default: {},
+  base: {},
 });
 
 const trailing = $create({
-  default: {
+  base: {
     display: "flex",
     gap: spacing.xxsmall,
     marginInlineStart: spacing.auto,
@@ -46,7 +46,7 @@ const trailing = $create({
 });
 
 const sidebar = $create({
-  default: {},
+  base: {},
 
   collapsed: {
     paddingInline: spacing.none,
@@ -59,7 +59,7 @@ const sidebar = $create({
 });
 
 const menu = $create({
-  default: {
+  base: {
     overflow: "hidden",
   },
 
@@ -69,7 +69,7 @@ const menu = $create({
 });
 
 const expander = $create({
-  default: {
+  base: {
     gridArea: "expander",
     width: sizes.full,
     display: "flex",
@@ -85,7 +85,7 @@ const expander = $create({
 });
 
 const main = $create({
-  default: {},
+  base: {},
 });
 
 const styles = { bench, heading, collapser, header, trailing, sidebar, menu, expander, main };

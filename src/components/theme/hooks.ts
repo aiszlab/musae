@@ -108,7 +108,7 @@ export const PALETTE: Readonly<Palette> = {
 };
 
 const styles = $create({
-  default: {
+  base: {
     "::view-transition-old(root)": {
       animationName: "none",
       mixBlendMode: "normal",
@@ -192,7 +192,7 @@ export const useSwitchable = ({
   const colors = useMemo(() => toColorRoles(theme.palette, mode), [mode, theme.palette]);
 
   const styled = {
-    default: $props(styles.default),
+    default: $props(styles.base),
     light: $props(styles.light),
     lighting: $props(styles.lighting),
     dark: $props(styles.dark),

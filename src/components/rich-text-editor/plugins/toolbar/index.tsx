@@ -142,7 +142,7 @@ const ToolbarPlugin = () => {
     };
   });
 
-  const styled = $props(styles.toolbar.default);
+  const styled = $props(styles.toolbar.base);
 
   return (
     <>

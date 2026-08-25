@@ -25,11 +25,11 @@ const CollapseItem = ({ children, label, value }: CollapseItemProps) => {
   }, [isExpanded]);
 
   const styled = {
-    item: $props(styles.item.default),
-    header: $props(styles.header.default, $title.medium),
-    panel: $props(styles.panel.default, !isExpanded && styles.panel.hidden),
-    content: $props(styles.content.default, $body.medium),
-    collapser: $props(styles.collapser.default, isExpanded && styles.collapser.expanded),
+    item: $props(styles.item.base),
+    header: $props(styles.header.base, $title.medium),
+    panel: $props(styles.panel.base, !isExpanded && styles.panel.hidden),
+    content: $props(styles.content.base, $body.medium),
+    collapser: $props(styles.collapser.base, isExpanded && styles.collapser.expanded),
   };
 
   const onClick = useEvent(() => {
