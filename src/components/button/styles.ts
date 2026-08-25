@@ -24,8 +24,6 @@ const button = $create({
     cursor: "pointer",
     fontFamily: "inherit",
     boxSizing: "border-box",
-    height: "fit-content",
-
     // 元素设置为`inline-flex`后，会在父元素`flex`布局下被自动压缩
     // 使用`flex-shrink`保证元素不能被压缩
     flexShrink: 0,
@@ -75,27 +73,27 @@ const variant = $create({
 
 const size = $create({
   xsmall: {
-    paddingBlock: spacing.xxxsmall,
+    height: sizes.medium,
     paddingInline: spacing.medium,
   },
 
   small: {
-    paddingBlock: spacing.xsmall,
+    height: sizes.xlarge,
     paddingInline: spacing.large,
   },
 
   medium: {
-    paddingBlock: spacing.large,
+    height: sizes.xxxxlarge,
     paddingInline: spacing.xxxlarge,
   },
 
   large: {
-    paddingBlock: spacing.xxxxxxlarge,
+    height: sizes.xxxxxxxlarge,
     paddingInline: spacing.xxxxxxxxlarge,
   },
 
   xlarge: {
-    paddingBlock: spacing.xxxxxxxxlarge,
+    height: sizes.xxxxxxxxxlarge,
     paddingInline: spacing.xxxxxxxxxxlarge,
   },
 });
