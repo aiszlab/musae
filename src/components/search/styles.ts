@@ -3,7 +3,7 @@ import { duration, sizes, spacing } from "../theme/tokens.stylex";
 import { ThemeColorVariable } from "../../hooks/use-theme-color-vars";
 
 const container = $create({
-  default: {
+  base: {
     display: "inline-flex",
     alignItems: "center",
     width: sizes.full,
@@ -42,7 +42,7 @@ const container = $create({
 });
 
 const leading = $create({
-  default: {
+  base: {
     display: "inline-flex",
     alignItems: "center",
     justifyContent: "center",
@@ -55,7 +55,7 @@ const leading = $create({
 });
 
 const input = $create({
-  default: {
+  base: {
     ":not(#\\#)": {
       fontSize: sizes.xxxxsmall,
       boxShadow: "none",
@@ -70,7 +70,7 @@ const input = $create({
 });
 
 const clear = $create({
-  default: {
+  base: {
     display: "inline-flex",
     alignItems: "center",
     justifyContent: "center",
@@ -94,7 +94,7 @@ const clear = $create({
 });
 
 const searchButton = $create({
-  default: {
+  base: {
     flexShrink: 0,
     marginInlineEnd: spacing.none,
     borderTopLeftRadius: sizes.none,

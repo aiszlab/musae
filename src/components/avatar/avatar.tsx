@@ -40,19 +40,19 @@ const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(
     const styled = {
       avatar: $props(
         $label[size],
-        styles.avatar.default,
+        styles.avatar.base,
         styles.avatar[size],
         styles.avatar[shape],
         isInGroup && styles.avatar.overlapping,
       ),
       loading: $props(
         $label[size],
-        styles.loading.default,
+        styles.loading.base,
         styles.avatar[size],
         styles.avatar[shape],
         isInGroup && styles.avatar.overlapping,
       ),
-      image: $props(styles.image.default, styles.avatar[size]),
+      image: $props(styles.image.base, styles.avatar[size]),
     };
 
     if (loadStatus === "loading") {

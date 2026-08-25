@@ -56,11 +56,11 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 
     const styled = {
       button: $props(
-        styles.button.default,
+        styles.button.base,
         ripple && styles.button.rippleable,
         styles.size[size],
         styles.variant[variant],
-        isDisabled && [styles.disabled.default, styles.disabled[variant]],
+        isDisabled && [styles.disabled.base, styles.disabled[variant]],
         // shape styles
         styles.shape[shape].medium,
         styles.shape[shape][size],

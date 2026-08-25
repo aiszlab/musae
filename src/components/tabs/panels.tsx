@@ -40,7 +40,7 @@ const Panels = ({ forceRender, destroyable, activatedKeys }: PanelsProps) => {
   }, [destroyable, forceRender, items, activeKey, activatedKeys]);
 
   const styled = {
-    panels: $props(panels.length > 0 && styles.panels.default),
+    panels: $props(panels.length > 0 && styles.panels.base),
   };
 
   return (

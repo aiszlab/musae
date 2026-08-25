@@ -36,7 +36,7 @@ interface CardActionsProps {
 const CardActions = forwardRef<HTMLDivElement, CardActionsProps>(
   ({ className, style, children }, ref) => {
     const classNames = useClassNames(CLASS_NAMES);
-    const actionsStyled = $props(styles.actions.default);
+    const actionsStyled = $props(styles.actions.base);
 
     return (
       <div

@@ -2,7 +2,7 @@ import { elevations, positions, sizes } from "../theme/tokens.stylex";
 import { create as $create } from "@stylexjs/stylex";
 
 const portal = $create({
-  default: {
+  base: {
     position: "fixed",
     overflow: "hidden",
     pointerEvents: "none",
@@ -16,7 +16,7 @@ const portal = $create({
 });
 
 const dropdown = $create({
-  default: {
+  base: {
     position: "absolute",
     backgroundColor: "var(--color-surface-container)",
     insetBlockStart: 0,
@@ -41,7 +41,7 @@ const dropdown = $create({
 });
 
 const arrow = $create({
-  default: {
+  base: {
     position: "absolute",
     width: sizes.xxxxsmall,
     height: sizes.xxxxsmall,

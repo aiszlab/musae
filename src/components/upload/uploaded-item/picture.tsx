@@ -22,7 +22,7 @@ const UploadedPicture = ({ item, onRemove, className, style }: Props) => {
 
   const styled = {
     wrapper: $props(styles.picture.wrapper),
-    image: $props(styles.picture.default),
+    image: $props(styles.picture.base),
   };
 
   return (

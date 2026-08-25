@@ -47,14 +47,14 @@ const Radio = ({ children, value, checked, disabled = false, ...props }: RadioPr
   }, [isChecked, contextValue, value, isDisabled]);
 
   const styled = {
-    radio: $props(styles.radio.default, isDisabled && styles.radio.disabled),
+    radio: $props(styles.radio.base, isDisabled && styles.radio.disabled),
     input: $props(
-      styles.input.default,
+      styles.input.base,
       isChecked && styles.input.checked,
       isDisabled && styles.input.disabled,
       !isChecked && styles.input.unckecked,
     ),
-    label: $props($body.medium, styles.label.default),
+    label: $props($body.medium, styles.label.base),
   };
 
   return (

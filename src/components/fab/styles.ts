@@ -2,7 +2,7 @@ import { create as $create } from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
 
 const styles = $create({
-  default: {
+  base: {
     cursor: "pointer",
     pointerEvents: "auto",
     transform: "translateX(var(--movement-x)) translateY(var(--movement-y))",

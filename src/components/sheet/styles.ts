@@ -3,13 +3,13 @@ import { positions } from "../theme/tokens.stylex";
 import { type ThemeColorVariable } from "../../hooks/use-theme-color-vars";
 
 const stackLevel = $create({
-  default: {
+  base: {
     zIndex: positions.drawer,
   },
 });
 
 const container = $create({
-  default: {
+  base: {
     position: "fixed",
     inset: 0,
     pointerEvents: "none",
@@ -22,7 +22,7 @@ const container = $create({
 });
 
 const overlay = $create({
-  default: {
+  base: {
     position: "absolute",
     inset: 0,
     pointerEvents: "auto",
@@ -32,7 +32,7 @@ const overlay = $create({
 });
 
 const panel = $create({
-  default: {
+  base: {
     position: "absolute",
     pointerEvents: "auto",
     willChange: "transform",

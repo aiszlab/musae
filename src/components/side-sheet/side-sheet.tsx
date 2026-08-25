@@ -59,17 +59,17 @@ const SideSheet = ({
   });
 
   const styled = {
-    panel: $props(styles.panel.default),
-    standard: $props(styles.standard.default, styles.standard[placement]),
+    panel: $props(styles.panel.base),
+    standard: $props(styles.standard.base, styles.standard[placement]),
     header: $props(
-      styles.header.default,
+      styles.header.base,
       !!onBack && styles.header["with-back"],
       !onBack && styles.header["with-title"],
     ),
-    title: $props($title.large, styles.title.default),
-    content: $props(styles.content.default),
-    actions: $props(styles.actions.default),
-    buttons: $props(styles.buttons.default),
+    title: $props($title.large, styles.title.base),
+    content: $props(styles.content.base),
+    actions: $props(styles.actions.base),
+    buttons: $props(styles.buttons.base),
   };
 
   /**

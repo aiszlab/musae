@@ -21,7 +21,7 @@ const Rate = ({
   const { enter, hovered, leave } = useHover();
 
   const styled = {
-    rate: $props(styles.rate.default),
+    rate: $props(styles.rate.base),
   };
 
   return (

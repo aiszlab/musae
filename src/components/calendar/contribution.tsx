@@ -71,19 +71,19 @@ const ContributionCalendar = ({
 
   const styled = {
     scrollable: $props(styles.contributionCalendar.scrollable),
-    calendar: $props(styles.contributionCalendar.default),
-    cell: $props(styles.cell.default),
+    calendar: $props(styles.contributionCalendar.base),
+    cell: $props(styles.cell.base),
     weekday: {
       cell: $props(styles.weekday.cell, $body.small),
-      default: $props(styles.weekday.default),
+      default: $props(styles.weekday.base),
     },
     month: {
       cell: $props(styles.month.cell, $body.small),
-      default: $props(styles.month.default),
+      default: $props(styles.month.base),
       leading: $props(styles.month.cell, $body.small, styles.month.leading),
     },
-    legend: $props(styles.legend.default, $label.medium),
-    levels: $props(styles.levels.default),
+    legend: $props(styles.legend.base, $label.medium),
+    levels: $props(styles.levels.base),
     level: $props(styles.levels.level),
   };
 

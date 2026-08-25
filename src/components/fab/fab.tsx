@@ -20,7 +20,7 @@ const Fab = forwardRef<HTMLButtonElement, FabProps>(
     const buttonRef = useComposedRef(_buttonRef, ref, draggableRef);
 
     const styled = {
-      button: $props(styles.default, isDragged && styles.dragged),
+      button: $props(styles.base, isDragged && styles.dragged),
       icon: $props(styles.icon),
     };
 

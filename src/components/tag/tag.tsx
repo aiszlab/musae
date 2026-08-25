@@ -29,12 +29,7 @@ const Tag = ({
     "outline",
   ]);
 
-  const styled = $props(
-    $label[size],
-    styles.tag.default,
-    styles.size[size],
-    styles.variant[variant],
-  );
+  const styled = $props($label[size], styles.tag.base, styles.size[size], styles.variant[variant]);
 
   return (
     <span

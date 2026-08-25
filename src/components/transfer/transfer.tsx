@@ -38,7 +38,7 @@ const Transfer = ({
   const classNames = useClassNames(CLASS_NAMES);
 
   const styled = {
-    transfer: $props(styles.transfer.default),
+    transfer: $props(styles.transfer.base),
     operation: $props(styles.transfer.operation),
   };
 

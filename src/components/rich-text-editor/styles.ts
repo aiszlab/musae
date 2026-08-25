@@ -30,8 +30,8 @@ const root = $create({
 
 const utils = {
   list: {
-    default: $create({
-      default: {
+    base: $create({
+      base: {
         padding: spacing.none,
         margin: spacing.none,
         listStylePosition: "outside",
@@ -39,7 +39,7 @@ const utils = {
     }),
 
     unordered: $create({
-      default: {
+      base: {
         listStyleType: "disc",
       },
 
@@ -49,13 +49,13 @@ const utils = {
     }),
 
     ordered: $create({
-      default: {
+      base: {
         listStyleType: "decimal",
       },
     }),
 
     item: $create({
-      default: {
+      base: {
         outline: "none",
         position: "relative",
         marginInline: spacing.xxxlarge,
@@ -93,7 +93,7 @@ const utils = {
   }),
 
   heading: $create({
-    default: { fontWeight: 700 },
+    base: { fontWeight: 700 },
 
     h1: {
       marginBlockStart: spacing.xxxlarge,
@@ -126,7 +126,7 @@ const utils = {
   }),
 
   link: $create({
-    default: {
+    base: {
       color: "var(--color-primary)",
       cursor: "pointer",
       textDecoration: {
@@ -148,7 +148,7 @@ const dropdown = $create({
 });
 
 const checkbox = $create({
-  default: {
+  base: {
     position: "absolute",
     insetInlineStart: sizes.none,
     insetBlockStart: sizes.none,
@@ -164,7 +164,7 @@ const floatingLinkEditor = $create({
 });
 
 const toolbar = $create({
-  default: {
+  base: {
     minHeight: sizes.medium,
     display: "flex",
     flexDirection: "row",

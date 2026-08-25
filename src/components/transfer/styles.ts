@@ -2,7 +2,7 @@ import { create as $create } from "@stylexjs/stylex";
 import { spacing, elevations, sizes } from "../theme/tokens.stylex";
 
 const item = $create({
-  default: {
+  base: {
     display: "flex",
     alignItems: "center",
     paddingInline: spacing.medium,
@@ -12,7 +12,7 @@ const item = $create({
 });
 
 const list = $create({
-  default: {
+  base: {
     minWidth: sizes.xxxxxxxxxxlarge,
     maxHeight: sizes.xxxxxxxxxxxlarge,
     display: "flex",
@@ -55,7 +55,7 @@ const list = $create({
 });
 
 const transfer = $create({
-  default: {
+  base: {
     display: "flex",
     flexDirection: "row",
     alignItems: "stretch",

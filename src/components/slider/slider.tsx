@@ -9,7 +9,7 @@ import Handle from "./handle";
 
 const Slider = () => {
   const classNames = useClassNames(CLASS_NAMES);
-  const styled = $props(styles.slider.default);
+  const styled = $props(styles.slider.base);
   const [offset] = useState(0);
 
   // const {} = useDrag();

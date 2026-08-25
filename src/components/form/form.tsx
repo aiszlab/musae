@@ -27,7 +27,7 @@ const Form = <T extends FieldsValue>({
 }: FormProps<T>) => {
   const _form = useForm({ form, onChange, value, defaultValue });
   const classNames = useClassNames(CLASS_NAMES);
-  const styled = $props(styles.form.default, layout === "inline" && styles.form.inline);
+  const styled = $props(styles.form.base, layout === "inline" && styles.form.inline);
 
   return (
     <Context.Provider

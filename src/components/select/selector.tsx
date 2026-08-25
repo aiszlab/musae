@@ -42,11 +42,11 @@ const Selector = forwardRef<SelectorRef, SelectorProps>(
     const styled = {
       input: $props(
         inputStyles.input,
-        styles.selector.input.focused.default,
+        styles.selector.input.focused.base,
         isFocused && searchable && styles.selector.input.focused.searchable,
         $body.small,
       ),
-      placeholder: $props(styles.selector.placeholder.default),
+      placeholder: $props(styles.selector.placeholder.base),
     };
 
     // multiple mode render

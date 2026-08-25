@@ -80,35 +80,35 @@ const Checkbox = ({
 
   const styled = {
     checkbox: $props(
-      styles.checkbox.default,
+      styles.checkbox.base,
       styles.checkbox.medium,
       isDisabled && styles.checkbox.disabled,
     ),
     layer: $props(
-      styles.layer.default.default,
+      styles.layer.base.base,
       ripple && [
-        styles.layer.rippleable.default,
+        styles.layer.rippleable.base,
         (isChecked || indeterminate) && styles.layer.rippleable.checked,
         invalid && styles.layer.rippleable.invalid,
         isDisabled && styles.layer.rippleable.disabled,
       ],
     ),
     inputer: $props(
-      styles.inputer.default.default,
-      isDisabled && styles.inputer.default.disabled,
+      styles.inputer.base.base,
+      isDisabled && styles.inputer.base.disabled,
       (isChecked || indeterminate) && [
-        styles.inputer.checked.default,
+        styles.inputer.checked.base,
         isDisabled && styles.inputer.checked.disabled,
       ],
       invalid && [
-        styles.inputer.invalid.default,
+        styles.inputer.invalid.base,
         (isChecked || indeterminate) && styles.inputer.invalid.checked,
         isDisabled && styles.inputer.invalid.disabled,
       ],
     ),
-    input: $props(styles.input.default),
-    check: $props(styles.check.default),
-    label: $props($label.small, styles.label.default, invalid && styles.label.invalid),
+    input: $props(styles.input.base),
+    check: $props(styles.check.base),
+    label: $props($label.small, styles.label.base, invalid && styles.label.invalid),
   };
 
   return (

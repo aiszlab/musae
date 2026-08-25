@@ -7,7 +7,7 @@ import { stringify } from "@aiszlab/relax/class-name";
 
 const IconButton = forwardRef<HTMLButtonElement, Omit<ButtonProps, "shape" | "prefix" | "suffix">>(
   ({ className, style, size = "medium", ...props }, ref) => {
-    const styled = $props(styles.default, styles[size]);
+    const styled = $props(styles.base, styles[size]);
 
     return (
       <Button

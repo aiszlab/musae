@@ -96,14 +96,14 @@ const Sheet = ({
   }, [visible, ..._placement]);
 
   const styled = {
-    stackLevel: $props(styles.stackLevel.default),
+    stackLevel: $props(styles.stackLevel.base),
     container: $props(
-      styles.stackLevel.default,
-      styles.container.default,
+      styles.stackLevel.base,
+      styles.container.base,
       modal && styles.container.modal,
     ),
-    overlay: $props(styles.overlay.default),
-    panel: $props(styles.panel.default, styles.panel[placement], styles.panel.fullscreen),
+    overlay: $props(styles.overlay.base),
+    panel: $props(styles.panel.base, styles.panel[placement], styles.panel.fullscreen),
   };
 
   return (

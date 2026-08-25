@@ -3,7 +3,7 @@ import { spacing, duration, sizes } from "../theme/tokens.stylex";
 import { type ThemeColorVariable } from "../../hooks/use-theme-color-vars";
 
 const rate = $create({
-  default: {
+  base: {
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
@@ -16,7 +16,7 @@ const rate = $create({
 });
 
 const star = $create({
-  default: {
+  base: {
     position: "relative",
     transitionProperty: "all",
     transitionDuration: duration.short,
@@ -42,7 +42,7 @@ const star = $create({
 });
 
 const half = $create({
-  default: {
+  base: {
     position: "absolute",
     width: sizes.half,
     height: sizes.full,
@@ -60,7 +60,7 @@ const half = $create({
 });
 
 const full = $create({
-  default: {
+  base: {
     userSelect: "none",
   },
 

@@ -13,7 +13,7 @@ const Col = <E extends "aside" | "div" = "div">({
   style,
   onClick,
 }: ColProps<E>): ReactNode => {
-  const styled = $props(styles.col.default);
+  const styled = $props(styles.col.base);
   const { classNames } = useContext(Context);
   const isFull = span >= SPANS;
 

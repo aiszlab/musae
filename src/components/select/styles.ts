@@ -16,7 +16,7 @@ const select = $create({
 const selector = {
   input: {
     focused: $create({
-      default: {},
+      base: {},
 
       searchable: {
         "::placeholder": {
@@ -27,7 +27,7 @@ const selector = {
   },
 
   placeholder: $create({
-    default: {
+    base: {
       color: "var(--color-on-surface-opacity-38)" satisfies ThemeColorVariable,
     },
   }),

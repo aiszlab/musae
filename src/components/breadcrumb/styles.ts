@@ -3,7 +3,7 @@ import { duration, sizes, spacing } from "../theme/tokens.stylex";
 import { ThemeColorVariable } from "../../hooks/use-theme-color-vars";
 
 const navigation = $create({
-  default: {
+  base: {
     ":last-of-type": {
       color: "var(--color-on-surface)",
     },
@@ -30,20 +30,20 @@ const navigation = $create({
 });
 
 const anchor = $create({
-  default: {
+  base: {
     textDecoration: "none",
     color: "inherit",
   },
 });
 
 const separator = $create({
-  default: {
+  base: {
     marginInline: spacing.xxsmall,
   },
 });
 
 const breadcrumb = $create({
-  default: {
+  base: {
     color: "var(--color-on-surface-variant)",
   },
 

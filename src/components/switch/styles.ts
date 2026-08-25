@@ -3,7 +3,7 @@ import { duration, opacity, sizes, spacing } from "../theme/tokens.stylex";
 import { type ThemeColorVariable } from "../../hooks/use-theme-color-vars";
 
 const supporting = $create({
-  default: {
+  base: {
     height: sizes.full,
     width: sizes.full,
     overflow: "hidden",
@@ -37,7 +37,7 @@ const supporting = $create({
 });
 
 const leading = $create({
-  default: {
+  base: {
     // - `self width` - `slider width` - `slider padding width * 4` - `border width`
     marginInlineStart: `calc(-100% - ${sizes.xsmall} - ${sizes.xxxxxxxxxxsmall} * 4 - ${sizes.xxxxxxxxxxsmall})`,
     marginInlineEnd: `calc(100% + ${sizes.xsmall} + ${sizes.xxxxxxxxxxsmall} * 4 + ${sizes.xxxxxxxxxxsmall})`,
@@ -50,7 +50,7 @@ const leading = $create({
 });
 
 const trailing = $create({
-  default: {
+  base: {
     marginBlockStart: `calc(-1 * ${sizes.small})`,
     marginInlineEnd: 0,
     marginInlineStart: 0,
@@ -65,8 +65,8 @@ const trailing = $create({
 
 const styles = {
   switch: {
-    default: $create({
-      default: {
+    base: $create({
+      base: {
         minWidth: sizes.xxxlarge,
         width: "fit-content",
         height: sizes.medium,
@@ -95,7 +95,7 @@ const styles = {
     }),
 
     disabled: $create({
-      default: {
+      base: {
         cursor: "not-allowed",
         borderColor: "var(--color-on-surface-opacity-12)" satisfies ThemeColorVariable,
         backgroundColor: "var(--color-surface-variant-opacity-12)" satisfies ThemeColorVariable,
@@ -110,8 +110,8 @@ const styles = {
   },
 
   slider: {
-    default: $create({
-      default: {
+    base: $create({
+      base: {
         borderRadius: sizes.infinity,
         position: "absolute",
         transitionProperty: "all",
@@ -148,7 +148,7 @@ const styles = {
     }),
 
     disabled: $create({
-      default: {
+      base: {
         opacity: opacity.thicker,
         backgroundColor: "var(--color-on-surface-opacity-38)" satisfies ThemeColorVariable,
         color: "var(--color-surface-container-highest)" satisfies ThemeColorVariable,

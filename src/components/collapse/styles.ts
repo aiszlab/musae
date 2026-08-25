@@ -2,7 +2,7 @@ import { create as $create } from "@stylexjs/stylex";
 import { duration, sizes, spacing } from "../theme/tokens.stylex";
 
 const item = $create({
-  default: {
+  base: {
     borderBottomWidth: sizes.smallest,
     borderBottomStyle: "solid",
     borderBottomColor: "var(--color-outline-variant)",
@@ -14,7 +14,7 @@ const item = $create({
 });
 
 const header = $create({
-  default: {
+  base: {
     paddingInline: spacing.large,
     paddingBlock: spacing.medium,
     display: "flex",
@@ -26,7 +26,7 @@ const header = $create({
 });
 
 const panel = $create({
-  default: {
+  base: {
     height: "auto",
   },
 
@@ -36,7 +36,7 @@ const panel = $create({
 });
 
 const content = $create({
-  default: {
+  base: {
     borderTopWidth: sizes.smallest,
     borderTopStyle: "solid",
     borderTopColor: "var(--color-outline-variant)",
@@ -45,7 +45,7 @@ const content = $create({
 });
 
 const collapser = $create({
-  default: {
+  base: {
     willChange: "transform",
     transitionProperty: "transform",
     transitionDuration: duration.short,
@@ -57,7 +57,7 @@ const collapser = $create({
 });
 
 const collapse = $create({
-  default: {
+  base: {
     borderWidth: sizes.smallest,
     borderStyle: "solid",
     borderColor: "var(--color-outline-variant)",

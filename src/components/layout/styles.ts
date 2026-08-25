@@ -2,21 +2,21 @@ import { create as $create } from "@stylexjs/stylex";
 import { spacing, sizes } from "../theme/tokens.stylex";
 
 const layout = $create({
-  default: {
+  base: {
     display: "grid",
     gridTemplateAreas: "var(--layout)",
   },
 });
 
 const footer = $create({
-  default: {
+  base: {
     gridArea: "footer",
     paddingInline: spacing.xxxxxxxlarge,
   },
 });
 
 const main = $create({
-  default: {
+  base: {
     gridArea: "main",
     overflow: "auto",
     padding: spacing.xxxxxxxlarge,
@@ -29,7 +29,7 @@ const main = $create({
 });
 
 const sidebar = $create({
-  default: {
+  base: {
     gridArea: "sidebar",
     padding: spacing.xxxxxxlarge,
     overflow: "hidden",
@@ -49,7 +49,7 @@ const sidebar = $create({
 });
 
 const header = $create({
-  default: {
+  base: {
     gridArea: "header",
     display: "flex",
     alignItems: "center",
@@ -60,7 +60,7 @@ const header = $create({
 });
 
 const heading = $create({
-  default: {
+  base: {
     gridArea: "heading",
     paddingInline: spacing.xxxxxxlarge,
     fontWeight: 700,

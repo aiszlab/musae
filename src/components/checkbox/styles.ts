@@ -2,7 +2,7 @@ import { create as $create } from "@stylexjs/stylex";
 import { duration, opacity, sizes, spacing } from "../theme/tokens.stylex";
 
 const checkbox = $create({
-  default: {
+  base: {
     display: "inline-flex",
     alignItems: "center",
     cursor: "pointer",
@@ -23,13 +23,13 @@ const checkbox = $create({
 });
 
 const input = $create({
-  default: {
+  base: {
     display: "none",
   },
 });
 
 const check = $create({
-  default: {
+  base: {
     position: "absolute",
     width: "var(--check-size)",
     height: "var(--check-size)",
@@ -38,7 +38,7 @@ const check = $create({
 });
 
 const label = $create({
-  default: {
+  base: {
     paddingInline: spacing.xxxsmall,
   },
 
@@ -51,8 +51,8 @@ const styles = {
   checkbox,
 
   layer: {
-    default: $create({
-      default: {
+    base: $create({
+      base: {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
@@ -60,7 +60,7 @@ const styles = {
     }),
 
     rippleable: $create({
-      default: {
+      base: {
         position: "relative",
         overflow: "hidden",
         padding: spacing.small,
@@ -119,8 +119,8 @@ const styles = {
   },
 
   inputer: {
-    default: $create({
-      default: {
+    base: $create({
+      base: {
         width: "var(--size)",
         height: "var(--size)",
         minWidth: "var(--size)",
@@ -142,7 +142,7 @@ const styles = {
     }),
 
     checked: $create({
-      default: {
+      base: {
         color: "var(--color-on-primary)",
         borderColor: "var(--color-primary)",
         backgroundColor: "var(--color-primary)",
@@ -156,7 +156,7 @@ const styles = {
     }),
 
     invalid: $create({
-      default: {
+      base: {
         borderColor: "var(--color-error)",
       },
 

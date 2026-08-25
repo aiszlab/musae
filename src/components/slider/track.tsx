@@ -9,7 +9,7 @@ import { stringify } from "@aiszlab/relax/class-name";
 const Track = ({ size = 0 }: TrackProps) => {
   const isSized = !isUndefined(size);
   const { classNames } = useContext(Context);
-  const styled = $props(styles.track.default, !isSized ? styles.track.flexible : {});
+  const styled = $props(styles.track.base, !isSized ? styles.track.flexible : {});
 
   return (
     <div
