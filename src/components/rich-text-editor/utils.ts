@@ -17,24 +17,24 @@ import { type InitialConfigType } from "@lexical/react/LexicalComposer";
 
 const usingStyles = () => {
   return {
-    h1: $props($headline.large, styles.utils.heading.default, styles.utils.heading.h1),
-    h2: $props($headline.medium, styles.utils.heading.default, styles.utils.heading.h2),
-    h3: $props($headline.small, styles.utils.heading.default, styles.utils.heading.h3),
-    h4: $props($title.large, styles.utils.heading.default, styles.utils.heading.h4),
-    h5: $props($title.medium, styles.utils.heading.default, styles.utils.heading.h5),
-    h6: $props($title.medium, styles.utils.heading.default, styles.utils.heading.h6),
+    h1: $props($headline.large, styles.utils.heading.base, styles.utils.heading.h1),
+    h2: $props($headline.medium, styles.utils.heading.base, styles.utils.heading.h2),
+    h3: $props($headline.small, styles.utils.heading.base, styles.utils.heading.h3),
+    h4: $props($title.large, styles.utils.heading.base, styles.utils.heading.h4),
+    h5: $props($title.medium, styles.utils.heading.base, styles.utils.heading.h5),
+    h6: $props($title.medium, styles.utils.heading.base, styles.utils.heading.h6),
 
     code: $props($label.medium, styles.utils.code.block),
     inlineCode: $props($label.medium, styles.utils.code.inline),
 
-    link: $props(styles.utils.link.default),
+    link: $props(styles.utils.link.base),
 
     list: {
-      unordered: $props(styles.utils.list.default.default, styles.utils.list.unordered.default),
-      ordered: $props(styles.utils.list.default.default, styles.utils.list.ordered.default),
+      unordered: $props(styles.utils.list.base.base, styles.utils.list.unordered.base),
+      ordered: $props(styles.utils.list.base.base, styles.utils.list.ordered.base),
       checkable: $props(styles.utils.list.unordered.checkable),
       item: {
-        default: $props(styles.utils.list.item.default),
+        default: $props(styles.utils.list.item.base),
         unchecked: $props(styles.utils.list.item.checkable),
         checked: $props(styles.utils.list.item.checkable, styles.utils.list.item.checked),
       },

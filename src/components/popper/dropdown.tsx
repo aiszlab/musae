@@ -59,9 +59,9 @@ const Dropdown = forwardRef<PopperRef, DropdownProps>(
     });
 
     const styled = {
-      dropdown: $props(styles.dropdown.default, elevation && styles.dropdown.elevation),
-      arrow: $props(styles.arrow.default),
-      portal: $props(styles.portal.default, overlay && styles.portal.overlay),
+      dropdown: $props(styles.dropdown.base, elevation && styles.dropdown.elevation),
+      arrow: $props(styles.arrow.base),
+      portal: $props(styles.portal.base, overlay && styles.portal.overlay),
     };
 
     return (

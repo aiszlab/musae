@@ -3,7 +3,7 @@ import { duration, sizes, spacing } from "../theme/tokens.stylex";
 import { type ThemeColorVariable } from "../../hooks/use-theme-color-vars";
 
 const item = {
-  default: $create({
+  base: $create({
     item: {
       display: "flex",
       alignItems: "center",
@@ -133,13 +133,13 @@ const item = {
   }),
 
   popper: $create({
-    default: {
+    base: {
       padding: spacing.xxxxxsmall,
     },
   }),
 };
 const group = $create({
-  default: {
+  base: {
     // reset ul group
     margin: spacing.none,
     padding: spacing.none,
@@ -174,14 +174,14 @@ const subgroup = $create({
 });
 
 const menu = $create({
-  default: {
+  base: {
     // add position reason: when read li offsetTop, if parent is not relative, then it will read wrong value
     // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetTop
     position: "relative",
   },
 });
 const prefix = $create({
-  default: {
+  base: {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
@@ -190,13 +190,13 @@ const prefix = $create({
 });
 
 const suffix = $create({
-  default: {
+  base: {
     marginInlineStart: spacing.auto,
   },
 });
 
 const collapser = $create({
-  default: {
+  base: {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",

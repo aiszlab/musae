@@ -2,7 +2,7 @@ import { create as $create } from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";
 
 const step = $create({
-  default: {
+  base: {
     flex: 1,
     display: "grid",
     alignItems: "center",
@@ -21,7 +21,7 @@ const step = $create({
 });
 
 const leading = $create({
-  default: {
+  base: {
     gridArea: "leading",
   },
 
@@ -42,7 +42,7 @@ const leading = $create({
 });
 
 const sign = $create({
-  default: {
+  base: {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
@@ -69,7 +69,7 @@ const sign = $create({
 });
 
 const title = $create({
-  default: {
+  base: {
     gridArea: "title",
     alignItems: "center",
   },
@@ -90,13 +90,13 @@ const title = $create({
 });
 
 const description = $create({
-  default: {
+  base: {
     gridArea: "description",
   },
 });
 
 const steps = $create({
-  default: {
+  base: {
     display: "flex",
     alignItems: "flex-start",
     gap: spacing.xxsmall,

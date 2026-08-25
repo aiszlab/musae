@@ -3,7 +3,7 @@ import { type ThemeColorVariable } from "../../hooks/use-theme-color-vars";
 import { duration, positions, sizes, spacing } from "../theme/tokens.stylex";
 
 const image = $create({
-  default: {
+  base: {
     display: "inline-flex",
     position: "relative",
     justifyContent: "center",
@@ -12,7 +12,7 @@ const image = $create({
 });
 
 const overlay = $create({
-  default: {
+  base: {
     position: "absolute",
     inset: 0,
     display: "flex",
@@ -37,7 +37,7 @@ const overlay = $create({
 });
 
 const img = $create({
-  default: {
+  base: {
     width: sizes.full,
     height: sizes.full,
     objectFit: "cover",
@@ -56,7 +56,7 @@ const preview = $create({
 });
 
 const operations = $create({
-  default: {
+  base: {
     position: "fixed",
     zIndex: positions.image,
   },

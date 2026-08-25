@@ -33,7 +33,7 @@ export const useItemChildren = ({
 }) => {
   // prefix
   const _prefix = useMemo(
-    () => prefix && <span {...$props(styles.prefix.default)}>{prefix}</span>,
+    () => prefix && <span {...$props(styles.prefix.base)}>{prefix}</span>,
     [prefix],
   );
 
@@ -44,10 +44,10 @@ export const useItemChildren = ({
   const _suffix = useMemo<ReactNode>(() => {
     if (!suffix && !hasChildren) return null;
 
-    const styled = $props(styles.collapser.default, isExpanded && styles.collapser.expanded);
+    const styled = $props(styles.collapser.base, isExpanded && styles.collapser.expanded);
 
     return (
-      <span {...$props(styles.suffix.default)}>
+      <span {...$props(styles.suffix.base)}>
         {suffix}
         {hasChildren && isInline && (
           <span {...styled}>

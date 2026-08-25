@@ -17,7 +17,7 @@ const SplitPanel = ({ className, style, items, orientation = "horizontal" }: Spl
     return null;
   }
 
-  const styled = $props(styles.splitPanel.default, styles.splitPanel[orientation], $body.medium);
+  const styled = $props(styles.splitPanel.base, styles.splitPanel[orientation], $body.medium);
 
   return (
     <Context.Provider value={{ classNames, orientation, panelsRef }}>

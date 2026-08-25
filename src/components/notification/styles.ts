@@ -2,7 +2,7 @@ import { create as $create } from "@stylexjs/stylex";
 import { duration, elevations, sizes, spacing, positions } from "../theme/tokens.stylex";
 
 const notification = $create({
-  default: {
+  base: {
     backgroundColor: "var(--color-surface-container-lowest)",
     color: "var(--color-on-surface)",
     borderRadius: sizes.xxxxxxxxxsmall,
@@ -34,7 +34,7 @@ const notification = $create({
 });
 
 const leading = $create({
-  default: {
+  base: {
     gridArea: "leading",
     alignSelf: "center",
     display: "inline-flex",
@@ -55,13 +55,13 @@ const leading = $create({
 });
 
 const title = $create({
-  default: {
+  base: {
     gridArea: "title",
   },
 });
 
 const description = $create({
-  default: {
+  base: {
     gridArea: "description",
     display: "inline-block",
     wordBreak: "break-word",
@@ -73,7 +73,7 @@ const description = $create({
 });
 
 const closer = $create({
-  default: {
+  base: {
     gridArea: "closer",
     alignSelf: "center",
     justifySelf: "flex-end",
@@ -81,7 +81,7 @@ const closer = $create({
 });
 
 const holder = $create({
-  default: {
+  base: {
     position: "fixed",
     zIndex: positions.notification,
     display: "flex",

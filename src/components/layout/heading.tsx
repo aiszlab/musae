@@ -9,7 +9,7 @@ const Heading = ({ children, className, style }: HeadingProps) => {
   const { classNames } = useContext(Context);
 
   const styled = {
-    heading: $props(styles.heading.default),
+    heading: $props(styles.heading.base),
   };
 
   return (

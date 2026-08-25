@@ -9,7 +9,7 @@ const Main = ({ children, className, style }: MainProps) => {
   const { classNames } = useContext(Context);
 
   const styled = {
-    main: $props(styles.main.default),
+    main: $props(styles.main.base),
   };
 
   return (

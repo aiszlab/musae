@@ -68,7 +68,7 @@ const Holder = forwardRef<HolderRef, HolderProps>(({ defaultNotifications }, ref
   }, [add]);
 
   return Array.from(placements.entries()).map(([placement, notifications]) => {
-    const styled = $props(styles.holder.default, styles.holder[placement]);
+    const styled = $props(styles.holder.base, styles.holder[placement]);
 
     return (
       <Portal destroyable open={notifications.size > 0} key={placement}>

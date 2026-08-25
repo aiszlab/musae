@@ -3,7 +3,7 @@ import { duration, sizes, spacing } from "../theme/tokens.stylex";
 import { ThemeColorVariable } from "../../hooks/use-theme-color-vars";
 
 const radio = $create({
-  default: {
+  base: {
     display: "flex",
     alignItems: "center",
     cursor: "pointer",
@@ -15,7 +15,7 @@ const radio = $create({
 });
 
 const input = $create({
-  default: {
+  base: {
     visibility: "hidden",
     height: sizes.xxxxsmall,
     width: sizes.xxxxsmall,
@@ -77,7 +77,7 @@ const input = $create({
 });
 
 const label = $create({
-  default: {
+  base: {
     paddingInline: spacing.xxxsmall,
   },
 });

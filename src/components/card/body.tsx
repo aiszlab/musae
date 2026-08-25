@@ -23,7 +23,7 @@ interface CardBodyProps {
 const CardBody = forwardRef<HTMLDivElement, CardBodyProps>(
   ({ className, style, children }, ref) => {
     const classNames = useClassNames(CLASS_NAMES);
-    const bodyStyled = $props(styles.body.default);
+    const bodyStyled = $props(styles.body.base);
 
     return (
       <div

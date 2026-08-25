@@ -36,7 +36,7 @@ const Column = ({ unit, value, onChange }: ColumnProps) => {
   }, [value]);
 
   const styled = {
-    menu: $props($scrollbar.default, styles.column.menu),
+    menu: $props($scrollbar.base, styles.column.menu),
     item: $props(styles.column.item),
   };
 

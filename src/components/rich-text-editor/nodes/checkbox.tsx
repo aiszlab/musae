@@ -35,7 +35,7 @@ class CheckboxNode extends DecoratorNode<ReactNode> {
   }
 
   createDOM(): HTMLElement {
-    const styled = $props(styles.checkbox.default);
+    const styled = $props(styles.checkbox.base);
     const dom = document.createElement("span");
     dom.className = styled.className ?? "";
     return dom;

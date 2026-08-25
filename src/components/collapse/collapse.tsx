@@ -25,7 +25,7 @@ const Collapse = ({
   // no need to render when items is empty
   if (items.length === 0) return null;
 
-  const styled = $props(styles.collapse.default);
+  const styled = $props(styles.collapse.base);
 
   return (
     <Context.Provider

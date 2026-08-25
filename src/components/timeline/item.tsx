@@ -20,16 +20,16 @@ const Item = ({ description, label, value, dot }: TimelineItemProps) => {
 
   const styled = {
     item: $props(
-      styles.item.default,
+      styles.item.base,
       styles.item[mode],
-      isLabeled && styles.labeled.default,
+      isLabeled && styles.labeled.base,
       isLabeled && styles.labeled[mode],
     ),
-    label: $props(styles.label.default, styles.label[mode]),
-    leading: $props(styles.leading.default, !isMax && styles.leading.tail),
-    sign: $props(styles.sign.default),
-    dot: $props(styles.dot.default),
-    description: $props(styles.description.default, styles.description[mode]),
+    label: $props(styles.label.base, styles.label[mode]),
+    leading: $props(styles.leading.base, !isMax && styles.leading.tail),
+    sign: $props(styles.sign.base),
+    dot: $props(styles.dot.base),
+    description: $props(styles.description.base, styles.description[mode]),
   };
 
   return (

@@ -10,7 +10,7 @@ const Loading = () => {
   const { classNames } = useContext(Context);
 
   const styled = {
-    loading: $props(styles.loading.default),
+    loading: $props(styles.loading.base),
     heading: $props(styles.loading.heading),
     content: $props(styles.loading.content),
     newline: $props(styles.loading.newline),

@@ -3,7 +3,7 @@ import { sizes, spacing } from "../theme/tokens.stylex";
 import { type ThemeColorVariable } from "../../hooks/use-theme-color-vars";
 
 const tag = $create({
-  default: {
+  base: {
     display: "inline-flex",
     flexDirection: "row",
     alignItems: "center",

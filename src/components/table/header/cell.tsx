@@ -44,9 +44,9 @@ const Cell = ({
   }
 
   const styled = {
-    cell: $props(styles.cell.default),
+    cell: $props(styles.cell.base),
     handlers: $props(styles.cell.handlers),
-    sort: $props(styles.sort.default),
+    sort: $props(styles.sort.base),
     fullSort: $props(sort === "descending" && styles.sort.checked),
     halfSort: $props(styles.sort.half, sort === "ascending" && styles.sort.checked),
   };

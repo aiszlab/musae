@@ -3,7 +3,7 @@ import { spacing, sizes } from "../theme/tokens.stylex";
 import { type ThemeColorVariable } from "../../hooks/use-theme-color-vars";
 
 const calendar = $create({
-  default: {
+  base: {
     width: "fit-content",
   },
 
@@ -80,7 +80,7 @@ const hooks = $create({
   },
 });
 const contributionCalendar = $create({
-  default: {
+  base: {
     borderCollapse: "separate",
     borderSpacing: spacing.xxxxxsmall,
   },
@@ -92,7 +92,7 @@ const contributionCalendar = $create({
 });
 
 const cell = $create({
-  default: {
+  base: {
     minWidth: sizes.xxxxxxsmall,
     minHeight: sizes.xxxxxxsmall,
     padding: spacing.none,
@@ -107,7 +107,7 @@ const weekday = $create({
     padding: 0,
   },
 
-  default: {
+  base: {
     height: sizes.xxxxxxsmall,
     overflow: "visible",
     display: "flex",
@@ -125,7 +125,7 @@ const month = $create({
     visibility: "hidden",
   },
 
-  default: {
+  base: {
     position: "absolute",
     insetBlockStart: 0,
     insetInlineStart: 0,
@@ -133,7 +133,7 @@ const month = $create({
 });
 
 const legend = $create({
-  default: {
+  base: {
     paddingBlock: spacing.xxxxxsmall,
     paddingInline: spacing.xxxxxxlarge,
     display: "flex",
@@ -142,7 +142,7 @@ const legend = $create({
 });
 
 const levels = $create({
-  default: {
+  base: {
     display: "flex",
     gap: spacing.xxxxxsmall,
     alignItems: "center",

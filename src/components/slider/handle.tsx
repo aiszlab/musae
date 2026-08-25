@@ -10,7 +10,7 @@ import React from "react";
  */
 const Handle = () => {
   const { classNames } = useContext(Context);
-  const styled = $props(styles.handle.default);
+  const styled = $props(styles.handle.base);
 
   return <div className={stringify(classNames.handle, styled.className)} style={styled.style} />;
 };

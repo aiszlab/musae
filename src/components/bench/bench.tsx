@@ -53,15 +53,15 @@ const Bench = ({
   });
 
   const styled = {
-    bench: $props(styles.bench.default, isCollapsed && styles.bench.collapsed),
-    heading: $props($title.large, styles.heading.default, isCollapsed && styles.heading.collapsed),
-    header: $props(styles.header.default),
-    sidebar: $props(styles.sidebar.default, isCollapsed && styles.sidebar.collapsed),
-    menu: $props(styles.menu.default, isCollapsed && styles.menu.collapsed),
-    trailing: $props(styles.trailing.default),
-    main: $props(styles.main.default),
-    collapser: $props(styles.collapser.default),
-    expander: $props(styles.expander.default),
+    bench: $props(styles.bench.base, isCollapsed && styles.bench.collapsed),
+    heading: $props($title.large, styles.heading.base, isCollapsed && styles.heading.collapsed),
+    header: $props(styles.header.base),
+    sidebar: $props(styles.sidebar.base, isCollapsed && styles.sidebar.collapsed),
+    menu: $props(styles.menu.base, isCollapsed && styles.menu.collapsed),
+    trailing: $props(styles.trailing.base),
+    main: $props(styles.main.base),
+    collapser: $props(styles.collapser.base),
+    expander: $props(styles.expander.base),
     title: $props($title.large),
   };
 

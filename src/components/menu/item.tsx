@@ -65,7 +65,7 @@ const Item = forwardRef<HTMLLIElement, MenuItemProps>(
     const styled = {
       menuitem: $props(styles.item.mode.menuitem[mode]),
       item: $props(
-        styles.item.default.item,
+        styles.item.base.item,
         // size
         styles.item.size[size],
         // mode
@@ -73,7 +73,7 @@ const Item = forwardRef<HTMLLIElement, MenuItemProps>(
         isSelected && styles.item.selected[mode],
         $body[size],
       ),
-      popper: $props(styles.item.popper.default),
+      popper: $props(styles.item.popper.base),
     };
 
     return (

@@ -23,7 +23,7 @@ interface CardTitleProps {
 const CardTitle = forwardRef<HTMLDivElement, CardTitleProps>(
   ({ className, style, children }, ref) => {
     const classNames = useClassNames(CLASS_NAMES);
-    const titleStyled = $props(styles.title.default);
+    const titleStyled = $props(styles.title.base);
 
     return (
       <div

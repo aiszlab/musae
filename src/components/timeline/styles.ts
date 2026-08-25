@@ -2,7 +2,7 @@ import { create as $create } from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";
 
 const item = $create({
-  default: {
+  base: {
     display: "grid",
     justifyContent: "flex-start",
     gap: spacing.medium,
@@ -22,7 +22,7 @@ const item = $create({
 });
 
 const labeled = $create({
-  default: {
+  base: {
     gridTemplateColumns: "1fr auto 1fr",
   },
 
@@ -36,7 +36,7 @@ const labeled = $create({
 });
 
 const leading = $create({
-  default: {
+  base: {
     gridArea: "leading",
     alignSelf: "flex-start",
   },
@@ -57,7 +57,7 @@ const leading = $create({
 });
 
 const sign = $create({
-  default: {
+  base: {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
@@ -67,7 +67,7 @@ const sign = $create({
 });
 
 const dot = $create({
-  default: {
+  base: {
     width: sizes.xxxxxxxxxsmall,
     height: sizes.xxxxxxxxxsmall,
     borderRadius: sizes.infinity,
@@ -76,7 +76,7 @@ const dot = $create({
 });
 
 const label = $create({
-  default: {
+  base: {
     gridArea: "label",
   },
 
@@ -90,7 +90,7 @@ const label = $create({
 });
 
 const description = $create({
-  default: {
+  base: {
     gridArea: "description",
   },
 
@@ -104,7 +104,7 @@ const description = $create({
 });
 
 const timeline = $create({
-  default: {
+  base: {
     // reset timeline
     margin: spacing.none,
     padding: spacing.none,

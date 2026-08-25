@@ -20,7 +20,7 @@ const Operations = ({
 }: OperationsProps) => {
   const theme = useTheme();
   const styled = {
-    operations: $props(styles.operations.default),
+    operations: $props(styles.operations.base),
     closer: $props(styles.operations.closer),
     navigations: $props(styles.operations.navigations),
     footer: $props(styles.operations.footer),

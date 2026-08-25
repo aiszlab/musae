@@ -3,7 +3,7 @@ import { type ThemeColorVariable } from "../../hooks/use-theme-color-vars";
 import { sizes, spacing } from "../theme/tokens.stylex";
 
 const form = $create({
-  default: {},
+  base: {},
 
   inline: {
     display: "flex",
@@ -35,14 +35,14 @@ const layout = $create({
 });
 
 const supporting = $create({
-  default: {
+  base: {
     color: "var(--color-secondary)",
     marginBlock: spacing.xxxxxsmall,
   },
 });
 
 const error = $create({
-  default: {
+  base: {
     color: "var(--color-error)" satisfies ThemeColorVariable,
     marginBlock: spacing.xxxxxsmall,
     height: 0,

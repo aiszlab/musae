@@ -3,14 +3,14 @@ import type { ThemeColorVariable } from "../../hooks/use-theme-color-vars";
 import { sizes, spacing } from "../theme/tokens.stylex";
 
 const panel = $create({
-  default: {
+  base: {
     backgroundColor: "var(--color-surface-container-low)" satisfies ThemeColorVariable,
     paddingBottom: spacing.xxxlarge,
   },
 });
 
 const standard = $create({
-  default: {
+  base: {
     display: "flex",
     flexDirection: "column",
     width: "var(--size)",
@@ -42,7 +42,7 @@ const standard = $create({
 });
 
 const header = $create({
-  default: {
+  base: {
     display: "flex",
     alignItems: "flex-start",
     paddingTop: spacing.medium,
@@ -58,7 +58,7 @@ const header = $create({
 });
 
 const content = $create({
-  default: {
+  base: {
     flex: 1,
     minHeight: 0,
     overflow: "auto",
@@ -67,7 +67,7 @@ const content = $create({
 });
 
 const title = $create({
-  default: {
+  base: {
     flex: 1,
     minWidth: 0,
     paddingTop: spacing.medium,
@@ -76,7 +76,7 @@ const title = $create({
 });
 
 const actions = $create({
-  default: {
+  base: {
     display: "flex",
     flexDirection: "column",
   },

@@ -67,12 +67,12 @@ const CardHeader = forwardRef<HTMLDivElement, CardHeaderProps>(
     const classNames = useClassNames(CLASS_NAMES);
     const { layout } = useCardContext();
 
-    const headerStyled = $props(styles.header.default, styles.header[layout]);
-    const contentStyled = $props(styles.headerContent.default);
-    const textStyled = $props(styles.headerText.default);
-    const titleStyled = $props(styles.headerTitle.default);
-    const subheadStyled = $props(styles.headerSubhead.default);
-    const actionStyled = $props(styles.headerAction.default);
+    const headerStyled = $props(styles.header.base, styles.header[layout]);
+    const contentStyled = $props(styles.headerContent.base);
+    const textStyled = $props(styles.headerText.base);
+    const titleStyled = $props(styles.headerTitle.base);
+    const subheadStyled = $props(styles.headerSubhead.base);
+    const actionStyled = $props(styles.headerAction.base);
 
     if (children) {
       return (

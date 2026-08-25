@@ -35,7 +35,7 @@ const Calendar = forwardRef<CalendarRef, CalendarProps>(
     const theme = useTheme();
 
     const styled = {
-      calendar: $props(styles.calendar.default),
+      calendar: $props(styles.calendar.base),
       header: $props($label.large, styles.calendar.header),
       heading: $props(styles.calendar.heading, $body.medium),
       body: $props(styles.calendar.body),

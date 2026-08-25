@@ -16,7 +16,7 @@ const item_blink = $keyframes({
 });
 
 const item = $create({
-  default: {
+  base: {
     display: "flex",
     flexDirection: "column",
     gap: spacing.medium,
@@ -53,7 +53,7 @@ const item = $create({
 });
 
 const chat = $create({
-  default: {
+  base: {
     display: "flex",
     flexDirection: "column",
     gap: spacing.medium,

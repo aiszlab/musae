@@ -51,7 +51,7 @@ const Waterfall = ({
   if (children.length === 0) return null;
 
   const styled = $props(
-    styles.waterfall.default,
+    styles.waterfall.base,
     !sequential && maxHeight > 0 && styles.waterfall.repainted,
   );
 

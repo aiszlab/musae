@@ -2,7 +2,7 @@ import { create as $create } from "@stylexjs/stylex";
 import { sizes, spacing } from "../theme/tokens.stylex";
 
 const textarea = $create({
-  default: {
+  base: {
     // reset
     paddingBlock: null,
     paddingInline: null,
@@ -16,7 +16,7 @@ const textarea = $create({
 });
 
 const input = $create({
-  default: {
+  base: {
     height: sizes.full,
     paddingBlock: spacing.xxxxxsmall,
     paddingInline: spacing.medium,
