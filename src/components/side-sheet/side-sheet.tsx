@@ -14,6 +14,7 @@ import { stringify } from "@aiszlab/relax/class-name";
 import { $title } from "../theme/theme";
 import { CLASS_NAMES } from "./context";
 import { styles } from "./styles";
+import { isNumber } from "@aiszlab/relax";
 
 /**
  * @zh SideSheet 组件。Material Design 3 侧边栏：承载补充内容或操作的面板，
@@ -60,11 +61,15 @@ const SideSheet = ({
   const styled = {
     panel: $props(styles.panel.default),
     standard: $props(styles.standard.default, styles.standard[placement]),
-    header: $props(styles.header.default, onBack ? styles.header.withBack : styles.header.withTitle),
+    header: $props(
+      styles.header.default,
+      !!onBack && styles.header["with-back"],
+      !onBack && styles.header["with-title"],
+    ),
     title: $props($title.large, styles.title.default),
     content: $props(styles.content.default),
     actions: $props(styles.actions.default),
-    actionsRow: $props(styles.actions.row),
+    buttons: $props(styles.buttons.default),
   };
 
   /**
@@ -75,7 +80,7 @@ const SideSheet = ({
    */
   const hasHeader = !!title || !!onBack || !!onConfirm || !!closer;
 
-  const header = hasHeader ? (
+  const header = hasHeader && (
     <div
       className={stringify(classNames.header, styled.header.className)}
       style={styled.header.style}
@@ -97,23 +102,27 @@ const SideSheet = ({
 
       {closer}
     </div>
-  ) : null;
+  );
 
   /**
    * @zh 底部操作区：分割线 + 操作按钮行。
    * @en Footer actions: a divider above the actions row.
    */
-  const footer = actions ? (
+  const footer = !!actions && (
     <div
       className={stringify(classNames.actions, styled.actions.className)}
       style={styled.actions.style}
     >
       <Divider margin={0} />
-      <div className={styled.actionsRow.className} style={styled.actionsRow.style}>
+
+      <div
+        className={stringify(classNames.buttons, styled.buttons.className)}
+        style={styled.buttons.style}
+      >
         {actions}
       </div>
     </div>
-  ) : null;
+  );
 
   /**
    * @zh 标准类型：内嵌在布局中展示，无遮罩层，停靠边缘带分割线。
@@ -128,9 +137,9 @@ const SideSheet = ({
         className={stringify(classNames.sideSheet, className, styled.standard.className)}
         style={{
           ...styled.standard.style,
-          ...themeColorVars,
-          "--size": typeof size === "number" ? `${size}px` : size,
           ...style,
+          ...themeColorVars,
+          "--size": isNumber(size) ? `${size}px` : size,
         }}
       >
         {header}
@@ -163,9 +172,14 @@ const SideSheet = ({
       header={header}
       footer={footer}
       panelClassName={styled.panel.className}
-      panelStyle={{ ...themeColorVars, ...styled.panel.style }}
+      panelStyle={{ ...styled.panel.style, ...themeColorVars }}
     >
-      {children}
+      <div
+        className={stringify(classNames.content, styled.content.className)}
+        style={styled.content.style}
+      >
+        {children}
+      </div>
     </Sheet>
   );
 };

@@ -82,20 +82,11 @@ const panel = $create({
   },
 });
 
-const body = $create({
-  default: {
-    flex: 1,
-    overflow: "auto",
-    overscrollBehavior: "contain",
-  },
-});
-
 const styles = {
   stackLevel,
   container,
   overlay,
   panel,
-  body,
 };
 
 export default styles;

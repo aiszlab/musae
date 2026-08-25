@@ -19,21 +19,25 @@ const standard = $create({
     backgroundColor: "var(--color-surface)" satisfies ThemeColorVariable,
     paddingBottom: spacing.xxxlarge,
   },
+
   right: {
     borderLeftWidth: sizes.smallest,
     borderLeftStyle: "solid",
     borderLeftColor: "var(--color-outline-variant)" satisfies ThemeColorVariable,
   },
+
   left: {
     borderRightWidth: sizes.smallest,
     borderRightStyle: "solid",
     borderRightColor: "var(--color-outline-variant)" satisfies ThemeColorVariable,
   },
+
   top: {
     borderBottomWidth: sizes.smallest,
     borderBottomStyle: "solid",
     borderBottomColor: "var(--color-outline-variant)" satisfies ThemeColorVariable,
   },
+
   bottom: {
     borderTopWidth: sizes.smallest,
     borderTopStyle: "solid",
@@ -49,20 +53,13 @@ const header = $create({
     paddingBottom: spacing.large,
     paddingInlineEnd: spacing.medium,
   },
-  withTitle: {
+
+  "with-title": {
     paddingInlineStart: spacing.xxxlarge,
   },
-  withBack: {
-    paddingInlineStart: spacing.xxxxxsmall,
-  },
-});
 
-const content = $create({
-  default: {
-    flex: 1,
-    minHeight: 0,
-    overflow: "auto",
-    overscrollBehavior: "contain",
+  "with-back": {
+    paddingInlineStart: spacing.xxxxxsmall,
   },
 });
 
@@ -75,12 +72,23 @@ const title = $create({
   },
 });
 
+const content = $create({
+  default: {
+    flex: 1,
+    overflow: "auto",
+    padding: spacing.xxxlarge,
+  },
+});
+
 const actions = $create({
   default: {
     display: "flex",
     flexDirection: "column",
   },
-  row: {
+});
+
+const buttons = $create({
+  default: {
     display: "flex",
     alignItems: "center",
     gap: spacing.xxsmall,
@@ -89,4 +97,4 @@ const actions = $create({
   },
 });
 
-export const styles = { panel, standard, header, title, content, actions };
+export const styles = { panel, standard, header, title, content, actions, buttons };

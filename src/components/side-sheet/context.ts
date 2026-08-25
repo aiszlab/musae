@@ -8,4 +8,5 @@ export const CLASS_NAMES = {
   title: "side-sheet__title",
   content: "side-sheet__content",
   actions: "side-sheet__actions",
+  buttons: "side-sheet__buttons",
 } as const;

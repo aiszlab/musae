@@ -229,3 +229,47 @@ export const WithConfirm: Story = {
     );
   },
 };
+
+/** Very long content scrolls inside the sheet body while the header and footer stay pinned. */
+export const LongContent: Story = {
+  render: (args) => {
+    const [open, setOpen] = useState(false);
+
+    return (
+      <div style={{ padding: 16 }}>
+        <Button onClick={() => setOpen(true)}>Open Long Content</Button>
+        <SideSheet
+          {...args}
+          open={open}
+          title="Long Content"
+          onClose={() => setOpen(false)}
+          actions={<Actions onClose={() => setOpen(false)} />}
+        >
+          {Array.from({ length: 40 }, (_, i) => (
+            <div
+              key={i}
+              style={{
+                padding: "16px 0",
+                borderBottom: "1px solid var(--color-outline-variant)",
+              }}
+            >
+              <h4 style={{ margin: "0 0 8px" }}>Section {i + 1}</h4>
+              <p
+                style={{
+                  margin: 0,
+                  color: "var(--color-on-surface-variant)",
+                  lineHeight: 1.6,
+                }}
+              >
+                Material side sheets are surfaces containing supplementary content. They are
+                anchored to a screen edge and slide in over the page. The body scrolls independently
+                while the header and the actions footer remain pinned, so the primary actions stay
+                reachable no matter how far down the content goes.
+              </p>
+            </div>
+          ))}
+        </SideSheet>
+      </div>
+    );
+  },
+};

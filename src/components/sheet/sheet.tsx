@@ -104,7 +104,6 @@ const Sheet = ({
     ),
     overlay: $props(styles.overlay.default),
     panel: $props(styles.panel.default, styles.panel[placement], styles.panel.fullscreen),
-    body: $props(styles.body.default),
   };
 
   return (
@@ -145,12 +144,7 @@ const Sheet = ({
             {header}
 
             {/* 主体 */}
-            <div
-              className={stringify(classNames.body, styled.body.className)}
-              style={styled.body.style}
-            >
-              {children}
-            </div>
+            {children}
 
             {/* 底部插槽 */}
             {footer}
