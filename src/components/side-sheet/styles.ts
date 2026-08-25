@@ -73,7 +73,7 @@ const title = $create({
 });
 
 const content = $create({
-  default: {
+  base: {
     flex: 1,
     overflow: "auto",
     padding: spacing.xxxlarge,
