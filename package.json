@@ -12,7 +12,7 @@
     "build": "z rm dist && rollup -c --environment NODE_ENV:production",
     "prepublishOnly": "z rm dist && pnpm run build",
     "authors": "zx scripts/contributors.mjs",
-    "storybook": "pnpm run build && storybook dev",
+    "storybook": "pnpm run build && storybook dev -p 6006",
     "build-storybook": "storybook build",
     "lint": "eslint ."
   },

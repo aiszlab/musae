@@ -3,7 +3,7 @@ import React, { forwardRef, useRef, useImperativeHandle } from "react";
 import { useInputEvents, useInputorEvents } from "./hooks";
 import type { InputProps, InputRef } from "../../types/input";
 import { useControlledState, useFocus } from "@aiszlab/relax";
-import { props as $props } from "@stylexjs/stylex";
+import { props as $props, defaultMarker } from "@stylexjs/stylex";
 import { OPACITY } from "../theme/tokens.stylex";
 import { useClassNames } from "../../hooks/use-class-names";
 import { stringify } from "@aiszlab/relax/class-name";
@@ -13,9 +13,8 @@ import { useThemeColorVars } from "../../hooks/use-theme-color-vars";
 
 /**
  * @author murukal
- *
- * @description
- * input component
+ * @zh 输入组件
+ * @en Input component
  */
 const Input = forwardRef<InputRef, InputProps>(
   (
@@ -44,6 +43,7 @@ const Input = forwardRef<InputRef, InputProps>(
       "primary",
       "outline",
       "error",
+      "on-surface-variant",
       ["on-surface", OPACITY.thickest],
       ["on-surface", OPACITY.thin],
     ]);
@@ -86,15 +86,21 @@ const Input = forwardRef<InputRef, InputProps>(
     const styled = {
       inputor: $props(
         $body.medium,
-        styles.inputor,
-        invalid && styles.invalid,
-        disabled && styles.disabled,
+        styles.input.inputor,
+        invalid && styles.input.invalid,
+        disabled && styles.input.disabled,
+        defaultMarker(),
       ),
-      input: $props(styles.input),
+      input: $props(styles.input.input),
+      outline: $props(styles.outline.base),
+      outlineLeading: $props(styles.outline.leading),
+      outlineNotch: $props(styles.outline.notch, $body.small),
+      outlineTrailing: $props(styles.outline.trailing),
+      floatingLabel: $props(styles.floatingLabel.base),
     };
 
     return (
-      <span
+      <div
         className={stringify(
           classNames.inputor,
           {
@@ -133,9 +139,34 @@ const Input = forwardRef<InputRef, InputProps>(
           {...focusProps}
         />
 
+        <div
+          className={stringify(classNames.outline, styled.outline.className)}
+          style={styled.outline.style}
+        >
+          <div
+            className={stringify(classNames.outlineLeading, styled.outlineLeading.className)}
+            style={styled.outlineLeading.style}
+          />
+          <div
+            className={stringify(classNames.outlineNotch, styled.outlineNotch.className)}
+            style={styled.outlineNotch.style}
+          >
+            <label
+              htmlFor="text-field-hero-input"
+              className={stringify(styled.floatingLabel.className)}
+            >
+              Name
+            </label>
+          </div>
+          <div
+            className={stringify(classNames.outlineTrailing, styled.outlineTrailing.className)}
+            style={styled.outlineTrailing.style}
+          />
+        </div>
+
         {/* trailing */}
         {trailing}
-      </span>
+      </div>
     );
   },
 );

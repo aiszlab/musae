@@ -41,7 +41,7 @@ const Selector = forwardRef<SelectorRef, SelectorProps>(
 
     const styled = {
       input: $props(
-        inputStyles.input,
+        inputStyles.input.input,
         styles.selector.input.focused.base,
         isFocused && searchable && styles.selector.input.focused.searchable,
         $body.small,

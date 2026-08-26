@@ -102,9 +102,9 @@ const Picker = forwardRef<PickerRef, PickerProps>(
     const styled = {
       picker: $props(
         $body.medium,
-        inputStyles.inputor,
-        invalid && inputStyles.invalid,
-        disabled && inputStyles.disabled,
+        inputStyles.input.inputor,
+        invalid && inputStyles.input.invalid,
+        disabled && inputStyles.input.disabled,
       ),
       pickable: $props(styles.pickable),
     };

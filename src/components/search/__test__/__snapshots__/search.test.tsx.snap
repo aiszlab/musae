@@ -26,17 +26,37 @@ exports[`\`Search\` Component snapshot 1`] = `
         </svg>
       </span>
     </span>
-    <span
-      class="musae-input__inputor musae-search-input styles__input.base theme__body.medium styles__input_styles.inputor"
+    <div
+      class="musae-input__inputor musae-search-input styles__input.base theme__body.medium styles__input.inputor"
       style="--color-primary: #6750A4; --color-outline: #79747E; --color-error: #B3261E; --color-on-surface: #1D1B20; --color-on-surface-opacity-38: color-mix(in srgb, var(--color-on-surface) 38%, transparent); --color-on-surface-opacity-08: color-mix(in srgb, var(--color-on-surface) 8%, transparent);"
       tabindex="-1"
     >
       <input
         aria-invalid="false"
-        class="musae-input styles__input_styles.input"
+        class="musae-input styles__input.input"
         value=""
       />
-    </span>
+      <div
+        class="musae-notched-outline styles__outline.base"
+      >
+        <div
+          class="musae-notched-outline__leading styles__outline.leading"
+        />
+        <div
+          class="musae-notched-outline__notch styles__outline.notch"
+        >
+          <label
+            class="mdc-floating-label"
+            for="text-field-hero-input"
+          >
+            Name
+          </label>
+        </div>
+        <div
+          class="musae-notched-outline__trailing styles__outline.trailing"
+        />
+      </div>
+    </div>
   </span>
 </DocumentFragment>
 `;
@@ -67,18 +87,38 @@ exports[`\`Search\` Component snapshot disabled state 1`] = `
         </svg>
       </span>
     </span>
-    <span
-      class="musae-input__inputor musae-search-input styles__input.base theme__body.medium styles__input_styles.inputor styles__input_styles.disabled"
+    <div
+      class="musae-input__inputor musae-search-input styles__input.base theme__body.medium styles__input.inputor styles__input.disabled"
       style="--color-primary: #6750A4; --color-outline: #79747E; --color-error: #B3261E; --color-on-surface: #1D1B20; --color-on-surface-opacity-38: color-mix(in srgb, var(--color-on-surface) 38%, transparent); --color-on-surface-opacity-08: color-mix(in srgb, var(--color-on-surface) 8%, transparent);"
     >
       <input
         aria-invalid="false"
-        class="musae-input styles__input_styles.input"
+        class="musae-input styles__input.input"
         disabled=""
         placeholder="Search..."
         value=""
       />
-    </span>
+      <div
+        class="musae-notched-outline styles__outline.base"
+      >
+        <div
+          class="musae-notched-outline__leading styles__outline.leading"
+        />
+        <div
+          class="musae-notched-outline__notch styles__outline.notch"
+        >
+          <label
+            class="mdc-floating-label"
+            for="text-field-hero-input"
+          >
+            Name
+          </label>
+        </div>
+        <div
+          class="musae-notched-outline__trailing styles__outline.trailing"
+        />
+      </div>
+    </div>
   </span>
 </DocumentFragment>
 `;
@@ -109,18 +149,38 @@ exports[`\`Search\` Component snapshot with all props 1`] = `
         </svg>
       </span>
     </span>
-    <span
-      class="musae-input__inputor musae-search-input styles__input.base theme__body.medium styles__input_styles.inputor"
+    <div
+      class="musae-input__inputor musae-search-input styles__input.base theme__body.medium styles__input.inputor"
       style="--color-primary: #6750A4; --color-outline: #79747E; --color-error: #B3261E; --color-on-surface: #1D1B20; --color-on-surface-opacity-38: color-mix(in srgb, var(--color-on-surface) 38%, transparent); --color-on-surface-opacity-08: color-mix(in srgb, var(--color-on-surface) 8%, transparent);"
       tabindex="-1"
     >
       <input
         aria-invalid="false"
-        class="musae-input styles__input_styles.input"
+        class="musae-input styles__input.input"
         placeholder="Search..."
         value="hello"
       />
-    </span>
+      <div
+        class="musae-notched-outline styles__outline.base"
+      >
+        <div
+          class="musae-notched-outline__leading styles__outline.leading"
+        />
+        <div
+          class="musae-notched-outline__notch styles__outline.notch"
+        >
+          <label
+            class="mdc-floating-label"
+            for="text-field-hero-input"
+          >
+            Name
+          </label>
+        </div>
+        <div
+          class="musae-notched-outline__trailing styles__outline.trailing"
+        />
+      </div>
+    </div>
     <button
       aria-label="Clear search"
       class="musae-search-clear styles__clear.base"

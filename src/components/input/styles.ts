@@ -1,9 +1,10 @@
-import { create as $create } from "@stylexjs/stylex";
+import { create as $create, when as $when } from "@stylexjs/stylex";
 import { duration, sizes, spacing } from "../theme/tokens.stylex";
 import { ThemeColorVariable } from "../../hooks/use-theme-color-vars";
 
-export const input_styles = $create({
+const input = $create({
   inputor: {
+    position: "relative",
     display: "inline-flex",
     alignItems: "center",
     cursor: "text",
@@ -11,13 +12,9 @@ export const input_styles = $create({
     verticalAlign: "bottom",
     outline: sizes.none,
 
-    minHeight: sizes.medium,
+    height: sizes.xxxxlarge,
     minWidth: sizes.none,
     width: sizes.full,
-
-    // border, for flexible, in musae, we use boxShadow replace border
-    // box shadow is not added into layout
-    boxShadow: `0px 0px 0px ${sizes.smallest} var(--color-outline) inset`,
 
     // reset input_styles
     boxSizing: "border-box",
@@ -26,16 +23,6 @@ export const input_styles = $create({
     margin: spacing.none,
     paddingBlock: spacing.xxxxxsmall,
     paddingInline: spacing.medium,
-
-    // animation
-    transitionProperty: "box-shadow",
-    transitionDuration: duration.short,
-    // fix: eliminate serrations, use gpu speed up by add `transform`
-    willChange: "box-shadow, transform",
-
-    ":focus-within": {
-      boxShadow: `0px 0px 0px ${sizes.xxxxxxxxxxsmall} var(--color-primary) inset`,
-    },
   },
 
   invalid: {
@@ -66,4 +53,110 @@ export const input_styles = $create({
   },
 });
 
-export default input_styles;
+const outline = $create({
+  base: {
+    position: "absolute",
+    inset: sizes.none,
+    display: "inline-flex",
+  },
+
+  leading: {
+    boxSizing: "border-box",
+    width: sizes.xxxxxsmall,
+
+    // animation
+    transitionProperty: "border",
+    transitionDuration: duration.short,
+    willChange: "border",
+
+    borderStyle: "solid",
+    borderColor: "var(--color-outline)" satisfies ThemeColorVariable,
+
+    borderInlineStartWidth: sizes.smallest,
+    borderInlineEndWidth: sizes.none,
+    borderBlockWidth: sizes.smallest,
+
+    borderStartStartRadius: sizes.xxxxxxxxxsmall,
+    borderEndStartRadius: sizes.xxxxxxxxxsmall,
+
+    [$when.ancestor(":focus-within")]: {
+      borderInlineStartWidth: sizes.xxxxxxxxxxsmall,
+      borderBlockWidth: sizes.xxxxxxxxxxsmall,
+      borderColor: "var(--color-primary)" satisfies ThemeColorVariable,
+    },
+  },
+
+  notch: {
+    boxSizing: "border-box",
+    display: "flex",
+    alignItems: "center",
+    paddingInline: spacing.xxxxxsmall,
+    color: "var(--color-on-surface-variant)" satisfies ThemeColorVariable,
+
+    // animation
+    transitionProperty: "border",
+    transitionDuration: duration.short,
+    willChange: "border",
+
+    borderStyle: "solid",
+    borderColor: "var(--color-outline)" satisfies ThemeColorVariable,
+
+    borderInlineWidth: sizes.none,
+    borderBlockWidth: sizes.smallest,
+
+    [$when.ancestor(":focus-within")]: {
+      borderBlockWidth: sizes.xxxxxxxxxxsmall,
+      borderColor: "var(--color-primary)" satisfies ThemeColorVariable,
+      borderBlockStartColor: "transparent",
+    },
+  },
+
+  trailing: {
+    boxSizing: "border-box",
+    flex: 1,
+
+    // animation
+    transitionProperty: "border",
+    transitionDuration: duration.short,
+    willChange: "border",
+
+    borderStyle: "solid",
+    borderColor: "var(--color-outline)" satisfies ThemeColorVariable,
+
+    borderInlineStartWidth: sizes.none,
+    borderInlineEndWidth: sizes.smallest,
+    borderBlockWidth: sizes.smallest,
+
+    borderStartEndRadius: sizes.xxxxxxxxxsmall,
+    borderEndEndRadius: sizes.xxxxxxxxxsmall,
+
+    [$when.ancestor(":focus-within")]: {
+      borderInlineEndWidth: sizes.xxxxxxxxxxsmall,
+      borderBlockWidth: sizes.xxxxxxxxxxsmall,
+      borderColor: "var(--color-primary)" satisfies ThemeColorVariable,
+    },
+  },
+});
+
+const floatingLabel = $create({
+  base: {
+    transform: "scale(4 / 3)",
+
+    // animation
+    transitionProperty: "transform",
+    transitionDuration: duration.short,
+    willChange: "transform",
+
+    [$when.ancestor(":focus-within")]: {
+      transform: "scale(1)",
+    },
+  },
+});
+
+const styles = {
+  input,
+  outline,
+  floatingLabel,
+};
+
+export default styles;
