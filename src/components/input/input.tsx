@@ -1,9 +1,9 @@
-import styles from "./styles";
+import styles, { textFieldMarker } from "./styles.stylex";
 import React, { forwardRef, useRef, useImperativeHandle } from "react";
 import { useInputEvents, useInputorEvents } from "./hooks";
 import type { InputProps, InputRef } from "../../types/input";
 import { useControlledState, useFocus } from "@aiszlab/relax";
-import { props as $props, defaultMarker } from "@stylexjs/stylex";
+import { props as $props } from "@stylexjs/stylex";
 import { OPACITY } from "../theme/tokens.stylex";
 import { useClassNames } from "../../hooks/use-class-names";
 import { stringify } from "@aiszlab/relax/class-name";
@@ -32,12 +32,15 @@ const Input = forwardRef<InputRef, InputProps>(
       onFocus,
       leading,
       trailing,
+      inputClassName,
+      inputStyle,
       ...inputProps
     },
     ref,
   ) => {
     const inputRef = useRef<HTMLInputElement>(null);
     const classNames = useClassNames(CLASS_NAMES);
+    const hasPlaceholder = !!inputProps.placeholder;
 
     const _themeColorVars = useThemeColorVars([
       "primary",
@@ -45,6 +48,7 @@ const Input = forwardRef<InputRef, InputProps>(
       "error",
       "on-surface-variant",
       ["on-surface", OPACITY.thickest],
+      ["on-surface", OPACITY.medium],
       ["on-surface", OPACITY.thin],
     ]);
 
@@ -84,19 +88,34 @@ const Input = forwardRef<InputRef, InputProps>(
     });
 
     const styled = {
-      inputor: $props(
+      root: $props(
         $body.medium,
-        styles.input.inputor,
-        invalid && styles.input.invalid,
-        disabled && styles.input.disabled,
-        defaultMarker(),
+        styles.root.base,
+        invalid && styles.root.invalid,
+        disabled && styles.root.disabled,
+        !disabled && textFieldMarker,
       ),
-      input: $props(styles.input.input),
+      input: $props(styles.input.base, disabled && styles.input.disabled),
       outline: $props(styles.outline.base),
-      outlineLeading: $props(styles.outline.leading),
-      outlineNotch: $props(styles.outline.notch, $body.small),
-      outlineTrailing: $props(styles.outline.trailing),
-      floatingLabel: $props(styles.floatingLabel.base),
+      outlineLeading: $props(
+        styles.outlineLeading.base,
+        disabled && styles.outlineLeading.disabled,
+      ),
+      outlineNotch: $props(
+        styles.outlineNotch.base,
+        hasPlaceholder && styles.outlineNotch.placeholder,
+        $body.small,
+        disabled && styles.outlineNotch.disabled,
+      ),
+      outlineTrailing: $props(
+        styles.outlineTrailing.base,
+        disabled && styles.outlineTrailing.disabled,
+      ),
+      floatingLabel: $props(
+        styles.floatingLabel.base,
+        hasPlaceholder && styles.floatingLabel.placeholder,
+        disabled && styles.floatingLabel.disabled,
+      ),
     };
 
     return (
@@ -108,10 +127,10 @@ const Input = forwardRef<InputRef, InputProps>(
             [classNames.invalid]: !!invalid,
           },
           className,
-          styled.inputor.className,
+          styled.root.className,
         )}
         style={{
-          ...styled.inputor.style,
+          ...styled.root.style,
           ...style,
           ..._themeColorVars,
         }}
@@ -126,8 +145,8 @@ const Input = forwardRef<InputRef, InputProps>(
         {/* input */}
         <input
           value={_value}
-          className={stringify(classNames.input, styled.input.className)}
-          style={styled.input.style}
+          className={stringify(classNames.input, styled.input.className, inputClassName)}
+          style={{ ...styled.input.style, ...inputStyle }}
           type={type}
           ref={inputRef}
           aria-invalid={invalid}

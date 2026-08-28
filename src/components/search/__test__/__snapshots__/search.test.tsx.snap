@@ -27,33 +27,33 @@ exports[`\`Search\` Component snapshot 1`] = `
       </span>
     </span>
     <div
-      class="musae-input__inputor musae-search-input styles__input.base theme__body.medium styles__input.inputor"
-      style="--color-primary: #6750A4; --color-outline: #79747E; --color-error: #B3261E; --color-on-surface: #1D1B20; --color-on-surface-opacity-38: color-mix(in srgb, var(--color-on-surface) 38%, transparent); --color-on-surface-opacity-08: color-mix(in srgb, var(--color-on-surface) 8%, transparent);"
+      class="musae-input__inputor musae-search-input styles__input.base theme__body.medium styles__root.base x19ap9w9"
+      style="--color-primary: #6750A4; --color-outline: #79747E; --color-error: #B3261E; --color-on-surface-variant: #49454F; --color-on-surface: #1D1B20; --color-on-surface-opacity-38: color-mix(in srgb, var(--color-on-surface) 38%, transparent); --color-on-surface-opacity-12: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-on-surface-opacity-08: color-mix(in srgb, var(--color-on-surface) 8%, transparent);"
       tabindex="-1"
     >
       <input
         aria-invalid="false"
-        class="musae-input styles__input.input"
+        class="musae-input styles__input.base"
         value=""
       />
       <div
         class="musae-notched-outline styles__outline.base"
       >
         <div
-          class="musae-notched-outline__leading styles__outline.leading"
+          class="musae-notched-outline__leading styles__outlineLeading.base"
         />
         <div
-          class="musae-notched-outline__notch styles__outline.notch"
+          class="musae-notched-outline__notch styles__outlineNotch.base theme__body.small"
         >
           <label
-            class="mdc-floating-label"
+            class="styles__floatingLabel.base"
             for="text-field-hero-input"
           >
             Name
           </label>
         </div>
         <div
-          class="musae-notched-outline__trailing styles__outline.trailing"
+          class="musae-notched-outline__trailing styles__outlineTrailing.base"
         />
       </div>
     </div>
@@ -88,12 +88,12 @@ exports[`\`Search\` Component snapshot disabled state 1`] = `
       </span>
     </span>
     <div
-      class="musae-input__inputor musae-search-input styles__input.base theme__body.medium styles__input.inputor styles__input.disabled"
-      style="--color-primary: #6750A4; --color-outline: #79747E; --color-error: #B3261E; --color-on-surface: #1D1B20; --color-on-surface-opacity-38: color-mix(in srgb, var(--color-on-surface) 38%, transparent); --color-on-surface-opacity-08: color-mix(in srgb, var(--color-on-surface) 8%, transparent);"
+      class="musae-input__inputor musae-search-input styles__input.base theme__body.medium styles__root.base styles__root.disabled"
+      style="--color-primary: #6750A4; --color-outline: #79747E; --color-error: #B3261E; --color-on-surface-variant: #49454F; --color-on-surface: #1D1B20; --color-on-surface-opacity-38: color-mix(in srgb, var(--color-on-surface) 38%, transparent); --color-on-surface-opacity-12: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-on-surface-opacity-08: color-mix(in srgb, var(--color-on-surface) 8%, transparent);"
     >
       <input
         aria-invalid="false"
-        class="musae-input styles__input.input"
+        class="musae-input styles__input.base styles__input.disabled"
         disabled=""
         placeholder="Search..."
         value=""
@@ -102,20 +102,20 @@ exports[`\`Search\` Component snapshot disabled state 1`] = `
         class="musae-notched-outline styles__outline.base"
       >
         <div
-          class="musae-notched-outline__leading styles__outline.leading"
+          class="musae-notched-outline__leading styles__outlineLeading.base styles__outlineLeading.disabled"
         />
         <div
-          class="musae-notched-outline__notch styles__outline.notch"
+          class="musae-notched-outline__notch styles__outlineNotch.base styles__outlineNotch.placeholder theme__body.small styles__outlineNotch.disabled"
         >
           <label
-            class="mdc-floating-label"
+            class="styles__floatingLabel.base styles__floatingLabel.placeholder styles__floatingLabel.disabled"
             for="text-field-hero-input"
           >
             Name
           </label>
         </div>
         <div
-          class="musae-notched-outline__trailing styles__outline.trailing"
+          class="musae-notched-outline__trailing styles__outlineTrailing.base styles__outlineTrailing.disabled"
         />
       </div>
     </div>
@@ -150,13 +150,13 @@ exports[`\`Search\` Component snapshot with all props 1`] = `
       </span>
     </span>
     <div
-      class="musae-input__inputor musae-search-input styles__input.base theme__body.medium styles__input.inputor"
-      style="--color-primary: #6750A4; --color-outline: #79747E; --color-error: #B3261E; --color-on-surface: #1D1B20; --color-on-surface-opacity-38: color-mix(in srgb, var(--color-on-surface) 38%, transparent); --color-on-surface-opacity-08: color-mix(in srgb, var(--color-on-surface) 8%, transparent);"
+      class="musae-input__inputor musae-search-input styles__input.base theme__body.medium styles__root.base x19ap9w9"
+      style="--color-primary: #6750A4; --color-outline: #79747E; --color-error: #B3261E; --color-on-surface-variant: #49454F; --color-on-surface: #1D1B20; --color-on-surface-opacity-38: color-mix(in srgb, var(--color-on-surface) 38%, transparent); --color-on-surface-opacity-12: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-on-surface-opacity-08: color-mix(in srgb, var(--color-on-surface) 8%, transparent);"
       tabindex="-1"
     >
       <input
         aria-invalid="false"
-        class="musae-input styles__input.input"
+        class="musae-input styles__input.base"
         placeholder="Search..."
         value="hello"
       />
@@ -164,20 +164,20 @@ exports[`\`Search\` Component snapshot with all props 1`] = `
         class="musae-notched-outline styles__outline.base"
       >
         <div
-          class="musae-notched-outline__leading styles__outline.leading"
+          class="musae-notched-outline__leading styles__outlineLeading.base"
         />
         <div
-          class="musae-notched-outline__notch styles__outline.notch"
+          class="musae-notched-outline__notch styles__outlineNotch.base styles__outlineNotch.placeholder theme__body.small"
         >
           <label
-            class="mdc-floating-label"
+            class="styles__floatingLabel.base styles__floatingLabel.placeholder"
             for="text-field-hero-input"
           >
             Name
           </label>
         </div>
         <div
-          class="musae-notched-outline__trailing styles__outline.trailing"
+          class="musae-notched-outline__trailing styles__outlineTrailing.base"
         />
       </div>
     </div>

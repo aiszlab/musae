@@ -6,6 +6,12 @@ const meta: Meta<typeof Input> = {
   component: Input,
   parameters: {},
   tags: ["autodocs"],
+  argTypes: {
+    disabled: {
+      type: "boolean",
+      table: { defaultValue: { summary: "false" } },
+    },
+  },
 };
 
 export default meta;
@@ -16,6 +22,8 @@ export const Normal: Story = {
     placeholder: "请输入内容",
   },
 };
+
+export const WithoutPlaceholder: Story = {};
 
 export const Disabled: Story = {
   args: {

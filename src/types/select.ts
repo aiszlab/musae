@@ -3,7 +3,7 @@ import type { Option } from "./option";
 import type { MenuItem, MenuProps } from "./menu";
 import type { ComponentProps } from "./element";
 import type { RequiredIn } from "@aiszlab/relax/types";
-import type { PickerProps } from "./picker";
+import type { InputProps } from "./input";
 
 export type Mode = "multiple" | "tags";
 
@@ -20,7 +20,7 @@ export type ValueOrValues = Value[] | Value;
  * select props
  */
 export type SelectProps<T extends ValueOrValues = ValueOrValues> = ComponentProps &
-  Pick<PickerProps, "onBlur"> & {
+  Pick<InputProps, "onBlur"> & {
     /**
      * @description
      * options
@@ -120,7 +120,7 @@ export type Filter = (option: Option) => boolean;
  */
 export type SelectorProps = Pick<
   RequiredIn<SelectProps, "searchable" | "onSearch">,
-  "searchable" | "mode" | "onSearch" | "onBlur" | "placeholder" | "disabled"
+  "searchable" | "mode" | "onSearch" | "onBlur" | "placeholder" | "disabled" | "invalid" | "onClear"
 > & {
   /**
    * @description
@@ -139,6 +139,12 @@ export type SelectorProps = Pick<
    * change
    */
   onChange: (key: Key) => void;
+
+  /**
+   * @zh 关闭选择器弹层
+   * @en Close the selector popup
+   */
+  onClose: () => void;
 };
 
 /**

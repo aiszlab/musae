@@ -6,8 +6,7 @@ import type { DatePickerProps } from "../../types/date-picker";
 import { useValue } from "./hooks";
 import { useClassNames } from "../../hooks/use-class-names";
 import { props as $props } from "@stylexjs/stylex";
-import { stringify } from "@aiszlab/relax/class-name";
-import { styles as inputStyles } from "../input";
+import { Input } from "../input";
 import type { PickerRef } from "../../types/picker";
 import { CLASS_NAMES } from "./context";
 import type { CalendarRef } from "../../types/calendar";
@@ -20,7 +19,6 @@ const DatePicker = (props: DatePickerProps) => {
   const calendarRef = useRef<CalendarRef>(null);
 
   const styled = {
-    input: $props(inputStyles.input),
     calendar: $props(styles.calendar),
   };
 
@@ -44,12 +42,14 @@ const DatePicker = (props: DatePickerProps) => {
       onPopperEnter={reset}
       popupWidth={false}
     >
-      <input
-        className={stringify(classNames.input, styled.input.className)}
-        style={styled.input.style}
-        value={value?.format("YYYY-MM-DD") ?? ""}
-        readOnly
-      />
+      {({ inputProps }) => (
+        <Input
+          {...inputProps}
+          inputClassName={classNames.input}
+          value={value?.format("YYYY-MM-DD") ?? ""}
+          readOnly
+        />
+      )}
     </Picker>
   );
 };

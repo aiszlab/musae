@@ -1,118 +1,98 @@
 import styles from "./styles";
-import React, {
-  forwardRef,
-  useImperativeHandle,
-  useRef,
-  useContext,
-  type ChangeEvent,
-} from "react";
+import React, { forwardRef, useContext, useImperativeHandle, useRef } from "react";
 import type { SelectorProps, SelectorRef } from "../../types/select";
+import type { InputRef } from "../../types/input";
 import { Tag } from "../tag";
-import { styles as inputStyles } from "../input";
+import { Input } from "../input";
 import { props as $props } from "@stylexjs/stylex";
 import { Context } from "../picker";
-import { $body } from "../theme/theme";
-import { useThemeColorVars } from "../../hooks/use-theme-color-vars";
-import { OPACITY } from "../theme/tokens.stylex";
+import { IconClose } from "../icon/icons";
 import { isMultiple } from "./utils";
 
 const Selector = forwardRef<SelectorRef, SelectorProps>(
   (
-    { mode, searchable, value, onSearch, keyword, onChange, onBlur, placeholder, disabled = false },
+    {
+      mode,
+      searchable,
+      value,
+      onSearch,
+      keyword,
+      onChange,
+      onBlur,
+      onClose,
+      onClear,
+      placeholder,
+      disabled = false,
+      invalid = false,
+    },
     ref,
   ) => {
-    const inputRef = useRef<HTMLInputElement>(null);
-    const { isFocused, open } = useContext(Context);
-    const _themeColorVars = useThemeColorVars(["on-surface", ["on-surface", OPACITY.thickest]]);
+    const inputRef = useRef<InputRef>(null);
+    const { open, toggle } = useContext(Context);
+    const multiple = isMultiple(mode);
+    const selectedValue = Array.from(value.values()).join(",");
 
-    useImperativeHandle(ref, () => {
-      return {
-        focus: () => {
-          inputRef.current?.focus();
-        },
-      };
-    });
+    useImperativeHandle(ref, () => ({
+      focus: () => {
+        inputRef.current?.focus?.();
+      },
+    }));
 
     // on user search input, trigger the search callback
-    const search = (e: ChangeEvent<HTMLInputElement>) => {
+    const search = (nextKeyword: string) => {
       open?.();
-      onSearch(e.target.value);
+      onSearch(nextKeyword);
     };
 
     const styled = {
-      input: $props(
-        inputStyles.input.input,
-        styles.selector.input.focused.base,
-        isFocused && searchable && styles.selector.input.focused.searchable,
-        $body.small,
-      ),
-      placeholder: $props(styles.selector.placeholder.base),
+      input: $props(styles.selector.input),
     };
 
-    // multiple mode render
-    if (isMultiple(mode)) {
-      return (
-        <>
-          {Array.from(value.entries()).map(([key, label]) => {
-            return (
-              <Tag
-                key={key}
-                size="small"
-                closable={!disabled}
-                onClose={(event) => {
-                  // stop event: in `Select`, it will trigger and open the popup
-                  event.stopPropagation();
-                  onChange(key);
-                }}
-              >
-                {label}
-              </Tag>
-            );
-          })}
-
-          {searchable && (
-            <input
-              ref={inputRef}
-              value={keyword}
-              className={styled.input.className}
-              style={{ ...styled.input.style, ..._themeColorVars }}
-              onChange={search}
-              onBlur={onBlur}
-              placeholder={placeholder}
-              disabled={disabled}
-            />
-          )}
-        </>
-      );
-    }
-
-    // single mode render
-    if (!searchable) {
-      return (
-        <span
-          className={styled.input.className}
-          style={{ ...styled.input.style, ..._themeColorVars }}
-        >
-          {Array.from(value.values()).join(",") ||
-            (!!placeholder && (
-              <span className={styled.placeholder.className} style={styled.placeholder.style}>
-                {placeholder}
-              </span>
-            ))}
-        </span>
-      );
-    }
+    const selections = multiple
+      ? Array.from(value.entries()).map(([key, label]) => (
+          <Tag
+            key={key}
+            size="small"
+            closable={!disabled}
+            onClose={(event) => {
+              // stop event: in `Select`, it will trigger and open the popup
+              event.stopPropagation();
+              onChange(key);
+            }}
+          >
+            {label}
+          </Tag>
+        ))
+      : undefined;
 
     return (
-      <input
+      <Input
         ref={inputRef}
-        value={keyword}
-        placeholder={Array.from(value.values()).join(",") || placeholder}
+        value={searchable ? keyword : multiple ? "" : selectedValue}
+        placeholder={searchable && !multiple ? selectedValue || placeholder : placeholder}
         className={styled.input.className}
-        style={{ ...styled.input.style, ..._themeColorVars }}
-        onChange={search}
-        onBlur={onBlur}
+        style={styled.input.style}
+        onChange={searchable ? search : undefined}
+        onClick={() => toggle?.()}
+        onBlur={(event) => {
+          onBlur?.(event);
+          onClose();
+        }}
+        readOnly={!searchable}
         disabled={disabled}
+        invalid={invalid}
+        leading={selections}
+        trailing={
+          !!onClear &&
+          !disabled && (
+            <IconClose
+              onClick={(event) => {
+                event.stopPropagation();
+                onClear();
+              }}
+            />
+          )
+        }
       />
     );
   },

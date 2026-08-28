@@ -1,7 +1,10 @@
 import { render, fireEvent } from "@testing-library/react";
 import { Search } from "..";
+import { Input } from "../../input";
+import { textFieldMarker } from "../../input/styles.stylex";
 import React from "react";
 import "@testing-library/jest-dom";
+import { props as $props } from "@stylexjs/stylex";
 
 describe("`Search` Component", () => {
   test("snapshot", () => {
@@ -108,6 +111,66 @@ describe("`Search` Component", () => {
     const { container } = render(<Search disabled defaultValue="text" />);
     const clearButton = container.querySelector("button[aria-label='Clear search']");
     expect(clearButton).not.toBeInTheDocument();
+  });
+
+  test("applies the disabled outline color token", () => {
+    const { container } = render(<Search disabled />);
+    const inputor = container.querySelector<HTMLElement>(".musae-input__inputor");
+
+    expect(inputor?.style.getPropertyValue("--color-on-surface-opacity-12")).toBe(
+      "color-mix(in srgb, var(--color-on-surface) 12%, transparent)",
+    );
+    expect(container.querySelector(".musae-notched-outline__leading")).toHaveClass(
+      "styles__outlineLeading.disabled",
+    );
+    expect(container.querySelector(".musae-notched-outline__notch")).toHaveClass(
+      "styles__outlineNotch.disabled",
+    );
+    expect(container.querySelector(".musae-notched-outline__trailing")).toHaveClass(
+      "styles__outlineTrailing.disabled",
+    );
+  });
+
+  test("applies the disabled label color token", () => {
+    const { container } = render(<Search disabled />);
+    const inputor = container.querySelector<HTMLElement>(".musae-input__inputor");
+    const label = container.querySelector(".musae-notched-outline__notch label");
+
+    expect(inputor?.style.getPropertyValue("--color-on-surface-opacity-38")).toBe(
+      "color-mix(in srgb, var(--color-on-surface) 38%, transparent)",
+    );
+    expect(label).toHaveClass("styles__floatingLabel.disabled");
+  });
+
+  test("applies the disabled placeholder color token", () => {
+    const { container, rerender } = render(<Search placeholder="Search..." />);
+    const input = container.querySelector("input");
+
+    expect(input).not.toHaveClass("styles__input.disabled");
+
+    rerender(<Search disabled placeholder="Search..." />);
+
+    expect(input).toHaveClass("styles__input.disabled");
+    expect(
+      container
+        .querySelector<HTMLElement>(".musae-input__inputor")
+        ?.style.getPropertyValue("--color-on-surface-opacity-38"),
+    ).toBe("color-mix(in srgb, var(--color-on-surface) 38%, transparent)");
+  });
+
+  test("does not activate focus-within styles from disabled supporting content", () => {
+    const markerClassName = $props(textFieldMarker).className;
+    const { container, getByRole } = render(
+      <Input disabled trailing={<button type="button">Trailing</button>} />,
+    );
+    const inputor = container.querySelector(".musae-input__inputor");
+    const trailing = getByRole("button", { name: "Trailing" });
+
+    trailing.focus();
+
+    expect(markerClassName).toBeDefined();
+    expect(trailing).toHaveFocus();
+    expect(inputor).not.toHaveClass(markerClassName!);
   });
 
   test("does not render search button when searchButton not provided", () => {

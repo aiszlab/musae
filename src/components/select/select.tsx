@@ -75,7 +75,6 @@ const Select = <T extends ValueOrValues = ValueOrValues>({
   };
 
   const styled = {
-    picker: $props(styles.select.picked),
     pickable: $props(styles.select.pickable),
   };
 
@@ -83,34 +82,31 @@ const Select = <T extends ValueOrValues = ValueOrValues>({
     <Picker
       ref={ref}
       pickable={<Selections items={menuItems} onSelect={change} selectedKeys={selectedKeys} />}
-      className={stringify(classNames.select, className, styled.picker.className)}
-      style={{
-        ...styled.picker.style,
-        ...style,
-      }}
+      className={stringify(classNames.select, className)}
+      style={style}
       onClick={click}
       pickableClassName={styled.pickable.className}
       pickableStyle={styled.pickable.style}
       onPopperExite={clearKeyword}
-      invalid={invalid}
       disabled={disabled}
-      onClear={onClear ? clear : void 0}
-      {...(!searchable && {
-        onBlur,
-      })}
     >
-      <Selector
-        value={readableValues}
-        mode={mode}
-        searchable={searchable}
-        ref={selectorRef}
-        keyword={keyword}
-        onSearch={search}
-        onChange={change}
-        {...(searchable && { onBlur })}
-        placeholder={placeholder}
-        disabled={disabled}
-      />
+      {() => (
+        <Selector
+          value={readableValues}
+          mode={mode}
+          searchable={searchable}
+          ref={selectorRef}
+          keyword={keyword}
+          onSearch={search}
+          onChange={change}
+          onBlur={onBlur}
+          onClose={close}
+          onClear={onClear ? clear : undefined}
+          placeholder={placeholder}
+          disabled={disabled}
+          invalid={invalid}
+        />
+      )}
     </Picker>
   );
 };

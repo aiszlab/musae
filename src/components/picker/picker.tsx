@@ -4,24 +4,25 @@ import React, {
   useRef,
   forwardRef,
   useImperativeHandle,
+  type FocusEventHandler,
   type MouseEvent,
-  type FocusEvent,
+  type MouseEventHandler,
   useContext,
 } from "react";
 import { Popper } from "../popper";
-import { useBoolean, useFocus, useEvent } from "@aiszlab/relax";
-import type { PickerProps, PickerRef } from "../../types/picker";
+import { useBoolean, useEvent } from "@aiszlab/relax";
+import type {
+  PickerProps,
+  PickerRef,
+  PickerTriggerAction,
+  PickerTriggerRenderProps,
+} from "../../types/picker";
 import { useClassNames } from "../../hooks/use-class-names";
 import { props as $props } from "@stylexjs/stylex";
-import { styles as inputStyles } from "../input";
 import { CLASS_NAMES, Context } from "./context";
 import { stringify } from "@aiszlab/relax/class-name";
-import { IconClose } from "../icon/icons";
-import { $body } from "../theme/theme";
-import { useThemeColorVars } from "../../hooks/use-theme-color-vars";
 import { DialogContext } from "../dialog/context";
 import { useStackLevelContextContext } from "../../contexts/stack-level.context";
-import { OPACITY } from "../theme/tokens.stylex";
 
 const Picker = forwardRef<PickerRef, PickerProps>(
   (
@@ -40,23 +41,14 @@ const Picker = forwardRef<PickerRef, PickerProps>(
       onPopperExite,
       onBlur: _onBlur,
       invalid = false,
-      onClear,
       disabled = false,
     },
     ref,
   ) => {
     const trigger = useRef<HTMLDivElement>(null);
-    const [isOpen, { turnOff: close, toggle, turnOn: open }] = useBoolean();
+    const [isOpen, { turnOff: closeState, toggle: toggleState, turnOn: openState }] = useBoolean();
     const classNames = useClassNames(CLASS_NAMES);
     const pickableRef = useRef<HTMLDivElement>(null);
-
-    const _themeColorVars = useThemeColorVars([
-      "primary",
-      "outline",
-      "error",
-      ["on-surface", OPACITY.thickest],
-      ["on-surface", OPACITY.thin],
-    ]);
 
     const { container } = useContext(DialogContext);
     const { className: stackLevelClassName, style: stackLevelStyle } =
@@ -71,67 +63,73 @@ const Picker = forwardRef<PickerRef, PickerProps>(
       );
     }, [popupWidth]);
 
+    const open = useEvent<PickerTriggerAction>((event) => {
+      event?.stopPropagation();
+      if (disabled) return;
+      openState();
+    });
+
+    const close = useEvent<PickerTriggerAction>((event) => {
+      event?.stopPropagation();
+      closeState();
+    });
+
+    const toggle = useEvent<PickerTriggerAction>((event) => {
+      event?.stopPropagation();
+      if (disabled) return;
+      toggleState();
+    });
+
     useImperativeHandle(ref, () => ({
       close,
     }));
 
-    const click = useEvent((event: MouseEvent<HTMLSpanElement>) => {
+    const click = useEvent<MouseEventHandler<HTMLElement>>((event) => {
       if (disabled) return;
       event.stopPropagation();
       onClick?.(event);
-      toggle();
+      toggleState();
     });
 
-    const onBlur = useEvent((e: FocusEvent<HTMLSpanElement>) => {
-      e.stopPropagation();
-      _onBlur?.(e);
-      close();
-    });
-
-    const [isFocused, focusProps] = useFocus<HTMLDivElement>({
-      onBlur,
-    });
-
-    const onDropdownClick = useCallback((e: MouseEvent<HTMLDivElement>) => e.preventDefault(), []);
-
-    const clear = useEvent((event: MouseEvent) => {
+    const blur = useEvent<FocusEventHandler<HTMLElement>>((event) => {
       event.stopPropagation();
-      onClear?.();
+      _onBlur?.(event);
+      closeState();
     });
+
+    const onDropdownClick = useCallback((event: MouseEvent<HTMLDivElement>) => {
+      event.preventDefault();
+    }, []);
 
     const styled = {
-      picker: $props(
-        $body.medium,
-        inputStyles.input.inputor,
-        invalid && inputStyles.input.invalid,
-        disabled && inputStyles.input.disabled,
-      ),
       pickable: $props(styles.pickable),
     };
 
-    return (
-      <Context.Provider value={{ open, isFocused, isOpen }}>
-        <span
-          className={stringify(
-            classNames.picker,
-            isFocused && classNames.focused,
-            className,
-            styled.picker.className,
-          )}
-          style={{
-            ...styled.picker.style,
-            ...style,
-            ..._themeColorVars,
-          }}
-          ref={trigger}
-          {...(!disabled && { tabIndex: -1 })}
-          onClick={click}
-          {...focusProps}
-        >
-          {children}
+    const triggerRenderProps: PickerTriggerRenderProps = {
+      open,
+      close,
+      toggle,
+      inputProps: {
+        onClick: click,
+        onBlur: blur,
+        disabled,
+        invalid,
+      },
+    };
 
-          {!!onClear && !disabled && <IconClose onClick={clear} />}
-        </span>
+    const triggerContent = children(triggerRenderProps);
+
+    return (
+      <Context.Provider value={{ open, toggle, isOpen }}>
+        <div
+          ref={trigger}
+          className={stringify(classNames.picker, className)}
+          style={style}
+          onClick={click}
+          onBlur={blur}
+        >
+          {triggerContent}
+        </div>
 
         <Popper
           trigger={() => trigger.current}

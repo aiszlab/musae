@@ -9,6 +9,7 @@ node-compile-cache
 .idea
 .vscode
 .env
+.env.local
 
 # unit test
 coverage

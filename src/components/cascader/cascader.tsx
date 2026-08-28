@@ -11,6 +11,7 @@ import type { MenuProps } from "../../types/menu";
 import type { PickerRef } from "../../types/picker";
 import type { CascaderProps } from "../../types/cascader";
 import { CLASS_NAMES } from "./context";
+import { Input } from "../input";
 
 const Cascader = ({ mode, separator = "/", options = [], ...props }: CascaderProps) => {
   const ref = useRef<PickerRef>(null);
@@ -66,7 +67,14 @@ const Cascader = ({ mode, separator = "/", options = [], ...props }: CascaderPro
 
   return (
     <Picker ref={ref} pickable={menus} className={classNames.cascader} popupWidth={false}>
-      {inputed}
+      {({ inputProps }) => (
+        <Input
+          {...inputProps}
+          value={typeof inputed === "string" ? inputed : ""}
+          leading={mode === "multiple" ? inputed : undefined}
+          readOnly
+        />
+      )}
     </Picker>
   );
 };

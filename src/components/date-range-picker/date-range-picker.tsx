@@ -10,6 +10,7 @@ import { props as $props } from "@stylexjs/stylex";
 import { stringify } from "@aiszlab/relax/class-name";
 import type { PickerRef } from "../../types/picker";
 import { CLASS_NAMES } from "./context";
+import { Input } from "../input";
 
 const DateRangePicker = ({ onChange, ...props }: DateRangePickerProps) => {
   const pickerRef = useRef<PickerRef>(null);
@@ -29,26 +30,28 @@ const DateRangePicker = ({ onChange, ...props }: DateRangePickerProps) => {
       pickable={<Calendar value={value} onClick={change} />}
       popupWidth={false}
     >
-      <div
-        className={stringify(classNames.picker, styled.picker.className)}
-        style={styled.picker.style}
-      >
-        <span
-          className={stringify(classNames.input, styled.trigger.className)}
-          style={styled.trigger.style}
-        >
-          {from?.format("YYYY-MM-DD")}
-        </span>
-
-        <IconSwapHoriz className={classNames.separator} />
-
-        <span
-          className={stringify(classNames.input, styled.trigger.className)}
-          style={styled.trigger.style}
-        >
-          {to?.format("YYYY-MM-DD")}
-        </span>
-      </div>
+      {({ inputProps }) => (
+        <Input
+          {...inputProps}
+          className={stringify(classNames.picker, styled.picker.className)}
+          style={styled.picker.style}
+          inputClassName={stringify(classNames.input, styled.trigger.className)}
+          inputStyle={styled.trigger.style}
+          value={from?.format("YYYY-MM-DD") ?? ""}
+          readOnly
+          trailing={
+            <>
+              <IconSwapHoriz className={classNames.separator} />
+              <span
+                className={stringify(classNames.input, styled.trigger.className)}
+                style={styled.trigger.style}
+              >
+                {to?.format("YYYY-MM-DD")}
+              </span>
+            </>
+          }
+        />
+      )}
     </Picker>
   );
 };

@@ -1,9 +1,11 @@
-import { create as $create, when as $when } from "@stylexjs/stylex";
+import { create as $create, when as $when, defineMarker } from "@stylexjs/stylex";
 import { duration, sizes, spacing } from "../theme/tokens.stylex";
 import { ThemeColorVariable } from "../../hooks/use-theme-color-vars";
 
-const input = $create({
-  inputor: {
+const textFieldMarker = defineMarker();
+
+const root = $create({
+  base: {
     position: "relative",
     display: "inline-flex",
     alignItems: "center",
@@ -33,7 +35,13 @@ const input = $create({
     },
   },
 
-  input: {
+  disabled: {
+    color: "var(--color-on-surface-opacity-38)" satisfies ThemeColorVariable,
+  },
+});
+
+const input = $create({
+  base: {
     // reset input_styles
     lineHeight: "inherit",
     fontSize: "inherit",
@@ -47,9 +55,9 @@ const input = $create({
   },
 
   disabled: {
-    backgroundColor: "var(--color-on-surface-opacity-08)" satisfies ThemeColorVariable,
-    color: "var(--color-on-surface-opacity-38)" satisfies ThemeColorVariable,
-    boxShadow: `0px 0px 0px ${sizes.smallest} var(--color-on-surface-opacity-38) inset`,
+    "::placeholder": {
+      color: "var(--color-on-surface-opacity-38)" satisfies ThemeColorVariable,
+    },
   },
 });
 
@@ -58,9 +66,12 @@ const outline = $create({
     position: "absolute",
     inset: sizes.none,
     display: "inline-flex",
+    pointerEvents: "none",
   },
+});
 
-  leading: {
+const outlineLeading = $create({
+  base: {
     boxSizing: "border-box",
     width: sizes.xxxxxsmall,
 
@@ -79,39 +90,20 @@ const outline = $create({
     borderStartStartRadius: sizes.xxxxxxxxxsmall,
     borderEndStartRadius: sizes.xxxxxxxxxsmall,
 
-    [$when.ancestor(":focus-within")]: {
+    [$when.ancestor(":focus-within", textFieldMarker)]: {
       borderInlineStartWidth: sizes.xxxxxxxxxxsmall,
       borderBlockWidth: sizes.xxxxxxxxxxsmall,
       borderColor: "var(--color-primary)" satisfies ThemeColorVariable,
     },
   },
 
-  notch: {
-    boxSizing: "border-box",
-    display: "flex",
-    alignItems: "center",
-    paddingInline: spacing.xxxxxsmall,
-    color: "var(--color-on-surface-variant)" satisfies ThemeColorVariable,
-
-    // animation
-    transitionProperty: "border",
-    transitionDuration: duration.short,
-    willChange: "border",
-
-    borderStyle: "solid",
-    borderColor: "var(--color-outline)" satisfies ThemeColorVariable,
-
-    borderInlineWidth: sizes.none,
-    borderBlockWidth: sizes.smallest,
-
-    [$when.ancestor(":focus-within")]: {
-      borderBlockWidth: sizes.xxxxxxxxxxsmall,
-      borderColor: "var(--color-primary)" satisfies ThemeColorVariable,
-      borderBlockStartColor: "transparent",
-    },
+  disabled: {
+    borderColor: "var(--color-on-surface-opacity-12)" satisfies ThemeColorVariable,
   },
+});
 
-  trailing: {
+const outlineTrailing = $create({
+  base: {
     boxSizing: "border-box",
     flex: 1,
 
@@ -130,33 +122,91 @@ const outline = $create({
     borderStartEndRadius: sizes.xxxxxxxxxsmall,
     borderEndEndRadius: sizes.xxxxxxxxxsmall,
 
-    [$when.ancestor(":focus-within")]: {
+    [$when.ancestor(":focus-within", textFieldMarker)]: {
       borderInlineEndWidth: sizes.xxxxxxxxxxsmall,
       borderBlockWidth: sizes.xxxxxxxxxxsmall,
       borderColor: "var(--color-primary)" satisfies ThemeColorVariable,
     },
   },
+
+  disabled: {
+    borderColor: "var(--color-on-surface-opacity-12)" satisfies ThemeColorVariable,
+  },
+});
+
+const outlineNotch = $create({
+  base: {
+    boxSizing: "border-box",
+    display: "flex",
+    alignItems: "center",
+    paddingInline: spacing.xxxxxsmall,
+    color: "var(--color-on-surface-variant)" satisfies ThemeColorVariable,
+
+    // animation
+    transitionProperty: "border",
+    transitionDuration: duration.short,
+    willChange: "border",
+
+    borderStyle: "solid",
+    borderColor: "var(--color-outline)" satisfies ThemeColorVariable,
+
+    borderInlineWidth: sizes.none,
+    borderBlockWidth: sizes.smallest,
+
+    [$when.ancestor(":focus-within", textFieldMarker)]: {
+      borderBlockEndWidth: sizes.xxxxxxxxxxsmall,
+      borderColor: "var(--color-primary)" satisfies ThemeColorVariable,
+      borderBlockStartColor: "transparent",
+    },
+  },
+
+  placeholder: {
+    borderBlockStartColor: "transparent",
+  },
+
+  disabled: {
+    borderColor: "var(--color-on-surface-opacity-12)" satisfies ThemeColorVariable,
+  },
 });
 
 const floatingLabel = $create({
   base: {
-    transform: "scale(4 / 3)",
+    position: "relative",
+    top: sizes.none,
+    transform: "scale(calc(4 / 3))",
+    transformOrigin: "left center",
 
     // animation
-    transitionProperty: "transform",
+    transitionProperty: "color, top, transform",
     transitionDuration: duration.short,
-    willChange: "transform",
+    willChange: "color, top, transform",
 
-    [$when.ancestor(":focus-within")]: {
+    [$when.ancestor(":focus-within", textFieldMarker)]: {
+      color: "var(--color-primary)" satisfies ThemeColorVariable,
+      top: "-50%",
       transform: "scale(1)",
     },
+  },
+
+  placeholder: {
+    top: "-50%",
+    transform: "scale(1)",
+  },
+
+  disabled: {
+    color: "var(--color-on-surface-opacity-38)" satisfies ThemeColorVariable,
   },
 });
 
 const styles = {
+  root,
   input,
   outline,
+  outlineLeading,
+  outlineNotch,
+  outlineTrailing,
   floatingLabel,
 };
 
 export default styles;
+export { textFieldMarker };

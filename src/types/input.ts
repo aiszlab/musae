@@ -1,4 +1,4 @@
-import type { InputHTMLAttributes, ReactNode } from "react";
+import type { CSSProperties, InputHTMLAttributes, ReactNode } from "react";
 import type { ComponentProps } from "./element";
 
 /**
@@ -15,9 +15,29 @@ export interface InputProps
   extends
     Pick<
       InputHTMLAttributes<HTMLInputElement>,
-      "onFocus" | "onBlur" | "name" | "value" | "disabled" | "onClick" | "maxLength" | "onKeyDown"
+      | "onFocus"
+      | "onBlur"
+      | "name"
+      | "value"
+      | "disabled"
+      | "readOnly"
+      | "onClick"
+      | "maxLength"
+      | "onKeyDown"
     >,
     ComponentProps {
+  /**
+   * @zh 原生输入元素的类名
+   * @en Class name for the native input element
+   */
+  inputClassName?: string;
+
+  /**
+   * @zh 原生输入元素的样式
+   * @en Style for the native input element
+   */
+  inputStyle?: CSSProperties;
+
   /**
    * @description
    * value
