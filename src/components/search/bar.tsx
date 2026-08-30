@@ -84,7 +84,8 @@ const SearchBar = ({
     </Button>
   );
 
-  const hasTrailing = !!clearAction || !!trailing || !!searchButtonAction;
+  const hasConsumerTrailing = React.Children.toArray(trailing).length > 0;
+  const hasTrailing = !!clearAction || hasConsumerTrailing || !!searchButtonAction;
 
   return (
     <Input

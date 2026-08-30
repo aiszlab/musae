@@ -49,6 +49,26 @@ describe("`Search` Component", () => {
     expect(container.querySelector(".musae-search-trailing")).not.toBeInTheDocument();
   });
 
+  test("renders numeric zero as consumer trailing content", () => {
+    const { container } = render(<Search trailing={0} />);
+    const trailing = container.querySelector(".musae-search-trailing");
+
+    expect(trailing).toBeInTheDocument();
+    expect(trailing).toHaveTextContent("0");
+  });
+
+  test("omits the trailing slot for an empty consumer trailing array", () => {
+    const { container } = render(<Search trailing={[]} />);
+
+    expect(container.querySelector(".musae-search-trailing")).not.toBeInTheDocument();
+  });
+
+  test("omits the trailing slot for a consumer trailing array containing false", () => {
+    const { container } = render(<Search trailing={[false]} />);
+
+    expect(container.querySelector(".musae-search-trailing")).not.toBeInTheDocument();
+  });
+
   test("calls onChange when input value changes", () => {
     const onChange = jest.fn();
     const { container } = render(<Search onChange={onChange} />);
