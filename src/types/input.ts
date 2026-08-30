@@ -31,6 +31,11 @@ export interface InputProps
       | "onClick"
       | "maxLength"
       | "onKeyDown"
+      | "role"
+      | "aria-expanded"
+      | "aria-controls"
+      | "aria-activedescendant"
+      | "aria-autocomplete"
     >,
     ComponentProps {
   /**

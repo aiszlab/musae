@@ -1,12 +1,29 @@
-import { render, fireEvent } from "@testing-library/react";
+import { act, fireEvent, render, screen, waitFor, within } from "@testing-library/react";
 import { Search } from "..";
+import type { SearchRef } from "../../../types/search";
 import { Input } from "../../input";
 import { textFieldMarker } from "../../input/styles.stylex";
-import React from "react";
+import React, { createRef } from "react";
 import "@testing-library/jest-dom";
 import { props as $props } from "@stylexjs/stylex";
 
 describe("`Search` Component", () => {
+  beforeEach(() => {
+    Object.defineProperty(window, "matchMedia", {
+      configurable: true,
+      value: jest.fn(() => ({
+        matches: false,
+        media: "(max-width: 904px)",
+        onchange: null,
+        addEventListener: jest.fn(),
+        removeEventListener: jest.fn(),
+        addListener: jest.fn(),
+        removeListener: jest.fn(),
+        dispatchEvent: jest.fn(),
+      })),
+    });
+  });
+
   test("snapshot", () => {
     const { asFragment } = render(<Search />);
     expect(asFragment()).toMatchSnapshot();
@@ -316,6 +333,141 @@ describe("`Search` Component", () => {
       (btn) => btn.getAttribute("aria-label") !== "Clear search",
     );
     expect(nonClearButtons.length).toBe(0);
+  });
+
+  test("focus opens modal Search View, transfers focus, and Escape restores the bar", async () => {
+    const onOpenChange = jest.fn();
+    const { container } = render(<Search view="modal" onOpenChange={onOpenChange} />);
+    const barInput = container.querySelector("input")!;
+
+    fireEvent.focus(barInput);
+    const dialog = await screen.findByRole("dialog", { name: "Search" });
+    const viewInput = within(dialog).getByRole("combobox");
+    expect(onOpenChange).toHaveBeenCalledWith(true);
+    expect(viewInput).toHaveFocus();
+
+    fireEvent.keyDown(viewInput, { key: "Escape" });
+    await waitFor(() => expect(dialog).not.toBeInTheDocument());
+    expect(onOpenChange).toHaveBeenLastCalledWith(false);
+    expect(barInput).toHaveFocus();
+  });
+
+  test("controlled open emits close requests but stays visible until rerendered", () => {
+    const onOpenChange = jest.fn();
+    const { container, rerender } = render(
+      <Search open view="modal" onOpenChange={onOpenChange} />,
+    );
+    const barInput = container.querySelector("input")!;
+    const dialog = screen.getByRole("dialog", { name: "Search" });
+    const viewInput = within(dialog).getByRole("combobox");
+
+    fireEvent.click(screen.getByTestId("search-view-overlay"));
+
+    expect(onOpenChange).toHaveBeenCalledWith(false);
+    expect(dialog).toBeInTheDocument();
+    expect(viewInput).toHaveFocus();
+    expect(barInput).not.toHaveFocus();
+
+    rerender(<Search open={false} view="modal" onOpenChange={onOpenChange} />);
+    expect(screen.queryByRole("dialog", { name: "Search" })).not.toBeInTheDocument();
+    expect(barInput).toHaveFocus();
+  });
+
+  test("explicit full-screen view has no dismissing overlay", () => {
+    render(<Search defaultOpen view="full-screen" />);
+
+    expect(screen.getByRole("dialog", { name: "Search" })).toHaveClass("styles__view.fullScreen");
+    expect(screen.queryByTestId("search-view-overlay")).not.toBeInTheDocument();
+  });
+
+  test("imperative focus targets the visible input and disabled Search cannot open", async () => {
+    const ref = createRef<SearchRef>();
+    const onOpenChange = jest.fn();
+    const onChange = jest.fn();
+    const { container, rerender } = render(
+      <Search
+        ref={ref}
+        defaultValue="query"
+        view="modal"
+        onChange={onChange}
+        onOpenChange={onOpenChange}
+      />,
+    );
+
+    act(() => ref.current?.focus());
+    const dialog = await screen.findByRole("dialog", { name: "Search" });
+    expect(dialog.querySelector("input")).toHaveFocus();
+
+    act(() => ref.current?.blur());
+    expect(dialog.querySelector("input")).not.toHaveFocus();
+
+    act(() => ref.current?.focus());
+    expect(dialog.querySelector("input")).toHaveFocus();
+
+    act(() => ref.current?.clear());
+    expect(onChange).toHaveBeenCalledWith("");
+    expect(ref.current?.getValue()).toBe("");
+
+    rerender(<Search ref={ref} disabled view="modal" onOpenChange={onOpenChange} />);
+    fireEvent.focus(container.querySelector("input")!);
+    await waitFor(() =>
+      expect(screen.queryByRole("dialog", { name: "Search" })).not.toBeInTheDocument(),
+    );
+    expect(onOpenChange).toHaveBeenLastCalledWith(false);
+  });
+
+  test("disabling a controlled open Search preserves its effective open state", () => {
+    const onOpenChange = jest.fn();
+    const { rerender } = render(<Search open view="modal" onOpenChange={onOpenChange} />);
+
+    onOpenChange.mockClear();
+    rerender(<Search open disabled view="modal" onOpenChange={onOpenChange} />);
+
+    expect(screen.getByRole("dialog", { name: "Search" })).toBeInTheDocument();
+    expect(onOpenChange).not.toHaveBeenCalled();
+  });
+
+  test("the modal panel and back button have isolated dismissal behavior", () => {
+    const onOpenChange = jest.fn();
+    render(<Search defaultOpen view="modal" onOpenChange={onOpenChange} />);
+    const dialog = screen.getByRole("dialog", { name: "Search" });
+
+    fireEvent.click(dialog);
+    expect(onOpenChange).not.toHaveBeenCalled();
+    expect(dialog).toBeInTheDocument();
+
+    fireEvent.click(screen.getByRole("button", { name: "Close search" }));
+    expect(onOpenChange).toHaveBeenCalledWith(false);
+    expect(screen.queryByRole("dialog", { name: "Search" })).not.toBeInTheDocument();
+  });
+
+  test("auto view changes layout without losing value or focus", async () => {
+    let matches = false;
+    const listeners = new Set<() => void>();
+    Object.defineProperty(window, "matchMedia", {
+      configurable: true,
+      value: jest.fn(() => ({
+        matches,
+        media: "(max-width: 904px)",
+        onchange: null,
+        addEventListener: (_type: string, listener: () => void) => listeners.add(listener),
+        removeEventListener: (_type: string, listener: () => void) => listeners.delete(listener),
+        addListener: jest.fn(),
+        removeListener: jest.fn(),
+        dispatchEvent: jest.fn(),
+      })),
+    });
+    render(<Search defaultOpen defaultValue="query" view="auto" />);
+    const input = await screen.findByRole("combobox");
+    expect(screen.getByRole("dialog", { name: "Search" })).toHaveClass("styles__view.modal");
+
+    act(() => {
+      matches = true;
+      listeners.forEach((listener) => listener());
+    });
+    expect(screen.getByRole("dialog", { name: "Search" })).toHaveClass("styles__view.fullScreen");
+    expect(input).toHaveValue("query");
+    expect(input).toHaveFocus();
   });
 
   test("snapshot with all props", () => {

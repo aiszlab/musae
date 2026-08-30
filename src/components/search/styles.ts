@@ -1,5 +1,5 @@
 import { create as $create } from "@stylexjs/stylex";
-import { sizes, spacing } from "../theme/tokens.stylex";
+import { opacity, positions, searchViewSizes, sizes, spacing } from "../theme/tokens.stylex";
 import { ThemeColorVariable } from "../../hooks/use-theme-color-vars";
 
 const container = $create({
@@ -68,6 +68,87 @@ const searchButton = $create({
   },
 });
 
-const styles = { container, leading, trailing, clear, searchButton };
+const view = $create({
+  root: {
+    position: "fixed",
+    inset: sizes.none,
+    zIndex: positions.dialog,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    boxSizing: "border-box",
+  },
+
+  modalRoot: {
+    padding: spacing.xxxxxxlarge,
+  },
+
+  overlay: {
+    position: "absolute",
+    inset: sizes.none,
+    backgroundColor: "var(--color-surface-dim)" satisfies ThemeColorVariable,
+    opacity: opacity.heavier,
+  },
+
+  panel: {
+    position: "relative",
+    display: "flex",
+    flexDirection: "column",
+    boxSizing: "border-box",
+    overflow: "hidden",
+    backgroundColor: "var(--color-surface-container-high)" satisfies ThemeColorVariable,
+    color: "var(--color-on-surface-variant)" satisfies ThemeColorVariable,
+  },
+
+  modal: {
+    width: sizes.full,
+    minWidth: searchViewSizes.minWidth,
+    maxWidth: searchViewSizes.maxWidth,
+    minHeight: searchViewSizes.minHeight,
+    borderRadius: sizes.small,
+  },
+
+  fullScreen: {
+    width: sizes.full,
+    height: sizes.full,
+    borderRadius: sizes.none,
+  },
+
+  header: {
+    display: "flex",
+    alignItems: "center",
+    boxSizing: "border-box",
+    flexShrink: 0,
+    borderBlockEndStyle: "solid",
+    borderBlockEndWidth: sizes.smallest,
+    borderBlockEndColor: "var(--color-outline)" satisfies ThemeColorVariable,
+  },
+
+  modalHeader: {
+    height: sizes.xxxxlarge,
+  },
+
+  fullScreenHeader: {
+    height: searchViewSizes.fullScreenHeaderHeight,
+  },
+
+  action: {
+    display: "inline-flex",
+    alignItems: "center",
+    justifyContent: "center",
+    boxSizing: "border-box",
+    width: sizes.xxxlarge,
+    height: sizes.xxxlarge,
+    flexShrink: 0,
+    padding: spacing.xxxxxsmall,
+    borderWidth: sizes.none,
+    borderRadius: sizes.infinity,
+    backgroundColor: "transparent",
+    color: "var(--color-on-surface-variant)" satisfies ThemeColorVariable,
+    cursor: "pointer",
+  },
+});
+
+const styles = { container, leading, trailing, clear, searchButton, view };
 
 export default styles;
