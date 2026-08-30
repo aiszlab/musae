@@ -352,6 +352,57 @@ describe("`Search` Component", () => {
     expect(barInput).toHaveFocus();
   });
 
+  test("Escape closes Search without reaching an outer React handler while Enter still bubbles", async () => {
+    const outerKeys: string[] = [];
+    const onOpenChange = jest.fn();
+    const onSearch = jest.fn();
+    render(
+      <div onKeyDown={(event) => outerKeys.push(event.key)}>
+        <Search
+          defaultOpen
+          defaultValue="query"
+          view="modal"
+          onOpenChange={onOpenChange}
+          onSearch={onSearch}
+        />
+      </div>,
+    );
+    const dialog = screen.getByRole("dialog", { name: "Search" });
+    const viewInput = within(dialog).getByRole("combobox");
+
+    fireEvent.keyDown(viewInput, { key: "Enter" });
+    expect(onSearch).toHaveBeenCalledWith("query");
+    expect(outerKeys).toEqual(["Enter"]);
+
+    outerKeys.length = 0;
+    expect(fireEvent.keyDown(viewInput, { key: "Escape" })).toBe(false);
+
+    await waitFor(() => expect(dialog).not.toBeInTheDocument());
+    expect(onOpenChange).toHaveBeenLastCalledWith(false);
+    expect(outerKeys).toEqual([]);
+  });
+
+  test("restored bar focus can imperatively reopen Search exactly once", async () => {
+    const ref = createRef<SearchRef>();
+    const onOpenChange = jest.fn();
+    const { container } = render(<Search ref={ref} view="modal" onOpenChange={onOpenChange} />);
+    const barInput = container.querySelector("input")!;
+
+    act(() => ref.current?.focus());
+    const dialog = await screen.findByRole("dialog", { name: "Search" });
+    fireEvent.keyDown(within(dialog).getByRole("combobox"), { key: "Escape" });
+    await waitFor(() => expect(dialog).not.toBeInTheDocument());
+    expect(barInput).toHaveFocus();
+
+    act(() => barInput.blur());
+    onOpenChange.mockClear();
+    act(() => ref.current?.focus());
+
+    expect(await screen.findByRole("dialog", { name: "Search" })).toBeInTheDocument();
+    expect(onOpenChange).toHaveBeenCalledTimes(1);
+    expect(onOpenChange).toHaveBeenCalledWith(true);
+  });
+
   test("controlled open emits close requests but stays visible until rerendered", () => {
     const onOpenChange = jest.fn();
     const { container, rerender } = render(

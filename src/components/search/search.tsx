@@ -133,6 +133,7 @@ const Search = forwardRef<SearchRef, SearchProps>(
     const handleViewKeyDown = useEvent((event: React.KeyboardEvent<HTMLInputElement>) => {
       if (event.key === "Escape") {
         event.preventDefault();
+        event.stopPropagation();
         requestOpen(false);
       } else if (event.key === "Enter") {
         event.preventDefault();
