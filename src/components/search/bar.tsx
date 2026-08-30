@@ -32,7 +32,12 @@ export type SearchBarProps = Pick<
 };
 
 const hasRenderableContent = (children: ReactNode): boolean => {
-  if (children === null || isUndefined(children) || typeof children === "boolean") {
+  if (
+    children === null ||
+    isUndefined(children) ||
+    typeof children === "boolean" ||
+    children === ""
+  ) {
     return false;
   }
 
@@ -41,7 +46,7 @@ const hasRenderableContent = (children: ReactNode): boolean => {
       return hasRenderableContent(child.props.children);
     }
 
-    return true;
+    return child !== "";
   });
 };
 

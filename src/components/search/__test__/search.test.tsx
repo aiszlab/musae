@@ -57,6 +57,40 @@ describe("`Search` Component", () => {
     expect(trailing).toHaveTextContent("0");
   });
 
+  test("renders a non-empty string as consumer trailing content", () => {
+    const { container } = render(<Search trailing="Avatar" />);
+    const trailing = container.querySelector(".musae-search-trailing");
+
+    expect(trailing).toBeInTheDocument();
+    expect(trailing).toHaveTextContent("Avatar");
+  });
+
+  test("omits the trailing slot for a direct empty string", () => {
+    const { container } = render(<Search trailing="" />);
+
+    expect(container.querySelector(".musae-search-trailing")).not.toBeInTheDocument();
+  });
+
+  test("omits the trailing slot for an array containing only an empty string", () => {
+    const { container } = render(<Search trailing={[""]} />);
+
+    expect(container.querySelector(".musae-search-trailing")).not.toBeInTheDocument();
+  });
+
+  test("omits the trailing slot for nested Fragments containing only an empty string", () => {
+    const { container } = render(
+      <Search
+        trailing={
+          <>
+            <>{""}</>
+          </>
+        }
+      />,
+    );
+
+    expect(container.querySelector(".musae-search-trailing")).not.toBeInTheDocument();
+  });
+
   test("omits the trailing slot for an empty consumer trailing array", () => {
     const { container } = render(<Search trailing={[]} />);
 
