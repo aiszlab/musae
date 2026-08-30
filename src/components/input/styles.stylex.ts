@@ -1,5 +1,5 @@
 import { create as $create, when as $when, defineMarker } from "@stylexjs/stylex";
-import { duration, sizes, spacing } from "../theme/tokens.stylex";
+import { duration, OPACITY, sizes, spacing } from "../theme/tokens.stylex";
 import { ThemeColorVariable } from "../../hooks/use-theme-color-vars";
 
 const textFieldMarker = defineMarker();
@@ -27,6 +27,25 @@ const root = $create({
     paddingInline: spacing.medium,
   },
 
+  filled: {
+    backgroundColor: "var(--color-surface-container-high)" satisfies ThemeColorVariable,
+    boxShadow: "none",
+    paddingBlock: spacing.xxxxxsmall,
+    paddingInline: spacing.xxxxxsmall,
+    ":hover": {
+      "@media (hover: hover)": {
+        backgroundColor: `color-mix(in srgb, var(--color-on-surface) ${OPACITY.thin * 100}%, var(--color-surface-container-high))`,
+      },
+    },
+    ":active": {
+      backgroundColor: `color-mix(in srgb, var(--color-on-surface) ${OPACITY.medium * 100}%, var(--color-surface-container-high))`,
+    },
+  },
+
+  pill: {
+    borderRadius: sizes.infinity,
+  },
+
   invalid: {
     boxShadow: `0px 0px 0px ${sizes.xxxxxxxxxxsmall} var(--color-error) inset`,
 
@@ -37,6 +56,10 @@ const root = $create({
 
   disabled: {
     color: "var(--color-on-surface-opacity-38)" satisfies ThemeColorVariable,
+  },
+
+  filledDisabled: {
+    backgroundColor: "var(--color-on-surface-opacity-12)" satisfies ThemeColorVariable,
   },
 });
 
@@ -154,13 +177,19 @@ const outlineNotch = $create({
     borderBlockWidth: sizes.smallest,
 
     [$when.ancestor(":focus-within", textFieldMarker)]: {
-      borderBlockEndWidth: sizes.xxxxxxxxxxsmall,
+      borderBlockWidth: sizes.xxxxxxxxxxsmall,
       borderColor: "var(--color-primary)" satisfies ThemeColorVariable,
+    },
+  },
+
+  labeled: {
+    [$when.ancestor(":focus-within", textFieldMarker)]: {
+      borderBlockStartWidth: sizes.smallest,
       borderBlockStartColor: "transparent",
     },
   },
 
-  placeholder: {
+  labeledAndHasPlaceholder: {
     borderBlockStartColor: "transparent",
   },
 

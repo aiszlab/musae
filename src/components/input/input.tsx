@@ -2,7 +2,7 @@ import styles, { textFieldMarker } from "./styles.stylex";
 import React, { forwardRef, useRef, useImperativeHandle } from "react";
 import { useInputEvents, useInputorEvents } from "./hooks";
 import type { InputProps, InputRef } from "../../types/input";
-import { useControlledState, useFocus } from "@aiszlab/relax";
+import { useControlledState, useFocus, useIdentity } from "@aiszlab/relax";
 import { props as $props } from "@stylexjs/stylex";
 import { OPACITY } from "../theme/tokens.stylex";
 import { useClassNames } from "../../hooks/use-class-names";
@@ -22,6 +22,8 @@ const Input = forwardRef<InputRef, InputProps>(
       className,
       style,
       type,
+      variant = "outlined",
+      shape = "standard",
       invalid = false,
       disabled,
       maxLength,
@@ -33,6 +35,7 @@ const Input = forwardRef<InputRef, InputProps>(
       leading,
       trailing,
       onInputorClick,
+      label,
       ...inputProps
     },
     ref,
@@ -41,11 +44,14 @@ const Input = forwardRef<InputRef, InputProps>(
     const inputRef = useRef<HTMLInputElement>(null);
     const classNames = useClassNames(CLASS_NAMES);
     const hasPlaceholder = !!inputProps.placeholder;
+    const hasNotchedOutline = variant !== "filled";
+    const [id] = useIdentity();
 
     const _themeColorVars = useThemeColorVars([
       "primary",
       "outline",
       "error",
+      "surface-container-high",
       "on-surface-variant",
       ["on-surface", OPACITY.thickest],
       ["on-surface", OPACITY.medium],
@@ -102,7 +108,10 @@ const Input = forwardRef<InputRef, InputProps>(
       root: $props(
         $body.medium,
         styles.root.base,
+        variant === "filled" && styles.root.filled,
+        shape === "pill" && styles.root.pill,
         invalid && styles.root.invalid,
+        variant === "filled" && disabled && styles.root.filledDisabled,
         disabled && styles.root.disabled,
         !disabled && textFieldMarker,
       ),
@@ -114,9 +123,10 @@ const Input = forwardRef<InputRef, InputProps>(
       ),
       outlineNotch: $props(
         styles.outlineNotch.base,
-        hasPlaceholder && styles.outlineNotch.placeholder,
         $body.small,
         disabled && styles.outlineNotch.disabled,
+        !!label && styles.outlineNotch.labeled,
+        hasPlaceholder && !!label && styles.outlineNotch.labeledAndHasPlaceholder,
       ),
       outlineTrailing: $props(
         styles.outlineTrailing.base,
@@ -143,6 +153,11 @@ const Input = forwardRef<InputRef, InputProps>(
         )}
         style={{
           ...styled.root.style,
+          ...(variant === "filled" && {
+            backgroundColor: disabled
+              ? "var(--color-on-surface-opacity-12)"
+              : "var(--color-surface-container-high)",
+          }),
           ...style,
           ..._themeColorVars,
         }}
@@ -156,6 +171,7 @@ const Input = forwardRef<InputRef, InputProps>(
 
         {/* input */}
         <input
+          id={id}
           value={_value}
           className={stringify(classNames.input, styled.input.className)}
           style={styled.input.style}
@@ -170,30 +186,29 @@ const Input = forwardRef<InputRef, InputProps>(
           {...focusProps}
         />
 
-        <div
-          className={stringify(classNames.outline, styled.outline.className)}
-          style={styled.outline.style}
-        >
+        {hasNotchedOutline && (
           <div
-            className={stringify(classNames.outlineLeading, styled.outlineLeading.className)}
-            style={styled.outlineLeading.style}
-          />
-          <div
-            className={stringify(classNames.outlineNotch, styled.outlineNotch.className)}
-            style={styled.outlineNotch.style}
+            className={stringify(classNames.outline, styled.outline.className)}
+            style={styled.outline.style}
           >
-            <label
-              htmlFor="text-field-hero-input"
-              className={stringify(styled.floatingLabel.className)}
+            <div
+              className={stringify(classNames.outlineLeading, styled.outlineLeading.className)}
+              style={styled.outlineLeading.style}
+            />
+            <div
+              className={stringify(classNames.outlineNotch, styled.outlineNotch.className)}
+              style={styled.outlineNotch.style}
             >
-              Name
-            </label>
+              <label htmlFor={id} className={stringify(styled.floatingLabel.className)}>
+                {label}
+              </label>
+            </div>
+            <div
+              className={stringify(classNames.outlineTrailing, styled.outlineTrailing.className)}
+              style={styled.outlineTrailing.style}
+            />
           </div>
-          <div
-            className={stringify(classNames.outlineTrailing, styled.outlineTrailing.className)}
-            style={styled.outlineTrailing.style}
-          />
-        </div>
+        )}
 
         {/* trailing */}
         {trailing}
