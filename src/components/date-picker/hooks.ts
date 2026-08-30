@@ -1,17 +1,14 @@
 import { useControlledState } from "@aiszlab/relax";
 import type { DatePickerProps } from "../../types/date-picker";
-import { type RefObject, useCallback } from "react";
-import type { PickerRef } from "../../types/picker";
-import type { Nullable } from "@aiszlab/relax/types";
+import { useCallback } from "react";
 
 /**
- * @description
- * value
+ * @zh 管理日期选择值
+ * @en Manage the selected date value
  */
-export const useValue = ([_value, _change, _ref]: [
+export const useValue = ([_value, _change]: [
   DatePickerProps["value"],
   DatePickerProps["onChange"],
-  RefObject<Nullable<PickerRef>>,
 ]) => {
   const [value, setValue] = useControlledState(_value);
 
@@ -20,9 +17,8 @@ export const useValue = ([_value, _change, _ref]: [
     (_value) => {
       setValue(_value);
       _change?.(_value);
-      _ref.current?.close();
     },
-    [_change, setValue, _ref],
+    [_change, setValue],
   );
 
   return {

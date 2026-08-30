@@ -1,6 +1,5 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Menu } from "../menu";
-import { Context } from "../picker";
 import { useMemorized } from "@aiszlab/relax";
 import type { SelectionsProps } from "../../types/select";
 import { Empty } from "../empty";
@@ -14,9 +13,7 @@ import { Empty } from "../empty";
  * because in options close, we use timeout animations
  * but in animation time, we do not need to re-render the component, keep options in last state
  */
-const Selections = ({ onSelect, selectedKeys, items: menuItems }: SelectionsProps) => {
-  const { isOpen } = useContext(Context);
-
+const Selections = ({ isOpen, onSelect, selectedKeys, items: menuItems }: SelectionsProps) => {
   const items = useMemorized<typeof menuItems>(
     (prev) => {
       if (!isOpen) return prev ?? menuItems;

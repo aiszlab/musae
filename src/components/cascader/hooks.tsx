@@ -12,22 +12,20 @@ import type { Partialable } from "@aiszlab/relax/types";
 import type { Option } from "../../types/option";
 
 /**
- * @description
- * cascader value
+ * @zh 管理级联选择值
+ * @en Manage cascader values
  */
 export const useValue = ([
   valueInProps,
   readableOptions,
   readablePaths,
   mode,
-  close,
   setAdditionalMenusItems,
 ]: [
   CascaderProps["value"],
   ReadableOptions,
   ReadablePaths,
   CascaderProps["mode"],
-  close: VoidFunction,
   Dispatch<SetStateAction<MenuItem[][]>>,
 ]) => {
   const [_value, setValue] = useControlledState(valueInProps);
@@ -66,7 +64,7 @@ export const useValue = ([
 
   // change handler
   const onChange = useCallback(
-    (id: number) => {
+    (id: number, close: VoidFunction) => {
       // on menu click, when menu has children, add submenu
       // when menu has no children, just change value and close dropdown
       const _paths = readablePaths.get(id)!;
@@ -111,7 +109,7 @@ export const useValue = ([
       const isRemoved = values.has(id) && values.delete(id);
       setValue([...[...values.values()].map(toKeys), ...(isRemoved ? [] : [_values])]);
     },
-    [readablePaths, readableOptions, mode, values, setValue, setAdditionalMenusItems, close],
+    [readablePaths, readableOptions, mode, values, setValue, setAdditionalMenusItems],
   );
 
   return {
@@ -121,8 +119,8 @@ export const useValue = ([
 };
 
 /**
- * @description
- * options
+ * @zh 读取级联选择选项
+ * @en Read cascader options
  */
 export const useOptions = ([options]: [options: Option[]]) => {
   const [readableOptions, readablePaths] = useMemo(() => {

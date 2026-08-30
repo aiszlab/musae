@@ -1,21 +1,18 @@
 import { type Dayjs } from "dayjs";
-import { RefObject } from "react";
-import { PickerRef } from "../../../types/picker";
-import { DateRangePickerProps } from "../../../types/date-range-picker";
+import type { DateRangePickerProps } from "../../../types/date-range-picker";
 import { useControlledState, useEvent } from "@aiszlab/relax";
-import { Nullable } from "@aiszlab/relax/types";
 
 interface Props {
   onChange?: (value: [Dayjs, Dayjs]) => void;
-  pickerRef: RefObject<Nullable<PickerRef>>;
 }
 
 /**
- * @description component state
+ * @zh 管理日期范围选择状态
+ * @en Manage the date range selection state
  */
 export const useDateRangeState = (
   controlledState: DateRangePickerProps["value"],
-  { pickerRef, onChange }: Props,
+  { onChange }: Props,
 ) => {
   const [value, setValue] = useControlledState<Exclude<typeof controlledState, undefined>>(
     controlledState,
@@ -24,7 +21,7 @@ export const useDateRangeState = (
     },
   );
 
-  const change = useEvent((_value: Dayjs) => {
+  const change = useEvent((_value: Dayjs, close: VoidFunction) => {
     // click first time
     if (new Set([0, 2]).has(value.filter((_value) => !!_value)?.length ?? 0)) {
       setValue([_value, void 0]);
@@ -35,7 +32,7 @@ export const useDateRangeState = (
     const _range: [Dayjs, Dayjs] = [value[0]!, _value];
     setValue(_range);
     onChange?.(_range);
-    pickerRef.current?.close();
+    close();
   });
 
   return {

@@ -1,5 +1,5 @@
 import styles from "./styles";
-import React, { useCallback, useMemo, useRef, type ReactNode } from "react";
+import React, { useMemo, type ReactNode } from "react";
 import { Picker } from "../picker";
 import { Tag } from "../tag";
 import { useOptions, useValue } from "./hooks";
@@ -7,15 +7,12 @@ import { Menu } from "../menu";
 import { useClassNames } from "../../hooks/use-class-names";
 import { props as $props } from "@stylexjs/stylex";
 import { stringify } from "@aiszlab/relax/class-name";
-import type { MenuProps } from "../../types/menu";
-import type { PickerRef } from "../../types/picker";
 import type { CascaderProps } from "../../types/cascader";
 import { CLASS_NAMES } from "./context";
 import { Input } from "../input";
+import type { InputRef } from "../../types/input";
 
 const Cascader = ({ mode, separator = "/", options = [], ...props }: CascaderProps) => {
-  const ref = useRef<PickerRef>(null);
-  const close = useCallback(() => ref.current?.close(), []);
   const classNames = useClassNames(CLASS_NAMES);
 
   const {
@@ -30,7 +27,6 @@ const Cascader = ({ mode, separator = "/", options = [], ...props }: CascaderPro
     readableOptions,
     readablePaths,
     mode,
-    close,
     setAdditionalMenusItems,
   ]);
 
@@ -52,26 +48,39 @@ const Cascader = ({ mode, separator = "/", options = [], ...props }: CascaderPro
       .join(` ${separator} `);
   }, [mode, values, separator]);
 
-  // options render
-  const menus = useMemo(() => {
-    const styled = $props(styles.options);
-
-    return (
-      <div className={stringify(classNames.options, styled.className)} style={styled.style}>
-        {[presetedMenuItems, ...additionalMenusItems].map((menuItems, index) => {
-          return <Menu items={menuItems} key={index} onClick={onChange as MenuProps["onClick"]} />;
-        })}
-      </div>
-    );
-  }, [additionalMenusItems, classNames, onChange, presetedMenuItems]);
+  const styled = {
+    options: $props(styles.options),
+  };
 
   return (
-    <Picker ref={ref} pickable={menus} className={classNames.cascader} popupWidth={false}>
-      {({ inputProps }) => (
+    <Picker<InputRef>
+      pickable={({ close }) => (
+        <div
+          className={stringify(classNames.options, styled.options.className)}
+          style={styled.options.style}
+        >
+          {[presetedMenuItems, ...additionalMenusItems].map((menuItems, index) => (
+            <Menu
+              items={menuItems}
+              key={index}
+              onClick={(id) => {
+                onChange(id as number, close);
+              }}
+            />
+          ))}
+        </div>
+      )}
+      popupWidth={false}
+    >
+      {({ close, toggle, triggerRef }) => (
         <Input
-          {...inputProps}
+          ref={triggerRef}
+          className={classNames.cascader}
           value={typeof inputed === "string" ? inputed : ""}
           leading={mode === "multiple" ? inputed : undefined}
+          onBlur={close}
+          onClick={toggle}
+          onInputorClick={toggle}
           readOnly
         />
       )}

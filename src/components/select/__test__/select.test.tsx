@@ -13,7 +13,7 @@ describe("Select", () => {
     const picker = container.querySelector(".musae-picker");
     const inputor = container.querySelector(".musae-input__inputor");
 
-    expect(picker).not.toHaveClass("styles__root.base");
+    expect(picker).not.toBeInTheDocument();
     expect(inputor).toBeInTheDocument();
     expect(container.querySelectorAll(".musae-notched-outline")).toHaveLength(1);
   });
@@ -97,11 +97,11 @@ describe("Select", () => {
     });
   });
 
-  test("selects an option through the Input trigger", async () => {
-    render(<Select options={[{ value: "one", label: "One" }]} />);
+  test("selects an option through the visible Input shell", async () => {
+    const { container } = render(<Select options={[{ value: "one", label: "One" }]} />);
     const input = screen.getByRole("textbox");
 
-    fireEvent.click(input);
+    fireEvent.click(container.querySelector(".musae-input__inputor")!);
     const menuItem = await screen.findByRole("menuitem");
     const dropdown = document.querySelector(".musae-dropdown");
 
@@ -124,11 +124,16 @@ describe("Select", () => {
     fireEvent.click(input);
     fireEvent.click((await screen.findByRole("menuitem")).querySelector(".musae-menu__item")!);
 
+    await waitFor(() => {
+      expect(document.querySelector(".musae-dropdown")).toHaveStyle({ display: "flex" });
+    });
+
     const tag = within(inputor).getByText("One").closest(".musae-tag");
 
     fireEvent.click(tag!.querySelector("svg")!);
 
     expect(within(inputor).queryByText("One")).not.toBeInTheDocument();
+    expect(document.querySelector(".musae-dropdown")).toHaveStyle({ display: "flex" });
 
     fireEvent.click(input);
 
@@ -165,6 +170,7 @@ describe("Select", () => {
     const inputor = container.querySelector(".musae-input__inputor");
 
     fireEvent.click(input);
+    fireEvent.click(inputor!);
 
     expect(document.querySelector(".musae-dropdown")).not.toBeInTheDocument();
     expect(inputor).toHaveClass("styles__root.disabled", "styles__root.invalid");

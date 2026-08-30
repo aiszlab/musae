@@ -1,5 +1,6 @@
-import type { CSSProperties, InputHTMLAttributes, ReactNode } from "react";
+import type { CSSProperties, InputHTMLAttributes, MouseEventHandler, ReactNode } from "react";
 import type { ComponentProps } from "./element";
+import type { VirtualElement } from "@floating-ui/dom";
 
 /**
  * @description
@@ -27,16 +28,10 @@ export interface InputProps
     >,
     ComponentProps {
   /**
-   * @zh 原生输入元素的类名
-   * @en Class name for the native input element
+   * @zh 点击输入框外壳时的处理函数
+   * @en Handler invoked when the input shell is clicked
    */
-  inputClassName?: string;
-
-  /**
-   * @zh 原生输入元素的样式
-   * @en Style for the native input element
-   */
-  inputStyle?: CSSProperties;
+  onInputorClick?: MouseEventHandler<HTMLDivElement>;
 
   /**
    * @description
@@ -96,37 +91,11 @@ export interface InputProps
 }
 
 /**
- * @description
- * label props
+ * @zh 输入组件引用
+ * @en Input component ref
  */
-export interface LabelRenderProps {
-  /* focused */
-  focused: boolean;
-}
-
-/**
- * @description
- * input ref
- */
-export interface InputRef {
-  /**
-   * @description
-   * focus
-   */
-  focus?: HTMLInputElement["focus"];
-
-  /**
-   * @description
-   * blur
-   */
-  blur?: HTMLInputElement["blur"];
-
-  /**
-   * @description
-   * select
-   */
-  select?: HTMLInputElement["select"];
-
+export interface InputRef
+  extends Pick<HTMLInputElement, "blur" | "focus" | "select">, VirtualElement {
   /**
    * @zh 获取组件内部值
    * @en Get the current internal value

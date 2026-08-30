@@ -2,9 +2,9 @@ import styles from "./styles";
 import React, { forwardRef, useImperativeHandle } from "react";
 import type { DropdownProps, PopperRef } from "../../types/popper";
 import { useClassNames } from "../../hooks/use-class-names";
+import { useThemeColorVars } from "../../hooks/use-theme-color-vars";
 import { stringify } from "@aiszlab/relax/class-name";
 import { useFloating } from "./hooks";
-import { useTheme } from "../theme";
 import { contains } from "@aiszlab/relax/dom";
 import { CLASS_NAMES } from "./context";
 import { props as $props } from "@stylexjs/stylex";
@@ -34,7 +34,7 @@ const Dropdown = forwardRef<PopperRef, DropdownProps>(
     ref,
   ) => {
     const classNames = useClassNames(CLASS_NAMES);
-    const theme = useTheme();
+    const themeColorVars = useThemeColorVars(["surface"]);
 
     const { floatableRef, arrowRef, disappear } = useFloating({
       arrowable,
@@ -70,7 +70,7 @@ const Dropdown = forwardRef<PopperRef, DropdownProps>(
         style={{
           ...styled.portal.style,
           ...portalStyle,
-          "--color-surface-container": theme.colors["surface-container"],
+          ...themeColorVars,
         }}
       >
         <div

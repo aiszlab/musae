@@ -10,7 +10,6 @@ interface UsingSelectedValue<T extends ValueOrValues = ValueOrValues> {
   readableOptions: ReadableOptions;
   mode: Mode | undefined;
   complex: boolean;
-  close: () => void;
   clearKeyword: () => void;
   onChange?: (value: T | undefined) => void;
   onClear?: () => void;
@@ -22,7 +21,6 @@ interface UsingSelectedValue<T extends ValueOrValues = ValueOrValues> {
  */
 export const useSelectedValue = <T extends ValueOrValues = ValueOrValues>({
   mode,
-  close,
   complex,
   readableOptions,
   onChange,
@@ -47,7 +45,7 @@ export const useSelectedValue = <T extends ValueOrValues = ValueOrValues>({
     [value, readableOptions],
   );
 
-  const change = useEvent((key: Key) => {
+  const change = useEvent((key: Key, close?: VoidFunction) => {
     // convert to complex value
     const _value = {
       value: key,
@@ -57,7 +55,7 @@ export const useSelectedValue = <T extends ValueOrValues = ValueOrValues>({
     // 单选模式下，点击选项直接关闭下拉菜单
     // 如果点击的选项已经被选中，则不执行任何操作
     if (!mode) {
-      close();
+      close?.();
 
       if (readableValues.has(_value.value)) {
         return;

@@ -9,6 +9,7 @@ import {
 } from "react";
 import type { InputProps } from "../../types/input";
 import type { Nullable } from "@aiszlab/relax/types";
+import { isFunction } from "@aiszlab/relax";
 
 /**
  * @description
@@ -71,13 +72,22 @@ export const useInputEvents = ({
  */
 export const useInputorEvents = ({
   inputRef,
+  onClick,
 }: {
   inputRef: RefObject<Nullable<HTMLInputElement>>;
+  onClick?: InputProps["onInputorClick"];
 }) => {
   // click
-  const click = useCallback(() => {
-    inputRef.current?.focus();
-  }, [inputRef]);
+  const click = useCallback<Required<InputProps>["onInputorClick"]>(
+    (event) => {
+      inputRef.current?.focus();
+      if (isFunction(onClick)) {
+        event.stopPropagation();
+        onClick(event);
+      }
+    },
+    [inputRef, onClick],
+  );
 
   return {
     click,

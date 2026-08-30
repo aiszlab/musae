@@ -1,179 +1,74 @@
-import type {
-  CSSProperties,
-  FocusEventHandler,
-  MouseEventHandler,
-  ReactNode,
-  SyntheticEvent,
-} from "react";
-import type { ComponentProps } from "./element";
-import type { Nullable } from "@aiszlab/relax/types";
-import type { InputProps } from "./input";
-
-/**
- * @zh Picker 触发器动作
- * @en Picker trigger action
- */
-export type PickerTriggerAction = (event?: Pick<SyntheticEvent, "stopPropagation">) => void;
+import type { CSSProperties, ReactNode, RefObject } from "react";
+import type { PopperTrigger } from "./popper";
 
 /**
  * @zh Picker 触发器渲染参数
  * @en Picker trigger render parameters
  */
-export interface PickerTriggerRenderProps {
-  /**
-   * @zh 应传递给 Input 的属性
-   * @en Props to pass to Input
-   */
-  inputProps: Required<Pick<InputProps, "disabled" | "invalid" | "onBlur" | "onClick">>;
-
-  /**
-   * @zh 打开弹层
-   * @en Open the popup
-   */
-  open: PickerTriggerAction;
-
-  /**
-   * @zh 关闭弹层
-   * @en Close the popup
-   */
-  close: PickerTriggerAction;
-
-  /**
-   * @zh 切换弹层状态
-   * @en Toggle the popup state
-   */
-  toggle: PickerTriggerAction;
+export interface PickerTriggerRenderProps<T extends PopperTrigger = PopperTrigger> {
+  open: () => void;
+  close: () => void;
+  toggle: () => void;
+  isOpen: boolean;
+  triggerRef: RefObject<T | null>;
 }
 
 /**
- * @description
- * picker props
+ * @zh Picker 属性
+ * @en Picker props
  */
-export interface PickerProps extends ComponentProps {
+export interface PickerProps<T extends PopperTrigger = PopperTrigger> {
   /**
-   * @description
-   * children
+   * @zh 触发器渲染函数
+   * @en Trigger render function
    */
-  children: (props: PickerTriggerRenderProps) => ReactNode;
+  children: (props: PickerTriggerRenderProps<T>) => ReactNode;
 
   /**
-   * @zh 触发元素失去焦点时的处理函数
-   * @en Handler invoked when the trigger element loses focus
-   */
-  onBlur?: FocusEventHandler<HTMLElement>;
-
-  /**
-   * @description
-   * popup width
+   * @zh 弹层宽度
+   * @en Popup width
    */
   popupWidth?: "match" | number | false;
 
   /**
-   * @description
-   * when trigger on popper entering
+   * @zh 弹层开始进入时的处理函数
+   * @en Handler invoked when the popup starts entering
    */
   onPopperEnter?: () => Promise<void> | void;
 
   /**
-   * @description
-   * when trigger on popper entered
+   * @zh 弹层进入完成时的处理函数
+   * @en Handler invoked when the popup has entered
    */
   onPopperEntered?: () => Promise<void> | void;
 
   /**
-   * @description
-   * when trigger on popper exited
+   * @zh 弹层开始退出时的处理函数
+   * @en Handler invoked when the popup starts exiting
    */
   onPopperExite?: () => Promise<void> | void;
 
   /**
-   * @description
-   * when trigger on popper exited
+   * @zh 弹层退出完成时的处理函数
+   * @en Handler invoked when the popup has exited
    */
   onPopperExited?: () => Promise<void> | void;
 
   /**
-   * @description
-   * click handler
+   * @zh 可选内容或其渲染函数
+   * @en Pickable content or its render function
    */
-  onClick?: MouseEventHandler<HTMLElement>;
+  pickable: ReactNode | ((props: PickerTriggerRenderProps<T>) => ReactNode);
 
   /**
-   * @description
-   * pickable
-   */
-  pickable: ReactNode;
-
-  /**
-   * @description
-   * pickable class name
+   * @zh 可选内容的类名
+   * @en Class name for the pickable content
    */
   pickableClassName?: string;
 
   /**
-   * @description
-   * pickable style
+   * @zh 可选内容的样式
+   * @en Style for the pickable content
    */
   pickableStyle?: CSSProperties;
-
-  /**
-   * @description
-   * invalid
-   * @default false
-   */
-  invalid?: boolean;
-
-  /**
-   * @description
-   * disabled state of the picker
-   * @default false
-   */
-  disabled?: boolean;
-}
-
-/**
- * @description
- * picker ref
- */
-export interface PickerRef {
-  /**
-   * @description
-   * close
-   */
-  close: () => void;
-}
-
-/**
- * @description
- * picker context value
- * provide picker state for custom render
- *
- * like in searchable select, if picker is focused, should show search input
- */
-export interface ContextValue {
-  /**
-   * @description
-   * why put `open` into context
-   *
-   * answer:
-   * in select case,
-   * if select is searchable, when typing search key,
-   * should show dropdown
-   */
-  open: Nullable<() => void>;
-
-  /**
-   * @zh 切换弹层的打开状态
-   * @en Toggle the popup open state
-   */
-  toggle: Nullable<() => void>;
-
-  /**
-   * @description
-   * why put `isOpen` into context
-   *
-   * answer:
-   * in `Select` component, when `isOpen` is false, should keep the last state options
-   */
-  isOpen: boolean;
 }

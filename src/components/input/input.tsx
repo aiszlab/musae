@@ -32,12 +32,12 @@ const Input = forwardRef<InputRef, InputProps>(
       onFocus,
       leading,
       trailing,
-      inputClassName,
-      inputStyle,
+      onInputorClick,
       ...inputProps
     },
     ref,
   ) => {
+    const inputorRef = useRef<HTMLDivElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
     const classNames = useClassNames(CLASS_NAMES);
     const hasPlaceholder = !!inputProps.placeholder;
@@ -55,20 +55,28 @@ const Input = forwardRef<InputRef, InputProps>(
     // controlled value
     const [_value, _setValue] = useControlledState<string>(valueInProps, { defaultState: "" });
 
-    useImperativeHandle<InputRef, InputRef>(ref, () => ({
-      focus: () => {
-        inputRef.current?.focus();
-      },
-      blur: () => {
-        inputRef.current?.blur();
-      },
-      select: () => {
-        inputRef.current?.select();
-      },
-      getValue: () => {
-        return _value;
-      },
-    }));
+    useImperativeHandle<InputRef, InputRef>(
+      ref,
+      () => ({
+        focus: () => {
+          inputRef.current?.focus();
+        },
+        blur: () => {
+          inputRef.current?.blur();
+        },
+        select: () => {
+          inputRef.current?.select();
+        },
+        getBoundingClientRect: () => {
+          return inputorRef.current!.getBoundingClientRect();
+        },
+        contextElement: inputorRef.current ?? undefined,
+        getValue: () => {
+          return inputRef.current?.value ?? "";
+        },
+      }),
+      [],
+    );
 
     // input events
     const inputEvents = useInputEvents({
@@ -79,7 +87,10 @@ const Input = forwardRef<InputRef, InputProps>(
       onFocus,
     });
     // inputor events
-    const inputorEvents = useInputorEvents({ inputRef });
+    const inputorEvents = useInputorEvents({
+      inputRef,
+      onClick: disabled ? undefined : onInputorClick,
+    });
 
     // is focused
     const [isFocused, focusProps] = useFocus({
@@ -120,6 +131,7 @@ const Input = forwardRef<InputRef, InputProps>(
 
     return (
       <div
+        ref={inputorRef}
         className={stringify(
           classNames.inputor,
           {
@@ -145,8 +157,8 @@ const Input = forwardRef<InputRef, InputProps>(
         {/* input */}
         <input
           value={_value}
-          className={stringify(classNames.input, styled.input.className, inputClassName)}
-          style={{ ...styled.input.style, ...inputStyle }}
+          className={stringify(classNames.input, styled.input.className)}
+          style={styled.input.style}
           type={type}
           ref={inputRef}
           aria-invalid={invalid}

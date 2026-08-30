@@ -1,8 +1,7 @@
 import { useEffect, useMemo, useRef } from "react";
 import type { DropdownProps, PopperProps } from "../../types/popper";
 import { animate } from "motion/react";
-import { useEvent } from "@aiszlab/relax";
-import { useContainer } from "../../hooks/use-container";
+import { isFunction, useEvent } from "@aiszlab/relax";
 import {
   arrow,
   autoUpdate,
@@ -68,7 +67,7 @@ export const useFloating = ({
   const floatableRef = useRef<HTMLDivElement>(null);
   const arrowRef = useRef<HTMLDivElement>(null);
 
-  const { container: trigger } = useContainer({ container: _trigger, useBody: false });
+  const trigger = isFunction(_trigger) ? _trigger() : _trigger;
   const _isOpen = useRef<boolean>(false);
 
   // appear animation
@@ -126,7 +125,6 @@ export const useFloating = ({
         middleware: [
           flip(),
           shift(),
-          offset(offsets),
           arrowable && !!arrowRef.current && arrow({ element: arrowRef.current, padding: 16 }),
         ],
       })
@@ -138,6 +136,7 @@ export const useFloating = ({
 
           // set arrow styles
           if (middlewareData.arrow && !!arrowRef.current) {
+            // TODO use CSS vars replace `8`
             const offsetY = `${middlewareData.arrow.y ?? 0 - 8}px`;
             const offsetX = `${middlewareData.arrow.x ?? 0}px`;
 

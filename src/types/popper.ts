@@ -1,8 +1,10 @@
 import type { Nullable } from "@aiszlab/relax/types";
 import type { CSSProperties, DOMAttributes, ReactNode } from "react";
 import type { ComponentProps } from "./element";
-import type { Derivable, OffsetOptions, Placement } from "@floating-ui/dom";
+import type { Derivable, OffsetOptions, Placement, VirtualElement } from "@floating-ui/dom";
 import type { PortalProps } from "./portal";
+
+export type PopperTrigger = VirtualElement;
 
 /**
  * @author murukal
@@ -31,7 +33,7 @@ export interface PopperProps
    * @description
    * trigger
    */
-  trigger?: Nullable<HTMLElement> | (() => Nullable<HTMLElement>);
+  trigger?: Nullable<PopperTrigger> | (() => Nullable<PopperTrigger>);
 
   /**
    * @description

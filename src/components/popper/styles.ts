@@ -1,4 +1,5 @@
 import { elevations, positions, sizes } from "../theme/tokens.stylex";
+import { type ThemeColorVariable } from "../../hooks/use-theme-color-vars";
 import { create as $create } from "@stylexjs/stylex";
 
 const portal = $create({
@@ -18,7 +19,7 @@ const portal = $create({
 const dropdown = $create({
   base: {
     position: "absolute",
-    backgroundColor: "var(--color-surface-container)",
+    backgroundColor: "var(--color-surface)" satisfies ThemeColorVariable,
     insetBlockStart: 0,
     insetInlineStart: 0,
 
@@ -45,7 +46,7 @@ const arrow = $create({
     position: "absolute",
     width: sizes.xxxxsmall,
     height: sizes.xxxxsmall,
-    backgroundColor: "var(--color-surface-container)",
+    backgroundColor: "var(--color-surface)" satisfies ThemeColorVariable,
     transform: "rotate(45deg)",
     zIndex: positions.background,
   },
