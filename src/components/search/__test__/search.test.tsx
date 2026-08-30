@@ -24,6 +24,25 @@ describe("`Search` Component", () => {
     expect(leading).toBeInTheDocument();
   });
 
+  test("composes the Search Bar from a filled pill Input without a notched outline", () => {
+    const { container } = render(<Search placeholder="Search" />);
+    const inputShell = container.querySelector(".musae-input__inputor");
+
+    expect(inputShell).toHaveClass("styles__root.filled", "styles__root.pill");
+    expect(container.querySelector(".musae-notched-outline")).not.toBeInTheDocument();
+    expect(container.querySelector(".musae-search-leading")).toBeInTheDocument();
+  });
+
+  test("renders consumer leading and trailing slots while preserving the clear action", () => {
+    const { getByText, getByRole } = render(
+      <Search defaultValue="query" leading={<span>Menu</span>} trailing={<span>Avatar</span>} />,
+    );
+
+    expect(getByText("Menu")).toBeInTheDocument();
+    expect(getByText("Avatar")).toBeInTheDocument();
+    expect(getByRole("button", { name: "Clear search" })).toBeInTheDocument();
+  });
+
   test("calls onChange when input value changes", () => {
     const onChange = jest.fn();
     const { container } = render(<Search onChange={onChange} />);
@@ -111,35 +130,6 @@ describe("`Search` Component", () => {
     const { container } = render(<Search disabled defaultValue="text" />);
     const clearButton = container.querySelector("button[aria-label='Clear search']");
     expect(clearButton).not.toBeInTheDocument();
-  });
-
-  test("applies the disabled outline color token", () => {
-    const { container } = render(<Search disabled />);
-    const inputor = container.querySelector<HTMLElement>(".musae-input__inputor");
-
-    expect(inputor?.style.getPropertyValue("--color-on-surface-opacity-12")).toBe(
-      "color-mix(in srgb, var(--color-on-surface) 12%, transparent)",
-    );
-    expect(container.querySelector(".musae-notched-outline__leading")).toHaveClass(
-      "styles__outlineLeading.disabled",
-    );
-    expect(container.querySelector(".musae-notched-outline__notch")).toHaveClass(
-      "styles__outlineNotch.disabled",
-    );
-    expect(container.querySelector(".musae-notched-outline__trailing")).toHaveClass(
-      "styles__outlineTrailing.disabled",
-    );
-  });
-
-  test("applies the disabled label color token", () => {
-    const { container } = render(<Search disabled />);
-    const inputor = container.querySelector<HTMLElement>(".musae-input__inputor");
-    const label = container.querySelector(".musae-notched-outline__notch label");
-
-    expect(inputor?.style.getPropertyValue("--color-on-surface-opacity-38")).toBe(
-      "color-mix(in srgb, var(--color-on-surface) 38%, transparent)",
-    );
-    expect(label).toHaveClass("styles__floatingLabel.disabled");
   });
 
   test("applies the disabled placeholder color token", () => {

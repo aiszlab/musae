@@ -6,6 +6,7 @@ export const CLASS_NAMES = {
   search: "search",
   searchInput: "search-input",
   searchLeading: "search-leading",
+  searchTrailing: "search-trailing",
   searchClear: "search-clear",
   searchButton: "search-button",
   focused: "search--focused",

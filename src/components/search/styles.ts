@@ -1,43 +1,12 @@
 import { create as $create } from "@stylexjs/stylex";
-import { duration, sizes, spacing } from "../theme/tokens.stylex";
+import { sizes, spacing } from "../theme/tokens.stylex";
 import { ThemeColorVariable } from "../../hooks/use-theme-color-vars";
 
 const container = $create({
   base: {
+    position: "relative",
     display: "inline-flex",
-    alignItems: "center",
     width: sizes.full,
-    height: sizes.xxxxlarge,
-    borderRadius: sizes.infinity,
-    backgroundColor: "var(--color-surface-container-high)" satisfies ThemeColorVariable,
-    boxShadow: `0px 0px 0px ${sizes.smallest} var(--color-outline) inset`,
-    boxSizing: "border-box",
-    paddingBlock: spacing.none,
-    paddingInlineStart: spacing.xxxxxsmall,
-    paddingInlineEnd: spacing.xxxxxsmall,
-    gap: spacing.none,
-    transitionProperty: "box-shadow, background-color",
-    transitionDuration: duration.short,
-    willChange: "box-shadow",
-
-    ":focus-within": {
-      boxShadow: `0px 0px 0px ${sizes.xxxxxxxxxxsmall} var(--color-primary) inset`,
-    },
-  },
-
-  disabled: {
-    backgroundColor: "var(--color-on-surface-opacity-08)" satisfies ThemeColorVariable,
-    color: "var(--color-on-surface-opacity-38)" satisfies ThemeColorVariable,
-    boxShadow: `0px 0px 0px ${sizes.smallest} var(--color-on-surface-opacity-38) inset`,
-    cursor: "not-allowed",
-
-    ":focus-within": {
-      boxShadow: `0px 0px 0px ${sizes.smallest} var(--color-on-surface-opacity-38) inset`,
-    },
-  },
-
-  withSearchButton: {
-    paddingInlineEnd: null,
   },
 });
 
@@ -46,26 +15,21 @@ const leading = $create({
     display: "inline-flex",
     alignItems: "center",
     justifyContent: "center",
-    width: sizes.xlarge,
-    height: sizes.xlarge,
+    boxSizing: "border-box",
+    width: sizes.xxxlarge,
+    height: sizes.xxxlarge,
     flexShrink: 0,
     color: "var(--color-on-surface-variant)" satisfies ThemeColorVariable,
-    marginInlineStart: spacing.medium,
+    padding: spacing.xxxxxsmall,
   },
 });
 
-const input = $create({
+const trailing = $create({
   base: {
-    ":not(#\\#)": {
-      fontSize: sizes.xxxxsmall,
-      boxShadow: "none",
-      borderRadius: sizes.none,
-      backgroundColor: "transparent",
-    },
-
-    ":focus-within:not(#\\#)": {
-      boxShadow: "none",
-    },
+    display: "inline-flex",
+    alignItems: "center",
+    gap: spacing.xxxxxsmall,
+    paddingInlineEnd: spacing.xxxxxsmall,
   },
 });
 
@@ -74,20 +38,20 @@ const clear = $create({
     display: "inline-flex",
     alignItems: "center",
     justifyContent: "center",
-    width: sizes.xlarge,
-    height: sizes.xlarge,
+    boxSizing: "border-box",
+    width: sizes.xxxlarge,
+    height: sizes.xxxlarge,
     flexShrink: 0,
     borderWidth: sizes.none,
     backgroundColor: "transparent",
     color: "var(--color-on-surface-variant)" satisfies ThemeColorVariable,
     cursor: "pointer",
     borderRadius: sizes.infinity,
-    padding: spacing.none,
-    marginInlineEnd: spacing.xxxxxsmall,
+    padding: spacing.xxxxxsmall,
 
     ":hover": {
       "@media (hover: hover)": {
-        backgroundColor: "var(--color-on-surface-variant-opacity-08)" satisfies ThemeColorVariable,
+        backgroundColor: "var(--color-on-surface-opacity-08)" satisfies ThemeColorVariable,
       },
     },
   },
@@ -104,6 +68,6 @@ const searchButton = $create({
   },
 });
 
-const styles = { container, leading, input, clear, searchButton };
+const styles = { container, leading, trailing, clear, searchButton };
 
 export default styles;
