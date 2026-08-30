@@ -149,6 +149,67 @@ const view = $create({
   },
 });
 
-const styles = { container, leading, trailing, clear, searchButton, view };
+const resultList = $create({
+  root: {
+    minHeight: searchViewSizes.resultItemHeight,
+    paddingBlock: spacing.xxsmall,
+  },
+
+  item: {
+    display: "flex",
+    alignItems: "center",
+    boxSizing: "border-box",
+    minHeight: searchViewSizes.resultItemHeight,
+    paddingInline: spacing.xxxlarge,
+    gap: spacing.large,
+    color: "var(--color-on-surface-variant)" satisfies ThemeColorVariable,
+    cursor: "pointer",
+
+    ":hover": {
+      "@media (hover: hover)": {
+        backgroundColor: "var(--color-on-surface-opacity-08)" satisfies ThemeColorVariable,
+      },
+    },
+  },
+
+  activeItem: {
+    backgroundColor: "var(--color-on-surface-opacity-08)" satisfies ThemeColorVariable,
+  },
+
+  disabledItem: {
+    cursor: "default",
+    opacity: opacity.thickest,
+  },
+
+  leading: {
+    display: "inline-flex",
+    flexShrink: 0,
+  },
+
+  content: {
+    display: "flex",
+    flexDirection: "column",
+    flexGrow: 1,
+    minWidth: sizes.none,
+    gap: spacing.xxsmall,
+  },
+
+  label: {
+    color: "var(--color-on-surface-variant)" satisfies ThemeColorVariable,
+  },
+
+  supportingText: {
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+    whiteSpace: "nowrap",
+  },
+
+  trailing: {
+    display: "inline-flex",
+    flexShrink: 0,
+  },
+});
+
+const styles = { container, leading, trailing, clear, searchButton, view, resultList };
 
 export default styles;

@@ -5,18 +5,21 @@ import React, {
   useId,
   useImperativeHandle,
   useRef,
+  useState,
 } from "react";
 import { props as $props } from "@stylexjs/stylex";
 import { useClassNames } from "../../hooks/use-class-names";
 import { isUndefined, useControlledState, useEvent } from "@aiszlab/relax";
-import type { SearchProps, SearchRef } from "../../types/search";
+import type { Key } from "react";
+import type { SearchItem, SearchProps, SearchRef } from "../../types/search";
 import type { InputRef } from "../../types/input";
 import { stringify } from "@aiszlab/relax/class-name";
 import SearchBar from "./bar";
 import SearchView from "./view";
 import styles from "./styles";
 import { CLASS_NAMES } from "./context";
-import { useResolvedSearchView } from "./hooks";
+import { getAdjacentEnabledKey, useResolvedSearchView } from "./hooks";
+import SearchResultList from "./result-list";
 
 /**
  * @zh Search 搜索组件，基于 Material 3 设计规范
@@ -42,6 +45,10 @@ const Search = forwardRef<SearchRef, SearchProps>(
       open,
       defaultOpen,
       onOpenChange,
+      items = [],
+      renderItem,
+      onSelect,
+      closeOnSelect = true,
     },
     ref,
   ) => {
@@ -50,7 +57,8 @@ const Search = forwardRef<SearchRef, SearchProps>(
     const wasOpenRef = useRef(false);
     const isRestoringBarFocusRef = useRef(false);
     const classNames = useClassNames(CLASS_NAMES);
-    const listId = useId();
+    const listId = `search-result-list-${useId().replace(/[^a-zA-Z0-9_-]/g, "")}`;
+    const [activeKey, setActiveKey] = useState<Key | undefined>();
 
     const [_value, _setValue] = useControlledState<string>(valueInProps, {
       defaultState: defaultValue ?? "",
@@ -86,6 +94,21 @@ const Search = forwardRef<SearchRef, SearchProps>(
       }
     }, [disabled, isOpen, open, requestOpen]);
 
+    useEffect(() => {
+      if (!isOpen) {
+        setActiveKey(undefined);
+      }
+    }, [isOpen]);
+
+    useEffect(() => {
+      if (
+        !isUndefined(activeKey) &&
+        !items.some((item) => item.key === activeKey && !item.disabled)
+      ) {
+        setActiveKey(undefined);
+      }
+    }, [activeKey, items]);
+
     useImperativeHandle<SearchRef, SearchRef>(ref, () => ({
       focus: () => {
         (isOpen ? viewInputRef : barInputRef).current?.focus();
@@ -103,6 +126,7 @@ const Search = forwardRef<SearchRef, SearchProps>(
     }));
 
     const handleChange = useEvent((value: string) => {
+      setActiveKey(undefined);
       _setValue(value);
       onChange?.(value);
     });
@@ -112,9 +136,30 @@ const Search = forwardRef<SearchRef, SearchProps>(
     });
 
     const handleClear = useEvent(() => {
+      setActiveKey(undefined);
       _setValue("");
       onChange?.("");
       onClear?.();
+    });
+
+    const getOptionId = useEvent((key: Key) => {
+      const serializedKey = Array.from(String(key), (character) =>
+        character.codePointAt(0)!.toString(16),
+      ).join("-");
+      return `${listId}-option-${serializedKey}`;
+    });
+
+    const selectItem = useEvent((item: SearchItem) => {
+      if (item.disabled) return;
+
+      setActiveKey(undefined);
+      _setValue(item.value);
+      onChange?.(item.value);
+      onSelect?.(item);
+
+      if (closeOnSelect) {
+        requestOpen(false);
+      }
     });
 
     const handleKeyDown = useCallback(
@@ -135,11 +180,28 @@ const Search = forwardRef<SearchRef, SearchProps>(
         event.preventDefault();
         event.stopPropagation();
         requestOpen(false);
+      } else if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+        event.preventDefault();
+        setActiveKey(getAdjacentEnabledKey(items, activeKey, event.key === "ArrowDown" ? 1 : -1));
       } else if (event.key === "Enter") {
         event.preventDefault();
-        handleSearch();
+        const activeItem = items.find(
+          (item) => !isUndefined(activeKey) && item.key === activeKey && !item.disabled,
+        );
+
+        if (activeItem) {
+          selectItem(activeItem);
+        } else {
+          handleSearch();
+        }
       }
     });
+
+    const activeDescendant = isUndefined(activeKey)
+      ? undefined
+      : items.some((item) => item.key === activeKey && !item.disabled)
+        ? getOptionId(activeKey)
+        : undefined;
 
     const _styled = {
       container: $props(styles.container.base),
@@ -193,7 +255,18 @@ const Search = forwardRef<SearchRef, SearchProps>(
           onClear={handleClear}
           onClose={() => requestOpen(false)}
           onKeyDown={handleViewKeyDown}
-        />
+          activeDescendant={activeDescendant}
+        >
+          <SearchResultList
+            id={listId}
+            items={items}
+            renderItem={renderItem}
+            activeKey={activeKey}
+            getOptionId={getOptionId}
+            onActiveKeyChange={setActiveKey}
+            onSelect={selectItem}
+          />
+        </SearchView>
       </span>
     );
   },

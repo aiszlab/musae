@@ -352,6 +352,96 @@ describe("`Search` Component", () => {
     expect(barInput).toHaveFocus();
   });
 
+  test("renders two-line options and selects the active result with Enter", async () => {
+    const onChange = jest.fn();
+    const onSelect = jest.fn();
+    render(
+      <Search
+        defaultOpen
+        view="modal"
+        items={[
+          { key: "alpha", value: "Alpha", label: "Alpha", supportingText: "First result" },
+          { key: "disabled", value: "Disabled", label: "Disabled", disabled: true },
+          { key: "beta", value: "Beta", label: "Beta", supportingText: "Second result" },
+        ]}
+        onChange={onChange}
+        onSelect={onSelect}
+      />,
+    );
+    const input = await screen.findByRole("combobox");
+    expect(screen.getByText("First result")).toBeInTheDocument();
+
+    fireEvent.keyDown(input, { key: "ArrowDown" });
+    fireEvent.keyDown(input, { key: "ArrowDown" });
+    fireEvent.keyDown(input, { key: "Enter" });
+
+    expect(onChange).toHaveBeenCalledWith("Beta");
+    expect(onSelect).toHaveBeenCalledWith(expect.objectContaining({ key: "beta", value: "Beta" }));
+    expect(screen.queryByRole("dialog", { name: "Search" })).not.toBeInTheDocument();
+  });
+
+  test("custom item contents retain option semantics and closeOnSelect=false", () => {
+    render(
+      <Search
+        defaultOpen
+        view="modal"
+        closeOnSelect={false}
+        items={[{ key: "one", value: "One", label: "One" }]}
+        renderItem={(item) => <strong>Custom {item.label}</strong>}
+      />,
+    );
+
+    fireEvent.click(screen.getByRole("option", { name: "Custom One" }));
+
+    expect(screen.getByRole("dialog", { name: "Search" })).toBeInTheDocument();
+  });
+
+  test("uses stable option ids only for active enabled results", async () => {
+    const { rerender } = render(
+      <Search
+        defaultOpen
+        view="modal"
+        items={[
+          { key: 0, value: "Zero", label: "Zero" },
+          { key: "disabled", value: "Disabled", label: "Disabled", disabled: true },
+        ]}
+      />,
+    );
+    const input = await screen.findByRole("combobox");
+    const disabledOption = screen.getByRole("option", { name: "Disabled" });
+
+    expect(input).not.toHaveAttribute("aria-activedescendant");
+    expect(disabledOption).toHaveAttribute("aria-disabled", "true");
+
+    fireEvent.keyDown(input, { key: "ArrowDown" });
+    const activeOption = screen.getByRole("option", { name: "Zero" });
+    expect(input).toHaveAttribute("aria-activedescendant", activeOption.id);
+    expect(activeOption).toHaveAttribute("aria-selected", "true");
+
+    rerender(<Search defaultOpen view="modal" items={[]} />);
+    expect(input).not.toHaveAttribute("aria-activedescendant");
+  });
+
+  test("disabled results cannot become active or selected", async () => {
+    const onSelect = jest.fn();
+    render(
+      <Search
+        defaultOpen
+        view="modal"
+        items={[{ key: "disabled", value: "Disabled", label: "Disabled", disabled: true }]}
+        onSelect={onSelect}
+      />,
+    );
+    const input = await screen.findByRole("combobox");
+    const option = screen.getByRole("option", { name: "Disabled" });
+
+    fireEvent.keyDown(input, { key: "ArrowDown" });
+    fireEvent.click(option);
+
+    expect(input).not.toHaveAttribute("aria-activedescendant");
+    expect(onSelect).not.toHaveBeenCalled();
+  });
+
   test("Escape closes Search without reaching an outer React handler while Enter still bubbles", async () => {
     const outerKeys: string[] = [];
     const onOpenChange = jest.fn();
