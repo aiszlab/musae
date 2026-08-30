@@ -153,11 +153,6 @@ const Input = forwardRef<InputRef, InputProps>(
         )}
         style={{
           ...styled.root.style,
-          ...(variant === "filled" && {
-            backgroundColor: disabled
-              ? "var(--color-on-surface-opacity-12)"
-              : "var(--color-surface-container-high)",
-          }),
           ...style,
           ..._themeColorVars,
         }}
