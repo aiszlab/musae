@@ -25,6 +25,19 @@ export const Normal: Story = {
 
 export const WithoutPlaceholder: Story = {};
 
+export const WithLabel: Story = {
+  args: {
+    label: "标签",
+  },
+};
+
+export const WithLabelAndPlaceholder: Story = {
+  args: {
+    label: "标签",
+    placeholder: "请输入内容",
+  },
+};
+
 export const Disabled: Story = {
   args: {
     disabled: true,

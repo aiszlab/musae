@@ -154,13 +154,19 @@ const outlineNotch = $create({
     borderBlockWidth: sizes.smallest,
 
     [$when.ancestor(":focus-within", textFieldMarker)]: {
-      borderBlockEndWidth: sizes.xxxxxxxxxxsmall,
+      borderBlockWidth: sizes.xxxxxxxxxxsmall,
       borderColor: "var(--color-primary)" satisfies ThemeColorVariable,
+    },
+  },
+
+  labeled: {
+    [$when.ancestor(":focus-within", textFieldMarker)]: {
+      borderBlockStartWidth: sizes.smallest,
       borderBlockStartColor: "transparent",
     },
   },
 
-  placeholder: {
+  labeledAndHasPlaceholder: {
     borderBlockStartColor: "transparent",
   },
 

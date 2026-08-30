@@ -88,6 +88,8 @@ export interface InputProps
    * @default void 0
    */
   onChange?: (value: string) => void;
+
+  label?: string;
 }
 
 /**

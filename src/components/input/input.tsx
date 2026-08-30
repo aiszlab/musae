@@ -2,7 +2,7 @@ import styles, { textFieldMarker } from "./styles.stylex";
 import React, { forwardRef, useRef, useImperativeHandle } from "react";
 import { useInputEvents, useInputorEvents } from "./hooks";
 import type { InputProps, InputRef } from "../../types/input";
-import { useControlledState, useFocus } from "@aiszlab/relax";
+import { useControlledState, useFocus, useIdentity } from "@aiszlab/relax";
 import { props as $props } from "@stylexjs/stylex";
 import { OPACITY } from "../theme/tokens.stylex";
 import { useClassNames } from "../../hooks/use-class-names";
@@ -10,6 +10,7 @@ import { stringify } from "@aiszlab/relax/class-name";
 import { CLASS_NAMES } from "./context";
 import { $body } from "../theme/theme";
 import { useThemeColorVars } from "../../hooks/use-theme-color-vars";
+import { label } from "motion/react-client";
 
 /**
  * @author murukal
@@ -33,6 +34,7 @@ const Input = forwardRef<InputRef, InputProps>(
       leading,
       trailing,
       onInputorClick,
+      label,
       ...inputProps
     },
     ref,
@@ -41,6 +43,7 @@ const Input = forwardRef<InputRef, InputProps>(
     const inputRef = useRef<HTMLInputElement>(null);
     const classNames = useClassNames(CLASS_NAMES);
     const hasPlaceholder = !!inputProps.placeholder;
+    const [id] = useIdentity();
 
     const _themeColorVars = useThemeColorVars([
       "primary",
@@ -114,9 +117,10 @@ const Input = forwardRef<InputRef, InputProps>(
       ),
       outlineNotch: $props(
         styles.outlineNotch.base,
-        hasPlaceholder && styles.outlineNotch.placeholder,
         $body.small,
         disabled && styles.outlineNotch.disabled,
+        !!label && styles.outlineNotch.labeled,
+        hasPlaceholder && !!label && styles.outlineNotch.labeledAndHasPlaceholder,
       ),
       outlineTrailing: $props(
         styles.outlineTrailing.base,
@@ -156,6 +160,7 @@ const Input = forwardRef<InputRef, InputProps>(
 
         {/* input */}
         <input
+          id={id}
           value={_value}
           className={stringify(classNames.input, styled.input.className)}
           style={styled.input.style}
@@ -182,11 +187,8 @@ const Input = forwardRef<InputRef, InputProps>(
             className={stringify(classNames.outlineNotch, styled.outlineNotch.className)}
             style={styled.outlineNotch.style}
           >
-            <label
-              htmlFor="text-field-hero-input"
-              className={stringify(styled.floatingLabel.className)}
-            >
-              Name
+            <label htmlFor={id} className={stringify(styled.floatingLabel.className)}>
+              {label}
             </label>
           </div>
           <div
