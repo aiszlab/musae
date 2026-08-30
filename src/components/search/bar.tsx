@@ -4,7 +4,7 @@ import { IconClose } from "../icon/icons";
 import { Input } from "../input";
 import { $body } from "../theme/theme";
 import { props as $props } from "@stylexjs/stylex";
-import { isUndefined } from "@aiszlab/relax";
+import { isBoolean, isUndefined } from "@aiszlab/relax";
 import { stringify } from "@aiszlab/relax/class-name";
 import React from "react";
 import type { FocusEventHandler, KeyboardEventHandler, ReactNode, Ref } from "react";
@@ -32,12 +32,7 @@ export type SearchBarProps = Pick<
 };
 
 const hasRenderableContent = (children: ReactNode): boolean => {
-  if (
-    children === null ||
-    isUndefined(children) ||
-    typeof children === "boolean" ||
-    children === ""
-  ) {
+  if (children === null || isUndefined(children) || isBoolean(children) || children === "") {
     return false;
   }
 

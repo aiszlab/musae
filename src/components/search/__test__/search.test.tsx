@@ -65,6 +65,14 @@ describe("`Search` Component", () => {
     expect(trailing).toHaveTextContent("Avatar");
   });
 
+  test("renders whitespace as consumer trailing content", () => {
+    const { container } = render(<Search trailing=" " />);
+    const trailing = container.querySelector(".musae-search-trailing");
+
+    expect(trailing).toBeInTheDocument();
+    expect(trailing?.textContent).toBe(" ");
+  });
+
   test("omits the trailing slot for a direct empty string", () => {
     const { container } = render(<Search trailing="" />);
 
