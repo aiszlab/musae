@@ -15,6 +15,23 @@ export const Normal: Story = {
   args: {},
 };
 
+/**
+ * Client-side fuzzy search with case-insensitive regular expression matching.
+ */
+export const FuzzySearch: Story = {
+  args: {
+    searchable: true,
+    placeholder: "Search fruit",
+    options: [
+      { value: "apple", label: "Apple" },
+      { value: "apricot", label: "Apricot" },
+      { value: "banana", label: "Banana" },
+      { value: "grape", label: "Grape" },
+      { value: "pineapple", label: "Pineapple" },
+    ],
+  },
+};
+
 export const TagsMode: Story = {
   args: {
     mode: "tags",

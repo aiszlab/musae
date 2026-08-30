@@ -5,8 +5,8 @@ import { readOptions } from "../utils";
 import type { Option } from "../../../types/option";
 
 /**
- * @description
- * options
+ * @zh 管理选择器选项与前端搜索
+ * @en Manage select options and client-side search
  */
 export const useOptions = ({
   options,
@@ -43,7 +43,7 @@ export const useOptions = ({
 
   const [menuItems, readableOptions] = useMemo(
     () => readOptions(options, filter),
-    [options, filter],
+    [options, filter, keyword],
   );
 
   return {

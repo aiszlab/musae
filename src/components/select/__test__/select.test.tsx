@@ -2,6 +2,7 @@ import "@testing-library/jest-dom";
 import { fireEvent, render, screen, waitFor, within } from "@testing-library/react";
 import React from "react";
 import { Select } from "..";
+import type { Option } from "../../../types/option";
 
 Promise.try ??= ((callback: () => unknown) =>
   Promise.resolve().then(callback)) as PromiseConstructor["try"];
@@ -95,6 +96,62 @@ describe("Select", () => {
     await waitFor(() => {
       expect(input).toHaveValue("");
     });
+  });
+
+  test("filters options by a case-insensitive label substring", async () => {
+    render(
+      <Select
+        searchable
+        options={[
+          { value: "apple", label: "Apple" },
+          { value: "banana", label: "Banana" },
+        ]}
+      />,
+    );
+
+    fireEvent.change(screen.getByRole("textbox"), { target: { value: "ap" } });
+
+    expect(await screen.findByText("Apple")).toBeInTheDocument();
+    expect(screen.queryByText("Banana")).not.toBeInTheDocument();
+  });
+
+  test("supports regular expression search keywords", async () => {
+    render(
+      <Select
+        searchable
+        options={[
+          { value: "apple", label: "Apple" },
+          { value: "grape", label: "Grape" },
+          { value: "pineapple", label: "Pineapple" },
+        ]}
+      />,
+    );
+
+    fireEvent.change(screen.getByRole("textbox"), { target: { value: "^ap" } });
+
+    expect(await screen.findByText("Apple")).toBeInTheDocument();
+    expect(screen.queryByText("Grape")).not.toBeInTheDocument();
+    expect(screen.queryByText("Pineapple")).not.toBeInTheDocument();
+  });
+
+  test("refilters options when onFilter changes", async () => {
+    const options: Option[] = [
+      { value: "apple", label: "Apple" },
+      { value: "banana", label: "Banana" },
+    ];
+    const filterApple = (_keyword: string, option: Option) => option.value === "apple";
+    const filterBanana = (_keyword: string, option: Option) => option.value === "banana";
+    const { rerender } = render(<Select searchable options={options} onFilter={filterApple} />);
+
+    fireEvent.change(screen.getByRole("textbox"), { target: { value: "fruit" } });
+
+    expect(await screen.findByText("Apple")).toBeInTheDocument();
+    expect(screen.queryByText("Banana")).not.toBeInTheDocument();
+
+    rerender(<Select searchable options={options} onFilter={filterBanana} />);
+
+    expect(await screen.findByText("Banana")).toBeInTheDocument();
+    expect(screen.queryByText("Apple")).not.toBeInTheDocument();
   });
 
   test("selects an option through the visible Input shell", async () => {
