@@ -109,7 +109,14 @@ const Input = forwardRef<InputRef, InputProps>(
         disabled && styles.root.disabled,
         !disabled && textFieldMarker,
       ),
-      input: $props(styles.input.base, disabled && styles.input.disabled),
+      input: $props(
+        styles.input.base,
+        !!leading && styles.input.hasLeading,
+        !!trailing && styles.input.hasTrailing,
+        disabled && styles.input.disabled,
+      ),
+      leading: $props(styles.leading.base),
+      trailing: $props(styles.trailing.base),
       outline: $props(styles.outline.base),
       outlineLeading: $props(
         styles.outlineLeading.base,
@@ -156,7 +163,14 @@ const Input = forwardRef<InputRef, InputProps>(
         })}
       >
         {/* leading */}
-        {leading}
+        {!!leading && (
+          <div
+            className={stringify(classNames.leading, styled.leading.className)}
+            style={styled.leading.style}
+          >
+            {leading}
+          </div>
+        )}
 
         {/* input */}
         <input
@@ -198,7 +212,14 @@ const Input = forwardRef<InputRef, InputProps>(
         </div>
 
         {/* trailing */}
-        {trailing}
+        {!!trailing && (
+          <div
+            className={stringify(classNames.trailing, styled.trailing.className)}
+            style={styled.trailing.style}
+          >
+            {trailing}
+          </div>
+        )}
       </div>
     );
   },

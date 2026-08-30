@@ -24,7 +24,7 @@ const root = $create({
     // layout
     margin: spacing.none,
     paddingBlock: spacing.xxxxxsmall,
-    paddingInline: spacing.medium,
+    paddingInline: spacing.none,
   },
 
   invalid: {
@@ -45,7 +45,8 @@ const input = $create({
     // reset input_styles
     lineHeight: "inherit",
     fontSize: "inherit",
-    padding: spacing.none,
+    paddingBlock: spacing.none,
+    paddingInline: spacing.large,
     borderWidth: sizes.none,
     backgroundColor: "transparent",
     outline: sizes.none,
@@ -54,10 +55,38 @@ const input = $create({
     flex: 1,
   },
 
+  hasLeading: {
+    paddingInlineStart: spacing.xxxxxxxxlarge,
+  },
+
+  hasTrailing: {
+    paddingInlineEnd: spacing.xxxxxxxxlarge,
+  },
+
   disabled: {
     "::placeholder": {
       color: "var(--color-on-surface-opacity-38)" satisfies ThemeColorVariable,
     },
+  },
+});
+
+const leading = $create({
+  base: {
+    position: "absolute",
+    insetBlock: spacing.none,
+    insetInlineStart: spacing.large,
+    display: "inline-flex",
+    alignItems: "center",
+  },
+});
+
+const trailing = $create({
+  base: {
+    position: "absolute",
+    insetBlock: spacing.none,
+    insetInlineEnd: spacing.large,
+    display: "inline-flex",
+    alignItems: "center",
   },
 });
 
@@ -207,6 +236,8 @@ const floatingLabel = $create({
 const styles = {
   root,
   input,
+  leading,
+  trailing,
   outline,
   outlineLeading,
   outlineNotch,
