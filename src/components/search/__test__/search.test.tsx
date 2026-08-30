@@ -43,6 +43,12 @@ describe("`Search` Component", () => {
     expect(getByRole("button", { name: "Clear search" })).toBeInTheDocument();
   });
 
+  test("omits the trailing slot without Search actions or consumer trailing content", () => {
+    const { container } = render(<Search />);
+
+    expect(container.querySelector(".musae-search-trailing")).not.toBeInTheDocument();
+  });
+
   test("calls onChange when input value changes", () => {
     const onChange = jest.fn();
     const { container } = render(<Search onChange={onChange} />);
@@ -91,6 +97,25 @@ describe("`Search` Component", () => {
     expect(onChange).toHaveBeenCalledWith("");
   });
 
+  test("clearing does not focus the Search input", () => {
+    const onClear = jest.fn();
+    const { container, getByRole } = render(
+      <>
+        <button type="button">Outside</button>
+        <Search defaultValue="text" onClear={onClear} />
+      </>,
+    );
+    const outside = getByRole("button", { name: "Outside" });
+    const input = container.querySelector("input");
+
+    outside.focus();
+    fireEvent.click(getByRole("button", { name: "Clear search" }));
+
+    expect(onClear).toHaveBeenCalledTimes(1);
+    expect(outside).toHaveFocus();
+    expect(input).not.toHaveFocus();
+  });
+
   test("clears value on Escape key", () => {
     const onChange = jest.fn();
     const { container } = render(<Search defaultValue="text" onChange={onChange} />);
@@ -118,6 +143,25 @@ describe("`Search` Component", () => {
     fireEvent.click(searchBtn!);
 
     expect(onSearch).toHaveBeenCalledWith("keyword");
+  });
+
+  test("search button does not focus the Search input", () => {
+    const onSearch = jest.fn();
+    const { container, getByRole } = render(
+      <>
+        <button type="button">Outside</button>
+        <Search searchButton="Search" onSearch={onSearch} defaultValue="keyword" />
+      </>,
+    );
+    const outside = getByRole("button", { name: "Outside" });
+    const input = container.querySelector("input");
+
+    outside.focus();
+    fireEvent.click(getByRole("button", { name: "Search" }));
+
+    expect(onSearch).toHaveBeenCalledWith("keyword");
+    expect(outside).toHaveFocus();
+    expect(input).not.toHaveFocus();
   });
 
   test("disabled input when disabled prop is true", () => {

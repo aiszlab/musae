@@ -60,7 +60,10 @@ const SearchBar = ({
       type="button"
       className={stringify(classNames.searchClear, styled.clear.className)}
       style={styled.clear.style}
-      onClick={onClear}
+      onClick={(event) => {
+        event.stopPropagation();
+        onClear();
+      }}
       aria-label="Clear search"
     >
       <IconClose size={24} />
@@ -71,12 +74,17 @@ const SearchBar = ({
     <Button
       className={stringify(classNames.searchButton, styled.searchButton.className)}
       style={styled.searchButton.style}
-      onClick={onSearch}
+      onClick={(event) => {
+        event.stopPropagation();
+        onSearch();
+      }}
       disabled={disabled}
     >
       {searchButton}
     </Button>
   );
+
+  const hasTrailing = !!clearAction || !!trailing || !!searchButtonAction;
 
   return (
     <Input
@@ -99,14 +107,16 @@ const SearchBar = ({
         </span>
       }
       trailing={
-        <span
-          className={stringify(classNames.searchTrailing, styled.trailing.className)}
-          style={styled.trailing.style}
-        >
-          {clearAction}
-          {trailing}
-          {searchButtonAction}
-        </span>
+        hasTrailing ? (
+          <span
+            className={stringify(classNames.searchTrailing, styled.trailing.className)}
+            style={styled.trailing.style}
+          >
+            {clearAction}
+            {trailing}
+            {searchButtonAction}
+          </span>
+        ) : undefined
       }
     />
   );
