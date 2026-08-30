@@ -69,6 +69,45 @@ describe("`Search` Component", () => {
     expect(container.querySelector(".musae-search-trailing")).not.toBeInTheDocument();
   });
 
+  test("omits the trailing slot for an empty consumer trailing Fragment", () => {
+    const { container } = render(<Search trailing={<></>} />);
+
+    expect(container.querySelector(".musae-search-trailing")).not.toBeInTheDocument();
+  });
+
+  test("omits the trailing slot for nested consumer trailing Fragments containing false and null", () => {
+    const { container } = render(
+      <Search
+        trailing={
+          <>
+            <>
+              {false}
+              {null}
+            </>
+          </>
+        }
+      />,
+    );
+
+    expect(container.querySelector(".musae-search-trailing")).not.toBeInTheDocument();
+  });
+
+  test("renders numeric zero from nested consumer trailing Fragments", () => {
+    const { container } = render(
+      <Search
+        trailing={
+          <>
+            <>{0}</>
+          </>
+        }
+      />,
+    );
+    const trailing = container.querySelector(".musae-search-trailing");
+
+    expect(trailing).toBeInTheDocument();
+    expect(trailing).toHaveTextContent("0");
+  });
+
   test("calls onChange when input value changes", () => {
     const onChange = jest.fn();
     const { container } = render(<Search onChange={onChange} />);

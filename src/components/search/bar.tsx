@@ -4,9 +4,10 @@ import { IconClose } from "../icon/icons";
 import { Input } from "../input";
 import { $body } from "../theme/theme";
 import { props as $props } from "@stylexjs/stylex";
+import { isUndefined } from "@aiszlab/relax";
 import { stringify } from "@aiszlab/relax/class-name";
 import React from "react";
-import type { FocusEventHandler, KeyboardEventHandler, Ref } from "react";
+import type { FocusEventHandler, KeyboardEventHandler, ReactNode, Ref } from "react";
 import { useClassNames } from "../../hooks/use-class-names";
 import type { InputRef } from "../../types/input";
 import type { SearchProps } from "../../types/search";
@@ -28,6 +29,20 @@ export type SearchBarProps = Pick<
   onFocus: FocusEventHandler<HTMLInputElement>;
   onKeyDown: KeyboardEventHandler<HTMLInputElement>;
   onSearch: () => void;
+};
+
+const hasRenderableContent = (children: ReactNode): boolean => {
+  if (children === null || isUndefined(children) || typeof children === "boolean") {
+    return false;
+  }
+
+  return React.Children.toArray(children).some((child) => {
+    if (React.isValidElement<{ children?: ReactNode }>(child) && child.type === React.Fragment) {
+      return hasRenderableContent(child.props.children);
+    }
+
+    return true;
+  });
 };
 
 const SearchBar = ({
@@ -84,7 +99,7 @@ const SearchBar = ({
     </Button>
   );
 
-  const hasConsumerTrailing = React.Children.toArray(trailing).length > 0;
+  const hasConsumerTrailing = hasRenderableContent(trailing);
   const hasTrailing = !!clearAction || hasConsumerTrailing || !!searchButtonAction;
 
   return (
