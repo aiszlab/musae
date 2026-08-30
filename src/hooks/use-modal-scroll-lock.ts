@@ -1,16 +1,16 @@
-import { isOverflow, setStyle } from "@aiszlab/relax";
+import { isOverflow, isUndefined, setStyle } from "@aiszlab/relax";
 import { useLayoutEffect } from "react";
 
 let ownerCount = 0;
 let savedBodyStyles: Partial<CSSStyleDeclaration> | undefined;
 
 /**
- * @zh 获取一个 body 滚动锁 owner，并由首个 owner 保存和设置 body 样式
- * @en Acquire a body scroll-lock owner, saving and setting body styles for the first owner
+ * @zh 获取一个 body 滚动锁 owner，并在尚未加锁时保存和设置 body 样式
+ * @en Acquire a body scroll-lock owner, saving and setting body styles when it is not locked yet
  */
 const acquireBodyScrollLock = () => {
   ownerCount += 1;
-  if (ownerCount > 1 || !isOverflow(document.body)) return;
+  if (!isUndefined(savedBodyStyles) || !isOverflow(document.body)) return;
 
   const scrollbarWidth = Math.max(window.innerWidth - document.body.offsetWidth, 0);
   savedBodyStyles = setStyle(document.body, {
@@ -27,7 +27,7 @@ const releaseBodyScrollLock = () => {
   if (ownerCount === 0) return;
 
   ownerCount -= 1;
-  if (ownerCount > 0 || !savedBodyStyles) return;
+  if (ownerCount > 0 || isUndefined(savedBodyStyles)) return;
 
   setStyle(document.body, savedBodyStyles);
   savedBodyStyles = undefined;

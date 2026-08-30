@@ -21,6 +21,17 @@ const ModalStack = ({
   </>
 );
 
+const ModalPortals = ({ firstOpen, secondOpen }: { firstOpen: boolean; secondOpen: boolean }) => (
+  <>
+    <Portal open={firstOpen} destroyable modal>
+      <div>First modal</div>
+    </Portal>
+    <Portal open={secondOpen} destroyable modal>
+      <div>Second modal</div>
+    </Portal>
+  </>
+);
+
 describe("Portal scroll locking", () => {
   beforeAll(() => {
     if (!("attributeStyleMap" in HTMLElement.prototype)) {
@@ -96,6 +107,30 @@ describe("Portal scroll locking", () => {
     expect(document.body).toHaveStyle({ overflow: "hidden" });
 
     rerender(<ModalStack outerOpen={false} renderSearch searchOpen={false} />);
+    expect(document.body.style.overflow).toBe("auto");
+    expect(document.body.style.width).toBe("75%");
+  });
+
+  test("retries a deferred lock when a second modal opens after the body starts overflowing", () => {
+    Object.defineProperty(document.body, "scrollHeight", {
+      configurable: true,
+      value: 600,
+    });
+    const { rerender } = render(<ModalPortals firstOpen secondOpen={false} />);
+    expect(document.body.style.overflow).toBe("auto");
+    expect(document.body.style.width).toBe("75%");
+
+    Object.defineProperty(document.body, "scrollHeight", {
+      configurable: true,
+      value: 1200,
+    });
+    rerender(<ModalPortals firstOpen secondOpen />);
+    expect(document.body).toHaveStyle({ overflow: "hidden" });
+
+    rerender(<ModalPortals firstOpen secondOpen={false} />);
+    expect(document.body).toHaveStyle({ overflow: "hidden" });
+
+    rerender(<ModalPortals firstOpen={false} secondOpen={false} />);
     expect(document.body.style.overflow).toBe("auto");
     expect(document.body.style.width).toBe("75%");
   });
