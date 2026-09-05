@@ -597,11 +597,15 @@ describe("`Search` Component", () => {
         onSelect={onSelect}
       />,
     );
+    const input = await screen.findByRole("combobox");
     const option = await screen.findByRole("option", { name: "One" });
 
+    fireEvent.pointerMove(option);
+    expect(input).toHaveAttribute("aria-activedescendant", option.id);
     fireEvent.click(option);
 
-    expect(screen.getByRole("combobox")).toHaveValue("One");
+    expect(input).toHaveValue("One");
+    expect(input).toHaveAttribute("aria-activedescendant", option.id);
     expect(onChange).toHaveBeenCalledWith("One");
     expect(onSelect).toHaveBeenCalledWith({ key: "one", value: "One", label: "One" });
     expect(screen.getByRole("dialog", { name: "Search" })).toBeInTheDocument();
@@ -613,7 +617,7 @@ describe("`Search` Component", () => {
       <Search
         open
         view="modal"
-        value="query"
+        defaultValue="query"
         items={[{ key: "one", value: "One", label: "One" }]}
         onOpenChange={onOpenChange}
       />,
@@ -633,8 +637,38 @@ describe("`Search` Component", () => {
       <Search
         open={false}
         view="modal"
-        value="query"
+        defaultValue="query"
         items={[{ key: "one", value: "One", label: "One" }]}
+        onOpenChange={onOpenChange}
+      />,
+    );
+    expect(screen.queryByRole("dialog", { name: "Search" })).not.toBeInTheDocument();
+  });
+
+  test("controlled open Enter selection preserves active state until the effective close", async () => {
+    const onOpenChange = jest.fn();
+    const items = [{ key: "one", value: "One", label: "One" }];
+    const { rerender } = render(
+      <Search open view="modal" defaultValue="query" items={items} onOpenChange={onOpenChange} />,
+    );
+    const input = await screen.findByRole("combobox");
+    const option = screen.getByRole("option", { name: "One" });
+
+    fireEvent.keyDown(input, { key: "ArrowDown" });
+    expect(input).toHaveAttribute("aria-activedescendant", option.id);
+    fireEvent.keyDown(input, { key: "Enter" });
+
+    expect(onOpenChange).toHaveBeenCalledWith(false);
+    expect(screen.getByRole("dialog", { name: "Search" })).toBeInTheDocument();
+    expect(input).toHaveValue("One");
+    expect(input).toHaveAttribute("aria-activedescendant", option.id);
+
+    rerender(
+      <Search
+        open={false}
+        view="modal"
+        defaultValue="query"
+        items={items}
         onOpenChange={onOpenChange}
       />,
     );

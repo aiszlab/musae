@@ -102,7 +102,7 @@ const Search = forwardRef<SearchRef, SearchProps>(
 
     useEffect(() => {
       setActiveKey(undefined);
-    }, [_value]);
+    }, [valueInProps]);
 
     useEffect(() => {
       if (disabled) {

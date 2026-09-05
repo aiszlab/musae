@@ -4,9 +4,12 @@ import { join } from "node:path";
 const readSearchSource = (fileName: string) =>
   readFileSync(join(__dirname, "..", fileName), "utf8");
 
+const stripComments = (source: string) =>
+  source.replace(/\/\*[\s\S]*?\*\//g, "").replace(/(^|\s)\/\/.*$/gm, "$1");
+
 test("Search result StyleX source preserves layout, typography, and state contracts", () => {
-  const stylesSource = readSearchSource("styles.ts");
-  const resultListSource = readSearchSource("result-list.tsx");
+  const stylesSource = stripComments(readSearchSource("styles.ts"));
+  const resultListSource = stripComments(readSearchSource("result-list.tsx"));
 
   expect(stylesSource).toMatch(
     /const resultList = \$create\(\{[\s\S]*?root: \{\s*minHeight: searchViewSizes\.minHeight,/,
