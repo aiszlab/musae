@@ -1,5 +1,5 @@
 import { create as $create, when as $when, defineMarker } from "@stylexjs/stylex";
-import { duration, OPACITY, sizes, spacing } from "../theme/tokens.stylex";
+import { duration, opacity, sizes, spacing } from "../theme/tokens.stylex";
 import { ThemeColorVariable } from "../../hooks/use-theme-color-vars";
 
 const textFieldMarker = defineMarker();
@@ -32,13 +32,13 @@ const root = $create({
     boxShadow: "none",
     paddingBlock: spacing.xxxxxsmall,
     paddingInline: spacing.xxxxxsmall,
-    ":hover": {
+    ":hover:not(:active)": {
       "@media (hover: hover)": {
-        backgroundColor: `color-mix(in srgb, var(--color-on-surface) ${OPACITY.thin * 100}%, var(--color-surface-container-high))`,
+        backgroundColor: `color-mix(in srgb, var(--color-on-surface) calc(${opacity.thin} * 100%), var(--color-surface-container-high))`,
       },
     },
     ":active": {
-      backgroundColor: `color-mix(in srgb, var(--color-on-surface) ${OPACITY.medium * 100}%, var(--color-surface-container-high))`,
+      backgroundColor: `color-mix(in srgb, var(--color-on-surface) calc(${opacity.medium} * 100%), var(--color-surface-container-high))`,
     },
   },
 
