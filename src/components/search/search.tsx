@@ -59,8 +59,6 @@ const Search = forwardRef<SearchRef, SearchProps>(
     const classNames = useClassNames(CLASS_NAMES);
     const listId = `search-result-list-${useId().replace(/[^a-zA-Z0-9_-]/g, "")}`;
     const [activeKey, setActiveKey] = useState<Key | undefined>();
-    const optionIdsRef = useRef(new Map<Key, string>());
-    const nextOptionIdRef = useRef(0);
 
     const [_value, _setValue] = useControlledState<string>(valueInProps, {
       defaultState: defaultValue ?? "",
@@ -72,9 +70,6 @@ const Search = forwardRef<SearchRef, SearchProps>(
 
     const requestOpen = useEvent((nextOpen: boolean) => {
       if (disabled && nextOpen) return;
-      if (!nextOpen) {
-        setActiveKey(undefined);
-      }
       if (nextOpen === isOpen) return;
 
       setOpen(nextOpen);
@@ -159,21 +154,15 @@ const Search = forwardRef<SearchRef, SearchProps>(
     });
 
     const getOptionId = useEvent((key: Key) => {
-      const existingId = optionIdsRef.current.get(key);
-      if (existingId) return existingId;
-
       const serializedKey = Array.from(String(key), (character) =>
         character.codePointAt(0)!.toString(16),
       ).join("-");
-      const optionId = `${listId}-option-${nextOptionIdRef.current++}-${serializedKey}`;
-      optionIdsRef.current.set(key, optionId);
-      return optionId;
+      return `${listId}-option-${typeof key}-${serializedKey}`;
     });
 
     const selectItem = useEvent((item: SearchItem) => {
       if (item.disabled) return;
 
-      setActiveKey(undefined);
       _setValue(item.value);
       onChange?.(item.value);
       onSelect?.(item);

@@ -607,24 +607,37 @@ describe("`Search` Component", () => {
     expect(screen.getByRole("dialog", { name: "Search" })).toBeInTheDocument();
   });
 
-  test("controlled open selection requests close without hiding until rerender", async () => {
+  test("controlled open selection preserves active state until the effective close", async () => {
     const onOpenChange = jest.fn();
     const { rerender } = render(
       <Search
         open
         view="modal"
+        value="query"
         items={[{ key: "one", value: "One", label: "One" }]}
         onOpenChange={onOpenChange}
       />,
     );
+    const input = await screen.findByRole("combobox");
     const option = await screen.findByRole("option", { name: "One" });
 
+    fireEvent.pointerMove(option);
+    expect(input).toHaveAttribute("aria-activedescendant", option.id);
     fireEvent.click(option);
 
     expect(onOpenChange).toHaveBeenCalledWith(false);
     expect(screen.getByRole("dialog", { name: "Search" })).toBeInTheDocument();
+    expect(input).toHaveAttribute("aria-activedescendant", option.id);
 
-    rerender(<Search open={false} view="modal" onOpenChange={onOpenChange} />);
+    rerender(
+      <Search
+        open={false}
+        view="modal"
+        value="query"
+        items={[{ key: "one", value: "One", label: "One" }]}
+        onOpenChange={onOpenChange}
+      />,
+    );
     expect(screen.queryByRole("dialog", { name: "Search" })).not.toBeInTheDocument();
   });
 
@@ -648,6 +661,28 @@ describe("`Search` Component", () => {
     expect(Array.from(screen.getAllByRole("option"), (option) => option.id)).toEqual(
       initialOptionIds,
     );
+  });
+
+  test("encodes option ids deterministically by runtime key type, including bigint", async () => {
+    const items = [
+      { key: 0, value: "Number zero", label: "Number zero" },
+      { key: "0", value: "String zero", label: "String zero" },
+      { key: 0n, value: "BigInt zero", label: "BigInt zero" },
+    ];
+    const { rerender } = render(<Search defaultOpen view="modal" items={items} />);
+    const initialIds = new Map(
+      screen.getAllByRole("option").map((option) => [option.textContent, option.id]),
+    );
+
+    expect(initialIds.get("Number zero")).toMatch(/-option-number-30$/);
+    expect(initialIds.get("String zero")).toMatch(/-option-string-30$/);
+    expect(initialIds.get("BigInt zero")).toMatch(/-option-bigint-30$/);
+    expect(new Set(initialIds.values()).size).toBe(3);
+
+    rerender(<Search defaultOpen view="modal" items={[...items].reverse()} />);
+    expect(
+      new Map(screen.getAllByRole("option").map((option) => [option.textContent, option.id])),
+    ).toEqual(initialIds);
   });
 
   test("keeps the result list and slot content renderable without empty wrappers", async () => {
@@ -802,25 +837,83 @@ describe("`Search` Component", () => {
     expect(onOpenChange).toHaveBeenCalledWith(true);
   });
 
-  test("controlled open emits close requests but stays visible until rerendered", () => {
+  test("controlled open close requests preserve active state until rerendered closed", () => {
     const onOpenChange = jest.fn();
     const { container, rerender } = render(
-      <Search open view="modal" onOpenChange={onOpenChange} />,
+      <Search
+        open
+        view="modal"
+        items={[{ key: "one", value: "One", label: "One" }]}
+        onOpenChange={onOpenChange}
+      />,
     );
     const barInput = container.querySelector("input")!;
     const dialog = screen.getByRole("dialog", { name: "Search" });
     const viewInput = within(dialog).getByRole("combobox");
+    const option = screen.getByRole("option", { name: "One" });
 
+    fireEvent.pointerMove(option);
+    expect(viewInput).toHaveAttribute("aria-activedescendant", option.id);
     fireEvent.click(screen.getByTestId("search-view-overlay"));
 
     expect(onOpenChange).toHaveBeenCalledWith(false);
     expect(dialog).toBeInTheDocument();
+    expect(viewInput).toHaveAttribute("aria-activedescendant", option.id);
     expect(viewInput).toHaveFocus();
     expect(barInput).not.toHaveFocus();
 
-    rerender(<Search open={false} view="modal" onOpenChange={onOpenChange} />);
+    rerender(
+      <Search
+        open={false}
+        view="modal"
+        items={[{ key: "one", value: "One", label: "One" }]}
+        onOpenChange={onOpenChange}
+      />,
+    );
     expect(screen.queryByRole("dialog", { name: "Search" })).not.toBeInTheDocument();
     expect(barInput).toHaveFocus();
+  });
+
+  test("does not restore active state after closing and reopening", async () => {
+    const items = [{ key: "one", value: "One", label: "One" }];
+    const { rerender } = render(<Search open view="modal" items={items} />);
+    const input = await screen.findByRole("combobox");
+
+    fireEvent.keyDown(input, { key: "ArrowDown" });
+    expect(input).toHaveAttribute("aria-activedescendant");
+
+    rerender(<Search open={false} view="modal" items={items} />);
+    rerender(<Search open view="modal" items={items} />);
+
+    expect(screen.getByRole("combobox")).not.toHaveAttribute("aria-activedescendant");
+  });
+
+  test("does not restore active state after disabling and reenabling", async () => {
+    const items = [{ key: "one", value: "One", label: "One" }];
+    const { rerender } = render(<Search open view="modal" items={items} />);
+    const input = await screen.findByRole("combobox");
+
+    fireEvent.keyDown(input, { key: "ArrowDown" });
+    expect(input).toHaveAttribute("aria-activedescendant");
+
+    rerender(<Search open disabled view="modal" items={items} />);
+    rerender(<Search open view="modal" items={items} />);
+
+    expect(input).not.toHaveAttribute("aria-activedescendant");
+  });
+
+  test("does not restore active state when a removed key is re-added", async () => {
+    const items = [{ key: "one", value: "One", label: "One" }];
+    const { rerender } = render(<Search defaultOpen view="modal" items={items} />);
+    const input = await screen.findByRole("combobox");
+
+    fireEvent.keyDown(input, { key: "ArrowDown" });
+    expect(input).toHaveAttribute("aria-activedescendant");
+
+    rerender(<Search defaultOpen view="modal" items={[]} />);
+    rerender(<Search defaultOpen view="modal" items={items} />);
+
+    expect(input).not.toHaveAttribute("aria-activedescendant");
   });
 
   test("explicit full-screen view has no dismissing overlay", () => {
