@@ -105,7 +105,6 @@ const Input = forwardRef<InputRef, InputProps>(
       root: $props(
         $body.medium,
         styles.root.base,
-        invalid && styles.root.invalid,
         disabled && styles.root.disabled,
         !disabled && textFieldMarker,
       ),
@@ -121,22 +120,26 @@ const Input = forwardRef<InputRef, InputProps>(
       outlineLeading: $props(
         styles.outlineLeading.base,
         disabled && styles.outlineLeading.disabled,
+        invalid && styles.outlineLeading.invalid,
       ),
       outlineNotch: $props(
         styles.outlineNotch.base,
         $body.small,
+        !!label && styles.outlineNotch.withLabel,
+        hasPlaceholder && !!label && styles.outlineNotch.withLabelAndPlaceholder,
         disabled && styles.outlineNotch.disabled,
-        !!label && styles.outlineNotch.labeled,
-        hasPlaceholder && !!label && styles.outlineNotch.labeledAndHasPlaceholder,
+        invalid && styles.outlineNotch.invalid,
       ),
       outlineTrailing: $props(
         styles.outlineTrailing.base,
         disabled && styles.outlineTrailing.disabled,
+        invalid && styles.outlineTrailing.invalid,
       ),
       floatingLabel: $props(
         styles.floatingLabel.base,
         hasPlaceholder && styles.floatingLabel.placeholder,
         disabled && styles.floatingLabel.disabled,
+        invalid && styles.floatingLabel.invalid,
       ),
     };
 

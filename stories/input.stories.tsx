@@ -14,6 +14,10 @@ const meta: Meta<typeof Input> = {
       type: "boolean",
       table: { defaultValue: { summary: "false" } },
     },
+    invalid: {
+      type: "boolean",
+      table: { defaultValue: { summary: "false" } },
+    },
   },
 };
 
@@ -59,5 +63,13 @@ export const Disabled: Story = {
   args: {
     disabled: true,
     placeholder: "不可编辑状态",
+  },
+};
+
+export const Invalid: Story = {
+  args: {
+    invalid: true,
+    label: "标签",
+    placeholder: "请输入内容",
   },
 };

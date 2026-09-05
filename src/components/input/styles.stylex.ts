@@ -27,14 +27,6 @@ const root = $create({
     paddingInline: spacing.none,
   },
 
-  invalid: {
-    boxShadow: `0px 0px 0px ${sizes.xxxxxxxxxxsmall} var(--color-error) inset`,
-
-    ":focus-within": {
-      boxShadow: null,
-    },
-  },
-
   disabled: {
     color: "var(--color-on-surface-opacity-38)" satisfies ThemeColorVariable,
   },
@@ -53,6 +45,10 @@ const input = $create({
     minWidth: sizes.none,
     height: sizes.auto,
     flex: 1,
+
+    "::placeholder": {
+      color: "var(--color-on-surface-variant)" satisfies ThemeColorVariable,
+    },
   },
 
   hasLeading: {
@@ -129,6 +125,14 @@ const outlineLeading = $create({
   disabled: {
     borderColor: "var(--color-on-surface-opacity-12)" satisfies ThemeColorVariable,
   },
+
+  invalid: {
+    borderColor: "var(--color-error)" satisfies ThemeColorVariable,
+
+    [$when.ancestor(":focus-within", textFieldMarker)]: {
+      borderColor: "var(--color-error)" satisfies ThemeColorVariable,
+    },
+  },
 });
 
 const outlineTrailing = $create({
@@ -161,6 +165,14 @@ const outlineTrailing = $create({
   disabled: {
     borderColor: "var(--color-on-surface-opacity-12)" satisfies ThemeColorVariable,
   },
+
+  invalid: {
+    borderColor: "var(--color-error)" satisfies ThemeColorVariable,
+
+    [$when.ancestor(":focus-within", textFieldMarker)]: {
+      borderColor: "var(--color-error)" satisfies ThemeColorVariable,
+    },
+  },
 });
 
 const outlineNotch = $create({
@@ -188,19 +200,27 @@ const outlineNotch = $create({
     },
   },
 
-  labeled: {
+  withLabel: {
     [$when.ancestor(":focus-within", textFieldMarker)]: {
       borderBlockStartWidth: sizes.smallest,
       borderBlockStartColor: "transparent",
     },
   },
 
-  labeledAndHasPlaceholder: {
+  withLabelAndPlaceholder: {
     borderBlockStartColor: "transparent",
   },
 
   disabled: {
     borderColor: "var(--color-on-surface-opacity-12)" satisfies ThemeColorVariable,
+  },
+
+  invalid: {
+    borderColor: "var(--color-error)" satisfies ThemeColorVariable,
+
+    [$when.ancestor(":focus-within", textFieldMarker)]: {
+      borderColor: "var(--color-error)" satisfies ThemeColorVariable,
+    },
   },
 });
 
@@ -226,6 +246,14 @@ const floatingLabel = $create({
   placeholder: {
     top: "-50%",
     transform: "scale(1)",
+  },
+
+  invalid: {
+    color: "var(--color-error)" satisfies ThemeColorVariable,
+
+    [$when.ancestor(":focus-within", textFieldMarker)]: {
+      color: "var(--color-error)" satisfies ThemeColorVariable,
+    },
   },
 
   disabled: {
