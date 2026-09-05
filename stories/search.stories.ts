@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { createElement, useState } from "react";
-import { Avatar, Search } from "../dist";
+import { Avatar, Search, ThemeProvider } from "../dist";
 import type { SearchItem, SearchProps } from "../dist";
 
 const resultItems: SearchItem[] = [
@@ -38,6 +38,9 @@ const ControlledOpenExample = (props: SearchProps) => {
     onOpenChange: setOpen,
   });
 };
+
+const DarkThemeExample = (props: SearchProps) =>
+  createElement(ThemeProvider, { defaultMode: "dark" }, createElement(Search, props));
 
 const meta: Meta<typeof Search> = {
   title: "search",
@@ -170,4 +173,17 @@ export const ControlledOpen: Story = {
     items: resultItems,
   },
   render: (args) => createElement(ControlledOpenExample, args),
+};
+
+/**
+ * Open modal results in the dark theme
+ */
+export const DarkTheme: Story = {
+  args: {
+    defaultOpen: true,
+    view: "modal",
+    placeholder: "Search in dark mode",
+    items: resultItems,
+  },
+  render: (args) => createElement(DarkThemeExample, args),
 };

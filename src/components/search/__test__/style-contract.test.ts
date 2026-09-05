@@ -15,6 +15,9 @@ const parseSource = (fileName: string, source: string) =>
 const readSearchSource = (fileName: string) =>
   parseSource(fileName, readFileSync(join(__dirname, "..", fileName), "utf8"));
 
+const readStorySource = (fileName: string) =>
+  parseSource(fileName, readFileSync(join(__dirname, "../../../..", "stories", fileName), "utf8"));
+
 const getPropertyInitializer = (
   objectLiteral: ts.ObjectLiteralExpression,
   propertyName: string,
@@ -131,6 +134,13 @@ const getItemsMapBody = (functionBody: ts.Block, sourceFile: ts.SourceFile): ts.
 test("Search result StyleX source preserves layout, typography, and state contracts", () => {
   const stylesSource = readSearchSource("styles.ts");
   const resultListSource = readSearchSource("result-list.tsx");
+  const container = getStyleObject(stylesSource, "container");
+  const containerBase = asObjectLiteral(
+    getPropertyInitializer(container, "base"),
+    "container.base",
+  );
+  const view = getStyleObject(stylesSource, "view");
+  const modal = asObjectLiteral(getPropertyInitializer(view, "modal"), "view.modal");
   const resultList = getStyleObject(stylesSource, "resultList");
   const root = asObjectLiteral(getPropertyInitializer(resultList, "root"), "resultList.root");
   const item = asObjectLiteral(getPropertyInitializer(resultList, "item"), "resultList.item");
@@ -152,9 +162,19 @@ test("Search result StyleX source preserves layout, typography, and state contra
     "itemStyles",
   );
 
-  expect(getPropertyInitializer(root, "minHeight").getText(stylesSource)).toBe(
+  expect(getPropertyInitializer(containerBase, "width").getText(stylesSource)).toBe("sizes.full");
+  expect(getPropertyInitializer(containerBase, "minWidth").getText(stylesSource)).toBe(
+    "searchViewSizes.minWidth",
+  );
+  expect(getPropertyInitializer(containerBase, "maxWidth").getText(stylesSource)).toBe(
+    "searchViewSizes.maxWidth",
+  );
+  expect(getPropertyInitializer(modal, "minHeight").getText(stylesSource)).toBe(
     "searchViewSizes.minHeight",
   );
+  expect(getPropertyInitializer(root, "flexGrow").getText(stylesSource)).toBe("1");
+  expect(getPropertyInitializer(root, "minHeight").getText(stylesSource)).toBe("sizes.none");
+  expect(getPropertyInitializer(root, "overflowY").getText(stylesSource)).toBe('"auto"');
   expect(getPropertyInitializer(item, "minHeight").getText(stylesSource)).toBe(
     "searchViewSizes.resultItemHeight",
   );
@@ -205,5 +225,25 @@ const bait = "a /* $props(blockDecoy) */ https://example.com // disabled && stri
   ).toBe("enabled && active");
   expect(bait && ts.isStringLiteral(bait) && bait.text).toBe(
     "a /* $props(blockDecoy) */ https://example.com // disabled && stringDecoy",
+  );
+});
+
+test("Search stories expose a dark modal result view through ThemeProvider", () => {
+  const storySource = readStorySource("search.stories.ts");
+  const darkThemeExample = getUniqueVariable(storySource.statements, "DarkThemeExample");
+  const darkTheme = asObjectLiteral(
+    getUniqueVariable(storySource.statements, "DarkTheme").initializer,
+    "DarkTheme story",
+  );
+  const args = asObjectLiteral(getPropertyInitializer(darkTheme, "args"), "DarkTheme args");
+
+  expect(darkThemeExample.initializer.getText(storySource)).toContain(
+    'createElement(ThemeProvider, { defaultMode: "dark" }, createElement(Search, props))',
+  );
+  expect(getPropertyInitializer(args, "defaultOpen").getText(storySource)).toBe("true");
+  expect(getPropertyInitializer(args, "view").getText(storySource)).toBe('"modal"');
+  expect(getPropertyInitializer(args, "items").getText(storySource)).toBe("resultItems");
+  expect(getPropertyInitializer(darkTheme, "render").getText(storySource)).toContain(
+    "createElement(DarkThemeExample, args)",
   );
 });

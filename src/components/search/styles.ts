@@ -7,6 +7,8 @@ const container = $create({
     position: "relative",
     display: "inline-flex",
     width: sizes.full,
+    minWidth: searchViewSizes.minWidth,
+    maxWidth: searchViewSizes.maxWidth,
   },
 });
 
@@ -151,7 +153,9 @@ const view = $create({
 
 const resultList = $create({
   root: {
-    minHeight: searchViewSizes.minHeight,
+    flexGrow: 1,
+    minHeight: sizes.none,
+    overflowY: "auto",
     paddingBlock: spacing.xxsmall,
   },
 
