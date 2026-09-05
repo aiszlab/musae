@@ -435,11 +435,320 @@ describe("`Search` Component", () => {
     const input = await screen.findByRole("combobox");
     const option = screen.getByRole("option", { name: "Disabled" });
 
+    fireEvent.pointerMove(option);
     fireEvent.keyDown(input, { key: "ArrowDown" });
     fireEvent.click(option);
 
     expect(input).not.toHaveAttribute("aria-activedescendant");
     expect(onSelect).not.toHaveBeenCalled();
+  });
+
+  test("renders an empty listbox when there are no results", async () => {
+    render(<Search defaultOpen view="modal" items={[]} />);
+
+    expect(await screen.findByRole("listbox")).toBeInTheDocument();
+    expect(screen.queryAllByRole("option")).toHaveLength(0);
+  });
+
+  test("clears active descendant when controlled value changes", async () => {
+    const items = [{ key: "one", value: "One", label: "One" }];
+    const onSearch = jest.fn();
+    const onSelect = jest.fn();
+    const { rerender } = render(
+      <Search
+        open
+        view="modal"
+        value="before"
+        items={items}
+        onSearch={onSearch}
+        onSelect={onSelect}
+      />,
+    );
+    const input = await screen.findByRole("combobox");
+
+    fireEvent.keyDown(input, { key: "ArrowDown" });
+    expect(input).toHaveAttribute("aria-activedescendant");
+
+    rerender(
+      <Search
+        open
+        view="modal"
+        value="after"
+        items={items}
+        onSearch={onSearch}
+        onSelect={onSelect}
+      />,
+    );
+
+    expect(input).not.toHaveAttribute("aria-activedescendant");
+    fireEvent.keyDown(input, { key: "Enter" });
+    expect(onSearch).toHaveBeenCalledWith("after");
+    expect(onSelect).not.toHaveBeenCalled();
+  });
+
+  test("clears active descendant when SearchRef.clear is called", async () => {
+    const ref = createRef<SearchRef>();
+    render(
+      <Search
+        ref={ref}
+        defaultOpen
+        view="modal"
+        defaultValue="query"
+        items={[{ key: "one", value: "One", label: "One" }]}
+      />,
+    );
+    const input = await screen.findByRole("combobox");
+
+    fireEvent.keyDown(input, { key: "ArrowDown" });
+    expect(input).toHaveAttribute("aria-activedescendant");
+
+    act(() => ref.current?.clear());
+
+    expect(input).not.toHaveAttribute("aria-activedescendant");
+  });
+
+  test("clears active descendant when Search closes", async () => {
+    const onOpenChange = jest.fn();
+    const { rerender } = render(
+      <Search
+        open
+        view="modal"
+        onOpenChange={onOpenChange}
+        items={[{ key: "one", value: "One", label: "One" }]}
+      />,
+    );
+    const input = await screen.findByRole("combobox");
+
+    fireEvent.keyDown(input, { key: "ArrowDown" });
+    expect(input).toHaveAttribute("aria-activedescendant");
+
+    rerender(
+      <Search
+        open={false}
+        view="modal"
+        onOpenChange={onOpenChange}
+        items={[{ key: "one", value: "One", label: "One" }]}
+      />,
+    );
+
+    expect(screen.queryByRole("dialog", { name: "Search" })).not.toBeInTheDocument();
+  });
+
+  test("clears active descendant when the active result is removed or disabled", async () => {
+    const { rerender } = render(
+      <Search defaultOpen view="modal" items={[{ key: "one", value: "One", label: "One" }]} />,
+    );
+    const input = await screen.findByRole("combobox");
+
+    fireEvent.keyDown(input, { key: "ArrowDown" });
+    expect(input).toHaveAttribute("aria-activedescendant");
+
+    rerender(<Search defaultOpen view="modal" items={[]} />);
+    expect(input).not.toHaveAttribute("aria-activedescendant");
+
+    rerender(
+      <Search defaultOpen view="modal" items={[{ key: "one", value: "One", label: "One" }]} />,
+    );
+    fireEvent.keyDown(input, { key: "ArrowDown" });
+    rerender(
+      <Search
+        defaultOpen
+        view="modal"
+        items={[{ key: "one", value: "One", label: "One", disabled: true }]}
+      />,
+    );
+    expect(input).not.toHaveAttribute("aria-activedescendant");
+  });
+
+  test("pointer movement activates an enabled result and click selects it", async () => {
+    const onChange = jest.fn();
+    const onSelect = jest.fn();
+    render(
+      <Search
+        defaultOpen
+        view="modal"
+        items={[{ key: "one", value: "One", label: "One" }]}
+        onChange={onChange}
+        onSelect={onSelect}
+      />,
+    );
+    const input = await screen.findByRole("combobox");
+    const option = screen.getByRole("option", { name: "One" });
+
+    fireEvent.pointerMove(option);
+    expect(input).toHaveAttribute("aria-activedescendant", option.id);
+    fireEvent.click(option);
+
+    expect(onChange).toHaveBeenCalledWith("One");
+    expect(onSelect).toHaveBeenCalledWith({ key: "one", value: "One", label: "One" });
+    expect(screen.queryByRole("dialog", { name: "Search" })).not.toBeInTheDocument();
+  });
+
+  test("selection with closeOnSelect=false still writes value and fires callbacks", async () => {
+    const onChange = jest.fn();
+    const onSelect = jest.fn();
+    render(
+      <Search
+        defaultOpen
+        view="modal"
+        closeOnSelect={false}
+        items={[{ key: "one", value: "One", label: "One" }]}
+        onChange={onChange}
+        onSelect={onSelect}
+      />,
+    );
+    const option = await screen.findByRole("option", { name: "One" });
+
+    fireEvent.click(option);
+
+    expect(screen.getByRole("combobox")).toHaveValue("One");
+    expect(onChange).toHaveBeenCalledWith("One");
+    expect(onSelect).toHaveBeenCalledWith({ key: "one", value: "One", label: "One" });
+    expect(screen.getByRole("dialog", { name: "Search" })).toBeInTheDocument();
+  });
+
+  test("controlled open selection requests close without hiding until rerender", async () => {
+    const onOpenChange = jest.fn();
+    const { rerender } = render(
+      <Search
+        open
+        view="modal"
+        items={[{ key: "one", value: "One", label: "One" }]}
+        onOpenChange={onOpenChange}
+      />,
+    );
+    const option = await screen.findByRole("option", { name: "One" });
+
+    fireEvent.click(option);
+
+    expect(onOpenChange).toHaveBeenCalledWith(false);
+    expect(screen.getByRole("dialog", { name: "Search" })).toBeInTheDocument();
+
+    rerender(<Search open={false} view="modal" onOpenChange={onOpenChange} />);
+    expect(screen.queryByRole("dialog", { name: "Search" })).not.toBeInTheDocument();
+  });
+
+  test("keeps stable unique list and option ids across rerenders, including key zero", async () => {
+    const items = [
+      { key: 0, value: "Zero", label: "Zero" },
+      { key: "0", value: "String zero", label: "String zero" },
+    ];
+    const { rerender } = render(<Search defaultOpen view="modal" items={items} />);
+    const input = await screen.findByRole("combobox");
+    const list = screen.getByRole("listbox");
+    const initialListId = list.id;
+    const initialOptionIds = Array.from(screen.getAllByRole("option"), (option) => option.id);
+
+    expect(new Set(initialOptionIds).size).toBe(initialOptionIds.length);
+    fireEvent.keyDown(input, { key: "ArrowDown" });
+    expect(input).toHaveAttribute("aria-activedescendant", initialOptionIds[0]);
+
+    rerender(<Search defaultOpen view="modal" items={items} />);
+    expect(screen.getByRole("listbox").id).toBe(initialListId);
+    expect(Array.from(screen.getAllByRole("option"), (option) => option.id)).toEqual(
+      initialOptionIds,
+    );
+  });
+
+  test("keeps the result list and slot content renderable without empty wrappers", async () => {
+    render(
+      <Search
+        defaultOpen
+        view="modal"
+        items={[
+          {
+            key: "slots",
+            value: "Slots",
+            label: "Slots",
+            leading: 0,
+            supportingText: 0,
+            trailing: 0,
+          },
+          {
+            key: "empty",
+            value: "Empty",
+            label: "Empty",
+            leading: (
+              <>
+                {false}
+                {null}
+                <>{""}</>
+              </>
+            ),
+            supportingText: (
+              <>
+                {false}
+                {null}
+                <>{""}</>
+              </>
+            ),
+            trailing: (
+              <>
+                {false}
+                {null}
+                <>{""}</>
+              </>
+            ),
+          },
+        ]}
+      />,
+    );
+    const options = await screen.findAllByRole("option");
+
+    expect(options[0].querySelector(".musae-search-result-list__item-leading")).toHaveTextContent(
+      "0",
+    );
+    expect(
+      options[0].querySelector(".musae-search-result-list__item-supporting-text"),
+    ).toHaveTextContent("0");
+    expect(options[0].querySelector(".musae-search-result-list__item-trailing")).toHaveTextContent(
+      "0",
+    );
+    expect(
+      options[1].querySelector(".musae-search-result-list__item-leading"),
+    ).not.toBeInTheDocument();
+    expect(
+      options[1].querySelector(".musae-search-result-list__item-supporting-text"),
+    ).not.toBeInTheDocument();
+    expect(
+      options[1].querySelector(".musae-search-result-list__item-trailing"),
+    ).not.toBeInTheDocument();
+  });
+
+  test("applies result list typography, ellipsis, active, disabled, and minimum-height contracts", async () => {
+    render(
+      <Search
+        defaultOpen
+        view="modal"
+        items={[
+          { key: "active", value: "Active", label: "Active", supportingText: "Support" },
+          { key: "disabled", value: "Disabled", label: "Disabled", disabled: true },
+        ]}
+      />,
+    );
+    const input = await screen.findByRole("combobox");
+    const list = screen.getByRole("listbox");
+    const [active, disabled] = screen.getAllByRole("option");
+
+    expect(list).toHaveClass("styles__resultList.root");
+    expect(active.querySelector(".musae-search-result-list__item-label")).toHaveClass(
+      "theme__body.large",
+    );
+    expect(active.querySelector(".musae-search-result-list__item-supporting-text")).toHaveClass(
+      "theme__body.medium",
+    );
+    expect(active.querySelector(".musae-search-result-list__item-supporting-text")).toHaveClass(
+      "styles__resultList.supportingText",
+    );
+    fireEvent.keyDown(input, { key: "ArrowDown" });
+    expect(active).toHaveClass(
+      "styles__resultList.activeItem",
+      "musae-search-result-list__item--active",
+    );
+    expect(disabled).toHaveClass(
+      "styles__resultList.disabledItem",
+      "musae-search-result-list__item--disabled",
+    );
   });
 
   test("Escape closes Search without reaching an outer React handler while Enter still bubbles", async () => {

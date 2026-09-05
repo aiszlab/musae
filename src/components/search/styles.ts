@@ -151,7 +151,7 @@ const view = $create({
 
 const resultList = $create({
   root: {
-    minHeight: searchViewSizes.resultItemHeight,
+    minHeight: searchViewSizes.minHeight,
     paddingBlock: spacing.xxsmall,
   },
 

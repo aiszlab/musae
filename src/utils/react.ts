@@ -1,13 +1,14 @@
+import { isBoolean, isNull, isUndefined } from "@aiszlab/relax";
 import { Partialable } from "@aiszlab/relax/types";
-import { Children, isValidElement, type ReactNode } from "react";
+import { Children, Fragment, isValidElement, type ReactNode } from "react";
 
 interface ElementProps {
   children?: ReactNode;
 }
 
 /**
- * @description
- * get the string of component children
+ * @zh 获取组件子节点中的文本
+ * @en Get text from component children
  */
 export const toReactNodeText = (children: ReactNode): Partialable<string> => {
   const _children = Children.toArray(children);
@@ -25,4 +26,22 @@ export const toReactNodeText = (children: ReactNode): Partialable<string> => {
       }
     }
   }
+};
+
+/**
+ * @zh 判断节点是否包含可渲染内容
+ * @en Determine whether a node contains renderable content
+ */
+export const hasRenderableContent = (content: ReactNode): boolean => {
+  if (isNull(content) || isUndefined(content) || isBoolean(content) || content === "") {
+    return false;
+  }
+
+  return Children.toArray(content).some((child) => {
+    if (isValidElement<{ children?: ReactNode }>(child) && child.type === Fragment) {
+      return hasRenderableContent(child.props.children);
+    }
+
+    return child !== "";
+  });
 };

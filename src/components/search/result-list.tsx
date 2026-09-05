@@ -1,11 +1,12 @@
 import React from "react";
-import type { Key, ReactNode } from "react";
+import type { Key } from "react";
 import { props as $props } from "@stylexjs/stylex";
-import { isBoolean, isFunction, isUndefined } from "@aiszlab/relax";
+import { isFunction, isUndefined } from "@aiszlab/relax";
 import { stringify } from "@aiszlab/relax/class-name";
 import { useClassNames } from "../../hooks/use-class-names";
 import { useThemeColorVars } from "../../hooks/use-theme-color-vars";
 import type { SearchItem, SearchProps } from "../../types/search";
+import { hasRenderableContent } from "../../utils/react";
 import { $body } from "../theme/theme";
 import { OPACITY } from "../theme/tokens.stylex";
 import { CLASS_NAMES } from "./context";
@@ -21,14 +22,6 @@ export type SearchResultListProps = Pick<SearchProps, "items" | "renderItem"> & 
   getOptionId: (key: Key) => string;
   onActiveKeyChange: (key: Key) => void;
   onSelect: (item: SearchItem) => void;
-};
-
-const hasRenderableContent = (content: ReactNode): boolean => {
-  if (content === null || isUndefined(content) || isBoolean(content) || content === "") {
-    return false;
-  }
-
-  return React.Children.toArray(content).some((child) => child !== "");
 };
 
 const SearchResultList = ({
@@ -80,7 +73,7 @@ const SearchResultList = ({
 
         return (
           <div
-            key={item.key}
+            key={getOptionId(item.key)}
             id={getOptionId(item.key)}
             role="option"
             aria-selected={isActive}

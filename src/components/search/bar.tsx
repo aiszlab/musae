@@ -4,13 +4,13 @@ import { IconClose } from "../icon/icons";
 import { Input } from "../input";
 import { $body } from "../theme/theme";
 import { props as $props } from "@stylexjs/stylex";
-import { isBoolean, isUndefined } from "@aiszlab/relax";
 import { stringify } from "@aiszlab/relax/class-name";
 import React from "react";
-import type { FocusEventHandler, KeyboardEventHandler, ReactNode, Ref } from "react";
+import type { FocusEventHandler, KeyboardEventHandler, Ref } from "react";
 import { useClassNames } from "../../hooks/use-class-names";
 import type { InputRef } from "../../types/input";
 import type { SearchProps } from "../../types/search";
+import { hasRenderableContent } from "../../utils/react";
 import { CLASS_NAMES } from "./context";
 import styles from "./styles";
 
@@ -29,20 +29,6 @@ export type SearchBarProps = Pick<
   onFocus: FocusEventHandler<HTMLInputElement>;
   onKeyDown: KeyboardEventHandler<HTMLInputElement>;
   onSearch: () => void;
-};
-
-const hasRenderableContent = (children: ReactNode): boolean => {
-  if (children === null || isUndefined(children) || isBoolean(children) || children === "") {
-    return false;
-  }
-
-  return React.Children.toArray(children).some((child) => {
-    if (React.isValidElement<{ children?: ReactNode }>(child) && child.type === React.Fragment) {
-      return hasRenderableContent(child.props.children);
-    }
-
-    return child !== "";
-  });
 };
 
 const SearchBar = ({
