@@ -201,11 +201,26 @@ const Input = forwardRef<InputRef, InputProps>(
           className={stringify(classNames.outline, styled.outline.className)}
           style={styled.outline.style}
         >
-          {hasLabel && (
-            <label htmlFor={id} className={stringify(styled.floatingLabel.className)}>
-              {label}
-            </label>
-          )}
+          <div
+            className={stringify(classNames.outlineLeading, styled.outlineLeading.className)}
+            style={styled.outlineLeading.style}
+          />
+
+          <div
+            className={stringify(classNames.outlineNotch, styled.outlineNotch.className)}
+            style={styled.outlineNotch.style}
+          >
+            {hasLabel && (
+              <label htmlFor={id} className={stringify(styled.floatingLabel.className)}>
+                {label}
+              </label>
+            )}
+          </div>
+
+          <div
+            className={stringify(classNames.outlineTrailing, styled.outlineTrailing.className)}
+            style={styled.outlineTrailing.style}
+          />
         </div>
 
         {/* trailing */}
