@@ -80,7 +80,6 @@ const Cascader = ({ mode, separator = "/", options = [], ...props }: CascaderPro
           leading={mode === "multiple" ? inputed : undefined}
           onBlur={close}
           onClick={toggle}
-          onInputorClick={toggle}
           readOnly
         />
       )}

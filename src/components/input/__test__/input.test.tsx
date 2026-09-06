@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom";
-import { render } from "@testing-library/react";
+import { fireEvent, render } from "@testing-library/react";
 import React from "react";
 import { Input } from "..";
 
@@ -62,10 +62,20 @@ describe("leading and trailing wrappers", () => {
 });
 
 describe("invalid state", () => {
-  test("keeps the error ring on the root without a label", () => {
+  test("applies the error color to outline segments without a label", () => {
     const { container } = render(<Input invalid />);
+    const inputor = container.querySelector(".musae-input__inputor")!;
 
-    expect(container.querySelector(".musae-input__inputor")).toHaveClass("styles__root.invalid");
+    expect(inputor).not.toHaveClass("styles__root.invalid");
+    expect(inputor.querySelector(".musae-notched-outline__leading")).toHaveClass(
+      "styles__outlineLeading.invalid",
+    );
+    expect(inputor.querySelector(".musae-notched-outline__notch")).toHaveClass(
+      "styles__outlineNotch.invalid",
+    );
+    expect(inputor.querySelector(".musae-notched-outline__trailing")).toHaveClass(
+      "styles__outlineTrailing.invalid",
+    );
   });
 
   test("applies the error color to outline segments and label when labeled", () => {
@@ -78,11 +88,66 @@ describe("invalid state", () => {
     );
     expect(inputor.querySelector(".musae-notched-outline__notch")).toHaveClass(
       "styles__outlineNotch.invalid",
-      "styles__outlineNotch.labeledAndHasPlaceholder",
+      "styles__outlineNotch.withLabelAndPlaceholder",
     );
     expect(inputor.querySelector(".musae-notched-outline__trailing")).toHaveClass(
       "styles__outlineTrailing.invalid",
     );
     expect(inputor.querySelector("label")).toHaveClass("styles__floatingLabel.invalid");
+  });
+});
+
+describe("click handling", () => {
+  test("invokes onClick when the input is clicked", () => {
+    const onClick = jest.fn();
+    const { getByRole } = render(<Input onClick={onClick} />);
+
+    fireEvent.click(getByRole("textbox"));
+
+    expect(onClick).toHaveBeenCalledTimes(1);
+  });
+
+  test("does not invoke onClick when the input shell is clicked", () => {
+    const onClick = jest.fn();
+    const { container } = render(<Input onClick={onClick} />);
+
+    fireEvent.click(container.querySelector(".musae-input__inputor")!);
+
+    expect(onClick).not.toHaveBeenCalled();
+  });
+
+  test("does not invoke onClick when a passive adornment is clicked", () => {
+    const onClick = jest.fn();
+    const { getByText } = render(<Input leading={<span>Leading</span>} onClick={onClick} />);
+
+    fireEvent.click(getByText("Leading"));
+
+    expect(onClick).not.toHaveBeenCalled();
+  });
+
+  test("does not invoke onClick for a passive adornment inside an interactive ancestor", () => {
+    const onClick = jest.fn();
+    const { getByText } = render(
+      <div role="button">
+        <Input leading={<span>Leading</span>} onClick={onClick} />
+      </div>,
+    );
+
+    fireEvent.click(getByText("Leading"));
+
+    expect(onClick).not.toHaveBeenCalled();
+  });
+
+  test("stops input clicks from reaching an ancestor without onClick", () => {
+    const onAncestorClick = jest.fn();
+    const { getByRole } = render(
+      <div onClick={onAncestorClick}>
+        <Input />
+      </div>,
+    );
+
+    fireEvent.click(getByRole("textbox"));
+
+    expect(onAncestorClick).not.toHaveBeenCalled();
   });
 });

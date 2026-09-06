@@ -1,6 +1,6 @@
 import styles, { textFieldMarker } from "./styles.stylex";
 import React, { forwardRef, useRef, useImperativeHandle } from "react";
-import { useInputEvents, useInputorEvents } from "./hooks";
+import { useInputEvents } from "./hooks";
 import type { InputProps, InputRef } from "../../types/input";
 import { useControlledState, useFocus, useIdentity } from "@aiszlab/relax";
 import { props as $props } from "@stylexjs/stylex";
@@ -34,7 +34,6 @@ const Input = forwardRef<InputRef, InputProps>(
       onFocus,
       leading,
       trailing,
-      onInputorClick,
       label,
       ...inputProps
     },
@@ -91,11 +90,6 @@ const Input = forwardRef<InputRef, InputProps>(
       onChange,
       onClick,
       onFocus,
-    });
-    // inputor events
-    const inputorEvents = useInputorEvents({
-      inputRef,
-      onClick: disabled ? undefined : onInputorClick,
     });
 
     // is focused
@@ -165,7 +159,6 @@ const Input = forwardRef<InputRef, InputProps>(
           ...style,
           ..._themeColorVars,
         }}
-        onClick={inputorEvents.click}
         {...(!disabled && {
           tabIndex: -1,
         })}

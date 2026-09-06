@@ -33,12 +33,6 @@ export interface InputProps
     >,
     ComponentProps {
   /**
-   * @zh 点击输入框外壳时的处理函数
-   * @en Handler invoked when the input shell is clicked
-   */
-  onInputorClick?: MouseEventHandler<HTMLDivElement>;
-
-  /**
    * @zh 输入框值
    * @en Input value
    * @default void 0

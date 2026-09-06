@@ -42,7 +42,6 @@ const TimePicker = ({ className, ...props }: TimePickerProps) => {
             value={value.format("HH:mm:ss")}
             onBlur={close}
             onClick={toggle}
-            onInputorClick={toggle}
             readOnly
           />
         )}
