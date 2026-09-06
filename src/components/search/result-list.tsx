@@ -88,8 +88,10 @@ const SearchResultList = ({
             )}
             style={itemStyles.style}
             {...(!item.disabled && {
-              onPointerMove: () => onActiveKeyChange(item.key),
-              onClick: () => onSelect(item),
+              onClick: () => {
+                onActiveKeyChange(item.key);
+                onSelect(item);
+              },
             })}
           >
             {isFunction(renderItem) ? (

@@ -6,9 +6,8 @@ exports[`\`Search\` Component snapshot 1`] = `
     class="musae-search styles__container.base"
   >
     <div
-      class="musae-input__inputor musae-search-input theme__body.large theme__body.medium styles__root.base styles__root.filled styles__root.pill x19ap9w9"
-      style="--color-primary: #6750A4; --color-outline: #79747E; --color-error: #B3261E; --color-surface-container-high: #F5EFF7; --color-on-surface-variant: #49454F; --color-on-surface: #1D1B20; --color-on-surface-opacity-38: color-mix(in srgb, var(--color-on-surface) 38%, transparent); --color-on-surface-opacity-12: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-on-surface-opacity-08: color-mix(in srgb, var(--color-on-surface) 8%, transparent);"
-      tabindex="-1"
+      class="musae-search-input theme__body.large styles__field.root styles__field.pill styles__field.enabled"
+      style="--color-primary: #6750A4; --color-surface-container-high: #F5EFF7; --color-on-surface: #1D1B20; --color-on-surface-variant: #49454F; --color-on-surface-opacity-12: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-on-surface-opacity-38: color-mix(in srgb, var(--color-on-surface) 38%, transparent);"
     >
       <span
         class="musae-search-leading styles__leading.base"
@@ -31,9 +30,7 @@ exports[`\`Search\` Component snapshot 1`] = `
         </span>
       </span>
       <input
-        aria-invalid="false"
-        class="musae-input styles__input.base"
-        id="_r_1_"
+        class="musae-search-input__control styles__fieldInput.base"
         value=""
       />
     </div>
@@ -47,8 +44,8 @@ exports[`\`Search\` Component snapshot disabled state 1`] = `
     class="musae-search musae-search--disabled styles__container.base"
   >
     <div
-      class="musae-input__inputor musae-search-input theme__body.large theme__body.medium styles__root.base styles__root.filled styles__root.pill styles__root.filledDisabled styles__root.disabled"
-      style="--color-primary: #6750A4; --color-outline: #79747E; --color-error: #B3261E; --color-surface-container-high: #F5EFF7; --color-on-surface-variant: #49454F; --color-on-surface: #1D1B20; --color-on-surface-opacity-38: color-mix(in srgb, var(--color-on-surface) 38%, transparent); --color-on-surface-opacity-12: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-on-surface-opacity-08: color-mix(in srgb, var(--color-on-surface) 8%, transparent);"
+      class="musae-search-input theme__body.large styles__field.root styles__field.pill styles__field.disabled"
+      style="--color-primary: #6750A4; --color-surface-container-high: #F5EFF7; --color-on-surface: #1D1B20; --color-on-surface-variant: #49454F; --color-on-surface-opacity-12: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-on-surface-opacity-38: color-mix(in srgb, var(--color-on-surface) 38%, transparent);"
     >
       <span
         class="musae-search-leading styles__leading.base"
@@ -71,10 +68,8 @@ exports[`\`Search\` Component snapshot disabled state 1`] = `
         </span>
       </span>
       <input
-        aria-invalid="false"
-        class="musae-input styles__input.base styles__input.disabled"
+        class="musae-search-input__control styles__fieldInput.base styles__fieldInput.disabled"
         disabled=""
-        id="_r_55_"
         placeholder="Search..."
         value=""
       />
@@ -89,9 +84,8 @@ exports[`\`Search\` Component snapshot with all props 1`] = `
     class="musae-search styles__container.base"
   >
     <div
-      class="musae-input__inputor musae-search-input theme__body.large theme__body.medium styles__root.base styles__root.filled styles__root.pill x19ap9w9"
-      style="--color-primary: #6750A4; --color-outline: #79747E; --color-error: #B3261E; --color-surface-container-high: #F5EFF7; --color-on-surface-variant: #49454F; --color-on-surface: #1D1B20; --color-on-surface-opacity-38: color-mix(in srgb, var(--color-on-surface) 38%, transparent); --color-on-surface-opacity-12: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-on-surface-opacity-08: color-mix(in srgb, var(--color-on-surface) 8%, transparent);"
-      tabindex="-1"
+      class="musae-search-input theme__body.large styles__field.root styles__field.pill styles__field.enabled"
+      style="--color-primary: #6750A4; --color-surface-container-high: #F5EFF7; --color-on-surface: #1D1B20; --color-on-surface-variant: #49454F; --color-on-surface-opacity-12: color-mix(in srgb, var(--color-on-surface) 12%, transparent); --color-on-surface-opacity-38: color-mix(in srgb, var(--color-on-surface) 38%, transparent);"
     >
       <span
         class="musae-search-leading styles__leading.base"
@@ -114,9 +108,7 @@ exports[`\`Search\` Component snapshot with all props 1`] = `
         </span>
       </span>
       <input
-        aria-invalid="false"
-        class="musae-input styles__input.base"
-        id="_r_52_"
+        class="musae-search-input__control styles__fieldInput.base"
         placeholder="Search..."
         value="hello"
       />

@@ -34,6 +34,11 @@ const getPropertyInitializer = (
   return property.initializer;
 };
 
+const hasProperty = (objectLiteral: ts.ObjectLiteralExpression, propertyName: string) =>
+  objectLiteral.properties.some(
+    (candidate) => ts.isPropertyAssignment(candidate) && candidate.name.getText() === propertyName,
+  );
+
 const asObjectLiteral = (expression: ts.Expression, label: string): ts.ObjectLiteralExpression => {
   if (!ts.isObjectLiteralExpression(expression)) {
     throw new Error(`${label} is not an object literal`);
@@ -139,6 +144,15 @@ test("Search result StyleX source preserves layout, typography, and state contra
     getPropertyInitializer(container, "base"),
     "container.base",
   );
+  const field = getStyleObject(stylesSource, "field");
+  const fieldRoot = asObjectLiteral(getPropertyInitializer(field, "root"), "field.root");
+  const fieldEnabled = asObjectLiteral(getPropertyInitializer(field, "enabled"), "field.enabled");
+  const fieldActive = asObjectLiteral(
+    getPropertyInitializer(fieldEnabled, '":active"'),
+    "field.enabled:active",
+  );
+  const clear = getStyleObject(stylesSource, "clear");
+  const clearBase = asObjectLiteral(getPropertyInitializer(clear, "base"), "clear.base");
   const view = getStyleObject(stylesSource, "view");
   const modal = asObjectLiteral(getPropertyInitializer(view, "modal"), "view.modal");
   const resultList = getStyleObject(stylesSource, "resultList");
@@ -168,6 +182,19 @@ test("Search result StyleX source preserves layout, typography, and state contra
   );
   expect(getPropertyInitializer(containerBase, "maxWidth").getText(stylesSource)).toBe(
     "searchViewSizes.maxWidth",
+  );
+  expect(getPropertyInitializer(fieldRoot, "height").getText(stylesSource)).toBe("sizes.xxxxlarge");
+  expect(getPropertyInitializer(fieldRoot, "paddingBlock").getText(stylesSource)).toBe(
+    "spacing.xxxxxsmall",
+  );
+  expect(getPropertyInitializer(fieldRoot, "paddingInline").getText(stylesSource)).toBe(
+    "spacing.xxxxxsmall",
+  );
+  expect(hasProperty(fieldEnabled, '":hover:not(:active)"')).toBe(false);
+  expect(hasProperty(clearBase, '":hover"')).toBe(false);
+  expect(hasProperty(item, '":hover"')).toBe(false);
+  expect(getPropertyInitializer(fieldActive, "backgroundColor").getText(stylesSource)).toContain(
+    "OPACITY.medium",
   );
   expect(getPropertyInitializer(modal, "minHeight").getText(stylesSource)).toBe(
     "searchViewSizes.minHeight",

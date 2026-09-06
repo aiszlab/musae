@@ -12,7 +12,6 @@ import { useClassNames } from "../../hooks/use-class-names";
 import { isUndefined, useControlledState, useEvent } from "@aiszlab/relax";
 import type { Key } from "react";
 import type { SearchItem, SearchProps, SearchRef } from "../../types/search";
-import type { InputRef } from "../../types/input";
 import { stringify } from "@aiszlab/relax/class-name";
 import SearchBar from "./bar";
 import SearchView from "./view";
@@ -52,8 +51,8 @@ const Search = forwardRef<SearchRef, SearchProps>(
     },
     ref,
   ) => {
-    const barInputRef = useRef<InputRef>(null);
-    const viewInputRef = useRef<InputRef>(null);
+    const barInputRef = useRef<HTMLInputElement>(null);
+    const viewInputRef = useRef<HTMLInputElement>(null);
     const wasOpenRef = useRef(false);
     const isRestoringBarFocusRef = useRef(false);
     const classNames = useClassNames(CLASS_NAMES);

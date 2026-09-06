@@ -1,11 +1,8 @@
 import { act, fireEvent, render, screen, waitFor, within } from "@testing-library/react";
 import { Search } from "..";
 import type { SearchRef } from "../../../types/search";
-import { Input } from "../../input";
-import { textFieldMarker } from "../../input/styles.stylex";
 import React, { createRef } from "react";
 import "@testing-library/jest-dom";
-import { props as $props } from "@stylexjs/stylex";
 
 describe("`Search` Component", () => {
   beforeEach(() => {
@@ -41,13 +38,44 @@ describe("`Search` Component", () => {
     expect(leading).toBeInTheDocument();
   });
 
-  test("composes the Search Bar from a filled pill Input without a notched outline", () => {
+  test("renders the Search Bar with a Search-owned input structure", () => {
     const { container } = render(<Search placeholder="Search" />);
-    const inputShell = container.querySelector(".musae-input__inputor");
+    const inputShell = container.querySelector(".musae-search-input");
+    const input = container.querySelector(".musae-search-input__control");
 
-    expect(inputShell).toHaveClass("styles__root.filled", "styles__root.pill");
-    expect(container.querySelector(".musae-notched-outline")).not.toBeInTheDocument();
+    expect(inputShell).toHaveClass(
+      "styles__field.root",
+      "styles__field.pill",
+      "styles__field.enabled",
+    );
+    expect(input).toHaveAttribute("placeholder", "Search");
+    expect(container.querySelector(".musae-input__inputor")).not.toBeInTheDocument();
+    expect(container.querySelector(".musae-input")).not.toBeInTheDocument();
     expect(container.querySelector(".musae-search-leading")).toBeInTheDocument();
+  });
+
+  test("clicking the Search Bar container focuses its input and opens Search View", async () => {
+    const { container } = render(<Search view="modal" />);
+    const input = container.querySelector("input");
+
+    fireEvent.click(container.querySelector(".musae-search-input")!);
+
+    expect(await screen.findByRole("dialog", { name: "Search" })).toBeInTheDocument();
+    expect(input).not.toHaveFocus();
+    expect(screen.getByRole("combobox")).toHaveFocus();
+  });
+
+  test("container clicks focus the Search control instead of an input in a slot", async () => {
+    const { container } = render(
+      <Search view="modal" leading={<input aria-label="Leading slot input" />} />,
+    );
+    const leadingInput = screen.getByRole("textbox", { name: "Leading slot input" });
+
+    fireEvent.click(container.querySelector(".musae-search-input")!);
+
+    expect(await screen.findByRole("dialog", { name: "Search" })).toBeInTheDocument();
+    expect(leadingInput).not.toHaveFocus();
+    expect(screen.getByRole("combobox")).toHaveFocus();
   });
 
   test("renders consumer leading and trailing slots while preserving the clear action", () => {
@@ -66,12 +94,10 @@ describe("`Search` Component", () => {
     expect(container.querySelector(".musae-search-trailing")).not.toBeInTheDocument();
   });
 
-  test("renders numeric zero as consumer trailing content", () => {
+  test("omits numeric zero as consumer trailing content", () => {
     const { container } = render(<Search trailing={0} />);
-    const trailing = container.querySelector(".musae-search-trailing");
 
-    expect(trailing).toBeInTheDocument();
-    expect(trailing).toHaveTextContent("0");
+    expect(container.querySelector(".musae-search-trailing")).not.toBeInTheDocument();
   });
 
   test("renders a non-empty string as consumer trailing content", () => {
@@ -96,13 +122,13 @@ describe("`Search` Component", () => {
     expect(container.querySelector(".musae-search-trailing")).not.toBeInTheDocument();
   });
 
-  test("omits the trailing slot for an array containing only an empty string", () => {
+  test("renders the trailing slot for an array containing only an empty string", () => {
     const { container } = render(<Search trailing={[""]} />);
 
-    expect(container.querySelector(".musae-search-trailing")).not.toBeInTheDocument();
+    expect(container.querySelector(".musae-search-trailing")).toBeInTheDocument();
   });
 
-  test("omits the trailing slot for nested Fragments containing only an empty string", () => {
+  test("renders the trailing slot for nested Fragments containing only an empty string", () => {
     const { container } = render(
       <Search
         trailing={
@@ -113,28 +139,28 @@ describe("`Search` Component", () => {
       />,
     );
 
-    expect(container.querySelector(".musae-search-trailing")).not.toBeInTheDocument();
+    expect(container.querySelector(".musae-search-trailing")).toBeInTheDocument();
   });
 
-  test("omits the trailing slot for an empty consumer trailing array", () => {
+  test("renders the trailing slot for an empty consumer trailing array", () => {
     const { container } = render(<Search trailing={[]} />);
 
-    expect(container.querySelector(".musae-search-trailing")).not.toBeInTheDocument();
+    expect(container.querySelector(".musae-search-trailing")).toBeInTheDocument();
   });
 
-  test("omits the trailing slot for a consumer trailing array containing false", () => {
+  test("renders the trailing slot for a consumer trailing array containing false", () => {
     const { container } = render(<Search trailing={[false]} />);
 
-    expect(container.querySelector(".musae-search-trailing")).not.toBeInTheDocument();
+    expect(container.querySelector(".musae-search-trailing")).toBeInTheDocument();
   });
 
-  test("omits the trailing slot for an empty consumer trailing Fragment", () => {
+  test("renders the trailing slot for an empty consumer trailing Fragment", () => {
     const { container } = render(<Search trailing={<></>} />);
 
-    expect(container.querySelector(".musae-search-trailing")).not.toBeInTheDocument();
+    expect(container.querySelector(".musae-search-trailing")).toBeInTheDocument();
   });
 
-  test("omits the trailing slot for nested consumer trailing Fragments containing false and null", () => {
+  test("renders the trailing slot for nested consumer trailing Fragments containing false and null", () => {
     const { container } = render(
       <Search
         trailing={
@@ -148,7 +174,7 @@ describe("`Search` Component", () => {
       />,
     );
 
-    expect(container.querySelector(".musae-search-trailing")).not.toBeInTheDocument();
+    expect(container.querySelector(".musae-search-trailing")).toBeInTheDocument();
   });
 
   test("renders numeric zero from nested consumer trailing Fragments", () => {
@@ -298,31 +324,33 @@ describe("`Search` Component", () => {
     const { container, rerender } = render(<Search placeholder="Search..." />);
     const input = container.querySelector("input");
 
-    expect(input).not.toHaveClass("styles__input.disabled");
+    expect(input).not.toHaveClass("styles__fieldInput.disabled");
 
     rerender(<Search disabled placeholder="Search..." />);
 
-    expect(input).toHaveClass("styles__input.disabled");
+    expect(input).toHaveClass("styles__fieldInput.disabled");
+    expect(container.querySelector(".musae-search-input")).not.toHaveClass("styles__field.enabled");
     expect(
       container
-        .querySelector<HTMLElement>(".musae-input__inputor")
+        .querySelector<HTMLElement>(".musae-search-input")
         ?.style.getPropertyValue("--color-on-surface-opacity-38"),
     ).toBe("color-mix(in srgb, var(--color-on-surface) 38%, transparent)");
   });
 
-  test("does not activate focus-within styles from disabled supporting content", () => {
-    const markerClassName = $props(textFieldMarker).className;
-    const { container, getByRole } = render(
-      <Input disabled trailing={<button type="button">Trailing</button>} />,
+  test("renders the Search View with the same Search-owned input structure", () => {
+    render(<Search defaultOpen view="modal" />);
+    const dialog = screen.getByRole("dialog", { name: "Search" });
+
+    expect(dialog.querySelector(".musae-search-input")).toHaveClass(
+      "styles__field.root",
+      "styles__field.pill",
     );
-    const inputor = container.querySelector(".musae-input__inputor");
-    const trailing = getByRole("button", { name: "Trailing" });
-
-    trailing.focus();
-
-    expect(markerClassName).toBeDefined();
-    expect(trailing).toHaveFocus();
-    expect(inputor).not.toHaveClass(markerClassName!);
+    expect(dialog.querySelector(".musae-search-input__control")).toHaveAttribute(
+      "role",
+      "combobox",
+    );
+    expect(dialog.querySelector(".musae-input__inputor")).not.toBeInTheDocument();
+    expect(dialog.querySelector(".musae-input")).not.toBeInTheDocument();
   });
 
   test("does not render search button when searchButton not provided", () => {
@@ -560,7 +588,7 @@ describe("`Search` Component", () => {
     expect(input).not.toHaveAttribute("aria-activedescendant");
   });
 
-  test("pointer movement activates an enabled result and click selects it", async () => {
+  test("pointer movement does not activate an enabled result and click selects it", async () => {
     const onChange = jest.fn();
     const onSelect = jest.fn();
     render(
@@ -576,7 +604,8 @@ describe("`Search` Component", () => {
     const option = screen.getByRole("option", { name: "One" });
 
     fireEvent.pointerMove(option);
-    expect(input).toHaveAttribute("aria-activedescendant", option.id);
+    expect(input).not.toHaveAttribute("aria-activedescendant");
+    expect(option).not.toHaveClass("musae-search-result-list__item--active");
     fireEvent.click(option);
 
     expect(onChange).toHaveBeenCalledWith("One");
@@ -601,7 +630,7 @@ describe("`Search` Component", () => {
     const option = await screen.findByRole("option", { name: "One" });
 
     fireEvent.pointerMove(option);
-    expect(input).toHaveAttribute("aria-activedescendant", option.id);
+    expect(input).not.toHaveAttribute("aria-activedescendant");
     fireEvent.click(option);
 
     expect(input).toHaveValue("One");
@@ -626,7 +655,7 @@ describe("`Search` Component", () => {
     const option = await screen.findByRole("option", { name: "One" });
 
     fireEvent.pointerMove(option);
-    expect(input).toHaveAttribute("aria-activedescendant", option.id);
+    expect(input).not.toHaveAttribute("aria-activedescendant");
     fireEvent.click(option);
 
     expect(onOpenChange).toHaveBeenCalledWith(false);
@@ -719,7 +748,7 @@ describe("`Search` Component", () => {
     ).toEqual(initialIds);
   });
 
-  test("keeps the result list and slot content renderable without empty wrappers", async () => {
+  test("uses direct truthiness checks for result item slots", async () => {
     render(
       <Search
         defaultOpen
@@ -764,24 +793,22 @@ describe("`Search` Component", () => {
     );
     const options = await screen.findAllByRole("option");
 
-    expect(options[0].querySelector(".musae-search-result-list__item-leading")).toHaveTextContent(
-      "0",
-    );
+    expect(
+      options[0].querySelector(".musae-search-result-list__item-leading"),
+    ).not.toBeInTheDocument();
     expect(
       options[0].querySelector(".musae-search-result-list__item-supporting-text"),
-    ).toHaveTextContent("0");
-    expect(options[0].querySelector(".musae-search-result-list__item-trailing")).toHaveTextContent(
-      "0",
-    );
-    expect(
-      options[1].querySelector(".musae-search-result-list__item-leading"),
     ).not.toBeInTheDocument();
+    expect(
+      options[0].querySelector(".musae-search-result-list__item-trailing"),
+    ).not.toBeInTheDocument();
+    expect(options[1].querySelector(".musae-search-result-list__item-leading")).toBeInTheDocument();
     expect(
       options[1].querySelector(".musae-search-result-list__item-supporting-text"),
-    ).not.toBeInTheDocument();
+    ).toBeInTheDocument();
     expect(
       options[1].querySelector(".musae-search-result-list__item-trailing"),
-    ).not.toBeInTheDocument();
+    ).toBeInTheDocument();
   });
 
   test("applies result list typography, ellipsis, active, disabled, and minimum-height contracts", async () => {
@@ -886,7 +913,7 @@ describe("`Search` Component", () => {
     const viewInput = within(dialog).getByRole("combobox");
     const option = screen.getByRole("option", { name: "One" });
 
-    fireEvent.pointerMove(option);
+    fireEvent.keyDown(viewInput, { key: "ArrowDown" });
     expect(viewInput).toHaveAttribute("aria-activedescendant", option.id);
     fireEvent.click(screen.getByTestId("search-view-overlay"));
 

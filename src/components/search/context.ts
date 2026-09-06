@@ -5,6 +5,7 @@
 export const CLASS_NAMES = {
   search: "search",
   searchInput: "search-input",
+  searchInputControl: "search-input__control",
   searchLeading: "search-leading",
   searchTrailing: "search-trailing",
   searchClear: "search-clear",

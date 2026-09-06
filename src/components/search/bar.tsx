@@ -1,16 +1,14 @@
 import { Button } from "../button";
 import IconSearch from "../icon/icons/action/search";
 import { IconClose } from "../icon/icons";
-import { Input } from "../input";
-import { $body } from "../theme/theme";
 import { props as $props } from "@stylexjs/stylex";
 import { stringify } from "@aiszlab/relax/class-name";
 import React from "react";
 import type { FocusEventHandler, KeyboardEventHandler, Ref } from "react";
 import { useClassNames } from "../../hooks/use-class-names";
-import type { InputRef } from "../../types/input";
 import type { SearchProps } from "../../types/search";
 import { CLASS_NAMES } from "./context";
+import SearchField from "./field";
 import styles from "./styles";
 
 /**
@@ -21,7 +19,7 @@ export type SearchBarProps = Pick<
   SearchProps,
   "clearable" | "disabled" | "leading" | "placeholder" | "searchButton" | "trailing"
 > & {
-  inputRef: Ref<InputRef>;
+  inputRef: Ref<HTMLInputElement>;
   value: string;
   onChange: (value: string) => void;
   onClear: () => void;
@@ -48,7 +46,6 @@ const SearchBar = ({
   const classNames = useClassNames(CLASS_NAMES);
   const hasValue = value.length > 0;
   const styled = {
-    input: $props($body.large),
     leading: $props(styles.leading.base),
     trailing: $props(styles.trailing.base),
     clear: $props(styles.clear.base),
@@ -88,11 +85,8 @@ const SearchBar = ({
   const hasTrailing = !!clearAction || hasConsumerTrailing || !!searchButtonAction;
 
   return (
-    <Input
-      ref={inputRef}
-      className={stringify(classNames.searchInput, styled.input.className)}
-      variant="filled"
-      shaped
+    <SearchField
+      inputRef={inputRef}
       value={value}
       placeholder={placeholder}
       disabled={disabled}

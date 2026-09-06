@@ -1,5 +1,12 @@
 import { create as $create } from "@stylexjs/stylex";
-import { opacity, positions, searchViewSizes, sizes, spacing } from "../theme/tokens.stylex";
+import {
+  OPACITY,
+  opacity,
+  positions,
+  searchViewSizes,
+  sizes,
+  spacing,
+} from "../theme/tokens.stylex";
 import { ThemeColorVariable } from "../../hooks/use-theme-color-vars";
 
 const container = $create({
@@ -9,6 +16,74 @@ const container = $create({
     width: sizes.full,
     minWidth: searchViewSizes.minWidth,
     maxWidth: searchViewSizes.maxWidth,
+  },
+});
+
+const field = $create({
+  root: {
+    position: "relative",
+    display: "flex",
+    alignItems: "center",
+    boxSizing: "border-box",
+    width: sizes.full,
+    minWidth: sizes.none,
+    height: sizes.xxxxlarge,
+    margin: spacing.none,
+    paddingBlock: spacing.xxxxxsmall,
+    paddingInline: spacing.xxxxxsmall,
+    backgroundColor: "var(--color-surface-container-high)" satisfies ThemeColorVariable,
+    color: "var(--color-on-surface-variant)" satisfies ThemeColorVariable,
+    cursor: "text",
+  },
+
+  enabled: {
+    ":active": {
+      backgroundColor: `color-mix(in srgb, var(--color-on-surface) ${OPACITY.medium * 100}%, var(--color-surface-container-high))`,
+    },
+  },
+
+  pill: {
+    borderRadius: sizes.infinity,
+  },
+
+  standard: {
+    height: sizes.full,
+    borderRadius: sizes.none,
+  },
+
+  disabled: {
+    backgroundColor: "var(--color-on-surface-opacity-12)" satisfies ThemeColorVariable,
+    color: "var(--color-on-surface-opacity-38)" satisfies ThemeColorVariable,
+    cursor: "default",
+  },
+});
+
+const fieldInput = $create({
+  base: {
+    flex: 1,
+    minWidth: sizes.none,
+    height: sizes.auto,
+    margin: spacing.none,
+    padding: spacing.none,
+    borderWidth: sizes.none,
+    outline: sizes.none,
+    backgroundColor: "transparent",
+    color: "var(--color-on-surface)" satisfies ThemeColorVariable,
+    caretColor: "var(--color-primary)" satisfies ThemeColorVariable,
+    fontSize: "inherit",
+    lineHeight: "inherit",
+
+    "::placeholder": {
+      color: "var(--color-on-surface-variant)" satisfies ThemeColorVariable,
+    },
+  },
+
+  disabled: {
+    color: "var(--color-on-surface-opacity-38)" satisfies ThemeColorVariable,
+
+    "::placeholder": {
+      color: "var(--color-on-surface-opacity-38)" satisfies ThemeColorVariable,
+    },
   },
 });
 
@@ -50,12 +125,6 @@ const clear = $create({
     cursor: "pointer",
     borderRadius: sizes.infinity,
     padding: spacing.xxxxxsmall,
-
-    ":hover": {
-      "@media (hover: hover)": {
-        backgroundColor: "var(--color-on-surface-opacity-08)" satisfies ThemeColorVariable,
-      },
-    },
   },
 });
 
@@ -168,12 +237,6 @@ const resultList = $create({
     gap: spacing.large,
     color: "var(--color-on-surface-variant)" satisfies ThemeColorVariable,
     cursor: "pointer",
-
-    ":hover": {
-      "@media (hover: hover)": {
-        backgroundColor: "var(--color-on-surface-opacity-08)" satisfies ThemeColorVariable,
-      },
-    },
   },
 
   activeItem: {
@@ -214,6 +277,16 @@ const resultList = $create({
   },
 });
 
-const styles = { container, leading, trailing, clear, searchButton, view, resultList };
+const styles = {
+  container,
+  field,
+  fieldInput,
+  leading,
+  trailing,
+  clear,
+  searchButton,
+  view,
+  resultList,
+};
 
 export default styles;
