@@ -1,9 +1,8 @@
 import { createPortal } from "react-dom";
 import type { PortalProps } from "../../types/portal";
 import { type FC, useEffect, useState } from "react";
-import { isDomUsable } from "@aiszlab/relax";
+import { isDomUsable, useScrollLocker } from "@aiszlab/relax";
 import { useContainer } from "../../hooks/use-container";
-import { useModalScrollLock } from "../../hooks/use-modal-scroll-lock";
 
 const Portal: FC<PortalProps> = ({
   children,
@@ -23,7 +22,7 @@ const Portal: FC<PortalProps> = ({
     }
   }, [destroyable, open]);
 
-  useModalScrollLock(isDomUsable() && modal && open);
+  useScrollLocker(isDomUsable() && modal && open);
 
   if (!(shouldRender || open)) return null;
   if (!_container) return null;
