@@ -44,6 +44,7 @@ const Input = forwardRef<InputRef, InputProps>(
     const inputRef = useRef<HTMLInputElement>(null);
     const classNames = useClassNames(CLASS_NAMES);
     const hasPlaceholder = !!inputProps.placeholder;
+    const hasLabel = !!label;
     const [id] = useIdentity();
 
     const _themeColorVars = useThemeColorVars([
@@ -128,8 +129,8 @@ const Input = forwardRef<InputRef, InputProps>(
       outlineNotch: $props(
         styles.outlineNotch.base,
         $body.small,
-        !!label && styles.outlineNotch.withLabel,
-        hasPlaceholder && !!label && styles.outlineNotch.withLabelAndPlaceholder,
+        hasLabel && styles.outlineNotch.withLabel,
+        hasLabel && hasPlaceholder && styles.outlineNotch.withLabelAndPlaceholder,
         disabled && styles.outlineNotch.disabled,
         invalid && styles.outlineNotch.invalid,
       ),
@@ -196,16 +197,16 @@ const Input = forwardRef<InputRef, InputProps>(
           {...focusProps}
         />
 
-        {hasNotchedOutline && (
-          <div
-            className={stringify(classNames.outline, styled.outline.className)}
-            style={styled.outline.style}
-          >
+        <div
+          className={stringify(classNames.outline, styled.outline.className)}
+          style={styled.outline.style}
+        >
+          {hasLabel && (
             <label htmlFor={id} className={stringify(styled.floatingLabel.className)}>
               {label}
             </label>
-          </div>
-        )}
+          )}
+        </div>
 
         {/* trailing */}
         {!!trailing && (

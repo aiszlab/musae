@@ -30,10 +30,6 @@ const root = $create({
   disabled: {
     color: "var(--color-on-surface-opacity-38)" satisfies ThemeColorVariable,
   },
-
-  filledDisabled: {
-    backgroundColor: "var(--color-on-surface-opacity-12)" satisfies ThemeColorVariable,
-  },
 });
 
 const input = $create({
