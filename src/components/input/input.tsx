@@ -23,7 +23,7 @@ const Input = forwardRef<InputRef, InputProps>(
       style,
       type,
       variant = "outlined",
-      shape = "standard",
+      shaped = false,
       invalid = false,
       disabled,
       maxLength,
@@ -44,7 +44,6 @@ const Input = forwardRef<InputRef, InputProps>(
     const inputRef = useRef<HTMLInputElement>(null);
     const classNames = useClassNames(CLASS_NAMES);
     const hasPlaceholder = !!inputProps.placeholder;
-    const hasNotchedOutline = variant !== "filled";
     const [id] = useIdentity();
 
     const _themeColorVars = useThemeColorVars([
@@ -108,34 +107,43 @@ const Input = forwardRef<InputRef, InputProps>(
       root: $props(
         $body.medium,
         styles.root.base,
-        variant === "filled" && styles.root.filled,
-        shape === "pill" && styles.root.pill,
-        invalid && styles.root.invalid,
-        variant === "filled" && disabled && styles.root.filledDisabled,
         disabled && styles.root.disabled,
         !disabled && textFieldMarker,
       ),
-      input: $props(styles.input.base, disabled && styles.input.disabled),
+      input: $props(
+        styles.input.base,
+        !!leading && styles.input.hasLeading,
+        !!trailing && styles.input.hasTrailing,
+        disabled && styles.input.disabled,
+      ),
+      leading: $props(styles.leading.base),
+      trailing: $props(styles.trailing.base),
       outline: $props(styles.outline.base),
       outlineLeading: $props(
         styles.outlineLeading.base,
         disabled && styles.outlineLeading.disabled,
+        invalid && styles.outlineLeading.invalid,
+        shaped && styles.outlineLeading.shaped,
       ),
       outlineNotch: $props(
         styles.outlineNotch.base,
         $body.small,
+        !!label && styles.outlineNotch.withLabel,
+        hasPlaceholder && !!label && styles.outlineNotch.withLabelAndPlaceholder,
         disabled && styles.outlineNotch.disabled,
-        !!label && styles.outlineNotch.labeled,
-        hasPlaceholder && !!label && styles.outlineNotch.labeledAndHasPlaceholder,
+        invalid && styles.outlineNotch.invalid,
       ),
       outlineTrailing: $props(
         styles.outlineTrailing.base,
         disabled && styles.outlineTrailing.disabled,
+        invalid && styles.outlineTrailing.invalid,
+        shaped && styles.outlineTrailing.shaped,
       ),
       floatingLabel: $props(
         styles.floatingLabel.base,
         hasPlaceholder && styles.floatingLabel.placeholder,
         disabled && styles.floatingLabel.disabled,
+        invalid && styles.floatingLabel.invalid,
       ),
     };
 
@@ -162,7 +170,14 @@ const Input = forwardRef<InputRef, InputProps>(
         })}
       >
         {/* leading */}
-        {leading}
+        {!!leading && (
+          <div
+            className={stringify(classNames.leading, styled.leading.className)}
+            style={styled.leading.style}
+          >
+            {leading}
+          </div>
+        )}
 
         {/* input */}
         <input
@@ -186,27 +201,21 @@ const Input = forwardRef<InputRef, InputProps>(
             className={stringify(classNames.outline, styled.outline.className)}
             style={styled.outline.style}
           >
-            <div
-              className={stringify(classNames.outlineLeading, styled.outlineLeading.className)}
-              style={styled.outlineLeading.style}
-            />
-            <div
-              className={stringify(classNames.outlineNotch, styled.outlineNotch.className)}
-              style={styled.outlineNotch.style}
-            >
-              <label htmlFor={id} className={stringify(styled.floatingLabel.className)}>
-                {label}
-              </label>
-            </div>
-            <div
-              className={stringify(classNames.outlineTrailing, styled.outlineTrailing.className)}
-              style={styled.outlineTrailing.style}
-            />
+            <label htmlFor={id} className={stringify(styled.floatingLabel.className)}>
+              {label}
+            </label>
           </div>
         )}
 
         {/* trailing */}
-        {trailing}
+        {!!trailing && (
+          <div
+            className={stringify(classNames.trailing, styled.trailing.className)}
+            style={styled.trailing.style}
+          >
+            {trailing}
+          </div>
+        )}
       </div>
     );
   },

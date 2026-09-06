@@ -5,6 +5,8 @@
 export const CLASS_NAMES = {
   inputor: "input__inputor",
   input: "input",
+  leading: "input__leading",
+  trailing: "input__trailing",
   focused: "input__inputor--focused",
   invalid: "input__inputor--invalid",
 

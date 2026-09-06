@@ -24,34 +24,7 @@ const root = $create({
     // layout
     margin: spacing.none,
     paddingBlock: spacing.xxxxxsmall,
-    paddingInline: spacing.medium,
-  },
-
-  filled: {
-    backgroundColor: "var(--color-surface-container-high)" satisfies ThemeColorVariable,
-    boxShadow: "none",
-    paddingBlock: spacing.xxxxxsmall,
-    paddingInline: spacing.xxxxxsmall,
-    ":hover:not(:active)": {
-      "@media (hover: hover)": {
-        backgroundColor: `color-mix(in srgb, var(--color-on-surface) calc(${opacity.thin} * 100%), var(--color-surface-container-high))`,
-      },
-    },
-    ":active": {
-      backgroundColor: `color-mix(in srgb, var(--color-on-surface) calc(${opacity.medium} * 100%), var(--color-surface-container-high))`,
-    },
-  },
-
-  pill: {
-    borderRadius: sizes.infinity,
-  },
-
-  invalid: {
-    boxShadow: `0px 0px 0px ${sizes.xxxxxxxxxxsmall} var(--color-error) inset`,
-
-    ":focus-within": {
-      boxShadow: null,
-    },
+    paddingInline: spacing.none,
   },
 
   disabled: {
@@ -68,19 +41,52 @@ const input = $create({
     // reset input_styles
     lineHeight: "inherit",
     fontSize: "inherit",
-    padding: spacing.none,
+    paddingBlock: spacing.none,
+    paddingInline: spacing.large,
     borderWidth: sizes.none,
     backgroundColor: "transparent",
     outline: sizes.none,
     minWidth: sizes.none,
     height: sizes.auto,
     flex: 1,
+
+    "::placeholder": {
+      color: "var(--color-on-surface-variant)" satisfies ThemeColorVariable,
+    },
+  },
+
+  hasLeading: {
+    paddingInlineStart: spacing.xxxxxxxxlarge,
+  },
+
+  hasTrailing: {
+    paddingInlineEnd: spacing.xxxxxxxxlarge,
   },
 
   disabled: {
     "::placeholder": {
       color: "var(--color-on-surface-opacity-38)" satisfies ThemeColorVariable,
     },
+  },
+});
+
+const leading = $create({
+  base: {
+    position: "absolute",
+    insetBlock: spacing.none,
+    insetInlineStart: spacing.large,
+    display: "inline-flex",
+    alignItems: "center",
+  },
+});
+
+const trailing = $create({
+  base: {
+    position: "absolute",
+    insetBlock: spacing.none,
+    insetInlineEnd: spacing.large,
+    display: "inline-flex",
+    alignItems: "center",
   },
 });
 
@@ -123,6 +129,19 @@ const outlineLeading = $create({
   disabled: {
     borderColor: "var(--color-on-surface-opacity-12)" satisfies ThemeColorVariable,
   },
+
+  invalid: {
+    borderColor: "var(--color-error)" satisfies ThemeColorVariable,
+
+    [$when.ancestor(":focus-within", textFieldMarker)]: {
+      borderColor: "var(--color-error)" satisfies ThemeColorVariable,
+    },
+  },
+
+  shaped: {
+    borderStartStartRadius: sizes.infinity,
+    borderEndStartRadius: sizes.infinity,
+  },
 });
 
 const outlineTrailing = $create({
@@ -155,6 +174,19 @@ const outlineTrailing = $create({
   disabled: {
     borderColor: "var(--color-on-surface-opacity-12)" satisfies ThemeColorVariable,
   },
+
+  invalid: {
+    borderColor: "var(--color-error)" satisfies ThemeColorVariable,
+
+    [$when.ancestor(":focus-within", textFieldMarker)]: {
+      borderColor: "var(--color-error)" satisfies ThemeColorVariable,
+    },
+  },
+
+  shaped: {
+    borderStartEndRadius: sizes.infinity,
+    borderEndEndRadius: sizes.infinity,
+  },
 });
 
 const outlineNotch = $create({
@@ -182,19 +214,27 @@ const outlineNotch = $create({
     },
   },
 
-  labeled: {
+  withLabel: {
     [$when.ancestor(":focus-within", textFieldMarker)]: {
       borderBlockStartWidth: sizes.smallest,
       borderBlockStartColor: "transparent",
     },
   },
 
-  labeledAndHasPlaceholder: {
+  withLabelAndPlaceholder: {
     borderBlockStartColor: "transparent",
   },
 
   disabled: {
     borderColor: "var(--color-on-surface-opacity-12)" satisfies ThemeColorVariable,
+  },
+
+  invalid: {
+    borderColor: "var(--color-error)" satisfies ThemeColorVariable,
+
+    [$when.ancestor(":focus-within", textFieldMarker)]: {
+      borderColor: "var(--color-error)" satisfies ThemeColorVariable,
+    },
   },
 });
 
@@ -222,6 +262,14 @@ const floatingLabel = $create({
     transform: "scale(1)",
   },
 
+  invalid: {
+    color: "var(--color-error)" satisfies ThemeColorVariable,
+
+    [$when.ancestor(":focus-within", textFieldMarker)]: {
+      color: "var(--color-error)" satisfies ThemeColorVariable,
+    },
+  },
+
   disabled: {
     color: "var(--color-on-surface-opacity-38)" satisfies ThemeColorVariable,
   },
@@ -230,6 +278,8 @@ const floatingLabel = $create({
 const styles = {
   root,
   input,
+  leading,
+  trailing,
   outline,
   outlineLeading,
   outlineNotch,

@@ -1,4 +1,4 @@
-import type { CSSProperties, InputHTMLAttributes, MouseEventHandler, ReactNode } from "react";
+import type { InputHTMLAttributes, MouseEventHandler, ReactNode } from "react";
 import type { ComponentProps } from "./element";
 import type { VirtualElement } from "@floating-ui/dom";
 
@@ -6,13 +6,7 @@ import type { VirtualElement } from "@floating-ui/dom";
  * @zh 输入框变体
  * @en Input variant
  */
-export type Variant = "outlined" | "filled" | "standard";
-
-/**
- * @zh 输入框形状
- * @en Input shape
- */
-export type InputShape = "standard" | "pill";
+export type Variant = "outlined" | "filled";
 
 /**
  * @zh 输入框组件属性
@@ -66,11 +60,9 @@ export interface InputProps
   variant?: Variant;
 
   /**
-   * @zh 输入框形状
-   * @en Shape of the input shell
-   * @default "standard"
+   * @default false
    */
-  shape?: InputShape;
+  shaped?: boolean;
 
   /**
    * @zh 前置节点

@@ -1,4 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import React from "react";
+import IconAccountCircle from "../dist/components/icon/icons/action/account-circle";
+import IconClose from "../dist/components/icon/icons/navigation/close";
 import { Input } from "../dist";
 
 const meta: Meta<typeof Input> = {
@@ -8,6 +11,10 @@ const meta: Meta<typeof Input> = {
   tags: ["autodocs"],
   argTypes: {
     disabled: {
+      type: "boolean",
+      table: { defaultValue: { summary: "false" } },
+    },
+    invalid: {
       type: "boolean",
       table: { defaultValue: { summary: "false" } },
     },
@@ -38,17 +45,31 @@ export const WithLabelAndPlaceholder: Story = {
   },
 };
 
-/** Filled input */
-export const Filled: Story = { args: { variant: "filled", placeholder: "Search" } };
+export const WithLeading: Story = {
+  args: {
+    leading: <IconAccountCircle />,
+    placeholder: "请输入内容",
+  },
+};
 
-/** Filled pill input */
-export const FilledPill: Story = {
-  args: { variant: "filled", shape: "pill", placeholder: "Search" },
+export const WithTrailing: Story = {
+  args: {
+    trailing: <IconClose />,
+    placeholder: "请输入内容",
+  },
 };
 
 export const Disabled: Story = {
   args: {
     disabled: true,
     placeholder: "不可编辑状态",
+  },
+};
+
+export const Invalid: Story = {
+  args: {
+    invalid: true,
+    label: "标签",
+    placeholder: "请输入内容",
   },
 };
