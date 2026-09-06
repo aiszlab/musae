@@ -27,21 +27,3 @@ export const toReactNodeText = (children: ReactNode): Partialable<string> => {
     }
   }
 };
-
-/**
- * @zh 判断节点是否包含可渲染内容
- * @en Determine whether a node contains renderable content
- */
-export const hasRenderableContent = (content: ReactNode): boolean => {
-  if (isNull(content) || isUndefined(content) || isBoolean(content) || content === "") {
-    return false;
-  }
-
-  return Children.toArray(content).some((child) => {
-    if (isValidElement<{ children?: ReactNode }>(child) && child.type === Fragment) {
-      return hasRenderableContent(child.props.children);
-    }
-
-    return child !== "";
-  });
-};

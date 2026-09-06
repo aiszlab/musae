@@ -10,7 +10,6 @@ import type { FocusEventHandler, KeyboardEventHandler, Ref } from "react";
 import { useClassNames } from "../../hooks/use-class-names";
 import type { InputRef } from "../../types/input";
 import type { SearchProps } from "../../types/search";
-import { hasRenderableContent } from "../../utils/react";
 import { CLASS_NAMES } from "./context";
 import styles from "./styles";
 
@@ -85,7 +84,7 @@ const SearchBar = ({
     </Button>
   );
 
-  const hasConsumerTrailing = hasRenderableContent(trailing);
+  const hasConsumerTrailing = !!trailing;
   const hasTrailing = !!clearAction || hasConsumerTrailing || !!searchButtonAction;
 
   return (
@@ -93,7 +92,7 @@ const SearchBar = ({
       ref={inputRef}
       className={stringify(classNames.searchInput, styled.input.className)}
       variant="filled"
-      shape="pill"
+      shaped
       value={value}
       placeholder={placeholder}
       disabled={disabled}

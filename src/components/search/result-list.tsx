@@ -6,7 +6,6 @@ import { stringify } from "@aiszlab/relax/class-name";
 import { useClassNames } from "../../hooks/use-class-names";
 import { useThemeColorVars } from "../../hooks/use-theme-color-vars";
 import type { SearchItem, SearchProps } from "../../types/search";
-import { hasRenderableContent } from "../../utils/react";
 import { $body } from "../theme/theme";
 import { OPACITY } from "../theme/tokens.stylex";
 import { CLASS_NAMES } from "./context";
@@ -62,9 +61,10 @@ const SearchResultList = ({
       {items.map((item) => {
         const isActive = !isUndefined(activeKey) && item.key === activeKey;
         const itemContent = isFunction(renderItem) ? renderItem(item) : undefined;
-        const hasLeading = hasRenderableContent(item.leading);
-        const hasSupportingText = hasRenderableContent(item.supportingText);
-        const hasTrailing = hasRenderableContent(item.trailing);
+        const hasLeading = !!item.leading;
+        const hasSupportingText = !!item.supportingText;
+        const hasTrailing = !!item.trailing;
+
         const itemStyles = $props(
           styles.resultList.item,
           isActive && styles.resultList.activeItem,
