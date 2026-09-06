@@ -6,8 +6,8 @@ interface ElementProps {
 }
 
 /**
- * @description
- * get the string of component children
+ * @zh 获取组件子节点中的文本
+ * @en Get text from component children
  */
 export const toReactNodeText = (children: ReactNode): Partialable<string> => {
   const _children = Children.toArray(children);

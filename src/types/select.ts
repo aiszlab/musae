@@ -1,4 +1,4 @@
-import type { Key, MouseEventHandler, ReactNode } from "react";
+import type { Key, ReactNode } from "react";
 import type { Option } from "./option";
 import type { MenuItem, MenuProps } from "./menu";
 import type { ComponentProps } from "./element";
@@ -164,7 +164,7 @@ export type SelectorProps = ComponentProps &
      * @zh 点击选择器时的处理函数
      * @en Handler invoked when the selector is clicked
      */
-    onClick?: MouseEventHandler<HTMLElement>;
+    onClick?: InputProps["onClick"];
   };
 
 /**

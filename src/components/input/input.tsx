@@ -1,6 +1,6 @@
 import styles, { textFieldMarker } from "./styles.stylex";
 import React, { forwardRef, useRef, useImperativeHandle } from "react";
-import { useInputEvents, useInputorEvents } from "./hooks";
+import { useInputEvents } from "./hooks";
 import type { InputProps, InputRef } from "../../types/input";
 import { useControlledState, useFocus, useIdentity } from "@aiszlab/relax";
 import { props as $props } from "@stylexjs/stylex";
@@ -10,7 +10,6 @@ import { stringify } from "@aiszlab/relax/class-name";
 import { CLASS_NAMES } from "./context";
 import { $body } from "../theme/theme";
 import { useThemeColorVars } from "../../hooks/use-theme-color-vars";
-import { label } from "motion/react-client";
 
 /**
  * @author murukal
@@ -23,6 +22,8 @@ const Input = forwardRef<InputRef, InputProps>(
       className,
       style,
       type,
+      variant = "outlined",
+      shaped = false,
       invalid = false,
       disabled,
       maxLength,
@@ -33,7 +34,6 @@ const Input = forwardRef<InputRef, InputProps>(
       onFocus,
       leading,
       trailing,
-      onInputorClick,
       label,
       ...inputProps
     },
@@ -43,12 +43,14 @@ const Input = forwardRef<InputRef, InputProps>(
     const inputRef = useRef<HTMLInputElement>(null);
     const classNames = useClassNames(CLASS_NAMES);
     const hasPlaceholder = !!inputProps.placeholder;
+    const hasLabel = !!label;
     const [id] = useIdentity();
 
     const _themeColorVars = useThemeColorVars([
       "primary",
       "outline",
       "error",
+      "surface-container-high",
       "on-surface-variant",
       ["on-surface", OPACITY.thickest],
       ["on-surface", OPACITY.medium],
@@ -89,11 +91,6 @@ const Input = forwardRef<InputRef, InputProps>(
       onClick,
       onFocus,
     });
-    // inputor events
-    const inputorEvents = useInputorEvents({
-      inputRef,
-      onClick: disabled ? undefined : onInputorClick,
-    });
 
     // is focused
     const [isFocused, focusProps] = useFocus({
@@ -121,12 +118,13 @@ const Input = forwardRef<InputRef, InputProps>(
         styles.outlineLeading.base,
         disabled && styles.outlineLeading.disabled,
         invalid && styles.outlineLeading.invalid,
+        shaped && styles.outlineLeading.shaped,
       ),
       outlineNotch: $props(
         styles.outlineNotch.base,
         $body.small,
-        !!label && styles.outlineNotch.withLabel,
-        hasPlaceholder && !!label && styles.outlineNotch.withLabelAndPlaceholder,
+        hasLabel && styles.outlineNotch.withLabel,
+        hasLabel && hasPlaceholder && styles.outlineNotch.withLabelAndPlaceholder,
         disabled && styles.outlineNotch.disabled,
         invalid && styles.outlineNotch.invalid,
       ),
@@ -134,6 +132,7 @@ const Input = forwardRef<InputRef, InputProps>(
         styles.outlineTrailing.base,
         disabled && styles.outlineTrailing.disabled,
         invalid && styles.outlineTrailing.invalid,
+        shaped && styles.outlineTrailing.shaped,
       ),
       floatingLabel: $props(
         styles.floatingLabel.base,
@@ -160,7 +159,6 @@ const Input = forwardRef<InputRef, InputProps>(
           ...style,
           ..._themeColorVars,
         }}
-        onClick={inputorEvents.click}
         {...(!disabled && {
           tabIndex: -1,
         })}
@@ -200,14 +198,18 @@ const Input = forwardRef<InputRef, InputProps>(
             className={stringify(classNames.outlineLeading, styled.outlineLeading.className)}
             style={styled.outlineLeading.style}
           />
+
           <div
             className={stringify(classNames.outlineNotch, styled.outlineNotch.className)}
             style={styled.outlineNotch.style}
           >
-            <label htmlFor={id} className={stringify(styled.floatingLabel.className)}>
-              {label}
-            </label>
+            {hasLabel && (
+              <label htmlFor={id} className={stringify(styled.floatingLabel.className)}>
+                {label}
+              </label>
+            )}
           </div>
+
           <div
             className={stringify(classNames.outlineTrailing, styled.outlineTrailing.className)}
             style={styled.outlineTrailing.style}

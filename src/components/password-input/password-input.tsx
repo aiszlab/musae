@@ -31,6 +31,7 @@ const PasswordInput = forwardRef<InputRef, PasswordInputProps>(({ className, ...
       ref={ref}
       type={isVisible ? "text" : "password"}
       trailing={createElement(isVisible ? IconVisibilityOff : IconVisibility, {
+        role: "button",
         onClick: toggle,
         onMouseDown: (event) => event.preventDefault(),
         onMouseUp: (event) => event.preventDefault(),

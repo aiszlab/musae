@@ -1,16 +1,16 @@
-import type { CSSProperties, InputHTMLAttributes, MouseEventHandler, ReactNode } from "react";
+import type { InputHTMLAttributes, MouseEventHandler, ReactNode } from "react";
 import type { ComponentProps } from "./element";
 import type { VirtualElement } from "@floating-ui/dom";
 
 /**
- * @description
- * Variant
+ * @zh 输入框变体
+ * @en Input variant
  */
-export type Variant = "outlined" | "filled" | "standard";
+export type Variant = "outlined" | "filled";
 
 /**
- * @description
- * component props
+ * @zh 输入框组件属性
+ * @en Input component props
  */
 export interface InputProps
   extends
@@ -25,70 +25,78 @@ export interface InputProps
       | "onClick"
       | "maxLength"
       | "onKeyDown"
+      | "role"
+      | "aria-expanded"
+      | "aria-controls"
+      | "aria-activedescendant"
+      | "aria-autocomplete"
     >,
     ComponentProps {
   /**
-   * @zh 点击输入框外壳时的处理函数
-   * @en Handler invoked when the input shell is clicked
-   */
-  onInputorClick?: MouseEventHandler<HTMLDivElement>;
-
-  /**
-   * @description
-   * value
+   * @zh 输入框值
+   * @en Input value
    * @default void 0
    */
   value?: string;
 
   /**
-   * @description
-   * placeholder for input
+   * @zh 输入框占位符
+   * @en Input placeholder
    * @default void 0
    */
   placeholder?: string;
 
   /**
-   * @description
-   * variant for input, display different style
+   * @zh 输入框变体，展示不同样式
+   * @en Input variant for displaying different styles
    * @default "outlined"
    */
   variant?: Variant;
 
   /**
-   * @description
-   * leading node
+   * @default false
+   */
+  shaped?: boolean;
+
+  /**
+   * @zh 前置节点
+   * @en Leading node
    * @default void 0
    */
   leading?: ReactNode;
 
   /**
-   * @description
-   * trailing node
+   * @zh 后置节点
+   * @en Trailing node
    * @default void 0
    */
   trailing?: ReactNode;
 
   /**
-   * @description
-   * input type
+   * @zh 输入框类型
+   * @en Input type
    * @default "text"
    */
   type?: "text" | "password" | "number";
 
   /**
-   * @description
-   * invalid
+   * @zh 是否无效
+   * @en Whether the input is invalid
    * @default false
    */
   invalid?: boolean;
 
   /**
-   * @description
-   * change handler
+   * @zh 值变更处理函数
+   * @en Value change handler
    * @default void 0
    */
   onChange?: (value: string) => void;
 
+  /**
+   * @zh 输入框标签
+   * @en Input label
+   */
   label?: string;
 }
 

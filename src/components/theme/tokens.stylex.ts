@@ -161,6 +161,20 @@ export const duration = defineVars({
  * @zh 响应式断点。`mobile` 匹配宽度 < 905px 的视口。
  * @en Responsive breakpoints. `mobile` matches viewports narrower than 905px.
  */
+export const mediaQueries = { mobile: "(max-width: 904px)" } as const;
+
 export const breakpoints = {
-  mobile: "@media (max-width: 904px)",
+  mobile: `@media ${mediaQueries.mobile}`,
 };
+
+/**
+ * @zh Material 3 Search View 尺寸
+ * @en Material 3 Search View dimensions
+ */
+export const searchViewSizes = defineVars({
+  minWidth: "360px",
+  maxWidth: "720px",
+  minHeight: "240px",
+  fullScreenHeaderHeight: "72px",
+  resultItemHeight: "72px",
+});

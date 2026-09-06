@@ -67,7 +67,6 @@ const Selector = forwardRef<InputRef, SelectorProps>(
         style={styled.input.style}
         onChange={searchable ? search : undefined}
         onClick={onClick}
-        onInputorClick={onClick}
         onBlur={(event) => {
           onBlur?.(event);
           onClose();
