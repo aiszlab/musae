@@ -1,5 +1,5 @@
 import { create as $create, when as $when, defineMarker } from "@stylexjs/stylex";
-import { duration, opacity, sizes, spacing } from "../theme/tokens.stylex";
+import { duration, sizes, spacing } from "../theme/tokens.stylex";
 import { ThemeColorVariable } from "../../hooks/use-theme-color-vars";
 
 const textFieldMarker = defineMarker();
