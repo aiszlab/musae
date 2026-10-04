@@ -61,7 +61,8 @@ const Group = forwardRef<HTMLUListElement, MenuGroupProps>(
               className={item.className}
               style={item.style}
               label={item.label}
-              prefix={item.prefix}
+              leading={item.leading}
+              trailing={item.trailing}
               onClick={item.onClick}
               mode={mode}
               ref={(_ref) => {

@@ -133,6 +133,13 @@ const getRootStyles = () => {
   return asObjectLiteral(argument, "exported styles.root");
 };
 
+test("Input root preserves its height in column flex layouts", () => {
+  const root = getRootStyles();
+  const base = asObjectLiteral(getPropertyInitializer(root, "base"), "root.base");
+
+  expect(getPropertyInitializer(base, "flexShrink").getText(sourceFile)).toBe("0");
+});
+
 test("filled Input uses extractable opacity tokens and excludes active state from hover", () => {
   assertOpacityTokenImport();
   const root = getRootStyles();

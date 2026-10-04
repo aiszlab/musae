@@ -15,6 +15,7 @@ const root = $create({
     outline: sizes.none,
 
     height: sizes.xxxxlarge,
+    flexShrink: 0,
     minWidth: sizes.none,
     width: sizes.full,
 
