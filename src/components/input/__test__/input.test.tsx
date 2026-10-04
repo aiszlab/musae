@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom";
-import { fireEvent, render } from "@testing-library/react";
+import { act, fireEvent, render } from "@testing-library/react";
 import React from "react";
 import { Input } from "..";
 
@@ -33,6 +33,19 @@ describe("input element padding", () => {
     const input = container.querySelector("input")!;
 
     expect(input).toHaveClass("styles__input.hasLeading", "styles__input.hasTrailing");
+  });
+});
+
+describe("focus synchronization", () => {
+  test("moves focus from the input shell to the native input", () => {
+    const { container } = render(<Input />);
+    const inputor = container.querySelector<HTMLElement>(".musae-input__inputor")!;
+    const input = container.querySelector<HTMLInputElement>("input")!;
+
+    act(() => inputor.focus());
+
+    expect(document.activeElement).toBe(input);
+    expect(inputor).toHaveClass("musae-input__inputor--focused");
   });
 });
 
@@ -107,13 +120,13 @@ describe("click handling", () => {
     expect(onClick).toHaveBeenCalledTimes(1);
   });
 
-  test("does not invoke onClick when the input shell is clicked", () => {
+  test("invokes onClick when the input shell is clicked", () => {
     const onClick = jest.fn();
     const { container } = render(<Input onClick={onClick} />);
 
     fireEvent.click(container.querySelector(".musae-input__inputor")!);
 
-    expect(onClick).not.toHaveBeenCalled();
+    expect(onClick).toHaveBeenCalledTimes(1);
   });
 
   test("does not invoke onClick when a passive adornment is clicked", () => {

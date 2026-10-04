@@ -4,6 +4,12 @@ import React from "react";
 import { PasswordInput } from "..";
 
 describe("PasswordInput click handling", () => {
+  test("hides the native password reveal control", () => {
+    const { container } = render(<PasswordInput />);
+
+    expect(container.querySelector("input")).toHaveClass("styles__styles.input");
+  });
+
   test("keeps the visibility action independent from Input onClick", () => {
     const onClick = jest.fn();
     const { container, getByRole } = render(<PasswordInput onClick={onClick} />);

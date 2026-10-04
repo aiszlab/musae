@@ -59,6 +59,12 @@ export interface InputProps
   shaped?: boolean;
 
   /**
+   * @zh 输入元素的附加类名
+   * @en Additional class name for the input element
+   */
+  inputClassName?: string;
+
+  /**
    * @zh 前置节点
    * @en Leading node
    * @default void 0

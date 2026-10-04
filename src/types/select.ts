@@ -20,7 +20,7 @@ export type ValueOrValues = Value[] | Value;
  * select props
  */
 export type SelectProps<T extends ValueOrValues = ValueOrValues> = ComponentProps &
-  Pick<InputProps, "onBlur"> & {
+  Pick<InputProps, "onBlur" | "label"> & {
     /**
      * @description
      * options
@@ -126,6 +126,7 @@ export type SelectorProps = ComponentProps &
     | "onSearch"
     | "onBlur"
     | "placeholder"
+    | "label"
     | "disabled"
     | "invalid"
     | "onClear"

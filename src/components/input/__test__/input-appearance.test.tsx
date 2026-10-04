@@ -1,4 +1,4 @@
-import { render } from "@testing-library/react";
+import { fireEvent, render } from "@testing-library/react";
 import React from "react";
 import "@testing-library/jest-dom";
 import { Input } from "..";
@@ -20,5 +20,18 @@ describe("Input appearances", () => {
 
     rerender(<Input variant="standard" label="Name" />);
     expect(container.querySelector(".musae-notched-outline")).toBeInTheDocument();
+  });
+
+  test("keeps the label floated after entering a value and blurring", () => {
+    const { getByRole, container } = render(<Input label="Name" />);
+    const input = getByRole("textbox");
+
+    fireEvent.change(input, { target: { value: "Ada" } });
+    fireEvent.blur(input);
+
+    expect(container.querySelector("label")).toHaveClass("styles__floatingLabel.placeholder");
+    expect(container.querySelector(".musae-notched-outline__notch")).toHaveClass(
+      "styles__outlineNotch.withLabelAndPlaceholder",
+    );
   });
 });

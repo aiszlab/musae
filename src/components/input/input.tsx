@@ -35,6 +35,7 @@ const Input = forwardRef<InputRef, InputProps>(
       leading,
       trailing,
       label,
+      inputClassName,
       ...inputProps
     },
     ref,
@@ -84,7 +85,7 @@ const Input = forwardRef<InputRef, InputProps>(
     );
 
     // input events
-    const inputEvents = useInputEvents({
+    const { click, ...inputEvents } = useInputEvents({
       setValue: _setValue,
       onBlur,
       onChange,
@@ -124,7 +125,7 @@ const Input = forwardRef<InputRef, InputProps>(
         styles.outlineNotch.base,
         $body.small,
         hasLabel && styles.outlineNotch.withLabel,
-        hasLabel && hasPlaceholder && styles.outlineNotch.withLabelAndPlaceholder,
+        hasLabel && (hasPlaceholder || !!_value) && styles.outlineNotch.withLabelAndPlaceholder,
         disabled && styles.outlineNotch.disabled,
         invalid && styles.outlineNotch.invalid,
       ),
@@ -136,7 +137,7 @@ const Input = forwardRef<InputRef, InputProps>(
       ),
       floatingLabel: $props(
         styles.floatingLabel.base,
-        hasPlaceholder && styles.floatingLabel.placeholder,
+        (hasPlaceholder || !!_value) && styles.floatingLabel.placeholder,
         disabled && styles.floatingLabel.disabled,
         invalid && styles.floatingLabel.invalid,
       ),
@@ -162,6 +163,12 @@ const Input = forwardRef<InputRef, InputProps>(
         {...(!disabled && {
           tabIndex: -1,
         })}
+        onFocus={(event) => {
+          if (event.target === event.currentTarget) {
+            inputRef.current?.focus();
+          }
+        }}
+        onClick={click}
       >
         {/* leading */}
         {!!leading && (
@@ -177,14 +184,13 @@ const Input = forwardRef<InputRef, InputProps>(
         <input
           id={id}
           value={_value}
-          className={stringify(classNames.input, styled.input.className)}
+          className={stringify(classNames.input, inputClassName, styled.input.className)}
           style={styled.input.style}
           type={type}
           ref={inputRef}
           aria-invalid={invalid}
           disabled={disabled}
           onChange={inputEvents.change}
-          onClick={inputEvents.click}
           maxLength={maxLength}
           {...inputProps}
           {...focusProps}

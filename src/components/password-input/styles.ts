@@ -3,6 +3,12 @@ import { duration } from "../theme/tokens.stylex";
 import { type ThemeColorVariable } from "../../hooks/use-theme-color-vars";
 
 const styles = $create({
+  input: {
+    "::-ms-reveal": {
+      display: "none",
+    },
+  },
+
   visibility: {
     color: "var(--color-secondary-fixed-dim)" satisfies ThemeColorVariable,
     willChange: "color",
