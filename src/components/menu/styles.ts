@@ -180,7 +180,7 @@ const menu = $create({
     position: "relative",
   },
 });
-const prefix = $create({
+const leading = $create({
   base: {
     display: "flex",
     justifyContent: "center",
@@ -189,7 +189,7 @@ const prefix = $create({
   },
 });
 
-const suffix = $create({
+const trailing = $create({
   base: {
     marginInlineStart: spacing.auto,
   },
@@ -215,8 +215,8 @@ const styles = {
   group,
   subgroup,
   menu,
-  prefix,
-  suffix,
+  leading,
+  trailing,
   collapser,
 };
 

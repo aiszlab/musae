@@ -8,6 +8,7 @@ import { useFloating } from "./hooks";
 import { contains } from "@aiszlab/relax/dom";
 import { CLASS_NAMES } from "./context";
 import { props as $props } from "@stylexjs/stylex";
+import { OPACITY } from "../theme/tokens.stylex";
 
 const Dropdown = forwardRef<PopperRef, DropdownProps>(
   (
@@ -34,7 +35,12 @@ const Dropdown = forwardRef<PopperRef, DropdownProps>(
     ref,
   ) => {
     const classNames = useClassNames(CLASS_NAMES);
-    const themeColorVars = useThemeColorVars(["surface"]);
+    const themeColorVars = useThemeColorVars([
+      "surface",
+      ["shadow", OPACITY.thicker],
+      ["shadow", OPACITY.thick],
+      ["shadow", OPACITY.medium],
+    ]);
 
     const { floatableRef, arrowRef, disappear } = useFloating({
       arrowable,

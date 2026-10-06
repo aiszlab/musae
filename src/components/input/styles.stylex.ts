@@ -15,6 +15,7 @@ const root = $create({
     outline: sizes.none,
 
     height: sizes.xxxxlarge,
+    flexShrink: 0,
     minWidth: sizes.none,
     width: sizes.full,
 
@@ -133,6 +134,11 @@ const outlineLeading = $create({
       borderColor: "var(--color-error)" satisfies ThemeColorVariable,
     },
   },
+
+  shaped: {
+    borderStartStartRadius: sizes.infinity,
+    borderEndStartRadius: sizes.infinity,
+  },
 });
 
 const outlineTrailing = $create({
@@ -172,6 +178,11 @@ const outlineTrailing = $create({
     [$when.ancestor(":focus-within", textFieldMarker)]: {
       borderColor: "var(--color-error)" satisfies ThemeColorVariable,
     },
+  },
+
+  shaped: {
+    borderStartEndRadius: sizes.infinity,
+    borderEndEndRadius: sizes.infinity,
   },
 });
 

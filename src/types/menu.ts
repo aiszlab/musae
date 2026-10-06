@@ -140,11 +140,18 @@ export type MenuItem = ComponentProps & {
   label?: ReactNode;
 
   /**
-   * @description
-   * prefix node
+   * @zh 后置内容
+   * @en Trailing content
    * @default void 0
    */
-  prefix?: ReactNode;
+  trailing?: ReactNode;
+
+  /**
+   * @zh 前置内容
+   * @en Leading content
+   * @default void 0
+   */
+  leading?: ReactNode;
 
   /**
    * @description
@@ -174,13 +181,6 @@ export type MenuItemProps = Omit<MenuItem, "key" | "children"> &
      * value
      */
     value: Key;
-
-    /**
-     * @description
-     * suffix
-     * @default void 0
-     */
-    suffix?: ReactNode;
 
     /**
      * @description

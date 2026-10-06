@@ -75,7 +75,7 @@ const Item = ({
         <IconMoreHoriz role="separator" />
 
         {/* hovered icon */}
-        {createElement(isMorePrev ? KeyboardDoubleArrowLeft : KeyboardDoubleArrowRight, {
+        {createElement(isMorePrev ? IconKeyboardDoubleArrowLeft : IconKeyboardDoubleArrowRight, {
           role: "button",
         })}
       </IconButton>

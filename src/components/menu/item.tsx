@@ -17,7 +17,7 @@ import { useThemeColorVars } from "../../hooks/use-theme-color-vars";
  * menu item
  */
 const Item = forwardRef<HTMLLIElement, MenuItemProps>(
-  ({ level, label, prefix, suffix, value, className, mode, onClick, ...props }, ref) => {
+  ({ level, label, leading, trailing, value, className, mode, onClick, ...props }, ref) => {
     const {
       selectedKeys,
       expandedKeys,
@@ -55,8 +55,8 @@ const Item = forwardRef<HTMLLIElement, MenuItemProps>(
 
     const _children = useItemChildren({
       label,
-      prefix,
-      suffix,
+      leading,
+      trailing,
       hasChildren,
       isExpanded,
       isInline,
@@ -94,9 +94,9 @@ const Item = forwardRef<HTMLLIElement, MenuItemProps>(
           onClick={click}
           {...hoverProps}
         >
-          {_children.prefix}
+          {_children.leading}
           {_children.label}
-          {_children.suffix}
+          {_children.trailing}
         </div>
 
         {/* inline mode, show children directly */}

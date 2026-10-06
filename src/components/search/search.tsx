@@ -1,18 +1,24 @@
-import { Button } from "../button";
-import { Input } from "../input";
-import React, { forwardRef, useRef, useImperativeHandle, useCallback } from "react";
-import IconSearch from "../icon/icons/action/search";
-import { IconClose } from "../icon/icons";
+import React, {
+  forwardRef,
+  useCallback,
+  useEffect,
+  useId,
+  useImperativeHandle,
+  useRef,
+  useState,
+} from "react";
 import { props as $props } from "@stylexjs/stylex";
-import { OPACITY } from "../theme/tokens.stylex";
-import { useThemeColorVars } from "../../hooks/use-theme-color-vars";
 import { useClassNames } from "../../hooks/use-class-names";
-import { useEvent, useControlledState } from "@aiszlab/relax";
-import type { SearchProps, SearchRef } from "../../types/search";
-import type { InputRef } from "../../types/input";
+import { isUndefined, useControlledState, useEvent } from "@aiszlab/relax";
+import type { Key } from "react";
+import type { SearchItem, SearchProps, SearchRef } from "../../types/search";
 import { stringify } from "@aiszlab/relax/class-name";
+import SearchBar from "./bar";
+import SearchView from "./view";
 import styles from "./styles";
 import { CLASS_NAMES } from "./context";
+import { getAdjacentEnabledKey, useResolvedSearchView } from "./hooks";
+import SearchResultList from "./result-list";
 
 /**
  * @zh Search 搜索组件，基于 Material 3 设计规范
@@ -32,34 +38,95 @@ const Search = forwardRef<SearchRef, SearchProps>(
       searchButton,
       onSearch,
       onClear,
+      leading,
+      trailing,
+      view = "auto",
+      open,
+      defaultOpen,
+      onOpenChange,
+      items = [],
+      renderItem,
+      onSelect,
+      closeOnSelect = true,
     },
     ref,
   ) => {
-    const inputRef = useRef<InputRef>(null);
+    const barInputRef = useRef<HTMLInputElement>(null);
+    const viewInputRef = useRef<HTMLInputElement>(null);
+    const wasOpenRef = useRef(false);
+    const isRestoringBarFocusRef = useRef(false);
     const classNames = useClassNames(CLASS_NAMES);
-
-    const themeColorVars = useThemeColorVars([
-      "primary",
-      "outline",
-      "surface-container-high",
-      "on-surface-variant",
-      ["on-surface-variant", OPACITY.thin],
-      ["on-surface", OPACITY.thickest],
-      ["on-surface", OPACITY.thin],
-    ]);
+    const listId = `search-result-list-${useId().replace(/[^a-zA-Z0-9_-]/g, "")}`;
+    const [activeKey, setActiveKey] = useState<Key | undefined>();
 
     const [_value, _setValue] = useControlledState<string>(valueInProps, {
       defaultState: defaultValue ?? "",
     });
+    const [isOpen, setOpen] = useControlledState(open, {
+      defaultState: defaultOpen ?? false,
+    });
+    const resolvedView = useResolvedSearchView(view);
+
+    const requestOpen = useEvent((nextOpen: boolean) => {
+      if (disabled && nextOpen) return;
+      if (nextOpen === isOpen) return;
+
+      setOpen(nextOpen);
+      onOpenChange?.(nextOpen);
+    });
+
+    useEffect(() => {
+      if (isOpen) {
+        viewInputRef.current?.focus();
+      } else if (wasOpenRef.current) {
+        isRestoringBarFocusRef.current = true;
+        barInputRef.current?.focus();
+        isRestoringBarFocusRef.current = false;
+      }
+
+      wasOpenRef.current = isOpen;
+    }, [isOpen]);
+
+    useEffect(() => {
+      if (disabled && isUndefined(open) && isOpen) {
+        requestOpen(false);
+      }
+    }, [disabled, isOpen, open, requestOpen]);
+
+    useEffect(() => {
+      if (!isOpen) {
+        setActiveKey(undefined);
+      }
+    }, [isOpen]);
+
+    useEffect(() => {
+      setActiveKey(undefined);
+    }, [valueInProps]);
+
+    useEffect(() => {
+      if (disabled) {
+        setActiveKey(undefined);
+      }
+    }, [disabled]);
+
+    useEffect(() => {
+      if (
+        !isUndefined(activeKey) &&
+        !items.some((item) => item.key === activeKey && !item.disabled)
+      ) {
+        setActiveKey(undefined);
+      }
+    }, [activeKey, items]);
 
     useImperativeHandle<SearchRef, SearchRef>(ref, () => ({
       focus: () => {
-        inputRef.current?.focus?.();
+        (isOpen ? viewInputRef : barInputRef).current?.focus();
       },
       blur: () => {
-        inputRef.current?.blur?.();
+        (isOpen ? viewInputRef : barInputRef).current?.blur();
       },
       clear: () => {
+        setActiveKey(undefined);
         _setValue("");
         onChange?.("");
       },
@@ -69,6 +136,7 @@ const Search = forwardRef<SearchRef, SearchProps>(
     }));
 
     const handleChange = useEvent((value: string) => {
+      setActiveKey(undefined);
       _setValue(value);
       onChange?.(value);
     });
@@ -78,9 +146,29 @@ const Search = forwardRef<SearchRef, SearchProps>(
     });
 
     const handleClear = useEvent(() => {
+      setActiveKey(undefined);
       _setValue("");
       onChange?.("");
       onClear?.();
+    });
+
+    const getOptionId = useEvent((key: Key) => {
+      const serializedKey = Array.from(String(key), (character) =>
+        character.codePointAt(0)!.toString(16),
+      ).join("-");
+      return `${listId}-option-${typeof key}-${serializedKey}`;
+    });
+
+    const selectItem = useEvent((item: SearchItem) => {
+      if (item.disabled) return;
+
+      _setValue(item.value);
+      onChange?.(item.value);
+      onSelect?.(item);
+
+      if (closeOnSelect) {
+        requestOpen(false);
+      }
     });
 
     const handleKeyDown = useCallback(
@@ -96,18 +184,36 @@ const Search = forwardRef<SearchRef, SearchProps>(
       [handleSearch, handleClear],
     );
 
-    const hasValue = _value.length > 0;
+    const handleViewKeyDown = useEvent((event: React.KeyboardEvent<HTMLInputElement>) => {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        event.stopPropagation();
+        requestOpen(false);
+      } else if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+        event.preventDefault();
+        setActiveKey(getAdjacentEnabledKey(items, activeKey, event.key === "ArrowDown" ? 1 : -1));
+      } else if (event.key === "Enter") {
+        event.preventDefault();
+        const activeItem = items.find(
+          (item) => !isUndefined(activeKey) && item.key === activeKey && !item.disabled,
+        );
+
+        if (activeItem) {
+          selectItem(activeItem);
+        } else {
+          handleSearch();
+        }
+      }
+    });
+
+    const activeDescendant = isUndefined(activeKey)
+      ? undefined
+      : items.some((item) => item.key === activeKey && !item.disabled)
+        ? getOptionId(activeKey)
+        : undefined;
 
     const _styled = {
-      container: $props(
-        styles.container.base,
-        disabled && styles.container.disabled,
-        !!searchButton && styles.container.withSearchButton,
-      ),
-      leading: $props(styles.leading.base),
-      input: $props(styles.input.base),
-      clear: $props(styles.clear.base),
-      searchButton: $props(styles.searchButton.base),
+      container: $props(styles.container.base),
     };
 
     return (
@@ -123,53 +229,53 @@ const Search = forwardRef<SearchRef, SearchProps>(
         style={{
           ..._styled.container.style,
           ...style,
-          ...themeColorVars,
         }}
       >
-        {/* Leading search icon */}
-        <span
-          className={stringify(classNames.searchLeading, _styled.leading.className)}
-          style={_styled.leading.style}
-        >
-          <IconSearch size={24} />
-        </span>
-
-        {/* Input */}
-        <Input
-          className={stringify(classNames.searchInput, _styled.input.className)}
-          style={_styled.input.style}
-          ref={inputRef}
+        <SearchBar
+          inputRef={barInputRef}
           value={_value}
           onChange={handleChange}
           placeholder={placeholder}
           disabled={disabled}
+          clearable={clearable}
+          leading={leading}
+          trailing={trailing}
+          searchButton={searchButton}
+          onClear={handleClear}
+          onFocus={() => {
+            if (!isRestoringBarFocusRef.current) {
+              requestOpen(true);
+            }
+          }}
           onKeyDown={handleKeyDown}
+          onSearch={handleSearch}
         />
 
-        {/* Clear button */}
-        {hasValue && clearable && !disabled && (
-          <button
-            type="button"
-            className={stringify(classNames.searchClear, _styled.clear.className)}
-            style={_styled.clear.style}
-            onClick={handleClear}
-            aria-label="Clear search"
-          >
-            <IconClose size={24} />
-          </button>
-        )}
-
-        {/* Optional trailing search button */}
-        {searchButton && (
-          <Button
-            className={stringify(classNames.searchButton, _styled.searchButton.className)}
-            style={_styled.searchButton.style}
-            onClick={handleSearch}
-            disabled={disabled}
-          >
-            {searchButton}
-          </Button>
-        )}
+        <SearchView
+          inputRef={viewInputRef}
+          mode={resolvedView}
+          open={isOpen}
+          value={_value}
+          listId={listId}
+          placeholder={placeholder}
+          disabled={disabled}
+          clearable={clearable}
+          onChange={handleChange}
+          onClear={handleClear}
+          onClose={() => requestOpen(false)}
+          onKeyDown={handleViewKeyDown}
+          activeDescendant={activeDescendant}
+        >
+          <SearchResultList
+            id={listId}
+            items={items}
+            renderItem={renderItem}
+            activeKey={activeKey}
+            getOptionId={getOptionId}
+            onActiveKeyChange={setActiveKey}
+            onSelect={selectItem}
+          />
+        </SearchView>
       </span>
     );
   },

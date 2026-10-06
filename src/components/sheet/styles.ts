@@ -69,17 +69,6 @@ const panel = $create({
     right: 0,
     height: "var(--size)",
   },
-
-  fullscreen: {
-    "@media (max-width: 904px)": {
-      width: "100vw",
-      height: "100vh",
-      borderTopLeftRadius: 0,
-      borderTopRightRadius: 0,
-      borderBottomLeftRadius: 0,
-      borderBottomRightRadius: 0,
-    },
-  },
 });
 
 const styles = {
