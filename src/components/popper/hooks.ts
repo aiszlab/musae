@@ -123,6 +123,7 @@ export const useFloating = ({
       computePosition(trigger, _floatable, {
         placement,
         middleware: [
+          offset(offsets),
           flip(),
           shift(),
           arrowable && !!arrowRef.current && arrow({ element: arrowRef.current, padding: 16 }),
