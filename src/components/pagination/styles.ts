@@ -1,5 +1,6 @@
 import { create as $create } from "@stylexjs/stylex";
 import { spacing } from "../theme/tokens.stylex";
+import { type ThemeColorVariable } from "../../hooks/use-theme-color-vars";
 
 const item = $create({
   more: {
@@ -29,7 +30,7 @@ const pagination = $create({
   base: {
     display: "flex",
     alignItems: "center",
-    columnGap: spacing.xxxxxsmall,
+    columnGap: spacing.xxsmall,
     listStyleType: "none",
     margin: spacing.none,
     padding: spacing.none,
@@ -38,6 +39,11 @@ const pagination = $create({
   sizer: {
     display: "flex",
     alignItems: "center",
+  },
+
+  range: {
+    color: "var(--color-on-surface-variant)" satisfies ThemeColorVariable,
+    whiteSpace: "nowrap",
   },
 });
 

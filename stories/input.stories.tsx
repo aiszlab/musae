@@ -30,6 +30,15 @@ export const Normal: Story = {
   },
 };
 
+export const Widths: Story = {
+  render: () => (
+    <div style={{ display: "grid", gap: 16, gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
+      <Input placeholder="默认宽度" />
+      <Input style={{ width: "100%" }} placeholder="填满父容器" />
+    </div>
+  ),
+};
+
 export const WithoutPlaceholder: Story = {};
 
 export const WithLabel: Story = {

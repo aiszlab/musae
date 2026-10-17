@@ -11,6 +11,14 @@ const table = $create({
   },
 });
 
+const pagination = $create({
+  base: {
+    display: "flex",
+    justifyContent: "flex-end",
+    marginBlockStart: spacing.medium,
+  },
+});
+
 const body = $create({
   cell: {
     // reset body
@@ -102,6 +110,7 @@ const header = $create({
 
 const styles = {
   table,
+  pagination,
   body,
   cell,
   sort,

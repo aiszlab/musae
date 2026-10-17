@@ -8,7 +8,7 @@ import { Empty } from "../empty";
 import { stringify } from "@aiszlab/relax/class-name";
 import { $body } from "../theme/theme";
 import { useThemeColorVars } from "../../hooks/use-theme-color-vars";
-import { EXPAND_COLUMN_ID } from "./context";
+import { EXPAND_COLUMN_ID, SELECT_COLUMN_ID } from "./context";
 
 const Body = <T,>() => {
   const { table, bordered, classNames } = useTable<T>();
@@ -53,6 +53,7 @@ const Body = <T,>() => {
                     styled.className,
                     cellStyled.className,
                     cell.column.id === EXPAND_COLUMN_ID && classNames.expandColumn,
+                    cell.column.id === SELECT_COLUMN_ID && classNames.selectColumn,
                   )}
                   style={{
                     ...styled.style,

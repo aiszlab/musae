@@ -11,6 +11,7 @@ import { toFunction, unique } from "@aiszlab/relax";
 import { stringify } from "@aiszlab/relax/class-name";
 import { useClassNames } from "../../hooks/use-class-names";
 import { CLASS_NAMES } from "./context";
+import { $body } from "../theme/theme";
 
 const Pagination = ({
   total = 0,
@@ -25,30 +26,23 @@ const Pagination = ({
   const classNames = useClassNames(CLASS_NAMES);
   const [locale] = useLocale("pagination");
 
-  const {
-    paginationItems,
-    add,
-    subtract,
-    onChange,
-    at,
-    hasNext,
-    hasPrev,
-    pageSize,
-    onPageSizeChange,
-  } = usePagiantion({
-    boundaries,
-    pageSize: _pageSize,
-    siblings,
-    total,
-    at: _at,
-    onChange: _onChange,
-    onPageSizeChange: _onPageSizeChange,
-  });
+  const { paginationItems, onChange, at, hasNext, hasPrev, pageSize, onPageSizeChange } =
+    usePagiantion({
+      boundaries,
+      pageSize: _pageSize,
+      siblings,
+      total,
+      at: _at,
+      onChange: _onChange,
+      onPageSizeChange: _onPageSizeChange,
+    });
 
   const styled = {
     pagination: $props(styles.pagination.base),
     sizer: $props(styles.pagination.sizer),
+    range: $props(styles.pagination.range, $body.small),
   };
+  const pages = Math.max(1, Math.ceil(total / Math.max(1, pageSize)));
 
   const sizeOptions = useMemo<Option[]>(() => {
     return unique(pageSizes).map((size) => ({
@@ -60,12 +54,20 @@ const Pagination = ({
   return (
     <nav aria-label="pagination navigation" className={classNames.pagination}>
       <ul className={styled.pagination.className} style={styled.pagination.style}>
+        <li className={styled.range.className} style={styled.range.style}>
+          {locale.range(
+            total === 0 ? 0 : Math.min(total, (at - 1) * pageSize + 1),
+            Math.min(at * pageSize, total),
+            total,
+          )}
+        </li>
+
         {paginationItems.map((item) => (
           <li key={item}>
             <Item
               value={item}
-              add={add}
-              subtract={subtract}
+              add={(step = 1) => onChange(Math.min(pages, at + step))}
+              subtract={(step = 1) => onChange(Math.max(1, at - step))}
               onClick={onChange}
               checked={at === item}
               hasNext={hasNext}

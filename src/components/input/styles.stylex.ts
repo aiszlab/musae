@@ -15,9 +15,8 @@ const root = $create({
     outline: sizes.none,
 
     height: sizes.xxxxlarge,
-    flexShrink: 0,
     minWidth: sizes.none,
-    width: sizes.full,
+    width: sizes.auto,
 
     // reset input_styles
     boxSizing: "border-box",

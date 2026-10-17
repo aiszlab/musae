@@ -74,16 +74,20 @@ const Field = <T extends FieldsValue, FieldKey extends keyof T>({
       .at(0);
   }, [_children, name, value, isInvalid, change]);
 
+  const isSupportingHidden = supporting === false || supporting === null;
+
   return (
     <Layout
       label={props.label}
       required={required}
       className={classNames.item}
       supporting={
-        <>
-          {!!supporting && <Supporting>{supporting}</Supporting>}
-          <AnimatePresence mode="wait">{isInvalid && <Error>{error}</Error>}</AnimatePresence>
-        </>
+        !isSupportingHidden && (
+          <>
+            {!!supporting && <Supporting>{supporting}</Supporting>}
+            <AnimatePresence mode="wait">{isInvalid && <Error>{error}</Error>}</AnimatePresence>
+          </>
+        )
       }
     >
       <div className={stringify(classNames.field, className)} style={style}>

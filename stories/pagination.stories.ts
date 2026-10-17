@@ -23,3 +23,10 @@ export const HiddenSizeSelect: Story = {
     pageSizes: [],
   },
 };
+
+export const TotalRange: Story = {
+  args: {
+    total: 128,
+    pageSize: 10,
+  },
+};

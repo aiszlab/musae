@@ -27,6 +27,21 @@ const data: Person[] = [
   { id: "linus", name: "Linus", role: "Independent contributor" },
 ];
 
+const paginatedData: Person[] = [
+  { id: "ada", name: "Ada Lovelace", role: "Mathematician" },
+  { id: "grace", name: "Grace Hopper", role: "Computer scientist" },
+  { id: "alan", name: "Alan Turing", role: "Computer scientist" },
+  { id: "katherine", name: "Katherine Johnson", role: "Mathematician" },
+  { id: "donald", name: "Donald Knuth", role: "Computer scientist" },
+  { id: "margaret", name: "Margaret Hamilton", role: "Software engineer" },
+  { id: "barbara", name: "Barbara Liskov", role: "Computer scientist" },
+  { id: "edsger", name: "Edsger Dijkstra", role: "Computer scientist" },
+  { id: "frances", name: "Frances Allen", role: "Computer scientist" },
+  { id: "john", name: "John von Neumann", role: "Mathematician" },
+  { id: "radia", name: "Radia Perlman", role: "Network engineer" },
+  { id: "tim", name: "Tim Berners-Lee", role: "Computer scientist" },
+];
+
 const meta = {
   title: "table",
   component: Table<Person>,
@@ -50,4 +65,25 @@ export const Hierarchical: Story = {
 
 export const CapabilityDisabled: Story = {
   args: { expandable: false },
+};
+
+export const Paginated: Story = {
+  args: {
+    dataSource: paginatedData,
+  },
+};
+
+export const ServerPaginated: Story = {
+  args: {
+    dataSource: paginatedData.slice(0, 5),
+    pagination: { total: 128, pageSize: 5 },
+  },
+};
+
+export const RowSelection: Story = {
+  args: {
+    rowSelection: {
+      defaultSelectedRowKeys: ["ada"],
+    },
+  },
 };

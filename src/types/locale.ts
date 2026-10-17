@@ -14,6 +14,7 @@ export interface Locale {
 
   pagination: {
     size: string | ((size: number) => string);
+    range: (from: number, to: number, total: number) => string;
   };
 
   popconfirm: {
