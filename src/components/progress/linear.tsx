@@ -7,9 +7,18 @@ import { useValue } from "./hooks";
 import Context from "./context";
 import { useThemeColorVars } from "../../hooks/use-theme-color-vars";
 
-const Linear = ({ value: _value, className, style }: LinearProps) => {
+const Linear = ({
+  min = 0,
+  max = 100,
+  value = min,
+  className,
+  style,
+  height,
+  "aria-label": ariaLabel,
+  "aria-labelledby": ariaLabelledBy,
+}: LinearProps) => {
   const { classNames } = useContext(Context);
-  const { value } = useValue({ value: _value });
+  const { percentage } = useValue({ value, min, max });
   const _themeColorVars = useThemeColorVars(["primary-container", "primary"]);
 
   const styled = {
@@ -22,10 +31,17 @@ const Linear = ({ value: _value, className, style }: LinearProps) => {
       className={stringify(classNames.progress, className, styled.progress.className)}
       style={{
         ...styled.progress.style,
-        ...style,
         ..._themeColorVars,
-        "--width": value + "%",
+        height,
+        "--width": percentage + "%",
+        ...style,
       }}
+      role="progressbar"
+      aria-label={ariaLabel}
+      aria-labelledby={ariaLabelledBy}
+      aria-valuemin={min}
+      aria-valuemax={Math.max(min, max)}
+      aria-valuenow={Math.min(Math.max(value, min), Math.max(min, max))}
     >
       <div
         className={stringify(classNames.segment, styled.segment.className)}

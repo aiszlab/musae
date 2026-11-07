@@ -24,3 +24,30 @@ export const Circular: Story = {
     value: 50,
   },
 };
+
+export const Range: Story = {
+  args: {
+    min: 20,
+    max: 80,
+    value: 50,
+    "aria-label": "Upload progress",
+  },
+};
+
+export const Customized: Story = {
+  args: {
+    value: 65,
+    height: 8,
+    "aria-label": "Download progress",
+  },
+};
+
+export const CircularCustomized: Story = {
+  args: {
+    variant: "circular",
+    value: 65,
+    height: 64,
+    thickness: 6,
+    "aria-label": "Download progress",
+  },
+};
