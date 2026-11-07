@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import React, { useState } from "react";
 import { Progress } from "../dist";
 
 const meta: Meta<typeof Progress> = {
@@ -22,6 +23,22 @@ export const Circular: Story = {
   args: {
     variant: "circular",
     value: 50,
+  },
+};
+
+export const CircularAnimated: Story = {
+  render: () => {
+    const [value, setValue] = useState(25);
+
+    return (
+      <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+        <Progress variant="circular" min={0} max={100} value={value} aria-label="Upload progress" />
+        <span>{value}%</span>
+        <button onClick={() => setValue((current) => (current >= 100 ? 0 : current + 25))}>
+          Increase progress
+        </button>
+      </div>
+    );
   },
 };
 
