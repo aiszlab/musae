@@ -5,13 +5,13 @@ import Circular from "./circular";
 import { useClassNames } from "../../hooks/use-class-names";
 import Context, { CLASS_NAMES } from "./context";
 
-const Progress = ({ variant = "linear", value = 0 }: ProgressProps) => {
+const Progress = ({ variant = "linear", ...props }: ProgressProps) => {
   const classNames = useClassNames(CLASS_NAMES);
 
   return (
     <Context.Provider value={{ classNames }}>
-      {variant === "circular" && <Circular value={value} />}
-      {variant === "linear" && <Linear value={value} />}
+      {variant === "circular" && <Circular {...props} />}
+      {variant === "linear" && <Linear {...props} />}
     </Context.Provider>
   );
 };

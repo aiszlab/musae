@@ -1,4 +1,4 @@
-import { elevations, positions, sizes } from "../theme/tokens.stylex";
+import { positions, sizes } from "../theme/tokens.stylex";
 import { type ThemeColorVariable } from "../../hooks/use-theme-color-vars";
 import { create as $create } from "@stylexjs/stylex";
 
@@ -37,7 +37,9 @@ const dropdown = $create({
   },
 
   elevation: {
-    boxShadow: elevations.small,
+    filter: `drop-shadow(0 3px 3px ${"var(--color-shadow-opacity-20)" satisfies ThemeColorVariable})
+             drop-shadow(0 3px 4px ${"var(--color-shadow-opacity-16)" satisfies ThemeColorVariable})
+             drop-shadow(0 1px 8px ${"var(--color-shadow-opacity-12)" satisfies ThemeColorVariable})`,
   },
 });
 

@@ -25,6 +25,43 @@ export const Normal: Story = {
 };
 
 /**
+ * Compare the default, custom, and hidden validation error messages.
+ */
+export const Error: Story = {
+  render: () => {
+    interface FormValue {
+      defaultError: string;
+      customError: string;
+      hiddenError: string;
+    }
+
+    const form = Form.useForm<FormValue>();
+
+    return (
+      <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
+        <Form form={form}>
+          <Form.Item label="默认错误" name="defaultError" required>
+            <Input placeholder="请输入内容" />
+          </Form.Item>
+
+          <Form.Item label="隐藏错误" name="hiddenError" required supporting={false}>
+            <Input placeholder="请输入内容" />
+          </Form.Item>
+        </Form>
+
+        <Button
+          onClick={() => {
+            void form.validate();
+          }}
+        >
+          校验表单
+        </Button>
+      </div>
+    );
+  },
+};
+
+/**
  * 行内布局
  */
 export const Inline: Story = {

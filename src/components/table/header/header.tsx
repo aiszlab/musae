@@ -7,7 +7,7 @@ import { props as $props } from "@stylexjs/stylex";
 import { stringify } from "@aiszlab/relax/class-name";
 import { $label } from "../../../components/theme/theme";
 import { useThemeColorVars } from "../../../hooks/use-theme-color-vars";
-import { EXPAND_COLUMN_ID } from "../context";
+import { EXPAND_COLUMN_ID, SELECT_COLUMN_ID } from "../context";
 
 const Header = <T,>(props: HeaderProps) => {
   const { table, bordered, classNames } = useTable<T>();
@@ -39,6 +39,7 @@ const Header = <T,>(props: HeaderProps) => {
               className={stringify(
                 styled.className,
                 header.column.id === EXPAND_COLUMN_ID && classNames.expandColumn,
+                header.column.id === SELECT_COLUMN_ID && classNames.selectColumn,
               )}
               style={styled.style}
             >

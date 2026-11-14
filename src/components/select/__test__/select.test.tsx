@@ -26,6 +26,12 @@ describe("Select", () => {
     expect(screen.getByRole("textbox")).toHaveAttribute("readonly");
   });
 
+  test("passes label to Input", () => {
+    render(<Select label="Fruit" />);
+
+    expect(screen.getByText("Fruit")).toBeInTheDocument();
+  });
+
   test("renders multiple selections inside Input", () => {
     const { container } = render(
       <Select

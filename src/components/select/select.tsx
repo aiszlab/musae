@@ -25,6 +25,7 @@ const Select = <T extends ValueOrValues = ValueOrValues>({
   value,
   onChange,
   onBlur,
+  label,
   invalid = false,
   placeholder,
   onClear,
@@ -103,6 +104,7 @@ const Select = <T extends ValueOrValues = ValueOrValues>({
           onOpen={open}
           onClear={onClear ? clear : void 0}
           placeholder={placeholder}
+          label={label}
           disabled={disabled}
           invalid={invalid}
           onClick={() => {

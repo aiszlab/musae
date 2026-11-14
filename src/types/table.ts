@@ -2,12 +2,26 @@ import type { DeepKeys } from "@tanstack/react-table";
 import type { Table } from "@tanstack/react-table";
 import type { ComponentProps } from "./element";
 import type { Key, ReactNode } from "react";
+import type { PagiantionProps } from "./pagination";
 
 export type SortDirection = "ascending" | "descending" | null;
 
 export type SortDescriptor = {
   key: Key;
   direction: SortDirection;
+};
+
+/**
+ * @zh 表格行选择配置。
+ * @en Table row selection configuration.
+ */
+export type RowSelection<T> = {
+  /** @zh 受控的已选行标识。 @en Controlled selected row keys. */
+  selectedRowKeys?: Key[];
+  /** @zh 非受控模式下的初始已选行标识。 @en Initial selected row keys in uncontrolled mode. */
+  defaultSelectedRowKeys?: Key[];
+  /** @zh 已选行变化时触发。 @en Called when selected rows change. */
+  onChange?: (selectedRowKeys: Key[], selectedRows: T[]) => void;
 };
 
 /**
@@ -117,6 +131,18 @@ export type TableProps<T> = ComponentProps & {
    * TanStack Table's positional row ids.
    */
   rowKey?: DeepKeys<T> | ((record: T, index: number, parent?: T) => Key);
+
+  /**
+   * @zh 配置内置分页；设置为 `false` 或省略时不显示分页。
+   * @en Configure built-in pagination. Set to `false` or omit to hide it.
+   */
+  pagination?: false | PagiantionProps;
+
+  /**
+   * @zh 配置行选择；设置后表格会显示选择框列。
+   * @en Configure row selection. A selection column is shown when provided.
+   */
+  rowSelection?: RowSelection<T>;
 };
 
 /** Recursive record shape used by the built-in hierarchical-row reader. */

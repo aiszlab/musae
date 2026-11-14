@@ -14,6 +14,7 @@ const en_US: Locale = {
 
   pagination: {
     size: (size) => `${size} items/page`,
+    range: (from, to, total) => `${from}–${to} of ${total}`,
   },
 
   popconfirm: {

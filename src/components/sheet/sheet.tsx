@@ -31,6 +31,7 @@ const Sheet = ({
   header,
   footer,
   className,
+  style,
   panelClassName,
   panelStyle,
   modal = true,
@@ -103,7 +104,7 @@ const Sheet = ({
       modal && styles.container.modal,
     ),
     overlay: $props(styles.overlay.base),
-    panel: $props(styles.panel.base, styles.panel[placement], styles.panel.fullscreen),
+    panel: $props(styles.panel.base, styles.panel[placement]),
   };
 
   return (
@@ -123,6 +124,7 @@ const Sheet = ({
             ...themeColorVars,
             "--default-position": at(_placement, 0),
             "--size": typeof size === "number" ? `${size}px` : size,
+            ...style,
           }}
           onKeyDown={onKeyDown}
         >

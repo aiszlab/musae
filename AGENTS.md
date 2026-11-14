@@ -16,6 +16,7 @@ This file provides guidance to coding agents working with code in this repositor
 ```
 
 - **Storybook comments exception.** Storybook story files (`stories/*.stories.ts`) do NOT need bilingual `@zh`/`@en` JSDoc comments. Use `/** */` block comments with plain single-language text instead.
+- **Add Storybook coverage for component features.** When developing or changing a component feature, add or update the corresponding Storybook story so the feature can be previewed and documented interactively.
 
 ## Reuse `@aiszlab/relax`
 

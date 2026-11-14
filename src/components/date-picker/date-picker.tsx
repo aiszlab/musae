@@ -49,7 +49,6 @@ const DatePicker = (props: DatePickerProps) => {
           value={value?.format("YYYY-MM-DD") ?? ""}
           onBlur={close}
           onClick={toggle}
-          onInputorClick={toggle}
           readOnly
         />
       )}

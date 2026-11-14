@@ -26,6 +26,7 @@ const Item = <T extends FieldsValue, FieldKey extends keyof T>({
         style={style}
         name={props.name}
         required={required}
+        supporting={supporting}
       />
     );
   }

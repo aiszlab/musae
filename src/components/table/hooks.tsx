@@ -11,7 +11,8 @@ import type { Column, ContextValue, SortDescriptor } from "../../types/table";
 import HeaderCell from "./header/cell";
 import { useControlledState, useEvent } from "@aiszlab/relax";
 import type { Partialable } from "@aiszlab/relax/types";
-import { EXPAND_COLUMN_ID, type CLASS_NAMES } from "./context";
+import { EXPAND_COLUMN_ID, SELECT_COLUMN_ID, type CLASS_NAMES } from "./context";
+import { Checkbox } from "../checkbox";
 import { Button } from "../button";
 import { IconExpandLess, IconExpandMore } from "../icon/icons/navigation";
 
@@ -22,9 +23,11 @@ import { IconExpandLess, IconExpandMore } from "../icon/icons/navigation";
 export const useColumns = <T,>({
   columns,
   expandable = false,
+  selectable = false,
 }: {
   columns: Column<T>[];
   expandable?: boolean;
+  selectable?: boolean;
 }) => {
   const helper = useRef(createColumnHelper<T>());
 
@@ -61,28 +64,55 @@ export const useColumns = <T,>({
       },
     );
 
-    if (!expandable) return dataColumns;
+    const leadingColumns: ColumnDef<T, unknown>[] = [];
 
-    return [
-      helper.current.display({
-        id: EXPAND_COLUMN_ID,
-        header: null,
-        cell: ({ row }) =>
-          row.getCanExpand() ? (
-            <Button
-              variant="text"
-              size="small"
-              aria-label={row.getIsExpanded() ? "收起" : "展开"}
-              aria-expanded={row.getIsExpanded()}
-              onClick={row.getToggleExpandedHandler()}
-            >
-              {row.getIsExpanded() ? <IconExpandLess /> : <IconExpandMore />}
-            </Button>
-          ) : null,
-      }),
-      ...dataColumns,
-    ];
-  }, [columns, expandable]);
+    if (selectable) {
+      leadingColumns.push(
+        helper.current.display({
+          id: SELECT_COLUMN_ID,
+          header: ({ table }) => (
+            <Checkbox
+              checked={table.getIsAllPageRowsSelected()}
+              indeterminate={table.getIsSomePageRowsSelected()}
+              onChange={table.getToggleAllPageRowsSelectedHandler()}
+              ripple={false}
+            />
+          ),
+          cell: ({ row }) => (
+            <Checkbox
+              checked={row.getIsSelected()}
+              disabled={!row.getCanSelect()}
+              onChange={row.getToggleSelectedHandler()}
+              ripple={false}
+            />
+          ),
+        }),
+      );
+    }
+
+    if (expandable) {
+      leadingColumns.push(
+        helper.current.display({
+          id: EXPAND_COLUMN_ID,
+          header: () => null,
+          cell: ({ row }) =>
+            row.getCanExpand() ? (
+              <Button
+                variant="text"
+                size="small"
+                aria-label={row.getIsExpanded() ? "收起" : "展开"}
+                aria-expanded={row.getIsExpanded()}
+                onClick={row.getToggleExpandedHandler()}
+              >
+                {row.getIsExpanded() ? <IconExpandLess /> : <IconExpandMore />}
+              </Button>
+            ) : null,
+        }),
+      );
+    }
+
+    return [...leadingColumns, ...dataColumns];
+  }, [columns, expandable, selectable]);
 };
 
 /**

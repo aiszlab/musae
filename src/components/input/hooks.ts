@@ -4,12 +4,9 @@ import {
   type FocusEventHandler,
   type MouseEventHandler,
   type SetStateAction,
-  type RefObject,
   useCallback,
 } from "react";
 import type { InputProps } from "../../types/input";
-import type { Nullable } from "@aiszlab/relax/types";
-import { isFunction } from "@aiszlab/relax";
 
 /**
  * @description
@@ -62,34 +59,6 @@ export const useInputEvents = ({
     focus,
     blur,
     change,
-    click,
-  };
-};
-
-/**
- * @description
- * inputor events
- */
-export const useInputorEvents = ({
-  inputRef,
-  onClick,
-}: {
-  inputRef: RefObject<Nullable<HTMLInputElement>>;
-  onClick?: InputProps["onInputorClick"];
-}) => {
-  // click
-  const click = useCallback<Required<InputProps>["onInputorClick"]>(
-    (event) => {
-      inputRef.current?.focus();
-      if (isFunction(onClick)) {
-        event.stopPropagation();
-        onClick(event);
-      }
-    },
-    [inputRef, onClick],
-  );
-
-  return {
     click,
   };
 };

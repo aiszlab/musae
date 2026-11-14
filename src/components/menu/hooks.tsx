@@ -2,7 +2,7 @@ import styles from "./styles";
 import React, { type Key, type ReactNode, useCallback, useContext, useMemo } from "react";
 import { Context, type CLASS_NAMES } from "./context";
 import type { ContextValue, MenuProps, Mode, Size } from "../../types/menu";
-import { toArray, useControlledState, useEvent } from "@aiszlab/relax";
+import { isVoid, toArray, useControlledState, useEvent } from "@aiszlab/relax";
 import { props as $props } from "@stylexjs/stylex";
 import { IconKeyboardArrowUp } from "../icon/icons";
 
@@ -17,38 +17,38 @@ export const useMenuContext = () => useContext(Context);
  * use children
  */
 export const useItemChildren = ({
-  prefix,
+  leading,
   label,
-  suffix,
+  trailing,
   hasChildren,
   isExpanded,
   isInline,
 }: {
-  prefix: ReactNode;
+  leading: ReactNode;
   label: ReactNode;
-  suffix: ReactNode;
+  trailing: ReactNode;
   hasChildren: boolean;
   isExpanded: boolean;
   isInline: boolean;
 }) => {
-  // prefix
-  const _prefix = useMemo(
-    () => prefix && <span {...$props(styles.prefix.base)}>{prefix}</span>,
-    [prefix],
+  // leading
+  const _leading = useMemo(
+    () => (isVoid(leading) ? null : <span {...$props(styles.leading.base)}>{leading}</span>),
+    [leading],
   );
 
   // child
   const _label = useMemo(() => label && <span>{label}</span>, [label]);
 
-  // suffix
-  const _suffix = useMemo<ReactNode>(() => {
-    if (!suffix && !hasChildren) return null;
+  // trailing
+  const _trailing = useMemo<ReactNode>(() => {
+    if (isVoid(trailing) && !hasChildren) return null;
 
     const styled = $props(styles.collapser.base, isExpanded && styles.collapser.expanded);
 
     return (
-      <span {...$props(styles.suffix.base)}>
-        {suffix}
+      <span {...$props(styles.trailing.base)}>
+        {trailing}
         {hasChildren && isInline && (
           <span {...styled}>
             <IconKeyboardArrowUp size={16} />
@@ -56,11 +56,11 @@ export const useItemChildren = ({
         )}
       </span>
     );
-  }, [hasChildren, isExpanded, suffix, isInline]);
+  }, [hasChildren, isExpanded, trailing, isInline]);
 
   return {
-    suffix: _suffix,
-    prefix: _prefix,
+    trailing: _trailing,
+    leading: _leading,
     label: _label,
   };
 };

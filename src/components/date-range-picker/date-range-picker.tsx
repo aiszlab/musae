@@ -47,7 +47,6 @@ const DateRangePicker = ({ onChange, ...props }: DateRangePickerProps) => {
             value={from?.format("YYYY-MM-DD") ?? ""}
             onBlur={close}
             onClick={toggle}
-            onInputorClick={toggle}
             readOnly
             trailing={
               <>

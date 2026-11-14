@@ -14,6 +14,7 @@ const zh_CN: Locale = {
 
   pagination: {
     size: (size) => `${size} 条/页`,
+    range: (from, to, total) => `${from}–${to} 条，共 ${total} 条`,
   },
 
   popconfirm: {

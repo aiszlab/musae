@@ -23,6 +23,7 @@ const Selector = forwardRef<InputRef, SelectorProps>(
       onClear,
       onClick,
       placeholder,
+      label,
       disabled = false,
       invalid = false,
     },
@@ -63,11 +64,11 @@ const Selector = forwardRef<InputRef, SelectorProps>(
         ref={ref}
         value={searchable ? keyword : multiple ? "" : selectedValue}
         placeholder={searchable && !multiple ? selectedValue || placeholder : placeholder}
+        label={label}
         className={styled.input.className}
         style={styled.input.style}
         onChange={searchable ? search : undefined}
         onClick={onClick}
-        onInputorClick={onClick}
         onBlur={(event) => {
           onBlur?.(event);
           onClose();

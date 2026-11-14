@@ -15,11 +15,16 @@ import { CLASS_NAMES } from "./context";
  * with a drag handle indicator. Built on the shared Sheet base component.
  */
 const BottomSheet = ({
-  open,
+  open = false,
   height = "50vh",
   closable = true,
   modal = true,
-  ...props
+  onClose,
+  className,
+  style,
+  panelClassName,
+  panelStyle,
+  children,
 }: BottomSheetProps) => {
   const classNames = useClassNames(CLASS_NAMES);
   const themeColorVars = useThemeColorVars(["on-surface-variant"]);
@@ -47,12 +52,14 @@ const BottomSheet = ({
       size={height}
       closable={closable}
       modal={modal}
-      onClose={props.onClose}
-      className={classNames.sheet}
+      onClose={onClose}
+      className={stringify(classNames.sheet, className)}
+      style={style}
       header={header}
-      panelClassName={styled.panel.className}
+      panelClassName={stringify(styled.panel.className, panelClassName)}
+      panelStyle={{ ...styled.panel.style, ...panelStyle }}
     >
-      {props.children}
+      {children}
     </Sheet>
   );
 };
