@@ -40,7 +40,7 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
       textarea: $props(
         inputStyles.root.base,
         styles.textarea.base,
-        invalid && inputStyles.root.invalid,
+        border && invalid && styles.textarea.invalid,
         !border && styles.textarea.unbordered,
       ),
       input: $props(styles.input.base, resize && styles.input.resizable),

@@ -4,7 +4,6 @@ This file provides guidance to coding agents working with code in this repositor
 
 ## Global Constraints
 
-- **Never auto-commit.** Always ask for explicit confirmation before running `git commit`, `git merge`, or any other git command that modifies the repository history. Staging (`git add`) is fine without confirmation, but committing is not.
 - **Run prettier after tasks.** After completing any task that modifies source files, run `pnpm run prettier` (or the appropriate prettier script) to ensure code formatting is consistent before considering the task done.
 - **Bilingual JSDoc comments.** All JSDoc comments must include both Chinese (`@zh`) and English (`@en`) with the corresponding language tag. Do NOT use `@description`. Follow the existing pattern in `src/types/tabs.ts`:
 

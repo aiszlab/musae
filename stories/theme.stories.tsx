@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Switch, ThemeProvider, useTheme } from "../dist";
+import { Popover, Switch, ThemeProvider, useTheme } from "../dist";
 import React from "react";
 
 const meta: Meta = {
@@ -49,3 +49,34 @@ export const DarkMode: Story = {
     </ThemeProvider>
   ),
 };
+
+/** Preview the circular reveal with an open overlay and a scrollable page. */
+export const CircularReveal: Story = {
+  render: () => (
+    <ThemeProvider>
+      <div style={{ padding: 24, minHeight: "150vh" }}>
+        <div style={{ position: "sticky", top: 24 }}>
+          <Popover visible content="This overlay stays open during the reveal.">
+            <button type="button">Overlay anchor</button>
+          </Popover>
+        </div>
+        <RevealControls />
+      </div>
+    </ThemeProvider>
+  ),
+};
+
+function RevealControls() {
+  const { mode, toggle } = useTheme();
+
+  return (
+    <div style={{ position: "fixed", insetInlineEnd: 24, insetBlockEnd: 24 }}>
+      <button type="button" onClick={(event) => toggle(event, { duration: 800 })}>
+        Switch from {mode}
+      </button>
+      <button type="button" onClick={(event) => toggle(event, { duration: 0 })}>
+        Switch immediately
+      </button>
+    </div>
+  );
+}

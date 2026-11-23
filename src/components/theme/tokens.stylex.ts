@@ -88,6 +88,7 @@ export const sizes = defineVars({
   infinity: `calc(${Infinity} * 1px)`,
   full: "100%",
   half: "50%",
+  viewportHeight: "100dvh",
   auto: "auto",
   fr: "1fr",
   fit: "fit-content",

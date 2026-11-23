@@ -10,6 +10,10 @@ const textarea = $create({
     overflow: "hidden",
   },
 
+  invalid: {
+    boxShadow: `${sizes.none} ${sizes.none} ${sizes.none} ${sizes.xxxxxxxxxxsmall} var(--color-error) inset`,
+  },
+
   unbordered: {
     boxShadow: "none",
   },

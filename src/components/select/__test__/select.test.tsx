@@ -230,6 +230,7 @@ describe("Select", () => {
     fireEvent.click(inputor!);
 
     expect(document.querySelector(".musae-dropdown")).not.toBeInTheDocument();
-    expect(inputor).toHaveClass("styles__root.disabled", "styles__root.invalid");
+    expect(input).toBeDisabled();
+    expect(input).toHaveAttribute("aria-invalid", "true");
   });
 });

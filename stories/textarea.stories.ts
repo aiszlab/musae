@@ -23,3 +23,10 @@ export const Default: Story = {
     rows: 3,
   },
 };
+
+export const Invalid: Story = {
+  args: {
+    ...Default.args,
+    invalid: true,
+  },
+};

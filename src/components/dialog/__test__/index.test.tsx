@@ -1,5 +1,6 @@
 import { render } from "@testing-library/react";
 import Dialog from "../dialog";
+import { ThemeProvider } from "../../theme";
 import React from "react";
 import "@testing-library/jest-dom";
 
@@ -9,6 +10,23 @@ describe("`Dialog` Component", () => {
 
     // node render in screen
     expect(document.querySelector(".musae-dialog")).toBeInTheDocument();
+  });
+
+  test("uses an explicit portal container outside the theme boundary", () => {
+    const external = document.createElement("div");
+    document.body.append(external);
+    const { unmount } = render(
+      <ThemeProvider>
+        <Dialog open container={external} />
+      </ThemeProvider>,
+    );
+
+    try {
+      expect(external.querySelector(".musae-dialog")).toBeInTheDocument();
+    } finally {
+      unmount();
+      external.remove();
+    }
   });
 
   // test("dialog destory after 3s", () => {

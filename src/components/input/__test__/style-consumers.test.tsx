@@ -27,11 +27,10 @@ describe("shared input styles", () => {
     const inputor = container.querySelector(".musae-input__inputor");
 
     expect(picker).not.toBeInTheDocument();
-    expect(inputor).toHaveClass(
-      "styles__root.base",
-      "styles__root.invalid",
-      "styles__root.disabled",
-    );
+    expect(inputor).toHaveClass("styles__root.base");
+    const input = container.querySelector("input");
+    expect(input).toBeDisabled();
+    expect(input).toHaveAttribute("aria-invalid", "true");
     expect(container.querySelectorAll(".musae-notched-outline")).toHaveLength(1);
   });
 
@@ -185,13 +184,17 @@ describe("shared input styles", () => {
     });
   });
 
-  test("applies root styles to Textarea", () => {
-    const { container } = render(<Textarea invalid />);
+  test("applies the error ring to a bordered Textarea and preserves its invalid state without a border", () => {
+    const { container, getByRole, rerender } = render(<Textarea invalid />);
+    const root = container.querySelector(".musae-textarea");
 
-    expect(container.querySelector(".musae-textarea")).toHaveClass(
-      "styles__root.base",
-      "styles__root.invalid",
-    );
+    expect(root).toHaveClass("styles__root.base", "styles__textarea.invalid");
+    expect(getByRole("textbox")).toHaveAttribute("aria-invalid", "true");
+
+    rerender(<Textarea invalid border={false} />);
+
+    expect(root).not.toHaveClass("styles__textarea.invalid");
+    expect(getByRole("textbox")).toHaveAttribute("aria-invalid", "true");
   });
 
   test("uses one Input appearance for date and time pickers", () => {
@@ -218,7 +221,8 @@ describe("shared input styles", () => {
     const dateRangePicker = render(<DateRangePicker />);
 
     expect(dateRangePicker.container.querySelectorAll(".musae-input__inputor")).toHaveLength(1);
-    expect(dateRangePicker.container.querySelector("input")).toHaveClass(
+    expect(dateRangePicker.getByRole("textbox")).toHaveAttribute("readonly");
+    expect(dateRangePicker.container.querySelector(".musae-input__inputor")).toHaveClass(
       "musae-date-range-picker__input",
       "styles__styles.trigger",
     );

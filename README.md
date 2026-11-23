@@ -23,7 +23,7 @@ yarn add musae
 
 ## Theming
 
-`musae` has powerful theme customization based on CSS-in-JS.
+`musae` has powerful theme customization based on CSS-in-JS. See the [React and theme migration guide](docs/react-theme-migration.md) for the minimum React version and theme transition setup.
 
 ## 🔨 Usage
 
