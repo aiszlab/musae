@@ -6,7 +6,7 @@ import { useBoolean, useEvent } from "@aiszlab/relax";
 import { Voidable } from "@aiszlab/relax/types";
 import { DialogContext } from "./context";
 
-const Dialog = ({ open, closable = true, ...props }: DialogProps) => {
+const Dialog = ({ open, closable = true, container, ...props }: DialogProps) => {
   // `Portal` should disappear after `Dialog` disappear animation completely
   const [_isVisible, { turnOn, turnOff }] = useBoolean(false);
   const popupRef = useRef<HTMLDivElement>(null);
@@ -24,7 +24,7 @@ const Dialog = ({ open, closable = true, ...props }: DialogProps) => {
 
   return (
     <DialogContext value={{ container: containerGetter }}>
-      <Portal open={open || _isVisible} modal>
+      <Portal open={open || _isVisible} container={container} modal>
         <Popup {...props} closable={closable} open={open} onClosed={turnOff} ref={popupRef} />
       </Portal>
     </DialogContext>

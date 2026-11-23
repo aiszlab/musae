@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Dialog } from "../dist";
+import { createElement } from "react";
+import { Dialog, ThemeProvider } from "../dist";
 
 const meta: Meta<typeof Dialog> = {
   title: "dialog",
@@ -27,4 +28,15 @@ export const WithTitle: Story = {
     title: "标题",
     children: "使用一个带有标题的弹窗",
   },
+};
+
+/** Mounts the dialog in a caller-selected container outside the theme shell. */
+export const ExternalContainer: Story = {
+  args: {
+    open: true,
+    title: "External container",
+    children: "This dialog is mounted in the document body.",
+    container: () => document.body,
+  },
+  render: (args) => createElement(ThemeProvider, { children: createElement(Dialog, args) }),
 };
