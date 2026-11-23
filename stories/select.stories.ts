@@ -44,3 +44,21 @@ export const Disabled: Story = {
     placeholder: "不可编辑状态",
   },
 };
+
+/** Select a filter in Controls and type a query to preview the matching options. */
+export const CustomFilter: Story = {
+  args: {
+    ...FuzzySearch.args,
+    onFilter: true,
+  },
+  argTypes: {
+    onFilter: {
+      control: { type: "select", labels: { true: "Regex" } },
+      options: [true, "Apple only", "Banana only"],
+      mapping: {
+        "Apple only": (_keyword: string, option: { value: unknown }) => option.value === "apple",
+        "Banana only": (_keyword: string, option: { value: unknown }) => option.value === "banana",
+      },
+    },
+  },
+};

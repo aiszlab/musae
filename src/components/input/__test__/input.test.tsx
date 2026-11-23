@@ -62,23 +62,31 @@ describe("leading and trailing wrappers", () => {
 });
 
 describe("invalid state", () => {
-  test("keeps the error ring on the root without a label", () => {
-    const { container } = render(<Input invalid />);
+  test("applies the error color to the outline without a label", () => {
+    const { container, getByRole } = render(<Input invalid />);
 
-    expect(container.querySelector(".musae-input__inputor")).toHaveClass("styles__root.invalid");
+    expect(getByRole("textbox")).toHaveAttribute("aria-invalid", "true");
+    expect(container.querySelector(".musae-notched-outline__leading")).toHaveClass(
+      "styles__outlineLeading.invalid",
+    );
+    expect(container.querySelector(".musae-notched-outline__notch")).toHaveClass(
+      "styles__outlineNotch.invalid",
+    );
+    expect(container.querySelector(".musae-notched-outline__trailing")).toHaveClass(
+      "styles__outlineTrailing.invalid",
+    );
   });
 
   test("applies the error color to outline segments and label when labeled", () => {
     const { container } = render(<Input invalid label="Email" placeholder="name@example.com" />);
     const inputor = container.querySelector(".musae-input__inputor")!;
 
-    expect(inputor).not.toHaveClass("styles__root.invalid");
     expect(inputor.querySelector(".musae-notched-outline__leading")).toHaveClass(
       "styles__outlineLeading.invalid",
     );
     expect(inputor.querySelector(".musae-notched-outline__notch")).toHaveClass(
       "styles__outlineNotch.invalid",
-      "styles__outlineNotch.labeledAndHasPlaceholder",
+      "styles__outlineNotch.withLabelAndPlaceholder",
     );
     expect(inputor.querySelector(".musae-notched-outline__trailing")).toHaveClass(
       "styles__outlineTrailing.invalid",

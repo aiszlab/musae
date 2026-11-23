@@ -7,9 +7,12 @@ import "@testing-library/jest-dom";
 import { props as $props } from "@stylexjs/stylex";
 
 describe("`Search` Component", () => {
-  test("snapshot", () => {
-    const { asFragment } = render(<Search />);
-    expect(asFragment()).toMatchSnapshot();
+  test("starts with an empty, enabled input", () => {
+    const { getByRole } = render(<Search />);
+    const input = getByRole("textbox");
+
+    expect(input).toHaveValue("");
+    expect(input).toBeEnabled();
   });
 
   test("renders with placeholder", () => {
@@ -183,21 +186,36 @@ describe("`Search` Component", () => {
     expect(nonClearButtons.length).toBe(0);
   });
 
-  test("snapshot with all props", () => {
-    const { asFragment } = render(
+  test("shows the starting query and can submit an edited query", () => {
+    const onSearch = jest.fn();
+    const onChange = jest.fn();
+    const { getByPlaceholderText, getByRole } = render(
       <Search
         placeholder="Search..."
         defaultValue="hello"
         searchButton="Go"
-        onSearch={jest.fn()}
-        onChange={jest.fn()}
+        onSearch={onSearch}
+        onChange={onChange}
       />,
     );
-    expect(asFragment()).toMatchSnapshot();
+    const input = getByPlaceholderText("Search...");
+
+    expect(input).toHaveValue("hello");
+    expect(getByRole("button", { name: "Clear search" })).toBeInTheDocument();
+
+    fireEvent.change(input, { target: { value: "world" } });
+    fireEvent.click(getByRole("button", { name: "Go" }));
+
+    expect(onChange).toHaveBeenCalledWith("world");
+    expect(onSearch).toHaveBeenCalledWith("world");
   });
 
-  test("snapshot disabled state", () => {
-    const { asFragment } = render(<Search disabled placeholder="Search..." />);
-    expect(asFragment()).toMatchSnapshot();
+  test("disables the input and submit button while keeping the placeholder", () => {
+    const { getByPlaceholderText, getByRole } = render(
+      <Search disabled placeholder="Search..." searchButton="Go" />,
+    );
+
+    expect(getByPlaceholderText("Search...")).toBeDisabled();
+    expect(getByRole("button", { name: "Go" })).toBeDisabled();
   });
 });
